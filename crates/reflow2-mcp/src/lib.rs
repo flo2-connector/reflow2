@@ -27,6 +27,7 @@ pub mod service;
 pub mod shared;
 pub mod skills;
 pub mod sync_debt;
+pub mod tool_listing;
 pub mod tools;
 pub mod upstream;
 pub mod usage;
