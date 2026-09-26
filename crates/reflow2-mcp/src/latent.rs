@@ -393,7 +393,12 @@ impl ServerHandler for LatentService {
         if let Some(full) = self.promoted().await {
             return full.list_tools(request, context).await;
         }
-        Ok(ListToolsResult::with_all_items(self.tool_router.list_all()))
+        // Built where every overridden listing is built, so the latent surface
+        // carries the cache hints a 2026-07-28 client requires (tool_listing.rs).
+        Ok(crate::tool_listing::tools_result(
+            self.tool_router.list_all(),
+            &context,
+        ))
     }
 
     /// `reflow2_start_design` is always answered here (it re-probes and says

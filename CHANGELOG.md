@@ -58,6 +58,16 @@ This file is the third view: *what changed, and when*.
   design, and a folder that already holds a design follows it. Not yet: browser sign-in, and empty
   folders following the setting. No tool-surface or schema change: no upgrade note.
 
+### Fixed
+
+- **The machine-wide reflow2 works again in a folder with no design, for clients on the newest
+  MCP protocol.** Claude Code 2.1.283 opens on the 2026-07-28 protocol, whose tool list must carry
+  `ttlMs` and `cacheScope`. The small two-tool listing reflow2 serves where no design exists yet
+  (so `/genesis` can start one) left both out, so the client refused it: "tools fetch failed —
+  Invalid result for tools/list: ttlMs … cacheScope". Every listing reflow2 builds by hand now goes
+  through one function that owns the protocol rule, and a test checks the full, starter and
+  degraded listings under both the new and the old protocol. Older clients see no change.
+
 ## [0.71.0] — 2026-09-25
 
 ### Added

@@ -6610,25 +6610,19 @@ impl ReflowService {
 #[tool_handler(router = self.tool_router)]
 impl ServerHandler for ReflowService {
     /// rmcp's own listing, with this design's lessons on the tools they name
-    /// (req:a-lesson-is-served-at-the-step-it-concerns). The body mirrors the
-    /// macro's generated one — cache hints included — so overriding it changes
-    /// nothing but the descriptions, and only where the design holds a lesson.
+    /// (req:a-lesson-is-served-at-the-step-it-concerns). The reply is built by
+    /// tool_listing.rs, which owns the protocol-version rule every overridden
+    /// listing must follow — so overriding this changes nothing but the
+    /// descriptions, and only where the design holds a lesson.
     async fn list_tools(
         &self,
         _request: Option<rmcp::model::PaginatedRequestParams>,
         context: rmcp::service::RequestContext<RoleServer>,
     ) -> Result<rmcp::model::ListToolsResult, McpError> {
-        let supports_cache_hints = context
-            .protocol_version()
-            .is_some_and(|v| v >= rmcp::model::ProtocolVersion::V_2026_07_28);
-        Ok(rmcp::model::ListToolsResult {
-            result_type: Some(rmcp::model::ResultType::COMPLETE),
-            tools: self.tools_with_lessons().await,
-            meta: None,
-            next_cursor: None,
-            ttl_ms: supports_cache_hints.then_some(0),
-            cache_scope: supports_cache_hints.then_some(rmcp::model::CacheScope::Public),
-        })
+        Ok(crate::tool_listing::tools_result(
+            self.tools_with_lessons().await,
+            &context,
+        ))
     }
 
     /// The macro's own `call_tool`, plus one sentence on an unknown-field
