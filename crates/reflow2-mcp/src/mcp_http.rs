@@ -226,6 +226,31 @@ impl std::fmt::Display for SessionGone {
 
 impl std::error::Error for SessionGone {}
 
+/// The server answered, and the answer was a refusal or an error status —
+/// as opposed to not answering at all. Typed so a caller can act on WHICH
+/// (`reflow2-mcp setup` refuses to store a key the server just refused, but
+/// saves one for a server that simply has no account address); the message is
+/// what a person reads.
+#[derive(Debug)]
+pub(crate) struct ServerAnswered {
+    pub(crate) status: u16,
+    message: String,
+}
+
+impl ServerAnswered {
+    fn new(status: u16, message: String) -> Self {
+        Self { status, message }
+    }
+}
+
+impl std::fmt::Display for ServerAnswered {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        f.write_str(&self.message)
+    }
+}
+
+impl std::error::Error for ServerAnswered {}
+
 /// One HTTP/1.1 request over an already-connected stream, plain or TLS.
 async fn exchange<S>(
     stream: S,
@@ -286,31 +311,47 @@ where
         .to_bytes();
     let text = String::from_utf8_lossy(&collected).to_string();
     if status == hyper::StatusCode::UNAUTHORIZED {
-        bail!(
-            "the reflow2 server at {} refused the credential (401 Unauthorized): the key is \
-             missing, wrong, expired or revoked. Check the key this client was given, or sign in again.",
-            ep.authority
-        );
+        return Err(ServerAnswered::new(
+            401,
+            format!(
+                "the reflow2 server at {} refused the credential (401 Unauthorized): the key is \
+                 missing, wrong, expired or revoked. Check the key this client was given, or sign in again.",
+                ep.authority
+            ),
+        )
+        .into());
     }
     if status == hyper::StatusCode::FORBIDDEN {
-        bail!(
-            "the reflow2 server at {} accepted who you are but not this request (403 Forbidden): \
-             the credential lacks the permission it needs, typically to CHANGE a design. {text}",
-            ep.authority
-        );
+        return Err(ServerAnswered::new(
+            403,
+            format!(
+                "the reflow2 server at {} accepted who you are but not this request (403 Forbidden): \
+                 the credential lacks the permission it needs, typically to CHANGE a design. {text}",
+                ep.authority
+            ),
+        )
+        .into());
     }
     if status == hyper::StatusCode::NOT_FOUND && session.is_some() {
         return Err(SessionGone(text).into());
     }
     if status == hyper::StatusCode::NOT_FOUND && bearer.is_some() {
-        bail!(
-            "the reflow2 server at {} has no such design for you (404): the id is wrong, or you \
-             are not a member of it.",
-            ep.authority
-        );
+        return Err(ServerAnswered::new(
+            404,
+            format!(
+                "the reflow2 server at {} has no such design for you (404): the id is wrong, or you \
+                 are not a member of it.",
+                ep.authority
+            ),
+        )
+        .into());
     }
     if !status.is_success() {
-        bail!("the reflow2 server answered {status}: {text}");
+        return Err(ServerAnswered::new(
+            status.as_u16(),
+            format!("the reflow2 server answered {status}: {text}"),
+        )
+        .into());
     }
     Ok((extract_messages(&text), session_id))
 }

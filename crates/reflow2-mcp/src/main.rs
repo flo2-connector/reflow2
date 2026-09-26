@@ -12,6 +12,46 @@ use reflow2_mcp::service::ReflowService;
 use rmcp::{ServiceExt, transport::stdio};
 use tracing_subscriber::EnvFilter;
 
+/// Commands that do one thing and exit, instead of serving.
+#[derive(Debug, clap::Subcommand)]
+enum Command {
+    /// Choose, once, whether NEW designs live on this machine or on a remote
+    /// reflow2 server, and keep that server's key in the OS keychain. With no
+    /// action, shows the current choice. A folder that already holds a design
+    /// follows that design, never this setting; switching moves no design.
+    Setup {
+        #[command(subcommand)]
+        action: Option<SetupAction>,
+    },
+}
+
+#[derive(Debug, clap::Subcommand)]
+enum SetupAction {
+    /// New designs live on this machine (the default): no network, no sign-in.
+    Local,
+    /// New designs go to the reflow2 server at URL, e.g. https://api.flo2.io.
+    /// The key is asked for at a prompt that does not echo it (or read from a
+    /// pipe), checked against the server, and kept in the OS keychain. It is
+    /// never taken on the command line.
+    Remote {
+        /// The server, e.g. https://api.flo2.io. Any path is ignored.
+        url: String,
+        /// Take the key from this environment variable (its NAME) instead of
+        /// asking for it; it is copied into the keychain, so the variable can go.
+        #[arg(long = "api-key-env", value_name = "VAR", conflicts_with = "no_key")]
+        api_key_env: Option<String>,
+        /// With --api-key-env, on a machine with no keychain: store only the
+        /// variable's name and read it at each start.
+        #[arg(long = "no-keychain", requires = "api_key_env")]
+        no_keychain: bool,
+        /// The server takes no key (a private network or VPN).
+        #[arg(long = "no-key")]
+        no_key: bool,
+    },
+    /// Remove the stored key for the configured server.
+    Forget,
+}
+
 /// The reflow2 agent-native MCP server.
 #[derive(Debug, Parser)]
 #[command(name = "reflow2-mcp", version, about)]
@@ -204,6 +244,9 @@ struct Cli {
     /// readable by you alone; a file others can read is warned about.
     #[arg(long = "api-key-file", value_name = "PATH", requires = "remote")]
     api_key_file: Option<String>,
+
+    #[command(subcommand)]
+    command: Option<Command>,
 
     /// Serve the design surface only where a design has been opted into — the
     /// mode a MACHINE-WIDE registration should use, so reflow2 can be installed
@@ -807,9 +850,26 @@ async fn main() -> anyhow::Result<()> {
             }
         }
     }
+    if let Some(Command::Setup { action }) = cli.command {
+        return run_setup(action).await;
+    }
+
     // `--remote`: nothing on this machine is opened. Forward and return.
     if let Some(url) = cli.remote.clone() {
-        let bearer = remote_credential(&cli)?;
+        let bearer = match remote_credential(&cli)? {
+            Some(k) => Some(k),
+            // No key flag: the key `reflow2-mcp setup` stored for THIS url's
+            // server, if any. Another server gets nothing.
+            None => {
+                let dir = reflow2_mcp::client_setup::config_dir()?;
+                let cfg = reflow2_mcp::client_setup::load(&dir)?;
+                reflow2_mcp::client_setup::stored_credential(
+                    &url,
+                    &cfg,
+                    &reflow2_mcp::client_setup::OsKeychain,
+                )?
+            }
+        };
         reflow2_mcp::proxy::check_remote_url(&url, bearer.is_some())?;
         tracing::info!(remote = %url, credential = bearer.is_some(), "working against a remote reflow2 server");
         return reflow2_mcp::proxy::run_remote(&url, bearer).await;
@@ -1906,6 +1966,66 @@ where
             }
         });
     }
+}
+
+/// `reflow2-mcp setup …`: gather the key the way the person chose (a hidden
+/// prompt, a pipe, or a named variable — never an argument), then hand off.
+async fn run_setup(action: Option<SetupAction>) -> anyhow::Result<()> {
+    use reflow2_mcp::client_setup::{Action, KeySource, OsKeychain, config_dir, origin_of, run};
+    use std::io::{BufRead, IsTerminal};
+    let action = match action {
+        None => Action::Show,
+        Some(SetupAction::Local) => Action::Local,
+        Some(SetupAction::Forget) => Action::Forget,
+        Some(SetupAction::Remote {
+            url,
+            api_key_env,
+            no_keychain,
+            no_key,
+        }) => {
+            if no_key {
+                Action::Remote {
+                    url,
+                    key: None,
+                    source: KeySource::None,
+                }
+            } else {
+                let key = if let Some(var) = api_key_env.as_deref() {
+                    std::env::var(var).map_err(|_| {
+                        anyhow::anyhow!("--api-key-env names {var}, but {var} is not set")
+                    })?
+                } else if std::io::stdin().is_terminal() {
+                    rpassword::prompt_password(format!(
+                        "Key for {} (typing is hidden): ",
+                        origin_of(&url)?
+                    ))
+                    .context("could not read the key from the terminal")?
+                } else {
+                    let mut line = String::new();
+                    std::io::stdin()
+                        .lock()
+                        .read_line(&mut line)
+                        .context("could not read the key from stdin")?;
+                    line
+                };
+                let key = key.trim().to_string();
+                if key.is_empty() {
+                    anyhow::bail!("no key was given. For a server that takes none, use --no-key.");
+                }
+                let source = match (no_keychain, api_key_env) {
+                    (true, Some(var)) => KeySource::Env { var },
+                    _ => KeySource::Keychain,
+                };
+                Action::Remote {
+                    url,
+                    key: Some(key),
+                    source,
+                }
+            }
+        }
+    };
+    let mut out = std::io::stdout();
+    run(action, &config_dir()?, &OsKeychain, &mut out).await
 }
 
 /// The `--remote` credential, from the environment variable or file named on
