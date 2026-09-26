@@ -104,6 +104,17 @@ jobs:
           # Same reason as the core job: the lineage guard runs in THIS job and
           # needs HEAD~1 to exist (BL-208).
           fetch-depth: 2
+      # ⚠️ THE RUNNER'S DISK HOLDS ONE RocksDB BUILD, NOT TWO. Measured
+      # 2026-09-26 (#593): adding `keyring` turned on syn's `fold` feature, which
+      # RocksDB's bindgen build also uses, so librocksdb-sys rebuilt. The cache
+      # restored main's build as well, and Clippy's step failed on "No space
+      # left on device" with every test green. Any dependency that moves a
+      # shared build crate does this again, so make the room first: these
+      # preinstalled toolchains are never used by this job.
+      - name: Free disk space (room for a second RocksDB build)
+        run: |
+          sudo rm -rf /usr/share/dotnet /usr/local/lib/android /opt/ghc /opt/hostedtoolcache/CodeQL
+          df -h /
       - uses: dtolnay/rust-toolchain@stable
         with:
           components: clippy
