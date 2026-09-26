@@ -158,6 +158,11 @@ fn session(args: &[&str], env: &[(&str, &str)]) -> (Vec<String>, String, bool) {
     let mut cmd = Command::new(bin());
     cmd.args(args)
         .env_remove("REFLOW2_TEST_KEY")
+        // Hermetic: never read this machine's own `reflow2-mcp setup` settings.
+        .env(
+            "REFLOW2_CONFIG_DIR",
+            std::env::temp_dir().join(format!("reflow2-no-settings-{}", std::process::id())),
+        )
         .env("RUST_LOG", "debug")
         .stdin(Stdio::piped())
         .stdout(Stdio::piped())

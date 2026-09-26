@@ -43,8 +43,20 @@ This file is the third view: *what changed, and when*.
   A refused key, a missing permission, a design that is not yours and an unreachable server each
   come back as a readable error, never a hung call. Only a session the server says it forgot is
   re-joined, and nothing else is re-sent. HTTPS uses the machine's own certificate store. Local
-  use is unchanged. Not yet: browser sign-in, a setup command, and writing the export and
-  measuring files on your machine. No tool-surface or schema change: no upgrade note.
+  use is unchanged. Not yet: browser sign-in, and writing the export and measuring files on
+  your machine. No tool-surface or schema change: no upgrade note.
+- **Choose local or a remote server once: `reflow2-mcp setup`.** `setup remote https://api.flo2.io`
+  asks for the server's key at a prompt that doesn't show what you type (or reads it from a pipe,
+  or from a variable you name with `--api-key-env`). It checks the key with the server, reporting
+  e.g. "Connected: 4 designs", and keeps it in your OS keychain: macOS Keychain, Windows Credential
+  Manager, or the Linux desktop keyring. A refused key, or a server that doesn't answer, saves
+  nothing. The settings file (`~/.config/reflow2/client.json`) names the server and where the key
+  is, never the key. After that, `--remote <url>` needs no key flag: it carries the key set up for
+  that server, and no other server ever gets it. `setup local` goes back to the default,
+  `setup forget` removes the key, and plain `setup` shows the choice. On a machine with no keychain,
+  `--api-key-env VAR --no-keychain` reads the variable at each start instead. Switching moves no
+  design, and a folder that already holds a design follows it. Not yet: browser sign-in, and empty
+  folders following the setting. No tool-surface or schema change: no upgrade note.
 
 ## [0.71.0] — 2026-09-25
 
