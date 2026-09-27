@@ -224,4 +224,8 @@ pub use vocabulary::{
 // `StoredNode` 21 times — removing it would be a breaking change dressed as
 // tidiness. See `crate::foundation` for the provenance.
 pub use crate::foundation::core::{DynoError, Schema, Value};
+#[cfg(feature = "rocksdb")]
+pub use crate::foundation::store::{
+    DEFAULT_STORE_MEMORY_BYTES, set_store_memory_budget, store_memory_usage,
+};
 pub use crate::foundation::store::{StoredEdge, StoredNode};

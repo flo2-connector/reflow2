@@ -53,16 +53,106 @@ pub const ALL_CFS: &[&str] = &[
     CF_EMBEDDINGS,
 ];
 
-/// Per-column-family RocksDB options tuned for access patterns.
+/// ONE MEMORY BUDGET FOR EVERY STORE THIS PROCESS OPENS
+/// (`req:one-open-design-costs-a-deliberate-amount-of-memory`).
+///
+/// Left to RocksDB's defaults, every column family of every store carries its
+/// own write buffers (64 MiB each, two of them) and, on most families, its own
+/// block cache. Nothing is shared between stores. A small design never fills
+/// them, which is why ~5 MB per open design was measured on small designs in
+/// 2026-09-13; a design the size of reflow2's own measured ~39 MB per open design
+/// (2026-09-27, `tools/measure_open_design_memory.py`), and a busy one heads for
+/// the defaults' ceiling. A server holding many designs cannot plan against that.
+///
+/// So every store opened by this process shares ONE LRU cache, and the
+/// memtables are charged to that same cache through one write-buffer manager,
+/// so a single number bounds block cache plus write buffers across all stores.
+/// Index and filter blocks live in that cache too, instead of being pinned per
+/// open table file.
+#[cfg(feature = "rocksdb")]
+struct StoreBudget {
+    cache: rocksdb::Cache,
+    write_buffers: rocksdb::WriteBufferManager,
+    bytes: usize,
+}
+
+/// What the shared budget is, unless the process says otherwise before its
+/// first store opens (`set_store_memory_budget`).
+#[cfg(feature = "rocksdb")]
+pub const DEFAULT_STORE_MEMORY_BYTES: usize = 128 * 1024 * 1024;
+
+/// Each column family's write buffer. RocksDB's default is 64 MiB; a design's
+/// families are small, and many stores share one budget, so a buffer that size
+/// would let one busy design take the whole budget before it ever flushed.
+#[cfg(feature = "rocksdb")]
+const WRITE_BUFFER_PER_FAMILY: usize = 4 * 1024 * 1024;
+
+/// Table files one store keeps open. RocksDB's default is unlimited, which
+/// on a server holding many designs is a file-handle count nobody chose.
+#[cfg(feature = "rocksdb")]
+const MAX_OPEN_FILES_PER_STORE: i32 = 64;
+
+#[cfg(feature = "rocksdb")]
+static STORE_BUDGET: std::sync::OnceLock<StoreBudget> = std::sync::OnceLock::new();
+
+#[cfg(feature = "rocksdb")]
+impl StoreBudget {
+    fn new(bytes: usize) -> Self {
+        let cache = rocksdb::Cache::new_lru_cache(bytes);
+        // Memtables may use up to half the budget before flushes are forced;
+        // their memory is charged to the cache, so the whole stays one number.
+        let write_buffers = rocksdb::WriteBufferManager::new_write_buffer_manager_with_cache(
+            bytes / 2,
+            false,
+            cache.clone(),
+        );
+        Self {
+            cache,
+            write_buffers,
+            bytes,
+        }
+    }
+}
+
+#[cfg(feature = "rocksdb")]
+fn store_budget() -> &'static StoreBudget {
+    STORE_BUDGET.get_or_init(|| StoreBudget::new(DEFAULT_STORE_MEMORY_BYTES))
+}
+
+/// Set the memory budget every store opened by this process shares, in bytes:
+/// block cache and write buffers together, across all open designs.
+///
+/// Takes effect only BEFORE the first store opens; the budget is fixed for the
+/// life of the process after that, because stores already open hold it. Returns
+/// the budget actually in force, so a caller that was too late can say so.
+#[cfg(feature = "rocksdb")]
+pub fn set_store_memory_budget(bytes: usize) -> usize {
+    STORE_BUDGET.get_or_init(|| StoreBudget::new(bytes)).bytes
+}
+
+/// What the shared budget is using right now, in bytes: `(cache, write buffers)`.
+/// The write-buffer figure is charged to the cache as well, so the first
+/// number includes it.
+#[cfg(feature = "rocksdb")]
+pub fn store_memory_usage() -> (usize, usize) {
+    let b = store_budget();
+    (b.cache.get_usage(), b.write_buffers.get_usage())
+}
+
+/// Per-column-family RocksDB options tuned for access patterns, all drawing on
+/// the one shared budget.
 #[cfg(feature = "rocksdb")]
 fn cf_options(cf_name: &str) -> Options {
+    let budget = store_budget();
     let mut opts = Options::default();
+    opts.set_write_buffer_size(WRITE_BUFFER_PER_FAMILY);
+    let mut block_opts = BlockBasedOptions::default();
+    block_opts.set_block_cache(&budget.cache);
+    block_opts.set_cache_index_and_filter_blocks(true);
     match cf_name {
         CF_NODES | CF_EDGES => {
             // Point lookups — bloom filter reduces unnecessary disk reads
-            let mut block_opts = BlockBasedOptions::default();
             block_opts.set_bloom_filter(10.0, false);
-            opts.set_block_based_table_factory(&block_opts);
         }
         CF_ADJ_OUT | CF_ADJ_IN => {
             // No fixed-prefix extractor: keys are
@@ -87,12 +177,11 @@ fn cf_options(cf_name: &str) -> Options {
             // GET/DELETE; prefix scans by (graph_id, node_type) for the
             // future `scan_embeddings_by_type` path slice 8b will use to
             // rebuild HNSW state on rehydrate.
-            let mut block_opts = BlockBasedOptions::default();
             block_opts.set_bloom_filter(10.0, false);
-            opts.set_block_based_table_factory(&block_opts);
         }
         _ => {}
     }
+    opts.set_block_based_table_factory(&block_opts);
     opts
 }
 
@@ -373,6 +462,9 @@ impl RocksBackend {
         let mut opts = Options::default();
         opts.create_if_missing(true);
         opts.create_missing_column_families(true);
+        let budget = store_budget();
+        opts.set_write_buffer_manager(&budget.write_buffers);
+        opts.set_max_open_files(MAX_OPEN_FILES_PER_STORE);
 
         let cf_descriptors: Vec<ColumnFamilyDescriptor> = ALL_CFS
             .iter()
