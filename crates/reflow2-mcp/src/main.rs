@@ -182,6 +182,18 @@ struct Cli {
     #[arg(long, value_name = "DURATION", default_value = "15m", value_parser = parse_idle)]
     registry_idle: std::time::Duration,
 
+    /// Memory, in MB, that every design store this process opens shares: block
+    /// cache and write buffers together (default 128).
+    ///
+    /// One budget for the whole process rather than RocksDB's per-store defaults,
+    /// so a server holding many designs costs a number somebody chose
+    /// (`req:one-open-design-costs-a-deliberate-amount-of-memory`). Past it,
+    /// cached blocks are evicted and memtables flushed sooner — reads and writes
+    /// still work, a little slower. It bounds RocksDB only: the full-text index
+    /// and the process's own allocations come on top.
+    #[arg(long, value_name = "MB", default_value_t = 128)]
+    store_memory: usize,
+
     /// Refuse every write. Reads, searches and reports still work; nothing can
     /// be created, changed or deleted.
     ///
@@ -890,6 +902,8 @@ async fn main() -> anyhow::Result<()> {
         .init();
 
     let cli = Cli::parse();
+    // Before anything can open a store: the budget is fixed once one does.
+    reflow2_core::set_store_memory_budget(cli.store_memory.max(8) * 1024 * 1024);
     if let Some(raw) = cli.content_policy.as_deref() {
         match reflow2_mcp::content_policy::ContentPolicy::parse(raw) {
             Some(p) => reflow2_mcp::content_policy::set_override(p),

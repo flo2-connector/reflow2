@@ -12,6 +12,8 @@
 //! [`crate::foundation::core`] directly.
 
 mod backend;
+#[cfg(feature = "rocksdb")]
+pub use backend::{DEFAULT_STORE_MEMORY_BYTES, set_store_memory_budget, store_memory_usage};
 mod cache;
 mod engine;
 mod keys;

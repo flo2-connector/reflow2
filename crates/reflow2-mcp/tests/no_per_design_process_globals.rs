@@ -49,6 +49,18 @@ use std::path::{Path, PathBuf};
 /// belongs on the design handle and this list is the wrong fix.
 const ALLOWED: &[(&str, &str, &str)] = &[
     (
+        "reflow2-core/src/foundation/store/backend.rs",
+        "STORE_BUDGET",
+        "The ONE memory budget every store this process opens shares — a RocksDB \
+         block cache with the memtables charged to it through one write-buffer \
+         manager (req:one-open-design-costs-a-deliberate-amount-of-memory). A \
+         second design open in the same process must NOT get a value of its own: \
+         sharing one bound across every open design is the entire point, and a \
+         budget per design would be the per-store defaults it replaces. It holds \
+         no design's data, only the cache and the manager, and is fixed once the \
+         first store opens (`--store-memory`).",
+    ),
+    (
         "reflow2-mcp/src/mcp_http.rs",
         "CONFIG",
         "The TLS client configuration `--remote` uses: the ring provider and the \

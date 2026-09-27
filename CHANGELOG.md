@@ -48,6 +48,25 @@ This file is the third view: *what changed, and when*.
   for the server's whole life: on flo2.io, with 11 designs and the default of 8, one pass over every
   design left the last 3 refused until a restart.
 
+- **Every design a process opens shares one memory budget: `--store-memory` (MB, default 128).**
+  Each design's database used to bring RocksDB's own defaults: per-family write buffers (64 MiB
+  each) and, on most families, its own block cache, with nothing shared between designs. Now every
+  store shares one cache, and write buffers and index and filter blocks are charged to it too. So a
+  server holding many designs has a RocksDB footprint somebody chose. Per-family write buffers drop
+  to 4 MiB and each store keeps at most 64 table files open.
+
+  Measured before and after on four copies of reflow2's own design (5,600 nodes): memory per open
+  design and write speed were unchanged, within noise. For a design that size, RocksDB's buffers
+  were not where the memory went. The budget bounds the worst case a busy design could reach, at no
+  measured cost.
+
+### Added
+
+- **`tools/measure_open_design_memory.py`**: what one open design costs in memory and what writing
+  to it costs in time. It works over real-sized copies of a design, and splits private heap from
+  memory-mapped files. It is the instrument for comparing before and after any change to how stores
+  use memory.
+
 ### Fixed
 
 - **A server that is full says "busy", not "not found".** A request the registry cannot serve right
