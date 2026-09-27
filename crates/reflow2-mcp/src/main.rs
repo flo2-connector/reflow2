@@ -163,14 +163,24 @@ struct Cli {
     /// How many designs this server may hold open at once (default 8).
     ///
     /// Each open design costs a store, its file handles and its own full-text
-    /// index, so this is a resource bound rather than a policy. Past it, a
-    /// request for a design that is not already open is REFUSED WITH A CLEAR
-    /// ERROR naming this flag — never silent thrashing
-    /// (`dec:one-process-many-stores`). Nothing is evicted to make room: idle
-    /// eviction is a separate change with its own policy, and a cap that
-    /// silently closed somebody's design would be worse than one that declines.
+    /// index, so this is a resource bound rather than a policy. At the limit, the
+    /// least recently used design with no request in progress is CLOSED to make
+    /// room — its sessions end, and it reopens on its next request. Only when
+    /// every open design is serving a request is the newcomer refused, with
+    /// 503 and Retry-After (`req:a-hosted-server-closes-idle-designs-and-says-busy-when-full`).
     #[arg(long, value_name = "N", default_value_t = 8)]
     registry_max_open: usize,
+
+    /// Close a design nobody has used for this long (default 15m; `0` never
+    /// closes one for idleness). A number with `s`, `m` or `h`; a bare number is
+    /// minutes.
+    ///
+    /// Used with `--registry-root`. At `0`, an opened design stays open until the
+    /// process ends, so the open-design limit becomes a budget for the process's
+    /// whole life rather than a bound on concurrent use — which is how flo2.io
+    /// refused 3 of its 11 designs on 2026-09-27, before this existed.
+    #[arg(long, value_name = "DURATION", default_value = "15m", value_parser = parse_idle)]
+    registry_idle: std::time::Duration,
 
     /// Refuse every write. Reads, searches and reports still work; nothing can
     /// be created, changed or deleted.
@@ -760,6 +770,47 @@ fn with_cli_tree_root(service: ReflowService, cli: &Cli) -> ReflowService {
     }
 }
 
+/// `--registry-idle`: a number with `s`, `m` or `h` (a bare number is minutes).
+/// `0` parses to a zero duration, which the registry reads as never.
+///
+/// ⚠️ IT RETURNS A PLAIN `Duration`, NOT AN `Option`. clap reads an `Option<T>`
+/// field as "optional T" and hands the parser's output to it as T, so a parser
+/// returning `Option<Duration>` panics on every launch — which is exactly what
+/// the first version did, caught by the transport tests before it shipped.
+fn parse_idle(raw: &str) -> Result<std::time::Duration, String> {
+    let raw = raw.trim();
+    let (digits, unit) = match raw.char_indices().find(|(_, c)| !c.is_ascii_digit()) {
+        Some((i, _)) => raw.split_at(i),
+        None => (raw, "m"),
+    };
+    let n: u64 = digits
+        .parse()
+        .map_err(|_| format!("'{raw}' is not a duration: use a number with s, m or h, e.g. 15m"))?;
+    let secs = match unit {
+        "s" => n,
+        "m" => n.saturating_mul(60),
+        "h" => n.saturating_mul(3600),
+        other => {
+            return Err(format!(
+                "'{other}' is not a unit here: use s, m or h, e.g. 15m (or 0 to never close)"
+            ));
+        }
+    };
+    Ok(std::time::Duration::from_secs(secs))
+}
+
+/// A duration as `--registry-idle` would take it back.
+fn describe_idle(d: std::time::Duration) -> String {
+    let s = d.as_secs();
+    if s.is_multiple_of(3600) {
+        format!("{}h", s / 3600)
+    } else if s.is_multiple_of(60) {
+        format!("{}m", s / 60)
+    } else {
+        format!("{s}s")
+    }
+}
+
 fn is_lock_contention(text: &str) -> bool {
     text.contains("lock file") || text.contains("Resource temporarily unavailable")
 }
@@ -1058,18 +1109,27 @@ async fn main() -> anyhow::Result<()> {
                 ids.join(", ")
             );
         }
+        // Zero is the operator saying "never", which the router takes as no timeout.
+        let idle = (!cli.registry_idle.is_zero()).then_some(cli.registry_idle);
+        let closes = match idle {
+            Some(idle) => format!("a design nobody uses for {} is closed", describe_idle(idle)),
+            None => "designs are never closed for idleness (--registry-idle 0)".to_string(),
+        };
         eprintln!(
-            "reflow2: address a design as http://<addr>/g/<graph_id>/ . Designs open ON DEMAND \
-             and at most {} are held at once (--registry-max-open). THE ROOT IS THE TENANT \
-             BOUNDARY: this server routes within {root} and has no operation that crosses it. \
-             There is NO authentication — reach it over loopback or a private network only.",
+            "reflow2: address a design as http://<addr>/g/<graph_id>/ . Designs open ON DEMAND, \
+             {closes} (--registry-idle), and at most {} are held at once — past that the least \
+             recently used idle one is closed to make room (--registry-max-open). THE ROOT IS THE \
+             TENANT BOUNDARY: this server routes within {root} and has no operation that crosses \
+             it. There is NO authentication — reach it over loopback or a private network only.",
             cli.registry_max_open
         );
 
         let read_only = cli.read_only;
         let max_open = cli.registry_max_open;
         serve_http(
-            move |cfg| reflow2_mcp::registry_http::GraphRouter::new(root, read_only, max_open, cfg),
+            move |cfg| {
+                reflow2_mcp::registry_http::GraphRouter::new(root, read_only, max_open, idle, cfg)
+            },
             &addr,
             &cli.http_allow_host,
             HttpSurface::Design,
@@ -2067,6 +2127,35 @@ fn remote_credential(cli: &Cli) -> anyhow::Result<Option<String>> {
 
 #[cfg(test)]
 mod tests {
+    /// `--registry-idle` reads the way an operator writes it, and `0` means
+    /// never — the one setting where "no timeout" is an explicit choice.
+    #[test]
+    fn the_idle_timeout_reads_seconds_minutes_and_hours_and_zero_means_never() {
+        use std::time::Duration;
+        assert_eq!(super::parse_idle("15m"), Ok(Duration::from_secs(900)));
+        assert_eq!(super::parse_idle("30s"), Ok(Duration::from_secs(30)));
+        assert_eq!(super::parse_idle("2h"), Ok(Duration::from_secs(7200)));
+        assert_eq!(
+            super::parse_idle("20"),
+            Ok(Duration::from_secs(1200)),
+            "a bare number is minutes"
+        );
+        assert_eq!(
+            super::parse_idle("0"),
+            Ok(Duration::ZERO),
+            "zero is never, read by the router as no timeout"
+        );
+        assert_eq!(super::parse_idle("0m"), Ok(Duration::ZERO));
+        assert!(
+            super::parse_idle("15 minutes").is_err(),
+            "an unknown unit is refused, not guessed"
+        );
+        assert!(super::parse_idle("m").is_err());
+        assert_eq!(super::describe_idle(Duration::from_secs(900)), "15m");
+        assert_eq!(super::describe_idle(Duration::from_secs(7200)), "2h");
+        assert_eq!(super::describe_idle(Duration::from_secs(45)), "45s");
+    }
+
     /// A LOG THAT NOBODY CAPS CAN FILL A DISK, and the default filter sets the
     /// rate. Measured 2026-09-08 on this project's own server log: 368 of 473
     /// lines were `tantivy`'s per-commit and garbage-collect bookkeeping,
