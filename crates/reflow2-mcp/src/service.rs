@@ -592,6 +592,18 @@ pub struct ReflowService {
     /// (`crate::measure`) then refuses BY NAME instead of finding nothing.
     /// A property of the SERVER like the graph, shared across sessions.
     tree_root: Option<std::path::PathBuf>,
+    /// Whether this server may go OUT over the network on a caller's behalf —
+    /// today only to ask another reflow2 server for a watched design's
+    /// fingerprint (`req:a-design-watches-another-design-at-the-server-that-holds-it`).
+    ///
+    /// `true` for a server a person runs for themselves (stdio, `--shared`,
+    /// a single-design `--http`): the address is theirs to name and the
+    /// credential theirs to carry. `false` for a registry serving other
+    /// people's designs (`--registry-root`, flo2.io's shape): a server that
+    /// fetched whatever address a caller declared would let any caller make it
+    /// reach any host its network can see. A property of the SERVER, shared
+    /// across sessions, like `tree_root`.
+    reaches_out: bool,
     /// Measurements memoised on (length, mtime), shared across sessions for
     /// the same reason `auto_export` is: one server, one disk.
     measure_memo: crate::measure::SharedMemo,
@@ -4492,6 +4504,21 @@ pub struct ExternalDependencyReq {
     /// so an undated baseline is reported as undated rather than assumed fresh.
     #[serde(default)]
     pub design_export_seen_at: Option<String>,
+    /// The ADDRESS of the server that holds that design's blueprint, when you
+    /// mean to WATCH it there — `https://api.flo2.io/g/<graph_id>/mcp`, an
+    /// organisation's own reflow2, or a local one. reflow2 asks that server for
+    /// the design NOW and records its fingerprint; later `upstream_status`
+    /// reads ask again and report whether it has moved, and a server that
+    /// cannot be reached or refuses is reported as exactly that, never as
+    /// unchanged. The key sent is the one `reflow2-mcp setup` stored for that
+    /// server; never put a key here. Use this OR `design_export`, not both: a
+    /// design is watched in one place.
+    #[serde(default)]
+    pub design_address: Option<String>,
+    /// The date the address baseline was taken, for the record — the
+    /// `design_export_seen_at` of an address watch.
+    #[serde(default)]
+    pub design_address_seen_at: Option<String>,
     #[serde(default)]
     pub note: Option<String>,
 }
@@ -5974,6 +6001,7 @@ impl ReflowService {
             tree_root: graph_path
                 .as_deref()
                 .map(|gp| crate::wall_check::project_root(Some(gp), None)),
+            reaches_out: true,
             measure_memo: Default::default(),
             session_reads: Arc::new(AtomicU64::new(0)),
             session_writes: Arc::new(AtomicU64::new(0)),
@@ -6040,6 +6068,20 @@ impl ReflowService {
         self
     }
 
+    /// Serve this design from a server that must NOT reach out over the
+    /// network on a caller's behalf — a registry of other people's designs.
+    /// A watch declared at an address is then recorded but never fetched here,
+    /// and says so (`reaches_out`).
+    pub fn without_reaching_out(mut self) -> Self {
+        self.reaches_out = false;
+        self
+    }
+
+    /// Whether this server may ask another server for a watched design.
+    pub fn reaches_out(&self) -> bool {
+        self.reaches_out
+    }
+
     /// Where a registered location is measured under, if anywhere.
     pub fn tree_root(&self) -> Option<&std::path::Path> {
         self.tree_root.as_deref()
@@ -6100,6 +6142,7 @@ impl ReflowService {
             read_hint: Arc::new(std::sync::Mutex::new(ReadHintCache::default())),
             auto_export: self.auto_export.clone(),
             tree_root: self.tree_root.clone(),
+            reaches_out: self.reaches_out,
             measure_memo: Arc::clone(&self.measure_memo),
             // Fresh per session, like the seat: the count is about one client.
             session_reads: Arc::new(AtomicU64::new(0)),

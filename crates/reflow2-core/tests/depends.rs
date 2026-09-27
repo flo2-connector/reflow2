@@ -29,6 +29,9 @@ fn decl() -> DependencyDeclaration {
         design_export: None,
         design_export_hash: None,
         design_export_seen_at: None,
+        design_address: None,
+        design_address_hash: None,
+        design_address_seen_at: None,
         note: Some("v0.12.0 verified safe to take: built and tested against it.".into()),
     }
 }

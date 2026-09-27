@@ -33,6 +33,19 @@ This file is the third view: *what changed, and when*.
 
 ### Added
 
+- **Watch a design you depend on at the server that holds it, not through a file.**
+  `external_dependency` takes `design_address`: the address of the server holding that design's
+  blueprint, such as flo2's `https://api.flo2.io/g/<id>/mcp`, your organization's own reflow2, or
+  a local one. reflow2 asks that server for the design when you declare the dependency and records
+  its fingerprint. `upstream_status` asks again on each read and reports `moved` or `unchanged`.
+  A server that cannot be reached comes back `unreachable`, and one that refuses comes back
+  `refused` in its own words. Neither ever reads as `unchanged`. The key sent is the one
+  `reflow2-mcp setup` stored for that server, and never one written into the declaration.
+  `loop_status` does not go over the network. It names an address watch as read by
+  `upstream_status` instead. A server holding other people's designs (`--registry-root`) never
+  fetches an address on a caller's behalf. A dependency is watched in one place: naming both
+  `design_address` and `design_export` is refused.
+
 - **Work a design on a remote reflow2 server from your own agent.** `reflow2-mcp --remote <url>`
   speaks stdio to Claude Code, Grok Build or any MCP client exactly as a local reflow2 does, and
   forwards to a reflow2 elsewhere over HTTPS: flo2's `https://api.flo2.io/g/<id>/mcp`, or your
@@ -59,6 +72,10 @@ This file is the third view: *what changed, and when*.
   folders following the setting. No tool-surface or schema change: no upgrade note.
 
 ### Fixed
+
+- **The upstream watch no longer takes any JSON document for a design.** A watched file holding
+  `{}`, or any other JSON that names no design, was read as an empty design and fingerprinted.
+  It now reads as `unreadable` and takes no baseline.
 
 - **The machine-wide reflow2 works again in a folder with no design, for clients on the newest
   MCP protocol.** Claude Code 2.1.283 opens on the 2026-07-28 protocol, whose tool list must carry
