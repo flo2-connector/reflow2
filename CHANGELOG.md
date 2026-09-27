@@ -31,6 +31,30 @@ This file is the third view: *what changed, and when*.
 
 ## [Unreleased]
 
+### Changed
+
+- **A server holding many designs now closes the ones nobody is using.** With `--registry-root`:
+  - A design with no request for `--registry-idle` (default `15m`; `0` never) is closed. It reopens
+    on its next request.
+  - At the `--registry-max-open` limit, the least recently used design with nothing in progress is
+    closed to make room, instead of the newcomer being refused.
+  - Closing a design ends its sessions. A client on an older MCP revision gets 404 for that session
+    and starts a new one, which the MCP spec requires and flo2's gateway already does. Nothing
+    written is lost.
+  - A design is never reopened while its previous copy still holds the store, which RocksDB would
+    refuse.
+
+  Before this, a design once opened stayed open until the server stopped. So the limit was a budget
+  for the server's whole life: on flo2.io, with 11 designs and the default of 8, one pass over every
+  design left the last 3 refused until a restart.
+
+### Fixed
+
+- **A server that is full says "busy", not "not found".** A request the registry cannot serve right
+  now gets `503 Service Unavailable` with `Retry-After`: every open design is mid-request, or its
+  store would not open. It used to get `404`, which tells a client the design does not exist. A
+  design that really is not there is still `404`.
+
 
 ## [0.72.0] — 2026-09-27
 
