@@ -281,12 +281,12 @@ fn an_unwatched_dependency_emits_no_watch_fields_at_all() {
     assert!(!toml.contains("design_export"));
 }
 
-// ─────────────────────────────── watched at the server that holds the blueprint
+// ─────────────────────────────── watched at the server that holds the design
 //
 // req:a-design-watches-another-design-at-the-server-that-holds-it (accepted
-// 2026-09-27). Under the one-blueprint rules a design IS the store on the
-// server that holds it, and a photocopy nothing tracks is no longer a thing to
-// watch. The first case was the dev_reflow2 hub watching cure on flo2.io, whose
+// 2026-09-27). Under the rules settled that day a design IS the data store on
+// the server that holds it, and an export nothing tracks is no longer a thing
+// to watch. The first case was the dev_reflow2 hub watching cure on flo2.io, whose
 // file watch reported the move itself and would then have said "unchanged"
 // forever (fact:a-moved-design-cannot-be-watched-and-its-frozen-export-reads-as-live-2026-09-27).
 

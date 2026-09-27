@@ -34,8 +34,8 @@ This file is the third view: *what changed, and when*.
 ### Added
 
 - **Watch a design you depend on at the server that holds it, not through a file.**
-  `external_dependency` takes `design_address`: the address of the server holding that design's
-  blueprint, such as flo2's `https://api.flo2.io/g/<id>/mcp`, your organization's own reflow2, or
+  `external_dependency` takes `design_address`: the address of the server that holds that
+  design, such as flo2's `https://api.flo2.io/g/<id>/mcp`, your organization's own reflow2, or
   a local one. reflow2 asks that server for the design when you declare the dependency and records
   its fingerprint. `upstream_status` asks again on each read and reports `moved` or `unchanged`.
   A server that cannot be reached comes back `unreachable`, and one that refuses comes back

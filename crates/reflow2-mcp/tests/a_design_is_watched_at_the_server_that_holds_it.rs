@@ -1,11 +1,11 @@
 //! A design that depends on another design watches it at the server that holds
-//! its blueprint, never through a file
+//! it, never through a file
 //! (`req:a-design-watches-another-design-at-the-server-that-holds-it`, accepted
 //! 2026-09-27).
 //!
-//! Under the one-blueprint rules a design IS the store on the server that holds
-//! it, and an export is a perishable photocopy nothing tracks. The first design
-//! that moved to flo2.io left its last photocopy behind, and the dev_reflow2
+//! Under the rules settled that day a design IS the data store on the server
+//! that holds it, and an export is a copy at one moment that nothing tracks. The
+//! first design that moved to flo2.io left its last export behind, and the dev_reflow2
 //! hub's file watch on it reported the move itself and would then have said
 //! "unchanged" forever
 //! (`fact:a-moved-design-cannot-be-watched-and-its-frozen-export-reads-as-live-2026-09-27`).

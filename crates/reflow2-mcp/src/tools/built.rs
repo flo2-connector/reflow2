@@ -68,21 +68,7 @@ fn artifact_has_baseline(g: &DesignGraph, artifact_id: &str) -> Result<bool, Mcp
 #[tool_router(router = built_router, vis = "pub")]
 impl ReflowService {
     #[tool(
-        description = "Declare which version of ANOTHER DESIGN this one depends on — the pin a \
-                       seam analysis is taken AS OF. Records the source, the version (a tag or \
-                       commit), the parts taken, and the build switches forwarded BY NAME, \
-                       because a renamed feature is a downstream build break that no API diff or \
-                       surface export would mention. This is what you MEAN to depend on; \
-                       reconcile_dependencies compares it against what the build actually \
-                       resolves. A declaration without a version is refused: the version is the \
-                       whole point. Pass `graph_id` when the dependency is ITSELF a reflow2 \
-                       design, which makes it composable from this committed file rather than \
-                       from a per-machine config — omit it otherwise, because absent means \
-                       'nobody has said', never 'there is no design'. To WATCH that design, \
-                       pass `design_address`: the server that holds its blueprint, which is \
-                       asked for the design now and on every upstream_status read (a design \
-                       still kept beside its repository may instead name its committed export \
-                       with `design_export`; never both).",
+        description = "Declare which version of ANOTHER DESIGN this one depends on — the pin a seam analysis is taken AS OF. Records the source, the version (a tag or commit), the parts taken, and the build switches forwarded BY NAME, because a renamed feature is a downstream build break that no API diff or surface export would mention. This is what you MEAN to depend on; reconcile_dependencies compares it against what the build actually resolves. A declaration without a version is refused: the version is the whole point. Pass `graph_id` when the dependency is ITSELF a reflow2 design, which makes it composable from this committed file rather than from a per-machine config — omit it otherwise, because absent means 'nobody has said', never 'there is no design'.",
         annotations(read_only_hint = false)
     )]
     pub async fn external_dependency(
@@ -95,8 +81,8 @@ impl ReflowService {
         // somebody's server.
         if stated(&req.design_export) && stated(&req.design_address) {
             return Err(McpError::invalid_params(
-                "external_dependency: name `design_address` (the server that holds the design's \
-                 blueprint) OR `design_export` (its committed export, for a design still kept \
+                "external_dependency: name `design_address` (the server that holds the \
+                 design) OR `design_export` (its committed export, for a design still kept \
                  beside its repository), not both. A design is watched in ONE place: two \
                  baselines for it disagree as soon as either copy moves.",
                 None,
@@ -204,24 +190,7 @@ impl ReflowService {
     }
 
     #[tool(
-        description = "Has the design this one DEPENDS ON moved since the declaration was made? \
-                       reconcile_dependencies checks the BUILD; this checks the upstream DESIGN. Walks the \
-                       declared dependencies naming another reflow2 design and WHERE to watch it — the server \
-                       that holds its blueprint (`design_address`, asked over the network with the key \
-                       `reflow2-mcp setup` stored for that server) or its committed export on disk — reads \
-                       each WITHOUT IMPORTING IT (an import would absorb it under this design's name), and \
-                       compares against what was recorded at declaration time. REPORTS, and silence is \
-                       reported rather than assumed: \
-                       `moved`, `unchanged`, `never_seen` (declared, nobody has looked yet), `missing`, \
-                       `unreadable`, `unreachable` (the server did not answer — UNKNOWN, never unchanged), \
-                       `refused` (the server answered and would not show it, in its own words), \
-                       `graph_id_mismatch` (that target holds a different design), `not_watched` (names a \
-                       design, gives nowhere to watch it) and `not_observed` (the bounded pass skipped it). \
-                       IT NEVER UPDATES THE BASELINE — a check that refreshed what it \
-                       compares against would report a move once and then go quiet forever; read what changed, \
-                       then re-declare. An empty answer means nothing is declared to watch, NEVER that nothing \
-                       moved. Ask for this to learn whether a design or library we depend on has changed, moved \
-                       or been updated since we last checked or pinned it.",
+        description = "Has the design this one DEPENDS ON moved since the declaration was made? The second check req:design-dependencies-declared names, and the half never built — reconcile_dependencies answers the other one, against the BUILD. Walks the declared dependencies naming another reflow2 design AND an export or `design_address`, reads each WITHOUT IMPORTING IT, and compares against what was recorded at declaration time. Importing is the obvious route and the wrong one: an import into a store already holding a design keeps the HOST'S name and absorbs the incoming nodes, so watching that way swallows the thing watched. REPORTS, and silence is reported rather than assumed: `moved`, `unchanged`, `never_seen` (declared, nobody has looked yet), `missing`, `unreadable`, `graph_id_mismatch` (that export belongs to a different design), `not_watched` (names a design, gives nothing to watch) and `not_observed` (the bounded pass skipped it). IT NEVER UPDATES THE BASELINE — a check that refreshed what it compares against would report a move once and then go quiet forever; read what changed, then re-declare. An empty answer means nothing is declared to watch, NEVER that nothing moved. Ask for this to learn whether a design or library we depend on has changed, moved or been updated since we last checked or pinned it.",
         annotations(read_only_hint = true)
     )]
     pub async fn upstream_status(

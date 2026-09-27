@@ -54,9 +54,9 @@
 //!
 //! Since 2026-09-27 a dependency may name `design_address` instead of an
 //! export path (`req:a-design-watches-another-design-at-the-server-that-holds-it`).
-//! Under the one-blueprint rules a design IS the store on the server that holds
-//! it, and an export is a perishable photocopy nothing tracks: the first design
-//! that moved to flo2.io left its last photocopy behind, and watching that file
+//! Under the rules settled that day a design IS the data store on the server
+//! that holds it, and an export is a copy at one moment that nothing tracks: the
+//! first design that moved to flo2.io left its last export behind, and watching that file
 //! reported the move itself and would then have said "unchanged" forever
 //! (`fact:a-moved-design-cannot-be-watched-and-its-frozen-export-reads-as-live-2026-09-27`).
 //!

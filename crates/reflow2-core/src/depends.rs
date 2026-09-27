@@ -118,16 +118,16 @@ pub struct DependencyDeclaration {
     /// so an undated baseline is REPORTED as undated and never assumed fresh.
     #[serde(default)]
     pub design_export_seen_at: Option<String>,
-    /// The ADDRESS of the server that holds the dependency design's blueprint —
+    /// The ADDRESS of the server that holds the dependency design —
     /// `https://api.flo2.io/g/<id>/mcp`, an organisation's own reflow2, or a
     /// local one — when this design means to watch it there
     /// (`req:a-design-watches-another-design-at-the-server-that-holds-it`).
     ///
-    /// ⭐ WHY THIS AND NOT `design_export`. Under the one-blueprint rules
+    /// ⭐ WHY THIS AND NOT `design_export`. Under the rules settled on 2026-09-27
     /// (`dec:idea-one-blueprint-the-store-is-the-design-and-an-export-is-a-perishable-photocopy`)
-    /// a design IS the store on the server that holds it, and an export is a
-    /// perishable photocopy nothing tracks. A design that moved to a server left
-    /// its last photocopy behind, and watching that file reported the move
+    /// a design IS the data store that holds it, and an export is a copy of it
+    /// at one moment that nothing tracks. A design that moved to a server left
+    /// its last export behind, and watching that file reported the move
     /// itself and would then have reported "unchanged" forever
     /// (`fact:a-moved-design-cannot-be-watched-and-its-frozen-export-reads-as-live-2026-09-27`).
     /// The address is where the design actually is, so it is what gets asked.
@@ -153,7 +153,7 @@ pub struct DependencyDeclaration {
 }
 
 /// Where a declared upstream design is watched: its committed export on disk,
-/// or the server that holds its blueprint.
+/// or the server that holds it.
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 enum WatchedAt<'a> {
     Export(&'a str),
@@ -257,8 +257,8 @@ impl DesignGraph {
             return Err(DynoError::Validation {
                 node_type: node::RESOURCE.into(),
                 property: "design_address".into(),
-                message: "a dependency is watched in ONE place: name the server that holds its \
-                          blueprint (`design_address`) or, for a design still kept beside its \
+                message: "a dependency is watched in ONE place: name the server that holds the \
+                          design (`design_address`) or, for a design still kept beside its \
                           repository, its committed export (`design_export`) — not both. Two \
                           baselines for one design disagree as soon as either copy moves, and \
                           nothing could then say which is the design"
@@ -605,7 +605,7 @@ impl DesignGraph {
 }
 
 /// What a caller found at one declared upstream: the committed export on disk,
-/// or the server that holds the design's blueprint.
+/// or the server that holds the design.
 ///
 /// ⚠️ THE CALLER SUPPLIES THIS, exactly as `reconcile_dependencies` takes
 /// `observed` and `reconcile_artifacts` takes hashes. `reflow2-core` does no
@@ -792,7 +792,7 @@ impl DesignGraph {
                         detail: format!(
                             "'{}' names the reflow2 design '{}' but gives nowhere to watch it, so \
                              nothing here can tell you when it moves. Declare `design_address`: \
-                             the server that holds its blueprint. For a design still kept beside \
+                             the server that holds that design. For a design still kept beside \
                              its repository, `design_export` pointing at its committed export \
                              also works.",
                             d.name,

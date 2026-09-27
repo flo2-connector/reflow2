@@ -4504,7 +4504,7 @@ pub struct ExternalDependencyReq {
     /// so an undated baseline is reported as undated rather than assumed fresh.
     #[serde(default)]
     pub design_export_seen_at: Option<String>,
-    /// The ADDRESS of the server that holds that design's blueprint, when you
+    /// The ADDRESS of the server that holds that design, when you
     /// mean to WATCH it there — `https://api.flo2.io/g/<graph_id>/mcp`, an
     /// organisation's own reflow2, or a local one. reflow2 asks that server for
     /// the design NOW and records its fingerprint; later `upstream_status`
