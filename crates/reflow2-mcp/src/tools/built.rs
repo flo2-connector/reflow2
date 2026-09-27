@@ -68,23 +68,84 @@ fn artifact_has_baseline(g: &DesignGraph, artifact_id: &str) -> Result<bool, Mcp
 #[tool_router(router = built_router, vis = "pub")]
 impl ReflowService {
     #[tool(
-        description = "Declare which version of ANOTHER DESIGN this one depends on — the pin a \
-                       seam analysis is taken AS OF. Records the source, the version (a tag or \
-                       commit), the parts taken, and the build switches forwarded BY NAME, \
-                       because a renamed feature is a downstream build break that no API diff or \
-                       surface export would mention. This is what you MEAN to depend on; \
-                       reconcile_dependencies compares it against what the build actually \
-                       resolves. A declaration without a version is refused: the version is the \
-                       whole point. Pass `graph_id` when the dependency is ITSELF a reflow2 \
-                       design, which makes it composable from this committed file rather than \
-                       from a per-machine config — omit it otherwise, because absent means \
-                       'nobody has said', never 'there is no design'.",
+        description = "Declare which version of ANOTHER DESIGN this one depends on — the pin a seam analysis is taken AS OF. Records the source, the version (a tag or commit), the parts taken, and the build switches forwarded BY NAME, because a renamed feature is a downstream build break that no API diff or surface export would mention. This is what you MEAN to depend on; reconcile_dependencies compares it against what the build actually resolves. A declaration without a version is refused: the version is the whole point. Pass `graph_id` when the dependency is ITSELF a reflow2 design, which makes it composable from this committed file rather than from a per-machine config — omit it otherwise, because absent means 'nobody has said', never 'there is no design'.",
         annotations(read_only_hint = false)
     )]
     pub async fn external_dependency(
         &self,
         Parameters(req): Parameters<ExternalDependencyReq>,
     ) -> Result<CallToolResult, McpError> {
+        let stated = |v: &Option<String>| v.as_deref().is_some_and(|s| !s.trim().is_empty());
+        // Refused BEFORE any network call. The core refuses it too, but a
+        // declaration that will be refused must not first cost a round trip to
+        // somebody's server.
+        if stated(&req.design_export) && stated(&req.design_address) {
+            return Err(McpError::invalid_params(
+                "external_dependency: name `design_address` (the server that holds the \
+                 design) OR `design_export` (its committed export, for a design still kept \
+                 beside its repository), not both. A design is watched in ONE place: two \
+                 baselines for it disagree as soon as either copy moves.",
+                None,
+            ));
+        }
+        // THE ADDRESS BASELINE IS TAKEN HERE, for the reason the export one is
+        // (see below), and before the write lock: the lock is never held across
+        // a network call. A server that cannot answer does not block the
+        // declaration — the watch is recorded without a baseline and the reply
+        // says why, exactly as an export path nobody has written yet is.
+        let mut address_baseline: Option<serde_json::Value> = None;
+        let design_address_hash = match req.design_address.as_deref() {
+            Some(address) if !address.trim().is_empty() => {
+                if !self.reaches_out() {
+                    address_baseline = Some(serde_json::json!({
+                        "taken": false,
+                        "state": "refused",
+                        "note": "This reflow2 serves other people's designs and does not reach out \
+                                 to another server on a caller's behalf, so no baseline was taken. \
+                                 The watch is recorded; take the baseline from your own machine.",
+                    }));
+                    None
+                } else {
+                    match crate::upstream::fingerprint(address).await {
+                        Ok(f) => {
+                            let mut b = serde_json::json!({
+                                "taken": true,
+                                "fingerprint": f.content_hash,
+                                "graph_id": f.graph_id,
+                                "nodes": f.nodes,
+                            });
+                            if let Some(want) =
+                                req.graph_id.as_deref().filter(|g| !g.trim().is_empty())
+                                && want != f.graph_id
+                            {
+                                b["note"] = serde_json::json!(format!(
+                                    "The server at {address} holds design '{}', not the declared \
+                                     '{want}'. upstream_status will report graph_id_mismatch until \
+                                     one of the two is corrected.",
+                                    f.graph_id
+                                ));
+                            }
+                            address_baseline = Some(b);
+                            Some(f.content_hash)
+                        }
+                        Err(n) => {
+                            address_baseline = Some(serde_json::json!({
+                                "taken": false,
+                                "state": n.state,
+                                "note": format!(
+                                    "No baseline was taken: {} The watch is recorded. upstream_status \
+                                     will report `{}` until the server answers, then `never_seen` \
+                                     until you re-declare to take the baseline.",
+                                    n.detail, n.state
+                                ),
+                            }));
+                            None
+                        }
+                    }
+                }
+            }
+            _ => None,
+        };
         let decl = reflow2_core::DependencyDeclaration {
             id: req.id,
             name: req.name,
@@ -112,39 +173,40 @@ impl ReflowService {
                 .and_then(crate::upstream::baseline_hash),
             design_export: req.design_export,
             design_export_seen_at: req.design_export_seen_at,
+            design_address: req.design_address,
+            design_address_hash,
+            design_address_seen_at: req.design_address_seen_at,
             note: req.note,
         };
         let mut g = self.write_lock().await?;
         g.declare_external_dependency(&decl).map_err(dyno_err)?;
-        ok_json(g.dependency_manifest().map_err(dyno_err)?)
+        let manifest = g.dependency_manifest().map_err(dyno_err)?;
+        // An export declaration's reply is exactly what it was; an address one
+        // also says whether its baseline was taken and, if not, why.
+        match address_baseline {
+            None => ok_json(manifest),
+            Some(b) => ok_json(serde_json::json!({ "value": manifest, "address_baseline": b })),
+        }
     }
 
     #[tool(
-        description = "Has the design this one DEPENDS ON moved since the declaration was made? The second \
-                       check req:design-dependencies-declared names, and the half never built — \
-                       reconcile_dependencies answers the other one, against the BUILD. Walks the declared \
-                       dependencies naming another reflow2 design AND a path to its committed export, reads \
-                       each WITHOUT IMPORTING IT, and compares against what was recorded at declaration time. \
-                       Importing is the obvious route and the wrong one: an import into a store already holding \
-                       a design keeps the HOST'S name and absorbs the incoming nodes, so watching that way \
-                       swallows the thing watched. REPORTS, and silence is reported rather than assumed: \
-                       `moved`, `unchanged`, `never_seen` (declared, nobody has looked yet), `missing`, \
-                       `unreadable`, `graph_id_mismatch` (that export belongs to a different design), \
-                       `not_watched` (names a design, gives nothing to watch) and `not_observed` (the bounded \
-                       pass skipped it). IT NEVER UPDATES THE BASELINE — a check that refreshed what it \
-                       compares against would report a move once and then go quiet forever; read what changed, \
-                       then re-declare. An empty answer means nothing is declared to watch, NEVER that nothing \
-                       moved. Ask for this to learn whether a design or library we depend on has changed, moved \
-                       or been updated since we last checked or pinned it.",
+        description = "Has the design this one DEPENDS ON moved since the declaration was made? The second check req:design-dependencies-declared names, and the half never built — reconcile_dependencies answers the other one, against the BUILD. Walks the declared dependencies naming another reflow2 design AND an export or `design_address`, reads each WITHOUT IMPORTING IT, and compares against what was recorded at declaration time. Importing is the obvious route and the wrong one: an import into a store already holding a design keeps the HOST'S name and absorbs the incoming nodes, so watching that way swallows the thing watched. REPORTS, and silence is reported rather than assumed: `moved`, `unchanged`, `never_seen` (declared, nobody has looked yet), `missing`, `unreadable`, `graph_id_mismatch` (that export belongs to a different design), `not_watched` (names a design, gives nothing to watch) and `not_observed` (the bounded pass skipped it). IT NEVER UPDATES THE BASELINE — a check that refreshed what it compares against would report a move once and then go quiet forever; read what changed, then re-declare. An empty answer means nothing is declared to watch, NEVER that nothing moved. Ask for this to learn whether a design or library we depend on has changed, moved or been updated since we last checked or pinned it.",
         annotations(read_only_hint = true)
     )]
     pub async fn upstream_status(
         &self,
         Parameters(_req): Parameters<UpstreamStatusReq>,
     ) -> Result<CallToolResult, McpError> {
+        // Two short read locks around the reading, never one held across it:
+        // a watch at an address goes over the network, and the lock is never
+        // held across an await.
+        let targets = {
+            let g = self.graph.read().await;
+            g.upstream_targets().map_err(dyno_err)?
+        };
+        let (observed, not_read) =
+            crate::upstream::observe_everywhere(&targets, self.reaches_out()).await;
         let g = self.graph.read().await;
-        let targets = g.upstream_targets().map_err(dyno_err)?;
-        let (observed, not_read) = crate::upstream::observe_upstreams(&targets);
         let report = g.reconcile_upstream(&observed).map_err(dyno_err)?;
         let mut payload = serde_json::to_value(&report).map_err(ser_err)?;
         if let (Some(obj), Some(skipped)) = (payload.as_object_mut(), not_read) {

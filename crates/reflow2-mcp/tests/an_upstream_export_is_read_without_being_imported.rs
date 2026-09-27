@@ -37,9 +37,10 @@ fn target(path: &str, graph_id: &str, baseline: Option<&str>) -> UpstreamTarget 
     UpstreamTarget {
         id: "dep:sim".into(),
         name: "beamline-sim".into(),
-        design_export: path.into(),
+        design_export: Some(path.into()),
+        design_address: None,
         graph_id: Some(graph_id.into()),
-        design_export_hash: baseline.map(str::to_string),
+        baseline_hash: baseline.map(str::to_string),
     }
 }
 
@@ -79,6 +80,9 @@ fn reading_an_upstream_does_not_pull_a_single_node_into_this_design() {
         design_export: Some(path.clone()),
         design_export_hash: upstream::baseline_hash(&path),
         design_export_seen_at: Some("2026-08-26".into()),
+        design_address: None,
+        design_address_hash: None,
+        design_address_seen_at: None,
         note: None,
     })
     .expect("declare");
@@ -130,6 +134,9 @@ fn a_real_change_upstream_is_seen_and_keeps_being_seen() {
         design_export: Some(path.clone()),
         design_export_hash: Some(baseline),
         design_export_seen_at: Some("2026-08-26".into()),
+        design_address: None,
+        design_address_hash: None,
+        design_address_seen_at: None,
         note: None,
     })
     .expect("declare");
@@ -216,6 +223,9 @@ fn declaring_a_watch_on_an_export_that_does_not_exist_yet_is_allowed() {
         design_export: Some("/no/such/path/reflow2.json".into()),
         design_export_hash: None,
         design_export_seen_at: None,
+        design_address: None,
+        design_address_hash: None,
+        design_address_seen_at: None,
         note: None,
     })
     .expect("a watch on an export nobody has written yet must be declarable");
@@ -248,4 +258,25 @@ fn a_bounded_pass_says_what_it_left_unopened() {
     assert_eq!(skipped.count, 3);
     assert_eq!(skipped.dependencies.len(), 3);
     assert!(skipped.note.contains("NOT opened"));
+}
+
+/// A JSON document that names no design is NOT a design record, however well
+/// it parses. `GraphExport` defaults every field so a hand-authored document
+/// can be imported, which made `{}` — or any object — read here as an empty
+/// design and get fingerprinted. Found 2026-09-27 by the address watch's test;
+/// the file watch had carried it since 2026-08-26.
+#[test]
+fn a_json_file_that_names_no_design_is_unreadable_and_takes_no_baseline() {
+    let dir = scratch("names-no-design");
+    let not_a_design = dir.join("not-a-design.json");
+    std::fs::write(&not_a_design, r#"{"hello": "world"}"#).expect("write");
+    let path = not_a_design.to_string_lossy().into_owned();
+
+    let (observed, _) = upstream::observe_upstreams(&[target(&path, "beamline_sim", None)]);
+    assert_eq!(observed[0].state, "unreadable");
+    assert_eq!(
+        upstream::baseline_hash(&path),
+        None,
+        "a baseline taken against a document naming no design would be a fingerprint of nothing"
+    );
 }

@@ -23,6 +23,22 @@
           "null"
         ]
       },
+      "design_address": {
+        "default": null,
+        "description": "The ADDRESS of the server that holds that design, when you\nmean to WATCH it there — `https://api.flo2.io/g/<graph_id>/mcp`, an\norganisation's own reflow2, or a local one. reflow2 asks that server for\nthe design NOW and records its fingerprint; later `upstream_status`\nreads ask again and report whether it has moved, and a server that\ncannot be reached or refuses is reported as exactly that, never as\nunchanged. The key sent is the one `reflow2-mcp setup` stored for that\nserver; never put a key here. Use this OR `design_export`, not both: a\ndesign is watched in one place.",
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "design_address_seen_at": {
+        "default": null,
+        "description": "The date the address baseline was taken, for the record — the\n`design_export_seen_at` of an address watch.",
+        "type": [
+          "string",
+          "null"
+        ]
+      },
       "design_export": {
         "default": null,
         "description": "Path to that design's COMMITTED EXPORT, when you mean to WATCH it — so\nthis design is told when the design it depends on moves. reflow2 reads\nthe file NOW and records what it looked like; later reads report whether\nit has changed since. Absent means \"nobody has said\": a dependency that\nnames a design and no export is reported as unwatched rather than\npassing quietly. The path is read, never searched for — reflow2 does no\nfile navigation, and this is a pointer this design supplies itself.",

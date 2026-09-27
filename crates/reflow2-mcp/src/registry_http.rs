@@ -211,7 +211,12 @@ impl GraphRouter {
             // sits under is not the tree its artifacts describe, so a
             // measurement here would find every file absent and call it
             // missing. Say "not on this machine" instead (`crate::measure`).
-            let opened = opened.without_tree();
+            //
+            // And it holds OTHER PEOPLE'S designs, so it never goes out over
+            // the network on a caller's say-so: a watch declared at an address
+            // is recorded, and fetched only by the person's own client
+            // (`ReflowService::reaches_out`).
+            let opened = opened.without_tree().without_reaching_out();
             let svc = if read_only {
                 opened.into_read_only()
             } else {
