@@ -31,6 +31,9 @@ This file is the third view: *what changed, and when*.
 
 ## [Unreleased]
 
+
+## [0.72.0] — 2026-09-27
+
 ### Added
 
 - **Watch a design you depend on at the server that holds it, not through a file.**
