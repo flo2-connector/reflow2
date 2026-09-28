@@ -6042,7 +6042,7 @@ impl ReflowService {
         let auto = crate::auto_export::AutoExport::new(path);
         crate::auto_export::spawn(
             Arc::clone(&auto),
-            Arc::clone(&self.graph),
+            Arc::downgrade(&self.graph),
             self.graph_path.clone(),
         );
         self.auto_export = Some(auto);
@@ -6097,6 +6097,11 @@ impl ReflowService {
             return Err(crate::measure::NotMeasured::NoTree);
         };
         crate::measure::measure(root, location, Some(&self.measure_memo))
+    }
+
+    /// The server's write-through itself, for a stopping server to flush.
+    pub(crate) fn auto_export_handle(&self) -> Option<Arc<crate::auto_export::AutoExport>> {
+        self.auto_export.clone()
     }
 
     pub fn auto_export_status(&self) -> Option<(String, crate::auto_export::Status)> {
