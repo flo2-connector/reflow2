@@ -243,6 +243,14 @@ pub enum Holds {
     Many(GraphRouter),
     /// No design at all: the degraded surface, which only explains why.
     Nothing { sessions: Arc<LocalSessionManager> },
+    /// A degraded surface whose cause can clear, which may have opened its
+    /// design since it started (`crate::degraded::Recovery`). A stop closes
+    /// that design exactly as it closes a healthy server's: export flushed,
+    /// sessions ended, store released.
+    Recovering {
+        sessions: Arc<LocalSessionManager>,
+        recovery: Arc<crate::degraded::Recovery>,
+    },
 }
 
 impl Holds {
@@ -266,7 +274,29 @@ impl Holds {
         Holds::Nothing { sessions }
     }
 
+    /// A degraded surface that may serve its design by the time it stops.
+    pub fn recovering(
+        sessions: Arc<LocalSessionManager>,
+        recovery: Arc<crate::degraded::Recovery>,
+    ) -> Self {
+        Holds::Recovering { sessions, recovery }
+    }
+
     async fn close(self, work: &Work, deadline: Instant) -> Closed {
+        // Whatever a recovering surface opened is closed as ONE design would be.
+        // `take` first, so the surface itself no longer holds the store while
+        // the release is awaited; the sessions' own shares end with them.
+        let this = match self {
+            Holds::Recovering { sessions, recovery } => match recovery.take() {
+                Some(service) => Holds::one(&service, sessions),
+                None => Holds::Nothing { sessions },
+            },
+            other => other,
+        };
+        this.close_settled(work, deadline).await
+    }
+
+    async fn close_settled(self, work: &Work, deadline: Instant) -> Closed {
         let mut closed = Closed::default();
         let mut stores: Vec<(String, Weak<RwLock<DesignGraph>>)> = Vec::new();
         match self {
@@ -305,6 +335,10 @@ impl Holds {
                 }
             }
             Holds::Nothing { sessions } => {
+                closed.sessions = end_sessions(&sessions).await;
+            }
+            Holds::Recovering { sessions, .. } => {
+                // Settled above; kept total so a new variant cannot be missed.
                 closed.sessions = end_sessions(&sessions).await;
             }
         }
