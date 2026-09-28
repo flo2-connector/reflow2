@@ -931,6 +931,29 @@ LINK_CONTRACT: dict[str, str] = {
 }
 
 # ---------------------------------------------------------------------------
+# The ANSWER-FIRST contract — brainstorm/SKILL.md, added 2026-09-28.
+#
+# Pinned for the same reason as LINK_CONTRACT, and from a measured miss. A
+# triage framed "should reflow2 serve a design in operations?" as OPEN, with
+# options that contradicted accepted intent, while the vision had said "concept
+# to operations" since the first commit and three accepted requirements held
+# the pieces (fact:root-cause-the-lifecycle-scope-lives-in-the-vision-and-the-
+# graph-holds-one-line-so-a-brainstorm-reopened-it-2026-09-28). The skill's
+# only searches were for near-duplicate and related IDEAS; nothing sent the
+# agent to look for the ANSWER. Each clause below is the one a hurrying reader
+# drops: the search of accepted intent, the founding statement beside it, the
+# ruling that an answered question is no brainstorm, and the ban on offering a
+# settled road as live.
+ANSWER_FIRST_CONTRACT: dict[str, str] = {
+    "looks for the answer before framing a question as open": "look for the answer",
+    "searches accepted intent, not only ideas": "Search accepted intent",
+    "reads the project's founding statement too": "what the project is for",
+    "rules that an answered question is not a brainstorm": "it is not a brainstorm",
+    "never offers a settled road as a live option": "Never offer an option that contradicts accepted intent",
+    "routes a wish to revisit through the settled node": "record it as reopening that node",
+}
+
+# ---------------------------------------------------------------------------
 # The OPTIMISATION contract — optimize/SKILL.md, added 2026-08-21.
 #
 # Same shape as ASK_CONTRACT and LINK_CONTRACT, and pinned for a reason
@@ -1524,6 +1547,14 @@ def main() -> int:
     for label, phrase in LINK_CONTRACT.items():
         check(
             f"brainstorm states the obligation: {label}",
+            phrase in link_text,
+            f"missing {phrase!r}",
+        )
+
+    print("== the answer-first contract ==")
+    for label, phrase in ANSWER_FIRST_CONTRACT.items():
+        check(
+            f"brainstorm looks for the answer first: {label}",
             phrase in link_text,
             f"missing {phrase!r}",
         )
