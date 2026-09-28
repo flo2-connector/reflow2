@@ -31,6 +31,14 @@ This file is the third view: *what changed, and when*.
 
 ## [Unreleased]
 
+### Fixed
+
+- **The brainstorm skill looks for the answer before it frames a question as open.**
+  - A new part of step 1: search accepted requirements and decisions, and the project's own statement of what it is for, before writing "OPEN".
+  - If accepted intent already answers the question, it is not a brainstorm. The agent says what is settled, cites it, and records only what is still open.
+  - An option that contradicts accepted intent is never offered as live. Revisiting a settled question is the person's call, recorded against that node (`reopen_choice`).
+  - Measured on reflow2's own design, 2026-09-28: a triage framed "should reflow2 serve a design in operations?" as open while the vision and three accepted requirements already answered it. `skill_lint` now pins the new wording as the answer-first contract.
+
 ## [0.74.0] — 2026-09-28
 
 ### Added

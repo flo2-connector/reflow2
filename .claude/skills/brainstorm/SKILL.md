@@ -29,6 +29,29 @@ When it is genuinely ambiguous, ask **once**: *"Do you want this recorded as an 
 intent?"* One cheap question beats either mistake — a discarded thought promoted to a requirement,
 or a real decision left as a musing.
 
+### Before you write "OPEN", look for the answer
+
+A question can feel open to you and already be settled in the design. **Search accepted intent
+before you frame anything as open:** `search_design` on the question in the person's own words,
+once with `node_type: "Requirement"` and once with `"Decision"`, and read what comes back
+`accepted`. Then read the project's own statement of what the project is for — a vision or a
+README the design registers as a document. A founding principle often lives there in one plain
+sentence, and in the graph only in pieces spread across several requirements.
+
+- **If accepted intent answers it, it is not a brainstorm.** Say what is settled, cite the node,
+  and ask whether they mean to revisit it. Record only the part that is still open, which is
+  usually *how* rather than *whether*.
+- **Never offer an option that contradicts accepted intent** as if it were live. Reopening a
+  settled question is the person's call, never the agent's framing. If they do want to,
+  record it as reopening that node (`reopen_choice`, or a dated note on the node itself),
+  not as a fresh idea beside it.
+
+*Measured 2026-09-28, on reflow2's own design:* a triage recorded "should reflow2 serve a design in
+operations?" as OPEN, with "keep it beside the design" and "nothing new" among its options. The
+vision had said "concept to operations" since the first commit, and three accepted requirements
+held the pieces. The owner's reply: *"how is the question … not already answered?"* This search
+would have found them.
+
 ## 2. What not to do while the thinking is still happening
 
 - **Do not create Requirements or Capabilities.** Promotion is step 5 and needs the user's word.
