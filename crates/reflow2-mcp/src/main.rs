@@ -1139,11 +1139,33 @@ async fn main() -> anyhow::Result<()> {
         // listing is re-read per request — but an operator who meant to point
         // at a populated directory should find that out now rather than from a
         // 404 later.
-        if ids.is_empty() {
+        //
+        // AND SAY WHAT IS THERE AND NOT SERVED. A store found without a usable
+        // identity, or an identity whose store is gone, is named with why and
+        // the remedy — "no designs found" is said only when nothing at all is
+        // here, never while a store sits under the root unread (GitHub issue
+        // #616; the single-design server has refused the same store loudly
+        // since 2026-08-07).
+        let unserved = registry.unserved();
+        for u in unserved {
+            eprintln!(
+                "reflow2: WARNING — found under {root} and NOT served: {}",
+                u.sentence()
+            );
+        }
+        if ids.is_empty() && unserved.is_empty() {
             eprintln!(
                 "reflow2: WARNING — no designs found under {root}. Serving anyway: the root is \
                  re-read on every request, so a design created there later is reachable without \
                  a restart. A design is a directory containing a reflow2 store."
+            );
+        } else if ids.is_empty() {
+            eprintln!(
+                "reflow2: WARNING — nothing under {root} can be served: {} store(s) were found \
+                 and are not served (named above, each with its remedy). Serving anyway: the root \
+                 is re-read on every request, so each is reachable as soon as it is repaired, \
+                 without a restart.",
+                unserved.len()
             );
         } else {
             eprintln!(

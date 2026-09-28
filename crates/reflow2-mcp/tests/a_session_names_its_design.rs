@@ -211,4 +211,57 @@ fn a_store_with_no_identity_is_not_nameable() {
         r.graph_ids().is_empty(),
         "an opted-in directory with no identity is not a design a session may name"
     );
+    assert!(
+        r.unserved().is_empty(),
+        "an EMPTY opted-in directory holds nothing to lose, so it is not reported as unserved"
+    );
+}
+
+// ⭐ DISCOVERY NEVER SILENTLY DISCARDS WHAT IT CLASSIFIED (GitHub issue #616).
+// A store with data and no identity is not nameable — and not dropped either:
+// it is kept with why, so every surface can say it is here and not served.
+// And an identity whose store is gone is not registered: opening it would
+// create an empty store under the old id.
+#[test]
+fn a_store_found_and_not_served_is_kept_with_why_and_never_registered() {
+    use reflow2_mcp::registry::UnservedKind;
+    let root = Root::new("unserved");
+    let alpha = root.design("alpha");
+    root.design("beta");
+    let beta_dot = root.dir.join("beta").join(".reflow2");
+    std::fs::remove_file(beta_dot.join("graph.id.json")).unwrap();
+    let gamma = root.design("gamma");
+    std::fs::remove_dir_all(root.dir.join("gamma").join(".reflow2").join("graph")).unwrap();
+
+    let r = Registry::discover(root.dir.to_str().unwrap());
+    assert_eq!(
+        r.graph_ids(),
+        vec![alpha],
+        "only the design with both halves is nameable"
+    );
+    let kinds: Vec<&UnservedKind> = r.unserved().iter().map(|u| &u.kind).collect();
+    assert_eq!(
+        kinds,
+        vec![
+            &UnservedKind::IdentityMissing,
+            &UnservedKind::StoreMissing {
+                graph_id: gamma.clone()
+            }
+        ],
+        "both are kept, each with what is wrong"
+    );
+    assert!(r.unserved()[0].sentence().contains("mount the parent"));
+    assert!(
+        matches!(r.attach(&gamma), Err(AttachError::StoreMissing { .. })),
+        "the id an identity names, with its store gone, is refused as such — never opened empty"
+    );
+    assert!(
+        r.unserved_note()
+            .is_some_and(|n| n.contains("found 2 stores")),
+        "an unknown id's refusal can say how many were found and not served"
+    );
+    assert!(
+        !beta_dot.join("graph.id.json").exists(),
+        "discovery minted nothing"
+    );
 }

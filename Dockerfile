@@ -74,11 +74,22 @@ RUN chmod 0755 /usr/local/bin/reflow2-mcp
 #   /data/graphs/<design>/graph.meta.json  version   │ BESIDE the store, not
 #   /data/graphs/<design>/graph.sync.json  sync      ┘ inside it
 #
-# ⚠️ THE SIDECARS ARE NOT OPTIONAL AND NOT SEPARABLE. A store opened without the
-# identity sidecar it was created with finds nothing and PRESENTS AS AN EMPTY
-# DESIGN, reporting nothing wrong. Because they sit beside the store rather than
-# inside it, mounting only `.../graph` and not its parent directory is a
-# plausible-looking mistake that silently loses a project. MOUNT THE PARENT.
+# ⚠️ THE SIDECARS ARE NOT OPTIONAL AND NOT SEPARABLE. Because they sit beside the
+# store rather than inside it, mounting only `.../graph` and not its parent
+# directory leaves the identity sidecar outside the volume, and the design can
+# no longer be named. MOUNT THE PARENT. What reflow2 does when it meets that
+# store, so an operator knows what the mistake looks like:
+#   · single design (REFLOW2_GRAPH_PATH): the open is REFUSED. The server comes
+#     up serving one tool, `reflow2_unavailable`, and its handshake and stderr
+#     name the missing file and say to mount the parent.
+#   · registry (REFLOW2_REGISTRY_ROOT): the store is NOT served and NOT opened,
+#     and it is NAMED — at startup, in the listing on a GET of /, and in the
+#     refusal for an unknown /g/<id>/ — with the missing file and the remedy.
+#     The root is re-read on every request, so a repaired store is served
+#     without a restart. (Before 2026-09-28 the registry dropped such a store
+#     silently and said the root held "no designs"; GitHub issue #616.)
+# Neither mode mints a new identity for such a store: that would give the
+# design a new name and present it as empty while its data is still on disk.
 #
 # ⚠️ THE VOLUME MUST BE A REAL BLOCK DEVICE OR LOCAL VOLUME, NOT NFS. RocksDB's
 # exclusive lock is a filesystem lock, and network filesystems honour those
