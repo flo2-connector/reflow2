@@ -31,6 +31,8 @@ This file is the third view: *what changed, and when*.
 
 ## [Unreleased]
 
+## [0.74.0] — 2026-09-28
+
 ### Added
 
 - **A `hub` skill (`/hub`) for a session that reaches several designs, one of which coordinates the others.**
