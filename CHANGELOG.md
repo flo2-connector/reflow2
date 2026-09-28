@@ -31,6 +31,9 @@ This file is the third view: *what changed, and when*.
 
 ## [Unreleased]
 
+
+## [0.73.0] — 2026-09-28
+
 ### Changed
 
 - **A server holding many designs now closes the ones nobody is using.** With `--registry-root`:
@@ -104,7 +107,6 @@ This file is the third view: *what changed, and when*.
 
   On flo2.io the start-up check is recorded as one write per session, because `design_identity`
   is marked as a write (it can rename a design).
-
 
 - **`tools/measure_open_design_memory.py`**: what one open design costs in memory and what writing
   to it costs in time. It works over real-sized copies of a design, and splits private heap from
