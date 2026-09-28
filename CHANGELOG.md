@@ -44,6 +44,12 @@ This file is the third view: *what changed, and when*.
   - reflow2 owns the check (`host_gate`), in front of every HTTP surface: single-design `--http`, the `--serve-shared` daemon, the `--registry-root` router and the degraded surface. The library's copy is switched off, so there is one rule.
   - The registry router is now gated before it routes. A request with an unlisted Host no longer gets the design listing on a bare path, or opens a design for a `/g/<id>/` path, before being refused.
   - What is admitted is unchanged: loopback by default, the flag extends and never replaces, and an entry with a port admits only that port.
+- **A registry server names every store it found and cannot serve, instead of dropping it and saying "no designs".** (GitHub issue #616)
+  - Before: a `--registry-root` server met a store whose identity file was missing — a volume mounted at the store instead of its parent — and discarded it. Startup said "no designs found", the listing said the root "holds no designs", and the design read as silently empty. A single-design server has refused the same store loudly since 2026-08-07.
+  - Now every store discovery classified and cannot serve is kept with why and the remedy, and named at startup, in the listing on a GET of `/` ("Found under this root and NOT served"), and in the refusal for an unknown `/g/<id>/`. "No designs" is said only when nothing at all is under the root.
+  - Three cases, one rule: a store with no identity file, a store whose identity file cannot be read, and an identity file whose store is gone. The last used to be served: opening it created an empty store under the old id and served the design as empty. It is now refused by name.
+  - Nothing is opened, minted or repaired for such a store. The root is re-read on every request, so a repaired store is served without a restart.
+  - The Dockerfile and `getting-started/UPDATING.md` no longer claim a store without its identity "presents as an empty design"; they say what each mode does.
 
 ## [0.74.0] — 2026-09-28
 

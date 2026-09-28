@@ -304,6 +304,24 @@ impl GraphRouter {
         Registry::discover(&self.inner.root).graph_ids()
     }
 
+    /// Resolve `graph_id` against a fresh read of the root. `attach` is the ONLY
+    /// way in; when the id is unknown and the root holds stores it cannot serve,
+    /// the refusal says so, so a design that is here and broken is never
+    /// reported as simply "not here".
+    fn resolve(&self, graph_id: &str) -> Result<crate::registry::Binding, Refusal> {
+        let registry = Registry::discover(&self.inner.root);
+        registry.attach(graph_id).map_err(|e| {
+            let mut why = e.to_string();
+            if matches!(e, crate::registry::AttachError::UnknownGraphId { .. })
+                && let Some(note) = registry.unserved_note()
+            {
+                why.push(' ');
+                why.push_str(&note);
+            }
+            Refusal::NotADesign(why)
+        })
+    }
+
     /// How many designs this router holds a place for right now.
     pub async fn open_count(&self) -> usize {
         self.inner.open.lock().await.len()
@@ -452,9 +470,7 @@ impl GraphRouter {
                 None => {
                     // Resolve the id BEFORE taking a place, so a request naming
                     // no design can never push a real one out.
-                    Registry::discover(&self.inner.root)
-                        .attach(graph_id)
-                        .map_err(|e| Refusal::NotADesign(e.to_string()))?;
+                    self.resolve(graph_id)?;
                     if map.len() >= self.inner.max_open {
                         let Some(lru) = least_recently_used(&map) else {
                             return Err(Refusal::Busy(format!(
@@ -547,9 +563,7 @@ impl GraphRouter {
         }
 
         // Resolve id -> path against the root. `attach` is the ONLY way in.
-        let binding = Registry::discover(&self.inner.root)
-            .attach(graph_id)
-            .map_err(|e| Refusal::NotADesign(e.to_string()))?;
+        let binding = self.resolve(graph_id)?;
         let path = binding.graph_path().to_string();
 
         // ⚠️ OPENING IS BLOCKING AND SLOW — RocksDB plus a full-text index
@@ -663,12 +677,29 @@ where
                 // RULE 4 — SAY WHAT WOULD HAVE WORKED. A bare 404 here is the
                 // failure this repo keeps meeting: a session that cannot tell
                 // "reflow2 is not here" from "you addressed it wrongly".
-                let ids = this.graph_ids();
-                let known = if ids.is_empty() {
-                    "This server's registry root holds no designs.".to_string()
-                } else {
-                    format!("Designs under this root: {}.", ids.join(", "))
+                let registry = Registry::discover(&this.inner.root);
+                let ids = registry.graph_ids();
+                let unserved = registry.unserved();
+                // "No designs" is said only when nothing at all is here: a
+                // store found and not served is named with why, never
+                // discarded into an empty listing (GitHub issue #616).
+                let mut known = match (ids.is_empty(), unserved.is_empty()) {
+                    (true, true) => "This server's registry root holds no designs.".to_string(),
+                    (true, false) => {
+                        "This server's registry root holds no design it can serve.".to_string()
+                    }
+                    (false, _) => format!("Designs under this root: {}.", ids.join(", ")),
                 };
+                if !unserved.is_empty() {
+                    known.push_str(&format!(
+                        "\n\nFound under this root and NOT served ({}):",
+                        unserved.len()
+                    ));
+                    for u in unserved {
+                        known.push_str("\n  · ");
+                        known.push_str(&u.sentence());
+                    }
+                }
                 return Ok(text(
                     StatusCode::NOT_FOUND,
                     format!(

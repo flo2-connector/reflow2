@@ -107,9 +107,19 @@ existing design instead of opening an empty one beside it.
 /data/graphs/myproject/graph.meta.json  ← version   ┘  not inside it
 ```
 
-Mounting `.../graph` leaves the sidecars behind. A store opened without the identity it was
-created with **finds nothing and presents as an empty design, reporting no error** — your data is
-still on disk, and reflow2 will cheerfully show you a blank project beside it. Mount the parent.
+Mounting `.../graph` leaves the sidecars behind, and the design can no longer be named. reflow2
+will not guess which design the store holds, so it does not open it, and your data stays untouched
+on disk. What you will see:
+
+- **one design** (`--graph-path`): the server comes up serving a single tool,
+  `reflow2_unavailable`, and its handshake and log name the missing `graph.id.json` and say to
+  mount the parent;
+- **a registry** (`--registry-root`): the store is listed as **found and not served**, at
+  startup, on a GET of `/`, and in the refusal for an unknown `/g/<id>/`, with the same remedy.
+  The root is re-read on every request, so the design is served again as soon as its identity is
+  back, with no restart.
+
+Mount the parent.
 
 **Use a real block device or local volume, not NFS.** RocksDB's exclusive lock is a filesystem
 lock, and network filesystems honour those unreliably. A lock that silently fails to exclude is
