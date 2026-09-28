@@ -76,6 +76,12 @@ rpassword = "7"
 # leaving a record pointing at a dead port; `process` so a session can spawn one.
 tokio = { version = "1", features = ["macros", "rt-multi-thread", "io-std", "sync", "net", "signal", "process", "time"] }
 serde = { version = "1", features = ["derive"] }
+# `.reflow2.toml` (src/pointer.rs): a code folder names the design it
+# implements. A real TOML parser rather than a hand-rolled subset, because the
+# file is written by people; `deny_unknown_fields` then refuses anything that
+# is not a pointer, a key in particular. Added 2026-09-28 with its first call
+# site (req:a-code-folder-names-the-design-it-implements-and-its-server).
+toml = { version = "1", default-features = false, features = ["parse", "serde", "std"] }
 serde_json = "1"
 schemars = "1"
 # `sha2` was removed 2026-09-15 as unused and RETURNED 2026-09-18 for one use

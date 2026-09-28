@@ -360,6 +360,18 @@ impl Remote {
 
 /// Forward this session's stdio JSON-RPC to a REMOTE reflow2 until stdin ends.
 pub async fn run_remote(url: &str, bearer: Option<String>) -> anyhow::Result<()> {
+    run_remote_with_notice(url, bearer, None).await
+}
+
+/// `run_remote`, with `notice` put in front of the server's handshake
+/// instructions — the one channel every agent reads unasked. A folder's
+/// `.reflow2.toml` uses it to say which design the session was attached to
+/// and that a local store was left alone (`crate::pointer`).
+pub async fn run_remote_with_notice(
+    url: &str,
+    bearer: Option<String>,
+    notice: Option<String>,
+) -> anyhow::Result<()> {
     let up = Arc::new(Remote {
         url: url.to_string(),
         bearer,
@@ -379,7 +391,10 @@ pub async fn run_remote(url: &str, bearer: Option<String>) -> anyhow::Result<()>
         if line.contains("\"initialize\"") {
             *up.hello.lock().await = Some(line.clone());
             let replies = match up.handshake(&line).await {
-                Ok(m) => m,
+                Ok(m) => match notice.as_deref() {
+                    Some(n) => m.iter().map(|r| with_notice(r, n)).collect(),
+                    None => m,
+                },
                 Err(e) => remote_error(&line, &up.url, &format!("{e:#}"))
                     .into_iter()
                     .collect(),
@@ -412,6 +427,35 @@ pub async fn run_remote(url: &str, bearer: Option<String>) -> anyhow::Result<()>
     }
     while tasks.join_next().await.is_some() {}
     Ok(())
+}
+
+/// A handshake reply with `notice` in front of its instructions. Anything that
+/// is not an `initialize` result passes through untouched.
+fn with_notice(reply: &str, notice: &str) -> String {
+    let Ok(mut v) = serde_json::from_str::<serde_json::Value>(reply) else {
+        return reply.to_string();
+    };
+    let Some(result) = v.get_mut("result").and_then(|r| r.as_object_mut()) else {
+        return reply.to_string();
+    };
+    if !result.contains_key("serverInfo") && !result.contains_key("protocolVersion") {
+        return reply.to_string();
+    }
+    let theirs = result
+        .get("instructions")
+        .and_then(|i| i.as_str())
+        .unwrap_or_default()
+        .to_string();
+    let joined = if theirs.is_empty() {
+        notice.to_string()
+    } else {
+        format!("{notice}\n\n{theirs}")
+    };
+    result.insert(
+        "instructions".to_string(),
+        serde_json::Value::String(joined),
+    );
+    v.to_string()
 }
 
 /// The JSON-RPC error a remote-mode session gets when its request could not be
@@ -449,4 +493,25 @@ pub fn check_remote_url(url: &str, carries_credential: bool) -> anyhow::Result<(
         );
     }
     Ok(())
+}
+
+#[cfg(test)]
+mod tests {
+    use super::with_notice;
+
+    #[test]
+    fn a_notice_goes_in_front_of_the_servers_handshake_instructions_and_nowhere_else() {
+        let hello = r#"{"jsonrpc":"2.0","id":0,"result":{"protocolVersion":"2025-06-18","serverInfo":{"name":"x"},"instructions":"theirs"}}"#;
+        let v: serde_json::Value = serde_json::from_str(&with_notice(hello, "ours")).unwrap();
+        assert_eq!(v["result"]["instructions"], "ours\n\ntheirs");
+        let bare = r#"{"jsonrpc":"2.0","id":0,"result":{"protocolVersion":"2025-06-18","serverInfo":{"name":"x"}}}"#;
+        let v: serde_json::Value = serde_json::from_str(&with_notice(bare, "ours")).unwrap();
+        assert_eq!(v["result"]["instructions"], "ours");
+        let call = r#"{"jsonrpc":"2.0","id":3,"result":{"content":[]}}"#;
+        assert_eq!(
+            with_notice(call, "ours"),
+            call,
+            "a tool result is not a handshake"
+        );
+    }
 }
