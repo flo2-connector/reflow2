@@ -31,6 +31,15 @@ This file is the third view: *what changed, and when*.
 
 ## [Unreleased]
 
+### Added
+
+- **A `hub` skill (`/hub`) for a session that reaches several designs, one of which coordinates the others.**
+  - It finds which designs the hub names and reads each only when a request needs it. When the host says which of them moved since the person last looked, it repeats that as one line.
+  - It writes each fact to the lowest design that owns all of it, and names that design before writing. Only what spans several designs stays in the hub, and a child's content is never copied there.
+  - A collaborator's idea lands in the hub as brainstorming. It is routed into a design only when the person confirms, and only by someone who can write to that design. The hub keeps a `ROUTED` pointer instead of a copy.
+  - It covers a hub hosted on a server (flo2.io), a local hub, and an agent holding several design addresses.
+  - Satisfies `req:a-skill-run-in-a-session-holding-several-designs-writes-where-the-fact-belongs`. flo2's shared hubs (its combined-plan position 6) serve this skill at both of its doors.
+
 
 ## [0.73.0] — 2026-09-28
 
