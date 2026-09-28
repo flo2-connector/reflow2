@@ -2010,15 +2010,18 @@ where
         .map(|a| a.to_string())
         .unwrap_or_else(|_| addr.to_string());
 
-    // The transport answers only requests whose Host header is allowlisted —
+    // The server answers only requests whose Host header is allowlisted —
     // loopback by default. Extend it, never replace it, so adding a remote name
     // cannot accidentally lock out the local sessions already using this server.
-    let mut config = StreamableHttpServerConfig::default();
-    if !allow_hosts.is_empty() {
-        let mut hosts = config.allowed_hosts.clone();
-        hosts.extend(allow_hosts.iter().cloned());
-        config = config.with_allowed_hosts(hosts);
-    }
+    //
+    // ⭐ reflow2 OWNS THIS RULE (`host_gate`), in front of whatever `make`
+    // returns, so the single-design service, the registry router and the
+    // degraded surface are all gated in one place, and a refusal names the
+    // host, the allowlist and the flag. rmcp's copy is switched off here so
+    // there is one owner: two copies could disagree, and rmcp's refusal says
+    // nothing a person behind a proxy can act on (GitHub issue #616).
+    let host_rule = std::sync::Arc::new(reflow2_mcp::host_gate::HostRule::new(allow_hosts));
+    let config = StreamableHttpServerConfig::default().disable_allowed_hosts();
 
     // Binding a non-loopback address without naming a host is the trap this
     // warning exists for: remote sessions get an opaque 403 and nothing says
@@ -2038,6 +2041,7 @@ where
     // token.
     let streams = config.cancellation_token.clone();
     let (http, holds) = make(config);
+    let http = reflow2_mcp::host_gate::HostGate::new(http, host_rule);
 
     // Why a server stops itself, as opposed to being told to: a shared server
     // that nobody has used for its idle timeout.

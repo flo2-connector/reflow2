@@ -38,6 +38,12 @@ This file is the third view: *what changed, and when*.
   - If accepted intent already answers the question, it is not a brainstorm. The agent says what is settled, cites it, and records only what is still open.
   - An option that contradicts accepted intent is never offered as live. Revisiting a settled question is the person's call, recorded against that node (`reopen_choice`).
   - Measured on reflow2's own design, 2026-09-28: a triage framed "should reflow2 serve a design in operations?" as open while the vision and three accepted requirements already answered it. `skill_lint` now pins the new wording as the answer-first contract.
+- **A request addressed to a host the server was not told about is refused with a reply that says what would admit it.** (GitHub issue #616)
+  - Before: the MCP library refused it in its own words, `403 Forbidden: Host header is not allowed`, with no content type, and logged "possible DNS rebinding attempt". The `--http-allow-host` hint printed once, at startup. Behind a proxy that read as a broken ingress.
+  - Now the 403 is plain text naming the Host it saw, the hosts this server answers, and the exact flag, `--http-allow-host <that host>`. stderr logs the same fix once per distinct refused host, capped so a flood cannot fill the log.
+  - reflow2 owns the check (`host_gate`), in front of every HTTP surface: single-design `--http`, the `--serve-shared` daemon, the `--registry-root` router and the degraded surface. The library's copy is switched off, so there is one rule.
+  - The registry router is now gated before it routes. A request with an unlisted Host no longer gets the design listing on a bare path, or opens a design for a `/g/<id>/` path, before being refused.
+  - What is admitted is unchanged: loopback by default, the flag extends and never replaces, and an entry with a port admits only that port.
 
 ## [0.74.0] — 2026-09-28
 
