@@ -1,4 +1,4 @@
-# What reflow2 offers: 31 skills and 193 tools
+# What reflow2 offers: 32 skills and 193 tools
 
 Generated from the **running server**, not from memory — the skill list came from `list_skills`,
 the tool list and every read/write marking from `tools/list`, and the command mapping from
@@ -51,7 +51,7 @@ procedure behind them. Every other command names a skill.
 
 ---
 
-## The 31 skills
+## The 32 skills
 
 Each is a procedure, not a tool call: it says what to do, in what order, and what *not* to do.
 Read one in full with `get_skill` before doing the work it covers.
@@ -67,6 +67,7 @@ Read one in full with `get_skill` before doing the work it covers.
 | **detect-and-ask** | `/gaps` | Use before building, and after capturing new intent, to find gaps in the design and ask the user about them |
 | **genesis** | `/genesis` | Use at the very start of a project, or whenever the reflow2 design graph is empty, to bootstrap it from the user's opening brief |
 | **governance-proposal** | `/rules` | The user states a rule the project follows rather than a thing it must do — "we always branch before pushing", "never edit generated files", a review step, a house style, a stack choice |
+| **hub** | `/hub` | A session reaches several designs and one of them is a hub — a design that coordinates others — "put this in the hub", "route the hub's ideas", a collaborator dropping an idea into a shared hub, or any request that could belong in more than one of the designs this session can reach |
 | **impact-check** | `/impact-check` | Use BEFORE changing or removing anything in an existing design — a new feature, a tweaked requirement, "what if we add wind?" |
 | **ingest-corpus** | `/ingest-corpus` | Reflow2 is pointed at a FOLDER of documents rather than one — a directory of specifications, years of accumulated notes, a handover pack, "here is everything we ever wrote about this" |
 | **jot** | `/jot` (`/note`, `/log-issue`) | The user wants to get a thought down now and deal with it later, in one breath — the word they type is the tag: `/note` an idea, `/log-issue` an issue, `/jot` untagged |
@@ -91,6 +92,7 @@ Read one in full with `get_skill` before doing the work it covers.
 - **Before pushing**: `check-health`, `link-artifacts`, `ci-gate`
 - **Occasional**: `plan-increments`, `kpp-proposal`, `governance-proposal`, `link-projects`,
   `parallel-work`, `ingest-corpus`, `retire-from-design`, `optimize`
+- **Across several designs from one hub**: `hub`
 - **When reflow2 itself gets in the way**: `report-friction`
 - **At a break**: `capture-session`
 
