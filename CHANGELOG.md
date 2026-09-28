@@ -80,6 +80,32 @@ This file is the third view: *what changed, and when*.
 
 ### Added
 
+- **A code folder can name the design it implements: `.reflow2.toml`.** A small file at the
+  repository root, committed and holding no secret:
+
+  ```toml
+  [design]
+  id      = "0dcdeca97f8810ce"
+  address = "https://api.flo2.io/g/0dcdeca97f8810ce/mcp"
+  ```
+
+  A session started in that folder with the usual MCP entry (`--graph-path .reflow2/graph`,
+  with or without `--shared` / `--only-if-present`) is attached to that design through the remote
+  client, carrying the key `reflow2-mcp setup remote` stored for that server:
+  - **It follows the file even when the folder also holds a local store**, such as one left behind
+    when the design moved to a server. It says so on stderr and at the start of the handshake the
+    agent reads, and the local store is never opened. Before this, that leftover store was opened
+    as if it were the design.
+  - **It checks the server holds the design the file names** (`design_identity`), and attaches
+    nothing if it holds another one or refuses this machine; the session is told why.
+  - **A file it cannot use is refused by name**, never skipped in favour of the local store.
+  - `[[also]]` entries (`id`, `address`, `role`) name other designs the folder works with. They
+    are listed to the agent and not opened; opening several designs in one session comes later.
+
+  On flo2.io the start-up check is recorded as one write per session, because `design_identity`
+  is marked as a write (it can rename a design).
+
+
 - **`tools/measure_open_design_memory.py`**: what one open design costs in memory and what writing
   to it costs in time. It works over real-sized copies of a design, and splits private heap from
   memory-mapped files. It is the instrument for comparing before and after any change to how stores

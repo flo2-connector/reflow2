@@ -1547,6 +1547,26 @@ async fn main() -> anyhow::Result<()> {
         return Ok(());
     }
 
+    // ⭐ A FOLDER THAT NAMES ITS DESIGN FOLLOWS THE NAME — combined plan position 3
+    // (req:a-code-folder-names-the-design-it-implements-and-its-server). Checked
+    // BEFORE the latent check and before --shared, because both open or spawn
+    // something for the LOCAL store, and a folder whose `.reflow2.toml` names a
+    // design elsewhere must never have a store left behind by a move opened in
+    // that design's place
+    // (fact:an-agent-opened-in-a-moved-designs-folder-is-served-the-frozen-store-2026-09-27).
+    // Servers (--http, --serve-shared) serve what they are pointed at; the pointer
+    // is the business of a CLIENT started in the folder.
+    if cli.http.is_none() && !cli.serve_shared {
+        match reflow2_mcp::pointer::read(&reflow2_mcp::pointer::location_for(&cli.graph_path)) {
+            Ok(None) => {}
+            Ok(Some(pointer)) => return attach_to_named_design(&cli, pointer).await,
+            Err(why) => {
+                eprintln!("reflow2: {why}");
+                return serve_degraded_stdio(why, &cli.graph_path).await;
+            }
+        }
+    }
+
     // Latent mode: reflow2 is installed on this machine, this directory has not
     // opted into a design, and NOTHING should be created for it.
     //
@@ -2138,6 +2158,82 @@ where
     };
     drop(expire);
     reflow2_mcp::drain::serve_until_stopped(listener, http, holds, grace, stop, hooks).await?;
+    Ok(())
+}
+
+/// Attach this session to the design a folder's `.reflow2.toml` names, over the
+/// remote client, after checking the server holds that design. A refusal or a
+/// different design attaches NOTHING and says why; a server that cannot be asked
+/// right now is attached to anyway, with that said, because every call then
+/// fails or recovers on its own and nothing local is opened either way.
+async fn attach_to_named_design(
+    cli: &Cli,
+    pointer: reflow2_mcp::pointer::Pointer,
+) -> anyhow::Result<()> {
+    use reflow2_mcp::pointer::{identity_at, notice, refusal};
+    let address = pointer.design.address.clone();
+    let bearer = match remote_credential(cli) {
+        Ok(Some(k)) => Some(k),
+        Ok(None) => {
+            let stored = reflow2_mcp::client_setup::config_dir().and_then(|dir| {
+                let cfg = reflow2_mcp::client_setup::load(&dir)?;
+                reflow2_mcp::client_setup::stored_credential(
+                    &address,
+                    &cfg,
+                    &reflow2_mcp::client_setup::OsKeychain,
+                )
+            });
+            match stored {
+                Ok(k) => k,
+                Err(e) => {
+                    let why = format!(
+                        "{} names design {} at {address}, but the key set up for that server could                          not be read: {e:#}. Nothing was attached and nothing local was opened.",
+                        pointer.path.display(),
+                        pointer.design.id
+                    );
+                    eprintln!("reflow2: {why}");
+                    return serve_degraded_stdio(why, &cli.graph_path).await;
+                }
+            }
+        }
+        Err(e) => {
+            eprintln!("reflow2: {e:#}");
+            return serve_degraded_stdio(format!("{e:#}"), &cli.graph_path).await;
+        }
+    };
+    if let Err(e) = reflow2_mcp::proxy::check_remote_url(&address, bearer.is_some()) {
+        let why = format!("{} names {address}: {e:#}", pointer.path.display());
+        eprintln!("reflow2: {why}");
+        return serve_degraded_stdio(why, &cli.graph_path).await;
+    }
+    let identity = identity_at(&pointer, bearer.as_deref()).await;
+    if let Some(why) = refusal(&pointer, &identity) {
+        eprintln!("reflow2: {why}");
+        return serve_degraded_stdio(why, &cli.graph_path).await;
+    }
+    let told = notice(
+        &pointer,
+        reflow2_mcp::latent::design_present(&cli.graph_path),
+        &identity,
+    );
+    eprintln!("reflow2: {told}");
+    tracing::info!(remote = %address, design = %pointer.design.id, "attached to the design this folder names");
+    reflow2_mcp::proxy::run_remote_with_notice(&address, bearer, Some(told)).await
+}
+
+/// Serve the degraded surface on stdio: one tool, and `reason` in the handshake,
+/// so the session learns why it has no design rather than meeting silence
+/// (`req:never-silently-absent`).
+async fn serve_degraded_stdio(reason: String, graph_path: &str) -> anyhow::Result<()> {
+    let degraded = DegradedService::new(reason, graph_path.to_string());
+    let running = degraded
+        .serve(stdio())
+        .await
+        .context("failed to start the degraded MCP server")?;
+    running
+        .waiting()
+        .await
+        .context("degraded MCP server error")?;
     Ok(())
 }
 

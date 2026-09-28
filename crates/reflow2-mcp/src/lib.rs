@@ -19,6 +19,7 @@ pub mod lessons;
 pub mod mcp_http;
 pub mod measure;
 pub mod nudge;
+pub mod pointer;
 pub mod prose_currency;
 pub mod proxy;
 pub mod registry;
