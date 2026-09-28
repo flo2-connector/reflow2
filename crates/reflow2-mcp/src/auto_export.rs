@@ -38,9 +38,18 @@
 //! hand edit or a half-resolved merge; the cost is that the export stops being
 //! current until somebody reads the warning, which is why the warning is not
 //! merely a log line.
+//!
+//! # A stop writes what is still waiting (since 2026-09-27)
+//!
+//! A server that stops inside the quiet period used to take the waiting write
+//! with it. A draining server (`crate::drain`) now calls [`AutoExport::flush`],
+//! which writes it at once, or says why it did not. And the task holds the
+//! design only WEAKLY, so it never keeps a store open after everything that
+//! serves the design has let go (`req:a-server-drains-before-it-stops`).
 
-use std::sync::Arc;
 use std::sync::Mutex;
+use std::sync::atomic::{AtomicBool, Ordering};
+use std::sync::{Arc, Weak};
 use std::time::{Duration, Instant};
 
 use serde::Serialize;
@@ -95,6 +104,22 @@ pub struct AutoExport {
     /// survives a restart and catches a session's own `export_graph`; this one
     /// works with no store at all. A file matching EITHER is ours.
     last_written: Mutex<Option<String>>,
+    /// A change has happened that no export has carried yet.
+    pending: AtomicBool,
+    /// Held for the length of one write-through, so a flush at stop time and
+    /// the task never write the file at once.
+    writing: tokio::sync::Mutex<()>,
+}
+
+/// What [`AutoExport::flush`] did.
+#[derive(Debug, Clone, PartialEq, Eq)]
+pub enum Flushed {
+    /// Nothing was waiting: the export already carried every change.
+    NothingWaiting,
+    /// A waiting change was written: `created`, `changed` or `unchanged`.
+    Wrote(String),
+    /// A waiting change was not written, and why.
+    Declined(String),
 }
 
 impl AutoExport {
@@ -104,13 +129,48 @@ impl AutoExport {
             notify: Notify::new(),
             status: Mutex::new(Status::default()),
             last_written: Mutex::new(None),
+            pending: AtomicBool::new(false),
+            writing: tokio::sync::Mutex::new(()),
         })
     }
 
     /// A write happened. Cheap and non-blocking: this is called on the write
     /// path of every tool, so it must never do work of its own.
     pub fn poke(&self) {
+        self.pending.store(true, Ordering::SeqCst);
         self.notify.notify_one();
+    }
+
+    /// Write the export NOW if a change is waiting for one, rather than at the
+    /// end of the quiet period. What a stopping server calls, so the last
+    /// change before a stop is not lost with the process.
+    pub async fn flush(
+        &self,
+        graph: &Arc<RwLock<DesignGraph>>,
+        graph_path: Option<&str>,
+    ) -> Flushed {
+        if !self.write_pending(graph, graph_path).await {
+            return Flushed::NothingWaiting;
+        }
+        let status = self.status();
+        match (status.skipped, status.error) {
+            (Some(why), _) | (None, Some(why)) => Flushed::Declined(why),
+            (None, None) => Flushed::Wrote(status.last_wrote.unwrap_or_default()),
+        }
+    }
+
+    /// Write through if a change is waiting. True when one was.
+    async fn write_pending(
+        &self,
+        graph: &Arc<RwLock<DesignGraph>>,
+        graph_path: Option<&str>,
+    ) -> bool {
+        let _writing = self.writing.lock().await;
+        if !self.pending.swap(false, Ordering::SeqCst) {
+            return false;
+        }
+        write_through(self, graph, graph_path).await;
+        true
     }
 
     /// What it has done, for the reports.
@@ -170,8 +230,10 @@ impl AutoExport {
 /// Start the write-through. Call it once, after the runtime exists.
 ///
 /// Returns immediately; the work happens on its own task, so a slow export
-/// never sits in front of a tool call.
-pub fn spawn(auto: Arc<AutoExport>, graph: Arc<RwLock<DesignGraph>>, graph_path: Option<String>) {
+/// never sits in front of a tool call. The task holds the design WEAKLY and
+/// ends once nothing else holds it: a write-through must never be the thing
+/// that keeps a closed design's store open.
+pub fn spawn(auto: Arc<AutoExport>, graph: Weak<RwLock<DesignGraph>>, graph_path: Option<String>) {
     tokio::spawn(async move {
         loop {
             // Sleep until something is actually written. No polling: an idle
@@ -193,7 +255,8 @@ pub fn spawn(auto: Arc<AutoExport>, graph: Arc<RwLock<DesignGraph>>, graph_path:
                     _ = &mut quiet => break,
                 }
             }
-            write_through(&auto, &graph, graph_path.as_deref()).await;
+            let Some(graph) = graph.upgrade() else { break };
+            auto.write_pending(&graph, graph_path.as_deref()).await;
         }
     });
 }

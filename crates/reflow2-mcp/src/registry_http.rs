@@ -88,7 +88,7 @@
 //!   require the server to release it.
 
 use std::collections::HashMap;
-use std::sync::atomic::{AtomicU64, AtomicUsize, Ordering};
+use std::sync::atomic::{AtomicBool, AtomicU64, AtomicUsize, Ordering};
 use std::sync::{Arc, Weak};
 use std::time::{Duration, Instant};
 
@@ -238,6 +238,8 @@ struct Inner {
     open: Mutex<HashMap<String, Arc<Slot>>>,
     /// Designs closed whose previous copy may still hold its store, by id.
     releasing: std::sync::Mutex<HashMap<String, Weak<RwLock<DesignGraph>>>>,
+    /// Set once the server has begun to stop: nothing is opened after that.
+    stopping: AtomicBool,
 }
 
 /// Serves many designs under one root, selected by `/g/<graph_id>/`.
@@ -269,6 +271,7 @@ impl GraphRouter {
                 epoch: Instant::now(),
                 open: Mutex::new(HashMap::new()),
                 releasing: std::sync::Mutex::new(HashMap::new()),
+                stopping: AtomicBool::new(false),
             }),
         };
         router.spawn_idle_sweep();
@@ -377,35 +380,42 @@ impl GraphRouter {
             .collect()
     }
 
+    /// Close every design this router holds and open nothing more: what a
+    /// stopping server calls (`req:a-server-drains-before-it-stops`).
+    ///
+    /// Returns each design closed, the store to wait on, and how many sessions
+    /// it ended. A request that arrives from here on is answered "busy" rather
+    /// than reopening a design behind the stop.
+    pub async fn close_all(&self, why: &str) -> Vec<(String, Weak<RwLock<DesignGraph>>, usize)> {
+        self.inner.stopping.store(true, Ordering::SeqCst);
+        let victims: Vec<_> = self.inner.open.lock().await.drain().collect();
+        self.close(victims, why).await
+    }
+
     /// End every session on each design and let go of it. The store closes when
     /// the last request holding it finishes; until then a reopen waits.
-    async fn close(&self, victims: Vec<(String, Arc<Slot>)>, why: &str) {
+    ///
+    /// Returns each design it closed, with its store and the sessions it ended.
+    async fn close(
+        &self,
+        victims: Vec<(String, Arc<Slot>)>,
+        why: &str,
+    ) -> Vec<(String, Weak<RwLock<DesignGraph>>, usize)> {
+        let mut closed = Vec::new();
         for (id, slot) in victims {
             let Some(Ok(open)) = slot.cell.get() else {
                 continue;
             };
-            let handles: Vec<_> = open
-                .sessions
-                .sessions
-                .write()
-                .await
-                .drain()
-                .map(|(_, handle)| handle)
-                .collect();
-            for handle in &handles {
-                // A worker that already exited has nothing left to end.
-                let _ = handle.close().await;
-            }
+            let ended = crate::drain::end_sessions(&open.sessions).await;
             self.inner
                 .releasing
                 .lock()
                 .expect("the releasing table is never poisoned: nothing panics holding it")
                 .insert(id.clone(), open.store.clone());
-            eprintln!(
-                "reflow2: closed design {id} ({why}); {} session(s) ended.",
-                handles.len()
-            );
+            eprintln!("reflow2: closed design {id} ({why}); {ended} session(s) ended.");
+            closed.push((id, open.store.clone(), ended));
         }
+        closed
     }
 
     /// The design a request names, opened if it is not, and a guard that keeps
@@ -423,6 +433,14 @@ impl GraphRouter {
                  the registry maps the id to a path under its root, and a path is refused exactly \
                  as an unknown id is."
             )));
+        }
+
+        if self.inner.stopping.load(Ordering::SeqCst) {
+            return Err(Refusal::Busy(
+                "this server is stopping. Try again in a few seconds, when it or its replacement \
+                 is up."
+                    .to_string(),
+            ));
         }
 
         let now = self.now_ms();
@@ -852,6 +870,42 @@ mod tests {
             "a design serving a request is never closed"
         );
         drop(busy);
+    }
+
+    #[tokio::test]
+    async fn a_stopping_router_closes_every_design_and_opens_no_more() {
+        let (root, ids) = root_with(2);
+        let r = router(&root, 8, None);
+        for id in &ids {
+            drop(r.service_for(id).await.expect("opens"));
+        }
+        let closed = r.close_all("the server is stopping").await;
+        let mut names: Vec<_> = closed.iter().map(|(id, _, _)| id.clone()).collect();
+        names.sort();
+        let mut want = ids.clone();
+        want.sort();
+        assert_eq!(names, want, "every open design is closed");
+        let deadline = Instant::now() + Duration::from_secs(5);
+        for (id, store, _) in &closed {
+            while store.strong_count() > 0 {
+                assert!(
+                    Instant::now() < deadline,
+                    "{id}'s store is released once nothing is serving it"
+                );
+                tokio::time::sleep(Duration::from_millis(25)).await;
+            }
+        }
+        let refusal = r
+            .service_for(&ids[0])
+            .await
+            .err()
+            .expect("a stopping server opens nothing");
+        assert!(matches!(refusal, Refusal::Busy(_)), "{refusal:?}");
+        assert_eq!(
+            refused(&ids[0], &refusal).status(),
+            http::StatusCode::SERVICE_UNAVAILABLE,
+            "busy, so a client tries again rather than believing the design is gone"
+        );
     }
 
     #[tokio::test]

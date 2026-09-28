@@ -325,6 +325,19 @@ struct Cli {
     #[arg(long = "http-allow-host", value_name = "HOST")]
     http_allow_host: Vec<String>,
 
+    /// How long a stopping HTTP server lets requests in progress finish
+    /// (default 5s). A number with `s` or `m`; a bare number is seconds, and `0`
+    /// does not wait.
+    ///
+    /// On SIGTERM or SIGINT the server stops accepting, lets work in progress
+    /// finish within this grace, writes a waiting export, closes every open
+    /// store, and only then exits (`req:a-server-drains-before-it-stops`).
+    /// Closing takes up to 2 s more, so keep the grace plus 2 s under whatever
+    /// supervises the process: Docker's default stop timeout is 10 s. A second
+    /// signal while stopping exits at once.
+    #[arg(long = "shutdown-grace", value_name = "DURATION", default_value = "5s", value_parser = parse_grace)]
+    shutdown_grace: std::time::Duration,
+
     /// Print the whole design to stdout as a portable document and exit,
     /// instead of serving. The same thing the `export_graph` tool returns —
     /// available here so a script can back the design up without speaking MCP.
@@ -811,6 +824,21 @@ fn parse_idle(raw: &str) -> Result<std::time::Duration, String> {
     Ok(std::time::Duration::from_secs(secs))
 }
 
+/// `--shutdown-grace`: a number with `s` or `m` (a bare number is seconds).
+fn parse_grace(raw: &str) -> Result<std::time::Duration, String> {
+    let raw = raw.trim();
+    let with_unit = if !raw.is_empty() && raw.chars().all(|c| c.is_ascii_digit()) {
+        format!("{raw}s")
+    } else {
+        raw.to_string()
+    };
+    parse_idle(&with_unit).map_err(|_| {
+        format!(
+            "'{raw}' is not a grace period: use a number with s or m, e.g. 5s (0 does not wait)"
+        )
+    })
+}
+
 /// A duration as `--registry-idle` would take it back.
 fn describe_idle(d: std::time::Duration) -> String {
     let s = d.as_secs();
@@ -1065,12 +1093,13 @@ async fn main() -> anyhow::Result<()> {
 
         if let Some(addr) = cli.http.clone() {
             serve_http(
-                |cfg| http_service_of(move || Ok(service.share()), cfg),
+                one_design(service),
                 &addr,
                 &cli.http_allow_host,
                 HttpSurface::Design,
                 None,
                 false,
+                cli.shutdown_grace,
             )
             .await?;
         } else {
@@ -1142,13 +1171,17 @@ async fn main() -> anyhow::Result<()> {
         let max_open = cli.registry_max_open;
         serve_http(
             move |cfg| {
-                reflow2_mcp::registry_http::GraphRouter::new(root, read_only, max_open, idle, cfg)
+                let router = reflow2_mcp::registry_http::GraphRouter::new(
+                    root, read_only, max_open, idle, cfg,
+                );
+                (router.clone(), reflow2_mcp::drain::Holds::many(router))
             },
             &addr,
             &cli.http_allow_host,
             HttpSurface::Design,
             None,
             true,
+            cli.shutdown_grace,
         )
         .await?;
         return Ok(());
@@ -1623,7 +1656,7 @@ async fn main() -> anyhow::Result<()> {
             eprintln!("reflow2: {note}");
         }
         serve_http(
-            |cfg| http_service_of(move || Ok(service.share()), cfg),
+            one_design(service),
             cli.http.as_deref().unwrap_or("127.0.0.1:0"),
             &cli.http_allow_host,
             HttpSurface::Design,
@@ -1632,6 +1665,7 @@ async fn main() -> anyhow::Result<()> {
                 idle_timeout_minutes: cli.idle_timeout,
             }),
             false,
+            cli.shutdown_grace,
         )
         .await?;
         return Ok(());
@@ -1735,12 +1769,13 @@ async fn main() -> anyhow::Result<()> {
 
             if let Some(addr) = cli.http.clone() {
                 serve_http(
-                    |cfg| http_service_of(move || Ok(service.share()), cfg),
+                    one_design(service),
                     &addr,
                     &cli.http_allow_host,
                     HttpSurface::Design,
                     None,
                     false,
+                    cli.shutdown_grace,
                 )
                 .await?;
             } else {
@@ -1772,12 +1807,13 @@ async fn main() -> anyhow::Result<()> {
             let degraded = DegradedService::new(reason, cli.graph_path.clone());
             if let Some(addr) = cli.http.clone() {
                 serve_http(
-                    |cfg| http_service_of(move || Ok(degraded.clone()), cfg),
+                    no_design(degraded),
                     &addr,
                     &cli.http_allow_host,
                     HttpSurface::Degraded,
                     None,
                     false,
+                    cli.shutdown_grace,
                 )
                 .await?;
             } else {
@@ -1840,6 +1876,9 @@ struct SharedServer {
 /// single-graph call site having to name rmcp's transport types.
 fn http_service_of<S>(
     factory: impl Fn() -> Result<S, std::io::Error> + Send + Sync + 'static,
+    sessions: std::sync::Arc<
+        rmcp::transport::streamable_http_server::session::local::LocalSessionManager,
+    >,
     config: rmcp::transport::streamable_http_server::StreamableHttpServerConfig,
 ) -> rmcp::transport::streamable_http_server::StreamableHttpService<
     S,
@@ -1852,12 +1891,51 @@ where
     // the bare Service trait cannot answer.
     S: rmcp::ServerHandler + Send + 'static,
 {
-    rmcp::transport::streamable_http_server::StreamableHttpService::new(
-        factory,
-        rmcp::transport::streamable_http_server::session::local::LocalSessionManager::default()
-            .into(),
-        config,
-    )
+    rmcp::transport::streamable_http_server::StreamableHttpService::new(factory, sessions, config)
+}
+
+type Sessions = rmcp::transport::streamable_http_server::session::local::LocalSessionManager;
+type HttpConfig = rmcp::transport::streamable_http_server::StreamableHttpServerConfig;
+
+/// One design over HTTP: its transport, and what a stop has to close.
+fn one_design(
+    service: ReflowService,
+) -> impl FnOnce(
+    HttpConfig,
+) -> (
+    rmcp::transport::streamable_http_server::StreamableHttpService<ReflowService, Sessions>,
+    reflow2_mcp::drain::Holds,
+) {
+    move |cfg| {
+        let sessions = std::sync::Arc::new(Sessions::default());
+        let holds = reflow2_mcp::drain::Holds::one(&service, std::sync::Arc::clone(&sessions));
+        (
+            http_service_of(move || Ok(service.share()), sessions, cfg),
+            holds,
+        )
+    }
+}
+
+/// The degraded surface over HTTP: sessions, and no design to close.
+fn no_design(
+    degraded: DegradedService,
+) -> impl FnOnce(
+    HttpConfig,
+) -> (
+    rmcp::transport::streamable_http_server::StreamableHttpService<DegradedService, Sessions>,
+    reflow2_mcp::drain::Holds,
+) {
+    move |cfg| {
+        let sessions = std::sync::Arc::new(Sessions::default());
+        (
+            http_service_of(
+                move || Ok(degraded.clone()),
+                std::sync::Arc::clone(&sessions),
+                cfg,
+            ),
+            reflow2_mcp::drain::Holds::nothing(sessions),
+        )
+    }
 }
 
 async fn serve_http<Svc>(
@@ -1873,7 +1951,13 @@ async fn serve_http<Svc>(
     //
     // The config is handed IN because the router needs it too: each design it
     // opens gets its own StreamableHttpService built with the same allowlist.
-    make: impl FnOnce(rmcp::transport::streamable_http_server::StreamableHttpServerConfig) -> Svc,
+    //
+    // It hands back, beside the service, what a STOP has to close
+    // (`req:a-server-drains-before-it-stops`): one design's store and sessions,
+    // a router's every design, or nothing at all for the degraded surface.
+    make: impl FnOnce(
+        rmcp::transport::streamable_http_server::StreamableHttpServerConfig,
+    ) -> (Svc, reflow2_mcp::drain::Holds),
     addr: &str,
     allow_hosts: &[String],
     surface: HttpSurface,
@@ -1881,6 +1965,8 @@ async fn serve_http<Svc>(
     // True when this server holds MANY designs, so the banner does not claim to
     // hold one. Nothing else in this function differs.
     many_designs: bool,
+    // How long work in progress may take to finish once a stop begins.
+    grace: std::time::Duration,
 ) -> anyhow::Result<()>
 where
     Svc: tower_service::Service<
@@ -1927,7 +2013,15 @@ where
         );
     }
 
-    let http = make(config);
+    // Kept so a stop can end every session and stream: the router clones this
+    // config into each design it opens, and a clone of the token is the same
+    // token.
+    let streams = config.cancellation_token.clone();
+    let (http, holds) = make(config);
+
+    // Why a server stops itself, as opposed to being told to: a shared server
+    // that nobody has used for its idle timeout.
+    let (expire, mut expired) = tokio::sync::mpsc::channel::<String>(1);
 
     // Publish AFTER the bind and the store open, never before: a rendezvous that
     // exists must mean "a server got all the way up", because that is the only
@@ -1958,39 +2052,35 @@ where
             reflow2_mcp::shared::rendezvous_path(&cfg.graph_path).display()
         );
 
-        // Clean up on the way out. Best-effort by nature — SIGKILL cannot run
-        // this — which is why a stale record is designed to be survivable: a
-        // session probes before trusting one.
-        let graph_path = cfg.graph_path.clone();
-        tokio::spawn(async move {
-            if let Ok(mut term) =
-                tokio::signal::unix::signal(tokio::signal::unix::SignalKind::terminate())
-            {
-                term.recv().await;
-                reflow2_mcp::shared::remove_rendezvous(&graph_path);
-                eprintln!("reflow2: shared server stopping on SIGTERM; rendezvous removed.");
-                std::process::exit(0);
-            }
-        });
+        // The rendezvous comes down the moment a stop begins (the `on_stop`
+        // hook below), before anything drains, so no session attaches to a
+        // server on its way out. Best-effort by nature — SIGKILL cannot run it —
+        // which is why a stale record is designed to be survivable: a session
+        // probes before trusting one.
 
         // Expire when nobody is using it, so the store's write lock is not held
         // against the CLI forever. Sessions recover from this on their own.
+        // Expiring is a STOP like any other: it drains and closes the store
+        // rather than exiting where it stands.
         if cfg.idle_timeout_minutes > 0 {
             let graph_path = cfg.graph_path.clone();
             let limit = std::time::Duration::from_secs(cfg.idle_timeout_minutes * 60);
             let activity = std::sync::Arc::clone(&activity);
+            let expire = expire.clone();
             tokio::spawn(async move {
                 loop {
                     tokio::time::sleep(std::time::Duration::from_secs(60)).await;
                     if activity.idle_for() >= limit {
-                        reflow2_mcp::shared::remove_rendezvous(&graph_path);
                         eprintln!(
                             "reflow2: shared server for {graph_path} idle for {} minutes — \
                              exiting and releasing the store's write lock. A session that needs it \
                              again will start a replacement automatically.",
                             limit.as_secs() / 60
                         );
-                        std::process::exit(0);
+                        let _ = expire
+                            .send(format!("idle for {} minutes", limit.as_secs() / 60))
+                            .await;
+                        return;
                     }
                 }
             });
@@ -2020,26 +2110,35 @@ where
     }
     tracing::info!("reflow2-mcp serving over http at {bound}");
 
-    loop {
-        let (stream, peer) = listener
-            .accept()
-            .await
-            .context("failed to accept an HTTP connection")?;
-        activity.touch();
-        let io = hyper_util::rt::TokioIo::new(stream);
-        let svc = hyper_util::service::TowerToHyperService::new(http.clone());
-        // One task per connection: a slow or stuck client must never hold up
-        // the others, which is the whole reason several sessions can share this.
-        tokio::spawn(async move {
-            if let Err(e) = hyper::server::conn::http1::Builder::new()
-                .serve_connection(io, svc)
-                .with_upgrades()
-                .await
-            {
-                tracing::debug!("connection from {peer} ended: {e}");
+    // Serve until told to stop, then drain: finish work in progress within the
+    // grace, write a waiting export, close every store (`crate::drain`).
+    let stop = async move {
+        tokio::select! {
+            why = reflow2_mcp::drain::stop_signal() => why,
+            Some(why) = expired.recv() => why,
+        }
+    };
+    let rendezvous = shared.as_ref().map(|cfg| cfg.graph_path.clone());
+    let hooks = reflow2_mcp::drain::Hooks {
+        on_accept: Box::new(move || activity.touch()),
+        on_stop: Box::new(move |why: &str| {
+            if let Some(graph_path) = rendezvous {
+                reflow2_mcp::shared::remove_rendezvous(&graph_path);
+                eprintln!("reflow2: shared server stopping ({why}); rendezvous removed.");
             }
-        });
-    }
+            // A second signal while draining means "now": the person at the
+            // terminal pressing Ctrl-C twice, or a supervisor that has decided.
+            tokio::spawn(async {
+                let again = reflow2_mcp::drain::stop_signal().await;
+                eprintln!("reflow2: {again} while stopping — exiting now, without draining.");
+                std::process::exit(1);
+            });
+        }),
+        end_streams: Box::new(move || streams.cancel()),
+    };
+    drop(expire);
+    reflow2_mcp::drain::serve_until_stopped(listener, http, holds, grace, stop, hooks).await?;
+    Ok(())
 }
 
 /// `reflow2-mcp setup …`: gather the key the way the person chose (a hidden
@@ -2168,6 +2267,21 @@ mod tests {
         assert_eq!(super::describe_idle(Duration::from_secs(900)), "15m");
         assert_eq!(super::describe_idle(Duration::from_secs(7200)), "2h");
         assert_eq!(super::describe_idle(Duration::from_secs(45)), "45s");
+    }
+
+    /// `--shutdown-grace` reads seconds when no unit is given — a grace is
+    /// seconds long, unlike an idle timeout — and `0` means do not wait.
+    #[test]
+    fn the_shutdown_grace_reads_a_bare_number_as_seconds() {
+        use std::time::Duration;
+        assert_eq!(super::parse_grace("5"), Ok(Duration::from_secs(5)));
+        assert_eq!(super::parse_grace("5s"), Ok(Duration::from_secs(5)));
+        assert_eq!(super::parse_grace("1m"), Ok(Duration::from_secs(60)));
+        assert_eq!(super::parse_grace("0"), Ok(Duration::ZERO));
+        assert!(
+            super::parse_grace("five").is_err(),
+            "an unreadable grace is refused, not defaulted"
+        );
     }
 
     /// A LOG THAT NOBODY CAPS CAN FILL A DISK, and the default filter sets the

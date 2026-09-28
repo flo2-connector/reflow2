@@ -60,6 +60,24 @@ This file is the third view: *what changed, and when*.
   were not where the memory went. The budget bounds the worst case a busy design could reach, at no
   measured cost.
 
+- **An HTTP server told to stop now drains first, then exits.** On SIGTERM or SIGINT, a `--http`
+  server (one design, `--registry-root`, or a shared server) does this:
+  - it stops accepting connections;
+  - requests already in progress finish, within `--shutdown-grace` (new; default `5s`, `0` does
+    not wait);
+  - a change still waiting to be written through to `--export-to` is written;
+  - every open design is closed and its store released;
+  - it exits `0` and says on stderr what it did, including any request the grace cut off.
+
+  A second signal while stopping exits at once. Closing takes up to 2 s after the grace, so keep
+  the grace plus 2 s under whatever supervises the process: Docker's default stop timeout is 10 s.
+
+  Before this there was no handler at all, so a stop was the process dying wherever it was. A write
+  could be cut mid-way, and a change made in the last two seconds never reached the export. In a
+  container it was worse: the server runs as process 1 there, which ignores a signal it has no
+  handler for, so `docker stop` waited its full 10 s and then killed it. A shared server that
+  expires after `--idle-timeout` now drains the same way instead of exiting on the spot.
+
 ### Added
 
 - **`tools/measure_open_design_memory.py`**: what one open design costs in memory and what writing
