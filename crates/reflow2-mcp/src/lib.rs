@@ -14,6 +14,7 @@ pub mod enum_schema;
 pub mod export_write;
 pub mod git;
 pub mod handshake;
+pub mod host_gate;
 pub mod latent;
 pub mod lessons;
 pub mod mcp_http;
