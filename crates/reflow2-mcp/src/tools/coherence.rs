@@ -1468,6 +1468,33 @@ impl ReflowService {
     }
 
     #[tool(
+        description = "WHAT DOES reflow2 DERIVE, AND HOW MUCH? Every derived relation reflow2 \
+                       computes rather than stores (delivered, realized, checked, discontinued, the \
+                       seams, hierarchy issues, reruns owed, certainty, budgets, flows, \
+                       readiness, arrival, closure …), each DECLARED by schema/derived/relations.yaml \
+                       with its reading over the sixteen primitives, its rule, deduced or induced, \
+                       the edges its rule reads and the code that computes the relation — then \
+                       counted over the design by that same code path, with a few example ids. \
+                       Reports derived facts beside asserted facts. The blast-radius closure is \
+                       declared but not counted (a rule, answered per seed by propagate_from). \
+                       Stores nothing: whether a derived result should be KEPT is an open decision. \
+                       `only` narrows to named relations. Ask for this when you want to know what \
+                       the design computes from what it stores, or how many derived facts there are.",
+        annotations(read_only_hint = true)
+    )]
+    pub async fn derived_report(
+        &self,
+        Parameters(req): Parameters<DerivedReportReq>,
+    ) -> Result<CallToolResult, McpError> {
+        let sample = req
+            .sample
+            .unwrap_or(reflow2_core::derived::DEFAULT_DERIVED_SAMPLE)
+            .min(20);
+        let g = self.graph.read().await;
+        ok_json(g.derived_report(&req.only, sample).map_err(dyno_err)?)
+    }
+
+    #[tool(
         description = "WHERE DID I LEAVE OFF? The worklist and resume point of an incremental, \
                        region-by-region adopt: `structure_without_intent` (capabilities no \
                        requirement asks for, leaf components nothing is allocated to — the same \

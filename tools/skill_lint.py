@@ -851,6 +851,13 @@ UNROUTED_REPORTS: dict[str, str] = {
     # procedure, not a step in the design loop, and there is no release skill
     # for this to belong to. If one is ever written, this entry comes out.
     "release_report": "needs no skill: cutting a release is a repo procedure, not a design-loop step",
+    # A GAP, NOT A RULING (2026-09-29). No skill owns reading back what the
+    # design DERIVES yet. derived_report was built for
+    # req:reflow2-declares-its-derived-relations-and-serves-a-read-that-runs-them,
+    # and which step routes to it turns on the open keep policy
+    # (dec:idea-which-derived-results-are-kept-and-by-what-rule). Naming it in
+    # check-health or where-am-i now would invent a use to satisfy this check.
+    "derived_report": "GAP: no skill owns reading what the design derives — the declared relations are served, the step that reads them waits on the keep-policy decision",
 }
 
 
