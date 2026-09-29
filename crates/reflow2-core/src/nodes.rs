@@ -144,6 +144,12 @@ pub mod edge {
     /// Deliberately NOT a traceability edge (absent from `structural_rule`), so
     /// authorship never propagates a blast radius.
     pub const AUTHORED_BY: &str = "AUTHORED_BY";
+    /// `Contributor → Contributor` — an automated agent ACTS_FOR the person it
+    /// records writes and approvals on behalf of: git's author/committer split
+    /// on the "who" axis (`crate::acting`). Drawn by the server, never
+    /// extracted. Deliberately NOT a traceability edge (absent from
+    /// `structural_rule`), like the other "who" edges beside it.
+    pub const ACTS_FOR: &str = "ACTS_FOR";
     /// `* → Contributor` — whose AREA this is: durable, standing, never
     /// released. The THIRD "who" axis. `AUTHORED_BY` is past tense and never
     /// changes; `CLAIMS` is who is in it right now and is released at checkout;

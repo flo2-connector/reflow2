@@ -242,7 +242,7 @@ schema:
       properties:
         name: { type: string, required: true, indexed: true, fulltext: true }
         description: { type: string, fulltext: true }
-        kind: { type: enum, values: [person, automated_agent, organization], default: person, indexed: true, description: "What the contributor IS — a human, an automated coding agent (Claude Code, grok build), or an organization. An agent that acts on a person's behalf ACTS_FOR them (deferred rung)." }
+        kind: { type: enum, values: [person, automated_agent, organization], default: person, indexed: true, description: "What the contributor IS — a human, an automated coding agent (Claude Code, grok build), or an organization. An agent that acts on a person's behalf ACTS_FOR them: built 2026-09-29 (req:a-write-and-an-approval-record-the-agent-and-the-person-it-acts-for). A session or request names the agent it writes THROUGH beside the person it writes FOR, and every authorship and approval it records carries the agent in `authored_via` / `reviewed_via` / `approved_via` — attribution only, never authority." }
         handle: { type: string, indexed: true, description: "Short stable handle used to coordinate — e.g. the COORD.md board handle (@<handle>) or an agent's name. Lets the same contributor be recognised across sessions without matching on the display name." }
       embedding_field: description
       resolution: { strategy: fuzzy_then_vector, fuzzy_threshold: 82 }
@@ -342,7 +342,7 @@ schema:
         primitive: "source-of"
         sub: "made"
         inverse: true
-        modifiers: { approved_at: "time", authored_at: "time", reviewed_at: "time", roles: "subtype" }
+        modifiers: { approved_at: "time", approved_via: "provenance", authored_at: "time", authored_via: "provenance", reviewed_at: "time", reviewed_via: "provenance", roles: "subtype" }
         splits:
           - property: "roles"
             note: "A set: an edge with two roles is two relations. A legacy edge with no `roles` keeps the reading above."
@@ -364,6 +364,30 @@ schema:
         authored_at: { type: string, description: "ISO-8601 timestamp of the authoring act, if recorded." }
         reviewed_at: { type: string, description: "ISO-8601 timestamp of the review, if recorded." }
         approved_at: { type: string, description: "ISO-8601 timestamp of the sign-off, if recorded — the date the owner's word was given, which is what the intent-authority gate and loop_status read." }
+        authored_via: { type: "list:string", description: "The AGENT(S) this authorship was recorded THROUGH — Contributor ids of kind automated_agent, a SET like `roles`. git's author/committer split: the contributor this edge points at is the author, and each id here is an agent that wrote the record on their behalf. Stamped by the server from the session's or request's declared acting agent (never supplied by a caller as data, never invented); ABSENT means no agent was known for that act, and a read says so rather than guessing. Attribution only — it never widens what an approval may settle. Built 2026-09-29 (req:a-write-and-an-approval-record-the-agent-and-the-person-it-acts-for)." }
+        reviewed_via: { type: "list:string", description: "The agent(s) this review was recorded through — as `authored_via`, for the `reviewer` role." }
+        approved_via: { type: "list:string", description: "The agent(s) this APPROVAL was recorded through — as `authored_via`, for the `approver` role. The authority stays the contributor's alone: an agent listed here carried the owner's word; it never gave it." }
+
+    ACTS_FOR:
+      from: Contributor
+      to: Contributor
+      reading: { form: "primitive", primitive: "controls", sub: "acts for", inverse: true, modifiers: { route: "provenance" }, basis: "classified" }
+      extraction_hint: >
+        An automated agent Contributor ACTS_FOR the person (or organization)
+        Contributor it records writes and approvals on behalf of — git's
+        author/committer split on the design's "who" axis, the rung
+        dec:design-authorship-identity named on 2026-07-22 and deferred, built
+        2026-09-29 (req:a-write-and-an-approval-record-the-agent-and-the-person-it-acts-for).
+        Drawn by the SERVER, not extracted from prose: the first time an agent a
+        session or request declared records authorship or an approval for a
+        contributor, the edge is drawn from the agent to them, and each such
+        record carries the agent in its `*_via` property. ATTRIBUTION, NEVER
+        AUTHORITY — the agent's identity is self-declared by the caller, so this
+        records who carried a person's word, never that the agent may give it.
+        Deliberately NOT a traceability edge (absent from structural_rule, like
+        AUTHORED_BY and CLAIMS), so it never enlarges a blast radius.
+      properties:
+        route: { type: string, description: "How the agent was named when this was first drawn: `session` (the session's writes_for declaration), `request` (a request's `_meta` key reflow2/acting_agent — the route a hosting gateway uses), or `client` (a Contributor whose `handle` equals the client's self-declared MCP clientInfo name)." }
 
     OWNED_BY:
       from: "*"

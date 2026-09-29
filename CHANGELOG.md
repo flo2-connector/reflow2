@@ -33,6 +33,14 @@ This file is the third view: *what changed, and when*.
 
 ### Added
 
+- **A write and an approval record the AGENT they went through beside the person they were for — the ACTS_FOR rung, deferred since 2026-07-22, is built.**
+  - A session names its agent once with `writes_for`'s new `acting_agent`, or a request names it in `_meta` under `reflow2/acting_agent`, the route a gateway already uses for the person (`reflow2/writes_for`). With neither, a Contributor of kind `automated_agent` whose `handle` equals the client's handshake name is used; one is never minted.
+  - Every AUTHORED_BY role the call records carries the agent in `authored_via` / `reviewed_via` / `approved_via`, a set beside the role's date, and the agent is drawn `ACTS_FOR` the person (a new edge type, carrying `route`: `session`, `request` or `client`). Stamped at one place, the store's edge write, so the typed `authored_by`, every settle path, the generic `create_edge` and the bulk form are all covered.
+  - Attribution only: the agent must be an existing `automated_agent` Contributor (a person or an unknown id is refused before anything is written), it is never recorded as acting for itself, and naming it never signs anything.
+  - `loop_status`'s `assigned_decisions` rows say `acted_through` (the agent) or `acted_through_note: "no agent known"`.
+  - **Schema: a new edge type (66 now) and three AUTHORED_BY properties.** An older binary opening a graph this version wrote sees a newer vocabulary; the upgrade note is owed at the cut.
+  - `a_write_records_the_agent_beside_the_principal` drives every settle path the tools declare in `_meta["reflow2/settles"]` through the real request path; `a_write_records_the_agent_it_went_through` pins the core.
+
 - **Every tool that can settle intent declares what settles it, on the served tool, and reflow2's own signature checks read the same declaration.**
   - Each settling tool's `tools/list` entry carries `_meta["reflow2/settles"]`: `{version, argument, when, approver, unsigned}`. `when` is `"always"`, `"present"`, `{"in": [..]}` or `{"not_in": [..]}`, read against `argument`; `approver` is where the signature goes (`approver`, or `gaps[].approver` for the batch); `unsigned` is `refused` or `recorded_with_note`.
   - Nine tools declare: `add_requirement`, `add_decision`, `add_design_rule` (refused unsigned); `set_requirement_status`, `set_decision_status`, `collapse_decision`, `acknowledge_gap`, `acknowledge_defect`, `acknowledge_gaps` (recorded, and the reply says it carries nobody's name).

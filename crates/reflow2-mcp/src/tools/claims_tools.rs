@@ -102,7 +102,9 @@ impl ReflowService {
                        each node written afterwards is credited to them as its author. They \
                        must already be a Contributor. Credit only — never an approval. One \
                        call can name someone else in its `_meta` under `reflow2/writes_for`, \
-                       the only way when no session is kept. Omit contributor_id to stop.",
+                       the only way when no session is kept. `acting_agent` names the agent \
+                       you write through, recorded beside them (`reflow2/acting_agent` per call). \
+                       Omit contributor_id to stop.",
         annotations(read_only_hint = true)
     )]
     pub async fn writes_for(
@@ -123,6 +125,10 @@ impl ReflowService {
     ) -> Result<CallToolResult, McpError> {
         let who = req
             .contributor_id
+            .map(|s| s.trim().to_string())
+            .filter(|s| !s.is_empty());
+        let agent = req
+            .acting_agent
             .map(|s| s.trim().to_string())
             .filter(|s| !s.is_empty());
         // 🛑 SESSIONLESS: a declaration would vanish with this request and
@@ -150,15 +156,43 @@ impl ReflowService {
                     McpError::invalid_params(writes_for_refusal(id, &e.to_string()), None)
                 })?;
         }
+        if let Some(id) = &agent {
+            self.graph
+                .read()
+                .await
+                .require_acting_agent(id)
+                .map_err(|e| {
+                    McpError::invalid_params(acting_agent_refusal(id, &e.to_string()), None)
+                })?;
+        }
         let before = {
             let mut declared = self.writes_for.lock().map_err(|_| {
                 McpError::internal_error("the session's writes_for lock is poisoned", None)
             })?;
             std::mem::replace(&mut *declared, who.clone())
         };
+        let agent_before = {
+            let mut declared = self.acting_agent.lock().map_err(|_| {
+                McpError::internal_error("the session's acting_agent lock is poisoned", None)
+            })?;
+            std::mem::replace(&mut *declared, agent.clone())
+        };
         ok_json(json!({
             "writes_for": who,
             "was": before,
+            "acting_agent": agent,
+            "acting_agent_was": agent_before,
+            "acting_agent_note": match &agent {
+                Some(a) => format!(
+                    "Every authorship and approval this session records carries '{a}' as the agent \
+                     it went through, beside the contributor it credits, and '{a}' is drawn \
+                     ACTS_FOR them. Attribution only."
+                ),
+                None => "No agent named: a Contributor of kind automated_agent whose `handle` is \
+                         this client's name is used if one exists; otherwise a read says \
+                         \"no agent known\"."
+                    .to_string(),
+            },
             "scope": "this session — every node it writes from now on is credited to this \
                       contributor as author, until the session ends or writes_for is called again",
             "attribution_only": "It never signs an approval: accepting, settling or approving still \

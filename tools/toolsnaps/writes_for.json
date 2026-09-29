@@ -2,11 +2,19 @@
   "annotations": {
     "readOnlyHint": true
   },
-  "description": "Attribute every edit a session makes to one person: name them once, and each node written afterwards is credited to them as its author. They must already be a Contributor. Credit only — never an approval. One call can name someone else in its `_meta` under `reflow2/writes_for`, the only way when no session is kept. Omit contributor_id to stop.",
+  "description": "Attribute every edit a session makes to one person: name them once, and each node written afterwards is credited to them as its author. They must already be a Contributor. Credit only — never an approval. One call can name someone else in its `_meta` under `reflow2/writes_for`, the only way when no session is kept. `acting_agent` names the agent you write through, recorded beside them (`reflow2/acting_agent` per call). Omit contributor_id to stop.",
   "inputSchema": {
     "$schema": "https://json-schema.org/draft/2020-12/schema",
     "additionalProperties": false,
     "properties": {
+      "acting_agent": {
+        "default": null,
+        "description": "The AGENT this session writes THROUGH — a `Contributor` of kind\n`automated_agent` (e.g. `who:claude-code`), recorded beside the person\non every authorship and approval the session records, and drawn\n`ACTS_FOR` them. Attribution only: it never signs anything. It must\nalready exist. Omit it to name no agent (a Contributor whose `handle`\nequals this client's name is still found).",
+        "type": [
+          "string",
+          "null"
+        ]
+      },
       "contributor_id": {
         "default": null,
         "description": "The `Contributor` this session writes for — the PERSON when there is\none, or a project (e.g. `who:<project>`) for writes no person made. It\nmust already exist; `add_contributor` first. Omit it, or pass null, to\nstop crediting this session's writes to anyone.",

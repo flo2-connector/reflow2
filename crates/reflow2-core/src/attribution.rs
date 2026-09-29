@@ -20,6 +20,11 @@
 //! caller-asserted identity may ever carry authority stays open in
 //! `dec:idea-may-a-caller-asserted-identity-be-trusted-and-for-what`.
 //!
+//! THE AGENT BESIDE THE PERSON (`crate::acting`, 2026-09-29). A caller may
+//! also name the AGENT it writes through; the author edges drawn here then
+//! carry it in `authored_via`, and the agent is drawn `ACTS_FOR` the person.
+//! Crediting happens while the agent is still in force for exactly that reason.
+//!
 //! ⚠️ WHAT IS NOT CREDITED: `Snapshot` nodes (history the server keeps for
 //! itself, not something anybody wrote) and `Contributor` nodes (a person is
 //! not the author of themselves). A write that only draws EDGES touches no
