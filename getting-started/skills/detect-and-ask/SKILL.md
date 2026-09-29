@@ -171,6 +171,14 @@ the record**: the gaps stay counted and stay loud (`req:no-idea-goes-quiet`).
    This matters: an open list that can never reach zero gets skimmed, and a skimmed list is the
    failure this whole workflow exists to prevent. `detect_gaps` should mean *still needs
    attention*. If a review turns out to be wrong, `withdraw_gap_acknowledgement` puts it back.
+
+   ⭐ **WHEN THE STATE ITSELF IS DELIBERATE, PARK THE NODE RATHER THAN ACKNOWLEDGE THE GAP.** A
+   requirement a person will meet outside the design, or a part correctly attached to nothing
+   yet, is a fact about the NODE: `governed_by(<node>, <an ACCEPTED Decision saying why>,
+   ruling: "parks")` records it, and every finding that reads parking then counts it as parked
+   instead of listing it. Each such finding names the mechanism in its own words and lists the
+   others that read it. Measured four times: people stuck at `unsatisfied_requirement` were never
+   told this existed (2026-09-29 was the fourth).
 6. Re-run `detect_gaps` to confirm the gap is closed and nothing new opened.
 
 Do this **before** writing code. A gap answered now is a requirement traced forever; a gap

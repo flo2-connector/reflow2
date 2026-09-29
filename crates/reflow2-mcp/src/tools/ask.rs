@@ -436,6 +436,7 @@ impl ReflowService {
                 open.iter()
                     .find(|candidate| candidate.id == gap.id)
                     .cloned()
+                    .map(with_parks_route)
                     .ok_or_else(|| Self::gap_is_gone(&gap.id))
             })
             .collect()
@@ -463,4 +464,17 @@ impl ReflowService {
             Some(json!({ "reason": "gap_closed", "gap_id": gap_id })),
         )
     }
+}
+
+/// A gap a `parks` ruling can clear carries the sentence that says how, in the
+/// words the question is phrased from — so the person asked is told the
+/// mechanism exists at the moment they are stuck, which four field reports say
+/// they were not (the dev_reflow2 two-agent exercise's I12 was the fourth).
+/// Applied at rehydration, the one place both prompt tools pass through, and
+/// applied identically to both passes so the prompt ids still match.
+fn with_parks_route(mut gap: GapCandidate) -> GapCandidate {
+    if reflow2_core::heal::PARKING_READERS.contains(&gap.gap_source.as_str()) {
+        gap.description = format!("{} {}", gap.description, reflow2_core::heal::parks_route());
+    }
+    gap
 }

@@ -2039,12 +2039,35 @@ impl DesignGraph {
         requirement_id: &str,
         coverage: Option<&str>,
     ) -> Result<StoredEdge, DynoError> {
-        self.create_edge(
-            edge::SATISFIES,
+        self.satisfies_between(
             node::CAPABILITY,
             capability_id,
             node::REQUIREMENT,
             requirement_id,
+            coverage,
+        )
+    }
+
+    /// [`satisfies_with_coverage`](Self::satisfies_with_coverage) for ANY pair
+    /// the schema accepts — a Component or Artifact that satisfies a
+    /// Requirement, a Capability that satisfies a Constraint. SATISFIES is
+    /// declared for all of them (`deliberately_open`), and the typed tool
+    /// refused all but Capability → Requirement: a helper narrower than its
+    /// schema, the class behind the dev_reflow2 exercise's I9.
+    pub fn satisfies_between(
+        &mut self,
+        from_type: &str,
+        from_id: &str,
+        to_type: &str,
+        to_id: &str,
+        coverage: Option<&str>,
+    ) -> Result<StoredEdge, DynoError> {
+        self.create_edge(
+            edge::SATISFIES,
+            from_type,
+            from_id,
+            to_type,
+            to_id,
             Props::new().set_opt("coverage", coverage),
         )
     }
@@ -2188,12 +2211,30 @@ impl DesignGraph {
         from_component_id: &str,
         to_component_id: &str,
     ) -> Result<StoredEdge, DynoError> {
-        self.create_edge(
-            edge::DEPENDS_ON,
+        self.depends_on_between(
             node::COMPONENT,
             from_component_id,
             node::COMPONENT,
             to_component_id,
+        )
+    }
+
+    /// [`depends_on`](Self::depends_on) for any pair the schema accepts —
+    /// between Capabilities it is the functional DAG, declared for the pair
+    /// alongside Component → Component, and the typed tool refused it.
+    pub fn depends_on_between(
+        &mut self,
+        from_type: &str,
+        from_id: &str,
+        to_type: &str,
+        to_id: &str,
+    ) -> Result<StoredEdge, DynoError> {
+        self.create_edge(
+            edge::DEPENDS_ON,
+            from_type,
+            from_id,
+            to_type,
+            to_id,
             Props::new(),
         )
     }
@@ -2587,9 +2628,24 @@ impl DesignGraph {
         consumer_id: &str,
         interface_id: &str,
     ) -> Result<StoredEdge, DynoError> {
+        self.consumes_from(node::COMPONENT, consumer_id, interface_id)
+    }
+
+    /// [`consumes`](Self::consumes) from any consumer the schema accepts — an
+    /// Actor using a published interface is the case that asked: the schema
+    /// has always said "a Component or Actor depends on/consumes an
+    /// Interface", and the typed tool refused the Actor as "Node not found:
+    /// Component act:…" (dev_reflow2 two-agent exercise, I9,
+    /// `fact:root-cause-a-published-interface-with-outside-consumers-raises-unconsumed-interface-2026-09-29`).
+    pub fn consumes_from(
+        &mut self,
+        consumer_type: &str,
+        consumer_id: &str,
+        interface_id: &str,
+    ) -> Result<StoredEdge, DynoError> {
         self.create_edge(
             edge::CONSUMES,
-            node::COMPONENT,
+            consumer_type,
             consumer_id,
             node::INTERFACE,
             interface_id,

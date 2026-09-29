@@ -345,6 +345,10 @@ impl ReflowService {
                        declared\" are different facts needing opposite actions, and until \
                        2026-09-02 they were rendered identically. Three projects acted on the \
                        wrong one and two drew an edge they themselves called a stand-in. \
+                       A node type's answer names `written_by`, the served tools that write \
+                       it, and each edge in a pair's answer names `drawn_by` \u{2014} so the \
+                       tool is found from the type, whatever it is called (`record_finding` \
+                       writes a TemporalFact). \
                        Ask for this to see which fields each type takes before you use it.",
         annotations(read_only_hint = true)
     )]
@@ -369,18 +373,20 @@ impl ReflowService {
             (None, None, None) => ok_json(bound(
                 serde_json::to_value(g.describe_vocabulary()).map_err(ser_err)?,
             )),
-            (Some(t), None, None) if req.required_only => ok_json(bound(
+            (Some(t), None, None) if req.required_only => ok_json(bound(with_writers(
+                t,
                 serde_json::to_value(g.describe_node_type_required(t).map_err(params_err)?)
                     .map_err(ser_err)?,
-            )),
-            (Some(t), None, None) => ok_json(bound(
+            ))),
+            (Some(t), None, None) => ok_json(bound(with_writers(
+                t,
                 serde_json::to_value(g.describe_node_type(t).map_err(params_err)?)
                     .map_err(ser_err)?,
-            )),
-            (None, Some(f), Some(t)) => ok_json(bound(
+            ))),
+            (None, Some(f), Some(t)) => ok_json(bound(with_drawn_by(
                 serde_json::to_value(g.edge_types_between(f, t).map_err(params_err)?)
                     .map_err(ser_err)?,
-            )),
+            ))),
             // A half-given pair is a mistake, not a request for everything.
             _ => Err(McpError::invalid_params(
                 "describe_schema takes no arguments (the full vocabulary), `node_type` alone, \
@@ -879,4 +885,45 @@ fn decorate(
         obj.insert("discontinued".to_string(), json!(discontinued));
     }
     Ok(rendered)
+}
+
+/// A node type's description says which served tool writes it (I14b). Read
+/// from the one map `tools/vocabulary_reach.py` also reads
+/// (`crate::writers`), so the two cannot disagree.
+fn with_writers(node_type: &str, mut v: serde_json::Value) -> serde_json::Value {
+    let writers = crate::writers::node_type_writers(node_type);
+    if let Some(obj) = v.as_object_mut() {
+        if writers.is_empty() {
+            obj.insert(
+                "no_typed_writer".to_string(),
+                serde_json::Value::String(crate::writers::NO_TYPED_WRITER.to_string()),
+            );
+        }
+        obj.insert("written_by".to_string(), serde_json::json!(writers));
+    }
+    v
+}
+
+/// Each edge that accepts a pair says which served tool draws it, so a caller
+/// who found the right edge is not left to find its tool by a second search.
+fn with_drawn_by(mut v: serde_json::Value) -> serde_json::Value {
+    if let Some(matches) = v
+        .get_mut("matches")
+        .and_then(serde_json::Value::as_array_mut)
+    {
+        for m in matches {
+            let edge = m
+                .get("edge_type")
+                .and_then(serde_json::Value::as_str)
+                .unwrap_or_default()
+                .to_string();
+            if let Some(obj) = m.as_object_mut() {
+                obj.insert(
+                    "drawn_by".to_string(),
+                    serde_json::json!(crate::writers::edge_type_writers(&edge)),
+                );
+            }
+        }
+    }
+    v
 }

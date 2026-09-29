@@ -890,8 +890,26 @@ pub(crate) fn dyno_err(e: DynoError) -> McpError {
             ),
             None,
         ),
+        // AN INVALID PAIR NAMES WHAT DOES ACCEPT IT, whichever tool raised it.
+        // Every typed edge helper reports a bad pair through this arm, and until
+        // 2026-09-29 it said only "cannot connect" while `create_edge` for the
+        // same pair named the modelled fit: `verifies(Verification → Decision)`
+        // was refused in bare words while GOVERNED_BY, drawn by `governed_by`,
+        // is the route a check on a ruling takes (dev_reflow2 two-agent
+        // exercise, I14a,
+        // `fact:root-cause-a-check-on-a-ruling-is-modelled-as-governed-by-and-the-verifies-refusal-never-says-so-2026-09-28`).
+        // The schema is compiled in, so no graph is needed to answer it.
+        DynoError::InvalidEdge {
+            ref from_type,
+            ref to_type,
+            ..
+        } => {
+            let detail = crate::writers::invalid_pair_detail(
+                reflow2_core::vocabulary::edge_types_between_in_schema(from_type, to_type),
+            );
+            McpError::invalid_params(format!("{e}{detail}"), None)
+        }
         DynoError::EdgeNotFound { .. }
-        | DynoError::InvalidEdge { .. }
         | DynoError::UnknownNodeType(_)
         | DynoError::UnknownEdgeType(_)
         | DynoError::Validation { .. }
@@ -940,43 +958,9 @@ pub(crate) fn edge_error(
     to_type: &str,
     e: DynoError,
 ) -> McpError {
-    let detail = match g.edge_types_between(from_type, to_type) {
-        Ok(q) => {
-            let mut s = format!("\n\n{}", q.note);
-            if !q.matches.is_empty() {
-                s.push_str("\n\nEdge types that accept this pair:");
-                for m in q.matches.iter().take(MAX_SUGGESTIONS) {
-                    let basis = if m.is_exact() { "exact" } else { "via *" };
-                    s.push_str(&format!(
-                        "\n  {} ({}) — {} -> {}",
-                        m.spec.edge_type,
-                        basis,
-                        m.spec.from.join("|"),
-                        m.spec.to.join("|")
-                    ));
-                    if let Some(h) = &m.spec.hint {
-                        // The hint is what lets the caller pick on meaning
-                        // rather than on whatever validates first.
-                        s.push_str(&format!("\n      {}", h.lines().next().unwrap_or(h)));
-                    }
-                }
-                // No silent truncation (AGENTS.md rule 4).
-                if q.matches.len() > MAX_SUGGESTIONS {
-                    s.push_str(&format!(
-                        "\n  … and {} more — call `describe_schema`.",
-                        q.matches.len() - MAX_SUGGESTIONS
-                    ));
-                }
-            }
-            s.push_str("\n\nCall `describe_schema` for the full vocabulary.");
-            s
-        }
-        // The endpoint types are themselves unknown, which is a better
-        // diagnosis than a list of edges would be. Surface it, don't swallow.
-        Err(inner) => {
-            format!("\n\n{inner}\nCall `describe_schema` to list the valid node types.")
-        }
-    };
+    // ONE renderer for every invalid pair, so `create_edge` and a typed helper
+    // cannot come to disagree about what to offer (they did until 2026-09-29).
+    let detail = crate::writers::invalid_pair_detail(g.edge_types_between(from_type, to_type));
     McpError::invalid_params(format!("{e}{detail}"), None)
 }
 
@@ -1443,6 +1427,25 @@ impl ReflowService {
 /// strict form on purpose.
 /// fact:defect-typed-tool-parameter-names-are-inconsistent,
 /// dec:idea-one-way-to-name-which-node-across-the-tool-surface.
+/// [`resolve_node_type`] for a typed helper that used to hard-wire one type:
+/// the id's own type when it names exactly one node, and `default` when it
+/// names none — so a missing node still reaches the core and is refused with
+/// the parallel-batch explanation it always carried, rather than a new message.
+/// A typed helper is never narrower than its schema (the class behind the
+/// dev_reflow2 exercise's I9); the schema, not the helper, refuses a bad pair.
+pub(crate) fn resolve_node_type_or(
+    g: &reflow2_core::DesignGraph,
+    given: Option<&str>,
+    id: &str,
+    field: &str,
+    default: &str,
+) -> Result<String, McpError> {
+    if given.is_none() && g.node_types_holding(id).map_err(dyno_err)?.is_empty() {
+        return Ok(default.to_string());
+    }
+    resolve_node_type(g, given, id, field)
+}
+
 pub(crate) fn resolve_node_type(
     g: &reflow2_core::DesignGraph,
     given: Option<&str>,
@@ -2316,13 +2319,28 @@ pub struct AllocateReq {
 #[derive(Debug, Deserialize, JsonSchema)]
 #[serde(deny_unknown_fields)]
 pub struct SatisfiesReq {
-    /// The `Capability` that satisfies it.
+    /// The node that satisfies it — a `Capability`, or a `Component` or `Artifact` (declared for
+    /// SATISFIES).
     #[serde(alias = "capability_id")]
     #[serde(alias = "node_id")]
     pub from_id: String,
-    /// The `Requirement` being satisfied.
+    /// The `Requirement` (or `Constraint`) being satisfied.
     #[serde(alias = "requirement_id")]
     pub to_id: String,
+    /// The `from_id` node's type.
+    /// Optional: resolved from the id when omitted (the id prefix names the
+    /// type); an id held by more than one type is REFUSED, never guessed — pass
+    /// it then. Any type the schema accepts at this end is accepted here: a
+    /// typed tool is never narrower than its schema.
+    #[serde(default)]
+    pub from_type: Option<String>,
+    /// The `to_id` node's type.
+    /// Optional: resolved from the id when omitted (the id prefix names the
+    /// type); an id held by more than one type is REFUSED, never guessed — pass
+    /// it then. Any type the schema accepts at this end is accepted here: a
+    /// typed tool is never narrower than its schema.
+    #[serde(default)]
+    pub to_type: Option<String>,
     /// HOW MUCH of the requirement this capability meets: `full` / `partial` / `planned`. The
     /// delivery line counts only a `full` (or unstated) satisfier: a capability that only partly
     /// meets a need does not deliver it, and before 2026-09-16 this field was declared on the
@@ -2355,13 +2373,21 @@ pub struct ProvidesReq {
 #[derive(Debug, Deserialize, JsonSchema)]
 #[serde(deny_unknown_fields)]
 pub struct ConsumesReq {
-    /// The consuming `Component`.
+    /// The consumer — a `Component`, or an `Actor` outside the design using a published
+    /// interface (the schema accepts any consumer).
     #[serde(alias = "component_id")]
     #[serde(alias = "node_id")]
     pub from_id: String,
     /// The `Interface` it consumes.
     #[serde(alias = "interface_id")]
     pub to_id: String,
+    /// The `from_id` node's type.
+    /// Optional: resolved from the id when omitted (the id prefix names the
+    /// type); an id held by more than one type is REFUSED, never guessed — pass
+    /// it then. Any type the schema accepts at this end is accepted here: a
+    /// typed tool is never narrower than its schema.
+    #[serde(default)]
+    pub from_type: Option<String>,
 }
 
 /// A parent Requirement DECOMPOSES into a child. `from_id` / `to_id` is the taught spelling; the role names
@@ -2389,13 +2415,27 @@ pub struct DecomposesReq {
 #[derive(Debug, Deserialize, JsonSchema)]
 #[serde(deny_unknown_fields)]
 pub struct DependsOnReq {
-    /// The `Component` that depends.
+    /// The `Component` (or `Capability`) that depends.
     #[serde(alias = "dependent_id")]
     #[serde(alias = "node_id")]
     pub from_id: String,
-    /// The `Component` depended on.
+    /// The `Component` (or `Capability`) depended on.
     #[serde(alias = "dependency_id")]
     pub to_id: String,
+    /// The `from_id` node's type.
+    /// Optional: resolved from the id when omitted (the id prefix names the
+    /// type); an id held by more than one type is REFUSED, never guessed — pass
+    /// it then. Any type the schema accepts at this end is accepted here: a
+    /// typed tool is never narrower than its schema.
+    #[serde(default)]
+    pub from_type: Option<String>,
+    /// The `to_id` node's type.
+    /// Optional: resolved from the id when omitted (the id prefix names the
+    /// type); an id held by more than one type is REFUSED, never guessed — pass
+    /// it then. Any type the schema accepts at this end is accepted here: a
+    /// typed tool is never narrower than its schema.
+    #[serde(default)]
+    pub to_type: Option<String>,
 }
 
 /// A parent Component CONTAINS a child. `from_id` / `to_id` is the taught spelling; the role names
@@ -3751,8 +3791,17 @@ pub struct AddConstraintReq {
 pub struct ConstrainsReq {
     #[serde(alias = "from_id")]
     #[serde(alias = "node_id")]
-    /// The Constraint (`con:…`) that limits the target — the source of the CONSTRAINS edge.
+    /// The Constraint (`con:…`) that limits the target — the source of the CONSTRAINS edge. A
+    /// `DesignRule` binding what it governs is accepted too.
     pub constraint_id: String,
+    /// The `constraint_id` node's type — `Constraint` or `DesignRule`.
+    /// Optional: resolved from the id when omitted (the id prefix names the
+    /// type); an id held by more than one type is REFUSED, never guessed — pass
+    /// it then. Any type the schema accepts at this end is accepted here: a
+    /// typed tool is never narrower than its schema.
+    #[serde(default)]
+    #[serde(alias = "from_type")]
+    pub constraint_type: Option<String>,
     /// The spender's node type — anything can spend (Component mass,
     /// Interface latency, Resource cost).
     /// Optional since 2026-09-06: resolved from the id when omitted (the id
@@ -3852,7 +3901,12 @@ pub struct RelationLinkReq {
 #[derive(Debug, Deserialize, JsonSchema)]
 #[serde(deny_unknown_fields)]
 pub struct BudgetReportReq {
-    /// The Constraint (`con:…`) holding the limit to roll up against — one with a `quantity`, `limit` and `direction`, typically a KPP (`category: kpp`).
+    /// The ONE Constraint (`con:…`) to roll up — one with a `quantity`, `limit` and `direction`. For every budget at once, `closure_report`'s budgets leg sweeps them all (how many close, and the worst margin).
+    ///
+    /// The design-wide route is named in the first sentence on purpose: a
+    /// refusal quotes only that much, and a caller asking for every budget met
+    /// this refusal naming nothing (dev_reflow2 two-agent exercise, I17,
+    /// `fact:root-cause-budget-report-reads-one-budget-and-its-refusal-never-names-the-all-budgets-sweep-2026-09-29`).
     #[serde(alias = "id")]
     #[serde(alias = "node_id")]
     pub constraint_id: String,
@@ -7127,6 +7181,85 @@ mod empty_speaks_pins {
         assert!(
             f.get("empty_because").is_none(),
             "a full reply must not carry it: {f}"
+        );
+    }
+}
+
+/// I14a of the dev_reflow2 two-agent exercise, pinned as the CLASS.
+///
+/// A typed edge helper refused `verifies(Verification → Decision)` with the bare
+/// "Invalid edge" sentence, while `create_edge` for the same pair names
+/// GOVERNED_BY as the modelled fit
+/// (`fact:root-cause-a-check-on-a-ruling-is-modelled-as-governed-by-and-the-verifies-refusal-never-says-so-2026-09-28`).
+/// Every typed helper renders an invalid edge through [`dyno_err`], so the
+/// question is asked of that function over EVERY rejected (edge, from, to) the
+/// schema has, not of one helper.
+#[cfg(test)]
+mod an_invalid_edge_names_what_the_schema_models_for_the_pair {
+    use super::*;
+    use reflow2_core::vocabulary::EndpointMatch;
+
+    #[test]
+    fn every_refused_pair_names_an_edge_the_schema_models_for_it() {
+        let g = DesignGraph::open_in_memory().expect("graph");
+        let vocab = g.describe_vocabulary();
+        let types: Vec<String> = vocab
+            .node_types
+            .iter()
+            .map(|t| t.node_type.clone())
+            .collect();
+        let mut checked = 0usize;
+        let mut silent: Vec<String> = Vec::new();
+        for f in &types {
+            for t in &types {
+                let q = g.edge_types_between(f, t).expect("edge query");
+                // The edge a reader should be offered first: named on both
+                // ends, or on one end and open by design, or declared for
+                // this pair. A pair only a double wildcard tolerates has no
+                // modelled fit, and saying nothing specific is honest there.
+                let Some(best) = q.matches.iter().find(|m| {
+                    m.from_match == EndpointMatch::Exact
+                        || m.to_match == EndpointMatch::Exact
+                        || m.declared_for_this_pair
+                }) else {
+                    continue;
+                };
+                for e in &vocab.edge_types {
+                    if g.schema().validate_edge(&e.edge_type, f, t).is_ok() {
+                        continue;
+                    }
+                    checked += 1;
+                    let msg = dyno_err(DynoError::InvalidEdge {
+                        edge_type: e.edge_type.clone(),
+                        from_type: f.clone(),
+                        to_type: t.clone(),
+                    })
+                    .message
+                    .to_string();
+                    if !msg.contains(&best.spec.edge_type) {
+                        silent.push(format!(
+                            "{} {f} -> {t}: names no alternative, while {} models the pair",
+                            e.edge_type, best.spec.edge_type
+                        ));
+                    }
+                }
+            }
+        }
+        assert!(
+            checked > 1000,
+            "the enumeration must actually walk the schema: {checked}"
+        );
+        assert!(
+            silent.is_empty(),
+            "{} of {checked} refused (edge, from, to) triples name no edge the schema models \
+             for the pair — the typed-helper refusal says less than create_edge's. First few:\n{}",
+            silent.len(),
+            silent
+                .iter()
+                .take(8)
+                .cloned()
+                .collect::<Vec<_>>()
+                .join("\n")
         );
     }
 }

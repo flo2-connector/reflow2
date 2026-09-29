@@ -181,7 +181,47 @@ pub enum HierarchyIssueKind {
     LevelSpineDisagreement,
 }
 
+/// The cure a Project parent offers, in the words every rule it satisfies
+/// uses — ONE string, so the rules cannot drift apart again.
+///
+/// ⭐ WHY IT IS SHARED. Both `orphan_level` and `level_spine_disagreement`
+/// accept a Project parent, and a 2026-09-16 root cause said so of both
+/// (`fact:root-cause-a-childless-root-part-has-no-legal-level-because-two-self-limiting-hierarchy-rules-were-never-checked-jointly`).
+/// The fix reached one message. On 2026-09-29 an agent modelling an outside
+/// gateway met the other, nested the gateway INSIDE the engine to quiet it, and
+/// so misstated the design — while `contains` under the Project was the honest
+/// placement all along (dev_reflow2 two-agent exercise, I11,
+/// `fact:root-cause-an-external-part-trips-level-spine-disagreement-and-the-cure-is-named-only-on-its-sibling-rule-2026-09-29`).
+pub const PROJECT_PARENT_CURE: &str = "if it is a top-level part, contain it under the Project \
+     with `contains` — a Project parent satisfies this rule, and makes the part a sibling of the \
+     other top-level parts rather than a part of any of them (the honest place for something \
+     that exists beside this system and is not inside it)";
+
 impl HierarchyIssueKind {
+    /// Every kind, in declaration order. Built from an exhaustive `match`, so a
+    /// new kind is a compile error here until someone says whether a Project
+    /// parent cures it.
+    pub const ALL: [HierarchyIssueKind; 6] = [
+        HierarchyIssueKind::MissingIntermediateLevel,
+        HierarchyIssueKind::LevelMismatch,
+        HierarchyIssueKind::OrphanLevel,
+        HierarchyIssueKind::UnknownLevel,
+        HierarchyIssueKind::MultipleParents,
+        HierarchyIssueKind::LevelSpineDisagreement,
+    ];
+
+    /// Whether containing the part under the Project clears this finding — and
+    /// therefore whether its message must say so ([`PROJECT_PARENT_CURE`]).
+    pub fn cured_by_project_parent(self) -> bool {
+        match self {
+            HierarchyIssueKind::OrphanLevel | HierarchyIssueKind::LevelSpineDisagreement => true,
+            HierarchyIssueKind::MissingIntermediateLevel
+            | HierarchyIssueKind::LevelMismatch
+            | HierarchyIssueKind::UnknownLevel
+            | HierarchyIssueKind::MultipleParents => false,
+        }
+    }
+
     /// Stable snake_case key.
     pub fn as_str(self) -> &'static str {
         match self {
@@ -384,8 +424,7 @@ impl DesignGraph {
                     relation: None,
                     message: format!(
                         "'{}' ({}) is not contained by anything above it and contains \
-                         nothing below it — if it is a top-level part, contain it under the \
-                         Project with `contains`; a Project parent satisfies this rule",
+                         nothing below it — {PROJECT_PARENT_CURE}",
                         id, lvl
                     ),
                 });
@@ -453,7 +492,7 @@ impl DesignGraph {
                             "'{}' declares level '{}' but sits at the ROOT of the spine — \
                              nothing contains it, while '{}' exists above it. Asking for the \
                              top tier by declared level and by spine position give different \
-                             answers, and this node is why",
+                             answers, and this node is why — {PROJECT_PARENT_CURE}",
                             id, lvl, top
                         ),
                     });

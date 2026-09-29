@@ -175,109 +175,64 @@ def declared() -> tuple[dict[str, dict], dict[str, dict]]:
 # toward a type ONLY when the tool writes that type, and a write tool this file
 # cannot place STOPS THE GATE rather than being pooled — see EDGE_ONLY,
 # POLYMORPHIC and `unplaceable` below.
-WRITES_TYPE = {
-    "add_actor": "Actor",
-    "add_artifact": "Artifact",
-    "add_capability": "Capability",
-    "add_change_event": "ChangeEvent",
-    "add_component": "Component",
-    "add_constraint": "Constraint",
-    "add_contributor": "Contributor",
-    "add_decision": "Decision",
-    "add_design_rule": "DesignRule",
-    "add_environment": "Environment",
-    "add_epoch": "DesignEpoch",
-    "add_flow": "Flow",
-    "add_interface": "Interface",
-    "add_project": "Project",
-    "add_readiness": "ReadinessAssessment",
-    "add_release": "Release",
-    "add_requirement": "Requirement",
-    "add_resource": "Resource",
-    "add_verification": "Verification",
-    "record_finding": "TemporalFact",
-    # SETTERS AND THE OTHER WRITERS. A setter is as type-specific as a
-    # constructor and leaks exactly the same way when it is left unmapped:
-    # measured 2026-09-07, adding `description` to add_epoch made SIX
-    # properties read as newly reachable instead of two, because `plan_epoch`
-    # was not in this map and its parameters were therefore pooled as
-    # cross-type. One type's field covering another's is the very miss this
-    # map was added to stop, so the map has to cover every tool that writes a
-    # type's own properties, not only the ones named `add_*`.
-    "plan_epoch": "DesignEpoch",
-    # link_artifact MINTS THE PROVENANCE FRAGMENT as well as the artifact, and
-    # its own parameters write that fragment's properties (content_ref,
-    # note_kind, provenance). Mapping it to Artifact alone made those read as
-    # holes when the pool was removed — the under-specified half of the same
-    # problem the pool was hiding.
-    "link_artifact": ("Artifact", "Fragment"),
-    "set_artifact_checksum": "Artifact",
-    "set_artifact_checksums": "Artifact",
-    "set_artifact_intent": "Artifact",
-    "set_capability_delivery": "Capability",
-    "set_capability_signature": "Capability",
-    "set_capability_status": "Capability",
-    "set_interface_spec": "Interface",
-    "set_interface_designation": "Interface",
-    "set_requirement_lineage": "Requirement",
-    "set_requirement_status": "Requirement",
-    "set_requirement_designation": "Requirement",
-    "set_verification_status": "Verification",
-    "set_verification_kind": "Verification",
-    "set_decision_status": "Decision",
-    "set_quality_target": "Decision",
-    "set_epoch_status": "DesignEpoch",
-    "set_project_mode": "Project",
-    "genesis": "Project",
-    # A TOOL MAY WRITE MORE THAN ONE TYPE, and the value is then a tuple.
-    # `record_alias` records the user's own word for a thing on each of the five
-    # types that name a THING rather than a statement. Mapping it to one of them
-    # would leave the other four reading as unreachable; leaving it UNMAPPED
-    # would pool `aliases` across every type in the schema, which is the leak
-    # the note above says this map exists to stop.
-    "record_alias": ("Requirement", "Capability", "Component", "Interface", "Flow"),
-    "record_change": "ChangeEvent",
-    "answer_question": "Question",
-    "withdraw_question": "Question",
-    "acknowledge_gap": "Question",
-    "acknowledge_gaps": "Question",
-    "withdraw_gap_acknowledgement": "Question",
-    "gap_to_prompt": "Question",
-    "gaps_to_prompts": "Question",
-    "external_dependency": "Resource",
-    # THE RECONCILE FAMILY WRITES DriftEvent. Mapped 2026-09-07 after adding
-    # `severity` to violates_rule made DriftEvent.severity read as newly
-    # reachable — an unmapped type falls back to the whole surface, so any new
-    # parameter anywhere can silently "fix" one of its properties. That is the
-    # cross-type leak this map exists to stop, arriving through the fallback
-    # path instead of the pool.
-    "reconcile_artifacts": "DriftEvent",
-    "reconcile_verification": "DriftEvent",
-    "reconcile_deployment": "DriftEvent",
-    "reconcile_dependencies": "DriftEvent",
-    # And the compliance layer's own writers, so the same thing cannot happen
-    # to EnvironmentRule as the surface grows around it.
-    "add_environment_rule": "EnvironmentRule",
-    "complies_with": "EnvironmentRule",
-    "violates_rule": "EnvironmentRule",
-    "set_violation_status": "EnvironmentRule",
-    "imposes": "EnvironmentRule",
-    # Placed 2026-09-20 when the pool was removed: each writes ONE type's own
-    # properties and was previously pooled across all of them.
-    "collapse_decision": "Decision",
-    "set_closure_criterion": "Project",
-    "register_alternative": "Artifact",
-    # reopen_choice (2026-09-23) mints ONE Decision from `name` and `reason`;
-    # the road-taken Artifact it may register is register_alternative's.
-    "reopen_choice": "Decision",
-    "forecast_readiness": "ReadinessAssessment",
-    # snapshot_before_change writes BOTH: the ChangeEvent it records and the
-    # Snapshot it captures, whose target it names.
-    "snapshot_before_change": ("ChangeEvent", "Snapshot"),
-    # The ingest steps name a fragment and write its title and provenance.
-    "ingest_step": "Fragment",
-    "ingest_corpus_step": "Fragment",
-}
+# ⭐ THE ENTRIES LIVE IN crates/reflow2-mcp/writers.json SINCE 2026-09-29, and the
+# server reads the same file: `describe_schema` answers `written_by` from it, so an
+# agent asking about a type is told which tool writes it. Until then this dict was
+# the only copy, a CI instrument nothing served, and the dev_reflow2 designer
+# learned TemporalFact's fields from an export because the schema could not say
+# `record_finding` writes one (I14b,
+# fact:root-cause-describe-schema-never-names-the-typed-tool-that-writes-a-type-and-the-map-lives-in-a-repo-script-2026-09-29).
+# One file read by both cannot drift; a copy here would. The reasons recorded
+# against its notable entries stay below, where the people who read this code
+# will look for them.
+#
+# SETTERS AND THE OTHER WRITERS. A setter is as type-specific as a
+# constructor and leaks exactly the same way when it is left unmapped:
+# measured 2026-09-07, adding `description` to add_epoch made SIX
+# properties read as newly reachable instead of two, because `plan_epoch`
+# was not in this map and its parameters were therefore pooled as
+# cross-type. One type's field covering another's is the very miss this
+# map was added to stop, so the map has to cover every tool that writes a
+# type's own properties, not only the ones named `add_*`.
+# link_artifact MINTS THE PROVENANCE FRAGMENT as well as the artifact, and
+# its own parameters write that fragment's properties (content_ref,
+# note_kind, provenance). Mapping it to Artifact alone made those read as
+# holes when the pool was removed — the under-specified half of the same
+# problem the pool was hiding.
+# A TOOL MAY WRITE MORE THAN ONE TYPE, and the value is then a tuple.
+# `record_alias` records the user's own word for a thing on each of the five
+# types that name a THING rather than a statement. Mapping it to one of them
+# would leave the other four reading as unreachable; leaving it UNMAPPED
+# would pool `aliases` across every type in the schema, which is the leak
+# the note above says this map exists to stop.
+# THE RECONCILE FAMILY WRITES DriftEvent. Mapped 2026-09-07 after adding
+# `severity` to violates_rule made DriftEvent.severity read as newly
+# reachable — an unmapped type falls back to the whole surface, so any new
+# parameter anywhere can silently "fix" one of its properties. That is the
+# cross-type leak this map exists to stop, arriving through the fallback
+# path instead of the pool.
+# And the compliance layer's own writers, so the same thing cannot happen
+# to EnvironmentRule as the surface grows around it.
+# Placed 2026-09-20 when the pool was removed: each writes ONE type's own
+# properties and was previously pooled across all of them.
+# reopen_choice (2026-09-23) mints ONE Decision from `name` and `reason`;
+# the road-taken Artifact it may register is register_alternative's.
+# snapshot_before_change writes BOTH: the ChangeEvent it records and the
+# Snapshot it captures, whose target it names.
+# The ingest steps name a fragment and write its title and provenance.
+WRITERS = REPO / "crates/reflow2-mcp/writers.json"
+
+
+def _writes_type() -> dict:
+    """tool -> the node type it writes, or a tuple when it writes several."""
+    doc = json.loads(WRITERS.read_text())
+    return {
+        tool: types[0] if len(types) == 1 else tuple(types)
+        for tool, types in doc["writes_node_type"].items()
+    }
+
+
+WRITES_TYPE = _writes_type()
 
 # TOOLS THAT WRITE NO NODE PROPERTY AT ALL, so they contribute nothing here.
 # Most are edge writers: their parameters are edge properties (`note`, `role`,
