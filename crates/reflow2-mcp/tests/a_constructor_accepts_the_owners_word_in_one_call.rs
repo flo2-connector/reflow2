@@ -252,6 +252,7 @@ async fn a_setter_draws_the_signature_when_given_one_and_reports_its_absence_whe
         approver: None,
         acted_at: None,
         chose: None,
+        name: None,
     })));
     assert_eq!(
         out["properties"]["status"], "accepted",
@@ -270,6 +271,7 @@ async fn a_setter_draws_the_signature_when_given_one_and_reports_its_absence_whe
         approver: Some("who:ann".into()),
         acted_at: Some("2026-09-06".into()),
         chose: None,
+        name: None,
     })));
     assert!(out.get("carries_nobodys_name").is_none(), "{out}");
     assert_eq!(approver_edges(&s, "dec:totals").await.len(), 1);
@@ -281,6 +283,7 @@ async fn a_setter_draws_the_signature_when_given_one_and_reports_its_absence_whe
         approver: None,
         acted_at: None,
         chose: None,
+        name: None,
     })));
     assert!(out.get("carries_nobodys_name").is_none(), "{out}");
 

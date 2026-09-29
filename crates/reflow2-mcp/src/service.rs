@@ -4106,6 +4106,11 @@ pub struct DecisionReq {
     /// Required — TOGETHER WITH ITS ALTERNATIVE BELOW — only when this is an
     /// `exploratory` Decision and near-matches were found. An idea nothing
     /// resembles is captured with no ceremony at all.
+    ///
+    /// DRAWN FOR EVERY KIND, and each edge is named in the reply's
+    /// `edges_drawn`, subject first. Until 2026-09-29 a `choice` or no-kind
+    /// decision passed the duplicate guard naming these and then drew none of
+    /// them, silently.
     #[serde(default)]
     pub related_to: Option<Vec<RelationLinkReq>>,
     /// THE OTHER HALF, AND IT IS A FULL ANSWER RATHER THAN A WEAKER ONE: what
@@ -5859,6 +5864,18 @@ pub struct SetDecisionStatusReq {
     /// common case where they live in the decision's own prose.
     #[serde(default)]
     pub chose: Option<String>,
+    /// A NEW NAME for the decision, written in the same call — for the heading
+    /// that still asks the question this call settles ("OPEN — does X…?").
+    ///
+    /// flo2 F12 (2026-09-19) and the 2026-09-29 designer session both settled
+    /// decisions and left them NAMED as open questions: `chose` reached the
+    /// body and nothing reached the name, so every settle cost a second,
+    /// whole-node `replace_text`. reflow2's own design held 44 of 266 accepted
+    /// decisions so named. Optional; absent leaves the name alone, and an
+    /// accepted decision whose name still leads with `OPEN` is reported in the
+    /// reply (`name_still_reads_open`) rather than renamed for you.
+    #[serde(default)]
+    pub name: Option<String>,
 }
 
 #[derive(Debug, Deserialize, JsonSchema)]

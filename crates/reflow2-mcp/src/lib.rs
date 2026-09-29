@@ -9,6 +9,7 @@ pub mod client_setup;
 pub mod content_policy;
 pub mod degraded;
 pub mod drain;
+pub mod drawn_edges;
 pub mod dto;
 pub mod enum_schema;
 pub mod export_write;

@@ -139,7 +139,7 @@
         ]
       },
       "related_to": {
-        "description": "The relations you judged REAL among the near-matches this call surfaced.\nSame shape as `review_relations`, drawn in the same call so the\njudgement cannot be lost between two.\n\nRequired — TOGETHER WITH ITS ALTERNATIVE BELOW — only when this is an\n`exploratory` Decision and near-matches were found. An idea nothing\nresembles is captured with no ceremony at all.",
+        "description": "The relations you judged REAL among the near-matches this call surfaced.\nSame shape as `review_relations`, drawn in the same call so the\njudgement cannot be lost between two.\n\nRequired — TOGETHER WITH ITS ALTERNATIVE BELOW — only when this is an\n`exploratory` Decision and near-matches were found. An idea nothing\nresembles is captured with no ceremony at all.\n\nDRAWN FOR EVERY KIND, and each edge is named in the reply's\n`edges_drawn`, subject first. Until 2026-09-29 a `choice` or no-kind\ndecision passed the duplicate guard naming these and then drew none of\nthem, silently.",
         "items": {
           "$ref": "#/$defs/RelationLinkReq"
         },

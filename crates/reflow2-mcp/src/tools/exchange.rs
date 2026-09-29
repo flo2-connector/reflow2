@@ -689,7 +689,7 @@ impl ReflowService {
                        settled question a second time. \
                        PASS `chose` TO SAY WHICH OPTION WON, in your own words: the settling act \
                        then records what it settled without rewriting the deliberation that \
-                       produced it. \
+                       produced it. PASS `name` TO RETITLE IT in the same call. \
                        Ask for this to mark a decision accepted with the owner's name.",
         annotations(read_only_hint = false, destructive_hint = false)
     )]
@@ -703,6 +703,21 @@ impl ReflowService {
             req.approver.as_deref(),
             "set_decision_status",
         )?;
+        // A new name rides the settle, so the heading that asked the question
+        // can stop asking it in the act that answered it. An empty one is
+        // refused BEFORE anything is written: a nameless decision is a worse
+        // record than a stale name.
+        if let Some(n) = req.name.as_deref()
+            && n.trim().is_empty()
+        {
+            return Err(McpError::invalid_params(
+                "`set_decision_status`: `name` was passed empty. Pass the decision's new \
+                 heading, or leave `name` out to keep the one it has. The status was NOT \
+                 moved — nothing about this call was written."
+                    .to_string(),
+                None,
+            ));
+        }
         // Read BEFORE the write: afterwards there is nothing left to compare
         // against, and `accepted` -> `accepted` must stay silent.
         let was_accepted = crate::tools::capture::prior_status(
@@ -730,7 +745,10 @@ impl ReflowService {
             &mut g,
             reflow2_core::nodes::node::DECISION,
             &req.decision_id,
-            &[("chose", req.chose.as_deref())],
+            &[
+                ("chose", req.chose.as_deref()),
+                ("name", req.name.as_deref().map(str::trim)),
+            ],
         )?
         .map_or(node, NodeDto::from);
         // TWO DIFFERENT QUESTIONS, and they used to share one flag.
