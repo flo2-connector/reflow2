@@ -111,6 +111,7 @@ async fn withdrawn() -> ReflowService {
         approver: None,
         acted_at: None,
         chose: None,
+        name: None,
     })));
     j!(s.create_edge(Parameters(CreateEdgeReq {
         edge_type: "OBSOLETES".into(),
@@ -339,6 +340,7 @@ async fn it_is_not_a_capability_only_field() {
         approver: None,
         acted_at: None,
         chose: None,
+        name: None,
     })));
     j!(s.create_edge(Parameters(CreateEdgeReq {
         edge_type: "OBSOLETES".into(),
