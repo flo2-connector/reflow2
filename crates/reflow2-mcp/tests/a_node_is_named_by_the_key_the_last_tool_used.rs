@@ -70,7 +70,17 @@ fn twenty_five_typed_keys_accept_id_and_node_id() {
     both!(ReleaseReportReq, release_id, {});
     both!(ReleaseIncludesAllReq, release_id, {});
     both!(FlowReportReq, flow_id, {});
-    both!(BudgetReportReq, constraint_id, {});
+    // Optional since 2026-09-29 (leave it out to read every budget), so it is
+    // checked as an Option — the aliases must still land in it.
+    for alias in ["id", "node_id"] {
+        let parsed: BudgetReportReq = serde_json::from_value(json!({ (alias): "node:x" }))
+            .unwrap_or_else(|e| panic!("BudgetReportReq refuses `{alias}`: {e}"));
+        assert_eq!(
+            parsed.constraint_id.as_deref(),
+            Some("node:x"),
+            "BudgetReportReq `{alias}`"
+        );
+    }
     both!(PropagateChangeReq, change_event_id, {});
     both!(ReadinessReportReq, subject_id, {});
     both!(ArrivalDeltaReq, target_id, {});

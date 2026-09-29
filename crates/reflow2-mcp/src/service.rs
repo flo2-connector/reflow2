@@ -3793,6 +3793,14 @@ pub struct AddConstraintReq {
     #[serde(default)]
     #[schemars(schema_with = "crate::enum_schema::constraint_direction_opt")]
     pub direction: Option<String>,
+    /// HOW THE QUANTITY COMPOSES, which is what budget_report's verdict reads: `sum` (every
+    /// contribution adds — mass, cost) or `path` (the heaviest DEPENDS_ON chain among the
+    /// contributors — end-to-end latency, where parallel branches overlap). Declared, never
+    /// inferred from the unit. Leave it unset when nobody has said: the verdict then reads the
+    /// sum and the report names any path total it did not read.
+    #[serde(default)]
+    #[schemars(schema_with = "crate::enum_schema::constraint_composition_opt")]
+    pub composition: Option<String>,
     /// Ids you read and judged DIFFERENT from this one, when reflow2 has
     /// already told you something close exists. Naming them is the deliberate
     /// decision: sharpen an existing node by calling with ITS id, or start a
@@ -3928,15 +3936,23 @@ pub struct RelationLinkReq {
 #[derive(Debug, Deserialize, JsonSchema)]
 #[serde(deny_unknown_fields)]
 pub struct BudgetReportReq {
-    /// The ONE Constraint (`con:…`) to roll up — one with a `quantity`, `limit` and `direction`. For every budget at once, `closure_report`'s budgets leg sweeps them all (how many close, and the worst margin).
-    ///
-    /// The design-wide route is named in the first sentence on purpose: a
-    /// refusal quotes only that much, and a caller asking for every budget met
-    /// this refusal naming nothing (dev_reflow2 two-agent exercise, I17,
-    /// `fact:root-cause-budget-report-reads-one-budget-and-its-refusal-never-names-the-all-budgets-sweep-2026-09-29`).
+    /// The ONE Constraint (`con:…`) to roll up in full: every contributor, the worst path and
+    /// the verdict. Leave it out to read them all at once, each with its verdict;
+    /// `closure_report`'s budgets leg gives only the closure counts.
+    //
+    // Optional since 2026-09-29: a caller asking for all of them used to be refused, then paid
+    // one call each — 14 calls for 14 (dev_reflow2 two-agent exercise, I17,
+    // `fact:root-cause-budget-report-reads-one-budget-and-its-refusal-never-names-the-all-budgets-sweep-2026-09-29`).
+    // Kept short on purpose: these words are indexed by find_tools, and repeating the
+    // domain noun here outranked `constrains` for its own job.
+    #[serde(default)]
     #[serde(alias = "id")]
     #[serde(alias = "node_id")]
-    pub constraint_id: String,
+    pub constraint_id: Option<String>,
+    /// How many characters the all-at-once reply may spend (default 30,000). Counts are never
+    /// trimmed. Ignored when `constraint_id` is given.
+    #[serde(default)]
+    pub budget_chars: Option<usize>,
 }
 
 #[derive(Debug, Deserialize, JsonSchema)]

@@ -159,6 +159,51 @@ impl DesignGraph {
         self.upsert_node(node::CONSTRAINT, id, props)
     }
 
+    /// Declare HOW a budget's quantity composes, which is what its verdict
+    /// reads (req:a-budget-says-whether-its-parts-add-up-or-run-along-a-path):
+    ///
+    /// - `sum` — every contribution adds (mass, cost, area). The verdict reads
+    ///   the total of every stated contribution, as it always has.
+    /// - `path` — the quantity accumulates along a dependency chain and
+    ///   parallel branches overlap (end-to-end latency). The verdict reads the
+    ///   heaviest `DEPENDS_ON` path among the contributors.
+    ///
+    /// DECLARED BY THE AUTHOR, NEVER INFERRED. The same unit composes both
+    /// ways — CPU-milliseconds across a batch add up, latency along a request
+    /// does not — so reading it off the unit would silently change verdicts
+    /// on designs that never asked. Absent means nobody said: the verdict
+    /// keeps the sum and the report SAYS what it did not read.
+    pub fn set_constraint_composition(
+        &mut self,
+        id: &str,
+        composition: &str,
+    ) -> Result<StoredNode, DynoError> {
+        let Some(existing) = self.get_node(node::CONSTRAINT, id)? else {
+            return Err(DynoError::NodeNotFound {
+                node_type: node::CONSTRAINT.to_string(),
+                node_id: id.to_string(),
+            });
+        };
+        if !COMPOSITIONS.contains(&composition) {
+            return Err(DynoError::Validation {
+                node_type: node::CONSTRAINT.into(),
+                property: "composition".into(),
+                message: format!(
+                    "`{composition}` is not a composition: `sum` (every contribution adds — \
+                     mass, cost) or `path` (the heaviest dependency path — end-to-end latency, \
+                     where parallel branches overlap)"
+                ),
+            });
+        }
+        let mut props = Props::new().set("composition", composition);
+        for (k, v) in &existing.properties {
+            if k != "composition" {
+                props = props.set(k, v.clone());
+            }
+        }
+        self.upsert_node(node::CONSTRAINT, id, props)
+    }
+
     /// `Constraint CONSTRAINS target` — the target spends `contribution` of
     /// the budget (in the Constraint's quantity unit). `from_type` is fixed:
     /// budgets hang off Constraints; `target_type` is free because anything
@@ -308,6 +353,10 @@ pub struct BudgetContributor {
     pub measured_at: Option<String>,
 }
 
+/// How a budget's quantity may compose — the closed set
+/// [`DesignGraph::set_constraint_composition`] accepts.
+pub const COMPOSITIONS: [&str; 2] = ["sum", "path"];
+
 /// The verdict a rollup can honestly reach.
 #[derive(Debug, Clone, Copy, PartialEq, Eq, serde::Serialize)]
 #[serde(rename_all = "snake_case")]
@@ -393,6 +442,41 @@ pub struct BudgetReport {
     pub worst_path_total: f64,
     /// Why the path half says what it says — always stated, never implied.
     pub path_note: String,
+    /// How the Constraint DECLARED its quantity composes — `sum` or `path` —
+    /// or `None` when nobody said. Never inferred from the unit.
+    pub composition: Option<String>,
+    /// Which rollup the verdict read: `sum` (the total of every stated
+    /// contribution) or `path` (the heaviest dependency path). An undeclared
+    /// budget is judged on the sum, as it always was, and says so.
+    pub judged_on: String,
+    /// The number the verdict compared with the limit — `total` when judged on
+    /// the sum, `worst_path_total` when judged on the path. `None` when the
+    /// declared rollup cannot be computed (a path budget with no path drawn,
+    /// a cycle, a minimum), and then the verdict is `incomplete`.
+    pub judged_total: Option<f64>,
+    /// Why the verdict read what it read — always stated. For an undeclared
+    /// budget whose contributors DO form a dependency path, it names the path
+    /// total the verdict did not read and the declaration that would make it
+    /// read it: the owner agent's 33 ms write path read "46 ms, exceeded"
+    /// with nothing saying a 33 was sitting beside it (I18, 2026-09-29).
+    pub composition_note: String,
+}
+
+/// Every budget in the design, each rolled up and judged — the design-wide
+/// form of [`DesignGraph::budget_report`] (I17: checking 14 budgets took 14
+/// calls, and closure_report's budgets leg answered with counts only).
+#[derive(Debug, Clone, serde::Serialize)]
+pub struct BudgetSweep {
+    /// How many Constraints are budgets — they carry a `quantity` or a
+    /// `limit` — and are reported below.
+    pub swept: usize,
+    /// Constraints with neither a quantity nor a limit: prohibitions and
+    /// closed value sets. Counted so they are never silently missing.
+    pub not_budgets: usize,
+    /// How many budgets reached each verdict.
+    pub by_verdict: BTreeMap<String, usize>,
+    /// One report per budget, sorted by id.
+    pub budgets: Vec<BudgetReport>,
 }
 
 impl DesignGraph {
@@ -490,18 +574,96 @@ impl DesignGraph {
                 .or_insert(0) += 1;
         }
 
+        let (worst_path, worst_path_total, path_note) = self.worst_path(&comparable, &direction)?;
+
+        // WHICH ROLLUP THE VERDICT READS is the Constraint's declaration, never
+        // an inference from its unit (req:a-budget-says-whether-its-parts-add-up-or-run-along-a-path).
+        let composition = sprop("composition");
+        let path_shown = if worst_path.is_empty() {
+            String::new()
+        } else {
+            format!("{} = {worst_path_total}", worst_path.join(" → "))
+        };
+        let (judged_on, judged_total, composition_note) = match composition.as_deref() {
+            Some("path") if direction == "minimum" => (
+                "path",
+                None,
+                "composition: path is declared, but a path total is defined for a MAXIMUM \
+                 budget only (the heaviest dependency path) and this budget is a minimum, so \
+                 no numeric verdict is honest. Declare `composition: sum`, or set `direction: \
+                 maximum`."
+                    .to_string(),
+            ),
+            Some("path") if worst_path.is_empty() => (
+                "path",
+                None,
+                format!(
+                    "composition: path is declared, but no path total can be computed: \
+                     {path_note}. Draw DEPENDS_ON among the contributors (`depends_on`) so \
+                     their chain is known, or declare `composition: sum`. No numeric verdict \
+                     is honest until then: reading unjoined parts as parallel branches would \
+                     take the largest one alone and under-count a maximum."
+                ),
+            ),
+            Some("path") => (
+                "path",
+                Some(worst_path_total),
+                format!(
+                    "composition: path — the verdict reads the heaviest dependency path \
+                     ({path_shown}), not the sum of every contribution ({total}), which is \
+                     reported beside it and not judged."
+                ),
+            ),
+            Some(_) => (
+                "sum",
+                Some(total),
+                if worst_path.is_empty() {
+                    "composition: sum — the verdict reads the sum of every contribution.".into()
+                } else {
+                    format!(
+                        "composition: sum — the verdict reads the sum of every contribution. \
+                         The contributors also form a dependency path ({path_shown}), reported \
+                         beside it and not judged."
+                    )
+                },
+            ),
+            None => (
+                "sum",
+                Some(total),
+                if worst_path.is_empty() {
+                    "no composition declared — the verdict reads the sum of every \
+                     contribution, as it always has. Declare `composition: sum` (every part \
+                     adds: mass, cost) or `composition: path` (a dependency chain: end-to-end \
+                     latency) with add_constraint to say which."
+                        .into()
+                } else {
+                    format!(
+                        "no composition declared — the verdict reads the sum of every \
+                         contribution ({total}), as it always has. These contributors ALSO form \
+                         a dependency path ({path_shown}), which the verdict did NOT read. If \
+                         this quantity runs along a path — end-to-end latency, where parallel \
+                         branches overlap — declare `composition: path` with add_constraint and \
+                         the verdict reads the path; if every part adds (mass, cost), declare \
+                         `composition: sum` to say so."
+                    )
+                },
+            ),
+        };
+
         // A provable verdict beats the epistemic caveat (BL-58). Unstated
-        // spenders can only ADD to the total, so for a `maximum` a stated total
-        // already over the limit is definitely Exceeded no matter what the
-        // unknowns are; for a `minimum` a stated total already at/over the
-        // limit is definitely Within. Only when the stated side leaves the
-        // outcome genuinely open do the unstated contributions make it
-        // Incomplete.
+        // spenders can only ADD — to the total, and to any path through them —
+        // so for a `maximum` a stated figure already over the limit is
+        // definitely Exceeded no matter what the unknowns are; for a `minimum`
+        // a stated total already at/over the limit is definitely Within. Only
+        // when the stated side leaves the outcome genuinely open do the
+        // unstated contributions make it Incomplete. A declared rollup that
+        // cannot be computed leaves every gated outcome open.
         let open = !unstated.is_empty() || !unit_mismatched.is_empty();
-        let verdict = match limit {
-            None => BudgetVerdict::Ungated,
-            Some(l) if direction == "minimum" => {
-                if total >= l {
+        let verdict = match (limit, judged_total) {
+            (None, _) => BudgetVerdict::Ungated,
+            (Some(_), None) => BudgetVerdict::Incomplete,
+            (Some(l), Some(judged)) if direction == "minimum" => {
+                if judged >= l {
                     BudgetVerdict::Within
                 } else if open {
                     BudgetVerdict::Incomplete
@@ -509,8 +671,8 @@ impl DesignGraph {
                     BudgetVerdict::Exceeded // all stated and still short of the minimum
                 }
             }
-            Some(l) => {
-                if total > l {
+            (Some(l), Some(judged)) => {
+                if judged > l {
                     BudgetVerdict::Exceeded
                 } else if open {
                     BudgetVerdict::Incomplete
@@ -519,8 +681,6 @@ impl DesignGraph {
                 }
             }
         };
-
-        let (worst_path, worst_path_total, path_note) = self.worst_path(&comparable, &direction)?;
 
         Ok(BudgetReport {
             constraint_id: constraint_id.to_string(),
@@ -543,6 +703,46 @@ impl DesignGraph {
             worst_path,
             worst_path_total,
             path_note,
+            composition,
+            judged_on: judged_on.to_string(),
+            judged_total,
+            composition_note,
+        })
+    }
+
+    /// Every budget in the design, rolled up and judged (I17). A budget is a
+    /// Constraint carrying a `quantity` or a `limit`; the rest — prohibitions,
+    /// closed value sets — are counted in `not_budgets`, never dropped.
+    pub fn budget_reports(&self) -> Result<BudgetSweep, DynoError> {
+        let mut cons = self.scan_live_nodes(node::CONSTRAINT)?;
+        cons.sort_by(|a, b| a.node_id.cmp(&b.node_id));
+        let mut budgets = Vec::new();
+        let mut not_budgets = 0usize;
+        let mut by_verdict: BTreeMap<String, usize> = BTreeMap::new();
+        for c in &cons {
+            let numeric = c
+                .properties
+                .get("quantity")
+                .and_then(Value::as_str)
+                .is_some()
+                || c.properties.get("limit").and_then(Value::as_f64).is_some();
+            if !numeric {
+                not_budgets += 1;
+                continue;
+            }
+            let r = self.budget_report(&c.node_id)?;
+            let key = serde_json::to_value(r.verdict)
+                .ok()
+                .and_then(|v| v.as_str().map(str::to_string))
+                .unwrap_or_default();
+            *by_verdict.entry(key).or_insert(0) += 1;
+            budgets.push(r);
+        }
+        Ok(BudgetSweep {
+            swept: budgets.len(),
+            not_budgets,
+            by_verdict,
+            budgets,
         })
     }
 
