@@ -12,6 +12,15 @@
         "description": "Write the manifest. Default false: the derivation is reported and\nnothing is written, so you can read what a release is about to package\nbefore you package it.",
         "type": "boolean"
       },
+      "echo": {
+        "default": "receipt",
+        "description": "What the reply carries. `receipt` (the default) names the node, echoes each stored value of at most 200 characters, gives longer ones by size, and names the snapshot that keeps anything a revise replaced. `node` returns the whole stored node and every prior value.",
+        "enum": [
+          "receipt",
+          "node"
+        ],
+        "type": "string"
+      },
       "exclude": {
         "default": [],
         "description": "Artifact or Component ids this release does NOT ship. An id that names\nnothing in the design is refused rather than ignored — a caller who\nbelieves they excluded something they did not would ship it and never\nbe told.",

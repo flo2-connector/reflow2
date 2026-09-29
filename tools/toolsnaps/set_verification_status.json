@@ -7,6 +7,15 @@
     "$schema": "https://json-schema.org/draft/2020-12/schema",
     "additionalProperties": false,
     "properties": {
+      "echo": {
+        "default": "receipt",
+        "description": "What the reply carries. `receipt` (the default) names the node, echoes each stored value of at most 200 characters, gives longer ones by size, and names the snapshot that keeps anything a revise replaced. `node` returns the whole stored node and every prior value.",
+        "enum": [
+          "receipt",
+          "node"
+        ],
+        "type": "string"
+      },
       "findings": {
         "default": null,
         "description": "What this run FOUND — the evidence, as distinct from what the check IS.\nWritten here rather than on the constructor because a finding belongs to\na RUN: it changes every time the outcome does. Omitting it LEAVES IT\nALONE, exactly like `last_run_at`, so re-marking a check `passing`\nwithout restating the evidence keeps the last evidence rather than\nerasing it. NOT VALIDATED: reflow2 records what you say a run found and\nnever judges it, so `passing` beside findings describing a failure is a\ncontradiction only a reader can catch.",

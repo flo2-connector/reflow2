@@ -11,6 +11,15 @@
         "description": "The Capability (`cap:…`) that is a step of the flow.",
         "type": "string"
       },
+      "echo": {
+        "default": "receipt",
+        "description": "What the reply carries. `receipt` (the default) names the node, echoes each stored value of at most 200 characters, gives longer ones by size, and names the snapshot that keeps anything a revise replaced. `node` returns the whole stored node and every prior value.",
+        "enum": [
+          "receipt",
+          "node"
+        ],
+        "type": "string"
+      },
       "flow_id": {
         "description": "The Flow (`flow:…`, from `add_flow`) the capability is a step of.",
         "type": "string"

@@ -66,6 +66,15 @@
         "description": "Validate every item and WRITE NOTHING. The reply says whether the batch\nwould have applied and lists every failure, so a large batch is fixed\nonce and sent once instead of resent whole after each rejection.",
         "type": "boolean"
       },
+      "echo": {
+        "default": "receipt",
+        "description": "What the reply carries. `receipt` (the default) names the node, echoes each stored value of at most 200 characters, gives longer ones by size, and names the snapshot that keeps anything a revise replaced. `node` returns the whole stored node and every prior value.",
+        "enum": [
+          "receipt",
+          "node"
+        ],
+        "type": "string"
+      },
       "gaps": {
         "description": "The gaps to accept in one call — each `{gap_id, reason, affected_ids?, approver?}`, the same fields `acknowledge_gap` takes one at a time. Every item carries its OWN reason: a batch under one shared reason would be the silent bulk accept this refuses to be.",
         "items": {

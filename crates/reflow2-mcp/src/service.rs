@@ -6763,7 +6763,9 @@ impl ReflowService {
     /// The served tool list with this design's lessons appended to the
     /// descriptions of the tools they name — the moment before the call.
     pub async fn tools_with_lessons(&self) -> Vec<rmcp::model::Tool> {
-        let tools = self.tool_router.list_all();
+        // Every write tool takes `echo` (`crate::receipt`); declared here, on
+        // the one listing a session, `--call` and toolsnap all read.
+        let tools = crate::receipt::declare_echo(self.tool_router.list_all());
         let by_step = {
             let g = self.graph.read().await;
             crate::lessons::lessons_by_step(&g)
@@ -6817,6 +6819,17 @@ impl ServerHandler for ReflowService {
         // Captured before `request` moves: an argument refusal must name the
         // tool, and by the time the router answers, the name is gone.
         let tool_name = request.name.to_string();
+        // A WRITE REPLIES WITH A RECEIPT (`crate::receipt`). `echo` is taken
+        // out of a write's arguments here, before the handler or any hint reads
+        // them, and a value other than the two is refused before anything runs.
+        // A read is untouched: `echo` stays an unknown argument there.
+        let mut request = request;
+        let echo = match self.tool_router.get(&tool_name) {
+            Some(t) if crate::receipt::is_write(t) => {
+                crate::receipt::take_echo(request.arguments.as_mut())
+            }
+            _ => Ok(crate::receipt::Echo::Node),
+        };
         // THE USAGE LEDGER (`crate::usage`) reads the verb and never the
         // object: the tool, who connected, and — for `get_skill` alone, whose
         // argument is reflow2's own vocabulary — which skill. No other
@@ -6854,9 +6867,13 @@ impl ServerHandler for ReflowService {
         // own `_meta`, else what this session declared, else nobody.
         let writes_for =
             self.effective_writes_for(context.meta.get(WRITES_FOR_META).and_then(|v| v.as_str()));
-        let unknown_writer = self
-            .writes_for_precheck(&tool_name, writes_for.as_deref())
-            .await;
+        let unknown_writer = match &echo {
+            Err(refusal) => Some(refusal.clone()),
+            Ok(_) => {
+                self.writes_for_precheck(&tool_name, writes_for.as_deref())
+                    .await
+            }
+        };
         let tcc = rmcp::handler::server::tool::ToolCallContext::new(self, request, context);
         let answer = match unknown_writer {
             Some(refusal) => Ok(rmcp::model::CallToolResponse::Complete(
@@ -6925,6 +6942,20 @@ impl ServerHandler for ReflowService {
                 }
             }
             other => other,
+        };
+        // The receipt is cut from the reply the handler built, so `echo: "node"`
+        // costs nothing and a refusal is never touched.
+        let answer = match (echo, answer) {
+            (
+                Ok(crate::receipt::Echo::Receipt),
+                Ok(rmcp::model::CallToolResponse::Complete(mut r)),
+            ) if r.is_error != Some(true) => {
+                if let Some(v) = r.structured_content.take() {
+                    r.structured_content = Some(crate::receipt::receipt(v));
+                }
+                Ok(rmcp::model::CallToolResponse::Complete(r))
+            }
+            (_, other) => other,
         };
         crate::content_policy::shape(policy, answer)
     }

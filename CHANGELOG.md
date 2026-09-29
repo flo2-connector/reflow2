@@ -33,6 +33,12 @@ This file is the third view: *what changed, and when*.
 
 ### Added
 
+- **A write replies with a receipt, not the whole stored node** (`req:a-write-replies-with-a-receipt-not-the-whole-node`, Anthony 2026-09-29, idea 3 of the dev_reflow2 two-agent exercise; root cause `fact:root-cause-a-write-replies-with-the-whole-stored-node-and-replace-text-adds-each-prior-field-2026-09-29`). **A change to every write tool's reply shape.**
+  - **One contract, cut at `call_tool`** (`crates/reflow2-mcp/src/receipt.rs`) for every tool the served surface marks as a write, so a new write tool joins by being served.
+  - **By default:** a stored value of at most 200 characters is echoed as stored; a longer one is given by size under `elided`. A revise's replaced fields carry `prior_chars`, `after_chars` and `prior_in`, the snapshot that keeps the prior value. Every warning, note, drawn edge and removal report is unchanged. A prior value nothing else holds (`fields_at_risk`) is still echoed in full: then the reply is its only copy.
+  - **`echo: "node"`** on any write returns the reply exactly as before: the whole stored node and every prior value. Any other `echo` value is refused before the tool runs. Read tools do not take `echo`.
+  - **Measured on the same calls (as built → receipt):** add_decision with a 6,000-character body 6,311 → 560; replace_text of 12 characters onto a 1-character rationale 6,961 → 1,243; replace_text of 170 characters onto a 6,000-character body 13,322 → 1,453; set_decision_status 6,397 → 473.
+  - **Pinned by** `tests/a_write_replies_with_a_receipt.rs`: every served write tool declares `echo` and refuses a bad one before running; the designer's write mix stays under 3,000 characters whatever the node holds.
 - **`draw_edges`: the bulk form of every typed edge helper, running each helper's own checks.**
   - Each item names a typed helper and carries that helper's own arguments (`{"tool": "constrains", "arguments": {…}}`). The item runs the helper's own body — the same function the tool runs — so its checks, its refusal words and its reply are the helper's: a `constrains` contribution keeps its unit, basis and source; a `governed_by` ruling travels, and an unknown one is answered in the helper's words; two `authored_by` roles on one pair in one call keep the role set.
   - All or nothing inside one atomic batch, every failure named by position, `check_only` writes nothing, and the reply names each edge drawn as a subject-first sentence.

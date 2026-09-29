@@ -58,6 +58,15 @@
           "null"
         ]
       },
+      "echo": {
+        "default": "receipt",
+        "description": "What the reply carries. `receipt` (the default) names the node, echoes each stored value of at most 200 characters, gives longer ones by size, and names the snapshot that keeps anything a revise replaced. `node` returns the whole stored node and every prior value.",
+        "enum": [
+          "receipt",
+          "node"
+        ],
+        "type": "string"
+      },
       "gaps": {
         "description": "One entry per gap — `{gap, answers}` where `gap` is a GapCandidate exactly as `detect_gaps` returned it (only its `id` is read; the server resolves the rest afresh) and `answers` is empty on the prepare pass and filled on the serve pass.",
         "items": {
