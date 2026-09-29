@@ -462,17 +462,22 @@ async fn the_shared_map_names_only_served_tools_and_declared_types() {
 
 // ─── I17: one budget at a time, and the refusal says where all of them are ────
 
+// Superseded 2026-09-29 by the design-wide FORM itself (R-K,
+// req:a-budget-says-whether-its-parts-add-up-or-run-along-a-path): a caller asking for every
+// budget is no longer refused at all. What stays pinned here is the route: the argument's
+// description still names the leave-it-out form and closure_report's counts, and the call
+// with no constraint answers rather than refuses. Its own coverage is in
+// tests/a_budget_says_how_it_composes.rs.
 #[tokio::test]
-async fn a_budget_report_without_a_constraint_names_the_design_wide_sweep() {
+async fn a_budget_report_without_a_constraint_answers_with_every_budget() {
     let s = session().await;
-    let refusal = s
+    let every = s
         .call("budget_report", json!({}))
         .await
-        .expect_err("constraint_id is required");
+        .unwrap_or_else(|e| panic!("every budget is one call now; refused: {e}"));
     assert!(
-        refusal.contains("closure_report"),
-        "a caller asking for every budget is owed the design-wide route that exists; got: \
-         {refusal}"
+        every["swept"].is_number() && every["budgets"].is_array(),
+        "the design-wide form answers with its count and its list: {every:#}"
     );
 }
 
