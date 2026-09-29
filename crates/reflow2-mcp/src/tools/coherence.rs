@@ -1387,7 +1387,11 @@ impl ReflowService {
         description = "DOES THE DESIGN CLOSE? One read that sums five computations that already \
                        exist — the delivery thread, every budget's rollup, seam coverage, the \
                        scheduled work still governed by open decisions, and quantity provenance — \
-                       against the threshold the owner declared with set_closure_criterion. Each \
+                       against the threshold the owner declared with set_closure_criterion. TWO READINGS, EACH \
+                       NAMING ITS PHASE: the top level is BUILD (delivered, checked, budgets on \
+                       measured numbers); `design` is DESIGN (traced to an allocated capability \
+                       with a check planned, budgets on stated estimates) and never stands in for \
+                       the build verdict. Parked requirements count as parked, not as holes. Each \
                        leg says what it SWEPT ('budgets: 1 modelled'), its share, and its worst \
                        offender, so a leg with nothing to run on cannot read as clean: a counted \
                        leg that swept nothing does not close, and says why. `first_hole` is the \
