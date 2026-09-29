@@ -2,7 +2,7 @@
   "annotations": {
     "readOnlyHint": true
   },
-  "description": "Attribute every edit a session makes to one person: name them once, and each node written afterwards is credited to them as its author. They must already be a Contributor. Credit only — never an approval. One call can name someone else in its `_meta` under `reflow2/writes_for`, the only way when no session is kept. `acting_agent` names the agent you write through, recorded beside them (`reflow2/acting_agent` per call). Omit contributor_id to stop.",
+  "description": "Attribute every edit a session makes to one person: name them once, and each node written afterwards is credited to them as its author. They must already be a Contributor. Credit only — never an approval. One call can name someone else in its `_meta` under `reflow2/writes_for`, the only way when no session is kept. Omit contributor_id to stop.",
   "inputSchema": {
     "$schema": "https://json-schema.org/draft/2020-12/schema",
     "additionalProperties": false,
