@@ -720,19 +720,28 @@ impl ReflowService {
                 ),
             );
         }
+        // Every edge drawn here is named in the reply as a sentence, through
+        // the one shared path (crate::drawn_edges). The subject edge is read
+        // BEFORE the node is written: `subject_id` is its stored twin
+        // (twins.rs), so the store draws HAS_TEMPORAL_FACT as part of the
+        // upsert, and asking afterwards would report this call's own new edge
+        // as one that was already there.
+        let mut edges = crate::drawn_edges::DrawnEdges::new();
+        let subject_edge_was_present = crate::drawn_edges::present(
+            &g,
+            &subject_id,
+            reflow2_core::nodes::edge::HAS_TEMPORAL_FACT,
+            &req.id,
+        )
+        .map_err(dyno_err)?;
+        edges.record(
+            &subject_id,
+            reflow2_core::nodes::edge::HAS_TEMPORAL_FACT,
+            &req.id,
+            subject_edge_was_present,
+        );
         let node = g
             .upsert_node(reflow2_core::nodes::node::TEMPORAL_FACT, &req.id, props)
-            .map_err(dyno_err)?;
-        // Every edge drawn here is named in the reply as a sentence, through
-        // the one shared path (crate::drawn_edges).
-        let mut edges = crate::drawn_edges::DrawnEdges::new();
-        edges
-            .classify(
-                &g,
-                &subject_id,
-                reflow2_core::nodes::edge::HAS_TEMPORAL_FACT,
-                &req.id,
-            )
             .map_err(dyno_err)?;
         // The subject carries the fact, so a reader who has the node finds the
         // finding without having to search for it.

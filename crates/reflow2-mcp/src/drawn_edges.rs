@@ -105,6 +105,18 @@ impl DrawnEdges {
             .push(sentence(from_id, relation, to_id));
     }
 
+    /// Record an edge whose presence the caller read BEFORE its first write —
+    /// for an edge the store may draw itself as part of a node write (a stored
+    /// twin, twins.rs), where asking after the write would find this call's
+    /// own edge and call it old.
+    pub fn record(&mut self, from_id: &str, relation: &str, to_id: &str, was_present: bool) {
+        if was_present {
+            self.found(from_id, relation, to_id);
+        } else {
+            self.drew(from_id, relation, to_id);
+        }
+    }
+
     /// Record `from -[relation]-> to` as drawn or already present, by asking the
     /// store BEFORE the caller writes it. Returns whether it was already there,
     /// so a caller can skip a redundant write.

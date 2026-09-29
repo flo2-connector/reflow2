@@ -689,9 +689,7 @@ impl ReflowService {
                        settled question a second time. \
                        PASS `chose` TO SAY WHICH OPTION WON, in your own words: the settling act \
                        then records what it settled without rewriting the deliberation that \
-                       produced it. PASS `name` TO RETITLE IT in the same call: a decision \
-                       named as its open question (\"OPEN — …\") goes on asking it after it is \
-                       settled, and the reply says so in `name_still_reads_open` when it does. \
+                       produced it. PASS `name` TO RETITLE IT in the same call. \
                        Ask for this to mark a decision accepted with the owner's name.",
         annotations(read_only_hint = false, destructive_hint = false)
     )]

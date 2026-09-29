@@ -2823,9 +2823,7 @@ impl ReflowService {
                        deliberate — an accepted Decision is what where-am-i reads back to the user as \"what \
                        you decided\", so asserting it on their behalf would be the forgery \
                        dec:certainty-derived forbids for requirement status. BEHAVIOUR CHANGED 2026-07-25: this \
-                       used to default to `accepted`. `related_to` IS DRAWN FOR EVERY KIND, and every edge the \
-                       call draws is named in `edges_drawn` as a sentence, subject first — read it back, it is \
-                       where a reversed direction shows. CONTENT FIELDS ARE REQUIRED TO CREATE AND OPTIONAL TO \
+                       used to default to `accepted`. CONTENT FIELDS ARE REQUIRED TO CREATE AND OPTIONAL TO \
                        REVISE: call it again with the same id and only what you are changing \u{2014} omitted \
                        fields keep their stored value, so correcting one never means re-sending a 2 KB field \
                        you did not touch. Ask for this when you want to write down a decision that was made and \
