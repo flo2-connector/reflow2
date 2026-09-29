@@ -2702,11 +2702,8 @@ impl ReflowService {
                        measure it in the tool (an IFC take-off, a ray trace), write the number back with \
                        `basis: measured`, `source` naming the tool, `unit` and `measured_at`, and \
                        budget_report says whether it still fits (bhome 2026-09-16: the seam existed and \
-                       nothing pointed at it). ⭐ FOR A QUANTITY THAT RUNS ALONG A CHAIN (latency), draw \
-                       DEPENDS_ON among the contributors: that is what makes budget_report's path total \
-                       computable, and declaring `composition: path` on the Constraint makes the verdict \
-                       read that path instead of the sum — parallel branches then overlap rather than add \
-                       (the two-agent exercise's 33 ms write path read \"46 ms, exceeded\" without it). \
+                       nothing pointed at it). For latency along a chain, draw DEPENDS_ON among the \
+                       contributors and set `composition: path`. \
                        Ask for this when you want to say how much a part contributes \
                        to a budget or limit — its share of the mass, latency, cost or other quantity.",
         annotations(read_only_hint = false)
@@ -2753,11 +2750,9 @@ impl ReflowService {
                        coverage (estimated vs measured), and an honest verdict — `incomplete` \
                        when any contribution is unstated, because a partial sum passed off as a \
                        total is how budgets lie. Contributors with no stated number are listed, \
-                       never zeroed. The verdict reads the rollup the Constraint DECLARES \
-                       (`composition`: `sum` or `path`); `judged_on` and `composition_note` say \
-                       which it read and name a path total an undeclared budget did not read. \
-                       Leave `constraint_id` out to read EVERY budget at once, each with its \
-                       verdict. \
+                       never zeroed. The verdict reads the declared `composition` (sum or \
+                       path); `judged_on` and `composition_note` name which. Omit \
+                       `constraint_id` to read them all at once. \
                        Ask for this when you want to know whether a declared limit or allowance is being exceeded — a budget for latency, mass, cost or any quantity — and which contributors take it over.",
         annotations(read_only_hint = true)
     )]

@@ -3936,20 +3936,21 @@ pub struct RelationLinkReq {
 #[derive(Debug, Deserialize, JsonSchema)]
 #[serde(deny_unknown_fields)]
 pub struct BudgetReportReq {
-    /// The ONE Constraint (`con:…`) to roll up in full — every contributor, the worst path and
-    /// the verdict. LEAVE IT OUT TO READ EVERY BUDGET AT ONCE, each with its verdict and the
-    /// rollup it was judged on; `closure_report`'s budgets leg gives only the closure counts.
-    ///
-    /// Optional since 2026-09-29: a caller asking for every budget used to be refused, and then
-    /// paid one call per budget — 14 calls for 14 budgets (dev_reflow2 two-agent exercise, I17,
-    /// `fact:root-cause-budget-report-reads-one-budget-and-its-refusal-never-names-the-all-budgets-sweep-2026-09-29`).
+    /// The ONE Constraint (`con:…`) to roll up in full: every contributor, the worst path and
+    /// the verdict. Leave it out to read them all at once, each with its verdict;
+    /// `closure_report`'s budgets leg gives only the closure counts.
+    //
+    // Optional since 2026-09-29: a caller asking for all of them used to be refused, then paid
+    // one call each — 14 calls for 14 (dev_reflow2 two-agent exercise, I17,
+    // `fact:root-cause-budget-report-reads-one-budget-and-its-refusal-never-names-the-all-budgets-sweep-2026-09-29`).
+    // Kept short on purpose: these words are indexed by find_tools, and repeating the
+    // domain noun here outranked `constrains` for its own job.
     #[serde(default)]
     #[serde(alias = "id")]
     #[serde(alias = "node_id")]
     pub constraint_id: Option<String>,
-    /// How many characters the every-budget reply may spend (default 30,000). Counts and
-    /// verdict tallies are never budgeted away; over budget, prose is cut first, then the list is
-    /// shortened and says so. Ignored when `constraint_id` names one budget.
+    /// How many characters the all-at-once reply may spend (default 30,000). Counts are never
+    /// trimmed. Ignored when `constraint_id` is given.
     #[serde(default)]
     pub budget_chars: Option<usize>,
 }
