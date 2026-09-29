@@ -656,6 +656,20 @@ impl ReflowService {
         )?;
         let statement = __rf.str("statement", req.statement);
         let subject_id = __rf.str("subject_id", Some(req.subject_id.clone()));
+        // THE DEFAULTS ARE A CREATE'S, NEVER A REVISE'S. Written into the merge
+        // on every call from #447 (2026-09-07) until 2026-09-29, so a revise
+        // that named neither field demoted a `defect` to a `finding` and turned
+        // a `forecast` into a `measured` claim — three field sightings, the last
+        // in a triage of the very report that measured it
+        // (fact:root-cause-record-finding-writes-its-defaults-on-every-revise-
+        // 2026-09-28). On a revise, a field not passed is not written, and the
+        // merge keeps what the node holds.
+        let fact_type = __rf
+            .default_on_create(req.fact_type.as_deref(), "finding")
+            .map(str::to_string);
+        let basis = __rf
+            .default_on_create(req.basis.as_deref(), "measured")
+            .map(str::to_string);
         __rf.finish()?;
         drop(g0);
 
@@ -689,8 +703,12 @@ impl ReflowService {
         if let Some(v) = req.name.as_deref() {
             props = props.set("name", v);
         }
-        props = props.set("fact_type", req.fact_type.as_deref().unwrap_or("finding"));
-        props = props.set("basis", req.basis.as_deref().unwrap_or("measured"));
+        if let Some(v) = fact_type.as_deref() {
+            props = props.set("fact_type", v);
+        }
+        if let Some(v) = basis.as_deref() {
+            props = props.set("basis", v);
+        }
         if let Some(c) = req.confidence {
             props = props.set("confidence", c);
         }
@@ -911,6 +929,9 @@ impl ReflowService {
         // the-refusal` lost its reasoning, and how bhome's ChangeEvent lost
         // its own on 2026-08-31. Warns; never refuses — the event above is
         // already written.
+        // Read BEFORE the node moves into the reply: the `undated` note below
+        // describes the EVENT AS STORED, not the call (see there).
+        let dated = event.properties.contains_key("detected_at");
         let mut out = json!({
             "event": NodeDto::from(event),
             "changed": changed,
@@ -933,7 +954,15 @@ impl ReflowService {
         // WARNS, NEVER REFUSES: the event above is already written, and an
         // undated change is a true state of the record. Naming the COST rather
         // than the absence is the difference between this and a bare "no date".
-        if req.detected_at.is_none() {
+        //
+        // ⚠️ IT READS THE STORED EVENT, NOT THE CALL. Until 2026-09-29 it
+        // tested `req.detected_at`, so revising a DATED event without re-sending
+        // its date — which the contract says keeps it — was told the event was
+        // undated (#472; dev_storyflow 09-23 and 09-25, walked in
+        // fact:root-cause-the-undated-note-reads-the-call-not-the-stored-node-
+        // 2026-09-28). A false alarm here invites a needless re-send, which is
+        // the round trip the revise contract exists to remove.
+        if !dated {
             out["undated"] = JsonValue::String(
                 "This ChangeEvent carries no `detected_at`, so nothing can place it in time. \
                  Two readings go quiet as a result: `changelog_view` windows entries BY EPOCH \
