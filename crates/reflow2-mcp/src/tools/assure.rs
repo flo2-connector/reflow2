@@ -83,15 +83,42 @@ impl ReflowService {
         // A finding belongs to a RUN, and a run has an outcome: `findings` or
         // `last_run_at` without `status` is refused before anything is written,
         // because storing them would assert a run whose verdict nobody stated.
+        //
+        // ON A REVISE THE REFUSAL READS THE NODE. Whether new findings on a check
+        // that already holds a verdict may inherit it (a correction of the last
+        // run's wording) or must restate it (a new run) is an open question for
+        // the owner (dec:idea-revise-notes-guards-and-defaults-read-the-merged-
+        // node), so the RULE is unchanged. What changed on 2026-09-29 is that the
+        // refusal no longer sends the caller back blind: it names the verdict and
+        // the run date the check already holds, so the re-send is informed
+        // (fact:root-cause-add-verification-guard-reads-the-call-not-the-stored-
+        // run-2026-09-28).
         if req.status.is_none() && (req.findings.is_some() || req.last_run_at.is_some()) {
+            let held = match (__rf.stored_str("status"), __rf.stored_str("last_run_at")) {
+                (Some(s), Some(at)) => format!(
+                    " This check already holds `{s}` from its run of {at}: if these findings \
+                     correct that run's wording, re-send `status: \"{s}\"` with them; if they \
+                     are a NEW run, send that run's own verdict."
+                ),
+                (Some(s), None) => format!(
+                    " This check already holds `{s}`: re-send `status: \"{s}\"` if the \
+                     findings belong to that verdict, or the new run's verdict if not."
+                ),
+                _ => String::new(),
+            };
             return Err(McpError::invalid_params(
-                "`add_verification`: `findings` and `last_run_at` describe a RUN, so they \
-                 need `status` — the run's outcome — in the same call. Pass all of them \
-                 together, or none and record the run later with set_verification_status. \
-                 Nothing was written.",
+                format!(
+                    "`add_verification`: `findings` and `last_run_at` describe a RUN, so they \
+                     need `status` — the run's outcome — in the same call. Pass all of them \
+                     together, or none and record the run later with set_verification_status.\
+                     {held} Nothing was written."
+                ),
                 None,
             ));
         }
+        // Refuse a create with no name BEFORE writing: `str` above leaves a
+        // placeholder and relies on this call to refuse (see add_artifact).
+        __rf.finish()?;
         // Every target is resolved BEFORE the create, so an unknown or
         // ambiguous target refuses the whole call rather than leaving a check
         // behind that verifies only some of what was asked.
