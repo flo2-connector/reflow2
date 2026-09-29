@@ -1,0 +1,32 @@
+{
+  "annotations": {
+    "readOnlyHint": true
+  },
+  "description": "WHAT DOES reflow2 DERIVE, AND HOW MUCH? Every derived relation reflow2 computes rather than stores (delivered, realized, checked, discontinued, the seams, hierarchy issues, reruns owed, certainty, budgets, flows, readiness, arrival, closure …), each DECLARED by schema/derived/relations.yaml with its reading over the sixteen primitives, its rule, deduced or induced, the edges its rule reads and the code that computes the relation — then counted over the design by that same code path, with a few example ids. Reports derived facts beside asserted facts. The blast-radius closure is declared but not counted (a rule, answered per seed by propagate_from). Stores nothing: whether a derived result should be KEPT is an open decision. `only` narrows to named relations. Ask for this when you want to know what the design computes from what it stores, or how many derived facts there are.",
+  "inputSchema": {
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "additionalProperties": false,
+    "properties": {
+      "only": {
+        "default": [],
+        "description": "Narrow the read to these relation ids (e.g. `[\"delivered\", \"realized\"]`).\nOmit for every declared relation. An id nobody declared is refused and\nthe refusal lists the declared ones.",
+        "items": {
+          "type": "string"
+        },
+        "type": "array"
+      },
+      "sample": {
+        "default": null,
+        "description": "How many example ids each relation carries (default 3, at most 20).",
+        "format": "uint",
+        "minimum": 0,
+        "type": [
+          "integer",
+          "null"
+        ]
+      }
+    },
+    "type": "object"
+  },
+  "name": "derived_report"
+}

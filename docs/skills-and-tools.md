@@ -1,4 +1,4 @@
-# What reflow2 offers: 32 skills and 193 tools
+# What reflow2 offers: 32 skills and 194 tools
 
 Generated from the **running server**, not from memory — the skill list came from `list_skills`,
 the tool list and every read/write marking from `tools/list`, and the command mapping from
@@ -98,7 +98,7 @@ Read one in full with `get_skill` before doing the work it covers.
 
 ---
 
-## The 193 tools
+## The 194 tools
 
 `read` never changes the design. **write** does. That marking is the tool's own `readOnlyHint`
 annotation, read off the served surface — 58 read, 97 write.
@@ -220,6 +220,7 @@ description, which an agent sees in the tool schema; this table is for a person 
 | `what_next` | **read** | Which decisions to settle next — a rough guide, not an ordering, for a design with more open questions than anyone can hold at once. |
 | `closure_report` | **read** | DOES THE DESIGN CLOSE? |
 | `frontier` | **read** | WHERE DID I LEAVE OFF? |
+| `derived_report` | **read** | WHAT DOES reflow2 DERIVE, AND HOW MUCH? |
 
 ### Query — read the design back
 
