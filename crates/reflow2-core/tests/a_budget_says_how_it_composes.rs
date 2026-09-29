@@ -239,8 +239,12 @@ fn the_closure_margin_is_kept_against_the_rollup_the_verdict_read() {
     g.set_constraint_margin("con:write", 5.0).expect("margin");
     g.set_closure_criterion("proj:1", &["budgets"], 1.0)
         .expect("criterion");
+    // The DESIGN-phase reading: these contributions are estimates, and the
+    // build phase (since #626) closes only on measured numbers — a different
+    // rule this test is not about. The margin rule is the same in both.
     let c = g.closure_report().expect("closure");
     let leg = c
+        .design
         .legs
         .iter()
         .find(|l| l.leg == "budgets")
@@ -253,7 +257,7 @@ fn the_closure_margin_is_kept_against_the_rollup_the_verdict_read() {
     g.set_closure_criterion("proj:1", &["budgets"], 1.0)
         .expect("criterion");
     let c = g.closure_report().expect("closure");
-    let hole = c.first_hole.expect("a hole");
+    let hole = c.design.first_hole.expect("a hole");
     assert!(hole.why.contains("path 33"), "{}", hole.why);
 }
 
