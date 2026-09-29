@@ -959,6 +959,8 @@ async fn describe_schema_returns_the_whole_vocabulary() {
     );
     assert_eq!(
         v["edge_types"].as_array().unwrap().len(),
+        // 66 since ACTS_FOR (2026-09-29, an agent acts for the person whose
+        // word it records — the deferred "who" rung);
         // 65 since ANSWERS (2026-09-02, a record names the Question it
         // answered — vocabulary the schema had described before it existed);
         // 63 since IMPLEMENTS + COMPLEMENTS (2026-08-23, record-to-record
@@ -970,7 +972,7 @@ async fn describe_schema_returns_the_whole_vocabulary() {
         // places on purpose: the schema loader, describe_vocabulary, and here
         // at the SERVED surface. An edge type that existed but was not
         // discoverable through the tool would be vocabulary nobody could reach.
-        65,
+        66,
         "every edge type is discoverable"
     );
 }

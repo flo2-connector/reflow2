@@ -625,6 +625,35 @@ pub struct AssignedDecision {
     pub name: String,
     /// The Contributor the `AUTHORED_BY role=approver` edge points at.
     pub approver_id: String,
+    /// The agent(s) the approver was named THROUGH (`crate::acting`) — the
+    /// agent that recorded the ask, beside the person asked. Empty when no
+    /// agent was known.
+    pub acted_through: Vec<String>,
+    /// `"no agent known"` when [`Self::acted_through`] is empty, so an empty
+    /// list is never read as a claim that nobody acted.
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub acted_through_note: Option<&'static str>,
+}
+
+/// What a read says when no agent was recorded for an act.
+pub const NO_AGENT_KNOWN: &str = "no agent known";
+
+impl AssignedDecision {
+    fn from_approver_edge(
+        decision_id: &str,
+        name: &str,
+        edge: &crate::foundation::store::StoredEdge,
+    ) -> Self {
+        let acted_through = crate::graph::role_via(edge, "approver");
+        let acted_through_note = acted_through.is_empty().then_some(NO_AGENT_KNOWN);
+        Self {
+            decision_id: decision_id.to_string(),
+            name: name.to_string(),
+            approver_id: edge.to_id.clone(),
+            acted_through,
+            acted_through_note,
+        }
+    }
 }
 
 /// What a contributor-scoped answer covered, and what it could not.
@@ -1035,16 +1064,14 @@ impl DesignGraph {
                 if contributor.is_some_and(|want| want != edge.to_id) {
                     continue;
                 }
-                assigned_decisions.push(AssignedDecision {
-                    decision_id: dec.node_id.clone(),
-                    name: dec
-                        .properties
+                assigned_decisions.push(AssignedDecision::from_approver_edge(
+                    &dec.node_id,
+                    dec.properties
                         .get("name")
                         .and_then(crate::foundation::core::Value::as_str)
-                        .unwrap_or_default()
-                        .to_string(),
-                    approver_id: edge.to_id.clone(),
-                });
+                        .unwrap_or_default(),
+                    &edge,
+                ));
             }
         }
         let unsettled_assigned_decisions = assigned_decisions.len();
@@ -2270,16 +2297,12 @@ impl DesignGraph {
             let mut approver = None;
             for e in self.outgoing(id, Some(edge::AUTHORED_BY))? {
                 if crate::graph::edge_has_role(&e, "approver") {
-                    approver = Some(e.to_id.clone());
+                    approver = Some(e);
                     break;
                 }
             }
-            if let Some(approver_id) = approver {
-                marked.push(AssignedDecision {
-                    decision_id: id.clone(),
-                    name: name.clone(),
-                    approver_id,
-                });
+            if let Some(edge) = approver {
+                marked.push(AssignedDecision::from_approver_edge(id, name, &edge));
                 continue;
             }
 
