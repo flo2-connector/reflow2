@@ -33,6 +33,14 @@ This file is the third view: *what changed, and when*.
 
 ### Added
 
+- **Every tool that can settle intent declares what settles it, on the served tool, and reflow2's own signature checks read the same declaration.**
+  - Each settling tool's `tools/list` entry carries `_meta["reflow2/settles"]`: `{version, argument, when, approver, unsigned}`. `when` is `"always"`, `"present"`, `{"in": [..]}` or `{"not_in": [..]}`, read against `argument`; `approver` is where the signature goes (`approver`, or `gaps[].approver` for the batch); `unsigned` is `refused` or `recorded_with_note`.
+  - Nine tools declare: `add_requirement`, `add_decision`, `add_design_rule` (refused unsigned); `set_requirement_status`, `set_decision_status`, `collapse_decision`, `acknowledge_gap`, `acknowledge_defect`, `acknowledge_gaps` (recorded, and the reply says it carries nobody's name).
+  - One table (`crates/reflow2-mcp/src/settles.rs`) is both what is served and what every handler reads, so the two cannot drift; `every_settling_call_declares_what_settles_it` enumerates the served surface and fails when a tool that takes an approver declares nothing, or a declaration is not what the tool does.
+  - `collapse_decision` takes `approver` and `acted_at`: choosing a fork's winner accepts the Decision, and until now it did so with no way to sign it and said nothing (fact:collapse-decision-settles-a-decision-with-no-approver-and-says-nothing-2026-09-28).
+  - `acknowledge_gaps` now says which items carry nobody's name, as `acknowledge_gap` always did.
+  - WHY: a gateway that signs settles on its caller's behalf had to guess which argument settles; flo2 guessed `status` and let `enforced` through unsigned, then contained it with a hand-kept copy of the rules (flo2 #102). A gateway now reads the rule off the tool. Found by the dev_reflow2 two-agent exercise (I2).
+
 - **A budget says how its contributions compose, and its verdict follows what it says; one read reports every budget** (`req:a-budget-says-whether-its-parts-add-up-or-run-along-a-path`, Anthony 2026-09-29). Found by the dev_reflow2 two-agent exercise: the owner agent's write budget, 33 ms along its dependency path, read "46 ms, exceeded" against 40 ms, because the verdict always compared the plain sum while the path total sat beside it (I18). And checking 14 budgets took 14 calls (I17).
   - **`composition` on a Constraint:** `sum` (every part adds: mass, cost) or `path` (the heaviest `DEPENDS_ON` chain among the contributors: end-to-end latency, where parallel branches overlap). `add_constraint` takes it. Anything else is refused, naming the two.
   - **Declared, never inferred.** The same unit composes both ways, so an undeclared budget keeps its verdict on the sum. Its `composition_note` names any path total the verdict did not read, and the declaration that would make it read it.

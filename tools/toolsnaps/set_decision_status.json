@@ -1,4 +1,18 @@
 {
+  "_meta": {
+    "reflow2/settles": {
+      "approver": "approver",
+      "argument": "status",
+      "unsigned": "recorded_with_note",
+      "version": 1,
+      "when": {
+        "in": [
+          "accepted",
+          "deferred"
+        ]
+      }
+    }
+  },
   "annotations": {
     "destructiveHint": false,
     "readOnlyHint": false
