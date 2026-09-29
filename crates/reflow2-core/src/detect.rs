@@ -7041,16 +7041,20 @@ impl DesignGraph {
                     title: format!("Key performance parameter “{name}” is breached"),
                     description: format!(
                         "“{name}” is a threshold the effort fails without, and the design has \
-                         crossed it: the stated contributions total {} against a {} of {}. This \
-                         is not a gap to weigh against others — either the design changes or the \
-                         parameter was wrong.",
-                        report.total, report.direction, limit
+                         crossed it: the stated contributions come to {} (judged on the {}) \
+                         against a {} of {}. This is not a gap to weigh against others — either \
+                         the design changes or the parameter was wrong.",
+                        report.judged_total.unwrap_or(report.total),
+                        report.judged_on,
+                        report.direction,
+                        limit
                     ),
                     evidence: format!(
-                        "budget_report('{}') = Exceeded: total {} vs limit {} ({}), over {} \
+                        "budget_report('{}') = Exceeded: {} {} vs limit {} ({}), over {} \
                          contributor(s).",
                         c.node_id,
-                        report.total,
+                        report.judged_on,
+                        report.judged_total.unwrap_or(report.total),
                         limit,
                         report.direction,
                         report.contributors.len()

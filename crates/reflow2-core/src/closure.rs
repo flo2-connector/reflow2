@@ -485,12 +485,16 @@ impl DesignGraph {
                     // Within the limit — and within the declared margin, when
                     // one is declared. A margin is headroom the owner wants
                     // kept, in the limit's unit.
+                    // The margin is kept against the rollup the verdict READ —
+                    // the path for a `composition: path` budget, the sum
+                    // otherwise — never against a number the verdict ignored.
+                    let judged = r.judged_total.unwrap_or(r.total);
                     match (margin, r.limit) {
                         (Some(m), Some(limit)) => {
                             let inside = if r.direction == "minimum" {
-                                r.total >= limit + m
+                                judged >= limit + m
                             } else {
-                                r.total <= limit - m
+                                judged <= limit - m
                             };
                             if inside {
                                 (true, String::new())
@@ -498,8 +502,8 @@ impl DesignGraph {
                                 (
                                     false,
                                     format!(
-                                        "'{}' is within its limit ({}) but not its declared margin ({}): total {}",
-                                        c.node_id, limit, m, r.total
+                                        "'{}' is within its limit ({}) but not its declared margin ({}): {} {}",
+                                        c.node_id, limit, m, r.judged_on, judged
                                     ),
                                 )
                             }
@@ -510,11 +514,16 @@ impl DesignGraph {
                 BudgetVerdict::Exceeded => (
                     false,
                     format!(
-                        "'{}' is exceeded: total {} against limit {}",
+                        "'{}' is exceeded: {} {} against limit {}",
                         c.node_id,
-                        r.total,
+                        r.judged_on,
+                        r.judged_total.unwrap_or(r.total),
                         r.limit.unwrap_or(f64::NAN)
                     ),
+                ),
+                BudgetVerdict::Incomplete if r.judged_total.is_none() => (
+                    false,
+                    format!("'{}' cannot be judged: {}", c.node_id, r.composition_note),
                 ),
                 BudgetVerdict::Incomplete => (
                     false,

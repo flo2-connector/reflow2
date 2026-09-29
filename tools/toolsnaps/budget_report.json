@@ -2,19 +2,30 @@
   "annotations": {
     "readOnlyHint": true
   },
-  "description": "Roll a budget Constraint up (BL-11): total of stated contributions vs the limit, the worst dependency path among contributors (the path-cumulative rollup — end-to-end latency, mass down a chain), basis coverage (estimated vs measured), and an honest verdict — `incomplete` when any contribution is unstated, because a partial sum passed off as a total is how budgets lie. Contributors with no stated number are listed, never zeroed. Ask for this when you want to know whether a declared limit or allowance is being exceeded — a budget for latency, mass, cost or any quantity — and which contributors take it over.",
+  "description": "Roll a budget Constraint up (BL-11): total of stated contributions vs the limit, the worst dependency path among contributors (the path-cumulative rollup — end-to-end latency, mass down a chain), basis coverage (estimated vs measured), and an honest verdict — `incomplete` when any contribution is unstated, because a partial sum passed off as a total is how budgets lie. Contributors with no stated number are listed, never zeroed. The verdict reads the rollup the Constraint DECLARES (`composition`: `sum` or `path`); `judged_on` and `composition_note` say which it read and name a path total an undeclared budget did not read. Leave `constraint_id` out to read EVERY budget at once, each with its verdict. Ask for this when you want to know whether a declared limit or allowance is being exceeded — a budget for latency, mass, cost or any quantity — and which contributors take it over.",
   "inputSchema": {
     "$schema": "https://json-schema.org/draft/2020-12/schema",
     "additionalProperties": false,
     "properties": {
+      "budget_chars": {
+        "default": null,
+        "description": "How many characters the every-budget reply may spend (default 30,000). Counts and\nverdict tallies are never budgeted away; over budget, prose is cut first, then the list is\nshortened and says so. Ignored when `constraint_id` names one budget.",
+        "format": "uint",
+        "minimum": 0,
+        "type": [
+          "integer",
+          "null"
+        ]
+      },
       "constraint_id": {
-        "description": "The ONE Constraint (`con:…`) to roll up — one with a `quantity`, `limit` and `direction`. For every budget at once, `closure_report`'s budgets leg sweeps them all (how many close, and the worst margin).\n\nThe design-wide route is named in the first sentence on purpose: a\nrefusal quotes only that much, and a caller asking for every budget met\nthis refusal naming nothing (dev_reflow2 two-agent exercise, I17,\n`fact:root-cause-budget-report-reads-one-budget-and-its-refusal-never-names-the-all-budgets-sweep-2026-09-29`).",
-        "type": "string"
+        "default": null,
+        "description": "The ONE Constraint (`con:…`) to roll up in full — every contributor, the worst path and\nthe verdict. LEAVE IT OUT TO READ EVERY BUDGET AT ONCE, each with its verdict and the\nrollup it was judged on; `closure_report`'s budgets leg gives only the closure counts.\n\nOptional since 2026-09-29: a caller asking for every budget used to be refused, and then\npaid one call per budget — 14 calls for 14 budgets (dev_reflow2 two-agent exercise, I17,\n`fact:root-cause-budget-report-reads-one-budget-and-its-refusal-never-names-the-all-budgets-sweep-2026-09-29`).",
+        "type": [
+          "string",
+          "null"
+        ]
       }
     },
-    "required": [
-      "constraint_id"
-    ],
     "type": "object"
   },
   "name": "budget_report"
