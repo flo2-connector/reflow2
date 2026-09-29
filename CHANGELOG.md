@@ -41,6 +41,12 @@ This file is the third view: *what changed, and when*.
   - **Every reader of a verdict reads the same judged rollup:** `closure_report`'s budgets leg keeps a margin against it, and a breached KPP names it.
   - **`budget_report` with no `constraint_id` reports every budget,** each with its verdict and the rollup it was judged on. It is bounded by `budget_chars`, and `swept`, `not_budgets` and `by_verdict` are never trimmed.
   - **`constrains` now says** that drawing `DEPENDS_ON` among contributors is what makes the path total computable.
+- **`closure_report` reads "design done" beside "build done", and every reading names its phase.**
+  - The top level is unchanged in meaning and is now labelled the BUILD phase: requirements delivered by realized capabilities whose checks pass. A budget now also needs every numbered contribution `measured` to close there, which it never checked before.
+  - A new `design` reading sits beside it, against the same declared criterion: a requirement is traced when a capability satisfying it is allocated to a part and has a check planned (any status), and a budget closes on an estimate that carries its basis. Its note says it tells nothing about whether anything is built.
+  - Every leg carries `phase`; `release_report`'s closure summary carries `design_verdict` beside the build verdict.
+  - Closure now reads parking: a requirement with a `parks` ruling on an accepted decision is counted in the leg's new `parked` field and left out of the population, never named as the first hole. A proposed ruling parks nothing.
+  - Found by the dev_reflow2 two-agent exercise (I15): a finished design with nothing built read traceability 0/7, and its first hole was a requirement it had parked (`req:closure-reads-design-done-separately-from-build-done`).
 
 - **Every edge type declares what it means, and `describe_schema` serves it.**
   - Each edge type in `schema/*.yaml` now carries a `reading`:
@@ -111,6 +117,14 @@ This file is the third view: *what changed, and when*.
     - The schema stamp does not move (no type or enum changed), so no separate upgrade note is owed.
 ### Fixed
 
+- **A revise keeps what it was not passed, in every tool that promises it — and a create with no name is refused rather than stored with an empty one.**
+  - Twenty served constructors say "CONTENT FIELDS ARE REQUIRED TO CREATE AND OPTIONAL TO REVISE … omitted fields keep their stored value". Three of them broke it on 0.74.0, each by computing from the CALL instead of the node:
+    - `record_finding` wrote its defaults into every revise, so a revise that named neither field demoted a `defect` to a `finding` and turned a `forecast` into `measured`. Three field sightings, the last during a triage in the dev_reflow2 hub.
+    - `plan_epoch` wrote through a replacing core constructor, so a revise cleared `description` and `checksum`. It now merges, as `add_epoch` always has.
+    - `add_change_event` said a DATED event was `undated` when the revise did not re-send the date. The note now reads the stored event.
+  - `add_verification`'s "findings need a status" refusal now names the verdict the check already holds, so the re-send is informed. The rule itself is unchanged: whether new findings may inherit a stored verdict is an open question for the owner.
+  - The other half of the same contract, REQUIRED TO CREATE: seven constructors (`add_artifact`, `add_contributor`, `add_environment`, `add_flow`, `add_release`, `add_resource`, `add_verification`) resolved `name` and never asked whether it resolved, so an id-only create stored `name: ""`. They now refuse, naming the field.
+  - The pin is ONE class test, `a_revise_keeps_what_it_was_not_passed`, whose membership is read off the served tool list rather than hand-kept. Every tool whose description makes the promise is created with every scalar set to a non-default value, twice with different values, revised by one field, and checked field by field, reply note by reply note. A new constructor joins it the day it is served. Observed failing first on origin/main: 9 breaches across 3 tools, plus 7 tools storing an empty name.
 - **A finding or a refusal that fires correctly now names the route that works.** Eight reports from the dev_reflow2 hub's two-agent exercise (2026-09-29) had one shape: the check was right and its words stopped one item short of the cure. Each is fixed at the class, not the instance:
   - **Every invalid-edge refusal names what DOES accept the pair, and the typed tool that draws it**, whichever tool raised it. `verifies(Verification → Decision)` said only "cannot connect"; it now names GOVERNED_BY, drawn by `governed_by`. `create_edge` and every typed helper render through one function, pinned by a test over every rejected (edge, from, to) the schema has.
   - **A typed edge tool is never narrower than its schema.** `consumes` refused an Actor; `satisfies`, `depends_on` and `constrains` refused modelled pairs too. Each now resolves its endpoint types from the ids (optional `from_type` / `to_type` / `constraint_type`), and `precedes` takes the peer `from_id` / `to_id` spelling. A test drives every edge tool over every pair its schema models; on the base it found 64 modelled pairs with no typed route (28 CONSTRAINS, 27 CONSUMES, 5 SATISFIES, 3 DEPENDS_ON, 1 PRECEDES).

@@ -810,6 +810,43 @@ impl RequiredFields {
         }
     }
 
+    /// Whether this call REVISES a node that already exists.
+    ///
+    /// ⭐ THE CLASS THIS SERVES. "Omitted fields keep their stored value" is
+    /// carried by `str`/`i64` above for the REQUIRED fields and by
+    /// `upsert_node` for everything else — and both are correct. What broke the
+    /// promise, four times by four mechanisms, was code in one handler that
+    /// computed from the CALL: a default written into the merge, a note, a
+    /// guard (fact:root-cause-the-revise-contract-is-implemented-per-handler-
+    /// and-guarded-by-instances-2026-09-28). Each of those must read "passed,
+    /// else stored, else default", and it can only do that with the stored node
+    /// in reach. It is: this struct already fetched it, and until 2026-09-29 it
+    /// dropped it unread at `finish`.
+    pub(crate) fn revising(&self) -> bool {
+        self.existing.is_some()
+    }
+
+    /// A handler DEFAULT, applied on CREATE only: what the caller passed; else,
+    /// on a revise, nothing — so the merge keeps the stored value; else the
+    /// default. `None` means "write nothing for this field".
+    pub(crate) fn default_on_create<'a>(
+        &self,
+        passed: Option<&'a str>,
+        default: &'a str,
+    ) -> Option<&'a str> {
+        passed.or((!self.revising()).then_some(default))
+    }
+
+    /// The stored value of a property, as text — for a note or a refusal that
+    /// must describe the node the caller is revising rather than the call.
+    pub(crate) fn stored_str(&self, field: &str) -> Option<String> {
+        self.existing
+            .as_ref()
+            .and_then(|n| n.properties.get(field))
+            .and_then(reflow2_core::Value::as_str)
+            .map(str::to_string)
+    }
+
     /// The numeric sibling, for the two fields that are not strings:
     /// `DesignEpoch.sequence` and `ReadinessAssessment.level`.
     pub(crate) fn i64(&mut self, field: &str, passed: Option<i64>) -> i64 {

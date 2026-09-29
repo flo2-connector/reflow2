@@ -33,6 +33,10 @@ you. The standing rule is in AGENTS.md.
   be right, so report the shape and let the user judge it.
 - `closure_report` — whether the design CLOSES against the threshold the owner declared: five
   legs (traceability, budgets, seams, decisions, provenance), what each swept, and the first hole.
+  It gives TWO readings and each names its phase: the top level is the BUILD phase (built,
+  checked, measured) and the design reading beside it is the DESIGN phase (traced, allocated,
+  checks planned, budgets on stated estimates). Say which one you are quoting — "the design closes
+  on paper; the build does not yet" — and never report a design-phase close as "done".
   `no_closure_criterion_stated` means nobody has said what done means yet — say that, and ask,
   rather than supplying a threshold of your own.
 - `scan_nodes` for `Decision` — what has actually been settled, and why. **This is the part they
