@@ -2506,9 +2506,10 @@ impl ReflowService {
                        draft/submitted/paid\") belongs here too. Reading this type as \
                        budgets-only once cost a design 11 prohibitions left as Requirements \
                        that report unsatisfied forever. For a numeric budget (BL-11) set `quantity` \
-                       (unit-bearing name like mass_kg / latency_ms / cost_usd), `limit`, and \
+                       (unit-bearing, e.g. mass_kg, latency_ms), `limit`, and \
                        `direction` (maximum = stay at or under, the default). Then attach the \
-                       spenders with `constrains` and read the rollup with `budget_report`. \
+                       spenders with `constrains` and read the rollup with `budget_report`; \
+                       `composition` (sum/path) says which rollup its verdict reads. \
                        `category: kpp` marks a KEY PERFORMANCE PARAMETER — inviolable intent, a \
                        threshold that if missed fails the whole effort — and its violations are \
                        computed and ranked above ordinary gaps. On a kpp, `limit` is the \
@@ -2562,6 +2563,10 @@ impl ReflowService {
         .unwrap_or(stored);
         let stored = match req.margin {
             Some(m) => g.set_constraint_margin(&req.id, m).map_err(dyno_err)?,
+            None => stored,
+        };
+        let stored = match req.composition.as_deref() {
+            Some(c) => g.set_constraint_composition(&req.id, c).map_err(dyno_err)?,
             None => stored,
         };
         let node = NodeDto::from(stored);
@@ -2680,7 +2685,9 @@ impl ReflowService {
                        measure it in the tool (an IFC take-off, a ray trace), write the number back with \
                        `basis: measured`, `source` naming the tool, `unit` and `measured_at`, and \
                        budget_report says whether it still fits (bhome 2026-09-16: the seam existed and \
-                       nothing pointed at it). Ask for this when you want to say how much a part contributes \
+                       nothing pointed at it). For latency along a chain, draw DEPENDS_ON among the \
+                       contributors and set `composition: path`. \
+                       Ask for this when you want to say how much a part contributes \
                        to a budget or limit — its share of the mass, latency, cost or other quantity.",
         annotations(read_only_hint = false)
     )]
@@ -2699,7 +2706,9 @@ impl ReflowService {
                        coverage (estimated vs measured), and an honest verdict — `incomplete` \
                        when any contribution is unstated, because a partial sum passed off as a \
                        total is how budgets lie. Contributors with no stated number are listed, \
-                       never zeroed. \
+                       never zeroed. The verdict reads the declared `composition` (sum or \
+                       path); `judged_on` and `composition_note` name which. Omit \
+                       `constraint_id` to read them all at once. \
                        Ask for this when you want to know whether a declared limit or allowance is being exceeded — a budget for latency, mass, cost or any quantity — and which contributors take it over.",
         annotations(read_only_hint = true)
     )]
@@ -2708,7 +2717,59 @@ impl ReflowService {
         Parameters(req): Parameters<BudgetReportReq>,
     ) -> Result<CallToolResult, McpError> {
         let g = self.graph.read().await;
-        ok_json(g.budget_report(&req.constraint_id).map_err(dyno_err)?)
+        if let Some(id) = req.constraint_id.as_deref() {
+            return ok_json(g.budget_report(id).map_err(dyno_err)?);
+        }
+        // Every budget at once (I17). Each entry is the verdict and the numbers
+        // it rests on; the contributor list stays behind the per-budget call,
+        // which is what `detail` says — the design-wide question is "which
+        // budgets hold", and 14 full rollups to answer it is the cost this
+        // form exists to remove.
+        let sweep = g.budget_reports().map_err(dyno_err)?;
+        let budgets: Vec<serde_json::Value> = sweep
+            .budgets
+            .iter()
+            .map(|r| {
+                serde_json::json!({
+                    "constraint_id": r.constraint_id,
+                    "constraint_name": r.constraint_name,
+                    "quantity": r.quantity,
+                    "unit": r.unit,
+                    "limit": r.limit,
+                    "direction": r.direction,
+                    "composition": r.composition,
+                    "judged_on": r.judged_on,
+                    "judged_total": r.judged_total,
+                    "total": r.total,
+                    "worst_path_total": r.worst_path_total,
+                    "verdict": r.verdict,
+                    "contributors": r.contributors.len(),
+                    "unstated": r.unstated.len(),
+                    "unit_mismatched": r.unit_mismatched.len(),
+                    "unsourced": r.unsourced.len(),
+                    "undated_measurements": r.undated_measurements.len(),
+                    "basis_coverage": r.basis_coverage,
+                    "composition_note": r.composition_note,
+                })
+            })
+            .collect();
+        let full = serde_json::json!({
+            "swept": sweep.swept,
+            "not_budgets": sweep.not_budgets,
+            "by_verdict": sweep.by_verdict,
+            "budgets": budgets,
+            "detail": "Every budget with its verdict and the rollup it was judged on. For one \
+                       budget's contributors and worst path, call budget_report with its \
+                       constraint_id. `not_budgets` counts Constraints with no quantity and no \
+                       limit (prohibitions, closed value sets), which have nothing to roll up.",
+        });
+        ok_json(crate::reply_budget::bound_reply_sampling(
+            full,
+            req.budget_chars
+                .unwrap_or(crate::reply_budget::DEFAULT_REPLY_BUDGET_CHARS),
+            "`swept`, `not_budgets` and `by_verdict` are never trimmed; read one budget in full \
+             with budget_report and its constraint_id.",
+        ))
     }
 
     #[tool(
