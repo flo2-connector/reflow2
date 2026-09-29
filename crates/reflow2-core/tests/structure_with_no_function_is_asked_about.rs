@@ -247,8 +247,7 @@ fn a_box_beside_a_process_is_still_asked_what_it_holds() {
     let mut g = DesignGraph::open_in_memory().unwrap();
     g.add_requirement("req:a", "A", "Need A").unwrap();
     g.add_component("cmp:x", "X", "Part X", None).unwrap();
-    g.add_flow("flow:main", "Main", None, None, None, None)
-        .unwrap();
+    g.add_flow("flow:main", "Main", None, None).unwrap();
     g.add_capability("cap:step", "Step", "A step", None)
         .unwrap();
     g.satisfies("cap:step", "req:a").unwrap();

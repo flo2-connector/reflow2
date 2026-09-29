@@ -525,6 +525,59 @@ pub struct PropertyDef {
     /// beside the edge guard, which is the only layer that can look a node up.
     #[serde(default)]
     pub node_ref: bool,
+    /// THIS PROPERTY IS THE AUTHORITY FOR A RELATION ALSO STORED AS AN EDGE,
+    /// and the edge is its derived copy (`req:a-relation-stored-in-more-than-one-place-has-one-authoritative-copy-and-no-copy-drifts-unnoticed`).
+    ///
+    /// Until this declaration existed, the second copy was drawn by each
+    /// writer by hand, and three writers never drew it: 354 of 763 findings in
+    /// reflow2's own design had a `subject_id` and no `HAS_TEMPORAL_FACT` edge
+    /// (`fact:root-cause-each-writer-draws-the-second-copy-by-hand-and-three-writers-never-did-2026-09-28`).
+    /// Declared here, the store keeps the edge on every write and repairs it
+    /// on open and on import, whoever the writer is.
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub twin_of: Option<TwinOf>,
+}
+
+/// The edge a [`PropertyDef::twin_of`] property is the authority for.
+#[derive(Debug, Clone, Default, PartialEq, Eq, Serialize, Deserialize)]
+pub struct TwinOf {
+    /// The edge type that is the property's derived copy.
+    pub edge: String,
+    /// Which end of that edge the property names: `source` (the edge runs
+    /// from the named node to this one, as `HAS_TEMPORAL_FACT` runs from a
+    /// finding's subject to the finding) or `target` (from this node to the
+    /// named one, as `ASSESSED_ON` runs from an assessment to what it scores).
+    pub names: TwinEnd,
+    /// The sibling property holding the named node's TYPE, where the node
+    /// carries one (`target_type`). Without it the id is resolved by asking
+    /// each declared node type in turn, as the node-reference guard does.
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub type_property: Option<String>,
+    /// True when the property may go on naming a node that no longer exists.
+    /// A Snapshot is the only record left of a deleted node, so its
+    /// `target_id` outliving the node is the mechanism working, and it is
+    /// not a copy out of step.
+    #[serde(default, skip_serializing_if = "std::ops::Not::not")]
+    pub outlives_target: bool,
+    /// What an edge of this type becomes when it joins this node to anything
+    /// OTHER than the node the property names. `ABOUT_ENTITY` for a finding
+    /// (`dec:has-temporal-fact-means-only-the-subject-and-also-concerns-is-about-entity`):
+    /// a finding hung by hand off a second node says "this also concerns
+    /// that", which is ABOUT_ENTITY's job. When unset, a stray edge is
+    /// removed. Either way the repair reports it.
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub strays_become: Option<String>,
+}
+
+/// Which end of a [`TwinOf`] edge the authoritative property names.
+#[derive(Debug, Clone, Copy, Default, PartialEq, Eq, Serialize, Deserialize)]
+#[serde(rename_all = "lowercase")]
+pub enum TwinEnd {
+    /// The edge runs from the named node to the node carrying the property.
+    #[default]
+    Source,
+    /// The edge runs from the node carrying the property to the named node.
+    Target,
 }
 
 /// Supported property types.

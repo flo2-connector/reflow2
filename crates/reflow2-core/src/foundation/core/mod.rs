@@ -13,5 +13,6 @@ pub use schema::{
     ConfusedWith, Discrimination, EdgeEndpoint, EdgeReading, EdgeTypeDef, ExtractionInclude,
     MODIFIER_KINDS, NodeTypeDef, PropertyDef, PropertyType, READING_BASES, READING_FORMS,
     RELATION_PRIMITIVES, Reading, ReadingSplit, ResolutionConfig, ResolutionStrategy, Schema,
+    TwinEnd, TwinOf,
 };
 pub use value::Value;

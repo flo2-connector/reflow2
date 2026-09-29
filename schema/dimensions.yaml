@@ -12,7 +12,7 @@ schema:
 
     DimensionAssessment:
       properties:
-        target_id: { type: string, required: true, indexed: true, description: "Id of the node being assessed." }
+        target_id: { type: string, required: true, indexed: true, description: "Id of the node being assessed.", twin_of: { edge: ASSESSED_ON, names: target, type_property: target_type } }
         target_type: { type: string, indexed: true, description: "Label of the assessed node (Component, Capability, Artifact...)." }
         dimension: { type: enum, values: [reliability, performance, maintainability, security, scalability, observability, testability, coupling, maturity], required: true, indexed: true }
         score: { type: float, range: [0.0, 1.0], description: "0 = worst, 1 = best on this axis." }
@@ -30,11 +30,11 @@ schema:
 
     DimensionObservation:
       properties:
-        target_id: { type: string, required: true, indexed: true }
+        target_id: { type: string, required: true, indexed: true, twin_of: { edge: HAS_OBSERVATION, names: source, type_property: target_type } }
         target_type: { type: string, indexed: true }
         dimension: { type: enum, values: [reliability, performance, maintainability, security, scalability, observability, testability, coupling, maturity], required: true, indexed: true }
         score: { type: float, range: [0.0, 1.0] }
-        source_fragment_id: { type: string, indexed: true, description: "The Fragment this reading came from." }
+        source_fragment_id: { type: string, indexed: true, description: "The Fragment this reading came from.", twin_of: { edge: OBSERVED_IN, names: target } }
         observed_at: { type: string }
       extraction_hint: >
         An immutable, per-fragment (per-epoch) reading of ONE dimension — the raw

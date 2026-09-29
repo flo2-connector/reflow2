@@ -101,8 +101,6 @@ async fn seeded() -> ReflowService {
         status: None,
         distinct_from: None,
         tier: None,
-        is_entry_point: None,
-        is_exit_point: None,
     })));
     j!(s.add_component(Parameters(ComponentReq {
         id: "cmp:physics".into(),
@@ -236,8 +234,6 @@ async fn genesis_bootstraps_then_detect_hands_off() {
         status: None,
         distinct_from: None,
         tier: None,
-        is_entry_point: None,
-        is_exit_point: None,
     })));
     j!(s.satisfies(Parameters(SatisfiesReq {
         from_id: "cap:flight".into(),
@@ -271,8 +267,6 @@ async fn link_artifact_closes_the_unrealized_capability_gap() {
             status: None,
             distinct_from: None,
             tier: None,
-            is_entry_point: None,
-            is_exit_point: None,
         })));
     }
 
@@ -1325,8 +1319,6 @@ async fn marking_a_requirement_dropped_stops_the_nagging() {
         status: None,
         distinct_from: None,
         tier: None,
-        is_entry_point: None,
-        is_exit_point: None,
     })));
     assert!(
         flagged(&jl!(s.detect_gaps(Parameters(GapScopeReq::default())))),
@@ -1876,8 +1868,6 @@ async fn compare_designs_reports_divergence_from_a_base_export() {
         status: None,
         distinct_from: None,
         tier: None,
-        is_entry_point: None,
-        is_exit_point: None,
     })));
 
     let diff = j!(s.compare_designs(Parameters(CompareDesignsReq {
@@ -1941,8 +1931,6 @@ async fn loop_status_reports_debt_and_the_write_tools_point_at_the_loop() {
         status: Some("realized".into()),
         distinct_from: None,
         tier: None,
-        is_entry_point: None,
-        is_exit_point: None,
     })));
     assert!(
         cap["loop_hint"]
@@ -2121,8 +2109,6 @@ async fn export_files_chain_by_content_hash() {
         status: None,
         distinct_from: None,
         tier: None,
-        is_entry_point: None,
-        is_exit_point: None,
     })));
     let second = j!(s.export_graph(Parameters(ExportGraphToReq {
         path: Some(path_str.clone()),
@@ -2653,8 +2639,6 @@ async fn a_read_too_large_to_return_says_what_it_left_out() {
             status: None,
             distinct_from: None,
             tier: None,
-            is_entry_point: None,
-            is_exit_point: None,
         })));
     }
 
@@ -2707,8 +2691,6 @@ async fn a_single_node_larger_than_the_budget_is_still_returned() {
         status: None,
         distinct_from: None,
         tier: None,
-        is_entry_point: None,
-        is_exit_point: None,
     })));
 
     let page = j!(s.scan_nodes(Parameters(ScanReq {
@@ -2732,8 +2714,6 @@ async fn brief_gives_the_shape_without_the_prose() {
         status: None,
         distinct_from: None,
         tier: None,
-        is_entry_point: None,
-        is_exit_point: None,
     })));
 
     let page = j!(s.scan_nodes(Parameters(ScanReq {
@@ -2772,8 +2752,6 @@ async fn an_explicit_limit_is_reported_as_the_reason_it_stopped() {
             status: None,
             distinct_from: None,
             tier: None,
-            is_entry_point: None,
-            is_exit_point: None,
         })));
     }
 

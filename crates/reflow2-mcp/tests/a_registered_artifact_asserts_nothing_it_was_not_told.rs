@@ -69,8 +69,6 @@ async fn a_file_read_off_disk_is_realized_on_first_registration_and_a_relink_kee
         status: None,
         distinct_from: None,
         tier: None,
-        is_entry_point: None,
-        is_exit_point: None,
         satisfies: None,
         allocated_to: None,
     }))
