@@ -54,6 +54,7 @@ This file is the third view: *what changed, and when*.
     - A finding's extra `HAS_TEMPORAL_FACT` becomes `ABOUT_ENTITY`.
     - Retired stored values are removed.
     - Open keeps the report for `loop_status` (`repaired_on_open`). Import returns it in `twin_repairs`, which `--import` now prints, with the `migrated_edges` it had never printed.
+    - A CLI `--import` now records that the store is in step with the file it read, as the `import_graph` tool already did. Without that, an export back over the same file after a repairing import was refused as "somebody else's work" for dropping the edges the import had just reported moving.
   - **A Flow's entry and exit are computed from its step order and no longer stored** (`dec:a-flows-order-is-its-step-order-and-entry-and-exit-are-computed`). `flow_report` returns `entry_points` and `exit_points`: the steps at the lowest and highest `step_order`, several when steps share a position. These replace `entry_point` and `exit_point`.
   - **Upgrading:**
     - The first open of an existing store repairs it once, and every later open reports nothing. Measured on reflow2's own design: the first open or import repairs 661 relation(s) on the design as committed at origin/main 329a074: 356 derived `HAS_TEMPORAL_FACT` edges added, 9 hand-drawn second subjects moved to `ABOUT_ENTITY`, and 296 retired stored values removed (both flags on 147 capabilities, and `flow:release-cut`'s stored entry and exit). Expect the next export to change accordingly.

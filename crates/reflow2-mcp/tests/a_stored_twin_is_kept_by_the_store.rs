@@ -160,3 +160,84 @@ async fn deleting_the_copy_its_property_still_names_is_refused() {
         [("cmp:a".to_string(), "fact:x".to_string())]
     );
 }
+
+/// A CLI `--import` that REPAIRS records that the store is in step with the
+/// file it read, as the `import_graph` tool does. So the next export over the
+/// same file is not refused as "somebody else's work" for dropping the edges
+/// the import just reported moving. Found shipping this change: the branch's
+/// own export was refused until the moved edges were checked by hand.
+#[test]
+fn an_export_over_the_file_a_repairing_import_read_is_not_refused() {
+    use reflow2_core::DesignGraph;
+    use reflow2_core::nodes::{Props, edge, node};
+
+    let dir = std::env::temp_dir().join(format!(
+        "reflow2-twins-cli-{}-{}",
+        std::process::id(),
+        std::time::SystemTime::now()
+            .duration_since(std::time::UNIX_EPOCH)
+            .unwrap()
+            .as_nanos()
+    ));
+    std::fs::create_dir_all(&dir).unwrap();
+    let file = dir.join("design.json");
+    let store = dir.join("graph");
+
+    // A real export (it carries a content hash) holding a second subject
+    // drawn by hand, the shape designs written before this change carry.
+    let mut g = DesignGraph::open_in_memory().unwrap();
+    g.add_component("cmp:a", "A", "a part", None).unwrap();
+    g.add_component("cmp:b", "B", "another part", None).unwrap();
+    g.upsert_node(
+        node::TEMPORAL_FACT,
+        "fact:x",
+        Props::new()
+            .set("subject_id", "cmp:a")
+            .set("statement", "s")
+            .set("basis", "measured"),
+    )
+    .unwrap();
+    g.create_edge(
+        edge::HAS_TEMPORAL_FACT,
+        node::COMPONENT,
+        "cmp:b",
+        node::TEMPORAL_FACT,
+        "fact:x",
+        Props::new(),
+    )
+    .unwrap();
+    let doc = g.export_graph().unwrap();
+    std::fs::write(&file, serde_json::to_string(&doc).unwrap()).unwrap();
+
+    let out = std::process::Command::new(env!("CARGO_BIN_EXE_reflow2-mcp"))
+        .args([
+            "--graph-path",
+            store.to_str().unwrap(),
+            "--import",
+            file.to_str().unwrap(),
+        ])
+        .output()
+        .unwrap();
+    assert!(
+        out.status.success(),
+        "{}",
+        String::from_utf8_lossy(&out.stderr)
+    );
+    let said = String::from_utf8_lossy(&out.stderr);
+    assert!(
+        said.contains("stored twice") && said.contains("ABOUT_ENTITY"),
+        "{said}"
+    );
+
+    let rt = tokio::runtime::Runtime::new().unwrap();
+    rt.block_on(async {
+        let (s, _) = ReflowService::new_reporting(store.to_str().unwrap()).unwrap();
+        s.export_graph(Parameters(
+            serde_json::from_value(json!({"path": file.to_str().unwrap(), "overwrite": true}))
+                .unwrap(),
+        ))
+        .await
+        .expect("the export the repair changed goes through over the file it read");
+    });
+    let _ = std::fs::remove_dir_all(&dir);
+}

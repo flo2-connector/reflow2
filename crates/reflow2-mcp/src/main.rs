@@ -1469,6 +1469,16 @@ async fn main() -> anyhow::Result<()> {
                 },
             )
             .context("failed to import the design")?;
+        // Absorbing a file puts this store in step with it, the record the
+        // `import_graph` tool already makes. Without it, an import that
+        // REPAIRED relations stored twice left the store looking unsynced, and
+        // the next export over the same file was refused as "somebody else's
+        // work" for dropping edges the import itself had just reported moving.
+        if source != "-"
+            && let Some(hash) = &doc.content_hash
+        {
+            reflow2_core::provenance::record_sync(&cli.graph_path, &source, hash);
+        }
         if let Some(adopted) = &report.adopted_identity {
             eprintln!(
                 "reflow2: this store was empty, so it takes the imported design's name ({adopted})"
