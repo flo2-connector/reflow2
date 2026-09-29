@@ -28,6 +28,7 @@ pub mod registry;
 pub mod registry_http;
 pub mod reply_budget;
 pub mod service;
+pub mod settles;
 pub mod shared;
 pub mod skills;
 pub mod sync_debt;

@@ -5958,6 +5958,16 @@ pub struct CollapseDecisionReq {
     /// Why — recorded in the Decision's alternatives field with the outcome.
     #[serde(default)]
     pub note: Option<String>,
+    /// The Contributor whose word this choice is — draws `AUTHORED_BY
+    /// role=approver` on the Decision in the same call. Choosing the winner
+    /// moves the Decision to `accepted`, which is settled intent; with no
+    /// approver the choice is recorded and the reply says it carries nobody's
+    /// name, like every other setter. An id naming no Contributor is REFUSED.
+    #[serde(default)]
+    pub approver: Option<String>,
+    /// When the approver acted, as a plain date. Stored on the approver edge.
+    #[serde(default)]
+    pub acted_at: Option<String>,
 }
 
 #[derive(Debug, Deserialize, JsonSchema)]
@@ -6742,7 +6752,10 @@ impl ReflowService {
             let g = self.graph.read().await;
             crate::lessons::lessons_by_step(&g)
         };
-        crate::lessons::enrich_tools(tools, &by_step)
+        // Which calls settle intent is served on the tool itself, from the one
+        // table the handlers read (crate::settles), so a gateway signing on its
+        // caller's behalf reads the rule instead of keeping a copy of it.
+        crate::settles::declare_on(crate::lessons::enrich_tools(tools, &by_step))
     }
 
     /// Test seam for the listing above — the `list_tools` override needs a

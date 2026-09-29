@@ -1,4 +1,13 @@
 {
+  "_meta": {
+    "reflow2/settles": {
+      "approver": "approver",
+      "argument": "enforced",
+      "unsigned": "refused",
+      "version": 1,
+      "when": "present"
+    }
+  },
   "annotations": {
     "readOnlyHint": false
   },

@@ -33,6 +33,14 @@ This file is the third view: *what changed, and when*.
 
 ### Added
 
+- **Every tool that can settle intent declares what settles it, on the served tool, and reflow2's own signature checks read the same declaration.**
+  - Each settling tool's `tools/list` entry carries `_meta["reflow2/settles"]`: `{version, argument, when, approver, unsigned}`. `when` is `"always"`, `"present"`, `{"in": [..]}` or `{"not_in": [..]}`, read against `argument`; `approver` is where the signature goes (`approver`, or `gaps[].approver` for the batch); `unsigned` is `refused` or `recorded_with_note`.
+  - Nine tools declare: `add_requirement`, `add_decision`, `add_design_rule` (refused unsigned); `set_requirement_status`, `set_decision_status`, `collapse_decision`, `acknowledge_gap`, `acknowledge_defect`, `acknowledge_gaps` (recorded, and the reply says it carries nobody's name).
+  - One table (`crates/reflow2-mcp/src/settles.rs`) is both what is served and what every handler reads, so the two cannot drift; `every_settling_call_declares_what_settles_it` enumerates the served surface and fails when a tool that takes an approver declares nothing, or a declaration is not what the tool does.
+  - `collapse_decision` takes `approver` and `acted_at`: choosing a fork's winner accepts the Decision, and until now it did so with no way to sign it and said nothing (fact:collapse-decision-settles-a-decision-with-no-approver-and-says-nothing-2026-09-28).
+  - `acknowledge_gaps` now says which items carry nobody's name, as `acknowledge_gap` always did.
+  - WHY: a gateway that signs settles on its caller's behalf had to guess which argument settles; flo2 guessed `status` and let `enforced` through unsigned, then contained it with a hand-kept copy of the rules (flo2 #102). A gateway now reads the rule off the tool. Found by the dev_reflow2 two-agent exercise (I2).
+
 - **`closure_report` reads "design done" beside "build done", and every reading names its phase.**
   - The top level is unchanged in meaning and is now labelled the BUILD phase: requirements delivered by realized capabilities whose checks pass. A budget now also needs every numbered contribution `measured` to close there, which it never checked before.
   - A new `design` reading sits beside it, against the same declared criterion: a requirement is traced when a capability satisfying it is allocated to a part and has a check planned (any status), and a budget closes on an estimate that carries its basis. Its note says it tells nothing about whether anything is built.
