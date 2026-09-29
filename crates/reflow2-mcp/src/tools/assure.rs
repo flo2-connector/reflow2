@@ -113,7 +113,13 @@ impl ReflowService {
             req.description.as_deref(),
         )
         .map_err(dyno_err)?;
+        // Named in the reply through the one shared path
+        // (crate::drawn_edges), as a sentence with its subject first.
+        let mut edges = crate::drawn_edges::DrawnEdges::new();
         for (ty, id) in &targets {
+            edges
+                .classify(&g, &req.id, reflow2_core::nodes::edge::VERIFIES, id)
+                .map_err(dyno_err)?;
             g.verifies(&req.id, ty, id).map_err(dyno_err)?;
         }
         if let Some(status) = req.status.as_deref() {
@@ -154,6 +160,7 @@ impl ReflowService {
                 ),
             );
         }
+        edges.attach(&mut v);
         ok_json(v)
     }
 

@@ -33,6 +33,20 @@ This file is the third view: *what changed, and when*.
 
 ### Fixed
 
+- **`add_decision` draws `related_to` for every kind, and every constructor names the edges it drew.** (`art:dev-reflow2-two-agent-exercise-feedback-2026-09-29`, I16; first reported 2026-09-23)
+  - Before: `related_to` was drawn only for `kind: exploratory`. A `choice` or no-kind decision passed the duplicate guard naming its relations and then drew none of them, and said nothing. Even the exploratory path discarded the review's outcome, so no reply named an edge. `add_capability` also built its drawn list and discarded it.
+  - Now `related_to` is drawn for every kind. Every constructor that draws edges inline — `add_decision`, `add_capability`, `add_verification`, `add_change_event`, `record_finding` — names each one in `edges_drawn` as a sentence with its subject first (`dec:older EVOLVES_INTO dec:new`), through one shared path. An edge a revise re-sends is named in `edges_already_present` instead. The existing id-shaped echoes are unchanged.
+  - The class is pinned by one test over every such constructor: the reply names exactly the edges the call created, measured by diffing the export.
+- **A constructor's loop hint says where the node landed, not where the common case lands.** (I2; first reported 2026-08-14)
+  - `add_decision` replied `status: accepted` beside "a Decision lands `proposed`" whenever it settled in the same call or merged over an accepted node. The hint is now read from the status the node stands at.
+  - The same fixed-sentence class, swept: `add_design_rule` no longer asks for `enforced` when the rule states it (the old text also carried a run of stray spaces), and `add_capability` no longer tells a caller who passed `satisfies` to wire it.
+- **A settled decision's name stops asking the question, or the design says it has not.** (I3; a recurrence of flo2 F12, 2026-09-19)
+  - `set_decision_status` takes `name`, so the settle can retitle "OPEN — does X…?" in the same call. An empty name is refused before anything is written.
+  - The settle reply (and `add_decision`) carries `name_still_reads_open` when an accepted decision's name still begins with `OPEN` in capitals or "open question".
+  - A new gap, `settled_decision_named_open`, sweeps the ones already standing: one rollup, keyed on the set of offenders. A lower-case "Open the API…" is not matched.
+  - `settled_question_prose` now reads a governed node's name as well as its body.
+  - The brainstorm skill says the OPEN is a copy of the status and tells the agent to retitle at the settle.
+
 - **The brainstorm skill looks for the answer before it frames a question as open.**
   - A new part of step 1: search accepted requirements and decisions, and the project's own statement of what it is for, before writing "OPEN".
   - If accepted intent already answers the question, it is not a brainstorm. The agent says what is settled, cites it, and records only what is still open.

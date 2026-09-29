@@ -68,7 +68,9 @@ One **Decision at status `proposed`** per *question*, with the ideas as its opti
 decision text:
 
 1. `add_decision` — name it as the open question (*"OPEN — does X…?"*), not as a conclusion,
-   **and pass `kind: "exploratory"` in that same call.** It is what separates an idea being
+   **and pass `kind: "exploratory"` in that same call.** That OPEN is a copy of the status, and
+   nothing moves it for you: when the question is settled, retitle it in the settling call
+   (`set_decision_status` with `name`), or the design goes on listing a settled question as open. It is what separates an idea being
    turned over from a choice somebody faced, and it is READ: the linking discipline in step 4
    fires on it, and stays off the Requirement/Capability/ChangeEvent capture path where it
    would be noise. Set it here rather than afterwards — a follow-up setter is two

@@ -237,19 +237,31 @@ pub fn open_prose<'a>(
     node_type: &str,
     prose_field: impl Fn(&str) -> Option<&'a str>,
 ) -> Option<OpenProse> {
-    let (field, prose) = GOVERNED_PROSE_FIELDS.iter().find_map(|f| {
+    // The body first, as before; then the NAME, which no check read until
+    // 2026-09-29 — a heading is the prose a reader meets first, in every list
+    // (fact:root-cause-a-settled-decisions-name-still-reads-open-because-the-
+    // 09-19-fix-reached-the-body-and-no-check-reads-names-2026-09-29).
+    let body = GOVERNED_PROSE_FIELDS.iter().find_map(|f| {
         let s = prose_field(f)?;
         (!s.trim().is_empty()).then_some((*f, s))
-    })?;
-    let markers = open_question_markers(prose);
-    let first = *markers.first()?;
-    Some(OpenProse {
-        node_id: node_id.to_string(),
-        node_type: node_type.to_string(),
-        field,
-        excerpt: excerpt_around(prose, first),
-        markers,
-    })
+    });
+    let name = prose_field("name")
+        .filter(|s| !s.trim().is_empty())
+        .map(|s| ("name", s));
+    [body, name]
+        .into_iter()
+        .flatten()
+        .find_map(|(field, prose)| {
+            let markers = open_question_markers(prose);
+            let first = *markers.first()?;
+            Some(OpenProse {
+                node_id: node_id.to_string(),
+                node_type: node_type.to_string(),
+                field,
+                excerpt: excerpt_around(prose, first),
+                markers,
+            })
+        })
 }
 
 /// The block, or `None` when nothing governed reads open.
@@ -336,4 +348,98 @@ fn excerpt_around(prose: &str, marker: &str) -> String {
     let head = if start > 0 { "…" } else { "" };
     let tail = if end < chars.len() { "…" } else { "" };
     format!("{head}{body}{tail}")
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// The third copy: a Decision's own NAME, still asking the question it settled.
+// ─────────────────────────────────────────────────────────────────────────────
+//
+// # The finding this exists to fix
+//
+// `fact:root-cause-a-settled-decisions-name-still-reads-open-because-the-09-19-
+// fix-reached-the-body-and-no-check-reads-names-2026-09-29`. The brainstorm
+// skill names an idea as its open question — "OPEN — does X…?" — so the status
+// is COPIED INTO THE NAME at birth, and no settle act updated the copy. flo2 F12
+// (2026-09-19) reported exactly this; the fix gave `set_decision_status` a
+// `chose` field for the body and nothing for the name, and neither check above
+// read `name`. It recurred on 2026-09-29 (six settled decisions still named
+// "OPEN —", 30 KB of replace_text to rename them), and reflow2's own design held
+// 44 of 266 accepted decisions so named.
+//
+// # Why this one is precise where the markers above are not
+//
+// The phrase markers read English and fire on prose that QUOTES a question.
+// This reads one thing: the leading STATUS WORD the convention writes, in the
+// capitals it writes it in, against the node's own `status`. `OPEN` in caps as
+// the first word of an accepted decision's name is a stale copy of a status,
+// not a sentence to judge — which is why this may also run as a sweep
+// (`settled_decision_named_open`) where the markers could not.
+//
+// A lower-case "Open the API to partners" is a decision ABOUT opening something
+// and is deliberately not matched; "open question" in any case is.
+
+/// Whether `name` begins with the status word the brainstorm convention writes
+/// for an open question. ONE definition, in the core, shared with the sweep
+/// (`settled_decision_named_open`) so the reply and the sweep cannot disagree.
+#[must_use]
+pub fn name_leads_with_open(name: &str) -> bool {
+    reflow2_core::name_leads_with_open(name)
+}
+
+/// The block for a reply, or `None` when the name agrees with the status.
+///
+/// Fires only when the decision stands at `accepted` — the one status that
+/// closes a question. A `proposed` decision named "OPEN —" is telling the
+/// truth, and a `deferred` one is set aside with its question still open.
+#[must_use]
+pub fn name_still_reads_open(
+    name: Option<&str>,
+    status: Option<&str>,
+) -> Option<JsonMap<String, JsonValue>> {
+    if status != Some("accepted") {
+        return None;
+    }
+    let name = name?;
+    if !name_leads_with_open(name) {
+        return None;
+    }
+    let mut block = JsonMap::new();
+    block.insert("name".into(), JsonValue::String(name.to_string()));
+    block.insert("status".into(), JsonValue::String("accepted".into()));
+    block.insert(
+        "note".into(),
+        JsonValue::String(
+            "This decision is `accepted` and its NAME still begins as an open question — a copy \
+             of its status written when it was one, which no settle act updates. Anything that \
+             lists decisions by name (search, what_next, a hub, where-am-i) will present a \
+             settled question as open. Retitle it in the settling call: pass `name` to \
+             set_decision_status. Or rename it now with replace_text on field `name`. Nothing \
+             is renamed for you — the name is the owner's record."
+                .to_string(),
+        ),
+    );
+    Some(block)
+}
+
+#[cfg(test)]
+mod name_tests {
+    use super::*;
+
+    #[test]
+    fn the_convention_is_matched_and_a_decision_about_opening_is_not() {
+        assert!(name_leads_with_open("OPEN — does X hold?"));
+        assert!(name_leads_with_open("  OPEN: which store?"));
+        assert!(name_leads_with_open("Open question — which store?"));
+        assert!(!name_leads_with_open("Open the API to partners"));
+        assert!(!name_leads_with_open("OPENING the second site"));
+        assert!(!name_leads_with_open("We keep it OPEN — for now"));
+    }
+
+    #[test]
+    fn only_an_accepted_decision_is_stale() {
+        assert!(name_still_reads_open(Some("OPEN — x?"), Some("accepted")).is_some());
+        assert!(name_still_reads_open(Some("OPEN — x?"), Some("proposed")).is_none());
+        assert!(name_still_reads_open(Some("OPEN — x?"), Some("deferred")).is_none());
+        assert!(name_still_reads_open(Some("Chosen: x"), Some("accepted")).is_none());
+    }
 }

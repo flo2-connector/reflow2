@@ -723,6 +723,17 @@ impl ReflowService {
         let node = g
             .upsert_node(reflow2_core::nodes::node::TEMPORAL_FACT, &req.id, props)
             .map_err(dyno_err)?;
+        // Every edge drawn here is named in the reply as a sentence, through
+        // the one shared path (crate::drawn_edges).
+        let mut edges = crate::drawn_edges::DrawnEdges::new();
+        edges
+            .classify(
+                &g,
+                &subject_id,
+                reflow2_core::nodes::edge::HAS_TEMPORAL_FACT,
+                &req.id,
+            )
+            .map_err(dyno_err)?;
         // The subject carries the fact, so a reader who has the node finds the
         // finding without having to search for it.
         g.create_edge(
@@ -754,6 +765,9 @@ impl ReflowService {
                     None,
                 ));
             }
+            edges
+                .classify(&g, cause_id, reflow2_core::nodes::edge::CAUSES, &req.id)
+                .map_err(dyno_err)?;
             g.create_edge(
                 reflow2_core::nodes::edge::CAUSES,
                 &cause_type,
@@ -766,11 +780,13 @@ impl ReflowService {
             .map_err(dyno_err)?;
             caused_by = json!({ "node_id": cause_id, "node_type": cause_type });
         }
-        ok_json(json!({
+        let mut out = json!({
             "finding": NodeDto::from(node),
             "subject": { "node_id": subject_id, "node_type": subject_type },
             "caused_by": caused_by,
-        }))
+        });
+        edges.attach(&mut out);
+        ok_json(out)
     }
 
     #[tool(
@@ -887,6 +903,7 @@ impl ReflowService {
             })
             .map_err(dyno_err)?;
         let mut changed = Vec::new();
+        let mut edges = crate::drawn_edges::DrawnEdges::new();
         for a in &affected {
             let a_type = crate::service::resolve_node_type(
                 &g,
@@ -895,6 +912,9 @@ impl ReflowService {
                 "node_type",
             )?;
             let action = a.action.as_deref().unwrap_or("modified");
+            edges
+                .classify(&g, &req.id, reflow2_core::nodes::edge::CHANGED, &a.node_id)
+                .map_err(dyno_err)?;
             g.create_edge(
                 reflow2_core::nodes::edge::CHANGED,
                 reflow2_core::nodes::node::CHANGE_EVENT,
@@ -915,6 +935,7 @@ impl ReflowService {
             "event": NodeDto::from(event),
             "changed": changed,
         });
+        edges.attach(&mut out);
         if let Some(am) = crate::tools::capture::absorbed_markup(&[
             ("name", Some(&name)),
             ("summary", req.summary.as_deref()),
