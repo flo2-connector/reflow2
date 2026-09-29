@@ -5794,6 +5794,19 @@ pub struct ClosureReportReq {}
 
 #[derive(Debug, Deserialize, JsonSchema)]
 #[serde(deny_unknown_fields)]
+pub struct DerivedReportReq {
+    /// Narrow the read to these relation ids (e.g. `["delivered", "realized"]`).
+    /// Omit for every declared relation. An id nobody declared is refused and
+    /// the refusal lists the declared ones.
+    #[serde(default)]
+    pub only: Vec<String>,
+    /// How many example ids each relation carries (default 3, at most 20).
+    #[serde(default)]
+    pub sample: Option<usize>,
+}
+
+#[derive(Debug, Deserialize, JsonSchema)]
+#[serde(deny_unknown_fields)]
 pub struct FrontierReq {
     /// The tree you swept, as `{path, mass}` objects (paths relative to the
     /// project root, mass in your own unit) — derive it (`git ls-files`),

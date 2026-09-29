@@ -44,6 +44,7 @@ pub mod corpus;
 pub mod coverage;
 pub mod dates;
 pub mod depends;
+pub mod derived;
 pub mod detect;
 pub mod dimensions;
 pub mod discover;
