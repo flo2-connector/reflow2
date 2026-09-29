@@ -1164,6 +1164,46 @@ pub struct AskedQuestion<'a> {
     /// True when phrasing fell back to the raw gap text. Recorded rather than
     /// hidden: the question was still asked, and this says how well.
     pub rephrase_degraded: bool,
+    /// The Contributor it was put to BY NAME, when it was — an owner outside
+    /// the chat, a delegated owner. `None` records nobody, and readers say so
+    /// (req:a-question-is-addressed-to-a-person-and-records-who-answered).
+    /// Refused unless it names a Contributor.
+    pub asked_of: Option<&'a str>,
+    /// The batch it was put in, as the asker named it. Its number within the
+    /// batch is assigned in the order questions are recorded, and kept when
+    /// the question is asked again.
+    pub batch: Option<&'a str>,
+    /// Node ids the asker attached as the evidence the question rests on,
+    /// drawn as `ASKS_ABOUT` beside the gap's own affected set. Each must
+    /// resolve: evidence nobody can open is not evidence.
+    pub evidence: &'a [String],
+}
+
+/// Who answered a question, and what record the answer became — the rest of
+/// [`DesignGraph::answer_question_by`]. All optional, and none of it guessed:
+/// an answer naming nobody is recorded as naming nobody.
+#[derive(Debug, Clone, Default)]
+pub struct Answering<'a> {
+    /// The Contributor whose answer this is. Refused unless it names one.
+    pub answered_by: Option<&'a str>,
+    /// When they answered, as the caller supplies it.
+    pub answered_at: Option<&'a str>,
+    /// `(node_type, node_id)` of the design record the answer became. The
+    /// `ANSWERS` edge is drawn from it in the same call.
+    pub record: Option<(&'a str, &'a str)>,
+    /// How that record answers the question — the `ANSWERS` edge's note.
+    pub note: Option<&'a str>,
+}
+
+/// One link a question carries to what it rests on: a node the gap concerned
+/// or evidence the asker attached, named so an addressee can open it.
+#[derive(Debug, Clone, serde::Serialize)]
+pub struct EvidenceLink {
+    pub id: String,
+    pub node_type: String,
+    /// The node's `name`, when it has one. Empty is omitted.
+    #[serde(skip_serializing_if = "String::is_empty")]
+    pub name: String,
 }
 
 /// A question already put to the user, as a later session finds it.
@@ -1184,6 +1224,34 @@ pub struct AskedRecord {
     /// What they said, when `status` is `answered`.
     #[serde(skip_serializing_if = "String::is_empty")]
     pub answer: String,
+    /// The Contributor it was put to by name. ALWAYS SERIALISED, as `null`
+    /// when nobody was named: an unaddressed question says so rather than
+    /// leaving the reader to infer it from a missing key.
+    pub asked_of: Option<String>,
+    /// Who gave the answer, when the answer named them. Serialised on an
+    /// answered question only, as `null` when nobody said who answered.
+    #[serde(skip_serializing_if = "AskedRecord::no_answer_yet")]
+    pub answered_by: Option<Option<String>>,
+    /// The batch it was put in, and its number there.
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub batch: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub batch_position: Option<i64>,
+    /// What the question rests on, as links to open: every node it
+    /// `ASKS_ABOUT` — the gap's affected set and any evidence the asker
+    /// attached. Links, never a summary: the owner reads for themselves.
+    pub evidence: Vec<EvidenceLink>,
+    /// The records that answered it (`ANSWERS`), when any say so.
+    #[serde(skip_serializing_if = "Vec::is_empty")]
+    pub answered_in: Vec<String>,
+}
+
+impl AskedRecord {
+    /// `answered_by` is `None` until the question is answered; then it is
+    /// `Some(None)` (nobody named) or `Some(Some(id))`.
+    fn no_answer_yet(v: &Option<Option<String>>) -> bool {
+        v.is_none()
+    }
 }
 
 /// The depth a replayed gap row asks for when a budgeted reply withheld it.
@@ -1859,8 +1927,22 @@ impl DesignGraph {
         opts: AskedQuestion<'_>,
     ) -> Result<String, DynoError> {
         let question_id = asked_question_id(gap_id);
+        // EVERYTHING THE CALL NAMES IS CHECKED BEFORE ANYTHING IS WRITTEN: an
+        // addressee who is not a Contributor, or evidence that opens nothing,
+        // is refused with the Question untouched.
+        if let Some(who) = opts.asked_of {
+            self.require_contributor(who, "asked_of", "put the question to")?;
+        }
+        self.require_evidence(opts.evidence)?;
         // Asking again must not erase an answer already given.
         let existing = self.get_node(node::QUESTION, &question_id)?;
+        let kept = |k: &str| {
+            existing
+                .as_ref()
+                .and_then(|n| n.properties.get(k))
+                .filter(|v| !matches!(v, crate::foundation::core::Value::Null))
+                .cloned()
+        };
         let mut props = crate::nodes::Props::new()
             .set("question", question)
             .set("gap_id", gap_id)
@@ -1868,20 +1950,50 @@ impl DesignGraph {
             .set_opt("prompt_id", opts.prompt_id)
             .set_opt("context_setter", opts.context_setter)
             .set_opt("asked_at", opts.asked_at);
-        props = match existing.as_ref().and_then(|n| n.properties.get("status")) {
+        props = match kept("status") {
             Some(v) if v.as_str() == Some("answered") => {
-                let answer = existing
-                    .as_ref()
-                    .and_then(|n| n.properties.get("answer"))
-                    .and_then(crate::foundation::core::Value::as_str)
-                    .unwrap_or_default()
-                    .to_string();
-                props.set("status", "answered").set("answer", answer)
+                let answer = kept("answer")
+                    .and_then(|v| v.as_str().map(str::to_string))
+                    .unwrap_or_default();
+                props
+                    .set("status", "answered")
+                    .set("answer", answer)
+                    .set_opt("answered_by", kept("answered_by"))
+                    .set_opt("answered_at", kept("answered_at"))
             }
             _ => props.set("status", "asked"),
         };
+        // Whom it was put to, and in which batch: what this call names, else
+        // what the question already carried. Its number in the batch is KEPT
+        // on a re-ask (a relay may already have quoted it) and assigned next
+        // in line otherwise — never invented without a batch to number in.
+        props = props.set_opt(
+            "asked_of",
+            opts.asked_of.map(crate::foundation::core::Value::from).or_else(|| kept("asked_of")),
+        );
+        let old_batch = kept("batch").and_then(|v| v.as_str().map(str::to_string));
+        let batch = opts.batch.map(str::to_string).or(old_batch.clone());
+        if let Some(b) = &batch {
+            let position = match (kept("batch_position").and_then(|v| v.as_i64()), &old_batch) {
+                (Some(p), Some(ob)) if ob == b => p,
+                _ => self.next_batch_position(b)?,
+            };
+            props = props.set("batch", b.as_str()).set("batch_position", position);
+        }
         self.create_node(node::QUESTION, &question_id, props)?;
 
+        for id in opts.evidence {
+            if let Some(node_type) = self.node_type_index()?.get(id).cloned() {
+                self.create_edge(
+                    edge::ASKS_ABOUT,
+                    node::QUESTION,
+                    &question_id,
+                    &node_type,
+                    id,
+                    crate::nodes::Props::new().set("note", "evidence the asker attached"),
+                )?;
+            }
+        }
         for target in affected_ids {
             let Some(node_type) = self.node_type_index()?.get(target).cloned() else {
                 continue; // the gap outlived the node — nothing to attach to
@@ -1909,7 +2021,108 @@ impl DesignGraph {
     /// Takes EITHER the gap id or the Question's own id — whichever the caller
     /// has in hand, since `open_questions` publishes both.
     pub fn answer_question(&mut self, gap_id: &str, answer: &str) -> Result<bool, DynoError> {
-        self.set_question_status(gap_id, "answered", Some(answer))
+        self.answer_question_by(gap_id, answer, Answering::default())
+    }
+
+    /// [`Self::answer_question`], naming WHO answered and the RECORD the
+    /// answer became, and drawing `ANSWERS` from that record in the same call
+    /// (`req:a-question-is-addressed-to-a-person-and-records-who-answered`).
+    ///
+    /// Answering used to take two calls — the text here, then a separate
+    /// `answers` edge — and record no answerer at all, so an answer relayed
+    /// from an owner outside the chat read as the chat user's own
+    /// (`fact:root-cause-answering-takes-two-calls-and-records-no-answerer-because-the-answers-edge-landed-as-its-own-tool-2026-09-29`).
+    ///
+    /// The answerer and the record are CHECKED BEFORE ANYTHING IS WRITTEN, so
+    /// a name that resolves to nothing leaves the Question as it was. An
+    /// answer naming nobody CLEARS any earlier `answered_by`: a later answer
+    /// is not the earlier answerer's word. Returns `false` when there is no
+    /// such question, as [`Self::answer_question`] always has.
+    pub fn answer_question_by(
+        &mut self,
+        id: &str,
+        answer: &str,
+        by: Answering<'_>,
+    ) -> Result<bool, DynoError> {
+        let Some(question_id) = self.resolve_question_id(id)? else {
+            return Ok(false);
+        };
+        if let Some(who) = by.answered_by {
+            self.require_contributor(who, "answered_by", "record as the answerer")?;
+        }
+        if let Some((record_type, record_id)) = by.record
+            && self.get_node(record_type, record_id)?.is_none()
+        {
+            return Err(DynoError::Validation {
+                node_type: node::QUESTION.into(),
+                property: "record".into(),
+                message: format!(
+                    "no {record_type} '{record_id}' in this design, so the answer was NOT \
+                     recorded: the record it became has to exist before it can say it answered \
+                     the question. Create it first, or omit `record` and draw `answers` later."
+                ),
+            });
+        }
+        let Some(existing) = self.get_node(node::QUESTION, &question_id)? else {
+            return Ok(false);
+        };
+        let mut props = crate::nodes::Props::new()
+            .set("status", "answered")
+            .set("answer", answer)
+            .set_opt("answered_by", by.answered_by)
+            .set_opt("answered_at", by.answered_at);
+        for (k, v) in &existing.properties {
+            if !matches!(
+                k.as_str(),
+                "status" | "answer" | "answered_by" | "answered_at"
+            ) {
+                props = props.set(k, v.clone());
+            }
+        }
+        self.create_node(node::QUESTION, &question_id, props)?;
+        if let Some((record_type, record_id)) = by.record {
+            self.answers(record_type, record_id, &question_id, by.note)?;
+        }
+        Ok(true)
+    }
+
+    /// Refuse evidence that names no node — checked before a question is
+    /// written, so a typo in one link does not leave half a question behind.
+    fn require_evidence(&self, evidence: &[String]) -> Result<(), DynoError> {
+        if evidence.is_empty() {
+            return Ok(());
+        }
+        let index = self.node_type_index()?;
+        for id in evidence {
+            if !index.contains_key(id) {
+                return Err(DynoError::Validation {
+                    node_type: node::QUESTION.into(),
+                    property: "evidence".into(),
+                    message: format!(
+                        "'{id}' names no node in this design, so it cannot travel with the \
+                         question as evidence: a link the addressee cannot open is not evidence. \
+                         Check the id, or record the finding or file first (record_finding, \
+                         add_artifact). Nothing was recorded."
+                    ),
+                });
+            }
+        }
+        Ok(())
+    }
+
+    /// The next free number in `batch`: one past the highest any Question in
+    /// it carries, so questions put in one call are numbered in order and a
+    /// later addition continues the count rather than reusing a number.
+    fn next_batch_position(&self, batch: &str) -> Result<i64, DynoError> {
+        let mut highest = 0;
+        for n in self.scan_nodes(node::QUESTION)? {
+            if n.properties.get("batch").and_then(|v| v.as_str()) == Some(batch)
+                && let Some(p) = n.properties.get("batch_position").and_then(|v| v.as_i64())
+            {
+                highest = highest.max(p);
+            }
+        }
+        Ok(highest + 1)
     }
 
     /// Withdraw a question — asked in error, or overtaken by events. Kept, not
@@ -2000,8 +2213,28 @@ impl DesignGraph {
     ///
     /// Sorted by id, so the order is stable across sessions.
     pub fn open_questions(&self) -> Result<Vec<AskedRecord>, DynoError> {
+        self.open_questions_for(None)
+    }
+
+    /// [`Self::open_questions`], narrowed to the questions put to ONE
+    /// Contributor by name, in batch order — the read an owner outside the
+    /// chat is sent (`fact:root-cause-an-owner-outside-the-chat-cannot-read-what-it-is-asked-to-approve-2026-09-29`).
+    ///
+    /// Scoped, the order is batch then number, so the batch reads as it was
+    /// put; unscoped it stays sorted by id, as it always was. An unaddressed
+    /// question is never attributed to anyone. A Contributor the design does
+    /// not hold is REFUSED rather than answered empty — "nothing is waiting on
+    /// you" is the most reassuring answer a typo could produce.
+    pub fn open_questions_for(
+        &self,
+        asked_of: Option<&str>,
+    ) -> Result<Vec<AskedRecord>, DynoError> {
+        if let Some(who) = asked_of {
+            self.require_contributor(who, "open_questions", "read the questions put to")?;
+        }
         let still_open: std::collections::HashSet<String> =
             self.detect_gaps()?.into_iter().map(|g| g.id).collect();
+        let index = self.node_type_index()?;
 
         let mut out = Vec::new();
         for n in self.scan_live_nodes(node::QUESTION)? {
@@ -2024,6 +2257,35 @@ impl DesignGraph {
             if !live {
                 continue;
             }
+            let opt = |k: &str| Some(get(k)).filter(|v| !v.is_empty());
+            let addressee = opt("asked_of");
+            if asked_of.is_some() && addressee.as_deref() != asked_of {
+                continue;
+            }
+            let mut evidence = Vec::new();
+            for e in self.outgoing(&n.node_id, Some(edge::ASKS_ABOUT))? {
+                let node_type = index.get(&e.to_id).cloned().unwrap_or_default();
+                let name = self
+                    .get_node(&node_type, &e.to_id)?
+                    .and_then(|t| {
+                        t.properties
+                            .get("name")
+                            .and_then(|v| v.as_str().map(str::to_string))
+                    })
+                    .unwrap_or_default();
+                evidence.push(EvidenceLink {
+                    id: e.to_id.clone(),
+                    node_type,
+                    name,
+                });
+            }
+            evidence.sort_by(|a, b| a.id.cmp(&b.id));
+            let mut answered_in: Vec<String> = self
+                .incoming(&n.node_id, Some(edge::ANSWERS))?
+                .into_iter()
+                .map(|e| e.from_id)
+                .collect();
+            answered_in.sort();
             out.push(AskedRecord {
                 question_id: n.node_id.clone(),
                 gap_id,
@@ -2036,10 +2298,28 @@ impl DesignGraph {
                     .and_then(crate::foundation::core::Value::as_bool)
                     .unwrap_or(false),
                 answer: get("answer"),
+                answered_by: (status == "answered").then(|| opt("answered_by")),
                 status,
+                asked_of: addressee,
+                batch: opt("batch"),
+                batch_position: n.properties.get("batch_position").and_then(|v| v.as_i64()),
+                evidence,
+                answered_in,
             });
         }
-        out.sort_by(|a, b| a.question_id.cmp(&b.question_id));
+        if asked_of.is_some() {
+            // The batch as it was put: by batch, then number; unbatched last.
+            out.sort_by(|a, b| {
+                (a.batch.is_none(), &a.batch, a.batch_position, &a.question_id).cmp(&(
+                    b.batch.is_none(),
+                    &b.batch,
+                    b.batch_position,
+                    &b.question_id,
+                ))
+            });
+        } else {
+            out.sort_by(|a, b| a.question_id.cmp(&b.question_id));
+        }
         Ok(out)
     }
 

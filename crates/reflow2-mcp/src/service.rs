@@ -6011,8 +6011,44 @@ pub struct AnswerQuestionReq {
     /// reach.
     #[serde(default)]
     pub question_id: Option<String>,
-    /// What the user said, in their own words.
+    /// What was said in reply, in the answerer's own words.
     pub answer: String,
+    /// The `Contributor` whose answer this is — the owner a question was put
+    /// to, their delegate, or the chat user. Recorded on the Question as
+    /// `answered_by`. OMITTED, the answer carries nobody's name and the reply
+    /// says so; it is never read as the chat user's by default. An id naming
+    /// no Contributor is REFUSED and nothing is written.
+    #[serde(default)]
+    pub answered_by: Option<String>,
+    /// When they answered, as a plain date. Rides `answered_by`.
+    #[serde(default)]
+    pub answered_at: Option<String>,
+    /// The design record this answer BECAME — the Decision, Requirement or
+    /// Capability it was written into. `ANSWERS` is drawn from it to the
+    /// Question in this same call, so the answer and what it became are one
+    /// call, not two. Its type is resolved from the id. A record that does not
+    /// exist is REFUSED and nothing is written.
+    #[serde(default)]
+    pub record: Option<String>,
+    /// Type of `record`, only when its id is held by more than one type.
+    #[serde(default)]
+    pub record_type: Option<String>,
+    /// HOW `record` answers the question — the `ANSWERS` edge's note.
+    #[serde(default)]
+    pub note: Option<String>,
+}
+
+/// `open_questions`, optionally for ONE addressee.
+#[derive(Debug, Default, Deserialize, JsonSchema)]
+#[serde(deny_unknown_fields)]
+pub struct OpenQuestionsReq {
+    /// A `Contributor` id: return only the questions put to them BY NAME, as
+    /// the batch they were put in (batch, then number), each carrying its
+    /// evidence links — the read an owner outside the chat is sent. Omitted:
+    /// every open question, sorted by id, as before. An id naming no
+    /// Contributor is REFUSED rather than answered empty.
+    #[serde(default)]
+    pub asked_of: Option<String>,
 }
 
 #[derive(Debug, Deserialize, JsonSchema)]
@@ -6034,6 +6070,23 @@ pub struct GapToPromptReq {
     /// Timestamp to record against the question, if you have one.
     #[serde(default)]
     pub asked_at: Option<String>,
+    /// The `Contributor` this question is PUT TO by name — an owner outside
+    /// the chat, a delegated owner. Recorded as the Question's `asked_of`, so
+    /// `open_questions(asked_of)` and `loop_status(contributor_id)` can hand it
+    /// to them. Omitted: put to nobody by name, and readers say so. Refused
+    /// unless it names a Contributor. Read on the serve pass.
+    #[serde(default)]
+    pub asked_of: Option<String>,
+    /// The batch this question travels in (e.g. `round-2`). It is numbered
+    /// next in that batch, so a relay quoting "Q4" resolves to the node.
+    #[serde(default)]
+    pub batch: Option<String>,
+    /// Node ids of the evidence the question rests on — a finding, a file, a
+    /// check — drawn as `ASKS_ABOUT` beside the gap's own nodes and handed to
+    /// the addressee as links to read, never as a summary to trust. Each must
+    /// resolve.
+    #[serde(default)]
+    pub evidence: Vec<String>,
 }
 
 /// One gap in a multi-gap ask. Answers are grouped **per gap**, which is what
@@ -6048,6 +6101,12 @@ pub struct GapPromptReq {
     /// Answers to this gap's prior `needs_llm` round. Empty on the prepare pass.
     #[serde(default)]
     pub answers: Vec<AgentAnswerReq>,
+    /// Node ids of the evidence THIS question rests on — a finding, a file, a
+    /// check — drawn as `ASKS_ABOUT` and handed to the addressee as links to
+    /// read, never as a summary to trust. Each must resolve. Read on the serve
+    /// pass.
+    #[serde(default)]
+    pub evidence: Vec<String>,
 }
 
 #[derive(Debug, Deserialize, JsonSchema)]
@@ -6058,6 +6117,19 @@ pub struct GapsToPromptsReq {
     /// Timestamp to record against the questions, if you have one.
     #[serde(default)]
     pub asked_at: Option<String>,
+    /// The `Contributor` this batch is PUT TO by name. Every question in the
+    /// call is recorded with it as `asked_of`, so `open_questions(asked_of)`
+    /// returns them to that person as one batch. Omitted: put to nobody by
+    /// name, and readers say so. Refused unless it names a Contributor.
+    #[serde(default)]
+    pub asked_of: Option<String>,
+    /// The name of this batch (e.g. `round-2`). Its questions are numbered 1…N
+    /// in the order of `gaps`, continuing the count if the batch already has
+    /// questions, and keep their numbers when asked again — so a relay quoting
+    /// "Q4 of round-2" resolves to a node without a map kept outside the
+    /// design. Omitted, no batch and no number are recorded.
+    #[serde(default)]
+    pub batch: Option<String>,
 }
 
 // ---- tools ------------------------------------------------------------------

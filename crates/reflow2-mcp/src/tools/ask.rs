@@ -70,7 +70,14 @@ impl ReflowService {
                        served from your stale copy, because recording a question against a \
                        finding nobody has is the worse outcome. Unmatched answers still come \
                        back in `unused_answers`, and `degrade_reason` says what went wrong. \
-                       Ask for this to turn a batch of gaps into questions for the owner.",
+                       TO PUT THE BATCH TO SOMEONE BY NAME \u{2014} an owner outside the chat, a \
+                       delegated owner \u{2014} pass `asked_of` (a Contributor) and `batch` (its name, \
+                       e.g. `round-2`) on the serve pass: each question records whom it was put \
+                       to and its number in the batch, in the order of `gaps`, so \
+                       open_questions(asked_of) hands that person the batch and a relay quoting \
+                       \"Q4\" resolves to a node. Per gap, `evidence` attaches the findings, files \
+                       or checks the question rests on, as links the addressee reads for \
+                       themselves. Ask for this to turn a batch of gaps into questions for the owner.",
         annotations(read_only_hint = false)
     )]
     pub async fn gaps_to_prompts(
@@ -135,15 +142,21 @@ impl ReflowService {
         }
 
         // Record all of them or none — the same bar the other bulk forms hold.
+        // Addressee and batch are facts about the CALL — the batch was put to
+        // one person — and the evidence is per question.
         let records: Vec<BulkAskedRecord> = gaps
             .iter()
             .zip(prompts.iter())
-            .map(|(gap, prompt)| BulkAskedRecord {
+            .zip(req.gaps.iter())
+            .map(|((gap, prompt), supplied)| BulkAskedRecord {
                 gap_id: gap.id.clone(),
                 affected_ids: gap.affected_ids.clone(),
                 question: prompt.question.clone(),
                 context_setter: Some(prompt.context_setter.clone()),
                 rephrase_degraded: prompt.rephrase_degraded,
+                asked_of: req.asked_of.clone(),
+                batch: req.batch.clone(),
+                evidence: supplied.evidence.clone(),
             })
             .collect();
 
@@ -200,7 +213,9 @@ impl ReflowService {
                        CLOSED since you took it is REFUSED, carrying `reason: gap_closed` in its data so you can \
                        branch on it without matching prose. Unmatched \
                        answers come back in `unused_answers`, and `degrade_reason` says what went wrong. Ask \
-                       for this when you want to turn a gap into a question you can put to the owner.",
+                       for this when you want to turn a gap into a question you can put to the owner. \
+                       On the serve pass, `asked_of` names the Contributor it is put to, `batch` the batch it \
+                       travels in (numbered next in that batch), and `evidence` the nodes it rests on.",
         annotations(read_only_hint = false)
     )]
     pub async fn gap_to_prompt(
@@ -273,6 +288,9 @@ impl ReflowService {
                     context_setter: Some(&prompt.context_setter),
                     asked_at: req.asked_at.as_deref(),
                     rephrase_degraded: prompt.rephrase_degraded,
+                    asked_of: req.asked_of.as_deref(),
+                    batch: req.batch.as_deref(),
+                    evidence: &req.evidence,
                 },
             )
             .map_err(dyno_err)?;
@@ -294,22 +312,48 @@ impl ReflowService {
     }
 
     #[tool(
-        description = "Questions already put to the user that still bear on something open, with the wording they saw. `status: asked` means they have not replied \u{2014} follow it up, do not ask again. `status: answered` means they replied but the gap is still open, so their answer needs writing into the design or the gap needs acknowledging; their reply comes back with it. Read this at the start of a session, before detect_gaps. AN EMPTY ANSWER IS NEVER BARE: because this is the orientation call a session runs FIRST, a zero here was being read as an all-clear while the loop was owed dozens of other things, so `count: 0` always arrives with a `loop_hint` saying WHICH it is \u{2014} the other non-zero debt named, or an explicit statement that nothing else is owed either. No questions open is not the same fact as nothing to do.",
+        description = "Questions already put to the user that still bear on something open, with the wording they saw. `status: asked` means they have not replied \u{2014} follow it up, do not ask again. `status: answered` means they replied but the gap is still open, so their answer needs writing into the design or the gap needs acknowledging; their reply comes back with it. Read this at the start of a session, before detect_gaps. AN EMPTY ANSWER IS NEVER BARE: because this is the orientation call a session runs FIRST, a zero here was being read as an all-clear while the loop was owed dozens of other things, so `count: 0` always arrives with a `loop_hint` saying WHICH it is \u{2014} the other non-zero debt named, or an explicit statement that nothing else is owed either. No questions open is not the same fact as nothing to do. \
+                       PASS `asked_of` (a Contributor) FOR THE QUESTIONS PUT TO ONE PERSON BY NAME, as the batch they were put in \u{2014} batch, then number \u{2014} each with `evidence`: links to every node it asks about and every finding or file the asker attached, to read for themselves rather than a summary to trust. That is the read to hand an owner who is not in the chat; the reply says how many open questions it left out (`not_put_to_them`). Every row carries `asked_of`, `null` when the question was put to nobody by name, and an answered row carries `answered_by`, `null` when nobody said who answered \u{2014} neither is ever guessed.",
         annotations(read_only_hint = true)
     )]
-    pub async fn open_questions(&self) -> Result<CallToolResult, McpError> {
+    pub async fn open_questions(
+        &self,
+        Parameters(req): Parameters<OpenQuestionsReq>,
+    ) -> Result<CallToolResult, McpError> {
         let g = self.graph.read().await;
-        let records = g.open_questions().map_err(dyno_err)?;
+        let records = g
+            .open_questions_for(req.asked_of.as_deref())
+            .map_err(dyno_err)?;
         // An empty answer here is the one that gets read as permission, so it
         // is the one that must say what it is (BL-91's hint, un-throttled).
         let empty = records.is_empty();
-        self.ok_read_empty_speaks(&g, records, empty)
+        let Some(who) = req.asked_of else {
+            return self.ok_read_empty_speaks(&g, records, empty);
+        };
+        // SCOPED, THE READ SAYS WHAT IT LEFT OUT: a filtered list must never
+        // pass for the whole one, so the count of open questions put to
+        // somebody else, or to nobody by name, rides beside the batch.
+        let all = g.open_questions().map_err(dyno_err)?.len();
+        let reply = json!({
+            "count": records.len(),
+            "items": records,
+            "asked_of": who,
+            "not_put_to_them": all - records.len(),
+        });
+        self.ok_read_empty_speaks(&g, reply, empty)
     }
 
     #[tool(
-        description = "Record what the user said in reply to a question, closing it. Write the \
-                       design nodes their answer implies separately — this is the record that \
-                       it was settled, not a substitute for the design. Takes EITHER `gap_id` \
+        description = "Record the reply to a question, WHO gave it, and WHAT RECORD it became, \
+                       in one call: `answered_by` (a Contributor \u{2014} the owner it was put to, \
+                       their delegate, or the chat user) is stored on the Question, and `record` \
+                       (the Decision, Requirement or Capability the answer was written into) \
+                       draws `ANSWERS` to it in the same call, so there is no second `answers` \
+                       call to forget. Omit either and the reply says so; neither is guessed, \
+                       and an answer naming nobody is never credited to the chat user or to \
+                       whoever answered before. A name that resolves to nothing is REFUSED \
+                       and nothing is written. Write the design record itself first \u{2014} \
+                       this is the record that it was settled. Takes EITHER `gap_id` \
                        or `question_id`; `open_questions` publishes both and either is accepted, \
                        because a Question this graph did not derive from a gap is reachable only \
                        by its own id. Answering one that was never asked is refused, not \
@@ -334,7 +378,27 @@ impl ReflowService {
             }
         };
         let mut g = self.write_lock().await?;
-        let found = g.answer_question(id, &req.answer).map_err(dyno_err)?;
+        let record_type = match req.record.as_deref() {
+            Some(rid) => Some(resolve_node_type(
+                &g,
+                req.record_type.as_deref(),
+                rid,
+                "record_type",
+            )?),
+            None => None,
+        };
+        let found = g
+            .answer_question_by(
+                id,
+                &req.answer,
+                reflow2_core::Answering {
+                    answered_by: req.answered_by.as_deref(),
+                    answered_at: req.answered_at.as_deref(),
+                    record: record_type.as_deref().zip(req.record.as_deref()),
+                    note: req.note.as_deref(),
+                },
+            )
+            .map_err(dyno_err)?;
         if !found {
             // Naming what EXISTS is the whole point: the old message said only
             // that the lookup missed, which cost a round trip the caller had no
@@ -352,7 +416,29 @@ impl ReflowService {
                 None,
             ));
         }
-        ok_json(json!({ "answered": true, "question": id }))
+        let mut reply = json!({ "answered": true, "question": id });
+        match req.answered_by.as_deref() {
+            Some(who) => reply["answered_by"] = json!(who),
+            None => {
+                reply["answered_by_note"] = json!(
+                    "this answer carries nobody's name: no `answered_by` was passed, so the \
+                     record says nobody said who answered, rather than crediting the chat user. \
+                     Pass `answered_by` (a Contributor) when you know whose answer it is."
+                )
+            }
+        }
+        match req.record.as_deref() {
+            Some(rid) => reply["answers_drawn_from"] = json!(rid),
+            None => {
+                reply["record_note"] = json!(
+                    "no `record` was named, so this answer reached the design as text only. \
+                     When it becomes a Decision, Requirement or Capability, pass that id as \
+                     `record` here (or draw `answers` from it) so a later session can tell it \
+                     was written in."
+                )
+            }
+        }
+        ok_json(reply)
     }
 
     #[tool(

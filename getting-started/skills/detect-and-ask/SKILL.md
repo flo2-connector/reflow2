@@ -141,15 +141,28 @@ the record**: the gaps stay counted and stay loud (`req:no-idea-goes-quiet`).
 4. **The question is recorded for you.** The serve pass of `gap_to_prompt` writes it into the
    graph, so a later session can see it was asked and in what words. When the user replies, call
    `answer_question` with the gap id and their answer *as well as* doing something about it — the
-   record alone changes nothing.
+   record alone changes nothing. Name **who gave it** (`answered_by`, their Contributor id) and
+   **what it became** (`record`, the node you wrote it into) in that same call; omit either and
+   the reply says it was not named, because neither is ever guessed.
+
+   **When the person who decides is NOT in the chat** — an owner another agent stands in for, a
+   manager, a delegated owner — put the questions to them BY NAME instead of carrying them by
+   hand: `gaps_to_prompts` with `asked_of` (their Contributor) and `batch` (a name such as
+   `round-2`), and per gap the `evidence` the recommendation rests on (the finding, file or check
+   ids). Hand them `open_questions` with `asked_of`: their batch in order, each question with
+   links to every node it asks about and every piece of evidence attached. Evidence you attach is
+   evidence you CHOSE, so it travels as links they can open and read past, never as a summary to
+   trust. Record each reply with `answered_by` set to them. Keep no question-number map outside
+   the design: each question's `batch_position` is its number, so "Q4 of round-2" resolves.
 
    Their reply lands in one of two places. If it adds to the design, write the nodes it implies
    and the gap closes on its own. If it means *"that is fine as it stands"*, call
    `acknowledge_gap` — an answer is not an acknowledgement, and a gap left open with an answered
    question against it will show up in `open_questions` until one or the other happens.
 
-   ⭐ **AND NAME WHAT THE ANSWER BECAME: `answers`, from the node you just wrote to the
-   Question.** This is the one step that lets a later session tell an answer that reached the
+   ⭐ **AND NAME WHAT THE ANSWER BECAME: `record` on `answer_question`, which draws `answers`
+   from the node you just wrote to the Question in the same call** (or `answers` on its own, when
+   the record is written after the answer). This is the one step that lets a later session tell an answer that reached the
    DESIGN from one that reached only the CHAT. Without it nothing can: `loop_status` counts
    answered questions whose gap is still open and says outright that it cannot tell which is
    which, because until 2026-09-02 there was no edge to look for — `Question.answer` promised

@@ -136,8 +136,8 @@ pub use depends::{
     ObservedUpstream, UpstreamFinding, UpstreamReport, UpstreamTarget,
 };
 pub use detect::{
-    AFFECTED_CAP, AskedQuestion, AskedRecord, DEFAULT_REPLY_BUDGET_CHARS, GapCandidate, GapPrompt,
-    GapReport, GapRow, GapScope, GapSource, NARROW_THE_SCOPE, NARROW_WITH_SCOPE, ReplyBudget,
+    AFFECTED_CAP, Answering, AskedQuestion, AskedRecord, DEFAULT_REPLY_BUDGET_CHARS, GapCandidate, GapPrompt,
+    EvidenceLink, GapReport, GapRow, GapScope, GapSource, NARROW_THE_SCOPE, NARROW_WITH_SCOPE, ReplyBudget,
     ReplyDetail, budget_gaps, name_leads_with_open,
 };
 pub use dimensions::{Dimension, DimensionDrift, DriftDirection};
