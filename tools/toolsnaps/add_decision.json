@@ -2,7 +2,7 @@
   "annotations": {
     "readOnlyHint": false
   },
-  "description": "Record a Decision and why it was made (an ADR). Use this whenever the user chooses between real alternatives — the rationale is what stops the choice being silently reversed later. Link it with `governed_by`. It lands `proposed`: recording a choice is not the same as settling it, so reaching `accepted` is a separate act (`set_decision_status`, or `collapse_decision` when a fork is chosen). That is deliberate — an accepted Decision is what where-am-i reads back to the user as \"what you decided\", so asserting it on their behalf would be the forgery dec:certainty-derived forbids for requirement status. BEHAVIOUR CHANGED 2026-07-25: this used to default to `accepted`. CONTENT FIELDS ARE REQUIRED TO CREATE AND OPTIONAL TO REVISE: call it again with the same id and only what you are changing — omitted fields keep their stored value, so correcting one never means re-sending a 2 KB field you did not touch. Ask for this when you want to write down a decision that was made and the reasoning behind it — an architecture decision record.",
+  "description": "Record a Decision and why it was made (an ADR). Use this whenever the user chooses between real alternatives — the rationale is what stops the choice being silently reversed later. Link it with `governed_by`. It lands `proposed`: recording a choice is not the same as settling it, so reaching `accepted` is a separate act (`set_decision_status`, or `collapse_decision` when a fork is chosen). That is deliberate — an accepted Decision is what where-am-i reads back to the user as \"what you decided\", so asserting it on their behalf would be the forgery dec:certainty-derived forbids for requirement status. BEHAVIOUR CHANGED 2026-07-25: this used to default to `accepted`. `related_to` IS DRAWN FOR EVERY KIND, and every edge the call draws is named in `edges_drawn` as a sentence, subject first — read it back, it is where a reversed direction shows. CONTENT FIELDS ARE REQUIRED TO CREATE AND OPTIONAL TO REVISE: call it again with the same id and only what you are changing — omitted fields keep their stored value, so correcting one never means re-sending a 2 KB field you did not touch. Ask for this when you want to write down a decision that was made and the reasoning behind it — an architecture decision record.",
   "inputSchema": {
     "$defs": {
       "RelationLinkReq": {
@@ -139,7 +139,7 @@
         ]
       },
       "related_to": {
-        "description": "The relations you judged REAL among the near-matches this call surfaced.\nSame shape as `review_relations`, drawn in the same call so the\njudgement cannot be lost between two.\n\nRequired — TOGETHER WITH ITS ALTERNATIVE BELOW — only when this is an\n`exploratory` Decision and near-matches were found. An idea nothing\nresembles is captured with no ceremony at all.",
+        "description": "The relations you judged REAL among the near-matches this call surfaced.\nSame shape as `review_relations`, drawn in the same call so the\njudgement cannot be lost between two.\n\nRequired — TOGETHER WITH ITS ALTERNATIVE BELOW — only when this is an\n`exploratory` Decision and near-matches were found. An idea nothing\nresembles is captured with no ceremony at all.\n\nDRAWN FOR EVERY KIND, and each edge is named in the reply's\n`edges_drawn`, subject first. Until 2026-09-29 a `choice` or no-kind\ndecision passed the duplicate guard naming these and then drew none of\nthem, silently.",
         "items": {
           "$ref": "#/$defs/RelationLinkReq"
         },
