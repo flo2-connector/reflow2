@@ -20,8 +20,6 @@ fn process_with(steps: &[(&str, &str, Option<i64>)]) -> DesignGraph {
         "The loop",
         Some("How the phases feed each other"),
         Some("process"),
-        None,
-        None,
     )
     .expect("flow");
     for (id, name, order) in steps {
@@ -131,35 +129,57 @@ fn a_self_trigger_is_a_degenerate_cycle_not_a_silent_drop() {
     assert_eq!(rep.cycles[0].path, ["cap:a"]);
 }
 
+/// WHERE A FLOW BEGINS AND ENDS IS COMPUTED FROM ITS ORDER, never stored
+/// (`dec:a-flows-order-is-its-step-order-and-entry-and-exit-are-computed`).
+/// The stored pointer this replaced named step 8 of 9 on reflow2's own design,
+/// because adding a step never updated it. So the test ADDS a step last and
+/// asks that the exit move with it.
 #[test]
-fn an_entry_point_matching_no_member_is_confessed() {
-    let mut g = DesignGraph::open_in_memory().expect("open");
-    g.add_project("proj:1", "Thing").expect("project");
-    g.add_flow("flow:f", "F", None, None, Some("cap:missing"), None)
-        .expect("flow");
-    g.add_capability("cap:a", "A", "step", None).expect("cap");
-    g.part_of_flow("cap:a", "flow:f", Some(1)).expect("member");
-    let rep = g.flow_report("flow:f").expect("report");
-    assert!(
-        rep.confessions
-            .iter()
-            .any(|c| c.contains("entry_point") && c.contains("cap:missing")),
-        "an entry point naming nothing in the flow is a model gap: {:?}",
-        rep.confessions
+fn entry_and_exit_are_the_lowest_and_highest_steps_and_move_with_the_order() {
+    let mut g = process_with(&[("cap:a", "A", Some(1)), ("cap:b", "B", Some(2))]);
+    let rep = g.flow_report("flow:loop").expect("report");
+    assert_eq!(rep.entry_points, ["cap:a"]);
+    assert_eq!(rep.exit_points, ["cap:b"]);
+
+    g.add_capability("cap:c", "C", "a later phase", None)
+        .expect("cap");
+    g.part_of_flow("cap:c", "flow:loop", Some(3))
+        .expect("member");
+    let rep = g.flow_report("flow:loop").expect("report");
+    assert_eq!(rep.entry_points, ["cap:a"]);
+    assert_eq!(
+        rep.exit_points,
+        ["cap:c"],
+        "a step added last is where the flow now ends — the copy that went stale was a stored one"
     );
 }
 
+/// Steps sharing an end position are all where the flow begins (or ends): the
+/// steps nothing precedes, the steps nothing follows.
 #[test]
-fn an_entry_point_may_name_the_capability_by_name() {
-    let mut g = DesignGraph::open_in_memory().expect("open");
-    g.add_project("proj:1", "Thing").expect("project");
-    g.add_flow("flow:f", "F", None, None, Some("Start here"), None)
-        .expect("flow");
-    g.add_capability("cap:a", "Start here", "step", None)
-        .expect("cap");
-    g.part_of_flow("cap:a", "flow:f", Some(1)).expect("member");
-    let rep = g.flow_report("flow:f").expect("report");
-    assert!(rep.confessions.is_empty(), "{:?}", rep.confessions);
+fn steps_that_share_an_end_position_are_all_entries_or_exits() {
+    let g = process_with(&[
+        ("cap:a", "A", Some(1)),
+        ("cap:b", "B", Some(1)),
+        ("cap:c", "C", Some(2)),
+    ]);
+    let rep = g.flow_report("flow:loop").expect("report");
+    assert_eq!(rep.entry_points, ["cap:a", "cap:b"]);
+    assert_eq!(rep.exit_points, ["cap:c"]);
+}
+
+/// With no step stating an order there is no first or last step to name, so
+/// none is invented; the report already confesses the missing order.
+#[test]
+fn a_flow_with_no_stated_order_names_no_entry_or_exit() {
+    let g = process_with(&[("cap:a", "A", None), ("cap:b", "B", None)]);
+    let rep = g.flow_report("flow:loop").expect("report");
+    assert!(rep.entry_points.is_empty() && rep.exit_points.is_empty());
+    assert!(
+        rep.confessions.iter().any(|c| c.contains("step_order")),
+        "{:?}",
+        rep.confessions
+    );
 }
 
 /// A Flow counts as structure: the phase nudge that asks "how is this
@@ -183,7 +203,7 @@ fn a_flow_counts_as_structure_for_the_phase_nudge() {
     assert!(fires(&g), "no components, no flows: the nudge is right");
 
     let mut g2 = g;
-    g2.add_flow("flow:loop", "The loop", None, None, None, None)
+    g2.add_flow("flow:loop", "The loop", None, None)
         .expect("flow");
     g2.part_of_flow("cap:a", "flow:loop", Some(1))
         .expect("member");

@@ -2077,11 +2077,6 @@ pub struct CapabilityReq {
     #[serde(default)]
     #[schemars(schema_with = "crate::enum_schema::capability_tier_opt")]
     pub tier: Option<String>,
-    /// True when this capability STARTS a flow. Distinct from `Flow.entry_point`,
-    /// which names a capability from the flow's side; this is the flag on the
-    /// capability itself, carried by 147 of 234 and written by nothing.
-    #[serde(default)]
-    pub is_entry_point: Option<bool>,
     /// THE REQUIREMENT THIS CAPABILITY SATISFIES — draws the SATISFIES edge in
     /// this call. The golden thread's first half, and the reason it is here:
     /// `add_verification` already takes `verifies` and `add_decision` already
@@ -2099,9 +2094,6 @@ pub struct CapabilityReq {
     /// call. Second half of the same thread, refused the same way.
     #[serde(default)]
     pub allocated_to: Option<String>,
-    /// True when this capability ENDS a flow. Sibling of the above.
-    #[serde(default)]
-    pub is_exit_point: Option<bool>,
 }
 
 #[derive(Debug, Deserialize, JsonSchema)]
@@ -3560,12 +3552,6 @@ pub struct AddFlowReq {
     #[serde(default)]
     #[schemars(schema_with = "crate::enum_schema::flow_type_opt")]
     pub flow_type: Option<String>,
-    /// Capability name or id where the flow begins.
-    #[serde(default)]
-    pub entry_point: Option<String>,
-    /// Capability name or id where the flow ends.
-    #[serde(default)]
-    pub exit_point: Option<String>,
     /// Where this sits on the strategic / operational / tactical ladder.
     /// Declared 2026-09-07: carried by most nodes of this type and settable by
     /// nothing, one of the fourteen holes the reachability split separated

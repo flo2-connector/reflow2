@@ -1788,25 +1788,6 @@ impl ReflowService {
         let stored =
             set_optional_props(&mut g, node_ty, &req.id, &[("tier", req.tier.as_deref())])?
                 .unwrap_or(stored);
-        // The two flow-endpoint flags are BOOLS, so they cannot go through the
-        // string helper. 147 of 234 capabilities carried them, every one
-        // written through the generic escape hatch.
-        let mut flags = reflow2_core::nodes::Props::new();
-        let mut any_flag = false;
-        for (k, v) in [
-            ("is_entry_point", req.is_entry_point),
-            ("is_exit_point", req.is_exit_point),
-        ] {
-            if let Some(v) = v {
-                flags = flags.set(k, v);
-                any_flag = true;
-            }
-        }
-        let stored = if any_flag {
-            g.upsert_node(node_ty, &req.id, flags).map_err(dyno_err)?
-        } else {
-            stored
-        };
         let node = NodeDto::from(stored);
         let found = search_first(&g, &req.id, existed, &format!("{name} {description}"));
         if let Err(e) = refuse_unless_deliberate(
@@ -2389,8 +2370,6 @@ impl ReflowService {
                 &name,
                 req.description.as_deref(),
                 req.flow_type.as_deref(),
-                req.entry_point.as_deref(),
-                req.exit_point.as_deref(),
             )
             .map_err(dyno_err)?;
         let stored = set_optional_props(
@@ -2404,7 +2383,7 @@ impl ReflowService {
     }
 
     #[tool(
-        description = "Record that a Capability is a step of a Flow (PART_OF_FLOW), with its position in `step_order`. A flow is an ordered sequence of capabilities — a use case, a process, a data path — and `flow_report` walks it in order. A step recorded WITHOUT `step_order` is listed after the ordered steps and the report says so rather than inventing a position; `is_entry_point` / `is_exit_point` on the capability mark where the flow starts and ends. A capability may be a step of several flows. Ask for this when you want to record that a capability is one step in a larger sequence.",
+        description = "Record that a Capability is a step of a Flow (PART_OF_FLOW), with its position in `step_order`. A flow is an ordered sequence of capabilities — a use case, a process, a data path — and `flow_report` walks it in order. A step recorded WITHOUT `step_order` is listed after the ordered steps and the report says so rather than inventing a position. Where the flow starts and ends is COMPUTED from the order — the lowest and highest positions — so it is never stated separately and cannot go stale. A capability may be a step of several flows. Ask for this when you want to record that a capability is one step in a larger sequence.",
         annotations(read_only_hint = false)
     )]
     pub async fn part_of_flow(

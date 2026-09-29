@@ -31,7 +31,7 @@ schema:
     TemporalFact:
       properties:
         name: { type: string, indexed: true, fulltext: true, description: "A short handle for the fact — what search_design and the gap surfaces render. OPTIONAL: declared 2026-09-07 after 49 of 429 facts carried one undeclared and every write warned (fact:defect-temporal-fact-name-is-undeclared-while-49-facts-carry-one); the statement stays the assertion." }
-        subject_id: { type: string, required: true, indexed: true, node_ref: true, description: "Node the fact is about. A NODE REFERENCE: the id must resolve, and a write naming a node that does not exist is refused." }
+        subject_id: { type: string, required: true, indexed: true, node_ref: true, description: "Node the fact is about. A NODE REFERENCE: the id must resolve, and a write naming a node that does not exist is refused.", twin_of: { edge: HAS_TEMPORAL_FACT, names: source, strays_become: ABOUT_ENTITY } }
         fact_type: { type: string, indexed: true, description: "status / allocation / dependency / satisfaction / property — what kind of assertion." }
         statement: { type: string, fulltext: true, description: "The time-bounded assertion in plain terms." }
         value: { type: string, description: "JSON of the asserted value (e.g. {status: realized})." }
@@ -74,7 +74,7 @@ schema:
 
     Snapshot:
       properties:
-        target_id: { type: string, required: true, indexed: true, description: "Node this snapshot captures. DELIBERATELY NOT `node_ref`, and the omission is a decision rather than an oversight: this is a HISTORICAL ANCHOR, not a live reference. It resolves when the snapshot is written and is EXPECTED to stop resolving afterwards, because a snapshot exists precisely to preserve what a node was — when the node is deleted, this record is the only surviving trace of it. Measured 2026-08-29: 196 values, 192 resolve, and all 4 that dangle are correct (art:content, art:content-test and art:tools-content deleted at epoch:content-store-discontinued; a duplicate Contributor merged into the surviving one). Declaring `node_ref` would refuse those writes and make the `dangling_reference` detector fire on history doing its job. Contrast TemporalFact.subject_id, declared identically apart from the flag: a fact about a vanished node is about nothing, so there the dangle IS the defect." }
+        target_id: { type: string, required: true, indexed: true, description: "Node this snapshot captures. DELIBERATELY NOT `node_ref`, and the omission is a decision rather than an oversight: this is a HISTORICAL ANCHOR, not a live reference. It resolves when the snapshot is written and is EXPECTED to stop resolving afterwards, because a snapshot exists precisely to preserve what a node was — when the node is deleted, this record is the only surviving trace of it. Measured 2026-08-29: 196 values, 192 resolve, and all 4 that dangle are correct (art:content, art:content-test and art:tools-content deleted at epoch:content-store-discontinued; a duplicate Contributor merged into the surviving one). Declaring `node_ref` would refuse those writes and make the `dangling_reference` detector fire on history doing its job. Contrast TemporalFact.subject_id, declared identically apart from the flag: a fact about a vanished node is about nothing, so there the dangle IS the defect.", twin_of: { edge: HAS_SNAPSHOT, names: source, type_property: target_type, outlives_target: true } }
         target_type: { type: string, indexed: true, description: "Label of the captured node (Component, Capability, Requirement...)." }
         state: { type: string, description: "JSON of the node's property bag at the epoch." }
         edges: { type: string, description: "JSON array of the node's design edges at the epoch (direction, edge_type, other endpoint, edge properties), sorted for byte-stable exports. Bookkeeping neighbours (history, provenance, observations, questions) are excluded: an edge move is a design change and must be recoverable (BL-63), the audit trail is not. Absent on snapshots taken before BL-63." }
@@ -111,41 +111,49 @@ schema:
     PRECEDES:
       from: DesignEpoch
       to: DesignEpoch
+      reading: { form: "primitive", primitive: "before", frame: "time", basis: "classified" }
       extraction_hint: One epoch comes before another (ordering).
 
     CONTAINS_EPOCH:
       from: DesignEpoch
       to: DesignEpoch
+      reading: { form: "primitive", primitive: "during", sub: "nests", inverse: true, basis: "classified" }
       extraction_hint: One epoch nests inside a larger one (a hotfix epoch within a release epoch).
 
     HAS_TEMPORAL_FACT:
       from: "*"
       to: TemporalFact
+      reading: { form: "primitive", primitive: "about", inverse: true, basis: "classified" }
       extraction_hint: An entity carries a time-bounded fact.
 
     ABOUT_ENTITY:
       from: TemporalFact
       to: "*"
+      reading: { form: "primitive", primitive: "about", basis: "classified" }
       extraction_hint: The entity a temporal fact concerns.
 
     VALID_FROM:
       from: TemporalFact
       to: DesignEpoch
+      reading: { form: "primitive", primitive: "during", sub: "starts", basis: "classified" }
       extraction_hint: The fact becomes true at this epoch.
 
     VALID_TO:
       from: TemporalFact
       to: DesignEpoch
+      reading: { form: "primitive", primitive: "during", sub: "ends", basis: "classified" }
       extraction_hint: The fact stops being true at this epoch (absent = still true).
 
     HAS_SNAPSHOT:
       from: "*"
       to: Snapshot
+      reading: { form: "primitive", primitive: "same-as", sub: "snapshot", basis: "classified" }
       extraction_hint: An entity has a captured state snapshot.
 
     AT_EPOCH:
       from: "*"
       to: DesignEpoch
+      reading: { form: "primitive", primitive: "during", sub: "belongs-to", basis: "classified" }
       extraction_hint: A Snapshot or ChangeEvent is pinned to the epoch it belongs to.
 
     SCHEDULED_FOR:
@@ -157,6 +165,18 @@ schema:
       # fact:defect-a-planned-verification-cannot-be-scheduled-because-scheduled-for-does-not-enumerate-it
       from: [Requirement, Capability, Question, Verification, Decision]
       to: [DesignEpoch, Release]
+      reading:
+        form: "composite"
+        composition: "SCHEDULED_FOR(x,t) := norm[expected|required](during(delivered(x), ≤ t))"
+        components: ["norm", "during"]
+        modifiers: { modality: "modality", recorded_at: "time" }
+        splits:
+          - property: "modality"
+            note: "Unset is `expected`, the schema default. A Release target (the increment axis, due to be part of it) differs by the far end, which a split on the edge cannot see."
+            values:
+              expected: { form: "composite", composition: "SCHEDULED_FOR(x,t) := norm[expected](during(delivered(x), ≤ t))", components: ["norm", "during"], modality: "intended", note: "A plan." }
+              required: { form: "composite", composition: "SCHEDULED_FOR(x,t) := norm[required](during(delivered(x), ≤ t))", components: ["norm", "during"], modality: "obligatory", note: "An obligation: missing it is a computed violation, a KPP's deadline face." }
+        basis: "classified"
       extraction_hint: >
         The satisfaction schedule — this requirement, capability, check (Verification)
         or ruling (Decision) is DUE at that epoch or release. Deliberately NOT AT_EPOCH, which means "belongs
@@ -172,6 +192,18 @@ schema:
     CHANGED:
       from: ChangeEvent
       to: "*"
+      reading:
+        form: "primitive"
+        primitive: "causes"
+        modifiers: { accepted_baseline: "lifecycle", action: "subtype", field: "other" }
+        splits:
+          - property: "action"
+            note: "Unset keeps the reading above: the change had some effect on the node."
+            values:
+              added: { form: "primitive", primitive: "source-of", sub: "made", note: "The change brought the node into being." }
+              modified: { form: "primitive", primitive: "causes", sub: "alters", note: "The change altered the node." }
+              removed: { form: "primitive", primitive: "causes", sub: "ends", polarity: "-", note: "The change ended the node." }
+        basis: "classified"
       extraction_hint: The node a ChangeEvent created, modified, or removed.
       properties:
         action: { type: enum, values: [added, modified, removed] }
@@ -181,4 +213,5 @@ schema:
     OCCURS_DURING:
       from: "*"
       to: DesignEpoch
+      reading: { form: "primitive", primitive: "during", basis: "classified" }
       extraction_hint: A Fragment/ChangeEvent/Verification happened during an epoch.

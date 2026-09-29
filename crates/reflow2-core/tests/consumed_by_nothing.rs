@@ -119,8 +119,7 @@ fn a_capability_that_is_a_step_in_a_flow_is_not_observed() {
     let mut g = graph();
     a_design_that_models_consumption(&mut g);
     built(&mut g, "cap:step", "realized");
-    g.add_flow("flow:checkout", "Checkout", None, None, None, None)
-        .unwrap();
+    g.add_flow("flow:checkout", "Checkout", None, None).unwrap();
     g.part_of_flow("cap:step", "flow:checkout", Some(1))
         .unwrap();
     assert!(

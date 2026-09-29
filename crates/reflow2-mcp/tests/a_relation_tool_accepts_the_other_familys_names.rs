@@ -282,8 +282,6 @@ async fn the_handoff_lands_end_to_end() {
         status: None,
         distinct_from: None,
         tier: None,
-        is_entry_point: None,
-        is_exit_point: None,
     })));
     j!(s.add_component(Parameters(
         serde_json::from_value(
