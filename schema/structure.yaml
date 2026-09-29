@@ -253,6 +253,7 @@ schema:
     ALLOCATED_TO:
       from: Capability
       to: Component
+      reading: { form: "primitive", primitive: "located-at", modality: "intended", frame: "structure", modifiers: { data_volume: "quantity", frequency: "quantity", note: "other", weight: "strength", weight_basis: "provenance" }, basis: "classified" }
       extraction_hint: A Capability is assigned to the Component that will provide it. The WHAT→WHERE binding.
       properties:
         note: { type: string }
@@ -265,6 +266,7 @@ schema:
     PROVIDES:
       from: Component
       to: Interface
+      reading: { form: "primitive", primitive: "source-of", sub: "offers", modifiers: { data_volume: "quantity", frequency: "quantity", weight: "strength", weight_basis: "provenance" }, basis: "classified" }
       extraction_hint: A Component exposes/provides an Interface.
       properties:
         weight: { type: float, range: [0.0, 1.0], description: "Coupling strength (higher = tighter)." }
@@ -275,6 +277,7 @@ schema:
     CONSUMES:
       from: "*"
       to: Interface
+      reading: { form: "primitive", primitive: "causes", polarity: "+", modality: "necessary", inverse: true, modifiers: { data_volume: "quantity", frequency: "quantity", weight: "strength", weight_basis: "provenance" }, basis: "classified" }
       extraction_hint: A Component or Actor depends on/consumes an Interface.
       properties:
         weight: { type: float, range: [0.0, 1.0], description: "Coupling strength (higher = tighter)." }
@@ -288,6 +291,18 @@ schema:
         to: [Decision, DesignRule, Requirement]
       from: "*"
       to: "*"
+      reading:
+        form: "primitive"
+        primitive: "norm"
+        sub: "binds"
+        inverse: true
+        modifiers: { note: "other", ruling: "subtype" }
+        splits:
+          - property: "ruling"
+            note: "Unset keeps the reading above: the target shapes the source."
+            values:
+              parks: { form: "primitive", primitive: "norm", sub: "parks", modality: "permitted", inverse: true, note: "The ruling declares the source's unattached or unsatisfied state deliberate, so detectors report it as parked." }
+        basis: "classified"
       # BOTH ENDS STAY WILDCARD, and the hint is what was wrong.
       #
       # Considered for enumeration 2026-08-08 alongside CONSTRAINS and REFUSED

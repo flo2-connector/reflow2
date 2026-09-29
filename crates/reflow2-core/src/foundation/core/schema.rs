@@ -142,7 +142,278 @@ pub struct EdgeTypeDef {
     /// under a new name.
     #[serde(default)]
     pub deliberately_open: Option<DeliberateOpenness>,
+    /// What this edge MEANS, in primitive terms — see [`EdgeReading`].
+    ///
+    /// Advisory like `deliberately_open`: it never validates a write and never
+    /// narrows an endpoint. It is the one declared place a computation can ask
+    /// what an edge is, instead of keeping its own list of names.
+    #[serde(default)]
+    pub reading: Option<EdgeReading>,
 }
+
+/// One reading of one relation: the primitive it is an instance of, or the
+/// composition of primitives it stands for, with the operators on it.
+///
+/// An [`EdgeReading`] carries one of these for the edge type as a whole, and a
+/// [`ReadingSplit`] carries one per property value when the type is really
+/// several relations under one name.
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
+pub struct Reading {
+    /// `primitive` (one primitive plus operators), `composite` (a formula over
+    /// primitives), or `leftover` (no reading fits — say why in `note`).
+    pub form: String,
+    /// The primitive relation this is one instance of, when `form` is
+    /// `primitive`. One of [`RELATION_PRIMITIVES`].
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub primitive: Option<String>,
+    /// A narrower kind within the primitive — `realizes` within instance-of,
+    /// `binds` / `meets` / `evaluates` within norm, `made` within source-of.
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub sub: Option<String>,
+    /// The formula, when `form` is `composite`, written over primitives with
+    /// `∧` (and), `∘` (chain), `⁻¹` (inverse) and `¬` (not).
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub composition: Option<String>,
+    /// Every primitive the composition uses. Each is one of
+    /// [`RELATION_PRIMITIVES`].
+    #[serde(default, skip_serializing_if = "Vec::is_empty")]
+    pub components: Vec<String>,
+    /// Sign where the relation has one: `+`, `-`, `0`, `=`, `±`, or `carried`
+    /// when a property of the edge carries it.
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub polarity: Option<String>,
+    /// Possibility where the relation has one: `sufficient`, `necessary`,
+    /// `possible`, `initiating`, `intended`, `obligatory` …
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub modality: Option<String>,
+    /// For part-of, located-at, during and before: the frame it holds in —
+    /// `structure`, `membership`, `scope`, `space`, `environment`, `time`,
+    /// `sequence` …
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub frame: Option<String>,
+    /// True when the declared direction runs against the primitive's canonical
+    /// one (`CONTAINS` is whole → part; part-of reads part → whole).
+    #[serde(default, skip_serializing_if = "std::ops::Not::not")]
+    pub inverse: bool,
+    /// True when the relation is asserted NOT to hold — a `CAUSES` edge judged
+    /// `spurious`, or one whose causal claim a test `refuted`. Negation is an
+    /// operator on a reading, not a primitive of its own, and a negated reading
+    /// never matches a selection for its primitive.
+    #[serde(default, skip_serializing_if = "std::ops::Not::not")]
+    pub negated: bool,
+    /// Why no reading fits, when `form` is `leftover`; otherwise a short caveat.
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub note: Option<String>,
+}
+
+impl Reading {
+    /// Does this reading assert `primitive` — as its one primitive, or as a
+    /// component of its composition? A negated reading asserts nothing.
+    pub fn uses(&self, primitive: &str) -> bool {
+        !self.negated
+            && (self.primitive.as_deref() == Some(primitive)
+                || self.components.iter().any(|c| c == primitive))
+    }
+
+    /// The reading in one short line — `part-of⁻¹`, `causes(-)`,
+    /// `norm(+) · meets`, `about ∧ norm`, `¬causes`, `leftover`.
+    pub fn summary(&self) -> String {
+        let mut s = String::new();
+        if self.negated {
+            s.push('¬');
+        }
+        match self.form.as_str() {
+            "primitive" => {
+                s.push_str(self.primitive.as_deref().unwrap_or_default());
+                if self.inverse {
+                    s.push_str("⁻¹");
+                }
+                if let Some(p) = &self.polarity {
+                    s.push_str(&format!("({p})"));
+                }
+                if let Some(sub) = &self.sub {
+                    s.push_str(&format!(" · {sub}"));
+                }
+            }
+            "composite" => s.push_str(&self.components.join(" ∧ ")),
+            other => s.push_str(other),
+        }
+        s
+    }
+}
+
+/// What an edge type MEANS: the primitive relation it is one instance of, or
+/// the composition of primitives it stands for, with the operators on it — and,
+/// when the type is really several relations under one name, which relation
+/// each value of a property selects.
+///
+/// ⭐ WHY THIS EXISTS (`req:every-edge-type-declares-what-it-means`). The
+/// meaning of an edge was written down in at least six private places — the
+/// impact table (`structural_rule`), the structural sweep's
+/// `is_traceability_edge`, `RISK_EDGES`, `COMMITMENT_EDGES`,
+/// `ARTIFACT_BOOKKEEPING`, and the five hand-written projections of
+/// `dec:a-projection-is-named-and-the-battery-runs-over-it` — and nothing kept
+/// them in agreement. A declared reading is the one source they can move onto.
+///
+/// ⚠️ A PER-TYPE READING IS NOT ALWAYS A PER-EDGE ONE. Fifteen types read
+/// differently by a value on each edge (measured 2026-09-28,
+/// `fact:some-edge-types-are-several-relations-split-by-a-property-value-so-a-per-type-reading-is-wrong-for-part-of-them-2026-09-28`).
+/// `CAUSES` reads as a correlation unless its `basis` is `causal` or
+/// `observed` (the schema default is `correlational`), and as no causal link
+/// at all when `spurious` or `refuted`; `CONTRADICTS` with `alignment:
+/// supporting` is corroboration; `AUTHORED_BY`'s roles are three relations;
+/// `DEPENDS_ON` is a flow for data and a cause for a call; a `SATISFIES` that
+/// is only `planned` is a promise, not a fact. `splits` carries those, and
+/// [`EdgeReading::resolve`] is how one edge's meaning is read — never the
+/// type-level reading alone.
+///
+/// A split reads the EDGE's values, so it cannot see the node at the far end.
+/// Three readings turn on that and are carried as notes for now: an
+/// `AUTHORED_BY` approver on an accepted node against one on a proposed
+/// Decision, `CONTAINS` from the project against one from a component, and
+/// `SCHEDULED_FOR` a Release.
+///
+/// The vocabulary is the candidate set from the 2026-09-28 three-graph
+/// classification (reflow2, StoryFlow's dynograph and market_graph; scheme v0.1
+/// in the graph-primitives analysis). It is EXPLORATORY: a later scheme may
+/// merge candidates (located-at and during into part-of) or add them (kind-of,
+/// inheres-in). That is why every reading carries its `basis`, and why the
+/// sets below are constants a test reads rather than a validation rule: a
+/// reading is an interpretation a later reviewer may overturn without a
+/// migration.
+#[derive(Debug, Clone, Default, Serialize, Deserialize)]
+pub struct EdgeReading {
+    /// What the edge type is named for — the reading an edge carries when no
+    /// split applies.
+    #[serde(flatten)]
+    pub reading: Reading,
+    /// Every property this edge declares, and the modifier kind it is — one of
+    /// [`MODIFIER_KINDS`]. A property of an edge qualifies the relation (how
+    /// sure, since when, how strong), so all of them are listed.
+    #[serde(default, skip_serializing_if = "std::collections::BTreeMap::is_empty")]
+    pub modifiers: std::collections::BTreeMap<String, String>,
+    /// When one edge type is several relations told apart by a property value
+    /// on each edge, the reading each value selects. Applied in order, and a
+    /// later split that matches REPLACES what an earlier one gave — so
+    /// `CAUSES` reads its `basis` first and a `refuted` `validation_status`
+    /// then overrides it.
+    #[serde(default, skip_serializing_if = "Vec::is_empty")]
+    pub splits: Vec<ReadingSplit>,
+    /// WHO SAYS SO: `classified` (a model's reading, not yet reviewed — every
+    /// reading starts here) or `reviewed` (the owner confirmed it). One of
+    /// [`READING_BASES`].
+    pub basis: String,
+}
+
+/// One property whose value selects which relation an edge is.
+#[derive(Debug, Clone, Default, Serialize, Deserialize)]
+pub struct ReadingSplit {
+    /// The edge property whose value decides — one the edge declares.
+    pub property: String,
+    /// The reading each value selects. A value not listed leaves the reading
+    /// as it was.
+    pub values: std::collections::BTreeMap<String, Reading>,
+    /// What a reader should know about the split — the default that applies
+    /// when an edge never says, or what the value alone cannot tell.
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub note: Option<String>,
+}
+
+impl EdgeReading {
+    /// Does the TYPE-LEVEL reading use `primitive`? For a type with splits this
+    /// says what the type is named for, not what any one edge means — use
+    /// [`EdgeReading::resolve`] for that.
+    pub fn uses(&self, primitive: &str) -> bool {
+        self.reading.uses(primitive)
+    }
+
+    /// The reading in one short line, naming the properties that split it:
+    /// `causes(+) | by basis, validation_status`. Kept under 80 characters on
+    /// purpose — the listings that carry it withhold longer strings when over
+    /// budget.
+    ///
+    /// The whole-vocabulary read was already past its reply budget with all
+    /// prose withheld before readings existed (45,818 characters against
+    /// 30,000, measured 2026-09-28), and full readings would have added about
+    /// 10,000 more to an answer that is never shortened. The full object is
+    /// served where a caller is choosing between edges.
+    pub fn summary(&self) -> String {
+        let base = self.reading.summary();
+        if self.splits.is_empty() {
+            return base;
+        }
+        let by: Vec<&str> = self.splits.iter().map(|s| s.property.as_str()).collect();
+        format!("{base} | by {}", by.join(", "))
+    }
+
+    /// The reading(s) ONE edge carries. `value_of` returns that edge's value(s)
+    /// for a property — the value it holds, the schema default when it holds
+    /// none, and one entry per item of a list property (an `AUTHORED_BY` edge
+    /// with two roles is two relations). Splits apply in order; a split whose
+    /// values match none of the edge's leaves the readings as they were.
+    pub fn resolve(&self, value_of: impl Fn(&str) -> Vec<String>) -> Vec<Reading> {
+        let mut current = vec![self.reading.clone()];
+        for split in &self.splits {
+            let hits: Vec<Reading> = value_of(&split.property)
+                .iter()
+                .filter_map(|v| split.values.get(v).cloned())
+                .collect();
+            if !hits.is_empty() {
+                current = hits;
+            }
+        }
+        current
+    }
+}
+
+/// The candidate primitive relations a reading may name (scheme v0.1 of the
+/// graph-primitives analysis, 2026-09-28). Exploratory — see [`EdgeReading`].
+pub const RELATION_PRIMITIVES: [&str; 16] = [
+    "about",
+    "before",
+    "becomes",
+    "causes",
+    "compares",
+    "controls",
+    "during",
+    "flows-to",
+    "instance-of",
+    "located-at",
+    "measures",
+    "norm",
+    "part-of",
+    "same-as",
+    "source-of",
+    "stance",
+];
+
+/// What a property of an edge can be, as a qualifier of the relation.
+pub const MODIFIER_KINDS: [&str; 18] = [
+    "confidence",
+    "evidence",
+    "identity",
+    "lag",
+    "lifecycle",
+    "location",
+    "mechanism",
+    "modality",
+    "other",
+    "perspective",
+    "polarity",
+    "provenance",
+    "quantity",
+    "role",
+    "statistics",
+    "strength",
+    "subtype",
+    "time",
+];
+
+/// The forms a reading takes.
+pub const READING_FORMS: [&str; 3] = ["primitive", "composite", "leftover"];
+
+/// Who says a reading is right.
+pub const READING_BASES: [&str; 2] = ["classified", "reviewed"];
 
 /// The pairs a deliberately-open edge is FOR. Omit a side to say it is
 /// genuinely universal there; `GOVERNED_BY` is open on `from` because anything
