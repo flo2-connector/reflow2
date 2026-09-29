@@ -18,8 +18,6 @@ schema:
         tier: { type: enum, values: [strategic, operational, tactical], indexed: true }
         inputs: { type: string, description: "JSON array of input names/types the capability consumes." }
         outputs: { type: string, description: "JSON array of outputs it produces." }
-        is_entry_point: { type: bool, description: "A flow's starting capability." }
-        is_exit_point: { type: bool, description: "A flow's terminal capability." }
         status: { type: enum, values: [planned, in_progress, realized, verified], default: planned, indexed: true, description: "How far this capability has got, and NOTHING ELSE. It records what was BUILT, so it only ever moves forward. THERE IS DELIBERATELY NO `cancelled` OR `dropped` VALUE, and the absence is the thing to read: abandonment is NOT a status here, it is recorded by an ACCEPTED Decision drawing OBSOLETES at the capability (dec:idea-discontinued-is-a-first-class-state) — the decision that withdrew it is the honest source, and a discontinuation always has one even when it has no replacement. That computes `discontinued: true`, which get_node returns beside this field and which three gap detectors and delivery arithmetic already read; this field goes on saying `realized` on purpose, because the thing WAS built. Recording abandonment by writing DROPPED into `description` instead is the failure this note exists to prevent — it puts the fact somewhere no detector, report or rollup can compute on. The retire-from-design skill (/retire-from-design) walks it, and asks the question that decides it: was this ever true? A capability nobody ever agreed to is a different case with no decision to hang the edge from — see dec:exploratory-staging." }
         provenance: { type: enum, values: [authored, planned, inferred, healed, reconciled, imported], default: authored, indexed: true, description: "How this node entered the graph. Same vocabulary as Fragment.provenance." }
         delivery: { type: enum, values: [artifact, model], indexed: true, description: "ABSENT MEANS NOBODY SAID, and absence READS AS `artifact` in the computation — deliberately NOT a schema default, because a default would be materialised onto every existing capability when the export is read back, and a design whose export does not restore to itself is a backup that would not restore (`epoch:a-default-is-not-a-difference`). Found by the round-trip check the moment this property was added with a default. WHAT KIND of thing delivers this capability — and deliberately NOT whether it was delivered, which stays COMPUTED from the golden thread and is never asserted (req:completion-computed, dec:arrival-delta). Declaring the KIND is not declaring SUCCESS, which is the whole reason this is safe to let an author state. `artifact` (the default) means a file realizes it, and delivery needs BOTH an artifact and a passing check, exactly as before. `model` means the deliverable IS a change to the design — a re-decomposition, a retirement, a governance ruling, a correction to a model that was wrong about the world — so there is no file to point at and a passing check is the whole of the evidence. WHY IT EXISTS: measured 2026-08-20, `arrival_delta` reported an epoch's BOTH delivered capabilities as `outstanding`, because delivery required a file on disk and model work produces none. `outstanding` means \"nobody has said whether this was deferred or discontinued\" — a false statement about finished work, asked again every time. The natural response is to stop scheduling model work, which is most of what systems engineering is. THE REJECTED FIX, recorded so it is not retried: inferring `model` from the ABSENCE of an artifact. The commonest reason a capability has no file is that NOBODY HAS BUILT IT YET, so that rule would report unbuilt work as delivered the moment a check was attached — a false green in the dangerous direction. Same shape as `Interface.designation` and `Artifact.volatility`: the author declares what only they can know, and the computation earns the rest." }
@@ -58,8 +56,6 @@ schema:
         description: { type: string, fulltext: true }
         flow_type: { type: enum, values: [process, data_flow, control_flow, decision_flow, capture, retrieval, generation], default: process, indexed: true }
         tier: { type: enum, values: [strategic, operational, tactical, cross_cutting], default: operational, indexed: true }
-        entry_point: { type: string, description: "Capability name/id where the flow begins." }
-        exit_point: { type: string, description: "Capability name/id where the flow ends." }
       embedding_field: description
       resolution: { strategy: fuzzy_then_vector, fuzzy_threshold: 82 }
       discrimination:
@@ -100,6 +96,23 @@ schema:
         to: [Component, Capability]
       from: "*"
       to: "*"
+      reading:
+        form: "primitive"
+        primitive: "causes"
+        polarity: "+"
+        modality: "necessary"
+        inverse: true
+        modifiers: { data_volume: "quantity", dependency_type: "subtype", frequency: "quantity", optional: "modality", weight: "strength", weight_basis: "provenance" }
+        splits:
+          - property: "dependency_type"
+            note: "Unset keeps the reading above: the source needs the target to function. `optional` is a modality modifier, not a split — a split REPLACES the reading, so it could not soften a data flow without erasing it."
+            values:
+              function_call: { form: "primitive", primitive: "causes", polarity: "+", modality: "initiating", note: "The dependent invokes what it depends on." }
+              control_flow: { form: "primitive", primitive: "causes", polarity: "+", modality: "initiating", note: "The dependent hands control to what it depends on." }
+              data_flow: { form: "primitive", primitive: "flows-to", inverse: true, note: "Data passes from what is depended on to the dependent." }
+              error_flow: { form: "primitive", primitive: "flows-to", inverse: true, note: "Errors pass across. The classification gave no direction; read as data_flow's, from what is depended on." }
+              physical: { form: "primitive", primitive: "causes", polarity: "+", modality: "necessary", inverse: true, note: "Physically: a load path, a mount." }
+        basis: "classified"
       extraction_hint: >
         Source needs target to function. Between Capabilities this forms the
         functional DAG (must stay acyclic); also valid Component→Component.
@@ -116,6 +129,7 @@ schema:
     PART_OF_FLOW:
       from: Capability
       to: Flow
+      reading: { form: "composite", composition: "PART_OF_FLOW(c,f) := part-of(c,f) ∧ ∀c' part-of(c',f): step_order(c) < step_order(c') → before(c,c')", components: ["part-of", "before"], modifiers: { data_volume: "quantity", frequency: "quantity", step_order: "other", weight: "strength", weight_basis: "provenance" }, basis: "classified" }
       extraction_hint: A Capability participates in a Flow.
       properties:
         step_order: { type: int, description: "Position of this capability within the flow." }
@@ -127,6 +141,19 @@ schema:
     INTERACTS_WITH:
       from: Actor
       to: "*"
+      reading:
+        form: "leftover"
+        modifiers: { interaction: "subtype" }
+        note: "An umbrella: with `interaction` unset, or outside the four values, the edge says only that SOME relation exists."
+        splits:
+          - property: "interaction"
+            note: "Free text, not an enum; these four are the values its description names."
+            values:
+              reads: { form: "primitive", primitive: "flows-to", sub: "reads", inverse: true }
+              writes: { form: "primitive", primitive: "flows-to", sub: "writes" }
+              receives: { form: "primitive", primitive: "flows-to", sub: "receives", inverse: true }
+              triggers: { form: "primitive", primitive: "causes", polarity: "+", modality: "initiating" }
+        basis: "classified"
       extraction_hint: An Actor interacts with a Capability, Flow, or Interface.
       properties:
         interaction: { type: string, description: "reads / writes / triggers / receives." }

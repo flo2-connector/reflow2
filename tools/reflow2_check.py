@@ -907,6 +907,23 @@ def main() -> int:
             # committed one. If the two disagree, every finding after this is
             # about a design that is not quite the one in the repository.
             lossy = check_round_trip(doc, server, tmp)
+            # A relation the export holds twice and out of step is brought
+            # into step as it imports, and the import SAYS so. The round trip
+            # then differs, but the cause is not a backup that fails to
+            # restore: it is a committed export written before its copies were
+            # kept in step. So the import's own line is named first
+            # (req:a-relation-stored-in-more-than-one-place-has-one-authoritative-copy-and-no-copy-drifts-unnoticed).
+            twins = next((line.strip() for line in imported.stderr.splitlines()
+                          if "stored twice" in line), None)
+            if twins:
+                failures.append(
+                    "STORED TWINS  the committed export holds relations stored twice "
+                    f"and out of step, and importing it {twins.removeprefix('reflow2: ')} "
+                    "Re-export from a store this binary has opened (the repair runs on "
+                    "open and is reported in loop_status as `repaired_on_open`), so the "
+                    "committed copy agrees with its authority.")
+            # Reported as well, never instead: a round trip can also lose
+            # something the twin repair has nothing to do with.
             if lossy:
                 failures.append(lossy)
 

@@ -261,6 +261,7 @@ schema:
     CONTAINS:
       from: ["Project", "Component"]
       to: "*"
+      reading: { form: "primitive", primitive: "part-of", frame: "structure", inverse: true, modifiers: { note: "other" }, basis: "classified" }
       extraction_hint: >
         Ownership/containment: from the Project down to any node, and between
         Components to express the axis-Y decomposition spine (a system CONTAINS
@@ -271,6 +272,7 @@ schema:
     CLAIMS:
       from: Contributor
       to: "*"
+      reading: { form: "composite", composition: "CLAIMS(p, seed) := causes[intended](p, Δ region(seed, depth)) ∧ during(claim, p's live session)", components: ["causes", "during"], modifiers: { claimed_at: "time", depth: "other", note: "other", seat: "provenance" }, basis: "classified" }
       extraction_hint: >
         A Contributor has taken a region of the design in hand, so others can see
         what is already held before starting. ADVISORY, never a lock: the design
@@ -291,6 +293,7 @@ schema:
     DECOMPOSES:
       from: Requirement
       to: Requirement
+      reading: { form: "primitive", primitive: "part-of", sub: "partition of intent", frame: "structure", modifiers: { note: "other" }, basis: "classified" }
       extraction_hint: >
         Child DECOMPOSES parent: a 1:1 split of one requirement into smaller
         testable pieces that adds no new information ("the app must have a
@@ -310,6 +313,19 @@ schema:
         to: [Requirement, Constraint]
       from: "*"
       to: "*"
+      reading:
+        form: "primitive"
+        primitive: "norm"
+        sub: "meets"
+        polarity: "+"
+        modifiers: { coverage: "strength", evidence: "evidence" }
+        splits:
+          - property: "coverage"
+            note: "Unset reads as `full`: the reading above, which counts toward delivery."
+            values:
+              partial: { form: "primitive", primitive: "norm", sub: "meets", polarity: "+", note: "Met to a degree; not counted as delivery." }
+              planned: { form: "primitive", primitive: "norm", sub: "meets", polarity: "+", modality: "intended", note: "A promise, not a fact; not counted as delivery." }
+        basis: "classified"
       extraction_hint: >
         Source node (Capability, Component, Artifact...) fulfills a target
         Requirement or Constraint. The backbone of design traceability.
@@ -320,6 +336,20 @@ schema:
     AUTHORED_BY:
       from: "*"
       to: Contributor
+      reading:
+        form: "primitive"
+        primitive: "source-of"
+        sub: "made"
+        inverse: true
+        modifiers: { approved_at: "time", authored_at: "time", reviewed_at: "time", roles: "subtype" }
+        splits:
+          - property: "roles"
+            note: "A set: an edge with two roles is two relations. A legacy edge with no `roles` keeps the reading above."
+            values:
+              author: { form: "primitive", primitive: "source-of", sub: "made", inverse: true }
+              reviewer: { form: "primitive", primitive: "stance", sub: "reviews", inverse: true, note: "Held a view on it; the edge does not say which." }
+              approver: { form: "primitive", primitive: "stance", sub: "settles", inverse: true, note: "Whose word settles it. Given on an accepted node; on a `proposed` Decision, asked and not yet given (report.rs's assigned-open-decision count). The sign is the node's status, not the edge's." }
+        basis: "classified"
       extraction_hint: >
         A design node was authored, reviewed, or approved by a Contributor —
         the structured "who" behind provenance's "how". Deliberately NOT a
@@ -337,6 +367,7 @@ schema:
     OWNED_BY:
       from: "*"
       to: Contributor
+      reading: { form: "primitive", primitive: "controls", sub: "owns", inverse: true, modifiers: { note: "other", since: "time" }, basis: "classified" }
       extraction_hint: >
         Whose AREA this is — durable, standing, and never released. THE THIRD
         "WHO" AXIS, and the one that was missing: AUTHORED_BY says who WROTE
@@ -396,6 +427,7 @@ schema:
       # consumer-facing break.
       from: "*"
       to: Question
+      reading: { form: "composite", composition: "ANSWERS(r,q) := norm.meets(+)(r,q) ∧ causes(q, r)", components: ["norm", "causes"], modifiers: { note: "evidence" }, basis: "classified" }
       extraction_hint: >
         The design record that ANSWERED a question — the Decision, Requirement
         or Capability the user's reply actually became. Reads as a sentence:
@@ -414,6 +446,7 @@ schema:
     ASKS_ABOUT:
       from: Question
       to: "*"
+      reading: { form: "primitive", primitive: "about", sub: "concerns", modifiers: { note: "other" }, basis: "classified" }
       extraction_hint: >
         The design nodes a question was raised about — the gap's affected set at
         the moment it was asked. Lets a node say "someone has already been asked
@@ -425,6 +458,7 @@ schema:
     COMPLEMENTS:
       from: DesignRule
       to: DesignRule
+      reading: { form: "composite", composition: "COMPLEMENTS(a,b) := compares(+)(a,b) ∧ ¬same-as(a,b)", components: ["compares", "same-as"], modifiers: { evidence: "evidence" }, basis: "classified" }
       extraction_hint: >
         Two rules that deliberately stand BESIDE each other and must never be
         merged — they cover adjacent ground for different reasons. Not
@@ -488,6 +522,7 @@ schema:
       # than merely tolerated, which was the whole complaint.
       from: [Constraint, DesignRule]
       to: "*"
+      reading: { form: "primitive", primitive: "norm", sub: "binds", modality: "obligatory", modifiers: { basis: "provenance", contribution: "quantity", measured_at: "time", note: "other", source: "provenance", unit: "other" }, basis: "classified" }
       extraction_hint: >
         A Constraint or DesignRule binds a target node. Source = the
         Constraint/DesignRule, target = what it limits — a Component, a

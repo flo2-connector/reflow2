@@ -1041,7 +1041,7 @@ def run(binary: str, graph_path: str) -> int:
 
     print("\n== 7c. a process is modellable (BL-37) ==")
     s.call("add_flow", {"id": "flow:play", "name": "A round of play",
-                        "flow_type": "process", "entry_point": "cap:flight"})
+                        "flow_type": "process"})
     s.call("part_of_flow", {"capability_id": "cap:flight", "flow_id": "flow:play",
                             "step_order": 1})
     s.call("part_of_flow", {"capability_id": "cap:display", "flow_id": "flow:play",

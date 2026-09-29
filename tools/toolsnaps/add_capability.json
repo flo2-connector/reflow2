@@ -38,22 +38,6 @@
         "description": "The capability's id — `cap:<slug>` by convention, so the prefix names the type wherever the id appears. Calling again with an EXISTING id REVISES that node: what you pass overwrites, what you omit survives.",
         "type": "string"
       },
-      "is_entry_point": {
-        "default": null,
-        "description": "True when this capability STARTS a flow. Distinct from `Flow.entry_point`,\nwhich names a capability from the flow's side; this is the flag on the\ncapability itself, carried by 147 of 234 and written by nothing.",
-        "type": [
-          "boolean",
-          "null"
-        ]
-      },
-      "is_exit_point": {
-        "default": null,
-        "description": "True when this capability ENDS a flow. Sibling of the above.",
-        "type": [
-          "boolean",
-          "null"
-        ]
-      },
       "name": {
         "default": null,
         "type": [

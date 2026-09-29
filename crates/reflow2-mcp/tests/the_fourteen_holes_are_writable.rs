@@ -94,28 +94,33 @@ async fn an_actor_can_be_created_and_says_what_kind_it_is() {
     );
 }
 
-/// A capability's tier and its two flow-endpoint flags.
+/// A capability's tier. Its two flow-endpoint flags were RETIRED on
+/// 2026-09-29: where a flow begins and ends is computed from its step order
+/// (`dec:a-flows-order-is-its-step-order-and-entry-and-exit-are-computed`), and
+/// a flag on a Capability could not say which of several flows it begins. A
+/// caller still sending one is refused by name rather than having it dropped
+/// silently.
 #[tokio::test]
-async fn a_capability_states_its_tier_and_whether_it_starts_or_ends_a_flow() {
+async fn a_capability_states_its_tier_and_a_retired_flow_flag_is_refused() {
     let s = ReflowService::in_memory().expect("service");
     let out = j!(s.add_capability(Parameters(
         serde_json::from_value(json!({
             "id": "cap:accept-a-sample",
             "name": "Accept a sample",
             "description": "takes a sample into the queue",
-            "tier": "operational",
-            "is_entry_point": true,
-            "is_exit_point": false
+            "tier": "operational"
         }))
         .unwrap()
     )));
     let p = props(&out);
     assert_eq!(p["tier"], "operational");
-    assert_eq!(
-        p["is_entry_point"], true,
-        "147 of 234 capabilities carried this flag written through the escape hatch"
-    );
-    assert_eq!(p["is_exit_point"], false);
+    assert!(p.get("is_entry_point").is_none() && p.get("is_exit_point").is_none());
+
+    let refused = serde_json::from_value::<reflow2_mcp::service::CapabilityReq>(json!({
+        "id": "cap:x", "name": "X", "description": "x", "is_entry_point": true
+    }))
+    .expect_err("a retired flag must be refused, not dropped in silence");
+    assert!(refused.to_string().contains("is_entry_point"), "{refused}");
 }
 
 /// A component's tier.
@@ -278,7 +283,7 @@ async fn omitting_them_leaves_the_node_exactly_as_it_was() {
     )));
     let p = props(&out);
     assert!(
-        p.get("is_entry_point").is_none() && p.get("is_exit_point").is_none(),
-        "an unstated flag must stay unstated — absence means nobody said"
+        p.get("tier").is_none(),
+        "an unstated tier must stay unstated — absence means nobody said"
     );
 }

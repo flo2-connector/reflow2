@@ -14,22 +14,6 @@
           "null"
         ]
       },
-      "entry_point": {
-        "default": null,
-        "description": "Capability name or id where the flow begins.",
-        "type": [
-          "string",
-          "null"
-        ]
-      },
-      "exit_point": {
-        "default": null,
-        "description": "Capability name or id where the flow ends.",
-        "type": [
-          "string",
-          "null"
-        ]
-      },
       "flow_type": {
         "default": null,
         "description": "`process` (default) / `data_flow` / `control_flow` / `decision_flow` /\n`capture` / `retrieval` / `generation`.",

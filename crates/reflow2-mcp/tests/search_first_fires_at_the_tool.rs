@@ -228,8 +228,6 @@ async fn a_capability_restating_a_requirement_is_reported_but_not_refused() {
         status: None,
         distinct_from: None,
         tier: None,
-        is_entry_point: None,
-        is_exit_point: None,
     })));
     assert_eq!(made["node_id"], "cap:cumulative");
     let advisory = made

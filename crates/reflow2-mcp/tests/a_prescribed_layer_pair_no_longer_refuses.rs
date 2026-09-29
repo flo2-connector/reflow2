@@ -98,8 +98,6 @@ fn capability(id: &str, name: &str) -> CapabilityReq {
         status: None,
         distinct_from: None,
         tier: None,
-        is_entry_point: None,
-        is_exit_point: None,
     }
 }
 

@@ -60,8 +60,6 @@ fn capability(id: &str, name: &str, allocated_to: Option<&str>) -> CapabilityReq
         status: None,
         distinct_from: None,
         tier: None,
-        is_entry_point: None,
-        is_exit_point: None,
         satisfies: None,
         allocated_to: allocated_to.map(Into::into),
     }
