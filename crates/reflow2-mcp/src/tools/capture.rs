@@ -877,51 +877,32 @@ pub(crate) fn absorbed_markup(fields: &[(&'static str, Option<&str>)]) -> Option
     None
 }
 
-/// Attach the advisory blocks a capture result carries — `search_first` when a
-/// create resembles something already there, `revision` when the call landed on
-/// a node that already existed, `absorbed_markup` when a prose field swallowed
-/// a parameter that then never arrived.
-///
-/// The two are mutually exclusive by construction and that is the design:
-/// `search_first` answers *should this be a new node at all*, `revision`
-/// answers *what did writing it cost*. A create can only face the first
-/// question and a revision can only face the second.
-/// The owner's word, carried in the SAME call as the status it signs.
-///
-/// `dec:certainty-derived` says certainty is derived from status, so an agent
-/// that promotes a status on the user's behalf forges their signature — which
-/// is why every constructor lands at its default and why moving off it was a
-/// separate call. That separate call could not be batched with the create (a
-/// harness emits a batch unordered), so the commonest capture cost a forced
-/// serial round trip, and on 2026-09-06 a session took the status half and
-/// forgot the signature half and CI's intent gate went red
-/// (`fact:an-accepted-status-written-without-its-approver-failed-the-intent-gate-in-ci`).
-///
-/// The shape that survives the rule: a settling status is REFUSED unless the
-/// approver is named, and the approver is written as the same
-/// `AUTHORED_BY role=approver` edge the gate reads. Refused BEFORE anything is
-/// written, so a refusal leaves no half-signed node behind.
-pub(crate) fn refuse_settling_without_approver(
-    settles: bool,
-    approver: Option<&str>,
-    tool: &str,
-    what: &str,
-) -> Result<(), McpError> {
-    if settles && approver.is_none() {
-        return Err(McpError::invalid_params(
-            format!(
-                "`{tool}` will not record {what} with nobody's name on it: pass `approver` — \
-                 the Contributor whose word this is — in the same call, and the signature is \
-                 drawn as AUTHORED_BY role=approver. Or omit the status and let it land at the \
-                 default; an agent may draft and recommend without limit, but moving intent \
-                 past its landing status is the owner's act \
-                 (rule:design-intent-moves-only-on-the-owners-word). Nothing was written."
-            ),
-            None,
-        ));
-    }
-    Ok(())
-}
+// Attach the advisory blocks a capture result carries — `search_first` when a
+// create resembles something already there, `revision` when the call landed on
+// a node that already existed, `absorbed_markup` when a prose field swallowed
+// a parameter that then never arrived.
+//
+// The two are mutually exclusive by construction and that is the design:
+// `search_first` answers *should this be a new node at all*, `revision`
+// answers *what did writing it cost*. A create can only face the first
+// question and a revision can only face the second.
+// The owner's word, carried in the SAME call as the status it signs.
+//
+// `dec:certainty-derived` says certainty is derived from status, so an agent
+// that promotes a status on the user's behalf forges their signature — which
+// is why every constructor lands at its default and why moving off it was a
+// separate call. That separate call could not be batched with the create (a
+// harness emits a batch unordered), so the commonest capture cost a forced
+// serial round trip, and on 2026-09-06 a session took the status half and
+// forgot the signature half and CI's intent gate went red
+// (`fact:an-accepted-status-written-without-its-approver-failed-the-intent-gate-in-ci`).
+//
+// The shape that survives the rule: a settling status is REFUSED unless the
+// approver is named, and the approver is written as the same
+// `AUTHORED_BY role=approver` edge the gate reads. Refused BEFORE anything is
+// written, so a refusal leaves no half-signed node behind.
+// The refusal itself now lives in crate::settles::gate, where WHICH calls
+// settle is declared once and served on the tool.
 
 /// An approver naming no Contributor is refused before any write — the same
 /// argument `acknowledge_gap_by` makes: a typo would attach the owner's
@@ -964,25 +945,6 @@ pub(crate) fn sign_as_approver(
             .map_err(dyno_err)?;
     }
     Ok(())
-}
-
-/// For the SETTERS, which have consumers and stay lenient: a settling status
-/// written with no approver is reported in the reply, never silently accepted
-/// as signed. The sentence is what the intent-authority gate will say later,
-/// said now, while the caller can still fix it in one call.
-pub(crate) fn nobodys_name_note(settles: bool, approver: Option<&str>) -> Option<String> {
-    if settles && approver.is_none() {
-        Some(
-            "This status is settled intent and carries NOBODY'S NAME: no `approver` was \
-             passed, so no AUTHORED_BY role=approver edge was drawn. Where \
-             rule:design-intent-moves-only-on-the-owners-word is enforced that is a red \
-             build. Re-issue with `approver` (the Contributor whose word this is), or draw \
-             authored_by(role='approver') yourself."
-                .to_string(),
-        )
-    } else {
-        None
-    }
 }
 
 /// A setter's reply with the nobody's-name note attached when it applies.
@@ -1551,11 +1513,13 @@ impl ReflowService {
     ) -> Result<CallToolResult, McpError> {
         let mut g = self.write_lock().await?;
         let node_ty = reflow2_core::nodes::node::REQUIREMENT;
-        let settles = req.status.as_deref().is_some_and(|st| st != "proposed");
-        refuse_settling_without_approver(
+        // Which calls settle is DECLARED (crate::settles), served on the tool,
+        // and read here — never re-derived per handler.
+        let settles = crate::settles::rule("add_requirement").settles_str(req.status.as_deref());
+        crate::settles::gate(
+            "add_requirement",
             settles,
             req.approver.as_deref(),
-            "add_requirement",
             "a Requirement past `proposed`",
         )?;
         approver_must_exist(&g, req.approver.as_deref(), "add_requirement")?;
@@ -1667,11 +1631,14 @@ impl ReflowService {
         let node_ty = reflow2_core::nodes::node::DESIGN_RULE;
         // A rule's POWER is settled intent — the intent gate's third case. Stating
         // it, either way, is the owner's act and needs the owner's name.
-        let settles = req.enforced.is_some();
-        refuse_settling_without_approver(
+        // Which calls settle is DECLARED (crate::settles), served on the tool,
+        // and read here — never re-derived per handler.
+        let settles = crate::settles::rule("add_design_rule")
+            .settles_value(req.enforced.map(JsonValue::Bool).as_ref());
+        crate::settles::gate(
+            "add_design_rule",
             settles,
             req.approver.as_deref(),
-            "add_design_rule",
             "a DesignRule with `enforced` stated",
         )?;
         approver_must_exist(&g, req.approver.as_deref(), "add_design_rule")?;
@@ -1948,6 +1915,13 @@ impl ReflowService {
     ) -> Result<CallToolResult, McpError> {
         let mut g = self.write_lock().await?;
         approver_must_exist(&g, req.approver.as_deref(), "set_requirement_status")?;
+        let settles = crate::settles::rule("set_requirement_status").settles_str(Some(&req.status));
+        let note = crate::settles::gate(
+            "set_requirement_status",
+            settles,
+            req.approver.as_deref(),
+            "a Requirement status past `proposed`",
+        )?;
         let node = NodeDto::from(
             g.set_requirement_status(&req.requirement_id, &req.status)
                 .map_err(dyno_err)?,
@@ -1959,8 +1933,7 @@ impl ReflowService {
             req.approver.as_deref(),
             req.acted_at.as_deref(),
         )?;
-        let settles = req.status != "proposed";
-        with_approval_note(node, nobodys_name_note(settles, req.approver.as_deref()))
+        with_approval_note(node, note)
     }
 
     #[tool(
@@ -2204,16 +2177,8 @@ impl ReflowService {
         &self,
         Parameters(req): Parameters<ContainComponentReq>,
     ) -> Result<CallToolResult, McpError> {
-        // DETACHES BY DEFAULT since 2026-09-18. The bare edge write ADDED a
-        // parent and never removed one, and the discoverable sequence
-        // (contain, then contain again) was the recorded cause of the
-        // multiple_parents defect. A child has one parent on the spine; the
-        // reply names what was detached, so a re-parenting is visible.
         let mut g = self.write_lock().await?;
-        ok_json(
-            g.move_component(&req.to_id, &req.from_id)
-                .map_err(dyno_err)?,
-        )
+        Self::contain_component_on(&mut g, req)
     }
 
     #[tool(
@@ -2240,10 +2205,7 @@ impl ReflowService {
         Parameters(req): Parameters<MoveComponentReq>,
     ) -> Result<CallToolResult, McpError> {
         let mut g = self.write_lock().await?;
-        ok_json(
-            g.move_component(&req.child_id, &req.new_parent_id)
-                .map_err(dyno_err)?,
-        )
+        Self::move_component_on(&mut g, req)
     }
 
     #[tool(
@@ -2255,30 +2217,7 @@ impl ReflowService {
         Parameters(req): Parameters<SatisfiesReq>,
     ) -> Result<CallToolResult, McpError> {
         let mut g = self.write_lock().await?;
-        let from_type = crate::service::resolve_node_type_or(
-            &g,
-            req.from_type.as_deref(),
-            &req.from_id,
-            "from_type",
-            reflow2_core::nodes::node::CAPABILITY,
-        )?;
-        let to_type = crate::service::resolve_node_type_or(
-            &g,
-            req.to_type.as_deref(),
-            &req.to_id,
-            "to_type",
-            reflow2_core::nodes::node::REQUIREMENT,
-        )?;
-        ok_json(EdgeDto::from(
-            g.satisfies_between(
-                &from_type,
-                &req.from_id,
-                &to_type,
-                &req.to_id,
-                req.coverage.as_deref(),
-            )
-            .map_err(dyno_err)?,
-        ))
+        Self::satisfies_on(&mut g, req)
     }
 
     #[tool(
@@ -2300,9 +2239,7 @@ impl ReflowService {
         Parameters(req): Parameters<DecomposesReq>,
     ) -> Result<CallToolResult, McpError> {
         let mut g = self.write_lock().await?;
-        ok_json(EdgeDto::from(
-            g.decomposes(&req.from_id, &req.to_id).map_err(dyno_err)?,
-        ))
+        Self::decomposes_on(&mut g, req)
     }
 
     #[tool(
@@ -2345,24 +2282,7 @@ impl ReflowService {
         Parameters(req): Parameters<DependsOnReq>,
     ) -> Result<CallToolResult, McpError> {
         let mut g = self.write_lock().await?;
-        ok_json(EdgeDto::from({
-            let from_type = crate::service::resolve_node_type_or(
-                &g,
-                req.from_type.as_deref(),
-                &req.from_id,
-                "from_type",
-                reflow2_core::nodes::node::COMPONENT,
-            )?;
-            let to_type = crate::service::resolve_node_type_or(
-                &g,
-                req.to_type.as_deref(),
-                &req.to_id,
-                "to_type",
-                reflow2_core::nodes::node::COMPONENT,
-            )?;
-            g.depends_on_between(&from_type, &req.from_id, &to_type, &req.to_id)
-                .map_err(dyno_err)?
-        }))
+        Self::depends_on_on(&mut g, req)
     }
 
     #[tool(
@@ -2374,9 +2294,7 @@ impl ReflowService {
         Parameters(req): Parameters<AllocateReq>,
     ) -> Result<CallToolResult, McpError> {
         let mut g = self.write_lock().await?;
-        ok_json(EdgeDto::from(
-            g.allocate(&req.from_id, &req.to_id).map_err(dyno_err)?,
-        ))
+        Self::allocate_on(&mut g, req)
     }
 
     #[tool(
@@ -2489,10 +2407,7 @@ impl ReflowService {
         Parameters(req): Parameters<PartOfFlowReq>,
     ) -> Result<CallToolResult, McpError> {
         let mut g = self.write_lock().await?;
-        ok_json(EdgeDto::from(
-            g.part_of_flow(&req.capability_id, &req.flow_id, req.step_order)
-                .map_err(dyno_err)?,
-        ))
+        Self::part_of_flow_on(&mut g, req)
     }
 
     #[tool(
@@ -2522,9 +2437,7 @@ impl ReflowService {
         Parameters(req): Parameters<ProvidesReq>,
     ) -> Result<CallToolResult, McpError> {
         let mut g = self.write_lock().await?;
-        ok_json(EdgeDto::from(
-            g.provides(&req.from_id, &req.to_id).map_err(dyno_err)?,
-        ))
+        Self::provides_on(&mut g, req)
     }
 
     #[tool(
@@ -2542,17 +2455,7 @@ impl ReflowService {
         Parameters(req): Parameters<ConsumesReq>,
     ) -> Result<CallToolResult, McpError> {
         let mut g = self.write_lock().await?;
-        ok_json(EdgeDto::from({
-            let consumer_type = crate::service::resolve_node_type_or(
-                &g,
-                req.from_type.as_deref(),
-                &req.from_id,
-                "from_type",
-                reflow2_core::nodes::node::COMPONENT,
-            )?;
-            g.consumes_from(&consumer_type, &req.from_id, &req.to_id)
-                .map_err(dyno_err)?
-        }))
+        Self::consumes_on(&mut g, req)
     }
 
     #[tool(
@@ -2565,16 +2468,7 @@ impl ReflowService {
         Parameters(req): Parameters<ContainsReq>,
     ) -> Result<CallToolResult, McpError> {
         let mut g = self.write_lock().await?;
-        let child_type = crate::service::resolve_node_type(
-            &g,
-            req.child_type.as_deref(),
-            &req.child_id,
-            "child_type",
-        )?;
-        ok_json(EdgeDto::from(
-            g.contains(&req.project_id, &child_type, &req.child_id)
-                .map_err(dyno_err)?,
-        ))
+        Self::contains_on(&mut g, req)
     }
 
     #[tool(
@@ -2775,34 +2669,7 @@ impl ReflowService {
         Parameters(req): Parameters<ConstrainsReq>,
     ) -> Result<CallToolResult, McpError> {
         let mut g = self.write_lock().await?;
-        let target_type = crate::service::resolve_node_type(
-            &g,
-            req.target_type.as_deref(),
-            &req.target_id,
-            "target_type",
-        )?;
-        let constraint_type = crate::service::resolve_node_type_or(
-            &g,
-            req.constraint_type.as_deref(),
-            &req.constraint_id,
-            "constraint_type",
-            reflow2_core::nodes::node::CONSTRAINT,
-        )?;
-        ok_json(EdgeDto::from(
-            g.constrains_by(
-                &constraint_type,
-                &req.constraint_id,
-                &target_type,
-                &req.target_id,
-                req.contribution,
-                req.unit.as_deref(),
-                req.basis.as_deref(),
-                req.source.as_deref(),
-                req.measured_at.as_deref(),
-                req.note.as_deref(),
-            )
-            .map_err(dyno_err)?,
-        ))
+        Self::constrains_on(&mut g, req)
     }
 
     #[tool(
@@ -2957,11 +2824,13 @@ impl ReflowService {
     ) -> Result<CallToolResult, McpError> {
         let mut g = self.write_lock().await?;
         let node_ty = reflow2_core::nodes::node::DECISION;
-        let settles = req.status.as_deref().is_some_and(|st| st != "proposed");
-        refuse_settling_without_approver(
+        // Which calls settle is DECLARED (crate::settles), served on the tool,
+        // and read here — never re-derived per handler.
+        let settles = crate::settles::rule("add_decision").settles_str(req.status.as_deref());
+        crate::settles::gate(
+            "add_decision",
             settles,
             req.approver.as_deref(),
-            "add_decision",
             "a Decision past `proposed`",
         )?;
         approver_must_exist(&g, req.approver.as_deref(), "add_decision")?;
@@ -3193,19 +3062,8 @@ impl ReflowService {
         &self,
         Parameters(req): Parameters<crate::service::AnswersReq>,
     ) -> Result<CallToolResult, McpError> {
-        let from_type = self
-            .resolve_type(req.from_type.as_deref(), &req.from_id, "from_type")
-            .await?;
         let mut g = self.write_lock().await?;
-        ok_json(EdgeDto::from(
-            g.answers(
-                &from_type,
-                &req.from_id,
-                &req.question_id,
-                req.note.as_deref(),
-            )
-            .map_err(dyno_err)?,
-        ))
+        Self::answers_on(&mut g, req)
     }
 
     #[tool(
@@ -3232,51 +3090,7 @@ impl ReflowService {
         Parameters(req): Parameters<GovernedByReq>,
     ) -> Result<CallToolResult, McpError> {
         let mut g = self.write_lock().await?;
-        let to_type =
-            crate::service::resolve_node_type(&g, req.to_type.as_deref(), &req.to_id, "to_type")?;
-        let from_type = crate::service::resolve_node_type(
-            &g,
-            req.from_type.as_deref(),
-            &req.from_id,
-            "from_type",
-        )?;
-        let edge = EdgeDto::from(
-            g.governed_by(
-                &from_type,
-                &req.from_id,
-                &to_type,
-                &req.to_id,
-                req.ruling.as_deref(),
-                req.note.as_deref(),
-            )
-            .map_err(dyno_err)?,
-        );
-        // THE SECOND MOMENT THE DIVERGENCE IS CREATED, and the one a hook on
-        // the status setter alone would miss: the decision was settled first
-        // and the edge drawn afterwards. Only an ACCEPTED decision can make
-        // prose stale — linking to a `proposed` one says nothing, because a
-        // musing has settled nothing.
-        let settled = to_type == reflow2_core::nodes::node::DECISION
-            && prior_status(&g, &to_type, &req.to_id).as_deref() == Some("accepted");
-        let hits = if settled {
-            g.get_node(&from_type, &req.from_id)
-                .ok()
-                .flatten()
-                .and_then(|n| {
-                    crate::prose_currency::open_prose(&req.from_id, &from_type, |f| {
-                        n.properties.get(f).and_then(|v| v.as_str())
-                    })
-                })
-                .into_iter()
-                .collect()
-        } else {
-            Vec::new()
-        };
-        ok_json(with_settled_question_prose(
-            serde_json::to_value(edge).map_err(ser_err)?,
-            &req.to_id,
-            &hits,
-        ))
+        Self::governed_by_on(&mut g, req)
     }
 
     #[tool(
@@ -3336,22 +3150,7 @@ impl ReflowService {
         Parameters(req): Parameters<AuthoredByReq>,
     ) -> Result<CallToolResult, McpError> {
         let mut g = self.write_lock().await?;
-        let from_type = crate::service::resolve_node_type(
-            &g,
-            req.from_type.as_deref(),
-            &req.from_id,
-            "from_type",
-        )?;
-        ok_json(EdgeDto::from(
-            g.authored_by(
-                &from_type,
-                &req.from_id,
-                &req.contributor_id,
-                req.role.as_deref(),
-                req.acted_at.as_deref(),
-            )
-            .map_err(dyno_err)?,
-        ))
+        Self::authored_by_on(&mut g, req)
     }
 
     #[tool(
@@ -3378,22 +3177,7 @@ impl ReflowService {
         Parameters(req): Parameters<OwnedByReq>,
     ) -> Result<CallToolResult, McpError> {
         let mut g = self.write_lock().await?;
-        let from_type = crate::service::resolve_node_type(
-            &g,
-            req.from_type.as_deref(),
-            &req.from_id,
-            "from_type",
-        )?;
-        ok_json(EdgeDto::from(
-            g.owned_by(
-                &from_type,
-                &req.from_id,
-                &req.contributor_id,
-                req.note.as_deref(),
-                req.since.as_deref(),
-            )
-            .map_err(dyno_err)?,
-        ))
+        Self::owned_by_on(&mut g, req)
     }
 
     #[tool(
@@ -3467,5 +3251,342 @@ impl ReflowService {
             None => node,
         };
         ok_json(NodeDto::from(node))
+    }
+}
+
+// ─── typed edge helper bodies, shared with `draw_edges` ──────────────────────
+
+impl ReflowService {
+    /// The body of [`Self::allocate`] over a graph the caller already holds: the
+    /// one code path the tool and `draw_edges` both run.
+    pub(crate) fn allocate_on(
+        g: &mut reflow2_core::DesignGraph,
+        req: AllocateReq,
+    ) -> Result<CallToolResult, McpError> {
+        ok_json(EdgeDto::from(
+            g.allocate(&req.from_id, &req.to_id).map_err(dyno_err)?,
+        ))
+    }
+
+    /// The body of [`Self::answers`] over a graph the caller already holds: the
+    /// one code path the tool and `draw_edges` both run.
+    pub(crate) fn answers_on(
+        g: &mut reflow2_core::DesignGraph,
+        req: crate::service::AnswersReq,
+    ) -> Result<CallToolResult, McpError> {
+        let from_type = crate::service::resolve_node_type(
+            g,
+            req.from_type.as_deref(),
+            &req.from_id,
+            "from_type",
+        )?;
+        ok_json(EdgeDto::from(
+            g.answers(
+                &from_type,
+                &req.from_id,
+                &req.question_id,
+                req.note.as_deref(),
+            )
+            .map_err(dyno_err)?,
+        ))
+    }
+
+    /// The body of [`Self::authored_by`] over a graph the caller already holds: the
+    /// one code path the tool and `draw_edges` both run.
+    pub(crate) fn authored_by_on(
+        g: &mut reflow2_core::DesignGraph,
+        req: AuthoredByReq,
+    ) -> Result<CallToolResult, McpError> {
+        let from_type = crate::service::resolve_node_type(
+            g,
+            req.from_type.as_deref(),
+            &req.from_id,
+            "from_type",
+        )?;
+        ok_json(EdgeDto::from(
+            g.authored_by(
+                &from_type,
+                &req.from_id,
+                &req.contributor_id,
+                req.role.as_deref(),
+                req.acted_at.as_deref(),
+            )
+            .map_err(dyno_err)?,
+        ))
+    }
+
+    /// The body of [`Self::constrains`] over a graph the caller already holds: the
+    /// one code path the tool and `draw_edges` both run.
+    pub(crate) fn constrains_on(
+        g: &mut reflow2_core::DesignGraph,
+        req: ConstrainsReq,
+    ) -> Result<CallToolResult, McpError> {
+        let target_type = crate::service::resolve_node_type(
+            g,
+            req.target_type.as_deref(),
+            &req.target_id,
+            "target_type",
+        )?;
+        let constraint_type = crate::service::resolve_node_type_or(
+            g,
+            req.constraint_type.as_deref(),
+            &req.constraint_id,
+            "constraint_type",
+            reflow2_core::nodes::node::CONSTRAINT,
+        )?;
+        ok_json(EdgeDto::from(
+            g.constrains_by(
+                &constraint_type,
+                &req.constraint_id,
+                &target_type,
+                &req.target_id,
+                req.contribution,
+                req.unit.as_deref(),
+                req.basis.as_deref(),
+                req.source.as_deref(),
+                req.measured_at.as_deref(),
+                req.note.as_deref(),
+            )
+            .map_err(dyno_err)?,
+        ))
+    }
+
+    /// The body of [`Self::consumes`] over a graph the caller already holds: the
+    /// one code path the tool and `draw_edges` both run.
+    pub(crate) fn consumes_on(
+        g: &mut reflow2_core::DesignGraph,
+        req: ConsumesReq,
+    ) -> Result<CallToolResult, McpError> {
+        ok_json(EdgeDto::from({
+            let consumer_type = crate::service::resolve_node_type_or(
+                g,
+                req.from_type.as_deref(),
+                &req.from_id,
+                "from_type",
+                reflow2_core::nodes::node::COMPONENT,
+            )?;
+            g.consumes_from(&consumer_type, &req.from_id, &req.to_id)
+                .map_err(dyno_err)?
+        }))
+    }
+
+    /// The body of [`Self::contains`] over a graph the caller already holds: the
+    /// one code path the tool and `draw_edges` both run.
+    pub(crate) fn contains_on(
+        g: &mut reflow2_core::DesignGraph,
+        req: ContainsReq,
+    ) -> Result<CallToolResult, McpError> {
+        let child_type = crate::service::resolve_node_type(
+            g,
+            req.child_type.as_deref(),
+            &req.child_id,
+            "child_type",
+        )?;
+        ok_json(EdgeDto::from(
+            g.contains(&req.project_id, &child_type, &req.child_id)
+                .map_err(dyno_err)?,
+        ))
+    }
+
+    /// The body of [`Self::decomposes`] over a graph the caller already holds: the
+    /// one code path the tool and `draw_edges` both run.
+    pub(crate) fn decomposes_on(
+        g: &mut reflow2_core::DesignGraph,
+        req: DecomposesReq,
+    ) -> Result<CallToolResult, McpError> {
+        ok_json(EdgeDto::from(
+            g.decomposes(&req.from_id, &req.to_id).map_err(dyno_err)?,
+        ))
+    }
+
+    /// The body of [`Self::depends_on`] over a graph the caller already holds: the
+    /// one code path the tool and `draw_edges` both run.
+    pub(crate) fn depends_on_on(
+        g: &mut reflow2_core::DesignGraph,
+        req: DependsOnReq,
+    ) -> Result<CallToolResult, McpError> {
+        ok_json(EdgeDto::from({
+            let from_type = crate::service::resolve_node_type_or(
+                g,
+                req.from_type.as_deref(),
+                &req.from_id,
+                "from_type",
+                reflow2_core::nodes::node::COMPONENT,
+            )?;
+            let to_type = crate::service::resolve_node_type_or(
+                g,
+                req.to_type.as_deref(),
+                &req.to_id,
+                "to_type",
+                reflow2_core::nodes::node::COMPONENT,
+            )?;
+            g.depends_on_between(&from_type, &req.from_id, &to_type, &req.to_id)
+                .map_err(dyno_err)?
+        }))
+    }
+
+    /// The body of [`Self::governed_by`] over a graph the caller already holds: the
+    /// one code path the tool and `draw_edges` both run.
+    pub(crate) fn governed_by_on(
+        g: &mut reflow2_core::DesignGraph,
+        req: GovernedByReq,
+    ) -> Result<CallToolResult, McpError> {
+        let to_type =
+            crate::service::resolve_node_type(g, req.to_type.as_deref(), &req.to_id, "to_type")?;
+        let from_type = crate::service::resolve_node_type(
+            g,
+            req.from_type.as_deref(),
+            &req.from_id,
+            "from_type",
+        )?;
+        let edge = EdgeDto::from(
+            g.governed_by(
+                &from_type,
+                &req.from_id,
+                &to_type,
+                &req.to_id,
+                req.ruling.as_deref(),
+                req.note.as_deref(),
+            )
+            .map_err(dyno_err)?,
+        );
+        // THE SECOND MOMENT THE DIVERGENCE IS CREATED, and the one a hook on
+        // the status setter alone would miss: the decision was settled first
+        // and the edge drawn afterwards. Only an ACCEPTED decision can make
+        // prose stale — linking to a `proposed` one says nothing, because a
+        // musing has settled nothing.
+        let settled = to_type == reflow2_core::nodes::node::DECISION
+            && prior_status(g, &to_type, &req.to_id).as_deref() == Some("accepted");
+        let hits = if settled {
+            g.get_node(&from_type, &req.from_id)
+                .ok()
+                .flatten()
+                .and_then(|n| {
+                    crate::prose_currency::open_prose(&req.from_id, &from_type, |f| {
+                        n.properties.get(f).and_then(|v| v.as_str())
+                    })
+                })
+                .into_iter()
+                .collect()
+        } else {
+            Vec::new()
+        };
+        ok_json(with_settled_question_prose(
+            serde_json::to_value(edge).map_err(ser_err)?,
+            &req.to_id,
+            &hits,
+        ))
+    }
+
+    /// The body of [`Self::move_component`] over a graph the caller already holds: the
+    /// one code path the tool and `draw_edges` both run.
+    pub(crate) fn move_component_on(
+        g: &mut reflow2_core::DesignGraph,
+        req: MoveComponentReq,
+    ) -> Result<CallToolResult, McpError> {
+        ok_json(
+            g.move_component(&req.child_id, &req.new_parent_id)
+                .map_err(dyno_err)?,
+        )
+    }
+
+    /// The body of [`Self::owned_by`] over a graph the caller already holds: the
+    /// one code path the tool and `draw_edges` both run.
+    pub(crate) fn owned_by_on(
+        g: &mut reflow2_core::DesignGraph,
+        req: OwnedByReq,
+    ) -> Result<CallToolResult, McpError> {
+        let from_type = crate::service::resolve_node_type(
+            g,
+            req.from_type.as_deref(),
+            &req.from_id,
+            "from_type",
+        )?;
+        ok_json(EdgeDto::from(
+            g.owned_by(
+                &from_type,
+                &req.from_id,
+                &req.contributor_id,
+                req.note.as_deref(),
+                req.since.as_deref(),
+            )
+            .map_err(dyno_err)?,
+        ))
+    }
+
+    /// The body of [`Self::part_of_flow`] over a graph the caller already holds: the
+    /// one code path the tool and `draw_edges` both run.
+    pub(crate) fn part_of_flow_on(
+        g: &mut reflow2_core::DesignGraph,
+        req: PartOfFlowReq,
+    ) -> Result<CallToolResult, McpError> {
+        ok_json(EdgeDto::from(
+            g.part_of_flow(&req.capability_id, &req.flow_id, req.step_order)
+                .map_err(dyno_err)?,
+        ))
+    }
+
+    /// The body of [`Self::provides`] over a graph the caller already holds: the
+    /// one code path the tool and `draw_edges` both run.
+    pub(crate) fn provides_on(
+        g: &mut reflow2_core::DesignGraph,
+        req: ProvidesReq,
+    ) -> Result<CallToolResult, McpError> {
+        ok_json(EdgeDto::from(
+            g.provides(&req.from_id, &req.to_id).map_err(dyno_err)?,
+        ))
+    }
+
+    /// The body of [`Self::satisfies`] over a graph the caller already holds: the
+    /// one code path the tool and `draw_edges` both run.
+    pub(crate) fn satisfies_on(
+        g: &mut reflow2_core::DesignGraph,
+        req: SatisfiesReq,
+    ) -> Result<CallToolResult, McpError> {
+        let from_type = crate::service::resolve_node_type_or(
+            g,
+            req.from_type.as_deref(),
+            &req.from_id,
+            "from_type",
+            reflow2_core::nodes::node::CAPABILITY,
+        )?;
+        let to_type = crate::service::resolve_node_type_or(
+            g,
+            req.to_type.as_deref(),
+            &req.to_id,
+            "to_type",
+            reflow2_core::nodes::node::REQUIREMENT,
+        )?;
+        ok_json(EdgeDto::from(
+            g.satisfies_between(
+                &from_type,
+                &req.from_id,
+                &to_type,
+                &req.to_id,
+                req.coverage.as_deref(),
+            )
+            .map_err(dyno_err)?,
+        ))
+    }
+}
+
+// ─── typed edge helper bodies, shared with `draw_edges` ──────────────────────
+
+impl ReflowService {
+    /// The body of [`Self::contain_component`] over a graph the caller already holds: the
+    /// one code path the tool and `draw_edges` both run.
+    pub(crate) fn contain_component_on(
+        g: &mut reflow2_core::DesignGraph,
+        req: ContainComponentReq,
+    ) -> Result<CallToolResult, McpError> {
+        // DETACHES BY DEFAULT since 2026-09-18. The bare edge write ADDED a
+        // parent and never removed one, and the discoverable sequence
+        // (contain, then contain again) was the recorded cause of the
+        // multiple_parents defect. A child has one parent on the spine; the
+        // reply names what was detached, so a re-parenting is visible.
+        ok_json(
+            g.move_component(&req.to_id, &req.from_id)
+                .map_err(dyno_err)?,
+        )
     }
 }

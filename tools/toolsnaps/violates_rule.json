@@ -2,7 +2,7 @@
   "annotations": {
     "readOnlyHint": false
   },
-  "description": "Flag that a design element CONTRADICTS an EnvironmentRule (VIOLATES_RULE). Flagged, never silently dropped, and it lands `proposed` — untriaged — which raises a gap until somebody answers it. Put the specific rule text and the offending detail in `evidence`. Triage with set_violation_status: `confirmed` records a granted variance, which is KEPT and documented rather than deleted, and `rejected` says it must be fixed.",
+  "description": "Flag that a design element CONTRADICTS an EnvironmentRule (VIOLATES_RULE). Flagged, never silently dropped, and it lands `proposed` — untriaged — which raises a gap until somebody answers it. Put the specific rule text and the offending detail in `evidence`. Triage with set_violation_status: `confirmed` records a granted variance, which is KEPT and documented rather than deleted, and `rejected` says it must be fixed. MANY AT ONCE: `draw_edges`, items {\"tool\": \"violates_rule\", \"arguments\": {…}}, same checks, all or nothing.",
   "inputSchema": {
     "$schema": "https://json-schema.org/draft/2020-12/schema",
     "additionalProperties": false,

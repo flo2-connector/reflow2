@@ -71,6 +71,7 @@
     "dimension_drift": "is this component's quality getting worse over time on one dimension",
     "dimension_drifts": "what quality measures are declining across the whole design",
     "documents": "record that this document is where that item came from",
+    "draw_edges": "record a whole batch of typed links in one call, each checked as it would be on its own",
     "evaluate_allocation": "how modular is my decomposition — is the coupling where I think it is",
     "evidence_report": "where were my passing tests actually run — real hardware or just simulation",
     "export_graph": "save the whole design to a file I can commit",

@@ -5,6 +5,7 @@
 //! thin stdio entry point over it; integration tests drive the service directly.
 
 pub mod auto_export;
+pub mod bulk_edges;
 pub mod client_setup;
 pub mod content_policy;
 pub mod degraded;
@@ -28,6 +29,7 @@ pub mod registry;
 pub mod registry_http;
 pub mod reply_budget;
 pub mod service;
+pub mod settles;
 pub mod shared;
 pub mod skills;
 pub mod sync_debt;
