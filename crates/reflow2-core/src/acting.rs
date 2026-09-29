@@ -121,6 +121,51 @@ impl DesignGraph {
         self.acting.as_ref()
     }
 
+    /// For a write of `edge_type` from `from_id` to `to_id` while an agent is
+    /// named: when it is an AUTHORED_BY edge, add the agent to the `*_via` set
+    /// of every role the write newly asserts (a role the edge did not hold,
+    /// or one whose date moves), and return the agent so the caller draws
+    /// ACTS_FOR once the edge is stored. `None` when nothing was stamped —
+    /// another edge type, no agent named, or the agent writing for itself.
+    pub(crate) fn stamp_through_acting_agent(
+        &self,
+        edge_type: &str,
+        from_id: &str,
+        to_id: &str,
+        props: &mut std::collections::HashMap<String, Value>,
+    ) -> Result<Option<Acting>, DynoError> {
+        if edge_type != edge::AUTHORED_BY {
+            return Ok(None);
+        }
+        let Some(acting) = self.acting.as_ref().filter(|a| a.agent != to_id).cloned() else {
+            return Ok(None);
+        };
+        let existing = self
+            .outgoing(from_id, Some(edge::AUTHORED_BY))?
+            .into_iter()
+            .find(|e| e.to_id == to_id)
+            .map(|e| {
+                let mut p = e.properties;
+                crate::graph::normalize_authored_by_props(&mut p);
+                p
+            });
+        let mut asserted = props.clone();
+        crate::graph::normalize_authored_by_props(&mut asserted);
+        let mut stamped = false;
+        for role in crate::graph::list_of_strings(asserted.get("roles")) {
+            let date = crate::graph::role_date_key(&role);
+            let is_new = existing.as_ref().is_none_or(|p| {
+                !crate::graph::list_of_strings(p.get("roles")).contains(&role)
+                    || (asserted.contains_key(date) && asserted.get(date) != p.get(date))
+            });
+            if is_new {
+                crate::graph::stamp_via(props, &role, &acting.agent);
+                stamped = true;
+            }
+        }
+        Ok(stamped.then_some(acting))
+    }
+
     /// Draw `agent ACTS_FOR contributor` if it is not there yet. The first
     /// route that drew it is kept: a later write through another route adds
     /// nothing a reader needs.
