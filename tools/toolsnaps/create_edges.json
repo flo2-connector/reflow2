@@ -59,6 +59,15 @@
         "description": "Validate every item and WRITE NOTHING. The reply says whether the batch\nwould have applied and lists every failure, so a large batch is fixed\nonce and sent once instead of resent whole after each rejection.",
         "type": "boolean"
       },
+      "echo": {
+        "default": "receipt",
+        "description": "What the reply carries. `receipt` (the default) names the node, echoes each stored value of at most 200 characters, gives longer ones by size, and names the snapshot that keeps anything a revise replaced. `node` returns the whole stored node and every prior value.",
+        "enum": [
+          "receipt",
+          "node"
+        ],
+        "type": "string"
+      },
       "edges": {
         "description": "The edges to create in one write — each `{from_type, from_id, edge_type, to_type, to_id, properties?}`, the same shape `create_edge` takes one at a time. Applied together so a dependent pair cannot land half-done.",
         "items": {

@@ -24,6 +24,15 @@
           "null"
         ]
       },
+      "echo": {
+        "default": "receipt",
+        "description": "What the reply carries. `receipt` (the default) names the node, echoes each stored value of at most 200 characters, gives longer ones by size, and names the snapshot that keeps anything a revise replaced. `node` returns the whole stored node and every prior value.",
+        "enum": [
+          "receipt",
+          "node"
+        ],
+        "type": "string"
+      },
       "granularity": {
         "default": null,
         "description": "`atomic` (one deliverable — the default), `opaque` (a subtree claimed as\na unit ON PURPOSE: a settled archive, a vendored tree — do not descend),\nor `pending_expansion` (a PLACEHOLDER for items that should each become\ntheir own node). The last two read identically to every report today and\nare opposite states: a decision versus unfinished work.",

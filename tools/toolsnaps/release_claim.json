@@ -11,6 +11,15 @@
         "description": "The Contributor (`who:…`) who holds the claim being released — the same id passed to `claim_region`.",
         "type": "string"
       },
+      "echo": {
+        "default": "receipt",
+        "description": "What the reply carries. `receipt` (the default) names the node, echoes each stored value of at most 200 characters, gives longer ones by size, and names the snapshot that keeps anything a revise replaced. `node` returns the whole stored node and every prior value.",
+        "enum": [
+          "receipt",
+          "node"
+        ],
+        "type": "string"
+      },
       "seed_id": {
         "description": "The `seed_id` of the claim being released; any node type.",
         "type": "string"

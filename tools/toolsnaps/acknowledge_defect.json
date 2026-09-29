@@ -44,6 +44,15 @@
         "description": "The defect's `id`, exactly as `detect_defects` reported it.\nNOT a node id — the `heal:…` id a defect carries in `detect_defects`.",
         "type": "string"
       },
+      "echo": {
+        "default": "receipt",
+        "description": "What the reply carries. `receipt` (the default) names the node, echoes each stored value of at most 200 characters, gives longer ones by size, and names the snapshot that keeps anything a revise replaced. `node` returns the whole stored node and every prior value.",
+        "enum": [
+          "receipt",
+          "node"
+        ],
+        "type": "string"
+      },
       "reason": {
         "description": "Why this defect is acceptable. Recorded as the Decision's rationale.",
         "type": "string"
