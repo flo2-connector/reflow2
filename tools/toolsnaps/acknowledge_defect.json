@@ -1,4 +1,13 @@
 {
+  "_meta": {
+    "reflow2/settles": {
+      "approver": "approver",
+      "argument": null,
+      "unsigned": "recorded_with_note",
+      "version": 1,
+      "when": "always"
+    }
+  },
   "annotations": {
     "readOnlyHint": false
   },

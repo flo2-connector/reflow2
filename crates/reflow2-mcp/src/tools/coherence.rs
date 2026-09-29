@@ -965,10 +965,20 @@ impl ReflowService {
         // sibling says, for the same reason and in the same words. Twelve of
         // these were minted unattributed before the parameter existed.
         let mut out = json!({ "acknowledged": req.defect_id, "decision_id": decision_id });
+        // Settles by being made (crate::settles); an unsigned one is recorded
+        // and said, never refused — the declared policy for this tool.
+        let unsigned = crate::settles::gate(
+            "acknowledge_defect",
+            crate::settles::rule("acknowledge_defect").settles_value(None),
+            req.approver.as_deref(),
+            "an acknowledgement",
+        )?
+        .is_some();
         match req.approver.as_deref() {
             Some(who) => {
                 out["approved_by"] = json!(who);
             }
+            None if !unsigned => {}
             None => {
                 out["approved_by"] = JsonValue::Null;
                 out["unattributed"] = json!(
@@ -1186,10 +1196,20 @@ impl ReflowService {
         // never learns it happened is exactly how 49 of these were written in
         // one pass before anyone noticed.
         let mut out = json!({ "acknowledged": req.gap_id, "decision_id": decision_id });
+        // Settles by being made (crate::settles); an unsigned one is recorded
+        // and said, never refused — the declared policy for this tool.
+        let unsigned = crate::settles::gate(
+            "acknowledge_gap",
+            crate::settles::rule("acknowledge_gap").settles_value(None),
+            req.approver.as_deref(),
+            "an acknowledgement",
+        )?
+        .is_some();
         match req.approver.as_deref() {
             Some(who) => {
                 out["approved_by"] = json!(who);
             }
+            None if !unsigned => {}
             None => {
                 out["approved_by"] = JsonValue::Null;
                 out["unattributed"] = json!(
@@ -1225,10 +1245,45 @@ impl ReflowService {
                 reason: g.reason,
             })
             .collect();
+        // Each item settles (crate::settles declares the batch's signature at
+        // `gaps[].approver`). The items that name nobody are recorded and SAID,
+        // as the single form says it — until 2026-09-29 the batch said nothing.
+        let rule = crate::settles::rule("acknowledge_gaps");
+        let unsigned: Vec<String> = items
+            .iter()
+            .filter(|i| {
+                crate::settles::gate(
+                    "acknowledge_gaps",
+                    rule.settles_value(None),
+                    i.approver.as_deref(),
+                    "an acknowledgement",
+                )
+                .ok()
+                .flatten()
+                .is_some()
+            })
+            .map(|i| i.gap_id.clone())
+            .collect();
         let mut g = self.write_lock().await?;
         let report = g
             .acknowledge_gaps_with(&items, req.check_only)
             .map_err(dyno_err)?;
+        if report.applied && !report.check_only && !unsigned.is_empty() {
+            let items: Vec<JsonValue> = report
+                .written
+                .into_iter()
+                .map(|decision_id| json!({ "decision_id": decision_id }))
+                .collect();
+            return ok_json(json!({
+                "applied": true,
+                "written": items.len(),
+                "items": items,
+                "unattributed": {
+                    "gap_ids": unsigned,
+                    "note": "These acknowledgements carry NOBODY'S NAME. Each mints an accepted Decision — settled intent — and `rule:design-intent-moves-only-on-the-owners-word` says that needs a name, so check_intent_authority will report them. Pass `approver` on each item (the Contributor whose judgement it is) to record it. Recorded anyway rather than refused, as the single-gap form does.",
+                },
+            }));
+        }
         bulk_result(report, |decision_id| json!({ "decision_id": decision_id }))
     }
 
