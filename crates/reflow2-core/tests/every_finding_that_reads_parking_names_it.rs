@@ -49,6 +49,10 @@ const READING_FUNCTIONS: &[(&str, Option<&str>)] = &[
         Some("decision_overtaken_by_promotion"),
     ),
     ("detect_prohibitions_in_prose", Some("prohibition_in_prose")),
+    (
+        "detect_settled_decision_named_open",
+        Some("settled_decision_named_open"),
+    ),
     // Feeds `detect_unreviewed_ideas`, which renders the gap.
     ("unreviewed_ideas", Some("unreviewed_ideas")),
     // closure_report's traceability leg counts a parked requirement in

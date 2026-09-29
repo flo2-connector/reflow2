@@ -653,6 +653,11 @@ pub enum GapSource {
     /// The same shape as `DefectOvertakenByChange` one type over, and simpler:
     /// one edge and one status, with no dates to order and no artifact walk.
     DecisionOvertakenByPromotion,
+    /// An ACCEPTED Decision whose NAME still begins as an open question — the
+    /// status word the brainstorm convention writes ("OPEN — does X…?"), a
+    /// copy of the status that no settle act updated. One rollup keyed on the
+    /// set of offenders.
+    SettledDecisionNamedOpen,
     /// A prohibition — "must never", "is not allowed to" — living in the
     /// prose of a Requirement, Capability, Component, Interface or accepted
     /// Decision, with no Constraint binding that node. capture-intent's
@@ -761,6 +766,26 @@ pub enum GapSource {
     AgentInstructionsUnregistered,
 }
 
+/// Whether a node's NAME begins with the status word the brainstorm convention
+/// writes for an open question: `OPEN` in capitals as its first word, or the
+/// phrase "open question" in any case.
+///
+/// Deliberately narrow. A lower-case "Open the API to partners" is a decision
+/// ABOUT opening something; "OPENING the second site" is a different word; a
+/// status word later in the name is prose, not a heading. One definition,
+/// shared by the settle reply (reflow2-mcp `prose_currency`) and the sweep
+/// (`settled_decision_named_open`), so the two cannot disagree about which
+/// names are stale.
+#[must_use]
+pub fn name_leads_with_open(name: &str) -> bool {
+    let t = name.trim_start();
+    let first: String = t.chars().take_while(|c| c.is_alphanumeric()).collect();
+    if first == "OPEN" {
+        return true;
+    }
+    t.to_lowercase().starts_with("open question")
+}
+
 impl GapSource {
     /// Stable snake_case key (used in the gap id hash and for display).
     pub fn as_str(self) -> &'static str {
@@ -822,6 +847,7 @@ impl GapSource {
             GapSource::FixWithoutRecordedCause => "fix_without_recorded_cause",
             GapSource::DefectOvertakenByChange => "defect_overtaken_by_change",
             GapSource::DecisionOvertakenByPromotion => "decision_overtaken_by_promotion",
+            GapSource::SettledDecisionNamedOpen => "settled_decision_named_open",
             GapSource::ProhibitionInProse => "prohibition_in_prose",
             GapSource::ArtifactStandardUndeclared => "artifact_standard_undeclared",
             GapSource::ArtifactNotUnderDeclaredStandard => "artifact_not_under_declared_standard",
@@ -917,6 +943,9 @@ impl GapSource {
             // target arriving is a fresh claim that the question is answered,
             // so it is worth asking again.
             GapSource::DecisionOvertakenByPromotion => false,
+            // Keyed on the SET of offenders: a stale name is never a judgement
+            // call, so acknowledging today's set must not silence tomorrow's.
+            GapSource::SettledDecisionNamedOpen => false,
             // AGGREGATE, on purpose and from measurement: reflow2's own design
             // raises ≈61 at once. Per node that is the BL-73 wallpaper — read
             // as noise and acknowledged in bulk without being read. One
@@ -2226,6 +2255,8 @@ impl DesignGraph {
         // The same mirror one type over: an open question whose answer the
         // design has already taken up.
         self.detect_decision_overtaken_by_promotion(&mut gaps)?;
+        // The third copy of "is this open?": an accepted decision's own name.
+        self.detect_settled_decision_named_open(&mut gaps)?;
         // A prohibition the routing table would have sent to a Constraint,
         // sitting in the prose of something else.
         self.detect_prohibitions_in_prose(&mut gaps)?;
@@ -5434,6 +5465,94 @@ impl DesignGraph {
         "never allowed",
         "is forbidden",
     ];
+
+    /// An accepted Decision still NAMED as an open question
+    /// (`GapSource::SettledDecisionNamedOpen`).
+    ///
+    /// `fact:root-cause-a-settled-decisions-name-still-reads-open-because-the-
+    /// 09-19-fix-reached-the-body-and-no-check-reads-names-2026-09-29`: the
+    /// brainstorm skill names an idea "OPEN — does X…?", which COPIES the status
+    /// into the name at birth, and no settle act updated the copy. flo2 F12
+    /// (2026-09-19) was fixed for the body and not the name; it recurred on
+    /// 2026-09-29, and reflow2's own design held 44 of 266 accepted decisions so
+    /// named. The settle reply now reports it at the moment it is created
+    /// (`name_still_reads_open`) and `set_decision_status` takes `name`; this is
+    /// the sweep for the ones already standing, which no reply will ever reach.
+    ///
+    /// # Why this may be a sweep when its prose-marker siblings are not
+    ///
+    /// Those read English and fire on prose that QUOTES a question. This reads
+    /// one thing — the leading status word in capitals, [`name_leads_with_open`],
+    /// against the node's own `status` — so it is a contradiction within one
+    /// node, not a sentence to judge. Only `accepted` is read: a `proposed`
+    /// decision named "OPEN" is telling the truth, a `deferred` one is set aside
+    /// with its question still open, and `rejected`/`superseded` retire rather
+    /// than answer.
+    ///
+    /// Reports and never renames (`dec:report-dont-judge`): the name is the
+    /// owner's record.
+    fn detect_settled_decision_named_open(
+        &self,
+        gaps: &mut Vec<GapCandidate>,
+    ) -> Result<(), DynoError> {
+        let mut accepted = 0usize;
+        let mut hits: Vec<(String, String)> = Vec::new();
+        for dec in self.scan_live_nodes(node::DECISION)? {
+            if dec.properties.get("status").and_then(Value::as_str) != Some("accepted") {
+                continue;
+            }
+            accepted += 1;
+            let name = node_name(&dec);
+            if !name_leads_with_open(&name) {
+                continue;
+            }
+            if self.is_parked(&dec.node_id)? {
+                continue;
+            }
+            hits.push((dec.node_id.clone(), name));
+        }
+        if hits.is_empty() {
+            return Ok(());
+        }
+        hits.sort();
+        let n = hits.len();
+        let affected: Vec<String> = hits.iter().map(|(id, _)| id.clone()).collect();
+        let listed: Vec<String> = hits
+            .iter()
+            .map(|(id, name)| format!("{id} (“{name}”)"))
+            .collect();
+        gaps.push(GapCandidate {
+            id: gap_id(GapSource::SettledDecisionNamedOpen, &affected),
+            gap_source: GapSource::SettledDecisionNamedOpen,
+            scope: GapScope::Project,
+            // Beside decision_overtaken_by_promotion (0.4), its mirror: there
+            // the status lags the answer, here the name lags the status. Either
+            // way the design says two contradictory things about one question.
+            severity: 0.4,
+            title: format!("{n} accepted decision(s) are still NAMED as open questions"),
+            description: format!(
+                "{n} of {accepted} accepted decision(s) have a name that still begins as an open \
+                 question (\"OPEN — …\") — the status the brainstorm convention writes into the \
+                 name, left there when the question was settled. Anything that lists decisions \
+                 by name (search results, what_next, a hub, a where-am-i read) presents each as \
+                 an open question, and a reader trusts the heading over the status field. For \
+                 each: retitle it to say what was decided — `replace_text` on field `name`, or \
+                 `set_decision_status` with `name` the next time it is settled. The name is the \
+                 owner's record, so nothing is renamed for you. If a name is deliberate, \
+                 acknowledge this once; a newly stale name will ask again."
+            ),
+            affected_ids: affected,
+            suggested_depth: 1,
+            evidence: format!(
+                "{n} of {accepted} live Decision(s) at status `accepted` have a name whose first \
+                 word is OPEN in capitals, or which begins \"open question\" in any case; parked \
+                 decisions are excluded. A lower-case \"Open the …\" is a decision about opening \
+                 something and is not matched. Named: {}.",
+                listed.join("; ")
+            ),
+        });
+        Ok(())
+    }
 
     /// A prohibition living in prose (`GapSource::ProhibitionInProse`).
     ///

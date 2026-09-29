@@ -464,7 +464,12 @@ fn revise_args(
 
 /// Keys a revise reply may carry that its create did not, because a revise is
 /// supposed to report them.
-const REVISE_ONLY_REPLY_KEYS: &[&str] = &["revision"];
+///
+/// `edges_already_present` (crate::drawn_edges, #623): a revise that re-sends
+/// its targets finds the edges its create drew and names them as already
+/// there. That is read from the STORE, not computed from the call, and it is
+/// what stops a revise reading as having drawn something new.
+const REVISE_ONLY_REPLY_KEYS: &[&str] = &["revision", "edges_already_present"];
 
 #[tokio::test]
 async fn every_tool_that_promises_optional_to_revise_keeps_what_a_revise_did_not_pass() {

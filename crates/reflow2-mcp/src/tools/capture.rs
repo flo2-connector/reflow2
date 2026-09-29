@@ -1006,11 +1006,50 @@ pub(crate) fn with_approval_and_settled_question(
     decision_id: &str,
     hits: &[crate::prose_currency::OpenProse],
 ) -> Result<CallToolResult, McpError> {
+    // The decision's OWN name, read against the status it now stands at: the
+    // third copy of "is this open?", and the one no check read until
+    // 2026-09-29 (crate::prose_currency::name_still_reads_open).
+    let name_open = crate::prose_currency::name_still_reads_open(
+        node.properties.get("name").and_then(Value::as_str),
+        node.properties.get("status").and_then(Value::as_str),
+    );
     let mut v = serde_json::to_value(node).map_err(ser_err)?;
-    if let (Some(note), Some(obj)) = (note, v.as_object_mut()) {
-        obj.insert("carries_nobodys_name".into(), JsonValue::String(note));
+    if let Some(obj) = v.as_object_mut() {
+        if let Some(note) = note {
+            obj.insert("carries_nobodys_name".into(), JsonValue::String(note));
+        }
+        if let Some(block) = name_open {
+            obj.insert("name_still_reads_open".into(), JsonValue::Object(block));
+        }
     }
     ok_json(with_settled_question_prose(v, decision_id, hits))
+}
+
+/// A Decision's loop hint, read from the status the node ACTUALLY stands at.
+///
+/// It was one fixed sentence — "a Decision lands `proposed`" — and so was false
+/// on every write that left the node anywhere else: the 2026-08-14 merge over an
+/// accepted node, and, since the one-call settle of 2026-09-06, every
+/// add_decision that carried `status` and `approver`. The claim is about where
+/// the node stands after this call, never about how it got there, because a
+/// merge over an already-accepted node is accepted without this call settling
+/// anything.
+pub(crate) fn decision_landing_hint(status: Option<&str>) -> String {
+    match status {
+        None | Some("proposed") => "loop: a Decision lands `proposed` — only the owner's word \
+                                    moves it (set_decision_status)"
+            .to_string(),
+        Some("accepted") => "loop: this Decision stands `accepted` — it reads back as what was \
+                             decided; link what it shapes with governed_by"
+            .to_string(),
+        Some("deferred") => "loop: this Decision stands `deferred` — set aside by the owner's \
+                             word, so it counts as no debt until someone takes it up"
+            .to_string(),
+        Some(other) => format!(
+            "loop: this Decision stands `{other}` — retired rather than settled; say what \
+             replaced it (OBSOLETES / EVOLVES_INTO) so a reader can follow the road"
+        ),
+    }
 }
 
 pub(crate) fn with_capture_notes<T: serde::Serialize>(
@@ -1709,13 +1748,19 @@ impl ReflowService {
         )?;
         preserve_prior(&mut g, prior.as_ref(), &node);
         let revision = revision_of(&g, prior.as_ref(), &node);
-        with_capture_notes(
-            node,
-            "loop: a rule the project follows — if breaking it should stop the build, say so with              `enforced` (governance-proposal); then run detect_gaps (detect-and-ask)",
-            found,
-            revision,
-            None,
-        )
+        // The hint asks for `enforced` only when the rule does not already
+        // state it — read from the node, so a merge over a rule whose power was
+        // settled earlier is not asked again. Same fixed-sentence class as
+        // add_decision's "lands proposed" (fact:root-cause-add-decisions-lands-
+        // proposed-hint-recurred-on-the-one-call-settle-path-2026-09-29).
+        let hint = if node.properties.contains_key("enforced") {
+            "loop: a rule the project follows, its power stated — run detect_gaps \
+             (detect-and-ask)"
+        } else {
+            "loop: a rule the project follows — if breaking it should stop the build, say so \
+             with `enforced` (governance-proposal); then run detect_gaps (detect-and-ask)"
+        };
+        with_capture_notes(node, hint, found, revision, None)
     }
 
     #[tool(
@@ -1841,8 +1886,18 @@ impl ReflowService {
                 ));
             }
         }
-        let mut drawn = Vec::new();
+        // Every edge drawn here is NAMED in the reply, through the one shared
+        // path. This list used to be built and then discarded, so the reply was
+        // silent on the SATISFIES and ALLOCATED_TO it had just drawn
+        // (fact:root-cause-add-decision-discards-the-edge-echo-its-related-to-
+        // computed-2026-09-28, ⑥ — add_capability is the second silent
+        // constructor). An edge a revise re-sends is reported as already
+        // present rather than as new.
+        let mut edges = crate::drawn_edges::DrawnEdges::new();
         for (e, ty, id) in &thread {
+            if edges.classify(&g, &req.id, e, id).map_err(dyno_err)? {
+                continue;
+            }
             g.create_edge(
                 e,
                 node_ty,
@@ -1852,16 +1907,23 @@ impl ReflowService {
                 reflow2_core::nodes::Props::new(),
             )
             .map_err(dyno_err)?;
-            drawn.push(json!({ "edge_type": e, "to_id": id }));
         }
         preserve_prior(&mut g, prior.as_ref(), &node);
         let revision = revision_of(&g, prior.as_ref(), &node);
-        with_capture_notes(
-            node,
+        // The hint used to tell every caller to "wire satisfies", including the
+        // caller who had just passed `satisfies` — the same fixed-sentence
+        // class as add_decision's "lands proposed".
+        let hint = if req.satisfies.is_some() {
+            "loop: the thread to its requirement is drawn in this call — run detect_gaps when \
+             the capture batch lands (detect-and-ask)"
+        } else {
             "loop: wire satisfies to the requirement this serves, then run detect_gaps when \
-             the capture batch lands (detect-and-ask)",
-            found,
-            revision,
+             the capture batch lands (detect-and-ask)"
+        };
+        let mut reply = serde_json::to_value(node).map_err(ser_err)?;
+        edges.attach(&mut reply);
+        with_capture_notes(
+            reply, hint, found, revision,
             // No observed instance on this tool yet, and the check is a
             // one-line extension when there is one. Wired where the harm was
             // measured (`add_decision`, `add_change_event`) rather than
@@ -3013,7 +3075,16 @@ impl ReflowService {
                 None,
             ));
         }
-        if exploratory && (req.related_to.is_some() || req.no_relation_note.is_some()) {
+        // `related_to` IS DRAWN FOR EVERY KIND. It used to sit inside the
+        // `exploratory` scope that belongs to the refusal above, so a `choice`
+        // or no-kind decision passed the duplicate guard naming its relations
+        // and then drew none of them, silently — the 2026-09-23 drop, still
+        // live on 0.74.0 when a designer agent's seven `choice` decisions
+        // landed with no edges (fact:root-cause-add-decision-discards-the-edge-
+        // echo-its-related-to-computed-2026-09-28). The refusal stays scoped;
+        // honouring what the caller asked for never was a matter of kind.
+        let mut edges = crate::drawn_edges::DrawnEdges::new();
+        if req.related_to.is_some() || req.no_relation_note.is_some() {
             let mut links: Vec<RelationLink> = Vec::new();
             for l in req.related_to.unwrap_or_default() {
                 // `g` (the write lock) is already held here, so resolve IN-lock: the
@@ -3032,8 +3103,12 @@ impl ReflowService {
                     incoming: l.incoming.unwrap_or(false),
                 });
             }
-            g.review_relations(node_ty, &req.id, &links, req.no_relation_note.as_deref())
+            // The outcome carries the subject-first sentences. It used to be
+            // dropped here, so the reply named no edge for any kind.
+            let outcome = g
+                .review_relations(node_ty, &req.id, &links, req.no_relation_note.as_deref())
                 .map_err(dyno_err)?;
+            edges = crate::drawn_edges::DrawnEdges::from_review(&outcome);
         }
         // The owner's word, in the same call: applied after every guard that
         // could still undo the create, so a refusal never leaves a signed
@@ -3061,10 +3136,30 @@ impl ReflowService {
         };
         preserve_prior(&mut g, prior.as_ref(), &node);
         let revision = revision_of(&g, prior.as_ref(), &node);
+        // THE HINT SAYS WHERE THE NODE LANDED, read from the node, not assumed.
+        // It was a fixed sentence — "a Decision lands `proposed`" — and so was
+        // false on every add_decision that settled in the same call, which
+        // since 2026-09-06 is the NORMAL shape of a one-call settle
+        // (fact:root-cause-add-decisions-lands-proposed-hint-recurred-on-the-
+        // one-call-settle-path-2026-09-29; first reported 2026-08-14).
+        let landed = node
+            .properties
+            .get("status")
+            .and_then(Value::as_str)
+            .map(str::to_string);
+        let hint = decision_landing_hint(landed.as_deref());
+        let name_open = crate::prose_currency::name_still_reads_open(
+            node.properties.get("name").and_then(Value::as_str),
+            landed.as_deref(),
+        );
+        let mut reply = serde_json::to_value(node).map_err(ser_err)?;
+        edges.attach(&mut reply);
+        if let (Some(block), Some(obj)) = (name_open, reply.as_object_mut()) {
+            obj.insert("name_still_reads_open".into(), JsonValue::Object(block));
+        }
         with_capture_notes(
-            node,
-            "loop: a Decision lands `proposed` — only the owner's word moves it \
-             (set_decision_status)",
+            reply,
+            &hint,
             found,
             revision,
             // One of the two tools with observed instances: five in reflow2's
