@@ -2,7 +2,7 @@
   "annotations": {
     "readOnlyHint": false
   },
-  "description": "Record that a Release ships an Artifact or Component (INCLUDES) — the as-released view. Pass as_checksum to freeze the artifact's content hash as shipped: the artifact node's own checksum is the live drift baseline and moves with every accept, so without the frozen copy a past release's manifest would quietly rewrite itself. A Release with no INCLUDES edges is a version number, not a manifest.",
+  "description": "Record that a Release ships an Artifact or Component (INCLUDES) — the as-released view. Pass as_checksum to freeze the artifact's content hash as shipped: the artifact node's own checksum is the live drift baseline and moves with every accept, so without the frozen copy a past release's manifest would quietly rewrite itself. A Release with no INCLUDES edges is a version number, not a manifest. MANY AT ONCE: `draw_edges`, items {\"tool\": \"release_includes\", \"arguments\": {…}}, same checks, all or nothing.",
   "inputSchema": {
     "$schema": "https://json-schema.org/draft/2020-12/schema",
     "additionalProperties": false,

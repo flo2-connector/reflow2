@@ -2,7 +2,7 @@
   "annotations": {
     "readOnlyHint": false
   },
-  "description": "Order one DesignEpoch after another (earlier PRECEDES later) — the chain axis Z exists to record. Epochs also carry a `sequence` integer, but the explicit edge is what makes the history walkable as a graph rather than sortable as a list. Ask for this when you want to record that one point in the design's history comes before another. Ask for this to say which epoch comes before which.",
+  "description": "Order one DesignEpoch after another (earlier PRECEDES later) — the chain axis Z exists to record. Epochs also carry a `sequence` integer, but the explicit edge is what makes the history walkable as a graph rather than sortable as a list. Ask for this when you want to record that one point in the design's history comes before another. Ask for this to say which epoch comes before which. MANY AT ONCE: `draw_edges`, items {\"tool\": \"precedes\", \"arguments\": {…}}, same checks, all or nothing.",
   "inputSchema": {
     "$schema": "https://json-schema.org/draft/2020-12/schema",
     "additionalProperties": false,

@@ -149,11 +149,11 @@ pub struct GapAck {
 /// The two properties are separable and both are load-bearing. Collecting all
 /// failures is what stops a bulk form degenerating into N retries (BL-118).
 /// Discarding on any failure is what stops it leaving a half-applied design.
-fn atomic<I, T>(
+fn atomic<I, T, E: std::fmt::Display>(
     g: &mut DesignGraph,
     items: &[I],
     id_of: impl Fn(&I) -> String,
-    mut op: impl FnMut(&mut DesignGraph, &I) -> Result<T, DynoError>,
+    mut op: impl FnMut(&mut DesignGraph, &I) -> Result<T, E>,
     check_only: bool,
 ) -> Result<BulkReport<T>, DynoError> {
     g.begin_batch();
@@ -198,6 +198,31 @@ fn atomic<I, T>(
 }
 
 impl DesignGraph {
+    /// Run `op` over every item inside ONE atomic batch, with every failure
+    /// named — the house rule this module states — for a caller whose per-item
+    /// work is not a core call.
+    ///
+    /// `draw_edges` is that caller: each item is a typed edge helper's OWN
+    /// body (its argument parsing, its checks, its reply), so a bulk write of N
+    /// typed edges cannot write what the helper would refuse for one
+    /// (`req:every-typed-edge-helper-has-a-bulk-form-that-keeps-its-checks`).
+    /// Reads inside the batch see its earlier writes, so a second item on the
+    /// same pair reads the first exactly as a second call would.
+    ///
+    /// # Errors
+    ///
+    /// Only a failure to commit the batch; an item's failure is reported in the
+    /// [`BulkReport`], never as an error.
+    pub fn atomically<I, T, E: std::fmt::Display>(
+        &mut self,
+        items: &[I],
+        id_of: impl Fn(&I) -> String,
+        op: impl FnMut(&mut DesignGraph, &I) -> Result<T, E>,
+        check_only: bool,
+    ) -> Result<BulkReport<T>, DynoError> {
+        atomic(self, items, id_of, op, check_only)
+    }
+
     /// Upsert many nodes in one call — the bulk form of `upsert_node`
     /// (`create_node` on the surface), measured at 112 self-loops.
     pub fn create_nodes(
@@ -222,15 +247,17 @@ impl DesignGraph {
         )
     }
 
-    /// Create many edges in one call — the bulk form of `create_edge`, and so
-    /// of every typed helper built on it: `contains` (109 self-loops),
-    /// `contain_component` (77), `satisfies` (74), `allocate`, `realizes`.
+    /// Create many edges in one call — the bulk form of the generic
+    /// `create_edge`, measured against `contains` (109 self-loops),
+    /// `contain_component` (77), `satisfies` (74), `allocate` and `realizes`.
     ///
-    /// One bulk form rather than one per helper is deliberate. The helpers are
-    /// thin wrappers that fill in the endpoint types and pass empty props, so a
-    /// bulk `create_edge` covers all of them; and BL-155 found 40 of 132 served
-    /// tools never called in the retained sample, which makes adding six tools
-    /// where one will do a cost rather than a convenience.
+    /// It runs the schema's checks and NO typed helper's own. That was read as
+    /// harmless while the helpers were thin, and 2026-09-29 showed it is not:
+    /// `constrains`, `governed_by` and `authored_by` carry checks of their own,
+    /// and a designer's ~100 such calls had no bulk route that kept them
+    /// (`fact:root-cause-a-bulk-edge-form-was-offered-and-no-typed-helper-names-it-2026-09-29`).
+    /// The typed helpers' bulk form is `draw_edges` on the surface, which runs
+    /// each helper's own body per item inside [`Self::atomically`].
     pub fn create_edges(
         &mut self,
         items: &[EdgeSpec],
