@@ -944,7 +944,8 @@ static PARKS_ROUTE: std::sync::LazyLock<String> = std::sync::LazyLock::new(|| {
          inferred: `governed_by(<this node>, <an ACCEPTED Decision that says why>, ruling: \
          \"parks\")` records it as parked, and it is then counted in `swept.parked` rather than \
          listed as open. A proposed Decision cannot park anything — a musing must not suppress a \
-         finding. The same ruling is read by exactly these findings, and by nothing else: {}.",
+         finding. The same ruling is read by exactly these findings: {} — and by closure_report's \
+         traceability leg, which counts a parked requirement as parked, never as a hole.",
         PARKING_READERS.join(", ")
     )
 });
