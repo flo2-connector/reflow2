@@ -925,6 +925,7 @@ pub const PARKING_READERS: &[&str] = &[
     "fix_without_recorded_cause",
     "orphan_node",
     "prohibition_in_prose",
+    "settled_decision_named_open",
     "unallocated_component",
     "unreviewed_ideas",
     "unsatisfied_requirement",
