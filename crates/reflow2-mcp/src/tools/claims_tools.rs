@@ -102,9 +102,7 @@ impl ReflowService {
                        each node written afterwards is credited to them as its author. They \
                        must already be a Contributor. Credit only — never an approval. One \
                        call can name someone else in its `_meta` under `reflow2/writes_for`, \
-                       the only way when no session is kept. `acting_agent` names the agent \
-                       you write through, recorded beside them (`reflow2/acting_agent` per call). \
-                       Omit contributor_id to stop.",
+                       the only way when no session is kept. Omit contributor_id to stop.",
         annotations(read_only_hint = true)
     )]
     pub async fn writes_for(
