@@ -8,7 +8,7 @@
     "additionalProperties": false,
     "properties": {
       "earlier_epoch": {
-        "description": "The DesignEpoch (`epoch:…`) that comes first — the source of the PRECEDES edge.",
+        "description": "The DesignEpoch (`epoch:…`) that comes first — the source of the PRECEDES edge.\n`from_id` is accepted too: the ends are peers, and the taught peer spelling is\n`from_*` / `to_*` (dec:idea-one-way-to-name-which-node-across-the-tool-surface).",
         "type": "string"
       },
       "later_epoch": {

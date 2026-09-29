@@ -1,0 +1,328 @@
+{
+  "_about": "WHICH SERVED TOOL WRITES WHICH PART OF THE VOCABULARY, in ONE place. Read by the server (describe_schema's `written_by` and `drawn_by`, and every invalid-edge refusal's alternatives) and by tools/vocabulary_reach.py (its per-type parameter reach). Until 2026-09-29 the node-type half lived only in that script, so the schema could not say \"record_finding writes a TemporalFact\" to an agent asking about the type (fact:root-cause-describe-schema-never-names-the-typed-tool-that-writes-a-type-and-the-map-lives-in-a-repo-script-2026-09-29). Every tool named here must be served and every type named must be declared; crates/reflow2-mcp/tests/a_finding_or_refusal_names_the_route_that_works.rs checks both, and that each edge tool really draws every pair its schema models.",
+  "writes_node_type": {
+    "acknowledge_gap": [
+      "Question"
+    ],
+    "acknowledge_gaps": [
+      "Question"
+    ],
+    "add_actor": [
+      "Actor"
+    ],
+    "add_artifact": [
+      "Artifact"
+    ],
+    "add_capability": [
+      "Capability"
+    ],
+    "add_change_event": [
+      "ChangeEvent"
+    ],
+    "add_component": [
+      "Component"
+    ],
+    "add_constraint": [
+      "Constraint"
+    ],
+    "add_contributor": [
+      "Contributor"
+    ],
+    "add_decision": [
+      "Decision"
+    ],
+    "add_design_rule": [
+      "DesignRule"
+    ],
+    "add_environment": [
+      "Environment"
+    ],
+    "add_environment_rule": [
+      "EnvironmentRule"
+    ],
+    "add_epoch": [
+      "DesignEpoch"
+    ],
+    "add_flow": [
+      "Flow"
+    ],
+    "add_interface": [
+      "Interface"
+    ],
+    "add_project": [
+      "Project"
+    ],
+    "add_readiness": [
+      "ReadinessAssessment"
+    ],
+    "add_release": [
+      "Release"
+    ],
+    "add_requirement": [
+      "Requirement"
+    ],
+    "add_resource": [
+      "Resource"
+    ],
+    "add_verification": [
+      "Verification"
+    ],
+    "answer_question": [
+      "Question"
+    ],
+    "collapse_decision": [
+      "Decision"
+    ],
+    "complies_with": [
+      "EnvironmentRule"
+    ],
+    "external_dependency": [
+      "Resource"
+    ],
+    "forecast_readiness": [
+      "ReadinessAssessment"
+    ],
+    "gap_to_prompt": [
+      "Question"
+    ],
+    "gaps_to_prompts": [
+      "Question"
+    ],
+    "genesis": [
+      "Project"
+    ],
+    "imposes": [
+      "EnvironmentRule"
+    ],
+    "ingest_corpus_step": [
+      "Fragment"
+    ],
+    "ingest_step": [
+      "Fragment"
+    ],
+    "link_artifact": [
+      "Artifact",
+      "Fragment"
+    ],
+    "plan_epoch": [
+      "DesignEpoch"
+    ],
+    "reconcile_artifacts": [
+      "DriftEvent"
+    ],
+    "reconcile_dependencies": [
+      "DriftEvent"
+    ],
+    "reconcile_deployment": [
+      "DriftEvent"
+    ],
+    "reconcile_verification": [
+      "DriftEvent"
+    ],
+    "record_alias": [
+      "Requirement",
+      "Capability",
+      "Component",
+      "Interface",
+      "Flow"
+    ],
+    "record_change": [
+      "ChangeEvent"
+    ],
+    "record_finding": [
+      "TemporalFact"
+    ],
+    "register_alternative": [
+      "Artifact"
+    ],
+    "reopen_choice": [
+      "Decision"
+    ],
+    "set_artifact_checksum": [
+      "Artifact"
+    ],
+    "set_artifact_checksums": [
+      "Artifact"
+    ],
+    "set_artifact_intent": [
+      "Artifact"
+    ],
+    "set_capability_delivery": [
+      "Capability"
+    ],
+    "set_capability_signature": [
+      "Capability"
+    ],
+    "set_capability_status": [
+      "Capability"
+    ],
+    "set_closure_criterion": [
+      "Project"
+    ],
+    "set_decision_status": [
+      "Decision"
+    ],
+    "set_epoch_status": [
+      "DesignEpoch"
+    ],
+    "set_interface_designation": [
+      "Interface"
+    ],
+    "set_interface_spec": [
+      "Interface"
+    ],
+    "set_project_mode": [
+      "Project"
+    ],
+    "set_quality_target": [
+      "Decision"
+    ],
+    "set_requirement_designation": [
+      "Requirement"
+    ],
+    "set_requirement_lineage": [
+      "Requirement"
+    ],
+    "set_requirement_status": [
+      "Requirement"
+    ],
+    "set_verification_kind": [
+      "Verification"
+    ],
+    "set_verification_status": [
+      "Verification"
+    ],
+    "set_violation_status": [
+      "EnvironmentRule"
+    ],
+    "snapshot_before_change": [
+      "ChangeEvent",
+      "Snapshot"
+    ],
+    "violates_rule": [
+      "EnvironmentRule"
+    ],
+    "withdraw_gap_acknowledgement": [
+      "Question"
+    ],
+    "withdraw_question": [
+      "Question"
+    ]
+  },
+  "draws_edge_type": {
+    "allocate": [
+      "ALLOCATED_TO"
+    ],
+    "answers": [
+      "ANSWERS"
+    ],
+    "authored_by": [
+      "AUTHORED_BY"
+    ],
+    "calibrated_against": [
+      "CALIBRATED_AGAINST"
+    ],
+    "complies_with": [
+      "COMPLIES_WITH"
+    ],
+    "constrains": [
+      "CONSTRAINS"
+    ],
+    "consumes": [
+      "CONSUMES"
+    ],
+    "contain_component": [
+      "CONTAINS"
+    ],
+    "contains": [
+      "CONTAINS"
+    ],
+    "decomposes": [
+      "DECOMPOSES"
+    ],
+    "depends_on": [
+      "DEPENDS_ON"
+    ],
+    "deploy_to": [
+      "DEPLOYED_TO"
+    ],
+    "documents": [
+      "DOCUMENTS"
+    ],
+    "gate_on": [
+      "GATED_ON"
+    ],
+    "governed_by": [
+      "GOVERNED_BY"
+    ],
+    "imposes": [
+      "IMPOSES"
+    ],
+    "invalidates": [
+      "INVALIDATES"
+    ],
+    "move_component": [
+      "CONTAINS"
+    ],
+    "operates_in": [
+      "OPERATES_IN"
+    ],
+    "owned_by": [
+      "OWNED_BY"
+    ],
+    "part_of_flow": [
+      "PART_OF_FLOW"
+    ],
+    "performed_in": [
+      "PERFORMED_IN"
+    ],
+    "pin_at_epoch": [
+      "AT_EPOCH"
+    ],
+    "precedes": [
+      "PRECEDES"
+    ],
+    "provides": [
+      "PROVIDES"
+    ],
+    "realizes": [
+      "REALIZES"
+    ],
+    "release_includes": [
+      "INCLUDES"
+    ],
+    "release_includes_all": [
+      "INCLUDES"
+    ],
+    "require_resource": [
+      "REQUIRES_RESOURCE"
+    ],
+    "review_relations": [
+      "ANTICIPATES",
+      "BLOCKS",
+      "CAUSES",
+      "CONTRADICTS",
+      "DEPENDS_ON",
+      "DUPLICATES",
+      "EVOLVES_INTO",
+      "MASKS",
+      "MITIGATES",
+      "OBSOLETES",
+      "RISKS",
+      "TRIGGERS",
+      "VIOLATES"
+    ],
+    "satisfies": [
+      "SATISFIES"
+    ],
+    "schedule_for": [
+      "SCHEDULED_FOR"
+    ],
+    "verifies": [
+      "VERIFIES"
+    ],
+    "violates_rule": [
+      "VIOLATES_RULE"
+    ]
+  }
+}

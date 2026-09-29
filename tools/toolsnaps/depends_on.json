@@ -2,18 +2,34 @@
   "annotations": {
     "readOnlyHint": false
   },
-  "description": "Record that one Component DEPENDS ON another (DEPENDS_ON) — the coupling every topology rule reads. THIS IS THE ONE TO REACH FOR when you mean \"this part needs that part\": cycle detection, single-point-of-failure analysis and the undeclared-seam gap are all computed from these edges, and a design that never draws them gets a clean topology answer that is SILENT about its components rather than clean about them. NOT TO BE CONFUSED WITH `external_dependency`, which pins which version of ANOTHER DESIGN this one is built against — a different concept that used to hold this name and was renamed to free it.",
+  "description": "Record that one Component DEPENDS ON another (DEPENDS_ON) — the coupling every topology rule reads. THIS IS THE ONE TO REACH FOR when you mean \"this part needs that part\": cycle detection, single-point-of-failure analysis and the undeclared-seam gap are all computed from these edges, and a design that never draws them gets a clean topology answer that is SILENT about its components rather than clean about them. NOT TO BE CONFUSED WITH `external_dependency`, which pins which version of ANOTHER DESIGN this one is built against — a different concept that used to hold this name and was renamed to free it. Between two Capabilities it is the functional DAG and is accepted too; the types are resolved from the ids.",
   "inputSchema": {
     "$schema": "https://json-schema.org/draft/2020-12/schema",
     "additionalProperties": false,
     "properties": {
       "from_id": {
-        "description": "The `Component` that depends.",
+        "description": "The `Component` (or `Capability`) that depends.",
         "type": "string"
       },
+      "from_type": {
+        "default": null,
+        "description": "The `from_id` node's type.\nOptional: resolved from the id when omitted (the id prefix names the\ntype); an id held by more than one type is REFUSED, never guessed — pass\nit then. Any type the schema accepts at this end is accepted here: a\ntyped tool is never narrower than its schema.",
+        "type": [
+          "string",
+          "null"
+        ]
+      },
       "to_id": {
-        "description": "The `Component` depended on.",
+        "description": "The `Component` (or `Capability`) depended on.",
         "type": "string"
+      },
+      "to_type": {
+        "default": null,
+        "description": "The `to_id` node's type.\nOptional: resolved from the id when omitted (the id prefix names the\ntype); an id held by more than one type is REFUSED, never guessed — pass\nit then. Any type the schema accepts at this end is accepted here: a\ntyped tool is never narrower than its schema.",
+        "type": [
+          "string",
+          "null"
+        ]
       }
     },
     "required": [

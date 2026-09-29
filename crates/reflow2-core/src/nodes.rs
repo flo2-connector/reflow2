@@ -533,6 +533,31 @@ pub(crate) fn is_traceability_edge(edge_type: &str) -> bool {
     structural_rule(edge_type).is_some()
 }
 
+/// Every declared edge type that threads the design network, sorted — the set
+/// [`is_traceability_edge`] answers `true` for, enumerated over the schema.
+///
+/// ⭐ A MESSAGE THAT SAYS WHAT A WALK FOLLOWS READS IT FROM HERE. The
+/// `unthreaded_cluster` finding described its scope by a hand-kept list of what
+/// it EXCLUDED ("CONTAINS is not a traceability edge"), and a reader inferred
+/// that everything unlisted counted: a true CAUSES edge was drawn to thread a
+/// cluster and threaded nothing (dev_reflow2 two-agent exercise, I13,
+/// `fact:root-cause-a-true-causes-edge-does-not-thread-a-cluster-and-the-finding-never-says-which-edges-do-2026-09-29`).
+/// Naming the INCLUDED set, computed, means a new edge added to
+/// [`structural_rule`] appears in the words without anyone remembering to.
+pub(crate) fn traceability_edge_types() -> Vec<String> {
+    let Ok(schema) = crate::schema::parsed_schema() else {
+        return Vec::new();
+    };
+    let mut edges: Vec<String> = schema
+        .edge_types
+        .keys()
+        .filter(|e| is_traceability_edge(e))
+        .cloned()
+        .collect();
+    edges.sort();
+    edges
+}
+
 /// FNV-1a 64-bit — a small, stable, dependency-free hash so the deterministic
 /// ids of *derived* nodes (gaps, heal issues, merge conflicts, agent prompts,
 /// drift and artifact-claim keys) are reproducible across runs and platforms
@@ -553,4 +578,33 @@ pub(crate) fn fnv1a(input: &str) -> u64 {
         hash = hash.wrapping_mul(0x0000_0100_0000_01b3);
     }
     hash
+}
+
+#[cfg(test)]
+mod the_threading_set_is_read_from_the_walk {
+    use super::*;
+
+    /// The set a finding names must be the set the walk follows — computed from
+    /// [`structural_rule`] over the schema, never a second list (I13).
+    #[test]
+    fn it_is_exactly_the_edges_structural_rule_admits() {
+        let set = traceability_edge_types();
+        let schema = crate::schema::parsed_schema().expect("schema");
+        for name in schema.edge_types.keys() {
+            assert_eq!(
+                set.contains(name),
+                is_traceability_edge(name),
+                "{name}: the named set and the walk disagree"
+            );
+        }
+        for threads in ["GOVERNED_BY", "SATISFIES", "ALLOCATED_TO", "VERIFIES"] {
+            assert!(set.iter().any(|e| e == threads), "{threads} threads");
+        }
+        for does_not in ["CAUSES", "CONTAINS", "AUTHORED_BY"] {
+            assert!(
+                !set.iter().any(|e| e == does_not),
+                "{does_not} does not thread"
+            );
+        }
+    }
 }
