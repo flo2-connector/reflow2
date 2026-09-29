@@ -96,6 +96,23 @@ schema:
         to: [Component, Capability]
       from: "*"
       to: "*"
+      reading:
+        form: "primitive"
+        primitive: "causes"
+        polarity: "+"
+        modality: "necessary"
+        inverse: true
+        modifiers: { data_volume: "quantity", dependency_type: "subtype", frequency: "quantity", optional: "modality", weight: "strength", weight_basis: "provenance" }
+        splits:
+          - property: "dependency_type"
+            note: "Unset keeps the reading above: the source needs the target to function. `optional` is a modality modifier, not a split — a split REPLACES the reading, so it could not soften a data flow without erasing it."
+            values:
+              function_call: { form: "primitive", primitive: "causes", polarity: "+", modality: "initiating", note: "The dependent invokes what it depends on." }
+              control_flow: { form: "primitive", primitive: "causes", polarity: "+", modality: "initiating", note: "The dependent hands control to what it depends on." }
+              data_flow: { form: "primitive", primitive: "flows-to", inverse: true, note: "Data passes from what is depended on to the dependent." }
+              error_flow: { form: "primitive", primitive: "flows-to", inverse: true, note: "Errors pass across. The classification gave no direction; read as data_flow's, from what is depended on." }
+              physical: { form: "primitive", primitive: "causes", polarity: "+", modality: "necessary", inverse: true, note: "Physically: a load path, a mount." }
+        basis: "classified"
       extraction_hint: >
         Source needs target to function. Between Capabilities this forms the
         functional DAG (must stay acyclic); also valid Component→Component.
@@ -112,6 +129,7 @@ schema:
     PART_OF_FLOW:
       from: Capability
       to: Flow
+      reading: { form: "composite", composition: "PART_OF_FLOW(c,f) := part-of(c,f) ∧ ∀c' part-of(c',f): step_order(c) < step_order(c') → before(c,c')", components: ["part-of", "before"], modifiers: { data_volume: "quantity", frequency: "quantity", step_order: "other", weight: "strength", weight_basis: "provenance" }, basis: "classified" }
       extraction_hint: A Capability participates in a Flow.
       properties:
         step_order: { type: int, description: "Position of this capability within the flow." }
@@ -123,6 +141,19 @@ schema:
     INTERACTS_WITH:
       from: Actor
       to: "*"
+      reading:
+        form: "leftover"
+        modifiers: { interaction: "subtype" }
+        note: "An umbrella: with `interaction` unset, or outside the four values, the edge says only that SOME relation exists."
+        splits:
+          - property: "interaction"
+            note: "Free text, not an enum; these four are the values its description names."
+            values:
+              reads: { form: "primitive", primitive: "flows-to", sub: "reads", inverse: true }
+              writes: { form: "primitive", primitive: "flows-to", sub: "writes" }
+              receives: { form: "primitive", primitive: "flows-to", sub: "receives", inverse: true }
+              triggers: { form: "primitive", primitive: "causes", polarity: "+", modality: "initiating" }
+        basis: "classified"
       extraction_hint: An Actor interacts with a Capability, Flow, or Interface.
       properties:
         interaction: { type: string, description: "reads / writes / triggers / receives." }

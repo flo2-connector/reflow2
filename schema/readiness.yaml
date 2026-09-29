@@ -60,11 +60,13 @@ schema:
     HAS_READINESS:
       from: "*"
       to: ReadinessAssessment
+      reading: { form: "primitive", primitive: "measures", inverse: true, basis: "classified" }
       extraction_hint: Links an enabling technology to a readiness level observed for it. Mirrors HAS_OBSERVATION.
 
     GATED_ON:
       from: "*"
       to: "*"
+      reading: { form: "composite", composition: "GATED_ON(i,t) := causes[necessary](level(t) ≥ min_level, delivery(i)) where level(t) is read by measures, and the threshold is norm.binds (the owner's risk policy)", components: ["causes", "measures", "norm"], modifiers: { kind: "other", min_level: "quantity", rationale: "evidence" }, basis: "classified" }
       extraction_hint: >
         An increment (a Release, a Capability, a Requirement) cannot be
         delivered until the technology at the far end reaches `min_level` on the
