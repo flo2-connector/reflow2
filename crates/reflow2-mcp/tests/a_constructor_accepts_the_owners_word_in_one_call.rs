@@ -318,8 +318,6 @@ async fn a_check_records_its_targets_and_the_run_it_just_had_in_one_call() {
         status: Some("realized".into()),
         distinct_from: None,
         tier: None,
-        is_entry_point: None,
-        is_exit_point: None,
     })));
     let out = j!(s.add_verification(Parameters(VerificationReq {
         id: "ver:totals-heal".into(),

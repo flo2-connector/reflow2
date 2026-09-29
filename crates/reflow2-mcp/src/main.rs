@@ -1525,6 +1525,43 @@ async fn main() -> anyhow::Result<()> {
                 eprintln!("  {r}");
             }
         }
+        // Edges written as something other than they arrived. Carried by the
+        // report since 2026-09-23 and printed by nothing here until the twin
+        // repair joined it, which made a CLI restore the one door that did
+        // not say what it changed.
+        if !report.migrated_edges.is_empty() {
+            eprintln!(
+                "reflow2: {} edge(s) were written as the edge they meant:",
+                report.migrated_edges.len()
+            );
+            for m in &report.migrated_edges {
+                eprintln!("  {m}");
+            }
+        }
+        // Relations the document held twice and out of step, brought into
+        // step with their authority. A long list is capped here, and the
+        // import_graph tool returns it whole.
+        if let Some(summary) = report.twin_repairs.summary() {
+            eprintln!("reflow2: {summary}:");
+            let r = &report.twin_repairs;
+            let lines: Vec<&String> = r
+                .moved
+                .iter()
+                .chain(&r.removed)
+                .chain(&r.retired_properties)
+                .chain(&r.added)
+                .collect();
+            const SHOWN: usize = 20;
+            for line in lines.iter().take(SHOWN) {
+                eprintln!("  {line}");
+            }
+            if lines.len() > SHOWN {
+                eprintln!(
+                    "  … and {} more (the import_graph tool's `twin_repairs` lists them all)",
+                    lines.len() - SHOWN
+                );
+            }
+        }
         return Ok(());
     }
 

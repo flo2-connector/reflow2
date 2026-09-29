@@ -230,12 +230,9 @@ def view_flows(g: Graph) -> str | None:
                     "no `role` on the TRIGGERS edge — forward and feedback are "
                     "indistinguishable there, which for a process is the load-bearing fact")
 
-        for which in ("entry_point", "exit_point"):
-            v = g.prop(fid, which)
-            if v is not None and v not in member_ids and not any(
-                    g.prop(m, "name") == v for m in member_ids):
-                confess(f"the {which} `{v}` of `{fid}`",
-                        "it matches no member of the flow")
+        # Entry and exit are computed from step order and no longer stored
+        # (dec:a-flows-order-is-its-step-order-and-entry-and-exit-are-computed),
+        # so there is no stored point that could fail to match a member.
 
         # An SCC states mutual reachability, not a walk order — rendering it
         # with arrows would assert a path the graph never stated. Braces only.

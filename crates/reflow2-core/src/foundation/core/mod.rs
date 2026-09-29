@@ -11,6 +11,6 @@ mod value;
 pub use error::DynoError;
 pub use schema::{
     ConfusedWith, Discrimination, EdgeEndpoint, EdgeTypeDef, ExtractionInclude, NodeTypeDef,
-    PropertyDef, PropertyType, ResolutionConfig, ResolutionStrategy, Schema,
+    PropertyDef, PropertyType, ResolutionConfig, ResolutionStrategy, Schema, TwinEnd, TwinOf,
 };
 pub use value::Value;

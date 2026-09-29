@@ -107,8 +107,7 @@ def main() -> int:
             "id": "flow:loop", "name": "The coherence loop",
             "description": "CHANGE → PROPAGATE → DETECT → SURFACE → RESOLVE/HEAL, phase by phase, "
                            "with the build teaching the design backwards.",
-            "flow_type": "process",
-            "entry_point": "cap:p0-intent", "exit_point": "cap:p5-operate"})
+            "flow_type": "process"})
         for cid, _name, _desc, order in PHASES:
             s.call("part_of_flow", {"capability_id": cid, "flow_id": "flow:loop",
                                     "step_order": order})

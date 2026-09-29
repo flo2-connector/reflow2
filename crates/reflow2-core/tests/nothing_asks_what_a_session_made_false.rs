@@ -230,12 +230,15 @@ fn one_observation_reached_by_two_subjects_is_listed_once() {
     a_measurement_and_the_work_that_moved_it(&mut g);
     g.add_component("cmp:tools", "tools", "the tool layer", None)
         .unwrap();
+    // "This finding ALSO concerns cmp:tools" is ABOUT_ENTITY. HAS_TEMPORAL_FACT
+    // is the copy of the finding's `subject_id` and means only its subject
+    // (dec:has-temporal-fact-means-only-the-subject-and-also-concerns-is-about-entity).
     g.create_edge(
-        edge::HAS_TEMPORAL_FACT,
-        node::COMPONENT,
-        "cmp:tools",
+        edge::ABOUT_ENTITY,
         node::TEMPORAL_FACT,
         "fact:service-is-slow",
+        node::COMPONENT,
+        "cmp:tools",
         Props::new(),
     )
     .unwrap();

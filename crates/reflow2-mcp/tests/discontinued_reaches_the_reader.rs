@@ -81,8 +81,6 @@ async fn withdrawn() -> ReflowService {
         status: Some("realized".into()),
         distinct_from: None,
         tier: None,
-        is_entry_point: None,
-        is_exit_point: None,
     })));
     j!(s.add_capability(Parameters(CapabilityReq {
         satisfies: None,
@@ -93,8 +91,6 @@ async fn withdrawn() -> ReflowService {
         status: Some("realized".into()),
         distinct_from: None,
         tier: None,
-        is_entry_point: None,
-        is_exit_point: None,
     })));
     j!(s.add_decision(Parameters(DecisionReq {
         id: "dec:discontinue".into(),
@@ -226,8 +222,6 @@ async fn a_proposed_decision_discontinues_nothing() {
         status: Some("realized".into()),
         distinct_from: None,
         tier: None,
-        is_entry_point: None,
-        is_exit_point: None,
     })));
     j!(s.add_decision(Parameters(DecisionReq {
         id: "dec:proposed".into(),
@@ -276,8 +270,6 @@ async fn obsoleted_by_a_non_decision_is_not_a_discontinuation() {
         status: Some("realized".into()),
         distinct_from: None,
         tier: None,
-        is_entry_point: None,
-        is_exit_point: None,
     })));
     j!(s.add_capability(Parameters(CapabilityReq {
         satisfies: None,
@@ -288,8 +280,6 @@ async fn obsoleted_by_a_non_decision_is_not_a_discontinuation() {
         status: Some("realized".into()),
         distinct_from: None,
         tier: None,
-        is_entry_point: None,
-        is_exit_point: None,
     })));
     j!(s.create_edge(Parameters(CreateEdgeReq {
         edge_type: "OBSOLETES".into(),

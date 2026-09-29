@@ -40,7 +40,7 @@ schema:
 
     ReadinessAssessment:
       properties:
-        target_id: { type: string, required: true, indexed: true, description: "Id of the enabling technology this level is about — typically a Component or an Artifact." }
+        target_id: { type: string, required: true, indexed: true, description: "Id of the enabling technology this level is about — typically a Component or an Artifact.", twin_of: { edge: HAS_READINESS, names: source, type_property: target_type } }
         target_type: { type: string, indexed: true, description: "Label of the assessed node (Component, Artifact, Resource...)." }
         kind: { type: enum, values: [TRL, MRL], required: true, indexed: true, description: "Which ladder: Technology Readiness Level, or Manufacturing Readiness Level. Both run 1-9 and they are not interchangeable — a technology can be demonstrable and unmanufacturable, which is precisely the case a roadmap must be able to state." }
         level: { type: int, required: true, indexed: true, description: "The rung, 1-9 inclusive. AN INTEGER ON PURPOSE (dec:readiness-is-an-observation): the ladder has nine rungs and no half-rungs, so a float would invite a precision the scale does not carry. THE BOUND IS ENFORCED IN THE CORE, NOT HERE — no other int property in this schema declares a range, so the enforcement is unproven at this layer and relying on it would be a silent fallback; `readiness.rs` refuses 0 and 10 loudly, and a test pins both ends." }

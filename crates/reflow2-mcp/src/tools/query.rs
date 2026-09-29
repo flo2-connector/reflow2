@@ -288,6 +288,30 @@ impl ReflowService {
             });
         }
         let mut g = self.write_lock().await?;
+        // An edge that is the derived copy of a property (`reflow2_core::twins`)
+        // is the store's to draw. One drawn by hand against its property is
+        // refused before anything is written, every such item named at once,
+        // the batch's own all-or-nothing rule.
+        let mut refusals = Vec::new();
+        for (i, spec) in specs.iter().enumerate() {
+            if let Some(why) = g
+                .twin_edge_refusal(&spec.edge_type, &spec.from_id, &spec.to_id, false)
+                .map_err(dyno_err)?
+            {
+                refusals.push(format!("edges[{i}]: {why}"));
+            }
+        }
+        if !refusals.is_empty() {
+            return Err(McpError::invalid_params(
+                format!(
+                    "{} edge(s) would put a relation stored twice out of step, and NOTHING was \
+                     written:\n  - {}",
+                    refusals.len(),
+                    refusals.join("\n  - ")
+                ),
+                None,
+            ));
+        }
         let report = g
             .create_edges_with(&specs, req.check_only)
             .map_err(dyno_err)?;
@@ -312,6 +336,14 @@ impl ReflowService {
             &req.from_id,
             "from_type",
         )?;
+        // The derived copy of a property is the store's to draw; drawn by hand
+        // against its property it is refused, naming what to do instead.
+        if let Some(why) = g
+            .twin_edge_refusal(&req.edge_type, &req.from_id, &req.to_id, false)
+            .map_err(dyno_err)?
+        {
+            return Err(McpError::invalid_params(why, None));
+        }
         let edge = g.create_edge(
             &req.edge_type,
             &from_type,
@@ -828,6 +860,14 @@ impl ReflowService {
         // `{deleted}` rather than the bare bool the core returns: a scalar in
         // `structuredContent` is the BL-48 defect (ok_json would wrap it as an
         // anonymous `{value}`, but the field deserves its name).
+        // Removing the derived copy while its property still names it would
+        // leave the relation half-stored; the property is what moves it.
+        if let Some(why) = g
+            .twin_edge_refusal(&req.edge_type, &req.from_id, &req.to_id, true)
+            .map_err(dyno_err)?
+        {
+            return Err(McpError::invalid_params(why, None));
+        }
         let deleted = g
             .delete_edge(&req.edge_type, &req.from_id, &req.to_id)
             .map_err(dyno_err)?;
