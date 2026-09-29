@@ -1,4 +1,4 @@
-# What reflow2 offers: 32 skills and 193 tools
+# What reflow2 offers: 32 skills and 194 tools
 
 Generated from the **running server**, not from memory — the skill list came from `list_skills`,
 the tool list and every read/write marking from `tools/list`, and the command mapping from
@@ -98,7 +98,7 @@ Read one in full with `get_skill` before doing the work it covers.
 
 ---
 
-## The 193 tools
+## The 194 tools
 
 `read` never changes the design. **write** does. That marking is the tool's own `readOnlyHint`
 annotation, read off the served surface — 58 read, 97 write.
@@ -226,7 +226,7 @@ description, which an agent sees in the tool schema; this table is for a person 
 | tool | | what it does |
 |---|---|---|
 | `create_edge` | **write** | Create an edge of any schema type between typed endpoints — the generic write for a relationship no typed helper covers. |
-| `create_edges` | **write** | Create MANY edges in one call — the bulk form of create_edge, and so of every typed helper built on it: contains, contain_component, satisfies, allocate, realizes. |
+| `create_edges` | **write** | Create MANY edges in one call — the bulk form of the GENERIC `create_edge`: each item names its edge type, both endpoints and free `props`, and runs only the schema's checks. |
 | `create_node` | **write** | Create a node of any schema type with a property object. |
 | `create_nodes` | **write** | Create or update MANY nodes in one call — the bulk form of create_node. |
 | `delete_edge` | **write** | Delete one edge by type and endpoint ids (true if it existed). |
@@ -242,6 +242,7 @@ description, which an agent sees in the tool schema; this table is for a person 
 | `scan_nodes` | **read** | List nodes of a type. |
 | `search_design` | **read** | Find design nodes by what they say, when you don't know their ids — 'what does the design say about persistence?', 'is there already a requirement about latency?'. |
 | `topic_report` | **read** | WHAT THE DESIGN HOLDS ABOUT ONE SUBJECT, read-only, in one call — the /topic view: 'show me something about X'. |
+| `draw_edges` | **write** | The bulk form of the typed edge tools. |
 
 ### Assurance — checks, evidence and confirmation
 

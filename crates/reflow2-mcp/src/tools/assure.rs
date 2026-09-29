@@ -257,16 +257,7 @@ impl ReflowService {
         Parameters(req): Parameters<VerifiesReq>,
     ) -> Result<CallToolResult, McpError> {
         let mut g = self.write_lock().await?;
-        let target_type = crate::service::resolve_node_type(
-            &g,
-            req.target_type.as_deref(),
-            &req.target_id,
-            "target_type",
-        )?;
-        ok_json(EdgeDto::from(
-            g.verifies(&req.verification_id, &target_type, &req.target_id)
-                .map_err(dyno_err)?,
-        ))
+        Self::verifies_on(&mut g, req)
     }
 
     #[tool(
@@ -324,29 +315,7 @@ impl ReflowService {
         Parameters(req): Parameters<CalibratedAgainstReq>,
     ) -> Result<CallToolResult, McpError> {
         let mut g = self.write_lock().await?;
-        let evidence_type = crate::service::resolve_node_type(
-            &g,
-            req.evidence_type.as_deref(),
-            &req.evidence_id,
-            "evidence_type",
-        )?;
-        let from_type = crate::service::resolve_node_type(
-            &g,
-            req.from_type.as_deref(),
-            &req.from_id,
-            "from_type",
-        )?;
-        ok_json(EdgeDto::from(
-            g.calibrated_against(
-                &from_type,
-                &req.from_id,
-                &evidence_type,
-                &req.evidence_id,
-                req.note.as_deref(),
-                req.calibrated_at.as_deref(),
-            )
-            .map_err(dyno_err)?,
-        ))
+        Self::calibrated_against_on(&mut g, req)
     }
 
     #[tool(
@@ -372,29 +341,7 @@ impl ReflowService {
         Parameters(req): Parameters<InvalidatesReq>,
     ) -> Result<CallToolResult, McpError> {
         let mut g = self.write_lock().await?;
-        let finding_type = crate::service::resolve_node_type(
-            &g,
-            req.finding_type.as_deref(),
-            &req.finding_id,
-            "finding_type",
-        )?;
-        let from_type = crate::service::resolve_node_type(
-            &g,
-            req.from_type.as_deref(),
-            &req.from_id,
-            "from_type",
-        )?;
-        ok_json(EdgeDto::from(
-            g.invalidates(
-                &from_type,
-                &req.from_id,
-                &finding_type,
-                &req.finding_id,
-                req.note.as_deref(),
-                req.at.as_deref(),
-            )
-            .map_err(dyno_err)?,
-        ))
+        Self::invalidates_on(&mut g, req)
     }
 
     #[tool(
@@ -543,17 +490,7 @@ impl ReflowService {
         Parameters(req): Parameters<PerformedInReq>,
     ) -> Result<CallToolResult, McpError> {
         let mut g = self.write_lock().await?;
-        ok_json(EdgeDto::from(
-            g.create_edge(
-                reflow2_core::nodes::edge::PERFORMED_IN,
-                reflow2_core::nodes::node::VERIFICATION,
-                &req.verification_id,
-                reflow2_core::nodes::node::ENVIRONMENT,
-                &req.environment_id,
-                reflow2_core::nodes::Props::new(),
-            )
-            .map_err(dyno_err)?,
-        ))
+        Self::performed_in_on(&mut g, req)
     }
 
     #[tool(
@@ -774,5 +711,108 @@ impl ReflowService {
             g.coverage_report(&observed, &req.exclusions, req.swept_at.as_deref())
                 .map_err(dyno_err)?,
         )
+    }
+}
+
+// ─── typed edge helper bodies, shared with `draw_edges` ──────────────────────
+
+impl ReflowService {
+    /// The body of [`Self::calibrated_against`] over a graph the caller already holds: the
+    /// one code path the tool and `draw_edges` both run.
+    pub(crate) fn calibrated_against_on(
+        g: &mut reflow2_core::DesignGraph,
+        req: CalibratedAgainstReq,
+    ) -> Result<CallToolResult, McpError> {
+        let evidence_type = crate::service::resolve_node_type(
+            g,
+            req.evidence_type.as_deref(),
+            &req.evidence_id,
+            "evidence_type",
+        )?;
+        let from_type = crate::service::resolve_node_type(
+            g,
+            req.from_type.as_deref(),
+            &req.from_id,
+            "from_type",
+        )?;
+        ok_json(EdgeDto::from(
+            g.calibrated_against(
+                &from_type,
+                &req.from_id,
+                &evidence_type,
+                &req.evidence_id,
+                req.note.as_deref(),
+                req.calibrated_at.as_deref(),
+            )
+            .map_err(dyno_err)?,
+        ))
+    }
+
+    /// The body of [`Self::invalidates`] over a graph the caller already holds: the
+    /// one code path the tool and `draw_edges` both run.
+    pub(crate) fn invalidates_on(
+        g: &mut reflow2_core::DesignGraph,
+        req: InvalidatesReq,
+    ) -> Result<CallToolResult, McpError> {
+        let finding_type = crate::service::resolve_node_type(
+            g,
+            req.finding_type.as_deref(),
+            &req.finding_id,
+            "finding_type",
+        )?;
+        let from_type = crate::service::resolve_node_type(
+            g,
+            req.from_type.as_deref(),
+            &req.from_id,
+            "from_type",
+        )?;
+        ok_json(EdgeDto::from(
+            g.invalidates(
+                &from_type,
+                &req.from_id,
+                &finding_type,
+                &req.finding_id,
+                req.note.as_deref(),
+                req.at.as_deref(),
+            )
+            .map_err(dyno_err)?,
+        ))
+    }
+
+    /// The body of [`Self::performed_in`] over a graph the caller already holds: the
+    /// one code path the tool and `draw_edges` both run.
+    pub(crate) fn performed_in_on(
+        g: &mut reflow2_core::DesignGraph,
+        req: PerformedInReq,
+    ) -> Result<CallToolResult, McpError> {
+        ok_json(EdgeDto::from(
+            g.create_edge(
+                reflow2_core::nodes::edge::PERFORMED_IN,
+                reflow2_core::nodes::node::VERIFICATION,
+                &req.verification_id,
+                reflow2_core::nodes::node::ENVIRONMENT,
+                &req.environment_id,
+                reflow2_core::nodes::Props::new(),
+            )
+            .map_err(dyno_err)?,
+        ))
+    }
+
+    /// The body of [`Self::verifies`] over a graph the caller already holds: the
+    /// one code path the tool and `draw_edges` both run.
+    pub(crate) fn verifies_on(
+        g: &mut reflow2_core::DesignGraph,
+        req: VerifiesReq,
+    ) -> Result<CallToolResult, McpError> {
+        let target_type = crate::service::resolve_node_type(
+            g,
+            req.target_type.as_deref(),
+            &req.target_id,
+            "target_type",
+        )?;
+        ok_json(EdgeDto::from(
+            g.verifies(&req.verification_id, &target_type, &req.target_id)
+                .map_err(dyno_err)?,
+        ))
     }
 }

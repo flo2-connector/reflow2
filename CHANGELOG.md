@@ -33,6 +33,12 @@ This file is the third view: *what changed, and when*.
 
 ### Added
 
+- **`draw_edges`: the bulk form of every typed edge helper, running each helper's own checks.**
+  - Each item names a typed helper and carries that helper's own arguments (`{"tool": "constrains", "arguments": {…}}`). The item runs the helper's own body — the same function the tool runs — so its checks, its refusal words and its reply are the helper's: a `constrains` contribution keeps its unit, basis and source; a `governed_by` ruling travels, and an unknown one is answered in the helper's words; two `authored_by` roles on one pair in one call keep the role set.
+  - All or nothing inside one atomic batch, every failure named by position, `check_only` writes nothing, and the reply names each edge drawn as a subject-first sentence.
+  - Every typed edge helper's served description now names it, generated from one list rather than hand-written into each. `create_edges` now says plainly that it is the GENERIC bulk form and runs no typed helper's checks.
+  - Found by the dev_reflow2 two-agent exercise (I24): about 270 single-edge calls built one design; the bulk form that existed was named by no helper, and about 100 of those calls had no bulk route that kept the helper's checks (`req:every-typed-edge-helper-has-a-bulk-form-that-keeps-its-checks`).
+
 - **`closure_report` reads "design done" beside "build done", and every reading names its phase.**
   - The top level is unchanged in meaning and is now labelled the BUILD phase: requirements delivered by realized capabilities whose checks pass. A budget now also needs every numbered contribution `measured` to close there, which it never checked before.
   - A new `design` reading sits beside it, against the same declared criterion: a requirement is traced when a capability satisfying it is allocated to a part and has a check planned (any status), and a budget closes on an estimate that carries its basis. Its note says it tells nothing about whether anything is built.

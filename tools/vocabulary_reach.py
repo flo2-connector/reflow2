@@ -250,6 +250,8 @@ EDGE_ONLY = {
     "operates_in", "owned_by", "part_of_flow", "performed_in", "pin_at_epoch", "precedes",
     "provides", "realizes", "release_includes", "release_includes_all", "require_resource",
     "review_relations", "satisfies", "schedule_for", "set_evidence_scope", "verifies",
+    # The bulk form of the typed edge helpers above: each item runs one of them.
+    "draw_edges",
     # Whole-graph and bookkeeping operations.
     "acknowledge_defect", "apply_heal", "apply_merge", "claim_region", "delete_node",
     "design_identity", "import_graph", "mirror_surface",

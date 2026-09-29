@@ -6742,7 +6742,11 @@ impl ReflowService {
             let g = self.graph.read().await;
             crate::lessons::lessons_by_step(&g)
         };
-        crate::lessons::enrich_tools(tools, &by_step)
+        // Every typed edge helper names its bulk form, generated from one list
+        // rather than written into ~32 descriptions by hand (I24). Added at
+        // LIST time, like the lessons, so what `find_tools` ranks stays each
+        // tool's own job.
+        crate::bulk_edges::name_the_bulk_route(crate::lessons::enrich_tools(tools, &by_step))
     }
 
     /// Test seam for the listing above — the `list_tools` override needs a
