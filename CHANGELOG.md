@@ -33,6 +33,13 @@ This file is the third view: *what changed, and when*.
 
 ### Added
 
+- **`closure_report` reads "design done" beside "build done", and every reading names its phase.**
+  - The top level is unchanged in meaning and is now labelled the BUILD phase: requirements delivered by realized capabilities whose checks pass. A budget now also needs every numbered contribution `measured` to close there, which it never checked before.
+  - A new `design` reading sits beside it, against the same declared criterion: a requirement is traced when a capability satisfying it is allocated to a part and has a check planned (any status), and a budget closes on an estimate that carries its basis. Its note says it tells nothing about whether anything is built.
+  - Every leg carries `phase`; `release_report`'s closure summary carries `design_verdict` beside the build verdict.
+  - Closure now reads parking: a requirement with a `parks` ruling on an accepted decision is counted in the leg's new `parked` field and left out of the population, never named as the first hole. A proposed ruling parks nothing.
+  - Found by the dev_reflow2 two-agent exercise (I15): a finished design with nothing built read traceability 0/7, and its first hole was a requirement it had parked (`req:closure-reads-design-done-separately-from-build-done`).
+
 - **Every edge type declares what it means, and `describe_schema` serves it.**
   - Each edge type in `schema/*.yaml` now carries a `reading`:
     - the primitive relation it is one instance of (part-of, causes, about, norm, source-of …), or the composition of primitives it stands for

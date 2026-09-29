@@ -51,6 +51,10 @@ const READING_FUNCTIONS: &[(&str, Option<&str>)] = &[
     ("detect_prohibitions_in_prose", Some("prohibition_in_prose")),
     // Feeds `detect_unreviewed_ideas`, which renders the gap.
     ("unreviewed_ideas", Some("unreviewed_ideas")),
+    // closure_report's traceability leg counts a parked requirement in
+    // `parked`, never as a hole; it renders no finding
+    // (req:closure-reads-design-done-separately-from-build-done).
+    ("leg_traceability", None),
 ];
 
 fn sources() -> BTreeMap<String, String> {
