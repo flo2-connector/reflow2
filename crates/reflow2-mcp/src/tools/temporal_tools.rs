@@ -246,11 +246,7 @@ impl ReflowService {
         Parameters(req): Parameters<PrecedesReq>,
     ) -> Result<CallToolResult, McpError> {
         let mut g = self.write_lock().await?;
-        g.precedes(&req.earlier_epoch, &req.later_epoch)
-            .map_err(dyno_err)?;
-        ok_json(serde_json::json!({
-            "earlier": req.earlier_epoch, "later": req.later_epoch
-        }))
+        Self::precedes_on(&mut g, req)
     }
 
     #[tool(
@@ -265,36 +261,25 @@ impl ReflowService {
         Parameters(req): Parameters<PinAtEpochReq>,
     ) -> Result<CallToolResult, McpError> {
         let mut g = self.write_lock().await?;
-        let node_type = crate::service::resolve_node_type(
-            &g,
-            req.node_type.as_deref(),
-            &req.node_id,
-            "node_type",
-        )?;
-        g.pin_at_epoch(&node_type, &req.node_id, &req.epoch_id)
-            .map_err(dyno_err)?;
-        ok_json(serde_json::json!({
-            "pinned": req.node_id, "at_epoch": req.epoch_id
-        }))
+        Self::pin_at_epoch_on(&mut g, req)
     }
 
     #[tool(
         description = "Schedule a Requirement, Capability, QUESTION, Verification or Decision against the \
                        moment it is DUE — the satisfaction schedule, which is what makes a roadmap answerable \
-                       (req:epochs-can-be-planned). The target is a DesignEpoch for the time axis or a Release \
-                       for the capability-increment axis: two paired views of one architecture, so one edge \
-                       serves both. `modality` says which kind of claim this is — `expected` is a plan, \
+                       (req:epochs-can-be-planned). The target is a DesignEpoch (the time axis) or a Release \
+                       (the capability-increment axis); one edge serves both. `modality` says which kind of claim this is — `expected` is a plan, \
                        `required` is an obligation whose miss at arrival is a computed violation rather than a \
                        slip. THERE IS NO `achieved` MODALITY: delivery is computed from the golden thread and \
-                       never asserted, so a schedule that recorded its own success would be a second source of \
-                       truth able to disagree with the first. DELIBERATELY NOT add_epoch's AT_EPOCH, which \
+                       never asserted, so a schedule recording its own success would be a second source of \
+                       truth. DELIBERATELY NOT add_epoch's AT_EPOCH, which \
                        means `belongs to` rather than `due at`. To reschedule, record the change against the \
                        epoch rather than re-pointing this edge — moving it silently would erase the slip. ⭐ \
                        SCHEDULING A `Question` IS HOW THE RESOLUTION OF A GAP GETS PLANNED: gaps are recomputed \
                        every run and are not nodes, so there is nothing to schedule, but the Question \
                        `gap_to_prompt` mints when a gap is put to somebody IS durable — and it is DELIVERED \
-                       WHEN ANSWERED, needing no artifact and no check, because the whole content of closing a \
-                       gap is that the person whose judgement it needed gave one. A WITHDRAWN question reports \
+                       WHEN ANSWERED, needing no artifact and no check, because closing a gap IS the person \
+                       whose judgement it needed giving one. A WITHDRAWN question reports \
                        `discontinued`, not `outstanding`. Ask for this to put a piece of work into a release, \
                        increment or milestone.",
         annotations(read_only_hint = false)
@@ -303,34 +288,8 @@ impl ReflowService {
         &self,
         Parameters(req): Parameters<ScheduleForReq>,
     ) -> Result<CallToolResult, McpError> {
-        let modality = req.modality.as_deref().unwrap_or("expected");
         let mut g = self.write_lock().await?;
-        let target_type = crate::service::resolve_node_type(
-            &g,
-            req.target_type.as_deref(),
-            &req.target_id,
-            "target_type",
-        )?;
-        let item_type = crate::service::resolve_node_type(
-            &g,
-            req.item_type.as_deref(),
-            &req.item_id,
-            "item_type",
-        )?;
-        g.schedule_for(
-            &item_type,
-            &req.item_id,
-            &target_type,
-            &req.target_id,
-            modality,
-            req.recorded_at.as_deref(),
-        )
-        .map_err(dyno_err)?;
-        ok_json(serde_json::json!({
-            "scheduled": req.item_id,
-            "for": req.target_id,
-            "modality": modality
-        }))
+        Self::schedule_for_on(&mut g, req)
     }
 
     #[tool(
@@ -1078,6 +1037,81 @@ impl ReflowService {
         ok_json(json!({
             "prior_snapshot": prior.map(NodeDto::from),
             "current": NodeDto::from(current),
+        }))
+    }
+}
+
+// ─── typed edge helper bodies, shared with `draw_edges` ──────────────────────
+
+impl ReflowService {
+    /// The body of [`Self::pin_at_epoch`] over a graph the caller already holds: the
+    /// one code path the tool and `draw_edges` both run.
+    pub(crate) fn pin_at_epoch_on(
+        g: &mut reflow2_core::DesignGraph,
+        req: PinAtEpochReq,
+    ) -> Result<CallToolResult, McpError> {
+        let node_type = crate::service::resolve_node_type(
+            g,
+            req.node_type.as_deref(),
+            &req.node_id,
+            "node_type",
+        )?;
+        g.pin_at_epoch(&node_type, &req.node_id, &req.epoch_id)
+            .map_err(dyno_err)?;
+        ok_json(serde_json::json!({
+            "pinned": req.node_id, "at_epoch": req.epoch_id
+        }))
+    }
+
+    /// The body of [`Self::precedes`] over a graph the caller already holds: the
+    /// one code path the tool and `draw_edges` both run.
+    pub(crate) fn precedes_on(
+        g: &mut reflow2_core::DesignGraph,
+        req: PrecedesReq,
+    ) -> Result<CallToolResult, McpError> {
+        g.precedes(&req.earlier_epoch, &req.later_epoch)
+            .map_err(dyno_err)?;
+        ok_json(serde_json::json!({
+            "earlier": req.earlier_epoch, "later": req.later_epoch
+        }))
+    }
+}
+
+// ─── typed edge helper bodies, shared with `draw_edges` ──────────────────────
+
+impl ReflowService {
+    /// The body of [`Self::schedule_for`] over a graph the caller already holds: the
+    /// one code path the tool and `draw_edges` both run.
+    pub(crate) fn schedule_for_on(
+        g: &mut reflow2_core::DesignGraph,
+        req: ScheduleForReq,
+    ) -> Result<CallToolResult, McpError> {
+        let modality = req.modality.as_deref().unwrap_or("expected");
+        let target_type = crate::service::resolve_node_type(
+            g,
+            req.target_type.as_deref(),
+            &req.target_id,
+            "target_type",
+        )?;
+        let item_type = crate::service::resolve_node_type(
+            g,
+            req.item_type.as_deref(),
+            &req.item_id,
+            "item_type",
+        )?;
+        g.schedule_for(
+            &item_type,
+            &req.item_id,
+            &target_type,
+            &req.target_id,
+            modality,
+            req.recorded_at.as_deref(),
+        )
+        .map_err(dyno_err)?;
+        ok_json(serde_json::json!({
+            "scheduled": req.item_id,
+            "for": req.target_id,
+            "modality": modality
         }))
     }
 }
