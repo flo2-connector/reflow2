@@ -1,7 +1,7 @@
 //! Load the reflow2 design vocabulary.
 //!
 //! The 11 composable schema domains in `schema/*.yaml` are the single source of
-//! truth for the node/edge vocabulary (28 node types, 65 edge types). They are
+//! truth for the node/edge vocabulary (28 node types, 66 edge types). They are
 //! embedded at compile time with `include_str!` so the core carries its own
 //! vocabulary — no runtime file IO, no working-directory dependence, and no
 //! second copy to drift out of sync. These are the exact files that
@@ -394,7 +394,12 @@ mod tests {
         // REFUSE a graph it cannot read rather than fault on one edge at a
         // time. A count pinned here is what forces the author of the next edge
         // type to notice they owe an upgrade note.
-        assert_eq!(schema.edge_types.len(), 65, "expected 65 edge types");
+        // 66 since ACTS_FOR (2026-09-29): an agent acts for the person whose
+        // authorship or approval it records — the deferred rung of
+        // dec:design-authorship-identity, built for
+        // req:a-write-and-an-approval-record-the-agent-and-the-person-it-acts-for.
+        // It moves the stamp; the upgrade note is owed at the next cut.
+        assert_eq!(schema.edge_types.len(), 66, "expected 66 edge types");
     }
 
     #[test]

@@ -102,6 +102,17 @@ const ALLOWED: &[(&str, &str, &str)] = &[
          lives on the service (`ReflowService.writes_for`), per session.",
     ),
     (
+        "reflow2-mcp/src/service.rs",
+        "ACTING",
+        "A tokio TASK-LOCAL beside WRITES_FOR, and the same shape: it holds the \
+         AGENT the one tool call now being served writes through, set by \
+         `call_tool` around that call's handler and gone when it returns \
+         (req:a-write-and-an-approval-record-the-agent-and-the-person-it-acts-for). \
+         Two calls each see only their own value, so a second design open in the \
+         process cannot be given the first call's agent. The session's own \
+         declaration lives on the service (`ReflowService.acting_agent`).",
+    ),
+    (
         "reflow2-mcp/src/content_policy.rs",
         "OVERRIDE",
         "The operator's `--content-policy` / REFLOW2_CONTENT_POLICY, parsed once \

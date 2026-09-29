@@ -125,6 +125,10 @@ impl ReflowService {
             .contributor_id
             .map(|s| s.trim().to_string())
             .filter(|s| !s.is_empty());
+        let agent = req
+            .acting_agent
+            .map(|s| s.trim().to_string())
+            .filter(|s| !s.is_empty());
         // 🛑 SESSIONLESS: a declaration would vanish with this request and
         // every later write would silently go uncredited — refused loudly, the
         // same call dec:stateless-seat-handle makes about a seat.
@@ -150,15 +154,43 @@ impl ReflowService {
                     McpError::invalid_params(writes_for_refusal(id, &e.to_string()), None)
                 })?;
         }
+        if let Some(id) = &agent {
+            self.graph
+                .read()
+                .await
+                .require_acting_agent(id)
+                .map_err(|e| {
+                    McpError::invalid_params(acting_agent_refusal(id, &e.to_string()), None)
+                })?;
+        }
         let before = {
             let mut declared = self.writes_for.lock().map_err(|_| {
                 McpError::internal_error("the session's writes_for lock is poisoned", None)
             })?;
             std::mem::replace(&mut *declared, who.clone())
         };
+        let agent_before = {
+            let mut declared = self.acting_agent.lock().map_err(|_| {
+                McpError::internal_error("the session's acting_agent lock is poisoned", None)
+            })?;
+            std::mem::replace(&mut *declared, agent.clone())
+        };
         ok_json(json!({
             "writes_for": who,
             "was": before,
+            "acting_agent": agent,
+            "acting_agent_was": agent_before,
+            "acting_agent_note": match &agent {
+                Some(a) => format!(
+                    "Every authorship and approval this session records carries '{a}' as the agent \
+                     it went through, beside the contributor it credits, and '{a}' is drawn \
+                     ACTS_FOR them. Attribution only."
+                ),
+                None => "No agent named: a Contributor of kind automated_agent whose `handle` is \
+                         this client's name is used if one exists; otherwise a read says \
+                         \"no agent known\"."
+                    .to_string(),
+            },
             "scope": "this session — every node it writes from now on is credited to this \
                       contributor as author, until the session ends or writes_for is called again",
             "attribution_only": "It never signs an approval: accepting, settling or approving still \
