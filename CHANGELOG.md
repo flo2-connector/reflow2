@@ -31,6 +31,75 @@ This file is the third view: *what changed, and when*.
 
 ## [Unreleased]
 
+### Added
+
+- **Every edge type declares what it means, and `describe_schema` serves it.**
+  - Each edge type in `schema/*.yaml` now carries a `reading`:
+    - the primitive relation it is one instance of (part-of, causes, about, norm, source-of …), or the composition of primitives it stands for
+    - its sign and possibility where it has them
+    - whether its direction is the primitive's inverse
+    - which of its properties are modifiers, and of what kind
+    - a `basis` saying who says so
+  - **Some edge types are several relations, and are read per edge.** Fifteen types read differently by a property value on each edge, so the type's name is not always the meaning:
+    - `CAUSES` is a cause when its `basis` is `causal` or `observed` (seen, with no mechanism). Unset, `basis` is `correlational` (the schema default), so the edge reads as a correlation. `spurious`, or a `refuted` `validation_status`, reads as NO causal link.
+    - `CONTRADICTS` with `alignment: supporting` is corroboration.
+    - Each `AUTHORED_BY` role is its own relation: author, reviewer, approver. An edge with two roles is two relations.
+    - `INTERACTS_WITH` reads by its `interaction`: `reads`, `writes` and `receives` as flows, `triggers` as a cause.
+    - `DEPENDS_ON` reads by its `dependency_type`: a data or error flow passes something across; a call or a hand-off of control brings something about.
+    - `CHANGED` and `YIELDED` read by their `action`: added or created made the node; removed ended it; a merged extraction resolves a mention into an existing node.
+    - `ANNOTATES` reads by its `note_kind`: a reviewer's note evaluates, a director's binds.
+    - `DUPLICATES` is only a comparison unless its `basis` is `asserted`, the one basis that licenses a merge.
+    - `VIOLATES_RULE` reads by its `status`: `confirmed` is a permitted violation, a waiver; `rejected` must be fixed.
+    - Five change only the possibility: `SATISFIES` with `coverage: planned` is a promise, not a fact; the same holds for `DEPLOYED_TO.status`, `REQUIRES_RESOURCE.criticality`, `GOVERNED_BY.ruling: parks` and `SCHEDULED_FOR.modality`.
+  - **What a split cannot see.** Three readings turn on the node at the far end rather than a value on the edge, so they are notes for now:
+    - an `AUTHORED_BY` approver on an accepted node, against one on a proposed Decision
+    - `CONTAINS` from the project, against one from a component
+    - `SCHEDULED_FOR` a Release
+  - **Where it is served.** `describe_schema` gives each edge's reading as one line (`reads_as`: `part-of⁻¹`, `causes(-)`, `causes(+) | by basis, validation_status`) on every read.
+    - A `from`/`to` query carries the whole reading, splits included, because that is where a caller chooses between edges that all validate.
+    - The whole-vocabulary read also counts readings by basis. It was already past its reply budget with all prose withheld before this change (45,818 characters against 30,000), so full readings there would only have grown an overflowing answer.
+  - **Selecting by meaning.** New core functions let a rule or projection select by declared meaning instead of keeping its own list of names:
+    - `edge_types_read_as(primitive, polarity)` returns the types that `always` mean it, apart from those decided `per_edge`.
+    - `edge_reads_as(edge_type, properties)` and `edge_is_read_as(…)` decide one edge from its own values. An unset property counts as its schema default, and a list gives one reading per value.
+  - No existing rule has moved onto these yet; which one goes first is an open design call.
+  - **Provenance.** The first 65 readings come from a 2026-09-28 classification of reflow2, StoryFlow and market_graph. All are marked `basis: classified` until the owner reviews them. The reading is advisory: it validates nothing and narrows no endpoint.
+  - **The check.** `every_edge_type_declares_what_it_means` fails when:
+    - an edge type has no reading
+    - a reading names a primitive or modifier kind outside the declared sets
+    - a reading calls something a modifier that the edge does not declare
+    - a split is on a property the edge does not declare, or keys a value outside that property's enum
+
+    It also pins how the four split types read edge by edge (`req:every-edge-type-declares-what-it-means`).
+
+### Changed
+
+- **A relation reflow2 stores twice has one authority, and the store keeps the other copy in step.** (`req:a-relation-stored-in-more-than-one-place-has-one-authoritative-copy-and-no-copy-drifts-unnoticed`)
+  - **Measured on reflow2's own design, 2026-09-28:**
+    - 354 of 763 findings carried a `subject_id` and no `HAS_TEMPORAL_FACT` edge, so every reader that walks edges missed them.
+    - 4 findings hung from a different node than their `subject_id`.
+    - A Flow's stored exit named step 8 of 9.
+
+    The cause: each writer drew the second copy by hand, and the generic `create_node`, `report_manual_work` and `part_of_flow` never did.
+  - **The schema declares each twin on its authoritative property** (`twin_of`). The six are:
+    - `TemporalFact.subject_id` → `HAS_TEMPORAL_FACT`
+    - `DimensionAssessment.target_id` → `ASSESSED_ON`
+    - `DimensionObservation.target_id` → `HAS_OBSERVATION`
+    - `DimensionObservation.source_fragment_id` → `OBSERVED_IN`
+    - `ReadinessAssessment.target_id` → `HAS_READINESS`
+    - `Snapshot.target_id` → `HAS_SNAPSHOT`, which may outlive the node it names
+  - **The store keeps the derived edge on every node write, whoever writes.** When the property changes, the edge moves with it.
+  - **A finding's `HAS_TEMPORAL_FACT` means only its subject.** "This finding also concerns that node" is `ABOUT_ENTITY` (`dec:has-temporal-fact-means-only-the-subject-and-also-concerns-is-about-entity`). The generic edge tools refuse a `HAS_TEMPORAL_FACT` that disagrees with `subject_id`, name `ABOUT_ENTITY`, and refuse deleting a copy its property still names.
+  - **Opening a store, and importing a document, repair what is out of step and say what they changed. Nothing is repaired silently.**
+    - Missing derived edges are drawn.
+    - A finding's extra `HAS_TEMPORAL_FACT` becomes `ABOUT_ENTITY`.
+    - Retired stored values are removed.
+    - Open keeps the report for `loop_status` (`repaired_on_open`). Import returns it in `twin_repairs`, which `--import` now prints, with the `migrated_edges` it had never printed.
+    - A CLI `--import` now records that the store is in step with the file it read, as the `import_graph` tool already did. Without that, an export back over the same file after a repairing import was refused as "somebody else's work" for dropping the edges the import had just reported moving.
+  - **A Flow's entry and exit are computed from its step order and no longer stored** (`dec:a-flows-order-is-its-step-order-and-entry-and-exit-are-computed`). `flow_report` returns `entry_points` and `exit_points`: the steps at the lowest and highest `step_order`, several when steps share a position. These replace `entry_point` and `exit_point`.
+  - **Upgrading:**
+    - The first open of an existing store repairs it once, and every later open reports nothing. Measured on reflow2's own design: the first open or import repairs 661 relation(s) on the design as committed at origin/main 329a074: 356 derived `HAS_TEMPORAL_FACT` edges added, 9 hand-drawn second subjects moved to `ABOUT_ENTITY`, and 296 retired stored values removed (both flags on 147 capabilities, and `flow:release-cut`'s stored entry and exit). Expect the next export to change accordingly.
+    - `add_flow` no longer takes `entry_point` / `exit_point`, and `add_capability` no longer takes `is_entry_point` / `is_exit_point`. Nothing read the capability flags, and a flag on a Capability could not say which of several flows it begins. A caller still sending one is refused by name ("unknown field"), never dropped in silence. Remove the argument.
+    - The schema stamp does not move (no type or enum changed), so no separate upgrade note is owed.
 ### Fixed
 
 - **`add_decision` draws `related_to` for every kind, and every constructor names the edges it drew.** (`art:dev-reflow2-two-agent-exercise-feedback-2026-09-29`, I16; first reported 2026-09-23)

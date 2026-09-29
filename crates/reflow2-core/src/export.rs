@@ -350,6 +350,20 @@ pub struct ImportReport {
     #[serde(skip_serializing_if = "BTreeMap::is_empty")]
     #[serde(default)]
     pub materialized: BTreeMap<String, usize>,
+    /// Relations the document held twice and out of step, brought into step
+    /// with their authority as the import landed (`crate::twins`), each
+    /// named. A document written before the store kept these copies usually
+    /// carries some: findings with no `HAS_TEMPORAL_FACT` edge, a finding
+    /// hung by hand off a second node, a Flow's stored exit.
+    ///
+    /// Reported, never refused, for the reason `dangling_node_refs` gives: a
+    /// restore reproduces a state that existed, and refusing would leave a
+    /// design with an unrestorable backup. It is also what makes the CI gate's
+    /// round trip FAIL on a committed export that is out of step. The document
+    /// and its restore then differ, and this field says where.
+    #[serde(skip_serializing_if = "crate::twins::TwinRepairs::is_empty")]
+    #[serde(default)]
+    pub twin_repairs: crate::twins::TwinRepairs,
 }
 
 /// How an import may deviate from the safe default.
@@ -662,6 +676,8 @@ impl DesignGraph {
                     ),
                 });
             }
+            // Inside the batch, so the repair lands with the document or not at all.
+            let twin_repairs = self.repair_stored_twins()?;
             Ok(ImportReport {
                 nodes_written: doc.nodes.len(),
                 edges_written,
@@ -684,6 +700,7 @@ impl DesignGraph {
                 migrated_edges,
                 dangling_node_refs,
                 materialized,
+                twin_repairs,
             })
         })();
 

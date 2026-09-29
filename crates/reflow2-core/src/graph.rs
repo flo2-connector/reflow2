@@ -105,6 +105,10 @@ pub struct DesignGraph {
     /// `None` means nobody is recording, which is every write that has not
     /// asked, so the default costs nothing. See `crate::attribution`.
     pub(crate) touch_log: Option<Vec<(String, String)>>,
+    /// What opening this store repaired among the relations it holds twice
+    /// (`crate::twins`). Kept so `loop_status` can say it: a repair on open
+    /// that went only to a startup log would be the silent kind.
+    pub(crate) repaired_on_open: crate::twins::TwinRepairs,
 }
 
 /// What [`DesignGraph::derived`] holds. `generation` is the engine write
@@ -330,6 +334,7 @@ impl DesignGraph {
             store_path: None,
             derived: Default::default(),
             touch_log: None,
+            repaired_on_open: Default::default(),
         })
     }
 
@@ -442,6 +447,7 @@ impl DesignGraph {
             store_path: Some(path.to_string()),
             derived: Default::default(),
             touch_log: None,
+            repaired_on_open: Default::default(),
         };
         // Legacy AUTHORED_BY edges (single `role`) move to the set shape on
         // every open — idempotent, one edge scan, and the only way to make an
@@ -452,6 +458,13 @@ impl DesignGraph {
         // REALIZES stopped accepting any target; a store written before then is
         // brought over on open, the same way and for the same reason.
         graph.migrate_realizes_onto_checks()?;
+        // Relations stored twice are brought into step with their authority
+        // on every open, idempotently, and what changed is KEPT for
+        // `loop_status` rather than dropped: the two migrations above discard
+        // their counts, and a repair nobody is told about is the drift
+        // `req:a-relation-stored-in-more-than-one-place-has-one-authoritative-copy-and-no-copy-drifts-unnoticed`
+        // exists to end.
+        graph.repaired_on_open = graph.repair_stored_twins()?;
         Ok((graph, provenance))
     }
 
@@ -565,9 +578,24 @@ impl DesignGraph {
             widen_ints_for_float_props(&def.properties, &mut props);
         }
         self.refuse_dangling_node_refs(node_type, &props)?;
+        // A node that holds a relation twice (`crate::twins`) has its derived
+        // edge kept here, where every write passes, instead of by each writer:
+        // three writers never drew it, and 354 of 763 findings were edgeless.
+        // The prior value is read first so a MOVED authority takes its edge
+        // with it.
+        let twins = self.declares_twins(node_type);
+        let prior = if twins {
+            self.get_node(node_type, id)?.map(|n| n.properties)
+        } else {
+            None
+        };
         let stored = self
             .engine
             .create_node(&self.graph_id, node_type, id, props)?;
+        if twins {
+            let written = stored.properties.clone();
+            self.keep_twins_on_write(node_type, id, &written, prior.as_ref())?;
+        }
         // Every node write passes here (upsert and upsert-if-unchanged
         // included), which is what lets a declared contributor be credited
         // with ALL of a call's writes rather than the ones each constructor
@@ -576,6 +604,12 @@ impl DesignGraph {
             log.push((node_type.to_string(), id.to_string()));
         }
         Ok(stored)
+    }
+
+    /// What opening this store repaired among the relations it holds twice.
+    /// Empty for an in-memory graph and for a store that was already in step.
+    pub fn repaired_on_open(&self) -> &crate::twins::TwinRepairs {
+        &self.repaired_on_open
     }
 
     /// Refuse a write whose property NAMES a node that does not exist.

@@ -83,6 +83,18 @@ schema:
     DEPLOYED_TO:
       from: Release
       to: Environment
+      reading:
+        form: "primitive"
+        primitive: "located-at"
+        frame: "environment"
+        modifiers: { status: "lifecycle" }
+        splits:
+          - property: "status"
+            note: "Unset and `active` keep the reading above: deployed there now."
+            values:
+              planned: { form: "primitive", primitive: "located-at", modality: "intended", frame: "environment", note: "To be deployed there." }
+              rolled_back: { form: "primitive", primitive: "located-at", frame: "environment", note: "Was deployed there, and the span has ended. A reading has no tense field yet, so this says it in words." }
+        basis: "classified"
       extraction_hint: A Release runs/operates in an Environment.
       properties:
         status: { type: enum, values: [planned, active, rolled_back] }
@@ -90,6 +102,7 @@ schema:
     INCLUDES:
       from: Release
       to: [Artifact, Component]
+      reading: { form: "primitive", primitive: "part-of", sub: "manifest", frame: "structure", inverse: true, modifiers: { as_checksum: "identity" }, basis: "classified" }
       extraction_hint: >
         What a Release actually ships. The Release node always claimed to be "a
         packaged, operable version of some Components/Artifacts" — this is the
@@ -103,6 +116,20 @@ schema:
     REQUIRES_RESOURCE:
       from: "*"
       to: Resource
+      reading:
+        form: "primitive"
+        primitive: "causes"
+        polarity: "+"
+        modality: "necessary"
+        inverse: true
+        modifiers: { criticality: "modality" }
+        splits:
+          - property: "criticality"
+            note: "Unset and `required` keep the reading above: a necessity."
+            values:
+              recommended: { form: "primitive", primitive: "causes", polarity: "+", modality: "recommended", inverse: true, note: "A should, not a must: closer to a norm than a necessity." }
+              optional: { form: "primitive", primitive: "causes", polarity: "+", modality: "possible", inverse: true, note: "Useful if present." }
+        basis: "classified"
       extraction_hint: A Component or Release needs/consumes a Resource.
       properties:
         criticality: { type: enum, values: [optional, recommended, required] }

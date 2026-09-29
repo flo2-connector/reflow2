@@ -303,6 +303,29 @@ impl ReflowService {
                 obj.insert("served_by".into(), block);
             }
         }
+        // WHAT OPENING THIS STORE REPAIRED among the relations it holds twice
+        // (`reflow2_core::twins`). Absent when nothing was out of step, which is
+        // every open after the first on a current binary. Present, it says what
+        // changed, because the startup note goes to a log nobody reads
+        // mid-session and a repair nobody is told about is the silent kind.
+        {
+            let repaired = g.repaired_on_open();
+            if let Some(summary) = repaired.summary()
+                && let Some(obj) = payload.as_object_mut()
+            {
+                obj.insert(
+                    "repaired_on_open".into(),
+                    json!({
+                        "summary": summary,
+                        "moved": repaired.moved,
+                        "removed": repaired.removed,
+                        "retired_properties": repaired.retired_properties,
+                        "added": repaired.added.len(),
+                        "added_first": repaired.added.iter().take(10).collect::<Vec<_>>(),
+                    }),
+                );
+            }
+        }
         // THE SERVER'S WRITE-THROUGH, and whether it is currently declining.
         //
         // Same shape as `served_by` above and for the same reason: cheap when
