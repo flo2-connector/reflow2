@@ -128,6 +128,7 @@ schema:
       # the edge that fits (artifact::realizes_target_hint). Re-derive from live
       # edges before ever trimming this list further.
       to: ["Capability", "Component", "Interface"]
+      reading: { form: "primitive", primitive: "instance-of", sub: "realizes", modifiers: { completeness: "strength", conformance: "lifecycle" }, basis: "classified" }
       extraction_hint: An Artifact implements/realizes a Capability, a Component, or the Interface it serves. A file that IS a check IMPLEMENTS the Verification; one that describes something DOCUMENTS it; a change records its files with CHANGED.
       properties:
         completeness: { type: enum, values: [stub, partial, complete] }
@@ -137,6 +138,7 @@ schema:
     SPECIFIES:
       from: Artifact
       to: ["Interface", "Capability", "Component"]
+      reading: { form: "composite", composition: "SPECIFIES(a,x) := about(a,x) ∧ norm.binds(a,x)", components: ["about", "norm"], modifiers: { format: "other" }, basis: "classified" }
       extraction_hint: >
         A machine-readable contract artifact defines an entity — an OpenAPI /
         protobuf / JSON-schema / IDL file SPECIFIES an Interface (its
@@ -148,6 +150,7 @@ schema:
     DOCUMENTS:
       from: Artifact
       to: "*"
+      reading: { form: "primitive", primitive: "about", sub: "describes", modifiers: { doc_kind: "other" }, basis: "classified" }
       extraction_hint: >
         A descriptive artifact explains an entity without implementing it — a
         design doc, ADR, README, or a dataflow/sequence/architecture diagram
@@ -158,6 +161,7 @@ schema:
     PRODUCES:
       from: Verification
       to: Artifact
+      reading: { form: "primitive", primitive: "source-of", sub: "made", modifiers: { outcome: "polarity" }, basis: "classified" }
       extraction_hint: >
         A Verification run emits a result artifact — a test report, coverage
         file, simulation output, or inspection record (artifact_type=test_result
@@ -169,6 +173,19 @@ schema:
     YIELDED:
       from: Fragment
       to: "*"
+      reading:
+        form: "primitive"
+        primitive: "source-of"
+        sub: "recorded"
+        modifiers: { action: "subtype" }
+        splits:
+          - property: "action"
+            note: "Unset keeps the reading above: the node was recorded from the fragment."
+            values:
+              created: { form: "primitive", primitive: "source-of", sub: "made", note: "The fragment brought the node into the graph." }
+              updated: { form: "primitive", primitive: "causes", sub: "alters", polarity: "+", note: "The fragment changed a node that already existed." }
+              merged: { form: "composite", composition: "YIELDED(f,n) := source-of(f,m) ∧ same-as(m,n)", components: ["source-of", "same-as"], note: "What the fragment extracted was resolved into an existing node. The fragment is not the node; its mention is." }
+        basis: "classified"
       extraction_hint: >
         A Fragment produced (created or updated) this node during extraction.
         Provides provenance from any node back to the work that introduced it.
@@ -196,6 +213,7 @@ schema:
       # they force is what protects this change too.
       from: [Fragment, Verification]
       to: [Fragment, Verification]
+      reading: { form: "primitive", primitive: "becomes", sub: "replaces", inverse: true, modifiers: { diff_summary: "other" }, basis: "classified" }
       extraction_hint: >
         A revised Fragment replaces an earlier version; a Verification replaces
         a narrower check it absorbed. Pair the target's status with
@@ -206,6 +224,19 @@ schema:
     ANNOTATES:
       from: Fragment
       to: "*"
+      reading:
+        form: "primitive"
+        primitive: "about"
+        sub: "comments"
+        modifiers: { note_kind: "perspective", resolved: "lifecycle" }
+        splits:
+          - property: "note_kind"
+            note: "Unset keeps the reading above: a comment on the thing."
+            values:
+              author: { form: "primitive", primitive: "about", sub: "states-intent", note: "The implementer's stated intent." }
+              reviewer: { form: "composite", composition: "ANNOTATES(n,x) := about(n,x) ∧ stance(reviewer,x)", components: ["about", "stance"], note: "An evaluation of the thing." }
+              director: { form: "composite", composition: "ANNOTATES(n,x) := about(n,x) ∧ norm.binds(n,x)", components: ["about", "norm"], note: "Guidance on how the thing is to be built." }
+        basis: "classified"
       extraction_hint: >
         A NOTE-layer fragment (note=intent, pseudocode, review, feedback)
         attaches side-by-side to the thing it comments on — the primary code
@@ -221,6 +252,7 @@ schema:
     SUPPLEMENTS:
       from: Fragment
       to: Fragment
+      reading: { form: "primitive", primitive: "about", sub: "analyses", modifiers: { domain: "other", grounding: "provenance" }, basis: "classified" }
       extraction_hint: >
         Links an LLM-as-SME supplementary-analysis Fragment (provenance=inferred)
         to the source Fragment it augments — the design-world analogue of

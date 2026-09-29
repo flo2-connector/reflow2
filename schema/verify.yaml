@@ -112,6 +112,7 @@ schema:
     PERFORMED_IN:
       from: Verification
       to: Environment
+      reading: { form: "primitive", primitive: "located-at", frame: "environment", basis: "classified" }
       extraction_hint: >
         WHERE a check was actually carried out. Without this a check run on a
         simulation rig and the same check run in the field are indistinguishable,
@@ -210,6 +211,7 @@ schema:
       # lists, so this owes no upgrade note.
       to:
         [Capability, Requirement, Artifact, Component, DesignRule, Constraint, Interface]
+      reading: { form: "primitive", primitive: "norm", sub: "evaluates", modifiers: { coverage: "strength", pinned: "other", swept: "other" }, basis: "classified" }
       extraction_hint: >
         A Verification checks a Capability, Artifact, Component, Requirement,
         DesignRule, Constraint, or Interface. Requirement was already true and unlisted here
@@ -255,6 +257,7 @@ schema:
     IMPLEMENTS:
       from: Artifact
       to: Verification
+      reading: { form: "primitive", primitive: "instance-of", sub: "realizes", modifiers: { covers: "strength", note: "other" }, basis: "classified" }
       extraction_hint: >
         This file IS the executable form of that check — the script, test or
         harness a Verification is actually run BY. Not REALIZES (that says a
@@ -294,6 +297,7 @@ schema:
     CALIBRATED_AGAINST:
       from: "*"
       to: [Artifact, Verification]
+      reading: { form: "primitive", primitive: "source-of", sub: "derived", inverse: true, modifiers: { calibrated_at: "time", note: "evidence" }, basis: "classified" }
       extraction_hint: >
         The evidence a value in the design was DERIVED from — a published
         anchor, a dataset, a measurement, or the check whose output it was fitted
@@ -354,6 +358,7 @@ schema:
       # unbuildable honestly; the claim needs no clock at all.
       from: "*"
       to: "*"
+      reading: { form: "composite", composition: "INVALIDATES(r,f) := ∃y: about(f,y) ∧ causes(r, Δy) ∧ before(run(f), r)", components: ["about", "causes", "before"], modifiers: { at: "time", note: "evidence" }, basis: "classified" }
       extraction_hint: >
         Source RECORD makes a target FINDING stale — a repair against the check
         that found it, a change against the observation that measured it. It

@@ -47,14 +47,17 @@ schema:
     ASSESSED_ON:
       from: DimensionAssessment
       to: "*"
+      reading: { form: "primitive", primitive: "measures", basis: "classified" }
       extraction_hint: Links an assessment to the node it scores (redundant with target_id, kept for graph traversal).
 
     HAS_OBSERVATION:
       from: "*"
       to: DimensionObservation
+      reading: { form: "primitive", primitive: "measures", inverse: true, basis: "classified" }
       extraction_hint: Links an entity to a per-fragment dimension reading.
 
     OBSERVED_IN:
       from: DimensionObservation
       to: Fragment
+      reading: { form: "primitive", primitive: "source-of", sub: "recorded", inverse: true, basis: "classified" }
       extraction_hint: Links a dimension observation to the Fragment that produced it.

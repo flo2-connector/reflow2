@@ -213,7 +213,7 @@ pub use verify::{
 };
 pub use vocabulary::{
     Coverage, DomainCoverage, EdgeQuery, EdgeTypeMatch, EdgeTypeSpec, EndpointMatch,
-    NodeTypeDetail, NodeTypeSpec, PropertySpec, Vocabulary, VocabularyCoverage,
+    NodeTypeDetail, NodeTypeSpec, PropertySpec, ReadAsSelection, Vocabulary, VocabularyCoverage,
     vocabulary_park_decision_id,
 };
 

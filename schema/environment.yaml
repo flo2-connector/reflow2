@@ -47,6 +47,7 @@ schema:
     OPERATES_IN:
       from: Project
       to: Environment
+      reading: { form: "primitive", primitive: "located-at", modality: "intended", frame: "environment", basis: "classified" }
       extraction_hint: >
         The operating environment(s) the project's result must function in. A
         project may target more than one (a design portable across environments);
@@ -55,6 +56,7 @@ schema:
     IMPOSES:
       from: Environment
       to: EnvironmentRule
+      reading: { form: "composite", composition: "IMPOSES(e,r) := part-of(r, e) ∧ ∀x: located-at(x, e) → norm.binds(r, x)", components: ["part-of", "norm", "located-at"], basis: "classified" }
       extraction_hint: >
         The authoritative rule-set an Environment imposes on any design that
         operates in it — its "codes and physics". One edge per rule.
@@ -62,6 +64,7 @@ schema:
     COMPLIES_WITH:
       from: ["Project", "Capability", "Component", "Artifact", "Release", "Interface"]
       to: EnvironmentRule
+      reading: { form: "primitive", primitive: "norm", sub: "meets", polarity: "+", modifiers: { evidence: "evidence", verified: "lifecycle" }, basis: "classified" }
       extraction_hint: >
         A design element satisfies an EnvironmentRule. From a PROJECT it is the
         declaration that the design's artifacts follow a standard (rule_type
@@ -75,6 +78,20 @@ schema:
     VIOLATES_RULE:
       from: ["Capability", "Component", "Artifact", "Release", "Interface", "Fragment"]
       to: EnvironmentRule
+      reading:
+        form: "primitive"
+        primitive: "norm"
+        sub: "meets"
+        polarity: "-"
+        modifiers: { detected_at: "time", evidence: "evidence", proposer: "provenance", rationale: "evidence", resolved_at: "time", severity: "strength", status: "lifecycle" }
+        splits:
+          - property: "status"
+            note: "Unset is `proposed`, the schema default."
+            values:
+              proposed: { form: "primitive", primitive: "norm", sub: "meets", polarity: "-", modality: "possible", note: "Flagged, not yet judged." }
+              confirmed: { form: "primitive", primitive: "norm", sub: "waived", polarity: "-", modality: "permitted", note: "The violation stands and an authority permits it: a variance or waiver." }
+              rejected: { form: "primitive", primitive: "norm", sub: "meets", polarity: "-", modality: "obligatory", note: "The waiver is refused: the design must change." }
+        basis: "classified"
       extraction_hint: >
         A design element contradicts an EnvironmentRule (a compliance anomaly).
         Flagged, never silently dropped. DM/engineer triages via the lifecycle:
