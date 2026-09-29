@@ -24,6 +24,7 @@ pub mod nudge;
 pub mod pointer;
 pub mod prose_currency;
 pub mod proxy;
+pub mod receipt;
 pub mod registry;
 pub mod registry_http;
 pub mod reply_budget;

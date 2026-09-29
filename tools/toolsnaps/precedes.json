@@ -11,6 +11,15 @@
         "description": "The DesignEpoch (`epoch:…`) that comes first — the source of the PRECEDES edge.\n`from_id` is accepted too: the ends are peers, and the taught peer spelling is\n`from_*` / `to_*` (dec:idea-one-way-to-name-which-node-across-the-tool-surface).",
         "type": "string"
       },
+      "echo": {
+        "default": "receipt",
+        "description": "What the reply carries. `receipt` (the default) names the node, echoes each stored value of at most 200 characters, gives longer ones by size, and names the snapshot that keeps anything a revise replaced. `node` returns the whole stored node and every prior value.",
+        "enum": [
+          "receipt",
+          "node"
+        ],
+        "type": "string"
+      },
       "later_epoch": {
         "description": "The DesignEpoch (`epoch:…`) that follows it.",
         "type": "string"

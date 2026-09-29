@@ -12,6 +12,15 @@
         "description": "The `proposed` Decision being settled — the decision point whose alternatives were registered with `register_alternative`.",
         "type": "string"
       },
+      "echo": {
+        "default": "receipt",
+        "description": "What the reply carries. `receipt` (the default) names the node, echoes each stored value of at most 200 characters, gives longer ones by size, and names the snapshot that keeps anything a revise replaced. `node` returns the whole stored node and every prior value.",
+        "enum": [
+          "receipt",
+          "node"
+        ],
+        "type": "string"
+      },
       "note": {
         "default": null,
         "description": "Why — recorded in the Decision's alternatives field with the outcome.",

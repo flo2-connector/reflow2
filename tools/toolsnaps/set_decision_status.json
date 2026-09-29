@@ -36,6 +36,15 @@
         "description": "The Decision whose lifecycle status moves. `dec:…` by convention; `search_design` finds one by its words.",
         "type": "string"
       },
+      "echo": {
+        "default": "receipt",
+        "description": "What the reply carries. `receipt` (the default) names the node, echoes each stored value of at most 200 characters, gives longer ones by size, and names the snapshot that keeps anything a revise replaced. `node` returns the whole stored node and every prior value.",
+        "enum": [
+          "receipt",
+          "node"
+        ],
+        "type": "string"
+      },
       "name": {
         "default": null,
         "description": "A NEW NAME for the decision, written in the same call — for the heading\nthat still asks the question this call settles (\"OPEN — does X…?\").\n\nflo2 F12 (2026-09-19) and the 2026-09-29 designer session both settled\ndecisions and left them NAMED as open questions: `chose` reached the\nbody and nothing reached the name, so every settle cost a second,\nwhole-node `replace_text`. reflow2's own design held 44 of 266 accepted\ndecisions so named. Optional; absent leaves the name alone, and an\naccepted decision whose name still leads with `OPEN` is reported in the\nreply (`name_still_reads_open`) rather than renamed for you.",

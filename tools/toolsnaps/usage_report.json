@@ -7,6 +7,15 @@
     "$schema": "https://json-schema.org/draft/2020-12/schema",
     "additionalProperties": false,
     "properties": {
+      "echo": {
+        "default": "receipt",
+        "description": "What the reply carries. `receipt` (the default) names the node, echoes each stored value of at most 200 characters, gives longer ones by size, and names the snapshot that keeps anything a revise replaced. `node` returns the whole stored node and every prior value.",
+        "enum": [
+          "receipt",
+          "node"
+        ],
+        "type": "string"
+      },
       "peek": {
         "default": false,
         "description": "Look without leaving a marker. Off by default: an ordinary report\ncloses its window so the next one starts after it, and a report that\ndid not would count the same calls twice.",

@@ -16,6 +16,15 @@
         },
         "type": "array"
       },
+      "echo": {
+        "default": "receipt",
+        "description": "What the reply carries. `receipt` (the default) names the node, echoes each stored value of at most 200 characters, gives longer ones by size, and names the snapshot that keeps anything a revise replaced. `node` returns the whole stored node and every prior value.",
+        "enum": [
+          "receipt",
+          "node"
+        ],
+        "type": "string"
+      },
       "epoch_id": {
         "default": null,
         "description": "The epoch matched-evolved snapshots pin to. Pass ONE epoch for a whole\ncorpus run, or 500 documents open 500 epochs and the history reads as\nfive hundred unrelated events instead of one ingest.",
