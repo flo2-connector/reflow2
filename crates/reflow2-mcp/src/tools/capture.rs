@@ -2377,6 +2377,12 @@ impl ReflowService {
         let mut __rf =
             crate::service::RequiredFields::new(&g, reflow2_core::nodes::node::FLOW, &req.id)?;
         let name = __rf.str("name", req.name);
+        // REFUSE BEFORE WRITING. `str` hands back an empty placeholder for a
+        // field it could not resolve and leaves the refusal to `finish` — so a
+        // handler that skips `finish` STORES the placeholder. Seven did, until
+        // 2026-09-29, and an id-only create landed `name: ""` in each
+        // (a_revise_keeps_what_it_was_not_passed.rs).
+        __rf.finish()?;
         let stored = g
             .add_flow(
                 &req.id,
@@ -3107,6 +3113,12 @@ impl ReflowService {
             &req.id,
         )?;
         let name = __rf.str("name", req.name);
+        // REFUSE BEFORE WRITING. `str` hands back an empty placeholder for a
+        // field it could not resolve and leaves the refusal to `finish` — so a
+        // handler that skips `finish` STORES the placeholder. Seven did, until
+        // 2026-09-29, and an id-only create landed `name: ""` in each
+        // (a_revise_keeps_what_it_was_not_passed.rs).
+        __rf.finish()?;
         ok_json(NodeDto::from(
             g.add_contributor(
                 &req.id,

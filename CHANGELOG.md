@@ -33,6 +33,15 @@ This file is the third view: *what changed, and when*.
 
 ### Fixed
 
+- **A revise keeps what it was not passed, in every tool that promises it — and a create with no name is refused rather than stored with an empty one.**
+  - Twenty served constructors say "CONTENT FIELDS ARE REQUIRED TO CREATE AND OPTIONAL TO REVISE … omitted fields keep their stored value". Three of them broke it on 0.74.0, each by computing from the CALL instead of the node:
+    - `record_finding` wrote its defaults into every revise, so a revise that named neither field demoted a `defect` to a `finding` and turned a `forecast` into `measured`. Three field sightings, the last during a triage in the dev_reflow2 hub.
+    - `plan_epoch` wrote through a replacing core constructor, so a revise cleared `description` and `checksum`. It now merges, as `add_epoch` always has.
+    - `add_change_event` said a DATED event was `undated` when the revise did not re-send the date. The note now reads the stored event.
+  - `add_verification`'s "findings need a status" refusal now names the verdict the check already holds, so the re-send is informed. The rule itself is unchanged: whether new findings may inherit a stored verdict is an open question for the owner.
+  - The other half of the same contract, REQUIRED TO CREATE: seven constructors (`add_artifact`, `add_contributor`, `add_environment`, `add_flow`, `add_release`, `add_resource`, `add_verification`) resolved `name` and never asked whether it resolved, so an id-only create stored `name: ""`. They now refuse, naming the field.
+  - The pin is ONE class test, `a_revise_keeps_what_it_was_not_passed`, whose membership is read off the served tool list rather than hand-kept. Every tool whose description makes the promise is created with every scalar set to a non-default value, twice with different values, revised by one field, and checked field by field, reply note by reply note. A new constructor joins it the day it is served. Observed failing first on origin/main: 9 breaches across 3 tools, plus 7 tools storing an empty name.
+
 - **The brainstorm skill looks for the answer before it frames a question as open.**
   - A new part of step 1: search accepted requirements and decisions, and the project's own statement of what it is for, before writing "OPEN".
   - If accepted intent already answers the question, it is not a brainstorm. The agent says what is settled, cites it, and records only what is still open.
