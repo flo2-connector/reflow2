@@ -5974,6 +5974,16 @@ pub struct CollapseDecisionReq {
     /// Why — recorded in the Decision's alternatives field with the outcome.
     #[serde(default)]
     pub note: Option<String>,
+    /// The Contributor whose word this choice is — draws `AUTHORED_BY
+    /// role=approver` on the Decision in the same call. Choosing the winner
+    /// moves the Decision to `accepted`, which is settled intent; with no
+    /// approver the choice is recorded and the reply says it carries nobody's
+    /// name, like every other setter. An id naming no Contributor is REFUSED.
+    #[serde(default)]
+    pub approver: Option<String>,
+    /// When the approver acted, as a plain date. Stored on the approver edge.
+    #[serde(default)]
+    pub acted_at: Option<String>,
 }
 
 #[derive(Debug, Deserialize, JsonSchema)]
@@ -6758,11 +6768,15 @@ impl ReflowService {
             let g = self.graph.read().await;
             crate::lessons::lessons_by_step(&g)
         };
-        // Every typed edge helper names its bulk form, generated from one list
-        // rather than written into ~32 descriptions by hand (I24). Added at
-        // LIST time, like the lessons, so what `find_tools` ranks stays each
+        // Two list-time decorations, both generated from one table each:
+        // which calls settle intent (crate::settles, served as _meta so a
+        // gateway signing on its caller's behalf reads the rule instead of a
+        // copy), and every typed edge helper naming its bulk form (I24), added
+        // at LIST time like the lessons so what `find_tools` ranks stays each
         // tool's own job.
-        crate::bulk_edges::name_the_bulk_route(crate::lessons::enrich_tools(tools, &by_step))
+        crate::bulk_edges::name_the_bulk_route(crate::settles::declare_on(
+            crate::lessons::enrich_tools(tools, &by_step),
+        ))
     }
 
     /// Test seam for the listing above — the `list_tools` override needs a
