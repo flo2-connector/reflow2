@@ -49,6 +49,26 @@ use std::path::{Path, PathBuf};
 /// belongs on the design handle and this list is the wrong fix.
 const ALLOWED: &[(&str, &str, &str)] = &[
     (
+        "reflow2-core/src/heal.rs",
+        "PARKS_ROUTE",
+        "One sentence built from a compiled-in list (PARKING_READERS): the same text for \
+         every design, because which findings read a `parks` ruling is a property of this \
+         build, not of any design. Built once so every reader borrows the same &'static str.",
+    ),
+    (
+        "reflow2-core/src/heal.rs",
+        "ORPHAN_REPAIR",
+        "orphan_node's repair note — a fixed judgement plus PARKS_ROUTE, identical for every \
+         design; a `static` only because the note is carried as &'static str.",
+    ),
+    (
+        "reflow2-mcp/src/writers.rs",
+        "WRITERS",
+        "Which served tool writes which node type and draws which edge type, parsed from the \
+         compiled-in writers.json. A fact about this binary's tool surface, the same for every \
+         design it serves.",
+    ),
+    (
         "reflow2-core/src/foundation/store/backend.rs",
         "STORE_BUDGET",
         "The ONE memory budget every store this process opens shares — a RocksDB \

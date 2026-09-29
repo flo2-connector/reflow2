@@ -78,6 +78,19 @@ pub fn load_schema() -> Result<Schema, DynoError> {
     }
 }
 
+/// The process-wide parsed schema, BORROWED — for a reader that needs the
+/// vocabulary and holds no graph. A refusal rendered from a
+/// [`DynoError::InvalidEdge`] is the case that asked for it: every typed edge
+/// helper reports an invalid pair through an error value, and that value
+/// arrives at the MCP layer with no graph attached, so until 2026-09-29 the
+/// helpers said "cannot connect" and never what could.
+pub fn parsed_schema() -> Result<&'static Schema, DynoError> {
+    match &*PARSED_SCHEMA {
+        Ok(schema) => Ok(schema),
+        Err(message) => Err(DynoError::Schema(message.clone())),
+    }
+}
+
 /// One `default:` the schema declares, with the enum values it must belong to.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct DeclaredDefault {

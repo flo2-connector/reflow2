@@ -121,6 +121,8 @@ async fn seeded() -> ReflowService {
         from_id: "cap:flight".into(),
         to_id: "req:physics".into(),
         coverage: None,
+        from_type: None,
+        to_type: None,
     })));
     s
 }
@@ -239,6 +241,8 @@ async fn genesis_bootstraps_then_detect_hands_off() {
         from_id: "cap:flight".into(),
         to_id: "req:physics".into(),
         coverage: None,
+        from_type: None,
+        to_type: None,
     })));
 
     // Seeded P0/P1 with no P2 → DETECT's first-round structure gap fires.
@@ -498,7 +502,8 @@ async fn interface_tools_pair_both_sides_of_a_contract() {
     })));
     j!(s.consumes(Parameters(ConsumesReq {
         from_id: "cmp:ui".into(),
-        to_id: "ifc:state".into()
+        to_id: "ifc:state".into(),
+        from_type: None,
     })));
 
     // Changing the provider must surface the consumer on the far side.
@@ -538,7 +543,8 @@ async fn a_contract_with_no_provider_surfaces_as_a_gap_over_the_surface() {
     })));
     j!(s.consumes(Parameters(ConsumesReq {
         from_id: "cmp:physics".into(),
-        to_id: "ifc:state".into()
+        to_id: "ifc:state".into(),
+        from_type: None,
     })));
 
     let gaps = jl!(s.detect_gaps(Parameters(GapScopeReq::default())));

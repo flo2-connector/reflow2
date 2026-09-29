@@ -8,7 +8,7 @@
     "additionalProperties": false,
     "properties": {
       "constraint_id": {
-        "description": "The Constraint (`con:…`) holding the limit to roll up against — one with a `quantity`, `limit` and `direction`, typically a KPP (`category: kpp`).",
+        "description": "The ONE Constraint (`con:…`) to roll up — one with a `quantity`, `limit` and `direction`. For every budget at once, `closure_report`'s budgets leg sweeps them all (how many close, and the worst margin).\n\nThe design-wide route is named in the first sentence on purpose: a\nrefusal quotes only that much, and a caller asking for every budget met\nthis refusal naming nothing (dev_reflow2 two-agent exercise, I17,\n`fact:root-cause-budget-report-reads-one-budget-and-its-refusal-never-names-the-all-budgets-sweep-2026-09-29`).",
         "type": "string"
       }
     },

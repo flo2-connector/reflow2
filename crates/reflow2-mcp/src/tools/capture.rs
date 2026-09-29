@@ -2185,7 +2185,7 @@ impl ReflowService {
     }
 
     #[tool(
-        description = "Link a Capability to a Requirement it SATISFIES — the first half of the golden thread, from a stated need to the function that serves it. `detect_gaps` raises `unsatisfied_requirement` on any requirement without one and `unmotivated_capability` on any capability without one, and delivery is COMPUTED along this edge (satisfied, and realized, and its check passing) rather than read from a status field, which is why it cannot be inflated by marking work done. `add_capability` draws this in the same call via its `satisfies` parameter. Ask for this when you want to record that a capability fulfils, meets or satisfies a requirement.",
+        description = "Link a Capability to a Requirement it SATISFIES — the first half of the golden thread, from a stated need to the function that serves it. `detect_gaps` raises `unsatisfied_requirement` on any requirement without one and `unmotivated_capability` on any capability without one, and delivery is COMPUTED along this edge (satisfied, and realized, and its check passing) rather than read from a status field, which is why it cannot be inflated by marking work done. `add_capability` draws this in the same call via its `satisfies` parameter. The types are resolved from the ids, so every pair the schema models is accepted. Ask for this when you want to record that a capability fulfils, meets or satisfies a requirement.",
         annotations(read_only_hint = false)
     )]
     pub async fn satisfies(
@@ -2193,9 +2193,29 @@ impl ReflowService {
         Parameters(req): Parameters<SatisfiesReq>,
     ) -> Result<CallToolResult, McpError> {
         let mut g = self.write_lock().await?;
+        let from_type = crate::service::resolve_node_type_or(
+            &g,
+            req.from_type.as_deref(),
+            &req.from_id,
+            "from_type",
+            reflow2_core::nodes::node::CAPABILITY,
+        )?;
+        let to_type = crate::service::resolve_node_type_or(
+            &g,
+            req.to_type.as_deref(),
+            &req.to_id,
+            "to_type",
+            reflow2_core::nodes::node::REQUIREMENT,
+        )?;
         ok_json(EdgeDto::from(
-            g.satisfies_with_coverage(&req.from_id, &req.to_id, req.coverage.as_deref())
-                .map_err(dyno_err)?,
+            g.satisfies_between(
+                &from_type,
+                &req.from_id,
+                &to_type,
+                &req.to_id,
+                req.coverage.as_deref(),
+            )
+            .map_err(dyno_err)?,
         ))
     }
 
@@ -2254,7 +2274,8 @@ impl ReflowService {
                        SILENT about its components rather than clean about them. NOT TO BE \
                        CONFUSED WITH `external_dependency`, which pins which version of ANOTHER \
                        DESIGN this one is built against — a different concept that used to hold \
-                       this name and was renamed to free it.",
+                       this name and was renamed to free it. Between two Capabilities it is the \
+                       functional DAG and is accepted too; the types are resolved from the ids.",
         annotations(read_only_hint = false)
     )]
     pub async fn depends_on(
@@ -2262,9 +2283,24 @@ impl ReflowService {
         Parameters(req): Parameters<DependsOnReq>,
     ) -> Result<CallToolResult, McpError> {
         let mut g = self.write_lock().await?;
-        ok_json(EdgeDto::from(
-            g.depends_on(&req.from_id, &req.to_id).map_err(dyno_err)?,
-        ))
+        ok_json(EdgeDto::from({
+            let from_type = crate::service::resolve_node_type_or(
+                &g,
+                req.from_type.as_deref(),
+                &req.from_id,
+                "from_type",
+                reflow2_core::nodes::node::COMPONENT,
+            )?;
+            let to_type = crate::service::resolve_node_type_or(
+                &g,
+                req.to_type.as_deref(),
+                &req.to_id,
+                "to_type",
+                reflow2_core::nodes::node::COMPONENT,
+            )?;
+            g.depends_on_between(&from_type, &req.from_id, &to_type, &req.to_id)
+                .map_err(dyno_err)?
+        }))
     }
 
     #[tool(
@@ -2425,7 +2461,9 @@ impl ReflowService {
 
     #[tool(
         description = "Record that a Component CONSUMES an Interface — it is the side that depends on the \
-                       contract. `from_id` is the Component, `to_id` the Interface. Once both sides are \
+                       contract. `from_id` is the consumer, `to_id` the Interface. An Actor outside the \
+                       design using a published interface is a consumer too, and is accepted: the type is \
+                       resolved from the id. Once both sides are \
                        recorded, `propagate_change` on either Component reaches the other, and `detect_gaps` \
                        reports a contract that is consumed but never provided. Ask for this when you want to \
                        record that a component uses, calls or depends on an interface.",
@@ -2436,9 +2474,17 @@ impl ReflowService {
         Parameters(req): Parameters<ConsumesReq>,
     ) -> Result<CallToolResult, McpError> {
         let mut g = self.write_lock().await?;
-        ok_json(EdgeDto::from(
-            g.consumes(&req.from_id, &req.to_id).map_err(dyno_err)?,
-        ))
+        ok_json(EdgeDto::from({
+            let consumer_type = crate::service::resolve_node_type_or(
+                &g,
+                req.from_type.as_deref(),
+                &req.from_id,
+                "from_type",
+                reflow2_core::nodes::node::COMPONENT,
+            )?;
+            g.consumes_from(&consumer_type, &req.from_id, &req.to_id)
+                .map_err(dyno_err)?
+        }))
     }
 
     #[tool(
@@ -2660,8 +2706,16 @@ impl ReflowService {
             &req.target_id,
             "target_type",
         )?;
+        let constraint_type = crate::service::resolve_node_type_or(
+            &g,
+            req.constraint_type.as_deref(),
+            &req.constraint_id,
+            "constraint_type",
+            reflow2_core::nodes::node::CONSTRAINT,
+        )?;
         ok_json(EdgeDto::from(
-            g.constrains_in(
+            g.constrains_by(
+                &constraint_type,
                 &req.constraint_id,
                 &target_type,
                 &req.target_id,

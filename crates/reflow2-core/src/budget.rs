@@ -213,6 +213,39 @@ impl DesignGraph {
         measured_at: Option<&str>,
         note: Option<&str>,
     ) -> Result<StoredEdge, DynoError> {
+        self.constrains_by(
+            node::CONSTRAINT,
+            constraint_id,
+            target_type,
+            target_id,
+            contribution,
+            unit,
+            basis,
+            source,
+            measured_at,
+            note,
+        )
+    }
+
+    /// [`constrains_in`](Self::constrains_in) from either source the schema
+    /// declares — a Constraint, or a DesignRule binding what it governs. The
+    /// typed tool took only a Constraint, narrower than the schema's
+    /// `from: [Constraint, DesignRule]` (the class behind the dev_reflow2
+    /// exercise's I9).
+    #[allow(clippy::too_many_arguments)]
+    pub fn constrains_by(
+        &mut self,
+        source_type: &str,
+        constraint_id: &str,
+        target_type: &str,
+        target_id: &str,
+        contribution: Option<f64>,
+        unit: Option<&str>,
+        basis: Option<&str>,
+        source: Option<&str>,
+        measured_at: Option<&str>,
+        note: Option<&str>,
+    ) -> Result<StoredEdge, DynoError> {
         // Reject a non-finite contribution at the write seam (BL-58). A NaN
         // poisons the total (every comparison against it is false) and panics
         // the worst-path `max_by`; an infinity makes the verdict meaningless.
@@ -228,7 +261,7 @@ impl DesignGraph {
         }
         self.create_edge(
             edge::CONSTRAINS,
-            node::CONSTRAINT,
+            source_type,
             constraint_id,
             target_type,
             target_id,

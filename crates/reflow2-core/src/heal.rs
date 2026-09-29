@@ -905,6 +905,62 @@ fn provenance_rank(provenance: Option<&str>) -> u8 {
     }
 }
 
+/// Every finding whose rule reads a `parks` ruling, by its key — ONE list.
+///
+/// ⭐ THE CLASS THIS ENDS, MEASURED FOUR TIMES. Parking is how a design says an
+/// unattached or unsatisfied state is deliberate, and each time a person was
+/// stuck at a finding that reads it, nothing in that finding's words said so:
+/// dev_storyflow on 2026-08-04 and 08-15, reflow2 on 08-19, and the dev_reflow2
+/// two-agent exercise on 2026-09-29 (I12, "needed knowing the `parks`
+/// mechanism", `fact:root-cause-parking-is-still-not-named-where-an-unsatisfied-requirement-is-read-2026-09-29`).
+/// Each fix reached the finding it was reported on. Now every finding keyed
+/// here carries [`parks_route`]: `orphan_node` in its repair note, and each gap
+/// through the MCP reply, which marks the row and sends the sentence ONCE (a
+/// paragraph repeated per row is the cost `lift_repair_notes` measured at 52%
+/// of a reply). A test walks the crate's source for any rule reading parking
+/// that is not on this list.
+pub const PARKING_READERS: &[&str] = &[
+    "decision_overtaken_by_promotion",
+    "defect_overtaken_by_change",
+    "fix_without_recorded_cause",
+    "orphan_node",
+    "prohibition_in_prose",
+    "unallocated_component",
+    "unreviewed_ideas",
+    "unsatisfied_requirement",
+];
+
+/// The one sentence that tells a reader stuck at any of [`PARKING_READERS`]
+/// how to say the state is deliberate, and which findings the ruling quiets.
+pub fn parks_route() -> &'static str {
+    PARKS_ROUTE.as_str()
+}
+
+/// Built once: the text is the same for every reader, and a finding's repair
+/// note is carried as a `&'static str` so identical notes collapse on the wire.
+static PARKS_ROUTE: std::sync::LazyLock<String> = std::sync::LazyLock::new(|| {
+    format!(
+        "IF THIS STATE IS DELIBERATE, THE DESIGN CAN SAY SO instead of leaving it to be \
+         inferred: `governed_by(<this node>, <an ACCEPTED Decision that says why>, ruling: \
+         \"parks\")` records it as parked, and it is then counted in `swept.parked` rather than \
+         listed as open. A proposed Decision cannot park anything — a musing must not suppress a \
+         finding. The same ruling is read by exactly these findings, and by nothing else: {}.",
+        PARKING_READERS.join(", ")
+    )
+});
+
+/// orphan_node's repair note: the judgement, then the shared parks sentence.
+static ORPHAN_REPAIR: std::sync::LazyLock<String> = std::sync::LazyLock::new(|| {
+    format!(
+        "No mechanical repair. Linking this node to something would assert a relationship \
+         nobody drew — whether it belongs somewhere, or is a parked thought that correctly \
+         governs nothing yet, is a judgement. Deleting the node to clear this finding is the one \
+         repair that looks clean and loses the most. {} It does not quiet `unthreaded_cluster`, \
+         and it does not cover the unproven-capability loop debt.",
+        parks_route()
+    )
+});
+
 impl DesignGraph {
     /// Which of a duplicate pair a merge keeps: **stronger provenance survives;
     /// equal provenance falls back to the smaller id** (the BL-29 survivor
@@ -2531,8 +2587,13 @@ impl DesignGraph {
                          events, dimension records and review records are not in the walk, and \
                          CONTAINS is not a traceability edge — so these nodes may still be \
                          reachable through links it does not follow, and \"cut off here\" is not \
-                         \"unreachable in the graph\"",
-                        affected.len()
+                         \"unreachable in the graph\". THE EDGES THAT THREAD, and the only ones: \
+                         {}. A relation drawn with any other edge — CAUSES, CONTRADICTS, \
+                         EVOLVES_INTO, AUTHORED_BY, DOCUMENTS — joins these records without \
+                         threading them; a Decision that shapes why one of them exists threads it \
+                         through GOVERNED_BY",
+                        affected.len(),
+                        crate::nodes::traceability_edge_types().join(", ")
                     ),
                     // NO SUGGESTION, DELIBERATELY. `generate_bridge` used to sit
                     // here: create edges until the cluster is connected. Where the
@@ -3770,20 +3831,7 @@ fn orphan_at(
         severity,
         message: format!("{type_label} '{id}' {what}"),
         suggested_fix_type: fix,
-        repair_is_a_judgement: fix.is_none().then_some(
-            "No mechanical repair. Linking this node to something would assert a \
-             relationship nobody drew — whether it belongs somewhere, or is a parked \
-             thought that correctly governs nothing yet, is a judgement. IF IT IS THE \
-             SECOND, THE DESIGN CAN SAY SO INSTEAD OF LEAVING IT TO BE INFERRED: \
-             `governed_by(..., ruling: \"parks\")` pointing at an ACCEPTED Decision \
-             records that this node is deliberately attached to nothing, and it is then \
-             reported in `swept.parked` and counted rather than listed here — visible, \
-             not silenced. Deleting the node to clear this finding is the one repair \
-             that looks clean and loses the most. ⚠️ PARKING IS READ BY THIS RULE AND BY \
-             THE UNSATISFIED-REQUIREMENT GAP, AND BY NOTHING ELSE: it does not quiet \
-             `unthreaded_cluster`, and it does not cover the unproven-capability loop \
-             debt.",
-        ),
+        repair_is_a_judgement: fix.is_none().then_some(ORPHAN_REPAIR.as_str()),
         affected_ids: affected,
         // Filled by annotate_hubs once every issue is collected — a single
         // orphan cannot know what else names its node.
