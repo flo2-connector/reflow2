@@ -586,6 +586,8 @@ WRITE_OPS = frozenset({
     "answers", "apply_heal", "apply_merge", "authored_by", "calibrated_against",
     "claim_region", "collapse_decision", "complies_with", "constrains", "consumes",
     "contain_component", "contains", "create_edge", "create_edges", "create_node",
+    # The bulk form of the typed edge helpers: every item is one of their writes.
+    "draw_edges",
     "create_nodes", "decomposes", "delete_edge", "delete_node", "depends_on",
     "deploy_to", "design_identity", "documents", "external_dependency", "forecast_readiness",
     "gap_to_prompt", "gaps_to_prompts", "gate_on", "genesis", "governed_by",

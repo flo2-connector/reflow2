@@ -257,13 +257,16 @@ impl ReflowService {
     }
 
     #[tool(
-        description = "Create MANY edges in one call — the bulk form of create_edge, and so of \
-                       every typed helper built on it: contains, contain_component, satisfies, \
-                       allocate, realizes. Those helpers only fill in the endpoint types, so \
-                       naming both types per item is the whole difference. ALL OF IT OR NONE OF \
-                       IT: every item is attempted so you learn every failure at once, and if \
-                       anything failed nothing is written. \
-                       Ask for this to link many pairs of items in one call.",
+        description = "Create MANY edges in one call — the bulk form of the GENERIC `create_edge`: \
+                       each item names its edge type, both endpoints and free `props`, and runs \
+                       only the schema's checks. It runs NO typed helper's own checks (a \
+                       `constrains` contribution and unit, a `governed_by` ruling, an \
+                       `authored_by` role set), so for many edges a typed helper draws use \
+                       `draw_edges`, which runs each helper's own body per item. ALL OF IT OR \
+                       NONE OF IT: every item is attempted so you learn every failure at once, \
+                       and if anything failed nothing is written. \
+                       Ask for this to link many pairs of items in one call with an edge type no \
+                       typed helper draws.",
         annotations(read_only_hint = false)
     )]
     pub async fn create_edges(
@@ -316,6 +319,38 @@ impl ReflowService {
             .create_edges_with(&specs, req.check_only)
             .map_err(dyno_err)?;
         bulk_result(report, EdgeDto::from)
+    }
+
+    #[tool(
+        description = "The bulk form of the typed edge tools. Each item is \
+                       `{\"tool\": \"<typed tool>\", \"arguments\": {…its own arguments…}}` and runs \
+                       that tool's own body — its checks, its refusal words, its reply — so a batch \
+                       can never store what the tool alone would refuse. ALL OF IT OR NONE OF IT: \
+                       every item is attempted, every failure is named by position, and if any \
+                       failed nothing is written; `check_only` writes nothing. The reply names each \
+                       edge drawn, subject first. \
+                       Ask for this when you have a whole batch of typed links to record and want \
+                       each one checked exactly as it would be alone.",
+        annotations(read_only_hint = false)
+    )]
+    pub async fn draw_edges(
+        &self,
+        Parameters(req): Parameters<crate::bulk_edges::DrawEdgesReq>,
+    ) -> Result<CallToolResult, McpError> {
+        let indexed: Vec<(usize, crate::bulk_edges::DrawEdgeItem)> =
+            req.edges.into_iter().enumerate().collect();
+        let mut g = self.write_lock().await?;
+        let report = g
+            .atomically(
+                &indexed,
+                |(_, item)| item.tool.clone(),
+                |g, (index, item)| {
+                    crate::bulk_edges::draw_one(g, item).map(|r| (*index, item.tool.clone(), r))
+                },
+                req.check_only,
+            )
+            .map_err(dyno_err)?;
+        ok_json(crate::bulk_edges::reply(report, req.budget_chars))
     }
 
     #[tool(

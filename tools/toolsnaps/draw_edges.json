@@ -1,0 +1,59 @@
+{
+  "annotations": {
+    "readOnlyHint": false
+  },
+  "description": "The bulk form of the typed edge tools. Each item is `{\"tool\": \"<typed tool>\", \"arguments\": {…its own arguments…}}` and runs that tool's own body — its checks, its refusal words, its reply — so a batch can never store what the tool alone would refuse. ALL OF IT OR NONE OF IT: every item is attempted, every failure is named by position, and if any failed nothing is written; `check_only` writes nothing. The reply names each edge drawn, subject first. Ask for this when you have a whole batch of typed links to record and want each one checked exactly as it would be alone.",
+  "inputSchema": {
+    "$defs": {
+      "DrawEdgeItem": {
+        "additionalProperties": false,
+        "description": "One item of a `draw_edges` call.",
+        "properties": {
+          "arguments": {
+            "default": null,
+            "description": "That helper's own arguments, exactly as the helper takes them."
+          },
+          "tool": {
+            "description": "The typed edge helper to run, by its tool name (`allocate`,\n`constrains`, `governed_by`, …).",
+            "type": "string"
+          }
+        },
+        "required": [
+          "tool"
+        ],
+        "type": "object"
+      }
+    },
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "additionalProperties": false,
+    "properties": {
+      "budget_chars": {
+        "default": null,
+        "description": "Largest reply, in characters; the default budget otherwise.",
+        "format": "uint",
+        "minimum": 0,
+        "type": [
+          "integer",
+          "null"
+        ]
+      },
+      "check_only": {
+        "default": false,
+        "description": "Run every item's checks and WRITE NOTHING.",
+        "type": "boolean"
+      },
+      "edges": {
+        "description": "The edges to draw, one typed helper call per item, applied together.",
+        "items": {
+          "$ref": "#/$defs/DrawEdgeItem"
+        },
+        "type": "array"
+      }
+    },
+    "required": [
+      "edges"
+    ],
+    "type": "object"
+  },
+  "name": "draw_edges"
+}

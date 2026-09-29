@@ -580,22 +580,7 @@ impl ReflowService {
         Parameters(req): Parameters<RealizesReq>,
     ) -> Result<CallToolResult, McpError> {
         let mut g = self.write_lock().await?;
-        let target_type = crate::service::resolve_node_type(
-            &g,
-            req.target_type.as_deref(),
-            &req.target_id,
-            "target_type",
-        )?;
-        ok_json(EdgeDto::from(
-            g.realizes(
-                &req.artifact_id,
-                &target_type,
-                &req.target_id,
-                req.completeness.as_deref(),
-                req.conformance.as_deref(),
-            )
-            .map_err(dyno_err)?,
-        ))
+        Self::realizes_on(&mut g, req)
     }
 
     #[tool(
@@ -612,21 +597,7 @@ impl ReflowService {
         Parameters(req): Parameters<DocumentsReq>,
     ) -> Result<CallToolResult, McpError> {
         let mut g = self.write_lock().await?;
-        let target_type = crate::service::resolve_node_type(
-            &g,
-            req.target_type.as_deref(),
-            &req.target_id,
-            "target_type",
-        )?;
-        ok_json(EdgeDto::from(
-            g.documents(
-                &req.artifact_id,
-                &target_type,
-                &req.target_id,
-                req.doc_kind.as_deref(),
-            )
-            .map_err(dyno_err)?,
-        ))
+        Self::documents_on(&mut g, req)
     }
 
     #[tool(
@@ -851,5 +822,56 @@ impl ReflowService {
             "unmeasurable": unmeasurable,
         });
         Ok((observed, block))
+    }
+}
+
+// ─── typed edge helper bodies, shared with `draw_edges` ──────────────────────
+
+impl ReflowService {
+    /// The body of [`Self::documents`] over a graph the caller already holds: the
+    /// one code path the tool and `draw_edges` both run.
+    pub(crate) fn documents_on(
+        g: &mut reflow2_core::DesignGraph,
+        req: DocumentsReq,
+    ) -> Result<CallToolResult, McpError> {
+        let target_type = crate::service::resolve_node_type(
+            g,
+            req.target_type.as_deref(),
+            &req.target_id,
+            "target_type",
+        )?;
+        ok_json(EdgeDto::from(
+            g.documents(
+                &req.artifact_id,
+                &target_type,
+                &req.target_id,
+                req.doc_kind.as_deref(),
+            )
+            .map_err(dyno_err)?,
+        ))
+    }
+
+    /// The body of [`Self::realizes`] over a graph the caller already holds: the
+    /// one code path the tool and `draw_edges` both run.
+    pub(crate) fn realizes_on(
+        g: &mut reflow2_core::DesignGraph,
+        req: RealizesReq,
+    ) -> Result<CallToolResult, McpError> {
+        let target_type = crate::service::resolve_node_type(
+            g,
+            req.target_type.as_deref(),
+            &req.target_id,
+            "target_type",
+        )?;
+        ok_json(EdgeDto::from(
+            g.realizes(
+                &req.artifact_id,
+                &target_type,
+                &req.target_id,
+                req.completeness.as_deref(),
+                req.conformance.as_deref(),
+            )
+            .map_err(dyno_err)?,
+        ))
     }
 }

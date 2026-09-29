@@ -6768,10 +6768,15 @@ impl ReflowService {
             let g = self.graph.read().await;
             crate::lessons::lessons_by_step(&g)
         };
-        // Which calls settle intent is served on the tool itself, from the one
-        // table the handlers read (crate::settles), so a gateway signing on its
-        // caller's behalf reads the rule instead of keeping a copy of it.
-        crate::settles::declare_on(crate::lessons::enrich_tools(tools, &by_step))
+        // Two list-time decorations, both generated from one table each:
+        // which calls settle intent (crate::settles, served as _meta so a
+        // gateway signing on its caller's behalf reads the rule instead of a
+        // copy), and every typed edge helper naming its bulk form (I24), added
+        // at LIST time like the lessons so what `find_tools` ranks stays each
+        // tool's own job.
+        crate::bulk_edges::name_the_bulk_route(crate::settles::declare_on(
+            crate::lessons::enrich_tools(tools, &by_step),
+        ))
     }
 
     /// Test seam for the listing above — the `list_tools` override needs a

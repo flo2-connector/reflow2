@@ -2,7 +2,7 @@
   "annotations": {
     "readOnlyHint": false
   },
-  "description": "Pin any node to a DesignEpoch (AT_EPOCH) — e.g. a Release to its release_cut epoch, so the release and the design state it was cut from are joined on axis Z. Generic: AT_EPOCH is declared from any type. Ask for this when you want to snapshot or freeze how an item looks today, at a point in time, so it can be compared later.",
+  "description": "Pin any node to a DesignEpoch (AT_EPOCH) — e.g. a Release to its release_cut epoch, so the release and the design state it was cut from are joined on axis Z. Generic: AT_EPOCH is declared from any type. Ask for this when you want to snapshot or freeze how an item looks today, at a point in time, so it can be compared later. MANY AT ONCE: `draw_edges`, items {\"tool\": \"pin_at_epoch\", \"arguments\": {…}}, same checks, all or nothing.",
   "inputSchema": {
     "$schema": "https://json-schema.org/draft/2020-12/schema",
     "additionalProperties": false,
