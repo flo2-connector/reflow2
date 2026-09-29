@@ -3536,8 +3536,12 @@ pub struct ReadinessReportReq {
 #[serde(deny_unknown_fields)]
 pub struct PrecedesReq {
     /// The DesignEpoch (`epoch:…`) that comes first — the source of the PRECEDES edge.
+    /// `from_id` is accepted too: the ends are peers, and the taught peer spelling is
+    /// `from_*` / `to_*` (dec:idea-one-way-to-name-which-node-across-the-tool-surface).
+    #[serde(alias = "from_id")]
     pub earlier_epoch: String,
     /// The DesignEpoch (`epoch:…`) that follows it.
+    #[serde(alias = "to_id")]
     pub later_epoch: String,
 }
 

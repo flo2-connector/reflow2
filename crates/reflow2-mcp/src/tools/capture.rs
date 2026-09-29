@@ -2185,7 +2185,7 @@ impl ReflowService {
     }
 
     #[tool(
-        description = "Link a Capability to a Requirement it SATISFIES — the first half of the golden thread, from a stated need to the function that serves it. `detect_gaps` raises `unsatisfied_requirement` on any requirement without one and `unmotivated_capability` on any capability without one, and delivery is COMPUTED along this edge (satisfied, and realized, and its check passing) rather than read from a status field, which is why it cannot be inflated by marking work done. `add_capability` draws this in the same call via its `satisfies` parameter. Every pair the schema models is accepted — a Component or Artifact that satisfies a Requirement, a Capability that satisfies a Constraint — with the types resolved from the ids. Ask for this when you want to record that a capability fulfils, meets or satisfies a requirement.",
+        description = "Link a Capability to a Requirement it SATISFIES — the first half of the golden thread, from a stated need to the function that serves it. `detect_gaps` raises `unsatisfied_requirement` on any requirement without one and `unmotivated_capability` on any capability without one, and delivery is COMPUTED along this edge (satisfied, and realized, and its check passing) rather than read from a status field, which is why it cannot be inflated by marking work done. `add_capability` draws this in the same call via its `satisfies` parameter. The types are resolved from the ids, so every pair the schema models is accepted. Ask for this when you want to record that a capability fulfils, meets or satisfies a requirement.",
         annotations(read_only_hint = false)
     )]
     pub async fn satisfies(

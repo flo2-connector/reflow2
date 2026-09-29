@@ -377,10 +377,6 @@ impl ReflowService {
                        declared\" are different facts needing opposite actions, and until \
                        2026-09-02 they were rendered identically. Three projects acted on the \
                        wrong one and two drew an edge they themselves called a stand-in. \
-                       A node type's answer names `written_by`, the served tools that write \
-                       it, and each edge in a pair's answer names `drawn_by` \u{2014} so the \
-                       tool is found from the type, whatever it is called (`record_finding` \
-                       writes a TemporalFact). \
                        Ask for this to see which fields each type takes before you use it.",
         annotations(read_only_hint = true)
     )]
@@ -405,17 +401,24 @@ impl ReflowService {
             (None, None, None) => ok_json(bound(
                 serde_json::to_value(g.describe_vocabulary()).map_err(ser_err)?,
             )),
-            (Some(t), None, None) if req.required_only => ok_json(bound(with_writers(
+            // The writers are added AFTER bounding: they are a handful of tool
+            // names and one short sentence, and a trimmed reply is exactly the
+            // one whose reader most needs to be told which tool writes the type.
+            (Some(t), None, None) if req.required_only => ok_json(with_writers(
                 t,
-                serde_json::to_value(g.describe_node_type_required(t).map_err(params_err)?)
-                    .map_err(ser_err)?,
-            ))),
-            (Some(t), None, None) => ok_json(bound(with_writers(
+                bound(
+                    serde_json::to_value(g.describe_node_type_required(t).map_err(params_err)?)
+                        .map_err(ser_err)?,
+                ),
+            )),
+            (Some(t), None, None) => ok_json(with_writers(
                 t,
-                serde_json::to_value(g.describe_node_type(t).map_err(params_err)?)
-                    .map_err(ser_err)?,
-            ))),
-            (None, Some(f), Some(t)) => ok_json(bound(with_drawn_by(
+                bound(
+                    serde_json::to_value(g.describe_node_type(t).map_err(params_err)?)
+                        .map_err(ser_err)?,
+                ),
+            )),
+            (None, Some(f), Some(t)) => ok_json(with_drawn_by(bound(
                 serde_json::to_value(g.edge_types_between(f, t).map_err(params_err)?)
                     .map_err(ser_err)?,
             ))),

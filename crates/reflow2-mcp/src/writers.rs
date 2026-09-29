@@ -89,10 +89,8 @@ pub fn edge_type_writers(edge_type: &str) -> Vec<String> {
 }
 
 /// The sentence `describe_schema` carries when no typed tool writes a type.
-pub const NO_TYPED_WRITER: &str = "No typed tool writes this type; `create_node` (and \
-     `create_nodes`) will, validated against the properties listed here. A type with no \
-     constructor is usually one the machinery mints — say so in reflow2's design if you needed \
-     one and it was missing.";
+pub const NO_TYPED_WRITER: &str =
+    "No typed tool writes this type; `create_node` does, validated against its properties.";
 
 /// How many alternatives a refusal lists before deferring to `describe_schema`.
 const MAX_ALTERNATIVES: usize = 12;

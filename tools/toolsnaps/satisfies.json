@@ -2,7 +2,7 @@
   "annotations": {
     "readOnlyHint": false
   },
-  "description": "Link a Capability to a Requirement it SATISFIES — the first half of the golden thread, from a stated need to the function that serves it. `detect_gaps` raises `unsatisfied_requirement` on any requirement without one and `unmotivated_capability` on any capability without one, and delivery is COMPUTED along this edge (satisfied, and realized, and its check passing) rather than read from a status field, which is why it cannot be inflated by marking work done. `add_capability` draws this in the same call via its `satisfies` parameter. Ask for this when you want to record that a capability fulfils, meets or satisfies a requirement.",
+  "description": "Link a Capability to a Requirement it SATISFIES — the first half of the golden thread, from a stated need to the function that serves it. `detect_gaps` raises `unsatisfied_requirement` on any requirement without one and `unmotivated_capability` on any capability without one, and delivery is COMPUTED along this edge (satisfied, and realized, and its check passing) rather than read from a status field, which is why it cannot be inflated by marking work done. `add_capability` draws this in the same call via its `satisfies` parameter. The types are resolved from the ids, so every pair the schema models is accepted. Ask for this when you want to record that a capability fulfils, meets or satisfies a requirement.",
   "inputSchema": {
     "$schema": "https://json-schema.org/draft/2020-12/schema",
     "additionalProperties": false,
@@ -22,12 +22,28 @@
         ]
       },
       "from_id": {
-        "description": "The `Capability` that satisfies it.",
+        "description": "The node that satisfies it — a `Capability`, or a `Component` or `Artifact` (declared for\nSATISFIES).",
         "type": "string"
       },
+      "from_type": {
+        "default": null,
+        "description": "The `from_id` node's type.\nOptional: resolved from the id when omitted (the id prefix names the\ntype); an id held by more than one type is REFUSED, never guessed — pass\nit then. Any type the schema accepts at this end is accepted here: a\ntyped tool is never narrower than its schema.",
+        "type": [
+          "string",
+          "null"
+        ]
+      },
       "to_id": {
-        "description": "The `Requirement` being satisfied.",
+        "description": "The `Requirement` (or `Constraint`) being satisfied.",
         "type": "string"
+      },
+      "to_type": {
+        "default": null,
+        "description": "The `to_id` node's type.\nOptional: resolved from the id when omitted (the id prefix names the\ntype); an id held by more than one type is REFUSED, never guessed — pass\nit then. Any type the schema accepts at this end is accepted here: a\ntyped tool is never narrower than its schema.",
+        "type": [
+          "string",
+          "null"
+        ]
       }
     },
     "required": [
