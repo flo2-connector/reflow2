@@ -42,6 +42,15 @@
           "null"
         ]
       },
+      "echo": {
+        "default": "receipt",
+        "description": "What the reply carries. `receipt` (the default) names the node, echoes each stored value of at most 200 characters, gives longer ones by size, and names the snapshot that keeps anything a revise replaced. `node` returns the whole stored node and every prior value.",
+        "enum": [
+          "receipt",
+          "node"
+        ],
+        "type": "string"
+      },
       "measured_at": {
         "default": null,
         "description": "WHEN the contribution was observed. Pass it whenever `basis` is\n`measured` — that is the strongest claim the schema offers and the only\none that goes stale, and `budget_report` lists an undated measurement\nrather than treating it as fresh. An estimate does not decay and needs\nno date.",

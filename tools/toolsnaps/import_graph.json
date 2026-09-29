@@ -24,6 +24,15 @@
           "null"
         ]
       },
+      "echo": {
+        "default": "receipt",
+        "description": "What the reply carries. `receipt` (the default) names the node, echoes each stored value of at most 200 characters, gives longer ones by size, and names the snapshot that keeps anything a revise replaced. `node` returns the whole stored node and every prior value.",
+        "enum": [
+          "receipt",
+          "node"
+        ],
+        "type": "string"
+      },
       "path": {
         "default": null,
         "description": "Read the document from this file instead — the committed design export,\nusually. Prefer this to inlining: it avoids carrying a large document\nthrough the conversation, and it records that this seat is now in step\nwith that file, which is what clears a `req:stale-seat-knows` refusal.",

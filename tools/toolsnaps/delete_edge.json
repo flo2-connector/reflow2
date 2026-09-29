@@ -7,6 +7,15 @@
     "$schema": "https://json-schema.org/draft/2020-12/schema",
     "additionalProperties": false,
     "properties": {
+      "echo": {
+        "default": "receipt",
+        "description": "What the reply carries. `receipt` (the default) names the node, echoes each stored value of at most 200 characters, gives longer ones by size, and names the snapshot that keeps anything a revise replaced. `node` returns the whole stored node and every prior value.",
+        "enum": [
+          "receipt",
+          "node"
+        ],
+        "type": "string"
+      },
       "edge_type": {
         "description": "The edge type of the assertion to retract, as declared (`SATISFIES`, `GOVERNED_BY` …). Both endpoint nodes survive; only the edge goes.",
         "type": "string"

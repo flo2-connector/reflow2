@@ -64,6 +64,15 @@
         "description": "The answer to the second question — required, because \"accept the file,\nleave the design alone, say nothing\" is the option that erodes a design\n(BL-33). `design_holds`: the change carries no design meaning (a\nrefactor, a fix restoring intended behaviour) — recorded as a dated\nclaim. `design_updated`: behaviour moved and the design moved with it —\npass `design_change_event_id` from the `record_change` that updated it.\n`baseline_established`: this artifact had no checksum and is getting its\nFIRST one, so nothing moved and there is nothing to take a position on\n(BL-157) — takes neither of the other two fields.\n\nWhich are available is a fact, not a preference, and the wrong one is\nrefused: an accept needs an existing baseline to accept a change\n*against*, and a first baseline cannot be established over one that\nalready exists (that would be a real change, laundered).",
         "type": "string"
       },
+      "echo": {
+        "default": "receipt",
+        "description": "What the reply carries. `receipt` (the default) names the node, echoes each stored value of at most 200 characters, gives longer ones by size, and names the snapshot that keeps anything a revise replaced. `node` returns the whole stored node and every prior value.",
+        "enum": [
+          "receipt",
+          "node"
+        ],
+        "type": "string"
+      },
       "note": {
         "default": null,
         "description": "Optional note stored on the recorded claim (`design_holds` and\n`baseline_established`).",

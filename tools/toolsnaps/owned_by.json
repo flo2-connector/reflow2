@@ -11,6 +11,15 @@
         "description": "The `Contributor` whose area this is.",
         "type": "string"
       },
+      "echo": {
+        "default": "receipt",
+        "description": "What the reply carries. `receipt` (the default) names the node, echoes each stored value of at most 200 characters, gives longer ones by size, and names the snapshot that keeps anything a revise replaced. `node` returns the whole stored node and every prior value.",
+        "enum": [
+          "receipt",
+          "node"
+        ],
+        "type": "string"
+      },
       "from_id": {
         "description": "The node being owned; its type is `from_type`.",
         "type": "string"

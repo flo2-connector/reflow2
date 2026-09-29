@@ -7,6 +7,15 @@
     "$schema": "https://json-schema.org/draft/2020-12/schema",
     "additionalProperties": false,
     "properties": {
+      "echo": {
+        "default": "receipt",
+        "description": "What the reply carries. `receipt` (the default) names the node, echoes each stored value of at most 200 characters, gives longer ones by size, and names the snapshot that keeps anything a revise replaced. `node` returns the whole stored node and every prior value.",
+        "enum": [
+          "receipt",
+          "node"
+        ],
+        "type": "string"
+      },
       "expected_content_hash": {
         "default": null,
         "description": "The node's `prior_content_hash` as you last READ it. Supply it and this\nwrite becomes a COMPARE-AND-SWAP: if the node has moved since, the write\nis REFUSED and names both hashes, instead of silently overwriting\nsomebody else's work.\n\nWhere to get it: any earlier `create_node` on this id returned it in\n`revision.prior_content_hash`. It is the hash of the properties as they\nstood BEFORE that call, so re-read the node first if you have been\nholding it a while.\n\nOPT-IN ON PURPOSE. Omit it and you get the old behaviour, because a\ncaller who never read the node has no honest expectation to state — and\nmaking it mandatory would break every existing writer. Pass it whenever\nyou are EDITING something you read rather than creating something new,\nwhich is exactly when a lost update can happen.",
