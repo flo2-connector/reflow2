@@ -342,21 +342,45 @@ pub(crate) fn lens_line(lens: &reflow2_core::ReaderLens) -> String {
             .collect::<Vec<_>>()
             .join(", ")
     };
+    // THE COUNT IS OF PEOPLE, AND SAYS SO. An agent's `description` says what
+    // a tool is, not whose words to use, so agents are not readers — but a
+    // count with no noun beside described agents reads as a miscount (I8).
+    let people = |n: usize| {
+        if n == 1 {
+            "1 person".to_string()
+        } else {
+            format!("{n} people")
+        }
+    };
+    let agents_left_out = match lens.agents.len() {
+        0 => String::new(),
+        n => format!(
+            " {} {} recorded too and not counted here ({}) — an agent's description says what a \
+             tool is, not whose words to use.",
+            n,
+            if n == 1 {
+                "automated agent is"
+            } else {
+                "automated agents are"
+            },
+            lens.agents.join(", ")
+        ),
+    };
     if lens.is_silent() {
         let askable = if lens.without_background.is_empty() {
-            "Nobody is recorded in this design yet".to_string()
+            "No person is recorded in this design yet".to_string()
         } else {
             format!(
                 "{} recorded here and none describes themselves ({})",
-                lens.without_background.len(),
+                people(lens.without_background.len()),
                 labelled(&lens.without_background)
             )
         };
         format!(
             "NOBODY'S BACKGROUND IS RECORDED — {askable}, so nothing here tells you whose words to \
-             use. Ask what they do day to day and what they trained in (those often differ and both \
-             matter), then record it with `add_contributor`. Until then follow the vocabulary THEY \
-             use with you. {rule}"
+             use.{agents_left_out} Ask what they do day to day and what they trained in (those often \
+             differ and both matter), then record it with `add_contributor`. Until then follow the \
+             vocabulary THEY use with you. {rule}"
         )
     } else {
         let several = if lens.with_background.len() > 1 {
@@ -368,7 +392,7 @@ pub(crate) fn lens_line(lens: &reflow2_core::ReaderLens) -> String {
         format!(
             "Recorded backgrounds: {}. Read the one for whoever you are talking to (`get_node` on \
              the Contributor) — this says what the DESIGN holds, never who is at the keyboard. If \
-             it is somebody else, ask and record it.{several} {rule}",
+             it is somebody else, ask and record it.{several}{agents_left_out} {rule}",
             labelled(&lens.with_background)
         )
     }

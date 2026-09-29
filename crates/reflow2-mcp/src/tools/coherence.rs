@@ -81,17 +81,23 @@ impl ReflowService {
         let budget = req.budget_chars.unwrap_or(DEFAULT_REPLY_BUDGET_CHARS);
         match req.scope.as_deref() {
             None => ok_json_or_why(
-                g.detect_gaps_within(budget).map_err(dyno_err)?,
+                lift_parks_route(
+                    serde_json::to_value(g.detect_gaps_within(budget).map_err(dyno_err)?)
+                        .map_err(ser_err)?,
+                ),
                 "no open gap: every anchored gap has been put to the user or accepted — or the design holds nothing yet to have a gap about",
             ),
-            Some(seed) => ok_json(
-                g.detect_gaps_in_scope_within(
-                    seed,
-                    req.depth.unwrap_or(DEFAULT_SCOPE_DEPTH),
-                    budget,
+            Some(seed) => ok_json(lift_parks_route(
+                serde_json::to_value(
+                    g.detect_gaps_in_scope_within(
+                        seed,
+                        req.depth.unwrap_or(DEFAULT_SCOPE_DEPTH),
+                        budget,
+                    )
+                    .map_err(dyno_err)?,
                 )
-                .map_err(dyno_err)?,
-            ),
+                .map_err(ser_err)?,
+            )),
         }
     }
 
@@ -1860,3 +1866,51 @@ fn verification_digest(
 /// a corpus whose median name is 76 words. It is a display bound, never a
 /// storage one: nothing is lost, and `name_truncated` says when it applied.
 const NAME_WORDS_IN_ROLLUP: usize = 25;
+
+/// Mark every gap a `parks` ruling can clear, and send the sentence saying how
+/// ONCE per reply.
+///
+/// Parking was named on no gap that reads it, and four field reports record a
+/// person stuck at one of them never told it existed (the dev_reflow2
+/// two-agent exercise's I12 was the fourth,
+/// `fact:root-cause-parking-is-still-not-named-where-an-unsatisfied-requirement-is-read-2026-09-29`).
+/// Appending the sentence to each description would repeat ~500 characters per
+/// row — the cost [`lift_repair_notes`] measured at 52% of a reply — and would
+/// push every such gap past the report roll-up's word budget. So each row says
+/// `parks: true` and the reply says how, once, naming every finding it reads.
+pub fn lift_parks_route(mut out: JsonValue) -> JsonValue {
+    fn mark(v: &mut JsonValue, marked: &mut usize) {
+        match v {
+            JsonValue::Object(m) => {
+                let parkable = m
+                    .get("gap_source")
+                    .and_then(JsonValue::as_str)
+                    .is_some_and(|k| reflow2_core::heal::PARKING_READERS.contains(&k));
+                if parkable {
+                    m.insert("parks".to_string(), JsonValue::Bool(true));
+                    *marked += 1;
+                }
+                for x in m.values_mut() {
+                    mark(x, marked);
+                }
+            }
+            JsonValue::Array(a) => {
+                for x in a {
+                    mark(x, marked);
+                }
+            }
+            _ => {}
+        }
+    }
+    let mut marked = 0usize;
+    mark(&mut out, &mut marked);
+    if marked > 0
+        && let Some(obj) = out.as_object_mut()
+    {
+        obj.insert(
+            "parks_route".to_string(),
+            JsonValue::String(reflow2_core::heal::parks_route().to_string()),
+        );
+    }
+    out
+}

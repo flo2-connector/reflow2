@@ -536,62 +536,7 @@ impl DesignGraph {
         from_type: &str,
         to_type: &str,
     ) -> Result<EdgeQuery, DynoError> {
-        self.require_node_type(from_type)?;
-        self.require_node_type(to_type)?;
-
-        let mut matches: Vec<EdgeTypeMatch> = self
-            .schema()
-            .edge_types
-            .iter()
-            .filter_map(|(name, def)| {
-                let from_match = classify(&def.from, from_type)?;
-                let to_match = classify(&def.to, to_type)?;
-                // Only meaningful where an endpoint is open: a fully enumerated
-                // edge is already ranked by the schema and needs no declaration.
-                let declared_for_this_pair =
-                    from_match != EndpointMatch::Exact || to_match != EndpointMatch::Exact;
-                let declared_for_this_pair = declared_for_this_pair
-                    && def
-                        .deliberately_open
-                        .as_ref()
-                        .is_some_and(|d| d.covers(from_type, to_type));
-                Some(EdgeTypeMatch {
-                    spec: edge_spec(name, def, ReadingDetail::Full),
-                    from_match,
-                    to_match,
-                    declared_for_this_pair,
-                })
-            })
-            .collect();
-        matches.sort_by(EdgeTypeMatch::order);
-
-        let exact_matches = matches.iter().filter(|m| m.is_exact()).count();
-        let half_exact_matches = matches
-            .iter()
-            .filter(|m| {
-                !m.is_exact()
-                    && (m.from_match == EndpointMatch::Exact || m.to_match == EndpointMatch::Exact)
-            })
-            .count();
-        let modelled_open_matches = matches.iter().filter(|m| m.declared_for_this_pair).count();
-        let note = edge_query_note(
-            from_type,
-            to_type,
-            matches.len(),
-            exact_matches,
-            half_exact_matches,
-            modelled_open_matches,
-        );
-
-        Ok(EdgeQuery {
-            from_type: from_type.to_string(),
-            to_type: to_type.to_string(),
-            matches,
-            exact_matches,
-            half_exact_matches,
-            modelled_open_matches,
-            note,
-        })
+        edge_query_in(self.schema(), from_type, to_type)
     }
 }
 
@@ -667,6 +612,87 @@ fn edge_query_note(
              listed first. Any others accept the pair via a `*` wildcard endpoint."
         ),
     }
+}
+
+/// [`DesignGraph::edge_types_between`] over any schema — the one computation,
+/// so a reader holding no graph (a refusal rendered from an error value) and
+/// `describe_schema` cannot come to disagree about what models a pair.
+pub(crate) fn edge_query_in(
+    schema: &crate::foundation::core::Schema,
+    from_type: &str,
+    to_type: &str,
+) -> Result<EdgeQuery, DynoError> {
+    for t in [from_type, to_type] {
+        if !schema.node_types.contains_key(t) {
+            return Err(DynoError::UnknownNodeType(t.to_string()));
+        }
+    }
+
+    let mut matches: Vec<EdgeTypeMatch> = schema
+        .edge_types
+        .iter()
+        .filter_map(|(name, def)| {
+            let from_match = classify(&def.from, from_type)?;
+            let to_match = classify(&def.to, to_type)?;
+            // Only meaningful where an endpoint is open: a fully enumerated
+            // edge is already ranked by the schema and needs no declaration.
+            let declared_for_this_pair =
+                from_match != EndpointMatch::Exact || to_match != EndpointMatch::Exact;
+            let declared_for_this_pair = declared_for_this_pair
+                && def
+                    .deliberately_open
+                    .as_ref()
+                    .is_some_and(|d| d.covers(from_type, to_type));
+            Some(EdgeTypeMatch {
+                spec: edge_spec(name, def, ReadingDetail::Full),
+                from_match,
+                to_match,
+                declared_for_this_pair,
+            })
+        })
+        .collect();
+    matches.sort_by(EdgeTypeMatch::order);
+
+    let exact_matches = matches.iter().filter(|m| m.is_exact()).count();
+    let half_exact_matches = matches
+        .iter()
+        .filter(|m| {
+            !m.is_exact()
+                && (m.from_match == EndpointMatch::Exact || m.to_match == EndpointMatch::Exact)
+        })
+        .count();
+    let modelled_open_matches = matches.iter().filter(|m| m.declared_for_this_pair).count();
+    let note = edge_query_note(
+        from_type,
+        to_type,
+        matches.len(),
+        exact_matches,
+        half_exact_matches,
+        modelled_open_matches,
+    );
+
+    Ok(EdgeQuery {
+        from_type: from_type.to_string(),
+        to_type: to_type.to_string(),
+        matches,
+        exact_matches,
+        half_exact_matches,
+        modelled_open_matches,
+        note,
+    })
+}
+
+/// What models a `from_type` → `to_type` pair, read from the process-wide
+/// schema rather than from a graph. The schema is compiled in, so every graph
+/// in the process answers this identically; a refusal built from a
+/// [`DynoError::InvalidEdge`] has no graph in hand and still owes the caller
+/// the edges that DO accept the pair
+/// (`fact:root-cause-a-check-on-a-ruling-is-modelled-as-governed-by-and-the-verifies-refusal-never-says-so-2026-09-28`).
+pub fn edge_types_between_in_schema(
+    from_type: &str,
+    to_type: &str,
+) -> Result<EdgeQuery, DynoError> {
+    edge_query_in(crate::schema::parsed_schema()?, from_type, to_type)
 }
 
 #[cfg(test)]
