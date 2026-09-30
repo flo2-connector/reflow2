@@ -193,7 +193,10 @@ async fn distinct_from_is_recorded_on_the_node_it_created() {
     );
     // And it is a judgement, not a relation: nothing is drawn between them.
     let d = doc(&s).await;
-    assert!(!has_edge(&d, "OBSOLETES", "cap:new", "cap:old"), "distinct is not replaces");
+    assert!(
+        !has_edge(&d, "OBSOLETES", "cap:new", "cap:old"),
+        "distinct is not replaces"
+    );
 }
 
 /// A second judgement on a revise ADDS to the first rather than erasing it —
@@ -219,7 +222,10 @@ async fn a_later_distinct_from_adds_to_the_recorded_judgement() {
         .iter()
         .filter_map(Value::as_str)
         .collect();
-    assert!(got.contains(&"cap:old") && got.contains(&"req:see-designs"), "{n}");
+    assert!(
+        got.contains(&"cap:old") && got.contains(&"req:see-designs"),
+        "{n}"
+    );
 }
 
 /// THE CASE. A replacing capture moves the requirement's SATISFIES to the new
@@ -229,7 +235,9 @@ async fn a_later_distinct_from_adds_to_the_recorded_judgement() {
 async fn a_replacing_capture_moves_the_thread_and_retires_the_old_node() {
     let s = with_old_capability().await;
     let reply = s
-        .add_capability(Parameters(new_capability(json!({ "replaces": ["cap:old"] }))))
+        .add_capability(Parameters(new_capability(
+            json!({ "replaces": ["cap:old"] }),
+        )))
         .await
         .expect("replaces is the third route past the guard")
         .structured_content
@@ -267,25 +275,32 @@ async fn a_replacing_capture_moves_the_thread_and_retires_the_old_node() {
         .expect("a ChangeEvent records that cap:old was removed from the live design");
     let chg = node(&d, changed["from_id"].as_str().expect("from")).expect("the event");
     assert_eq!(chg["properties"]["change_type"], "deprecation", "{chg}");
-    let snap = d["nodes"]
-        .as_array()
-        .expect("nodes")
-        .iter()
-        .find(|n| {
-            n["node_type"] == "Snapshot"
-                && n["properties"]["target_id"] == "cap:old"
-                && n["properties"]["edges"]
-                    .as_str()
-                    .is_some_and(|e| e.contains("SATISFIES") && e.contains("req:see-designs"))
-        });
+    let snap = d["nodes"].as_array().expect("nodes").iter().find(|n| {
+        n["node_type"] == "Snapshot"
+            && n["properties"]["target_id"] == "cap:old"
+            && n["properties"]["edges"]
+                .as_str()
+                .is_some_and(|e| e.contains("SATISFIES") && e.contains("req:see-designs"))
+    });
     assert!(
         snap.is_some(),
         "the old node's final edges must survive as history before the thread moves"
     );
 
-    // The old node keeps its stored status — it records what was built.
+    // The old node keeps its stored status — it records what was built — and
+    // a SUCCESSOR's OBSOLETES does not withdraw it: only an accepted Decision
+    // does (`dec:idea-discontinued-is-a-first-class-state`). The served skill
+    // text says so, so this pins it.
     let old = get(&s, "cap:old").await;
     assert_eq!(old["properties"]["status"], "planned", "{old}");
+    assert_eq!(old["discontinued"], json!(false), "{old}");
+    let standing = reply["replaced"][0]["standing"]
+        .as_str()
+        .unwrap_or_default();
+    assert!(
+        standing.contains("ACCEPTED Decision"),
+        "the step that still withdraws it is named: {standing}"
+    );
 
     // The reply says what moved, subject first.
     let drawn: Vec<&str> = reply["edges_drawn"]
@@ -294,7 +309,10 @@ async fn a_replacing_capture_moves_the_thread_and_retires_the_old_node() {
         .iter()
         .filter_map(Value::as_str)
         .collect();
-    assert!(drawn.contains(&"cap:new SATISFIES req:see-designs"), "{reply}");
+    assert!(
+        drawn.contains(&"cap:new SATISFIES req:see-designs"),
+        "{reply}"
+    );
     assert!(drawn.contains(&"cap:new OBSOLETES cap:old"), "{reply}");
     let said = reply["replaced"].to_string();
     assert!(
@@ -343,7 +361,10 @@ async fn replacing_a_node_of_another_type_is_refused_and_writes_nothing() {
         .await
         .expect_err("a capability cannot replace a requirement");
     let msg = format!("{err:?}");
-    assert!(msg.contains("req:see-designs") && msg.contains("Requirement"), "{msg}");
+    assert!(
+        msg.contains("req:see-designs") && msg.contains("Requirement"),
+        "{msg}"
+    );
     let d = doc(&s).await;
     assert!(node(&d, "cap:new").is_none(), "a refusal writes nothing");
 }
@@ -419,7 +440,12 @@ async fn a_replacing_requirement_draws_the_genealogy_and_moves_no_delivery_claim
         .structured_content
         .expect("structured");
     let d = doc(&s).await;
-    assert!(has_edge(&d, "OBSOLETES", "req:see-and-start-designs", "req:see-designs"));
+    assert!(has_edge(
+        &d,
+        "OBSOLETES",
+        "req:see-and-start-designs",
+        "req:see-designs"
+    ));
     assert!(
         has_edge(&d, "SATISFIES", "cap:old", "req:see-designs"),
         "no satisfier is moved on a requirement's say-so"

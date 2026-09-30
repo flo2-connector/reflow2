@@ -241,6 +241,7 @@ async fn rules_take_steps_and_the_newest_lesson_comes_first() {
         approver: None,
         acted_at: None,
         distinct_from: None,
+        replaces: None,
         steps: Some(vec!["export_graph".into(), "ci-gate".into()]),
     })));
     j!(s.record_finding(Parameters(finding(

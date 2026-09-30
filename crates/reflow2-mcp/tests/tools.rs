@@ -85,6 +85,7 @@ async fn seeded() -> ReflowService {
         name: Some("Realistic physics".into()),
         statement: Some("Ball flight must be plausible.".into()),
         distinct_from: None,
+        replaces: None,
         status: None,
         approver: None,
         acted_at: None,
@@ -100,6 +101,7 @@ async fn seeded() -> ReflowService {
         description: Some("Simulate ball trajectory.".into()),
         status: None,
         distinct_from: None,
+        replaces: None,
         tier: None,
     })));
     j!(s.add_component(Parameters(ComponentReq {
@@ -109,6 +111,7 @@ async fn seeded() -> ReflowService {
         kind: None,
         level: None,
         distinct_from: None,
+        replaces: None,
         tier: None,
         status: None,
     })));
@@ -220,6 +223,7 @@ async fn genesis_bootstraps_then_detect_hands_off() {
         name: Some("Realistic physics".into()),
         statement: Some("Ball flight must be plausible.".into()),
         distinct_from: None,
+        replaces: None,
         status: None,
         approver: None,
         acted_at: None,
@@ -235,6 +239,7 @@ async fn genesis_bootstraps_then_detect_hands_off() {
         description: Some("Simulate ball trajectory.".into()),
         status: None,
         distinct_from: None,
+        replaces: None,
         tier: None,
     })));
     j!(s.satisfies(Parameters(SatisfiesReq {
@@ -270,6 +275,7 @@ async fn link_artifact_closes_the_unrealized_capability_gap() {
             description: Some("…".into()),
             status: None,
             distinct_from: None,
+            replaces: None,
             tier: None,
         })));
     }
@@ -502,6 +508,7 @@ async fn interface_tools_pair_both_sides_of_a_contract() {
         kind: None,
         level: None,
         distinct_from: None,
+        replaces: None,
         tier: None,
         status: None,
     })));
@@ -1212,6 +1219,7 @@ async fn a_well_formed_hierarchy_reports_no_issues() {
             kind: None,
             level: Some(level.into()),
             distinct_from: None,
+            replaces: None,
             tier: None,
             status: None,
         })));
@@ -1244,6 +1252,7 @@ async fn skipping_a_level_is_reported() {
             kind: None,
             level: Some(level.into()),
             distinct_from: None,
+            replaces: None,
             tier: None,
             status: None,
         })));
@@ -1277,6 +1286,7 @@ async fn nesting_two_defaulted_components_is_a_mismatch_not_silence() {
             kind: None,
             level: None,
             distinct_from: None,
+            replaces: None,
             tier: None,
             status: None,
         })));
@@ -1313,6 +1323,7 @@ async fn marking_a_requirement_dropped_stops_the_nagging() {
         name: Some("Maybe".into()),
         statement: Some("We might not do this.".into()),
         distinct_from: None,
+        replaces: None,
         status: None,
         approver: None,
         acted_at: None,
@@ -1343,6 +1354,7 @@ async fn marking_a_requirement_dropped_stops_the_nagging() {
         description: Some("does something else".into()),
         status: None,
         distinct_from: None,
+        replaces: None,
         tier: None,
     })));
     assert!(
@@ -1918,6 +1930,7 @@ async fn compare_designs_reports_divergence_from_a_base_export() {
         description: Some("Field the ball.".into()),
         status: None,
         distinct_from: None,
+        replaces: None,
         tier: None,
     })));
 
@@ -1981,6 +1994,7 @@ async fn loop_status_reports_debt_and_the_write_tools_point_at_the_loop() {
         description: Some("Claims to be built.".into()),
         status: Some("realized".into()),
         distinct_from: None,
+        replaces: None,
         tier: None,
     })));
     assert!(
@@ -2016,6 +2030,7 @@ async fn loop_status_reports_debt_and_the_write_tools_point_at_the_loop() {
         kind: None,
         level: None,
         distinct_from: None,
+        replaces: None,
         tier: None,
         status: None,
     })));
@@ -2159,6 +2174,7 @@ async fn export_files_chain_by_content_hash() {
         description: Some("Content moved.".into()),
         status: None,
         distinct_from: None,
+        replaces: None,
         tier: None,
     })));
     let second = j!(s.export_graph(Parameters(ExportGraphToReq {
@@ -2454,6 +2470,7 @@ async fn temporal_resource_and_realization_tools_round_trip() {
         kind: None,
         level: None,
         distinct_from: None,
+        replaces: None,
         tier: None,
         status: None,
     })));
@@ -2624,6 +2641,7 @@ async fn a_read_after_a_write_does_not_carry_a_loop_debt_hint() {
         name: Some("Low latency".into()),
         statement: Some("Input to render under 50ms.".into()),
         distinct_from: None,
+        replaces: None,
         status: None,
         approver: None,
         acted_at: None,
@@ -2652,6 +2670,7 @@ async fn a_read_after_a_write_does_not_carry_a_loop_debt_hint() {
         name: Some("Throughput".into()),
         statement: Some("Sustain 60 frames.".into()),
         distinct_from: None,
+        replaces: None,
         status: None,
         approver: None,
         acted_at: None,
@@ -2704,6 +2723,7 @@ async fn a_read_too_large_to_return_says_what_it_left_out() {
             description: Some(prose.clone()),
             status: None,
             distinct_from: None,
+            replaces: None,
             tier: None,
         })));
     }
@@ -2756,6 +2776,7 @@ async fn a_single_node_larger_than_the_budget_is_still_returned() {
         description: Some("y".repeat(60_000)),
         status: None,
         distinct_from: None,
+        replaces: None,
         tier: None,
     })));
 
@@ -2779,6 +2800,7 @@ async fn brief_gives_the_shape_without_the_prose() {
         description: Some("z".repeat(5_000)),
         status: None,
         distinct_from: None,
+        replaces: None,
         tier: None,
     })));
 
@@ -2817,6 +2839,7 @@ async fn an_explicit_limit_is_reported_as_the_reason_it_stopped() {
             description: Some("small".into()),
             status: None,
             distinct_from: None,
+            replaces: None,
             tier: None,
         })));
     }
@@ -3495,6 +3518,7 @@ async fn scan_nodes_filters_by_decomposition_level() {
             kind: None,
             level: level.map(str::to_string),
             distinct_from: None,
+            replaces: None,
             tier: None,
             status: None,
         })));
@@ -3548,6 +3572,7 @@ async fn a_bad_level_is_refused_rather_than_answered_empty() {
         kind: None,
         level: Some("subsystem".into()),
         distinct_from: None,
+        replaces: None,
         tier: None,
         status: None,
     })));
@@ -3609,6 +3634,7 @@ async fn add_design_rule_is_a_typed_constructor() {
         enforced: None,
         units: None,
         distinct_from: None,
+        replaces: None,
         approver: None,
         acted_at: None,
 
@@ -3647,6 +3673,7 @@ async fn add_design_rule_records_a_stated_enforcement() {
         enforced: Some(true),
         units: None,
         distinct_from: None,
+        replaces: None,
         approver: Some("who:ann".into()),
         acted_at: None,
 
@@ -3785,6 +3812,7 @@ async fn get_node_resolves_by_id_alone_and_refuses_a_collision() {
         name: Some("Solo".into()),
         statement: Some("A lone requirement.".into()),
         distinct_from: None,
+        replaces: None,
         status: None,
         approver: None,
         acted_at: None,

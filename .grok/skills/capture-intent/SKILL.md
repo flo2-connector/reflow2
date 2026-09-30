@@ -84,6 +84,24 @@ mis-file things**; this one names where it runs out, and that boundary is where 
    the existing node (see **revise-design**), not create a near-duplicate that HEAL will later
    flag and someone must merge. No hits is also information: record it and create freely.
 
+   ⭐ **WHEN A CONSTRUCTOR REFUSES A NEAR-MATCH, THERE ARE THREE ANSWERS, AND THE ONE YOU
+   GIVE IS KEPT.** The refusal lists what it matched; read those nodes, then:
+   - **SHARPEN** — the new words belong on the existing node: call the same tool with ITS id.
+   - **DISTINCT** — it is a different thing: call again with `distinct_from: [<ids>]`. The new
+     node keeps those ids, so a later reader can tell a node you compared from one nobody did.
+   - **REPLACES** — it takes an older node's place (rebuilt, re-scoped or renamed under a new
+     node): call again with `replaces: [<id>]`. The old node's ending is recorded with its
+     edges, the thread that says what it was for moves to the new one (a capability's
+     `SATISFIES`, the `ALLOCATED_TO` pointing at a component), and the new node `OBSOLETES` it.
+     A revise can say it too, for a successor that was recorded before anyone joined the two.
+
+   **Never answer DISTINCT for a replacement.** It is the easy route and it is false: the old
+   node goes on reading as unbuilt work, and the requirement it served keeps pointing at it.
+   Measured 2026-09-30 on a hosted design: three functions shipped under new capabilities while
+   their predecessors stayed `planned`, unjoined, with two requirements still pointing only at
+   the old nodes. `replaces` leaves the old node's stored status alone — it records what was
+   built — so read the reply's `standing` for what, if anything, still withdraws it.
+
    ⭐ **AND WHEN THEIR WORD IS NOT THE NODE'S NAME, RECORD THEIR WORD.** `record_alias`
    puts the user's own noun on the node — *"we call that a query"*, *"that's the sled"* —
    so the next session, and the next reader, meets their vocabulary instead of

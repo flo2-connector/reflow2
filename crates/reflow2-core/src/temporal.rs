@@ -27,7 +27,7 @@ use crate::nodes::{Props, edge, node};
 /// node's design structure, not its audit trail: including these would make
 /// every snapshot grow with each prior snapshot (its own `HAS_SNAPSHOT`
 /// edges), and a diff across epochs would drown in meta-history (BL-63).
-const BOOKKEEPING_TYPES: &[&str] = &[
+pub(crate) const BOOKKEEPING_TYPES: &[&str] = &[
     node::DESIGN_EPOCH,
     node::SNAPSHOT,
     node::CHANGE_EVENT,
@@ -56,7 +56,7 @@ const BOOKKEEPING_TYPES: &[&str] = &[
 /// destroyed by the very call whose job is preserving it, and the call
 /// reported success. Only the epoch-side snapshot preserved it, and nothing
 /// said so.
-const COMMITMENT_EDGES: &[&str] = &[edge::SCHEDULED_FOR];
+pub(crate) const COMMITMENT_EDGES: &[&str] = &[edge::SCHEDULED_FOR];
 
 /// One edge of a snapshotted node, as captured into the Snapshot's `edges`
 /// property (BL-63). `direction` is from the snapshotted node's point of view:

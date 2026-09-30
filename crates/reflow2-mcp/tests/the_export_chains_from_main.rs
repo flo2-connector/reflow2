@@ -78,6 +78,7 @@ fn req(id: &str) -> RequirementReq {
             "Requirement {id} exists so the export content moves."
         )),
         distinct_from: None,
+        replaces: None,
         status: None,
         approver: None,
         acted_at: None,

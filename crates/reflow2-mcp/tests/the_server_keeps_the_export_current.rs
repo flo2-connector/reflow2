@@ -60,6 +60,7 @@ fn req(id: &str) -> RequirementReq {
         name: Some(id.into()),
         statement: Some(format!("Requirement {id} exists so the design moves.")),
         distinct_from: None,
+        replaces: None,
         status: None,
         approver: None,
         acted_at: None,

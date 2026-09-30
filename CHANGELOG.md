@@ -31,6 +31,26 @@ This file is the third view: *what changed, and when*.
 
 ## [Unreleased]
 
+**Minor — the five guarded capture tools take `replaces`, and `distinct_from` is kept.**
+
+- **A near-match refusal names THREE routes, not two**: sharpen the existing node, `distinct_from`,
+  or the new **`replaces: [<id>]`** on `add_requirement`, `add_capability`, `add_component`,
+  `add_decision` and `add_design_rule`. A replacement records the old node's ending first (a
+  `deprecation` ChangeEvent whose snapshot keeps its properties and edges), moves the thread that
+  says what it was for (a Capability's `SATISFIES`, the `ALLOCATED_TO` pointing at a Component;
+  nothing for the other three), and draws `OBSOLETES` from the new node — the edge
+  retire-from-design names for a successor. The old node's stored status does not move, and the
+  reply's `replaced[].standing` says what, if anything, still withdraws it. Works on a revise too.
+  An id of another type, one naming nothing, or one also in `distinct_from` is refused with nothing
+  written. Found on a hosted design where three functions shipped under new capabilities while
+  their predecessors stayed `planned`, unjoined.
+- **`distinct_from` is written onto the node it created** (a new `list:string` property on
+  Requirement, Capability, Component, Decision, DesignRule and Constraint), and the reply carries
+  `judged_distinct`. Before, the judgement was accepted in the call and recorded nowhere. Additive:
+  the schema stamp does not move, and a node written before carries none.
+- capture-intent, revise-design, retire-from-design, capture-session and the served instructions
+  teach the three answers.
+
 ## [0.75.0] — 2026-09-30
 
 **Minor. The schema stamp moves** (`ACTS_FOR` makes 66 edge types; `Constraint.composition` is a
