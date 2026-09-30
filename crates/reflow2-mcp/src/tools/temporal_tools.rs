@@ -422,12 +422,26 @@ impl ReflowService {
         description = "Every piece of hand-rolled work this design has recorded, with the diagnosis that separates a MISSING tool from an UNFINDABLE one. Read it when deciding what to build or what to surface: a run of `tool_not_found` against a tool that exists is a discoverability repair, and a run of `tool_missing` is a feature nobody has written. Empty means nobody has reported any — which is NOT the same as nobody having done work by hand, and must not be read as it, since the signal depends on a session noticing and saying so. Ask for this when you want to know what sessions have had to script by hand because no tool did it.",
         annotations(read_only_hint = true)
     )]
-    pub async fn manual_work_ledger(&self) -> Result<CallToolResult, McpError> {
+    pub async fn manual_work_ledger(
+        &self,
+        Parameters(req): Parameters<crate::reply_budget::BudgetReq>,
+    ) -> Result<CallToolResult, McpError> {
+        // BOUNDED since 2026-09-28: on reflow2's own design the ledger grew past
+        // the 30,000-character default (31,037), and the reply-budget gate
+        // (tools/replies_are_bounded.py) failed on it, as it exists to. Prose
+        // (`what`) is trimmed first; the list is NOT sampled, so every entry's
+        // id, diagnosis and tool survive and the ledger stays complete — a
+        // count of what sessions built by hand is the point of reading it.
         let g = self.graph.read().await;
-        ok_json_or_why(
-            g.manual_work_report().map_err(dyno_err)?,
+        let entries = g.manual_work_report().map_err(dyno_err)?;
+        json_result(empty_speaks(
+            crate::reply_budget::bound_reply(
+                json!({ "count": entries.len(), "items": entries }),
+                req.budget(),
+                "Every entry's id, diagnosis and tool survive trimming; read one in full with get_node on its id.",
+            ),
             "no session has reported work done by hand (report_manual_work) — which is not the same as no work having been done by hand",
-        )
+        ))
     }
 
     // ---- Temporal / CHANGE (deterministic, mutating) ----
