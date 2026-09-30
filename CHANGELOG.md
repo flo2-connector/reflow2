@@ -42,8 +42,8 @@ This file is the third view: *what changed, and when*.
   retire-from-design names for a successor. The old node's stored status does not move, and the
   reply's `replaced[].standing` says what, if anything, still withdraws it. Works on a revise too.
   An id of another type, one naming nothing, or one also in `distinct_from` is refused with nothing
-  written. Found on a hosted design where three functions shipped under new capabilities while
-  their predecessors stayed `planned`, unjoined.
+  written. Found on a hosted design where a function rebuilt under a new capability left its
+  predecessor `planned`, unjoined, with a requirement still pointing only at the old node.
 - **`distinct_from` is written onto the node it created** (a new `list:string` property on
   Requirement, Capability, Component, Decision, DesignRule and Constraint), and the reply carries
   `judged_distinct`. Before, the judgement was accepted in the call and recorded nowhere. Additive:

@@ -97,9 +97,10 @@ mis-file things**; this one names where it runs out, and that boundary is where 
 
    **Never answer DISTINCT for a replacement.** It is the easy route and it is false: the old
    node goes on reading as unbuilt work, and the requirement it served keeps pointing at it.
-   Measured 2026-09-30 on a hosted design: three functions shipped under new capabilities while
-   their predecessors stayed `planned`, unjoined, with two requirements still pointing only at
-   the old nodes. `replaces` leaves the old node's stored status alone — it records what was
+   Measured 2026-09-30 on a hosted design: a function rebuilt under a new capability left its
+   predecessor `planned`, unjoined, with a requirement still pointing only at the old node — and
+   of three such-looking pairs only one turned out to be a replacement, which only the writer
+   could have said at the time. `replaces` leaves the old node's stored status alone — it records what was
    built — so read the reply's `standing` for what, if anything, still withdraws it.
 
    ⭐ **AND WHEN THEIR WORD IS NOT THE NODE'S NAME, RECORD THEIR WORD.** `record_alias`

@@ -1090,8 +1090,8 @@ pub(crate) fn with_capture_notes<T: serde::Serialize>(
 /// * REPLACE — pass `replaces` naming the same-type node this one takes the
 ///   place of. The old node's ending is recorded, its thread moves, and this
 ///   one OBSOLETES it (`reflow2_core::supersede`). Added 2026-09-30, when
-///   flo2's design showed three functions rebuilt under new capabilities while
-///   their predecessors stayed `planned` and unjoined — the writer had only
+///   flo2's design showed a function rebuilt under a new capability while its
+///   predecessor stayed `planned` and unjoined — the writer had only
 ///   "distinct" to say, and it was false
 ///   (`fact:root-cause-a-status-that-falls-behind-reality-is-silent-and-a-superseding-capability-leaves-no-trace-2026-09-30`).
 ///
@@ -1673,11 +1673,7 @@ impl ReflowService {
                        CONTENT FIELDS ARE REQUIRED TO CREATE AND OPTIONAL TO REVISE: call it \
                        again with the same id and only what you are changing \u{2014} omitted \
                        fields keep their stored value, so correcting one never means re-sending \
-                       a 2 KB field you did not touch. A NEAR-MATCH OF THE SAME KIND IS REFUSED UNTIL YOU CHOOSE, AND THE CHOICE IS KEPT: call again \
-                       with the existing id (sharpen), with `distinct_from` (a different thing \u{2014} \
-                       the ids stay on the node), or with `replaces` (this takes an older node's \
-                       place: its ending is recorded, the thread that says what it was for moves \
-                       here, and this node OBSOLETES it). \
+                       a 2 KB field you did not touch. \
                        Ask for this when you want to write down something the system must do or must never do — a need, a shall-statement, a constraint the customer stated — so it is captured as intent.",
         annotations(read_only_hint = false)
     )]
@@ -1813,11 +1809,7 @@ impl ReflowService {
                        rule stops the build, `false` for advisory, and leave it UNSET otherwise —               \
                        absent means nobody has stated it and is never read as enforced. Ask the                 \
                        user before setting it (governance-proposal skill); do not infer it from                 \
-                       the wording. CONTENT FIELDS ARE REQUIRED TO CREATE AND OPTIONAL TO REVISE. A NEAR-MATCH OF THE SAME KIND IS REFUSED UNTIL YOU CHOOSE, AND THE CHOICE IS KEPT: call again \
-                       with the existing id (sharpen), with `distinct_from` (a different thing \u{2014} \
-                       the ids stay on the node), or with `replaces` (this takes an older node's \
-                       place: its ending is recorded, the thread that says what it was for moves \
-                       here, and this node OBSOLETES it). Ask for this \
+                       the wording. CONTENT FIELDS ARE REQUIRED TO CREATE AND OPTIONAL TO REVISE. Ask for this \
                        when you want to record a rule about how the team always or never does things — a \
                        convention or standard you hold yourselves to.",
         annotations(read_only_hint = false)
@@ -2002,11 +1994,7 @@ impl ReflowService {
                        CONTENT FIELDS ARE REQUIRED TO CREATE AND OPTIONAL TO REVISE: call it \
                        again with the same id and only what you are changing \u{2014} omitted \
                        fields keep their stored value, so correcting one never means re-sending \
-                       a 2 KB field you did not touch. A NEAR-MATCH OF THE SAME KIND IS REFUSED UNTIL YOU CHOOSE, AND THE CHOICE IS KEPT: call again \
-                       with the existing id (sharpen), with `distinct_from` (a different thing \u{2014} \
-                       the ids stay on the node), or with `replaces` (this takes an older node's \
-                       place: its ending is recorded, the thread that says what it was for moves \
-                       here, and this node OBSOLETES it). \
+                       a 2 KB field you did not touch. \
                        Ask for this to record something the system does — one function it performs, in a line.",
         annotations(read_only_hint = false)
     )]
@@ -2344,11 +2332,7 @@ impl ReflowService {
                        CONTENT FIELDS ARE REQUIRED TO CREATE AND OPTIONAL TO REVISE: call it \
                        again with the same id and only what you are changing \u{2014} omitted \
                        fields keep their stored value, so correcting one never means re-sending \
-                       a 2 KB field you did not touch. A NEAR-MATCH OF THE SAME KIND IS REFUSED UNTIL YOU CHOOSE, AND THE CHOICE IS KEPT: call again \
-                       with the existing id (sharpen), with `distinct_from` (a different thing \u{2014} \
-                       the ids stay on the node), or with `replaces` (this takes an older node's \
-                       place: its ending is recorded, the thread that says what it was for moves \
-                       here, and this node OBSOLETES it).",
+                       a 2 KB field you did not touch.",
         annotations(read_only_hint = false)
     )]
     pub async fn add_component(
@@ -3118,11 +3102,7 @@ impl ReflowService {
                        used to default to `accepted`. CONTENT FIELDS ARE REQUIRED TO CREATE AND OPTIONAL TO \
                        REVISE: call it again with the same id and only what you are changing \u{2014} omitted \
                        fields keep their stored value, so correcting one never means re-sending a 2 KB field \
-                       you did not touch. A NEAR-MATCH OF THE SAME KIND IS REFUSED UNTIL YOU CHOOSE, AND THE CHOICE IS KEPT: call again \
-                       with the existing id (sharpen), with `distinct_from` (a different thing \u{2014} \
-                       the ids stay on the node), or with `replaces` (this takes an older node's \
-                       place: its ending is recorded, the thread that says what it was for moves \
-                       here, and this node OBSOLETES it). Ask for this when you want to write down a decision that was made and \
+                       you did not touch. Ask for this when you want to write down a decision that was made and \
                        the reasoning behind it — an architecture decision record.",
         annotations(read_only_hint = false)
     )]

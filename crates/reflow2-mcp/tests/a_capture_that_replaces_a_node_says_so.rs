@@ -8,11 +8,11 @@
 //! The capture guard offered two routes past a same-type near-match: sharpen the
 //! existing node, or create anyway with `distinct_from`. There was no route for
 //! "this new node takes that one's place", and `distinct_from` was consumed in
-//! the call and written nowhere. Measured on flo2's design the same day: three
-//! functions shipped under NEW capabilities while their predecessors stayed
-//! `planned`, with no edge between them, and two requirements still pointed only
-//! at the old node. Nobody could say afterwards whether the writer of the new
-//! node had ever seen the old one.
+//! the call and written nowhere. Measured on flo2's design the same day: a
+//! function rebuilt under a NEW capability left its predecessor `planned`, with
+//! no edge between them and a requirement still pointing only at the old node.
+//! Nobody could say afterwards whether the writer of the new node had ever seen
+//! the old one.
 //!
 //! # The shape, read off the design's own vocabulary
 //!
