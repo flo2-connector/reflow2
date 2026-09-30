@@ -215,6 +215,39 @@ impl Reading {
                 || self.components.iter().any(|c| c == primitive))
     }
 
+    /// The primitives the COMPOSITION itself writes: every word of
+    /// [`RELATION_PRIMITIVES`] that appears in it as a whole token (a token is
+    /// letters, digits, `_` and `-`, so `norm·meets`, `part-of*` and
+    /// `part-of⁻¹` count and `causes-path` does not), in vocabulary order.
+    /// Empty when there is no composition.
+    ///
+    /// `components` is documented as "every primitive the composition uses",
+    /// and nothing held it to that: on 2026-09-29 13 of reflow2's 23 derived
+    /// declarations listed primitives their composition never uses, padded to
+    /// match the edges they read
+    /// (`fact:root-cause-the-derived-declaration-check-draws-every-population-from-the-declarations-it-checks-2026-09-29`).
+    /// This is the reference a check holds `components` to.
+    pub fn composition_primitives(&self) -> Vec<&'static str> {
+        let Some(text) = self.composition.as_deref() else {
+            return Vec::new();
+        };
+        let is_tok = |c: char| c.is_ascii_alphanumeric() || c == '_' || c == '-';
+        let mut words = std::collections::BTreeSet::new();
+        let mut cur = String::new();
+        for ch in text.chars().chain(std::iter::once(' ')) {
+            if is_tok(ch) {
+                cur.push(ch);
+            } else if !cur.is_empty() {
+                words.insert(std::mem::take(&mut cur));
+            }
+        }
+        RELATION_PRIMITIVES
+            .iter()
+            .copied()
+            .filter(|p| words.contains(*p))
+            .collect()
+    }
+
     /// The reading in one short line — `part-of⁻¹`, `causes(-)`,
     /// `norm(+) · meets`, `about ∧ norm`, `¬causes`, `leftover`.
     pub fn summary(&self) -> String {

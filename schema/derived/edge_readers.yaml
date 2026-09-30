@@ -1,0 +1,169 @@
+# Every function in crates/reflow2-core/src that NAMES AN EDGE TYPE — directly, through a
+# const or static table, or through the schema's inference-edge selector — and that no
+# derived-relation declaration answers for (none names it, and no `dedicated` function of
+# one reaches it). crates/reflow2-core/tests/derived_relations_are_declared_and_checked.rs
+# holds this list to the code both ways: a function that names an edge and is on neither
+# side fails, a listed function reading a DIFFERENT set of edges fails, and an entry for a
+# function that is gone, reads nothing, or is now declared fails.
+#
+# WHY A LIST AND NOT A DETECTOR. Whether a function DERIVES a relation is a judgement about
+# meaning. A writer, a guard, a one-hop projection, a detector and a derivation all name
+# edge types the same way, so no scanner can tell them apart; the graph-primitives study
+# found reflow2's 23 derived relations by reading the code. What CAN be mechanical is the
+# population, and that every member of it has been looked at: a new function that reads
+# an edge, or an old one that starts reading a new edge type, is where a new derived
+# relation starts, and it fails the build until somebody declares it in relations.yaml or
+# lists it here with a reason.
+# (fact:root-cause-the-derived-declaration-check-draws-every-population-from-the-declarations-it-checks-2026-09-29)
+#
+# kind
+#   unjudged     on this list when it was first drawn, 2026-09-29, from reflow2 at 87f17ec;
+#                NOBODY HAS SAID whether it derives a relation. Some surely do: most of the
+#                detect_* functions compute a relation's complement, and several reports
+#                compose relations. This is a baseline, not a verdict, and it only shrinks —
+#                the test pins the count, and a new entry is never unjudged.
+#   not_derived  judged: `why` says what it does instead of deriving a relation.
+#
+# edges: the edge types it names, as the scanner reads them.
+
+readers:
+  acting.rs::record_acts_for: { kind: not_derived, edges: [ACTS_FOR], why: "A writer: draws agent ACTS_FOR contributor during a write." }
+  acting.rs::stamp_through_acting_agent: { kind: not_derived, edges: [AUTHORED_BY], why: "Write path: stamps the acting agent onto the AUTHORED_BY roles a write newly asserts." }
+  alternatives.rs::alternatives_for: { kind: unjudged, edges: [GOVERNED_BY] }
+  alternatives.rs::collapse_decision: { kind: unjudged, edges: [OBSOLETES] }
+  alternatives.rs::register_alternative: { kind: unjudged, edges: [CONTRADICTS, GOVERNED_BY] }
+  artifact.rs::accept_changed_edge: { kind: unjudged, edges: [CHANGED] }
+  artifact.rs::conformance_tally: { kind: unjudged, edges: [REALIZES] }
+  artifact.rs::documents: { kind: unjudged, edges: [DOCUMENTS] }
+  artifact.rs::link_artifact: { kind: unjudged, edges: [REALIZES] }
+  artifact.rs::realizes: { kind: unjudged, edges: [REALIZES] }
+  artifact.rs::set_artifact_checksum: { kind: unjudged, edges: [DEPENDS_ON] }
+  artifact.rs::write_artifact_link: { kind: unjudged, edges: [IMPLEMENTS, YIELDED] }
+  budget.rs::constrains_by: { kind: unjudged, edges: [CONSTRAINS] }
+  claims.rs::claim_region: { kind: unjudged, edges: [CLAIMS] }
+  claims.rs::release_claim: { kind: unjudged, edges: [CLAIMS] }
+  compare.rs::changelog_point: { kind: unjudged, edges: [AT_EPOCH] }
+  compare.rs::changelog_view: { kind: unjudged, edges: [AT_EPOCH, CHANGED] }
+  compare.rs::manifest_of: { kind: unjudged, edges: [INCLUDES] }
+  confirm.rs::confirmation_ledger: { kind: unjudged, edges: [ALLOCATED_TO, CHANGED, DEPENDS_ON, REALIZES, VERIFIES] }
+  consumption.rs::has_a_recorded_consumer: { kind: unjudged, edges: [DEPENDS_ON, INTERACTS_WITH, PART_OF_FLOW] }
+  depends.rs::declare_external_dependency: { kind: unjudged, edges: [REQUIRES_RESOURCE] }
+  derived.rs::evaluate_derived: { kind: not_derived, edges: [GATED_ON], why: "The served read's dispatcher: it finds the subjects with a GATED_ON edge and hands each to readiness_report, which readiness_gate declares." }
+  detect.rs::detect_artifact_standard: { kind: unjudged, edges: [COMPLIES_WITH, VIOLATES_RULE] }
+  detect.rs::detect_compliance_gaps: { kind: unjudged, edges: [COMPLIES_WITH, VIOLATES_RULE] }
+  detect.rs::detect_decision_overtaken_by_promotion: { kind: unjudged, edges: [EVOLVES_INTO] }
+  detect.rs::detect_defect_overtaken_by_change: { kind: unjudged, edges: [CHANGED, INVALIDATES, REALIZES] }
+  detect.rs::detect_encoding_undecided: { kind: unjudged, edges: [GOVERNED_BY] }
+  detect.rs::detect_failing_verifications: { kind: unjudged, edges: [VERIFIES] }
+  detect.rs::detect_fix_without_recorded_cause: { kind: unjudged, edges: [CAUSES, CHANGED, INVALIDATES] }
+  detect.rs::detect_interface_pairing: { kind: unjudged, edges: [CONSUMES, PROVIDES] }
+  detect.rs::detect_internal_only_delivery: { kind: unjudged, edges: [REALIZES, SATISFIES] }
+  detect.rs::detect_kpp_violations: { kind: unjudged, edges: [CONSTRAINS, GOVERNED_BY] }
+  detect.rs::detect_possible_duplicates: { kind: unjudged, edges: [ALLOCATED_TO, DUPLICATES] }
+  detect.rs::detect_prohibitions_in_prose: { kind: unjudged, edges: [CONSTRAINS] }
+  detect.rs::detect_releases_without_epoch: { kind: unjudged, edges: [AT_EPOCH, DEPLOYED_TO] }
+  detect.rs::detect_releases_without_manifest: { kind: unjudged, edges: [AT_EPOCH, DEPLOYED_TO, INCLUDES] }
+  detect.rs::detect_repo_know_how: { kind: unjudged, edges: [DOCUMENTS] }
+  detect.rs::detect_status_contradictions: { kind: unjudged, edges: [SATISFIES] }
+  detect.rs::detect_suspected_duplicate_edges: { kind: unjudged, edges: [DUPLICATES] }
+  detect.rs::detect_unallocated_capabilities: { kind: unjudged, edges: [ALLOCATED_TO, PART_OF_FLOW] }
+  detect.rs::detect_unallocated_components: { kind: unjudged, edges: [ALLOCATED_TO, CONTAINS] }
+  detect.rs::detect_unit_sweep: { kind: unjudged, edges: [CONSTRAINS] }
+  detect.rs::detect_unmotivated_capabilities: { kind: unjudged, edges: [SATISFIES] }
+  detect.rs::detect_unrealized_capabilities: { kind: unjudged, edges: [REALIZES] }
+  detect.rs::detect_unreleased_components: { kind: unjudged, edges: [ALLOCATED_TO, CONTAINS, INCLUDES, REALIZES] }
+  detect.rs::detect_unresolved_drift: { kind: unjudged, edges: [DEPENDS_ON] }
+  detect.rs::detect_unsatisfied_requirements: { kind: unjudged, edges: [SATISFIES] }
+  detect.rs::detect_unvalidated_capabilities: { kind: unjudged, edges: [VERIFIES] }
+  detect.rs::detect_unverified_capabilities: { kind: unjudged, edges: [ALLOCATED_TO, REALIZES, VERIFIES] }
+  detect.rs::detect_unverified_enforced_rules: { kind: unjudged, edges: [VERIFIES] }
+  detect.rs::detect_unverified_published_contracts: { kind: unjudged, edges: [VERIFIES] }
+  detect.rs::owner_claims_built: { kind: unjudged, edges: [ALLOCATED_TO] }
+  detect.rs::record_asked_question: { kind: unjudged, edges: [ASKS_ABOUT] }
+  dimensions.rs::add_dimension_observation: { kind: unjudged, edges: [HAS_OBSERVATION, OBSERVED_IN] }
+  dimensions.rs::dimension_drift: { kind: unjudged, edges: [HAS_OBSERVATION] }
+  dimensions.rs::rollup_assessment: { kind: unjudged, edges: [ASSESSED_ON] }
+  doubt.rs::decisions_in_doubt: { kind: unjudged, edges: [DEPENDS_ON, GOVERNED_BY, INVALIDATES] }
+  doubt.rs::held_up_under: { kind: unjudged, edges: [GOVERNED_BY, VERIFIES] }
+  doubt.rs::walk_up: { kind: unjudged, edges: [ALLOCATED_TO, DEPENDS_ON, REALIZES, SATISFIES, VERIFIES] }
+  drift.rs::realized_targets: { kind: unjudged, edges: [REALIZES] }
+  drift.rs::write_drift_event: { kind: unjudged, edges: [DEPENDS_ON] }
+  edge_prose.rs::stale_edge_evidence: { kind: unjudged, edges: [AT_EPOCH, HAS_SNAPSHOT] }
+  export.rs::export_surface: { kind: unjudged, edges: [CONSUMES, CONTAINS, PROVIDES, REALIZES, SPECIFIES, VERIFIES] }
+  export.rs::import_graph_with: { kind: unjudged, edges: [AUTHORED_BY, IMPLEMENTS, REALIZES] }
+  fielded.rs::reconcile_deployment: { kind: unjudged, edges: [DEPENDS_ON, DEPLOYED_TO] }
+  flow.rs::part_of_flow: { kind: unjudged, edges: [PART_OF_FLOW] }
+  fork.rs::fork_point: { kind: unjudged, edges: [AT_EPOCH, CHANGED, GOVERNED_BY, OBSOLETES] }
+  fork.rs::reopen_decision: { kind: unjudged, edges: [OBSOLETES] }
+  frontier.rs::frontier: { kind: unjudged, edges: [ALLOCATED_TO, CONTAINS, SATISFIES] }
+  frontier.rs::open_deferrals: { kind: unjudged, edges: [INVALIDATES] }
+  granularity.rs::granularity_report: { kind: unjudged, edges: [REALIZES] }
+  graph.rs::allocate: { kind: unjudged, edges: [ALLOCATED_TO] }
+  graph.rs::answers: { kind: unjudged, edges: [ANSWERS] }
+  graph.rs::authored_by: { kind: unjudged, edges: [AUTHORED_BY] }
+  graph.rs::consumes_from: { kind: unjudged, edges: [CONSUMES] }
+  graph.rs::contain_component: { kind: unjudged, edges: [CONTAINS] }
+  graph.rs::contains: { kind: unjudged, edges: [CONTAINS] }
+  graph.rs::decomposes: { kind: unjudged, edges: [DECOMPOSES] }
+  graph.rs::delete_edge: { kind: not_derived, edges: [SCHEDULED_FOR], why: "A writer: deletes one edge, refusing a SCHEDULED_FOR removal the plan has not recorded." }
+  graph.rs::delete_node: { kind: unjudged, edges: [SCHEDULED_FOR] }
+  graph.rs::depends_on_between: { kind: unjudged, edges: [DEPENDS_ON] }
+  graph.rs::governed_by: { kind: unjudged, edges: [GOVERNED_BY] }
+  graph.rs::migrate_authored_by_roles: { kind: unjudged, edges: [AUTHORED_BY] }
+  graph.rs::migrate_realizes_onto_checks: { kind: unjudged, edges: [IMPLEMENTS, REALIZES] }
+  graph.rs::owned_by: { kind: unjudged, edges: [OWNED_BY] }
+  graph.rs::provides: { kind: unjudged, edges: [PROVIDES] }
+  graph.rs::satisfies_between: { kind: unjudged, edges: [SATISFIES] }
+  heal.rs::complementary_pairs: { kind: unjudged, edges: [COMPLEMENTS] }
+  heal.rs::detect_structural_defects: { kind: unjudged, edges: [CONTAINS] }
+  heal.rs::governed_by_a_methodology_rule: { kind: unjudged, edges: [GOVERNED_BY] }
+  heal.rs::island_attached_by_containment: { kind: unjudged, edges: [CONTAINS] }
+  heal.rs::merge_repoint: { kind: unjudged, edges: [DUPLICATES] }
+  heal.rs::resolving_decision: { kind: unjudged, edges: [GOVERNED_BY] }
+  heal.rs::rule_populations: { kind: unjudged, edges: [ANTICIPATES, CONTRADICTS, DUPLICATES] }
+  hierarchy.rs::move_component: { kind: unjudged, edges: [CONTAINS] }
+  ingest.rs::ingest: { kind: unjudged, edges: [ALLOCATED_TO, CONSUMES, DEPENDS_ON, GOVERNED_BY, PROVIDES, SATISFIES, VERIFIES] }
+  ingest.rs::link_fragment_epoch: { kind: unjudged, edges: [OCCURS_DURING] }
+  ingest.rs::suspect_duplicate: { kind: unjudged, edges: [DUPLICATES] }
+  ingest.rs::yield_edge: { kind: unjudged, edges: [YIELDED] }
+  loop_closure.rs::loop_closure: { kind: unjudged, edges: [DEPENDS_ON] }
+  maturity.rs::maturity_report: { kind: unjudged, edges: [ALLOCATED_TO, DEPLOYED_TO, REALIZES, SATISFIES, VERIFIES] }
+  neighbourhood.rs::already_related_to: { kind: unjudged, edges: [ANTICIPATES, BLOCKS, CAUSES, CONTRADICTS, DEPENDS_ON, DUPLICATES, EVOLVES_INTO, MASKS, MITIGATES, OBSOLETES, RISKS, TRIGGERS, VIOLATES] }
+  operate.rs::complies_with: { kind: unjudged, edges: [COMPLIES_WITH] }
+  operate.rs::deploy_to: { kind: unjudged, edges: [DEPLOYED_TO] }
+  operate.rs::imposes: { kind: unjudged, edges: [IMPOSES] }
+  operate.rs::operates_in: { kind: unjudged, edges: [OPERATES_IN] }
+  operate.rs::release_includes: { kind: unjudged, edges: [INCLUDES] }
+  operate.rs::release_includes_all: { kind: unjudged, edges: [INCLUDES] }
+  operate.rs::release_report: { kind: unjudged, edges: [ALLOCATED_TO, DEPLOYED_TO, INCLUDES, REALIZES] }
+  operate.rs::require_resource: { kind: unjudged, edges: [REQUIRES_RESOURCE] }
+  operate.rs::set_violation_status: { kind: unjudged, edges: [VIOLATES_RULE] }
+  operate.rs::violates_rule: { kind: unjudged, edges: [VIOLATES_RULE] }
+  propagate.rs::propagate_change: { kind: unjudged, edges: [CHANGED] }
+  readiness.rs::add_readiness: { kind: not_derived, edges: [HAS_READINESS], why: "A writer: records a ReadinessAssessment and its HAS_READINESS edge, which readiness_gate reads." }
+  readiness.rs::forecast_readiness: { kind: not_derived, edges: [HAS_TEMPORAL_FACT, VALID_FROM], why: "A writer: records a dated forecast (HAS_TEMPORAL_FACT, VALID_FROM) that readiness_gate reads. #631 named it as readiness_gate's code; it computes nothing." }
+  readiness.rs::gate_on: { kind: not_derived, edges: [GATED_ON], why: "A writer: draws the GATED_ON threshold readiness_gate reads." }
+  relate.rs::has_review_relation: { kind: unjudged, edges: [ANTICIPATES, BLOCKS, CAUSES, CONTRADICTS, DEPENDS_ON, DUPLICATES, EVOLVES_INTO, MASKS, MITIGATES, OBSOLETES, RISKS, TRIGGERS, VIOLATES] }
+  relate.rs::review_relations: { kind: unjudged, edges: [ANTICIPATES, BLOCKS, CAUSES, CONTRADICTS, DEPENDS_ON, DUPLICATES, EVOLVES_INTO, MASKS, MITIGATES, OBSOLETES, RISKS, TRIGGERS, VIOLATES] }
+  report.rs::open_follow_ups: { kind: unjudged, edges: [INVALIDATES] }
+  report.rs::verification_recency: { kind: unjudged, edges: [IMPLEMENTS, VERIFIES] }
+  scope.rs::containment_closure: { kind: unjudged, edges: [CONTAINS] }
+  search.rs::claim_age_of: { kind: unjudged, edges: [INVALIDATES] }
+  structure.rs::couples_only_as_a_library: { kind: unjudged, edges: [PROVIDES] }
+  structure.rs::dependency_pairs: { kind: unjudged, edges: [CONSUMES, DEPENDS_ON, PROVIDES] }
+  surprises.rs::surprising_connections: { kind: unjudged, edges: [CONSUMES, DEPENDS_ON, PART_OF_FLOW, PROVIDES] }
+  temporal.rs::changed: { kind: unjudged, edges: [CHANGED] }
+  temporal.rs::guard_schedule_loss: { kind: not_derived, edges: [SCHEDULED_FOR], why: "A guard: reads the plan only to refuse a write that would lose an unrecorded schedule." }
+  temporal.rs::pin_at_epoch: { kind: unjudged, edges: [AT_EPOCH] }
+  temporal.rs::precedes: { kind: unjudged, edges: [PRECEDES] }
+  temporal.rs::schedule_for: { kind: unjudged, edges: [SCHEDULED_FOR] }
+  temporal.rs::snapshot_from: { kind: unjudged, edges: [HAS_SNAPSHOT, SCHEDULED_FOR] }
+  topic.rs::topic_report: { kind: unjudged, edges: [CHANGED, HAS_SNAPSHOT] }
+  verify.rs::calibrated_against: { kind: unjudged, edges: [CALIBRATED_AGAINST] }
+  verify.rs::has_runnable_passing_verification: { kind: unjudged, edges: [IMPLEMENTS, VERIFIES] }
+  verify.rs::invalidates: { kind: unjudged, edges: [INVALIDATES] }
+  verify.rs::reconcile_verification: { kind: unjudged, edges: [DEPENDS_ON, VERIFIES] }
+  verify.rs::resolve_observed_files: { kind: unjudged, edges: [IMPLEMENTS] }
+  verify.rs::set_evidence_scope: { kind: unjudged, edges: [VERIFIES] }
+  verify.rs::unclaimed_findings_near: { kind: unjudged, edges: [ABOUT_ENTITY, CHANGED, HAS_TEMPORAL_FACT, INVALIDATES] }
+  verify.rs::verifies: { kind: unjudged, edges: [VERIFIES] }
