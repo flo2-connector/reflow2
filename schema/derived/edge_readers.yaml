@@ -105,8 +105,9 @@ readers:
   graph.rs::consumes_from: { kind: unjudged, edges: [CONSUMES] }
   graph.rs::contain_component: { kind: unjudged, edges: [CONTAINS] }
   graph.rs::contains: { kind: unjudged, edges: [CONTAINS] }
+  graph.rs::create_edge_unstamped: { kind: not_derived, edges: [AUTHORED_BY], why: "The store's only edge write. It asks the call's signer (intent::Signer, #616 fix 4) before storing an AUTHORED_BY; it answers one write and derives no relation." }
   graph.rs::decomposes: { kind: unjudged, edges: [DECOMPOSES] }
-  graph.rs::delete_edge: { kind: not_derived, edges: [SCHEDULED_FOR], why: "A writer: deletes one edge, refusing a SCHEDULED_FOR removal the plan has not recorded." }
+  graph.rs::delete_edge: { kind: not_derived, edges: [AUTHORED_BY, SCHEDULED_FOR], why: "A writer: deletes one edge, refusing a SCHEDULED_FOR removal the plan has not recorded, and an AUTHORED_BY removal the call's signer may not make (intent::Signer)." }
   graph.rs::delete_node: { kind: unjudged, edges: [SCHEDULED_FOR] }
   graph.rs::depends_on_between: { kind: unjudged, edges: [DEPENDS_ON] }
   graph.rs::governed_by: { kind: unjudged, edges: [GOVERNED_BY] }
@@ -127,7 +128,11 @@ readers:
   ingest.rs::link_fragment_epoch: { kind: unjudged, edges: [OCCURS_DURING] }
   ingest.rs::suspect_duplicate: { kind: unjudged, edges: [DUPLICATES] }
   ingest.rs::yield_edge: { kind: unjudged, edges: [YIELDED] }
+  intent.rs::check_signature_removal: { kind: not_derived, edges: [AUTHORED_BY], why: "A guard: may the call now writing remove this one AUTHORED_BY? Asked by the store's edge delete; it answers one edge, it derives no relation." }
   intent.rs::has_approver: { kind: not_derived, edges: [AUTHORED_BY], why: "A guard: does this node carry an AUTHORED_BY whose roles hold approver? Read by the generic writers to name a settle that carries nobody's name; it answers one node, it derives no relation." }
+  intent.rs::nobody_signs: { kind: not_derived, edges: [AUTHORED_BY], why: "Builds the refusal text for a write no caller may sign; names the edge type in the error only." }
+  intent.rs::signed_for_another: { kind: not_derived, edges: [AUTHORED_BY], why: "Builds the refusal text for a signature in someone else's name; names the edge type in the error only." }
+  intent.rs::stored_authorship: { kind: not_derived, edges: [AUTHORED_BY], why: "Reads the one AUTHORED_BY between two ids so the signature guards can compare it with the write; it answers one pair, it derives no relation." }
   loop_closure.rs::loop_closure: { kind: unjudged, edges: [DEPENDS_ON] }
   maturity.rs::maturity_report: { kind: unjudged, edges: [ALLOCATED_TO, DEPLOYED_TO, REALIZES, SATISFIES, VERIFIES] }
   neighbourhood.rs::already_related_to: { kind: unjudged, edges: [ANTICIPATES, BLOCKS, CAUSES, CONTRADICTS, DEPENDS_ON, DUPLICATES, EVOLVES_INTO, MASKS, MITIGATES, OBSOLETES, RISKS, TRIGGERS, VIOLATES] }

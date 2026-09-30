@@ -920,7 +920,13 @@ pub(crate) fn approver_must_exist(
         .map_err(dyno_err)?
         .is_some();
     if exists {
-        return Ok(());
+        // The signature is the caller's own on an engine served for others
+        // (`reflow2_core::intent::Signer`): the same rule the store applies
+        // where the approval is written, asked BEFORE the handler's first
+        // write so a refusal leaves no half-signed node behind.
+        return g
+            .may_sign(who, "approver")
+            .map_err(|e| McpError::invalid_params(format!("`{tool}`: {e}"), None));
     }
     Err(McpError::invalid_params(
         format!(

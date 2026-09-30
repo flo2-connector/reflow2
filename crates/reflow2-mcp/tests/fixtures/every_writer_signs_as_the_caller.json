@@ -1,0 +1,992 @@
+{
+  "about": "Fixture for a_signature_is_the_callers_own_through_every_writer.rs. `seed` builds the design on a LOCAL engine (where nothing changes). `writers` holds ONE call per served write tool, naming the caller (who:alice) wherever the call names a person. The test reads the served tool list, requires a call here for every write tool it serves, runs it as the caller, then runs it again with every occurrence of the caller's id, at any depth, replaced by another contributor's. The table says which values are people only by using the caller's id; it never says which ARGUMENTS carry a signature. A value written {\"$file\": ...} is a document the test writes to a file and passes by path: `empty`, or `signed` (a Decision whose approver is `signed_by`), so a tool that takes a PATH is driven in another name too.",
+  "caller": "who:alice",
+  "other": "who:mallory",
+  "seed": [
+    [
+      "add_contributor",
+      {
+        "id": "who:alice",
+        "name": "Alice",
+        "kind": "person"
+      }
+    ],
+    [
+      "add_contributor",
+      {
+        "id": "who:mallory",
+        "name": "Mallory",
+        "kind": "person"
+      }
+    ],
+    [
+      "add_project",
+      {
+        "id": "prj:p",
+        "name": "Fixture project"
+      }
+    ],
+    [
+      "add_requirement",
+      {
+        "id": "req:r",
+        "name": "A need",
+        "statement": "The system must keep a log."
+      }
+    ],
+    [
+      "add_requirement",
+      {
+        "id": "req:r2",
+        "name": "A finer need",
+        "statement": "The log must rotate."
+      }
+    ],
+    [
+      "add_requirement",
+      {
+        "id": "req:r3",
+        "name": "A need to settle",
+        "statement": "The log must be readable."
+      }
+    ],
+    [
+      "add_capability",
+      {
+        "id": "cap:c",
+        "name": "Keeps a log",
+        "description": "Writes every event down."
+      }
+    ],
+    [
+      "add_component",
+      {
+        "id": "cmp:a",
+        "name": "Logger",
+        "description": "Holds the log."
+      }
+    ],
+    [
+      "add_component",
+      {
+        "id": "cmp:b",
+        "name": "Rotator",
+        "description": "Rotates the log."
+      }
+    ],
+    [
+      "add_component",
+      {
+        "id": "cmp:parent",
+        "name": "Platform",
+        "description": "Holds the parts."
+      }
+    ],
+    [
+      "add_component",
+      {
+        "id": "cmp:doomed",
+        "name": "Old part",
+        "description": "To be deleted."
+      }
+    ],
+    [
+      "add_decision",
+      {
+        "id": "dec:d",
+        "name": "Choose a log format",
+        "decision": "Use JSON lines."
+      }
+    ],
+    [
+      "add_decision",
+      {
+        "id": "dec:d2",
+        "name": "Choose a rotation",
+        "decision": "Rotate daily."
+      }
+    ],
+    [
+      "add_decision",
+      {
+        "id": "dec:alt",
+        "name": "Choose a store",
+        "decision": "Pick one of two stores."
+      }
+    ],
+    [
+      "add_decision",
+      {
+        "id": "dec:reopen",
+        "name": "Choose a clock",
+        "decision": "Use UTC.",
+        "status": "accepted",
+        "approver": "who:alice"
+      }
+    ],
+    [
+      "add_decision",
+      {
+        "id": "dec:signed",
+        "name": "Signed by two",
+        "decision": "Both signed this.",
+        "status": "accepted",
+        "approver": "who:mallory"
+      }
+    ],
+    [
+      "authored_by",
+      {
+        "from_id": "dec:signed",
+        "contributor_id": "who:alice",
+        "role": "approver"
+      }
+    ],
+    [
+      "add_design_rule",
+      {
+        "id": "rule:x",
+        "name": "Logs are append-only",
+        "statement": "Nothing rewrites a log line."
+      }
+    ],
+    [
+      "add_constraint",
+      {
+        "id": "con:k",
+        "name": "Log size",
+        "statement": "The log stays under a limit."
+      }
+    ],
+    [
+      "add_artifact",
+      {
+        "id": "art:f",
+        "name": "logger.rs",
+        "location": "src/logger.rs"
+      }
+    ],
+    [
+      "add_artifact",
+      {
+        "id": "art:alt-a",
+        "name": "Store A",
+        "location": "docs/a.md"
+      }
+    ],
+    [
+      "add_artifact",
+      {
+        "id": "art:alt-b",
+        "name": "Store B",
+        "location": "docs/b.md"
+      }
+    ],
+    [
+      "register_alternative",
+      {
+        "decision_id": "dec:alt",
+        "artifact_id": "art:alt-a",
+        "name": "Store A",
+        "location": "docs/a.md"
+      }
+    ],
+    [
+      "register_alternative",
+      {
+        "decision_id": "dec:alt",
+        "artifact_id": "art:alt-b",
+        "name": "Store B",
+        "location": "docs/b.md"
+      }
+    ],
+    [
+      "add_verification",
+      {
+        "id": "ver:v",
+        "name": "Log test"
+      }
+    ],
+    [
+      "add_environment",
+      {
+        "id": "env:e",
+        "name": "Production"
+      }
+    ],
+    [
+      "add_environment_rule",
+      {
+        "id": "erule:x",
+        "name": "Retention law",
+        "statement": "Logs are kept a year."
+      }
+    ],
+    [
+      "add_epoch",
+      {
+        "id": "epoch:e1",
+        "name": "First",
+        "sequence": 1,
+        "epoch_type": "milestone"
+      }
+    ],
+    [
+      "plan_epoch",
+      {
+        "id": "epoch:e2",
+        "name": "Second",
+        "sequence": 2,
+        "epoch_type": "milestone"
+      }
+    ],
+    [
+      "add_release",
+      {
+        "id": "rel:1",
+        "name": "One",
+        "version": "1.0.0"
+      }
+    ],
+    [
+      "add_flow",
+      {
+        "id": "flow:f",
+        "name": "Logging flow"
+      }
+    ],
+    [
+      "add_interface",
+      {
+        "id": "ifc:i",
+        "name": "Log API"
+      }
+    ],
+    [
+      "add_resource",
+      {
+        "id": "res:r",
+        "name": "Disk"
+      }
+    ],
+    [
+      "add_actor",
+      {
+        "id": "act:a",
+        "name": "Operator"
+      }
+    ],
+    [
+      "record_finding",
+      {
+        "id": "fact:t",
+        "subject_id": "cmp:a",
+        "statement": "The log grew fast.",
+        "fact_type": "finding"
+      }
+    ],
+    [
+      "add_change_event",
+      {
+        "id": "chg:x",
+        "name": "Moved the log",
+        "change_type": "refactor",
+        "summary": "Moved it."
+      }
+    ],
+    [
+      "violates_rule",
+      {
+        "element_id": "cmp:a",
+        "rule_id": "erule:x"
+      }
+    ],
+    [
+      "verifies",
+      {
+        "verification_id": "ver:v",
+        "target_id": "cmp:a"
+      }
+    ],
+    [
+      "acknowledge_defect",
+      {
+        "defect_id": "defect:fixture-acked",
+        "reason": "Known.",
+        "approver": "who:alice"
+      }
+    ],
+    [
+      "claim_region",
+      {
+        "contributor_id": "who:alice",
+        "seed_id": "cmp:b",
+        "seat": "fixture-seat"
+      }
+    ],
+    [
+      "acknowledge_gap",
+      {
+        "gap_id": "gap:acked-before",
+        "reason": "Known.",
+        "approver": "who:alice"
+      }
+    ]
+  ],
+  "writers": {
+    "acknowledge_defect": {
+      "defect_id": "defect:fixture",
+      "reason": "Known and accepted.",
+      "approver": "who:alice"
+    },
+    "acknowledge_gap": {
+      "gap_id": "gap:fixture-one",
+      "reason": "Known and accepted.",
+      "approver": "who:alice"
+    },
+    "acknowledge_gaps": {
+      "gaps": [
+        {
+          "gap_id": "gap:fixture-two",
+          "reason": "Known."
+        },
+        {
+          "gap_id": "gap:fixture-three",
+          "reason": "Known.",
+          "approver": "who:alice"
+        }
+      ]
+    },
+    "add_actor": {
+      "id": "act:new",
+      "name": "Auditor"
+    },
+    "add_artifact": {
+      "id": "art:new",
+      "name": "rotate.rs",
+      "location": "src/rotate.rs"
+    },
+    "add_capability": {
+      "id": "cap:new",
+      "name": "Rotates logs",
+      "description": "Rotates daily."
+    },
+    "add_change_event": {
+      "id": "chg:new",
+      "name": "Renamed a part",
+      "change_type": "refactor",
+      "summary": "Renamed it."
+    },
+    "add_component": {
+      "id": "cmp:new",
+      "name": "Shipper",
+      "description": "Ships logs."
+    },
+    "add_constraint": {
+      "id": "con:new",
+      "name": "Latency",
+      "statement": "A write takes under a millisecond."
+    },
+    "add_contributor": {
+      "id": "who:new",
+      "name": "Newcomer",
+      "kind": "person"
+    },
+    "add_decision": {
+      "id": "dec:new",
+      "name": "Choose a codec",
+      "decision": "Use zstd.",
+      "status": "accepted",
+      "approver": "who:alice"
+    },
+    "add_design_rule": {
+      "id": "rule:new",
+      "name": "Every log line is dated",
+      "statement": "A line without a date is refused.",
+      "enforced": true,
+      "approver": "who:alice"
+    },
+    "add_environment": {
+      "id": "env:new",
+      "name": "Staging"
+    },
+    "add_environment_rule": {
+      "id": "erule:new",
+      "name": "Privacy law",
+      "statement": "No personal data in logs."
+    },
+    "add_epoch": {
+      "id": "epoch:new",
+      "name": "Third",
+      "sequence": 30,
+      "epoch_type": "milestone"
+    },
+    "add_flow": {
+      "id": "flow:new",
+      "name": "Shipping flow"
+    },
+    "add_interface": {
+      "id": "ifc:new",
+      "name": "Ship API"
+    },
+    "add_project": {
+      "id": "prj:new",
+      "name": "Another project"
+    },
+    "add_readiness": {
+      "id": "rdy:new",
+      "target_id": "cmp:a",
+      "target_type": "Component",
+      "kind": "TRL",
+      "level": 4
+    },
+    "add_release": {
+      "id": "rel:new",
+      "name": "Two",
+      "version": "2.0.0"
+    },
+    "add_requirement": {
+      "id": "req:new",
+      "name": "A settled need",
+      "statement": "Logs are compressed.",
+      "status": "accepted",
+      "approver": "who:alice"
+    },
+    "add_resource": {
+      "id": "res:new",
+      "name": "Network"
+    },
+    "add_verification": {
+      "id": "ver:new",
+      "name": "Rotation test"
+    },
+    "allocate": {
+      "from_id": "cap:c",
+      "to_id": "cmp:a"
+    },
+    "answer_question": {
+      "answer": "Yes, daily.",
+      "gap_id": "$ASKED_GAP",
+      "answered_by": "who:alice"
+    },
+    "answers": {
+      "from_id": "dec:d",
+      "question_id": "$QUESTION"
+    },
+    "apply_heal": {
+      "proposal": "$PROPOSAL"
+    },
+    "apply_merge": {
+      "base_path": {
+        "$file": "empty"
+      },
+      "theirs_path": {
+        "$file": "signed",
+        "signed_by": "who:alice"
+      }
+    },
+    "authored_by": {
+      "from_id": "req:r",
+      "contributor_id": "who:alice",
+      "role": "approver"
+    },
+    "calibrated_against": {
+      "from_id": "con:k",
+      "evidence_id": "ver:v"
+    },
+    "claim_region": {
+      "contributor_id": "who:alice",
+      "seed_id": "cmp:a",
+      "seat": "writer-seat"
+    },
+    "collapse_decision": {
+      "decision_id": "dec:alt",
+      "winner_id": "art:alt-a",
+      "approver": "who:alice"
+    },
+    "complies_with": {
+      "element_id": "cmp:b",
+      "rule_id": "erule:x"
+    },
+    "constrains": {
+      "constraint_id": "con:k",
+      "target_id": "cmp:a"
+    },
+    "consumes": {
+      "from_id": "cmp:b",
+      "to_id": "ifc:i"
+    },
+    "contain_component": {
+      "from_id": "cmp:parent",
+      "to_id": "cmp:b"
+    },
+    "contains": {
+      "project_id": "prj:p",
+      "child_id": "req:r"
+    },
+    "create_edge": {
+      "edge_type": "AUTHORED_BY",
+      "from_id": "dec:d",
+      "to_id": "who:alice",
+      "props": {
+        "roles": [
+          "approver"
+        ]
+      }
+    },
+    "create_edges": {
+      "edges": [
+        {
+          "edge_type": "DEPENDS_ON",
+          "from_id": "cmp:a",
+          "to_id": "cmp:b"
+        },
+        {
+          "edge_type": "AUTHORED_BY",
+          "from_id": "req:r2",
+          "to_id": "who:alice",
+          "props": {
+            "roles": [
+              "approver"
+            ]
+          }
+        }
+      ]
+    },
+    "create_node": {
+      "node_type": "Decision",
+      "id": "dec:generic",
+      "props": {
+        "name": "Choose a port",
+        "decision": "Use 514.",
+        "status": "accepted"
+      },
+      "approver": "who:alice"
+    },
+    "create_nodes": {
+      "nodes": [
+        {
+          "node_type": "Component",
+          "id": "cmp:generic",
+          "props": {
+            "name": "Buffer",
+            "purpose": "Buffers lines."
+          }
+        },
+        {
+          "node_type": "Decision",
+          "id": "dec:generic-many",
+          "props": {
+            "name": "Choose a buffer",
+            "decision": "Use a ring.",
+            "status": "accepted"
+          },
+          "approver": "who:alice"
+        }
+      ]
+    },
+    "decomposes": {
+      "from_id": "req:r",
+      "to_id": "req:r2"
+    },
+    "delete_edge": {
+      "edge_type": "AUTHORED_BY",
+      "from_id": "dec:signed",
+      "to_id": "who:alice"
+    },
+    "delete_node": {
+      "node_type": "Component",
+      "id": "cmp:doomed"
+    },
+    "depends_on": {
+      "from_id": "cmp:b",
+      "to_id": "cmp:parent"
+    },
+    "deploy_to": {
+      "release_id": "rel:1",
+      "environment_id": "env:e"
+    },
+    "design_identity": {
+      "label": "Fixture design"
+    },
+    "documents": {
+      "artifact_id": "art:f",
+      "target_id": "cmp:a"
+    },
+    "draw_edges": {
+      "edges": [
+        {
+          "tool": "depends_on",
+          "arguments": {
+            "from_id": "cmp:a",
+            "to_id": "cmp:parent"
+          }
+        },
+        {
+          "tool": "authored_by",
+          "arguments": {
+            "from_id": "cap:c",
+            "contributor_id": "who:alice",
+            "role": "approver"
+          }
+        }
+      ]
+    },
+    "external_dependency": {
+      "id": "dep:x",
+      "name": "serde",
+      "source": "crates.io",
+      "version": "1.0.0"
+    },
+    "forecast_readiness": {
+      "id": "fc:x",
+      "target_id": "cmp:a",
+      "kind": "TRL",
+      "level": 6,
+      "epoch_id": "epoch:e2"
+    },
+    "gap_to_prompt": {
+      "gap": "$GAP",
+      "asked_of": "who:alice",
+      "answers": "$GAP_ANSWERS"
+    },
+    "gaps_to_prompts": {
+      "gaps": [
+        {
+          "gap": "$GAP2",
+          "answers": "$GAP2_ANSWERS"
+        }
+      ],
+      "asked_of": "who:alice"
+    },
+    "gate_on": {
+      "subject_id": "epoch:e2",
+      "target_id": "cmp:a",
+      "kind": "TRL",
+      "min_level": 5
+    },
+    "genesis": {
+      "project_id": "prj:gen",
+      "name": "Generated"
+    },
+    "governed_by": {
+      "from_id": "cmp:a",
+      "to_id": "dec:d"
+    },
+    "import_graph": {
+      "document": {
+        "nodes": [
+          {
+            "node_type": "Decision",
+            "node_id": "dec:imported",
+            "properties": {
+              "name": "Imported choice",
+              "decision": "Keep it.",
+              "kind": "choice",
+              "status": "accepted"
+            }
+          }
+        ],
+        "edges": [
+          {
+            "edge_type": "AUTHORED_BY",
+            "from_id": "dec:imported",
+            "to_id": "who:alice",
+            "properties": {
+              "roles": [
+                "approver"
+              ]
+            }
+          }
+        ]
+      }
+    },
+    "imposes": {
+      "environment_id": "env:e",
+      "rule_id": "erule:x"
+    },
+    "ingest_corpus_step": {
+      "documents": [
+        {
+          "fragment_id": "frag:one",
+          "title": "Brief",
+          "text": "The system must keep a log of every change."
+        }
+      ]
+    },
+    "ingest_step": {
+      "input": "The system must rotate its log daily.",
+      "fragment_id": "frag:two"
+    },
+    "invalidates": {
+      "from_id": "chg:x",
+      "finding_id": "fact:t"
+    },
+    "link_artifact": {
+      "artifact_id": "art:linked",
+      "name": "linked.rs",
+      "target_id": "cmp:a",
+      "location": "src/linked.rs"
+    },
+    "mirror_surface": {
+      "document": "$SURFACE"
+    },
+    "move_component": {
+      "child_id": "cmp:a",
+      "new_parent_id": "cmp:parent"
+    },
+    "operates_in": {
+      "project_id": "prj:p",
+      "environment_id": "env:e"
+    },
+    "owned_by": {
+      "from_id": "cmp:a",
+      "contributor_id": "who:alice"
+    },
+    "part_of_flow": {
+      "capability_id": "cap:c",
+      "flow_id": "flow:f"
+    },
+    "performed_in": {
+      "verification_id": "ver:v",
+      "environment_id": "env:e"
+    },
+    "pin_at_epoch": {
+      "node_id": "req:r",
+      "epoch_id": "epoch:e1"
+    },
+    "plan_epoch": {
+      "id": "epoch:planned",
+      "name": "Later",
+      "sequence": 40,
+      "epoch_type": "milestone"
+    },
+    "precedes": {
+      "earlier_epoch": "epoch:e1",
+      "later_epoch": "epoch:e2"
+    },
+    "provides": {
+      "from_id": "cmp:a",
+      "to_id": "ifc:i"
+    },
+    "realizes": {
+      "artifact_id": "art:f",
+      "target_id": "cap:c"
+    },
+    "reconcile_artifacts": {
+      "observed": [
+        {
+          "artifact_id": "art:f",
+          "present": true
+        }
+      ]
+    },
+    "reconcile_deployment": {
+      "observed": [
+        {
+          "environment_id": "env:e",
+          "running": [
+            "rel:1"
+          ]
+        }
+      ]
+    },
+    "reconcile_verification": {
+      "observed": [
+        {
+          "verification_id": "ver:v",
+          "outcome": "passing"
+        }
+      ]
+    },
+    "record_alias": {
+      "node_id": "cmp:a",
+      "aliases": [
+        "the log keeper"
+      ]
+    },
+    "record_finding": {
+      "id": "fact:new",
+      "subject_id": "cmp:a",
+      "statement": "It rotated late.",
+      "fact_type": "finding",
+      "source": "who:alice"
+    },
+    "register_alternative": {
+      "decision_id": "dec:d",
+      "artifact_id": "art:opt",
+      "name": "Option",
+      "location": "docs/opt.md"
+    },
+    "release_claim": {
+      "contributor_id": "who:alice",
+      "seed_id": "cmp:b"
+    },
+    "release_includes": {
+      "release_id": "rel:1",
+      "target_id": "cmp:a"
+    },
+    "release_includes_all": {
+      "release_id": "rel:1"
+    },
+    "reopen_choice": {
+      "decision_id": "dec:reopen",
+      "new_id": "dec:reopened",
+      "name": "Choose a clock again",
+      "reason": "Leap seconds."
+    },
+    "replace_text": {
+      "node_id": "req:r",
+      "field": "statement",
+      "new": "Dated note, 2026-09-30."
+    },
+    "report_manual_work": {
+      "what": "Counted the lines by hand.",
+      "diagnosis": "tool_missing"
+    },
+    "require_resource": {
+      "from_id": "cmp:a",
+      "resource_id": "res:r"
+    },
+    "review_relations": {
+      "node_id": "cmp:a",
+      "note": "Reviewed."
+    },
+    "satisfies": {
+      "from_id": "cap:c",
+      "to_id": "req:r"
+    },
+    "schedule_for": {
+      "item_id": "cap:c",
+      "target_id": "epoch:e2"
+    },
+    "set_artifact_checksum": {
+      "artifact_id": "art:f",
+      "disposition": "design_holds",
+      "checksum": "sha256:00"
+    },
+    "set_artifact_checksums": {
+      "accepts": [
+        {
+          "artifact_id": "art:f",
+          "disposition": "design_holds",
+          "change_type": "refactor",
+          "checksum": "sha256:01"
+        }
+      ]
+    },
+    "set_artifact_intent": {
+      "artifact_id": "art:f",
+      "audience": "internal"
+    },
+    "set_capability_delivery": {
+      "capability_id": "cap:c",
+      "delivery": "artifact"
+    },
+    "set_capability_signature": {
+      "capability_id": "cap:c",
+      "inputs": [
+        "event"
+      ],
+      "outputs": [
+        "line"
+      ]
+    },
+    "set_capability_status": {
+      "capability_id": "cap:c",
+      "status": "in_progress"
+    },
+    "set_closure_criterion": {
+      "project_id": "prj:p",
+      "legs": [
+        "traceability"
+      ],
+      "threshold": 80
+    },
+    "set_decision_status": {
+      "decision_id": "dec:d2",
+      "status": "accepted",
+      "approver": "who:alice"
+    },
+    "set_epoch_status": {
+      "epoch_id": "epoch:e1",
+      "status": "arrived"
+    },
+    "set_evidence_scope": {
+      "verification_id": "ver:v",
+      "target_id": "cmp:a"
+    },
+    "set_interface_designation": {
+      "interface_id": "ifc:i",
+      "designation": "published"
+    },
+    "set_interface_spec": {
+      "interface_id": "ifc:i",
+      "paradigm": "synchronous"
+    },
+    "set_project_mode": {
+      "project_id": "prj:p",
+      "mode": "rigid"
+    },
+    "set_provenance": {
+      "node_id": "cmp:a",
+      "provenance": "authored"
+    },
+    "set_quality_target": {
+      "decision_id": "dec:d",
+      "quality_target": "performance"
+    },
+    "set_requirement_designation": {
+      "requirement_id": "req:r",
+      "designation": "published"
+    },
+    "set_requirement_lineage": {
+      "requirement_id": "req:r",
+      "lineage": "original"
+    },
+    "set_requirement_status": {
+      "requirement_id": "req:r3",
+      "status": "accepted",
+      "approver": "who:alice"
+    },
+    "set_verification_kind": {
+      "verification_id": "ver:v",
+      "kind": "verification"
+    },
+    "set_verification_status": {
+      "verification_id": "ver:v",
+      "status": "passing"
+    },
+    "set_violation_status": {
+      "element_id": "cmp:a",
+      "rule_id": "erule:x",
+      "status": "rejected"
+    },
+    "snapshot_before_change": {
+      "epoch_id": "epoch:e1",
+      "change_event_id": "chg:x",
+      "name": "Before the move",
+      "target_id": "cmp:a",
+      "change_type": "refactor",
+      "action": "modified"
+    },
+    "usage_report": {},
+    "verifies": {
+      "verification_id": "ver:v",
+      "target_id": "cap:c"
+    },
+    "violates_rule": {
+      "element_id": "cmp:b",
+      "rule_id": "erule:x"
+    },
+    "withdraw_defect_acknowledgement": {
+      "defect_id": "defect:fixture-acked"
+    },
+    "withdraw_gap_acknowledgement": {
+      "gap_id": "gap:acked-before"
+    },
+    "withdraw_question": {
+      "gap_id": "$ASKED_GAP2"
+    }
+  }
+}

@@ -325,6 +325,30 @@ struct Cli {
     #[arg(long = "http-allow-host", value_name = "HOST")]
     http_allow_host: Vec<String>,
 
+    /// Declare that a gateway in front of this server authenticates every
+    /// caller and NAMES THE PERSON ON EACH CALL, in the request's
+    /// `_meta["reflow2/writes_for"]`. NAME is the gateway's name, said in the
+    /// handshake (for example `flo2.io`).
+    ///
+    /// ⭐ WHY IT EXISTS (#616 fix 4, `dec:idea-authentication-is-somebody-elses-
+    /// layer-and-the-line-is-the-contributor-id`). A server served for others —
+    /// `--registry-root`, or `--http-allow-host` naming a host that is not
+    /// loopback — must know who is calling before anyone can sign. With this
+    /// declared, the gateway's name is the caller and every AUTHORED_BY a call
+    /// writes, author or approver, must be for them; a signature naming anyone
+    /// else is refused where the store writes it. With nothing declared, such a
+    /// server serves reads and proposals and refuses every signature and settle.
+    /// A local server (stdio, --shared, loopback --http) is unchanged.
+    ///
+    /// ⚠️ The gateway MUST overwrite `reflow2/writes_for` on every call and be
+    /// the only thing that can reach this port: reflow2 cannot check either.
+    #[arg(
+        long = "http-trusted-gateway",
+        value_name = "NAME",
+        env = "REFLOW2_TRUSTED_GATEWAY"
+    )]
+    http_trusted_gateway: Option<String>,
+
     /// How long a stopping HTTP server lets requests in progress finish
     /// (default 5s). A number with `s` or `m`; a bare number is seconds, and `0`
     /// does not wait.
@@ -1093,7 +1117,7 @@ async fn main() -> anyhow::Result<()> {
 
         if let Some(addr) = cli.http.clone() {
             serve_http(
-                one_design(service),
+                one_design(service.with_caller_rule(caller_rule(&cli, false))),
                 &addr,
                 &cli.http_allow_host,
                 HttpSurface::Design,
@@ -1191,10 +1215,16 @@ async fn main() -> anyhow::Result<()> {
 
         let read_only = cli.read_only;
         let max_open = cli.registry_max_open;
+        let rule = caller_rule(&cli, true);
         serve_http(
             move |cfg| {
-                let router = reflow2_mcp::registry_http::GraphRouter::new(
-                    root, read_only, max_open, idle, cfg,
+                let router = reflow2_mcp::registry_http::GraphRouter::serving(
+                    root,
+                    read_only,
+                    max_open,
+                    idle,
+                    cfg,
+                    rule.clone(),
                 );
                 (router.clone(), reflow2_mcp::drain::Holds::many(router))
             },
@@ -1745,7 +1775,7 @@ async fn main() -> anyhow::Result<()> {
             eprintln!("reflow2: {note}");
         }
         serve_http(
-            one_design(service),
+            one_design(service.with_caller_rule(caller_rule(&cli, false))),
             cli.http.as_deref().unwrap_or("127.0.0.1:0"),
             &cli.http_allow_host,
             HttpSurface::Design,
@@ -1858,7 +1888,7 @@ async fn main() -> anyhow::Result<()> {
 
             if let Some(addr) = cli.http.clone() {
                 serve_http(
-                    one_design(service),
+                    one_design(service.with_caller_rule(caller_rule(&cli, false))),
                     &addr,
                     &cli.http_allow_host,
                     HttpSurface::Design,
@@ -1987,6 +2017,22 @@ type Sessions = rmcp::transport::streamable_http_server::session::local::LocalSe
 type HttpConfig = rmcp::transport::streamable_http_server::StreamableHttpServerConfig;
 
 /// One design over HTTP: its transport, and what a stop has to close.
+/// How the engine this command starts establishes who is calling
+/// (`reflow2_mcp::caller`, #616 fix 4), said once on the operator's banner.
+/// `registry` is the `--registry-root` path. Only the HTTP paths ask: stdio is
+/// local by construction.
+fn caller_rule(cli: &Cli, registry: bool) -> reflow2_mcp::caller::CallerRule {
+    let rule = reflow2_mcp::caller::CallerRule::for_serving(
+        registry,
+        &cli.http_allow_host,
+        cli.http_trusted_gateway.as_deref(),
+    );
+    if let Some(line) = rule.banner() {
+        eprintln!("{line}");
+    }
+    rule
+}
+
 fn one_design(
     service: ReflowService,
 ) -> impl FnOnce(

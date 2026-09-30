@@ -1523,6 +1523,13 @@ impl DesignGraph {
                 ),
             });
         }
+        // AND THE SIGNATURE IS THE CALLER'S OWN (`crate::intent::Signer`),
+        // asked here, before the Decision is minted, by the same rule the
+        // store applies where the approval is written — so a refusal leaves
+        // no accepted, unsigned acknowledgement behind.
+        if let Some(who) = approver {
+            self.may_sign(who, "approver")?;
+        }
         let decision_id = defect_ack_decision_id(defect_id);
         self.create_node(
             node::DECISION,

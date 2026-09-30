@@ -145,6 +145,23 @@ impl ReflowService {
                 None,
             ));
         }
+        // 🛑 BEHIND A DECLARED TRUSTED GATEWAY the gateway names the caller on
+        // each call (`crate::caller`), and a session's own declaration would
+        // name nobody: refused loudly rather than recorded and ignored.
+        if let (Some(id), crate::caller::CallerRule::TrustedGateway { name }) =
+            (&who, self.caller_rule())
+        {
+            return Err(McpError::invalid_params(
+                format!(
+                    "writes_for({id}) was NOT recorded: this server is served behind the trusted \
+                     gateway `{name}`, which names the caller on each call in `_meta` under \
+                     `{WRITES_FOR_META}`, and only that name counts here — a session cannot \
+                     declare someone else. Every signature a call writes is the caller's own. \
+                     To name an acting agent, call writes_for with `acting_agent` alone."
+                ),
+                None,
+            ));
+        }
         if let Some(id) = &who {
             self.graph
                 .read()

@@ -113,6 +113,18 @@ const ALLOWED: &[(&str, &str, &str)] = &[
          declaration lives on the service (`ReflowService.acting_agent`).",
     ),
     (
+        "reflow2-mcp/src/service.rs",
+        "SIGNER",
+        "A tokio TASK-LOCAL beside WRITES_FOR and ACTING, and the same shape: it \
+         holds who may sign on the ONE tool call now being served (#616 fix 4, \
+         `reflow2_core::intent::Signer`), set by `call_tool` around that call's \
+         handler and gone when it returns. Two calls each see only their own value, \
+         so a second design open in the process cannot be given the first call's \
+         caller. How the engine establishes the caller lives on the service \
+         (`ReflowService.caller_rule`), per server, and a registry passes it to \
+         every design it opens.",
+    ),
+    (
         "reflow2-mcp/src/content_policy.rs",
         "OVERRIDE",
         "The operator's `--content-policy` / REFLOW2_CONTENT_POLICY, parsed once \

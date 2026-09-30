@@ -127,6 +127,17 @@ This file is the third view: *what changed, and when*.
 
 ### Changed
 
+- **On an engine served for others, a signature is the caller's own, checked where the store writes it** (#616 fix 4; `cap:an-exposed-server-establishes-who-is-calling-before-intent-can-be-settled`, under the settled `dec:idea-authentication-is-somebody-elses-layer-and-the-line-is-the-contributor-id`, option (e)). Measured on 0.74.0: any caller of a hosted engine could write `AUTHORED_BY {roles: [approver]}` naming someone else through `create_edge`, `create_edges`, `draw_edges` items, `acknowledge_gaps` items, `import_graph` and the typed helpers, and only a gateway's argument scan stood in the way (`fact:root-cause-the-settle-rule-guards-the-typed-doors-and-the-generic-writers-go-around-it-2026-09-29`, "SCOPE WIDENED").
+  - **Local is unchanged**: stdio, `--shared`, and `--http` answering loopback only. No signer is installed and every tool behaves as before.
+  - **Served for others** means `--registry-root`, or `--http-allow-host` naming a host that is not loopback. Such an engine establishes who is calling before anyone can sign:
+    - **`--http-trusted-gateway <NAME>`** (or `REFLOW2_TRUSTED_GATEWAY`) declares that a gateway in front authenticates every caller and names them on each call in `_meta["reflow2/writes_for"]`. That name is the caller. Every AUTHORED_BY a call writes, author or approver, must name them; one naming anyone else is **refused and nothing is written**, and so is removing someone else's AUTHORED_BY (`delete_edge`). A session's own `writes_for` declaration names nobody behind a gateway.
+    - **Nothing declared**: reads and proposals work; every approval and every move of a status into settled intent (`reflow2_core::intent::SETTLING`) is refused, naming the flag.
+  - **Where it is enforced**: `reflow2_core::intent::Signer`, installed by the write lock for the length of each call and asked at the store's one AUTHORED_BY write (the point #632 stamps the acting agent), its AUTHORED_BY delete, and its two node writes. No tool has a check of its own; handlers that write several things ask `may_sign`, the same rule, before their first write.
+  - **The handshake says so** on an engine served for others, and the operator's startup banner names the mode.
+  - **For a hosting gateway (flo2)**: declare the gateway in the same upgrade (`REFLOW2_TRUSTED_GATEWAY=flo2.io` on the engine container) and name the signed-in person's Contributor on every `tools/call` in `_meta["reflow2/writes_for"]`, overwriting anything the client sent. Without the declaration a registry refuses every approval.
+  - **Not yet in this release**: verifying a Bearer token on an exposed `--http` engine (the OAuth resource-server half of #616 fix 4). Until it ships, an exposed engine without a trusted gateway serves reads and proposals only.
+  - Pinned by `a_signature_is_the_callers_own_through_every_writer` (every served write tool, read off the served surface, driven as the caller and again in another contributor's name through a real registry) and `a_signature_is_the_callers_own_where_it_is_written` (the store's write points).
+
 - **A relation reflow2 stores twice has one authority, and the store keeps the other copy in step.** (`req:a-relation-stored-in-more-than-one-place-has-one-authoritative-copy-and-no-copy-drifts-unnoticed`)
   - **Measured on reflow2's own design, 2026-09-28:**
     - 354 of 763 findings carried a `subject_id` and no `HAS_TEMPORAL_FACT` edge, so every reader that walks edges missed them.
