@@ -156,8 +156,23 @@ async fn every_tool_that_takes_an_approver_declares_what_settles_it() {
                 ) {
                     problems.push(format!("{tool} declares an unknown `unsigned`: {d}"));
                 }
-                if d["version"] != json!(1) {
-                    problems.push(format!("{tool} declares no version: {d}"));
+                // Version 2 is exactly the generic writers' form, and it
+                // must carry the core table a reader evaluates it with.
+                let want = if d["when"] == json!("node_settles_intent") {
+                    2
+                } else {
+                    1
+                };
+                if d["version"] != json!(want) {
+                    problems.push(format!(
+                        "{tool} declares version {} for its form, not {want}: {d}",
+                        d["version"]
+                    ));
+                }
+                if want == 2 && !d["node_rule"].as_array().is_some_and(|r| !r.is_empty()) {
+                    problems.push(format!(
+                        "{tool} declares node_settles_intent and serves no node_rule: {d}"
+                    ));
                 }
             }
         }
@@ -254,6 +269,15 @@ async fn case(c: &Client, tool: &str, settling: bool, n: usize) -> Result<Option
                 return Ok(None);
             }
             json!({"gaps": [{"gap_id": format!("gap:batch-{n}"), "affected_ids": ["req:seed"], "reason": format!("{word} reason")}]})
+        }
+        // The generic writers, held to the core's one table since 2026-09-29.
+        "create_node" | "create_nodes" => {
+            let item = json!({"node_type": "Decision", "id": format!("dec:generic-{n}"), "props": {"name": format!("Settle the {word} generically"), "decision": format!("{word} generic {n}"), "kind": "choice", "status": if settling { "accepted" } else { "proposed" }}});
+            if tool == "create_node" {
+                item
+            } else {
+                json!({"nodes": [item]})
+            }
         }
         other => {
             return Err(format!(

@@ -6,8 +6,9 @@
       "unsigned": "refused",
       "version": 1,
       "when": {
-        "not_in": [
-          "proposed"
+        "in": [
+          "accepted",
+          "deferred"
         ]
       }
     }

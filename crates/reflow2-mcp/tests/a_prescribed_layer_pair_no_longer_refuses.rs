@@ -198,6 +198,8 @@ async fn a_decision_and_the_measurement_it_acts_on_is_not_refused() {
             .clone(),
         ),
         expected_content_hash: None,
+        approver: None,
+        acted_at: None,
     }))
     .await
     .expect("the measurement lands");

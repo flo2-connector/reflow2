@@ -1,4 +1,39 @@
 {
+  "_meta": {
+    "reflow2/settles": {
+      "approver": "approver",
+      "argument": "props",
+      "node_rule": [
+        {
+          "node_type": "Requirement",
+          "property": "status",
+          "when": {
+            "not_in": [
+              "proposed"
+            ]
+          }
+        },
+        {
+          "node_type": "Decision",
+          "property": "status",
+          "when": {
+            "in": [
+              "accepted",
+              "deferred"
+            ]
+          }
+        },
+        {
+          "node_type": "DesignRule",
+          "property": "enforced",
+          "when": "present"
+        }
+      ],
+      "unsigned": "refused",
+      "version": 2,
+      "when": "node_settles_intent"
+    }
+  },
   "annotations": {
     "readOnlyHint": false
   },
@@ -7,6 +42,22 @@
     "$schema": "https://json-schema.org/draft/2020-12/schema",
     "additionalProperties": false,
     "properties": {
+      "acted_at": {
+        "default": null,
+        "description": "When the approver acted, as a plain date. Stored on the approver edge.",
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "approver": {
+        "default": null,
+        "description": "The Contributor whose word this is — REQUIRED when the write SETTLES\nintent (a Decision accepted or deferred, a Requirement off `proposed`,\na DesignRule's `enforced` stated), exactly as the typed constructors\nrequire it; unsigned, such a write is refused. Drawn as AUTHORED_BY\nrole=approver.",
+        "type": [
+          "string",
+          "null"
+        ]
+      },
       "echo": {
         "default": "receipt",
         "description": "What the reply carries. `receipt` (the default) names the node, echoes each stored value of at most 200 characters, gives longer ones by size, and names the snapshot that keeps anything a revise replaced. `node` returns the whole stored node and every prior value.",

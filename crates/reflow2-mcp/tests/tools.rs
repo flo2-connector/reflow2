@@ -1160,6 +1160,8 @@ async fn a_rejected_node_names_the_known_types() {
             // lost-update precondition, and stating an expectation it
             // never read would be a fake one.
             expected_content_hash: None,
+            approver: None,
+            acted_at: None,
         }))
         .await
         .expect_err("Widget is not a schema node type");
@@ -1690,6 +1692,8 @@ async fn create_node_on_an_existing_id_merges_instead_of_resetting() {
         // lost-update precondition, and stating an expectation it
         // never read would be a fake one.
         expected_content_hash: None,
+        approver: None,
+        acted_at: None,
     })));
 
     assert_eq!(
@@ -3152,11 +3156,15 @@ async fn a_rejected_bulk_write_errors_and_still_names_every_failure() {
                     node_type: "NotAType".into(),
                     id: "x:bad".into(),
                     props: None,
+                    approver: None,
+                    acted_at: None,
                 },
                 NodeSpecReq {
                     node_type: "AlsoNotAType".into(),
                     id: "x:worse".into(),
                     props: None,
+                    approver: None,
+                    acted_at: None,
                 },
             ],
         }))

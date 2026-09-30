@@ -353,10 +353,22 @@ impl ReflowService {
                 McpError::invalid_params(format!("not a reflow2 surface document: {e}"), None)
             })?;
         let mut g = self.write_lock().await?;
-        ok_json(
-            g.mirror_surface(&doc, req.at.as_deref())
-                .map_err(dyno_err)?,
-        )
+        // A mirrored node that asserts settled intent is another design's word,
+        // signed THERE; here it carries nobody's name, and the intent gate reads
+        // it like any other node. Written — a mirror is a dated copy — and
+        // NAMED, the rule every document-carrying writer follows (2026-09-29).
+        let watch = crate::settles::SettleWatch::before(
+            &g,
+            doc.nodes
+                .iter()
+                .map(|n| (n.node_type.as_str(), n.node_id.as_str())),
+        );
+        let mirrored = g
+            .mirror_surface(&doc, req.at.as_deref())
+            .map_err(dyno_err)?;
+        let mut reply = serde_json::to_value(mirrored).map_err(ser_err)?;
+        crate::settles::report_unsigned(&mut reply, watch.unsigned(&g));
+        ok_json(reply)
     }
 
     #[tool(
@@ -418,6 +430,12 @@ impl ReflowService {
             }
         };
         let mut g = self.write_lock().await?;
+        let watch = crate::settles::SettleWatch::before(
+            &g,
+            doc.nodes
+                .iter()
+                .map(|n| (n.node_type.as_str(), n.node_id.as_str())),
+        );
         let report = g
             .import_graph_with(
                 &doc,
@@ -434,7 +452,9 @@ impl ReflowService {
         {
             reflow2_core::provenance::record_sync(graph_path, path, hash);
         }
-        ok_json(report)
+        let mut reply = serde_json::to_value(report).map_err(ser_err)?;
+        crate::settles::report_unsigned(&mut reply, watch.unsigned(&g));
+        ok_json(reply)
     }
 
     #[tool(
@@ -599,10 +619,19 @@ impl ReflowService {
             resolutions.insert(id.clone(), parsed);
         }
         let mut g = self.write_lock().await?;
-        ok_json(
-            g.apply_merge(&base, &theirs, &resolutions, req.use_recorded)
-                .map_err(dyno_err)?,
-        )
+        let watch = crate::settles::SettleWatch::before(
+            &g,
+            theirs
+                .nodes
+                .iter()
+                .map(|n| (n.node_type.as_str(), n.node_id.as_str())),
+        );
+        let applied = g
+            .apply_merge(&base, &theirs, &resolutions, req.use_recorded)
+            .map_err(dyno_err)?;
+        let mut reply = serde_json::to_value(applied).map_err(ser_err)?;
+        crate::settles::report_unsigned(&mut reply, watch.unsigned(&g));
+        ok_json(reply)
     }
 
     #[tool(
