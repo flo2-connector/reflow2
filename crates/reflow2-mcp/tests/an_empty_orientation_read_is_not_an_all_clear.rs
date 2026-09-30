@@ -72,7 +72,7 @@ async fn an_empty_answer_names_the_debt_it_is_not_reporting() {
     .await
     .expect("verification");
 
-    let out = j!(s.open_questions());
+    let out = j!(s.open_questions(Parameters(OpenQuestionsReq::default())));
     assert_eq!(
         out.get("count").and_then(serde_json::Value::as_u64),
         Some(0),
@@ -132,7 +132,7 @@ async fn an_empty_answer_on_a_clean_loop_says_so_explicitly() {
     .await
     .expect("declared");
 
-    let out = j!(s.open_questions());
+    let out = j!(s.open_questions(Parameters(OpenQuestionsReq::default())));
     assert_eq!(
         out.get("count").and_then(serde_json::Value::as_u64),
         Some(0)

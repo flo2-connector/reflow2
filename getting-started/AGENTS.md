@@ -370,8 +370,11 @@ reflow2 phrases the question; **you** are the language model that fills it in:
   of a session.** Two kinds: `status: asked` — they have not replied, so follow it up rather than
   asking again; `status: answered` — they replied but the gap is still open, so either write their
   answer into the design or `acknowledge_gap` if they judged it fine as it stands. Their reply
-  comes back with it. `answer_question` records what they said; `withdraw_question` retires one
-  overtaken by events. `gap_to_prompt` records the question itself, so you do not have to.
+  comes back with it. `answer_question` records what they said, and in the same call who said it
+  (`answered_by`) and the record it became (`record`, which draws `answers`); `withdraw_question`
+  retires one overtaken by events. `gap_to_prompt` records the question itself, so you do not have
+  to. A question for someone NOT in the chat is put to them by name (`asked_of`, with a `batch`
+  and per-question `evidence`), and `open_questions` with `asked_of` is the batch to hand them.
 - **Requirement lifecycle:** `set_requirement_status` — `proposed` / `accepted` / `deferred` /
   `dropped` / `met`. Use it when a requirement is provisional or abandoned instead of writing
   that into the statement text; `dropped` and `met` stop it being reported as unsatisfied.

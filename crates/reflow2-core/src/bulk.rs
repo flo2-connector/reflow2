@@ -127,6 +127,13 @@ pub struct AskedRecord {
     pub question: String,
     pub context_setter: Option<String>,
     pub rephrase_degraded: bool,
+    /// The Contributor it was put to by name, if any. Carried per item, but
+    /// `gaps_to_prompts` fills it from the call: a batch goes to one person.
+    pub asked_of: Option<String>,
+    /// The batch it was put in; numbered in item order.
+    pub batch: Option<String>,
+    /// Evidence the asker attached to THIS question.
+    pub evidence: Vec<String>,
 }
 
 /// One acknowledged gap, carrying **its own** reason.
@@ -363,6 +370,9 @@ impl DesignGraph {
                         context_setter: a.context_setter.as_deref(),
                         asked_at,
                         rephrase_degraded: a.rephrase_degraded,
+                        asked_of: a.asked_of.as_deref(),
+                        batch: a.batch.as_deref(),
+                        evidence: &a.evidence,
                     },
                 )
             },
