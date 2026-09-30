@@ -376,7 +376,9 @@ def run(binary: str, graph_path: str) -> int:
     # above — three were fixed (schema.rs, vocabulary.rs, tools.rs) and CI caught
     # this one. The comment was read and still not acted on, which is an argument
     # that naming the set matters more than warning about it.
-    c.ok("every edge type is discoverable", len(vocab.get("edge_types", [])) == 65,
+    # 2026-09-29, ACTS_FOR: all four moved together this time — schema.rs,
+    # vocabulary.rs, tests/tools.rs and here — found by grepping the old count.
+    c.ok("every edge type is discoverable", len(vocab.get("edge_types", [])) == 66,
          len(vocab.get("edge_types", [])))
 
     exact = s.call("describe_schema", {"from": "Capability", "to": "Component"})

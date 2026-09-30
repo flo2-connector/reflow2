@@ -26,6 +26,7 @@
 //! assert_eq!(g.count_nodes("Requirement").unwrap(), 1);
 //! ```
 
+pub mod acting;
 pub mod agent;
 pub mod allocate;
 pub mod alternatives;

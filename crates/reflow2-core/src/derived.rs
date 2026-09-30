@@ -15,10 +15,14 @@
 //!
 //! ⚠️ A DECLARATION KEPT BESIDE HAND-WRITTEN CODE IS A SECOND COPY. It is honest
 //! only while a test holds it to the code, and
-//! `tests/derived_relations_are_declared_and_checked.rs` is that test: it reads
-//! the named functions' source and fails when a declaration and its code
-//! disagree about which edges the relation reads, or when a relation's code
-//! calls a helper nobody declared.
+//! `tests/derived_relations_are_declared_and_checked.rs` is that test. Each of
+//! its checks starts from a population the declarations do not choose: every
+//! function a declared one REACHES through calls, at any depth, and every edge
+//! type those name (directly, through a const table, or through the schema's
+//! inference-edge selector); every function in this crate that names an edge
+//! type, each answered for by a declaration or listed in
+//! `schema/derived/edge_readers.yaml`; and the primitives each rule's
+//! composition writes, which its `components` must be.
 //!
 //! EVERY EVALUATOR HERE CALLS THE EXISTING CODE PATH. None re-implements a
 //! relation — a second implementation would be exactly the drift the

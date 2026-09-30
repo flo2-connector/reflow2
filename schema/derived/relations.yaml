@@ -10,19 +10,32 @@
 #
 # A DECLARATION BESIDE HAND-WRITTEN CODE IS A SECOND COPY, honest only while a test
 # holds it to the code. crates/reflow2-core/tests/derived_relations_are_declared_and_checked.rs
-# is that test. For every declaration it reads the named functions' source and fails when:
-#   · a named function does not exist;
-#   · an edge the declaration says the rule reads appears in none of its functions;
-#   · a function marked `dedicated` reads an edge the declaration does not list;
-#   · a `dedicated` function calls a helper that reads edges and nobody declared it;
-#   · a declared edge has no reading, or its reading uses a primitive the
-#     declaration's own reading does not name;
+# is that test, and each of its checks starts from a population THIS FILE DOES NOT CHOOSE
+# (fact:root-cause-the-derived-declaration-check-draws-every-population-from-the-declarations-it-checks-2026-09-29:
+# the first version checked only what this file named, one call deep, and missed
+# readiness_gate's HAS_READINESS, impact's inference and risk edges, two `over`s and 13
+# padded components lists). It fails when:
+#   · a named function does not exist, or is a writer (takes &mut self);
+#   · an edge the declaration lists is read by nothing its functions REACH, at any depth;
+#   · anything a `dedicated` function reaches through calls, at any depth, reads an edge
+#     the declaration (or a relation in its `over`, transitively) does not list — named
+#     directly, through a const table, or through the schema's inference-edge selector;
+#   · a `dedicated` function reaches another relation's own code and `over` does not name it;
+#   · a function anywhere in reflow2-core names an edge type, no declaration answers for
+#     it, and schema/derived/edge_readers.yaml does not list it with the edges it reads;
+#   · `components` is not exactly the primitives the composition writes;
+#   · a declared edge's reading shares no primitive with the rule's composition (its own,
+#     or one it is `over`), and `not_yet_stated` does not name the edge;
 #   · a declaration has no evaluator in the served read, or an evaluator has no declaration.
+# It cannot check that the RULE computes what the code computes: that needs rules a
+# machine evaluates (the planned rule engine).
 #
 # FIELDS
 #   name        the relation, as the study names it.
 #   reading     the relation's own reading, in the shape of an edge reading (form,
-#               composition, components): what it MEANS in the primitives.
+#               composition, components): what it MEANS in the primitives. `components`
+#               is exactly the primitives the composition writes — what the rule is
+#               built from, never the primitives of the edges it happens to read.
 #   rule        what it computes, written over the declared readings where it can be.
 #   stated_over_readings
 #               full    — every term of the rule is an edge reading reflow2 declares;
@@ -35,7 +48,7 @@
 #   edges       the edge types the rule reads.
 #   over        other derived relations this one is computed over.
 #   code        where the code computes it; `dedicated: true` when the function
-#               computes nothing else, so its every edge must be declared here.
+#               computes nothing else, so every edge it REACHES must be declared here.
 #   counts      what ONE derived fact of it is, for the served read's tally.
 #   cost        bounded (a pass over the design), report (reuses a whole report),
 #               detectors (runs gap detection), closure (a transitive closure,
@@ -52,7 +65,7 @@ relations:
 
   delivered:
     name: "delivered(requirement)"
-    reading: { form: composite, composition: "delivered(r) := [∃c: norm·meets(+)(c, r) ∧ ¬discontinued(c) ∧ realized(c) ∧ checked(c)] ∨ [∃k: part-of(k, r) ∧ ∀k part-of(k, r): delivered(k)]", components: [norm, part-of, instance-of, located-at] }
+    reading: { form: composite, composition: "delivered(r) := [∃c: norm·meets(+)(c, r) ∧ ¬discontinued(c) ∧ realized(c) ∧ checked(c)] ∨ [∃k: part-of(k, r) ∧ ∀k part-of(k, r): delivered(k)]", components: [norm, part-of] }
     rule: "A requirement is delivered when a capability that SATISFIES it (norm·meets) is realized and currently checked and not discontinued, or when it is decomposed (part-of) and every child is delivered. Dropped requirements and inferred ones are counted apart."
     stated_over_readings: partial
     not_yet_stated: "SATISFIES.coverage (partial/planned) is a modifier with no primitive of its own, and a requirement's `dropped` status and `inferred` provenance are node properties no reading declares."
@@ -113,7 +126,7 @@ relations:
 
   contract_pair:
     name: "contract pair (declared seam)"
-    reading: { form: composite, composition: "contract(p, c) := ∃i: source-of·offers(p, i) ∧ causes·necessary(i, c), p ≠ c, unordered  ≈ flows-to(p, c) via conduit i", components: [source-of, causes] }
+    reading: { form: composite, composition: "contract(p, c) := ∃i: source-of·offers(p, i) ∧ causes·necessary(i, c), p ≠ c, unordered  ≈ flows-to(p, c) via conduit i", components: [source-of, causes, flows-to] }
     rule: "Two components share a declared seam when one PROVIDES (source-of) an Interface the other CONSUMES (causes), as an unordered pair."
     stated_over_readings: full
     inference: deduced
@@ -137,7 +150,7 @@ relations:
 
   coupling_at_altitude:
     name: "coupling at altitude L / seam coverage"
-    reading: { form: composite, composition: "coupling_L(A, B) := ∃a, b: part-of*(a, A) ∧ part-of*(b, B) ∧ instance-of(A, L) ∧ instance-of(B, L) ∧ coupling(a, b); covered when a contract pair lifts onto the same pair", components: [part-of, instance-of, causes, source-of] }
+    reading: { form: composite, composition: "coupling_L(A, B) := ∃a, b: part-of*(a, A) ∧ part-of*(b, B) ∧ instance-of(A, L) ∧ instance-of(B, L) ∧ coupling(a, b); covered when a contract pair lifts onto the same pair", components: [part-of, instance-of] }
     rule: "A coupling between two parts IS a coupling between the containers (CONTAINS, part-of⁻¹) that hold them at level L; a seam at L is covered when a contract pair lifts onto the same pair."
     stated_over_readings: partial
     not_yet_stated: "instance-of(A, L) is Component.level, a node property, and part-of* needs transitivity, which no reading declares as algebra yet."
@@ -153,12 +166,12 @@ relations:
 
   impact:
     name: "impact / blast radius"
-    reading: { form: composite, composition: "affected(x, y) := closure over { norm (binds, meets, evaluates), instance-of·realizes, located-at (allocation, deployment), causes (dependence), part-of (DECOMPOSES, INCLUDES, PART_OF_FLOW only), during (SCHEDULED_FOR), source-of (CALIBRATED_AGAINST only) }", components: [norm, instance-of, located-at, causes, part-of, during, source-of, measures, before] }
-    rule: "Change propagates along a hand-kept table of edge types (structural_rule) with Upstream/Downstream/Lateral labels, transitively."
+    reading: { form: composite, composition: "affected(x, y) := closure over { norm (binds, meets, evaluates), instance-of·realizes, located-at (allocation, deployment), causes (dependence), part-of (DECOMPOSES, INCLUDES, PART_OF_FLOW only), during (SCHEDULED_FOR), source-of (CALIBRATED_AGAINST only) } ∪ { every edge of the inference module, carried as causal whatever it reads as: causes (CAUSES, BLOCKS, TRIGGERS, RISKS, MITIGATES, MASKS), compares (CONTRADICTS, DUPLICATES), norm (VIOLATES, OBSOLETES), becomes (EVOLVES_INTO), before ∧ about (ANTICIPATES) }", components: [about, before, becomes, causes, compares, during, instance-of, located-at, norm, part-of, source-of] }
+    rule: "Change propagates along a hand-kept table of edge types (structural_rule) with Upstream/Downstream/Lateral labels, and along every edge type of the schema's inference module as causal, transitively. Crossing a risk edge (RISK_EDGES: RISKS, BLOCKS, CONTRADICTS, VIOLATES, MASKS) marks the hop as a risk."
     stated_over_readings: partial
-    not_yet_stated: "which relations carry change is decided per EDGE TYPE, not per primitive (part-of propagates along DECOMPOSES and INCLUDES but not CONTAINS; source-of along CALIBRATED_AGAINST but not AUTHORED_BY), and the closure needs transitivity, which no reading declares as algebra yet."
+    not_yet_stated: "which relations carry change is decided per EDGE TYPE, not per primitive (part-of propagates along DECOMPOSES and INCLUDES but not CONTAINS; source-of along CALIBRATED_AGAINST but not AUTHORED_BY), and the inference edges are chosen by their schema MODULE, not their reading; the closure needs transitivity, which no reading declares as algebra yet."
     inference: deduced
-    edges: [SATISFIES, DECOMPOSES, CONSTRAINS, ALLOCATED_TO, REALIZES, VERIFIES, GOVERNED_BY, PROVIDES, CONSUMES, DEPENDS_ON, PART_OF_FLOW, DEPLOYED_TO, REQUIRES_RESOURCE, INCLUDES, SCHEDULED_FOR, CALIBRATED_AGAINST, GATED_ON]
+    edges: [SATISFIES, DECOMPOSES, CONSTRAINS, ALLOCATED_TO, REALIZES, VERIFIES, GOVERNED_BY, PROVIDES, CONSUMES, DEPENDS_ON, PART_OF_FLOW, DEPLOYED_TO, REQUIRES_RESOURCE, INCLUDES, SCHEDULED_FOR, CALIBRATED_AGAINST, GATED_ON, CAUSES, BLOCKS, TRIGGERS, CONTRADICTS, VIOLATES, RISKS, MITIGATES, EVOLVES_INTO, OBSOLETES, DUPLICATES, ANTICIPATES, MASKS]
     code:
       - { file: nodes.rs, function: structural_rule, dedicated: true }
       - { file: propagate.rs, function: propagate_from, dedicated: true }
@@ -167,7 +180,7 @@ relations:
 
   claimed_region:
     name: "claimed region, claim overlap"
-    reading: { form: composite, composition: "region(c) := {seed(c)} ∪ {x : affected*(seed(c), x), path length ≤ depth}; overlap(c1, c2) := region(c1) ∩ region(c2)", components: [causes, during] }
+    reading: { form: composite, composition: "region(c) := {s : causes[intended](c, Δ s) ∧ during(c, its claimant's live session)} ∪ {x : affected*(s, x), path length ≤ depth}; overlap(c1, c2) := region(c1) ∩ region(c2)", components: [causes, during] }
     rule: "A claim names a seed (CLAIMS); its ground is everything the impact relation reaches from the seed within `depth`; two claims overlap where their grounds meet."
     stated_over_readings: partial
     not_yet_stated: "it is computed over impact, which is not fully stated over readings, and `depth` is an edge property with no primitive."
@@ -183,7 +196,7 @@ relations:
 
   level_mismatch:
     name: "level mismatch / unknown level"
-    reading: { form: composite, composition: "part-of(c, p) is expected to link ADJACENT rungs: instance-of(c, L_i) ∧ instance-of(p, L_i+1)", components: [part-of, instance-of, causes] }
+    reading: { form: composite, composition: "part-of(c, p) is expected to link ADJACENT rungs: instance-of(c, L_i) ∧ instance-of(p, L_i+1); causes(a, b) between peers is expected at most one rung apart: instance-of(a, L_i) ∧ instance-of(b, L_j) ∧ |i − j| ≤ 1", components: [part-of, instance-of, causes] }
     rule: "A CONTAINS (part-of⁻¹) edge between components that skips or inverts a rung of the Project's ladder, a DEPENDS_ON across levels, or a level not on the ladder, is a hierarchy issue."
     stated_over_readings: partial
     not_yet_stated: "the rung is Component.level and the ladder is Project.decomposition_levels — node properties no reading declares."
@@ -196,7 +209,7 @@ relations:
 
   rerun_owed:
     name: "rerun owed (stale finding)"
-    reading: { form: composite, composition: "rerun_owed(f) := ∃r: causes(r, Δ subject(f)) ∧ before(run(f), r); three-valued", components: [causes, before, about] }
+    reading: { form: composite, composition: "rerun_owed(f) := ∃r, y: about(f, y) ∧ causes(r, Δy) ∧ before(run(f), r); three-valued", components: [causes, before, about] }
     rule: "A check owes a rerun when something that INVALIDATES it happened after it last ran; unknown when either date is missing."
     stated_over_readings: partial
     not_yet_stated: "before() is computed from two time properties, one on the edge (`at`) and one on the node (`last_run_at`)."
@@ -238,7 +251,7 @@ relations:
 
   assigned_decision:
     name: "assigned decision ('marked')"
-    reading: { form: composite, composition: "assigned(d, p) := norm·binds(obligation to settle d, p), read off an approver role on a still-open decision", components: [norm, stance, source-of] }
+    reading: { form: composite, composition: "assigned(d, p) := stance[approver](p, d) ∧ ¬stance(+)(owner, d) ⇒ norm·binds(p, settle d) — an approver on a still-open decision owes its ruling", components: [norm, stance] }
     rule: "A proposed Decision with an AUTHORED_BY edge whose roles include approver is assigned to that person. The same edge and role mean 'the owner's word was given' once the decision is accepted."
     stated_over_readings: partial
     not_yet_stated: "`proposed` is Decision.status, a node property; one encoding carries two relations told apart only by the target's status."
@@ -291,12 +304,13 @@ relations:
 
   budget_rollup:
     name: "budget rollup / budget closes"
-    reading: { form: composite, composition: "total(c) := Σ quantity carried on norm·binds(c, x), or the heaviest causes-path when the budget composes along a path; compares(total, limit)", components: [norm, compares, causes, source-of] }
+    reading: { form: composite, composition: "for each live budget c (¬discontinued(c)): total(c) := Σ quantity carried on norm·binds(c, x) when it composes as a sum, or the heaviest path of arc(a, b) := causes(a, b) ∨ ∃i: source-of·offers(b, i) ∧ causes(a, i) among its contributors when it composes along a path; compares(total, limit)", components: [norm, compares, causes, source-of] }
     rule: "Each budget's contributions (CONSTRAINS, norm) in its unit are summed, or taken along the heaviest DEPENDS_ON path when the budget declares `composition: path`, and compared with its limit."
     stated_over_readings: partial
     not_yet_stated: "contribution, unit and limit are quantities (modifiers) and the verdict is arithmetic; compares has no edge of its own here."
     inference: deduced
     edges: [CONSTRAINS, DEPENDS_ON, PROVIDES, CONSUMES]
+    over: [discontinued]
     code:
       - { file: budget.rs, function: budget_report, dedicated: true }
       - { file: budget.rs, function: budget_reports, dedicated: true }
@@ -306,10 +320,10 @@ relations:
 
   allocation_scores:
     name: "allocation cohesion and coupling"
-    reading: { form: composite, composition: "coupling(k1, k2) := Σ strength of causes·necessary(b, a) with located-at(a, k1) ∧ located-at(b, k2)", components: [causes, located-at, flows-to] }
+    reading: { form: composite, composition: "coupling(k1, k2) := Σ strength of causes·necessary(b, a) with located-at(a, k1) ∧ located-at(b, k2)", components: [causes, located-at] }
     rule: "Function-level dependence (DEPENDS_ON between capabilities) lifted to structure through allocation (ALLOCATED_TO): internal weight is cohesion, cross-component weight is coupling."
     stated_over_readings: partial
-    not_yet_stated: "the weights are arithmetic over a strength modifier."
+    not_yet_stated: "the weights are arithmetic over a strength modifier, and DEPENDS_ON is summed whatever its dependency_type, so a data-flow dependency (which reads as flows-to) is counted as causes here."
     inference: deduced
     edges: [ALLOCATED_TO, DEPENDS_ON]
     code:
@@ -321,10 +335,10 @@ relations:
 
   flow_step_order:
     name: "flow step order"
-    reading: { form: composite, composition: "before(c1, c2) := part-of(c1, f) ∧ part-of(c2, f) ∧ order(c1) < order(c2)", components: [part-of, before, causes] }
+    reading: { form: composite, composition: "before(c1, c2) := part-of(c1, f) ∧ part-of(c2, f) ∧ order(c1) < order(c2)", components: [part-of, before] }
     rule: "PART_OF_FLOW (part-of, before) edges carry step_order, which sorts a flow's steps; TRIGGERS between steps is read beside it."
     stated_over_readings: partial
-    not_yet_stated: "order(c) is PART_OF_FLOW.step_order, an edge property; entry and exit points are node properties."
+    not_yet_stated: "order(c) is PART_OF_FLOW.step_order, an edge property; entry and exit points are node properties. flow_report also reads TRIGGERS, for the transitions it lists beside the order; a transition does not order steps, so the composition does not state it."
     inference: deduced
     edges: [PART_OF_FLOW, TRIGGERS]
     code:
@@ -334,27 +348,26 @@ relations:
 
   readiness_gate:
     name: "readiness gate met"
-    reading: { form: composite, composition: "gate_met(i, t) := ∃r: measures(r, t) on ladder k ∧ value(r) ≥ threshold (a norm)", components: [measures, norm, causes, during, about] }
-    rule: "A GATED_ON gate is met when the target's readiness on the gate's ladder reaches its minimum; forecasts come from dated facts."
+    reading: { form: composite, composition: "gate(i, t) := causes[necessary](level(t) ≥ min_level, delivery(i)), where level(t) := max value(r) over measures(r, t) on the gate's ladder, the threshold min_level is a norm, and the gate clears at the earliest epoch e with a forecast f: about(f, t) ∧ during(f, from e) ∧ value(f) ≥ min_level", components: [causes, measures, norm, about, during] }
+    rule: "A GATED_ON gate is met when the target's best measured readiness (HAS_READINESS) on the gate's ladder reaches its minimum; when it does not, the gate clears at the earliest epoch a dated forecast (HAS_TEMPORAL_FACT, VALID_FROM) reaches it."
     stated_over_readings: partial
     not_yet_stated: "the level and the threshold are quantities, and value ≥ threshold is arithmetic."
     inference: deduced
-    edges: [GATED_ON, HAS_TEMPORAL_FACT, VALID_FROM]
+    edges: [GATED_ON, HAS_READINESS, HAS_TEMPORAL_FACT, VALID_FROM]
     code:
       - { file: readiness.rs, function: readiness_report, dedicated: true }
-      - { file: readiness.rs, function: forecast_readiness, dedicated: true }
     counts: "one gate judged"
     cost: bounded
 
   arrival_delta:
     name: "arrival delta"
-    reading: { form: composite, composition: "arrival(e) := for x with norm[modality](during(delivered(x), ≤ e)): compares(plan, delivered(x))", components: [norm, during, compares, same-as] }
+    reading: { form: composite, composition: "arrival(e) := for x with norm[modality](during(delivered(x), ≤ e)): compares(plan(x, e), outcome(x)), where plan(x, e) is read off same-as·snapshot(s, the schedule) ∧ during·belongs-to(s, e), and outcome(x) is delivered, realized or checked by x's type", components: [norm, during, compares, same-as] }
     rule: "For an epoch or release, every item SCHEDULED_FOR it is classified delivered, outstanding, deferred or discontinued against its plan."
     stated_over_readings: partial
     not_yet_stated: "the classification reads statuses (node properties) and compares plan with outcome, which is arithmetic."
     inference: deduced
     edges: [SCHEDULED_FOR, AT_EPOCH, HAS_SNAPSHOT]
-    over: [realized]
+    over: [delivered, realized, checked]
     code:
       - { file: temporal.rs, function: arrival_delta, dedicated: true }
       - { file: temporal.rs, function: live_schedule, dedicated: true }
@@ -365,7 +378,7 @@ relations:
 
   closure:
     name: "closure (five legs)"
-    reading: { form: composite, composition: "closes := each declared leg's share ≥ threshold; the decisions leg is ¬∃d: norm[scheduled](x, e planned) ∧ norm·binds(d, x) ∧ ¬stance(+)(owner, d)", components: [norm, during, stance, instance-of] }
+    reading: { form: composite, composition: "closes := each declared leg's share ≥ threshold; the decisions leg is ¬∃d: norm[scheduled](x, e planned) ∧ norm·binds(d, x) ∧ ¬stance(+)(owner, d)", components: [norm, stance] }
     rule: "A relation over derived relations: traceability (delivered), budgets (budget rollup), seams (coupling at altitude), decisions (scheduled work GOVERNED_BY an open decision) and provenance (quantities with a source), each against the owner's declared threshold, read in a design and a build phase."
     stated_over_readings: partial
     not_yet_stated: "thresholds and shares are arithmetic, and decision status is a node property."

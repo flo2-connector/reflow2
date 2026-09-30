@@ -628,6 +628,11 @@ pub struct ReflowService {
     /// ([`WRITES_FOR_META`]), which is what a gateway multiplexing many people
     /// over one session needs. ATTRIBUTION ONLY: see `reflow2_core::attribution`.
     pub(crate) writes_for: Arc<std::sync::Mutex<Option<String>>>,
+    /// The AGENT this session writes THROUGH, once `writes_for` named one
+    /// (`req:a-write-and-an-approval-record-the-agent-and-the-person-it-acts-for`,
+    /// `reflow2_core::acting`). Fresh per session like `writes_for`. A request
+    /// may name another in `_meta` ([`ACTING_AGENT_META`]). ATTRIBUTION ONLY.
+    pub(crate) acting_agent: Arc<std::sync::Mutex<Option<String>>>,
 }
 
 /// The request `_meta` key naming who ONE request writes for. It overrides the
@@ -637,12 +642,25 @@ pub struct ReflowService {
 /// can only say it this way.
 pub(crate) const WRITES_FOR_META: &str = "reflow2/writes_for";
 
+/// The request `_meta` key naming the AGENT one request writes THROUGH — the
+/// same route [`WRITES_FOR_META`] gives the person, so a gateway that names
+/// the signed-in person on each call names the calling agent the same way
+/// (`reflow2_core::acting`). It overrides the session's declaration for that
+/// request alone. The value is a Contributor id of kind `automated_agent`.
+pub const ACTING_AGENT_META: &str = "reflow2/acting_agent";
+
 tokio::task_local! {
     /// Who the tool call now being served writes for — the request's `_meta`
     /// value, else the session's declaration, else nobody. Set by `call_tool`
     /// around the handler and read by `write_lock`, which is how every write
     /// the handler makes is credited without 115 write sites knowing.
     static WRITES_FOR: Option<String>;
+    /// The agent the tool call now being served writes through — the
+    /// request's `_meta`, else the session's declaration, else the Contributor
+    /// matching the client's handshake name, else nobody. Read by
+    /// `write_lock`, so every authorship and approval the handler records
+    /// carries it without a write site knowing (`reflow2_core::acting`).
+    static ACTING: Option<reflow2_core::acting::Acting>;
 }
 
 /// The graph, held for writing — a write guard that, when it is released,
@@ -656,6 +674,9 @@ tokio::task_local! {
 pub(crate) struct GraphWrite<'a> {
     guard: tokio::sync::RwLockWriteGuard<'a, DesignGraph>,
     writes_for: Option<String>,
+    /// Whether this hold named an agent, so the drop ends it — one call's
+    /// agent must never leak into the next write.
+    acting: bool,
 }
 
 impl std::ops::Deref for GraphWrite<'_> {
@@ -673,21 +694,26 @@ impl std::ops::DerefMut for GraphWrite<'_> {
 
 impl Drop for GraphWrite<'_> {
     fn drop(&mut self) {
-        let Some(who) = self.writes_for.take() else {
-            return;
-        };
-        let touched = self.guard.take_touch_log();
-        if touched.is_empty() {
-            return;
+        if let Some(who) = self.writes_for.take() {
+            let touched = self.guard.take_touch_log();
+            // Credited while the agent is still in force, so the author edges
+            // this draws carry the agent too (`reflow2_core::acting`).
+            //
+            // Checked before the handler ran (`call_tool`), so this fails only
+            // if the call itself removed the contributor. The writes stand;
+            // only the credit is lost, and it is said where an operator will
+            // see it.
+            if !touched.is_empty()
+                && let Err(e) = self.guard.credit_writes(&touched, &who)
+            {
+                eprintln!(
+                    "reflow2: {} write(s) could not be credited to {who}: {e}",
+                    touched.len()
+                );
+            }
         }
-        // Checked before the handler ran (`call_tool`), so this fails only if
-        // the call itself removed the contributor. The writes stand; only the
-        // credit is lost, and it is said where an operator will see it.
-        if let Err(e) = self.guard.credit_writes(&touched, &who) {
-            eprintln!(
-                "reflow2: {} write(s) could not be credited to {who}: {e}",
-                touched.len()
-            );
+        if self.acting {
+            self.guard.end_acting();
         }
     }
 }
@@ -4285,6 +4311,16 @@ pub struct ContributorReq {
 /// What `writes_for` refuses with when the named contributor is not in the
 /// design — said the same way whether the name came from the session or from
 /// one request's `_meta`.
+/// What a write gets when the agent it names cannot be recorded.
+pub(crate) fn acting_agent_refusal(agent: &str, why: &str) -> String {
+    format!(
+        "this call names '{agent}' as the agent it writes through, and that cannot be recorded: \
+         {why} Nothing was written. The agent is named by `writes_for`'s `acting_agent`, or by \
+         the request's `_meta` key `{ACTING_AGENT_META}`; it is attribution only and never signs \
+         anything."
+    )
+}
+
 pub(crate) fn writes_for_refusal(who: &str, why: &str) -> String {
     format!(
         "This call writes for '{who}', and nothing was written: {why} (Named by this session's \
@@ -4302,6 +4338,14 @@ pub struct WritesForReq {
     /// stop crediting this session's writes to anyone.
     #[serde(default)]
     pub contributor_id: Option<String>,
+    /// The AGENT this session writes THROUGH — a `Contributor` of kind
+    /// `automated_agent` (e.g. `who:claude-code`), recorded beside the person
+    /// on every authorship and approval the session records, and drawn
+    /// `ACTS_FOR` them. Attribution only: it never signs anything. It must
+    /// already exist. Omit it to name no agent (a Contributor whose `handle`
+    /// equals this client's name is still found).
+    #[serde(default)]
+    pub acting_agent: Option<String>,
 }
 
 #[derive(Debug, Deserialize, JsonSchema)]
@@ -6171,6 +6215,7 @@ impl ReflowService {
             read_hint: Arc::new(std::sync::Mutex::new(ReadHintCache::default())),
             auto_export: None,
             writes_for: Arc::new(std::sync::Mutex::new(None)),
+            acting_agent: Arc::new(std::sync::Mutex::new(None)),
         }
     }
 
@@ -6310,6 +6355,7 @@ impl ReflowService {
             // Fresh per session: who one client writes for says nothing about
             // the next client to connect.
             writes_for: Arc::new(std::sync::Mutex::new(None)),
+            acting_agent: Arc::new(std::sync::Mutex::new(None)),
         }
     }
 
@@ -6358,11 +6404,22 @@ impl ReflowService {
         // Who this call writes for, when anybody said: recording starts under
         // the lock, so only this hold's writes are in the log it credits.
         let writes_for = WRITES_FOR.try_with(Clone::clone).ok().flatten();
+        let acting = ACTING.try_with(Clone::clone).ok().flatten();
         let mut guard = self.graph.write().await;
         if writes_for.is_some() {
             guard.begin_touch_log();
         }
-        Ok(GraphWrite { guard, writes_for })
+        let named_agent = acting.is_some();
+        if let Some(acting) = acting {
+            // Checked before the handler ran (`acting_agent_precheck`); this
+            // refuses only if the agent vanished in between.
+            guard.begin_acting(acting).map_err(dyno_err)?;
+        }
+        Ok(GraphWrite {
+            guard,
+            writes_for,
+            acting: named_agent,
+        })
     }
 
     /// The read-side sibling of the write tools' `with_loop_hint` (BL-91,
@@ -6737,6 +6794,76 @@ impl ReflowService {
         WRITES_FOR.scope(writes_for, call).await
     }
 
+    /// The agent a call writes THROUGH (`reflow2_core::acting`): the name its
+    /// request carried in `_meta` ([`ACTING_AGENT_META`]), else what this
+    /// session declared with `writes_for`'s `acting_agent`, else the
+    /// `automated_agent` Contributor whose `handle` is the client's handshake
+    /// name — matched, never minted — else nobody. A blank name is nobody.
+    pub async fn effective_acting_agent(
+        &self,
+        from_request: Option<&str>,
+        client_name: Option<&str>,
+    ) -> Option<reflow2_core::acting::Acting> {
+        let named = |v: Option<String>| v.map(|s| s.trim().to_string()).filter(|s| !s.is_empty());
+        if let Some(agent) = named(from_request.map(String::from)) {
+            return Some(reflow2_core::acting::Acting {
+                agent,
+                route: "request".into(),
+            });
+        }
+        if let Some(agent) = named(self.acting_agent.lock().ok().and_then(|a| a.clone())) {
+            return Some(reflow2_core::acting::Acting {
+                agent,
+                route: "session".into(),
+            });
+        }
+        let client = client_name?;
+        self.graph
+            .read()
+            .await
+            .agent_for_client(client)
+            .ok()
+            .flatten()
+            .map(|agent| reflow2_core::acting::Acting {
+                agent,
+                route: "client".into(),
+            })
+    }
+
+    /// The refusal a WRITE gets when it names an acting agent the design does
+    /// not hold, or one that is not an `automated_agent` — decided before the
+    /// handler runs, so nothing is written under a name nobody declared.
+    pub async fn acting_agent_precheck(
+        &self,
+        tool: &str,
+        acting: Option<&reflow2_core::acting::Acting>,
+    ) -> Option<String> {
+        let acting = acting?;
+        if !self.is_write_tool(tool) {
+            return None;
+        }
+        self.graph
+            .read()
+            .await
+            .require_acting_agent(&acting.agent)
+            .err()
+            .map(|e| acting_agent_refusal(&acting.agent, &e.to_string()))
+    }
+
+    /// Run `call` writing for `writes_for` AND through `acting` — what
+    /// `call_tool` does around every handler. Public so the recording can be
+    /// driven without an rmcp peer.
+    pub async fn serving_as<T>(
+        &self,
+        writes_for: Option<String>,
+        acting: Option<reflow2_core::acting::Acting>,
+        call: impl std::future::Future<Output = T>,
+    ) -> T {
+        ACTING
+            .scope(acting, WRITES_FOR.scope(writes_for, call))
+            .await
+    }
+
     fn is_write_tool(&self, tool: &str) -> bool {
         self.write_tools.contains(tool)
     }
@@ -6897,12 +7024,27 @@ impl ServerHandler for ReflowService {
         // own `_meta`, else what this session declared, else nobody.
         let writes_for =
             self.effective_writes_for(context.meta.get(WRITES_FOR_META).and_then(|v| v.as_str()));
+        // AND WHICH AGENT IT WRITES THROUGH (`reflow2_core::acting`): the
+        // request's own `_meta`, else the session's declaration, else the
+        // Contributor matching the name this client gave at handshake.
+        let acting = self
+            .effective_acting_agent(
+                context.meta.get(ACTING_AGENT_META).and_then(|v| v.as_str()),
+                Some(client.as_str()),
+            )
+            .await;
         let unknown_writer = match &echo {
             Err(refusal) => Some(refusal.clone()),
-            Ok(_) => {
-                self.writes_for_precheck(&tool_name, writes_for.as_deref())
-                    .await
-            }
+            Ok(_) => match self
+                .writes_for_precheck(&tool_name, writes_for.as_deref())
+                .await
+            {
+                Some(refusal) => Some(refusal),
+                None => {
+                    self.acting_agent_precheck(&tool_name, acting.as_ref())
+                        .await
+                }
+            },
         };
         let tcc = rmcp::handler::server::tool::ToolCallContext::new(self, request, context);
         let answer = match unknown_writer {
@@ -6910,8 +7052,11 @@ impl ServerHandler for ReflowService {
                 CallToolResult::error(vec![ContentBlock::text(refusal)]),
             )),
             None => {
-                WRITES_FOR
-                    .scope(writes_for, self.tool_router.call(tcc))
+                ACTING
+                    .scope(
+                        acting,
+                        WRITES_FOR.scope(writes_for, self.tool_router.call(tcc)),
+                    )
                     .await
             }
         };

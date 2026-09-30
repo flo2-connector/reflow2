@@ -105,6 +105,13 @@ pub struct DesignGraph {
     /// `None` means nobody is recording, which is every write that has not
     /// asked, so the default costs nothing. See `crate::attribution`.
     pub(crate) touch_log: Option<Vec<(String, String)>>,
+    /// The automated agent the current write goes THROUGH, when a session or
+    /// request named one — stamped onto every authorship and approval the write
+    /// records, beside the contributor it credits
+    /// (`req:a-write-and-an-approval-record-the-agent-and-the-person-it-acts-for`).
+    /// `None` is every write that named no agent, so the default costs nothing
+    /// and records nothing. See `crate::acting`.
+    pub(crate) acting: Option<crate::acting::Acting>,
     /// What opening this store repaired among the relations it holds twice
     /// (`crate::twins`). Kept so `loop_status` can say it: a repair on open
     /// that went only to a startup log would be the silent kind.
@@ -334,6 +341,7 @@ impl DesignGraph {
             store_path: None,
             derived: Default::default(),
             touch_log: None,
+            acting: None,
             repaired_on_open: Default::default(),
         })
     }
@@ -447,6 +455,7 @@ impl DesignGraph {
             store_path: Some(path.to_string()),
             derived: Default::default(),
             touch_log: None,
+            acting: None,
             repaired_on_open: Default::default(),
         };
         // Legacy AUTHORED_BY edges (single `role`) move to the set shape on
@@ -970,6 +979,31 @@ impl DesignGraph {
     /// nodes must already exist — a dangling edge is refused before anything is
     /// written, never stored and reported later.
     pub fn create_edge(
+        &mut self,
+        edge_type: &str,
+        from_type: &str,
+        from_id: &str,
+        to_type: &str,
+        to_id: &str,
+        props: impl Into<std::collections::HashMap<String, Value>>,
+    ) -> Result<StoredEdge, DynoError> {
+        let mut props = props.into();
+        // AN AUTHORSHIP WRITTEN THROUGH AN AGENT (`crate::acting`): the roles
+        // an AUTHORED_BY write newly asserts are stamped with the agent the
+        // write goes through. The typed `authored_by` stamps its one role and
+        // comes in below this, at `create_edge_unstamped`.
+        let through = self.stamp_through_acting_agent(edge_type, from_id, to_id, &mut props)?;
+        let stored =
+            self.create_edge_unstamped(edge_type, from_type, from_id, to_type, to_id, props)?;
+        if let Some(acting) = through {
+            self.record_acts_for(&acting, to_id)?;
+        }
+        Ok(stored)
+    }
+
+    /// [`Self::create_edge`] without the acting-agent stamp — for the typed
+    /// [`Self::authored_by`], which stamps the one role it writes itself.
+    pub(crate) fn create_edge_unstamped(
         &mut self,
         edge_type: &str,
         from_type: &str,
@@ -2416,14 +2450,30 @@ impl DesignGraph {
         if let Some(at) = acted_at {
             props.insert(role_date_key(role).into(), Value::String(at.to_string()));
         }
-        self.create_edge(
+        // THE AGENT THIS ACT WENT THROUGH, when the write named one — added to
+        // the role's `*_via` SET, beside the contributor it credits. Never the
+        // contributor itself: an agent recorded as its own author acted for
+        // nobody. Absent when no agent was known, and a read says so.
+        let through = self
+            .acting
+            .as_ref()
+            .filter(|a| a.agent != contributor_id)
+            .cloned();
+        if let Some(acting) = &through {
+            stamp_via(&mut props, role, &acting.agent);
+        }
+        let stored = self.create_edge_unstamped(
             edge::AUTHORED_BY,
             from_type,
             from_id,
             node::CONTRIBUTOR,
             contributor_id,
             props,
-        )
+        )?;
+        if let Some(acting) = through {
+            self.record_acts_for(&acting, contributor_id)?;
+        }
+        Ok(stored)
     }
 
     /// Rewrite every legacy AUTHORED_BY edge — single `role` (+ `acted_at`) —
@@ -2693,6 +2743,22 @@ impl DesignGraph {
 pub const AUTHORED_ROLES: [&str; 3] = ["author", "reviewer", "approver"];
 
 /// The property that dates one role's act.
+/// The `*_via` key beside a role's date: which agent(s) recorded that act
+/// (`crate::acting`).
+pub fn role_via_key(role: &str) -> &'static str {
+    match role {
+        "reviewer" => "reviewed_via",
+        "approver" => "approved_via",
+        _ => "authored_via",
+    }
+}
+
+/// The agents an AUTHORED_BY edge says `role` was recorded through. Empty
+/// means no agent was known for that act — a read must say so, never guess.
+pub fn role_via(edge: &StoredEdge, role: &str) -> Vec<String> {
+    list_of_strings(edge.properties.get(role_via_key(role)))
+}
+
 pub fn role_date_key(role: &str) -> &'static str {
     match role {
         "reviewer" => "reviewed_at",
@@ -2701,7 +2767,7 @@ pub fn role_date_key(role: &str) -> &'static str {
     }
 }
 
-fn list_of_strings(v: Option<&Value>) -> Vec<String> {
+pub(crate) fn list_of_strings(v: Option<&Value>) -> Vec<String> {
     match v {
         Some(Value::List(items)) => items
             .iter()
@@ -2709,6 +2775,28 @@ fn list_of_strings(v: Option<&Value>) -> Vec<String> {
             .collect(),
         _ => Vec::new(),
     }
+}
+
+/// Add `agent` to the `*_via` set of `role` in an AUTHORED_BY property map.
+pub(crate) fn stamp_via(
+    props: &mut std::collections::HashMap<String, Value>,
+    role: &str,
+    agent: &str,
+) {
+    let key = role_via_key(role);
+    let mut via = list_of_strings(props.get(key));
+    if !via.iter().any(|v| v == agent) {
+        via.push(agent.to_string());
+    }
+    props.insert(key.into(), via_value(via));
+}
+
+/// A `*_via` agent set in canonical (sorted, deduplicated) order, so the
+/// export does not churn on the order two agents happened to write in.
+fn via_value(mut via: Vec<String>) -> Value {
+    via.sort();
+    via.dedup();
+    Value::List(via.into_iter().map(Value::String).collect())
 }
 
 fn roles_value(mut roles: Vec<String>) -> Value {
