@@ -154,7 +154,8 @@ async fn put_batch(
             .map(|(i, g)| {
                 let mut row = json!({ "gap": g, "answers": [] });
                 if let Some(a) = answers {
-                    row["answers"] = json!([{ "id": a[i], "text": format!("Question {} put plainly?", i + 1) }]);
+                    row["answers"] =
+                        json!([{ "id": a[i], "text": format!("Question {} put plainly?", i + 1) }]);
                 }
                 if let Some(ev) = evidence.get(i) {
                     row["evidence"] = json!(ev);
@@ -229,9 +230,14 @@ async fn an_addressee_who_is_not_a_contributor_is_refused_and_nothing_is_recorde
 async fn answer_question_records_the_answerer_and_draws_answers_in_the_same_call() {
     let c = seeded().await;
     let g = gaps(&c).await;
-    let served = put_batch(&c, &g[..1], &[], json!({ "asked_of": "who:owner", "batch": "round-1" }))
-        .await
-        .expect("put");
+    let served = put_batch(
+        &c,
+        &g[..1],
+        &[],
+        json!({ "asked_of": "who:owner", "batch": "round-1" }),
+    )
+    .await
+    .expect("put");
     let qid = question_ids(&served).remove(0);
 
     let reply = ok(
@@ -246,7 +252,10 @@ async fn answer_question_records_the_answerer_and_draws_answers_in_the_same_call
 
     let p = props(&c, &qid).await;
     assert_eq!(p["status"], "answered");
-    assert_eq!(p["answered_by"], "who:owner", "who answered is on the record: {p}");
+    assert_eq!(
+        p["answered_by"], "who:owner",
+        "who answered is on the record: {p}"
+    );
     assert_eq!(p["answered_at"], "2026-09-29");
 
     // The ANSWERS edge was drawn by that one call: the loop counts it.
@@ -297,7 +306,9 @@ async fn open_questions_for_one_addressee_returns_their_batch_in_order_with_its_
     .await
     .expect("put to the owner");
     // A third question put to nobody by name.
-    put_batch(&c, &g[2..3], &[], json!({})).await.expect("put unaddressed");
+    put_batch(&c, &g[2..3], &[], json!({}))
+        .await
+        .expect("put unaddressed");
 
     let mine = ok(&c, "open_questions", json!({ "asked_of": "who:owner" })).await;
     let items = mine["items"].as_array().unwrap_or_else(|| panic!("{mine}"));
@@ -314,7 +325,10 @@ async fn open_questions_for_one_addressee_returns_their_batch_in_order_with_its_
         .iter()
         .map(|e| e["id"].as_str().unwrap())
         .collect();
-    assert!(ev.contains(&"fact:sized-twice"), "the attached finding: {mine}");
+    assert!(
+        ev.contains(&"fact:sized-twice"),
+        "the attached finding: {mine}"
+    );
     assert!(ev.contains(&"proj:p"), "what the gap was about: {mine}");
     let fact = items[0]["evidence"]
         .as_array()
@@ -402,17 +416,30 @@ async fn a_new_answer_naming_nobody_does_not_inherit_the_last_answerer() {
 async fn loop_status_for_the_addressee_lists_the_questions_put_to_them() {
     let c = seeded().await;
     let g = gaps(&c).await;
-    put_batch(&c, &g[..2], &[], json!({ "asked_of": "who:owner", "batch": "round-1" }))
-        .await
-        .expect("put");
+    put_batch(
+        &c,
+        &g[..2],
+        &[],
+        json!({ "asked_of": "who:owner", "batch": "round-1" }),
+    )
+    .await
+    .expect("put");
     let ls = ok(&c, "loop_status", json!({ "contributor_id": "who:owner" })).await;
     let rows = ls["questions_put_to_them"]
         .as_array()
         .unwrap_or_else(|| panic!("the per-person read lists them: {ls}"));
     assert_eq!(rows.len(), 2, "{ls}");
-    assert_eq!(ls["clean"], false, "questions waiting on them are owed by them: {ls}");
+    assert_eq!(
+        ls["clean"], false,
+        "questions waiting on them are owed by them: {ls}"
+    );
 
-    let other = ok(&c, "loop_status", json!({ "contributor_id": "who:designer" })).await;
+    let other = ok(
+        &c,
+        "loop_status",
+        json!({ "contributor_id": "who:designer" }),
+    )
+    .await;
     assert_eq!(
         other["questions_put_to_them"].as_array().map(Vec::len),
         Some(0),

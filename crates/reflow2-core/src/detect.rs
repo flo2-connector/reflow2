@@ -1232,6 +1232,10 @@ pub struct AskedRecord {
     /// answered question only, as `null` when nobody said who answered.
     #[serde(skip_serializing_if = "AskedRecord::no_answer_yet")]
     pub answered_by: Option<Option<String>>,
+    /// The agent the answer was recorded THROUGH, when one was named for the
+    /// write (the ACTS_FOR rung) — beside the answerer, never instead of them.
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub answered_via: Option<String>,
     /// The batch it was put in, and its number there.
     #[serde(skip_serializing_if = "Option::is_none")]
     pub batch: Option<String>,
@@ -1960,6 +1964,7 @@ impl DesignGraph {
                     .set("answer", answer)
                     .set_opt("answered_by", kept("answered_by"))
                     .set_opt("answered_at", kept("answered_at"))
+                    .set_opt("answered_via", kept("answered_via"))
             }
             _ => props.set("status", "asked"),
         };
@@ -1969,7 +1974,9 @@ impl DesignGraph {
         // in line otherwise — never invented without a batch to number in.
         props = props.set_opt(
             "asked_of",
-            opts.asked_of.map(crate::foundation::core::Value::from).or_else(|| kept("asked_of")),
+            opts.asked_of
+                .map(crate::foundation::core::Value::from)
+                .or_else(|| kept("asked_of")),
         );
         let old_batch = kept("batch").and_then(|v| v.as_str().map(str::to_string));
         let batch = opts.batch.map(str::to_string).or(old_batch.clone());
@@ -1978,7 +1985,9 @@ impl DesignGraph {
                 (Some(p), Some(ob)) if ob == b => p,
                 _ => self.next_batch_position(b)?,
             };
-            props = props.set("batch", b.as_str()).set("batch_position", position);
+            props = props
+                .set("batch", b.as_str())
+                .set("batch_position", position);
         }
         self.create_node(node::QUESTION, &question_id, props)?;
 
@@ -2066,15 +2075,24 @@ impl DesignGraph {
         let Some(existing) = self.get_node(node::QUESTION, &question_id)? else {
             return Ok(false);
         };
+        // THE AGENT THE ANSWER WENT THROUGH, from the ACTS_FOR rung
+        // (`crate::acting`): recorded beside the answerer the way an approval
+        // records `approved_via`, never in their place, and never for an
+        // agent answering in its own name.
+        let via = self
+            .acting()
+            .filter(|a| by.answered_by != Some(a.agent.as_str()))
+            .cloned();
         let mut props = crate::nodes::Props::new()
             .set("status", "answered")
             .set("answer", answer)
             .set_opt("answered_by", by.answered_by)
-            .set_opt("answered_at", by.answered_at);
+            .set_opt("answered_at", by.answered_at)
+            .set_opt("answered_via", via.as_ref().map(|a| a.agent.as_str()));
         for (k, v) in &existing.properties {
             if !matches!(
                 k.as_str(),
-                "status" | "answer" | "answered_by" | "answered_at"
+                "status" | "answer" | "answered_by" | "answered_at" | "answered_via"
             ) {
                 props = props.set(k, v.clone());
             }
@@ -2082,6 +2100,9 @@ impl DesignGraph {
         self.create_node(node::QUESTION, &question_id, props)?;
         if let Some((record_type, record_id)) = by.record {
             self.answers(record_type, record_id, &question_id, by.note)?;
+        }
+        if let (Some(acting), Some(who)) = (&via, by.answered_by) {
+            self.record_acts_for(acting, who)?;
         }
         Ok(true)
     }
@@ -2299,6 +2320,7 @@ impl DesignGraph {
                     .unwrap_or(false),
                 answer: get("answer"),
                 answered_by: (status == "answered").then(|| opt("answered_by")),
+                answered_via: opt("answered_via").filter(|_| status == "answered"),
                 status,
                 asked_of: addressee,
                 batch: opt("batch"),
@@ -2310,12 +2332,18 @@ impl DesignGraph {
         if asked_of.is_some() {
             // The batch as it was put: by batch, then number; unbatched last.
             out.sort_by(|a, b| {
-                (a.batch.is_none(), &a.batch, a.batch_position, &a.question_id).cmp(&(
-                    b.batch.is_none(),
-                    &b.batch,
-                    b.batch_position,
-                    &b.question_id,
-                ))
+                (
+                    a.batch.is_none(),
+                    &a.batch,
+                    a.batch_position,
+                    &a.question_id,
+                )
+                    .cmp(&(
+                        b.batch.is_none(),
+                        &b.batch,
+                        b.batch_position,
+                        &b.question_id,
+                    ))
             });
         } else {
             out.sort_by(|a, b| a.question_id.cmp(&b.question_id));

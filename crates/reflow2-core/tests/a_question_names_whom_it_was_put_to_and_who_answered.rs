@@ -27,7 +27,9 @@ fn design() -> (DesignGraph, Vec<(String, Vec<String>)>) {
     g.create_node(
         node::CONTRIBUTOR,
         "who:delegate",
-        Props::new().set("name", "The delegate").set("kind", "person"),
+        Props::new()
+            .set("name", "The delegate")
+            .set("kind", "person"),
     )
     .unwrap();
     g.add_decision("dec:became", "What it became", "Thing x is done so.", None)
@@ -48,7 +50,11 @@ fn prop(g: &DesignGraph, id: &str, key: &str) -> Option<String> {
     g.get_node(node::QUESTION, id)
         .unwrap()
         .and_then(|n| n.properties.get(key).cloned())
-        .and_then(|v| v.as_str().map(str::to_string).or(v.as_i64().map(|i| i.to_string())))
+        .and_then(|v| {
+            v.as_str()
+                .map(str::to_string)
+                .or(v.as_i64().map(|i| i.to_string()))
+        })
 }
 
 fn ask(
@@ -190,10 +196,18 @@ fn one_persons_open_questions_read_as_their_batch_with_evidence_links() {
 
     let mine = g.open_questions_for(Some("who:owner")).unwrap();
     let ids: Vec<&str> = mine.iter().map(|q| q.question_id.as_str()).collect();
-    assert_eq!(ids, vec![q2.as_str(), q1.as_str()], "batch order, not id order");
+    assert_eq!(
+        ids,
+        vec![q2.as_str(), q1.as_str()],
+        "batch order, not id order"
+    );
     let links: Vec<&str> = mine[1].evidence.iter().map(|e| e.id.as_str()).collect();
     assert!(links.contains(&"fact:measured"), "{links:?}");
-    let fact = mine[1].evidence.iter().find(|e| e.id == "fact:measured").unwrap();
+    let fact = mine[1]
+        .evidence
+        .iter()
+        .find(|e| e.id == "fact:measured")
+        .unwrap();
     assert_eq!(fact.node_type, "TemporalFact");
     assert_eq!(fact.name, "Half what was assumed");
 
@@ -219,7 +233,11 @@ fn loop_status_for_a_person_lists_the_questions_put_to_them_and_is_not_clean() {
     let ls = g.loop_status_for(Some("who:owner")).unwrap();
     assert_eq!(ls.questions_put_to_them.len(), 1);
     assert!(!ls.clean);
-    assert!(ls.next.iter().any(|l| l.contains("put to who:owner by name")));
+    assert!(
+        ls.next
+            .iter()
+            .any(|l| l.contains("put to who:owner by name"))
+    );
 
     let other = g.loop_status_for(Some("who:delegate")).unwrap();
     assert!(other.questions_put_to_them.is_empty());
@@ -227,4 +245,47 @@ fn loop_status_for_a_person_lists_the_questions_put_to_them_and_is_not_clean() {
         g.loop_status().unwrap().questions_put_to_them.is_empty(),
         "unscoped, nothing is attributed to anyone"
     );
+}
+
+#[test]
+fn an_answer_recorded_through_an_agent_names_the_agent_beside_the_answerer() {
+    let (mut g, gaps) = design();
+    g.create_node(
+        node::CONTRIBUTOR,
+        "who:designer",
+        Props::new()
+            .set("name", "The designer agent")
+            .set("kind", "automated_agent"),
+    )
+    .unwrap();
+    let q = ask(&mut g, &gaps[0], Some("who:owner"), None, &[]);
+    g.begin_acting(reflow2_core::acting::Acting {
+        agent: "who:designer".into(),
+        route: "session".into(),
+    })
+    .unwrap();
+    g.answer_question_by(
+        &q,
+        "Relayed: yes.",
+        Answering {
+            answered_by: Some("who:owner"),
+            ..Default::default()
+        },
+    )
+    .unwrap();
+    g.end_acting();
+    assert_eq!(prop(&g, &q, "answered_by").as_deref(), Some("who:owner"));
+    assert_eq!(
+        prop(&g, &q, "answered_via").as_deref(),
+        Some("who:designer")
+    );
+    assert!(
+        g.outgoing("who:designer", Some(edge::ACTS_FOR))
+            .unwrap()
+            .iter()
+            .any(|e| e.to_id == "who:owner"),
+        "the agent is drawn acting for the answerer"
+    );
+    let row = g.open_questions().unwrap().remove(0);
+    assert_eq!(row.answered_via.as_deref(), Some("who:designer"));
 }

@@ -1393,7 +1393,12 @@ async fn asking_a_gap_records_the_question_it_asked() {
         .collect();
 
     // Nothing recorded before the question is put.
-    assert!(jl!(s.open_questions(Parameters(OpenQuestionsReq::default()))).as_array().unwrap().is_empty());
+    assert!(
+        jl!(s.open_questions(Parameters(OpenQuestionsReq::default())))
+            .as_array()
+            .unwrap()
+            .is_empty()
+    );
 
     let prep = j!(s.gap_to_prompt(Parameters(GapToPromptReq {
         gap: obj(&gap),
@@ -1466,7 +1471,10 @@ async fn asking_a_gap_records_the_question_it_asked() {
         acted_at: None,
     })));
     assert!(
-        jl!(s.open_questions(Parameters(OpenQuestionsReq::default()))).as_array().unwrap().is_empty(),
+        jl!(s.open_questions(Parameters(OpenQuestionsReq::default())))
+            .as_array()
+            .unwrap()
+            .is_empty(),
         "a settled gap leaves nothing outstanding"
     );
 
@@ -2493,7 +2501,13 @@ async fn an_asked_question_can_be_withdrawn() {
         batch: None,
         evidence: vec![],
     })));
-    assert_eq!(jl!(s.open_questions(Parameters(OpenQuestionsReq::default()))).as_array().unwrap().len(), 1);
+    assert_eq!(
+        jl!(s.open_questions(Parameters(OpenQuestionsReq::default())))
+            .as_array()
+            .unwrap()
+            .len(),
+        1
+    );
 
     // Withdraw it — the question leaves the open list.
     let withdrawn = j!(s.withdraw_question(Parameters(WithdrawQuestionReq {
@@ -2505,7 +2519,10 @@ async fn an_asked_question_can_be_withdrawn() {
         "withdraw reports success: {withdrawn}"
     );
     assert!(
-        jl!(s.open_questions(Parameters(OpenQuestionsReq::default()))).as_array().unwrap().is_empty(),
+        jl!(s.open_questions(Parameters(OpenQuestionsReq::default())))
+            .as_array()
+            .unwrap()
+            .is_empty(),
         "the withdrawn question is off the open list"
     );
 }

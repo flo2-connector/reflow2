@@ -377,7 +377,7 @@ description, which an agent sees in the tool schema; this table is for a person 
 
 | tool | | what it does |
 |---|---|---|
-| `answer_question` | **write** | Record what the user said in reply to a question, closing it. |
+| `answer_question` | **write** | Record what someone said in reply to a question, closing it — and in the same call WHO said it (`answered_by`, a Contributor: the person it was put to, their delegate, or the chat user) and the node that now holds it (`record`, linked for you, so no second call). |
 | `gap_to_prompt` | **write** | Phrase a gap as a plain question via the ambient agent. |
 | `gaps_to_prompts` | **write** | Phrase MANY gaps as plain questions in one handshake — the bulk form of gap_to_prompt, and the read half of the detect→ask→acknowledge round trip. |
 | `open_questions` | read | Questions already put to the user that still bear on something open, with the wording they saw |

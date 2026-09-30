@@ -43,6 +43,22 @@
           "null"
         ]
       },
+      "asked_of": {
+        "default": null,
+        "description": "The `Contributor` this question is PUT TO by name — an owner outside\nthe chat, a delegated owner. Recorded as the Question's `asked_of`, so\n`open_questions(asked_of)` and `loop_status(contributor_id)` can hand it\nto them. Omitted: put to nobody by name, and readers say so. Refused\nunless it names a Contributor. Read on the serve pass.",
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "batch": {
+        "default": null,
+        "description": "The batch this question travels in (e.g. `round-2`). It is numbered\nnext in that batch, so a relay quoting \"Q4\" resolves to the node.",
+        "type": [
+          "string",
+          "null"
+        ]
+      },
       "echo": {
         "default": "receipt",
         "description": "What the reply carries. `receipt` (the default) names the node, echoes each stored value of at most 200 characters, gives longer ones by size, and names the snapshot that keeps anything a revise replaced. `node` returns the whole stored node and every prior value.",
@@ -51,6 +67,14 @@
           "node"
         ],
         "type": "string"
+      },
+      "evidence": {
+        "default": [],
+        "description": "Node ids of the evidence the question rests on — a finding, a file, a\ncheck — drawn as `ASKS_ABOUT` beside the gap's own nodes and handed to\nthe addressee as links to read, never as a summary to trust. Each must\nresolve.",
+        "items": {
+          "type": "string"
+        },
+        "type": "array"
       },
       "gap": {
         "additionalProperties": true,
