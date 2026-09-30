@@ -2552,6 +2552,16 @@ pub struct CreateNodeReq {
     /// which is exactly when a lost update can happen.
     #[serde(default)]
     pub expected_content_hash: Option<String>,
+    /// The Contributor whose word this is — REQUIRED when the write SETTLES
+    /// intent (a Decision accepted or deferred, a Requirement off `proposed`,
+    /// a DesignRule's `enforced` stated), exactly as the typed constructors
+    /// require it; unsigned, such a write is refused. Drawn as AUTHORED_BY
+    /// role=approver.
+    #[serde(default)]
+    pub approver: Option<String>,
+    /// When the approver acted, as a plain date. Stored on the approver edge.
+    #[serde(default)]
+    pub acted_at: Option<String>,
 }
 
 #[derive(Debug, Deserialize, JsonSchema)]
@@ -3321,6 +3331,13 @@ pub struct NodeSpecReq {
     #[serde(alias = "properties")]
     #[serde(default)]
     pub props: Option<JsonObject>,
+    /// This node's approver — required when THIS node settles intent, as on
+    /// `create_node`. Drawn as AUTHORED_BY role=approver.
+    #[serde(default)]
+    pub approver: Option<String>,
+    /// When this node's approver acted, as a plain date.
+    #[serde(default)]
+    pub acted_at: Option<String>,
 }
 
 #[derive(Debug, Deserialize, JsonSchema)]

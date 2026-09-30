@@ -1339,6 +1339,32 @@ impl ReflowService {
                 None,
             );
         }
+        // A text edit is not a door to settled intent (2026-09-29): moving a
+        // node's settling value — a Requirement's `status` is text — goes
+        // through the setter that carries the owner's word, asked of the same
+        // core table every writer asks.
+        {
+            let mut after = prior.properties.clone();
+            after.insert(req.field.clone(), reflow2_core::Value::String(next.clone()));
+            if let Some(settle) = reflow2_core::intent::newly_settles(
+                &node_type,
+                &req.node_id,
+                Some(&prior.properties),
+                &after,
+            ) {
+                return Err(McpError::invalid_params(
+                    format!(
+                        "`replace_text` will not settle intent: this edit would make it read \
+                         {}, which is the owner's act and carries their name. Use \
+                         set_requirement_status / set_decision_status with `approver` (the \
+                         settle is declared on those tools under _meta[\"reflow2/settles\"]). \
+                         Nothing was written.",
+                        settle.describe()
+                    ),
+                    None,
+                ));
+            }
+        }
         let stored = g
             .upsert_node(
                 &node_type,
@@ -3074,8 +3100,8 @@ impl ReflowService {
                        detect_defects's `swept.parked`, instead of filing a deliberate state as a defect. \
                        Measured cost of not having this: a fleet watched defects go 88 -> 97 across ten CORRECT \
                        writes, so the right action degraded the instrument and a later reader had an incentive \
-                       to stop registering documents at all. The ruling must be an ACCEPTED Decision — a \
-                       `proposed` one is somebody thinking out loud, and a musing must not suppress a finding. \
+                       to stop registering documents at all. The ruling must be an ACCEPTED Decision: a \
+                       proposed one is recorded but `parks` says it parks nothing yet; a non-Decision is refused. \
                        CARRIES `settled_question_prose` WHEN YOU LINK TO AN ALREADY-ACCEPTED DECISION AND THIS \
                        NODE'S OWN PROSE STILL SAYS THE QUESTION IS OPEN — the other moment that divergence gets \
                        created, and the one a hook on the status setter alone would miss. It quotes the prose \
@@ -3439,6 +3465,35 @@ impl ReflowService {
             &req.from_id,
             "from_type",
         )?;
+        // WHETHER A `parks` RULING TAKES EFFECT is asked of the one predicate
+        // every parks reader uses, BEFORE the edge is stored. Until 2026-09-29
+        // only the readers asked, so a ruling that parks nothing was stored and
+        // reported as success
+        // (fact:root-cause-a-parks-ruling-is-validated-only-by-its-readers-and-the-writer-reports-success-either-way-2026-09-29).
+        let parks = if req.ruling.as_deref() == Some("parks") {
+            Some(g.parking_ruling_effect(&req.to_id).map_err(dyno_err)?)
+        } else {
+            None
+        };
+        if let Some(reflow2_core::heal::ParkingEffect::Never { found }) = &parks {
+            let what = found
+                .as_deref()
+                .map(|t| format!("a {t}"))
+                .unwrap_or_else(|| "no node at all".to_string());
+            return Err(McpError::invalid_params(
+                format!(
+                    "`governed_by` will not record `{}` parked under `{}`: that id holds {what}, \
+                     and only an ACCEPTED Decision parks anything — every reader of a parks \
+                     ruling asks exactly that, so this edge would be a claim none of them ever \
+                     honours. Point `ruling: parks` at the Decision that says why the state is \
+                     deliberate (settle it with set_decision_status and `approver`), or leave \
+                     `ruling` out to record that this node is simply shaped by `{}`. Nothing \
+                     was written.",
+                    req.from_id, req.to_id, req.to_id
+                ),
+                None,
+            ));
+        }
         let edge = EdgeDto::from(
             g.governed_by(
                 &from_type,
@@ -3471,11 +3526,14 @@ impl ReflowService {
         } else {
             Vec::new()
         };
-        ok_json(with_settled_question_prose(
-            serde_json::to_value(edge).map_err(ser_err)?,
-            &req.to_id,
-            &hits,
-        ))
+        let mut reply = serde_json::to_value(edge).map_err(ser_err)?;
+        if let (Some(effect), Some(obj)) = (parks, reply.as_object_mut()) {
+            obj.insert(
+                "parks".into(),
+                parks_block(&req.from_id, &req.to_id, &effect),
+            );
+        }
+        ok_json(with_settled_question_prose(reply, &req.to_id, &hits))
     }
 
     /// The body of [`Self::move_component`] over a graph the caller already holds: the
@@ -3588,5 +3646,36 @@ impl ReflowService {
             g.move_component(&req.to_id, &req.from_id)
                 .map_err(dyno_err)?,
         )
+    }
+}
+
+/// What a stored `parks` ruling does, said on the write that stores it.
+pub(crate) fn parks_block(
+    node: &str,
+    ruling: &str,
+    effect: &reflow2_core::heal::ParkingEffect,
+) -> JsonValue {
+    use reflow2_core::heal::ParkingEffect;
+    match effect {
+        ParkingEffect::InForce => serde_json::json!({
+            "in_force": true,
+            "ruling_status": "accepted",
+        }),
+        ParkingEffect::NotYet { status } => serde_json::json!({
+            "in_force": false,
+            "ruling_status": status,
+            "note": format!(
+                "Recorded, and it PARKS NOTHING YET: `{ruling}` is {}, and only an ACCEPTED \
+                 Decision parks — a musing must not suppress a finding. Every finding that reads \
+                 parking keeps reporting `{node}` until the ruling is accepted; settling it is the \
+                 owner's act (set_decision_status with `approver`).",
+                status
+                    .as_deref()
+                    .map(|s| format!("`{s}`"))
+                    .unwrap_or_else(|| "a Decision with no status".to_string())
+            ),
+        }),
+        // Refused before the write; never reached with a stored edge.
+        ParkingEffect::Never { .. } => serde_json::json!({ "in_force": false }),
     }
 }

@@ -179,6 +179,21 @@ impl ReflowService {
         // AGENTS.md's "compiling is not the finish line" earning its place
         // again.
         let prior = g.get_node(&req.node_type, &req.id).ok().flatten();
+        // THE OWNER'S WORD, AT THE GENERIC DOOR TOO (2026-09-29). A settling
+        // value inside `props` is held to the same rule as the typed
+        // constructors, asked of the core's one table, BEFORE anything is
+        // written — so a refusal leaves no half-written node.
+        crate::tools::capture::approver_must_exist(&g, req.approver.as_deref(), "create_node")?;
+        if let Some(settle) =
+            generic_settle(&req.node_type, &req.id, prior.as_ref(), &props, &unset)
+        {
+            crate::settles::gate(
+                "create_node",
+                true,
+                req.approver.as_deref(),
+                &format!("a settle ({})", settle.describe()),
+            )?;
+        }
         // COMPARE-AND-SWAP when the caller stated what they read, plain upsert
         // when they did not. The refusal is the point: `revision` already told
         // the LOSER of a collision afterwards and told the winner nothing, and
@@ -197,6 +212,15 @@ impl ReflowService {
         };
         match written {
             Ok((n, unset)) => {
+                if reflow2_core::intent::settles_intent(&req.node_type, &n.properties) {
+                    crate::tools::capture::sign_as_approver(
+                        &mut g,
+                        &req.node_type,
+                        &req.id,
+                        req.approver.as_deref(),
+                        req.acted_at.as_deref(),
+                    )?;
+                }
                 let mut dto = NodeDto::from(n);
                 dto.undeclared = undeclared;
                 dto.unset = unset;
@@ -242,7 +266,9 @@ impl ReflowService {
         Parameters(req): Parameters<CreateNodesReq>,
     ) -> Result<CallToolResult, McpError> {
         let mut specs = Vec::with_capacity(req.nodes.len());
+        let mut signers = Vec::with_capacity(req.nodes.len());
         for n in req.nodes {
+            signers.push((n.approver, n.acted_at));
             specs.push(BulkNodeSpec {
                 node_type: n.node_type,
                 id: n.id,
@@ -250,9 +276,63 @@ impl ReflowService {
             });
         }
         let mut g = self.write_lock().await?;
+        // Each item is held to the rule create_node is held to, and the batch's
+        // own all-or-nothing shape: every unsigned settle is named at once and
+        // NOTHING is written (2026-09-29).
+        let mut refusals = Vec::new();
+        for (i, (spec, (approver, _))) in specs.iter().zip(&signers).enumerate() {
+            if let Err(e) =
+                crate::tools::capture::approver_must_exist(&g, approver.as_deref(), "create_nodes")
+            {
+                refusals.push(format!("nodes[{i}]: {}", e.message));
+                continue;
+            }
+            let prior = g.get_node(&spec.node_type, &spec.id).ok().flatten();
+            if let Some(settle) =
+                generic_settle(&spec.node_type, &spec.id, prior.as_ref(), &spec.props, &[])
+                && let Err(e) = crate::settles::gate(
+                    "create_nodes",
+                    true,
+                    approver.as_deref(),
+                    &format!("a settle ({})", settle.describe()),
+                )
+            {
+                refusals.push(format!("nodes[{i}]: {}", e.message));
+            }
+        }
+        if !refusals.is_empty() {
+            return Err(McpError::invalid_params(
+                format!(
+                    "{} item(s) would settle intent with nobody's name on them, and NOTHING                      was written:\n  - {}",
+                    refusals.len(),
+                    refusals.join("\n  - ")
+                ),
+                None,
+            ));
+        }
         let report = g
             .create_nodes_with(&specs, req.check_only)
             .map_err(dyno_err)?;
+        if report.applied {
+            for (spec, (approver, acted_at)) in specs.iter().zip(&signers) {
+                let settles = g
+                    .get_node(&spec.node_type, &spec.id)
+                    .ok()
+                    .flatten()
+                    .is_some_and(|n| {
+                        reflow2_core::intent::settles_intent(&spec.node_type, &n.properties)
+                    });
+                if settles {
+                    crate::tools::capture::sign_as_approver(
+                        &mut g,
+                        &spec.node_type,
+                        &spec.id,
+                        approver.as_deref(),
+                        acted_at.as_deref(),
+                    )?;
+                }
+            }
+        }
         bulk_result(report, NodeDto::from)
     }
 
@@ -1004,4 +1084,24 @@ fn with_drawn_by(mut v: serde_json::Value) -> serde_json::Value {
         }
     }
     v
+}
+
+/// The settle a generic node write would make: what is stored, overlaid with
+/// what the write sends, less what it unsets — asked of the core's one table.
+pub(crate) fn generic_settle(
+    node_type: &str,
+    id: &str,
+    prior: Option<&StoredNode>,
+    props: &std::collections::HashMap<String, Value>,
+    unset: &[String],
+) -> Option<reflow2_core::intent::NewSettle> {
+    reflow2_core::intent::settling_property(node_type)?;
+    let mut after = prior.map(|p| p.properties.clone()).unwrap_or_default();
+    for (k, v) in props {
+        after.insert(k.clone(), v.clone());
+    }
+    for k in unset {
+        after.remove(k);
+    }
+    reflow2_core::intent::newly_settles(node_type, id, prior.map(|p| &p.properties), &after)
 }

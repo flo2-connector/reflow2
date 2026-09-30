@@ -65,6 +65,7 @@ pub mod hierarchy;
 pub mod identity;
 pub mod ility;
 pub mod ingest;
+pub mod intent;
 pub mod llm;
 pub mod loop_closure;
 pub mod manual_work;

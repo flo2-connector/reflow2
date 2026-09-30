@@ -905,6 +905,21 @@ fn provenance_rank(provenance: Option<&str>) -> u8 {
     }
 }
 
+/// What a `parks` ruling does, read by the one predicate
+/// [`DesignGraph::parking_ruling_effect`].
+#[derive(Clone, Debug, PartialEq, Eq)]
+pub enum ParkingEffect {
+    /// An ACCEPTED Decision: the node is parked while it stays accepted.
+    InForce,
+    /// A Decision that is not (yet, or any longer) accepted: the edge is a
+    /// claim no reader honours until the owner accepts the ruling.
+    NotYet { status: Option<String> },
+    /// Not a Decision at all (a DesignRule, anything else, or no node): no
+    /// status change will ever make a reader honour it. `found` names what
+    /// the id holds, `None` when it holds nothing.
+    Never { found: Option<String> },
+}
+
 /// Every finding whose rule reads a `parks` ruling, by its key — ONE list.
 ///
 /// ⭐ THE CLASS THIS ENDS, MEASURED FOUR TIMES. Parking is how a design says an
@@ -1140,23 +1155,35 @@ impl DesignGraph {
                 .get("ruling")
                 .and_then(|v| v.as_str())
                 .is_some_and(|r| r == "parks");
-            if !parks {
-                continue;
-            }
-            let accepted = self
-                .get_node(node::DECISION, &e.to_id)?
-                .and_then(|d| {
-                    d.properties
-                        .get("status")
-                        .and_then(|v| v.as_str())
-                        .map(|s| s == "accepted")
-                })
-                .unwrap_or(false);
-            if accepted {
+            if parks && self.parking_ruling_effect(&e.to_id)? == ParkingEffect::InForce {
                 return Ok(true);
             }
         }
         Ok(false)
+    }
+
+    /// Whether a `parks` ruling pointing at `ruling_id` TAKES EFFECT — the
+    /// one predicate every parks reader goes through (via [`Self::is_parked`])
+    /// AND the writer asks before it stores the edge. Until 2026-09-29 only
+    /// the readers asked, so `governed_by` stored a ruling that parks nothing
+    /// — a proposed Decision, or any DesignRule — and replied with success
+    /// (fact:root-cause-a-parks-ruling-is-validated-only-by-its-readers-and-the-writer-reports-success-either-way-2026-09-29).
+    pub fn parking_ruling_effect(&self, ruling_id: &str) -> Result<ParkingEffect, DynoError> {
+        if let Some(d) = self.get_node(node::DECISION, ruling_id)? {
+            let status = d
+                .properties
+                .get("status")
+                .and_then(|v| v.as_str())
+                .map(str::to_string);
+            return Ok(if status.as_deref() == Some("accepted") {
+                ParkingEffect::InForce
+            } else {
+                ParkingEffect::NotYet { status }
+            });
+        }
+        Ok(ParkingEffect::Never {
+            found: self.node_type_index()?.get(ruling_id).cloned(),
+        })
     }
 
     pub(crate) fn parked_nodes(&self) -> Result<Vec<String>, DynoError> {

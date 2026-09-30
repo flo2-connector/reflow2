@@ -238,6 +238,15 @@ async fn case(c: &Client, tool: &str, settling: bool, n: usize) -> Result<Option
             }
             json!({"gaps": [{"gap_id": format!("gap:batch-{n}"), "affected_ids": ["req:seed"], "reason": format!("{word} reason")}]})
         }
+        // The generic writers, held to the core's one table since 2026-09-29.
+        "create_node" | "create_nodes" => {
+            let item = json!({"node_type": "Decision", "id": format!("dec:generic-{n}"), "props": {"name": format!("Settle the {word} generically"), "decision": format!("{word} generic {n}"), "kind": "choice", "status": if settling { "accepted" } else { "proposed" }}});
+            if tool == "create_node" {
+                item
+            } else {
+                json!({"nodes": [item]})
+            }
+        }
         other => {
             return Err(format!(
                 "no fixture for `{other}`: a settle path this test cannot drive"
