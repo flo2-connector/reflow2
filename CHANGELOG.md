@@ -31,6 +31,15 @@ This file is the third view: *what changed, and when*.
 
 ## [Unreleased]
 
+### Added
+
+- **A status that claims LESS than the design shows is reported: `understated_status`** (`req:a-status-that-claims-less-than-the-design-shows-is-reported`, Anthony 2026-09-30; `dec:idea-should-an-understated-status-be-detected` settled). `status_contradiction` only ever flagged a status claiming MORE — a Capability `verified` with no passing check, a Requirement `met` with nothing satisfying it. Nothing looked the other way, so a status left at `planned` behind a built thing was silent: flo2's design held all 21 Components at `planned`, its production gateway among them, and reflow2's own `cap:governance-proposal` read `planned` while its skill was served.
+  - **A Capability at `planned`** that an Artifact whose OWN status is `realized`/`verified` REALIZES, or that a `passing` Verification VERIFIES. Direct evidence only: an Artifact at `planned` or with no status is not a build, and a file or check on the component it is allocated to is not read. One finding per capability.
+  - **The Components at `planned`** that host a live Capability at `realized`/`verified`, or are realized or checked directly — **one finding for the design, keyed on the set** of components, naming the practice and every component, so an acknowledged set stays acknowledged and a component newly built behind `planned` asks again. Measured first: per component the rule raised 79 on reflow2's own design, 11 on flo2's and 6 on a third, exactly the designs that never move `Component.status` off its default, and 0 on the three that keep it.
+  - **A Release at `planned`** with a `DEPLOYED_TO` edge not itself marked `planned`. One finding per release.
+  - `in_progress` is never flagged. **Severity 0.40**, below `status_contradiction`'s 0.70: a record fallen behind evidence that exists, not a claim with nothing behind it — beside `decision_overtaken_by_promotion`, the same lag one type over. It never stops a build.
+  - Each finding says what it means — "X is built but still says planned — move its status, or say why not" — names the call that moves the status (`set_capability_status`; `add_component` / `add_release` with the id and `status`), and is closed by that or by `acknowledge_gap` with the reason. detect-and-ask's resolution table has the row.
+
 ## [0.75.0] — 2026-09-30
 
 **Minor. The schema stamp moves** (`ACTS_FOR` makes 66 edge types; `Constraint.composition` is a

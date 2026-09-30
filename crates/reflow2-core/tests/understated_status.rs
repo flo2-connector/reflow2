@@ -310,7 +310,9 @@ fn a_planned_component_hosting_built_capabilities_is_asked_about() {
     let g = flo2_shaped();
     let gaps = understated(&g);
     let hit = about(&gaps, "cmp:edge-gateway").unwrap_or_else(|| {
-        panic!("a component whose capabilities are built must not read `planned` unasked; got {gaps:?}")
+        panic!(
+            "a component whose capabilities are built must not read `planned` unasked; got {gaps:?}"
+        )
     });
     assert_below_overstatement(hit);
     assert!(
@@ -336,7 +338,7 @@ fn a_planned_component_hosting_built_capabilities_is_asked_about() {
 
 /// ONE finding per design, keyed on the SET of components — measured
 /// 2026-09-30: this rule raised 79 on reflow2's own design, 11 on flo2's and 6
-/// on qbench's, exactly the designs that never move `Component.status` off its
+/// on a third, exactly the designs that never move `Component.status` off its
 /// default, and 0 on the three designs that keep it. A per-component flood of
 /// true findings is still read as noise (BL-73); one finding names the
 /// practice and lists every component.
@@ -348,7 +350,11 @@ fn the_components_are_one_finding_keyed_on_the_set() {
         .iter()
         .filter(|x| x.affected_ids.iter().any(|a| a.starts_with("cmp:")))
         .collect();
-    assert_eq!(on_components.len(), 1, "one finding, not one per component: {gaps:?}");
+    assert_eq!(
+        on_components.len(),
+        1,
+        "one finding, not one per component: {gaps:?}"
+    );
     assert_eq!(
         on_components[0].affected_ids,
         ["cmp:edge-gateway", "cmp:web-frontend"],
@@ -436,7 +442,8 @@ fn a_planned_release_that_is_deployed_is_asked_about() {
         ("rel:unmarked", None),
         ("rel:intended", Some("planned")),
     ] {
-        g.add_release(rel, rel, Some("0.1.0"), None).expect("release");
+        g.add_release(rel, rel, Some("0.1.0"), None)
+            .expect("release");
         g.deploy_to(rel, "env:prod", deployment).expect("deploy");
     }
     g.add_release("rel:roadmap", "rel:roadmap", Some("0.2.0"), None)
@@ -450,7 +457,10 @@ fn a_planned_release_that_is_deployed_is_asked_about() {
         "the title says the status it still reads: {}",
         out.title
     );
-    assert!(about(&gaps, "rel:unmarked").is_some(), "unset reads as deployed there now");
+    assert!(
+        about(&gaps, "rel:unmarked").is_some(),
+        "unset reads as deployed there now"
+    );
     assert!(
         about(&gaps, "rel:intended").is_none(),
         "a planned deployment is intent, not a deployment: {gaps:?}"
