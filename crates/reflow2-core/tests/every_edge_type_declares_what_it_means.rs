@@ -84,6 +84,16 @@ fn check_form(name: &str, r: &Reading) {
                     "{name}: component {c:?} is not in the declared set {RELATION_PRIMITIVES:?}"
                 );
             }
+            // The components ARE the primitives the composition writes, no
+            // more and no fewer — a list kept beside the formula and checked
+            // against nothing drifted into padding on the derived declarations
+            // (fact:root-cause-the-derived-declaration-check-draws-every-population-from-the-declarations-it-checks-2026-09-29).
+            let listed: BTreeSet<&str> = r.components.iter().map(String::as_str).collect();
+            let written: BTreeSet<&str> = r.composition_primitives().into_iter().collect();
+            assert_eq!(
+                listed, written,
+                "{name}: components {listed:?} are not the primitives its composition writes {written:?}"
+            );
         }
         "leftover" => assert!(
             r.note.as_deref().is_some_and(|n| !n.trim().is_empty()),
