@@ -31,6 +31,26 @@ This file is the third view: *what changed, and when*.
 
 ## [Unreleased]
 
+## [0.75.0] — 2026-09-30
+
+**Minor. The schema stamp moves** (`ACTS_FOR` makes 66 edge types; `Constraint.composition` is a
+new enum; `Question` gains `asked_of`, `answered_by`, `answered_at`, `batch`, `batch_position`).
+**Upgrade everywhere, together.** See [docs/upgrading-to-v0.75.0.md](docs/upgrading-to-v0.75.0.md).
+A v0.74.0 binary refuses a store a v0.75.0 binary has opened. Four changes a caller must act on:
+
+- 🛑 **A server that others reach refuses approvals until you say who is calling** (#636). An engine
+  behind a gateway MUST declare `--http-trusted-gateway` or `REFLOW2_TRUSTED_GATEWAY`, or it refuses
+  every approval. An exposed `--http` server with NO gateway becomes **read-and-propose-only** until
+  Bearer/OIDC sign-in ships. This affects any team server run that way.
+- **`_meta["reflow2/settles"]` has a version-2 form** for `create_node` / `create_nodes` (#635).
+  Consumers that read the declaration must learn it, and must refuse a version they do not know.
+- **A write replies with a receipt**, not the whole stored node (#630). Pass `echo: "node"` for the
+  old reply.
+- **Removed arguments:** `add_flow`'s `entry_point`/`exit_point` and `add_capability`'s
+  `is_entry_point`/`is_exit_point` (#622).
+
+New tools: `draw_edges` and `derived_report`.
+
 ### Added
 
 - **A question is put to a named person, travels to them as a batch with its evidence, and records who answered it, in one call** (`req:a-question-is-addressed-to-a-person-and-records-who-answered`, Anthony 2026-09-29; `cap:a-question-names-whom-it-was-put-to-and-who-answered`). Found by the dev_reflow2 two-agent exercise (I25, I28, I29): a coordinator carried every question batch to the owner agent by hand, the designer kept its question-number → node map in a scratch file, and answering took two calls. Root causes: `fact:root-cause-answering-takes-two-calls-and-records-no-answerer-because-the-answers-edge-landed-as-its-own-tool-2026-09-29` and `fact:root-cause-an-owner-outside-the-chat-cannot-read-what-it-is-asked-to-approve-2026-09-29`.

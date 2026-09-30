@@ -108,6 +108,12 @@ Three records, three questions — kept separate on purpose:
   to a collaborator as-is.
 
 ### 3½ · Upgrade notes — *read before updating a consumer project*
+- [upgrading-to-v0.75.0.md](upgrading-to-v0.75.0.md) — **upgrade everywhere, together, and read
+  it BEFORE upgrading a server others reach**. An engine behind a gateway must declare
+  `--http-trusted-gateway` or it refuses every approval, and an exposed `--http` server with no
+  gateway becomes read-and-propose-only. Also: `_meta["reflow2/settles"]` version 2, a write replies
+  with a receipt (`echo: "node"` for the old reply), and four removed flow and capability arguments.
+  The stamp moves: `ACTS_FOR` (66 edge types) and `Constraint.composition`.
 - [upgrading-to-v0.65.0.md](upgrading-to-v0.65.0.md) — **upgrade everywhere, together**: the stamp
   moves again, `ChangeEvent.change_type` gains `decision_settled`, and an older binary refuses by
   name a design that stores it.
