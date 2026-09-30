@@ -4322,6 +4322,10 @@ pub struct ContributorReq {
     /// across sessions without matching on the display name.
     #[serde(default)]
     pub handle: Option<String>,
+    /// Who this contributor is ON THIS DESIGN, where it matters: their role
+    /// (owner, reviewer, the agent that runs the build). Attribution, not a
+    /// reader's persona — a reader's background, vocabulary and way of
+    /// thinking stay with the agent's host or its own memory, never here.
     #[serde(default)]
     pub description: Option<String>,
 }

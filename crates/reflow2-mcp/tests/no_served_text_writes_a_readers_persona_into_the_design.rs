@@ -44,8 +44,9 @@
 //!    (background, persona, trained in, day to day, who they are, their
 //!    vocabulary, how they like to think) and a HOLDS term (`add_contributor`,
 //!    Contributor, record/records/recorded, update the record, in/into the
-//!    design or graph, `get_node`) in one sentence, in either order, with no
-//!    negation between them or earlier in the same clause as either. This
+//!    design or graph, `get_node`) in one sentence, in either order, at most
+//!    20 words apart, with no negation between them or earlier in the same
+//!    clause as either. This
 //!    covers the WRITE ("then record it with `add_contributor`") and the READ
 //!    that presumes one was written ("Recorded backgrounds: …", "read the
 //!    reader's recorded background"); or
@@ -53,7 +54,10 @@
 //!    save / store + it / the answer / their answer, followed in the sentence
 //!    by `add_contributor` or Contributor, not negated — the anaphoric form
 //!    ("records the answer on their `Contributor`") that names no persona
-//!    word because the sentence before it did.
+//!    word because the sentence before it did; or
+//! 3. **READS "the reader's recorded …"**, not negated — the read that
+//!    presumes a persona was written, with no persona word of its own
+//!    ("Match the reader's recorded `description`").
 //!
 //! ⚠️ A KEYWORD CHECK, AND ITS LIMITS ARE STATED RATHER THAN HIDDEN. It
 //! cannot tell an instruction from a sentence that merely describes one, and
@@ -126,6 +130,9 @@ const WRITE_VERBS: &[&str] = &[
 ];
 const ANAPHORA: &[&str] = &["it", "the answer", "their answer"];
 const CONTRIBUTOR_TARGETS: &[&str] = &["add_contributor", "contributor"];
+
+/// Shape 3: "the reader's recorded …" (possessive stripped by `tokens`).
+const READERS_RECORD: &[&str] = &["reader recorded", "readers recorded"];
 
 /// How far apart, in words, the two halves of a shape may sit. Every served
 /// instance measured on 2026-09-30 was within 16; a wider window began pairing
@@ -341,6 +348,14 @@ fn persona_shapes(sentence: &str) -> Vec<&'static str> {
             }
         }
     }
+
+    // Shape 3: "the reader's recorded …", not negated.
+    if find_any(&toks, READERS_RECORD)
+        .iter()
+        .any(|&(s, _)| !clause_negated(&toks, s))
+    {
+        hits.push("the reader's record read from the design");
+    }
     hits
 }
 
@@ -387,6 +402,7 @@ fn the_check_sees_every_shape_it_names() {
          your paraphrase of them.",
         "People show you their vocabulary by using it, so when their own words tell you more \
          than their answer did, update the record.",
+        "Match the reader's recorded `description`.",
         // served AGENTS.md
         "The **where-am-i** skill asks at the start of a session and records the answer on \
          their `Contributor`; read it before you narrate anything.",

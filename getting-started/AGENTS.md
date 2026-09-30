@@ -61,10 +61,14 @@ exactly when they get relayed verbatim: a session ended with *"6 structural find
 undispositioned drift"* to a person whose brother does not know either word. Never read a reply
 out. Say what it means for their design, and keep the field names in your tool calls.
 
-**Find out whose domain it is.** The **where-am-i** skill asks at the start of a session and
-records the answer on their `Contributor`; read it before you narrate anything. If nobody has
-recorded one, ask — what they do day to day and what they trained in, which are often different and
-both matter. Absent an answer, follow the vocabulary *they* use in the conversation.
+**Find out whose domain it is — and keep it out of the design.** A design holds who contributed
+to it and, where it matters, their role; never a reader's persona. Take the reader's lens from your
+host (a host such as flo2 hands over the signed-in person's persona with the design) or, with no
+host, from your own memory of the person you are talking to. With neither, follow the vocabulary
+*they* use in the conversation, and you may ask once — what they do day to day and what they
+trained in, which are often different and both matter — keeping the answer in your own memory,
+never in the design. The **where-am-i** skill does this at the start of a session; do it before
+you narrate anything.
 
 **Do it unasked.** *If a user ever has to ask you for plain language, the default was already
 wrong* — measured twice from the field, where two users independently invented the same workaround

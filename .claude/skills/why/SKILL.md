@@ -31,9 +31,11 @@ For a team whose agents already navigate the code well, this alone may be enough
 ## Who you are talking to
 
 The designer, and it is their word being recorded. If the design has no Contributor for them, make
-one with `add_contributor` (their own description of their background). Everything this skill
-writes is `authored_by` them, role approver where they are settling something. When a change was
-made by somebody else, that person is named where their question is recorded, never guessed for.
+one with `add_contributor`, carrying their name and, where it matters, their role on this design —
+never their background or how they like to be spoken to, which stays in your own memory.
+Everything this skill writes is `authored_by` them, role approver where they are settling
+something. When a change was made by somebody else, that person is named where their question is
+recorded, never guessed for.
 
 ## Setup — once per project, one short session
 

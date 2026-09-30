@@ -61,10 +61,11 @@ async fn loop_status(s: &ReflowService) -> serde_json::Value {
 
 /// ⭐ THE CASE THE FIELD REPORT IS. The reply carries a to-do list for the
 /// agent; the same reply must say that what a person reads is said in their
-/// words. When nobody's background is recorded it says so and names who could
-/// be asked — absence is the signal, never an omitted field.
+/// words. When nobody has a role written down it says the design does not say
+/// who is reading, and names who is recorded — absence is the signal, never an
+/// omitted field.
 #[tokio::test]
-async fn loop_status_says_plainly_when_nobody_s_background_is_recorded() {
+async fn loop_status_says_plainly_that_the_design_does_not_say_who_is_reading() {
     let s = service().await;
     described(&s, "who:ann", None).await;
 
@@ -75,17 +76,17 @@ async fn loop_status_says_plainly_when_nobody_s_background_is_recorded() {
         .expect("a loop_status reply carries a lens");
 
     assert!(
-        lens.contains("NOBODY'S BACKGROUND IS RECORDED"),
+        lens.contains("THIS DESIGN DOES NOT SAY WHO IS READING"),
         "the silent case must be stated, not implied: {lens}"
     );
     assert!(
         lens.contains("who:ann"),
-        "and it must NAME who could be asked: {lens}"
+        "and it must NAME who is recorded: {lens}"
     );
 }
 
-/// The ordinary case: the reply names who is described, so the agent reads the
-/// right one before it writes the closing summary.
+/// The ordinary case: the reply names who is described, for attribution and
+/// their role on this design, before the agent writes the closing summary.
 #[tokio::test]
 async fn loop_status_names_the_people_the_design_can_describe() {
     let s = service().await;
@@ -101,7 +102,7 @@ async fn loop_status_names_the_people_the_design_can_describe() {
 
     assert!(lens.contains("who:ann"), "{lens}");
     assert!(
-        !lens.contains("NOBODY'S BACKGROUND IS RECORDED"),
+        !lens.contains("THIS DESIGN DOES NOT SAY WHO IS READING"),
         "a design that CAN answer must not report itself silent: {lens}"
     );
 }
