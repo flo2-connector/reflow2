@@ -2,7 +2,7 @@
   "annotations": {
     "readOnlyHint": false
   },
-  "description": "Phrase MANY gaps as plain questions in one handshake — the bulk form of gap_to_prompt, and the read half of the detect→ask→acknowledge round trip. Same two passes: call with every `answers` empty to get {status:needs_llm, gaps:[{gap_id, prompts}]}, fill them in and call again to get one prompt per gap. ANSWERS ARE GROUPED PER GAP, so prompt ids cannot collide across gaps — each gap is replayed against its own answers and never sees another's. A MIXED call (some gaps answered, some not) is refused rather than half-served. The questions are recorded all or none. THE REPLAYED GAP IS AN ECHO: only its `id` is read. The server resolves each gap afresh and ignores the text you send back, so trimming a description for readability or mangling a title CANNOT re-key your answers — it used to, and two projects paid for it ten days apart before the guard was fixed on 2026-09-02. Send the row back as you got it and do not spend effort preserving it byte-for-byte. ⚠ A gap that has CLOSED since you took it is REFUSED rather than served from your stale copy, because recording a question against a finding nobody has is the worse outcome. Unmatched answers still come back in `unused_answers`, and `degrade_reason` says what went wrong. Ask for this to turn a batch of gaps into questions for the owner.",
+  "description": "Phrase MANY gaps as plain questions in one handshake — the bulk form of gap_to_prompt, and the read half of the detect→ask→acknowledge round trip. Same two passes: call with every `answers` empty to get {status:needs_llm, gaps:[{gap_id, prompts}]}, fill them in and call again to get one prompt per gap. ANSWERS ARE GROUPED PER GAP, so prompt ids cannot collide across gaps — each gap is replayed against its own answers and never sees another's. A MIXED call (some gaps answered, some not) is refused rather than half-served. The questions are recorded all or none. THE REPLAYED GAP IS AN ECHO: only its `id` is read. The server resolves each gap afresh and ignores the text you send back, so trimming a description for readability or mangling a title CANNOT re-key your answers — it used to, and two projects paid for it ten days apart before the guard was fixed on 2026-09-02. Send the row back as you got it and do not spend effort preserving it byte-for-byte. ⚠ A gap that has CLOSED since you took it is REFUSED rather than served from your stale copy, because recording a question against a finding nobody has is the worse outcome. Unmatched answers still come back in `unused_answers`, and `degrade_reason` says what went wrong. To address the batch to a named Contributor, name them and a `batch` on the serve pass: each question is numbered in `gaps` order, and per-gap `evidence` attaches what each rests on. Ask for this to turn a batch of gaps into questions for the owner.",
   "inputSchema": {
     "$defs": {
       "AgentAnswerReq": {
@@ -35,6 +35,14 @@
             },
             "type": "array"
           },
+          "evidence": {
+            "default": [],
+            "description": "Node ids of the evidence THIS question rests on — a finding, a file, a\ncheck — drawn as `ASKS_ABOUT` and handed to the addressee as links to\nread, never as a summary to trust. Each must resolve. Read on the serve\npass.",
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
           "gap": {
             "additionalProperties": true,
             "description": "A `GapCandidate` previously returned by `detect_gaps`.",
@@ -53,6 +61,22 @@
       "asked_at": {
         "default": null,
         "description": "Timestamp to record against the questions, if you have one.",
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "asked_of": {
+        "default": null,
+        "description": "The `Contributor` this batch is PUT TO by name. Every question in the\ncall is recorded with it as `asked_of`, so `open_questions(asked_of)`\nreturns them to that person as one batch. Omitted: put to nobody by\nname, and readers say so. Refused unless it names a Contributor.",
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "batch": {
+        "default": null,
+        "description": "The name of this batch (e.g. `round-2`). Its questions are numbered 1…N\nin the order of `gaps`, continuing the count if the batch already has\nquestions, and keep their numbers when asked again — so a relay quoting\n\"Q4 of round-2\" resolves to a node without a map kept outside the\ndesign. Omitted, no batch and no number are recorded.",
         "type": [
           "string",
           "null"

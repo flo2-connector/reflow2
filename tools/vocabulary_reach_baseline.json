@@ -145,6 +145,18 @@
       "written_by": "mirror_surface (export.rs)"
     },
     {
+      "property": "Question.answered_via",
+      "kind": "machine_written",
+      "written_by": "answer_question (detect.rs answer_question_by), from the acting agent named for the write",
+      "reason": "The agent the answer went THROUGH, recorded from the ACTS_FOR rung (crate::acting) the way an approval records approved_via. A caller parameter would let any call claim an agent carried it; the agent is named once for the session or request, not per write."
+    },
+    {
+      "property": "Question.batch_position",
+      "kind": "machine_written",
+      "written_by": "gap_to_prompt / gaps_to_prompts (detect.rs record_asked_question)",
+      "reason": "A question's number in its batch is assigned in the order the questions were put, and kept on a re-ask, so a relay's \"Q4\" keeps resolving. A caller-set number could collide with one already quoted."
+    },
+    {
       "property": "Question.context_setter",
       "kind": "unused",
       "reason": "57 of 57 carry one, all written by the same gap_to_prompt path that writes `question` — but no setter appears in the source for it, so it is recorded as unwritten-by-the-surface pending a look at how it lands."

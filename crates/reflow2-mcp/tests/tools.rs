@@ -374,6 +374,9 @@ async fn a_mangled_gap_replay_still_keys_because_the_server_owns_the_text() {
         gap: obj(&gap),
         answers: vec![],
         asked_at: None,
+        asked_of: None,
+        batch: None,
+        evidence: vec![],
     })));
     let prompt_id = prep["prompts"].as_array().unwrap()[0]["id"]
         .as_str()
@@ -393,6 +396,9 @@ async fn a_mangled_gap_replay_still_keys_because_the_server_owns_the_text() {
             text: "Which component owns ball flight?".into()
         }],
         asked_at: None,
+        asked_of: None,
+        batch: None,
+        evidence: vec![],
     })));
 
     assert_eq!(served["status"], "ok");
@@ -429,6 +435,9 @@ async fn a_gap_that_no_longer_exists_is_refused_rather_than_served_from_a_stale_
             gap: obj(&gap),
             answers: vec![],
             asked_at: None,
+            asked_of: None,
+            batch: None,
+            evidence: vec![],
         }))
         .await;
     assert!(out.is_err(), "a gap nobody has cannot be phrased");
@@ -451,6 +460,9 @@ async fn gap_to_prompt_collect_then_serve() {
         gap: obj(&gap),
         answers: vec![],
         asked_at: None,
+        asked_of: None,
+        batch: None,
+        evidence: vec![],
     })));
     assert_eq!(prep["status"], "needs_llm");
     let prompts = prep["prompts"].as_array().expect("prompts array");
@@ -465,6 +477,9 @@ async fn gap_to_prompt_collect_then_serve() {
             text: "Which component owns ball flight?".into()
         }],
         asked_at: None,
+        asked_of: None,
+        batch: None,
+        evidence: vec![],
     })));
     assert_eq!(served["status"], "ok");
     assert_eq!(
@@ -1378,12 +1393,20 @@ async fn asking_a_gap_records_the_question_it_asked() {
         .collect();
 
     // Nothing recorded before the question is put.
-    assert!(jl!(s.open_questions()).as_array().unwrap().is_empty());
+    assert!(
+        jl!(s.open_questions(Parameters(OpenQuestionsReq::default())))
+            .as_array()
+            .unwrap()
+            .is_empty()
+    );
 
     let prep = j!(s.gap_to_prompt(Parameters(GapToPromptReq {
         gap: obj(&gap),
         answers: vec![],
         asked_at: None,
+        asked_of: None,
+        batch: None,
+        evidence: vec![],
     })));
     let pid = prep["prompts"][0]["id"].as_str().unwrap().to_string();
     let served = j!(s.gap_to_prompt(Parameters(GapToPromptReq {
@@ -1393,13 +1416,16 @@ async fn asking_a_gap_records_the_question_it_asked() {
             text: "Which part should own this?".into()
         }],
         asked_at: Some("2026-07-18T10:00:00Z".into()),
+        asked_of: None,
+        batch: None,
+        evidence: vec![],
     })));
     assert!(
         served["question_id"].is_string(),
         "the record is reported back"
     );
 
-    let open = jl!(s.open_questions());
+    let open = jl!(s.open_questions(Parameters(OpenQuestionsReq::default())));
     let arr = open.as_array().unwrap();
     assert_eq!(
         arr.len(),
@@ -1420,8 +1446,13 @@ async fn asking_a_gap_records_the_question_it_asked() {
         gap_id: Some(gap_id.clone()),
         question_id: None,
         answer: "The physics engine.".into(),
+        answered_by: None,
+        answered_at: None,
+        record: None,
+        record_type: None,
+        note: None,
     })));
-    let after = jl!(s.open_questions());
+    let after = jl!(s.open_questions(Parameters(OpenQuestionsReq::default())));
     let a = after.as_array().unwrap();
     assert_eq!(
         a.len(),
@@ -1440,7 +1471,10 @@ async fn asking_a_gap_records_the_question_it_asked() {
         acted_at: None,
     })));
     assert!(
-        jl!(s.open_questions()).as_array().unwrap().is_empty(),
+        jl!(s.open_questions(Parameters(OpenQuestionsReq::default())))
+            .as_array()
+            .unwrap()
+            .is_empty(),
         "a settled gap leaves nothing outstanding"
     );
 
@@ -1450,6 +1484,11 @@ async fn asking_a_gap_records_the_question_it_asked() {
             gap_id: Some("gap:never".into()),
             question_id: None,
             answer: "…".into(),
+            answered_by: None,
+            answered_at: None,
+            record: None,
+            record_type: None,
+            note: None,
         }))
         .await
         .is_err()
@@ -2446,6 +2485,9 @@ async fn an_asked_question_can_be_withdrawn() {
         gap: obj(&gap),
         answers: vec![],
         asked_at: None,
+        asked_of: None,
+        batch: None,
+        evidence: vec![],
     })));
     let pid = prep["prompts"][0]["id"].as_str().unwrap().to_string();
     j!(s.gap_to_prompt(Parameters(GapToPromptReq {
@@ -2455,8 +2497,17 @@ async fn an_asked_question_can_be_withdrawn() {
             text: "Who owns this?".into()
         }],
         asked_at: Some("2026-07-21T00:00:00Z".into()),
+        asked_of: None,
+        batch: None,
+        evidence: vec![],
     })));
-    assert_eq!(jl!(s.open_questions()).as_array().unwrap().len(), 1);
+    assert_eq!(
+        jl!(s.open_questions(Parameters(OpenQuestionsReq::default())))
+            .as_array()
+            .unwrap()
+            .len(),
+        1
+    );
 
     // Withdraw it — the question leaves the open list.
     let withdrawn = j!(s.withdraw_question(Parameters(WithdrawQuestionReq {
@@ -2468,7 +2519,10 @@ async fn an_asked_question_can_be_withdrawn() {
         "withdraw reports success: {withdrawn}"
     );
     assert!(
-        jl!(s.open_questions()).as_array().unwrap().is_empty(),
+        jl!(s.open_questions(Parameters(OpenQuestionsReq::default())))
+            .as_array()
+            .unwrap()
+            .is_empty(),
         "the withdrawn question is off the open list"
     );
 }
@@ -3189,14 +3243,18 @@ async fn each_gap_is_replayed_against_only_its_own_answers() {
         gaps: vec![
             GapPromptReq {
                 gap: obj(&a),
-                answers: vec![]
+                answers: vec![],
+                evidence: vec![],
             },
             GapPromptReq {
                 gap: obj(&b),
-                answers: vec![]
+                answers: vec![],
+                evidence: vec![],
             },
         ],
         asked_at: None,
+        asked_of: None,
+        batch: None,
     })));
     assert_eq!(prep["status"], "needs_llm");
     let per_gap = prep["gaps"].as_array().expect("grouped by gap");
@@ -3211,17 +3269,21 @@ async fn each_gap_is_replayed_against_only_its_own_answers() {
                 answers: vec![AgentAnswerReq {
                     id: id_a,
                     text: "QUESTION FOR THE FIRST GAP".into()
-                }]
+                }],
+                evidence: vec![],
             },
             GapPromptReq {
                 gap: obj(&b),
                 answers: vec![AgentAnswerReq {
                     id: id_b,
                     text: "QUESTION FOR THE SECOND GAP".into()
-                }]
+                }],
+                evidence: vec![],
             },
         ],
         asked_at: Some("2026-08-01".into()),
+        asked_of: None,
+        batch: None,
     })));
     assert_eq!(served["status"], "ok");
     let out = served["gaps"].as_array().unwrap();
@@ -3233,7 +3295,7 @@ async fn each_gap_is_replayed_against_only_its_own_answers() {
     );
 
     // Both are on the record, with the wording each was actually given.
-    let open = jl!(s.open_questions());
+    let open = jl!(s.open_questions(Parameters(OpenQuestionsReq::default())));
     let asked: Vec<&str> = open
         .as_array()
         .unwrap()
@@ -3262,13 +3324,17 @@ async fn a_half_answered_ask_batch_is_refused() {
                         id: "whatever".into(),
                         text: "answered".into(),
                     }],
+                    evidence: vec![],
                 },
                 GapPromptReq {
                     gap: obj(&b),
                     answers: vec![],
+                    evidence: vec![],
                 },
             ],
             asked_at: None,
+            asked_of: None,
+            batch: None,
         }))
         .await
         .expect_err("a mixed batch is refused");
@@ -3279,7 +3345,7 @@ async fn a_half_answered_ask_batch_is_refused() {
     );
 
     // And nothing was recorded — the refusal is before any write.
-    let open = jl!(s.open_questions());
+    let open = jl!(s.open_questions(Parameters(OpenQuestionsReq::default())));
     assert!(open.as_array().unwrap().is_empty());
 }
 
@@ -3290,6 +3356,8 @@ async fn an_empty_ask_batch_is_refused_rather_than_treated_as_a_no_op() {
         s.gaps_to_prompts(Parameters(GapsToPromptsReq {
             gaps: vec![],
             asked_at: None,
+            asked_of: None,
+            batch: None,
         }))
         .await
         .is_err()

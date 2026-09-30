@@ -613,6 +613,11 @@ NON_TOOL_TERMS = {
     "in_scope",
     "out_of_scope",
     "unanchored",
+    # detect-and-ask (2026-09-29): the fields that put a question to a person by
+    # name and record who answered it
+    # (req:a-question-is-addressed-to-a-person-and-records-who-answered). The
+    # skill names them because the one-call answer IS those fields.
+    "asked_of", "answered_by", "batch", "batch_position",
 }
 
 

@@ -2,14 +2,30 @@
   "annotations": {
     "readOnlyHint": false
   },
-  "description": "Record what the user said in reply to a question, closing it. Write the design nodes their answer implies separately — this is the record that it was settled, not a substitute for the design. Takes EITHER `gap_id` or `question_id`; `open_questions` publishes both and either is accepted, because a Question this graph did not derive from a gap is reachable only by its own id. Answering one that was never asked is refused, not silently accepted — distinct from the withdraw_* tools, which no-op on an absent record — and the refusal names the ids that DO exist.",
+  "description": "Record what someone said in reply to a question, closing it — and in the same call WHO said it (`answered_by`, a Contributor: the person it was put to, their delegate, or the chat user) and the node that now holds it (`record`, linked for you, so no second call). Omit either and the reply says so; neither is guessed, and a reply naming nobody is never credited to the chat user or to whoever replied before. A name that resolves to nothing is REFUSED and nothing is written. Write the design nodes the reply implies first — this is the record that it was settled, not a substitute for the design. Takes EITHER `gap_id` or `question_id`; `open_questions` publishes both and either is accepted, because a Question this graph did not derive from a gap is reachable only by its own id. Answering one that was never asked is refused, not silently accepted — distinct from the withdraw_* tools, which no-op on an absent record — and the refusal names the ids that DO exist.",
   "inputSchema": {
     "$schema": "https://json-schema.org/draft/2020-12/schema",
     "additionalProperties": false,
     "properties": {
       "answer": {
-        "description": "What the user said, in their own words.",
+        "description": "What was said in reply, in the answerer's own words.",
         "type": "string"
+      },
+      "answered_at": {
+        "default": null,
+        "description": "When they answered, as a plain date. Rides `answered_by`.",
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "answered_by": {
+        "default": null,
+        "description": "The `Contributor` whose answer this is — the owner a question was put\nto, their delegate, or the chat user. Recorded on the Question as\n`answered_by`. OMITTED, the answer carries nobody's name and the reply\nsays so; it is never read as the chat user's by default. An id naming\nno Contributor is REFUSED and nothing is written.",
+        "type": [
+          "string",
+          "null"
+        ]
       },
       "echo": {
         "default": "receipt",
@@ -28,9 +44,33 @@
           "null"
         ]
       },
+      "note": {
+        "default": null,
+        "description": "HOW `record` answers the question — the `ANSWERS` edge's note.",
+        "type": [
+          "string",
+          "null"
+        ]
+      },
       "question_id": {
         "default": null,
         "description": "The Question's own id (`question_id` from `open_questions`). Accepts a\nquestion this graph did not derive from a gap, which `gap_id` cannot\nreach.",
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "record": {
+        "default": null,
+        "description": "The design record this answer BECAME — the Decision, Requirement or\nCapability it was written into. `ANSWERS` is drawn from it to the\nQuestion in this same call, so the answer and what it became are one\ncall, not two. Its type is resolved from the id. A record that does not\nexist is REFUSED and nothing is written.",
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "record_type": {
+        "default": null,
+        "description": "Type of `record`, only when its id is held by more than one type.",
         "type": [
           "string",
           "null"
