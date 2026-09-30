@@ -6,6 +6,7 @@
 
 pub mod auto_export;
 pub mod bulk_edges;
+pub mod caller;
 pub mod client_setup;
 pub mod content_policy;
 pub mod degraded;

@@ -240,6 +240,10 @@ struct Inner {
     releasing: std::sync::Mutex<HashMap<String, Weak<RwLock<DesignGraph>>>>,
     /// Set once the server has begun to stop: nothing is opened after that.
     stopping: AtomicBool,
+    /// How every design this router opens establishes who is calling
+    /// (`crate::caller`). A registry serves designs for other people, so it
+    /// is never local: without a declared gateway nobody can sign through it.
+    caller_rule: crate::caller::CallerRule,
 }
 
 /// Serves many designs under one root, selected by `/g/<graph_id>/`.
@@ -261,6 +265,26 @@ impl GraphRouter {
         idle: Option<Duration>,
         config: StreamableHttpServerConfig,
     ) -> Self {
+        Self::serving(
+            root,
+            read_only,
+            max_open,
+            idle,
+            config,
+            crate::caller::CallerRule::for_serving(true, &[], None),
+        )
+    }
+
+    /// [`Self::new`], naming how the designs it opens establish who is
+    /// calling — a declared trusted gateway, or nothing (`crate::caller`).
+    pub fn serving(
+        root: String,
+        read_only: bool,
+        max_open: usize,
+        idle: Option<Duration>,
+        config: StreamableHttpServerConfig,
+        caller_rule: crate::caller::CallerRule,
+    ) -> Self {
         let router = Self {
             inner: Arc::new(Inner {
                 root,
@@ -272,6 +296,7 @@ impl GraphRouter {
                 open: Mutex::new(HashMap::new()),
                 releasing: std::sync::Mutex::new(HashMap::new()),
                 stopping: AtomicBool::new(false),
+                caller_rule,
             }),
         };
         router.spawn_idle_sweep();
@@ -586,7 +611,14 @@ impl GraphRouter {
         // the network on a caller's say-so: a watch declared at an address
         // is recorded, and fetched only by the person's own client
         // (`ReflowService::reaches_out`).
-        let opened = opened.without_tree().without_reaching_out();
+        //
+        // And it establishes who is calling the way the OPERATOR declared for
+        // the whole root (`crate::caller`), so a signature through any design
+        // it serves is the caller's own.
+        let opened = opened
+            .without_tree()
+            .without_reaching_out()
+            .with_caller_rule(self.inner.caller_rule.clone());
         let svc = if self.inner.read_only {
             opened.into_read_only()
         } else {

@@ -112,6 +112,11 @@ pub struct DesignGraph {
     /// `None` is every write that named no agent, so the default costs nothing
     /// and records nothing. See `crate::acting`.
     pub(crate) acting: Option<crate::acting::Acting>,
+    /// Who may sign on the write now in progress, when the engine is served
+    /// for others (`crate::intent::Signer`, #616 fix 4). `None` is every
+    /// local write, which is held to nothing new. Installed and ended around
+    /// each write the way `acting` is.
+    pub(crate) signer: Option<crate::intent::Signer>,
     /// What opening this store repaired among the relations it holds twice
     /// (`crate::twins`). Kept so `loop_status` can say it: a repair on open
     /// that went only to a startup log would be the silent kind.
@@ -342,6 +347,7 @@ impl DesignGraph {
             derived: Default::default(),
             touch_log: None,
             acting: None,
+            signer: None,
             repaired_on_open: Default::default(),
         })
     }
@@ -456,6 +462,7 @@ impl DesignGraph {
             derived: Default::default(),
             touch_log: None,
             acting: None,
+            signer: None,
             repaired_on_open: Default::default(),
         };
         // Legacy AUTHORED_BY edges (single `role`) move to the set shape on
@@ -587,6 +594,9 @@ impl DesignGraph {
             widen_ints_for_float_props(&def.properties, &mut props);
         }
         self.refuse_dangling_node_refs(node_type, &props)?;
+        // WHO MAY SETTLE (`crate::intent::Signer`): on an engine served for
+        // others with nobody established, no value moves into settled intent.
+        self.check_settle_write(node_type, id, &props)?;
         // A node that holds a relation twice (`crate::twins`) has its derived
         // edge kept here, where every write passes, instead of by each writer:
         // three writers never drew it, and 354 of 763 findings were edgeless.
@@ -758,6 +768,7 @@ impl DesignGraph {
         if let Some(def) = self.schema().node_types.get(node_type) {
             widen_ints_for_float_props(&def.properties, &mut props);
         }
+        self.check_settle_write(node_type, id, &props)?;
         self.engine
             .create_node(&self.graph_id, node_type, id, props)
     }
@@ -1061,6 +1072,14 @@ impl DesignGraph {
         if let Some(def) = self.schema().edge_types.get(edge_type) {
             widen_ints_for_float_props(&def.properties, &mut props);
         }
+        // ⭐ A SIGNATURE IS THE CALLER'S OWN, CHECKED WHERE IT IS WRITTEN
+        // (`crate::intent::Signer`, #616 fix 4). This is the store's only
+        // AUTHORED_BY write — every door reaches it — so an engine served for
+        // others refuses a signature in someone else's name here, before
+        // anything is stored. A local engine installs no signer.
+        if edge_type == edge::AUTHORED_BY {
+            self.check_signature_write(from_id, to_id, &props)?;
+        }
         self.engine.create_edge(
             &self.graph_id,
             edge_type,
@@ -1186,6 +1205,10 @@ impl DesignGraph {
     ) -> Result<bool, DynoError> {
         if edge_type == edge::SCHEDULED_FOR {
             self.guard_schedule_loss(to_id, &format!("un-scheduling '{from_id}' from it"))?;
+        }
+        // Removing a signature is writing one (`crate::intent::Signer`).
+        if edge_type == edge::AUTHORED_BY {
+            self.check_signature_removal(from_id, to_id)?;
         }
         self.engine
             .delete_edge(&self.graph_id, edge_type, from_id, to_id)

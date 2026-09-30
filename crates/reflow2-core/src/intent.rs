@@ -153,6 +153,285 @@ impl DesignGraph {
     }
 }
 
+// ═══ WHO MAY SIGN — the caller's own signature, checked where it is written ═══
+//
+// #616 fix 4, under the settled ruling
+// `dec:idea-authentication-is-somebody-elses-layer-and-the-line-is-the-contributor-id`
+// (option (e), 2026-09-28). A LOCAL engine (stdio, --shared, --http on
+// loopback) is unchanged: no policy is installed and every writer behaves as it
+// always has. An engine SERVED FOR OTHERS installs one of the two policies below
+// for the length of each write, the way `crate::acting` installs the agent:
+//
+// · the caller is ESTABLISHED (a declared trusted gateway names them on the
+//   call, or a verified token does): every AUTHORED_BY the write records,
+//   author or approver, is for that contributor, and one naming anyone else is
+//   refused;
+// · nothing establishes the caller: reads and proposals still work, and no
+//   write may sign (add, remove or re-date an approver role) or move a status
+//   into settled intent.
+//
+// ⭐ CHECKED WHERE THE SIGNATURE IS WRITTEN, never per tool. The store has one
+// AUTHORED_BY write (`DesignGraph::create_edge_unstamped`, the point #632 stamps
+// the acting agent at), one AUTHORED_BY delete (`delete_edge`) and two node
+// writes (`create_node`, `create_node_refs_checked_later`), and the policy is
+// asked at each. Every door — the typed helper, create_edge, create_edges,
+// draw_edges items, acknowledge_gaps items, import, merge, and any door added
+// later — goes through them, so none can go round it
+// (fact:root-cause-the-settle-rule-guards-the-typed-doors-and-the-generic-writers-go-around-it-2026-09-29,
+// "SCOPE WIDENED"). A handler that writes several things asks [`DesignGraph::may_sign`],
+// the same rule, BEFORE its first write, so a refusal leaves nothing half-written.
+
+/// Who may sign on the write now in progress — how the engine is served
+/// decides it (`reflow2-mcp`'s `caller`), and a local engine installs none.
+#[derive(Clone, Debug, PartialEq, Eq)]
+pub enum Signer {
+    /// The engine established who is calling. Every AUTHORED_BY this write
+    /// records names `contributor`.
+    Caller {
+        /// The Contributor id of the caller.
+        contributor: String,
+        /// How the engine knows, in a phrase a refusal can quote ("named by
+        /// the trusted gateway `flo2.io` on this call").
+        how: String,
+    },
+    /// The engine is served for others and nothing establishes who is
+    /// calling: no write may sign or settle.
+    Nobody {
+        /// Why, and what an operator declares to change it — quoted whole by
+        /// every refusal.
+        why: String,
+    },
+}
+
+impl DesignGraph {
+    /// Hold every write from here on to `signer`. Ended by [`Self::end_signing`]
+    /// when the write that began it ends, so one call's caller never leaks into
+    /// the next.
+    pub fn begin_signing(&mut self, signer: Signer) {
+        self.signer = Some(signer);
+    }
+
+    /// Stop holding writes to a signer — the local default.
+    pub fn end_signing(&mut self) {
+        self.signer = None;
+    }
+
+    /// The signer the current write is held to, if the engine installed one.
+    pub fn signer(&self) -> Option<&Signer> {
+        self.signer.as_ref()
+    }
+
+    /// May the current write record `contributor` in `role` on an AUTHORED_BY?
+    /// The same rule the store applies at the write, for a handler to ask
+    /// BEFORE its first write, so a refusal leaves nothing half-written.
+    /// Always `Ok` on a local engine.
+    pub fn may_sign(&self, contributor: &str, role: &str) -> Result<(), DynoError> {
+        match &self.signer {
+            None => Ok(()),
+            Some(Signer::Caller {
+                contributor: me,
+                how,
+            }) => {
+                if contributor == me {
+                    Ok(())
+                } else {
+                    Err(signed_for_another(
+                        me,
+                        how,
+                        contributor,
+                        &[role.to_string()],
+                        None,
+                    ))
+                }
+            }
+            Some(Signer::Nobody { why }) => {
+                if role == "approver" {
+                    Err(nobody_signs(
+                        why,
+                        &format!("record {contributor} as the approver"),
+                    ))
+                } else {
+                    Ok(())
+                }
+            }
+        }
+    }
+
+    /// The store's check on one AUTHORED_BY write from `from_id` to `to_id`
+    /// whose stored properties will be `after`. Called by the store's only
+    /// edge write; a no-op rewrite of an edge exactly as it stands is never a
+    /// new signature.
+    pub(crate) fn check_signature_write(
+        &self,
+        from_id: &str,
+        to_id: &str,
+        after: &HashMap<String, Value>,
+    ) -> Result<(), DynoError> {
+        let Some(signer) = &self.signer else {
+            return Ok(());
+        };
+        let before = self.stored_authorship(from_id, to_id)?;
+        let mut after = after.clone();
+        crate::graph::normalize_authored_by_props(&mut after);
+        match signer {
+            Signer::Caller { contributor, how } => {
+                if to_id == contributor || before.as_ref() == Some(&after) {
+                    return Ok(());
+                }
+                let roles = crate::graph::list_of_strings(after.get("roles"));
+                Err(signed_for_another(
+                    contributor,
+                    how,
+                    to_id,
+                    &roles,
+                    Some(from_id),
+                ))
+            }
+            Signer::Nobody { why } => {
+                let approval = |p: Option<&HashMap<String, Value>>| {
+                    p.map(|p| {
+                        (
+                            crate::graph::list_of_strings(p.get("roles"))
+                                .iter()
+                                .any(|r| r == "approver"),
+                            p.get(crate::graph::role_date_key("approver")).cloned(),
+                        )
+                    })
+                    .unwrap_or((false, None))
+                };
+                if approval(before.as_ref()) == approval(Some(&after)) {
+                    return Ok(());
+                }
+                Err(nobody_signs(
+                    why,
+                    &format!("change the approval {to_id} carries on '{from_id}'"),
+                ))
+            }
+        }
+    }
+
+    /// The store's check on deleting the AUTHORED_BY from `from_id` to
+    /// `to_id` — removing a signature is writing one. Called by `delete_edge`.
+    pub(crate) fn check_signature_removal(
+        &self,
+        from_id: &str,
+        to_id: &str,
+    ) -> Result<(), DynoError> {
+        let Some(signer) = &self.signer else {
+            return Ok(());
+        };
+        let Some(before) = self.stored_authorship(from_id, to_id)? else {
+            return Ok(());
+        };
+        let roles = crate::graph::list_of_strings(before.get("roles"));
+        match signer {
+            Signer::Caller { contributor, how } if to_id != contributor => {
+                Err(DynoError::Validation {
+                    node_type: edge::AUTHORED_BY.into(),
+                    property: "to_id".into(),
+                    message: format!(
+                        "REFUSED, and nothing was written: this call is {contributor}'s ({how}), and it \
+                     would REMOVE {to_id}'s AUTHORED_BY on '{from_id}' ({}). On a server that \
+                     establishes who is calling, a signature is the signer's own to write and to \
+                     withdraw: {to_id} withdraws it through their own sign-in. Your own AUTHORED_BY \
+                     ({contributor}) is yours to remove.",
+                        roles.join(", ")
+                    ),
+                })
+            }
+            Signer::Nobody { why } if roles.iter().any(|r| r == "approver") => Err(nobody_signs(
+                why,
+                &format!("remove {to_id}'s approval of '{from_id}'"),
+            )),
+            _ => Ok(()),
+        }
+    }
+
+    /// The store's check on a node write: with nobody established, no value
+    /// may move INTO settled intent ([`newly_settles`]). With a caller
+    /// established the settle stands on its signature, which is checked where
+    /// it is written.
+    pub(crate) fn check_settle_write(
+        &self,
+        node_type: &str,
+        id: &str,
+        after: &HashMap<String, Value>,
+    ) -> Result<(), DynoError> {
+        let Some(Signer::Nobody { why }) = &self.signer else {
+            return Ok(());
+        };
+        if settling_property(node_type).is_none() {
+            return Ok(());
+        }
+        let stored = self.get_node(node_type, id)?.map(|n| n.properties);
+        match newly_settles(node_type, id, stored.as_ref(), after) {
+            None => Ok(()),
+            Some(settle) => Err(nobody_signs(
+                why,
+                &format!("settle intent ({})", settle.describe()),
+            )),
+        }
+    }
+
+    /// The AUTHORED_BY from `from_id` to `to_id` as it stands, in the set
+    /// shape; `None` when there is none.
+    fn stored_authorship(
+        &self,
+        from_id: &str,
+        to_id: &str,
+    ) -> Result<Option<HashMap<String, Value>>, DynoError> {
+        Ok(self
+            .outgoing(from_id, Some(edge::AUTHORED_BY))?
+            .into_iter()
+            .find(|e| e.to_id == to_id)
+            .map(|e| {
+                let mut p = e.properties;
+                crate::graph::normalize_authored_by_props(&mut p);
+                p
+            }))
+    }
+}
+
+/// The refusal for a signature in someone else's name. It says who the
+/// caller is, how the engine knows, and how an owner signs.
+fn signed_for_another(
+    me: &str,
+    how: &str,
+    named: &str,
+    roles: &[String],
+    on: Option<&str>,
+) -> DynoError {
+    let what = match on {
+        Some(from) => format!("an AUTHORED_BY on '{from}' naming {named}"),
+        None => format!("an AUTHORED_BY naming {named}"),
+    };
+    let roles = if roles.is_empty() {
+        String::new()
+    } else {
+        format!(" ({})", roles.join(", "))
+    };
+    DynoError::Validation {
+        node_type: edge::AUTHORED_BY.into(),
+        property: "contributor".into(),
+        message: format!(
+            "REFUSED, and nothing was written: this call is {me}'s ({how}), and it would record \
+             {what}{roles} — a signature in someone else's name. On a server that establishes \
+             who is calling, every AUTHORED_BY a call writes, author or approver, is the \
+             caller's own. To sign this yourself, name {me}. For {named}'s signature, {named} \
+             makes the call through their own sign-in; nobody signs for them here."
+        ),
+    }
+}
+
+/// The refusal when nothing establishes who is calling.
+fn nobody_signs(why: &str, what: &str) -> DynoError {
+    DynoError::Validation {
+        node_type: edge::AUTHORED_BY.into(),
+        property: "approver".into(),
+        message: format!("REFUSED, and nothing was written: this call would {what}, and {why}"),
+    }
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;

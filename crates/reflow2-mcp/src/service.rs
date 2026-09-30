@@ -633,6 +633,11 @@ pub struct ReflowService {
     /// `reflow2_core::acting`). Fresh per session like `writes_for`. A request
     /// may name another in `_meta` ([`ACTING_AGENT_META`]). ATTRIBUTION ONLY.
     pub(crate) acting_agent: Arc<std::sync::Mutex<Option<String>>>,
+    /// How THIS ENGINE establishes who is calling (`crate::caller`, #616 fix
+    /// 4). A property of the SERVER, like `read_only`: inherited by every
+    /// session, never reset. `Local` is every engine nobody declared
+    /// otherwise, which is held to nothing new.
+    caller_rule: Arc<crate::caller::CallerRule>,
 }
 
 /// The request `_meta` key naming who ONE request writes for. It overrides the
@@ -640,7 +645,7 @@ pub struct ReflowService {
 /// people over one session (flo2) names the person on each call; a sessionless
 /// transport (MCP 2026-07-28 and later), where nothing outlives a request,
 /// can only say it this way.
-pub(crate) const WRITES_FOR_META: &str = "reflow2/writes_for";
+pub const WRITES_FOR_META: &str = "reflow2/writes_for";
 
 /// The request `_meta` key naming the AGENT one request writes THROUGH — the
 /// same route [`WRITES_FOR_META`] gives the person, so a gateway that names
@@ -661,6 +666,12 @@ tokio::task_local! {
     /// `write_lock`, so every authorship and approval the handler records
     /// carries it without a write site knowing (`reflow2_core::acting`).
     static ACTING: Option<reflow2_core::acting::Acting>;
+    /// Who may sign on the tool call now being served, when this engine is
+    /// served for others (`crate::caller`, `reflow2_core::intent::Signer`).
+    /// Read by `write_lock`, which holds the graph to it for the length of
+    /// the write — so every signature the handler writes is checked where
+    /// it is written, without a write site knowing.
+    static SIGNER: Option<reflow2_core::intent::Signer>;
 }
 
 /// The graph, held for writing — a write guard that, when it is released,
@@ -677,6 +688,8 @@ pub(crate) struct GraphWrite<'a> {
     /// Whether this hold named an agent, so the drop ends it — one call's
     /// agent must never leak into the next write.
     acting: bool,
+    /// Whether this hold installed a signer, so the drop ends it.
+    signing: bool,
 }
 
 impl std::ops::Deref for GraphWrite<'_> {
@@ -714,6 +727,11 @@ impl Drop for GraphWrite<'_> {
         }
         if self.acting {
             self.guard.end_acting();
+        }
+        // Ended LAST: the credit above draws author edges for the person the
+        // call writes for, and those are held to the caller too.
+        if self.signing {
+            self.guard.end_signing();
         }
     }
 }
@@ -6288,6 +6306,7 @@ impl ReflowService {
             auto_export: None,
             writes_for: Arc::new(std::sync::Mutex::new(None)),
             acting_agent: Arc::new(std::sync::Mutex::new(None)),
+            caller_rule: Arc::new(crate::caller::CallerRule::Local),
         }
     }
 
@@ -6428,6 +6447,10 @@ impl ReflowService {
             // the next client to connect.
             writes_for: Arc::new(std::sync::Mutex::new(None)),
             acting_agent: Arc::new(std::sync::Mutex::new(None)),
+            // A property of the SERVER, like read-only: a session minted for a
+            // new client must never come back local on an engine served for
+            // others.
+            caller_rule: Arc::clone(&self.caller_rule),
         }
     }
 
@@ -6487,10 +6510,20 @@ impl ReflowService {
             // refuses only if the agent vanished in between.
             guard.begin_acting(acting).map_err(dyno_err)?;
         }
+        // WHO MAY SIGN (`crate::caller`): on an engine served for others the
+        // graph is held to the caller for the whole hold, so every signature
+        // the handler writes — through any door — is checked where the store
+        // writes it. A local engine installs nothing.
+        let signer = SIGNER.try_with(Clone::clone).ok().flatten();
+        let signing = signer.is_some();
+        if let Some(signer) = signer {
+            guard.begin_signing(signer);
+        }
         Ok(GraphWrite {
             guard,
             writes_for,
             acting: named_agent,
+            signing,
         })
     }
 
@@ -6824,12 +6857,39 @@ impl ReflowService {
     /// Who a call writes for: the name its request carried in `_meta`
     /// ([`WRITES_FOR_META`]), else what this session declared with
     /// `writes_for`, else nobody. A blank name is nobody.
+    ///
+    /// Behind a declared trusted gateway (`crate::caller`), ONLY the request's
+    /// `_meta` counts: the gateway is the one party the operator trusted to
+    /// name the caller, so a session's own declaration names nobody there.
     pub fn effective_writes_for(&self, from_request: Option<&str>) -> Option<String> {
-        from_request
-            .map(str::trim)
-            .filter(|s| !s.is_empty())
-            .map(String::from)
-            .or_else(|| self.writes_for.lock().ok().and_then(|w| w.clone()))
+        self.caller_rule.writes_for(
+            from_request,
+            self.writes_for
+                .lock()
+                .ok()
+                .and_then(|w| w.clone())
+                .map(|s| s.trim().to_string())
+                .filter(|s| !s.is_empty()),
+        )
+    }
+
+    /// Serve this engine under `rule` — how it establishes who is calling
+    /// (`crate::caller`). Builder rather than a constructor argument, so every
+    /// existing entry point keeps its signature and stays local.
+    pub fn with_caller_rule(mut self, rule: crate::caller::CallerRule) -> Self {
+        self.caller_rule = Arc::new(rule);
+        self
+    }
+
+    /// How this engine establishes who is calling.
+    pub fn caller_rule(&self) -> &crate::caller::CallerRule {
+        &self.caller_rule
+    }
+
+    /// The signer a call writing for `writes_for` is held to on this engine
+    /// (`None` on a local one).
+    pub fn signer_for(&self, writes_for: Option<&str>) -> Option<reflow2_core::intent::Signer> {
+        self.caller_rule.signer(writes_for)
     }
 
     /// The refusal a WRITE gets when it writes for somebody who is not a
@@ -6863,7 +6923,10 @@ impl ReflowService {
         writes_for: Option<String>,
         call: impl std::future::Future<Output = T>,
     ) -> T {
-        WRITES_FOR.scope(writes_for, call).await
+        let signer = self.signer_for(writes_for.as_deref());
+        SIGNER
+            .scope(signer, WRITES_FOR.scope(writes_for, call))
+            .await
     }
 
     /// The agent a call writes THROUGH (`reflow2_core::acting`): the name its
@@ -6931,8 +6994,12 @@ impl ReflowService {
         acting: Option<reflow2_core::acting::Acting>,
         call: impl std::future::Future<Output = T>,
     ) -> T {
-        ACTING
-            .scope(acting, WRITES_FOR.scope(writes_for, call))
+        let signer = self.signer_for(writes_for.as_deref());
+        SIGNER
+            .scope(
+                signer,
+                ACTING.scope(acting, WRITES_FOR.scope(writes_for, call)),
+            )
             .await
     }
 
@@ -7124,10 +7191,17 @@ impl ServerHandler for ReflowService {
                 CallToolResult::error(vec![ContentBlock::text(refusal)]),
             )),
             None => {
-                ACTING
+                // WHO MAY SIGN on this call (`crate::caller`): nothing on a
+                // local engine; the caller the engine established, or nobody,
+                // on one served for others.
+                let signer = self.signer_for(writes_for.as_deref());
+                SIGNER
                     .scope(
-                        acting,
-                        WRITES_FOR.scope(writes_for, self.tool_router.call(tcc)),
+                        signer,
+                        ACTING.scope(
+                            acting,
+                            WRITES_FOR.scope(writes_for, self.tool_router.call(tcc)),
+                        ),
                     )
                     .await
             }
@@ -7291,7 +7365,7 @@ impl ServerHandler for ReflowService {
                 // `graph_path: None` IS the condition — it means no directory
                 // backs this design, which is exactly what ephemeral means — so
                 // this cannot drift from a separate flag someone forgets to set.
-                "{}reflow2 is the persistent, coherent design brain. The loop: capture intent as \
+                "{}{}reflow2 is the persistent, coherent design brain. The loop: capture intent as \
                  Requirements/Capabilities/Components via the add_* / create_* tools; run \
                  detect_gaps and ask the human the gaps (gap_to_prompt); build only what the \
                  graph specifies; on any change, add_change_event + propagate_change to see the \
@@ -7310,6 +7384,9 @@ impl ServerHandler for ReflowService {
                 } else {
                     ""
                 },
+                // Then, on an engine served for others, what a signature means
+                // here, before anyone writes one (`crate::caller`). Empty locally.
+                self.caller_rule.handshake_note(),
                 // The backstop for req:nudge-path-proven. If no session-end
                 // nudge is installed, NOTHING will interrupt a session that
                 // finishes owing the loop — and the handshake is the one channel
