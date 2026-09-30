@@ -126,6 +126,7 @@ readers:
   ingest.rs::link_fragment_epoch: { kind: unjudged, edges: [OCCURS_DURING] }
   ingest.rs::suspect_duplicate: { kind: unjudged, edges: [DUPLICATES] }
   ingest.rs::yield_edge: { kind: unjudged, edges: [YIELDED] }
+  intent.rs::has_approver: { kind: not_derived, edges: [AUTHORED_BY], why: "A guard: does this node carry an AUTHORED_BY whose roles hold approver? Read by the generic writers to name a settle that carries nobody's name; it answers one node, it derives no relation." }
   loop_closure.rs::loop_closure: { kind: unjudged, edges: [DEPENDS_ON] }
   maturity.rs::maturity_report: { kind: unjudged, edges: [ALLOCATED_TO, DEPLOYED_TO, REALIZES, SATISFIES, VERIFIES] }
   neighbourhood.rs::already_related_to: { kind: unjudged, edges: [ANTICIPATES, BLOCKS, CAUSES, CONTRADICTS, DEPENDS_ON, DUPLICATES, EVOLVES_INTO, MASKS, MITIGATES, OBSOLETES, RISKS, TRIGGERS, VIOLATES] }
