@@ -5342,7 +5342,9 @@ impl DesignGraph {
             // builds it. Measured, that distinction keeps exactly one live
             // question on this design (`cap:explains-itself`, planned with a
             // file already realizing it) that trusting the status would have
-            // silenced — which is the entire point.
+            // silenced — which is the entire point. (The stale status itself
+            // is `understated_status`'s question since 2026-09-30, asked when
+            // the realizing file's own status says it exists.)
             //
             // DIRECT realization only. The indirect path
             // (`art -REALIZES-> cmp <-ALLOCATED_TO- cap`) that
