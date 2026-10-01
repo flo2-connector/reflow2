@@ -1864,43 +1864,12 @@ async fn main() -> anyhow::Result<()> {
     // So: serve a degraded surface that carries the reason in its handshake
     // instructions and in one unmistakably-named tool. An MCP server that starts
     // and explains itself beats one that dies before it can be asked.
-    match ReflowService::new_reporting(&cli.graph_path).map(|(svc, prov)| {
-        (
-            with_cli_tree_root(
-                if cli.read_only {
-                    svc.into_read_only()
-                } else {
-                    svc
-                },
-                &cli,
-            ),
-            prov,
-        )
-    }) {
-        Ok((mut service, provenance)) => {
-            // Say it on stderr as well as the log: an operator running this by
-            // hand sees stderr, and "which reflow2 wrote this graph" is exactly
-            // the question that used to have no answer at all.
-            if let Some(note) = provenance {
-                tracing::warn!("{note}");
-                eprintln!("reflow2: {note}");
-            }
-            // THE SERVER'S OWN GUARANTEE, started before it serves anyone. One task
-            // per server, never per session — the write-through is a property of the
-            // server (one file, one writer), the way the graph is.
-            if let Some(export_to) = cli.export_to.clone() {
-                match service.start_auto_export(export_to.clone()) {
-                    Ok(()) => eprintln!(
-                        "reflow2: keeping {export_to} current — the design is written through after \
-                     every change, debounced."
-                    ),
-                    Err(why) => eprintln!("reflow2: NOT keeping {export_to} current — {why}"),
-                }
-            }
-
+    match ReflowService::new_reporting(&cli.graph_path) {
+        Ok((service, provenance)) => {
+            let service = ServeAs::of(&cli).prepare(service, provenance);
             if let Some(addr) = cli.http.clone() {
                 serve_http(
-                    one_design(service.with_caller_rule(caller_rule(&cli, false))),
+                    one_design(service),
                     &addr,
                     &cli.http_allow_host,
                     HttpSurface::Design,
@@ -1960,7 +1929,7 @@ async fn main() -> anyhow::Result<()> {
                     reason,
                     cli.graph_path.clone(),
                     std::sync::Arc::clone(&readiness),
-                    opener_for(&cli),
+                    opener_for(cli.graph_path.clone(), ServeAs::of(&cli)),
                 )
             } else {
                 DegradedService::new(reason, cli.graph_path.clone())
@@ -2067,16 +2036,83 @@ where
 type Sessions = rmcp::transport::streamable_http_server::session::local::LocalSessionManager;
 type HttpConfig = rmcp::transport::streamable_http_server::StreamableHttpServerConfig;
 
+/// How a plain server readies a design it has OPENED for serving: read-only if
+/// asked, the tree root, the provenance note said, the write-through export
+/// started, and — over HTTP — the rule for who is calling (#616 fix 4).
+///
+/// ⭐ ONE PREPARATION FOR BOTH DOORS. A plain server opens its design at
+/// startup, or — when another process holds the store — later, from the
+/// degraded surface, the moment that process lets go (`opener_for`, #616
+/// fix 3). Those two built the service in two copies, and the copies drifted
+/// the first time either changed: fix 4 installed the caller rule at the
+/// startup door only, so an exposed server that waited out a held lock served
+/// its design LOCAL and took any caller's signature. It compiled, merged
+/// cleanly and no test was red
+/// (`a_recovered_server_served_for_others_keeps_the_caller_rule_a_healthy_start_installs`).
+/// A step added here is taken by both doors.
+#[derive(Clone)]
+struct ServeAs {
+    read_only: bool,
+    tree_root: Option<String>,
+    export_to: Option<String>,
+    /// Over HTTP, how this engine establishes who is calling. stdio is local
+    /// by construction and installs none.
+    caller: Option<reflow2_mcp::caller::CallerRule>,
+}
+
+impl ServeAs {
+    /// Read from the command line. Says the caller rule's banner, so a server
+    /// calls it once.
+    fn of(cli: &Cli) -> ServeAs {
+        ServeAs {
+            read_only: cli.read_only,
+            tree_root: cli.tree_root.clone(),
+            export_to: cli.export_to.clone(),
+            caller: cli.http.as_ref().map(|_| caller_rule(cli, false)),
+        }
+    }
+
+    fn prepare(&self, service: ReflowService, provenance: Option<String>) -> ReflowService {
+        let service = if self.read_only {
+            service.into_read_only()
+        } else {
+            service
+        };
+        let mut service = match &self.tree_root {
+            Some(root) => service.with_tree_root(root),
+            None => service,
+        };
+        // Say it on stderr as well as the log: an operator running this by
+        // hand sees stderr, and "which reflow2 wrote this graph" is exactly
+        // the question that used to have no answer at all.
+        if let Some(note) = provenance {
+            tracing::warn!("{note}");
+            eprintln!("reflow2: {note}");
+        }
+        // THE SERVER'S OWN GUARANTEE, started before it serves anyone. One task
+        // per server, never per session — the write-through is a property of the
+        // server (one file, one writer), the way the graph is.
+        if let Some(export_to) = self.export_to.clone() {
+            match service.start_auto_export(export_to.clone()) {
+                Ok(()) => eprintln!(
+                    "reflow2: keeping {export_to} current — the design is written through after \
+                     every change, debounced."
+                ),
+                Err(why) => eprintln!("reflow2: NOT keeping {export_to} current — {why}"),
+            }
+        }
+        match &self.caller {
+            Some(rule) => service.with_caller_rule(rule.clone()),
+            None => service,
+        }
+    }
+}
+
 /// How a recovering degraded surface opens its design when the store frees:
-/// EXACTLY as the healthy start would have — read-only if asked, the same tree
-/// root, the write-through export started, the provenance note said — so a
-/// design served after a wait is indistinguishable from one served at once.
-fn opener_for(cli: &Cli) -> reflow2_mcp::degraded::Opener {
+/// with the SAME preparation the healthy start uses (`ServeAs`), so a design
+/// served after a wait is indistinguishable from one served at once.
+fn opener_for(graph_path: String, serve_as: ServeAs) -> reflow2_mcp::degraded::Opener {
     use reflow2_mcp::degraded::OpenFailure;
-    let graph_path = cli.graph_path.clone();
-    let read_only = cli.read_only;
-    let tree_root = cli.tree_root.clone();
-    let export_to = cli.export_to.clone();
     std::sync::Arc::new(move || {
         let (service, provenance) = ReflowService::new_reporting(&graph_path).map_err(|e| {
             let raw: anyhow::Error = e.into();
@@ -2087,29 +2123,7 @@ fn opener_for(cli: &Cli) -> reflow2_mcp::degraded::Opener {
                 OpenFailure::Permanent(format!("{:#}", explain_open_failure(&raw, &graph_path)))
             }
         })?;
-        let service = if read_only {
-            service.into_read_only()
-        } else {
-            service
-        };
-        let mut service = match &tree_root {
-            Some(root) => service.with_tree_root(root),
-            None => service,
-        };
-        if let Some(note) = provenance {
-            tracing::warn!("{note}");
-            eprintln!("reflow2: {note}");
-        }
-        if let Some(export_to) = export_to.clone() {
-            match service.start_auto_export(export_to.clone()) {
-                Ok(()) => eprintln!(
-                    "reflow2: keeping {export_to} current — the design is written through after \
-                     every change, debounced."
-                ),
-                Err(why) => eprintln!("reflow2: NOT keeping {export_to} current — {why}"),
-            }
-        }
-        Ok(service)
+        Ok(serve_as.prepare(service, provenance))
     })
 }
 

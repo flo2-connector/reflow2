@@ -387,6 +387,85 @@ fn an_http_server_behind_a_held_lock_serves_the_design_in_place_when_it_frees() 
     );
 }
 
+/// A server SERVED FOR OTHERS that waited out a held lock serves the design
+/// under the caller rule a healthy start would have installed — #616 fix 3
+/// meeting fix 4.
+///
+/// ⭐ WHY THIS EXISTS. Fix 4 (`reflow2_mcp::caller`) gives every engine served
+/// over HTTP the rule for who is calling, at the one place the healthy start
+/// builds it. Fix 3 added a SECOND place a design gets served over HTTP: the
+/// degraded surface opens the store itself once the holder lets go. The two
+/// were written apart and merged cleanly, and the recovered design came up
+/// LOCAL — `--http-allow-host` naming another machine, and any caller's
+/// signature accepted, after a rolling update. Nothing failed to compile and
+/// no test was red. So the same rule is asserted here, through the recovered
+/// door: the handshake says what signing means, a settle is refused naming the
+/// flag that establishes the caller, and the operator's banner says so.
+#[test]
+fn a_recovered_server_served_for_others_keeps_the_caller_rule_a_healthy_start_installs() {
+    let dir = tmp_dir("exposed");
+    let store = store_in(&dir);
+    let holder = Server::start(&["--graph-path", &store, "--http", "127.0.0.1:0"]);
+    let mut waiting = Server::start(&[
+        "--graph-path",
+        &store,
+        "--http",
+        "127.0.0.1:0",
+        "--http-allow-host",
+        "team.example.org",
+    ]);
+    stop(holder);
+    let (status, body) = readiness_becomes(waiting.port, 200, Duration::from_secs(45));
+    assert_eq!(
+        status,
+        200,
+        "the design is served once the lock frees: {body}\nstderr:\n{}",
+        waiting.log()
+    );
+    assert!(waiting.still_running(), "the same process serves it");
+
+    let (status, sid, raw) = post(
+        waiting.port,
+        r#"{"jsonrpc":"2.0","id":1,"method":"initialize","params":{"protocolVersion":"2025-06-18","capabilities":{},"clientInfo":{"name":"t","version":"1"}}}"#,
+        None,
+    );
+    assert_eq!(status, 200, "initialize failed: {raw}");
+    let sid = sid.expect("a session id");
+    let said = message_in(&raw)["result"]["instructions"]
+        .as_str()
+        .unwrap_or_default()
+        .to_string();
+    assert!(
+        said.contains("SERVED FOR OTHERS"),
+        "a design served after the wait tells every session what a signature means here, as a \
+         healthy start does: {}",
+        &said[..said.len().min(600)]
+    );
+    let _ = post(
+        waiting.port,
+        r#"{"jsonrpc":"2.0","method":"notifications/initialized"}"#,
+        Some(&sid),
+    );
+
+    let (_, _, raw) = post(
+        waiting.port,
+        r#"{"jsonrpc":"2.0","id":2,"method":"tools/call","params":{"name":"import_graph","arguments":{"document":{"nodes":[{"node_type":"Decision","node_id":"dec:settled-after-the-wait","properties":{"name":"I","decision":"D","kind":"choice","status":"accepted"}}],"edges":[]}}}}"#,
+        Some(&sid),
+    );
+    let reply = message_in(&raw);
+    let refused = reply.get("error").is_some() || reply["result"]["isError"] == true;
+    assert!(
+        refused && reply.to_string().contains("--http-trusted-gateway"),
+        "a server served for others that cannot establish the caller refuses a settle, naming \
+         the flag that would: {reply}"
+    );
+    assert!(
+        waiting.log().contains("served for others"),
+        "and the operator's banner says how signatures are held here:\n{}",
+        waiting.log()
+    );
+}
+
 #[test]
 fn a_stdio_session_behind_a_held_lock_is_told_the_tool_list_changed_when_it_frees() {
     let dir = tmp_dir("stdio");
