@@ -160,8 +160,23 @@ fn complete_thread_yields_no_traceability_gaps() {
             .set("status", "accepted"),
     )
     .unwrap();
-    g.add_capability("cap:a", "Cap A", "does a", None).unwrap();
-    g.add_component("cmp:a", "Cmp A", "part a", None).unwrap();
+    // `verified`, and its component `realized`, because this thread is
+    // COMPLETE: a file realizes the capability and a passing check verifies
+    // it. Left at the `planned` default, both statuses claimed LESS than the
+    // thread shows, and `understated_status` said so the day it landed
+    // (2026-09-30) — the fixture telling the truth, for the same reason as the
+    // rule and the quality target below.
+    g.add_capability("cap:a", "Cap A", "does a", Some("verified"))
+        .unwrap();
+    g.create_node(
+        node::COMPONENT,
+        "cmp:a",
+        Props::new()
+            .set("name", "Cmp A")
+            .set("purpose", "part a")
+            .set("status", "realized"),
+    )
+    .unwrap();
     g.create_node(node::ARTIFACT, "art:a", Props::new().set("name", "a.rs"))
         .unwrap();
     g.create_node(
@@ -1507,9 +1522,15 @@ fn cutting_a_release_without_its_edge_is_caught() {
 /// defaults to `planned`, so a release that shipped but never had its status
 /// set is exempt and reads exactly like one that is genuinely still to come.
 /// This rule cannot tell them apart and does not try — a status that claims
-/// less than the structure shows is `status_contradiction`'s territory, not
+/// less than the structure shows is `understated_status`'s territory, not
 /// this one's. Recorded as a test so the limit is checkable instead of
 /// discovered later by someone it bites.
+///
+/// That territory was assigned here as `status_contradiction`'s and never
+/// written there; since 2026-09-30 `understated_status` holds it, and it asks
+/// once the release is DEPLOYED — tests/understated_status.rs. A release with
+/// no deployment, like this one, still reads as genuinely to come, because
+/// nothing in the design says otherwise.
 #[test]
 fn a_release_with_no_status_at_all_inherits_the_planned_exemption() {
     let mut g = DesignGraph::open_in_memory().unwrap();

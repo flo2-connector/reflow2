@@ -197,7 +197,27 @@ pub enum GapSource {
     /// when unchecked claims start accumulating; and a `met` requirement is
     /// otherwise *invisible* — that status silences `unsatisfied_requirement`
     /// on purpose, so nothing else can catch it lying.
+    ///
+    /// ONE DIRECTION ONLY: a status claiming MORE than the structure shows. The
+    /// other direction is [`GapSource::UnderstatedStatus`].
     StatusContradiction,
+    /// A lifecycle status still at `planned` — "not started", and the schema's
+    /// DEFAULT — while the design's own structure shows the thing built: a
+    /// Capability a realized Artifact realizes or a passing check verifies, a
+    /// Component hosting built capabilities (or realized/checked directly), a
+    /// Release with a deployment. The mirror of
+    /// [`GapSource::StatusContradiction`], which only ever looked at
+    /// overstatement.
+    ///
+    /// A record fallen behind the evidence rather than a claim with nothing
+    /// behind it, which is why it ranks below its mirror (0.40 against 0.70)
+    /// and beside `decision_overtaken_by_promotion`, the same lag one type
+    /// over. It exists because the lag was silent: reflow2's own
+    /// `cap:governance-proposal` read `planned` while its skill was being
+    /// served (dec:idea-should-an-understated-status-be-detected), and flo2's
+    /// design held all 21 Components at `planned`, its production gateway
+    /// among them (2026-09-30).
+    UnderstatedStatus,
     /// A Capability has no `Verification` proving the behaviour works.
     ///
     /// The key string stays `unverified_capability` even though this variant
@@ -814,6 +834,7 @@ impl GapSource {
             // Must match the serde snake_case of the variant: clients match on
             // the serialized name, and gap ids hash this string.
             GapSource::StatusContradiction => "status_contradiction",
+            GapSource::UnderstatedStatus => "understated_status",
             GapSource::UnverifiedCapability => "unverified_capability",
             GapSource::UnverifiedEnforcedRule => "unverified_enforced_rule",
             GapSource::UnstatedRuleEnforcement => "unstated_rule_enforcement",
@@ -1042,6 +1063,17 @@ impl GapSource {
             // today. Found by mutation, like the dead guard in
             // `detect_internal_only_delivery` above.
             GapSource::NoPublishedBoundary => true,
+            // NOT aggregate, in both of its shapes. A capability or a release
+            // is its own finding, keyed on that one node — "this one is
+            // `planned` on purpose" is a claim about ONE node, as it is for the
+            // overstatement mirror. The components are ONE finding keyed on the
+            // SET (the `settled_decision_named_open` shape): an understated
+            // status is bookkeeping lag rather than a judgement call, so an
+            // acknowledged set stays acknowledged and a component newly built
+            // behind a `planned` status asks again. A stable id would let one
+            // acknowledgement silence every later lag, which is the
+            // `unreviewed_ideas` cost recorded above.
+            GapSource::UnderstatedStatus => false,
             // Everything else names the nodes the finding is actually about, so a
             // change to that set SHOULD expire the judgement. Listed exhaustively
             // rather than with a wildcard: a new aggregate detector must come here
@@ -2543,6 +2575,9 @@ impl DesignGraph {
         self.detect_releases_without_epoch(&mut gaps)?;
         self.detect_releases_without_manifest(&mut gaps)?;
         self.detect_status_contradictions(&mut gaps)?;
+        // The other direction: a status that claims LESS than the structure
+        // shows, still at the `planned` default while the thing is built.
+        self.detect_understated_statuses(&mut gaps)?;
         self.detect_interface_pairing(&pop, &mut gaps)?;
         // The other direction from interface pairing: those two need an
         // Interface to exist, this one fires where none ever has.
@@ -4505,6 +4540,9 @@ impl DesignGraph {
     /// satisfying — because weaker claims (`realized` without an artifact) are
     /// already absence gaps, and double-reporting them would be the
     /// DETECT/HEAL double-count in a new costume.
+    ///
+    /// OVERSTATEMENT only. A status that claims LESS than the structure shows
+    /// is [`detect_understated_statuses`](Self::detect_understated_statuses).
     fn detect_status_contradictions(&self, gaps: &mut Vec<GapCandidate>) -> Result<(), DynoError> {
         for cap in self.scan_live_nodes(node::CAPABILITY)? {
             if cap
@@ -4584,6 +4622,419 @@ impl DesignGraph {
             });
         }
         Ok(())
+    }
+
+    /// Statuses that claim LESS than the structure shows (see
+    /// [`GapSource::UnderstatedStatus`]) — the mirror of
+    /// [`detect_status_contradictions`](Self::detect_status_contradictions).
+    ///
+    /// # What "the design shows it built" means here, and why it is narrow
+    ///
+    /// Only a status still at `planned` (or unset) is read: it says "not
+    /// started", and it is the schema's DEFAULT, so it is the value nobody
+    /// moved. `in_progress` is left alone on purpose — a file that exists and a
+    /// check that passes for part of the work are exactly what `in_progress`
+    /// looks like.
+    ///
+    /// The evidence is DIRECT, from [`direct_build_evidence`](Self::direct_build_evidence):
+    /// an Artifact REALIZES the node and its OWN status is `realized` or
+    /// `verified`, or a passing Verification VERIFIES it. An Artifact at
+    /// `planned`, or with no status, is a file nobody has said exists and is
+    /// never read as a build (fact:a-planned-artifact-that-realizes-a-capability-is-counted-as-built-2026-09-28).
+    /// Evidence one hop away — a file or a suite on the component a capability
+    /// is allocated to — is NOT read for a capability: measured on reflow2's
+    /// own design 2026-09-30 it would call 43 more planned capabilities built,
+    /// each merely allocated to a part some file realizes, which is the same
+    /// looseness the `unverified_capability` exemption rejected. A Component
+    /// additionally counts the live Capabilities at `realized`/`verified`
+    /// allocated to it, because a part that hosts built function is built at
+    /// least in part. A Release counts a DEPLOYED_TO edge not itself marked
+    /// `planned` (a planned deployment is intent, "to be deployed there").
+    ///
+    /// # Severity 0.40, and the evidence for it
+    ///
+    /// Below status_contradiction's 0.70, because the two harms differ in kind:
+    /// an overstated status is a claim with nothing behind it, which a reader
+    /// trusts into false confidence; an understated one is a record fallen
+    /// behind evidence that IS recorded — built work read as not started,
+    /// which misleads toward redoing or under-counting and promises nothing
+    /// false. Placed beside `decision_overtaken_by_promotion` (0.40), which is
+    /// this same lag one type over — a Decision still `proposed` after what it
+    /// became was taken up — and `settled_decision_named_open` (0.40); below
+    /// `unrealized_capability` (0.45) and `unverified_capability` (0.55),
+    /// because a missing build or check is a hole in the evidence, while this
+    /// is a hole in the bookkeeping OVER evidence that exists. Well under the
+    /// gate threshold: a stale status never stops a build.
+    ///
+    /// # Scope, and the measurement that decided it
+    ///
+    /// Measured 2026-09-30 over nine design exports before any of this was
+    /// written. Per CAPABILITY the rule is small and every hit genuine —
+    /// 5 of 342 on reflow2's own design (each realized by a file at `realized`
+    /// and three with a passing check), 4 of 40 on hxm, 0 elsewhere — so it is
+    /// one finding per capability, like its overstatement mirror.
+    ///
+    /// Per COMPONENT it floods, and the WHY is the default nobody moves: 79 of
+    /// 109 on reflow2 (2 of 109 components carry any status but `planned`),
+    /// 11 of 21 on flo2 (0 of 21), 6 of 8 on a third local design (0 of 8) —
+    /// and 0 on the three designs that keep the field (every component
+    /// moved), 3 on hxm (8 of 15 moved).
+    /// Every hit is true, and a per-node flood of true findings is still read
+    /// as noise and acknowledged in bulk (BL-73), so the components are ONE
+    /// finding naming the practice and listing every component, keyed on the
+    /// SET — see [`GapSource::is_aggregate`] for why not a stable id.
+    ///
+    /// Per RELEASE it raised 0 on all nine. It is here because the release
+    /// half was assigned to this rule and never written (tests/detect.rs,
+    /// `a_release_with_no_status_at_all_inherits_the_planned_exemption`), and
+    /// because it happened: `rel:v0380` was deployed while it read `planned`.
+    ///
+    /// Reports and never moves a status: a status is the owner's record, so
+    /// this asks, and the finding names the call that moves it.
+    fn detect_understated_statuses(&self, gaps: &mut Vec<GapCandidate>) -> Result<(), DynoError> {
+        let still_planned = |n: &crate::foundation::store::StoredNode| {
+            matches!(
+                n.properties.get("status").and_then(Value::as_str),
+                None | Some("planned")
+            )
+        };
+        let listed = |ids: &[String]| {
+            if ids.is_empty() {
+                "none".to_string()
+            } else {
+                ids.join(", ")
+            }
+        };
+
+        // ---- Capabilities: one finding each --------------------------------
+        for cap in self.scan_live_nodes(node::CAPABILITY)? {
+            if !still_planned(&cap) {
+                continue;
+            }
+            let (built_by, checked_by) = self.direct_build_evidence(&cap.node_id)?;
+            if built_by.is_empty() && checked_by.is_empty() {
+                continue;
+            }
+            let name = node_name(&cap);
+            let shown = match (built_by.is_empty(), checked_by.is_empty()) {
+                (false, false) => format!(
+                    "a realized file realizes it ({}) and a passing check verifies it ({})",
+                    built_by.join(", "),
+                    checked_by.join(", ")
+                ),
+                (false, true) => format!("a realized file realizes it ({})", built_by.join(", ")),
+                _ => format!("a passing check verifies it ({})", checked_by.join(", ")),
+            };
+            // A passing check is what `verified` requires, so it is the status
+            // the evidence supports; a file alone supports `realized`.
+            let to = if checked_by.is_empty() {
+                "realized"
+            } else {
+                "verified"
+            };
+            gaps.push(GapCandidate {
+                id: gap_id(
+                    GapSource::UnderstatedStatus,
+                    std::slice::from_ref(&cap.node_id),
+                ),
+                gap_source: GapSource::UnderstatedStatus,
+                scope: GapScope::Capability,
+                severity: 0.40,
+                title: format!(
+                    "“{name}” is built but still says planned — move its status, or say why not"
+                ),
+                description: format!(
+                    "“{name}” reads `planned` — not started — while {shown}. The status claims \
+                     less than the design shows, so whoever reads the node, and anything that \
+                     trusts its status, takes built work for work not begun. Move it: \
+                     `set_capability_status` → `{to}`. If `planned` is deliberate — the file is a \
+                     stub, the check tests something else — say why not with `acknowledge_gap`, \
+                     and the reason stays on the record."
+                ),
+                affected_ids: vec![cap.node_id.clone()],
+                suggested_depth: 2,
+                evidence: format!(
+                    "Capability '{}' has status=planned (or none). Incoming REALIZES from an \
+                     Artifact whose own status is realized/verified: {}. Incoming VERIFIES from a \
+                     Verification at passing: {}. An Artifact at planned or with no status is not \
+                     counted, and neither is a file or check on a component it is allocated to — \
+                     direct evidence only.",
+                    cap.node_id,
+                    listed(&built_by),
+                    listed(&checked_by)
+                ),
+            });
+        }
+
+        // ---- Components: ONE finding, keyed on the set ---------------------
+        struct Understated {
+            id: String,
+            name: String,
+            hosted: Vec<String>,
+            built_by: Vec<String>,
+            checked_by: Vec<String>,
+        }
+        let components = self.scan_live_nodes(node::COMPONENT)?;
+        let total = components.len();
+        let mut kept = 0usize;
+        let mut hits: Vec<Understated> = Vec::new();
+        for cmp in &components {
+            if !still_planned(cmp) {
+                kept += 1;
+                continue;
+            }
+            let mut hosted = Vec::new();
+            for e in self.incoming(&cmp.node_id, Some(edge::ALLOCATED_TO))? {
+                if self.is_discontinued(&e.from_id)? {
+                    continue;
+                }
+                let built = self
+                    .get_node(node::CAPABILITY, &e.from_id)?
+                    .and_then(|c| {
+                        c.properties
+                            .get("status")
+                            .and_then(Value::as_str)
+                            .map(|s| matches!(s, "realized" | "verified"))
+                    })
+                    .unwrap_or(false);
+                if built {
+                    hosted.push(e.from_id);
+                }
+            }
+            hosted.sort();
+            hosted.dedup();
+            let (built_by, checked_by) = self.direct_build_evidence(&cmp.node_id)?;
+            if hosted.is_empty() && built_by.is_empty() && checked_by.is_empty() {
+                continue;
+            }
+            hits.push(Understated {
+                id: cmp.node_id.clone(),
+                name: node_name(cmp),
+                hosted,
+                built_by,
+                checked_by,
+            });
+        }
+        if !hits.is_empty() {
+            hits.sort_by(|a, b| a.id.cmp(&b.id));
+            let n = hits.len();
+            let affected: Vec<String> = hits.iter().map(|h| h.id.clone()).collect();
+            // Most-built first for the reader; the affected set stays sorted by
+            // id so the gap id does not depend on the ranking.
+            let mut ranked: Vec<&Understated> = hits.iter().collect();
+            ranked.sort_by(|a, b| {
+                b.hosted
+                    .len()
+                    .cmp(&a.hosted.len())
+                    .then_with(|| a.id.cmp(&b.id))
+            });
+            const SHOWN: usize = 5;
+            let top: Vec<String> = ranked
+                .iter()
+                .take(SHOWN)
+                .map(|h| {
+                    if h.hosted.is_empty() {
+                        format!("“{}” ({}, built directly)", h.name, h.id)
+                    } else {
+                        format!(
+                            "“{}” ({}, {} built capabilit{})",
+                            h.name,
+                            h.id,
+                            h.hosted.len(),
+                            if h.hosted.len() == 1 { "y" } else { "ies" }
+                        )
+                    }
+                })
+                .collect();
+            let more = if n > SHOWN {
+                format!(
+                    ", and {} more — every one is in affected_ids and named in the evidence",
+                    n - SHOWN
+                )
+            } else {
+                String::new()
+            };
+            let posture = if kept == 0 {
+                format!(
+                    "No component in this design carries any status but `planned`, the schema's \
+                     default, so this is most likely a field nobody has been moving rather than \
+                     {n} separate choices."
+                )
+            } else {
+                format!("{kept} of {total} component(s) do carry a status other than `planned`.")
+            };
+            // Bounded per component so one finding cannot grow without limit on
+            // a large design; the count is always stated, so nothing is hidden.
+            const CAPS_NAMED: usize = 3;
+            let named: Vec<String> = hits
+                .iter()
+                .map(|h| {
+                    let mut parts = Vec::new();
+                    if !h.hosted.is_empty() {
+                        let shown: Vec<&str> = h
+                            .hosted
+                            .iter()
+                            .take(CAPS_NAMED)
+                            .map(String::as_str)
+                            .collect();
+                        let rest = h.hosted.len().saturating_sub(CAPS_NAMED);
+                        parts.push(format!(
+                            "{} built capability(ies): {}{}",
+                            h.hosted.len(),
+                            shown.join(", "),
+                            if rest > 0 {
+                                format!(" +{rest} more")
+                            } else {
+                                String::new()
+                            }
+                        ));
+                    }
+                    if !h.built_by.is_empty() {
+                        parts.push(format!("realized by {}", h.built_by.join(", ")));
+                    }
+                    if !h.checked_by.is_empty() {
+                        parts.push(format!("verified by {}", h.checked_by.join(", ")));
+                    }
+                    format!("{} ({})", h.id, parts.join("; "))
+                })
+                .collect();
+            gaps.push(GapCandidate {
+                id: gap_id(GapSource::UnderstatedStatus, &affected),
+                gap_source: GapSource::UnderstatedStatus,
+                scope: GapScope::Project,
+                severity: 0.40,
+                title: format!(
+                    "{n} component(s) are built but still say planned — move their status, or \
+                     say why not"
+                ),
+                description: format!(
+                    "{n} of {total} component(s) read `planned` — not started — while the design \
+                     shows them built: a capability allocated to each is realized or verified, or \
+                     a realized file or a passing check is attached to it directly. Most built \
+                     first: {}{more}. {posture} Move each one with `add_component` — its id and \
+                     `status`: `in_progress` while some of its function is still unbuilt, \
+                     `realized` once it all is. If `planned` is deliberate for one, say why not \
+                     with `acknowledge_gap`: this finding is keyed on the set, so an acknowledged \
+                     set stays acknowledged and a component newly built behind a `planned` status \
+                     asks again.",
+                    top.join(", ")
+                ),
+                affected_ids: affected,
+                suggested_depth: 1,
+                evidence: format!(
+                    "{n} of {total} live Component(s) have status=planned (or none) and at least \
+                     one of: a live Capability at realized/verified ALLOCATED_TO it; an incoming \
+                     REALIZES from an Artifact whose own status is realized/verified; an incoming \
+                     VERIFIES from a Verification at passing. {kept} of {total} carry another \
+                     status. At most {CAPS_NAMED} capabilities are named per component, with the \
+                     count. Named: {}.",
+                    named.join("; ")
+                ),
+            });
+        }
+
+        // ---- Releases: one finding each ------------------------------------
+        for rel in self.scan_live_nodes(node::RELEASE)? {
+            if !still_planned(&rel) {
+                continue;
+            }
+            let mut deployed_to: Vec<String> = self
+                .outgoing(&rel.node_id, Some(edge::DEPLOYED_TO))?
+                .into_iter()
+                .filter(|e| e.properties.get("status").and_then(Value::as_str) != Some("planned"))
+                .map(|e| e.to_id)
+                .collect();
+            if deployed_to.is_empty() {
+                continue;
+            }
+            deployed_to.sort();
+            deployed_to.dedup();
+            let name = node_name(&rel);
+            gaps.push(GapCandidate {
+                id: gap_id(
+                    GapSource::UnderstatedStatus,
+                    std::slice::from_ref(&rel.node_id),
+                ),
+                gap_source: GapSource::UnderstatedStatus,
+                scope: GapScope::Project,
+                severity: 0.40,
+                title: format!(
+                    "“{name}” is deployed but still says planned — move its status, or say why not"
+                ),
+                description: format!(
+                    "“{name}” reads `planned` — not yet cut — while the design records it deployed \
+                     to {}. The status claims less than the design shows, so whoever reads it \
+                     takes a shipped release for one still to come. Move it with `add_release` — \
+                     its id and `status: deployed` (or `built`). If the deployment is only \
+                     intended, mark that DEPLOYED_TO edge `planned` instead; if `planned` is \
+                     deliberate, say why not with `acknowledge_gap`.",
+                    deployed_to.join(", ")
+                ),
+                affected_ids: vec![rel.node_id.clone()],
+                suggested_depth: 1,
+                evidence: format!(
+                    "Release '{}' has status=planned (or none) and DEPLOYED_TO edge(s), not marked \
+                     planned, to: {}. A DEPLOYED_TO whose own status is planned is an intended \
+                     deployment and is not counted.",
+                    rel.node_id,
+                    deployed_to.join(", ")
+                ),
+            });
+        }
+        Ok(())
+    }
+
+    /// The DIRECT evidence that a node is built, as two sorted id lists: the
+    /// live Artifacts that REALIZE it whose own status is `realized` or
+    /// `verified`, and the live Verifications at `passing` that VERIFY it.
+    ///
+    /// An Artifact at `planned` or with no status is not a build — `add_artifact`
+    /// writes only what it is told, and absence means nobody said
+    /// (fact:a-planned-artifact-that-realizes-a-capability-is-counted-as-built-2026-09-28).
+    /// One hop and no further: what realizes or checks a component the node is
+    /// allocated to is a different, coarser claim.
+    fn direct_build_evidence(&self, id: &str) -> Result<(Vec<String>, Vec<String>), DynoError> {
+        let mut built_by = Vec::new();
+        for e in self.incoming(id, Some(edge::REALIZES))? {
+            if self.is_discontinued(&e.from_id)? {
+                continue;
+            }
+            let built = self
+                .get_node(node::ARTIFACT, &e.from_id)?
+                .and_then(|a| {
+                    a.properties
+                        .get("status")
+                        .and_then(Value::as_str)
+                        .map(|s| matches!(s, "realized" | "verified"))
+                })
+                .unwrap_or(false);
+            if built {
+                built_by.push(e.from_id);
+            }
+        }
+        let mut checked_by = Vec::new();
+        for e in self.incoming(id, Some(edge::VERIFIES))? {
+            if self.is_discontinued(&e.from_id)? {
+                continue;
+            }
+            let passing = self
+                .get_node(node::VERIFICATION, &e.from_id)?
+                .and_then(|v| {
+                    v.properties
+                        .get("status")
+                        .and_then(Value::as_str)
+                        .map(|s| s == "passing")
+                })
+                .unwrap_or(false);
+            if passing {
+                checked_by.push(e.from_id);
+            }
+        }
+        built_by.sort();
+        built_by.dedup();
+        checked_by.sort();
+        checked_by.dedup();
+        Ok((built_by, checked_by))
     }
 
     /// A `DesignRule` the build enforces that nothing can detect a violation of.
@@ -4891,7 +5342,9 @@ impl DesignGraph {
             // builds it. Measured, that distinction keeps exactly one live
             // question on this design (`cap:explains-itself`, planned with a
             // file already realizing it) that trusting the status would have
-            // silenced — which is the entire point.
+            // silenced — which is the entire point. (The stale status itself
+            // is `understated_status`'s question since 2026-09-30, asked when
+            // the realizing file's own status says it exists.)
             //
             // DIRECT realization only. The indirect path
             // (`art -REALIZES-> cmp <-ALLOCATED_TO- cap`) that
