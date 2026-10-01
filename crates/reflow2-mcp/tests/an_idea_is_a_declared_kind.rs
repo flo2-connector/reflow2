@@ -41,6 +41,7 @@ fn dec(id: &str, kind: Option<&str>) -> DecisionReq {
         decision: Some("Some text distinctive enough to avoid a near-match refusal.".into()),
         rationale: None,
         distinct_from: None,
+        replaces: None,
         kind: kind.map(str::to_string),
         related_to: None,
         no_relation_note: None,

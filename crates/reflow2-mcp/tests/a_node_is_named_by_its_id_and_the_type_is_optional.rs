@@ -31,6 +31,7 @@ async fn seeded() -> ReflowService {
         name: Some("Fast".into()),
         statement: Some("Answer in under a second.".into()),
         distinct_from: None,
+        replaces: None,
         status: None,
         approver: None,
         acted_at: None,

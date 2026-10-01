@@ -46,6 +46,7 @@ fn idea(id: &str) -> DecisionReq {
         decision: Some(TEXT.into()),
         rationale: None,
         distinct_from: None,
+        replaces: None,
         kind: Some("exploratory".into()),
         related_to: None,
         no_relation_note: None,

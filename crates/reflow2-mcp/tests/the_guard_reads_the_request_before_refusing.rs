@@ -47,6 +47,7 @@ fn component(id: &str, name: &str) -> ComponentReq {
         kind: None,
         level: None,
         distinct_from: None,
+        replaces: None,
         tier: None,
         status: None,
     }
@@ -59,6 +60,7 @@ fn capability(id: &str, name: &str, allocated_to: Option<&str>) -> CapabilityReq
         description: Some(WORDS.into()),
         status: None,
         distinct_from: None,
+        replaces: None,
         tier: None,
         satisfies: None,
         allocated_to: allocated_to.map(Into::into),
@@ -95,6 +97,7 @@ async fn a_part_that_meets_a_requirement_reads_like_it_and_is_not_refused() {
         name: Some("Spot at the sample under 30 by 5 microns".into()),
         statement: Some(WORDS.into()),
         distinct_from: None,
+        replaces: None,
         status: None,
         approver: None,
         acted_at: None,

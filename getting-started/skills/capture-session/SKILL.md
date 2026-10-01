@@ -136,7 +136,8 @@ it would have asserted something nobody checked.
 
 - **What already landed as it happened.** Search before every write; the capture tools enforce
   this themselves and will refuse a near-duplicate. A refusal naming an existing node is the
-  system working — read that node and either add to it or drop yours.
+  system working — read that node, then add to it, or keep yours as a different thing
+  (`distinct_from`), or say yours takes its place (`replaces`); or drop yours.
 - **The narrative.** "We built X, then fixed Y, then merged Z." The commits say that, better.
 - **Your own account of your work.** The code and the graph are the account. A node describing how
   much you did is noise a future reader has to page past.
