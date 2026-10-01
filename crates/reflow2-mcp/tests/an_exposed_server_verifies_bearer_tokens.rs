@@ -1107,6 +1107,98 @@ fn a_session_is_bound_to_the_sign_in_that_opened_it() {
         .expect("the owner keeps her session");
 }
 
+/// A resource server that started while another process held its store
+/// serves the degraded surface, then the design in place once the holder
+/// lets go (#616 fix 3, `ServeAs::prepare`). EITHER WAY it verifies every
+/// token: the gate is on the transport both doors share, and the recovered
+/// design is held to the bearer caller rule exactly as a healthy start is —
+/// the gap fix 3 found for the trusted gateway must not reopen here.
+#[test]
+fn a_recovered_resource_server_still_verifies_every_token() {
+    let rsa = Signer::rsa("rsa-1");
+    let issuer = Issuer::start(vec![rsa.jwk()]);
+    let store = seeded_design("recovered");
+    let holder = serve(&store, &[]);
+    let waiting = resource_server(&store, &issuer.url);
+
+    // Degraded: still gated.
+    assert_refused(
+        &post_init(waiting.port, None),
+        401,
+        None,
+        "no token, degraded",
+    );
+
+    drop(holder);
+    let started = Instant::now();
+    loop {
+        let r = http_to(waiting.port, "127.0.0.1", "GET", "/readyz", &[], "");
+        if r.status == 200 {
+            break;
+        }
+        assert!(
+            started.elapsed() < Duration::from_secs(60),
+            "the design is served once the holder lets go: {} {}\nstderr:\n{}",
+            r.status,
+            r.body,
+            waiting.stderr.lock().unwrap()
+        );
+        std::thread::sleep(Duration::from_millis(250));
+    }
+
+    // Recovered: the same verdicts as a healthy start.
+    assert_refused(
+        &post_init(waiting.port, None),
+        401,
+        None,
+        "no token, recovered",
+    );
+    let mut expired = claims(&issuer.url, "alice");
+    expired["exp"] = json!(now() - 3600);
+    assert_refused(
+        &post_init(
+            waiting.port,
+            Some(&format!("Bearer {}", rsa.token(&expired))),
+        ),
+        401,
+        Some("invalid_token"),
+        "an expired token, recovered",
+    );
+    assert_refused(
+        &post_init(
+            waiting.port,
+            Some(&format!(
+                "Bearer {}",
+                none_token(&claims(&issuer.url, "alice"))
+            )),
+        ),
+        401,
+        Some("invalid_token"),
+        "alg none, recovered",
+    );
+    let mut s = Session::open(waiting.port, &rsa.token(&claims(&issuer.url, "alice")));
+    assert!(
+        s.instructions.contains("BEARER"),
+        "the recovered design is held to the bearer caller rule: {}",
+        &s.instructions[..s.instructions.len().min(600)]
+    );
+    s.call(
+        "set_decision_status",
+        json!({"decision_id": "dec:d", "status": "accepted", "approver": "who:alice"}),
+        None,
+    )
+    .expect("alice settles in her own name after the recovery");
+    let forged = s.call(
+        "add_requirement",
+        json!({"id": "req:forged-after-recovery", "name": "Forged after recovery", "statement": "Signed in someone else's name after the wait.", "status": "accepted", "approver": "who:bob"}),
+        None,
+    );
+    assert!(
+        forged.is_err(),
+        "a signature in bob's name after the recovery: {forged:?}"
+    );
+}
+
 /// A key the server has not seen (the issuer rotated) is fetched once, by kid;
 /// an unknown kid inside the refresh cooldown is refused without a fetch.
 #[test]
