@@ -12,6 +12,26 @@
 # so the installer can use the stable `releases/latest/download/<asset>` URL
 # with no API parsing; the version lives in the release tag and in
 # KIT_VERSION.json inside the kit tarball.
+#
+# THE IMAGE IS TWO ARCHITECTURES AND ONE NAME (#617). Each per-architecture
+# `image` job builds, smoke-tests and pushes ITS OWN platform on its own runner
+# — linux/amd64 on ubuntu-22.04, linux/arm64 on ubuntu-22.04-arm — untagged, by
+# digest. `container image` then joins the two digests into ONE index, tags it
+# `<version>` and `latest`, and refuses unless that index lists both platforms.
+# `publish release` waits for it and writes the index digest into the release
+# notes, so a consumer can pin the image by a name that can never move.
+#
+# ⭐ DRY RUN, AND WHY ITS GATE IS WRITTEN THE WAY IT IS. A dispatch with
+# dry_run=true builds every binary, builds and smoke-tests each architecture's
+# image, and writes NOTHING: no registry login, no push, no index, no release.
+# Every step and job that writes carries the SAME condition,
+#
+#     github.event_name == 'push' || inputs.dry_run == false
+#
+# A tag push has no `inputs` at all, so the push case is named outright rather
+# than left to how an empty input compares, and a dispatch writes only when
+# dry_run is false. A rehearsal therefore cannot retag `latest` or a version.
+# tools/test_release_workflow.py fails if a writing step goes ungated.
 
 name: release
 
@@ -21,17 +41,27 @@ on:
   workflow_dispatch:
     inputs:
       tag:
-        description: "Existing tag to build a release for (e.g. v0.4.0)"
-        required: true
+        description: "Existing tag to build a release for (e.g. v0.77.0). Required unless dry_run is set."
+        required: false
+        default: ""
+      dry_run:
+        description: "Rehearse: build and smoke-test both binaries' images on their own architectures, and push and publish NOTHING"
+        type: boolean
+        required: false
+        default: false
 
 permissions:
   contents: write
-  # The container job pushes to the registry attached to this repository.
+  # The image jobs push to the registry attached to this repository.
   packages: write
 
 jobs:
   binaries:
     name: binary (${{ matrix.name }})
+    # kit settles what this run is first: it refuses a release dispatch with no
+    # tag and a tag that disagrees with Cargo.toml in seconds, before any runner
+    # spends ~15 minutes compiling RocksDB for a run that cannot publish.
+    needs: kit
     strategy:
       fail-fast: false
       matrix:
@@ -42,6 +72,17 @@ jobs:
           - name: linux-x86_64
             runner: ubuntu-22.04
             target: x86_64-unknown-linux-gnu
+          # linux-arm64 is built NATIVELY on GitHub's arm64 runner (free for a
+          # public repository), NOT cross-compiled. librocksdb-sys compiles
+          # RocksDB's C++ with the host's compiler and generates its bindings
+          # with the host's libclang; a cross build would need an aarch64 sysroot
+          # and cross C++ toolchain — a second toolchain to keep honest, for a
+          # binary the arm runner builds the same way the x86_64 one is built.
+          # ubuntu-22.04-arm for the same glibc reason as linux-x86_64, and so
+          # both binaries run on the image's ubuntu:22.04 base (#617).
+          - name: linux-arm64
+            runner: ubuntu-22.04-arm
+            target: aarch64-unknown-linux-gnu
           - name: macos-arm64
             runner: macos-14
             target: aarch64-apple-darwin
@@ -62,6 +103,21 @@ jobs:
       - uses: dtolnay/rust-toolchain@stable
         with:
           targets: ${{ matrix.target }}
+      # librocksdb-sys generates its bindings with bindgen, which needs
+      # libclang. The x86_64 image has it; GitHub's arm64 image lists clang
+      # 13–15 and is leaner, so this installs it only where it is missing
+      # rather than assuming either image's contents.
+      - name: libclang for RocksDB's bindings (installed only if missing)
+        if: runner.os == 'Linux'
+        run: |
+          set -euo pipefail
+          found="$(find /usr/lib -maxdepth 4 -name 'libclang*.so*' -print -quit 2> /dev/null || true)"
+          if [ -n "$found" ]; then
+            echo "libclang present: $found"
+          else
+            sudo apt-get update
+            sudo apt-get install -y --no-install-recommends libclang-dev clang
+          fi
       - uses: Swatinem/rust-cache@v2
         with:
           shared-key: release-${{ matrix.name }}
@@ -82,19 +138,39 @@ jobs:
     name: consumer kit
     runs-on: ubuntu-22.04
     steps:
+      # A dispatch that publishes needs a tag to publish; a dry run needs none
+      # and builds the ref it was dispatched on. Anything but a literal "true"
+      # is a release run here — the same fail-safe reading as the publish gate.
+      - name: A release run names its tag
+        env:
+          TAG: ${{ github.event_name == 'push' && github.ref_name || inputs.tag }}
+          DRY_RUN: ${{ inputs.dry_run }}
+        run: |
+          set -euo pipefail
+          if [ "${DRY_RUN}" != "true" ] && [ -z "${TAG}" ]; then
+            echo "::error::a release run needs a tag: dispatch with -f tag=vX.Y.Z, or rehearse with -f dry_run=true" >&2
+            exit 1
+          fi
+          echo "tag='${TAG}' dry_run='${DRY_RUN:-false}'"
       - uses: actions/checkout@v5
         with:
           ref: ${{ inputs.tag || github.ref }}
       - name: Package the kit
+        env:
+          TAG: ${{ github.event_name == 'push' && github.ref_name || inputs.tag }}
+          DRY_RUN: ${{ inputs.dry_run }}
         run: |
           set -euo pipefail
-          TAG="${{ inputs.tag || github.ref_name }}"
           VERSION="$(grep -m1 '^version' Cargo.toml | cut -d'"' -f2)"
           COMMIT="$(git rev-parse --short HEAD)"
           COMMITTED_AT="$(git log -1 --format=%cI)"
           # The tag must name the version it ships — a v0.5.0 tag on a Cargo.toml
-          # that says 0.4.0 would publish a kit that lies about its binary.
-          if [ "v${VERSION}" != "${TAG}" ]; then
+          # that says 0.4.0 would publish a kit that lies about its binary. A dry
+          # run publishes nothing, has no tag to hold to it, and stamps the kit
+          # with the Cargo.toml version of the ref it built.
+          if [ "${DRY_RUN}" = "true" ]; then
+            echo "dry run: the tag/version check is skipped; the kit is stamped ${VERSION} from Cargo.toml"
+          elif [ "v${VERSION}" != "${TAG}" ]; then
             echo "tag ${TAG} does not match Cargo.toml version ${VERSION}" >&2
             exit 1
           fi
@@ -125,98 +201,211 @@ jobs:
           path: dist/*
           if-no-files-found: error
 
-  container:
-    name: container image
-    # binaries: this job WRAPS the already-built linux-x86_64 binary instead of
-    # recompiling it — see the Dockerfile for why (a rebuild would take ~14
-    # minutes on RocksDB and could ship a binary that differs from the released
-    # one). kit: that job already fails the build when the tag and Cargo.toml
-    # version disagree, so depending on it means this image cannot be tagged
-    # with a version the release does not actually ship.
+  image:
+    name: image (linux/${{ matrix.arch }})
+    # binaries: this job WRAPS the already-built binary for its architecture
+    # instead of recompiling it — see the Dockerfile for why (a rebuild would
+    # take ~14 minutes on RocksDB and could ship a binary that differs from the
+    # released one). kit: that job already fails the build when the tag and
+    # Cargo.toml version disagree, so nothing is pushed, even untagged, for a
+    # version the release does not actually ship.
     needs: [binaries, kit]
-    runs-on: ubuntu-22.04
+    strategy:
+      # Both architectures report, so a dry run says which one fails.
+      fail-fast: false
+      matrix:
+        include:
+          # ⭐ EACH RUNNER BUILDS ONLY ITS OWN PLATFORM. The arm64 image is built
+          # and smoke-tested ON an arm64 runner, so the gate below proves the
+          # arm64 image starts — natively, with no QEMU — and the Dockerfile's
+          # `COPY reflow2-mcp` stays one file in one build context.
+          - arch: amd64
+            runner: ubuntu-22.04
+            binary: linux-x86_64
+          - arch: arm64
+            runner: ubuntu-22.04-arm
+            binary: linux-arm64
+    runs-on: ${{ matrix.runner }}
+    env:
+      ARCH: ${{ matrix.arch }}
+      TAG: ${{ github.event_name == 'push' && github.ref_name || inputs.tag }}
+      # What the image says about itself on the registry. Rewritten for #617:
+      # until then it said the server has no authentication, which v0.76.0's
+      # native bearer verification made false.
+      OCI_DESCRIPTION: >-
+        reflow2 design server (MCP over HTTP). With --http-oidc-issuer, --http-public-url
+        and --http-contributor-id (or REFLOW2_OIDC_ISSUER, REFLOW2_PUBLIC_URL,
+        REFLOW2_CONTRIBUTOR_ID) it verifies OAuth bearer tokens itself. With neither that
+        nor --http-trusted-gateway it authenticates no one: served for others it allows
+        reads and proposals only; otherwise keep its port private. --http-allow-host is
+        DNS-rebinding protection, not authentication. It does not terminate TLS.
     steps:
       - uses: actions/checkout@v5
         with:
           ref: ${{ inputs.tag || github.ref }}
       - uses: actions/download-artifact@v4
         with:
-          name: binary-linux-x86_64
+          name: binary-${{ matrix.binary }}
           path: dist
       - name: Stage the binary into the build context
         run: |
           set -euo pipefail
-          tar -xzf dist/reflow2-mcp-linux-x86_64.tar.gz -C .
+          tar -xzf "dist/reflow2-mcp-${{ matrix.binary }}.tar.gz" -C .
           test -x reflow2-mcp || { echo "reflow2-mcp missing or not executable" >&2; exit 1; }
+          rm -rf dist
+      - name: Name, version and labels
+        run: |
+          set -euo pipefail
+          # A dry run may have no tag; its image is labelled with the Cargo.toml
+          # version of the ref it built, and is never pushed.
+          if [ -n "${TAG}" ]; then VERSION="${TAG#v}"; else VERSION="$(grep -m1 '^version' Cargo.toml | cut -d'"' -f2)"; fi
+          echo "IMAGE=ghcr.io/$(echo "$GITHUB_REPOSITORY" | tr '[:upper:]' '[:lower:]')/reflow2-mcp" >> "$GITHUB_ENV"
+          echo "VERSION=${VERSION}" >> "$GITHUB_ENV"
       - uses: docker/setup-buildx-action@v3
-      - uses: docker/login-action@v3
-        with:
-          registry: ghcr.io
-          username: ${{ github.actor }}
-          password: ${{ github.token }}
       # ⭐ THE IMAGE MUST START BEFORE IT IS PUBLISHED, AND THAT ORDER IS THE
       # WHOLE POINT OF THIS STEP.
       #
       # v0.27.0 withdrew `--content-path` and the ENTRYPOINT went on passing it.
       # clap exits 2 on an unknown argument, so the container died before it
       # opened the graph — and FIVE releases (v0.27.0 … v0.31.0) each published
-      # that image. Nothing here was negligent; "Verify the image is actually
-      # pullable" below verified the wrong property, and was true the whole time.
+      # that image. Nothing here was negligent; the "pullable" check that used to
+      # follow the push verified the wrong property, and was true the whole time.
       # A pull is not a start.
       #
-      # Built with --load rather than --push so this runs on an image that is
+      # Built with --load rather than pushed so this runs on an image that is
       # still local. A smoke test after the push tells you what you shipped;
-      # this one exists to stop you shipping it.
+      # this one exists to stop you shipping it. It runs once PER ARCHITECTURE,
+      # on that architecture's own runner: an arm64 image that cannot start is
+      # caught here exactly as an amd64 one is.
       - name: The image must start (gate — runs before anything is published)
         run: |
           set -euo pipefail
-          docker buildx build --platform linux/amd64 --load --tag reflow2-mcp:candidate .
-          docker/smoke.sh reflow2-mcp:candidate
-      - name: Build and push
-        env:
-          TAG: ${{ inputs.tag || github.ref_name }}
-        run: |
-          set -euo pipefail
-          VERSION="${TAG#v}"
-          IMAGE="ghcr.io/$(echo "$GITHUB_REPOSITORY" | tr '[:upper:]' '[:lower:]')/reflow2-mcp"
-          # A consumer PINS a version. `latest` is published too, but the
-          # version tag is the one flo2 and anyone else should reference —
-          # chasing `latest` is how a consumer gets a surface change it never
-          # agreed to (req:reflow2-consumable-as-an-image).
-          docker buildx build \
-            --platform linux/amd64 \
-            --tag "${IMAGE}:${VERSION}" \
-            --tag "${IMAGE}:latest" \
+          docker buildx build --platform "linux/${ARCH}" --load --tag reflow2-mcp:candidate \
             --label "org.opencontainers.image.version=${VERSION}" \
             --label "org.opencontainers.image.revision=${GITHUB_SHA}" \
             --label "org.opencontainers.image.source=https://github.com/${GITHUB_REPOSITORY}" \
-            --label "org.opencontainers.image.description=reflow2 design server. NO AUTHENTICATION — deploy on a private network behind a gateway that authenticates." \
-            --push .
-          echo "IMAGE=${IMAGE}" >> "$GITHUB_ENV"
-          echo "VERSION=${VERSION}" >> "$GITHUB_ENV"
-      - name: Verify the image is actually pullable
+            --label "org.opencontainers.image.description=${OCI_DESCRIPTION}" \
+            .
+          docker/smoke.sh reflow2-mcp:candidate
+      - uses: docker/login-action@v3
+        if: github.event_name == 'push' || inputs.dry_run == false
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ github.token }}
+      # PUSHED BY DIGEST, UNTAGGED. Only `container image` below tags anything,
+      # and only once both architectures are in one index — so `latest` and the
+      # version can never point at an image with one architecture missing. The
+      # same inputs as the gate, so this build is the gated one from cache.
+      - name: Push this architecture by digest (untagged)
+        if: github.event_name == 'push' || inputs.dry_run == false
         run: |
           set -euo pipefail
-          # The release workflow already learned this lesson once (BL-55): a run
-          # that goes green while shipping nothing is worse than a red one,
-          # because nobody looks. Pushing is not evidence the manifest resolves.
-          #
-          # ⚠️ THIS IS A DISTRIBUTION CHECK AND NOTHING MORE. It answers "does
-          # the manifest resolve", which is worth asking and is NOT worth
-          # mistaking for "does the image work" — five broken releases passed
-          # this step. The gate above is the one that answers that.
-          docker buildx imagetools inspect "${IMAGE}:${VERSION}" > /dev/null
-          echo "published ${IMAGE}:${VERSION}"
+          docker buildx build --platform "linux/${ARCH}" \
+            --label "org.opencontainers.image.version=${VERSION}" \
+            --label "org.opencontainers.image.revision=${GITHUB_SHA}" \
+            --label "org.opencontainers.image.source=https://github.com/${GITHUB_REPOSITORY}" \
+            --label "org.opencontainers.image.description=${OCI_DESCRIPTION}" \
+            --output "type=image,name=${IMAGE},push-by-digest=true,name-canonical=true,push=true" \
+            --metadata-file "${RUNNER_TEMP}/metadata.json" \
+            .
+          digest="$(jq -r '."containerimage.digest" // empty' "${RUNNER_TEMP}/metadata.json")"
+          [[ "${digest}" =~ ^sha256:[0-9a-f]{64}$ ]] \
+            || { echo "no image digest in the build metadata: '${digest}'" >&2; cat "${RUNNER_TEMP}/metadata.json" >&2; exit 1; }
+          mkdir -p "${RUNNER_TEMP}/digests"
+          echo "${digest}" > "${RUNNER_TEMP}/digests/${ARCH}"
+          echo "pushed ${IMAGE}@${digest} (linux/${ARCH}, untagged)"
+      - uses: actions/upload-artifact@v4
+        if: github.event_name == 'push' || inputs.dry_run == false
+        with:
+          name: digest-${{ matrix.arch }}
+          path: ${{ runner.temp }}/digests/*
+          if-no-files-found: error
+          retention-days: 1
+
+  container:
+    # ⚠️ KEEP THIS NAME. The release-cut procedure reads the job called
+    # `container image` (fact:the-cut-verified-the-assets-and-never-the-image-2026-09-14),
+    # and its log still ends `published <IMAGE>:<VERSION>`.
+    name: container image
+    needs: [kit, image]
+    if: github.event_name == 'push' || inputs.dry_run == false
+    runs-on: ubuntu-22.04
+    outputs:
+      image: ${{ steps.index.outputs.image }}
+      version: ${{ steps.index.outputs.version }}
+      digest: ${{ steps.index.outputs.digest }}
+      platforms: ${{ steps.index.outputs.platforms }}
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          ref: ${{ inputs.tag || github.ref }}
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: digest-*
+          path: digests
+          merge-multiple: true
+      - uses: docker/setup-buildx-action@v3
+      - uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ github.token }}
+      # ONE INDEX, VERIFIED BEFORE AND AFTER IT IS TAGGED.
+      #
+      # docker/publish-index.sh composes the index with --dry-run first and
+      # refuses unless it lists linux/amd64 AND linux/arm64, so a missing
+      # architecture tags NOTHING and `latest` stays where it was. Then it
+      # creates `<version>` and `latest` as one index and reads the PUSHED tag
+      # back for the same check — stronger than the "pullable" check this
+      # replaces, which answered "does the manifest resolve" and nothing more.
+      #
+      # ⚠️ THIS IS STILL A DISTRIBUTION CHECK AND NOTHING MORE: it says what
+      # the index lists, not that the images start. Five broken releases passed
+      # a check like this one (BL-55's lesson: a run that goes green while
+      # shipping nothing is worse than a red one, because nobody looks). The
+      # per-architecture gate above is the one that answers "does it start".
+      - name: One index for both architectures, tagged and verified
+        id: index
+        env:
+          TAG: ${{ github.event_name == 'push' && github.ref_name || inputs.tag }}
+        run: |
+          set -euo pipefail
+          IMAGE="ghcr.io/$(echo "$GITHUB_REPOSITORY" | tr '[:upper:]' '[:lower:]')/reflow2-mcp"
+          # A consumer PINS a version, or better the digest this prints.
+          # `latest` is published too, but chasing it is how a consumer gets a
+          # surface change it never agreed to (req:reflow2-consumable-as-an-image).
+          mapfile -t digests < <(cat digests/*)
+          docker/publish-index.sh "${IMAGE}" "${TAG#v}" "${digests[@]}"
 
   publish:
     name: publish release
-    needs: [binaries, kit]
+    # ⭐ PUBLISH WAITS FOR THE IMAGE, ON PURPOSE. Until #617 it did not, and two
+    # releases (v0.60.0, v0.60.1) went live with every asset attached and NO
+    # image: the release object was complete for the assets and silent about
+    # the image, which is not one of them
+    # (fact:the-cut-verified-the-assets-and-never-the-image-2026-09-14). Now a
+    # release whose image failed never leaves draft, and the notes it goes live
+    # with name the image's index digest.
+    needs: [binaries, kit, container]
+    if: github.event_name == 'push' || inputs.dry_run == false
     runs-on: ubuntu-22.04
     steps:
+      # Checked out first: checkout cleans the workspace, and dist/ comes after.
+      - uses: actions/checkout@v5
+        with:
+          ref: ${{ inputs.tag || github.ref }}
+      # By name, never "every artifact": the per-architecture digest artifacts
+      # are not release assets, and `gh release upload dist/*` would attach them.
       - uses: actions/download-artifact@v4
         with:
+          pattern: binary-*
           path: dist
           merge-multiple: true
+      - uses: actions/download-artifact@v4
+        with:
+          name: kit
+          path: dist
       - name: Checksums
         run: |
           set -euo pipefail
@@ -226,7 +415,11 @@ jobs:
       - name: Create or update the release
         env:
           GH_TOKEN: ${{ github.token }}
-          TAG: ${{ inputs.tag || github.ref_name }}
+          TAG: ${{ github.event_name == 'push' && github.ref_name || inputs.tag }}
+          IMAGE: ${{ needs.container.outputs.image }}
+          VERSION: ${{ needs.container.outputs.version }}
+          DIGEST: ${{ needs.container.outputs.digest }}
+          PLATFORMS: ${{ needs.container.outputs.platforms }}
         run: |
           set -euo pipefail
           # Draft first, publish last: a non-draft release flips releases/latest
@@ -243,12 +436,27 @@ jobs:
           # --clobber: a re-run replaces assets rather than failing on them.
           gh release upload "$TAG" --repo "$GITHUB_REPOSITORY" --clobber dist/*
           # Every expected asset must be attached before this goes live.
-          for asset in reflow2-mcp-linux-x86_64.tar.gz reflow2-mcp-macos-arm64.tar.gz \
-                       reflow2-mcp-macos-x86_64.tar.gz reflow2-kit.tar.gz checksums.txt; do
+          for asset in reflow2-mcp-linux-x86_64.tar.gz reflow2-mcp-linux-arm64.tar.gz \
+                       reflow2-mcp-macos-arm64.tar.gz reflow2-mcp-macos-x86_64.tar.gz \
+                       reflow2-kit.tar.gz checksums.txt; do
             gh release view "$TAG" --repo "$GITHUB_REPOSITORY" --json assets \
               -q '.assets[].name' | grep -qx "$asset" \
               || { echo "missing asset after upload: $asset" >&2; exit 1; }
           done
+          # THE IMAGE'S SECTION OF THE NOTES, before the release goes live. It is
+          # APPENDED to whatever the notes already say — the cut may have created
+          # this release with real notes, and they are never overwritten — and it
+          # sits between markers, so a re-run replaces it instead of stacking a
+          # second one. The digest is the index `container image` verified.
+          gh release view "$TAG" --repo "$GITHUB_REPOSITORY" --json body -q .body > "$RUNNER_TEMP/notes.md"
+          docker/image-release-notes.sh "$IMAGE" "$VERSION" "$DIGEST" "$PLATFORMS" \
+            < "$RUNNER_TEMP/notes.md" > "$RUNNER_TEMP/notes.new.md"
+          gh release edit "$TAG" --repo "$GITHUB_REPOSITORY" --notes-file "$RUNNER_TEMP/notes.new.md"
+          # Read it back off the release, the authoritative object, rather than
+          # trusting the edit's exit code.
+          live_notes="$(gh release view "$TAG" --repo "$GITHUB_REPOSITORY" --json body -q .body)"
+          grep -qF "${IMAGE}@${DIGEST}" <<< "$live_notes" \
+            || { echo "the release notes do not carry ${IMAGE}@${DIGEST} after the edit" >&2; exit 1; }
           if [ -n "$created_draft" ]; then
             gh release edit "$TAG" --repo "$GITHUB_REPOSITORY" --draft=false
           fi

@@ -156,8 +156,11 @@ def test_linux_arm64_is_built_natively_on_an_arm_runner() -> None:
     )
     build = "\n".join(step_text(s) for s in steps(jobs()["binaries"]))
     assert "cargo build --release -p reflow2-mcp --target ${{ matrix.target }}" in build, build
-    for cross in ("cross build", "cargo zigbuild", "gcc-aarch64-linux-gnu", "CARGO_TARGET_AARCH64_UNKNOWN_LINUX_GNU_LINKER"):
-        assert cross not in RELEASE.read_text(encoding="utf-8"), (
+    # What the job RUNS, not what its comments say: a comment explaining why
+    # there is no cross build must not read as one.
+    for cross in ("cross build", "cargo zigbuild", "gcc-aarch64-linux-gnu", "AARCH64_UNKNOWN_LINUX_GNU_LINKER",
+                  "setup-qemu-action"):
+        assert cross not in build + json.dumps(jobs()["binaries"].get("env") or {}), (
             f"`{cross}` is a cross-compile; linux-arm64 is built natively on an arm runner"
         )
 
