@@ -1685,8 +1685,11 @@ mod tests {
         let sig = kp.sign(&rng, msg.as_bytes()).unwrap();
         let token = format!("{msg}.{}", B64.encode(sig.as_ref()));
 
+        /// What the service behind the gate saw: an Authorization header?
+        /// and the caller the gate established.
+        type Seen = Option<(bool, Option<VerifiedCaller>)>;
         #[derive(Clone, Default)]
-        struct Probe(Arc<std::sync::Mutex<Option<(bool, Option<VerifiedCaller>)>>>);
+        struct Probe(Arc<std::sync::Mutex<Seen>>);
         impl tower_service::Service<Request<()>> for Probe {
             type Response = BoxResponse;
             type Error = Infallible;
