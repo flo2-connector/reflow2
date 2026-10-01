@@ -79,6 +79,7 @@ async fn component(s: &ReflowService, id: &str, name: &str) {
         kind: None,
         level: None,
         distinct_from: None,
+        replaces: None,
         tier: None,
         status: None,
     }))

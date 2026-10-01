@@ -86,6 +86,7 @@ fn requirement(id: &str, name: &str, statement: &str) -> RequirementReq {
         name: Some(name.into()),
         statement: Some(statement.into()),
         distinct_from: None,
+        replaces: None,
         status: None,
         approver: None,
         acted_at: None,
@@ -136,6 +137,7 @@ async fn a_cross_type_near_match_names_the_layering_not_a_duplicate() {
             kind: None,
             level: None,
             distinct_from: None,
+            replaces: None,
             tier: None,
             status: None,
         }))

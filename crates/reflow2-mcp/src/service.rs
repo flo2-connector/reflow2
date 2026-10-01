@@ -1929,13 +1929,30 @@ pub struct RequirementReq {
     /// The requirement statement.
     #[serde(default)]
     pub statement: Option<String>,
-    /// Ids you read and judged DIFFERENT from this one, when reflow2 has
-    /// already told you something close exists. Naming them is the deliberate
-    /// decision: sharpen an existing node by calling with ITS id, or start a
-    /// new one and say what you rejected. Omit it on a first attempt — the
-    /// refusal, if any, lists exactly what to put here.
+    /// Ids you read and judged a DIFFERENT thing from this one, when reflow2
+    /// has already told you something close exists — one of the THREE answers
+    /// to that check: sharpen the existing node (call with ITS id), say this one
+    /// is different (here), or say it takes an older one's place (`replaces`).
+    /// THE JUDGEMENT IS KEPT: the ids are written onto the node as
+    /// `distinct_from`, so a later reader can tell a node its writer compared
+    /// from one nobody did. Omit it on a first attempt — the refusal, if any,
+    /// lists exactly what to put here.
     #[serde(default)]
     pub distinct_from: Option<Vec<String>>,
+    /// Ids of OLDER nodes of this same type that this one TAKES THE PLACE OF —
+    /// the third answer to the near-match check, for a new node that is neither
+    /// a sharper wording of an old one nor a different thing, but its
+    /// successor. For each: the old node's ending is recorded FIRST (a
+    /// `deprecation` ChangeEvent whose snapshot keeps its final state and
+    /// edges), the thread that says what it was FOR moves here (a Capability's
+    /// SATISFIES, a Component's incoming ALLOCATED_TO; a Requirement, Decision
+    /// or DesignRule moves none), and this node OBSOLETES it. Its stored status
+    /// does not move. The reply names what moved, what stayed, and what — if
+    /// anything — still withdraws it. Works on a revise too, so a successor
+    /// already recorded can say so later. An id of another type, one naming
+    /// nothing, or one also in `distinct_from` is REFUSED and nothing is written.
+    #[serde(default)]
+    pub replaces: Option<Vec<String>>,
     /// The status to LAND IN when the owner's word is already in hand:
     /// `proposed` (the default) / `accepted` / `deferred` / `dropped` / `met`.
     /// A status past `proposed` is REFUSED unless `approver` is named.
@@ -2043,10 +2060,30 @@ pub struct DesignRuleReq {
     /// The unit sweep reports any stated unit not among these.
     #[serde(default)]
     pub units: Option<Vec<String>>,
-    /// Ids you read and judged DIFFERENT from this one, when a near match was
-    /// reported. Omit on a first attempt.
+    /// Ids you read and judged a DIFFERENT thing from this one, when reflow2
+    /// has already told you something close exists — one of the THREE answers
+    /// to that check: sharpen the existing node (call with ITS id), say this one
+    /// is different (here), or say it takes an older one's place (`replaces`).
+    /// THE JUDGEMENT IS KEPT: the ids are written onto the node as
+    /// `distinct_from`, so a later reader can tell a node its writer compared
+    /// from one nobody did. Omit it on a first attempt — the refusal, if any,
+    /// lists exactly what to put here.
     #[serde(default)]
     pub distinct_from: Option<Vec<String>>,
+    /// Ids of OLDER nodes of this same type that this one TAKES THE PLACE OF —
+    /// the third answer to the near-match check, for a new node that is neither
+    /// a sharper wording of an old one nor a different thing, but its
+    /// successor. For each: the old node's ending is recorded FIRST (a
+    /// `deprecation` ChangeEvent whose snapshot keeps its final state and
+    /// edges), the thread that says what it was FOR moves here (a Capability's
+    /// SATISFIES, a Component's incoming ALLOCATED_TO; a Requirement, Decision
+    /// or DesignRule moves none), and this node OBSOLETES it. Its stored status
+    /// does not move. The reply names what moved, what stayed, and what — if
+    /// anything — still withdraws it. Works on a revise too, so a successor
+    /// already recorded can say so later. An id of another type, one naming
+    /// nothing, or one also in `distinct_from` is REFUSED and nothing is written.
+    #[serde(default)]
+    pub replaces: Option<Vec<String>>,
     /// The Contributor whose word this is — the OWNER'S SIGNATURE, carried in the
     /// same call as the status it signs. Draws `AUTHORED_BY role=approver`, the
     /// edge `rule:design-intent-moves-only-on-the-owners-word` is checked by.
@@ -2110,13 +2147,30 @@ pub struct CapabilityReq {
     #[serde(default)]
     #[schemars(schema_with = "crate::enum_schema::capability_status_opt")]
     pub status: Option<String>,
-    /// Ids you read and judged DIFFERENT from this one, when reflow2 has
-    /// already told you something close exists. Naming them is the deliberate
-    /// decision: sharpen an existing node by calling with ITS id, or start a
-    /// new one and say what you rejected. Omit it on a first attempt — the
-    /// refusal, if any, lists exactly what to put here.
+    /// Ids you read and judged a DIFFERENT thing from this one, when reflow2
+    /// has already told you something close exists — one of the THREE answers
+    /// to that check: sharpen the existing node (call with ITS id), say this one
+    /// is different (here), or say it takes an older one's place (`replaces`).
+    /// THE JUDGEMENT IS KEPT: the ids are written onto the node as
+    /// `distinct_from`, so a later reader can tell a node its writer compared
+    /// from one nobody did. Omit it on a first attempt — the refusal, if any,
+    /// lists exactly what to put here.
     #[serde(default)]
     pub distinct_from: Option<Vec<String>>,
+    /// Ids of OLDER nodes of this same type that this one TAKES THE PLACE OF —
+    /// the third answer to the near-match check, for a new node that is neither
+    /// a sharper wording of an old one nor a different thing, but its
+    /// successor. For each: the old node's ending is recorded FIRST (a
+    /// `deprecation` ChangeEvent whose snapshot keeps its final state and
+    /// edges), the thread that says what it was FOR moves here (a Capability's
+    /// SATISFIES, a Component's incoming ALLOCATED_TO; a Requirement, Decision
+    /// or DesignRule moves none), and this node OBSOLETES it. Its stored status
+    /// does not move. The reply names what moved, what stayed, and what — if
+    /// anything — still withdraws it. Works on a revise too, so a successor
+    /// already recorded can say so later. An id of another type, one naming
+    /// nothing, or one also in `distinct_from` is REFUSED and nothing is written.
+    #[serde(default)]
+    pub replaces: Option<Vec<String>>,
     /// Where this sits on the strategic / operational / tactical ladder.
     /// Declared 2026-09-07: carried by most nodes of this type and settable by
     /// nothing, one of the fourteen holes the reachability split separated
@@ -2316,13 +2370,30 @@ pub struct ComponentReq {
     #[serde(default)]
     #[schemars(schema_with = "crate::enum_schema::component_kind_opt")]
     pub kind: Option<String>,
-    /// Ids you read and judged DIFFERENT from this one, when reflow2 has
-    /// already told you something close exists. Naming them is the deliberate
-    /// decision: sharpen an existing node by calling with ITS id, or start a
-    /// new one and say what you rejected. Omit it on a first attempt — the
-    /// refusal, if any, lists exactly what to put here.
+    /// Ids you read and judged a DIFFERENT thing from this one, when reflow2
+    /// has already told you something close exists — one of the THREE answers
+    /// to that check: sharpen the existing node (call with ITS id), say this one
+    /// is different (here), or say it takes an older one's place (`replaces`).
+    /// THE JUDGEMENT IS KEPT: the ids are written onto the node as
+    /// `distinct_from`, so a later reader can tell a node its writer compared
+    /// from one nobody did. Omit it on a first attempt — the refusal, if any,
+    /// lists exactly what to put here.
     #[serde(default)]
     pub distinct_from: Option<Vec<String>>,
+    /// Ids of OLDER nodes of this same type that this one TAKES THE PLACE OF —
+    /// the third answer to the near-match check, for a new node that is neither
+    /// a sharper wording of an old one nor a different thing, but its
+    /// successor. For each: the old node's ending is recorded FIRST (a
+    /// `deprecation` ChangeEvent whose snapshot keeps its final state and
+    /// edges), the thread that says what it was FOR moves here (a Capability's
+    /// SATISFIES, a Component's incoming ALLOCATED_TO; a Requirement, Decision
+    /// or DesignRule moves none), and this node OBSOLETES it. Its stored status
+    /// does not move. The reply names what moved, what stayed, and what — if
+    /// anything — still withdraws it. Works on a revise too, so a successor
+    /// already recorded can say so later. An id of another type, one naming
+    /// nothing, or one also in `distinct_from` is REFUSED and nothing is written.
+    #[serde(default)]
+    pub replaces: Option<Vec<String>>,
     /// Where this sits on the strategic / operational / tactical ladder.
     /// Declared 2026-09-07: carried by most nodes of this type and settable by
     /// nothing, one of the fourteen holes the reachability split separated
@@ -3862,11 +3933,10 @@ pub struct AddConstraintReq {
     #[serde(default)]
     #[schemars(schema_with = "crate::enum_schema::constraint_composition_opt")]
     pub composition: Option<String>,
-    /// Ids you read and judged DIFFERENT from this one, when reflow2 has
-    /// already told you something close exists. Naming them is the deliberate
-    /// decision: sharpen an existing node by calling with ITS id, or start a
-    /// new one and say what you rejected. Omit it on a first attempt — the
-    /// refusal, if any, lists exactly what to put here.
+    /// Ids you read and judged a DIFFERENT thing from this one, when a reply's
+    /// `search_first` named something close. THE JUDGEMENT IS KEPT: the ids are
+    /// written onto the node as `distinct_from`, so a later reader can tell a
+    /// node its writer compared from one nobody did.
     #[serde(default)]
     pub distinct_from: Option<Vec<String>>,
     /// The cross-cutting concern this budget belongs to — safety, logistics,
@@ -4151,13 +4221,30 @@ pub struct DecisionReq {
     /// Why — the part worth recording.
     #[serde(default)]
     pub rationale: Option<String>,
-    /// Ids you read and judged DIFFERENT from this one, when reflow2 has
-    /// already told you something close exists. Naming them is the deliberate
-    /// decision: sharpen an existing node by calling with ITS id, or start a
-    /// new one and say what you rejected. Omit it on a first attempt — the
-    /// refusal, if any, lists exactly what to put here.
+    /// Ids you read and judged a DIFFERENT thing from this one, when reflow2
+    /// has already told you something close exists — one of the THREE answers
+    /// to that check: sharpen the existing node (call with ITS id), say this one
+    /// is different (here), or say it takes an older one's place (`replaces`).
+    /// THE JUDGEMENT IS KEPT: the ids are written onto the node as
+    /// `distinct_from`, so a later reader can tell a node its writer compared
+    /// from one nobody did. Omit it on a first attempt — the refusal, if any,
+    /// lists exactly what to put here.
     #[serde(default)]
     pub distinct_from: Option<Vec<String>>,
+    /// Ids of OLDER nodes of this same type that this one TAKES THE PLACE OF —
+    /// the third answer to the near-match check, for a new node that is neither
+    /// a sharper wording of an old one nor a different thing, but its
+    /// successor. For each: the old node's ending is recorded FIRST (a
+    /// `deprecation` ChangeEvent whose snapshot keeps its final state and
+    /// edges), the thread that says what it was FOR moves here (a Capability's
+    /// SATISFIES, a Component's incoming ALLOCATED_TO; a Requirement, Decision
+    /// or DesignRule moves none), and this node OBSOLETES it. Its stored status
+    /// does not move. The reply names what moved, what stayed, and what — if
+    /// anything — still withdraws it. Works on a revise too, so a successor
+    /// already recorded can say so later. An id of another type, one naming
+    /// nothing, or one also in `distinct_from` is REFUSED and nothing is written.
+    #[serde(default)]
+    pub replaces: Option<Vec<String>>,
     /// WHAT KIND OF THING THIS IS — `exploratory` (an idea being turned over,
     /// recorded so it is not lost and explicitly NOT claimed as intent) or
     /// `choice` (a decision somebody actually faced).

@@ -68,6 +68,7 @@ fn decision(id: &str, decision: &str, rationale: Option<&str>) -> DecisionReq {
         rationale: rationale.map(Into::into),
         kind: None,
         distinct_from: None,
+        replaces: None,
         related_to: None,
         no_relation_note: None,
         status: None,

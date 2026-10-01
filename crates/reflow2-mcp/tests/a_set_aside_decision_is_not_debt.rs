@@ -68,6 +68,7 @@ fn decision(id: &str, status: Option<&str>, approver: Option<&str>) -> DecisionR
             "Recorded because the {subject} choice has consequences."
         )),
         distinct_from: None,
+        replaces: None,
         kind: Some("choice".into()),
         related_to: None,
         no_relation_note: None,

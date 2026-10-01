@@ -72,6 +72,7 @@ fn req(id: &str) -> RequirementReq {
         name: Some(id.into()),
         statement: Some(format!("Requirement {id} moves the content.")),
         distinct_from: None,
+        replaces: None,
         status: None,
         approver: None,
         acted_at: None,

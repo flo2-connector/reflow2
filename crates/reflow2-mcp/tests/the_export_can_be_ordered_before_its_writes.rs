@@ -73,6 +73,7 @@ fn requirement(id: &str) -> RequirementReq {
         name: Some("A need".into()),
         statement: Some("The system shall do the thing.".into()),
         distinct_from: None,
+        replaces: None,
         status: None,
         approver: None,
         acted_at: None,

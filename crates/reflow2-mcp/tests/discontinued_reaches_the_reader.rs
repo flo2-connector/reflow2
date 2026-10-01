@@ -80,6 +80,7 @@ async fn withdrawn() -> ReflowService {
         description: Some("Built, shipped, and later withdrawn.".into()),
         status: Some("realized".into()),
         distinct_from: None,
+        replaces: None,
         tier: None,
     })));
     j!(s.add_capability(Parameters(CapabilityReq {
@@ -90,6 +91,7 @@ async fn withdrawn() -> ReflowService {
         description: Some("Never withdrawn.".into()),
         status: Some("realized".into()),
         distinct_from: None,
+        replaces: None,
         tier: None,
     })));
     j!(s.add_decision(Parameters(DecisionReq {
@@ -98,6 +100,7 @@ async fn withdrawn() -> ReflowService {
         decision: Some("Built, shipped, correct, and used zero times.".into()),
         rationale: None,
         distinct_from: None,
+        replaces: None,
         kind: None,
         related_to: None,
         no_relation_note: None,
@@ -222,6 +225,7 @@ async fn a_proposed_decision_discontinues_nothing() {
         description: Some("An agent proposed withdrawing this.".into()),
         status: Some("realized".into()),
         distinct_from: None,
+        replaces: None,
         tier: None,
     })));
     j!(s.add_decision(Parameters(DecisionReq {
@@ -230,6 +234,7 @@ async fn a_proposed_decision_discontinues_nothing() {
         decision: Some("Not settled.".into()),
         rationale: None,
         distinct_from: None,
+        replaces: None,
         kind: None,
         related_to: None,
         no_relation_note: None,
@@ -270,6 +275,7 @@ async fn obsoleted_by_a_non_decision_is_not_a_discontinuation() {
         description: Some("Replaced, not withdrawn.".into()),
         status: Some("realized".into()),
         distinct_from: None,
+        replaces: None,
         tier: None,
     })));
     j!(s.add_capability(Parameters(CapabilityReq {
@@ -280,6 +286,7 @@ async fn obsoleted_by_a_non_decision_is_not_a_discontinuation() {
         description: Some("Took over.".into()),
         status: Some("realized".into()),
         distinct_from: None,
+        replaces: None,
         tier: None,
     })));
     j!(s.create_edge(Parameters(CreateEdgeReq {
@@ -314,6 +321,7 @@ async fn it_is_not_a_capability_only_field() {
         name: Some("A need we stopped having".into()),
         statement: Some("Withdrawn by decision.".into()),
         distinct_from: None,
+        replaces: None,
         status: None,
         approver: None,
         acted_at: None,
@@ -327,6 +335,7 @@ async fn it_is_not_a_capability_only_field() {
         decision: Some("Withdrawn.".into()),
         rationale: None,
         distinct_from: None,
+        replaces: None,
         kind: None,
         related_to: None,
         no_relation_note: None,
