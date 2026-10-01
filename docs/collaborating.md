@@ -316,6 +316,53 @@ worked around.
 > `_meta["reflow2/writes_for"]`, declare it with `--http-trusted-gateway <name>`: each call then signs
 > only as the person the gateway names.
 
+#### A team server behind your own identity provider
+
+If your team already signs in through an OpenID Connect provider (Keycloak, a lab's single
+sign-on), reflow2 can check each caller's access token itself, with no gateway in front. It becomes
+an OAuth 2.0 **resource server**: it verifies tokens and never issues them, and it keeps no
+accounts or sessions of its own.
+
+```bash
+reflow2-mcp --graph-path /srv/design/.reflow2/graph \
+            --http 127.0.0.1:8080 \
+            --http-allow-host reflow2.lab.example.org \
+            --http-public-url https://reflow2.lab.example.org/ \
+            --http-oidc-issuer https://sso.lab.example.org/realms/lab \
+            --http-oidc-required-scope reflow2 \
+            --http-contributor-id 'who:{preferred_username}'
+```
+
+- **TLS is yours to provide.** reflow2 does not terminate TLS: it serves plain HTTP on `--http`.
+  Put a TLS-terminating proxy (nginx, Caddy, Traefik) in front, give its `https://` address as
+  `--http-public-url`, and keep the hop from the proxy to the port on the same machine or a private
+  network. A non-loopback `http://` public URL is refused at startup.
+- **Every request carries `Authorization: Bearer <token>`.** reflow2 checks the signature against
+  the issuer's published keys (found by OpenID discovery; `--http-oidc-jwks-uri` names them
+  directly, and `--http-oidc-jwks-file` pins them in a file for a server that must not reach the
+  network), the issuer, the audience, expiry and not-before. The token's audience must name this
+  server: by default its `--http-public-url` (RFC 8707). Keycloak puts that there through an
+  audience mapper on the client scope; if yours uses another value, pass `--http-oidc-audience`.
+- **A request with no token gets a 401** whose `WWW-Authenticate` header names
+  `https://reflow2.lab.example.org/.well-known/oauth-protected-resource`. An MCP client that
+  supports OAuth reads that and runs the sign-in itself. A token in the URL is refused.
+- **Who you are in the design** comes from the token through the operator's
+  `--http-contributor-id` template. The Contributor must already exist (`add_contributor`, from a
+  local session or by the operator); a sign-in that maps to nobody can read and propose, and
+  cannot sign. To map stable subject ids instead of usernames, render `{sub}` and list them in
+  `--http-contributor-map`, a TOML file:
+
+  ```toml
+  [contributors]
+  "f81d4fae-7dec-11d0-a765-00a0c91e6bf6" = "who:alice"
+  ```
+
+- Every signature a call writes is the caller's own: an approval in someone else's name is
+  refused, and so is a `writes_for` naming anyone else.
+
+`--http-oidc-issuer` is refused beside `--http-trusted-gateway` (one way of knowing the caller per
+server) and on stdio or `--shared`, which stay local and take no token.
+
 ### When one machine has to hold the design
 
 Live sharing has a centre: the machine running the server. If it sleeps, the others lose the

@@ -162,6 +162,23 @@ impl ReflowService {
                 None,
             ));
         }
+        // 🛑 BEHIND A BEARER GATE the caller is whoever each call's verified
+        // token names (`crate::bearer`), so a session's declaration would name
+        // nobody — refused loudly for the same reason as behind a gateway.
+        if let (Some(id), crate::caller::CallerRule::BearerToken { issuer, mapping }) =
+            (&who, self.caller_rule())
+        {
+            return Err(McpError::invalid_params(
+                format!(
+                    "writes_for({id}) was NOT recorded: on this server the caller is whoever \
+                     each call's verified bearer token (issuer `{issuer}`) names through the \
+                     operator's mapping {mapping}, and only that counts here — a session cannot \
+                     declare someone else. Every signature a call writes is the caller's own. \
+                     To name an acting agent, call writes_for with `acting_agent` alone."
+                ),
+                None,
+            ));
+        }
         if let Some(id) = &who {
             self.graph
                 .read()

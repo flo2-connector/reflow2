@@ -51,6 +51,36 @@ This file is the third view: *what changed, and when*.
 - capture-intent, revise-design, retire-from-design, capture-session and the served instructions
   teach the three answers.
 
+**Minor — an exposed `--http` server verifies OAuth bearer tokens itself** (GitHub issue #616 fix 4,
+the resource-server half; `req:every-oauth-role-reflow2-plays-meets-oauth-2-1-at-a-minimum`). A
+team can run reflow2 behind its own identity provider (Keycloak, a lab's single sign-on) with no
+gateway in front, and approve from the team server again.
+
+- **`--http-oidc-issuer <URL>`** (with `--http-public-url` and `--http-contributor-id`) makes the
+  server an OAuth 2.0 resource server. Every request must carry `Authorization: Bearer <token>`,
+  checked before anything runs: the signature against a key the issuer publishes (OpenID discovery,
+  `--http-oidc-jwks-uri`, or a pinned `--http-oidc-jwks-file` with no network at all; cached by
+  `kid` and refreshed when the issuer rotates), `iss`, `aud` naming this resource (RFC 8707;
+  `--http-oidc-audience` overrides), `exp` and `nbf`. `alg: none`, HS* and an alg that does not fit
+  its key are refused. `--http-oidc-required-scope` and `--http-oidc-required-claim NAME=VALUE`
+  narrow who may call.
+- Failures answer as OAuth says: 400 `invalid_request` (a malformed header, or a token in the URL
+  query string, which is never used), 401 `invalid_token`, 403 `insufficient_scope`, each with
+  `WWW-Authenticate: Bearer … resource_metadata="…"`; no token at all is a 401 with no error code.
+  `/.well-known/oauth-protected-resource` serves the RFC 9728 metadata, so an MCP client can run the
+  sign-in itself.
+- **The caller is the Contributor the OPERATOR's mapping derives from the verified token** — a
+  template such as `who:{preferred_username}`, optionally looked up in `--http-contributor-map`.
+  It must already exist: reflow2 never invents the person. Every signature a call writes is
+  theirs (#636's rule), and a `_meta["reflow2/writes_for"]` or `writes_for` naming anyone else is
+  refused.
+- **The token stops at the gate**: the `Authorization` header is removed before the request reaches
+  any tool. Every request proves its own token; an MCP session is bound to the sign-in that opened
+  it, and another token quoting its id gets a 404. reflow2 does **not** terminate TLS, and says so
+  in `--help` and at startup; a non-loopback `http://` public URL is refused.
+- Refused at startup, with what works: the issuer on stdio or `--shared` (local, no token can
+  arrive), beside `--http-trusted-gateway`, or without a contributor mapping or public URL.
+  Nothing changes for stdio, `--shared`, loopback `--http`, or a trusted gateway.
 ### Added
 
 - **A status that claims LESS than the design shows is reported: `understated_status`** (`req:a-status-that-claims-less-than-the-design-shows-is-reported`, Anthony 2026-09-30; `dec:idea-should-an-understated-status-be-detected` settled). `status_contradiction` only ever flagged a status claiming MORE — a Capability `verified` with no passing check, a Requirement `met` with nothing satisfying it. Nothing looked the other way, so a status left at `planned` behind a built thing was silent: flo2's design held all 21 Components at `planned`, its production gateway among them, and reflow2's own `cap:governance-proposal` read `planned` while its skill was served.

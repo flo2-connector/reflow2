@@ -25,8 +25,15 @@
 //!   `_meta["reflow2/writes_for"]`. That name is the caller; a session's own
 //!   `writes_for` declaration is not, because the gateway is the only party
 //!   the operator trusted to say it.
+//! · `--http-oidc-issuer <URL>` (with `--http-public-url` and
+//!   `--http-contributor-id`): the engine is an OAuth 2.0 RESOURCE SERVER
+//!   (`crate::bearer`). Every request carries a Bearer access token, verified
+//!   at the transport before anything runs, and the caller is the Contributor
+//!   the OPERATOR's mapping derives from its verified claims. Neither a
+//!   request's `_meta["reflow2/writes_for"]` nor a session's declaration can
+//!   name anyone else.
 //! · Nothing declared: reads and proposals work, and no call can sign or move
-//!   intent into a settled state. The refusal names the flag.
+//!   intent into a settled state. The refusal names the flags.
 //!
 //! ⚠️ THE RESIDUAL RISK OF A TRUSTED GATEWAY, stated rather than discovered: the
 //! engine cannot check that the gateway overwrote a client-sent
@@ -52,6 +59,17 @@ pub enum CallerRule {
     TrustedGateway {
         /// The gateway's name as the operator declared it (`flo2.io`).
         name: String,
+    },
+    /// Every request carries a Bearer token this engine verified itself
+    /// (`crate::bearer`), and the caller is the Contributor the operator's
+    /// mapping derives from it. Chosen by `--http-oidc-issuer`, whether or
+    /// not the server is also exposed: the operator said tokens name the
+    /// caller, and holding the server to it can only narrow what it accepts.
+    BearerToken {
+        /// The issuer whose tokens are accepted.
+        issuer: String,
+        /// The operator's mapping, in a phrase (`` `who:{preferred_username}` ``).
+        mapping: String,
     },
     /// Served for others with no way of establishing the caller declared.
     Undeclared {
@@ -118,7 +136,62 @@ impl CallerRule {
             .map(String::from);
         match self {
             CallerRule::TrustedGateway { .. } => named,
+            // Only the transport's verdict names the caller here, and this
+            // signature has none: see [`Self::writes_for_verified`].
+            CallerRule::BearerToken { .. } => None,
             CallerRule::Local | CallerRule::Undeclared { .. } => named.or(from_session),
+        }
+    }
+
+    /// Who the call now arriving writes for, given what the bearer gate
+    /// VERIFIED about its request (`crate::bearer::VerifiedCaller`, `None`
+    /// when no gate ran). On every rule but [`CallerRule::BearerToken`] this is
+    /// [`Self::writes_for`], unchanged. Behind a bearer gate the verified
+    /// contributor is the caller, and a request whose `_meta` names somebody
+    /// else is REFUSED (the `Err` is the refusal) rather than quietly
+    /// re-attributed — a client that asked to write as someone else is told.
+    pub fn writes_for_verified(
+        &self,
+        verified: Option<&crate::bearer::VerifiedCaller>,
+        from_request: Option<&str>,
+        from_session: Option<String>,
+    ) -> Result<Option<String>, String> {
+        let CallerRule::BearerToken { issuer, mapping } = self else {
+            return Ok(self.writes_for(from_request, from_session));
+        };
+        let who = verified.and_then(|v| v.contributor.clone());
+        let named = from_request.map(str::trim).filter(|s| !s.is_empty());
+        match (named, &who) {
+            (Some(n), Some(w)) if n == w => Ok(who),
+            (Some(n), _) => Err(format!(
+                "REFUSED, and nothing was written: this call names {n} in \
+                 _meta[\"{GATEWAY_NAMES_THE_CALLER_IN}\"], and on this server the caller is \
+                 whoever the call's verified bearer token (issuer `{issuer}`) names through the \
+                 operator's mapping {mapping} — {}. A call writes only as its own token's \
+                 person; {n} signs in as themselves.",
+                match &who {
+                    Some(w) => format!("here, {w}"),
+                    None => "here, nobody".to_string(),
+                }
+            )),
+            (None, _) => Ok(who),
+        }
+    }
+
+    /// The refusal a WRITE gets when the caller this rule established is not
+    /// a Contributor in the design — `None` where the generic refusal fits
+    /// (there, the name came from the session or `_meta`). Behind a bearer
+    /// gate the name came from the verified token, and the person is never
+    /// invented: the refusal says where it came from and who can fix it.
+    pub fn unknown_caller_refusal(&self, who: &str, why: &str) -> Option<String> {
+        match self {
+            CallerRule::BearerToken { issuer, mapping } => Some(format!(
+                "This call's verified bearer token (issuer `{issuer}`) names '{who}' through the \
+                 operator's mapping {mapping}, and nothing was written: {why} reflow2 never \
+                 invents the person — an owner adds them with add_contributor, or the operator \
+                 corrects the mapping. Reading works meanwhile."
+            )),
+            _ => None,
         }
     }
 
@@ -144,17 +217,59 @@ impl CallerRule {
                     ),
                 },
             }),
+            CallerRule::BearerToken { issuer, mapping } => Some(match writes_for {
+                Some(who) => Signer::Caller {
+                    contributor: who.to_string(),
+                    how: format!(
+                        "the bearer token on this call, verified against `{issuer}`, names them \
+                         through the operator's mapping {mapping}"
+                    ),
+                },
+                None => Signer::Nobody {
+                    why: format!(
+                        "this server takes the caller from each call's verified bearer token \
+                         (issuer `{issuer}`) through the operator's mapping {mapping}, and this \
+                         call's token names no contributor here. It can read and propose, and \
+                         cannot sign or settle; the operator maps the person to a Contributor \
+                         to let them sign."
+                    ),
+                },
+            }),
             CallerRule::Undeclared { exposure } => Some(Signer::Nobody {
                 why: format!(
                     "this server is served for others ({exposure}) and declares no way of \
                      establishing who is calling, so nobody can sign or settle intent through \
                      it. An owner signs through a server that knows who they are: start this \
-                     one with `--http-trusted-gateway <NAME>` (or REFLOW2_TRUSTED_GATEWAY) when \
-                     a gateway in front authenticates every caller and names them on each call \
-                     in _meta[\"{GATEWAY_NAMES_THE_CALLER_IN}\"], or sign on a local session \
+                     one with `--http-oidc-issuer <URL>` (with --http-public-url and \
+                     --http-contributor-id) to verify each caller's OAuth bearer token, or with \
+                     `--http-trusted-gateway <NAME>` (or REFLOW2_TRUSTED_GATEWAY) when a gateway \
+                     in front authenticates every caller and names them on each call in \
+                     _meta[\"{GATEWAY_NAMES_THE_CALLER_IN}\"], or sign on a local session \
                      (stdio, --shared, or --http answering loopback only)."
                 ),
             }),
+        }
+    }
+
+    /// [`Self::signer`], with the bearer gate's reason when the verified token
+    /// named nobody — so the refusal says WHY (no such claim, not in the map).
+    pub fn signer_verified(
+        &self,
+        writes_for: Option<&str>,
+        verified: Option<&crate::bearer::VerifiedCaller>,
+    ) -> Option<Signer> {
+        match (
+            self.signer(writes_for),
+            verified.and_then(|v| v.unmapped.as_deref()),
+        ) {
+            (Some(Signer::Nobody { why }), Some(reason))
+                if matches!(self, CallerRule::BearerToken { .. }) =>
+            {
+                Some(Signer::Nobody {
+                    why: format!("{reason}. {why}"),
+                })
+            }
+            (signer, _) => signer,
         }
     }
 
@@ -170,6 +285,15 @@ impl CallerRule {
                  call writes, author or approver, is the caller's own: an approval, an \
                  `approver`, or any signature naming someone else is REFUSED, and nothing is \
                  written. Sign as yourself.\n\n"
+            ),
+            CallerRule::BearerToken { issuer, mapping } => format!(
+                "🔏 THIS SERVER IS AN OAUTH 2.0 RESOURCE SERVER: EVERY REQUEST CARRIES A BEARER \
+                 TOKEN from `{issuer}`, verified here, and the caller is the Contributor the \
+                 operator's mapping {mapping} derives from it. Every AUTHORED_BY a call writes, \
+                 author or approver, is the caller's own: an approval, an `approver`, or any \
+                 signature naming someone else is REFUSED, and nothing is written. Neither \
+                 `writes_for` nor _meta[\"{GATEWAY_NAMES_THE_CALLER_IN}\"] can name anyone \
+                 else. Sign as yourself.\n\n"
             ),
             CallerRule::Undeclared { exposure } => format!(
                 "🔏 THIS SERVER IS SERVED FOR OTHERS ({exposure}) AND DOES NOT KNOW WHO IS \
@@ -191,11 +315,17 @@ impl CallerRule {
                  AUTHORED_BY naming someone else is refused. The gateway MUST overwrite that key \
                  on every call and be the only thing that reaches this port."
             )),
+            CallerRule::BearerToken { issuer, mapping } => Some(format!(
+                "reflow2: signatures are the caller's own — every request must carry a Bearer \
+                 access token from {issuer}, verified here, and the caller is the Contributor \
+                 {mapping} derives from it; any AUTHORED_BY naming someone else is refused."
+            )),
             CallerRule::Undeclared { exposure } => Some(format!(
                 "reflow2: WARNING — served for others ({exposure}) with no way of establishing \
                  who is calling: reads and proposals work, and every signature or settle is \
-                 REFUSED. Declare --http-trusted-gateway <NAME> if a gateway in front \
-                 authenticates callers and names them on each call."
+                 REFUSED. Declare --http-oidc-issuer <URL> to verify each caller's OAuth bearer \
+                 token, or --http-trusted-gateway <NAME> if a gateway in front authenticates \
+                 callers and names them on each call."
             )),
         }
     }
@@ -251,6 +381,55 @@ mod tests {
                 name: "flo2.io".into()
             }
         );
+    }
+
+    #[test]
+    fn behind_a_bearer_gate_only_the_verified_token_names_the_caller() {
+        let b = CallerRule::BearerToken {
+            issuer: "https://sso.example.org/realms/team".into(),
+            mapping: "`who:{preferred_username}`".into(),
+        };
+        let alice = crate::bearer::VerifiedCaller {
+            issuer: "https://sso.example.org/realms/team".into(),
+            subject: Some("s".into()),
+            contributor: Some("who:alice".into()),
+            unmapped: None,
+        };
+        assert_eq!(
+            b.writes_for_verified(Some(&alice), None, Some("who:session".into())),
+            Ok(Some("who:alice".into())),
+            "a session's declaration names nobody here"
+        );
+        assert_eq!(
+            b.writes_for_verified(Some(&alice), Some("who:alice"), None),
+            Ok(Some("who:alice".into()))
+        );
+        let refused = b
+            .writes_for_verified(Some(&alice), Some("who:bob"), None)
+            .unwrap_err();
+        assert!(
+            refused.contains("who:bob") && refused.contains("who:alice"),
+            "{refused}"
+        );
+        assert_eq!(
+            b.writes_for_verified(None, None, None),
+            Ok(None),
+            "no gate, nobody"
+        );
+        assert!(matches!(
+            b.signer(Some("who:alice")),
+            Some(Signer::Caller { contributor, .. }) if contributor == "who:alice"
+        ));
+        let unmapped = crate::bearer::VerifiedCaller {
+            contributor: None,
+            unmapped: Some("the token carries no `preferred_username` claim".into()),
+            ..alice
+        };
+        assert!(matches!(
+            b.signer_verified(None, Some(&unmapped)),
+            Some(Signer::Nobody { why }) if why.contains("preferred_username")
+        ));
+        assert!(b.served_for_others());
     }
 
     #[test]

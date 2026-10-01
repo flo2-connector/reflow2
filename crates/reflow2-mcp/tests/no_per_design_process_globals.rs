@@ -91,6 +91,15 @@ const ALLOWED: &[(&str, &str, &str)] = &[
          lazily, so a process that never goes remote never reads the store.",
     ),
     (
+        "reflow2-mcp/src/bearer.rs",
+        "RING_PROVIDER",
+        "The JWT crypto provider (`ring` behind `jsonwebtoken`), installed once as the \
+         process's default the way rustls installs its own: a table of function pointers, \
+         verification only, holding no key and no design's data. Which crypto verifies a \
+         signature is a fact about this build; every design a server holds is verified by \
+         the same code, and the issuer, audience and keys live on each server's Verifier.",
+    ),
+    (
         "reflow2-mcp/src/service.rs",
         "WRITES_FOR",
         "A tokio TASK-LOCAL, not a process-wide value: it holds who the ONE tool call \

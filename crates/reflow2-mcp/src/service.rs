@@ -7002,7 +7002,11 @@ impl ReflowService {
             .await
             .require_writes_for(who)
             .err()
-            .map(|e| writes_for_refusal(who, &e.to_string()))
+            .map(|e| {
+                self.caller_rule
+                    .unknown_caller_refusal(who, &e.to_string())
+                    .unwrap_or_else(|| writes_for_refusal(who, &e.to_string()))
+            })
     }
 
     /// Run `call` the way `call_tool` runs a handler: writing for `writes_for`
@@ -7250,10 +7254,32 @@ impl ServerHandler for ReflowService {
         // the required fields THIS call lacked rather than only what the
         // tool requires.
         let given = request.arguments.clone();
+        // WHAT THE TRANSPORT VERIFIED (`crate::bearer`): on a resource server,
+        // the bearer gate put the token's verified caller into the HTTP
+        // request's extensions, which rmcp carries here inside the request
+        // `Parts`. Absent on every other transport and rule.
+        let verified = context
+            .extensions
+            .get::<http::request::Parts>()
+            .and_then(|parts| parts.extensions.get::<crate::bearer::VerifiedCaller>())
+            .cloned();
         // WHO THIS CALL WRITES FOR (`reflow2_core::attribution`): the request's
-        // own `_meta`, else what this session declared, else nobody.
-        let writes_for =
-            self.effective_writes_for(context.meta.get(WRITES_FOR_META).and_then(|v| v.as_str()));
+        // own `_meta`, else what this session declared, else nobody — or,
+        // behind a bearer gate, the verified token's contributor and nobody
+        // else (a `_meta` naming someone else is refused below).
+        let (writes_for, caller_refusal) = match self.caller_rule.writes_for_verified(
+            verified.as_ref(),
+            context.meta.get(WRITES_FOR_META).and_then(|v| v.as_str()),
+            self.writes_for
+                .lock()
+                .ok()
+                .and_then(|w| w.clone())
+                .map(|s| s.trim().to_string())
+                .filter(|s| !s.is_empty()),
+        ) {
+            Ok(w) => (w, None),
+            Err(refusal) => (None, Some(refusal)),
+        };
         // AND WHICH AGENT IT WRITES THROUGH (`reflow2_core::acting`): the
         // request's own `_meta`, else the session's declaration, else the
         // Contributor matching the name this client gave at handshake.
@@ -7263,9 +7289,10 @@ impl ServerHandler for ReflowService {
                 Some(client.as_str()),
             )
             .await;
-        let unknown_writer = match &echo {
-            Err(refusal) => Some(refusal.clone()),
-            Ok(_) => match self
+        let unknown_writer = match (&echo, caller_refusal) {
+            (_, Some(refusal)) => Some(refusal),
+            (Err(refusal), None) => Some(refusal.clone()),
+            (Ok(_), None) => match self
                 .writes_for_precheck(&tool_name, writes_for.as_deref())
                 .await
             {
@@ -7284,8 +7311,11 @@ impl ServerHandler for ReflowService {
             None => {
                 // WHO MAY SIGN on this call (`crate::caller`): nothing on a
                 // local engine; the caller the engine established, or nobody,
-                // on one served for others.
-                let signer = self.signer_for(writes_for.as_deref());
+                // on one served for others. Behind a bearer gate, the gate's
+                // reason rides along when the token named nobody.
+                let signer = self
+                    .caller_rule
+                    .signer_verified(writes_for.as_deref(), verified.as_ref());
                 SIGNER
                     .scope(
                         signer,
