@@ -416,6 +416,31 @@ fn is_for_this_graph(r: &Rendezvous, graph_path: &str) -> bool {
     !r.graph_path.is_empty() && same_store(recorded_store(r), graph_path)
 }
 
+/// A shared server REFUSED to start for a reason no other process can resolve
+/// (a version-guard refusal, a corrupt store, an unreadable path) — as opposed
+/// to an election that simply found no winner in time.
+///
+/// Typed rather than read off the message, because the two call for opposite
+/// responses: a refusal is final, so a session says why and stops; a timeout
+/// usually means a NON-shared process holds the store's lock, which clears when
+/// that process stops, so a session keeps re-electing and serves the design in
+/// place when a server comes up (`proxy::run_waiting`, GitHub issue #616).
+#[derive(Debug)]
+pub struct Refused(pub String);
+
+impl std::fmt::Display for Refused {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        f.write_str(&self.0)
+    }
+}
+
+impl std::error::Error for Refused {}
+
+/// Whether `err` is a [`Refused`] — final — rather than a timeout.
+pub fn is_refusal(err: &anyhow::Error) -> bool {
+    err.chain().any(|e| e.downcast_ref::<Refused>().is_some())
+}
+
 /// Attach this session to a server for `graph_path`, starting one if needed.
 ///
 /// Returns the URL to proxy to. The error case is deliberately informative
@@ -541,7 +566,7 @@ pub async fn ensure_server_async(
             && ours.contains(&r.pid)
         {
             remove_refusal(graph_path);
-            anyhow::bail!(
+            return Err(anyhow::Error::new(Refused(format!(
                 "the shared reflow2 server for {graph_path} REFUSED TO START, and no other \
                  process can resolve it — this is a refusal, not a timeout:\n\n{}\n\nSaid by pid \
                  {} at unix {}. Its log is at {}.",
@@ -549,7 +574,7 @@ pub async fn ensure_server_async(
                 r.pid,
                 r.at_unix,
                 daemon_log_path(graph_path, log_to).display(),
-            );
+            ))));
         }
 
         tokio::time::sleep(POLL).await;

@@ -42,7 +42,21 @@ pub async fn run(url: &str, graph_path: &str, export_to: Option<&str>) -> anyhow
         hello: Mutex::new(None),
     });
     let out = Arc::new(Mutex::new(tokio::io::stdout()));
-    let mut lines = BufReader::new(tokio::io::stdin()).lines();
+    let lines = BufReader::new(tokio::io::stdin()).lines();
+    forward_lines(up, out, lines).await
+}
+
+type Stdout = Arc<Mutex<tokio::io::Stdout>>;
+type StdinLines = tokio::io::Lines<BufReader<tokio::io::Stdin>>;
+
+/// Forward this session's remaining stdio lines to the shared server `up`,
+/// until stdin ends. The body of [`run`], shared with [`run_waiting`] once a
+/// waiting session has a server to forward to.
+async fn forward_lines(
+    up: Arc<Upstream>,
+    out: Stdout,
+    mut lines: StdinLines,
+) -> anyhow::Result<()> {
     let mut tasks = tokio::task::JoinSet::new();
 
     while let Some(line) = lines.next_line().await.context("reading stdin failed")? {
@@ -133,6 +147,181 @@ pub async fn run(url: &str, graph_path: &str, export_to: Option<&str>) -> anyhow
     // dropping replies on the floor.
     while tasks.join_next().await.is_some() {}
     Ok(())
+}
+
+/// A `--shared` session that found NO shared server — the election timed out,
+/// usually because a non-shared process holds the store's lock — and that must
+/// not stay degraded after that process stops (GitHub issue #616;
+/// `fact:root-cause-a-server-degraded-by-a-held-lock-never-retries-and-looks-alive-2026-09-28`).
+///
+/// ⭐ HOW IT STAYS ONE SESSION. Until a server is found, the session is served
+/// by a [`DegradedService`](crate::degraded::DegradedService) running
+/// IN-PROCESS over a pipe, so its handshake, tool list and cache hints are
+/// rmcp's own framing rather than hand-written JSON (the class root-caused on
+/// 2026-09-26, when a hand-built tool list missed two fields a client
+/// required). Meanwhile the election is re-run in the background, with growing
+/// waits. When a server comes up, this client is introduced to it with its OWN
+/// `initialize` (the same replay [`Upstream::send`] uses after a respawn), the
+/// pipe is closed, the client is sent `notifications/tools/list_changed`, and
+/// every later line is forwarded exactly as [`run`] forwards it.
+///
+/// 🛑 A REFUSAL IS NOT WAITED OUT. If a server REFUSES to start
+/// ([`crate::shared::Refused`] — a version guard, a corrupt store), nothing a
+/// wait can do will fix it: the re-election stops and the session stays on the
+/// degraded surface, which already carries the reason.
+pub async fn run_waiting(
+    graph_path: &str,
+    export_to: Option<&str>,
+    reason: String,
+) -> anyhow::Result<()> {
+    use rmcp::ServiceExt;
+    let out: Stdout = Arc::new(Mutex::new(tokio::io::stdout()));
+    let mut lines = BufReader::new(tokio::io::stdin()).lines();
+
+    // The degraded surface, served in-process: `theirs` is its transport,
+    // `ours` is this loop's end of the pipe.
+    let (ours, theirs) = tokio::io::duplex(1 << 20);
+    let degraded = crate::degraded::DegradedService::awaiting(reason, graph_path.to_string());
+    tokio::spawn(async move {
+        match degraded.serve(tokio::io::split(theirs)).await {
+            Ok(running) => {
+                let _ = running.waiting().await;
+            }
+            Err(e) => tracing::warn!("the in-process degraded surface ended: {e}"),
+        }
+    });
+    let (ours_read, mut ours_write) = tokio::io::split(ours);
+    {
+        let out = Arc::clone(&out);
+        tokio::spawn(async move {
+            let mut replies = BufReader::new(ours_read).lines();
+            while let Ok(Some(m)) = replies.next_line().await {
+                let mut w = out.lock().await;
+                let _ = w.write_all(format!("{m}\n").as_bytes()).await;
+                let _ = w.flush().await;
+            }
+        });
+    }
+
+    let (found_tx, mut found) = tokio::sync::oneshot::channel::<String>();
+    tokio::spawn(reelect(
+        graph_path.to_string(),
+        export_to.map(str::to_string),
+        found_tx,
+    ));
+
+    let mut hello: Option<String> = None;
+    let mut waiting = true;
+    let url = loop {
+        tokio::select! {
+            line = lines.next_line() => {
+                let Some(line) = line.context("reading stdin failed")? else {
+                    return Ok(());
+                };
+                if line.trim().is_empty() {
+                    continue;
+                }
+                if is_initialize(&line) {
+                    hello = Some(line.clone());
+                }
+                ours_write.write_all(format!("{line}\n").as_bytes()).await?;
+                ours_write.flush().await?;
+            }
+            elected = &mut found, if waiting => match elected {
+                Ok(url) => break url,
+                // The re-election stopped (a refusal): serve the degraded
+                // surface, which says why, until the client goes.
+                Err(_) => waiting = false,
+            },
+        }
+    };
+
+    // Introduce this client to the server with its own handshake, then switch.
+    let up = Arc::new(Upstream {
+        graph_path: graph_path.to_string(),
+        export_to: export_to.map(str::to_string),
+        url: Mutex::new(url.clone()),
+        session: Mutex::new(None),
+        hello: Mutex::new(hello.clone()),
+    });
+    if let Some(h) = hello {
+        match post(&url, None, h, PROBE_TIMEOUT).await {
+            Ok((_, sid)) => {
+                *up.session.lock().await = sid.clone();
+                let _ = post(
+                    &url,
+                    sid.as_deref(),
+                    r#"{"jsonrpc":"2.0","method":"notifications/initialized"}"#.to_string(),
+                    PROBE_TIMEOUT,
+                )
+                .await;
+            }
+            // Not fatal: the first forwarded request re-elects and replays the
+            // handshake itself (`Upstream::send`).
+            Err(e) => tracing::warn!("the shared server did not take the handshake ({e:#})"),
+        }
+    }
+    drop(ours_write);
+    eprintln!(
+        "reflow2: a shared server for {graph_path} is up at {url} — this session serves the \
+         design through it from here on, with no restart, and its client is told the tool list \
+         changed."
+    );
+    {
+        let mut w = out.lock().await;
+        w.write_all(b"{\"jsonrpc\":\"2.0\",\"method\":\"notifications/tools/list_changed\"}\n")
+            .await?;
+        w.flush().await?;
+    }
+    forward_lines(up, out, lines).await
+}
+
+/// Whether a JSON-RPC line is the client's `initialize` — read from the parsed
+/// method, not a substring, so a tool call whose ARGUMENTS mention the word is
+/// not mistaken for a handshake.
+fn is_initialize(line: &str) -> bool {
+    serde_json::from_str::<serde_json::Value>(line)
+        .ok()
+        .and_then(|v| {
+            v.get("method")
+                .and_then(|m| m.as_str())
+                .map(|m| m == "initialize")
+        })
+        .unwrap_or(false)
+}
+
+/// Re-run the shared-server election until one comes up, with growing waits.
+/// Stops for good on a [`crate::shared::Refused`], which no wait can fix; the
+/// dropped sender tells the waiting session so.
+async fn reelect(
+    graph_path: String,
+    export_to: Option<String>,
+    found: tokio::sync::oneshot::Sender<String>,
+) {
+    let mut wait = std::time::Duration::from_secs(2);
+    loop {
+        tokio::time::sleep(wait).await;
+        match crate::shared::ensure_server_async(&graph_path, None, export_to.as_deref()).await {
+            Ok(url) => {
+                let _ = found.send(url);
+                return;
+            }
+            Err(e) if crate::shared::is_refusal(&e) => {
+                eprintln!(
+                    "reflow2: stopped waiting for a shared server for {graph_path} — it refused to \
+                     start, and waiting will not fix that:\n{e:#}"
+                );
+                return;
+            }
+            Err(e) => {
+                tracing::info!(
+                    "no shared server for {graph_path} yet ({e:#}); trying again in {}s",
+                    wait.as_secs()
+                );
+                wait = (wait * 2).min(std::time::Duration::from_secs(60));
+            }
+        }
+    }
 }
 
 /// Call one tool on a shared server and return its text content.
