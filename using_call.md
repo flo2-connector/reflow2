@@ -1,160 +1,112 @@
 # Using reflow2 in VS Code when MCP is blocked — the `--call` door
 
-Written 2026-10-01 on the work machine (`lps-172683`), reflow2 `0.76.0` installed at
-`~/.local/bin/reflow2-mcp`.
+A guide, kept current, for running reflow2 from VS Code's Copilot agent where an organisation's Copilot policy
+blocks third-party MCP servers. **The running field log behind it is kept locally** in `docs/feedback/` (git-ignored,
+`dec:field-reports-are-untracked-because-the-repository-is-public`); generic lessons from it are folded in here.
 
 ## The problem
 
-The work GitHub Copilot subscription blocks third-party MCP servers, so VS Code's Copilot agent
-cannot register reflow2 through `.vscode/mcp.json`, which is the path `reflow2 init` installs.
-reflow2's tools never appear in the agent's tool list. Claude Code on the same machine is not
-affected and still runs reflow2 over MCP. A `--serve-shared` daemon was running for
-`hxm_program` during this session.
+With third-party MCP servers blocked, VS Code cannot register reflow2 through `.vscode/mcp.json` (the path
+`reflow2 init` installs), so reflow2's tools never appear in the agent's tool list.
 
-## What we did
+## What works today, with no change to reflow2
 
-Nothing in reflow2 changed. The binary already has a one-shot CLI door, `--call`, added for build
-scripts (bhome, 2026-09-18). It runs any served tool once through the same server code path a
-session uses (an in-process client over an in-memory pipe), so refusals and replies are worded
-the same:
+The binary's one-shot door, `--call`, runs any served tool once through the same server path a session uses (an
+in-process client over an in-memory pipe), so refusals and replies read the same:
 
 ```bash
 RUST_LOG=error reflow2-mcp --graph-path .reflow2/graph --call <tool> --args '<one JSON object>'
-# reflow2 --graph-path ... --call ...   also works: the wrapper passes unknown flags through
 ```
 
-Exit 0 means the reply JSON is on stdout. Exit 1 means a refusal on stderr. Exit 2 means the tool
-marked its own reply an error. `--args -` reads the object from stdin (heredoc).
+Exit 0 is the reply on stdout; 1 is a refusal on stderr; 2 is a reply the tool marked as an error. `--args -` reads
+the object from stdin. `RUST_LOG=error` hides the per-call INFO line and the WARN line a refusal adds.
 
-We then taught Copilot to use the door with a **user-scope VS Code instructions file**, which
-applies to every workspace on the machine:
-
-`~/.config/Code/User/prompts/reflow2-cli.instructions.md` (`applyTo: '**'`)
-
-That file tells the agent to:
+Teach the agent to use it with a **user-scope VS Code instructions file**
+(`~/.config/Code/User/prompts/<name>.instructions.md`, `applyTo: '**'`) that says:
 
 - act only when the workspace has `.reflow2/` or `REFLOW2.md`;
-- treat every "call `X`" in `REFLOW2.md`, a skill or a tool reply as `--call X`, and never
-  reimplement a tool or hand-edit `.reflow2/` or an export;
-- discover tools with `--call find_tools --args '{"query":"…"}'`;
-- fetch skills from the binary with `--call list_skills` and
+- every "call `X`" in `REFLOW2.md`, a skill or a tool reply means `--call X`; never reimplement a tool or hand-edit
+  `.reflow2/` or an export;
+- discover tools with `--call find_tools --args '{"query":"…"}'`, skills with `--call list_skills` and
   `--call get_skill --args '{"name":"…"}'`;
-- start a session with `--call loop_status` and then the `where-am-i` skill;
-- handle the two behavioural differences from MCP: the single writer and the missing
-  automatic export (both covered below);
-- still wait for the user's explicit word before accepting a Requirement or a Decision.
+- start with `--call loop_status`, then the `where-am-i` skill;
+- handle the single writer and the missing automatic export (below);
+- a Requirement or Decision status change still needs the person's explicit word.
 
-### What was verified, not assumed
+### Measured
 
 | Check | Result |
 |---|---|
-| `--call graph_report` on a scratch graph | Works. About **0.2 s** wall time per call, including opening the store. |
-| `--call find_tools --args '{"query":"record a new requirement"}'` | Returns ranked tools with **parameter names** and summaries. |
-| `--call add_requirement --args '{}'` | Exit 2. The message names the missing `id` and what it should look like. |
-| `--call get_skill --args '{}'` | Exit 2. Names the missing `name` argument. |
-| `--call export_graph --args '{"path":…}'` twice | First call writes the file and returns `content_hash`, `chained_from`. Second call is refused: *"already exists — … Pass overwrite=true"*. |
-| `--call loop_status` on `hxm_program` while Claude Code's daemon held it | Answered from a **best-effort snapshot**, with a loud stderr warning. |
-| `--call add_requirement` on that held graph | **Refused**: *"writes, so it needs the graph itself and not a snapshot copy … another process already has the design graph open"*. Nothing was written. |
-| `RUST_LOG=warn` | Still prints an `rmcp` WARN line on every refusal, so the instructions use `RUST_LOG=error`. |
+| `--call graph_report` on a scratch graph | about **0.2 s** per call, including opening the store |
+| `--call find_tools` | ranked tools with **parameter names** and summaries |
+| a write with a missing argument | exit 2; the message names the missing argument |
+| `--call export_graph` to an existing path | refused until `"overwrite": true` |
+| a read on a graph held by another session's `--serve-shared` server | answered from a **best-effort snapshot**, loud stderr warning |
+| a write on that held graph | **refused**, nothing written; `--stop-shared` releases it |
+| `--call upstream_status` from a hub | watches the hub's pinned designs, as under MCP |
 
-## Limitations and issues
+### VS Code agent hooks (VS Code 1.138)
 
-1. **reflow2 is not a tool in Copilot's tool list.** The agent reaches it only through the
-   terminal, and only because an instructions file says so. Discovery depends on that file being
-   loaded and followed. Nothing in VS Code shows reflow2 as available.
-2. **VS Code asks for approval on every call.** Each `--call` is a terminal command, so VS Code
-   prompts each time unless `chat.tools.terminal.autoApprove` matches it. One regex cannot tell
-   a read from a write, because both look like `reflow2-mcp … --call <tool>`. So it is either
-   approve everything or approve each call.
-3. **One writer at a time, and `--call` cannot join a shared daemon.** If a Claude Code session
-   (or any `--serve-shared` daemon) holds the graph, VS Code can read a snapshot but cannot
-   write. The only remedies are closing that session or `--stop-shared`, which cuts the other
-   session off. `--call` opens the store directly and never goes through the `--shared` proxy
-   (`call_one_tool` in `crates/reflow2-mcp/src/main.rs`).
-4. **No automatic export.** `--export-to` write-through starts only in a long-lived server. The
-   `--call` branch exits before `start_auto_export` is reached. After writes, the agent has to
-   remember to run `export_graph` with `overwrite: true` and the right path. Forgetting is the
-   exact loss class the write-through was built to end.
-5. **No up-front tool schemas.** `find_tools` gives parameter names but not types, required-ness
-   or descriptions. The agent learns the shape from exit-2 refusals: correct, but one round trip
-   per mistake.
-6. **Lessons attached to tools are invisible.** Since 2026-09-12 a `DesignRule` or `TemporalFact`
-   with `steps` is appended to the named tool's description in `tools/list`. Under `--call` the
-   agent never reads `tools/list`, so per-tool lessons never arrive. Per-skill lessons still
-   arrive through `get_skill`.
-7. **Skills are not native in a consumer project.** VS Code auto-discovers `SKILL.md` files (it
-   lists this repo's `.claude/skills/*`), but a consumer project installed thin has none on disk.
-   Skills arrive only if the agent calls `get_skill`. Slash commands such as `/genesis`, `/jot`
-   and `/feedback` do not exist in VS Code chat.
-8. **Each call is a fresh session.** Anything scoped to a session (seat identity, claim liveness,
-   per-session nudges) does not carry between calls. *Not measured this session.* Claims made
-   through `--call` may read as `gone` immediately; check before relying on `parallel-work` from
-   VS Code.
-9. **No loop nudges.** Claude Code has hooks and OpenCode has the loop-nudge plugin. VS Code has
-   nothing that prompts `loop_status` at a boundary, so the loop runs only as far as the agent
-   remembers it.
-10. **Usage telemetry cannot tell VS Code from a Makefile.** Every `--call` identifies as
-    `reflow2-mcp --call`, so `usage_report` and `/feedback` cannot attribute calls to the VS Code
-    harness.
-11. **The setup is one person's local file.** The instructions live in one user's VS Code profile.
-    `reflow2 init` / `reflow2 update` do not install or refresh them, and they will drift from
-    the binary as the tool surface changes.
-12. **Shell quoting.** JSON in single quotes breaks on apostrophes in statements. Agents need the
-    `--args -` heredoc form for any real prose, and the instructions say so.
+VS Code runs agent hooks: `chat.useHooks` is on by default (an organisation policy can turn it off with preview
+features), reading `.github/hooks/*.json` (workspace) and `~/.copilot/hooks/*.json` (personal).
+`chat.useClaudeHooks` (off by default) would also read `.claude/settings*.json`. A hook gets
+`{tool_name, tool_input, tool_use_id}` on stdin, and a `PreToolUse` reply of
+`hookSpecificOutput.permissionDecision: "deny"` blocks the call — verified live. This matters for reflow2 because
+hooks can supply what the `--call` door lacks (ideas 1 and 12 below).
 
-## Ideas for improvement
+## Limitations
 
-Ordered roughly by value for the least work.
+1. **Not a tool in Copilot's tool list.** Reachable only because an instructions file says so.
+2. **Approval on every call.** One `chat.tools.terminal.autoApprove` regex cannot tell a read from a write.
+3. **One writer, and `--call` cannot join a shared server.** A design held by another session is read-only from
+   VS Code; `call_one_tool` opens the store directly.
+4. **No automatic export.** `--export-to` write-through only starts in a long-lived server; `--call` exits first.
+5. **No up-front schemas.** `find_tools` gives parameter names only; shape is learned one refusal at a time.
+   Measured: five writes in one session each needed at least one refused attempt.
+6. **Lessons attached to tools are invisible.** `tools/list` appends `steps` lessons to tool descriptions; a
+   `--call` agent never reads `tools/list`. Skill lessons still arrive through `get_skill`.
+7. **Skills are not native in a thin-installed project**, and slash commands don't exist in VS Code chat.
+8. **Each call is a fresh session.** Session-scoped state (seats, claim liveness) does not carry between calls.
+   *Not yet measured.*
+9. **No loop nudges.** Nothing prompts `loop_status` at a boundary in VS Code.
+10. **Telemetry can't name the harness.** Every call identifies as `reflow2-mcp --call`.
+11. **The setup is one person's local file**; `reflow2 init` / `update` don't install or refresh it.
+12. **Shell quoting.** Prose needs the `--args -` heredoc or a file.
+13. **A hub has no member list.** The served `hub` skill says a local hub's list *is* the session's MCP config;
+    under `--call` there is none, so the list must live elsewhere (a project file of store paths, for now).
+14. **A hub can't see a member's unexported changes.** `upstream_status` compares the committed export, not the
+    live store; without write-through the export routinely lags.
+15. **A design can exist only in its store.** Nothing warns when a design has never been exported anywhere.
 
-1. **A served CLI-door instructions file from `reflow2 init`.** Add a harness (e.g.
-   `--harness vscode-cli`, or auto-offer it alongside `vscode`) that writes
-   `.github/instructions/reflow2.instructions.md` with the content above, served from the binary
-   the way the working instructions already are (`req:thin-install`), so `reflow2 update` keeps
-   it current. This fixes limitation 11 and makes the setup committable for a team.
-2. **`--call` joins a running shared daemon.** When the graph is held by a `--serve-shared`
-   daemon, route the call through it (the same proxy `--shared` uses) instead of refusing writes.
-   VS Code and Claude Code could then work the same design at once. This fixes limitation 3 and
-   is the biggest functional gap.
-3. **`--call … --export-to FILE`.** After a successful *writing* call, export once to the committed
-   path with the same chaining and tamper guard as the write-through. Better still, read the path
-   from `REFLOW2.md` / project config so the agent does not have to know it. This fixes
-   limitation 4.
-4. **A short, approvable verb split by read vs write.** For example `reflow2 read <tool> [json]`
-   would refuse any tool not annotated `read_only_hint`, and `reflow2 write <tool> [json]` would
-   handle the rest. Both would default `--graph-path ./.reflow2/graph` and quiet logging. Then
-   `chat.tools.terminal.autoApprove` can safely auto-approve `^reflow2 read ` and leave writes
-   prompted. This fixes limitation 2 and shortens every command line.
-5. **Describe a tool on the CLI.** `--describe <tool>` (or `--call describe_tool`) would print the
-   full input schema *and* the lessons `tools/list` would have appended. This fixes limitations 5
-   and 6. A `--list-tools` that dumps the whole served list as JSON would let an instructions
-   generator pre-render a schema cheat-sheet.
-6. **Batch calls in one process.** `--call-batch` would read JSONL of `{tool, args}`, run them in
-   order against one open store, and stop at the first refusal. That means one approval, one
-   store open and one export for a capture burst (genesis seeds dozens of nodes).
-7. **Skill stubs VS Code can discover.** Have init write `.github/skills/<name>/SKILL.md` stubs:
-   the frontmatter (name, description) plus one line, *"run `reflow2 --call get_skill --args
-   '{"name":"<name>"}'` and follow it"*. VS Code would then route to the right skill by
-   description, the body would stay served (thin install preserved), and prompt files could map
-   `/genesis`-style commands. This fixes limitation 7.
-8. **A harness name for the door.** Accept `REFLOW2_HARNESS=vscode` (or `--harness`) under `--call`
-   so `usage_report` attributes calls correctly. This fixes limitation 10.
-9. **A VS Code extension that registers Language Model Tools** (`vscode.lm.registerTool`). Each
-   served tool would become a first-class Copilot tool with its schema, backed by `--call` or a
-   long-lived local process. This gives the closest thing to MCP without MCP, and could keep one
-   server open, which would also fix limitations 3, 4 and 8. **Check with IT first:** if the
-   policy's intent is "no unvetted agent tools" rather than "no MCP transport", an extension that
-   reintroduces the tools is the wrong answer.
-10. **Ask the admin about an MCP registry allowlist.** If the org policy is registry-based rather
-    than off entirely, adding reflow2 to the allowed registry restores the normal setup, and
-    every limitation above goes away.
-11. **A CI probe for the door, the way a harness is tested.** For example
-    `tools/test_call_door.py`, alongside `test_opencode_plugin.py`, would drive the binary the
-    way the instructions tell an agent to:
-    - discovery via `find_tools`;
-    - an exit-2 refusal that names the missing argument;
-    - a write on a free graph;
-    - a refused write on a held graph;
-    - a snapshot read on a held graph;
-    - an export.
+### Tool friction found along the way
 
-    Then the VS Code path cannot regress silently.
+- `external_dependency` with a string where a list is expected → `failed to deserialize parameters: invalid type:
+  string "…", expected a sequence`: names neither the tool nor the field.
+- `external_dependency` replies with a dependency-declaration rendering rather than a node receipt.
+- `find_tools` for "read one node by id with its properties and edges" does not return `get_node`.
+- `add_epoch` refuses a missing `sequence` on every first epoch (clear message, one extra round trip).
+
+## Ideas, in rough order of value for effort
+
+1. **A served CLI-door harness in `reflow2 init`** (`--harness vscode-cli`): writes the instructions file into
+   `.github/instructions/`, served from the binary so `reflow2 update` refreshes it, **plus VS Code hook files**
+   (idea 12). Fixes 1, 9, 11.
+2. **`--call` joins a running shared server** instead of refusing writes. Fixes 3.
+3. **`--call … --export-to FILE`** (or the path from project config) after a successful write. Fixes 4 and 14.
+4. **A read/write verb split** (`reflow2 read` refuses any tool not `read_only_hint`), so reads can be auto-approved
+   safely. Fixes 2.
+5. **`--describe <tool>` / `--list-tools`** with full schemas and the lessons `tools/list` would append. Fixes 5, 6.
+6. **`--call-batch`**: JSONL of calls, one store open, one approval, stop at the first refusal.
+7. **Skill stubs in `.github/skills/`** that route to `get_skill`, so VS Code picks skills by description. Fixes 7.
+8. **`REFLOW2_HARNESS=vscode`** under `--call`. Fixes 10.
+9. **A VS Code extension registering Language Model Tools** backed by `--call` or a local process. Check with the
+   organisation first: if the policy means "no unvetted agent tools", this is the wrong answer.
+10. **An MCP registry allowlist**, if the organisation's policy is registry-based.
+11. **A CI probe for the door** (`tools/test_call_door.py`, beside `test_opencode_plugin.py`).
+12. **Ship VS Code hooks**: a `Stop` hook running `--call export_graph` and a `SessionStart` hook running
+    `--call loop_status`. Fixes 4 and 9 without touching the binary.
+13. **A hub address book**: hub pins that carry a store location, and a tool that resolves "where is member X's
+    store on this machine". Fixes 13.
+14. **Warn on a never-exported design** in `loop_status` / `where-am-i`. Fixes 15.
+15. **Refusal shape**: the `refusal_speaks` gate should cover bare deserialize errors (the `external_dependency`
+    case above).
