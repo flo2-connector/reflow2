@@ -1077,14 +1077,23 @@ pub(crate) fn with_capture_notes<T: serde::Serialize>(
 /// `baseline_established` as the way through. A refusal that names what would
 /// have worked is `req:a-refusal-names-what-would-have-worked`.
 ///
-/// # Both routes already exist, which is why no new vocabulary is needed
+/// # Three routes, and each one leaves its record
 ///
 /// * SHARPEN — call the same constructor with the EXISTING id. Constructors
 ///   merge (BL-183), so what you pass overwrites and what you omit survives.
 ///   A revision is exempt from this check by construction.
 /// * CREATE ANYWAY — pass `distinct_from` naming the ids you read and rejected.
-///   That is the deliberate decision, and it is recorded in the call rather
-///   than assumed from silence.
+///   That is the deliberate decision, and since 2026-09-30 it is KEPT on the
+///   node it created (`distinct_from`), not only accepted in the call: before,
+///   nobody could later tell a writer who saw the older node from one who
+///   never looked.
+/// * REPLACE — pass `replaces` naming the same-type node this one takes the
+///   place of. The old node's ending is recorded, its thread moves, and this
+///   one OBSOLETES it (`reflow2_core::supersede`). Added 2026-09-30, when
+///   flo2's design showed a function rebuilt under a new capability while its
+///   predecessor stayed `planned` and unjoined — the writer had only
+///   "distinct" to say, and it was false
+///   (`fact:root-cause-a-status-that-falls-behind-reality-is-silent-and-a-superseding-capability-leaves-no-trace-2026-09-30`).
 ///
 /// # What it must never do
 ///
@@ -1096,6 +1105,7 @@ pub(crate) fn with_capture_notes<T: serde::Serialize>(
 fn refuse_unless_deliberate(
     found: &Option<SearchFirst>,
     distinct_from: Option<&Vec<String>>,
+    replaces: Option<&Vec<String>>,
     node_id: &str,
     creating: &str,
     declared: &[&str],
@@ -1104,9 +1114,13 @@ fn refuse_unless_deliberate(
     if sf.near_matches.is_empty() {
         return Ok(());
     }
+    // Both judgements answer the check: a node named in `replaces` was read
+    // and judged a predecessor, which is as deliberate as judging it distinct.
     let acknowledged: std::collections::HashSet<&str> = distinct_from
-        .map(|v| v.iter().map(String::as_str).collect())
-        .unwrap_or_default();
+        .into_iter()
+        .chain(replaces)
+        .flat_map(|v| v.iter().map(String::as_str))
+        .collect();
     // ⭐ A PRESCRIBED LAYER PAIR IS REPORTED, NOT REFUSED — and the distinction
     // is the whole design of this change. The match stays in
     // `sf.near_matches`, so the caller still sees what it matched and a later
@@ -1182,21 +1196,145 @@ fn refuse_unless_deliberate(
         ));
     }
 
+    // The third route names only the SAME-type matches: a record at another
+    // layer is not a predecessor, and `replaces` refuses one.
+    let same_ids = same_type
+        .iter()
+        .map(|m| format!("\"{}\"", m.node_id))
+        .collect::<Vec<_>>()
+        .join(", ");
+    // What moves is the type's inherited thread — said here, from the one
+    // table the core reads, so the promise and the write cannot disagree.
+    let moved: Vec<String> = reflow2_core::supersede::inherited_edges(creating)
+        .iter()
+        .map(|(e, side)| match side {
+            reflow2_core::supersede::Side::Outgoing => format!("its `{e}`"),
+            reflow2_core::supersede::Side::Incoming => format!("the `{e}` pointing at it"),
+        })
+        .collect();
+    let moves = if moved.is_empty() {
+        String::new()
+    } else {
+        format!(
+            ", {} move{} to this one",
+            moved.join(" and "),
+            if moved.len() == 1 { "s" } else { "" }
+        )
+    };
     Err(McpError::invalid_params(
         format!(
             "The design already says something close to this, so `{node_id}` was NOT created. \
-             Read these and decide — sharpening an existing node or starting a new one are \
-             different acts, and this is the moment to choose:\n\n{listed}\n\nTWO WAYS ON, both \
-             deliberate:\n  SHARPEN — call this same tool with the EXISTING id of a {creating} \
-             above. Constructors merge, so what you pass overwrites and what you omit survives; \
-             nothing is lost and the new detail lands on the node that already holds the idea.\n  \
-             START A NEW ONE — call again with `distinct_from: [{ids}]`, which records that you \
-             read them and judged this different.\n\nThis is not a duplicate accusation. Saying \
-             the same thing twice in different words is sometimes real signal, which is why the \
-             second route exists and why nothing was merged for you."
+             Read these and decide — sharpening an existing node, starting a new one and \
+             replacing an old one are different acts, and this is the moment to choose:\n\n\
+             {listed}\n\nTHREE WAYS ON, all deliberate, and whichever you take is kept on the \
+             record:\n  SHARPEN — call this same tool with the EXISTING id of a {creating} above. \
+             Constructors merge, so what you pass overwrites and what you omit survives; nothing \
+             is lost and the new detail lands on the node that already holds the idea.\n  \
+             START A NEW ONE — call again with `distinct_from: [{ids}]`. The new node keeps \
+             them as the ones you read and judged a different thing.\n  REPLACE AN OLD ONE — \
+             if this one TAKES THE PLACE of a {creating} above (rebuilt, re-scoped or renamed \
+             under a new node), call again with `replaces: [{same_ids}]`. The old node's ending \
+             is recorded{moves}, and this one OBSOLETES it — so the old node no longer reads as \
+             work nobody replaced.\n\nThis is not a duplicate accusation. Saying the same thing \
+             twice in different words is sometimes real signal, which is why more than one route \
+             exists and why nothing was merged for you."
         ),
         None,
     ))
+}
+
+/// Refuse a bad `replaces` BEFORE the constructor writes anything, so a
+/// refusal leaves the design exactly as it was. The judgement itself is the
+/// core's (`reflow2_core::supersede`).
+fn check_replaces(
+    g: &reflow2_core::graph::DesignGraph,
+    node_type: &str,
+    id: &str,
+    replaces: Option<&Vec<String>>,
+    distinct_from: Option<&Vec<String>>,
+) -> Result<(), McpError> {
+    g.check_replaces(
+        node_type,
+        id,
+        replaces.map(Vec::as_slice).unwrap_or_default(),
+        distinct_from.map(Vec::as_slice).unwrap_or_default(),
+    )
+    .map_err(dyno_err)
+}
+
+/// The choice made at the near-match check, as it now stands on the record.
+#[derive(Default)]
+pub(crate) struct KeptChoice {
+    replaced: Vec<reflow2_core::supersede::Supersession>,
+    judged: Option<reflow2_core::supersede::JudgedDistinct>,
+}
+
+impl KeptChoice {
+    /// Whether a replacement moved a `SATISFIES` onto this node — the thread to
+    /// a requirement, drawn in this call without the caller naming it.
+    fn moved_satisfies(&self) -> bool {
+        self.replaced.iter().any(|s| {
+            s.moved
+                .iter()
+                .any(|m| m.contains(reflow2_core::nodes::edge::SATISFIES))
+        })
+    }
+
+    /// Put the blocks on a reply. Silent when the call made no choice — a block
+    /// present and empty on every capture is the noise its siblings avoid.
+    pub(crate) fn attach(&self, reply: &mut JsonValue) -> Result<(), McpError> {
+        let Some(obj) = reply.as_object_mut() else {
+            return Ok(());
+        };
+        if !self.replaced.is_empty() {
+            obj.insert(
+                "replaced".into(),
+                serde_json::to_value(&self.replaced).map_err(ser_err)?,
+            );
+        }
+        if let Some(j) = &self.judged {
+            obj.insert(
+                "judged_distinct".into(),
+                serde_json::to_value(j).map_err(ser_err)?,
+            );
+        }
+        Ok(())
+    }
+}
+
+/// KEEP THE CHOICE, once the guard has accepted it: the `distinct_from`
+/// judgement goes onto the node, and each `replaces` becomes a recorded
+/// supersession whose edges join this call's shared echo. Called after every
+/// check that could still undo the create, so nothing here is ever rolled back
+/// by a later refusal.
+pub(crate) fn keep_the_choice(
+    g: &mut reflow2_core::graph::DesignGraph,
+    node_type: &str,
+    id: &str,
+    via: &str,
+    replaces: Option<&Vec<String>>,
+    distinct_from: Option<&Vec<String>>,
+    edges: &mut crate::drawn_edges::DrawnEdges,
+) -> Result<KeptChoice, McpError> {
+    let mut kept = KeptChoice::default();
+    if let Some(d) = distinct_from {
+        kept.judged = g
+            .record_judged_distinct(node_type, id, d)
+            .map_err(dyno_err)?;
+    }
+    let mut seen = std::collections::HashSet::new();
+    for old in replaces.map(Vec::as_slice).unwrap_or_default() {
+        if !seen.insert(old.as_str()) {
+            continue;
+        }
+        let s = g.supersede(node_type, id, old, via).map_err(dyno_err)?;
+        edges.drawn.extend(s.drawn.iter().cloned());
+        edges
+            .already_present
+            .extend(s.already_present.iter().cloned());
+        kept.replaced.push(s);
+    }
+    Ok(kept)
 }
 
 /// Write a type's `description` after the node lands, for the constructors
@@ -1561,6 +1699,13 @@ impl ReflowService {
         let name = __rf.str("name", req.name);
         let statement = __rf.str("statement", req.statement);
         __rf.finish()?;
+        check_replaces(
+            &g,
+            node_ty,
+            &req.id,
+            req.replaces.as_ref(),
+            req.distinct_from.as_ref(),
+        )?;
         let node = NodeDto::from(
             g.add_requirement(&req.id, &name, &statement)
                 .map_err(dyno_err)?,
@@ -1569,6 +1714,7 @@ impl ReflowService {
         if let Err(e) = refuse_unless_deliberate(
             &found,
             req.distinct_from.as_ref(),
+            req.replaces.as_ref(),
             &req.id,
             "Requirement",
             &[],
@@ -1619,14 +1765,27 @@ impl ReflowService {
             req.approver.as_deref(),
             req.acted_at.as_deref(),
         )?;
+        let mut edges = crate::drawn_edges::DrawnEdges::new();
+        let kept = keep_the_choice(
+            &mut g,
+            node_ty,
+            &req.id,
+            "add_requirement",
+            req.replaces.as_ref(),
+            req.distinct_from.as_ref(),
+            &mut edges,
+        )?;
         let node = match g.get_node(node_ty, &req.id).map_err(dyno_err)? {
             Some(n) => NodeDto::from(n),
             None => node,
         };
         preserve_prior(&mut g, prior.as_ref(), &node);
         let revision = revision_of(&g, prior.as_ref(), &node);
+        let mut reply = serde_json::to_value(node).map_err(ser_err)?;
+        edges.attach(&mut reply);
+        kept.attach(&mut reply)?;
         with_capture_notes(
-            node,
+            reply,
             "loop: when this capture batch lands, run detect_gaps (detect-and-ask) — \
              loop_status says what's owed",
             found,
@@ -1680,6 +1839,13 @@ impl ReflowService {
         let name = __rf.str("name", req.name);
         let statement = __rf.str("statement", req.statement);
         __rf.finish()?;
+        check_replaces(
+            &g,
+            node_ty,
+            &req.id,
+            req.replaces.as_ref(),
+            req.distinct_from.as_ref(),
+        )?;
         let node = NodeDto::from(
             g.add_design_rule(
                 &req.id,
@@ -1729,6 +1895,7 @@ impl ReflowService {
         if let Err(e) = refuse_unless_deliberate(
             &found,
             req.distinct_from.as_ref(),
+            req.replaces.as_ref(),
             &req.id,
             "DesignRule",
             &[],
@@ -1745,6 +1912,20 @@ impl ReflowService {
             req.approver.as_deref(),
             req.acted_at.as_deref(),
         )?;
+        let mut edges = crate::drawn_edges::DrawnEdges::new();
+        let kept = keep_the_choice(
+            &mut g,
+            node_ty,
+            &req.id,
+            "add_design_rule",
+            req.replaces.as_ref(),
+            req.distinct_from.as_ref(),
+            &mut edges,
+        )?;
+        let node = match g.get_node(node_ty, &req.id).map_err(dyno_err)? {
+            Some(n) => NodeDto::from(n),
+            None => node,
+        };
         preserve_prior(&mut g, prior.as_ref(), &node);
         let revision = revision_of(&g, prior.as_ref(), &node);
         // The hint asks for `enforced` only when the rule does not already
@@ -1759,7 +1940,10 @@ impl ReflowService {
             "loop: a rule the project follows — if breaking it should stop the build, say so \
              with `enforced` (governance-proposal); then run detect_gaps (detect-and-ask)"
         };
-        with_capture_notes(node, hint, found, revision, None)
+        let mut reply = serde_json::to_value(node).map_err(ser_err)?;
+        edges.attach(&mut reply);
+        kept.attach(&mut reply)?;
+        with_capture_notes(reply, hint, found, revision, None)
     }
 
     #[tool(
@@ -1826,6 +2010,13 @@ impl ReflowService {
         let name = __rf.str("name", req.name);
         let description = __rf.str("description", req.description);
         __rf.finish()?;
+        check_replaces(
+            &g,
+            node_ty,
+            &req.id,
+            req.replaces.as_ref(),
+            req.distinct_from.as_ref(),
+        )?;
         let stored = g
             .add_capability(&req.id, &name, &description, req.status.as_deref())
             .map_err(dyno_err)?;
@@ -1837,6 +2028,7 @@ impl ReflowService {
         if let Err(e) = refuse_unless_deliberate(
             &found,
             req.distinct_from.as_ref(),
+            req.replaces.as_ref(),
             &req.id,
             "Capability",
             &declared_targets(&[req.satisfies.as_deref(), req.allocated_to.as_deref()]),
@@ -1907,12 +2099,27 @@ impl ReflowService {
             )
             .map_err(dyno_err)?;
         }
+        // AFTER the caller's own thread, so an edge the caller re-sent and a
+        // moved one are told apart in the echo rather than drawn twice.
+        let kept = keep_the_choice(
+            &mut g,
+            node_ty,
+            &req.id,
+            "add_capability",
+            req.replaces.as_ref(),
+            req.distinct_from.as_ref(),
+            &mut edges,
+        )?;
+        let node = match g.get_node(node_ty, &req.id).map_err(dyno_err)? {
+            Some(n) => NodeDto::from(n),
+            None => node,
+        };
         preserve_prior(&mut g, prior.as_ref(), &node);
         let revision = revision_of(&g, prior.as_ref(), &node);
         // The hint used to tell every caller to "wire satisfies", including the
         // caller who had just passed `satisfies` — the same fixed-sentence
         // class as add_decision's "lands proposed".
-        let hint = if req.satisfies.is_some() {
+        let hint = if req.satisfies.is_some() || kept.moved_satisfies() {
             "loop: the thread to its requirement is drawn in this call — run detect_gaps when \
              the capture batch lands (detect-and-ask)"
         } else {
@@ -1921,6 +2128,7 @@ impl ReflowService {
         };
         let mut reply = serde_json::to_value(node).map_err(ser_err)?;
         edges.attach(&mut reply);
+        kept.attach(&mut reply)?;
         with_capture_notes(
             reply, hint, found, revision,
             // No observed instance on this tool yet, and the check is a
@@ -2148,6 +2356,13 @@ impl ReflowService {
         // `description`, which is why this survived.
         let description = __rf.str("purpose", req.description);
         __rf.finish()?;
+        check_replaces(
+            &g,
+            node_ty,
+            &req.id,
+            req.replaces.as_ref(),
+            req.distinct_from.as_ref(),
+        )?;
         let stored = g
             .add_component(&req.id, &name, &description, req.level.as_deref())
             .map_err(dyno_err)?;
@@ -2167,6 +2382,7 @@ impl ReflowService {
         if let Err(e) = refuse_unless_deliberate(
             &found,
             req.distinct_from.as_ref(),
+            req.replaces.as_ref(),
             &req.id,
             "Component",
             &[],
@@ -2180,10 +2396,27 @@ impl ReflowService {
             }
             return Err(e);
         }
+        let mut edges = crate::drawn_edges::DrawnEdges::new();
+        let kept = keep_the_choice(
+            &mut g,
+            node_ty,
+            &req.id,
+            "add_component",
+            req.replaces.as_ref(),
+            req.distinct_from.as_ref(),
+            &mut edges,
+        )?;
+        let node = match g.get_node(node_ty, &req.id).map_err(dyno_err)? {
+            Some(n) => NodeDto::from(n),
+            None => node,
+        };
         preserve_prior(&mut g, prior.as_ref(), &node);
         let revision = revision_of(&g, prior.as_ref(), &node);
+        let mut reply = serde_json::to_value(node).map_err(ser_err)?;
+        edges.attach(&mut reply);
+        kept.attach(&mut reply)?;
         with_capture_notes(
-            node,
+            reply,
             "loop: structural change — run detect_defects (check-health) when the batch lands",
             found,
             revision,
@@ -2576,10 +2809,33 @@ impl ReflowService {
         };
         let node = NodeDto::from(stored);
         let found = search_first(&g, &req.id, existed, &format!("{name} {statement}"));
+        // This constructor reports near-matches rather than refusing, but a
+        // judgement the caller DID make is kept exactly as the guarded ones
+        // keep it — one record for one act, whichever door it came through.
+        let mut edges = crate::drawn_edges::DrawnEdges::new();
+        let kept = keep_the_choice(
+            &mut g,
+            reflow2_core::nodes::node::CONSTRAINT,
+            &req.id,
+            "add_constraint",
+            None,
+            req.distinct_from.as_ref(),
+            &mut edges,
+        )?;
+        let node = match g
+            .get_node(reflow2_core::nodes::node::CONSTRAINT, &req.id)
+            .map_err(dyno_err)?
+        {
+            Some(n) => NodeDto::from(n),
+            None => node,
+        };
         preserve_prior(&mut g, prior.as_ref(), &node);
         let revision = revision_of(&g, prior.as_ref(), &node);
+        let mut reply = serde_json::to_value(node).map_err(ser_err)?;
+        edges.attach(&mut reply);
+        kept.attach(&mut reply)?;
         with_capture_notes(
-            node,
+            reply,
             "loop: a Constraint binds what it CONSTRAINS — wire it, then run detect_gaps",
             found,
             revision,
@@ -2872,6 +3128,13 @@ impl ReflowService {
         let name = __rf.str("name", req.name);
         let decision = __rf.str("decision", req.decision);
         __rf.finish()?;
+        check_replaces(
+            &g,
+            node_ty,
+            &req.id,
+            req.replaces.as_ref(),
+            req.distinct_from.as_ref(),
+        )?;
         let mut stored = g
             .add_decision(&req.id, &name, &decision, req.rationale.as_deref())
             .map_err(dyno_err)?;
@@ -2906,6 +3169,7 @@ impl ReflowService {
         if let Err(e) = refuse_unless_deliberate(
             &found,
             req.distinct_from.as_ref(),
+            req.replaces.as_ref(),
             &req.id,
             "Decision",
             &req.related_to
@@ -3025,6 +3289,17 @@ impl ReflowService {
             req.approver.as_deref(),
             req.acted_at.as_deref(),
         )?;
+        // After the owner's word, so where a replaced decision stands is read
+        // from the status this call just settled.
+        let kept = keep_the_choice(
+            &mut g,
+            node_ty,
+            &req.id,
+            "add_decision",
+            req.replaces.as_ref(),
+            req.distinct_from.as_ref(),
+            &mut edges,
+        )?;
         // Re-read AFTER the review, so the reply shows the note it just wrote.
         // The first cut built the reply before this and echoed the pre-note
         // state — a caller following "read the result back" would have been
@@ -3055,6 +3330,7 @@ impl ReflowService {
         );
         let mut reply = serde_json::to_value(node).map_err(ser_err)?;
         edges.attach(&mut reply);
+        kept.attach(&mut reply)?;
         if let (Some(block), Some(obj)) = (name_open, reply.as_object_mut()) {
             obj.insert("name_still_reads_open".into(), JsonValue::Object(block));
         }

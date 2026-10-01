@@ -51,6 +51,7 @@ async fn seeded(checksum: Option<&str>) -> ReflowService {
         satisfies: None,
         allocated_to: None,
         distinct_from: None,
+        replaces: None,
     })));
     j!(s.link_artifact(Parameters(LinkArtifactReq {
         artifact_id: "art:flight".into(),

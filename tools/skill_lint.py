@@ -146,6 +146,18 @@ NON_TOOL_TERMS = {
     "no_relation_note",
     "not_observed_about",
 
+    # The THREE answers to the capture guard's near-match check, as parameters
+    # of the five guarded constructors, and the reply field that says where a
+    # replaced node now stands — read in prose by capture-intent, revise-design
+    # and capture-session, which have to name the route, not only the tool.
+    # `discontinued` is get_node's derived field, which retire-from-design names
+    # to say what a successor's OBSOLETES does NOT set. Field terms, not tools.
+    # Declared 2026-09-30 alongside `chg:a-capture-that-replaces-a-node-says-so`.
+    "distinct_from",
+    "replaces",
+    "standing",
+    "discontinued",
+
     # A VALUE of `Decision.kind`, passed to add_decision — a field term, not a
     # tool. It arrives in backticks because the brainstorm skill has to say what
     # the THIRD state is NOT: omitting the kind means nobody said, and that only

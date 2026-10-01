@@ -266,6 +266,7 @@ async fn the_handoff_lands_end_to_end() {
         name: Some("Stay dry".into()),
         statement: Some("The unit survives rain.".into()),
         distinct_from: None,
+        replaces: None,
         status: None,
         approver: None,
         acted_at: None,
@@ -281,6 +282,7 @@ async fn the_handoff_lands_end_to_end() {
         description: Some("keeps water out".into()),
         status: None,
         distinct_from: None,
+        replaces: None,
         tier: None,
     })));
     j!(s.add_component(Parameters(

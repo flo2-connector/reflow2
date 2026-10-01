@@ -79,6 +79,7 @@ fn requirement(id: &str, name: &str) -> RequirementReq {
         name: Some(name.into()),
         statement: Some(IDEA.into()),
         distinct_from: None,
+        replaces: None,
         status: None,
         approver: None,
         acted_at: None,
@@ -97,6 +98,7 @@ fn capability(id: &str, name: &str) -> CapabilityReq {
         description: Some(IDEA.into()),
         status: None,
         distinct_from: None,
+        replaces: None,
         tier: None,
     }
 }
@@ -108,6 +110,7 @@ fn decision(id: &str, name: &str, kind: Option<&str>) -> DecisionReq {
         decision: Some(IDEA.into()),
         rationale: None,
         distinct_from: None,
+        replaces: None,
         kind: kind.map(Into::into),
         related_to: None,
         no_relation_note: Some("no honest relation; this is a test fixture".into()),
@@ -257,6 +260,7 @@ async fn an_unmeasured_cross_type_pair_still_refuses_with_the_layer_wording() {
         kind: None,
         level: None,
         distinct_from: None,
+        replaces: None,
         tier: None,
         status: None,
     }))
@@ -275,6 +279,7 @@ async fn an_unmeasured_cross_type_pair_still_refuses_with_the_layer_wording() {
             enforced: None,
             units: None,
             distinct_from: None,
+            replaces: None,
             approver: None,
             acted_at: None,
             steps: None,
@@ -330,6 +335,7 @@ async fn a_requirement_promoted_from_the_idea_that_spawned_it_is_not_refused() {
         name: Some("A campaign is just another story with a longer arc".into()),
         statement: Some("A campaign is just another story with a longer arc and several authors, and is modelled as one.".into()),
         distinct_from: None,
+        replaces: None,
     status: None,
     approver: None,
     acted_at: None,

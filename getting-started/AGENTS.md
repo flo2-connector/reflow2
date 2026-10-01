@@ -401,6 +401,13 @@ reflow2 phrases the question; **you** are the language model that fills it in:
   for when you don't know the id: mapping the user's words to their node, and checking
   whether a requirement like the one you are about to add already exists. Finding by content
   is the graph's job; do not scan whole types into context to eyeball them.
+- **When a constructor refuses a near-match**, there are three answers and the one you give is
+  kept: SHARPEN (call again with the existing node's id), `distinct_from` (a different thing —
+  the ids stay on the new node, so "was the older one seen?" has an answer), or `replaces` (it
+  takes an older node's place — the old node's ending is recorded with its edges, the thread
+  that says what it was for moves across, and the new node `OBSOLETES` it). Answering
+  `distinct_from` for a replacement leaves the old node reading as unbuilt work. The
+  **capture-intent** skill has the detail.
 - **As-built:** `link_artifact`, `add_artifact`, `realizes`, `reconcile_artifacts`,
   `set_artifact_checksum` — the last is a **two-sided accept**: `disposition` is required
   (`design_holds`, or `design_updated` naming the `snapshot_before_change` event behind it), because a

@@ -68,6 +68,7 @@ async fn a_file_read_off_disk_is_realized_on_first_registration_and_a_relink_kee
         description: Some("Runs the ray trace.".into()),
         status: None,
         distinct_from: None,
+        replaces: None,
         tier: None,
         satisfies: None,
         allocated_to: None,

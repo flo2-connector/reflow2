@@ -158,6 +158,8 @@ readers:
   search.rs::claim_age_of: { kind: unjudged, edges: [INVALIDATES] }
   structure.rs::couples_only_as_a_library: { kind: unjudged, edges: [PROVIDES] }
   structure.rs::dependency_pairs: { kind: unjudged, edges: [CONSUMES, DEPENDS_ON, PROVIDES] }
+  supersede.rs::inherited_edges: { kind: not_derived, edges: [ALLOCATED_TO, SATISFIES], why: "A table, not a read: which edges a successor inherits from the node it replaces (a Capability's SATISFIES, the ALLOCATED_TO pointing at a Component). It names edge types and walks nothing." }
+  supersede.rs::supersede: { kind: not_derived, edges: [AUTHORED_BY, OBSOLETES, SCHEDULED_FOR], why: "A writer: replaces one node with another at capture — records the old node's ending, moves its inherited edges and draws OBSOLETES from the successor. It reads the old node's own one-hop edges only to move them or to name the ones that stay (skipping AUTHORED_BY and bookkeeping edges, keeping SCHEDULED_FOR as a commitment); it composes nothing past them and derives no relation." }
   surprises.rs::surprising_connections: { kind: unjudged, edges: [CONSUMES, DEPENDS_ON, PART_OF_FLOW, PROVIDES] }
   temporal.rs::changed: { kind: unjudged, edges: [CHANGED] }
   temporal.rs::guard_schedule_loss: { kind: not_derived, edges: [SCHEDULED_FOR], why: "A guard: reads the plan only to refuse a write that would lose an unrecorded schedule." }

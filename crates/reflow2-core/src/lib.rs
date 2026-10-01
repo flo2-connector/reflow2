@@ -99,6 +99,7 @@ mod fuzzy;
 mod graphalg;
 mod stats;
 pub mod structure;
+pub mod supersede;
 pub mod surprises;
 pub mod sync;
 pub mod temporal;
