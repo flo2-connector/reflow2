@@ -34,10 +34,27 @@ fn baseline() -> DesignGraph {
             .set("status", "accepted"),
     )
     .unwrap();
-    g.add_capability("cap:fast", "Fast path", "Serve hot reads quickly", None)
-        .unwrap();
-    g.add_component("cmp:cache", "Cache", "In-memory cache", None)
-        .unwrap();
+    // `verified`, and the cache `realized`: this baseline is a COMPLETE thread
+    // — a file realizes the capability and passing checks verify it — so the
+    // `planned` default claimed LESS than it shows, and `understated_status`
+    // said so the day it landed (2026-09-30). Same reason as `rule:house-style`
+    // below: the fixture says what is true of it.
+    g.add_capability(
+        "cap:fast",
+        "Fast path",
+        "Serve hot reads quickly",
+        Some("verified"),
+    )
+    .unwrap();
+    g.create_node(
+        node::COMPONENT,
+        "cmp:cache",
+        Props::new()
+            .set("name", "Cache")
+            .set("purpose", "In-memory cache")
+            .set("status", "realized"),
+    )
+    .unwrap();
     g.create_node(
         node::ARTIFACT,
         "art:cache",

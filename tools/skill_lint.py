@@ -304,6 +304,10 @@ NON_TOOL_TERMS = {
     # A GAP SOURCE key (2026-09-14): a prohibition the routing table sends to
     # a Constraint, found living in prose instead. detect-and-ask names it.
     "prohibition_in_prose",
+    # A GAP SOURCE key (2026-09-30): a status still at `planned` while the
+    # design shows the thing built — status_contradiction's other direction.
+    # detect-and-ask's resolution table names it.
+    "understated_status",
     # `approver` (2026-09-06) — the field the constructors and status setters
     # take so the owner's word rides the same call as the status it signs; the
     # skills that instruct settling a status now name it, as they must.

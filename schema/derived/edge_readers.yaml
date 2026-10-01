@@ -68,6 +68,7 @@ readers:
   detect.rs::detect_suspected_duplicate_edges: { kind: unjudged, edges: [DUPLICATES] }
   detect.rs::detect_unallocated_capabilities: { kind: unjudged, edges: [ALLOCATED_TO, PART_OF_FLOW] }
   detect.rs::detect_unallocated_components: { kind: unjudged, edges: [ALLOCATED_TO, CONTAINS] }
+  detect.rs::detect_understated_statuses: { kind: not_derived, edges: [ALLOCATED_TO, DEPLOYED_TO], why: "A detector: it compares a status still at `planned` with the node's own one-hop evidence — direct_build_evidence, the live Capabilities at realized/verified ALLOCATED_TO a Component, a DEPLOYED_TO not marked planned — and reports where the record claims less. It reports a disagreement between two records and composes nothing past those one-hop reads (understated_status)." }
   detect.rs::detect_unit_sweep: { kind: unjudged, edges: [CONSTRAINS] }
   detect.rs::detect_unmotivated_capabilities: { kind: unjudged, edges: [SATISFIES] }
   detect.rs::detect_unrealized_capabilities: { kind: unjudged, edges: [REALIZES] }
@@ -78,6 +79,7 @@ readers:
   detect.rs::detect_unverified_capabilities: { kind: unjudged, edges: [ALLOCATED_TO, REALIZES, VERIFIES] }
   detect.rs::detect_unverified_enforced_rules: { kind: unjudged, edges: [VERIFIES] }
   detect.rs::detect_unverified_published_contracts: { kind: unjudged, edges: [VERIFIES] }
+  detect.rs::direct_build_evidence: { kind: not_derived, edges: [REALIZES, VERIFIES], why: "A read of a node's OWN one-hop evidence, returned as it lists it: the Artifacts that REALIZE it whose own status is realized/verified, and the passing Verifications that VERIFY it. One hop and no further — it composes nothing, and deliberately does not reach a component the node is allocated to." }
   detect.rs::owner_claims_built: { kind: unjudged, edges: [ALLOCATED_TO] }
   detect.rs::open_questions_for: { kind: not_derived, edges: [ANSWERS, ASKS_ABOUT], why: "A read of each open Question's OWN one-hop links, returned as it lists them: the nodes it ASKS_ABOUT (its evidence, handed to an addressee as links) and the records that ANSWER it. It composes nothing past the Question's direct edges (req:a-question-is-addressed-to-a-person-and-records-who-answered)." }
   detect.rs::record_asked_question: { kind: unjudged, edges: [ASKS_ABOUT] }
