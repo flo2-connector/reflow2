@@ -62,6 +62,23 @@ tower-service = "0.3"
 rustls = { version = "0.23", default-features = false, features = ["ring", "std", "tls12", "logging"] }
 tokio-rustls = { version = "0.26", default-features = false, features = ["ring", "tls12", "logging"] }
 rustls-native-certs = "0.8"
+# OAuth 2.0 RESOURCE SERVER (src/bearer.rs), added 2026-10-01 for #616 fix 4
+# under req:every-oauth-role-reflow2-plays-meets-oauth-2-1-at-a-minimum: an
+# exposed --http engine verifies Bearer JWTs itself (dec:idea-authentication-is-
+# somebody-elses-layer-and-the-line-is-the-contributor-id, option (e)).
+# · `jsonwebtoken` parses the JWS, the JWKs and the claims, and validates
+#   iss/aud/exp/nbf — the parts where token bugs live, kept in the most used,
+#   maintained Rust JWT crate rather than hand-rolled here. DEFAULT FEATURES
+#   OFF and NEITHER of its crypto backends: `aws_lc_rs` is a second C crypto
+#   build, and `rust_crypto` brings the `rsa` crate (RUSTSEC-2023-0071, no
+#   fixed release). Instead `ring` — the crypto this binary's TLS already
+#   runs on — is plugged in as its provider, verification only (bearer.rs).
+#   Net new crates in the tree: jsonwebtoken and signature.
+# · `ring` and `base64` were already in the tree (rustls; jsonwebtoken) and are
+#   named now because bearer.rs calls them (dec:design-dependencies-declared).
+jsonwebtoken = { version = "11", default-features = false }
+ring = "0.17"
+base64 = "0.22"
 # `reflow2-mcp setup` (req:one-setup-command-chooses-local-or-remote-once):
 # the remote server's key is kept in the OS KEYCHAIN — macOS Keychain, the
 # Windows Credential Manager, the desktop Secret Service on Linux (the

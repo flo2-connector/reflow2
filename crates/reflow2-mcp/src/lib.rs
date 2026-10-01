@@ -5,6 +5,7 @@
 //! thin stdio entry point over it; integration tests drive the service directly.
 
 pub mod auto_export;
+pub mod bearer;
 pub mod bulk_edges;
 pub mod caller;
 pub mod client_setup;

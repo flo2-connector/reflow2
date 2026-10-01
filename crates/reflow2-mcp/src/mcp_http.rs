@@ -356,6 +356,107 @@ where
     Ok((extract_messages(&text), session_id))
 }
 
+/// How long a key-set or discovery fetch may take before it is called failed.
+/// A bearer request waiting on a refresh waits at most this long.
+pub const FETCH_TIMEOUT: Duration = Duration::from_secs(10);
+
+/// The largest discovery document or key set read. Real ones are a few
+/// kilobytes; the bound keeps a misbehaving or hostile endpoint from making
+/// this server buffer without limit.
+pub const FETCH_MAX_BYTES: usize = 1024 * 1024;
+
+/// GET a JSON document — the bearer verifier's door to its issuer
+/// (`crate::bearer`): OpenID discovery and the issuer's key set. A sibling of
+/// [`post`], over the same TLS configuration (the OPERATING SYSTEM's trust
+/// store), bounded the same way: one deadline over connect, request and body,
+/// and a size cap on the body.
+///
+/// ⚠️ IT FOLLOWS NO REDIRECT, and says so: the operator named the address,
+/// and a 3xx would let whoever answers it choose another. Every URL reaching
+/// this function comes from the OPERATOR's configuration (or from a discovery
+/// document fetched from the issuer the operator named), never from a token
+/// or a caller — a server that fetched an address a request supplied could be
+/// made to reach any host its network can see.
+pub async fn get_json(url: &str) -> anyhow::Result<serde_json::Value> {
+    tokio::time::timeout(FETCH_TIMEOUT, get_json_inner(url))
+        .await
+        .map_err(|_| anyhow::anyhow!("{url} did not answer within {}s", FETCH_TIMEOUT.as_secs()))?
+}
+
+async fn get_json_inner(url: &str) -> anyhow::Result<serde_json::Value> {
+    let ep = parse_endpoint(url)?;
+    if !ep.tls && !is_loopback_host(&ep.host) {
+        bail!(
+            "{url} is plain http:// on a host that is not this machine; a key set or discovery \
+             document is fetched only over https:// (or from loopback)"
+        );
+    }
+    let stream = tokio::net::TcpStream::connect(&ep.connect)
+        .await
+        .with_context(|| format!("could not reach {}", ep.authority))?;
+    if ep.tls {
+        let name = rustls::pki_types::ServerName::try_from(ep.host.clone())
+            .with_context(|| format!("{} is not a valid server name for TLS", ep.host))?;
+        let tls = tokio_rustls::TlsConnector::from(tls_config()?)
+            .connect(name, stream)
+            .await
+            .with_context(|| format!("the TLS handshake with {} failed", ep.authority))?;
+        get_over(tls, &ep, url).await
+    } else {
+        get_over(stream, &ep, url).await
+    }
+}
+
+async fn get_over<S>(stream: S, ep: &Endpoint, url: &str) -> anyhow::Result<serde_json::Value>
+where
+    S: tokio::io::AsyncRead + tokio::io::AsyncWrite + Unpin + Send + 'static,
+{
+    let io = hyper_util::rt::TokioIo::new(stream);
+    let (mut sender, conn) = hyper::client::conn::http1::handshake(io)
+        .await
+        .with_context(|| format!("HTTP handshake with {} failed", ep.authority))?;
+    tokio::spawn(async move {
+        if let Err(e) = conn.await {
+            tracing::debug!("connection for a key-set fetch ended: {e}");
+        }
+    });
+    let req = Request::builder()
+        .method("GET")
+        .uri(&ep.path)
+        .header("host", &ep.authority)
+        .header("accept", "application/json")
+        .body(Full::new(Bytes::new()))
+        .context("could not build the request")?;
+    let res = sender
+        .send_request(req)
+        .await
+        .with_context(|| format!("{url} did not answer"))?;
+    let status = res.status();
+    if status.is_redirection() {
+        let to = res
+            .headers()
+            .get("location")
+            .and_then(|v| v.to_str().ok())
+            .unwrap_or("?")
+            .chars()
+            .take(200)
+            .collect::<String>();
+        bail!(
+            "{url} answered a redirect ({status}) to {to}; reflow2 follows none. Name the final \
+             address instead."
+        );
+    }
+    if !status.is_success() {
+        bail!("{url} answered {status}");
+    }
+    let body = http_body_util::Limited::new(res.into_body(), FETCH_MAX_BYTES)
+        .collect()
+        .await
+        .map_err(|e| anyhow::anyhow!("could not read {url}: {e}"))?
+        .to_bytes();
+    serde_json::from_slice(&body).with_context(|| format!("{url} did not answer with JSON"))
+}
+
 /// Pull JSON-RPC messages out of a reply that may be plain JSON or SSE frames.
 ///
 /// Kept as a pure function so it can be tested without a server — the SSE shape
