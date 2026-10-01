@@ -2339,6 +2339,10 @@ fn no_design(
     }
 }
 
+// Eight: the bearer verifier joined the seven. Each is a distinct property of
+// the one place every HTTP surface is served from, which is the point of this
+// function; bundling them would only move the list.
+#[allow(clippy::too_many_arguments)]
 async fn serve_http<Svc>(
     // ⭐ A MAKER OF THE TOWER SERVICE, not a factory of handlers, since
     // 2026-09-13. The single-graph path still passes a handler factory — it
