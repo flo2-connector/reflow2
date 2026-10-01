@@ -31,6 +31,47 @@ This file is the third view: *what changed, and when*.
 
 ## [Unreleased]
 
+## [0.76.0] — 2026-10-01
+
+**Minor. GitHub issue #616 is complete, and the schema stamp does not move** (28 node types,
+66 edge types; `distinct_from` is an additive property). A caller who changes nothing sees
+nothing break, so no upgrade note is owed. An operator who exposes a server should read the first
+two items:
+
+- 🛑 **#616 is complete: reflow2 is an OAuth 2.0 resource server natively** (#643, fix 4's
+  resource-server half). v0.75.0 shipped fixes 1 and 2 and fix 4's enforcement half (#636); this
+  release adds fix 3 (#620, below) and the rest of fix 4. `--http-oidc-issuer <URL>`, with
+  `--http-public-url` and `--http-contributor-id`, makes an exposed `--http` server verify
+  `Authorization: Bearer` tokens itself: the signature against the issuer's keys, `iss`, `aud`,
+  `exp` and `nbf`. It also serves the RFC 9728 metadata, and the caller is the Contributor the
+  operator's mapping derives from the token.
+  - **New flags:** `--http-oidc-issuer`, `--http-public-url`, `--http-contributor-id`,
+    `--http-contributor-map`, `--http-oidc-audience`, `--http-oidc-jwks-uri` /
+    `--http-oidc-jwks-file`, `--http-oidc-required-scope` and `--http-oidc-required-claim`.
+    Each single-valued flag also reads an environment variable: `REFLOW2_OIDC_ISSUER`,
+    `REFLOW2_PUBLIC_URL`, `REFLOW2_OIDC_AUDIENCE`, `REFLOW2_OIDC_JWKS_URI`,
+    `REFLOW2_OIDC_JWKS_FILE`, `REFLOW2_CONTRIBUTOR_ID` and `REFLOW2_CONTRIBUTOR_MAP`.
+  - **Behaviour for exposed engines:** with the issuer declared, every request except the metadata
+    needs a valid token, loopback-Host requests included. With neither an issuer nor
+    `--http-trusted-gateway`, an exposed `--http` engine still serves reads and proposals only, as
+    in v0.75.0, and its refusal now names `--http-oidc-issuer` as a way to say who is calling.
+    stdio, `--shared`, loopback `--http` and a trusted gateway (flo2.io's
+    `REFLOW2_TRUSTED_GATEWAY`) are unchanged. reflow2 does not terminate TLS, and a non-loopback
+    `http://` public URL is refused at startup.
+- **A server whose design another process holds serves it in place once that process lets go, and
+  `/readyz` says whether the design is served** (#620, #616 fix 3). Every HTTP server answers
+  `GET /readyz` and `GET /healthz`, in front of the Host gate and the bearer gate. **The image's
+  `HEALTHCHECK` now probes `/readyz` instead of a TCP connect**, so a container whose design is
+  not served reads unhealthy rather than healthy.
+- **The served lens no longer tells an agent to write a reader's background into the design**
+  (#642). The lens comes from the host, else from the agent's own memory of the person, else from
+  the person's own words, and the answer is never written into the design.
+- **A capture can say it `replaces` a node, and `distinct_from` is kept** (#641) on the five
+  guarded capture tools.
+- **`understated_status`, a new detector, reports a status that claims LESS than the design
+  shows** (#640). Severity 0.40, so it never stops a build. A design that never moves
+  `Component.status` off `planned` sees one finding naming those components.
+
 **Minor — the five guarded capture tools take `replaces`, and `distinct_from` is kept.**
 
 - **A near-match refusal names THREE routes, not two**: sharpen the existing node, `distinct_from`,
