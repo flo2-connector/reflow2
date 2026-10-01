@@ -27,9 +27,12 @@
 //! Deterministic and LLM-free: results are sorted by name, so repeated calls
 //! are byte-identical (the schema's backing `HashMap`s have no stable order).
 
+use std::collections::HashMap;
+
 use crate::foundation::core::Value;
 use crate::foundation::core::{
-    Discrimination, DynoError, EdgeEndpoint, EdgeTypeDef, NodeTypeDef, PropertyDef,
+    Discrimination, DynoError, EdgeEndpoint, EdgeReading, EdgeTypeDef, NodeTypeDef, PropertyDef,
+    Reading,
 };
 
 use crate::nodes::node;
@@ -110,6 +113,22 @@ pub struct EdgeTypeSpec {
     /// lets a caller judge *meaning* once several candidates all validate.
     #[serde(skip_serializing_if = "Option::is_none")]
     pub hint: Option<String>,
+    /// What the edge MEANS, in one short line (`part-of⁻¹`, `causes(-)`,
+    /// `about ∧ norm`) — served on every read, including the listings that
+    /// carry every edge (`req:every-edge-type-declares-what-it-means`). A type
+    /// that is several relations says which properties split it
+    /// (`causes(+) | by basis, validation_status`); the whole reading says how.
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub reads_as: Option<String>,
+    /// The whole reading — primitive or composition, sign, possibility, frame,
+    /// direction, the modifier kind of every property, and who says so. The
+    /// hint says what an edge means in prose; this says it in a form a caller
+    /// can COMPARE, which is what tells two edges that both validate apart.
+    /// Served where a caller is choosing between edges (a `from`/`to` query),
+    /// not on the listings that carry every edge, which were already past
+    /// their budget without it.
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub reading: Option<EdgeReading>,
     #[serde(skip_serializing_if = "Vec::is_empty")]
     pub properties: Vec<PropertySpec>,
 }
@@ -180,6 +199,21 @@ impl EdgeTypeMatch {
 pub struct Vocabulary {
     pub node_types: Vec<NodeTypeSpec>,
     pub edge_types: Vec<EdgeTypeSpec>,
+    /// How many edge readings say who confirmed them: `classified` (a model's
+    /// reading, not yet reviewed) against `reviewed` (the owner's word). The
+    /// listing carries each edge's reading as one line, so this is where WHO
+    /// SAYS SO is visible at a glance.
+    pub edge_readings_by_basis: std::collections::BTreeMap<String, usize>,
+}
+
+/// Which edge types mean a primitive — see [`DesignGraph::edge_types_read_as`].
+#[derive(Debug, Clone, Default, PartialEq, Eq, Serialize)]
+pub struct ReadAsSelection {
+    /// Every edge of these types means it, whatever its property values.
+    pub always: Vec<String>,
+    /// Only some edges of these types mean it — which ones turns on a property
+    /// value on each edge. Decide each with [`DesignGraph::edge_reads_as`].
+    pub per_edge: Vec<String>,
 }
 
 /// One node type in context: its properties and the edges it can carry.
@@ -253,7 +287,16 @@ fn classify(endpoint: &EdgeEndpoint, node_type: &str) -> Option<EndpointMatch> {
     })
 }
 
-fn edge_spec(name: &str, def: &EdgeTypeDef) -> EdgeTypeSpec {
+/// How much of an edge's declared reading a read carries: the one-line form
+/// on listings that carry every edge, the whole object where a caller is
+/// choosing between edges for one pair.
+#[derive(Clone, Copy, PartialEq, Eq)]
+enum ReadingDetail {
+    OneLine,
+    Full,
+}
+
+fn edge_spec(name: &str, def: &EdgeTypeDef, detail: ReadingDetail) -> EdgeTypeSpec {
     let mut properties: Vec<PropertySpec> = def
         .properties
         .iter()
@@ -265,6 +308,11 @@ fn edge_spec(name: &str, def: &EdgeTypeDef) -> EdgeTypeSpec {
         from: endpoint_types(&def.from),
         to: endpoint_types(&def.to),
         hint: def.extraction_hint.as_ref().map(|h| h.trim().to_string()),
+        reads_as: def.reading.as_ref().map(EdgeReading::summary),
+        reading: match detail {
+            ReadingDetail::Full => def.reading.clone(),
+            ReadingDetail::OneLine => None,
+        },
         properties,
     }
 }
@@ -301,14 +349,119 @@ impl DesignGraph {
         let mut edge_types: Vec<EdgeTypeSpec> = schema
             .edge_types
             .iter()
-            .map(|(n, d)| edge_spec(n, d))
+            .map(|(n, d)| edge_spec(n, d, ReadingDetail::OneLine))
             .collect();
         edge_types.sort_by(|a, b| a.edge_type.cmp(&b.edge_type));
+
+        let mut edge_readings_by_basis = std::collections::BTreeMap::new();
+        for def in schema.edge_types.values() {
+            if let Some(r) = &def.reading {
+                *edge_readings_by_basis.entry(r.basis.clone()).or_insert(0) += 1;
+            }
+        }
 
         Vocabulary {
             node_types,
             edge_types,
+            edge_readings_by_basis,
         }
+    }
+
+    /// The edge types whose declared reading USES `primitive` — as their one
+    /// primitive, or as a component of their composition — optionally narrowed
+    /// to one sign, split by whether EVERY edge of the type means it or only
+    /// some. Sorted by name, so a rule written over it is deterministic.
+    ///
+    /// This is how a projection or rule is written by MEANING rather than by a
+    /// private list of names (`cap:edges-are-selected-by-their-declared-reading`).
+    /// An edge type with no reading is never returned: absence of a declaration
+    /// is not a match, and the well-formedness test is what keeps every edge
+    /// type declared. The answer is only as good as the readings, which start
+    /// as `basis: classified` until the owner reviews them.
+    ///
+    /// ⚠️ `per_edge` IS NOT A WEAKER `always`. A `CAUSES` edge left at its
+    /// default `basis` is a correlation, not a cause, so a rule that took every
+    /// `CAUSES` edge as causal would be wrong for most of them. A type listed
+    /// in `per_edge` must be decided edge by edge with
+    /// [`DesignGraph::edge_reads_as`].
+    pub fn edge_types_read_as(&self, primitive: &str, polarity: Option<&str>) -> ReadAsSelection {
+        let matches = |r: &Reading| {
+            r.uses(primitive) && polarity.is_none_or(|p| r.polarity.as_deref() == Some(p))
+        };
+        let mut selection = ReadAsSelection::default();
+        for (name, def) in &self.schema().edge_types {
+            let Some(reading) = &def.reading else {
+                continue;
+            };
+            // Every reading an edge of this type could carry: what the type is
+            // named for (an edge whose values select no split keeps it) and
+            // each split value's. Counting the base even where every value is
+            // mapped only ever moves a type from `always` to `per_edge`, which
+            // costs a per-edge check and never a wrong answer.
+            let possible = std::iter::once(&reading.reading)
+                .chain(reading.splits.iter().flat_map(|s| s.values.values()));
+            let (hit, miss): (Vec<&Reading>, Vec<&Reading>) = possible.partition(|r| matches(r));
+            match (hit.is_empty(), miss.is_empty()) {
+                (true, _) => {}
+                (false, true) => selection.always.push(name.clone()),
+                (false, false) => selection.per_edge.push(name.clone()),
+            }
+        }
+        selection.always.sort();
+        selection.per_edge.sort();
+        selection
+    }
+
+    /// What ONE edge means: the reading(s) its type declares, resolved against
+    /// that edge's own property values. An unset property is read at its schema
+    /// default — the value the store would have written — and a `list:string`
+    /// property gives one reading per value, so an `AUTHORED_BY` edge carrying
+    /// `roles: [author, approver]` is two relations.
+    ///
+    /// Empty when the type declares no reading; an error for an edge type the
+    /// schema does not define, which must not read as "means nothing".
+    pub fn edge_reads_as(
+        &self,
+        edge_type: &str,
+        properties: &HashMap<String, Value>,
+    ) -> Result<Vec<Reading>, DynoError> {
+        let def = self
+            .schema()
+            .edge_types
+            .get(edge_type)
+            .ok_or_else(|| DynoError::UnknownEdgeType(edge_type.to_string()))?;
+        let Some(reading) = &def.reading else {
+            return Ok(Vec::new());
+        };
+        Ok(reading.resolve(|property| {
+            let value = properties
+                .get(property)
+                .filter(|v| !matches!(v, Value::Null))
+                .or_else(|| def.properties.get(property)?.default.as_ref());
+            match value {
+                Some(Value::String(s)) => vec![s.clone()],
+                Some(Value::List(items)) => items
+                    .iter()
+                    .filter_map(|v| v.as_str().map(str::to_string))
+                    .collect(),
+                _ => Vec::new(),
+            }
+        }))
+    }
+
+    /// Does ONE edge mean `primitive` (narrowed to one sign when given)? True
+    /// when any of its resolved readings does — an edge that is two relations
+    /// means both.
+    pub fn edge_is_read_as(
+        &self,
+        edge_type: &str,
+        properties: &HashMap<String, Value>,
+        primitive: &str,
+        polarity: Option<&str>,
+    ) -> Result<bool, DynoError> {
+        Ok(self.edge_reads_as(edge_type, properties)?.iter().any(|r| {
+            r.uses(primitive) && polarity.is_none_or(|p| r.polarity.as_deref() == Some(p))
+        }))
     }
 
     /// Fail loud on a node type the schema does not define, listing near
@@ -334,7 +487,7 @@ impl DesignGraph {
                 // how it would match *itself* — i.e. whether it is a wildcard.
                 let to_match = wildcard_or_exact(&edge_def.to);
                 outgoing.push(EdgeTypeMatch {
-                    spec: edge_spec(name, edge_def),
+                    spec: edge_spec(name, edge_def, ReadingDetail::OneLine),
                     from_match,
                     to_match,
                     // A one-sided listing has no pair to declare for.
@@ -344,7 +497,7 @@ impl DesignGraph {
             if let Some(to_match) = classify(&edge_def.to, node_type) {
                 let from_match = wildcard_or_exact(&edge_def.from);
                 incoming.push(EdgeTypeMatch {
-                    spec: edge_spec(name, edge_def),
+                    spec: edge_spec(name, edge_def, ReadingDetail::OneLine),
                     from_match,
                     to_match,
                     declared_for_this_pair: false,
@@ -383,62 +536,7 @@ impl DesignGraph {
         from_type: &str,
         to_type: &str,
     ) -> Result<EdgeQuery, DynoError> {
-        self.require_node_type(from_type)?;
-        self.require_node_type(to_type)?;
-
-        let mut matches: Vec<EdgeTypeMatch> = self
-            .schema()
-            .edge_types
-            .iter()
-            .filter_map(|(name, def)| {
-                let from_match = classify(&def.from, from_type)?;
-                let to_match = classify(&def.to, to_type)?;
-                // Only meaningful where an endpoint is open: a fully enumerated
-                // edge is already ranked by the schema and needs no declaration.
-                let declared_for_this_pair =
-                    from_match != EndpointMatch::Exact || to_match != EndpointMatch::Exact;
-                let declared_for_this_pair = declared_for_this_pair
-                    && def
-                        .deliberately_open
-                        .as_ref()
-                        .is_some_and(|d| d.covers(from_type, to_type));
-                Some(EdgeTypeMatch {
-                    spec: edge_spec(name, def),
-                    from_match,
-                    to_match,
-                    declared_for_this_pair,
-                })
-            })
-            .collect();
-        matches.sort_by(EdgeTypeMatch::order);
-
-        let exact_matches = matches.iter().filter(|m| m.is_exact()).count();
-        let half_exact_matches = matches
-            .iter()
-            .filter(|m| {
-                !m.is_exact()
-                    && (m.from_match == EndpointMatch::Exact || m.to_match == EndpointMatch::Exact)
-            })
-            .count();
-        let modelled_open_matches = matches.iter().filter(|m| m.declared_for_this_pair).count();
-        let note = edge_query_note(
-            from_type,
-            to_type,
-            matches.len(),
-            exact_matches,
-            half_exact_matches,
-            modelled_open_matches,
-        );
-
-        Ok(EdgeQuery {
-            from_type: from_type.to_string(),
-            to_type: to_type.to_string(),
-            matches,
-            exact_matches,
-            half_exact_matches,
-            modelled_open_matches,
-            note,
-        })
+        edge_query_in(self.schema(), from_type, to_type)
     }
 }
 
@@ -516,6 +614,87 @@ fn edge_query_note(
     }
 }
 
+/// [`DesignGraph::edge_types_between`] over any schema — the one computation,
+/// so a reader holding no graph (a refusal rendered from an error value) and
+/// `describe_schema` cannot come to disagree about what models a pair.
+pub(crate) fn edge_query_in(
+    schema: &crate::foundation::core::Schema,
+    from_type: &str,
+    to_type: &str,
+) -> Result<EdgeQuery, DynoError> {
+    for t in [from_type, to_type] {
+        if !schema.node_types.contains_key(t) {
+            return Err(DynoError::UnknownNodeType(t.to_string()));
+        }
+    }
+
+    let mut matches: Vec<EdgeTypeMatch> = schema
+        .edge_types
+        .iter()
+        .filter_map(|(name, def)| {
+            let from_match = classify(&def.from, from_type)?;
+            let to_match = classify(&def.to, to_type)?;
+            // Only meaningful where an endpoint is open: a fully enumerated
+            // edge is already ranked by the schema and needs no declaration.
+            let declared_for_this_pair =
+                from_match != EndpointMatch::Exact || to_match != EndpointMatch::Exact;
+            let declared_for_this_pair = declared_for_this_pair
+                && def
+                    .deliberately_open
+                    .as_ref()
+                    .is_some_and(|d| d.covers(from_type, to_type));
+            Some(EdgeTypeMatch {
+                spec: edge_spec(name, def, ReadingDetail::Full),
+                from_match,
+                to_match,
+                declared_for_this_pair,
+            })
+        })
+        .collect();
+    matches.sort_by(EdgeTypeMatch::order);
+
+    let exact_matches = matches.iter().filter(|m| m.is_exact()).count();
+    let half_exact_matches = matches
+        .iter()
+        .filter(|m| {
+            !m.is_exact()
+                && (m.from_match == EndpointMatch::Exact || m.to_match == EndpointMatch::Exact)
+        })
+        .count();
+    let modelled_open_matches = matches.iter().filter(|m| m.declared_for_this_pair).count();
+    let note = edge_query_note(
+        from_type,
+        to_type,
+        matches.len(),
+        exact_matches,
+        half_exact_matches,
+        modelled_open_matches,
+    );
+
+    Ok(EdgeQuery {
+        from_type: from_type.to_string(),
+        to_type: to_type.to_string(),
+        matches,
+        exact_matches,
+        half_exact_matches,
+        modelled_open_matches,
+        note,
+    })
+}
+
+/// What models a `from_type` → `to_type` pair, read from the process-wide
+/// schema rather than from a graph. The schema is compiled in, so every graph
+/// in the process answers this identically; a refusal built from a
+/// [`DynoError::InvalidEdge`] has no graph in hand and still owes the caller
+/// the edges that DO accept the pair
+/// (`fact:root-cause-a-check-on-a-ruling-is-modelled-as-governed-by-and-the-verifies-refusal-never-says-so-2026-09-28`).
+pub fn edge_types_between_in_schema(
+    from_type: &str,
+    to_type: &str,
+) -> Result<EdgeQuery, DynoError> {
+    edge_query_in(crate::schema::parsed_schema()?, from_type, to_type)
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -528,13 +707,15 @@ mod tests {
     fn vocabulary_covers_the_whole_schema() {
         let v = graph().describe_vocabulary();
         assert_eq!(v.node_types.len(), 28, "all node types are listed");
+        // 66 since ACTS_FOR (2026-09-29, an agent acts for the person whose
+        // word it records — the deferred "who" rung);
         // 65 since ANSWERS (2026-09-02, a record names the Question it
         // answered — vocabulary the schema had described before it existed);
         // 63 since IMPLEMENTS + COMPLEMENTS (2026-08-23, record-to-record
         // relations); 61 since OWNED_BY (2026-08-09, the third "who" axis);
         // 60 since GATED_ON + HAS_READINESS (2026-08-02, BL-68); 58 before
         // that, since CALIBRATED_AGAINST (2026-08-01, req:a-fit-is-not-a-test).
-        assert_eq!(v.edge_types.len(), 65, "all edge types are listed");
+        assert_eq!(v.edge_types.len(), 66, "all edge types are listed");
     }
 
     #[test]

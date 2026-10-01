@@ -53,8 +53,10 @@ one, and that is the reason this tool exists.
 **And ask what DONE means.** Closure is declared, never defaulted: which legs count —
 traceability, budgets, seams, decisions, provenance — and what share of each must close. Record it
 with `set_closure_criterion`; 100% is a real answer and so is "traceability and budgets only". From
-then on `closure_report` says whether the design closes and names the first hole, and a design
-that never said reads "no closure criterion stated" rather than closing on silence. It is a report,
+then on `closure_report` says whether the design closes and names the first hole — once for the
+DESIGN phase (traced, allocated, checks planned, estimates stated) and once for the BUILD phase
+(built, checked, measured), each reading naming its phase — and a design that never said reads "no
+closure criterion stated" rather than closing on silence. It is a report,
 never a gate: a release can be cut while the design does not close, and the release report says so.
 
 ⚠️ **Never ask which node type to use.** The mapping from their words to the vocabulary is yours —

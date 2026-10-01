@@ -628,6 +628,16 @@ pub struct ReflowService {
     /// ([`WRITES_FOR_META`]), which is what a gateway multiplexing many people
     /// over one session needs. ATTRIBUTION ONLY: see `reflow2_core::attribution`.
     pub(crate) writes_for: Arc<std::sync::Mutex<Option<String>>>,
+    /// The AGENT this session writes THROUGH, once `writes_for` named one
+    /// (`req:a-write-and-an-approval-record-the-agent-and-the-person-it-acts-for`,
+    /// `reflow2_core::acting`). Fresh per session like `writes_for`. A request
+    /// may name another in `_meta` ([`ACTING_AGENT_META`]). ATTRIBUTION ONLY.
+    pub(crate) acting_agent: Arc<std::sync::Mutex<Option<String>>>,
+    /// How THIS ENGINE establishes who is calling (`crate::caller`, #616 fix
+    /// 4). A property of the SERVER, like `read_only`: inherited by every
+    /// session, never reset. `Local` is every engine nobody declared
+    /// otherwise, which is held to nothing new.
+    caller_rule: Arc<crate::caller::CallerRule>,
 }
 
 /// The request `_meta` key naming who ONE request writes for. It overrides the
@@ -635,7 +645,14 @@ pub struct ReflowService {
 /// people over one session (flo2) names the person on each call; a sessionless
 /// transport (MCP 2026-07-28 and later), where nothing outlives a request,
 /// can only say it this way.
-pub(crate) const WRITES_FOR_META: &str = "reflow2/writes_for";
+pub const WRITES_FOR_META: &str = "reflow2/writes_for";
+
+/// The request `_meta` key naming the AGENT one request writes THROUGH — the
+/// same route [`WRITES_FOR_META`] gives the person, so a gateway that names
+/// the signed-in person on each call names the calling agent the same way
+/// (`reflow2_core::acting`). It overrides the session's declaration for that
+/// request alone. The value is a Contributor id of kind `automated_agent`.
+pub const ACTING_AGENT_META: &str = "reflow2/acting_agent";
 
 tokio::task_local! {
     /// Who the tool call now being served writes for — the request's `_meta`
@@ -643,6 +660,18 @@ tokio::task_local! {
     /// around the handler and read by `write_lock`, which is how every write
     /// the handler makes is credited without 115 write sites knowing.
     static WRITES_FOR: Option<String>;
+    /// The agent the tool call now being served writes through — the
+    /// request's `_meta`, else the session's declaration, else the Contributor
+    /// matching the client's handshake name, else nobody. Read by
+    /// `write_lock`, so every authorship and approval the handler records
+    /// carries it without a write site knowing (`reflow2_core::acting`).
+    static ACTING: Option<reflow2_core::acting::Acting>;
+    /// Who may sign on the tool call now being served, when this engine is
+    /// served for others (`crate::caller`, `reflow2_core::intent::Signer`).
+    /// Read by `write_lock`, which holds the graph to it for the length of
+    /// the write — so every signature the handler writes is checked where
+    /// it is written, without a write site knowing.
+    static SIGNER: Option<reflow2_core::intent::Signer>;
 }
 
 /// The graph, held for writing — a write guard that, when it is released,
@@ -656,6 +685,11 @@ tokio::task_local! {
 pub(crate) struct GraphWrite<'a> {
     guard: tokio::sync::RwLockWriteGuard<'a, DesignGraph>,
     writes_for: Option<String>,
+    /// Whether this hold named an agent, so the drop ends it — one call's
+    /// agent must never leak into the next write.
+    acting: bool,
+    /// Whether this hold installed a signer, so the drop ends it.
+    signing: bool,
 }
 
 impl std::ops::Deref for GraphWrite<'_> {
@@ -673,21 +707,31 @@ impl std::ops::DerefMut for GraphWrite<'_> {
 
 impl Drop for GraphWrite<'_> {
     fn drop(&mut self) {
-        let Some(who) = self.writes_for.take() else {
-            return;
-        };
-        let touched = self.guard.take_touch_log();
-        if touched.is_empty() {
-            return;
+        if let Some(who) = self.writes_for.take() {
+            let touched = self.guard.take_touch_log();
+            // Credited while the agent is still in force, so the author edges
+            // this draws carry the agent too (`reflow2_core::acting`).
+            //
+            // Checked before the handler ran (`call_tool`), so this fails only
+            // if the call itself removed the contributor. The writes stand;
+            // only the credit is lost, and it is said where an operator will
+            // see it.
+            if !touched.is_empty()
+                && let Err(e) = self.guard.credit_writes(&touched, &who)
+            {
+                eprintln!(
+                    "reflow2: {} write(s) could not be credited to {who}: {e}",
+                    touched.len()
+                );
+            }
         }
-        // Checked before the handler ran (`call_tool`), so this fails only if
-        // the call itself removed the contributor. The writes stand; only the
-        // credit is lost, and it is said where an operator will see it.
-        if let Err(e) = self.guard.credit_writes(&touched, &who) {
-            eprintln!(
-                "reflow2: {} write(s) could not be credited to {who}: {e}",
-                touched.len()
-            );
+        if self.acting {
+            self.guard.end_acting();
+        }
+        // Ended LAST: the credit above draws author edges for the person the
+        // call writes for, and those are held to the caller too.
+        if self.signing {
+            self.guard.end_signing();
         }
     }
 }
@@ -810,6 +854,43 @@ impl RequiredFields {
         }
     }
 
+    /// Whether this call REVISES a node that already exists.
+    ///
+    /// ⭐ THE CLASS THIS SERVES. "Omitted fields keep their stored value" is
+    /// carried by `str`/`i64` above for the REQUIRED fields and by
+    /// `upsert_node` for everything else — and both are correct. What broke the
+    /// promise, four times by four mechanisms, was code in one handler that
+    /// computed from the CALL: a default written into the merge, a note, a
+    /// guard (fact:root-cause-the-revise-contract-is-implemented-per-handler-
+    /// and-guarded-by-instances-2026-09-28). Each of those must read "passed,
+    /// else stored, else default", and it can only do that with the stored node
+    /// in reach. It is: this struct already fetched it, and until 2026-09-29 it
+    /// dropped it unread at `finish`.
+    pub(crate) fn revising(&self) -> bool {
+        self.existing.is_some()
+    }
+
+    /// A handler DEFAULT, applied on CREATE only: what the caller passed; else,
+    /// on a revise, nothing — so the merge keeps the stored value; else the
+    /// default. `None` means "write nothing for this field".
+    pub(crate) fn default_on_create<'a>(
+        &self,
+        passed: Option<&'a str>,
+        default: &'a str,
+    ) -> Option<&'a str> {
+        passed.or((!self.revising()).then_some(default))
+    }
+
+    /// The stored value of a property, as text — for a note or a refusal that
+    /// must describe the node the caller is revising rather than the call.
+    pub(crate) fn stored_str(&self, field: &str) -> Option<String> {
+        self.existing
+            .as_ref()
+            .and_then(|n| n.properties.get(field))
+            .and_then(reflow2_core::Value::as_str)
+            .map(str::to_string)
+    }
+
     /// The numeric sibling, for the two fields that are not strings:
     /// `DesignEpoch.sequence` and `ReadinessAssessment.level`.
     pub(crate) fn i64(&mut self, field: &str, passed: Option<i64>) -> i64 {
@@ -890,8 +971,26 @@ pub(crate) fn dyno_err(e: DynoError) -> McpError {
             ),
             None,
         ),
+        // AN INVALID PAIR NAMES WHAT DOES ACCEPT IT, whichever tool raised it.
+        // Every typed edge helper reports a bad pair through this arm, and until
+        // 2026-09-29 it said only "cannot connect" while `create_edge` for the
+        // same pair named the modelled fit: `verifies(Verification → Decision)`
+        // was refused in bare words while GOVERNED_BY, drawn by `governed_by`,
+        // is the route a check on a ruling takes (dev_reflow2 two-agent
+        // exercise, I14a,
+        // `fact:root-cause-a-check-on-a-ruling-is-modelled-as-governed-by-and-the-verifies-refusal-never-says-so-2026-09-28`).
+        // The schema is compiled in, so no graph is needed to answer it.
+        DynoError::InvalidEdge {
+            ref from_type,
+            ref to_type,
+            ..
+        } => {
+            let detail = crate::writers::invalid_pair_detail(
+                reflow2_core::vocabulary::edge_types_between_in_schema(from_type, to_type),
+            );
+            McpError::invalid_params(format!("{e}{detail}"), None)
+        }
         DynoError::EdgeNotFound { .. }
-        | DynoError::InvalidEdge { .. }
         | DynoError::UnknownNodeType(_)
         | DynoError::UnknownEdgeType(_)
         | DynoError::Validation { .. }
@@ -940,43 +1039,9 @@ pub(crate) fn edge_error(
     to_type: &str,
     e: DynoError,
 ) -> McpError {
-    let detail = match g.edge_types_between(from_type, to_type) {
-        Ok(q) => {
-            let mut s = format!("\n\n{}", q.note);
-            if !q.matches.is_empty() {
-                s.push_str("\n\nEdge types that accept this pair:");
-                for m in q.matches.iter().take(MAX_SUGGESTIONS) {
-                    let basis = if m.is_exact() { "exact" } else { "via *" };
-                    s.push_str(&format!(
-                        "\n  {} ({}) — {} -> {}",
-                        m.spec.edge_type,
-                        basis,
-                        m.spec.from.join("|"),
-                        m.spec.to.join("|")
-                    ));
-                    if let Some(h) = &m.spec.hint {
-                        // The hint is what lets the caller pick on meaning
-                        // rather than on whatever validates first.
-                        s.push_str(&format!("\n      {}", h.lines().next().unwrap_or(h)));
-                    }
-                }
-                // No silent truncation (AGENTS.md rule 4).
-                if q.matches.len() > MAX_SUGGESTIONS {
-                    s.push_str(&format!(
-                        "\n  … and {} more — call `describe_schema`.",
-                        q.matches.len() - MAX_SUGGESTIONS
-                    ));
-                }
-            }
-            s.push_str("\n\nCall `describe_schema` for the full vocabulary.");
-            s
-        }
-        // The endpoint types are themselves unknown, which is a better
-        // diagnosis than a list of edges would be. Surface it, don't swallow.
-        Err(inner) => {
-            format!("\n\n{inner}\nCall `describe_schema` to list the valid node types.")
-        }
-    };
+    // ONE renderer for every invalid pair, so `create_edge` and a typed helper
+    // cannot come to disagree about what to offer (they did until 2026-09-29).
+    let detail = crate::writers::invalid_pair_detail(g.edge_types_between(from_type, to_type));
     McpError::invalid_params(format!("{e}{detail}"), None)
 }
 
@@ -1443,6 +1508,25 @@ impl ReflowService {
 /// strict form on purpose.
 /// fact:defect-typed-tool-parameter-names-are-inconsistent,
 /// dec:idea-one-way-to-name-which-node-across-the-tool-surface.
+/// [`resolve_node_type`] for a typed helper that used to hard-wire one type:
+/// the id's own type when it names exactly one node, and `default` when it
+/// names none — so a missing node still reaches the core and is refused with
+/// the parallel-batch explanation it always carried, rather than a new message.
+/// A typed helper is never narrower than its schema (the class behind the
+/// dev_reflow2 exercise's I9); the schema, not the helper, refuses a bad pair.
+pub(crate) fn resolve_node_type_or(
+    g: &reflow2_core::DesignGraph,
+    given: Option<&str>,
+    id: &str,
+    field: &str,
+    default: &str,
+) -> Result<String, McpError> {
+    if given.is_none() && g.node_types_holding(id).map_err(dyno_err)?.is_empty() {
+        return Ok(default.to_string());
+    }
+    resolve_node_type(g, given, id, field)
+}
+
 pub(crate) fn resolve_node_type(
     g: &reflow2_core::DesignGraph,
     given: Option<&str>,
@@ -1845,13 +1929,30 @@ pub struct RequirementReq {
     /// The requirement statement.
     #[serde(default)]
     pub statement: Option<String>,
-    /// Ids you read and judged DIFFERENT from this one, when reflow2 has
-    /// already told you something close exists. Naming them is the deliberate
-    /// decision: sharpen an existing node by calling with ITS id, or start a
-    /// new one and say what you rejected. Omit it on a first attempt — the
-    /// refusal, if any, lists exactly what to put here.
+    /// Ids you read and judged a DIFFERENT thing from this one, when reflow2
+    /// has already told you something close exists — one of the THREE answers
+    /// to that check: sharpen the existing node (call with ITS id), say this one
+    /// is different (here), or say it takes an older one's place (`replaces`).
+    /// THE JUDGEMENT IS KEPT: the ids are written onto the node as
+    /// `distinct_from`, so a later reader can tell a node its writer compared
+    /// from one nobody did. Omit it on a first attempt — the refusal, if any,
+    /// lists exactly what to put here.
     #[serde(default)]
     pub distinct_from: Option<Vec<String>>,
+    /// Ids of OLDER nodes of this same type that this one TAKES THE PLACE OF —
+    /// the third answer to the near-match check, for a new node that is neither
+    /// a sharper wording of an old one nor a different thing, but its
+    /// successor. For each: the old node's ending is recorded FIRST (a
+    /// `deprecation` ChangeEvent whose snapshot keeps its final state and
+    /// edges), the thread that says what it was FOR moves here (a Capability's
+    /// SATISFIES, a Component's incoming ALLOCATED_TO; a Requirement, Decision
+    /// or DesignRule moves none), and this node OBSOLETES it. Its stored status
+    /// does not move. The reply names what moved, what stayed, and what — if
+    /// anything — still withdraws it. Works on a revise too, so a successor
+    /// already recorded can say so later. An id of another type, one naming
+    /// nothing, or one also in `distinct_from` is REFUSED and nothing is written.
+    #[serde(default)]
+    pub replaces: Option<Vec<String>>,
     /// The status to LAND IN when the owner's word is already in hand:
     /// `proposed` (the default) / `accepted` / `deferred` / `dropped` / `met`.
     /// A status past `proposed` is REFUSED unless `approver` is named.
@@ -1959,10 +2060,30 @@ pub struct DesignRuleReq {
     /// The unit sweep reports any stated unit not among these.
     #[serde(default)]
     pub units: Option<Vec<String>>,
-    /// Ids you read and judged DIFFERENT from this one, when a near match was
-    /// reported. Omit on a first attempt.
+    /// Ids you read and judged a DIFFERENT thing from this one, when reflow2
+    /// has already told you something close exists — one of the THREE answers
+    /// to that check: sharpen the existing node (call with ITS id), say this one
+    /// is different (here), or say it takes an older one's place (`replaces`).
+    /// THE JUDGEMENT IS KEPT: the ids are written onto the node as
+    /// `distinct_from`, so a later reader can tell a node its writer compared
+    /// from one nobody did. Omit it on a first attempt — the refusal, if any,
+    /// lists exactly what to put here.
     #[serde(default)]
     pub distinct_from: Option<Vec<String>>,
+    /// Ids of OLDER nodes of this same type that this one TAKES THE PLACE OF —
+    /// the third answer to the near-match check, for a new node that is neither
+    /// a sharper wording of an old one nor a different thing, but its
+    /// successor. For each: the old node's ending is recorded FIRST (a
+    /// `deprecation` ChangeEvent whose snapshot keeps its final state and
+    /// edges), the thread that says what it was FOR moves here (a Capability's
+    /// SATISFIES, a Component's incoming ALLOCATED_TO; a Requirement, Decision
+    /// or DesignRule moves none), and this node OBSOLETES it. Its stored status
+    /// does not move. The reply names what moved, what stayed, and what — if
+    /// anything — still withdraws it. Works on a revise too, so a successor
+    /// already recorded can say so later. An id of another type, one naming
+    /// nothing, or one also in `distinct_from` is REFUSED and nothing is written.
+    #[serde(default)]
+    pub replaces: Option<Vec<String>>,
     /// The Contributor whose word this is — the OWNER'S SIGNATURE, carried in the
     /// same call as the status it signs. Draws `AUTHORED_BY role=approver`, the
     /// edge `rule:design-intent-moves-only-on-the-owners-word` is checked by.
@@ -2026,13 +2147,30 @@ pub struct CapabilityReq {
     #[serde(default)]
     #[schemars(schema_with = "crate::enum_schema::capability_status_opt")]
     pub status: Option<String>,
-    /// Ids you read and judged DIFFERENT from this one, when reflow2 has
-    /// already told you something close exists. Naming them is the deliberate
-    /// decision: sharpen an existing node by calling with ITS id, or start a
-    /// new one and say what you rejected. Omit it on a first attempt — the
-    /// refusal, if any, lists exactly what to put here.
+    /// Ids you read and judged a DIFFERENT thing from this one, when reflow2
+    /// has already told you something close exists — one of the THREE answers
+    /// to that check: sharpen the existing node (call with ITS id), say this one
+    /// is different (here), or say it takes an older one's place (`replaces`).
+    /// THE JUDGEMENT IS KEPT: the ids are written onto the node as
+    /// `distinct_from`, so a later reader can tell a node its writer compared
+    /// from one nobody did. Omit it on a first attempt — the refusal, if any,
+    /// lists exactly what to put here.
     #[serde(default)]
     pub distinct_from: Option<Vec<String>>,
+    /// Ids of OLDER nodes of this same type that this one TAKES THE PLACE OF —
+    /// the third answer to the near-match check, for a new node that is neither
+    /// a sharper wording of an old one nor a different thing, but its
+    /// successor. For each: the old node's ending is recorded FIRST (a
+    /// `deprecation` ChangeEvent whose snapshot keeps its final state and
+    /// edges), the thread that says what it was FOR moves here (a Capability's
+    /// SATISFIES, a Component's incoming ALLOCATED_TO; a Requirement, Decision
+    /// or DesignRule moves none), and this node OBSOLETES it. Its stored status
+    /// does not move. The reply names what moved, what stayed, and what — if
+    /// anything — still withdraws it. Works on a revise too, so a successor
+    /// already recorded can say so later. An id of another type, one naming
+    /// nothing, or one also in `distinct_from` is REFUSED and nothing is written.
+    #[serde(default)]
+    pub replaces: Option<Vec<String>>,
     /// Where this sits on the strategic / operational / tactical ladder.
     /// Declared 2026-09-07: carried by most nodes of this type and settable by
     /// nothing, one of the fourteen holes the reachability split separated
@@ -2040,11 +2178,6 @@ pub struct CapabilityReq {
     #[serde(default)]
     #[schemars(schema_with = "crate::enum_schema::capability_tier_opt")]
     pub tier: Option<String>,
-    /// True when this capability STARTS a flow. Distinct from `Flow.entry_point`,
-    /// which names a capability from the flow's side; this is the flag on the
-    /// capability itself, carried by 147 of 234 and written by nothing.
-    #[serde(default)]
-    pub is_entry_point: Option<bool>,
     /// THE REQUIREMENT THIS CAPABILITY SATISFIES — draws the SATISFIES edge in
     /// this call. The golden thread's first half, and the reason it is here:
     /// `add_verification` already takes `verifies` and `add_decision` already
@@ -2062,9 +2195,6 @@ pub struct CapabilityReq {
     /// call. Second half of the same thread, refused the same way.
     #[serde(default)]
     pub allocated_to: Option<String>,
-    /// True when this capability ENDS a flow. Sibling of the above.
-    #[serde(default)]
-    pub is_exit_point: Option<bool>,
 }
 
 #[derive(Debug, Deserialize, JsonSchema)]
@@ -2240,13 +2370,30 @@ pub struct ComponentReq {
     #[serde(default)]
     #[schemars(schema_with = "crate::enum_schema::component_kind_opt")]
     pub kind: Option<String>,
-    /// Ids you read and judged DIFFERENT from this one, when reflow2 has
-    /// already told you something close exists. Naming them is the deliberate
-    /// decision: sharpen an existing node by calling with ITS id, or start a
-    /// new one and say what you rejected. Omit it on a first attempt — the
-    /// refusal, if any, lists exactly what to put here.
+    /// Ids you read and judged a DIFFERENT thing from this one, when reflow2
+    /// has already told you something close exists — one of the THREE answers
+    /// to that check: sharpen the existing node (call with ITS id), say this one
+    /// is different (here), or say it takes an older one's place (`replaces`).
+    /// THE JUDGEMENT IS KEPT: the ids are written onto the node as
+    /// `distinct_from`, so a later reader can tell a node its writer compared
+    /// from one nobody did. Omit it on a first attempt — the refusal, if any,
+    /// lists exactly what to put here.
     #[serde(default)]
     pub distinct_from: Option<Vec<String>>,
+    /// Ids of OLDER nodes of this same type that this one TAKES THE PLACE OF —
+    /// the third answer to the near-match check, for a new node that is neither
+    /// a sharper wording of an old one nor a different thing, but its
+    /// successor. For each: the old node's ending is recorded FIRST (a
+    /// `deprecation` ChangeEvent whose snapshot keeps its final state and
+    /// edges), the thread that says what it was FOR moves here (a Capability's
+    /// SATISFIES, a Component's incoming ALLOCATED_TO; a Requirement, Decision
+    /// or DesignRule moves none), and this node OBSOLETES it. Its stored status
+    /// does not move. The reply names what moved, what stayed, and what — if
+    /// anything — still withdraws it. Works on a revise too, so a successor
+    /// already recorded can say so later. An id of another type, one naming
+    /// nothing, or one also in `distinct_from` is REFUSED and nothing is written.
+    #[serde(default)]
+    pub replaces: Option<Vec<String>>,
     /// Where this sits on the strategic / operational / tactical ladder.
     /// Declared 2026-09-07: carried by most nodes of this type and settable by
     /// nothing, one of the fourteen holes the reachability split separated
@@ -2316,13 +2463,28 @@ pub struct AllocateReq {
 #[derive(Debug, Deserialize, JsonSchema)]
 #[serde(deny_unknown_fields)]
 pub struct SatisfiesReq {
-    /// The `Capability` that satisfies it.
+    /// The node that satisfies it — a `Capability`, or a `Component` or `Artifact` (declared for
+    /// SATISFIES).
     #[serde(alias = "capability_id")]
     #[serde(alias = "node_id")]
     pub from_id: String,
-    /// The `Requirement` being satisfied.
+    /// The `Requirement` (or `Constraint`) being satisfied.
     #[serde(alias = "requirement_id")]
     pub to_id: String,
+    /// The `from_id` node's type.
+    /// Optional: resolved from the id when omitted (the id prefix names the
+    /// type); an id held by more than one type is REFUSED, never guessed — pass
+    /// it then. Any type the schema accepts at this end is accepted here: a
+    /// typed tool is never narrower than its schema.
+    #[serde(default)]
+    pub from_type: Option<String>,
+    /// The `to_id` node's type.
+    /// Optional: resolved from the id when omitted (the id prefix names the
+    /// type); an id held by more than one type is REFUSED, never guessed — pass
+    /// it then. Any type the schema accepts at this end is accepted here: a
+    /// typed tool is never narrower than its schema.
+    #[serde(default)]
+    pub to_type: Option<String>,
     /// HOW MUCH of the requirement this capability meets: `full` / `partial` / `planned`. The
     /// delivery line counts only a `full` (or unstated) satisfier: a capability that only partly
     /// meets a need does not deliver it, and before 2026-09-16 this field was declared on the
@@ -2355,13 +2517,21 @@ pub struct ProvidesReq {
 #[derive(Debug, Deserialize, JsonSchema)]
 #[serde(deny_unknown_fields)]
 pub struct ConsumesReq {
-    /// The consuming `Component`.
+    /// The consumer — a `Component`, or an `Actor` outside the design using a published
+    /// interface (the schema accepts any consumer).
     #[serde(alias = "component_id")]
     #[serde(alias = "node_id")]
     pub from_id: String,
     /// The `Interface` it consumes.
     #[serde(alias = "interface_id")]
     pub to_id: String,
+    /// The `from_id` node's type.
+    /// Optional: resolved from the id when omitted (the id prefix names the
+    /// type); an id held by more than one type is REFUSED, never guessed — pass
+    /// it then. Any type the schema accepts at this end is accepted here: a
+    /// typed tool is never narrower than its schema.
+    #[serde(default)]
+    pub from_type: Option<String>,
 }
 
 /// A parent Requirement DECOMPOSES into a child. `from_id` / `to_id` is the taught spelling; the role names
@@ -2389,13 +2559,27 @@ pub struct DecomposesReq {
 #[derive(Debug, Deserialize, JsonSchema)]
 #[serde(deny_unknown_fields)]
 pub struct DependsOnReq {
-    /// The `Component` that depends.
+    /// The `Component` (or `Capability`) that depends.
     #[serde(alias = "dependent_id")]
     #[serde(alias = "node_id")]
     pub from_id: String,
-    /// The `Component` depended on.
+    /// The `Component` (or `Capability`) depended on.
     #[serde(alias = "dependency_id")]
     pub to_id: String,
+    /// The `from_id` node's type.
+    /// Optional: resolved from the id when omitted (the id prefix names the
+    /// type); an id held by more than one type is REFUSED, never guessed — pass
+    /// it then. Any type the schema accepts at this end is accepted here: a
+    /// typed tool is never narrower than its schema.
+    #[serde(default)]
+    pub from_type: Option<String>,
+    /// The `to_id` node's type.
+    /// Optional: resolved from the id when omitted (the id prefix names the
+    /// type); an id held by more than one type is REFUSED, never guessed — pass
+    /// it then. Any type the schema accepts at this end is accepted here: a
+    /// typed tool is never narrower than its schema.
+    #[serde(default)]
+    pub to_type: Option<String>,
 }
 
 /// A parent Component CONTAINS a child. `from_id` / `to_id` is the taught spelling; the role names
@@ -2457,6 +2641,16 @@ pub struct CreateNodeReq {
     /// which is exactly when a lost update can happen.
     #[serde(default)]
     pub expected_content_hash: Option<String>,
+    /// The Contributor whose word this is — REQUIRED when the write SETTLES
+    /// intent (a Decision accepted or deferred, a Requirement off `proposed`,
+    /// a DesignRule's `enforced` stated), exactly as the typed constructors
+    /// require it; unsigned, such a write is refused. Drawn as AUTHORED_BY
+    /// role=approver.
+    #[serde(default)]
+    pub approver: Option<String>,
+    /// When the approver acted, as a plain date. Stored on the approver edge.
+    #[serde(default)]
+    pub acted_at: Option<String>,
 }
 
 #[derive(Debug, Deserialize, JsonSchema)]
@@ -3226,6 +3420,13 @@ pub struct NodeSpecReq {
     #[serde(alias = "properties")]
     #[serde(default)]
     pub props: Option<JsonObject>,
+    /// This node's approver — required when THIS node settles intent, as on
+    /// `create_node`. Drawn as AUTHORED_BY role=approver.
+    #[serde(default)]
+    pub approver: Option<String>,
+    /// When this node's approver acted, as a plain date.
+    #[serde(default)]
+    pub acted_at: Option<String>,
 }
 
 #[derive(Debug, Deserialize, JsonSchema)]
@@ -3504,8 +3705,12 @@ pub struct ReadinessReportReq {
 #[serde(deny_unknown_fields)]
 pub struct PrecedesReq {
     /// The DesignEpoch (`epoch:…`) that comes first — the source of the PRECEDES edge.
+    /// `from_id` is accepted too: the ends are peers, and the taught peer spelling is
+    /// `from_*` / `to_*` (dec:idea-one-way-to-name-which-node-across-the-tool-surface).
+    #[serde(alias = "from_id")]
     pub earlier_epoch: String,
     /// The DesignEpoch (`epoch:…`) that follows it.
+    #[serde(alias = "to_id")]
     pub later_epoch: String,
 }
 
@@ -3523,12 +3728,6 @@ pub struct AddFlowReq {
     #[serde(default)]
     #[schemars(schema_with = "crate::enum_schema::flow_type_opt")]
     pub flow_type: Option<String>,
-    /// Capability name or id where the flow begins.
-    #[serde(default)]
-    pub entry_point: Option<String>,
-    /// Capability name or id where the flow ends.
-    #[serde(default)]
-    pub exit_point: Option<String>,
     /// Where this sits on the strategic / operational / tactical ladder.
     /// Declared 2026-09-07: carried by most nodes of this type and settable by
     /// nothing, one of the fourteen holes the reachability split separated
@@ -3726,11 +3925,18 @@ pub struct AddConstraintReq {
     #[serde(default)]
     #[schemars(schema_with = "crate::enum_schema::constraint_direction_opt")]
     pub direction: Option<String>,
-    /// Ids you read and judged DIFFERENT from this one, when reflow2 has
-    /// already told you something close exists. Naming them is the deliberate
-    /// decision: sharpen an existing node by calling with ITS id, or start a
-    /// new one and say what you rejected. Omit it on a first attempt — the
-    /// refusal, if any, lists exactly what to put here.
+    /// HOW THE QUANTITY COMPOSES, which is what budget_report's verdict reads: `sum` (every
+    /// contribution adds — mass, cost) or `path` (the heaviest DEPENDS_ON chain among the
+    /// contributors — end-to-end latency, where parallel branches overlap). Declared, never
+    /// inferred from the unit. Leave it unset when nobody has said: the verdict then reads the
+    /// sum and the report names any path total it did not read.
+    #[serde(default)]
+    #[schemars(schema_with = "crate::enum_schema::constraint_composition_opt")]
+    pub composition: Option<String>,
+    /// Ids you read and judged a DIFFERENT thing from this one, when a reply's
+    /// `search_first` named something close. THE JUDGEMENT IS KEPT: the ids are
+    /// written onto the node as `distinct_from`, so a later reader can tell a
+    /// node its writer compared from one nobody did.
     #[serde(default)]
     pub distinct_from: Option<Vec<String>>,
     /// The cross-cutting concern this budget belongs to — safety, logistics,
@@ -3751,8 +3957,17 @@ pub struct AddConstraintReq {
 pub struct ConstrainsReq {
     #[serde(alias = "from_id")]
     #[serde(alias = "node_id")]
-    /// The Constraint (`con:…`) that limits the target — the source of the CONSTRAINS edge.
+    /// The Constraint (`con:…`) that limits the target — the source of the CONSTRAINS edge. A
+    /// `DesignRule` binding what it governs is accepted too.
     pub constraint_id: String,
+    /// The `constraint_id` node's type — `Constraint` or `DesignRule`.
+    /// Optional: resolved from the id when omitted (the id prefix names the
+    /// type); an id held by more than one type is REFUSED, never guessed — pass
+    /// it then. Any type the schema accepts at this end is accepted here: a
+    /// typed tool is never narrower than its schema.
+    #[serde(default)]
+    #[serde(alias = "from_type")]
+    pub constraint_type: Option<String>,
     /// The spender's node type — anything can spend (Component mass,
     /// Interface latency, Resource cost).
     /// Optional since 2026-09-06: resolved from the id when omitted (the id
@@ -3852,10 +4067,23 @@ pub struct RelationLinkReq {
 #[derive(Debug, Deserialize, JsonSchema)]
 #[serde(deny_unknown_fields)]
 pub struct BudgetReportReq {
-    /// The Constraint (`con:…`) holding the limit to roll up against — one with a `quantity`, `limit` and `direction`, typically a KPP (`category: kpp`).
+    /// The ONE Constraint (`con:…`) to roll up in full: every contributor, the worst path and
+    /// the verdict. Leave it out to read them all at once, each with its verdict;
+    /// `closure_report`'s budgets leg gives only the closure counts.
+    //
+    // Optional since 2026-09-29: a caller asking for all of them used to be refused, then paid
+    // one call each — 14 calls for 14 (dev_reflow2 two-agent exercise, I17,
+    // `fact:root-cause-budget-report-reads-one-budget-and-its-refusal-never-names-the-all-budgets-sweep-2026-09-29`).
+    // Kept short on purpose: these words are indexed by find_tools, and repeating the
+    // domain noun here outranked `constrains` for its own job.
+    #[serde(default)]
     #[serde(alias = "id")]
     #[serde(alias = "node_id")]
-    pub constraint_id: String,
+    pub constraint_id: Option<String>,
+    /// How many characters the all-at-once reply may spend (default 30,000). Counts are never
+    /// trimmed. Ignored when `constraint_id` is given.
+    #[serde(default)]
+    pub budget_chars: Option<usize>,
 }
 
 #[derive(Debug, Deserialize, JsonSchema)]
@@ -3993,13 +4221,30 @@ pub struct DecisionReq {
     /// Why — the part worth recording.
     #[serde(default)]
     pub rationale: Option<String>,
-    /// Ids you read and judged DIFFERENT from this one, when reflow2 has
-    /// already told you something close exists. Naming them is the deliberate
-    /// decision: sharpen an existing node by calling with ITS id, or start a
-    /// new one and say what you rejected. Omit it on a first attempt — the
-    /// refusal, if any, lists exactly what to put here.
+    /// Ids you read and judged a DIFFERENT thing from this one, when reflow2
+    /// has already told you something close exists — one of the THREE answers
+    /// to that check: sharpen the existing node (call with ITS id), say this one
+    /// is different (here), or say it takes an older one's place (`replaces`).
+    /// THE JUDGEMENT IS KEPT: the ids are written onto the node as
+    /// `distinct_from`, so a later reader can tell a node its writer compared
+    /// from one nobody did. Omit it on a first attempt — the refusal, if any,
+    /// lists exactly what to put here.
     #[serde(default)]
     pub distinct_from: Option<Vec<String>>,
+    /// Ids of OLDER nodes of this same type that this one TAKES THE PLACE OF —
+    /// the third answer to the near-match check, for a new node that is neither
+    /// a sharper wording of an old one nor a different thing, but its
+    /// successor. For each: the old node's ending is recorded FIRST (a
+    /// `deprecation` ChangeEvent whose snapshot keeps its final state and
+    /// edges), the thread that says what it was FOR moves here (a Capability's
+    /// SATISFIES, a Component's incoming ALLOCATED_TO; a Requirement, Decision
+    /// or DesignRule moves none), and this node OBSOLETES it. Its stored status
+    /// does not move. The reply names what moved, what stayed, and what — if
+    /// anything — still withdraws it. Works on a revise too, so a successor
+    /// already recorded can say so later. An id of another type, one naming
+    /// nothing, or one also in `distinct_from` is REFUSED and nothing is written.
+    #[serde(default)]
+    pub replaces: Option<Vec<String>>,
     /// WHAT KIND OF THING THIS IS — `exploratory` (an idea being turned over,
     /// recorded so it is not lost and explicitly NOT claimed as intent) or
     /// `choice` (a decision somebody actually faced).
@@ -4025,6 +4270,11 @@ pub struct DecisionReq {
     /// Required — TOGETHER WITH ITS ALTERNATIVE BELOW — only when this is an
     /// `exploratory` Decision and near-matches were found. An idea nothing
     /// resembles is captured with no ceremony at all.
+    ///
+    /// DRAWN FOR EVERY KIND, and each edge is named in the reply's
+    /// `edges_drawn`, subject first. Until 2026-09-29 a `choice` or no-kind
+    /// decision passed the duplicate guard naming these and then drew none of
+    /// them, silently.
     #[serde(default)]
     pub related_to: Option<Vec<RelationLinkReq>>,
     /// THE OTHER HALF, AND IT IS A FULL ANSWER RATHER THAN A WEAKER ONE: what
@@ -4159,6 +4409,10 @@ pub struct ContributorReq {
     /// across sessions without matching on the display name.
     #[serde(default)]
     pub handle: Option<String>,
+    /// Who this contributor is ON THIS DESIGN, where it matters: their role
+    /// (owner, reviewer, the agent that runs the build). Attribution, not a
+    /// reader's persona — a reader's background, vocabulary and way of
+    /// thinking stay with the agent's host or its own memory, never here.
     #[serde(default)]
     pub description: Option<String>,
 }
@@ -4166,6 +4420,16 @@ pub struct ContributorReq {
 /// What `writes_for` refuses with when the named contributor is not in the
 /// design — said the same way whether the name came from the session or from
 /// one request's `_meta`.
+/// What a write gets when the agent it names cannot be recorded.
+pub(crate) fn acting_agent_refusal(agent: &str, why: &str) -> String {
+    format!(
+        "this call names '{agent}' as the agent it writes through, and that cannot be recorded: \
+         {why} Nothing was written. The agent is named by `writes_for`'s `acting_agent`, or by \
+         the request's `_meta` key `{ACTING_AGENT_META}`; it is attribution only and never signs \
+         anything."
+    )
+}
+
 pub(crate) fn writes_for_refusal(who: &str, why: &str) -> String {
     format!(
         "This call writes for '{who}', and nothing was written: {why} (Named by this session's \
@@ -4183,6 +4447,14 @@ pub struct WritesForReq {
     /// stop crediting this session's writes to anyone.
     #[serde(default)]
     pub contributor_id: Option<String>,
+    /// The AGENT this session writes THROUGH — a `Contributor` of kind
+    /// `automated_agent` (e.g. `who:claude-code`), recorded beside the person
+    /// on every authorship and approval the session records, and drawn
+    /// `ACTS_FOR` them. Attribution only: it never signs anything. It must
+    /// already exist. Omit it to name no agent (a Contributor whose `handle`
+    /// equals this client's name is still found).
+    #[serde(default)]
+    pub acting_agent: Option<String>,
 }
 
 #[derive(Debug, Deserialize, JsonSchema)]
@@ -5648,6 +5920,19 @@ pub struct ClosureReportReq {}
 
 #[derive(Debug, Deserialize, JsonSchema)]
 #[serde(deny_unknown_fields)]
+pub struct DerivedReportReq {
+    /// Narrow the read to these relation ids (e.g. `["delivered", "realized"]`).
+    /// Omit for every declared relation. An id nobody declared is refused and
+    /// the refusal lists the declared ones.
+    #[serde(default)]
+    pub only: Vec<String>,
+    /// How many example ids each relation carries (default 3, at most 20).
+    #[serde(default)]
+    pub sample: Option<usize>,
+}
+
+#[derive(Debug, Deserialize, JsonSchema)]
+#[serde(deny_unknown_fields)]
 pub struct FrontierReq {
     /// The tree you swept, as `{path, mass}` objects (paths relative to the
     /// project root, mass in your own unit) — derive it (`git ls-files`),
@@ -5778,6 +6063,18 @@ pub struct SetDecisionStatusReq {
     /// common case where they live in the decision's own prose.
     #[serde(default)]
     pub chose: Option<String>,
+    /// A NEW NAME for the decision, written in the same call — for the heading
+    /// that still asks the question this call settles ("OPEN — does X…?").
+    ///
+    /// flo2 F12 (2026-09-19) and the 2026-09-29 designer session both settled
+    /// decisions and left them NAMED as open questions: `chose` reached the
+    /// body and nothing reached the name, so every settle cost a second,
+    /// whole-node `replace_text`. reflow2's own design held 44 of 266 accepted
+    /// decisions so named. Optional; absent leaves the name alone, and an
+    /// accepted decision whose name still leads with `OPEN` is reported in the
+    /// reply (`name_still_reads_open`) rather than renamed for you.
+    #[serde(default)]
+    pub name: Option<String>,
 }
 
 #[derive(Debug, Deserialize, JsonSchema)]
@@ -5860,6 +6157,16 @@ pub struct CollapseDecisionReq {
     /// Why — recorded in the Decision's alternatives field with the outcome.
     #[serde(default)]
     pub note: Option<String>,
+    /// The Contributor whose word this choice is — draws `AUTHORED_BY
+    /// role=approver` on the Decision in the same call. Choosing the winner
+    /// moves the Decision to `accepted`, which is settled intent; with no
+    /// approver the choice is recorded and the reply says it carries nobody's
+    /// name, like every other setter. An id naming no Contributor is REFUSED.
+    #[serde(default)]
+    pub approver: Option<String>,
+    /// When the approver acted, as a plain date. Stored on the approver edge.
+    #[serde(default)]
+    pub acted_at: Option<String>,
 }
 
 #[derive(Debug, Deserialize, JsonSchema)]
@@ -5874,8 +6181,44 @@ pub struct AnswerQuestionReq {
     /// reach.
     #[serde(default)]
     pub question_id: Option<String>,
-    /// What the user said, in their own words.
+    /// What was said in reply, in the answerer's own words.
     pub answer: String,
+    /// The `Contributor` whose answer this is — the owner a question was put
+    /// to, their delegate, or the chat user. Recorded on the Question as
+    /// `answered_by`. OMITTED, the answer carries nobody's name and the reply
+    /// says so; it is never read as the chat user's by default. An id naming
+    /// no Contributor is REFUSED and nothing is written.
+    #[serde(default)]
+    pub answered_by: Option<String>,
+    /// When they answered, as a plain date. Rides `answered_by`.
+    #[serde(default)]
+    pub answered_at: Option<String>,
+    /// The design record this answer BECAME — the Decision, Requirement or
+    /// Capability it was written into. `ANSWERS` is drawn from it to the
+    /// Question in this same call, so the answer and what it became are one
+    /// call, not two. Its type is resolved from the id. A record that does not
+    /// exist is REFUSED and nothing is written.
+    #[serde(default)]
+    pub record: Option<String>,
+    /// Type of `record`, only when its id is held by more than one type.
+    #[serde(default)]
+    pub record_type: Option<String>,
+    /// HOW `record` answers the question — the `ANSWERS` edge's note.
+    #[serde(default)]
+    pub note: Option<String>,
+}
+
+/// `open_questions`, optionally for ONE addressee.
+#[derive(Debug, Default, Deserialize, JsonSchema)]
+#[serde(deny_unknown_fields)]
+pub struct OpenQuestionsReq {
+    /// A `Contributor` id: return only the questions put to them BY NAME, as
+    /// the batch they were put in (batch, then number), each carrying its
+    /// evidence links — the read an owner outside the chat is sent. Omitted:
+    /// every open question, sorted by id, as before. An id naming no
+    /// Contributor is REFUSED rather than answered empty.
+    #[serde(default)]
+    pub asked_of: Option<String>,
 }
 
 #[derive(Debug, Deserialize, JsonSchema)]
@@ -5897,6 +6240,23 @@ pub struct GapToPromptReq {
     /// Timestamp to record against the question, if you have one.
     #[serde(default)]
     pub asked_at: Option<String>,
+    /// The `Contributor` this question is PUT TO by name — an owner outside
+    /// the chat, a delegated owner. Recorded as the Question's `asked_of`, so
+    /// `open_questions(asked_of)` and `loop_status(contributor_id)` can hand it
+    /// to them. Omitted: put to nobody by name, and readers say so. Refused
+    /// unless it names a Contributor. Read on the serve pass.
+    #[serde(default)]
+    pub asked_of: Option<String>,
+    /// The batch this question travels in (e.g. `round-2`). It is numbered
+    /// next in that batch, so a relay quoting "Q4" resolves to the node.
+    #[serde(default)]
+    pub batch: Option<String>,
+    /// Node ids of the evidence the question rests on — a finding, a file, a
+    /// check — drawn as `ASKS_ABOUT` beside the gap's own nodes and handed to
+    /// the addressee as links to read, never as a summary to trust. Each must
+    /// resolve.
+    #[serde(default)]
+    pub evidence: Vec<String>,
 }
 
 /// One gap in a multi-gap ask. Answers are grouped **per gap**, which is what
@@ -5911,6 +6271,12 @@ pub struct GapPromptReq {
     /// Answers to this gap's prior `needs_llm` round. Empty on the prepare pass.
     #[serde(default)]
     pub answers: Vec<AgentAnswerReq>,
+    /// Node ids of the evidence THIS question rests on — a finding, a file, a
+    /// check — drawn as `ASKS_ABOUT` and handed to the addressee as links to
+    /// read, never as a summary to trust. Each must resolve. Read on the serve
+    /// pass.
+    #[serde(default)]
+    pub evidence: Vec<String>,
 }
 
 #[derive(Debug, Deserialize, JsonSchema)]
@@ -5921,6 +6287,19 @@ pub struct GapsToPromptsReq {
     /// Timestamp to record against the questions, if you have one.
     #[serde(default)]
     pub asked_at: Option<String>,
+    /// The `Contributor` this batch is PUT TO by name. Every question in the
+    /// call is recorded with it as `asked_of`, so `open_questions(asked_of)`
+    /// returns them to that person as one batch. Omitted: put to nobody by
+    /// name, and readers say so. Refused unless it names a Contributor.
+    #[serde(default)]
+    pub asked_of: Option<String>,
+    /// The name of this batch (e.g. `round-2`). Its questions are numbered 1…N
+    /// in the order of `gaps`, continuing the count if the batch already has
+    /// questions, and keep their numbers when asked again — so a relay quoting
+    /// "Q4 of round-2" resolves to a node without a map kept outside the
+    /// design. Omitted, no batch and no number are recorded.
+    #[serde(default)]
+    pub batch: Option<String>,
 }
 
 // ---- tools ------------------------------------------------------------------
@@ -6017,6 +6396,8 @@ impl ReflowService {
             read_hint: Arc::new(std::sync::Mutex::new(ReadHintCache::default())),
             auto_export: None,
             writes_for: Arc::new(std::sync::Mutex::new(None)),
+            acting_agent: Arc::new(std::sync::Mutex::new(None)),
+            caller_rule: Arc::new(crate::caller::CallerRule::Local),
         }
     }
 
@@ -6156,6 +6537,11 @@ impl ReflowService {
             // Fresh per session: who one client writes for says nothing about
             // the next client to connect.
             writes_for: Arc::new(std::sync::Mutex::new(None)),
+            acting_agent: Arc::new(std::sync::Mutex::new(None)),
+            // A property of the SERVER, like read-only: a session minted for a
+            // new client must never come back local on an engine served for
+            // others.
+            caller_rule: Arc::clone(&self.caller_rule),
         }
     }
 
@@ -6204,11 +6590,32 @@ impl ReflowService {
         // Who this call writes for, when anybody said: recording starts under
         // the lock, so only this hold's writes are in the log it credits.
         let writes_for = WRITES_FOR.try_with(Clone::clone).ok().flatten();
+        let acting = ACTING.try_with(Clone::clone).ok().flatten();
         let mut guard = self.graph.write().await;
         if writes_for.is_some() {
             guard.begin_touch_log();
         }
-        Ok(GraphWrite { guard, writes_for })
+        let named_agent = acting.is_some();
+        if let Some(acting) = acting {
+            // Checked before the handler ran (`acting_agent_precheck`); this
+            // refuses only if the agent vanished in between.
+            guard.begin_acting(acting).map_err(dyno_err)?;
+        }
+        // WHO MAY SIGN (`crate::caller`): on an engine served for others the
+        // graph is held to the caller for the whole hold, so every signature
+        // the handler writes — through any door — is checked where the store
+        // writes it. A local engine installs nothing.
+        let signer = SIGNER.try_with(Clone::clone).ok().flatten();
+        let signing = signer.is_some();
+        if let Some(signer) = signer {
+            guard.begin_signing(signer);
+        }
+        Ok(GraphWrite {
+            guard,
+            writes_for,
+            acting: named_agent,
+            signing,
+        })
     }
 
     /// The read-side sibling of the write tools' `with_loop_hint` (BL-91,
@@ -6541,12 +6948,39 @@ impl ReflowService {
     /// Who a call writes for: the name its request carried in `_meta`
     /// ([`WRITES_FOR_META`]), else what this session declared with
     /// `writes_for`, else nobody. A blank name is nobody.
+    ///
+    /// Behind a declared trusted gateway (`crate::caller`), ONLY the request's
+    /// `_meta` counts: the gateway is the one party the operator trusted to
+    /// name the caller, so a session's own declaration names nobody there.
     pub fn effective_writes_for(&self, from_request: Option<&str>) -> Option<String> {
-        from_request
-            .map(str::trim)
-            .filter(|s| !s.is_empty())
-            .map(String::from)
-            .or_else(|| self.writes_for.lock().ok().and_then(|w| w.clone()))
+        self.caller_rule.writes_for(
+            from_request,
+            self.writes_for
+                .lock()
+                .ok()
+                .and_then(|w| w.clone())
+                .map(|s| s.trim().to_string())
+                .filter(|s| !s.is_empty()),
+        )
+    }
+
+    /// Serve this engine under `rule` — how it establishes who is calling
+    /// (`crate::caller`). Builder rather than a constructor argument, so every
+    /// existing entry point keeps its signature and stays local.
+    pub fn with_caller_rule(mut self, rule: crate::caller::CallerRule) -> Self {
+        self.caller_rule = Arc::new(rule);
+        self
+    }
+
+    /// How this engine establishes who is calling.
+    pub fn caller_rule(&self) -> &crate::caller::CallerRule {
+        &self.caller_rule
+    }
+
+    /// The signer a call writing for `writes_for` is held to on this engine
+    /// (`None` on a local one).
+    pub fn signer_for(&self, writes_for: Option<&str>) -> Option<reflow2_core::intent::Signer> {
+        self.caller_rule.signer(writes_for)
     }
 
     /// The refusal a WRITE gets when it writes for somebody who is not a
@@ -6580,7 +7014,84 @@ impl ReflowService {
         writes_for: Option<String>,
         call: impl std::future::Future<Output = T>,
     ) -> T {
-        WRITES_FOR.scope(writes_for, call).await
+        let signer = self.signer_for(writes_for.as_deref());
+        SIGNER
+            .scope(signer, WRITES_FOR.scope(writes_for, call))
+            .await
+    }
+
+    /// The agent a call writes THROUGH (`reflow2_core::acting`): the name its
+    /// request carried in `_meta` ([`ACTING_AGENT_META`]), else what this
+    /// session declared with `writes_for`'s `acting_agent`, else the
+    /// `automated_agent` Contributor whose `handle` is the client's handshake
+    /// name — matched, never minted — else nobody. A blank name is nobody.
+    pub async fn effective_acting_agent(
+        &self,
+        from_request: Option<&str>,
+        client_name: Option<&str>,
+    ) -> Option<reflow2_core::acting::Acting> {
+        let named = |v: Option<String>| v.map(|s| s.trim().to_string()).filter(|s| !s.is_empty());
+        if let Some(agent) = named(from_request.map(String::from)) {
+            return Some(reflow2_core::acting::Acting {
+                agent,
+                route: "request".into(),
+            });
+        }
+        if let Some(agent) = named(self.acting_agent.lock().ok().and_then(|a| a.clone())) {
+            return Some(reflow2_core::acting::Acting {
+                agent,
+                route: "session".into(),
+            });
+        }
+        let client = client_name?;
+        self.graph
+            .read()
+            .await
+            .agent_for_client(client)
+            .ok()
+            .flatten()
+            .map(|agent| reflow2_core::acting::Acting {
+                agent,
+                route: "client".into(),
+            })
+    }
+
+    /// The refusal a WRITE gets when it names an acting agent the design does
+    /// not hold, or one that is not an `automated_agent` — decided before the
+    /// handler runs, so nothing is written under a name nobody declared.
+    pub async fn acting_agent_precheck(
+        &self,
+        tool: &str,
+        acting: Option<&reflow2_core::acting::Acting>,
+    ) -> Option<String> {
+        let acting = acting?;
+        if !self.is_write_tool(tool) {
+            return None;
+        }
+        self.graph
+            .read()
+            .await
+            .require_acting_agent(&acting.agent)
+            .err()
+            .map(|e| acting_agent_refusal(&acting.agent, &e.to_string()))
+    }
+
+    /// Run `call` writing for `writes_for` AND through `acting` — what
+    /// `call_tool` does around every handler. Public so the recording can be
+    /// driven without an rmcp peer.
+    pub async fn serving_as<T>(
+        &self,
+        writes_for: Option<String>,
+        acting: Option<reflow2_core::acting::Acting>,
+        call: impl std::future::Future<Output = T>,
+    ) -> T {
+        let signer = self.signer_for(writes_for.as_deref());
+        SIGNER
+            .scope(
+                signer,
+                ACTING.scope(acting, WRITES_FOR.scope(writes_for, call)),
+            )
+            .await
     }
 
     fn is_write_tool(&self, tool: &str) -> bool {
@@ -6639,12 +7150,22 @@ impl ReflowService {
     /// The served tool list with this design's lessons appended to the
     /// descriptions of the tools they name — the moment before the call.
     pub async fn tools_with_lessons(&self) -> Vec<rmcp::model::Tool> {
-        let tools = self.tool_router.list_all();
+        // Every write tool takes `echo` (`crate::receipt`); declared here, on
+        // the one listing a session, `--call` and toolsnap all read.
+        let tools = crate::receipt::declare_echo(self.tool_router.list_all());
         let by_step = {
             let g = self.graph.read().await;
             crate::lessons::lessons_by_step(&g)
         };
-        crate::lessons::enrich_tools(tools, &by_step)
+        // Two list-time decorations, both generated from one table each:
+        // which calls settle intent (crate::settles, served as _meta so a
+        // gateway signing on its caller's behalf reads the rule instead of a
+        // copy), and every typed edge helper naming its bulk form (I24), added
+        // at LIST time like the lessons so what `find_tools` ranks stays each
+        // tool's own job.
+        crate::bulk_edges::name_the_bulk_route(crate::settles::declare_on(
+            crate::lessons::enrich_tools(tools, &by_step),
+        ))
     }
 
     /// Test seam for the listing above — the `list_tools` override needs a
@@ -6685,6 +7206,17 @@ impl ServerHandler for ReflowService {
         // Captured before `request` moves: an argument refusal must name the
         // tool, and by the time the router answers, the name is gone.
         let tool_name = request.name.to_string();
+        // A WRITE REPLIES WITH A RECEIPT (`crate::receipt`). `echo` is taken
+        // out of a write's arguments here, before the handler or any hint reads
+        // them, and a value other than the two is refused before anything runs.
+        // A read is untouched: `echo` stays an unknown argument there.
+        let mut request = request;
+        let echo = match self.tool_router.get(&tool_name) {
+            Some(t) if crate::receipt::is_write(t) => {
+                crate::receipt::take_echo(request.arguments.as_mut())
+            }
+            _ => Ok(crate::receipt::Echo::Node),
+        };
         // THE USAGE LEDGER (`crate::usage`) reads the verb and never the
         // object: the tool, who connected, and — for `get_skill` alone, whose
         // argument is reflow2's own vocabulary — which skill. No other
@@ -6722,17 +7254,46 @@ impl ServerHandler for ReflowService {
         // own `_meta`, else what this session declared, else nobody.
         let writes_for =
             self.effective_writes_for(context.meta.get(WRITES_FOR_META).and_then(|v| v.as_str()));
-        let unknown_writer = self
-            .writes_for_precheck(&tool_name, writes_for.as_deref())
+        // AND WHICH AGENT IT WRITES THROUGH (`reflow2_core::acting`): the
+        // request's own `_meta`, else the session's declaration, else the
+        // Contributor matching the name this client gave at handshake.
+        let acting = self
+            .effective_acting_agent(
+                context.meta.get(ACTING_AGENT_META).and_then(|v| v.as_str()),
+                Some(client.as_str()),
+            )
             .await;
+        let unknown_writer = match &echo {
+            Err(refusal) => Some(refusal.clone()),
+            Ok(_) => match self
+                .writes_for_precheck(&tool_name, writes_for.as_deref())
+                .await
+            {
+                Some(refusal) => Some(refusal),
+                None => {
+                    self.acting_agent_precheck(&tool_name, acting.as_ref())
+                        .await
+                }
+            },
+        };
         let tcc = rmcp::handler::server::tool::ToolCallContext::new(self, request, context);
         let answer = match unknown_writer {
             Some(refusal) => Ok(rmcp::model::CallToolResponse::Complete(
                 CallToolResult::error(vec![ContentBlock::text(refusal)]),
             )),
             None => {
-                WRITES_FOR
-                    .scope(writes_for, self.tool_router.call(tcc))
+                // WHO MAY SIGN on this call (`crate::caller`): nothing on a
+                // local engine; the caller the engine established, or nobody,
+                // on one served for others.
+                let signer = self.signer_for(writes_for.as_deref());
+                SIGNER
+                    .scope(
+                        signer,
+                        ACTING.scope(
+                            acting,
+                            WRITES_FOR.scope(writes_for, self.tool_router.call(tcc)),
+                        ),
+                    )
                     .await
             }
         };
@@ -6793,6 +7354,20 @@ impl ServerHandler for ReflowService {
                 }
             }
             other => other,
+        };
+        // The receipt is cut from the reply the handler built, so `echo: "node"`
+        // costs nothing and a refusal is never touched.
+        let answer = match (echo, answer) {
+            (
+                Ok(crate::receipt::Echo::Receipt),
+                Ok(rmcp::model::CallToolResponse::Complete(mut r)),
+            ) if r.is_error != Some(true) => {
+                if let Some(v) = r.structured_content.take() {
+                    r.structured_content = Some(crate::receipt::receipt(v));
+                }
+                Ok(rmcp::model::CallToolResponse::Complete(r))
+            }
+            (_, other) => other,
         };
         crate::content_policy::shape(policy, answer)
     }
@@ -6881,7 +7456,7 @@ impl ServerHandler for ReflowService {
                 // `graph_path: None` IS the condition — it means no directory
                 // backs this design, which is exactly what ephemeral means — so
                 // this cannot drift from a separate flag someone forgets to set.
-                "{}reflow2 is the persistent, coherent design brain. The loop: capture intent as \
+                "{}{}reflow2 is the persistent, coherent design brain. The loop: capture intent as \
                  Requirements/Capabilities/Components via the add_* / create_* tools; run \
                  detect_gaps and ask the human the gaps (gap_to_prompt); build only what the \
                  graph specifies; on any change, add_change_event + propagate_change to see the \
@@ -6900,6 +7475,9 @@ impl ServerHandler for ReflowService {
                 } else {
                     ""
                 },
+                // Then, on an engine served for others, what a signature means
+                // here, before anyone writes one (`crate::caller`). Empty locally.
+                self.caller_rule.handshake_note(),
                 // The backstop for req:nudge-path-proven. If no session-end
                 // nudge is installed, NOTHING will interrupt a session that
                 // finishes owing the loop — and the handshake is the one channel
@@ -7127,6 +7705,85 @@ mod empty_speaks_pins {
         assert!(
             f.get("empty_because").is_none(),
             "a full reply must not carry it: {f}"
+        );
+    }
+}
+
+/// I14a of the dev_reflow2 two-agent exercise, pinned as the CLASS.
+///
+/// A typed edge helper refused `verifies(Verification → Decision)` with the bare
+/// "Invalid edge" sentence, while `create_edge` for the same pair names
+/// GOVERNED_BY as the modelled fit
+/// (`fact:root-cause-a-check-on-a-ruling-is-modelled-as-governed-by-and-the-verifies-refusal-never-says-so-2026-09-28`).
+/// Every typed helper renders an invalid edge through [`dyno_err`], so the
+/// question is asked of that function over EVERY rejected (edge, from, to) the
+/// schema has, not of one helper.
+#[cfg(test)]
+mod an_invalid_edge_names_what_the_schema_models_for_the_pair {
+    use super::*;
+    use reflow2_core::vocabulary::EndpointMatch;
+
+    #[test]
+    fn every_refused_pair_names_an_edge_the_schema_models_for_it() {
+        let g = DesignGraph::open_in_memory().expect("graph");
+        let vocab = g.describe_vocabulary();
+        let types: Vec<String> = vocab
+            .node_types
+            .iter()
+            .map(|t| t.node_type.clone())
+            .collect();
+        let mut checked = 0usize;
+        let mut silent: Vec<String> = Vec::new();
+        for f in &types {
+            for t in &types {
+                let q = g.edge_types_between(f, t).expect("edge query");
+                // The edge a reader should be offered first: named on both
+                // ends, or on one end and open by design, or declared for
+                // this pair. A pair only a double wildcard tolerates has no
+                // modelled fit, and saying nothing specific is honest there.
+                let Some(best) = q.matches.iter().find(|m| {
+                    m.from_match == EndpointMatch::Exact
+                        || m.to_match == EndpointMatch::Exact
+                        || m.declared_for_this_pair
+                }) else {
+                    continue;
+                };
+                for e in &vocab.edge_types {
+                    if g.schema().validate_edge(&e.edge_type, f, t).is_ok() {
+                        continue;
+                    }
+                    checked += 1;
+                    let msg = dyno_err(DynoError::InvalidEdge {
+                        edge_type: e.edge_type.clone(),
+                        from_type: f.clone(),
+                        to_type: t.clone(),
+                    })
+                    .message
+                    .to_string();
+                    if !msg.contains(&best.spec.edge_type) {
+                        silent.push(format!(
+                            "{} {f} -> {t}: names no alternative, while {} models the pair",
+                            e.edge_type, best.spec.edge_type
+                        ));
+                    }
+                }
+            }
+        }
+        assert!(
+            checked > 1000,
+            "the enumeration must actually walk the schema: {checked}"
+        );
+        assert!(
+            silent.is_empty(),
+            "{} of {checked} refused (edge, from, to) triples name no edge the schema models \
+             for the pair — the typed-helper refusal says less than create_edge's. First few:\n{}",
+            silent.len(),
+            silent
+                .iter()
+                .take(8)
+                .cloned()
+                .collect::<Vec<_>>()
+                .join("\n")
         );
     }
 }

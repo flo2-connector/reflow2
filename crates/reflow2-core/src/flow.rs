@@ -1,9 +1,9 @@
 //! Functional flows — the write and read side of `Flow` (BL-37).
 //!
 //! `Flow` had been fully specified in `functional.yaml` since the schema was
-//! written — `flow_type: process/control_flow/decision_flow`, `entry_point`,
-//! `exit_point`, with `PART_OF_FLOW (Capability → Flow)` carrying `step_order`
-//! — and nothing could create one: no constructor in core, no MCP tool. The
+//! written — `flow_type: process/control_flow/decision_flow`, with
+//! `PART_OF_FLOW (Capability → Flow)` carrying `step_order` — and nothing
+//! could create one: no constructor in core, no MCP tool. The
 //! eleventh instance of the recurring lesson, found by modelling reflow2's own
 //! coherence loop in reflow2 (`tools/model_the_loop.py`): **the one type meant
 //! for "an ordered process linking Capabilities end to end" was unreachable**,
@@ -30,16 +30,19 @@ use crate::nodes::{Props, edge, node};
 
 impl DesignGraph {
     /// P1 · Function — an ordered process linking Capabilities end to end.
-    /// `name` is required; `flow_type` (default `process`), `entry_point` and
-    /// `exit_point` name where it begins and ends (a Capability name or id).
+    /// `name` is required; `flow_type` defaults to `process`.
+    ///
+    /// Where the flow begins and ends is NOT stated here. It is computed from
+    /// the steps' `step_order` ([`FlowReport::entry_points`]): a stored entry
+    /// and exit were a second copy of the order, and the one this design held
+    /// named step 8 of 9 because adding a step never updated it
+    /// (`dec:a-flows-order-is-its-step-order-and-entry-and-exit-are-computed`).
     pub fn add_flow(
         &mut self,
         id: &str,
         name: &str,
         description: Option<&str>,
         flow_type: Option<&str>,
-        entry_point: Option<&str>,
-        exit_point: Option<&str>,
     ) -> Result<StoredNode, DynoError> {
         self.upsert_node(
             node::FLOW,
@@ -47,9 +50,7 @@ impl DesignGraph {
             Props::new()
                 .set("name", name)
                 .set_opt("description", description)
-                .set_opt("flow_type", flow_type)
-                .set_opt("entry_point", entry_point)
-                .set_opt("exit_point", exit_point),
+                .set_opt("flow_type", flow_type),
         )
     }
 
@@ -126,8 +127,14 @@ pub struct FlowReport {
     pub flow_id: String,
     pub flow_name: String,
     pub flow_type: Option<String>,
-    pub entry_point: Option<String>,
-    pub exit_point: Option<String>,
+    /// Where the flow begins: the step(s) at the LOWEST `step_order`, computed
+    /// and never stored. One for a linear flow; several when steps share the
+    /// first position. Empty when no step states an order, and `confessions`
+    /// then says so.
+    pub entry_points: Vec<String>,
+    /// Where the flow ends: the step(s) at the HIGHEST `step_order`, the steps
+    /// nothing follows. Computed the same way as `entry_points`.
+    pub exit_points: Vec<String>,
     /// Members ordered by `step_order` (unstated positions sort last), then id.
     pub steps: Vec<FlowStep>,
     /// `TRIGGERS` edges where **both** endpoints are members, with their role.
@@ -137,9 +144,8 @@ pub struct FlowReport {
     /// The process's loops, one entry per strongly-connected cluster of
     /// members. Reported as fact; never a defect.
     pub cycles: Vec<FlowCycle>,
-    /// What the projection could not honestly render — an unmatched
-    /// entry/exit point, steps with no stated order, transitions with no
-    /// stated role. Per the projection doctrine, a confession is a gap in the
+    /// What the projection could not honestly render — steps with no stated
+    /// order, transitions with no stated role. Per the projection doctrine, a confession is a gap in the
     /// model, not a fill-in by the renderer.
     pub confessions: Vec<String>,
 }
@@ -211,24 +217,25 @@ impl DesignGraph {
             ));
         }
 
-        // Entry/exit points name a member, or the report says they don't.
+        // Entry and exit are COMPUTED from the order, never stored: the steps
+        // at the lowest and at the highest stated position.
+        let ordered: Vec<(i64, &str)> = steps
+            .iter()
+            .filter_map(|s| s.step_order.map(|o| (o, s.capability_id.as_str())))
+            .collect();
+        let at = |pick: Option<i64>| -> Vec<String> {
+            pick.map(|o| {
+                ordered
+                    .iter()
+                    .filter(|(x, _)| *x == o)
+                    .map(|(_, id)| (*id).to_string())
+                    .collect()
+            })
+            .unwrap_or_default()
+        };
+        let entry_points = at(ordered.iter().map(|(o, _)| *o).min());
+        let exit_points = at(ordered.iter().map(|(o, _)| *o).max());
         let members: BTreeSet<&str> = member_names.keys().map(String::as_str).collect();
-        for (which, value) in [
-            ("entry_point", prop("entry_point")),
-            ("exit_point", prop("exit_point")),
-        ] {
-            if let Some(v) = &value {
-                let matches =
-                    members.contains(v.as_str()) || member_names.values().any(|name| name == v);
-                if !matches {
-                    confessions.push(format!(
-                        "{which} '{v}' matches no member of this flow — either the boundary \
-                         capability was never attached with PART_OF_FLOW, or the point names \
-                         something that does not exist."
-                    ));
-                }
-            }
-        }
 
         // Transitions: TRIGGERS with both endpoints inside the membership.
         let mut transitions = Vec::new();
@@ -271,8 +278,8 @@ impl DesignGraph {
             flow_id: flow_id.to_string(),
             flow_name: prop("name").unwrap_or_else(|| flow_id.to_string()),
             flow_type: prop("flow_type"),
-            entry_point: prop("entry_point"),
-            exit_point: prop("exit_point"),
+            entry_points,
+            exit_points,
             steps,
             transitions,
             cycles,

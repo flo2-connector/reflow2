@@ -179,6 +179,21 @@ impl ReflowService {
         // AGENTS.md's "compiling is not the finish line" earning its place
         // again.
         let prior = g.get_node(&req.node_type, &req.id).ok().flatten();
+        // THE OWNER'S WORD, AT THE GENERIC DOOR TOO (2026-09-29). A settling
+        // value inside `props` is held to the same rule as the typed
+        // constructors, asked of the core's one table, BEFORE anything is
+        // written — so a refusal leaves no half-written node.
+        crate::tools::capture::approver_must_exist(&g, req.approver.as_deref(), "create_node")?;
+        if let Some(settle) =
+            generic_settle(&req.node_type, &req.id, prior.as_ref(), &props, &unset)
+        {
+            crate::settles::gate(
+                "create_node",
+                true,
+                req.approver.as_deref(),
+                &format!("a settle ({})", settle.describe()),
+            )?;
+        }
         // COMPARE-AND-SWAP when the caller stated what they read, plain upsert
         // when they did not. The refusal is the point: `revision` already told
         // the LOSER of a collision afterwards and told the winner nothing, and
@@ -197,6 +212,15 @@ impl ReflowService {
         };
         match written {
             Ok((n, unset)) => {
+                if reflow2_core::intent::settles_intent(&req.node_type, &n.properties) {
+                    crate::tools::capture::sign_as_approver(
+                        &mut g,
+                        &req.node_type,
+                        &req.id,
+                        req.approver.as_deref(),
+                        req.acted_at.as_deref(),
+                    )?;
+                }
                 let mut dto = NodeDto::from(n);
                 dto.undeclared = undeclared;
                 dto.unset = unset;
@@ -242,7 +266,9 @@ impl ReflowService {
         Parameters(req): Parameters<CreateNodesReq>,
     ) -> Result<CallToolResult, McpError> {
         let mut specs = Vec::with_capacity(req.nodes.len());
+        let mut signers = Vec::with_capacity(req.nodes.len());
         for n in req.nodes {
+            signers.push((n.approver, n.acted_at));
             specs.push(BulkNodeSpec {
                 node_type: n.node_type,
                 id: n.id,
@@ -250,20 +276,77 @@ impl ReflowService {
             });
         }
         let mut g = self.write_lock().await?;
+        // Each item is held to the rule create_node is held to, and the batch's
+        // own all-or-nothing shape: every unsigned settle is named at once and
+        // NOTHING is written (2026-09-29).
+        let mut refusals = Vec::new();
+        for (i, (spec, (approver, _))) in specs.iter().zip(&signers).enumerate() {
+            if let Err(e) =
+                crate::tools::capture::approver_must_exist(&g, approver.as_deref(), "create_nodes")
+            {
+                refusals.push(format!("nodes[{i}]: {}", e.message));
+                continue;
+            }
+            let prior = g.get_node(&spec.node_type, &spec.id).ok().flatten();
+            if let Some(settle) =
+                generic_settle(&spec.node_type, &spec.id, prior.as_ref(), &spec.props, &[])
+                && let Err(e) = crate::settles::gate(
+                    "create_nodes",
+                    true,
+                    approver.as_deref(),
+                    &format!("a settle ({})", settle.describe()),
+                )
+            {
+                refusals.push(format!("nodes[{i}]: {}", e.message));
+            }
+        }
+        if !refusals.is_empty() {
+            return Err(McpError::invalid_params(
+                format!(
+                    "{} item(s) would settle intent with nobody's name on them, and NOTHING                      was written:\n  - {}",
+                    refusals.len(),
+                    refusals.join("\n  - ")
+                ),
+                None,
+            ));
+        }
         let report = g
             .create_nodes_with(&specs, req.check_only)
             .map_err(dyno_err)?;
+        if report.applied {
+            for (spec, (approver, acted_at)) in specs.iter().zip(&signers) {
+                let settles = g
+                    .get_node(&spec.node_type, &spec.id)
+                    .ok()
+                    .flatten()
+                    .is_some_and(|n| {
+                        reflow2_core::intent::settles_intent(&spec.node_type, &n.properties)
+                    });
+                if settles {
+                    crate::tools::capture::sign_as_approver(
+                        &mut g,
+                        &spec.node_type,
+                        &spec.id,
+                        approver.as_deref(),
+                        acted_at.as_deref(),
+                    )?;
+                }
+            }
+        }
         bulk_result(report, NodeDto::from)
     }
 
     #[tool(
-        description = "Create MANY edges in one call — the bulk form of create_edge, and so of \
-                       every typed helper built on it: contains, contain_component, satisfies, \
-                       allocate, realizes. Those helpers only fill in the endpoint types, so \
-                       naming both types per item is the whole difference. ALL OF IT OR NONE OF \
-                       IT: every item is attempted so you learn every failure at once, and if \
-                       anything failed nothing is written. \
-                       Ask for this to link many pairs of items in one call.",
+        description = "Create MANY edges in one call — the bulk form of the GENERIC `create_edge`: \
+                       each item names its edge type, both endpoints and free `props`, and runs \
+                       only the schema's checks. It runs NO typed helper's own checks (a \
+                       `constrains` contribution and unit, a `governed_by` ruling, an \
+                       `authored_by` role set), so for many edges a typed helper draws use \
+                       `draw_edges`, which runs each helper's own body per item. ALL OF IT OR \
+                       NONE OF IT: every item is attempted so you learn every failure at once, \
+                       and if anything failed nothing is written. \
+                       Ask for this to link many pairs of items in one call with an edge type no \
+                       typed helper draws.",
         annotations(read_only_hint = false)
     )]
     pub async fn create_edges(
@@ -288,10 +371,66 @@ impl ReflowService {
             });
         }
         let mut g = self.write_lock().await?;
+        // An edge that is the derived copy of a property (`reflow2_core::twins`)
+        // is the store's to draw. One drawn by hand against its property is
+        // refused before anything is written, every such item named at once,
+        // the batch's own all-or-nothing rule.
+        let mut refusals = Vec::new();
+        for (i, spec) in specs.iter().enumerate() {
+            if let Some(why) = g
+                .twin_edge_refusal(&spec.edge_type, &spec.from_id, &spec.to_id, false)
+                .map_err(dyno_err)?
+            {
+                refusals.push(format!("edges[{i}]: {why}"));
+            }
+        }
+        if !refusals.is_empty() {
+            return Err(McpError::invalid_params(
+                format!(
+                    "{} edge(s) would put a relation stored twice out of step, and NOTHING was \
+                     written:\n  - {}",
+                    refusals.len(),
+                    refusals.join("\n  - ")
+                ),
+                None,
+            ));
+        }
         let report = g
             .create_edges_with(&specs, req.check_only)
             .map_err(dyno_err)?;
         bulk_result(report, EdgeDto::from)
+    }
+
+    #[tool(
+        description = "The bulk form of the typed edge tools. Each item is \
+                       `{\"tool\": \"<typed tool>\", \"arguments\": {…its own arguments…}}` and runs \
+                       that tool's own body — its checks, its refusal words, its reply — so a batch \
+                       can never store what the tool alone would refuse. ALL OF IT OR NONE OF IT: \
+                       every item is attempted, every failure is named by position, and if any \
+                       failed nothing is written; `check_only` writes nothing. The reply names each \
+                       edge drawn, subject first. \
+                       Ask for this when you have a whole batch of typed links to record and want \
+                       each one checked exactly as it would be alone.",
+        annotations(read_only_hint = false)
+    )]
+    pub async fn draw_edges(
+        &self,
+        Parameters(req): Parameters<crate::bulk_edges::DrawEdgesReq>,
+    ) -> Result<CallToolResult, McpError> {
+        let indexed: Vec<(usize, crate::bulk_edges::DrawEdgeItem)> =
+            req.edges.into_iter().enumerate().collect();
+        let mut g = self.write_lock().await?;
+        let report = g
+            .atomically(
+                &indexed,
+                |(_, item)| item.tool.clone(),
+                |g, (index, item)| {
+                    crate::bulk_edges::draw_one(g, item).map(|r| (*index, item.tool.clone(), r))
+                },
+                req.check_only,
+            )
+            .map_err(dyno_err)?;
+        ok_json(crate::bulk_edges::reply(report, req.budget_chars))
     }
 
     #[tool(
@@ -312,6 +451,14 @@ impl ReflowService {
             &req.from_id,
             "from_type",
         )?;
+        // The derived copy of a property is the store's to draw; drawn by hand
+        // against its property it is refused, naming what to do instead.
+        if let Some(why) = g
+            .twin_edge_refusal(&req.edge_type, &req.from_id, &req.to_id, false)
+            .map_err(dyno_err)?
+        {
+            return Err(McpError::invalid_params(why, None));
+        }
         let edge = g.create_edge(
             &req.edge_type,
             &from_type,
@@ -369,18 +516,27 @@ impl ReflowService {
             (None, None, None) => ok_json(bound(
                 serde_json::to_value(g.describe_vocabulary()).map_err(ser_err)?,
             )),
-            (Some(t), None, None) if req.required_only => ok_json(bound(
-                serde_json::to_value(g.describe_node_type_required(t).map_err(params_err)?)
-                    .map_err(ser_err)?,
+            // The writers are added AFTER bounding: they are a handful of tool
+            // names and one short sentence, and a trimmed reply is exactly the
+            // one whose reader most needs to be told which tool writes the type.
+            (Some(t), None, None) if req.required_only => ok_json(with_writers(
+                t,
+                bound(
+                    serde_json::to_value(g.describe_node_type_required(t).map_err(params_err)?)
+                        .map_err(ser_err)?,
+                ),
             )),
-            (Some(t), None, None) => ok_json(bound(
-                serde_json::to_value(g.describe_node_type(t).map_err(params_err)?)
-                    .map_err(ser_err)?,
+            (Some(t), None, None) => ok_json(with_writers(
+                t,
+                bound(
+                    serde_json::to_value(g.describe_node_type(t).map_err(params_err)?)
+                        .map_err(ser_err)?,
+                ),
             )),
-            (None, Some(f), Some(t)) => ok_json(bound(
+            (None, Some(f), Some(t)) => ok_json(with_drawn_by(bound(
                 serde_json::to_value(g.edge_types_between(f, t).map_err(params_err)?)
                     .map_err(ser_err)?,
-            )),
+            ))),
             // A half-given pair is a mistake, not a request for everything.
             _ => Err(McpError::invalid_params(
                 "describe_schema takes no arguments (the full vocabulary), `node_type` alone, \
@@ -828,6 +984,14 @@ impl ReflowService {
         // `{deleted}` rather than the bare bool the core returns: a scalar in
         // `structuredContent` is the BL-48 defect (ok_json would wrap it as an
         // anonymous `{value}`, but the field deserves its name).
+        // Removing the derived copy while its property still names it would
+        // leave the relation half-stored; the property is what moves it.
+        if let Some(why) = g
+            .twin_edge_refusal(&req.edge_type, &req.from_id, &req.to_id, true)
+            .map_err(dyno_err)?
+        {
+            return Err(McpError::invalid_params(why, None));
+        }
         let deleted = g
             .delete_edge(&req.edge_type, &req.from_id, &req.to_id)
             .map_err(dyno_err)?;
@@ -879,4 +1043,65 @@ fn decorate(
         obj.insert("discontinued".to_string(), json!(discontinued));
     }
     Ok(rendered)
+}
+
+/// A node type's description says which served tool writes it (I14b). Read
+/// from the one map `tools/vocabulary_reach.py` also reads
+/// (`crate::writers`), so the two cannot disagree.
+fn with_writers(node_type: &str, mut v: serde_json::Value) -> serde_json::Value {
+    let writers = crate::writers::node_type_writers(node_type);
+    if let Some(obj) = v.as_object_mut() {
+        if writers.is_empty() {
+            obj.insert(
+                "no_typed_writer".to_string(),
+                serde_json::Value::String(crate::writers::NO_TYPED_WRITER.to_string()),
+            );
+        }
+        obj.insert("written_by".to_string(), serde_json::json!(writers));
+    }
+    v
+}
+
+/// Each edge that accepts a pair says which served tool draws it, so a caller
+/// who found the right edge is not left to find its tool by a second search.
+fn with_drawn_by(mut v: serde_json::Value) -> serde_json::Value {
+    if let Some(matches) = v
+        .get_mut("matches")
+        .and_then(serde_json::Value::as_array_mut)
+    {
+        for m in matches {
+            let edge = m
+                .get("edge_type")
+                .and_then(serde_json::Value::as_str)
+                .unwrap_or_default()
+                .to_string();
+            if let Some(obj) = m.as_object_mut() {
+                obj.insert(
+                    "drawn_by".to_string(),
+                    serde_json::json!(crate::writers::edge_type_writers(&edge)),
+                );
+            }
+        }
+    }
+    v
+}
+
+/// The settle a generic node write would make: what is stored, overlaid with
+/// what the write sends, less what it unsets — asked of the core's one table.
+pub(crate) fn generic_settle(
+    node_type: &str,
+    id: &str,
+    prior: Option<&StoredNode>,
+    props: &std::collections::HashMap<String, Value>,
+    unset: &[String],
+) -> Option<reflow2_core::intent::NewSettle> {
+    reflow2_core::intent::settling_property(node_type)?;
+    let mut after = prior.map(|p| p.properties.clone()).unwrap_or_default();
+    for (k, v) in props {
+        after.insert(k.clone(), v.clone());
+    }
+    for k in unset {
+        after.remove(k);
+    }
+    reflow2_core::intent::newly_settles(node_type, id, prior.map(|p| &p.properties), &after)
 }

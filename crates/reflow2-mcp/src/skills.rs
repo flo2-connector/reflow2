@@ -319,20 +319,42 @@ fn trigger(description: &str) -> &str {
 /// `Contributor`. It reports what the DESIGN holds and leaves matching the
 /// reader to the agent, the only party in the room that can.
 ///
-/// ⭐ **The silent case is the one that earns this.** A design where nobody
-/// carries a background cannot say whose vocabulary to use, and that silence is
-/// otherwise invisible — every detector reasons over what EXISTS and none asks
-/// whether something was never used at all.
+/// 🛑 **AND IT NEVER SENDS THE AGENT TO THE DESIGN FOR THE READER'S LENS**
+/// (`req:a-design-holds-who-contributed-never-a-readers-persona`, accepted
+/// 2026-09-28). A design holds who contributed to it — attribution, authority
+/// and, where it matters, a role on this design — and not a reader's
+/// background, vocabulary or way of thinking. The persona comes from the
+/// agent's host, or with no host from the agent's own memory of its user; with
+/// neither, the agent follows the person's words and may ask once, keeping the
+/// answer out of the design. Until 2026-09-30 this line told the agent to ask
+/// and "record it with `add_contributor`", two days after that requirement was
+/// accepted (`fact:the-served-lens-still-tells-the-agent-to-record-a-readers-background-in-the-design-2026-09-30`);
+/// `no_served_text_writes_a_readers_persona_into_the_design.rs` now reads this
+/// line, and every other served text, against it.
+///
+/// ⚠️ `ReaderLens` still sorts people by whether a `description` is on record
+/// (`with_background` / `without_background`, named before that requirement).
+/// That split now says only which contributors carry a written role — never
+/// whose words to use.
 pub(crate) fn lens_line(lens: &reflow2_core::ReaderLens) -> String {
     let rule = "Speak the reader's domain, never reflow2's — say what it MEANS for their design, \
                 and keep their own field's words (a systems engineer wants `requirement` and \
                 `verification`; someone who knows livestock or baseball wants theirs). This is a \
                 vocabulary swap, not simplification.";
+    // WHERE THE READER'S LENS COMES FROM, in the requirement's own order:
+    // host, then the agent's own memory, then the person's own words with at
+    // most one question — and never the design.
+    let whose = "THE READER'S LENS IS YOURS TO APPLY, AND THE DESIGN DOES NOT HOLD IT. Take it from \
+                 your host — a host such as flo2 hands over the signed-in person's persona with the \
+                 design — or, with no host, from your own memory of the person you are talking to. \
+                 With neither, follow the words they use with you; you may ask once what they do \
+                 day to day and what they trained in, and keep the answer yourself: never write it \
+                 into the design, not on a Contributor and not in any other node.";
     // "who:ajs (Anthony Sligar)": the name beside the id, so the agent can
-    // join the git author it can see to a reader the design records without a
-    // fetch per person. Anthony, 2026-09-14 — a design shared by two people
-    // records two backgrounds and cannot say which one is reading; the name is
-    // the only join there is, and it was already in the public export.
+    // join the git author it can see to a contributor the design records
+    // without a fetch per person. Anthony, 2026-09-14. Since 2026-09-30 the
+    // join is for ATTRIBUTION — who to credit what this session captures —
+    // not for finding a reader's lens in the design.
     let labelled = |ids: &[String]| -> String {
         ids.iter()
             .map(|id| match lens.names.get(id) {
@@ -342,33 +364,70 @@ pub(crate) fn lens_line(lens: &reflow2_core::ReaderLens) -> String {
             .collect::<Vec<_>>()
             .join(", ")
     };
+    // THE COUNT IS OF PEOPLE, AND SAYS SO. An agent's `description` says what
+    // a tool is, not whose words to use, so agents are not counted as people
+    // — but a count with no noun beside described agents reads as a miscount
+    // (I8).
+    let people = |n: usize| {
+        if n == 1 {
+            "1 person".to_string()
+        } else {
+            format!("{n} people")
+        }
+    };
+    let agents_left_out = match lens.agents.len() {
+        0 => String::new(),
+        n => format!(
+            " {} {} recorded too and not counted here ({}) — an agent's description says what a \
+             tool is, not whose words to use.",
+            n,
+            if n == 1 {
+                "automated agent is"
+            } else {
+                "automated agents are"
+            },
+            lens.agents.join(", ")
+        ),
+    };
+    // More than one PERSON means the agent must say whom it is crediting —
+    // whether or not anyone has a role written down.
+    let several = if lens.with_background.len() + lens.without_background.len() > 1 {
+        " More than one person is recorded: match the git author you can see to a name here, \
+         offer the match as an assumption in one sentence, and attribute what you capture to \
+         that person."
+    } else {
+        ""
+    };
     if lens.is_silent() {
-        let askable = if lens.without_background.is_empty() {
-            "Nobody is recorded in this design yet".to_string()
+        let who = if lens.without_background.is_empty() {
+            "No person is recorded in this design yet.".to_string()
         } else {
             format!(
-                "{} recorded here and none describes themselves ({})",
-                lens.without_background.len(),
+                "{} recorded here, with no role written down ({}) — attribution only: who wrote \
+                 and who approved.",
+                people(lens.without_background.len()),
                 labelled(&lens.without_background)
             )
         };
         format!(
-            "NOBODY'S BACKGROUND IS RECORDED — {askable}, so nothing here tells you whose words to \
-             use. Ask what they do day to day and what they trained in (those often differ and both \
-             matter), then record it with `add_contributor`. Until then follow the vocabulary THEY \
-             use with you. {rule}"
+            "THIS DESIGN DOES NOT SAY WHO IS READING, AND IS NOT MEANT TO. {who}{several}\
+             {agents_left_out} {whose} {rule}"
         )
     } else {
-        let several = if lens.with_background.len() > 1 {
-            " More than one is recorded: match the git author you can see to a name here, offer \
-             the match as an assumption in one sentence, and attribute to the same person."
+        let also = if lens.without_background.is_empty() {
+            String::new()
         } else {
-            ""
+            format!(
+                " Also recorded, with no role written down: {}.",
+                labelled(&lens.without_background)
+            )
         };
         format!(
-            "Recorded backgrounds: {}. Read the one for whoever you are talking to (`get_node` on \
-             the Contributor) — this says what the DESIGN holds, never who is at the keyboard. If \
-             it is somebody else, ask and record it.{several} {rule}",
+            "Contributors with a description on record: {}.{also} A contributor's record is \
+             attribution — who wrote and who approved what — and, where it matters, their role \
+             on this design (`get_node` reads it); it is not the lens for whoever is reading, \
+             and this says what the DESIGN holds, never who is at the keyboard.{several}\
+             {agents_left_out} {whose} {rule}",
             labelled(&lens.with_background)
         )
     }

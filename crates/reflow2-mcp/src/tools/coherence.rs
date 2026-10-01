@@ -81,17 +81,23 @@ impl ReflowService {
         let budget = req.budget_chars.unwrap_or(DEFAULT_REPLY_BUDGET_CHARS);
         match req.scope.as_deref() {
             None => ok_json_or_why(
-                g.detect_gaps_within(budget).map_err(dyno_err)?,
+                lift_parks_route(
+                    serde_json::to_value(g.detect_gaps_within(budget).map_err(dyno_err)?)
+                        .map_err(ser_err)?,
+                ),
                 "no open gap: every anchored gap has been put to the user or accepted — or the design holds nothing yet to have a gap about",
             ),
-            Some(seed) => ok_json(
-                g.detect_gaps_in_scope_within(
-                    seed,
-                    req.depth.unwrap_or(DEFAULT_SCOPE_DEPTH),
-                    budget,
+            Some(seed) => ok_json(lift_parks_route(
+                serde_json::to_value(
+                    g.detect_gaps_in_scope_within(
+                        seed,
+                        req.depth.unwrap_or(DEFAULT_SCOPE_DEPTH),
+                        budget,
+                    )
+                    .map_err(dyno_err)?,
                 )
-                .map_err(dyno_err)?,
-            ),
+                .map_err(ser_err)?,
+            )),
         }
     }
 
@@ -301,6 +307,29 @@ impl ReflowService {
             }
             if let Some(obj) = payload.as_object_mut() {
                 obj.insert("served_by".into(), block);
+            }
+        }
+        // WHAT OPENING THIS STORE REPAIRED among the relations it holds twice
+        // (`reflow2_core::twins`). Absent when nothing was out of step, which is
+        // every open after the first on a current binary. Present, it says what
+        // changed, because the startup note goes to a log nobody reads
+        // mid-session and a repair nobody is told about is the silent kind.
+        {
+            let repaired = g.repaired_on_open();
+            if let Some(summary) = repaired.summary()
+                && let Some(obj) = payload.as_object_mut()
+            {
+                obj.insert(
+                    "repaired_on_open".into(),
+                    json!({
+                        "summary": summary,
+                        "moved": repaired.moved,
+                        "removed": repaired.removed,
+                        "retired_properties": repaired.retired_properties,
+                        "added": repaired.added.len(),
+                        "added_first": repaired.added.iter().take(10).collect::<Vec<_>>(),
+                    }),
+                );
             }
         }
         // THE SERVER'S WRITE-THROUGH, and whether it is currently declining.
@@ -936,10 +965,20 @@ impl ReflowService {
         // sibling says, for the same reason and in the same words. Twelve of
         // these were minted unattributed before the parameter existed.
         let mut out = json!({ "acknowledged": req.defect_id, "decision_id": decision_id });
+        // Settles by being made (crate::settles); an unsigned one is recorded
+        // and said, never refused — the declared policy for this tool.
+        let unsigned = crate::settles::gate(
+            "acknowledge_defect",
+            crate::settles::rule("acknowledge_defect").settles_value(None),
+            req.approver.as_deref(),
+            "an acknowledgement",
+        )?
+        .is_some();
         match req.approver.as_deref() {
             Some(who) => {
                 out["approved_by"] = json!(who);
             }
+            None if !unsigned => {}
             None => {
                 out["approved_by"] = JsonValue::Null;
                 out["unattributed"] = json!(
@@ -1157,10 +1196,20 @@ impl ReflowService {
         // never learns it happened is exactly how 49 of these were written in
         // one pass before anyone noticed.
         let mut out = json!({ "acknowledged": req.gap_id, "decision_id": decision_id });
+        // Settles by being made (crate::settles); an unsigned one is recorded
+        // and said, never refused — the declared policy for this tool.
+        let unsigned = crate::settles::gate(
+            "acknowledge_gap",
+            crate::settles::rule("acknowledge_gap").settles_value(None),
+            req.approver.as_deref(),
+            "an acknowledgement",
+        )?
+        .is_some();
         match req.approver.as_deref() {
             Some(who) => {
                 out["approved_by"] = json!(who);
             }
+            None if !unsigned => {}
             None => {
                 out["approved_by"] = JsonValue::Null;
                 out["unattributed"] = json!(
@@ -1196,10 +1245,45 @@ impl ReflowService {
                 reason: g.reason,
             })
             .collect();
+        // Each item settles (crate::settles declares the batch's signature at
+        // `gaps[].approver`). The items that name nobody are recorded and SAID,
+        // as the single form says it — until 2026-09-29 the batch said nothing.
+        let rule = crate::settles::rule("acknowledge_gaps");
+        let unsigned: Vec<String> = items
+            .iter()
+            .filter(|i| {
+                crate::settles::gate(
+                    "acknowledge_gaps",
+                    rule.settles_value(None),
+                    i.approver.as_deref(),
+                    "an acknowledgement",
+                )
+                .ok()
+                .flatten()
+                .is_some()
+            })
+            .map(|i| i.gap_id.clone())
+            .collect();
         let mut g = self.write_lock().await?;
         let report = g
             .acknowledge_gaps_with(&items, req.check_only)
             .map_err(dyno_err)?;
+        if report.applied && !report.check_only && !unsigned.is_empty() {
+            let items: Vec<JsonValue> = report
+                .written
+                .into_iter()
+                .map(|decision_id| json!({ "decision_id": decision_id }))
+                .collect();
+            return ok_json(json!({
+                "applied": true,
+                "written": items.len(),
+                "items": items,
+                "unattributed": {
+                    "gap_ids": unsigned,
+                    "note": "These acknowledgements carry NOBODY'S NAME. Each mints an accepted Decision — settled intent — and `rule:design-intent-moves-only-on-the-owners-word` says that needs a name, so check_intent_authority will report them. Pass `approver` on each item (the Contributor whose judgement it is) to record it. Recorded anyway rather than refused, as the single-gap form does.",
+                },
+            }));
+        }
         bulk_result(report, |decision_id| json!({ "decision_id": decision_id }))
     }
 
@@ -1358,7 +1442,11 @@ impl ReflowService {
         description = "DOES THE DESIGN CLOSE? One read that sums five computations that already \
                        exist — the delivery thread, every budget's rollup, seam coverage, the \
                        scheduled work still governed by open decisions, and quantity provenance — \
-                       against the threshold the owner declared with set_closure_criterion. Each \
+                       against the threshold the owner declared with set_closure_criterion. TWO READINGS, EACH \
+                       NAMING ITS PHASE: the top level is BUILD (delivered, checked, budgets on \
+                       measured numbers); `design` is DESIGN (traced to an allocated capability \
+                       with a check planned, budgets on stated estimates) and never stands in for \
+                       the build verdict. Parked requirements count as parked, not as holes. Each \
                        leg says what it SWEPT ('budgets: 1 modelled'), its share, and its worst \
                        offender, so a leg with nothing to run on cannot read as clean: a counted \
                        leg that swept nothing does not close, and says why. `first_hole` is the \
@@ -1377,6 +1465,33 @@ impl ReflowService {
     ) -> Result<CallToolResult, McpError> {
         let g = self.graph.read().await;
         ok_json(g.closure_report().map_err(dyno_err)?)
+    }
+
+    #[tool(
+        description = "WHAT DOES reflow2 DERIVE, AND HOW MUCH? Every derived relation reflow2 \
+                       computes rather than stores (delivered, realized, checked, discontinued, the \
+                       seams, hierarchy issues, reruns owed, certainty, budgets, flows, \
+                       readiness, arrival, closure …), each DECLARED by schema/derived/relations.yaml \
+                       with its reading over the sixteen primitives, its rule, deduced or induced, \
+                       the edges its rule reads and the code that computes the relation — then \
+                       counted over the design by that same code path, with a few example ids. \
+                       Reports derived facts beside asserted facts. The blast-radius closure is \
+                       declared but not counted (a rule, answered per seed by propagate_from). \
+                       Stores nothing: whether a derived result should be KEPT is an open decision. \
+                       `only` narrows to named relations. Ask for this when you want to know what \
+                       the design computes from what it stores, or how many derived facts there are.",
+        annotations(read_only_hint = true)
+    )]
+    pub async fn derived_report(
+        &self,
+        Parameters(req): Parameters<DerivedReportReq>,
+    ) -> Result<CallToolResult, McpError> {
+        let sample = req
+            .sample
+            .unwrap_or(reflow2_core::derived::DEFAULT_DERIVED_SAMPLE)
+            .min(20);
+        let g = self.graph.read().await;
+        ok_json(g.derived_report(&req.only, sample).map_err(dyno_err)?)
     }
 
     #[tool(
@@ -1837,3 +1952,51 @@ fn verification_digest(
 /// a corpus whose median name is 76 words. It is a display bound, never a
 /// storage one: nothing is lost, and `name_truncated` says when it applied.
 const NAME_WORDS_IN_ROLLUP: usize = 25;
+
+/// Mark every gap a `parks` ruling can clear, and send the sentence saying how
+/// ONCE per reply.
+///
+/// Parking was named on no gap that reads it, and four field reports record a
+/// person stuck at one of them never told it existed (the dev_reflow2
+/// two-agent exercise's I12 was the fourth,
+/// `fact:root-cause-parking-is-still-not-named-where-an-unsatisfied-requirement-is-read-2026-09-29`).
+/// Appending the sentence to each description would repeat ~500 characters per
+/// row — the cost [`lift_repair_notes`] measured at 52% of a reply — and would
+/// push every such gap past the report roll-up's word budget. So each row says
+/// `parks: true` and the reply says how, once, naming every finding it reads.
+pub fn lift_parks_route(mut out: JsonValue) -> JsonValue {
+    fn mark(v: &mut JsonValue, marked: &mut usize) {
+        match v {
+            JsonValue::Object(m) => {
+                let parkable = m
+                    .get("gap_source")
+                    .and_then(JsonValue::as_str)
+                    .is_some_and(|k| reflow2_core::heal::PARKING_READERS.contains(&k));
+                if parkable {
+                    m.insert("parks".to_string(), JsonValue::Bool(true));
+                    *marked += 1;
+                }
+                for x in m.values_mut() {
+                    mark(x, marked);
+                }
+            }
+            JsonValue::Array(a) => {
+                for x in a {
+                    mark(x, marked);
+                }
+            }
+            _ => {}
+        }
+    }
+    let mut marked = 0usize;
+    mark(&mut out, &mut marked);
+    if marked > 0
+        && let Some(obj) = out.as_object_mut()
+    {
+        obj.insert(
+            "parks_route".to_string(),
+            JsonValue::String(reflow2_core::heal::parks_route().to_string()),
+        );
+    }
+    out
+}

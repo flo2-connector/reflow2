@@ -5,10 +5,13 @@
 //! thin stdio entry point over it; integration tests drive the service directly.
 
 pub mod auto_export;
+pub mod bulk_edges;
+pub mod caller;
 pub mod client_setup;
 pub mod content_policy;
 pub mod degraded;
 pub mod drain;
+pub mod drawn_edges;
 pub mod dto;
 pub mod enum_schema;
 pub mod export_write;
@@ -24,10 +27,12 @@ pub mod pointer;
 pub mod prose_currency;
 pub mod proxy;
 pub mod readiness;
+pub mod receipt;
 pub mod registry;
 pub mod registry_http;
 pub mod reply_budget;
 pub mod service;
+pub mod settles;
 pub mod shared;
 pub mod skills;
 pub mod sync_debt;
@@ -36,3 +41,4 @@ pub mod tools;
 pub mod upstream;
 pub mod usage;
 pub mod wall_check;
+pub mod writers;

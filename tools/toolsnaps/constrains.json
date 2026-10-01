@@ -2,7 +2,7 @@
   "annotations": {
     "readOnlyHint": false
   },
-  "description": "Record that a Constraint CONSTRAINS a target, with the target's `contribution` to the budget (in the Constraint's quantity unit) and the `basis` for the number (estimated/evidence/measured) and its `source` — the tool, artifact or person the number came from. An edge without a contribution is reported by budget_report as unstated — never treated as zero; a number with no source is named as unsourced. A contribution may be NEGATIVE — a reclaim, a credit, stacking that gives floor area back — and rolls into the total like any other (bhome 2026-09-18: the mechanism existed and nothing said so, so reclaimed space went uncounted). ⭐ THIS IS THE CONTRACT WITH AN EXTERNAL MEASURING TOOL: design the budget here, measure it in the tool (an IFC take-off, a ray trace), write the number back with `basis: measured`, `source` naming the tool, `unit` and `measured_at`, and budget_report says whether it still fits (bhome 2026-09-16: the seam existed and nothing pointed at it). Ask for this when you want to say how much a part contributes to a budget or limit — its share of the mass, latency, cost or other quantity.",
+  "description": "Record that a Constraint CONSTRAINS a target, with the target's `contribution` to the budget (in the Constraint's quantity unit) and the `basis` for the number (estimated/evidence/measured) and its `source` — the tool, artifact or person the number came from. An edge without a contribution is reported by budget_report as unstated — never treated as zero; a number with no source is named as unsourced. A contribution may be NEGATIVE — a reclaim, a credit, stacking that gives floor area back — and rolls into the total like any other (bhome 2026-09-18: the mechanism existed and nothing said so, so reclaimed space went uncounted). ⭐ THIS IS THE CONTRACT WITH AN EXTERNAL MEASURING TOOL: design the budget here, measure it in the tool (an IFC take-off, a ray trace), write the number back with `basis: measured`, `source` naming the tool, `unit` and `measured_at`, and budget_report says whether it still fits (bhome 2026-09-16: the seam existed and nothing pointed at it). For latency along a chain, draw DEPENDS_ON among the contributors and set `composition: path`. Ask for this when you want to say how much a part contributes to a budget or limit — its share of the mass, latency, cost or other quantity. MANY AT ONCE: `draw_edges`, items {\"tool\": \"constrains\", \"arguments\": {…}}, same checks, all or nothing.",
   "inputSchema": {
     "$schema": "https://json-schema.org/draft/2020-12/schema",
     "additionalProperties": false,
@@ -22,8 +22,16 @@
         ]
       },
       "constraint_id": {
-        "description": "The Constraint (`con:…`) that limits the target — the source of the CONSTRAINS edge.",
+        "description": "The Constraint (`con:…`) that limits the target — the source of the CONSTRAINS edge. A\n`DesignRule` binding what it governs is accepted too.",
         "type": "string"
+      },
+      "constraint_type": {
+        "default": null,
+        "description": "The `constraint_id` node's type — `Constraint` or `DesignRule`.\nOptional: resolved from the id when omitted (the id prefix names the\ntype); an id held by more than one type is REFUSED, never guessed — pass\nit then. Any type the schema accepts at this end is accepted here: a\ntyped tool is never narrower than its schema.",
+        "type": [
+          "string",
+          "null"
+        ]
       },
       "contribution": {
         "default": null,
@@ -33,6 +41,15 @@
           "number",
           "null"
         ]
+      },
+      "echo": {
+        "default": "receipt",
+        "description": "What the reply carries. `receipt` (the default) names the node, echoes each stored value of at most 200 characters, gives longer ones by size, and names the snapshot that keeps anything a revise replaced. `node` returns the whole stored node and every prior value.",
+        "enum": [
+          "receipt",
+          "node"
+        ],
+        "type": "string"
       },
       "measured_at": {
         "default": null,

@@ -2,11 +2,20 @@
   "annotations": {
     "readOnlyHint": false
   },
-  "description": "Flag that a design element CONTRADICTS an EnvironmentRule (VIOLATES_RULE). Flagged, never silently dropped, and it lands `proposed` — untriaged — which raises a gap until somebody answers it. Put the specific rule text and the offending detail in `evidence`. Triage with set_violation_status: `confirmed` records a granted variance, which is KEPT and documented rather than deleted, and `rejected` says it must be fixed.",
+  "description": "Flag that a design element CONTRADICTS an EnvironmentRule (VIOLATES_RULE). Flagged, never silently dropped, and it lands `proposed` — untriaged — which raises a gap until somebody answers it. Put the specific rule text and the offending detail in `evidence`. Triage with set_violation_status: `confirmed` records a granted variance, which is KEPT and documented rather than deleted, and `rejected` says it must be fixed. MANY AT ONCE: `draw_edges`, items {\"tool\": \"violates_rule\", \"arguments\": {…}}, same checks, all or nothing.",
   "inputSchema": {
     "$schema": "https://json-schema.org/draft/2020-12/schema",
     "additionalProperties": false,
     "properties": {
+      "echo": {
+        "default": "receipt",
+        "description": "What the reply carries. `receipt` (the default) names the node, echoes each stored value of at most 200 characters, gives longer ones by size, and names the snapshot that keeps anything a revise replaced. `node` returns the whole stored node and every prior value.",
+        "enum": [
+          "receipt",
+          "node"
+        ],
+        "type": "string"
+      },
       "element_id": {
         "description": "The design element that contradicts the rule; type resolved from the id.\nThe node in violation; its type is `element_type`.",
         "type": "string"

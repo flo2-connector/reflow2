@@ -2,11 +2,20 @@
   "annotations": {
     "readOnlyHint": false
   },
-  "description": "Nest one Component inside another (parent CONTAINS child) — the assembly spine — DETACHING any parent it already had and naming it in the reply, so a child has one place on the spine (a second parent was the recorded cause of the multiple_parents defect). The parent should sit exactly one level above the child: nesting two components at the same level is reported as a level_mismatch, and skipping a level as a missing_intermediate_level. Set `level` on both via add_component first, or every containment looks like a mismatch.",
+  "description": "Nest one Component inside another (parent CONTAINS child) — the assembly spine — DETACHING any parent it already had and naming it in the reply, so a child has one place on the spine (a second parent was the recorded cause of the multiple_parents defect). The parent should sit exactly one level above the child: nesting two components at the same level is reported as a level_mismatch, and skipping a level as a missing_intermediate_level. Set `level` on both via add_component first, or every containment looks like a mismatch. MANY AT ONCE: `draw_edges`, items {\"tool\": \"contain_component\", \"arguments\": {…}}, same checks, all or nothing.",
   "inputSchema": {
     "$schema": "https://json-schema.org/draft/2020-12/schema",
     "additionalProperties": false,
     "properties": {
+      "echo": {
+        "default": "receipt",
+        "description": "What the reply carries. `receipt` (the default) names the node, echoes each stored value of at most 200 characters, gives longer ones by size, and names the snapshot that keeps anything a revise replaced. `node` returns the whole stored node and every prior value.",
+        "enum": [
+          "receipt",
+          "node"
+        ],
+        "type": "string"
+      },
       "from_id": {
         "description": "The PARENT `Component`.\n⚠️ Direction is the opposite of `decomposes`, which takes the child first.",
         "type": "string"

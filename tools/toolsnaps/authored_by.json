@@ -2,7 +2,7 @@
   "annotations": {
     "readOnlyHint": false
   },
-  "description": "Attribute a design node to a Contributor (AUTHORED_BY) — whose word this Decision/Requirement/… is. `role` is author (default), reviewer, or approver. This is the structured author behind a node; it is deliberately not a traceability edge, so it never enlarges a blast radius. Record it when a decision is MADE, not at session end — captured-when-decided is what keeps the authorship honest. Ask for this to record whose idea this was.",
+  "description": "Attribute a design node to a Contributor (AUTHORED_BY) — whose word this Decision/Requirement/… is. `role` is author (default), reviewer, or approver. This is the structured author behind a node; it is deliberately not a traceability edge, so it never enlarges a blast radius. Record it when a decision is MADE, not at session end — captured-when-decided is what keeps the authorship honest. Ask for this to record whose idea this was. MANY AT ONCE: `draw_edges`, items {\"tool\": \"authored_by\", \"arguments\": {…}}, same checks, all or nothing.",
   "inputSchema": {
     "$schema": "https://json-schema.org/draft/2020-12/schema",
     "additionalProperties": false,
@@ -17,6 +17,15 @@
       },
       "contributor_id": {
         "description": "The `Contributor` whose word this node is.",
+        "type": "string"
+      },
+      "echo": {
+        "default": "receipt",
+        "description": "What the reply carries. `receipt` (the default) names the node, echoes each stored value of at most 200 characters, gives longer ones by size, and names the snapshot that keeps anything a revise replaced. `node` returns the whole stored node and every prior value.",
+        "enum": [
+          "receipt",
+          "node"
+        ],
         "type": "string"
       },
       "from_id": {

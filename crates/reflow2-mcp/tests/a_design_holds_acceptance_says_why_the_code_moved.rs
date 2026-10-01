@@ -48,11 +48,10 @@ async fn seeded(checksum: Option<&str>) -> ReflowService {
         description: Some("ball flight".into()),
         status: None,
         tier: None,
-        is_entry_point: None,
-        is_exit_point: None,
         satisfies: None,
         allocated_to: None,
         distinct_from: None,
+        replaces: None,
     })));
     j!(s.link_artifact(Parameters(LinkArtifactReq {
         artifact_id: "art:flight".into(),

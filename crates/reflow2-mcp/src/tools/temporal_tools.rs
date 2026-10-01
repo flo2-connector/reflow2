@@ -246,11 +246,7 @@ impl ReflowService {
         Parameters(req): Parameters<PrecedesReq>,
     ) -> Result<CallToolResult, McpError> {
         let mut g = self.write_lock().await?;
-        g.precedes(&req.earlier_epoch, &req.later_epoch)
-            .map_err(dyno_err)?;
-        ok_json(serde_json::json!({
-            "earlier": req.earlier_epoch, "later": req.later_epoch
-        }))
+        Self::precedes_on(&mut g, req)
     }
 
     #[tool(
@@ -265,36 +261,25 @@ impl ReflowService {
         Parameters(req): Parameters<PinAtEpochReq>,
     ) -> Result<CallToolResult, McpError> {
         let mut g = self.write_lock().await?;
-        let node_type = crate::service::resolve_node_type(
-            &g,
-            req.node_type.as_deref(),
-            &req.node_id,
-            "node_type",
-        )?;
-        g.pin_at_epoch(&node_type, &req.node_id, &req.epoch_id)
-            .map_err(dyno_err)?;
-        ok_json(serde_json::json!({
-            "pinned": req.node_id, "at_epoch": req.epoch_id
-        }))
+        Self::pin_at_epoch_on(&mut g, req)
     }
 
     #[tool(
         description = "Schedule a Requirement, Capability, QUESTION, Verification or Decision against the \
                        moment it is DUE — the satisfaction schedule, which is what makes a roadmap answerable \
-                       (req:epochs-can-be-planned). The target is a DesignEpoch for the time axis or a Release \
-                       for the capability-increment axis: two paired views of one architecture, so one edge \
-                       serves both. `modality` says which kind of claim this is — `expected` is a plan, \
+                       (req:epochs-can-be-planned). The target is a DesignEpoch (the time axis) or a Release \
+                       (the capability-increment axis); one edge serves both. `modality` says which kind of claim this is — `expected` is a plan, \
                        `required` is an obligation whose miss at arrival is a computed violation rather than a \
                        slip. THERE IS NO `achieved` MODALITY: delivery is computed from the golden thread and \
-                       never asserted, so a schedule that recorded its own success would be a second source of \
-                       truth able to disagree with the first. DELIBERATELY NOT add_epoch's AT_EPOCH, which \
+                       never asserted, so a schedule recording its own success would be a second source of \
+                       truth. DELIBERATELY NOT add_epoch's AT_EPOCH, which \
                        means `belongs to` rather than `due at`. To reschedule, record the change against the \
                        epoch rather than re-pointing this edge — moving it silently would erase the slip. ⭐ \
                        SCHEDULING A `Question` IS HOW THE RESOLUTION OF A GAP GETS PLANNED: gaps are recomputed \
                        every run and are not nodes, so there is nothing to schedule, but the Question \
                        `gap_to_prompt` mints when a gap is put to somebody IS durable — and it is DELIVERED \
-                       WHEN ANSWERED, needing no artifact and no check, because the whole content of closing a \
-                       gap is that the person whose judgement it needed gave one. A WITHDRAWN question reports \
+                       WHEN ANSWERED, needing no artifact and no check, because closing a gap IS the person \
+                       whose judgement it needed giving one. A WITHDRAWN question reports \
                        `discontinued`, not `outstanding`. Ask for this to put a piece of work into a release, \
                        increment or milestone.",
         annotations(read_only_hint = false)
@@ -303,34 +288,8 @@ impl ReflowService {
         &self,
         Parameters(req): Parameters<ScheduleForReq>,
     ) -> Result<CallToolResult, McpError> {
-        let modality = req.modality.as_deref().unwrap_or("expected");
         let mut g = self.write_lock().await?;
-        let target_type = crate::service::resolve_node_type(
-            &g,
-            req.target_type.as_deref(),
-            &req.target_id,
-            "target_type",
-        )?;
-        let item_type = crate::service::resolve_node_type(
-            &g,
-            req.item_type.as_deref(),
-            &req.item_id,
-            "item_type",
-        )?;
-        g.schedule_for(
-            &item_type,
-            &req.item_id,
-            &target_type,
-            &req.target_id,
-            modality,
-            req.recorded_at.as_deref(),
-        )
-        .map_err(dyno_err)?;
-        ok_json(serde_json::json!({
-            "scheduled": req.item_id,
-            "for": req.target_id,
-            "modality": modality
-        }))
+        Self::schedule_for_on(&mut g, req)
     }
 
     #[tool(
@@ -463,12 +422,26 @@ impl ReflowService {
         description = "Every piece of hand-rolled work this design has recorded, with the diagnosis that separates a MISSING tool from an UNFINDABLE one. Read it when deciding what to build or what to surface: a run of `tool_not_found` against a tool that exists is a discoverability repair, and a run of `tool_missing` is a feature nobody has written. Empty means nobody has reported any — which is NOT the same as nobody having done work by hand, and must not be read as it, since the signal depends on a session noticing and saying so. Ask for this when you want to know what sessions have had to script by hand because no tool did it.",
         annotations(read_only_hint = true)
     )]
-    pub async fn manual_work_ledger(&self) -> Result<CallToolResult, McpError> {
+    pub async fn manual_work_ledger(
+        &self,
+        Parameters(req): Parameters<crate::reply_budget::BudgetReq>,
+    ) -> Result<CallToolResult, McpError> {
+        // BOUNDED since 2026-09-28: on reflow2's own design the ledger grew past
+        // the 30,000-character default (31,037), and the reply-budget gate
+        // (tools/replies_are_bounded.py) failed on it, as it exists to. Prose
+        // (`what`) is trimmed first; the list is NOT sampled, so every entry's
+        // id, diagnosis and tool survive and the ledger stays complete — a
+        // count of what sessions built by hand is the point of reading it.
         let g = self.graph.read().await;
-        ok_json_or_why(
-            g.manual_work_report().map_err(dyno_err)?,
+        let entries = g.manual_work_report().map_err(dyno_err)?;
+        json_result(empty_speaks(
+            crate::reply_budget::bound_reply(
+                json!({ "count": entries.len(), "items": entries }),
+                req.budget(),
+                "Every entry's id, diagnosis and tool survive trimming; read one in full with get_node on its id.",
+            ),
             "no session has reported work done by hand (report_manual_work) — which is not the same as no work having been done by hand",
-        )
+        ))
     }
 
     // ---- Temporal / CHANGE (deterministic, mutating) ----
@@ -656,6 +629,20 @@ impl ReflowService {
         )?;
         let statement = __rf.str("statement", req.statement);
         let subject_id = __rf.str("subject_id", Some(req.subject_id.clone()));
+        // THE DEFAULTS ARE A CREATE'S, NEVER A REVISE'S. Written into the merge
+        // on every call from #447 (2026-09-07) until 2026-09-29, so a revise
+        // that named neither field demoted a `defect` to a `finding` and turned
+        // a `forecast` into a `measured` claim — three field sightings, the last
+        // in a triage of the very report that measured it
+        // (fact:root-cause-record-finding-writes-its-defaults-on-every-revise-
+        // 2026-09-28). On a revise, a field not passed is not written, and the
+        // merge keeps what the node holds.
+        let fact_type = __rf
+            .default_on_create(req.fact_type.as_deref(), "finding")
+            .map(str::to_string);
+        let basis = __rf
+            .default_on_create(req.basis.as_deref(), "measured")
+            .map(str::to_string);
         __rf.finish()?;
         drop(g0);
 
@@ -689,8 +676,12 @@ impl ReflowService {
         if let Some(v) = req.name.as_deref() {
             props = props.set("name", v);
         }
-        props = props.set("fact_type", req.fact_type.as_deref().unwrap_or("finding"));
-        props = props.set("basis", req.basis.as_deref().unwrap_or("measured"));
+        if let Some(v) = fact_type.as_deref() {
+            props = props.set("fact_type", v);
+        }
+        if let Some(v) = basis.as_deref() {
+            props = props.set("basis", v);
+        }
         if let Some(c) = req.confidence {
             props = props.set("confidence", c);
         }
@@ -720,6 +711,26 @@ impl ReflowService {
                 ),
             );
         }
+        // Every edge drawn here is named in the reply as a sentence, through
+        // the one shared path (crate::drawn_edges). The subject edge is read
+        // BEFORE the node is written: `subject_id` is its stored twin
+        // (twins.rs), so the store draws HAS_TEMPORAL_FACT as part of the
+        // upsert, and asking afterwards would report this call's own new edge
+        // as one that was already there.
+        let mut edges = crate::drawn_edges::DrawnEdges::new();
+        let subject_edge_was_present = crate::drawn_edges::present(
+            &g,
+            &subject_id,
+            reflow2_core::nodes::edge::HAS_TEMPORAL_FACT,
+            &req.id,
+        )
+        .map_err(dyno_err)?;
+        edges.record(
+            &subject_id,
+            reflow2_core::nodes::edge::HAS_TEMPORAL_FACT,
+            &req.id,
+            subject_edge_was_present,
+        );
         let node = g
             .upsert_node(reflow2_core::nodes::node::TEMPORAL_FACT, &req.id, props)
             .map_err(dyno_err)?;
@@ -754,6 +765,9 @@ impl ReflowService {
                     None,
                 ));
             }
+            edges
+                .classify(&g, cause_id, reflow2_core::nodes::edge::CAUSES, &req.id)
+                .map_err(dyno_err)?;
             g.create_edge(
                 reflow2_core::nodes::edge::CAUSES,
                 &cause_type,
@@ -766,11 +780,13 @@ impl ReflowService {
             .map_err(dyno_err)?;
             caused_by = json!({ "node_id": cause_id, "node_type": cause_type });
         }
-        ok_json(json!({
+        let mut out = json!({
             "finding": NodeDto::from(node),
             "subject": { "node_id": subject_id, "node_type": subject_type },
             "caused_by": caused_by,
-        }))
+        });
+        edges.attach(&mut out);
+        ok_json(out)
     }
 
     #[tool(
@@ -887,6 +903,7 @@ impl ReflowService {
             })
             .map_err(dyno_err)?;
         let mut changed = Vec::new();
+        let mut edges = crate::drawn_edges::DrawnEdges::new();
         for a in &affected {
             let a_type = crate::service::resolve_node_type(
                 &g,
@@ -895,6 +912,9 @@ impl ReflowService {
                 "node_type",
             )?;
             let action = a.action.as_deref().unwrap_or("modified");
+            edges
+                .classify(&g, &req.id, reflow2_core::nodes::edge::CHANGED, &a.node_id)
+                .map_err(dyno_err)?;
             g.create_edge(
                 reflow2_core::nodes::edge::CHANGED,
                 reflow2_core::nodes::node::CHANGE_EVENT,
@@ -911,10 +931,14 @@ impl ReflowService {
         // the-refusal` lost its reasoning, and how bhome's ChangeEvent lost
         // its own on 2026-08-31. Warns; never refuses — the event above is
         // already written.
+        // Read BEFORE the node moves into the reply: the `undated` note below
+        // describes the EVENT AS STORED, not the call (see there).
+        let dated = event.properties.contains_key("detected_at");
         let mut out = json!({
             "event": NodeDto::from(event),
             "changed": changed,
         });
+        edges.attach(&mut out);
         if let Some(am) = crate::tools::capture::absorbed_markup(&[
             ("name", Some(&name)),
             ("summary", req.summary.as_deref()),
@@ -933,7 +957,15 @@ impl ReflowService {
         // WARNS, NEVER REFUSES: the event above is already written, and an
         // undated change is a true state of the record. Naming the COST rather
         // than the absence is the difference between this and a bare "no date".
-        if req.detected_at.is_none() {
+        //
+        // ⚠️ IT READS THE STORED EVENT, NOT THE CALL. Until 2026-09-29 it
+        // tested `req.detected_at`, so revising a DATED event without re-sending
+        // its date — which the contract says keeps it — was told the event was
+        // undated (#472; dev_storyflow 09-23 and 09-25, walked in
+        // fact:root-cause-the-undated-note-reads-the-call-not-the-stored-node-
+        // 2026-09-28). A false alarm here invites a needless re-send, which is
+        // the round trip the revise contract exists to remove.
+        if !dated {
             out["undated"] = JsonValue::String(
                 "This ChangeEvent carries no `detected_at`, so nothing can place it in time. \
                  Two readings go quiet as a result: `changelog_view` windows entries BY EPOCH \
@@ -1019,6 +1051,81 @@ impl ReflowService {
         ok_json(json!({
             "prior_snapshot": prior.map(NodeDto::from),
             "current": NodeDto::from(current),
+        }))
+    }
+}
+
+// ─── typed edge helper bodies, shared with `draw_edges` ──────────────────────
+
+impl ReflowService {
+    /// The body of [`Self::pin_at_epoch`] over a graph the caller already holds: the
+    /// one code path the tool and `draw_edges` both run.
+    pub(crate) fn pin_at_epoch_on(
+        g: &mut reflow2_core::DesignGraph,
+        req: PinAtEpochReq,
+    ) -> Result<CallToolResult, McpError> {
+        let node_type = crate::service::resolve_node_type(
+            g,
+            req.node_type.as_deref(),
+            &req.node_id,
+            "node_type",
+        )?;
+        g.pin_at_epoch(&node_type, &req.node_id, &req.epoch_id)
+            .map_err(dyno_err)?;
+        ok_json(serde_json::json!({
+            "pinned": req.node_id, "at_epoch": req.epoch_id
+        }))
+    }
+
+    /// The body of [`Self::precedes`] over a graph the caller already holds: the
+    /// one code path the tool and `draw_edges` both run.
+    pub(crate) fn precedes_on(
+        g: &mut reflow2_core::DesignGraph,
+        req: PrecedesReq,
+    ) -> Result<CallToolResult, McpError> {
+        g.precedes(&req.earlier_epoch, &req.later_epoch)
+            .map_err(dyno_err)?;
+        ok_json(serde_json::json!({
+            "earlier": req.earlier_epoch, "later": req.later_epoch
+        }))
+    }
+}
+
+// ─── typed edge helper bodies, shared with `draw_edges` ──────────────────────
+
+impl ReflowService {
+    /// The body of [`Self::schedule_for`] over a graph the caller already holds: the
+    /// one code path the tool and `draw_edges` both run.
+    pub(crate) fn schedule_for_on(
+        g: &mut reflow2_core::DesignGraph,
+        req: ScheduleForReq,
+    ) -> Result<CallToolResult, McpError> {
+        let modality = req.modality.as_deref().unwrap_or("expected");
+        let target_type = crate::service::resolve_node_type(
+            g,
+            req.target_type.as_deref(),
+            &req.target_id,
+            "target_type",
+        )?;
+        let item_type = crate::service::resolve_node_type(
+            g,
+            req.item_type.as_deref(),
+            &req.item_id,
+            "item_type",
+        )?;
+        g.schedule_for(
+            &item_type,
+            &req.item_id,
+            &target_type,
+            &req.target_id,
+            modality,
+            req.recorded_at.as_deref(),
+        )
+        .map_err(dyno_err)?;
+        ok_json(serde_json::json!({
+            "scheduled": req.item_id,
+            "for": req.target_id,
+            "modality": modality
         }))
     }
 }

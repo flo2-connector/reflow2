@@ -2,7 +2,7 @@
   "annotations": {
     "readOnlyHint": false
   },
-  "description": "Record that a value was FITTED to a piece of evidence, so that same evidence can no longer count as its validation (CALIBRATED_AGAINST). Use it for any empirically-calibrated value — a coefficient fitted to a published anchor, a constant tuned to a dataset, a model matched to a measurement. Agreement with that evidence afterwards is a FIT, NOT A TEST, and `evidence_report` marks any check resting on it as consumed and excludes it from independent evidence. This has to be recorded rather than detected: no check inside a design can establish its own independence, so nothing can find the circularity by analysis. Also a traceability edge — correcting the anchor puts every value fitted to it in the blast radius.",
+  "description": "Record that a value was FITTED to a piece of evidence, so that same evidence can no longer count as its validation (CALIBRATED_AGAINST). Use it for any empirically-calibrated value — a coefficient fitted to a published anchor, a constant tuned to a dataset, a model matched to a measurement. Agreement with that evidence afterwards is a FIT, NOT A TEST, and `evidence_report` marks any check resting on it as consumed and excludes it from independent evidence. This has to be recorded rather than detected: no check inside a design can establish its own independence, so nothing can find the circularity by analysis. Also a traceability edge — correcting the anchor puts every value fitted to it in the blast radius. MANY AT ONCE: `draw_edges`, items {\"tool\": \"calibrated_against\", \"arguments\": {…}}, same checks, all or nothing.",
   "inputSchema": {
     "$schema": "https://json-schema.org/draft/2020-12/schema",
     "additionalProperties": false,
@@ -13,6 +13,15 @@
           "string",
           "null"
         ]
+      },
+      "echo": {
+        "default": "receipt",
+        "description": "What the reply carries. `receipt` (the default) names the node, echoes each stored value of at most 200 characters, gives longer ones by size, and names the snapshot that keeps anything a revise replaced. `node` returns the whole stored node and every prior value.",
+        "enum": [
+          "receipt",
+          "node"
+        ],
+        "type": "string"
       },
       "evidence_id": {
         "description": "The evidence fitted to; its type is `evidence_type`.",

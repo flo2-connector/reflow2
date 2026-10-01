@@ -105,6 +105,22 @@ pub struct DesignGraph {
     /// `None` means nobody is recording, which is every write that has not
     /// asked, so the default costs nothing. See `crate::attribution`.
     pub(crate) touch_log: Option<Vec<(String, String)>>,
+    /// The automated agent the current write goes THROUGH, when a session or
+    /// request named one — stamped onto every authorship and approval the write
+    /// records, beside the contributor it credits
+    /// (`req:a-write-and-an-approval-record-the-agent-and-the-person-it-acts-for`).
+    /// `None` is every write that named no agent, so the default costs nothing
+    /// and records nothing. See `crate::acting`.
+    pub(crate) acting: Option<crate::acting::Acting>,
+    /// Who may sign on the write now in progress, when the engine is served
+    /// for others (`crate::intent::Signer`, #616 fix 4). `None` is every
+    /// local write, which is held to nothing new. Installed and ended around
+    /// each write the way `acting` is.
+    pub(crate) signer: Option<crate::intent::Signer>,
+    /// What opening this store repaired among the relations it holds twice
+    /// (`crate::twins`). Kept so `loop_status` can say it: a repair on open
+    /// that went only to a startup log would be the silent kind.
+    pub(crate) repaired_on_open: crate::twins::TwinRepairs,
 }
 
 /// What [`DesignGraph::derived`] holds. `generation` is the engine write
@@ -330,6 +346,9 @@ impl DesignGraph {
             store_path: None,
             derived: Default::default(),
             touch_log: None,
+            acting: None,
+            signer: None,
+            repaired_on_open: Default::default(),
         })
     }
 
@@ -442,6 +461,9 @@ impl DesignGraph {
             store_path: Some(path.to_string()),
             derived: Default::default(),
             touch_log: None,
+            acting: None,
+            signer: None,
+            repaired_on_open: Default::default(),
         };
         // Legacy AUTHORED_BY edges (single `role`) move to the set shape on
         // every open — idempotent, one edge scan, and the only way to make an
@@ -452,6 +474,13 @@ impl DesignGraph {
         // REALIZES stopped accepting any target; a store written before then is
         // brought over on open, the same way and for the same reason.
         graph.migrate_realizes_onto_checks()?;
+        // Relations stored twice are brought into step with their authority
+        // on every open, idempotently, and what changed is KEPT for
+        // `loop_status` rather than dropped: the two migrations above discard
+        // their counts, and a repair nobody is told about is the drift
+        // `req:a-relation-stored-in-more-than-one-place-has-one-authoritative-copy-and-no-copy-drifts-unnoticed`
+        // exists to end.
+        graph.repaired_on_open = graph.repair_stored_twins()?;
         Ok((graph, provenance))
     }
 
@@ -565,9 +594,27 @@ impl DesignGraph {
             widen_ints_for_float_props(&def.properties, &mut props);
         }
         self.refuse_dangling_node_refs(node_type, &props)?;
+        // WHO MAY SETTLE (`crate::intent::Signer`): on an engine served for
+        // others with nobody established, no value moves into settled intent.
+        self.check_settle_write(node_type, id, &props)?;
+        // A node that holds a relation twice (`crate::twins`) has its derived
+        // edge kept here, where every write passes, instead of by each writer:
+        // three writers never drew it, and 354 of 763 findings were edgeless.
+        // The prior value is read first so a MOVED authority takes its edge
+        // with it.
+        let twins = self.declares_twins(node_type);
+        let prior = if twins {
+            self.get_node(node_type, id)?.map(|n| n.properties)
+        } else {
+            None
+        };
         let stored = self
             .engine
             .create_node(&self.graph_id, node_type, id, props)?;
+        if twins {
+            let written = stored.properties.clone();
+            self.keep_twins_on_write(node_type, id, &written, prior.as_ref())?;
+        }
         // Every node write passes here (upsert and upsert-if-unchanged
         // included), which is what lets a declared contributor be credited
         // with ALL of a call's writes rather than the ones each constructor
@@ -576,6 +623,12 @@ impl DesignGraph {
             log.push((node_type.to_string(), id.to_string()));
         }
         Ok(stored)
+    }
+
+    /// What opening this store repaired among the relations it holds twice.
+    /// Empty for an in-memory graph and for a store that was already in step.
+    pub fn repaired_on_open(&self) -> &crate::twins::TwinRepairs {
+        &self.repaired_on_open
     }
 
     /// Refuse a write whose property NAMES a node that does not exist.
@@ -715,6 +768,7 @@ impl DesignGraph {
         if let Some(def) = self.schema().node_types.get(node_type) {
             widen_ints_for_float_props(&def.properties, &mut props);
         }
+        self.check_settle_write(node_type, id, &props)?;
         self.engine
             .create_node(&self.graph_id, node_type, id, props)
     }
@@ -944,6 +998,31 @@ impl DesignGraph {
         to_id: &str,
         props: impl Into<std::collections::HashMap<String, Value>>,
     ) -> Result<StoredEdge, DynoError> {
+        let mut props = props.into();
+        // AN AUTHORSHIP WRITTEN THROUGH AN AGENT (`crate::acting`): the roles
+        // an AUTHORED_BY write newly asserts are stamped with the agent the
+        // write goes through. The typed `authored_by` stamps its one role and
+        // comes in below this, at `create_edge_unstamped`.
+        let through = self.stamp_through_acting_agent(edge_type, from_id, to_id, &mut props)?;
+        let stored =
+            self.create_edge_unstamped(edge_type, from_type, from_id, to_type, to_id, props)?;
+        if let Some(acting) = through {
+            self.record_acts_for(&acting, to_id)?;
+        }
+        Ok(stored)
+    }
+
+    /// [`Self::create_edge`] without the acting-agent stamp — for the typed
+    /// [`Self::authored_by`], which stamps the one role it writes itself.
+    pub(crate) fn create_edge_unstamped(
+        &mut self,
+        edge_type: &str,
+        from_type: &str,
+        from_id: &str,
+        to_type: &str,
+        to_id: &str,
+        props: impl Into<std::collections::HashMap<String, Value>>,
+    ) -> Result<StoredEdge, DynoError> {
         // BOTH ENDPOINTS MUST EXIST. The schema validates the endpoint TYPES
         // against the edge's declared `from`/`to`, which is a different question
         // from whether the nodes are there — so until 2026-07-28 a `DEPENDS_ON`
@@ -992,6 +1071,14 @@ impl DesignGraph {
         let mut props = props.into();
         if let Some(def) = self.schema().edge_types.get(edge_type) {
             widen_ints_for_float_props(&def.properties, &mut props);
+        }
+        // ⭐ A SIGNATURE IS THE CALLER'S OWN, CHECKED WHERE IT IS WRITTEN
+        // (`crate::intent::Signer`, #616 fix 4). This is the store's only
+        // AUTHORED_BY write — every door reaches it — so an engine served for
+        // others refuses a signature in someone else's name here, before
+        // anything is stored. A local engine installs no signer.
+        if edge_type == edge::AUTHORED_BY {
+            self.check_signature_write(from_id, to_id, &props)?;
         }
         self.engine.create_edge(
             &self.graph_id,
@@ -1118,6 +1205,10 @@ impl DesignGraph {
     ) -> Result<bool, DynoError> {
         if edge_type == edge::SCHEDULED_FOR {
             self.guard_schedule_loss(to_id, &format!("un-scheduling '{from_id}' from it"))?;
+        }
+        // Removing a signature is writing one (`crate::intent::Signer`).
+        if edge_type == edge::AUTHORED_BY {
+            self.check_signature_removal(from_id, to_id)?;
         }
         self.engine
             .delete_edge(&self.graph_id, edge_type, from_id, to_id)
@@ -2039,12 +2130,35 @@ impl DesignGraph {
         requirement_id: &str,
         coverage: Option<&str>,
     ) -> Result<StoredEdge, DynoError> {
-        self.create_edge(
-            edge::SATISFIES,
+        self.satisfies_between(
             node::CAPABILITY,
             capability_id,
             node::REQUIREMENT,
             requirement_id,
+            coverage,
+        )
+    }
+
+    /// [`satisfies_with_coverage`](Self::satisfies_with_coverage) for ANY pair
+    /// the schema accepts — a Component or Artifact that satisfies a
+    /// Requirement, a Capability that satisfies a Constraint. SATISFIES is
+    /// declared for all of them (`deliberately_open`), and the typed tool
+    /// refused all but Capability → Requirement: a helper narrower than its
+    /// schema, the class behind the dev_reflow2 exercise's I9.
+    pub fn satisfies_between(
+        &mut self,
+        from_type: &str,
+        from_id: &str,
+        to_type: &str,
+        to_id: &str,
+        coverage: Option<&str>,
+    ) -> Result<StoredEdge, DynoError> {
+        self.create_edge(
+            edge::SATISFIES,
+            from_type,
+            from_id,
+            to_type,
+            to_id,
             Props::new().set_opt("coverage", coverage),
         )
     }
@@ -2188,12 +2302,30 @@ impl DesignGraph {
         from_component_id: &str,
         to_component_id: &str,
     ) -> Result<StoredEdge, DynoError> {
-        self.create_edge(
-            edge::DEPENDS_ON,
+        self.depends_on_between(
             node::COMPONENT,
             from_component_id,
             node::COMPONENT,
             to_component_id,
+        )
+    }
+
+    /// [`depends_on`](Self::depends_on) for any pair the schema accepts —
+    /// between Capabilities it is the functional DAG, declared for the pair
+    /// alongside Component → Component, and the typed tool refused it.
+    pub fn depends_on_between(
+        &mut self,
+        from_type: &str,
+        from_id: &str,
+        to_type: &str,
+        to_id: &str,
+    ) -> Result<StoredEdge, DynoError> {
+        self.create_edge(
+            edge::DEPENDS_ON,
+            from_type,
+            from_id,
+            to_type,
+            to_id,
             Props::new(),
         )
     }
@@ -2341,14 +2473,30 @@ impl DesignGraph {
         if let Some(at) = acted_at {
             props.insert(role_date_key(role).into(), Value::String(at.to_string()));
         }
-        self.create_edge(
+        // THE AGENT THIS ACT WENT THROUGH, when the write named one — added to
+        // the role's `*_via` SET, beside the contributor it credits. Never the
+        // contributor itself: an agent recorded as its own author acted for
+        // nobody. Absent when no agent was known, and a read says so.
+        let through = self
+            .acting
+            .as_ref()
+            .filter(|a| a.agent != contributor_id)
+            .cloned();
+        if let Some(acting) = &through {
+            stamp_via(&mut props, role, &acting.agent);
+        }
+        let stored = self.create_edge_unstamped(
             edge::AUTHORED_BY,
             from_type,
             from_id,
             node::CONTRIBUTOR,
             contributor_id,
             props,
-        )
+        )?;
+        if let Some(acting) = through {
+            self.record_acts_for(&acting, contributor_id)?;
+        }
+        Ok(stored)
     }
 
     /// Rewrite every legacy AUTHORED_BY edge — single `role` (+ `acted_at`) —
@@ -2587,9 +2735,24 @@ impl DesignGraph {
         consumer_id: &str,
         interface_id: &str,
     ) -> Result<StoredEdge, DynoError> {
+        self.consumes_from(node::COMPONENT, consumer_id, interface_id)
+    }
+
+    /// [`consumes`](Self::consumes) from any consumer the schema accepts — an
+    /// Actor using a published interface is the case that asked: the schema
+    /// has always said "a Component or Actor depends on/consumes an
+    /// Interface", and the typed tool refused the Actor as "Node not found:
+    /// Component act:…" (dev_reflow2 two-agent exercise, I9,
+    /// `fact:root-cause-a-published-interface-with-outside-consumers-raises-unconsumed-interface-2026-09-29`).
+    pub fn consumes_from(
+        &mut self,
+        consumer_type: &str,
+        consumer_id: &str,
+        interface_id: &str,
+    ) -> Result<StoredEdge, DynoError> {
         self.create_edge(
             edge::CONSUMES,
-            node::COMPONENT,
+            consumer_type,
             consumer_id,
             node::INTERFACE,
             interface_id,
@@ -2603,6 +2766,22 @@ impl DesignGraph {
 pub const AUTHORED_ROLES: [&str; 3] = ["author", "reviewer", "approver"];
 
 /// The property that dates one role's act.
+/// The `*_via` key beside a role's date: which agent(s) recorded that act
+/// (`crate::acting`).
+pub fn role_via_key(role: &str) -> &'static str {
+    match role {
+        "reviewer" => "reviewed_via",
+        "approver" => "approved_via",
+        _ => "authored_via",
+    }
+}
+
+/// The agents an AUTHORED_BY edge says `role` was recorded through. Empty
+/// means no agent was known for that act — a read must say so, never guess.
+pub fn role_via(edge: &StoredEdge, role: &str) -> Vec<String> {
+    list_of_strings(edge.properties.get(role_via_key(role)))
+}
+
 pub fn role_date_key(role: &str) -> &'static str {
     match role {
         "reviewer" => "reviewed_at",
@@ -2611,7 +2790,7 @@ pub fn role_date_key(role: &str) -> &'static str {
     }
 }
 
-fn list_of_strings(v: Option<&Value>) -> Vec<String> {
+pub(crate) fn list_of_strings(v: Option<&Value>) -> Vec<String> {
     match v {
         Some(Value::List(items)) => items
             .iter()
@@ -2619,6 +2798,28 @@ fn list_of_strings(v: Option<&Value>) -> Vec<String> {
             .collect(),
         _ => Vec::new(),
     }
+}
+
+/// Add `agent` to the `*_via` set of `role` in an AUTHORED_BY property map.
+pub(crate) fn stamp_via(
+    props: &mut std::collections::HashMap<String, Value>,
+    role: &str,
+    agent: &str,
+) {
+    let key = role_via_key(role);
+    let mut via = list_of_strings(props.get(key));
+    if !via.iter().any(|v| v == agent) {
+        via.push(agent.to_string());
+    }
+    props.insert(key.into(), via_value(via));
+}
+
+/// A `*_via` agent set in canonical (sorted, deduplicated) order, so the
+/// export does not churn on the order two agents happened to write in.
+fn via_value(mut via: Vec<String>) -> Value {
+    via.sort();
+    via.dedup();
+    Value::List(via.into_iter().map(Value::String).collect())
 }
 
 fn roles_value(mut roles: Vec<String>) -> Value {

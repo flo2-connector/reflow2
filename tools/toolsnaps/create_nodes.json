@@ -1,4 +1,39 @@
 {
+  "_meta": {
+    "reflow2/settles": {
+      "approver": "nodes[].approver",
+      "argument": "nodes",
+      "node_rule": [
+        {
+          "node_type": "Requirement",
+          "property": "status",
+          "when": {
+            "not_in": [
+              "proposed"
+            ]
+          }
+        },
+        {
+          "node_type": "Decision",
+          "property": "status",
+          "when": {
+            "in": [
+              "accepted",
+              "deferred"
+            ]
+          }
+        },
+        {
+          "node_type": "DesignRule",
+          "property": "enforced",
+          "when": "present"
+        }
+      ],
+      "unsigned": "refused",
+      "version": 2,
+      "when": "node_settles_intent"
+    }
+  },
   "annotations": {
     "readOnlyHint": false
   },
@@ -9,6 +44,22 @@
         "additionalProperties": false,
         "description": "One node for `create_nodes`.",
         "properties": {
+          "acted_at": {
+            "default": null,
+            "description": "When this node's approver acted, as a plain date.",
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "approver": {
+            "default": null,
+            "description": "This node's approver — required when THIS node settles intent, as on\n`create_node`. Drawn as AUTHORED_BY role=approver.",
+            "type": [
+              "string",
+              "null"
+            ]
+          },
           "id": {
             "type": "string"
           },
@@ -39,6 +90,15 @@
         "default": false,
         "description": "Validate every item and WRITE NOTHING. The reply says whether the batch\nwould have applied and lists every failure, so a large batch is fixed\nonce and sent once instead of resent whole after each rejection.",
         "type": "boolean"
+      },
+      "echo": {
+        "default": "receipt",
+        "description": "What the reply carries. `receipt` (the default) names the node, echoes each stored value of at most 200 characters, gives longer ones by size, and names the snapshot that keeps anything a revise replaced. `node` returns the whole stored node and every prior value.",
+        "enum": [
+          "receipt",
+          "node"
+        ],
+        "type": "string"
       },
       "nodes": {
         "description": "The nodes to create in one write — each `{node_type, id, properties}`, the same shape `create_node` takes. Applied together; an id naming an existing node REVISES it.",

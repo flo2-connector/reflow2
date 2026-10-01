@@ -2,11 +2,20 @@
   "annotations": {
     "readOnlyHint": false
   },
-  "description": "Schedule a Requirement, Capability, QUESTION, Verification or Decision against the moment it is DUE — the satisfaction schedule, which is what makes a roadmap answerable (req:epochs-can-be-planned). The target is a DesignEpoch for the time axis or a Release for the capability-increment axis: two paired views of one architecture, so one edge serves both. `modality` says which kind of claim this is — `expected` is a plan, `required` is an obligation whose miss at arrival is a computed violation rather than a slip. THERE IS NO `achieved` MODALITY: delivery is computed from the golden thread and never asserted, so a schedule that recorded its own success would be a second source of truth able to disagree with the first. DELIBERATELY NOT add_epoch's AT_EPOCH, which means `belongs to` rather than `due at`. To reschedule, record the change against the epoch rather than re-pointing this edge — moving it silently would erase the slip. ⭐ SCHEDULING A `Question` IS HOW THE RESOLUTION OF A GAP GETS PLANNED: gaps are recomputed every run and are not nodes, so there is nothing to schedule, but the Question `gap_to_prompt` mints when a gap is put to somebody IS durable — and it is DELIVERED WHEN ANSWERED, needing no artifact and no check, because the whole content of closing a gap is that the person whose judgement it needed gave one. A WITHDRAWN question reports `discontinued`, not `outstanding`. Ask for this to put a piece of work into a release, increment or milestone.",
+  "description": "Schedule a Requirement, Capability, QUESTION, Verification or Decision against the moment it is DUE — the satisfaction schedule, which is what makes a roadmap answerable (req:epochs-can-be-planned). The target is a DesignEpoch (the time axis) or a Release (the capability-increment axis); one edge serves both. `modality` says which kind of claim this is — `expected` is a plan, `required` is an obligation whose miss at arrival is a computed violation rather than a slip. THERE IS NO `achieved` MODALITY: delivery is computed from the golden thread and never asserted, so a schedule recording its own success would be a second source of truth. DELIBERATELY NOT add_epoch's AT_EPOCH, which means `belongs to` rather than `due at`. To reschedule, record the change against the epoch rather than re-pointing this edge — moving it silently would erase the slip. ⭐ SCHEDULING A `Question` IS HOW THE RESOLUTION OF A GAP GETS PLANNED: gaps are recomputed every run and are not nodes, so there is nothing to schedule, but the Question `gap_to_prompt` mints when a gap is put to somebody IS durable — and it is DELIVERED WHEN ANSWERED, needing no artifact and no check, because closing a gap IS the person whose judgement it needed giving one. A WITHDRAWN question reports `discontinued`, not `outstanding`. Ask for this to put a piece of work into a release, increment or milestone. MANY AT ONCE: `draw_edges`, items {\"tool\": \"schedule_for\", \"arguments\": {…}}, same checks, all or nothing.",
   "inputSchema": {
     "$schema": "https://json-schema.org/draft/2020-12/schema",
     "additionalProperties": false,
     "properties": {
+      "echo": {
+        "default": "receipt",
+        "description": "What the reply carries. `receipt` (the default) names the node, echoes each stored value of at most 200 characters, gives longer ones by size, and names the snapshot that keeps anything a revise replaced. `node` returns the whole stored node and every prior value.",
+        "enum": [
+          "receipt",
+          "node"
+        ],
+        "type": "string"
+      },
       "item_id": {
         "description": "The scheduled item; its type is `item_type`.",
         "type": "string"

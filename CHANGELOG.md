@@ -31,7 +31,241 @@ This file is the third view: *what changed, and when*.
 
 ## [Unreleased]
 
+**Minor — the five guarded capture tools take `replaces`, and `distinct_from` is kept.**
+
+- **A near-match refusal names THREE routes, not two**: sharpen the existing node, `distinct_from`,
+  or the new **`replaces: [<id>]`** on `add_requirement`, `add_capability`, `add_component`,
+  `add_decision` and `add_design_rule`. A replacement records the old node's ending first (a
+  `deprecation` ChangeEvent whose snapshot keeps its properties and edges), moves the thread that
+  says what it was for (a Capability's `SATISFIES`, the `ALLOCATED_TO` pointing at a Component;
+  nothing for the other three), and draws `OBSOLETES` from the new node — the edge
+  retire-from-design names for a successor. The old node's stored status does not move, and the
+  reply's `replaced[].standing` says what, if anything, still withdraws it. Works on a revise too.
+  An id of another type, one naming nothing, or one also in `distinct_from` is refused with nothing
+  written. Found on a hosted design where a function rebuilt under a new capability left its
+  predecessor `planned`, unjoined, with a requirement still pointing only at the old node.
+- **`distinct_from` is written onto the node it created** (a new `list:string` property on
+  Requirement, Capability, Component, Decision, DesignRule and Constraint), and the reply carries
+  `judged_distinct`. Before, the judgement was accepted in the call and recorded nowhere. Additive:
+  the schema stamp does not move, and a node written before carries none.
+- capture-intent, revise-design, retire-from-design, capture-session and the served instructions
+  teach the three answers.
+
 ### Fixed
+
+- **reflow2 no longer tells an agent to write a reader's background into the design** (`req:a-design-holds-who-contributed-never-a-readers-persona`, accepted 2026-09-28; root cause `fact:the-served-lens-still-tells-the-agent-to-record-a-readers-background-in-the-design-2026-09-30`). The lens on `list_skills`, `get_skill` and `loop_status` said *"Ask what they do day to day and what they trained in … then record it with `add_contributor`"*, and `where-am-i`, `topic`, `why`, `detect-and-ask` and the served instructions said the same in their own words. The requirement had been accepted with no capability and no check, so nothing read the served text against it.
+  - **Every one of them now says what the requirement says.** The reader's lens comes from the agent's host (a host such as flo2 hands over the signed-in person's persona with the design) or, with no host, from the agent's own memory of the person. With neither, the agent follows the person's own words and may ask once, and the answer is never written into the design. A Contributor is attribution and, where it matters, a role on this design.
+  - **The lens reads differently.** With nobody described, it opens *"THIS DESIGN DOES NOT SAY WHO IS READING, AND IS NOT MEANT TO"*. With someone described, it lists contributors for attribution and their role, never as the reader's lens. The git-author match now applies whenever more than one PERSON is recorded, for attribution.
+  - **`add_contributor`'s `description` parameter now says the same:** a role on this design, not a reader's persona.
+  - **A new check guards it.** `no_served_text_writes_a_readers_persona_into_the_design.rs` reads every served surface through the real handlers against three stated shapes. That covers the lens on three rails in four states, every `get_instructions` section, every skill, every tool's description and schema, the handshake and `describe_schema`. It was observed failing first.
+
+- **A server whose design is held by another process serves it in place the moment that process lets go, and an HTTP server's readiness says whether the design is served.** (GitHub issue #616)
+  - Before: a second server started on a store another process held served the one-tool degraded surface forever. It never retried, stayed degraded after the holder stopped, and bound its port, so the image's TCP health check reported it healthy. On a rolling update the new pod looked fine while the design was unavailable.
+  - Now a plain server (stdio or `--http`) whose store is held keeps trying to open it, backing off to at most 5 s between attempts. When it opens, the SAME process and port serve the full design: every session gets its own seat, connected clients are sent `notifications/tools/list_changed`, and the handshake reason is gone. The handshake says it will recover by itself and declares `listChanged`.
+  - A `--shared` session whose server election timed out (usually a non-shared process holding the store) keeps re-electing in the background. When a shared server comes up, the session switches to it in place, introduced with the client's own handshake, and the client is told its tool list changed.
+  - A cause that waiting cannot fix is not polled: a stamp that will not read, a store from a newer reflow2, a corrupt store, a published refusal from a shared server, a bad pointer or identity. Those still say to fix the cause and restart. If the lock frees and the open then fails for such a reason, the retrying stops and says that instead.
+  - Every HTTP server answers `GET /readyz` (200 while the design is served; 503 with one path-free sentence otherwise) and `GET /healthz` (200 while the process serves). Both answer whatever the Host header, so an orchestrator's probe by pod IP needs no `--http-allow-host`, and they sit in front of the Host gate; everything else stays behind it. A registry is ready when it is up.
+  - The image's `HEALTHCHECK` probes `/readyz` over HTTP instead of a bare TCP connect, and `docker/smoke.sh` checks `/readyz` from outside by a name no allowlist carries.
+
+## [0.75.0] — 2026-09-30
+
+**Minor. The schema stamp moves** (`ACTS_FOR` makes 66 edge types; `Constraint.composition` is a
+new enum; `Question` gains `asked_of`, `answered_by`, `answered_at`, `batch`, `batch_position`).
+**Upgrade everywhere, together.** See [docs/upgrading-to-v0.75.0.md](docs/upgrading-to-v0.75.0.md).
+A v0.74.0 binary refuses a store a v0.75.0 binary has opened. Four changes a caller must act on:
+
+- 🛑 **A server that others reach refuses approvals until you say who is calling** (#636). An engine
+  behind a gateway MUST declare `--http-trusted-gateway` or `REFLOW2_TRUSTED_GATEWAY`, or it refuses
+  every approval. An exposed `--http` server with NO gateway becomes **read-and-propose-only** until
+  Bearer/OIDC sign-in ships. This affects any team server run that way.
+- **`_meta["reflow2/settles"]` has a version-2 form** for `create_node` / `create_nodes` (#635).
+  Consumers that read the declaration must learn it, and must refuse a version they do not know.
+- **A write replies with a receipt**, not the whole stored node (#630). Pass `echo: "node"` for the
+  old reply.
+- **Removed arguments:** `add_flow`'s `entry_point`/`exit_point` and `add_capability`'s
+  `is_entry_point`/`is_exit_point` (#622).
+
+New tools: `draw_edges` and `derived_report`.
+
+### Added
+
+- **A question is put to a named person, travels to them as a batch with its evidence, and records who answered it, in one call** (`req:a-question-is-addressed-to-a-person-and-records-who-answered`, Anthony 2026-09-29; `cap:a-question-names-whom-it-was-put-to-and-who-answered`). Found by the dev_reflow2 two-agent exercise (I25, I28, I29): a coordinator carried every question batch to the owner agent by hand, the designer kept its question-number → node map in a scratch file, and answering took two calls. Root causes: `fact:root-cause-answering-takes-two-calls-and-records-no-answerer-because-the-answers-edge-landed-as-its-own-tool-2026-09-29` and `fact:root-cause-an-owner-outside-the-chat-cannot-read-what-it-is-asked-to-approve-2026-09-29`.
+  - **A Question records whom it was put to and who answered.** New optional properties: `asked_of` and `answered_by` (node references, refused unless they name a Contributor), `answered_at`, `batch` and `batch_position`. Absent means nobody was named, and readers say so; a later answer naming nobody clears the last answerer rather than inheriting their name.
+  - **`answer_question` takes `answered_by`, `answered_at`, `record` and `note`**, and draws `ANSWERS` from `record` to the Question in the same call. A name that resolves to nothing is refused and nothing is written. The reply says when no answerer or no record was named.
+  - **`gaps_to_prompts` and `gap_to_prompt` take `asked_of` and `batch`**, and per question `evidence`. A batch is numbered 1…N in the order of `gaps`, continuing the count and keeping a number when a question is asked again, so a relay quoting "Q4" resolves to a node. Evidence is drawn as `ASKS_ABOUT` and must resolve.
+  - **`open_questions(asked_of)`** returns the questions put to one person as their batch (batch, then number), each with `evidence` links to every node it asks about and the name of each, plus `answered_in` (the records that answered it). The reply says how many open questions it left out (`not_put_to_them`). Unscoped, every row now carries `asked_of` (`null` when put to nobody by name) and, when answered, `answered_by`. An unknown addressee is refused.
+  - **`loop_status(contributor_id)` lists `questions_put_to_them`**, counts them against that person's `clean`, and says so in `next`.
+  - **Evidence is links, not a summary.** The counter-argument is kept: evidence the recommender attaches is curated, so the batch hands the owner ids to open, and every node the gap was about, not a digest to trust.
+- **A write and an approval record the AGENT they went through beside the person they were for — the ACTS_FOR rung, deferred since 2026-07-22, is built.**
+  - A session names its agent once with `writes_for`'s new `acting_agent`, or a request names it in `_meta` under `reflow2/acting_agent`, the route a gateway already uses for the person (`reflow2/writes_for`). With neither, a Contributor of kind `automated_agent` whose `handle` equals the client's handshake name is used; one is never minted.
+  - Every AUTHORED_BY role the call records carries the agent in `authored_via` / `reviewed_via` / `approved_via`, a set beside the role's date, and the agent is drawn `ACTS_FOR` the person (a new edge type, carrying `route`: `session`, `request` or `client`). Stamped at one place, the store's edge write, so the typed `authored_by`, every settle path, the generic `create_edge` and the bulk form are all covered.
+  - Attribution only: the agent must be an existing `automated_agent` Contributor (a person or an unknown id is refused before anything is written), it is never recorded as acting for itself, and naming it never signs anything.
+  - `loop_status`'s `assigned_decisions` rows say `acted_through` (the agent) or `acted_through_note: "no agent known"`.
+  - **Schema: a new edge type (66 now) and three AUTHORED_BY properties.** An older binary opening a graph this version wrote sees a newer vocabulary; the upgrade note is owed at the cut.
+  - `a_write_records_the_agent_beside_the_principal` drives every settle path the tools declare in `_meta["reflow2/settles"]` through the real request path; `a_write_records_the_agent_it_went_through` pins the core.
+
+- **reflow2 declares what it derives, holds the declarations to the code, and serves a read that runs them** (`req:reflow2-declares-its-derived-relations-and-serves-a-read-that-runs-them`, Anthony 2026-09-29). Found by the dev_reflow2 two-agent exercise (I20): to learn how much reflow2 derives from what it stores, an agent wrote a ~150-line script over the export, because nothing served evaluated a derived relation and reflow2 declared none. Its 23 derived relations lived as hand-written code across about fifteen files.
+  - **`schema/derived/relations.yaml` declares all 23**, beside the edge readings and in the same vocabulary. Each gives its reading in the sixteen primitives, its rule, whether it is deduced or induced, the edges it reads, what it is computed over, and the functions that compute it. It also says how much of the rule is stated over edge readings: 3 fully (`realized`, `contract_pair`, `coupling`), 19 partly, with what is missing named (a node status, a property, arithmetic, a per-edge choice, transitivity), and 1 not at all (`requirement_certainty`, which reads no edge).
+  - **The declarations are held to the code.** `derived_relations_are_declared_and_checked.rs` reads the named functions' source and fails when a declared edge is read by none of them, when a function marked dedicated reads an edge the declaration omits, when it calls a helper that reads edges and nobody declared it, when a declared edge's reading shares no primitive with the relation's own, or when the declarations and the evaluators name different relations.
+  - **`derived_report` (new, read-only)** counts every declared relation over the design by the code path its declaration names — never a re-implementation — with example ids, beside the design's asserted facts. `only` narrows it, and an undeclared id is refused with the declared ones listed. The blast-radius closure is declared but not counted: it stays a rule, answered per seed by `propagate_from`.
+  - **Nothing is stored.** Whether a derived result is kept is open in `dec:idea-which-derived-results-are-kept-and-by-what-rule`.
+- **A write replies with a receipt, not the whole stored node** (`req:a-write-replies-with-a-receipt-not-the-whole-node`, Anthony 2026-09-29, idea 3 of the dev_reflow2 two-agent exercise; root cause `fact:root-cause-a-write-replies-with-the-whole-stored-node-and-replace-text-adds-each-prior-field-2026-09-29`). **A change to every write tool's reply shape.**
+  - **One contract, cut at `call_tool`** (`crates/reflow2-mcp/src/receipt.rs`) for every tool the served surface marks as a write, so a new write tool joins by being served.
+  - **By default:** a stored value of at most 200 characters is echoed as stored; a longer one is given by size under `elided`. A revise's replaced fields carry `prior_chars`, `after_chars` and `prior_in`, the snapshot that keeps the prior value. Every warning, note, drawn edge and removal report is unchanged. A prior value nothing else holds (`fields_at_risk`) is still echoed in full: then the reply is its only copy.
+  - **`echo: "node"`** on any write returns the reply exactly as before: the whole stored node and every prior value. Any other `echo` value is refused before the tool runs. Read tools do not take `echo`.
+  - **Measured on the same calls (as built → receipt):** add_decision with a 6,000-character body 6,311 → 560; replace_text of 12 characters onto a 1-character rationale 6,961 → 1,243; replace_text of 170 characters onto a 6,000-character body 13,322 → 1,453; set_decision_status 6,397 → 473.
+  - **Pinned by** `tests/a_write_replies_with_a_receipt.rs`: every served write tool declares `echo` and refuses a bad one before running; the designer's write mix stays under 3,000 characters whatever the node holds.
+- **`draw_edges`: the bulk form of every typed edge helper, running each helper's own checks.**
+  - Each item names a typed helper and carries that helper's own arguments (`{"tool": "constrains", "arguments": {…}}`). The item runs the helper's own body — the same function the tool runs — so its checks, its refusal words and its reply are the helper's: a `constrains` contribution keeps its unit, basis and source; a `governed_by` ruling travels, and an unknown one is answered in the helper's words; two `authored_by` roles on one pair in one call keep the role set.
+  - All or nothing inside one atomic batch, every failure named by position, `check_only` writes nothing, and the reply names each edge drawn as a subject-first sentence.
+  - Every typed edge helper's served description now names it, generated from one list rather than hand-written into each. `create_edges` now says plainly that it is the GENERIC bulk form and runs no typed helper's checks.
+  - Found by the dev_reflow2 two-agent exercise (I24): about 270 single-edge calls built one design; the bulk form that existed was named by no helper, and about 100 of those calls had no bulk route that kept the helper's checks (`req:every-typed-edge-helper-has-a-bulk-form-that-keeps-its-checks`).
+- **Every tool that can settle intent declares what settles it, on the served tool, and reflow2's own signature checks read the same declaration.**
+  - Each settling tool's `tools/list` entry carries `_meta["reflow2/settles"]`: `{version, argument, when, approver, unsigned}`. `when` is `"always"`, `"present"`, `{"in": [..]}` or `{"not_in": [..]}`, read against `argument`; `approver` is where the signature goes (`approver`, or `gaps[].approver` for the batch); `unsigned` is `refused` or `recorded_with_note`.
+  - Nine tools declare: `add_requirement`, `add_decision`, `add_design_rule` (refused unsigned); `set_requirement_status`, `set_decision_status`, `collapse_decision`, `acknowledge_gap`, `acknowledge_defect`, `acknowledge_gaps` (recorded, and the reply says it carries nobody's name).
+  - One table (`crates/reflow2-mcp/src/settles.rs`) is both what is served and what every handler reads, so the two cannot drift; `every_settling_call_declares_what_settles_it` enumerates the served surface and fails when a tool that takes an approver declares nothing, or a declaration is not what the tool does.
+  - `collapse_decision` takes `approver` and `acted_at`: choosing a fork's winner accepts the Decision, and until now it did so with no way to sign it and said nothing (fact:collapse-decision-settles-a-decision-with-no-approver-and-says-nothing-2026-09-28).
+  - `acknowledge_gaps` now says which items carry nobody's name, as `acknowledge_gap` always did.
+  - WHY: a gateway that signs settles on its caller's behalf had to guess which argument settles; flo2 guessed `status` and let `enforced` through unsigned, then contained it with a hand-kept copy of the rules (flo2 #102). A gateway now reads the rule off the tool. Found by the dev_reflow2 two-agent exercise (I2).
+
+- **A budget says how its contributions compose, and its verdict follows what it says; one read reports every budget** (`req:a-budget-says-whether-its-parts-add-up-or-run-along-a-path`, Anthony 2026-09-29). Found by the dev_reflow2 two-agent exercise: the owner agent's write budget, 33 ms along its dependency path, read "46 ms, exceeded" against 40 ms, because the verdict always compared the plain sum while the path total sat beside it (I18). And checking 14 budgets took 14 calls (I17).
+  - **`composition` on a Constraint:** `sum` (every part adds: mass, cost) or `path` (the heaviest `DEPENDS_ON` chain among the contributors: end-to-end latency, where parallel branches overlap). `add_constraint` takes it. Anything else is refused, naming the two.
+  - **Declared, never inferred.** The same unit composes both ways, so an undeclared budget keeps its verdict on the sum. Its `composition_note` names any path total the verdict did not read, and the declaration that would make it read it.
+  - **`budget_report` says what it judged:** `judged_on` (`sum` or `path`), `judged_total`, and `composition_note`.
+  - **A `path` budget reaches no numeric verdict when it cannot honestly have one.** That is: no dependency is drawn among its contributors, the contributors form a cycle, or the direction is `minimum`. The verdict is then `incomplete`, and the note says why. Taking the largest unjoined part as "the path" would under-count a maximum.
+  - **Every reader of a verdict reads the same judged rollup:** `closure_report`'s budgets leg keeps a margin against it, and a breached KPP names it.
+  - **`budget_report` with no `constraint_id` reports every budget,** each with its verdict and the rollup it was judged on. It is bounded by `budget_chars`, and `swept`, `not_budgets` and `by_verdict` are never trimmed.
+  - **`constrains` now says** that drawing `DEPENDS_ON` among contributors is what makes the path total computable.
+- **`closure_report` reads "design done" beside "build done", and every reading names its phase.**
+  - The top level is unchanged in meaning and is now labelled the BUILD phase: requirements delivered by realized capabilities whose checks pass. A budget now also needs every numbered contribution `measured` to close there, which it never checked before.
+  - A new `design` reading sits beside it, against the same declared criterion: a requirement is traced when a capability satisfying it is allocated to a part and has a check planned (any status), and a budget closes on an estimate that carries its basis. Its note says it tells nothing about whether anything is built.
+  - Every leg carries `phase`; `release_report`'s closure summary carries `design_verdict` beside the build verdict.
+  - Closure now reads parking: a requirement with a `parks` ruling on an accepted decision is counted in the leg's new `parked` field and left out of the population, never named as the first hole. A proposed ruling parks nothing.
+  - Found by the dev_reflow2 two-agent exercise (I15): a finished design with nothing built read traceability 0/7, and its first hole was a requirement it had parked (`req:closure-reads-design-done-separately-from-build-done`).
+
+- **Every edge type declares what it means, and `describe_schema` serves it.**
+  - Each edge type in `schema/*.yaml` now carries a `reading`:
+    - the primitive relation it is one instance of (part-of, causes, about, norm, source-of …), or the composition of primitives it stands for
+    - its sign and possibility where it has them
+    - whether its direction is the primitive's inverse
+    - which of its properties are modifiers, and of what kind
+    - a `basis` saying who says so
+  - **Some edge types are several relations, and are read per edge.** Fifteen types read differently by a property value on each edge, so the type's name is not always the meaning:
+    - `CAUSES` is a cause when its `basis` is `causal` or `observed` (seen, with no mechanism). Unset, `basis` is `correlational` (the schema default), so the edge reads as a correlation. `spurious`, or a `refuted` `validation_status`, reads as NO causal link.
+    - `CONTRADICTS` with `alignment: supporting` is corroboration.
+    - Each `AUTHORED_BY` role is its own relation: author, reviewer, approver. An edge with two roles is two relations.
+    - `INTERACTS_WITH` reads by its `interaction`: `reads`, `writes` and `receives` as flows, `triggers` as a cause.
+    - `DEPENDS_ON` reads by its `dependency_type`: a data or error flow passes something across; a call or a hand-off of control brings something about.
+    - `CHANGED` and `YIELDED` read by their `action`: added or created made the node; removed ended it; a merged extraction resolves a mention into an existing node.
+    - `ANNOTATES` reads by its `note_kind`: a reviewer's note evaluates, a director's binds.
+    - `DUPLICATES` is only a comparison unless its `basis` is `asserted`, the one basis that licenses a merge.
+    - `VIOLATES_RULE` reads by its `status`: `confirmed` is a permitted violation, a waiver; `rejected` must be fixed.
+    - Five change only the possibility: `SATISFIES` with `coverage: planned` is a promise, not a fact; the same holds for `DEPLOYED_TO.status`, `REQUIRES_RESOURCE.criticality`, `GOVERNED_BY.ruling: parks` and `SCHEDULED_FOR.modality`.
+  - **What a split cannot see.** Three readings turn on the node at the far end rather than a value on the edge, so they are notes for now:
+    - an `AUTHORED_BY` approver on an accepted node, against one on a proposed Decision
+    - `CONTAINS` from the project, against one from a component
+    - `SCHEDULED_FOR` a Release
+  - **Where it is served.** `describe_schema` gives each edge's reading as one line (`reads_as`: `part-of⁻¹`, `causes(-)`, `causes(+) | by basis, validation_status`) on every read.
+    - A `from`/`to` query carries the whole reading, splits included, because that is where a caller chooses between edges that all validate.
+    - The whole-vocabulary read also counts readings by basis. It was already past its reply budget with all prose withheld before this change (45,818 characters against 30,000), so full readings there would only have grown an overflowing answer.
+  - **Selecting by meaning.** New core functions let a rule or projection select by declared meaning instead of keeping its own list of names:
+    - `edge_types_read_as(primitive, polarity)` returns the types that `always` mean it, apart from those decided `per_edge`.
+    - `edge_reads_as(edge_type, properties)` and `edge_is_read_as(…)` decide one edge from its own values. An unset property counts as its schema default, and a list gives one reading per value.
+  - No existing rule has moved onto these yet; which one goes first is an open design call.
+  - **Provenance.** The first 65 readings come from a 2026-09-28 classification of reflow2, StoryFlow and market_graph. All are marked `basis: classified` until the owner reviews them. The reading is advisory: it validates nothing and narrows no endpoint.
+  - **The check.** `every_edge_type_declares_what_it_means` fails when:
+    - an edge type has no reading
+    - a reading names a primitive or modifier kind outside the declared sets
+    - a reading calls something a modifier that the edge does not declare
+    - a split is on a property the edge does not declare, or keys a value outside that property's enum
+
+    It also pins how the four split types read edge by edge (`req:every-edge-type-declares-what-it-means`).
+
+### Changed
+
+- **On an engine served for others, a signature is the caller's own, checked where the store writes it** (#616 fix 4; `cap:an-exposed-server-establishes-who-is-calling-before-intent-can-be-settled`, under the settled `dec:idea-authentication-is-somebody-elses-layer-and-the-line-is-the-contributor-id`, option (e)). Measured on 0.74.0: any caller of a hosted engine could write `AUTHORED_BY {roles: [approver]}` naming someone else through `create_edge`, `create_edges`, `draw_edges` items, `acknowledge_gaps` items, `import_graph` and the typed helpers, and only a gateway's argument scan stood in the way (`fact:root-cause-the-settle-rule-guards-the-typed-doors-and-the-generic-writers-go-around-it-2026-09-29`, "SCOPE WIDENED").
+  - **Local is unchanged**: stdio, `--shared`, and `--http` answering loopback only. No signer is installed and every tool behaves as before.
+  - **Served for others** means `--registry-root`, or `--http-allow-host` naming a host that is not loopback. Such an engine establishes who is calling before anyone can sign:
+    - **`--http-trusted-gateway <NAME>`** (or `REFLOW2_TRUSTED_GATEWAY`) declares that a gateway in front authenticates every caller and names them on each call in `_meta["reflow2/writes_for"]`. That name is the caller. Every AUTHORED_BY a call writes, author or approver, must name them; one naming anyone else is **refused and nothing is written**, and so is removing someone else's AUTHORED_BY (`delete_edge`). A session's own `writes_for` declaration names nobody behind a gateway.
+    - **Nothing declared**: reads and proposals work; every approval and every move of a status into settled intent (`reflow2_core::intent::SETTLING`) is refused, naming the flag.
+  - **Where it is enforced**: `reflow2_core::intent::Signer`, installed by the write lock for the length of each call and asked at the store's one AUTHORED_BY write (the point #632 stamps the acting agent), its AUTHORED_BY delete, and its two node writes. No tool has a check of its own; handlers that write several things ask `may_sign`, the same rule, before their first write.
+  - **The handshake says so** on an engine served for others, and the operator's startup banner names the mode.
+  - **For a hosting gateway (flo2)**: declare the gateway in the same upgrade (`REFLOW2_TRUSTED_GATEWAY=flo2.io` on the engine container) and name the signed-in person's Contributor on every `tools/call` in `_meta["reflow2/writes_for"]`, overwriting anything the client sent. Without the declaration a registry refuses every approval.
+  - **Not yet in this release**: verifying a Bearer token on an exposed `--http` engine (the OAuth resource-server half of #616 fix 4). Until it ships, an exposed engine without a trusted gateway serves reads and proposals only.
+  - Pinned by `a_signature_is_the_callers_own_through_every_writer` (every served write tool, read off the served surface, driven as the caller and again in another contributor's name through a real registry) and `a_signature_is_the_callers_own_where_it_is_written` (the store's write points).
+
+- **A relation reflow2 stores twice has one authority, and the store keeps the other copy in step.** (`req:a-relation-stored-in-more-than-one-place-has-one-authoritative-copy-and-no-copy-drifts-unnoticed`)
+  - **Measured on reflow2's own design, 2026-09-28:**
+    - 354 of 763 findings carried a `subject_id` and no `HAS_TEMPORAL_FACT` edge, so every reader that walks edges missed them.
+    - 4 findings hung from a different node than their `subject_id`.
+    - A Flow's stored exit named step 8 of 9.
+
+    The cause: each writer drew the second copy by hand, and the generic `create_node`, `report_manual_work` and `part_of_flow` never did.
+  - **The schema declares each twin on its authoritative property** (`twin_of`). The six are:
+    - `TemporalFact.subject_id` → `HAS_TEMPORAL_FACT`
+    - `DimensionAssessment.target_id` → `ASSESSED_ON`
+    - `DimensionObservation.target_id` → `HAS_OBSERVATION`
+    - `DimensionObservation.source_fragment_id` → `OBSERVED_IN`
+    - `ReadinessAssessment.target_id` → `HAS_READINESS`
+    - `Snapshot.target_id` → `HAS_SNAPSHOT`, which may outlive the node it names
+  - **The store keeps the derived edge on every node write, whoever writes.** When the property changes, the edge moves with it.
+  - **A finding's `HAS_TEMPORAL_FACT` means only its subject.** "This finding also concerns that node" is `ABOUT_ENTITY` (`dec:has-temporal-fact-means-only-the-subject-and-also-concerns-is-about-entity`). The generic edge tools refuse a `HAS_TEMPORAL_FACT` that disagrees with `subject_id`, name `ABOUT_ENTITY`, and refuse deleting a copy its property still names.
+  - **Opening a store, and importing a document, repair what is out of step and say what they changed. Nothing is repaired silently.**
+    - Missing derived edges are drawn.
+    - A finding's extra `HAS_TEMPORAL_FACT` becomes `ABOUT_ENTITY`.
+    - Retired stored values are removed.
+    - Open keeps the report for `loop_status` (`repaired_on_open`). Import returns it in `twin_repairs`, which `--import` now prints, with the `migrated_edges` it had never printed.
+    - A CLI `--import` now records that the store is in step with the file it read, as the `import_graph` tool already did. Without that, an export back over the same file after a repairing import was refused as "somebody else's work" for dropping the edges the import had just reported moving.
+  - **A Flow's entry and exit are computed from its step order and no longer stored** (`dec:a-flows-order-is-its-step-order-and-entry-and-exit-are-computed`). `flow_report` returns `entry_points` and `exit_points`: the steps at the lowest and highest `step_order`, several when steps share a position. These replace `entry_point` and `exit_point`.
+  - **Upgrading:**
+    - The first open of an existing store repairs it once, and every later open reports nothing. Measured on reflow2's own design: the first open or import repairs 661 relation(s) on the design as committed at origin/main 329a074: 356 derived `HAS_TEMPORAL_FACT` edges added, 9 hand-drawn second subjects moved to `ABOUT_ENTITY`, and 296 retired stored values removed (both flags on 147 capabilities, and `flow:release-cut`'s stored entry and exit). Expect the next export to change accordingly.
+    - `add_flow` no longer takes `entry_point` / `exit_point`, and `add_capability` no longer takes `is_entry_point` / `is_exit_point`. Nothing read the capability flags, and a flag on a Capability could not say which of several flows it begins. A caller still sending one is refused by name ("unknown field"), never dropped in silence. Remove the argument.
+    - The schema stamp does not move (no type or enum changed), so no separate upgrade note is owed.
+### Fixed
+
+- **`manual_work_ledger` takes `budget_chars` and fits its reply to it; before, it could not be bounded.** On reflow2's own design the ledger grew past the 30,000-character reply budget: 31,037 characters on 2026-09-28, and 33,670 once the 2026-09-29 live records were folded into main. It took no bound, so CI's "every oversized reply offers a bound" gate (`tools/replies_are_bounded.py`) failed on it, as that gate exists to (`fact:manual-work-ledger-outgrew-the-reply-budget-with-no-bound-and-the-gate-caught-it-2026-09-28`). Prose (`what`) is trimmed first. The list is never sampled, so every entry's id, diagnosis and tool survive, and the reply says what it withheld. The shape is unchanged (`{count, items}`), and an empty ledger still says why it is empty. The fix was written on 2026-09-28 in PR #620's checkout and never committed; this lands it unchanged.
+- **A settle made through a GENERIC writer is held to the owner's word, and a `parks` ruling's writer says whether it takes effect** (root causes `fact:root-cause-the-settle-rule-guards-the-typed-doors-and-the-generic-writers-go-around-it-2026-09-29` and `fact:root-cause-a-parks-ruling-is-validated-only-by-its-readers-and-the-writer-reports-success-either-way-2026-09-29`; residuals of #628 and #629).
+  - **One predicate for "does this stored value settle intent?"**, `reflow2_core::intent`: a Requirement off `proposed`, a Decision `accepted` or `deferred`, a DesignRule's `enforced` stated. `the_settle_predicate_has_one_answer` holds CI's `tools/check_intent_authority.py` to it case by case, and a settles-table test holds every typed status row to it.
+  - **`create_node` and `create_nodes` take `approver`/`acted_at`** (per item on `create_nodes`), and a write that moves a node INTO a settling value with nobody's name is **refused before anything is written**, as the typed constructors are. Re-writing a value the node already holds is not a new settle. Both are rows in the settles table under a new PUBLISHED form, `_meta["reflow2/settles"]` **version 2**: `"when": "node_settles_intent"` with the core table beside it as `node_rule` (`[{node_type, property, when}]`, each `when` a version-1 form). A reader that knows only version 1 must refuse a version-2 row; the exact shape is in `settles.rs`.
+  - **`replace_text` will not settle intent**: an edit that would move a node's settling value (a Requirement's `status` is text) is refused and sent to `set_requirement_status` / `set_decision_status` with `approver`.
+  - **`import_graph`, `apply_merge` and `mirror_surface`** carry their signatures in the document, so an unsigned settle is written and NAMED under `settled_without_approver` rather than passed in silence.
+  - **`add_decision` settles on `accepted`/`deferred` only**, as the gate and `set_decision_status` always did: recording a Decision already `rejected` retires an option and no longer needs a signature.
+  - **`governed_by` with `ruling: parks`** asks the one predicate every parks reader uses (`parking_ruling_effect`, behind `is_parked`) before it stores the edge. To a Decision not yet accepted it is recorded and the reply's `parks` block says it PARKS NOTHING YET. To anything that is not a Decision, which no reader will ever honour, it is refused. `draw_edges` runs the same body.
+- **The derived-relation check starts from populations the declarations do not choose, so a read two calls deep, a new relation and padded components now fail.** (graph-primitives monitoring pass 3 of #631; root cause `fact:root-cause-the-derived-declaration-check-draws-every-population-from-the-declarations-it-checks-2026-09-29`)
+  - Before: the check held each declaration only to what it named — its functions, followed one `self.` call deep and blind to const tables; its edge list; and its own `components`. `readiness_gate` read HAS_READINESS two calls deep, `impact` read its twelve inference edges (chosen by schema module) and five risk edges (through `RISK_EDGES`), `budget_rollup` and `arrival_delta` were computed over relations their `over` omitted, and 135 functions naming an edge type were answered for by nothing. All passed. 13 declarations had padded `components` to pass the edge-sharing check.
+  - Now everything a declared function reaches, at any depth and by any call form, is held to its declaration, with edges named through consts and the inference-edge selector. A walk never enters a writer, and a writer named as a relation's code fails. Every function in reflow2-core that names an edge type is either answered for by a declaration or listed in the new `schema/derived/edge_readers.yaml` with the edges it reads. A new one, or a listed one reading a new edge, fails. The 132 found on 2026-09-29 are listed `unjudged`, and that count may only shrink. `components` must be exactly the primitives the composition writes (`Reading::composition_primitives`, new), for edge readings as well. A declared edge the rule does not state must be named in `not_yet_stated`.
+  - Declarations corrected: `readiness_gate` (HAS_READINESS added, the writer `forecast_readiness` dropped, composition states the forecast), `impact` (17 edges added), `budget_rollup` (`over: [discontinued]`), `arrival_delta` (`over` adds delivered and checked), and 14 `components` lists, with compositions completed where the rule read an edge they did not state (level_mismatch, assigned_decision, budget_rollup, claimed_region, rerun_owed, readiness_gate, arrival_delta).
+  - Not checked, and cannot be here: that a rule COMPUTES what the code computes. That needs the planned rule engine. Whether a listed function derives a relation is a judgement, not a scan.
+- **`add_decision` draws `related_to` for every kind, and every constructor names the edges it drew.** (`art:dev-reflow2-two-agent-exercise-feedback-2026-09-29`, I16; first reported 2026-09-23)
+  - Before: `related_to` was drawn only for `kind: exploratory`. A `choice` or no-kind decision passed the duplicate guard naming its relations and then drew none of them, and said nothing. Even the exploratory path discarded the review's outcome, so no reply named an edge. `add_capability` also built its drawn list and discarded it.
+  - Now `related_to` is drawn for every kind. Every constructor that draws edges inline — `add_decision`, `add_capability`, `add_verification`, `add_change_event`, `record_finding` — names each one in `edges_drawn` as a sentence with its subject first (`dec:older EVOLVES_INTO dec:new`), through one shared path. An edge a revise re-sends is named in `edges_already_present` instead. The existing id-shaped echoes are unchanged.
+  - The class is pinned by one test over every such constructor: the reply names exactly the edges the call created, measured by diffing the export.
+- **A constructor's loop hint says where the node landed, not where the common case lands.** (I2; first reported 2026-08-14)
+  - `add_decision` replied `status: accepted` beside "a Decision lands `proposed`" whenever it settled in the same call or merged over an accepted node. The hint is now read from the status the node stands at.
+  - The same fixed-sentence class, swept: `add_design_rule` no longer asks for `enforced` when the rule states it (the old text also carried a run of stray spaces), and `add_capability` no longer tells a caller who passed `satisfies` to wire it.
+- **A settled decision's name stops asking the question, or the design says it has not.** (I3; a recurrence of flo2 F12, 2026-09-19)
+  - `set_decision_status` takes `name`, so the settle can retitle "OPEN — does X…?" in the same call. An empty name is refused before anything is written.
+  - The settle reply (and `add_decision`) carries `name_still_reads_open` when an accepted decision's name still begins with `OPEN` in capitals or "open question".
+  - A new gap, `settled_decision_named_open`, sweeps the ones already standing: one rollup, keyed on the set of offenders. A lower-case "Open the API…" is not matched.
+  - `settled_question_prose` now reads a governed node's name as well as its body.
+  - The brainstorm skill says the OPEN is a copy of the status and tells the agent to retitle at the settle.
+- **A revise keeps what it was not passed, in every tool that promises it — and a create with no name is refused rather than stored with an empty one.**
+  - Twenty served constructors say "CONTENT FIELDS ARE REQUIRED TO CREATE AND OPTIONAL TO REVISE … omitted fields keep their stored value". Three of them broke it on 0.74.0, each by computing from the CALL instead of the node:
+    - `record_finding` wrote its defaults into every revise, so a revise that named neither field demoted a `defect` to a `finding` and turned a `forecast` into `measured`. Three field sightings, the last during a triage in the dev_reflow2 hub.
+    - `plan_epoch` wrote through a replacing core constructor, so a revise cleared `description` and `checksum`. It now merges, as `add_epoch` always has.
+    - `add_change_event` said a DATED event was `undated` when the revise did not re-send the date. The note now reads the stored event.
+  - `add_verification`'s "findings need a status" refusal now names the verdict the check already holds, so the re-send is informed. The rule itself is unchanged: whether new findings may inherit a stored verdict is an open question for the owner.
+  - The other half of the same contract, REQUIRED TO CREATE: seven constructors (`add_artifact`, `add_contributor`, `add_environment`, `add_flow`, `add_release`, `add_resource`, `add_verification`) resolved `name` and never asked whether it resolved, so an id-only create stored `name: ""`. They now refuse, naming the field.
+  - The pin is ONE class test, `a_revise_keeps_what_it_was_not_passed`, whose membership is read off the served tool list rather than hand-kept. Every tool whose description makes the promise is created with every scalar set to a non-default value, twice with different values, revised by one field, and checked field by field, reply note by reply note. A new constructor joins it the day it is served. Observed failing first on origin/main: 9 breaches across 3 tools, plus 7 tools storing an empty name.
+- **A finding or a refusal that fires correctly now names the route that works.** Eight reports from the dev_reflow2 hub's two-agent exercise (2026-09-29) had one shape: the check was right and its words stopped one item short of the cure. Each is fixed at the class, not the instance:
+  - **Every invalid-edge refusal names what DOES accept the pair, and the typed tool that draws it**, whichever tool raised it. `verifies(Verification → Decision)` said only "cannot connect"; it now names GOVERNED_BY, drawn by `governed_by`. `create_edge` and every typed helper render through one function, pinned by a test over every rejected (edge, from, to) the schema has.
+  - **A typed edge tool is never narrower than its schema.** `consumes` refused an Actor; `satisfies`, `depends_on` and `constrains` refused modelled pairs too. Each now resolves its endpoint types from the ids (optional `from_type` / `to_type` / `constraint_type`), and `precedes` takes the peer `from_id` / `to_id` spelling. A test drives every edge tool over every pair its schema models; on the base it found 64 modelled pairs with no typed route (28 CONSTRAINS, 27 CONSUMES, 5 SATISFIES, 3 DEPENDS_ON, 1 PRECEDES).
+  - **`describe_schema` says which tool writes a type (`written_by`) and which draws an edge (`drawn_by`)**, read from `crates/reflow2-mcp/writers.json` — the map `tools/vocabulary_reach.py` now reads too, instead of keeping its own copy. `record_finding` writes a TemporalFact, and the schema can now say so.
+  - **Every finding that reads a `parks` ruling says so, in one shared sentence** that lists all eight such findings (`PARKING_READERS`). `unsatisfied_requirement` was the fourth report of a person never told parking existed. A test walks the crate's source for any rule reading parking that is not counted. The detect-and-ask skill teaches it.
+  - **Both hierarchy rules a Project parent satisfies name `contains` under the Project**, in one shared sentence (`PROJECT_PARENT_CURE`); `level_spine_disagreement` had never said it, and an agent nested an outside gateway inside the engine to quiet it.
+  - **`unthreaded_cluster` names the edges that thread**, computed from the walk's own set, and says a CAUSES or other relation joins records without threading them.
+  - **The lens says it counts people** ("1 person … 2 automated agents are recorded too and not counted") instead of "1 recorded here" beside two described agents.
+  - **`budget_report`'s argument names the design-wide route** (`closure_report`'s budgets leg), so its missing-argument refusal does too.
 
 - **The brainstorm skill looks for the answer before it frames a question as open.**
   - A new part of step 1: search accepted requirements and decisions, and the project's own statement of what it is for, before writing "OPEN".
@@ -44,13 +278,6 @@ This file is the third view: *what changed, and when*.
   - reflow2 owns the check (`host_gate`), in front of every HTTP surface: single-design `--http`, the `--serve-shared` daemon, the `--registry-root` router and the degraded surface. The library's copy is switched off, so there is one rule.
   - The registry router is now gated before it routes. A request with an unlisted Host no longer gets the design listing on a bare path, or opens a design for a `/g/<id>/` path, before being refused.
   - What is admitted is unchanged: loopback by default, the flag extends and never replaces, and an entry with a port admits only that port.
-- **A server whose design is held by another process serves it in place the moment that process lets go, and an HTTP server's readiness says whether the design is served.** (GitHub issue #616)
-  - Before: a second server started on a store another process held served the one-tool degraded surface forever. It never retried, stayed degraded after the holder stopped, and bound its port, so the image's TCP health check reported it healthy. On a rolling update the new pod looked fine while the design was unavailable.
-  - Now a plain server (stdio or `--http`) whose store is held keeps trying to open it, backing off to at most 5 s between attempts. When it opens, the SAME process and port serve the full design: every session gets its own seat, connected clients are sent `notifications/tools/list_changed`, and the handshake reason is gone. The handshake says it will recover by itself and declares `listChanged`.
-  - A `--shared` session whose server election timed out (usually a non-shared process holding the store) keeps re-electing in the background. When a shared server comes up, the session switches to it in place, introduced with the client's own handshake, and the client is told its tool list changed.
-  - A cause that waiting cannot fix is not polled: a stamp that will not read, a store from a newer reflow2, a corrupt store, a published refusal from a shared server, a bad pointer or identity. Those still say to fix the cause and restart. If the lock frees and the open then fails for such a reason, the retrying stops and says that instead.
-  - Every HTTP server answers `GET /readyz` (200 while the design is served; 503 with one path-free sentence otherwise) and `GET /healthz` (200 while the process serves). Both answer whatever the Host header, so an orchestrator's probe by pod IP needs no `--http-allow-host`, and they sit in front of the Host gate; everything else stays behind it. A registry is ready when it is up.
-  - The image's `HEALTHCHECK` probes `/readyz` over HTTP instead of a bare TCP connect, and `docker/smoke.sh` checks `/readyz` from outside by a name no allowlist carries.
 - **A registry server names every store it found and cannot serve, instead of dropping it and saying "no designs".** (GitHub issue #616)
   - Before: a `--registry-root` server met a store whose identity file was missing — a volume mounted at the store instead of its parent — and discarded it. Startup said "no designs found", the listing said the root "holds no designs", and the design read as silently empty. A single-design server has refused the same store loudly since 2026-08-07.
   - Now every store discovery classified and cannot serve is kept with why and the remedy, and named at startup, in the listing on a GET of `/` ("Found under this root and NOT served"), and in the refusal for an unknown `/g/<id>/`. "No designs" is said only when nothing at all is under the root.

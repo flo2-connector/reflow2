@@ -85,6 +85,7 @@ async fn seeded() -> ReflowService {
         name: Some("Realistic physics".into()),
         statement: Some("Ball flight must be plausible.".into()),
         distinct_from: None,
+        replaces: None,
         status: None,
         approver: None,
         acted_at: None,
@@ -100,9 +101,8 @@ async fn seeded() -> ReflowService {
         description: Some("Simulate ball trajectory.".into()),
         status: None,
         distinct_from: None,
+        replaces: None,
         tier: None,
-        is_entry_point: None,
-        is_exit_point: None,
     })));
     j!(s.add_component(Parameters(ComponentReq {
         id: "cmp:physics".into(),
@@ -111,6 +111,7 @@ async fn seeded() -> ReflowService {
         kind: None,
         level: None,
         distinct_from: None,
+        replaces: None,
         tier: None,
         status: None,
     })));
@@ -123,6 +124,8 @@ async fn seeded() -> ReflowService {
         from_id: "cap:flight".into(),
         to_id: "req:physics".into(),
         coverage: None,
+        from_type: None,
+        to_type: None,
     })));
     s
 }
@@ -220,6 +223,7 @@ async fn genesis_bootstraps_then_detect_hands_off() {
         name: Some("Realistic physics".into()),
         statement: Some("Ball flight must be plausible.".into()),
         distinct_from: None,
+        replaces: None,
         status: None,
         approver: None,
         acted_at: None,
@@ -235,14 +239,15 @@ async fn genesis_bootstraps_then_detect_hands_off() {
         description: Some("Simulate ball trajectory.".into()),
         status: None,
         distinct_from: None,
+        replaces: None,
         tier: None,
-        is_entry_point: None,
-        is_exit_point: None,
     })));
     j!(s.satisfies(Parameters(SatisfiesReq {
         from_id: "cap:flight".into(),
         to_id: "req:physics".into(),
         coverage: None,
+        from_type: None,
+        to_type: None,
     })));
 
     // Seeded P0/P1 with no P2 → DETECT's first-round structure gap fires.
@@ -270,9 +275,8 @@ async fn link_artifact_closes_the_unrealized_capability_gap() {
             description: Some("…".into()),
             status: None,
             distinct_from: None,
+            replaces: None,
             tier: None,
-            is_entry_point: None,
-            is_exit_point: None,
         })));
     }
 
@@ -376,6 +380,9 @@ async fn a_mangled_gap_replay_still_keys_because_the_server_owns_the_text() {
         gap: obj(&gap),
         answers: vec![],
         asked_at: None,
+        asked_of: None,
+        batch: None,
+        evidence: vec![],
     })));
     let prompt_id = prep["prompts"].as_array().unwrap()[0]["id"]
         .as_str()
@@ -395,6 +402,9 @@ async fn a_mangled_gap_replay_still_keys_because_the_server_owns_the_text() {
             text: "Which component owns ball flight?".into()
         }],
         asked_at: None,
+        asked_of: None,
+        batch: None,
+        evidence: vec![],
     })));
 
     assert_eq!(served["status"], "ok");
@@ -431,6 +441,9 @@ async fn a_gap_that_no_longer_exists_is_refused_rather_than_served_from_a_stale_
             gap: obj(&gap),
             answers: vec![],
             asked_at: None,
+            asked_of: None,
+            batch: None,
+            evidence: vec![],
         }))
         .await;
     assert!(out.is_err(), "a gap nobody has cannot be phrased");
@@ -453,6 +466,9 @@ async fn gap_to_prompt_collect_then_serve() {
         gap: obj(&gap),
         answers: vec![],
         asked_at: None,
+        asked_of: None,
+        batch: None,
+        evidence: vec![],
     })));
     assert_eq!(prep["status"], "needs_llm");
     let prompts = prep["prompts"].as_array().expect("prompts array");
@@ -467,6 +483,9 @@ async fn gap_to_prompt_collect_then_serve() {
             text: "Which component owns ball flight?".into()
         }],
         asked_at: None,
+        asked_of: None,
+        batch: None,
+        evidence: vec![],
     })));
     assert_eq!(served["status"], "ok");
     assert_eq!(
@@ -489,6 +508,7 @@ async fn interface_tools_pair_both_sides_of_a_contract() {
         kind: None,
         level: None,
         distinct_from: None,
+        replaces: None,
         tier: None,
         status: None,
     })));
@@ -504,7 +524,8 @@ async fn interface_tools_pair_both_sides_of_a_contract() {
     })));
     j!(s.consumes(Parameters(ConsumesReq {
         from_id: "cmp:ui".into(),
-        to_id: "ifc:state".into()
+        to_id: "ifc:state".into(),
+        from_type: None,
     })));
 
     // Changing the provider must surface the consumer on the far side.
@@ -544,7 +565,8 @@ async fn a_contract_with_no_provider_surfaces_as_a_gap_over_the_surface() {
     })));
     j!(s.consumes(Parameters(ConsumesReq {
         from_id: "cmp:physics".into(),
-        to_id: "ifc:state".into()
+        to_id: "ifc:state".into(),
+        from_type: None,
     })));
 
     let gaps = jl!(s.detect_gaps(Parameters(GapScopeReq::default())));
@@ -944,6 +966,8 @@ async fn describe_schema_returns_the_whole_vocabulary() {
     );
     assert_eq!(
         v["edge_types"].as_array().unwrap().len(),
+        // 66 since ACTS_FOR (2026-09-29, an agent acts for the person whose
+        // word it records — the deferred "who" rung);
         // 65 since ANSWERS (2026-09-02, a record names the Question it
         // answered — vocabulary the schema had described before it existed);
         // 63 since IMPLEMENTS + COMPLEMENTS (2026-08-23, record-to-record
@@ -955,7 +979,7 @@ async fn describe_schema_returns_the_whole_vocabulary() {
         // places on purpose: the schema loader, describe_vocabulary, and here
         // at the SERVED surface. An edge type that existed but was not
         // discoverable through the tool would be vocabulary nobody could reach.
-        65,
+        66,
         "every edge type is discoverable"
     );
 }
@@ -1160,6 +1184,8 @@ async fn a_rejected_node_names_the_known_types() {
             // lost-update precondition, and stating an expectation it
             // never read would be a fake one.
             expected_content_hash: None,
+            approver: None,
+            acted_at: None,
         }))
         .await
         .expect_err("Widget is not a schema node type");
@@ -1193,6 +1219,7 @@ async fn a_well_formed_hierarchy_reports_no_issues() {
             kind: None,
             level: Some(level.into()),
             distinct_from: None,
+            replaces: None,
             tier: None,
             status: None,
         })));
@@ -1225,6 +1252,7 @@ async fn skipping_a_level_is_reported() {
             kind: None,
             level: Some(level.into()),
             distinct_from: None,
+            replaces: None,
             tier: None,
             status: None,
         })));
@@ -1258,6 +1286,7 @@ async fn nesting_two_defaulted_components_is_a_mismatch_not_silence() {
             kind: None,
             level: None,
             distinct_from: None,
+            replaces: None,
             tier: None,
             status: None,
         })));
@@ -1294,6 +1323,7 @@ async fn marking_a_requirement_dropped_stops_the_nagging() {
         name: Some("Maybe".into()),
         statement: Some("We might not do this.".into()),
         distinct_from: None,
+        replaces: None,
         status: None,
         approver: None,
         acted_at: None,
@@ -1324,9 +1354,8 @@ async fn marking_a_requirement_dropped_stops_the_nagging() {
         description: Some("does something else".into()),
         status: None,
         distinct_from: None,
+        replaces: None,
         tier: None,
-        is_entry_point: None,
-        is_exit_point: None,
     })));
     assert!(
         flagged(&jl!(s.detect_gaps(Parameters(GapScopeReq::default())))),
@@ -1378,12 +1407,20 @@ async fn asking_a_gap_records_the_question_it_asked() {
         .collect();
 
     // Nothing recorded before the question is put.
-    assert!(jl!(s.open_questions()).as_array().unwrap().is_empty());
+    assert!(
+        jl!(s.open_questions(Parameters(OpenQuestionsReq::default())))
+            .as_array()
+            .unwrap()
+            .is_empty()
+    );
 
     let prep = j!(s.gap_to_prompt(Parameters(GapToPromptReq {
         gap: obj(&gap),
         answers: vec![],
         asked_at: None,
+        asked_of: None,
+        batch: None,
+        evidence: vec![],
     })));
     let pid = prep["prompts"][0]["id"].as_str().unwrap().to_string();
     let served = j!(s.gap_to_prompt(Parameters(GapToPromptReq {
@@ -1393,13 +1430,16 @@ async fn asking_a_gap_records_the_question_it_asked() {
             text: "Which part should own this?".into()
         }],
         asked_at: Some("2026-07-18T10:00:00Z".into()),
+        asked_of: None,
+        batch: None,
+        evidence: vec![],
     })));
     assert!(
         served["question_id"].is_string(),
         "the record is reported back"
     );
 
-    let open = jl!(s.open_questions());
+    let open = jl!(s.open_questions(Parameters(OpenQuestionsReq::default())));
     let arr = open.as_array().unwrap();
     assert_eq!(
         arr.len(),
@@ -1420,8 +1460,13 @@ async fn asking_a_gap_records_the_question_it_asked() {
         gap_id: Some(gap_id.clone()),
         question_id: None,
         answer: "The physics engine.".into(),
+        answered_by: None,
+        answered_at: None,
+        record: None,
+        record_type: None,
+        note: None,
     })));
-    let after = jl!(s.open_questions());
+    let after = jl!(s.open_questions(Parameters(OpenQuestionsReq::default())));
     let a = after.as_array().unwrap();
     assert_eq!(
         a.len(),
@@ -1440,7 +1485,10 @@ async fn asking_a_gap_records_the_question_it_asked() {
         acted_at: None,
     })));
     assert!(
-        jl!(s.open_questions()).as_array().unwrap().is_empty(),
+        jl!(s.open_questions(Parameters(OpenQuestionsReq::default())))
+            .as_array()
+            .unwrap()
+            .is_empty(),
         "a settled gap leaves nothing outstanding"
     );
 
@@ -1450,6 +1498,11 @@ async fn asking_a_gap_records_the_question_it_asked() {
             gap_id: Some("gap:never".into()),
             question_id: None,
             answer: "…".into(),
+            answered_by: None,
+            answered_at: None,
+            record: None,
+            record_type: None,
+            note: None,
         }))
         .await
         .is_err()
@@ -1692,6 +1745,8 @@ async fn create_node_on_an_existing_id_merges_instead_of_resetting() {
         // lost-update precondition, and stating an expectation it
         // never read would be a fake one.
         expected_content_hash: None,
+        approver: None,
+        acted_at: None,
     })));
 
     assert_eq!(
@@ -1875,9 +1930,8 @@ async fn compare_designs_reports_divergence_from_a_base_export() {
         description: Some("Field the ball.".into()),
         status: None,
         distinct_from: None,
+        replaces: None,
         tier: None,
-        is_entry_point: None,
-        is_exit_point: None,
     })));
 
     let diff = j!(s.compare_designs(Parameters(CompareDesignsReq {
@@ -1940,9 +1994,8 @@ async fn loop_status_reports_debt_and_the_write_tools_point_at_the_loop() {
         description: Some("Claims to be built.".into()),
         status: Some("realized".into()),
         distinct_from: None,
+        replaces: None,
         tier: None,
-        is_entry_point: None,
-        is_exit_point: None,
     })));
     assert!(
         cap["loop_hint"]
@@ -1977,6 +2030,7 @@ async fn loop_status_reports_debt_and_the_write_tools_point_at_the_loop() {
         kind: None,
         level: None,
         distinct_from: None,
+        replaces: None,
         tier: None,
         status: None,
     })));
@@ -2120,9 +2174,8 @@ async fn export_files_chain_by_content_hash() {
         description: Some("Content moved.".into()),
         status: None,
         distinct_from: None,
+        replaces: None,
         tier: None,
-        is_entry_point: None,
-        is_exit_point: None,
     })));
     let second = j!(s.export_graph(Parameters(ExportGraphToReq {
         path: Some(path_str.clone()),
@@ -2417,6 +2470,7 @@ async fn temporal_resource_and_realization_tools_round_trip() {
         kind: None,
         level: None,
         distinct_from: None,
+        replaces: None,
         tier: None,
         status: None,
     })));
@@ -2452,6 +2506,9 @@ async fn an_asked_question_can_be_withdrawn() {
         gap: obj(&gap),
         answers: vec![],
         asked_at: None,
+        asked_of: None,
+        batch: None,
+        evidence: vec![],
     })));
     let pid = prep["prompts"][0]["id"].as_str().unwrap().to_string();
     j!(s.gap_to_prompt(Parameters(GapToPromptReq {
@@ -2461,8 +2518,17 @@ async fn an_asked_question_can_be_withdrawn() {
             text: "Who owns this?".into()
         }],
         asked_at: Some("2026-07-21T00:00:00Z".into()),
+        asked_of: None,
+        batch: None,
+        evidence: vec![],
     })));
-    assert_eq!(jl!(s.open_questions()).as_array().unwrap().len(), 1);
+    assert_eq!(
+        jl!(s.open_questions(Parameters(OpenQuestionsReq::default())))
+            .as_array()
+            .unwrap()
+            .len(),
+        1
+    );
 
     // Withdraw it — the question leaves the open list.
     let withdrawn = j!(s.withdraw_question(Parameters(WithdrawQuestionReq {
@@ -2474,7 +2540,10 @@ async fn an_asked_question_can_be_withdrawn() {
         "withdraw reports success: {withdrawn}"
     );
     assert!(
-        jl!(s.open_questions()).as_array().unwrap().is_empty(),
+        jl!(s.open_questions(Parameters(OpenQuestionsReq::default())))
+            .as_array()
+            .unwrap()
+            .is_empty(),
         "the withdrawn question is off the open list"
     );
 }
@@ -2572,6 +2641,7 @@ async fn a_read_after_a_write_does_not_carry_a_loop_debt_hint() {
         name: Some("Low latency".into()),
         statement: Some("Input to render under 50ms.".into()),
         distinct_from: None,
+        replaces: None,
         status: None,
         approver: None,
         acted_at: None,
@@ -2600,6 +2670,7 @@ async fn a_read_after_a_write_does_not_carry_a_loop_debt_hint() {
         name: Some("Throughput".into()),
         statement: Some("Sustain 60 frames.".into()),
         distinct_from: None,
+        replaces: None,
         status: None,
         approver: None,
         acted_at: None,
@@ -2652,9 +2723,8 @@ async fn a_read_too_large_to_return_says_what_it_left_out() {
             description: Some(prose.clone()),
             status: None,
             distinct_from: None,
+            replaces: None,
             tier: None,
-            is_entry_point: None,
-            is_exit_point: None,
         })));
     }
 
@@ -2706,9 +2776,8 @@ async fn a_single_node_larger_than_the_budget_is_still_returned() {
         description: Some("y".repeat(60_000)),
         status: None,
         distinct_from: None,
+        replaces: None,
         tier: None,
-        is_entry_point: None,
-        is_exit_point: None,
     })));
 
     let page = j!(s.scan_nodes(Parameters(ScanReq {
@@ -2731,9 +2800,8 @@ async fn brief_gives_the_shape_without_the_prose() {
         description: Some("z".repeat(5_000)),
         status: None,
         distinct_from: None,
+        replaces: None,
         tier: None,
-        is_entry_point: None,
-        is_exit_point: None,
     })));
 
     let page = j!(s.scan_nodes(Parameters(ScanReq {
@@ -2771,9 +2839,8 @@ async fn an_explicit_limit_is_reported_as_the_reason_it_stopped() {
             description: Some("small".into()),
             status: None,
             distinct_from: None,
+            replaces: None,
             tier: None,
-            is_entry_point: None,
-            is_exit_point: None,
         })));
     }
 
@@ -3168,11 +3235,15 @@ async fn a_rejected_bulk_write_errors_and_still_names_every_failure() {
                     node_type: "NotAType".into(),
                     id: "x:bad".into(),
                     props: None,
+                    approver: None,
+                    acted_at: None,
                 },
                 NodeSpecReq {
                     node_type: "AlsoNotAType".into(),
                     id: "x:worse".into(),
                     props: None,
+                    approver: None,
+                    acted_at: None,
                 },
             ],
         }))
@@ -3203,14 +3274,18 @@ async fn each_gap_is_replayed_against_only_its_own_answers() {
         gaps: vec![
             GapPromptReq {
                 gap: obj(&a),
-                answers: vec![]
+                answers: vec![],
+                evidence: vec![],
             },
             GapPromptReq {
                 gap: obj(&b),
-                answers: vec![]
+                answers: vec![],
+                evidence: vec![],
             },
         ],
         asked_at: None,
+        asked_of: None,
+        batch: None,
     })));
     assert_eq!(prep["status"], "needs_llm");
     let per_gap = prep["gaps"].as_array().expect("grouped by gap");
@@ -3225,17 +3300,21 @@ async fn each_gap_is_replayed_against_only_its_own_answers() {
                 answers: vec![AgentAnswerReq {
                     id: id_a,
                     text: "QUESTION FOR THE FIRST GAP".into()
-                }]
+                }],
+                evidence: vec![],
             },
             GapPromptReq {
                 gap: obj(&b),
                 answers: vec![AgentAnswerReq {
                     id: id_b,
                     text: "QUESTION FOR THE SECOND GAP".into()
-                }]
+                }],
+                evidence: vec![],
             },
         ],
         asked_at: Some("2026-08-01".into()),
+        asked_of: None,
+        batch: None,
     })));
     assert_eq!(served["status"], "ok");
     let out = served["gaps"].as_array().unwrap();
@@ -3247,7 +3326,7 @@ async fn each_gap_is_replayed_against_only_its_own_answers() {
     );
 
     // Both are on the record, with the wording each was actually given.
-    let open = jl!(s.open_questions());
+    let open = jl!(s.open_questions(Parameters(OpenQuestionsReq::default())));
     let asked: Vec<&str> = open
         .as_array()
         .unwrap()
@@ -3276,13 +3355,17 @@ async fn a_half_answered_ask_batch_is_refused() {
                         id: "whatever".into(),
                         text: "answered".into(),
                     }],
+                    evidence: vec![],
                 },
                 GapPromptReq {
                     gap: obj(&b),
                     answers: vec![],
+                    evidence: vec![],
                 },
             ],
             asked_at: None,
+            asked_of: None,
+            batch: None,
         }))
         .await
         .expect_err("a mixed batch is refused");
@@ -3293,7 +3376,7 @@ async fn a_half_answered_ask_batch_is_refused() {
     );
 
     // And nothing was recorded — the refusal is before any write.
-    let open = jl!(s.open_questions());
+    let open = jl!(s.open_questions(Parameters(OpenQuestionsReq::default())));
     assert!(open.as_array().unwrap().is_empty());
 }
 
@@ -3304,6 +3387,8 @@ async fn an_empty_ask_batch_is_refused_rather_than_treated_as_a_no_op() {
         s.gaps_to_prompts(Parameters(GapsToPromptsReq {
             gaps: vec![],
             asked_at: None,
+            asked_of: None,
+            batch: None,
         }))
         .await
         .is_err()
@@ -3433,6 +3518,7 @@ async fn scan_nodes_filters_by_decomposition_level() {
             kind: None,
             level: level.map(str::to_string),
             distinct_from: None,
+            replaces: None,
             tier: None,
             status: None,
         })));
@@ -3486,6 +3572,7 @@ async fn a_bad_level_is_refused_rather_than_answered_empty() {
         kind: None,
         level: Some("subsystem".into()),
         distinct_from: None,
+        replaces: None,
         tier: None,
         status: None,
     })));
@@ -3547,6 +3634,7 @@ async fn add_design_rule_is_a_typed_constructor() {
         enforced: None,
         units: None,
         distinct_from: None,
+        replaces: None,
         approver: None,
         acted_at: None,
 
@@ -3585,6 +3673,7 @@ async fn add_design_rule_records_a_stated_enforcement() {
         enforced: Some(true),
         units: None,
         distinct_from: None,
+        replaces: None,
         approver: Some("who:ann".into()),
         acted_at: None,
 
@@ -3723,6 +3812,7 @@ async fn get_node_resolves_by_id_alone_and_refuses_a_collision() {
         name: Some("Solo".into()),
         statement: Some("A lone requirement.".into()),
         distinct_from: None,
+        replaces: None,
         status: None,
         approver: None,
         acted_at: None,

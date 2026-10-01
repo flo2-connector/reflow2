@@ -25,7 +25,7 @@
       },
       "distinct_from": {
         "default": null,
-        "description": "Ids you read and judged DIFFERENT from this one, when reflow2 has\nalready told you something close exists. Naming them is the deliberate\ndecision: sharpen an existing node by calling with ITS id, or start a\nnew one and say what you rejected. Omit it on a first attempt — the\nrefusal, if any, lists exactly what to put here.",
+        "description": "Ids you read and judged a DIFFERENT thing from this one, when reflow2\nhas already told you something close exists — one of the THREE answers\nto that check: sharpen the existing node (call with ITS id), say this one\nis different (here), or say it takes an older one's place (`replaces`).\nTHE JUDGEMENT IS KEPT: the ids are written onto the node as\n`distinct_from`, so a later reader can tell a node its writer compared\nfrom one nobody did. Omit it on a first attempt — the refusal, if any,\nlists exactly what to put here.",
         "items": {
           "type": "string"
         },
@@ -34,30 +34,34 @@
           "null"
         ]
       },
+      "echo": {
+        "default": "receipt",
+        "description": "What the reply carries. `receipt` (the default) names the node, echoes each stored value of at most 200 characters, gives longer ones by size, and names the snapshot that keeps anything a revise replaced. `node` returns the whole stored node and every prior value.",
+        "enum": [
+          "receipt",
+          "node"
+        ],
+        "type": "string"
+      },
       "id": {
         "description": "The capability's id — `cap:<slug>` by convention, so the prefix names the type wherever the id appears. Calling again with an EXISTING id REVISES that node: what you pass overwrites, what you omit survives.",
         "type": "string"
-      },
-      "is_entry_point": {
-        "default": null,
-        "description": "True when this capability STARTS a flow. Distinct from `Flow.entry_point`,\nwhich names a capability from the flow's side; this is the flag on the\ncapability itself, carried by 147 of 234 and written by nothing.",
-        "type": [
-          "boolean",
-          "null"
-        ]
-      },
-      "is_exit_point": {
-        "default": null,
-        "description": "True when this capability ENDS a flow. Sibling of the above.",
-        "type": [
-          "boolean",
-          "null"
-        ]
       },
       "name": {
         "default": null,
         "type": [
           "string",
+          "null"
+        ]
+      },
+      "replaces": {
+        "default": null,
+        "description": "Ids of OLDER nodes of this same type that this one TAKES THE PLACE OF —\nthe third answer to the near-match check, for a new node that is neither\na sharper wording of an old one nor a different thing, but its\nsuccessor. For each: the old node's ending is recorded FIRST (a\n`deprecation` ChangeEvent whose snapshot keeps its final state and\nedges), the thread that says what it was FOR moves here (a Capability's\nSATISFIES, a Component's incoming ALLOCATED_TO; a Requirement, Decision\nor DesignRule moves none), and this node OBSOLETES it. Its stored status\ndoes not move. The reply names what moved, what stayed, and what — if\nanything — still withdraws it. Works on a revise too, so a successor\nalready recorded can say so later. An id of another type, one naming\nnothing, or one also in `distinct_from` is REFUSED and nothing is written.",
+        "items": {
+          "type": "string"
+        },
+        "type": [
+          "array",
           "null"
         ]
       },

@@ -62,6 +62,7 @@ fn req(
         name: Some(name.into()),
         statement: Some(statement.into()),
         distinct_from,
+        replaces: None,
         status: None,
         approver: None,
         acted_at: None,
@@ -227,9 +228,8 @@ async fn a_capability_restating_a_requirement_is_reported_but_not_refused() {
         description: Some(IDEA_B.into()),
         status: None,
         distinct_from: None,
+        replaces: None,
         tier: None,
-        is_entry_point: None,
-        is_exit_point: None,
     })));
     assert_eq!(made["node_id"], "cap:cumulative");
     let advisory = made

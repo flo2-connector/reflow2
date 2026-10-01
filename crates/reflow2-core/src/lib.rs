@@ -26,6 +26,7 @@
 //! assert_eq!(g.count_nodes("Requirement").unwrap(), 1);
 //! ```
 
+pub mod acting;
 pub mod agent;
 pub mod allocate;
 pub mod alternatives;
@@ -43,6 +44,7 @@ pub mod corpus;
 pub mod coverage;
 pub mod dates;
 pub mod depends;
+pub mod derived;
 pub mod detect;
 pub mod dimensions;
 pub mod discover;
@@ -63,6 +65,7 @@ pub mod hierarchy;
 pub mod identity;
 pub mod ility;
 pub mod ingest;
+pub mod intent;
 pub mod llm;
 pub mod loop_closure;
 pub mod manual_work;
@@ -96,10 +99,12 @@ mod fuzzy;
 mod graphalg;
 mod stats;
 pub mod structure;
+pub mod supersede;
 pub mod surprises;
 pub mod sync;
 pub mod temporal;
 pub mod topic;
+pub mod twins;
 pub mod verify;
 pub mod vocabulary;
 
@@ -134,9 +139,9 @@ pub use depends::{
     ObservedUpstream, UpstreamFinding, UpstreamReport, UpstreamTarget,
 };
 pub use detect::{
-    AFFECTED_CAP, AskedQuestion, AskedRecord, DEFAULT_REPLY_BUDGET_CHARS, GapCandidate, GapPrompt,
-    GapReport, GapRow, GapScope, GapSource, NARROW_THE_SCOPE, NARROW_WITH_SCOPE, ReplyBudget,
-    ReplyDetail, budget_gaps,
+    AFFECTED_CAP, Answering, AskedQuestion, AskedRecord, DEFAULT_REPLY_BUDGET_CHARS, EvidenceLink,
+    GapCandidate, GapPrompt, GapReport, GapRow, GapScope, GapSource, NARROW_THE_SCOPE,
+    NARROW_WITH_SCOPE, ReplyBudget, ReplyDetail, budget_gaps, name_leads_with_open,
 };
 pub use dimensions::{Dimension, DimensionDrift, DriftDirection};
 pub use discover::{DesignAtPath, DesignPathState, describe_at};
@@ -213,7 +218,7 @@ pub use verify::{
 };
 pub use vocabulary::{
     Coverage, DomainCoverage, EdgeQuery, EdgeTypeMatch, EdgeTypeSpec, EndpointMatch,
-    NodeTypeDetail, NodeTypeSpec, PropertySpec, Vocabulary, VocabularyCoverage,
+    NodeTypeDetail, NodeTypeSpec, PropertySpec, ReadAsSelection, Vocabulary, VocabularyCoverage,
     vocabulary_park_decision_id,
 };
 

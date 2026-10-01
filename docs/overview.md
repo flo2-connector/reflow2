@@ -49,7 +49,7 @@ every domain; they map onto the loop like this:
 - [interaction-surfaces.md](interaction-surfaces.md) — how a human drives the system (MCP/skills vs. hosted app vs. …) and the LLM-sourcing consequence. **The decision it framed has since been made and built** (agent-native MCP — see surface-plan.md); kept as the option analysis.
 - [skills/README.md](skills/README.md) — where the consumer kit's skills and MCP config have to be installed for each harness to find them, distilled from the Claude Code / Grok / Copilot docs kept alongside it. Reading it is how we learned the kit's skills are invisible to two of the three (BL-22).
 - [surface-plan.md](surface-plan.md) — that decision, made: the **agent-native** surface (grok build / claude code on a shared graph) and the next-phase build order to make reflow2 drivable by a coding agent.
-- `../schema/*.yaml` — the 11 composable dynograph domains (28 node types, 65 edge types); run `../tools/validate_schema.py` to check them.
+- `../schema/*.yaml` — the 11 composable dynograph domains (28 node types, 66 edge types); run `../tools/validate_schema.py` to check them.
 
 ### 3 · Process — *how it runs (the coherence loop)*
 - [extraction-plan.md](extraction-plan.md) — INGEST: the phase-aware multi-pass extraction pipeline.
@@ -108,6 +108,12 @@ Three records, three questions — kept separate on purpose:
   to a collaborator as-is.
 
 ### 3½ · Upgrade notes — *read before updating a consumer project*
+- [upgrading-to-v0.75.0.md](upgrading-to-v0.75.0.md) — **upgrade everywhere, together, and read
+  it BEFORE upgrading a server others reach**. An engine behind a gateway must declare
+  `--http-trusted-gateway` or it refuses every approval, and an exposed `--http` server with no
+  gateway becomes read-and-propose-only. Also: `_meta["reflow2/settles"]` version 2, a write replies
+  with a receipt (`echo: "node"` for the old reply), and four removed flow and capability arguments.
+  The stamp moves: `ACTS_FOR` (66 edge types) and `Constraint.composition`.
 - [upgrading-to-v0.65.0.md](upgrading-to-v0.65.0.md) — **upgrade everywhere, together**: the stamp
   moves again, `ChangeEvent.change_type` gains `decision_settled`, and an older binary refuses by
   name a design that stores it.

@@ -1,4 +1,17 @@
 {
+  "_meta": {
+    "reflow2/settles": {
+      "approver": "approver",
+      "argument": "status",
+      "unsigned": "recorded_with_note",
+      "version": 1,
+      "when": {
+        "not_in": [
+          "proposed"
+        ]
+      }
+    }
+  },
   "annotations": {
     "readOnlyHint": false
   },
@@ -22,6 +35,15 @@
           "string",
           "null"
         ]
+      },
+      "echo": {
+        "default": "receipt",
+        "description": "What the reply carries. `receipt` (the default) names the node, echoes each stored value of at most 200 characters, gives longer ones by size, and names the snapshot that keeps anything a revise replaced. `node` returns the whole stored node and every prior value.",
+        "enum": [
+          "receipt",
+          "node"
+        ],
+        "type": "string"
       },
       "requirement_id": {
         "description": "The Requirement (`req:…`) whose lifecycle status moves. Every move off `proposed` records the USER's word — pass `approver`.",

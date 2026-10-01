@@ -90,6 +90,7 @@ fn decision(id: &str, name: &str, body: &str) -> DecisionReq {
         decision: Some(body.into()),
         rationale: None,
         distinct_from: None,
+        replaces: None,
         kind: None,
         related_to: None,
         no_relation_note: None,

@@ -2,7 +2,7 @@
   "annotations": {
     "readOnlyHint": false
   },
-  "description": "Link an Artifact to the Capability or Component it REALIZES — the file, drawing or binary that implements it, as opposed to one that merely describes it (`documents`). This is the as-built half of the design: a capability nothing realizes is raised as `unrealized_capability`, and `reconcile_artifacts` compares each realizing file's checksum against its recorded baseline to catch drift. `link_artifact` does this in one call with provenance and a checksum, and is the better door; use this when the Artifact node already exists. Ask for this when you want to record that a real file implements a capability or part.",
+  "description": "Link an Artifact to the Capability or Component it REALIZES — the file, drawing or binary that implements it, as opposed to one that merely describes it (`documents`). This is the as-built half of the design: a capability nothing realizes is raised as `unrealized_capability`, and `reconcile_artifacts` compares each realizing file's checksum against its recorded baseline to catch drift. `link_artifact` does this in one call with provenance and a checksum, and is the better door; use this when the Artifact node already exists. Ask for this when you want to record that a real file implements a capability or part. MANY AT ONCE: `draw_edges`, items {\"tool\": \"realizes\", \"arguments\": {…}}, same checks, all or nothing.",
   "inputSchema": {
     "$schema": "https://json-schema.org/draft/2020-12/schema",
     "additionalProperties": false,
@@ -38,6 +38,15 @@
           "string",
           "null"
         ]
+      },
+      "echo": {
+        "default": "receipt",
+        "description": "What the reply carries. `receipt` (the default) names the node, echoes each stored value of at most 200 characters, gives longer ones by size, and names the snapshot that keeps anything a revise replaced. `node` returns the whole stored node and every prior value.",
+        "enum": [
+          "receipt",
+          "node"
+        ],
+        "type": "string"
       },
       "target_id": {
         "description": "The realized node; its type is `target_type`.",

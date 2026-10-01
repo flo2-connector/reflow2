@@ -382,6 +382,13 @@ pub struct ReaderLens {
     /// text already in front of the agent, not a fetch per person. Names
     /// are already in the public export; nothing else about identity is.
     pub names: std::collections::BTreeMap<String, String>,
+    /// Contributors of kind `automated_agent`, by id — recorded and deliberately
+    /// NOT counted as readers. Carried so the lens can say they were left out:
+    /// until 2026-09-29 it said "1 recorded here and none describes themselves"
+    /// beside two agents that both did, which a reader holding the contributor
+    /// list reads as a miscount (dev_reflow2 two-agent exercise, I8,
+    /// `fact:root-cause-the-lens-counts-people-only-and-says-recorded-here-2026-09-29`).
+    pub agents: Vec<String>,
 }
 
 impl ReaderLens {
@@ -397,12 +404,14 @@ impl DesignGraph {
         let mut with_background = Vec::new();
         let mut without_background = Vec::new();
         let mut names = std::collections::BTreeMap::new();
+        let mut agents = Vec::new();
         for c in self.scan_nodes(node::CONTRIBUTOR)? {
             let kind = c.properties.get("kind").and_then(Value::as_str);
             // Unset reads as a person: `kind` is optional and older nodes
             // predate it, so treating silence as "not a person" would hide
             // exactly the contributors most likely to be human.
             if matches!(kind, Some("automated_agent")) {
+                agents.push(c.node_id);
                 continue;
             }
             let has_background = c
@@ -427,10 +436,12 @@ impl DesignGraph {
         }
         with_background.sort();
         without_background.sort();
+        agents.sort();
         Ok(ReaderLens {
             with_background,
             without_background,
             names,
+            agents,
         })
     }
 }

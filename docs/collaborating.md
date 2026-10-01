@@ -306,6 +306,16 @@ worked around.
 > every network the machine is on, so if one of them is untrusted, bind the specific private address
 > instead.
 
+> **Nobody can sign through a server reachable from another machine** (#616 fix 4). Once
+> `--http-allow-host` names a host that is not loopback, the server is served for others and does not
+> know who is calling. Every session can still read and propose; every approval, and every move into
+> settled intent (a decision `accepted` or `deferred`, a requirement past `proposed`, a rule's
+> `enforced`), is refused, and the refusal says so. Settle from a session on the machine that holds the
+> design, or reach the server through an SSH tunnel (the first row above), which leaves it local. If a
+> gateway in front authenticates every caller and names them on each call in
+> `_meta["reflow2/writes_for"]`, declare it with `--http-trusted-gateway <name>`: each call then signs
+> only as the person the gateway names.
+
 ### When one machine has to hold the design
 
 Live sharing has a centre: the machine running the server. If it sleeps, the others lose the

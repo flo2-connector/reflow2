@@ -75,10 +75,11 @@ async fn two_recorded_readers_are_named_beside_their_ids() {
     assert!(lens.contains("who:alex (Alex)"), "{lens}");
 }
 
-/// The silent case names who could be asked — by name as well, since the
-/// agent may be able to tell from the git author which of them is present.
+/// The silent case names who is recorded — by name as well, since the agent
+/// may be able to tell from the git author which of them is present, and
+/// credits what it captures to that person.
 #[tokio::test]
-async fn the_askable_people_are_named_too() {
+async fn the_people_with_nothing_on_record_are_named_too() {
     let s = service().await;
     person(&s, "who:ann", "Ann Example", None).await;
 
@@ -87,21 +88,31 @@ async fn the_askable_people_are_named_too() {
     })));
     let lens = out.get("lens").and_then(|v| v.as_str()).expect("lens");
 
-    assert!(lens.contains("NOBODY'S BACKGROUND IS RECORDED"), "{lens}");
+    assert!(
+        lens.contains("THIS DESIGN DOES NOT SAY WHO IS READING"),
+        "{lens}"
+    );
     assert!(lens.contains("who:ann (Ann Example)"), "{lens}");
 }
 
 /// A person with no `name` is still listed — by id alone, never dropped.
+///
+/// Such a record can no longer be CREATED through `add_contributor`: since
+/// 2026-09-29 an id-only create is refused rather than stored with `name: ""`
+/// (a_revise_keeps_what_it_was_not_passed.rs). Designs written before that
+/// hold exactly those records, so the case is built the way they were — a
+/// Contributor carrying the empty placeholder — through the generic writer.
 #[tokio::test]
 async fn a_person_with_no_name_is_still_listed() {
     let s = service().await;
-    j!(s.add_contributor(Parameters(ContributorReq {
-        id: "who:nameless".into(),
-        name: None,
-        kind: Some("person".into()),
-        handle: None,
-        description: Some("Vet.".to_string()),
-    })));
+    j!(s.create_node(Parameters(
+        serde_json::from_value(serde_json::json!({
+            "node_type": "Contributor",
+            "id": "who:nameless",
+            "props": { "name": "", "kind": "person", "description": "Vet." }
+        }))
+        .unwrap()
+    )));
 
     let out = j!(s.get_skill(Parameters(GetSkillReq {
         name: "where-am-i".into(),

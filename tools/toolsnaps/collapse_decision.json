@@ -1,4 +1,13 @@
 {
+  "_meta": {
+    "reflow2/settles": {
+      "approver": "approver",
+      "argument": null,
+      "unsigned": "recorded_with_note",
+      "version": 1,
+      "when": "always"
+    }
+  },
   "annotations": {
     "destructiveHint": false,
     "readOnlyHint": false
@@ -8,8 +17,33 @@
     "$schema": "https://json-schema.org/draft/2020-12/schema",
     "additionalProperties": false,
     "properties": {
+      "acted_at": {
+        "default": null,
+        "description": "When the approver acted, as a plain date. Stored on the approver edge.",
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "approver": {
+        "default": null,
+        "description": "The Contributor whose word this choice is — draws `AUTHORED_BY\nrole=approver` on the Decision in the same call. Choosing the winner\nmoves the Decision to `accepted`, which is settled intent; with no\napprover the choice is recorded and the reply says it carries nobody's\nname, like every other setter. An id naming no Contributor is REFUSED.",
+        "type": [
+          "string",
+          "null"
+        ]
+      },
       "decision_id": {
         "description": "The `proposed` Decision being settled — the decision point whose alternatives were registered with `register_alternative`.",
+        "type": "string"
+      },
+      "echo": {
+        "default": "receipt",
+        "description": "What the reply carries. `receipt` (the default) names the node, echoes each stored value of at most 200 characters, gives longer ones by size, and names the snapshot that keeps anything a revise replaced. `node` returns the whole stored node and every prior value.",
+        "enum": [
+          "receipt",
+          "node"
+        ],
         "type": "string"
       },
       "note": {

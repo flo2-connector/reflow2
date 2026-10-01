@@ -2,11 +2,20 @@
   "annotations": {
     "readOnlyHint": false
   },
-  "description": "Record WHERE a check was actually carried out (PERFORMED_IN). Without it a check run on a simulation rig and the same check run in the field are indistinguishable, so a capability proven only against a model reads exactly like one proven against reality. Point it at an Environment whose `env_type` says what kind of place that is — `simulation` for a rig, a digital twin, a physics model. Ask for this to record where a test was run.",
+  "description": "Record WHERE a check was actually carried out (PERFORMED_IN). Without it a check run on a simulation rig and the same check run in the field are indistinguishable, so a capability proven only against a model reads exactly like one proven against reality. Point it at an Environment whose `env_type` says what kind of place that is — `simulation` for a rig, a digital twin, a physics model. Ask for this to record where a test was run. MANY AT ONCE: `draw_edges`, items {\"tool\": \"performed_in\", \"arguments\": {…}}, same checks, all or nothing.",
   "inputSchema": {
     "$schema": "https://json-schema.org/draft/2020-12/schema",
     "additionalProperties": false,
     "properties": {
+      "echo": {
+        "default": "receipt",
+        "description": "What the reply carries. `receipt` (the default) names the node, echoes each stored value of at most 200 characters, gives longer ones by size, and names the snapshot that keeps anything a revise replaced. `node` returns the whole stored node and every prior value.",
+        "enum": [
+          "receipt",
+          "node"
+        ],
+        "type": "string"
+      },
       "environment_id": {
         "description": "The Environment it was carried out in. Its `env_type` is what says\nwhether that place was a simulation.",
         "type": "string"

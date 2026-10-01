@@ -509,6 +509,14 @@ pub struct LoopStatus {
     /// unowned design is the ordinary state and is not a finding. See
     /// [`GapOnOwnedGround`].
     pub gaps_on_owned_ground: Vec<GapOnOwnedGround>,
+    /// Questions put to the scoped contributor BY NAME (`Question.asked_of`)
+    /// and still waiting on their answer, in batch order. Empty when
+    /// unscoped. The third thing a scoped answer can honestly attribute: a
+    /// question put to you is owed by you as surely as a decision you were
+    /// asked to settle, and before it existed an owner outside the chat had
+    /// nothing addressed to them to read
+    /// (`fact:root-cause-an-owner-outside-the-chat-cannot-read-what-it-is-asked-to-approve-2026-09-29`).
+    pub questions_put_to_them: Vec<QuestionPutTo>,
     /// Set when the report was narrowed to one contributor.
     pub scope: Option<LoopScope>,
     /// Every counter zero. **When `scope` is set this means "nothing is
@@ -599,12 +607,53 @@ fn settle_toward(tag: Option<&str>) -> String {
     }
 }
 
+/// A question put to one contributor by name and not yet answered.
+#[derive(Debug, Clone, serde::Serialize)]
+pub struct QuestionPutTo {
+    pub question_id: String,
+    /// The wording they are to see.
+    pub question: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub batch: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub batch_position: Option<i64>,
+}
+
 #[derive(Debug, Clone, serde::Serialize)]
 pub struct AssignedDecision {
     pub decision_id: String,
     pub name: String,
     /// The Contributor the `AUTHORED_BY role=approver` edge points at.
     pub approver_id: String,
+    /// The agent(s) the approver was named THROUGH (`crate::acting`) — the
+    /// agent that recorded the ask, beside the person asked. Empty when no
+    /// agent was known.
+    pub acted_through: Vec<String>,
+    /// `"no agent known"` when [`Self::acted_through`] is empty, so an empty
+    /// list is never read as a claim that nobody acted.
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub acted_through_note: Option<&'static str>,
+}
+
+/// What a read says when no agent was recorded for an act.
+pub const NO_AGENT_KNOWN: &str = "no agent known";
+
+impl AssignedDecision {
+    fn from_approver_edge(
+        decision_id: &str,
+        name: &str,
+        edge: &crate::foundation::store::StoredEdge,
+    ) -> Self {
+        let acted_through = crate::graph::role_via(edge, "approver");
+        let acted_through_note = acted_through.is_empty().then_some(NO_AGENT_KNOWN);
+        Self {
+            decision_id: decision_id.to_string(),
+            name: name.to_string(),
+            approver_id: edge.to_id.clone(),
+            acted_through,
+            acted_through_note,
+        }
+    }
 }
 
 /// What a contributor-scoped answer covered, and what it could not.
@@ -903,6 +952,27 @@ impl DesignGraph {
             });
         }
         let questions = self.open_questions()?;
+        // Put to THIS person by name and still unanswered, in batch order.
+        let mut questions_put_to_them: Vec<QuestionPutTo> = match contributor {
+            Some(id) => questions
+                .iter()
+                .filter(|q| q.status == "asked" && q.asked_of.as_deref() == Some(id))
+                .map(|q| QuestionPutTo {
+                    question_id: q.question_id.clone(),
+                    question: q.question.clone(),
+                    batch: q.batch.clone(),
+                    batch_position: q.batch_position,
+                })
+                .collect(),
+            None => Vec::new(),
+        };
+        questions_put_to_them.sort_by(|a, b| {
+            (&a.batch, a.batch_position, &a.question_id).cmp(&(
+                &b.batch,
+                b.batch_position,
+                &b.question_id,
+            ))
+        });
         let surfaced: std::collections::BTreeSet<&str> =
             questions.iter().map(|q| q.gap_id.as_str()).collect();
         // Acknowledged gaps are already absent from detect_gaps, so what
@@ -994,16 +1064,14 @@ impl DesignGraph {
                 if contributor.is_some_and(|want| want != edge.to_id) {
                     continue;
                 }
-                assigned_decisions.push(AssignedDecision {
-                    decision_id: dec.node_id.clone(),
-                    name: dec
-                        .properties
+                assigned_decisions.push(AssignedDecision::from_approver_edge(
+                    &dec.node_id,
+                    dec.properties
                         .get("name")
                         .and_then(crate::foundation::core::Value::as_str)
-                        .unwrap_or_default()
-                        .to_string(),
-                    approver_id: edge.to_id.clone(),
-                });
+                        .unwrap_or_default(),
+                    &edge,
+                ));
             }
         }
         let unsettled_assigned_decisions = assigned_decisions.len();
@@ -1174,7 +1242,10 @@ impl DesignGraph {
             let mut not_attributable = Vec::new();
             for (n, what) in [
                 (gaps_not_attributable, "open gap(s) on ground nobody owns"),
-                (unanswered_questions, "question(s) waiting on the user"),
+                (
+                    unanswered_questions.saturating_sub(questions_put_to_them.len()),
+                    "question(s) waiting on an answer and not put to them by name",
+                ),
                 (
                     answered_with_open_gap,
                     "answered question(s) whose gap is still open",
@@ -1215,8 +1286,19 @@ impl DesignGraph {
                      `assigned_decisions`.",
                     s.contributor_id
                 ));
-            } else {
+            } else if questions_put_to_them.is_empty() {
                 next.push(format!("Nothing is assigned to {}.", s.contributor_id));
+            }
+            if !questions_put_to_them.is_empty() {
+                next.push(format!(
+                    "{n} question(s) were put to {who} by name and are waiting on their \
+                     answer — listed in `questions_put_to_them`. open_questions(asked_of: \
+                     {who}) returns them as the batch they were put in, each with the \
+                     evidence it rests on as links to read; record each reply with \
+                     answer_question(answered_by: {who}, record: <what it became>).",
+                    n = questions_put_to_them.len(),
+                    who = s.contributor_id
+                ));
             }
             if !gaps_on_owned_ground.is_empty() {
                 next.push(format!(
@@ -1247,7 +1329,11 @@ impl DesignGraph {
         // as surely as a decision you were asked to settle, and a `clean: true`
         // that ignored it would be the same confident lie in a new place.
         let clean = match &scope {
-            Some(_) => unsettled_assigned_decisions == 0 && gaps_on_owned_ground.is_empty(),
+            Some(_) => {
+                unsettled_assigned_decisions == 0
+                    && gaps_on_owned_ground.is_empty()
+                    && questions_put_to_them.is_empty()
+            }
             None => next.is_empty(),
         };
 
@@ -1284,6 +1370,7 @@ impl DesignGraph {
             loop_closure,
             assigned_decisions,
             gaps_on_owned_ground,
+            questions_put_to_them,
             scope,
             clean,
             next,
@@ -2210,16 +2297,12 @@ impl DesignGraph {
             let mut approver = None;
             for e in self.outgoing(id, Some(edge::AUTHORED_BY))? {
                 if crate::graph::edge_has_role(&e, "approver") {
-                    approver = Some(e.to_id.clone());
+                    approver = Some(e);
                     break;
                 }
             }
-            if let Some(approver_id) = approver {
-                marked.push(AssignedDecision {
-                    decision_id: id.clone(),
-                    name: name.clone(),
-                    approver_id,
-                });
+            if let Some(edge) = approver {
+                marked.push(AssignedDecision::from_approver_edge(id, name, &edge));
                 continue;
             }
 

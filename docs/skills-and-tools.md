@@ -1,4 +1,4 @@
-# What reflow2 offers: 32 skills and 193 tools
+# What reflow2 offers: 32 skills and 195 tools
 
 Generated from the **running server**, not from memory — the skill list came from `list_skills`,
 the tool list and every read/write marking from `tools/list`, and the command mapping from
@@ -98,7 +98,7 @@ Read one in full with `get_skill` before doing the work it covers.
 
 ---
 
-## The 193 tools
+## The 195 tools
 
 `read` never changes the design. **write** does. That marking is the tool's own `readOnlyHint`
 annotation, read off the served surface — 58 read, 97 write.
@@ -220,13 +220,14 @@ description, which an agent sees in the tool schema; this table is for a person 
 | `what_next` | **read** | Which decisions to settle next — a rough guide, not an ordering, for a design with more open questions than anyone can hold at once. |
 | `closure_report` | **read** | DOES THE DESIGN CLOSE? |
 | `frontier` | **read** | WHERE DID I LEAVE OFF? |
+| `derived_report` | **read** | WHAT DOES reflow2 DERIVE, AND HOW MUCH? |
 
 ### Query — read the design back
 
 | tool | | what it does |
 |---|---|---|
 | `create_edge` | **write** | Create an edge of any schema type between typed endpoints — the generic write for a relationship no typed helper covers. |
-| `create_edges` | **write** | Create MANY edges in one call — the bulk form of create_edge, and so of every typed helper built on it: contains, contain_component, satisfies, allocate, realizes. |
+| `create_edges` | **write** | Create MANY edges in one call — the bulk form of the GENERIC `create_edge`: each item names its edge type, both endpoints and free `props`, and runs only the schema's checks. |
 | `create_node` | **write** | Create a node of any schema type with a property object. |
 | `create_nodes` | **write** | Create or update MANY nodes in one call — the bulk form of create_node. |
 | `delete_edge` | **write** | Delete one edge by type and endpoint ids (true if it existed). |
@@ -242,6 +243,7 @@ description, which an agent sees in the tool schema; this table is for a person 
 | `scan_nodes` | **read** | List nodes of a type. |
 | `search_design` | **read** | Find design nodes by what they say, when you don't know their ids — 'what does the design say about persistence?', 'is there already a requirement about latency?'. |
 | `topic_report` | **read** | WHAT THE DESIGN HOLDS ABOUT ONE SUBJECT, read-only, in one call — the /topic view: 'show me something about X'. |
+| `draw_edges` | **write** | The bulk form of the typed edge tools. |
 
 ### Assurance — checks, evidence and confirmation
 
@@ -375,7 +377,7 @@ description, which an agent sees in the tool schema; this table is for a person 
 
 | tool | | what it does |
 |---|---|---|
-| `answer_question` | **write** | Record what the user said in reply to a question, closing it. |
+| `answer_question` | **write** | Record what someone said in reply to a question, closing it — and in the same call WHO said it (`answered_by`, a Contributor: the person it was put to, their delegate, or the chat user) and the node that now holds it (`record`, linked for you, so no second call). |
 | `gap_to_prompt` | **write** | Phrase a gap as a plain question via the ambient agent. |
 | `gaps_to_prompts` | **write** | Phrase MANY gaps as plain questions in one handshake — the bulk form of gap_to_prompt, and the read half of the detect→ask→acknowledge round trip. |
 | `open_questions` | read | Questions already put to the user that still bear on something open, with the wording they saw |

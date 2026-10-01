@@ -13,6 +13,7 @@ schema:
     Component:
       properties:
         name: { type: string, required: true, indexed: true, fulltext: true }
+        distinct_from: { type: "list:string", description: "Ids the writer READ at the near-match check and judged to be a DIFFERENT thing from this one — kept on the node the capture created, so a later reader can tell a judgement from a node nobody compared (was the older one seen?). Written by the capture tool when it is passed `distinct_from`; ADDITIVE, because a judgement is history, and an id naming nothing is reported and not kept. ABSENT MEANS NO JUDGEMENT WAS RECORDED — never \"judged the same\": the guard only asks when something close exists, and every node written before 2026-09-30 carries none. The other two answers to the same check leave their own record: sharpening revises the existing node, and `replaces` draws OBSOLETES from this node to the one it takes the place of (fact:root-cause-a-status-that-falls-behind-reality-is-silent-and-a-superseding-capability-leaves-no-trace-2026-09-30)." }
         aliases: { type: "list:string", description: "WHAT THE USER CALLS THIS, in their own words — the domain nouns that mean this node. reflow2's vocabulary is deliberately abstract so it spans a house, a spacecraft and a service, which leaves every user translating their field's words into it; one wrote a private translator skill to do that, and the mapping then lived outside the design where nothing could read or check it (dec:idea-a-users-domain-vocabulary-has-no-route-into-se-vocabulary). This is where that mapping goes. Recorded ONLY when a user actually used the word — never guessed, because a fabricated alias is a false neighbour every later search repeats. ADDITIVE: record_alias merges, so learning a second word for a thing never costs the first. It renames nothing and gates nothing: `name` stays the design's word and every computation reads the node type, so an alias can be wrong without making anything else wrong (req:framework-is-chosen-not-defaulted was dropped for gating capability on a self-declared label, and this must not become that)." }
         purpose: { type: string, required: true, fulltext: true }
         kind: { type: enum, values: [service, module, subsystem, assembly, part, section, layer], indexed: true, description: "The organizational/buildable shape. Domain-neutral." }
@@ -142,6 +143,7 @@ schema:
     Decision:
       properties:
         name: { type: string, required: true, indexed: true, fulltext: true }
+        distinct_from: { type: "list:string", description: "Ids the writer READ at the near-match check and judged to be a DIFFERENT thing from this one — kept on the node the capture created, so a later reader can tell a judgement from a node nobody compared (was the older one seen?). Written by the capture tool when it is passed `distinct_from`; ADDITIVE, because a judgement is history, and an id naming nothing is reported and not kept. ABSENT MEANS NO JUDGEMENT WAS RECORDED — never \"judged the same\": the guard only asks when something close exists, and every node written before 2026-09-30 carries none. The other two answers to the same check leave their own record: sharpening revises the existing node, and `replaces` draws OBSOLETES from this node to the one it takes the place of (fact:root-cause-a-status-that-falls-behind-reality-is-silent-and-a-superseding-capability-leaves-no-trace-2026-09-30)." }
         decision: { type: string, required: true, fulltext: true, description: "What was decided." }
         rationale: { type: string, fulltext: true }
         alternatives: { type: string, description: "JSON array of options considered and why they lost." }
@@ -253,6 +255,7 @@ schema:
     ALLOCATED_TO:
       from: Capability
       to: Component
+      reading: { form: "primitive", primitive: "located-at", modality: "intended", frame: "structure", modifiers: { data_volume: "quantity", frequency: "quantity", note: "other", weight: "strength", weight_basis: "provenance" }, basis: "classified" }
       extraction_hint: A Capability is assigned to the Component that will provide it. The WHAT→WHERE binding.
       properties:
         note: { type: string }
@@ -265,6 +268,7 @@ schema:
     PROVIDES:
       from: Component
       to: Interface
+      reading: { form: "primitive", primitive: "source-of", sub: "offers", modifiers: { data_volume: "quantity", frequency: "quantity", weight: "strength", weight_basis: "provenance" }, basis: "classified" }
       extraction_hint: A Component exposes/provides an Interface.
       properties:
         weight: { type: float, range: [0.0, 1.0], description: "Coupling strength (higher = tighter)." }
@@ -275,6 +279,7 @@ schema:
     CONSUMES:
       from: "*"
       to: Interface
+      reading: { form: "primitive", primitive: "causes", polarity: "+", modality: "necessary", inverse: true, modifiers: { data_volume: "quantity", frequency: "quantity", weight: "strength", weight_basis: "provenance" }, basis: "classified" }
       extraction_hint: A Component or Actor depends on/consumes an Interface.
       properties:
         weight: { type: float, range: [0.0, 1.0], description: "Coupling strength (higher = tighter)." }
@@ -288,6 +293,18 @@ schema:
         to: [Decision, DesignRule, Requirement]
       from: "*"
       to: "*"
+      reading:
+        form: "primitive"
+        primitive: "norm"
+        sub: "binds"
+        inverse: true
+        modifiers: { note: "other", ruling: "subtype" }
+        splits:
+          - property: "ruling"
+            note: "Unset keeps the reading above: the target shapes the source."
+            values:
+              parks: { form: "primitive", primitive: "norm", sub: "parks", modality: "permitted", inverse: true, note: "The ruling declares the source's unattached or unsatisfied state deliberate, so detectors report it as parked." }
+        basis: "classified"
       # BOTH ENDS STAY WILDCARD, and the hint is what was wrong.
       #
       # Considered for enumeration 2026-08-08 alongside CONSTRAINS and REFUSED

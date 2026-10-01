@@ -93,6 +93,7 @@ fn decision(id: &str, status: Option<&str>, approver: Option<&str>) -> DecisionR
         ),
         rationale: None,
         distinct_from: None,
+        replaces: None,
         kind: Some("choice".into()),
         related_to: None,
         no_relation_note: None,
@@ -110,6 +111,7 @@ fn requirement(id: &str, status: Option<&str>, approver: Option<&str>) -> Requir
         name: Some("A dropped reading costs nothing".into()),
         statement: Some("A lost packet must not lose a rainfall total.".into()),
         distinct_from: None,
+        replaces: None,
         status: status.map(str::to_string),
         approver: approver.map(str::to_string),
         acted_at: Some("2026-09-06".into()),
@@ -217,6 +219,7 @@ async fn a_rules_power_is_settled_intent_and_needs_the_owners_name() {
         enforced,
         units: None,
         distinct_from: None,
+        replaces: None,
         approver: approver.map(str::to_string),
         acted_at: None,
 
@@ -252,6 +255,7 @@ async fn a_setter_draws_the_signature_when_given_one_and_reports_its_absence_whe
         approver: None,
         acted_at: None,
         chose: None,
+        name: None,
     })));
     assert_eq!(
         out["properties"]["status"], "accepted",
@@ -270,6 +274,7 @@ async fn a_setter_draws_the_signature_when_given_one_and_reports_its_absence_whe
         approver: Some("who:ann".into()),
         acted_at: Some("2026-09-06".into()),
         chose: None,
+        name: None,
     })));
     assert!(out.get("carries_nobodys_name").is_none(), "{out}");
     assert_eq!(approver_edges(&s, "dec:totals").await.len(), 1);
@@ -281,6 +286,7 @@ async fn a_setter_draws_the_signature_when_given_one_and_reports_its_absence_whe
         approver: None,
         acted_at: None,
         chose: None,
+        name: None,
     })));
     assert!(out.get("carries_nobodys_name").is_none(), "{out}");
 
@@ -317,9 +323,8 @@ async fn a_check_records_its_targets_and_the_run_it_just_had_in_one_call() {
         description: Some("sends cumulative totals".into()),
         status: Some("realized".into()),
         distinct_from: None,
+        replaces: None,
         tier: None,
-        is_entry_point: None,
-        is_exit_point: None,
     })));
     let out = j!(s.add_verification(Parameters(VerificationReq {
         id: "ver:totals-heal".into(),

@@ -68,6 +68,12 @@ impl ReflowService {
         let mut __rf =
             crate::service::RequiredFields::new(&g, reflow2_core::nodes::node::RELEASE, &req.id)?;
         let name = __rf.str("name", req.name);
+        // REFUSE BEFORE WRITING. `str` hands back an empty placeholder for a
+        // field it could not resolve and leaves the refusal to `finish` — so a
+        // handler that skips `finish` STORES the placeholder. Seven did, until
+        // 2026-09-29, and an id-only create landed `name: ""` in each
+        // (a_revise_keeps_what_it_was_not_passed.rs).
+        __rf.finish()?;
         let stored = g
             .add_release(
                 &req.id,
@@ -150,9 +156,7 @@ impl ReflowService {
         Parameters(req): Parameters<crate::service::OperatesInReq>,
     ) -> Result<CallToolResult, McpError> {
         let mut g = self.write_lock().await?;
-        g.operates_in(&req.project_id, &req.environment_id)
-            .map_err(dyno_err)?;
-        ok_json(json!({ "project": req.project_id, "environment": req.environment_id }))
+        Self::operates_in_on(&mut g, req)
     }
 
     #[tool(
@@ -164,9 +168,7 @@ impl ReflowService {
         Parameters(req): Parameters<crate::service::ImposesReq>,
     ) -> Result<CallToolResult, McpError> {
         let mut g = self.write_lock().await?;
-        g.imposes(&req.environment_id, &req.rule_id)
-            .map_err(dyno_err)?;
-        ok_json(json!({ "environment": req.environment_id, "rule": req.rule_id }))
+        Self::imposes_on(&mut g, req)
     }
 
     #[tool(
@@ -184,26 +186,7 @@ impl ReflowService {
         Parameters(req): Parameters<crate::service::CompliesWithReq>,
     ) -> Result<CallToolResult, McpError> {
         let mut g = self.write_lock().await?;
-        let element_type = crate::service::resolve_node_type(
-            &g,
-            req.element_type.as_deref(),
-            &req.element_id,
-            "element_type",
-        )?;
-        g.complies_with(
-            &element_type,
-            &req.element_id,
-            &req.rule_id,
-            req.verified,
-            req.evidence.as_deref(),
-        )
-        .map_err(dyno_err)?;
-        ok_json(json!({
-            "element": req.element_id,
-            "element_type": element_type,
-            "rule": req.rule_id,
-            "verified": req.verified.unwrap_or(false),
-        }))
+        Self::complies_with_on(&mut g, req)
     }
 
     #[tool(
@@ -221,26 +204,7 @@ impl ReflowService {
         Parameters(req): Parameters<crate::service::ViolatesRuleReq>,
     ) -> Result<CallToolResult, McpError> {
         let mut g = self.write_lock().await?;
-        let element_type = crate::service::resolve_node_type(
-            &g,
-            req.element_type.as_deref(),
-            &req.element_id,
-            "element_type",
-        )?;
-        g.violates_rule(
-            &element_type,
-            &req.element_id,
-            &req.rule_id,
-            req.proposer.as_deref(),
-            req.severity.as_deref(),
-            req.evidence.as_deref(),
-        )
-        .map_err(dyno_err)?;
-        ok_json(json!({
-            "element": req.element_id,
-            "rule": req.rule_id,
-            "status": "proposed",
-        }))
+        Self::violates_rule_on(&mut g, req)
     }
 
     #[tool(
@@ -293,6 +257,12 @@ impl ReflowService {
             &req.id,
         )?;
         let name = __rf.str("name", req.name);
+        // REFUSE BEFORE WRITING. `str` hands back an empty placeholder for a
+        // field it could not resolve and leaves the refusal to `finish` — so a
+        // handler that skips `finish` STORES the placeholder. Seven did, until
+        // 2026-09-29, and an id-only create landed `name: ""` in each
+        // (a_revise_keeps_what_it_was_not_passed.rs).
+        __rf.finish()?;
         let stored = g
             .add_environment(
                 &req.id,
@@ -328,6 +298,12 @@ impl ReflowService {
         let mut __rf =
             crate::service::RequiredFields::new(&g, reflow2_core::nodes::node::RESOURCE, &req.id)?;
         let name = __rf.str("name", req.name);
+        // REFUSE BEFORE WRITING. `str` hands back an empty placeholder for a
+        // field it could not resolve and leaves the refusal to `finish` — so a
+        // handler that skips `finish` STORES the placeholder. Seven did, until
+        // 2026-09-29, and an id-only create landed `name: ""` in each
+        // (a_revise_keeps_what_it_was_not_passed.rs).
+        __rf.finish()?;
         let stored = g
             .add_resource(&req.id, &name, req.provider.as_deref())
             .map_err(dyno_err)?;
@@ -350,10 +326,7 @@ impl ReflowService {
         Parameters(req): Parameters<DeployToReq>,
     ) -> Result<CallToolResult, McpError> {
         let mut g = self.write_lock().await?;
-        ok_json(EdgeDto::from(
-            g.deploy_to(&req.release_id, &req.environment_id, req.status.as_deref())
-                .map_err(dyno_err)?,
-        ))
+        Self::deploy_to_on(&mut g, req)
     }
 
     #[tool(
@@ -370,21 +343,7 @@ impl ReflowService {
         Parameters(req): Parameters<ReleaseIncludesReq>,
     ) -> Result<CallToolResult, McpError> {
         let mut g = self.write_lock().await?;
-        let target_type = crate::service::resolve_node_type(
-            &g,
-            req.target_type.as_deref(),
-            &req.target_id,
-            "target_type",
-        )?;
-        ok_json(EdgeDto::from(
-            g.release_includes(
-                &req.release_id,
-                &target_type,
-                &req.target_id,
-                req.as_checksum.as_deref(),
-            )
-            .map_err(dyno_err)?,
-        ))
+        Self::release_includes_on(&mut g, req)
     }
 
     #[tool(
@@ -491,32 +450,8 @@ impl ReflowService {
         &self,
         Parameters(req): Parameters<GateOnReq>,
     ) -> Result<CallToolResult, McpError> {
-        let kind = parse_readiness_kind(&req.kind)?;
         let mut g = self.write_lock().await?;
-        let target_type = crate::service::resolve_node_type(
-            &g,
-            req.target_type.as_deref(),
-            &req.target_id,
-            "target_type",
-        )?;
-        let subject_type = crate::service::resolve_node_type(
-            &g,
-            req.subject_type.as_deref(),
-            &req.subject_id,
-            "subject_type",
-        )?;
-        ok_json(EdgeDto::from(
-            g.gate_on(&ReadinessGate {
-                subject_type: &subject_type,
-                subject_id: &req.subject_id,
-                target_type: &target_type,
-                target_id: &req.target_id,
-                kind,
-                min_level: req.min_level,
-                rationale: req.rationale.as_deref(),
-            })
-            .map_err(dyno_err)?,
-        ))
+        Self::gate_on_on(&mut g, req)
     }
 
     #[tool(
@@ -653,8 +588,106 @@ impl ReflowService {
         Parameters(req): Parameters<RequireResourceReq>,
     ) -> Result<CallToolResult, McpError> {
         let mut g = self.write_lock().await?;
+        Self::require_resource_on(&mut g, req)
+    }
+}
+
+// ─── typed edge helper bodies, shared with `draw_edges` ──────────────────────
+
+impl ReflowService {
+    /// The body of [`Self::complies_with`] over a graph the caller already holds: the
+    /// one code path the tool and `draw_edges` both run.
+    pub(crate) fn complies_with_on(
+        g: &mut reflow2_core::DesignGraph,
+        req: crate::service::CompliesWithReq,
+    ) -> Result<CallToolResult, McpError> {
+        let element_type = crate::service::resolve_node_type(
+            g,
+            req.element_type.as_deref(),
+            &req.element_id,
+            "element_type",
+        )?;
+        g.complies_with(
+            &element_type,
+            &req.element_id,
+            &req.rule_id,
+            req.verified,
+            req.evidence.as_deref(),
+        )
+        .map_err(dyno_err)?;
+        ok_json(json!({
+            "element": req.element_id,
+            "element_type": element_type,
+            "rule": req.rule_id,
+            "verified": req.verified.unwrap_or(false),
+        }))
+    }
+
+    /// The body of [`Self::deploy_to`] over a graph the caller already holds: the
+    /// one code path the tool and `draw_edges` both run.
+    pub(crate) fn deploy_to_on(
+        g: &mut reflow2_core::DesignGraph,
+        req: DeployToReq,
+    ) -> Result<CallToolResult, McpError> {
+        ok_json(EdgeDto::from(
+            g.deploy_to(&req.release_id, &req.environment_id, req.status.as_deref())
+                .map_err(dyno_err)?,
+        ))
+    }
+
+    /// The body of [`Self::imposes`] over a graph the caller already holds: the
+    /// one code path the tool and `draw_edges` both run.
+    pub(crate) fn imposes_on(
+        g: &mut reflow2_core::DesignGraph,
+        req: crate::service::ImposesReq,
+    ) -> Result<CallToolResult, McpError> {
+        g.imposes(&req.environment_id, &req.rule_id)
+            .map_err(dyno_err)?;
+        ok_json(json!({ "environment": req.environment_id, "rule": req.rule_id }))
+    }
+
+    /// The body of [`Self::operates_in`] over a graph the caller already holds: the
+    /// one code path the tool and `draw_edges` both run.
+    pub(crate) fn operates_in_on(
+        g: &mut reflow2_core::DesignGraph,
+        req: crate::service::OperatesInReq,
+    ) -> Result<CallToolResult, McpError> {
+        g.operates_in(&req.project_id, &req.environment_id)
+            .map_err(dyno_err)?;
+        ok_json(json!({ "project": req.project_id, "environment": req.environment_id }))
+    }
+
+    /// The body of [`Self::release_includes`] over a graph the caller already holds: the
+    /// one code path the tool and `draw_edges` both run.
+    pub(crate) fn release_includes_on(
+        g: &mut reflow2_core::DesignGraph,
+        req: ReleaseIncludesReq,
+    ) -> Result<CallToolResult, McpError> {
+        let target_type = crate::service::resolve_node_type(
+            g,
+            req.target_type.as_deref(),
+            &req.target_id,
+            "target_type",
+        )?;
+        ok_json(EdgeDto::from(
+            g.release_includes(
+                &req.release_id,
+                &target_type,
+                &req.target_id,
+                req.as_checksum.as_deref(),
+            )
+            .map_err(dyno_err)?,
+        ))
+    }
+
+    /// The body of [`Self::require_resource`] over a graph the caller already holds: the
+    /// one code path the tool and `draw_edges` both run.
+    pub(crate) fn require_resource_on(
+        g: &mut reflow2_core::DesignGraph,
+        req: RequireResourceReq,
+    ) -> Result<CallToolResult, McpError> {
         let from_type = crate::service::resolve_node_type(
-            &g,
+            g,
             req.from_type.as_deref(),
             &req.from_id,
             "from_type",
@@ -666,6 +699,71 @@ impl ReflowService {
                 &req.resource_id,
                 req.criticality.as_deref(),
             )
+            .map_err(dyno_err)?,
+        ))
+    }
+
+    /// The body of [`Self::violates_rule`] over a graph the caller already holds: the
+    /// one code path the tool and `draw_edges` both run.
+    pub(crate) fn violates_rule_on(
+        g: &mut reflow2_core::DesignGraph,
+        req: crate::service::ViolatesRuleReq,
+    ) -> Result<CallToolResult, McpError> {
+        let element_type = crate::service::resolve_node_type(
+            g,
+            req.element_type.as_deref(),
+            &req.element_id,
+            "element_type",
+        )?;
+        g.violates_rule(
+            &element_type,
+            &req.element_id,
+            &req.rule_id,
+            req.proposer.as_deref(),
+            req.severity.as_deref(),
+            req.evidence.as_deref(),
+        )
+        .map_err(dyno_err)?;
+        ok_json(json!({
+            "element": req.element_id,
+            "rule": req.rule_id,
+            "status": "proposed",
+        }))
+    }
+}
+
+// ─── typed edge helper bodies, shared with `draw_edges` ──────────────────────
+
+impl ReflowService {
+    /// The body of [`Self::gate_on`] over a graph the caller already holds: the
+    /// one code path the tool and `draw_edges` both run.
+    pub(crate) fn gate_on_on(
+        g: &mut reflow2_core::DesignGraph,
+        req: GateOnReq,
+    ) -> Result<CallToolResult, McpError> {
+        let kind = parse_readiness_kind(&req.kind)?;
+        let target_type = crate::service::resolve_node_type(
+            g,
+            req.target_type.as_deref(),
+            &req.target_id,
+            "target_type",
+        )?;
+        let subject_type = crate::service::resolve_node_type(
+            g,
+            req.subject_type.as_deref(),
+            &req.subject_id,
+            "subject_type",
+        )?;
+        ok_json(EdgeDto::from(
+            g.gate_on(&ReadinessGate {
+                subject_type: &subject_type,
+                subject_id: &req.subject_id,
+                target_type: &target_type,
+                target_id: &req.target_id,
+                kind,
+                min_level: req.min_level,
+                rationale: req.rationale.as_deref(),
+            })
             .map_err(dyno_err)?,
         ))
     }

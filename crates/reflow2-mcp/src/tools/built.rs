@@ -536,6 +536,12 @@ impl ReflowService {
         let mut __rf =
             crate::service::RequiredFields::new(&g, reflow2_core::nodes::node::ARTIFACT, &req.id)?;
         let name = __rf.str("name", req.name);
+        // REFUSE BEFORE WRITING. `str` hands back an empty placeholder for a
+        // field it could not resolve and leaves the refusal to `finish` — so a
+        // handler that skips `finish` STORES the placeholder. Seven did, until
+        // 2026-09-29, and an id-only create landed `name: ""` in each
+        // (a_revise_keeps_what_it_was_not_passed.rs).
+        __rf.finish()?;
         let stored = g
             .add_artifact(
                 &req.id,
@@ -574,22 +580,7 @@ impl ReflowService {
         Parameters(req): Parameters<RealizesReq>,
     ) -> Result<CallToolResult, McpError> {
         let mut g = self.write_lock().await?;
-        let target_type = crate::service::resolve_node_type(
-            &g,
-            req.target_type.as_deref(),
-            &req.target_id,
-            "target_type",
-        )?;
-        ok_json(EdgeDto::from(
-            g.realizes(
-                &req.artifact_id,
-                &target_type,
-                &req.target_id,
-                req.completeness.as_deref(),
-                req.conformance.as_deref(),
-            )
-            .map_err(dyno_err)?,
-        ))
+        Self::realizes_on(&mut g, req)
     }
 
     #[tool(
@@ -606,21 +597,7 @@ impl ReflowService {
         Parameters(req): Parameters<DocumentsReq>,
     ) -> Result<CallToolResult, McpError> {
         let mut g = self.write_lock().await?;
-        let target_type = crate::service::resolve_node_type(
-            &g,
-            req.target_type.as_deref(),
-            &req.target_id,
-            "target_type",
-        )?;
-        ok_json(EdgeDto::from(
-            g.documents(
-                &req.artifact_id,
-                &target_type,
-                &req.target_id,
-                req.doc_kind.as_deref(),
-            )
-            .map_err(dyno_err)?,
-        ))
+        Self::documents_on(&mut g, req)
     }
 
     #[tool(
@@ -845,5 +822,56 @@ impl ReflowService {
             "unmeasurable": unmeasurable,
         });
         Ok((observed, block))
+    }
+}
+
+// ─── typed edge helper bodies, shared with `draw_edges` ──────────────────────
+
+impl ReflowService {
+    /// The body of [`Self::documents`] over a graph the caller already holds: the
+    /// one code path the tool and `draw_edges` both run.
+    pub(crate) fn documents_on(
+        g: &mut reflow2_core::DesignGraph,
+        req: DocumentsReq,
+    ) -> Result<CallToolResult, McpError> {
+        let target_type = crate::service::resolve_node_type(
+            g,
+            req.target_type.as_deref(),
+            &req.target_id,
+            "target_type",
+        )?;
+        ok_json(EdgeDto::from(
+            g.documents(
+                &req.artifact_id,
+                &target_type,
+                &req.target_id,
+                req.doc_kind.as_deref(),
+            )
+            .map_err(dyno_err)?,
+        ))
+    }
+
+    /// The body of [`Self::realizes`] over a graph the caller already holds: the
+    /// one code path the tool and `draw_edges` both run.
+    pub(crate) fn realizes_on(
+        g: &mut reflow2_core::DesignGraph,
+        req: RealizesReq,
+    ) -> Result<CallToolResult, McpError> {
+        let target_type = crate::service::resolve_node_type(
+            g,
+            req.target_type.as_deref(),
+            &req.target_id,
+            "target_type",
+        )?;
+        ok_json(EdgeDto::from(
+            g.realizes(
+                &req.artifact_id,
+                &target_type,
+                &req.target_id,
+                req.completeness.as_deref(),
+                req.conformance.as_deref(),
+            )
+            .map_err(dyno_err)?,
+        ))
     }
 }

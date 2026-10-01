@@ -2,7 +2,7 @@
   "annotations": {
     "readOnlyHint": false
   },
-  "description": "Link a Project to a child node it CONTAINS — project membership, so a Requirement, Capability or Component is counted under the project whose gaps and rollups it belongs to. NOT decomposition: a Component inside another Component is `contain_component` (adds a parent) or `move_component` (moves it on the spine). Most typed constructors draw this edge for you when a project exists; use it directly for nodes created with `create_node`. Ask for this when a node sits in no project and the reports are not seeing it. Ask for this to attach an item under its project.",
+  "description": "Link a Project to a child node it CONTAINS — project membership, so a Requirement, Capability or Component is counted under the project whose gaps and rollups it belongs to. NOT decomposition: a Component inside another Component is `contain_component` (adds a parent) or `move_component` (moves it on the spine). Most typed constructors draw this edge for you when a project exists; use it directly for nodes created with `create_node`. Ask for this when a node sits in no project and the reports are not seeing it. Ask for this to attach an item under its project. MANY AT ONCE: `draw_edges`, items {\"tool\": \"contains\", \"arguments\": {…}}, same checks, all or nothing.",
   "inputSchema": {
     "$schema": "https://json-schema.org/draft/2020-12/schema",
     "additionalProperties": false,
@@ -18,6 +18,15 @@
           "string",
           "null"
         ]
+      },
+      "echo": {
+        "default": "receipt",
+        "description": "What the reply carries. `receipt` (the default) names the node, echoes each stored value of at most 200 characters, gives longer ones by size, and names the snapshot that keeps anything a revise replaced. `node` returns the whole stored node and every prior value.",
+        "enum": [
+          "receipt",
+          "node"
+        ],
+        "type": "string"
       },
       "project_id": {
         "description": "The Project (`proj:…`) that CONTAINS the child. This is project membership, not decomposition — a Component inside another Component is `contain_component` / `move_component`.",

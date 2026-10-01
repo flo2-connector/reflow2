@@ -49,6 +49,26 @@ use std::path::{Path, PathBuf};
 /// belongs on the design handle and this list is the wrong fix.
 const ALLOWED: &[(&str, &str, &str)] = &[
     (
+        "reflow2-core/src/heal.rs",
+        "PARKS_ROUTE",
+        "One sentence built from a compiled-in list (PARKING_READERS): the same text for \
+         every design, because which findings read a `parks` ruling is a property of this \
+         build, not of any design. Built once so every reader borrows the same &'static str.",
+    ),
+    (
+        "reflow2-core/src/heal.rs",
+        "ORPHAN_REPAIR",
+        "orphan_node's repair note — a fixed judgement plus PARKS_ROUTE, identical for every \
+         design; a `static` only because the note is carried as &'static str.",
+    ),
+    (
+        "reflow2-mcp/src/writers.rs",
+        "WRITERS",
+        "Which served tool writes which node type and draws which edge type, parsed from the \
+         compiled-in writers.json. A fact about this binary's tool surface, the same for every \
+         design it serves.",
+    ),
+    (
         "reflow2-core/src/foundation/store/backend.rs",
         "STORE_BUDGET",
         "The ONE memory budget every store this process opens shares — a RocksDB \
@@ -80,6 +100,29 @@ const ALLOWED: &[(&str, &str, &str)] = &[
          each see only their own value, so a second design open in the process \
          cannot be given the first design's writer. The session's own declaration \
          lives on the service (`ReflowService.writes_for`), per session.",
+    ),
+    (
+        "reflow2-mcp/src/service.rs",
+        "ACTING",
+        "A tokio TASK-LOCAL beside WRITES_FOR, and the same shape: it holds the \
+         AGENT the one tool call now being served writes through, set by \
+         `call_tool` around that call's handler and gone when it returns \
+         (req:a-write-and-an-approval-record-the-agent-and-the-person-it-acts-for). \
+         Two calls each see only their own value, so a second design open in the \
+         process cannot be given the first call's agent. The session's own \
+         declaration lives on the service (`ReflowService.acting_agent`).",
+    ),
+    (
+        "reflow2-mcp/src/service.rs",
+        "SIGNER",
+        "A tokio TASK-LOCAL beside WRITES_FOR and ACTING, and the same shape: it \
+         holds who may sign on the ONE tool call now being served (#616 fix 4, \
+         `reflow2_core::intent::Signer`), set by `call_tool` around that call's \
+         handler and gone when it returns. Two calls each see only their own value, \
+         so a second design open in the process cannot be given the first call's \
+         caller. How the engine establishes the caller lives on the service \
+         (`ReflowService.caller_rule`), per server, and a registry passes it to \
+         every design it opens.",
     ),
     (
         "reflow2-mcp/src/content_policy.rs",

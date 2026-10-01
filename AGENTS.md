@@ -542,7 +542,7 @@ not the centre.
   visible dependency into an invisible one — the pin carried a written reason for every bump
   and in-tree code has no successor to that record. Those headers are that successor, and
   `tools/check_doc_versions.py` reads the tag out of them rather than out of prose.
-- The **schema is the vocabulary** (28 node types, 65 edge types across 11 `schema/*.yaml`
+- The **schema is the vocabulary** (28 node types, 66 edge types across 11 `schema/*.yaml`
   domains): the node/edge names are load-bearing. `src/schema.rs` embeds all ten YAML files
   via `include_str!` and merges them with `Schema::from_multiple_yamls` — the same files
   `tools/validate_schema.py` checks, so there is one source of truth. Terminology in code
@@ -672,7 +672,7 @@ extraction pipeline with the calling agent as the model, so INGEST is finally re
 session rather than only from a test. See the coverage
 matrix for the exact deferral list. Everything else in the loop — the MCP surface, GENESIS,
 INGEST's core, the consumer kit, search, the reconcile family — is built and shipping as of
-v0.74.0.
+v0.75.0.
 
 ---
 
@@ -728,7 +728,7 @@ Three complementary lenses on the graph: **phases** (P0–P5 lifecycle), **three
 
 ## Current state (important)
 
-**Shipping at v0.74.0.** The deterministic core, the agent-native MCP surface, and the consumer
+**Shipping at v0.75.0.** The deterministic core, the agent-native MCP surface, and the consumer
 kit are all built, released as prebuilt binaries, and cold-start-verified. As of v0.12.0 the kit
 is *served* rather than installed: a project holds a pointer file and the MCP config, and both the
 skills and the working instructions come from the binary (`req:thin-install`). The interaction
@@ -761,7 +761,7 @@ Still unbuilt (see "What's deliberately not here yet" above and the coverage mat
 LLM provider backends (deferred — unneeded agent-native), SME, generative HEAL content, and the
 embedding seam. The `ingest` MCP handshake (SP-3b) shipped in v0.16.0.
 
-- `schema/*.yaml` — 11 composable schema domains (28 node types, 65 edge types), in the
+- `schema/*.yaml` — 11 composable schema domains (28 node types, 66 edge types), in the
   format defined by `src/foundation/core/schema.rs`. This is the foundation everything builds on.
 - `docs/*.md` — the vision, design, and process specifications; `docs/overview.md` maps them.
 - `getting-started/` — the consumer kit installed into a project being designed (never a build

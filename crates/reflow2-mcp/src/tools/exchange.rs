@@ -353,10 +353,22 @@ impl ReflowService {
                 McpError::invalid_params(format!("not a reflow2 surface document: {e}"), None)
             })?;
         let mut g = self.write_lock().await?;
-        ok_json(
-            g.mirror_surface(&doc, req.at.as_deref())
-                .map_err(dyno_err)?,
-        )
+        // A mirrored node that asserts settled intent is another design's word,
+        // signed THERE; here it carries nobody's name, and the intent gate reads
+        // it like any other node. Written — a mirror is a dated copy — and
+        // NAMED, the rule every document-carrying writer follows (2026-09-29).
+        let watch = crate::settles::SettleWatch::before(
+            &g,
+            doc.nodes
+                .iter()
+                .map(|n| (n.node_type.as_str(), n.node_id.as_str())),
+        );
+        let mirrored = g
+            .mirror_surface(&doc, req.at.as_deref())
+            .map_err(dyno_err)?;
+        let mut reply = serde_json::to_value(mirrored).map_err(ser_err)?;
+        crate::settles::report_unsigned(&mut reply, watch.unsigned(&g));
+        ok_json(reply)
     }
 
     #[tool(
@@ -418,6 +430,12 @@ impl ReflowService {
             }
         };
         let mut g = self.write_lock().await?;
+        let watch = crate::settles::SettleWatch::before(
+            &g,
+            doc.nodes
+                .iter()
+                .map(|n| (n.node_type.as_str(), n.node_id.as_str())),
+        );
         let report = g
             .import_graph_with(
                 &doc,
@@ -434,7 +452,9 @@ impl ReflowService {
         {
             reflow2_core::provenance::record_sync(graph_path, path, hash);
         }
-        ok_json(report)
+        let mut reply = serde_json::to_value(report).map_err(ser_err)?;
+        crate::settles::report_unsigned(&mut reply, watch.unsigned(&g));
+        ok_json(reply)
     }
 
     #[tool(
@@ -599,10 +619,19 @@ impl ReflowService {
             resolutions.insert(id.clone(), parsed);
         }
         let mut g = self.write_lock().await?;
-        ok_json(
-            g.apply_merge(&base, &theirs, &resolutions, req.use_recorded)
-                .map_err(dyno_err)?,
-        )
+        let watch = crate::settles::SettleWatch::before(
+            &g,
+            theirs
+                .nodes
+                .iter()
+                .map(|n| (n.node_type.as_str(), n.node_id.as_str())),
+        );
+        let applied = g
+            .apply_merge(&base, &theirs, &resolutions, req.use_recorded)
+            .map_err(dyno_err)?;
+        let mut reply = serde_json::to_value(applied).map_err(ser_err)?;
+        crate::settles::report_unsigned(&mut reply, watch.unsigned(&g));
+        ok_json(reply)
     }
 
     #[tool(
@@ -689,7 +718,7 @@ impl ReflowService {
                        settled question a second time. \
                        PASS `chose` TO SAY WHICH OPTION WON, in your own words: the settling act \
                        then records what it settled without rewriting the deliberation that \
-                       produced it. \
+                       produced it. PASS `name` TO RETITLE IT in the same call. \
                        Ask for this to mark a decision accepted with the owner's name.",
         annotations(read_only_hint = false, destructive_hint = false)
     )]
@@ -703,6 +732,32 @@ impl ReflowService {
             req.approver.as_deref(),
             "set_decision_status",
         )?;
+        // WHOSE WORD IS THIS? Declared in crate::settles: `accepted` and
+        // `deferred` are the owner's act — settling a question and setting one
+        // aside — while superseding or rejecting retires rather than decides.
+        let owners_word =
+            crate::settles::rule("set_decision_status").settles_str(Some(req.status.as_str()));
+        let note = crate::settles::gate(
+            "set_decision_status",
+            owners_word,
+            req.approver.as_deref(),
+            "a Decision status",
+        )?;
+        // A new name rides the settle, so the heading that asked the question
+        // can stop asking it in the act that answered it. An empty one is
+        // refused BEFORE anything is written: a nameless decision is a worse
+        // record than a stale name.
+        if let Some(n) = req.name.as_deref()
+            && n.trim().is_empty()
+        {
+            return Err(McpError::invalid_params(
+                "`set_decision_status`: `name` was passed empty. Pass the decision's new \
+                 heading, or leave `name` out to keep the one it has. The status was NOT \
+                 moved — nothing about this call was written."
+                    .to_string(),
+                None,
+            ));
+        }
         // Read BEFORE the write: afterwards there is nothing left to compare
         // against, and `accepted` -> `accepted` must stay silent.
         let was_accepted = crate::tools::capture::prior_status(
@@ -730,21 +785,17 @@ impl ReflowService {
             &mut g,
             reflow2_core::nodes::node::DECISION,
             &req.decision_id,
-            &[("chose", req.chose.as_deref())],
+            &[
+                ("chose", req.chose.as_deref()),
+                ("name", req.name.as_deref().map(str::trim)),
+            ],
         )?
         .map_or(node, NodeDto::from);
-        // TWO DIFFERENT QUESTIONS, and they used to share one flag.
-        //
-        // WHOSE WORD IS THIS? `accepted` AND `deferred` are the owner's act —
-        // settling a question and setting one aside are both things only the
-        // person who owns the intent may do — so both want a name on them.
-        // Superseding or rejecting retires rather than decides and is not
-        // flagged.
-        //
-        // DID A QUESTION JUST CLOSE? Only `accepted` closes one. A deferred
-        // decision's governed prose saying "still open" is TRUE, so the
-        // settled-question check below must not fire for it.
-        let owners_word = matches!(req.status.as_str(), "accepted" | "deferred");
+        // TWO DIFFERENT QUESTIONS, and they used to share one flag. Whose word
+        // this is was answered above, from the declaration. DID A QUESTION JUST
+        // CLOSE? Only `accepted` closes one. A deferred decision's governed
+        // prose saying "still open" is TRUE, so the settled-question check
+        // below must not fire for it.
         let settles = req.status == "accepted";
         // A question just closed. Anything this decision governs whose prose
         // still says it is open is now a paragraph the next reader will believe
@@ -757,7 +808,7 @@ impl ReflowService {
         };
         crate::tools::capture::with_approval_and_settled_question(
             node,
-            crate::tools::capture::nobodys_name_note(owners_word, req.approver.as_deref()),
+            note,
             &req.decision_id,
             &hits,
         )
@@ -906,10 +957,37 @@ impl ReflowService {
         Parameters(req): Parameters<CollapseDecisionReq>,
     ) -> Result<CallToolResult, McpError> {
         let mut g = self.write_lock().await?;
-        ok_json(
-            g.collapse_decision(&req.decision_id, &req.winner_id, req.note.as_deref())
-                .map_err(dyno_err)?,
-        )
+        crate::tools::capture::approver_must_exist(
+            &g,
+            req.approver.as_deref(),
+            "collapse_decision",
+        )?;
+        // Choosing a winner moves the Decision to `accepted` — settled intent,
+        // declared in crate::settles like every other settle path. Until
+        // 2026-09-29 this path took no approver and said nothing
+        // (fact:collapse-decision-settles-a-decision-with-no-approver-and-says-nothing-2026-09-28).
+        let settles = crate::settles::rule("collapse_decision").settles_value(None);
+        let note = crate::settles::gate(
+            "collapse_decision",
+            settles,
+            req.approver.as_deref(),
+            "a Decision accepted by choosing its winner",
+        )?;
+        let report = g
+            .collapse_decision(&req.decision_id, &req.winner_id, req.note.as_deref())
+            .map_err(dyno_err)?;
+        crate::tools::capture::sign_as_approver(
+            &mut g,
+            reflow2_core::nodes::node::DECISION,
+            &req.decision_id,
+            req.approver.as_deref(),
+            req.acted_at.as_deref(),
+        )?;
+        let mut out = serde_json::to_value(report).map_err(crate::service::ser_err)?;
+        if let (Some(note), Some(obj)) = (note, out.as_object_mut()) {
+            obj.insert("carries_nobodys_name".into(), JsonValue::String(note));
+        }
+        ok_json(out)
     }
 
     #[tool(

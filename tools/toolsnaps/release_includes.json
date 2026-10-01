@@ -2,7 +2,7 @@
   "annotations": {
     "readOnlyHint": false
   },
-  "description": "Record that a Release ships an Artifact or Component (INCLUDES) — the as-released view. Pass as_checksum to freeze the artifact's content hash as shipped: the artifact node's own checksum is the live drift baseline and moves with every accept, so without the frozen copy a past release's manifest would quietly rewrite itself. A Release with no INCLUDES edges is a version number, not a manifest.",
+  "description": "Record that a Release ships an Artifact or Component (INCLUDES) — the as-released view. Pass as_checksum to freeze the artifact's content hash as shipped: the artifact node's own checksum is the live drift baseline and moves with every accept, so without the frozen copy a past release's manifest would quietly rewrite itself. A Release with no INCLUDES edges is a version number, not a manifest. MANY AT ONCE: `draw_edges`, items {\"tool\": \"release_includes\", \"arguments\": {…}}, same checks, all or nothing.",
   "inputSchema": {
     "$schema": "https://json-schema.org/draft/2020-12/schema",
     "additionalProperties": false,
@@ -14,6 +14,15 @@
           "string",
           "null"
         ]
+      },
+      "echo": {
+        "default": "receipt",
+        "description": "What the reply carries. `receipt` (the default) names the node, echoes each stored value of at most 200 characters, gives longer ones by size, and names the snapshot that keeps anything a revise replaced. `node` returns the whole stored node and every prior value.",
+        "enum": [
+          "receipt",
+          "node"
+        ],
+        "type": "string"
       },
       "release_id": {
         "description": "The Release (`rel:…`) that ships the item — one INCLUDES edge per artifact or component, which is what makes the as-released view exist.",

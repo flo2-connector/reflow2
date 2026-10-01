@@ -14,21 +14,14 @@
           "null"
         ]
       },
-      "entry_point": {
-        "default": null,
-        "description": "Capability name or id where the flow begins.",
-        "type": [
-          "string",
-          "null"
-        ]
-      },
-      "exit_point": {
-        "default": null,
-        "description": "Capability name or id where the flow ends.",
-        "type": [
-          "string",
-          "null"
-        ]
+      "echo": {
+        "default": "receipt",
+        "description": "What the reply carries. `receipt` (the default) names the node, echoes each stored value of at most 200 characters, gives longer ones by size, and names the snapshot that keeps anything a revise replaced. `node` returns the whole stored node and every prior value.",
+        "enum": [
+          "receipt",
+          "node"
+        ],
+        "type": "string"
       },
       "flow_type": {
         "default": null,

@@ -185,6 +185,12 @@ fn the_descriptive_enums_nobody_chooses_are_no_longer_injected() {
     // node. `Release.unit_type` is settable through add_release but never read,
     // and defaulting it asserted that every release is a container while reflow2
     // ships tarballs.
+    //
+    // The two flow flags were made settable through add_capability on
+    // 2026-09-07 and RETIRED on 2026-09-29: where a flow begins and ends is
+    // computed from its step order
+    // (dec:a-flows-order-is-its-step-order-and-entry-and-exit-are-computed),
+    // so the schema no longer declares them at all.
     assert!(!c.properties.contains_key("is_entry_point"));
     assert!(!c.properties.contains_key("is_exit_point"));
     assert!(!cm.properties.contains_key("tier"));

@@ -2,13 +2,22 @@
   "annotations": {
     "readOnlyHint": false
   },
-  "description": "Record that a Capability is a step of a Flow (PART_OF_FLOW), with its position in `step_order`. A flow is an ordered sequence of capabilities — a use case, a process, a data path — and `flow_report` walks it in order. A step recorded WITHOUT `step_order` is listed after the ordered steps and the report says so rather than inventing a position; `is_entry_point` / `is_exit_point` on the capability mark where the flow starts and ends. A capability may be a step of several flows. Ask for this when you want to record that a capability is one step in a larger sequence.",
+  "description": "Record that a Capability is a step of a Flow (PART_OF_FLOW), with its position in `step_order`. A flow is an ordered sequence of capabilities — a use case, a process, a data path — and `flow_report` walks it in order. A step recorded WITHOUT `step_order` is listed after the ordered steps and the report says so rather than inventing a position. Where the flow starts and ends is COMPUTED from the order — the lowest and highest positions — so it is never stated separately and cannot go stale. A capability may be a step of several flows. Ask for this when you want to record that a capability is one step in a larger sequence. MANY AT ONCE: `draw_edges`, items {\"tool\": \"part_of_flow\", \"arguments\": {…}}, same checks, all or nothing.",
   "inputSchema": {
     "$schema": "https://json-schema.org/draft/2020-12/schema",
     "additionalProperties": false,
     "properties": {
       "capability_id": {
         "description": "The Capability (`cap:…`) that is a step of the flow.",
+        "type": "string"
+      },
+      "echo": {
+        "default": "receipt",
+        "description": "What the reply carries. `receipt` (the default) names the node, echoes each stored value of at most 200 characters, gives longer ones by size, and names the snapshot that keeps anything a revise replaced. `node` returns the whole stored node and every prior value.",
+        "enum": [
+          "receipt",
+          "node"
+        ],
         "type": "string"
       },
       "flow_id": {

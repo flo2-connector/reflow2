@@ -83,15 +83,42 @@ impl ReflowService {
         // A finding belongs to a RUN, and a run has an outcome: `findings` or
         // `last_run_at` without `status` is refused before anything is written,
         // because storing them would assert a run whose verdict nobody stated.
+        //
+        // ON A REVISE THE REFUSAL READS THE NODE. Whether new findings on a check
+        // that already holds a verdict may inherit it (a correction of the last
+        // run's wording) or must restate it (a new run) is an open question for
+        // the owner (dec:idea-revise-notes-guards-and-defaults-read-the-merged-
+        // node), so the RULE is unchanged. What changed on 2026-09-29 is that the
+        // refusal no longer sends the caller back blind: it names the verdict and
+        // the run date the check already holds, so the re-send is informed
+        // (fact:root-cause-add-verification-guard-reads-the-call-not-the-stored-
+        // run-2026-09-28).
         if req.status.is_none() && (req.findings.is_some() || req.last_run_at.is_some()) {
+            let held = match (__rf.stored_str("status"), __rf.stored_str("last_run_at")) {
+                (Some(s), Some(at)) => format!(
+                    " This check already holds `{s}` from its run of {at}: if these findings \
+                     correct that run's wording, re-send `status: \"{s}\"` with them; if they \
+                     are a NEW run, send that run's own verdict."
+                ),
+                (Some(s), None) => format!(
+                    " This check already holds `{s}`: re-send `status: \"{s}\"` if the \
+                     findings belong to that verdict, or the new run's verdict if not."
+                ),
+                _ => String::new(),
+            };
             return Err(McpError::invalid_params(
-                "`add_verification`: `findings` and `last_run_at` describe a RUN, so they \
-                 need `status` — the run's outcome — in the same call. Pass all of them \
-                 together, or none and record the run later with set_verification_status. \
-                 Nothing was written.",
+                format!(
+                    "`add_verification`: `findings` and `last_run_at` describe a RUN, so they \
+                     need `status` — the run's outcome — in the same call. Pass all of them \
+                     together, or none and record the run later with set_verification_status.\
+                     {held} Nothing was written."
+                ),
                 None,
             ));
         }
+        // Refuse a create with no name BEFORE writing: `str` above leaves a
+        // placeholder and relies on this call to refuse (see add_artifact).
+        __rf.finish()?;
         // Every target is resolved BEFORE the create, so an unknown or
         // ambiguous target refuses the whole call rather than leaving a check
         // behind that verifies only some of what was asked.
@@ -113,7 +140,13 @@ impl ReflowService {
             req.description.as_deref(),
         )
         .map_err(dyno_err)?;
+        // Named in the reply through the one shared path
+        // (crate::drawn_edges), as a sentence with its subject first.
+        let mut edges = crate::drawn_edges::DrawnEdges::new();
         for (ty, id) in &targets {
+            edges
+                .classify(&g, &req.id, reflow2_core::nodes::edge::VERIFIES, id)
+                .map_err(dyno_err)?;
             g.verifies(&req.id, ty, id).map_err(dyno_err)?;
         }
         if let Some(status) = req.status.as_deref() {
@@ -154,6 +187,7 @@ impl ReflowService {
                 ),
             );
         }
+        edges.attach(&mut v);
         ok_json(v)
     }
 
@@ -223,16 +257,7 @@ impl ReflowService {
         Parameters(req): Parameters<VerifiesReq>,
     ) -> Result<CallToolResult, McpError> {
         let mut g = self.write_lock().await?;
-        let target_type = crate::service::resolve_node_type(
-            &g,
-            req.target_type.as_deref(),
-            &req.target_id,
-            "target_type",
-        )?;
-        ok_json(EdgeDto::from(
-            g.verifies(&req.verification_id, &target_type, &req.target_id)
-                .map_err(dyno_err)?,
-        ))
+        Self::verifies_on(&mut g, req)
     }
 
     #[tool(
@@ -290,29 +315,7 @@ impl ReflowService {
         Parameters(req): Parameters<CalibratedAgainstReq>,
     ) -> Result<CallToolResult, McpError> {
         let mut g = self.write_lock().await?;
-        let evidence_type = crate::service::resolve_node_type(
-            &g,
-            req.evidence_type.as_deref(),
-            &req.evidence_id,
-            "evidence_type",
-        )?;
-        let from_type = crate::service::resolve_node_type(
-            &g,
-            req.from_type.as_deref(),
-            &req.from_id,
-            "from_type",
-        )?;
-        ok_json(EdgeDto::from(
-            g.calibrated_against(
-                &from_type,
-                &req.from_id,
-                &evidence_type,
-                &req.evidence_id,
-                req.note.as_deref(),
-                req.calibrated_at.as_deref(),
-            )
-            .map_err(dyno_err)?,
-        ))
+        Self::calibrated_against_on(&mut g, req)
     }
 
     #[tool(
@@ -338,29 +341,7 @@ impl ReflowService {
         Parameters(req): Parameters<InvalidatesReq>,
     ) -> Result<CallToolResult, McpError> {
         let mut g = self.write_lock().await?;
-        let finding_type = crate::service::resolve_node_type(
-            &g,
-            req.finding_type.as_deref(),
-            &req.finding_id,
-            "finding_type",
-        )?;
-        let from_type = crate::service::resolve_node_type(
-            &g,
-            req.from_type.as_deref(),
-            &req.from_id,
-            "from_type",
-        )?;
-        ok_json(EdgeDto::from(
-            g.invalidates(
-                &from_type,
-                &req.from_id,
-                &finding_type,
-                &req.finding_id,
-                req.note.as_deref(),
-                req.at.as_deref(),
-            )
-            .map_err(dyno_err)?,
-        ))
+        Self::invalidates_on(&mut g, req)
     }
 
     #[tool(
@@ -509,17 +490,7 @@ impl ReflowService {
         Parameters(req): Parameters<PerformedInReq>,
     ) -> Result<CallToolResult, McpError> {
         let mut g = self.write_lock().await?;
-        ok_json(EdgeDto::from(
-            g.create_edge(
-                reflow2_core::nodes::edge::PERFORMED_IN,
-                reflow2_core::nodes::node::VERIFICATION,
-                &req.verification_id,
-                reflow2_core::nodes::node::ENVIRONMENT,
-                &req.environment_id,
-                reflow2_core::nodes::Props::new(),
-            )
-            .map_err(dyno_err)?,
-        ))
+        Self::performed_in_on(&mut g, req)
     }
 
     #[tool(
@@ -740,5 +711,108 @@ impl ReflowService {
             g.coverage_report(&observed, &req.exclusions, req.swept_at.as_deref())
                 .map_err(dyno_err)?,
         )
+    }
+}
+
+// ─── typed edge helper bodies, shared with `draw_edges` ──────────────────────
+
+impl ReflowService {
+    /// The body of [`Self::calibrated_against`] over a graph the caller already holds: the
+    /// one code path the tool and `draw_edges` both run.
+    pub(crate) fn calibrated_against_on(
+        g: &mut reflow2_core::DesignGraph,
+        req: CalibratedAgainstReq,
+    ) -> Result<CallToolResult, McpError> {
+        let evidence_type = crate::service::resolve_node_type(
+            g,
+            req.evidence_type.as_deref(),
+            &req.evidence_id,
+            "evidence_type",
+        )?;
+        let from_type = crate::service::resolve_node_type(
+            g,
+            req.from_type.as_deref(),
+            &req.from_id,
+            "from_type",
+        )?;
+        ok_json(EdgeDto::from(
+            g.calibrated_against(
+                &from_type,
+                &req.from_id,
+                &evidence_type,
+                &req.evidence_id,
+                req.note.as_deref(),
+                req.calibrated_at.as_deref(),
+            )
+            .map_err(dyno_err)?,
+        ))
+    }
+
+    /// The body of [`Self::invalidates`] over a graph the caller already holds: the
+    /// one code path the tool and `draw_edges` both run.
+    pub(crate) fn invalidates_on(
+        g: &mut reflow2_core::DesignGraph,
+        req: InvalidatesReq,
+    ) -> Result<CallToolResult, McpError> {
+        let finding_type = crate::service::resolve_node_type(
+            g,
+            req.finding_type.as_deref(),
+            &req.finding_id,
+            "finding_type",
+        )?;
+        let from_type = crate::service::resolve_node_type(
+            g,
+            req.from_type.as_deref(),
+            &req.from_id,
+            "from_type",
+        )?;
+        ok_json(EdgeDto::from(
+            g.invalidates(
+                &from_type,
+                &req.from_id,
+                &finding_type,
+                &req.finding_id,
+                req.note.as_deref(),
+                req.at.as_deref(),
+            )
+            .map_err(dyno_err)?,
+        ))
+    }
+
+    /// The body of [`Self::performed_in`] over a graph the caller already holds: the
+    /// one code path the tool and `draw_edges` both run.
+    pub(crate) fn performed_in_on(
+        g: &mut reflow2_core::DesignGraph,
+        req: PerformedInReq,
+    ) -> Result<CallToolResult, McpError> {
+        ok_json(EdgeDto::from(
+            g.create_edge(
+                reflow2_core::nodes::edge::PERFORMED_IN,
+                reflow2_core::nodes::node::VERIFICATION,
+                &req.verification_id,
+                reflow2_core::nodes::node::ENVIRONMENT,
+                &req.environment_id,
+                reflow2_core::nodes::Props::new(),
+            )
+            .map_err(dyno_err)?,
+        ))
+    }
+
+    /// The body of [`Self::verifies`] over a graph the caller already holds: the
+    /// one code path the tool and `draw_edges` both run.
+    pub(crate) fn verifies_on(
+        g: &mut reflow2_core::DesignGraph,
+        req: VerifiesReq,
+    ) -> Result<CallToolResult, McpError> {
+        let target_type = crate::service::resolve_node_type(
+            g,
+            req.target_type.as_deref(),
+            &req.target_id,
+            "target_type",
+        )?;
+        ok_json(EdgeDto::from(
+            g.verifies(&req.verification_id, &target_type, &req.target_id)
+                .map_err(dyno_err)?,
+        ))
     }
 }

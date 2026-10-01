@@ -39,11 +39,24 @@ use serde_json::{Value, json};
 /// A requirement carrying `statement`, governed by a `proposed` decision.
 async fn svc(statement: &str) -> ReflowService {
     let s = ReflowService::in_memory().expect("service");
+    // An accepted Requirement is settled intent: since 2026-09-29 the
+    // generic writer asks for the owner's name like every typed door.
+    s.create_node(Parameters(
+        serde_json::from_value(json!({
+            "node_type": "Contributor",
+            "id": "who:owner",
+            "props": {"name": "The owner", "kind": "person"},
+        }))
+        .unwrap(),
+    ))
+    .await
+    .expect("create contributor");
     s.create_node(Parameters(
         serde_json::from_value(json!({
             "node_type": "Requirement",
             "id": "req:thing",
             "props": {"name": "A thing", "statement": statement, "status": "accepted"},
+            "approver": "who:owner",
         }))
         .unwrap(),
     ))
@@ -194,11 +207,24 @@ async fn governed_prose_that_reads_settled_is_silent() {
 #[tokio::test]
 async fn linking_open_prose_to_an_already_accepted_decision_is_reported() {
     let s = ReflowService::in_memory().expect("service");
+    // An accepted Requirement is settled intent: since 2026-09-29 the
+    // generic writer asks for the owner's name like every typed door.
+    s.create_node(Parameters(
+        serde_json::from_value(json!({
+            "node_type": "Contributor",
+            "id": "who:owner",
+            "props": {"name": "The owner", "kind": "person"},
+        }))
+        .unwrap(),
+    ))
+    .await
+    .expect("create contributor");
     s.create_node(Parameters(
         serde_json::from_value(json!({
             "node_type": "Requirement",
             "id": "req:thing",
             "props": {"name": "A thing", "statement": STALE, "status": "accepted"},
+            "approver": "who:owner",
         }))
         .unwrap(),
     ))

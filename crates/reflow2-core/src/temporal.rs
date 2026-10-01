@@ -27,7 +27,7 @@ use crate::nodes::{Props, edge, node};
 /// node's design structure, not its audit trail: including these would make
 /// every snapshot grow with each prior snapshot (its own `HAS_SNAPSHOT`
 /// edges), and a diff across epochs would drown in meta-history (BL-63).
-const BOOKKEEPING_TYPES: &[&str] = &[
+pub(crate) const BOOKKEEPING_TYPES: &[&str] = &[
     node::DESIGN_EPOCH,
     node::SNAPSHOT,
     node::CHANGE_EVENT,
@@ -56,7 +56,7 @@ const BOOKKEEPING_TYPES: &[&str] = &[
 /// destroyed by the very call whose job is preserving it, and the call
 /// reported success. Only the epoch-side snapshot preserved it, and nothing
 /// said so.
-const COMMITMENT_EDGES: &[&str] = &[edge::SCHEDULED_FOR];
+pub(crate) const COMMITMENT_EDGES: &[&str] = &[edge::SCHEDULED_FOR];
 
 /// One edge of a snapshotted node, as captured into the Snapshot's `edges`
 /// property (BL-63). `direction` is from the snapshotted node's point of view:
@@ -735,19 +735,18 @@ impl DesignGraph {
         // revising the prose put an ARRIVED epoch back to `planned` each time
         // (fact:plan-epoch-on-an-existing-epoch-resets-its-status-to-planned),
         // BL-183's class on a second type.
-        // Carried forward explicitly rather than omitted, because the write
-        // below replaces the property set it is given.
-        let status = self
-            .get_node(node::DESIGN_EPOCH, id)?
-            .and_then(|n| {
-                n.properties
-                    .get("status")
-                    .and_then(|v| v.as_str())
-                    .map(str::to_string)
-            })
-            .unwrap_or_else(|| "planned".to_string());
-        props = props.set("status", status.as_str());
-        self.create_node(node::DESIGN_EPOCH, id, props)
+        //
+        // ⚠️ THAT FIX CARRIED ONE FIELD FORWARD BY HAND through a REPLACING
+        // write, so every other property was still lost on a revise:
+        // `description` and `checksum` went on disappearing
+        // (fact:revising-an-epoch-without-its-description-clears-the-
+        // description-2026-09-27). The write now MERGES, as `add_epoch` always
+        // has, so what the caller did not pass survives — status included —
+        // and `planned` is written only when there is no epoch yet.
+        if self.get_node(node::DESIGN_EPOCH, id)?.is_none() {
+            props = props.set("status", "planned");
+        }
+        self.upsert_node(node::DESIGN_EPOCH, id, props)
     }
 
     /// Move an epoch between `planned` and `arrived`, preserving everything else.

@@ -2,14 +2,31 @@
   "annotations": {
     "readOnlyHint": false
   },
-  "description": "Record that a Component CONSUMES an Interface — it is the side that depends on the contract. `from_id` is the Component, `to_id` the Interface. Once both sides are recorded, `propagate_change` on either Component reaches the other, and `detect_gaps` reports a contract that is consumed but never provided. Ask for this when you want to record that a component uses, calls or depends on an interface.",
+  "description": "Record that a Component CONSUMES an Interface — it is the side that depends on the contract. `from_id` is the consumer, `to_id` the Interface. An Actor outside the design using a published interface is a consumer too, and is accepted: the type is resolved from the id. Once both sides are recorded, `propagate_change` on either Component reaches the other, and `detect_gaps` reports a contract that is consumed but never provided. Ask for this when you want to record that a component uses, calls or depends on an interface. MANY AT ONCE: `draw_edges`, items {\"tool\": \"consumes\", \"arguments\": {…}}, same checks, all or nothing.",
   "inputSchema": {
     "$schema": "https://json-schema.org/draft/2020-12/schema",
     "additionalProperties": false,
     "properties": {
-      "from_id": {
-        "description": "The consuming `Component`.",
+      "echo": {
+        "default": "receipt",
+        "description": "What the reply carries. `receipt` (the default) names the node, echoes each stored value of at most 200 characters, gives longer ones by size, and names the snapshot that keeps anything a revise replaced. `node` returns the whole stored node and every prior value.",
+        "enum": [
+          "receipt",
+          "node"
+        ],
         "type": "string"
+      },
+      "from_id": {
+        "description": "The consumer — a `Component`, or an `Actor` outside the design using a published\ninterface (the schema accepts any consumer).",
+        "type": "string"
+      },
+      "from_type": {
+        "default": null,
+        "description": "The `from_id` node's type.\nOptional: resolved from the id when omitted (the id prefix names the\ntype); an id held by more than one type is REFUSED, never guessed — pass\nit then. Any type the schema accepts at this end is accepted here: a\ntyped tool is never narrower than its schema.",
+        "type": [
+          "string",
+          "null"
+        ]
       },
       "to_id": {
         "description": "The `Interface` it consumes.",

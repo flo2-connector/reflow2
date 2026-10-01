@@ -25,6 +25,15 @@
         ],
         "type": "string"
       },
+      "echo": {
+        "default": "receipt",
+        "description": "What the reply carries. `receipt` (the default) names the node, echoes each stored value of at most 200 characters, gives longer ones by size, and names the snapshot that keeps anything a revise replaced. `node` returns the whole stored node and every prior value.",
+        "enum": [
+          "receipt",
+          "node"
+        ],
+        "type": "string"
+      },
       "reflow2_tool": {
         "default": null,
         "description": "The served tool that should have done it, where you can name one. Refused\nif reflow2 does not serve it.",

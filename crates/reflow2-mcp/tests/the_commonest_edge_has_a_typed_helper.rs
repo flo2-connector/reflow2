@@ -79,6 +79,7 @@ async fn component(s: &ReflowService, id: &str, name: &str) {
         kind: None,
         level: None,
         distinct_from: None,
+        replaces: None,
         tier: None,
         status: None,
     }))
@@ -97,6 +98,8 @@ async fn a_component_coupling_has_one_typed_call() {
         .depends_on(Parameters(DependsOnReq {
             from_id: "cmp:coach".into(),
             to_id: "cmp:stage".into(),
+            from_type: None,
+            to_type: None,
         }))
         .await
         .expect("a component coupling is one typed call, not a raw create_edge");
@@ -127,6 +130,8 @@ async fn a_coupling_to_a_component_that_does_not_exist_is_refused() {
         .depends_on(Parameters(DependsOnReq {
             from_id: "cmp:coach".into(),
             to_id: "cmp:nobody-made-this".into(),
+            from_type: None,
+            to_type: None,
         }))
         .await
         .expect_err("an edge to an absent node is refused through every typed helper");

@@ -146,6 +146,18 @@ NON_TOOL_TERMS = {
     "no_relation_note",
     "not_observed_about",
 
+    # The THREE answers to the capture guard's near-match check, as parameters
+    # of the five guarded constructors, and the reply field that says where a
+    # replaced node now stands — read in prose by capture-intent, revise-design
+    # and capture-session, which have to name the route, not only the tool.
+    # `discontinued` is get_node's derived field, which retire-from-design names
+    # to say what a successor's OBSOLETES does NOT set. Field terms, not tools.
+    # Declared 2026-09-30 alongside `chg:a-capture-that-replaces-a-node-says-so`.
+    "distinct_from",
+    "replaces",
+    "standing",
+    "discontinued",
+
     # A VALUE of `Decision.kind`, passed to add_decision — a field term, not a
     # tool. It arrives in backticks because the brainstorm skill has to say what
     # the THIRD state is NOT: omitting the kind means nobody said, and that only
@@ -613,6 +625,11 @@ NON_TOOL_TERMS = {
     "in_scope",
     "out_of_scope",
     "unanchored",
+    # detect-and-ask (2026-09-29): the fields that put a question to a person by
+    # name and record who answered it
+    # (req:a-question-is-addressed-to-a-person-and-records-who-answered). The
+    # skill names them because the one-call answer IS those fields.
+    "asked_of", "answered_by", "batch", "batch_position",
 }
 
 
@@ -851,6 +868,13 @@ UNROUTED_REPORTS: dict[str, str] = {
     # procedure, not a step in the design loop, and there is no release skill
     # for this to belong to. If one is ever written, this entry comes out.
     "release_report": "needs no skill: cutting a release is a repo procedure, not a design-loop step",
+    # A GAP, NOT A RULING (2026-09-29). No skill owns reading back what the
+    # design DERIVES yet. derived_report was built for
+    # req:reflow2-declares-its-derived-relations-and-serves-a-read-that-runs-them,
+    # and which step routes to it turns on the open keep policy
+    # (dec:idea-which-derived-results-are-kept-and-by-what-rule). Naming it in
+    # check-health or where-am-i now would invent a use to satisfy this check.
+    "derived_report": "GAP: no skill owns reading what the design derives — the declared relations are served, the step that reads them waits on the keep-policy decision",
 }
 
 

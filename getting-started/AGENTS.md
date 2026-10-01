@@ -61,10 +61,14 @@ exactly when they get relayed verbatim: a session ended with *"6 structural find
 undispositioned drift"* to a person whose brother does not know either word. Never read a reply
 out. Say what it means for their design, and keep the field names in your tool calls.
 
-**Find out whose domain it is.** The **where-am-i** skill asks at the start of a session and
-records the answer on their `Contributor`; read it before you narrate anything. If nobody has
-recorded one, ask — what they do day to day and what they trained in, which are often different and
-both matter. Absent an answer, follow the vocabulary *they* use in the conversation.
+**Find out whose domain it is — and keep it out of the design.** A design holds who contributed
+to it and, where it matters, their role; never a reader's persona. Take the reader's lens from your
+host (a host such as flo2 hands over the signed-in person's persona with the design) or, with no
+host, from your own memory of the person you are talking to. With neither, follow the vocabulary
+*they* use in the conversation, and you may ask once — what they do day to day and what they
+trained in, which are often different and both matter — keeping the answer in your own memory,
+never in the design. The **where-am-i** skill does this at the start of a session; do it before
+you narrate anything.
 
 **Do it unasked.** *If a user ever has to ask you for plain language, the default was already
 wrong* — measured twice from the field, where two users independently invented the same workaround
@@ -370,8 +374,11 @@ reflow2 phrases the question; **you** are the language model that fills it in:
   of a session.** Two kinds: `status: asked` — they have not replied, so follow it up rather than
   asking again; `status: answered` — they replied but the gap is still open, so either write their
   answer into the design or `acknowledge_gap` if they judged it fine as it stands. Their reply
-  comes back with it. `answer_question` records what they said; `withdraw_question` retires one
-  overtaken by events. `gap_to_prompt` records the question itself, so you do not have to.
+  comes back with it. `answer_question` records what they said, and in the same call who said it
+  (`answered_by`) and the record it became (`record`, which draws `answers`); `withdraw_question`
+  retires one overtaken by events. `gap_to_prompt` records the question itself, so you do not have
+  to. A question for someone NOT in the chat is put to them by name (`asked_of`, with a `batch`
+  and per-question `evidence`), and `open_questions` with `asked_of` is the batch to hand them.
 - **Requirement lifecycle:** `set_requirement_status` — `proposed` / `accepted` / `deferred` /
   `dropped` / `met`. Use it when a requirement is provisional or abandoned instead of writing
   that into the statement text; `dropped` and `met` stop it being reported as unsatisfied.
@@ -394,6 +401,13 @@ reflow2 phrases the question; **you** are the language model that fills it in:
   for when you don't know the id: mapping the user's words to their node, and checking
   whether a requirement like the one you are about to add already exists. Finding by content
   is the graph's job; do not scan whole types into context to eyeball them.
+- **When a constructor refuses a near-match**, there are three answers and the one you give is
+  kept: SHARPEN (call again with the existing node's id), `distinct_from` (a different thing —
+  the ids stay on the new node, so "was the older one seen?" has an answer), or `replaces` (it
+  takes an older node's place — the old node's ending is recorded with its edges, the thread
+  that says what it was for moves across, and the new node `OBSOLETES` it). Answering
+  `distinct_from` for a replacement leaves the old node reading as unbuilt work. The
+  **capture-intent** skill has the detail.
 - **As-built:** `link_artifact`, `add_artifact`, `realizes`, `reconcile_artifacts`,
   `set_artifact_checksum` — the last is a **two-sided accept**: `disposition` is required
   (`design_holds`, or `design_updated` naming the `snapshot_before_change` event behind it), because a

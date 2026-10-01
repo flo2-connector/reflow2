@@ -95,8 +95,8 @@ the record**: the gaps stay counted and stay loud (`req:no-idea-goes-quiet`).
      the detector's words (*unallocated capability*, *unsatisfied requirement*); the question the
      user reads must be in theirs. **This is a different axis from the language rule above**: that
      one picks English or Portuguese, this one picks whether you speak systems engineering,
-     livestock, or baseball. Read the reader's recorded `description` on their `Contributor` and
-     match it; absent one, follow the vocabulary they use with you. **A "plain" question is not
+     livestock, or baseball. Take the reader's lens from your host or your own memory of them;
+     with neither, follow the vocabulary they use with you. **A "plain" question is not
      automatically one in their domain**, and a vocabulary swap is not simplification — an SE
      wants *interface* and *verification* KEPT.
 
@@ -141,15 +141,28 @@ the record**: the gaps stay counted and stay loud (`req:no-idea-goes-quiet`).
 4. **The question is recorded for you.** The serve pass of `gap_to_prompt` writes it into the
    graph, so a later session can see it was asked and in what words. When the user replies, call
    `answer_question` with the gap id and their answer *as well as* doing something about it — the
-   record alone changes nothing.
+   record alone changes nothing. Name **who gave it** (`answered_by`, their Contributor id) and
+   **what it became** (`record`, the node you wrote it into) in that same call; omit either and
+   the reply says it was not named, because neither is ever guessed.
+
+   **When the person who decides is NOT in the chat** — an owner another agent stands in for, a
+   manager, a delegated owner — put the questions to them BY NAME instead of carrying them by
+   hand: `gaps_to_prompts` with `asked_of` (their Contributor) and `batch` (a name such as
+   `round-2`), and per gap the `evidence` the recommendation rests on (the finding, file or check
+   ids). Hand them `open_questions` with `asked_of`: their batch in order, each question with
+   links to every node it asks about and every piece of evidence attached. Evidence you attach is
+   evidence you CHOSE, so it travels as links they can open and read past, never as a summary to
+   trust. Record each reply with `answered_by` set to them. Keep no question-number map outside
+   the design: each question's `batch_position` is its number, so "Q4 of round-2" resolves.
 
    Their reply lands in one of two places. If it adds to the design, write the nodes it implies
    and the gap closes on its own. If it means *"that is fine as it stands"*, call
    `acknowledge_gap` — an answer is not an acknowledgement, and a gap left open with an answered
    question against it will show up in `open_questions` until one or the other happens.
 
-   ⭐ **AND NAME WHAT THE ANSWER BECAME: `answers`, from the node you just wrote to the
-   Question.** This is the one step that lets a later session tell an answer that reached the
+   ⭐ **AND NAME WHAT THE ANSWER BECAME: `record` on `answer_question`, which draws `answers`
+   from the node you just wrote to the Question in the same call** (or `answers` on its own, when
+   the record is written after the answer). This is the one step that lets a later session tell an answer that reached the
    DESIGN from one that reached only the CHAT. Without it nothing can: `loop_status` counts
    answered questions whose gap is still open and says outright that it cannot tell which is
    which, because until 2026-09-02 there was no edge to look for — `Question.answer` promised
@@ -171,6 +184,14 @@ the record**: the gaps stay counted and stay loud (`req:no-idea-goes-quiet`).
    This matters: an open list that can never reach zero gets skimmed, and a skimmed list is the
    failure this whole workflow exists to prevent. `detect_gaps` should mean *still needs
    attention*. If a review turns out to be wrong, `withdraw_gap_acknowledgement` puts it back.
+
+   ⭐ **WHEN THE STATE ITSELF IS DELIBERATE, PARK THE NODE RATHER THAN ACKNOWLEDGE THE GAP.** A
+   requirement a person will meet outside the design, or a part correctly attached to nothing
+   yet, is a fact about the NODE: `governed_by(<node>, <an ACCEPTED Decision saying why>,
+   ruling: "parks")` records it, and every finding that reads parking then counts it as parked
+   instead of listing it. Each such finding names the mechanism in its own words and lists the
+   others that read it. Measured four times: people stuck at `unsatisfied_requirement` were never
+   told this existed (2026-09-29 was the fourth).
 6. Re-run `detect_gaps` to confirm the gap is closed and nothing new opened.
 
 Do this **before** writing code. A gap answered now is a requirement traced forever; a gap

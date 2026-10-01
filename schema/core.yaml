@@ -46,6 +46,7 @@ schema:
     Requirement:
       properties:
         name: { type: string, required: true, indexed: true, fulltext: true }
+        distinct_from: { type: "list:string", description: "Ids the writer READ at the near-match check and judged to be a DIFFERENT thing from this one — kept on the node the capture created, so a later reader can tell a judgement from a node nobody compared (was the older one seen?). Written by the capture tool when it is passed `distinct_from`; ADDITIVE, because a judgement is history, and an id naming nothing is reported and not kept. ABSENT MEANS NO JUDGEMENT WAS RECORDED — never \"judged the same\": the guard only asks when something close exists, and every node written before 2026-09-30 carries none. The other two answers to the same check leave their own record: sharpening revises the existing node, and `replaces` draws OBSOLETES from this node to the one it takes the place of (fact:root-cause-a-status-that-falls-behind-reality-is-silent-and-a-superseding-capability-leaves-no-trace-2026-09-30)." }
         aliases: { type: "list:string", description: "WHAT THE USER CALLS THIS, in their own words — the domain nouns that mean this node. reflow2's vocabulary is deliberately abstract so it spans a house, a spacecraft and a service, which leaves every user translating their field's words into it; one wrote a private translator skill to do that, and the mapping then lived outside the design where nothing could read or check it (dec:idea-a-users-domain-vocabulary-has-no-route-into-se-vocabulary). This is where that mapping goes. Recorded ONLY when a user actually used the word — never guessed, because a fabricated alias is a false neighbour every later search repeats. ADDITIVE: record_alias merges, so learning a second word for a thing never costs the first. It renames nothing and gates nothing: `name` stays the design's word and every computation reads the node type, so an alias can be wrong without making anything else wrong (req:framework-is-chosen-not-defaulted was dropped for gating capability on a self-declared label, and this must not become that)." }
         statement: { type: string, required: true, fulltext: true, description: "The need in the stakeholder's own terms." }
         kind: { type: enum, values: [functional, nonfunctional, quality, business], indexed: true }
@@ -107,6 +108,7 @@ schema:
     Constraint:
       properties:
         name: { type: string, required: true, indexed: true, fulltext: true }
+        distinct_from: { type: "list:string", description: "Ids the writer READ at the near-match check and judged to be a DIFFERENT thing from this one — kept on the node the capture created, so a later reader can tell a judgement from a node nobody compared (was the older one seen?). Written by the capture tool when it is passed `distinct_from`; ADDITIVE, because a judgement is history, and an id naming nothing is reported and not kept. ABSENT MEANS NO JUDGEMENT WAS RECORDED — never \"judged the same\": the guard only asks when something close exists, and every node written before 2026-09-30 carries none. The other two answers to the same check leave their own record: sharpening revises the existing node, and `replaces` draws OBSOLETES from this node to the one it takes the place of (fact:root-cause-a-status-that-falls-behind-reality-is-silent-and-a-superseding-capability-leaves-no-trace-2026-09-30)." }
         statement: { type: string, required: true, fulltext: true }
         category: { type: enum, values: [technical, business, operational, physical, regulatory, budget, schedule, kpp], default: technical, indexed: true, description: "`kpp` marks a KEY PERFORMANCE PARAMETER: inviolable intent, in the acquisition sense — a threshold that, if missed, fails the effort regardless of how well everything else went. Distinct from an ordinary Constraint (a limit imposed on the design, tradeable against other limits) and from a Requirement (a goal to achieve). Modelled as a Constraint subtype rather than its own node type on the user's call (2026-07-25) because the quantity/limit/direction triple and the budget rollup are exactly what a KPP needs and already exist. Its violations are computed, never remembered, and are ranked above ordinary gaps." }
         concern: { type: enum, values: [core, logistics, sustainment, safety, security, cost, schedule, manufacturability, usability, environmental, other], default: core, indexed: true, description: "Cross-cutting concern (ILS facet). Lets logistics/sustainment limits be filtered without a separate node type." }
@@ -120,6 +122,7 @@ schema:
         unit: { type: string, indexed: true, description: "THE UNIT `limit` IS IN, stated explicitly — `kg`, `ms`, `N·s`, `USD` — rather than read off a suffix of `quantity`. Added 2026-09-16 (req:a-project-declares-its-unit-system-as-a-governed-rule-and-undeclared-or-off-system-units-are-reported): budget_report adds a CONSTRAINS `contribution` to the total only when its `unit` matches this one, reports a mismatch or a silent side, and the unit sweep reports a budget with a `limit` and no unit. Absent means nobody said; the sweep says so." }
         limit: { type: float, description: "The budget number, in the quantity's unit." }
         direction: { type: enum, values: [maximum, minimum], default: maximum, description: "maximum = total must stay at or under the limit; minimum = at or over." }
+        composition: { type: enum, values: [sum, path], indexed: true, description: "HOW THE BUDGETED QUANTITY COMPOSES, which is the rollup budget_report's verdict reads (req:a-budget-says-whether-its-parts-add-up-or-run-along-a-path, Anthony 2026-09-29): `sum` — every contribution adds (mass, cost, area); `path` — the quantity accumulates along a DEPENDS_ON chain among the contributors and parallel branches overlap (end-to-end latency), so the verdict reads the heaviest dependency path. DECLARED, NEVER INFERRED: the same unit composes both ways (CPU-milliseconds across a batch add up; latency along a request does not), so reading it off the unit would silently change verdicts. NO DEFAULT: absent means nobody said, the verdict reads the sum as it always has, and the report names any path total it did not read. A `path` budget with no dependency drawn among its contributors, a cycle, or a `minimum` direction reaches no numeric verdict — it reports `incomplete` and says why." }
         margin: { type: float, description: "HEADROOM THE OWNER WANTS KEPT inside the limit, in the limit's unit: with `direction: maximum` the budget closes only when total <= limit - margin, with `minimum` when total >= limit + margin. Read by closure_report's budgets leg; budget_report's verdict is against the bare limit. Absent means no margin was declared, and the closure leg says how many budgets declared one." }
         objective: { type: float, description: "For a `kpp`: the OBJECTIVE value, the desired performance, where `limit` carries the THRESHOLD — the minimum acceptable. The acquisition pair: missing the threshold fails the effort, reaching the objective is what success looks like. Optional, because many KPPs state only a threshold, and inventing an objective nobody set would be a number the graph asserts on its own." }
         limit_basis: { type: enum, values: [measured, computed, asserted], indexed: true, description: "HOW `limit` WAS OBTAINED (req:a-quantity-carries-how-it-was-obtained-and-an-unsourced-one-is-reported, Anthony 2026-09-16): `measured` — read off an instrument, a model or a tool run; `computed` — derived from other quantities by a check with an executable form; `asserted` — somebody's word. NO DEFAULT: absent means nobody said, and a number nobody said the source of is what the finding `quantity_without_source` reports. `asserted` is an allowed, visible state — a proposed number reads as a proposal, never as a measurement." }
@@ -159,6 +162,7 @@ schema:
     DesignRule:
       properties:
         name: { type: string, required: true, indexed: true, fulltext: true }
+        distinct_from: { type: "list:string", description: "Ids the writer READ at the near-match check and judged to be a DIFFERENT thing from this one — kept on the node the capture created, so a later reader can tell a judgement from a node nobody compared (was the older one seen?). Written by the capture tool when it is passed `distinct_from`; ADDITIVE, because a judgement is history, and an id naming nothing is reported and not kept. ABSENT MEANS NO JUDGEMENT WAS RECORDED — never \"judged the same\": the guard only asks when something close exists, and every node written before 2026-09-30 carries none. The other two answers to the same check leave their own record: sharpening revises the existing node, and `replaces` draws OBSOLETES from this node to the one it takes the place of (fact:root-cause-a-status-that-falls-behind-reality-is-silent-and-a-superseding-capability-leaves-no-trace-2026-09-30)." }
         statement: { type: string, required: true, fulltext: true }
         category: { type: string, indexed: true, description: "tech_stack / convention / material / methodology / standard / style." }
         # Added 2026-09-12 for req:a-lesson-is-served-at-the-step-it-concerns —
@@ -226,8 +230,14 @@ schema:
         context_setter: { type: string, fulltext: true, description: "The 1-2 sentences that placed the user back in their own design." }
         rephrase_degraded: { type: bool, default: false, description: "True when phrasing fell back to the raw gap text — the question was still asked, and the record says how well." }
         asked_at: { type: string, description: "When it was put to the user." }
-        answer: { type: string, fulltext: true, description: "What the user said, in their own words. The design nodes it produced are linked separately." }
+        answer: { type: string, fulltext: true, description: "What was said in reply, in the answerer's own words. WHO said it is `answered_by`; absent, nobody said, and it is not read as the chat user's. The design record it became is linked by ANSWERS, which answer_question's `record` draws in the same call." }
         status: { type: enum, values: [asked, answered, withdrawn], default: asked, indexed: true }
+        asked_of: { type: string, indexed: true, node_ref: true, description: "The Contributor this question was PUT TO, when it was put to someone by name: an owner outside the chat, a delegated owner, a manager answering from elsewhere. ABSENT MEANS NOBODY WAS NAMED, and readers say so rather than guess: before 2026-09-29 every question went to whoever was in the chat, so absence is the ordinary state of every older design and never reads as a person. Written by gap_to_prompt / gaps_to_prompts (`asked_of`), refused unless it names a Contributor. `open_questions(asked_of)` and `loop_status(contributor_id)` read it (req:a-question-is-addressed-to-a-person-and-records-who-answered)." }
+        answered_by: { type: string, indexed: true, node_ref: true, description: "The Contributor who gave `answer`, when the answer named one (answer_question's `answered_by`). May differ from `asked_of`: a question put to one person can be answered by their delegate, and both are facts. ABSENT MEANS NOBODY SAID WHO ANSWERED, never the chat user by default. A later answer that names nobody CLEARS it rather than inheriting the last answerer's name." }
+        answered_via: { type: string, indexed: true, node_ref: true, description: "The AGENT (a Contributor of kind automated_agent) the answer was recorded THROUGH, when the write named one (the ACTS_FOR rung, `crate::acting`) \u2014 beside `answered_by`, the way an approval records `approved_via`, never in its place. Absent when no agent was named or the agent answered in its own name. Cleared with `answered_by` by a later answer." }
+        answered_at: { type: string, description: "When the answer was given, as the caller supplies it (the core takes no clock). Rides `answered_by`, and is cleared with it." }
+        batch: { type: string, indexed: true, description: "The name of the batch this question was put in, as the asker named it (`batch` on gaps_to_prompts / gap_to_prompt), e.g. `round-2`. Questions put together travel together: `open_questions(asked_of)` returns them grouped and in order. Never invented: absent when no batch was named." }
+        batch_position: { type: int, description: "This question's number within `batch`, from 1, in the order the questions were put, so a relay quoting \"Q4 of round-2\" resolves to a node without a scratch-file map. Kept when the question is asked again." }
       embedding_field: question
       resolution: { strategy: fuzzy_then_vector, fuzzy_threshold: 85 }
       extraction_hint: >
@@ -235,13 +245,15 @@ schema:
         answered it. Not extracted from prose — authored by the DETECT→PROMPT
         loop so that a later session can tell what has already been asked
         instead of re-deriving and re-asking it. ASKS_ABOUT points at the nodes
-        the gap concerned.
+        the gap concerned, and at any evidence the asker attached. A question
+        may be put to a named Contributor (`asked_of`), in a numbered batch,
+        and records who answered it (`answered_by`).
 
     Contributor:
       properties:
         name: { type: string, required: true, indexed: true, fulltext: true }
         description: { type: string, fulltext: true }
-        kind: { type: enum, values: [person, automated_agent, organization], default: person, indexed: true, description: "What the contributor IS — a human, an automated coding agent (Claude Code, grok build), or an organization. An agent that acts on a person's behalf ACTS_FOR them (deferred rung)." }
+        kind: { type: enum, values: [person, automated_agent, organization], default: person, indexed: true, description: "What the contributor IS — a human, an automated coding agent (Claude Code, grok build), or an organization. An agent that acts on a person's behalf ACTS_FOR them: built 2026-09-29 (req:a-write-and-an-approval-record-the-agent-and-the-person-it-acts-for). A session or request names the agent it writes THROUGH beside the person it writes FOR, and every authorship and approval it records carries the agent in `authored_via` / `reviewed_via` / `approved_via` — attribution only, never authority." }
         handle: { type: string, indexed: true, description: "Short stable handle used to coordinate — e.g. the COORD.md board handle (@<handle>) or an agent's name. Lets the same contributor be recognised across sessions without matching on the display name." }
       embedding_field: description
       resolution: { strategy: fuzzy_then_vector, fuzzy_threshold: 82 }
@@ -261,6 +273,7 @@ schema:
     CONTAINS:
       from: ["Project", "Component"]
       to: "*"
+      reading: { form: "primitive", primitive: "part-of", frame: "structure", inverse: true, modifiers: { note: "other" }, basis: "classified" }
       extraction_hint: >
         Ownership/containment: from the Project down to any node, and between
         Components to express the axis-Y decomposition spine (a system CONTAINS
@@ -271,6 +284,7 @@ schema:
     CLAIMS:
       from: Contributor
       to: "*"
+      reading: { form: "composite", composition: "CLAIMS(p, seed) := causes[intended](p, Δ region(seed, depth)) ∧ during(claim, p's live session)", components: ["causes", "during"], modifiers: { claimed_at: "time", depth: "other", note: "other", seat: "provenance" }, basis: "classified" }
       extraction_hint: >
         A Contributor has taken a region of the design in hand, so others can see
         what is already held before starting. ADVISORY, never a lock: the design
@@ -291,6 +305,7 @@ schema:
     DECOMPOSES:
       from: Requirement
       to: Requirement
+      reading: { form: "primitive", primitive: "part-of", sub: "partition of intent", frame: "structure", modifiers: { note: "other" }, basis: "classified" }
       extraction_hint: >
         Child DECOMPOSES parent: a 1:1 split of one requirement into smaller
         testable pieces that adds no new information ("the app must have a
@@ -310,6 +325,19 @@ schema:
         to: [Requirement, Constraint]
       from: "*"
       to: "*"
+      reading:
+        form: "primitive"
+        primitive: "norm"
+        sub: "meets"
+        polarity: "+"
+        modifiers: { coverage: "strength", evidence: "evidence" }
+        splits:
+          - property: "coverage"
+            note: "Unset reads as `full`: the reading above, which counts toward delivery."
+            values:
+              partial: { form: "primitive", primitive: "norm", sub: "meets", polarity: "+", note: "Met to a degree; not counted as delivery." }
+              planned: { form: "primitive", primitive: "norm", sub: "meets", polarity: "+", modality: "intended", note: "A promise, not a fact; not counted as delivery." }
+        basis: "classified"
       extraction_hint: >
         Source node (Capability, Component, Artifact...) fulfills a target
         Requirement or Constraint. The backbone of design traceability.
@@ -320,6 +348,20 @@ schema:
     AUTHORED_BY:
       from: "*"
       to: Contributor
+      reading:
+        form: "primitive"
+        primitive: "source-of"
+        sub: "made"
+        inverse: true
+        modifiers: { approved_at: "time", approved_via: "provenance", authored_at: "time", authored_via: "provenance", reviewed_at: "time", reviewed_via: "provenance", roles: "subtype" }
+        splits:
+          - property: "roles"
+            note: "A set: an edge with two roles is two relations. A legacy edge with no `roles` keeps the reading above."
+            values:
+              author: { form: "primitive", primitive: "source-of", sub: "made", inverse: true }
+              reviewer: { form: "primitive", primitive: "stance", sub: "reviews", inverse: true, note: "Held a view on it; the edge does not say which." }
+              approver: { form: "primitive", primitive: "stance", sub: "settles", inverse: true, note: "Whose word settles it. Given on an accepted node; on a `proposed` Decision, asked and not yet given (report.rs's assigned-open-decision count). The sign is the node's status, not the edge's." }
+        basis: "classified"
       extraction_hint: >
         A design node was authored, reviewed, or approved by a Contributor —
         the structured "who" behind provenance's "how". Deliberately NOT a
@@ -333,10 +375,35 @@ schema:
         authored_at: { type: string, description: "ISO-8601 timestamp of the authoring act, if recorded." }
         reviewed_at: { type: string, description: "ISO-8601 timestamp of the review, if recorded." }
         approved_at: { type: string, description: "ISO-8601 timestamp of the sign-off, if recorded — the date the owner's word was given, which is what the intent-authority gate and loop_status read." }
+        authored_via: { type: "list:string", description: "The AGENT(S) this authorship was recorded THROUGH — Contributor ids of kind automated_agent, a SET like `roles`. git's author/committer split: the contributor this edge points at is the author, and each id here is an agent that wrote the record on their behalf. Stamped by the server from the session's or request's declared acting agent (never supplied by a caller as data, never invented); ABSENT means no agent was known for that act, and a read says so rather than guessing. Attribution only — it never widens what an approval may settle. Built 2026-09-29 (req:a-write-and-an-approval-record-the-agent-and-the-person-it-acts-for)." }
+        reviewed_via: { type: "list:string", description: "The agent(s) this review was recorded through — as `authored_via`, for the `reviewer` role." }
+        approved_via: { type: "list:string", description: "The agent(s) this APPROVAL was recorded through — as `authored_via`, for the `approver` role. The authority stays the contributor's alone: an agent listed here carried the owner's word; it never gave it." }
+
+    ACTS_FOR:
+      from: Contributor
+      to: Contributor
+      reading: { form: "primitive", primitive: "controls", sub: "acts for", inverse: true, modifiers: { route: "provenance" }, basis: "classified" }
+      extraction_hint: >
+        An automated agent Contributor ACTS_FOR the person (or organization)
+        Contributor it records writes and approvals on behalf of — git's
+        author/committer split on the design's "who" axis, the rung
+        dec:design-authorship-identity named on 2026-07-22 and deferred, built
+        2026-09-29 (req:a-write-and-an-approval-record-the-agent-and-the-person-it-acts-for).
+        Drawn by the SERVER, not extracted from prose: the first time an agent a
+        session or request declared records authorship or an approval for a
+        contributor, the edge is drawn from the agent to them, and each such
+        record carries the agent in its `*_via` property. ATTRIBUTION, NEVER
+        AUTHORITY — the agent's identity is self-declared by the caller, so this
+        records who carried a person's word, never that the agent may give it.
+        Deliberately NOT a traceability edge (absent from structural_rule, like
+        AUTHORED_BY and CLAIMS), so it never enlarges a blast radius.
+      properties:
+        route: { type: string, description: "How the agent was named when this was first drawn: `session` (the session's writes_for declaration), `request` (a request's `_meta` key reflow2/acting_agent — the route a hosting gateway uses), or `client` (a Contributor whose `handle` equals the client's self-declared MCP clientInfo name)." }
 
     OWNED_BY:
       from: "*"
       to: Contributor
+      reading: { form: "primitive", primitive: "controls", sub: "owns", inverse: true, modifiers: { note: "other", since: "time" }, basis: "classified" }
       extraction_hint: >
         Whose AREA this is — durable, standing, and never released. THE THIRD
         "WHO" AXIS, and the one that was missing: AUTHORED_BY says who WROTE
@@ -396,6 +463,7 @@ schema:
       # consumer-facing break.
       from: "*"
       to: Question
+      reading: { form: "composite", composition: "ANSWERS(r,q) := norm.meets(+)(r,q) ∧ causes(q, r)", components: ["norm", "causes"], modifiers: { note: "evidence" }, basis: "classified" }
       extraction_hint: >
         The design record that ANSWERED a question — the Decision, Requirement
         or Capability the user's reply actually became. Reads as a sentence:
@@ -414,17 +482,23 @@ schema:
     ASKS_ABOUT:
       from: Question
       to: "*"
+      reading: { form: "primitive", primitive: "about", sub: "concerns", modifiers: { note: "other" }, basis: "classified" }
       extraction_hint: >
         The design nodes a question was raised about — the gap's affected set at
-        the moment it was asked. Lets a node say "someone has already been asked
-        about this", and lets an answered question stay reachable from the part
-        of the design it settled.
+        the moment it was asked, plus any evidence the asker attached
+        (`evidence` on gap_to_prompt / gaps_to_prompts: a finding, a file, a
+        check the recommendation rests on). Lets a node say "someone has
+        already been asked about this", lets an answered question stay
+        reachable from the part of the design it settled, and is what
+        `open_questions` hands an addressee as the question's evidence LINKS,
+        to read for themselves rather than a summary to trust.
       properties:
         note: { type: string }
 
     COMPLEMENTS:
       from: DesignRule
       to: DesignRule
+      reading: { form: "composite", composition: "COMPLEMENTS(a,b) := compares(+)(a,b) ∧ ¬same-as(a,b)", components: ["compares", "same-as"], modifiers: { evidence: "evidence" }, basis: "classified" }
       extraction_hint: >
         Two rules that deliberately stand BESIDE each other and must never be
         merged — they cover adjacent ground for different reasons. Not
@@ -488,6 +562,7 @@ schema:
       # than merely tolerated, which was the whole complaint.
       from: [Constraint, DesignRule]
       to: "*"
+      reading: { form: "primitive", primitive: "norm", sub: "binds", modality: "obligatory", modifiers: { basis: "provenance", contribution: "quantity", measured_at: "time", note: "other", source: "provenance", unit: "other" }, basis: "classified" }
       extraction_hint: >
         A Constraint or DesignRule binds a target node. Source = the
         Constraint/DesignRule, target = what it limits — a Component, a

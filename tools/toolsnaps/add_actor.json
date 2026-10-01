@@ -32,6 +32,15 @@
           "null"
         ]
       },
+      "echo": {
+        "default": "receipt",
+        "description": "What the reply carries. `receipt` (the default) names the node, echoes each stored value of at most 200 characters, gives longer ones by size, and names the snapshot that keeps anything a revise replaced. `node` returns the whole stored node and every prior value.",
+        "enum": [
+          "receipt",
+          "node"
+        ],
+        "type": "string"
+      },
       "id": {
         "description": "The actor's id — `actor:<slug>` by convention. An actor is a party OUTSIDE the design that interacts with it (a user, an operator, an external system); a person who works ON the design is a Contributor. Calling again with an existing id REVISES it.",
         "type": "string"

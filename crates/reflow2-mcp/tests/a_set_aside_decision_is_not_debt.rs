@@ -68,6 +68,7 @@ fn decision(id: &str, status: Option<&str>, approver: Option<&str>) -> DecisionR
             "Recorded because the {subject} choice has consequences."
         )),
         distinct_from: None,
+        replaces: None,
         kind: Some("choice".into()),
         related_to: None,
         no_relation_note: None,
@@ -124,6 +125,7 @@ async fn the_same_decision_is_debt_while_proposed_and_not_while_deferred() {
         approver: Some("who:owner".into()),
         acted_at: Some("2026-09-12".into()),
         chose: None,
+        name: None,
     })));
 
     let after = j!(s.loop_status(Parameters(LoopScopeReq {
@@ -200,6 +202,7 @@ async fn no_gap_detector_raises_a_deferred_decision() {
             approver: Some("who:owner".into()),
             acted_at: None,
             chose: None,
+            name: None,
         })));
     }
     let after = j!(s.detect_gaps(Parameters(GapScopeReq {
@@ -254,6 +257,7 @@ async fn deferring_wants_the_owners_name() {
         approver: None,
         acted_at: None,
         chose: None,
+        name: None,
     })));
     let text = moved.to_string();
     assert!(

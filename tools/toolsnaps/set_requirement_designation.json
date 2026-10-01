@@ -15,6 +15,15 @@
         ],
         "type": "string"
       },
+      "echo": {
+        "default": "receipt",
+        "description": "What the reply carries. `receipt` (the default) names the node, echoes each stored value of at most 200 characters, gives longer ones by size, and names the snapshot that keeps anything a revise replaced. `node` returns the whole stored node and every prior value.",
+        "enum": [
+          "receipt",
+          "node"
+        ],
+        "type": "string"
+      },
       "requirement_id": {
         "description": "The Requirement (`req:…`) being marked `published` (a promise a consumer may rely on, carried by `export_surface`) or `internal`.",
         "type": "string"

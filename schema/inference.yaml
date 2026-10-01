@@ -19,6 +19,32 @@ schema:
     CAUSES:
       from: "*"
       to: "*"
+      # SEVERAL RELATIONS UNDER ONE NAME, told apart per edge (measured
+      # 2026-09-28). What the edge is named for is a cause, and `causal` and
+      # `observed` assert one (with and without a mechanism) — but `basis`
+      # defaults to `correlational`, so an edge that never says reads as a
+      # correlation; `spurious` and a `refuted` test say NO causal link holds.
+      # A rule selecting causes must decide each edge (`edge_reads_as`), never
+      # take the type whole.
+      reading:
+        form: "primitive"
+        primitive: "causes"
+        polarity: "+"
+        modality: "sufficient|necessary"
+        modifiers: { basis: "confidence", confidence: "confidence", evidence: "evidence", validation_status: "lifecycle" }
+        splits:
+          - property: "basis"
+            note: "Unset is `correlational`, the schema default: a correlation, not a cause."
+            values:
+              causal: { form: "primitive", primitive: "causes", polarity: "+", modality: "sufficient|necessary" }
+              correlational: { form: "primitive", primitive: "compares", sub: "co-varies", polarity: "+", note: "The two move together; which brings the other about is not claimed." }
+              observed: { form: "primitive", primitive: "causes", polarity: "+", note: "Seen to bring the target about, with no mechanism given: a causal claim on weaker grounds than `causal` (Anthony, 2026-09-28). A co-variation is `correlational`." }
+              spurious: { form: "primitive", primitive: "causes", negated: true, note: "Judged not to be a causal link at all." }
+          - property: "validation_status"
+            note: "Applied after `basis`: a test that contradicted the claim overrides what it was asserted on."
+            values:
+              refuted: { form: "primitive", primitive: "causes", negated: true, note: "A test contradicted the claim." }
+        basis: "classified"
       inference_category: causal
       pass_1_extractable: true
       properties:
@@ -41,6 +67,7 @@ schema:
     BLOCKS:
       from: "*"
       to: "*"
+      reading: { form: "primitive", primitive: "causes", polarity: "-", modifiers: { confidence: "confidence", evidence: "evidence" }, basis: "classified" }
       inference_category: causal
       pass_1_extractable: true
       properties:
@@ -51,6 +78,7 @@ schema:
     TRIGGERS:
       from: "*"
       to: "*"
+      reading: { form: "primitive", primitive: "causes", polarity: "+", modality: "initiating", modifiers: { confidence: "confidence", evidence: "evidence", role: "mechanism" }, basis: "classified" }
       inference_category: causal
       pass_1_extractable: true
       properties:
@@ -67,6 +95,18 @@ schema:
     CONTRADICTS:
       from: "*"
       to: "*"
+      reading:
+        form: "primitive"
+        primitive: "compares"
+        polarity: "carried"
+        modifiers: { alignment: "polarity", confidence: "confidence", evidence: "evidence" }
+        splits:
+          - property: "alignment"
+            note: "Unset is `opposing`, the schema default."
+            values:
+              opposing: { form: "primitive", primitive: "compares", sub: "conflicts", polarity: "-" }
+              supporting: { form: "primitive", primitive: "compares", sub: "corroborates", polarity: "+" }
+        basis: "classified"
       inference_category: tension
       pass_1_extractable: true
       properties:
@@ -86,6 +126,7 @@ schema:
         to: [Constraint, DesignRule, Requirement]
       from: "*"
       to: "*"
+      reading: { form: "primitive", primitive: "norm", sub: "meets", polarity: "-", modifiers: { confidence: "confidence", evidence: "evidence" }, basis: "classified" }
       inference_category: tension
       pass_1_extractable: true
       properties:
@@ -96,6 +137,7 @@ schema:
     RISKS:
       from: "*"
       to: "*"
+      reading: { form: "primitive", primitive: "causes", polarity: "-", modality: "possible", modifiers: { confidence: "confidence", evidence: "evidence", severity: "strength" }, basis: "classified" }
       inference_category: risk
       pass_1_extractable: true
       properties:
@@ -107,6 +149,7 @@ schema:
     MITIGATES:
       from: "*"
       to: "*"
+      reading: { form: "composite", composition: "MITIGATES(m,t) := ∃r: causes(−)(m, r) ∧ causes(−, possible)(r, t)", components: ["causes"], modifiers: { confidence: "confidence", evidence: "evidence" }, basis: "classified" }
       inference_category: risk
       pass_1_extractable: true
       properties:
@@ -117,6 +160,7 @@ schema:
     EVOLVES_INTO:
       from: "*"
       to: "*"
+      reading: { form: "primitive", primitive: "becomes", sub: "transforms", modifiers: { confidence: "confidence" }, basis: "classified" }
       inference_category: temporal
       pass_1_extractable: true
       properties:
@@ -129,6 +173,7 @@ schema:
         to: []
       from: "*"
       to: "*"
+      reading: { form: "primitive", primitive: "norm", sub: "binds", modality: "forbidden", modifiers: { confidence: "confidence" }, basis: "classified" }
       inference_category: temporal
       pass_1_extractable: true
       properties:
@@ -157,6 +202,18 @@ schema:
     DUPLICATES:
       from: "*"
       to: "*"
+      reading:
+        form: "primitive"
+        primitive: "compares"
+        polarity: "="
+        modifiers: { basis: "provenance", confidence: "confidence" }
+        splits:
+          - property: "basis"
+            note: "Unset is `suspected`, the schema default: only a comparison, never a merge."
+            values:
+              asserted: { form: "primitive", primitive: "same-as", note: "A person says the two cover the same ground; the only basis on which apply_heal merges them." }
+              suspected: { form: "primitive", primitive: "compares", polarity: "=", note: "A heuristic suspects it; asked as a possible_duplicate gap, never merged." }
+        basis: "classified"
       inference_category: redundancy
       pass_1_extractable: true
       properties:
@@ -167,6 +224,7 @@ schema:
     ANTICIPATES:
       from: "*"
       to: "*"
+      reading: { form: "composite", composition: "ANTICIPATES(x,y) := before(x,y) ∧ about(x,y)", components: ["before", "about"], modifiers: { confidence: "confidence" }, basis: "classified" }
       inference_category: temporal
       pass_1_extractable: true
       properties:
@@ -176,6 +234,7 @@ schema:
     MASKS:
       from: "*"
       to: "*"
+      reading: { form: "composite", composition: "MASKS(x,y) := causes(−)(x, about(o, y)) — x prevents an observer o knowing y's problem or property", components: ["causes", "about"], modifiers: { confidence: "confidence", evidence: "evidence" }, basis: "classified" }
       inference_category: risk
       pass_1_extractable: true
       properties:
