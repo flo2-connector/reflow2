@@ -1821,6 +1821,18 @@ async fn main() -> anyhow::Result<()> {
                     "reflow2: serving a DEGRADED surface so this session can find out why — one \
                      tool, `reflow2_unavailable`, and the reason in the handshake instructions."
                 );
+                // No server came up in time — usually a NON-shared process holds
+                // the store's lock, which clears when it stops. Keep re-electing
+                // and serve the design in THIS session once a server comes up
+                // (GitHub issue #616). A refusal is final and is not waited out.
+                if !reflow2_mcp::shared::is_refusal(&e) {
+                    return reflow2_mcp::proxy::run_waiting(
+                        &cli.graph_path,
+                        cli.export_to.as_deref(),
+                        reason,
+                    )
+                    .await;
+                }
                 let degraded = DegradedService::new(reason, cli.graph_path.clone());
                 let running = degraded
                     .serve(stdio())
@@ -1852,43 +1864,12 @@ async fn main() -> anyhow::Result<()> {
     // So: serve a degraded surface that carries the reason in its handshake
     // instructions and in one unmistakably-named tool. An MCP server that starts
     // and explains itself beats one that dies before it can be asked.
-    match ReflowService::new_reporting(&cli.graph_path).map(|(svc, prov)| {
-        (
-            with_cli_tree_root(
-                if cli.read_only {
-                    svc.into_read_only()
-                } else {
-                    svc
-                },
-                &cli,
-            ),
-            prov,
-        )
-    }) {
-        Ok((mut service, provenance)) => {
-            // Say it on stderr as well as the log: an operator running this by
-            // hand sees stderr, and "which reflow2 wrote this graph" is exactly
-            // the question that used to have no answer at all.
-            if let Some(note) = provenance {
-                tracing::warn!("{note}");
-                eprintln!("reflow2: {note}");
-            }
-            // THE SERVER'S OWN GUARANTEE, started before it serves anyone. One task
-            // per server, never per session — the write-through is a property of the
-            // server (one file, one writer), the way the graph is.
-            if let Some(export_to) = cli.export_to.clone() {
-                match service.start_auto_export(export_to.clone()) {
-                    Ok(()) => eprintln!(
-                        "reflow2: keeping {export_to} current — the design is written through after \
-                     every change, debounced."
-                    ),
-                    Err(why) => eprintln!("reflow2: NOT keeping {export_to} current — {why}"),
-                }
-            }
-
+    match ReflowService::new_reporting(&cli.graph_path) {
+        Ok((service, provenance)) => {
+            let service = ServeAs::of(&cli).prepare(service, provenance);
             if let Some(addr) = cli.http.clone() {
                 serve_http(
-                    one_design(service.with_caller_rule(caller_rule(&cli, false))),
+                    one_design(service),
                     &addr,
                     &cli.http_allow_host,
                     HttpSurface::Design,
@@ -1907,8 +1888,23 @@ async fn main() -> anyhow::Result<()> {
             }
         }
         Err(e) => {
-            let explained = explain_open_failure(&e.into(), &cli.graph_path);
-            let reason = format!("{explained:#}");
+            let raw: anyhow::Error = e.into();
+            let held = is_lock_contention(&format!("{raw:#}"));
+            let explained = explain_open_failure(&raw, &cli.graph_path);
+            // A HELD store is the one cause that clears by itself: the holder
+            // stops. Everything else — a stamp that will not read, a newer
+            // writer, a corrupt store — does not, and is not polled
+            // (`reflow2_mcp::degraded`, GitHub issue #616).
+            let reason = if held {
+                format!(
+                    "another process already has the design graph at {} open. The graph is \
+                     single-writer, so that process holds it exclusively while it runs. This \
+                     server keeps trying, and serves the design as soon as that process lets go.",
+                    cli.graph_path
+                )
+            } else {
+                format!("{explained:#}")
+            };
             // Still on stderr for whoever runs this by hand...
             eprintln!("reflow2: {reason}");
             eprintln!(
@@ -1916,6 +1912,11 @@ async fn main() -> anyhow::Result<()> {
                  `reflow2_unavailable`, and the reason in the handshake instructions."
             );
             tracing::warn!("degraded mode: {reason}");
+            let readiness = reflow2_mcp::readiness::Readiness::not_ready(if held {
+                reflow2_mcp::readiness::HELD_ELSEWHERE
+            } else {
+                reflow2_mcp::readiness::CANNOT_OPEN
+            });
             // ...and in-band, where the agent will actually see it — ON THE
             // TRANSPORT THAT WAS ASKED FOR. Serving this on stdio when the
             // caller said --http put the explanation somewhere nobody was
@@ -1923,13 +1924,25 @@ async fn main() -> anyhow::Result<()> {
             // refused, which is indistinguishable from reflow2 not being
             // configured at all, and that is the whole failure
             // `req:never-silently-absent` exists to prevent (BL-105).
-            let degraded = DegradedService::new(reason, cli.graph_path.clone());
+            let degraded = if held {
+                reflow2_mcp::degraded::DegradedService::recovering(
+                    reason,
+                    cli.graph_path.clone(),
+                    std::sync::Arc::clone(&readiness),
+                    opener_for(cli.graph_path.clone(), ServeAs::of(&cli)),
+                )
+            } else {
+                DegradedService::new(reason, cli.graph_path.clone())
+            };
             if let Some(addr) = cli.http.clone() {
                 serve_http(
-                    no_design(degraded),
+                    degraded_design(degraded),
                     &addr,
                     &cli.http_allow_host,
-                    HttpSurface::Degraded,
+                    HttpSurface::Degraded {
+                        readiness,
+                        recovers: held,
+                    },
                     None,
                     false,
                     cli.shutdown_grace,
@@ -1950,13 +1963,20 @@ async fn main() -> anyhow::Result<()> {
     Ok(())
 }
 
-/// Which surface an HTTP server is carrying, so its startup line tells the
-/// truth. A degraded server is not "several sessions sharing this design" — it
-/// is one tool explaining why there is no design here to share.
-#[derive(Clone, Copy)]
+/// Which surface an HTTP server is carrying, so its startup line and its
+/// readiness tell the truth. A degraded server is not "several sessions sharing
+/// this design" — it is one tool explaining why there is no design here to
+/// share, and `/readyz` says 503 until (and unless) it serves one.
+#[derive(Clone)]
 enum HttpSurface {
     Design,
-    Degraded,
+    Degraded {
+        /// What `/readyz` answers; turned ready by a recovery that succeeds.
+        readiness: std::sync::Arc<reflow2_mcp::readiness::Readiness>,
+        /// The cause can clear by itself and a task is retrying
+        /// (`DegradedService::recovering`).
+        recovers: bool,
+    },
 }
 
 /// The extra duties of a server that sessions are meant to FIND: publish where
@@ -2016,6 +2036,122 @@ where
 type Sessions = rmcp::transport::streamable_http_server::session::local::LocalSessionManager;
 type HttpConfig = rmcp::transport::streamable_http_server::StreamableHttpServerConfig;
 
+/// How a plain server readies a design it has OPENED for serving: read-only if
+/// asked, the tree root, the provenance note said, the write-through export
+/// started, and — over HTTP — the rule for who is calling (#616 fix 4).
+///
+/// ⭐ ONE PREPARATION FOR BOTH DOORS. A plain server opens its design at
+/// startup, or — when another process holds the store — later, from the
+/// degraded surface, the moment that process lets go (`opener_for`, #616
+/// fix 3). Those two built the service in two copies, and the copies drifted
+/// the first time either changed: fix 4 installed the caller rule at the
+/// startup door only, so an exposed server that waited out a held lock served
+/// its design LOCAL and took any caller's signature. It compiled, merged
+/// cleanly and no test was red
+/// (`a_recovered_server_served_for_others_keeps_the_caller_rule_a_healthy_start_installs`).
+/// A step added here is taken by both doors.
+#[derive(Clone)]
+struct ServeAs {
+    read_only: bool,
+    tree_root: Option<String>,
+    export_to: Option<String>,
+    /// Over HTTP, how this engine establishes who is calling. stdio is local
+    /// by construction and installs none.
+    caller: Option<reflow2_mcp::caller::CallerRule>,
+}
+
+impl ServeAs {
+    /// Read from the command line. Says the caller rule's banner, so a server
+    /// calls it once.
+    fn of(cli: &Cli) -> ServeAs {
+        ServeAs {
+            read_only: cli.read_only,
+            tree_root: cli.tree_root.clone(),
+            export_to: cli.export_to.clone(),
+            caller: cli.http.as_ref().map(|_| caller_rule(cli, false)),
+        }
+    }
+
+    fn prepare(&self, service: ReflowService, provenance: Option<String>) -> ReflowService {
+        let service = if self.read_only {
+            service.into_read_only()
+        } else {
+            service
+        };
+        let mut service = match &self.tree_root {
+            Some(root) => service.with_tree_root(root),
+            None => service,
+        };
+        // Say it on stderr as well as the log: an operator running this by
+        // hand sees stderr, and "which reflow2 wrote this graph" is exactly
+        // the question that used to have no answer at all.
+        if let Some(note) = provenance {
+            tracing::warn!("{note}");
+            eprintln!("reflow2: {note}");
+        }
+        // THE SERVER'S OWN GUARANTEE, started before it serves anyone. One task
+        // per server, never per session — the write-through is a property of the
+        // server (one file, one writer), the way the graph is.
+        if let Some(export_to) = self.export_to.clone() {
+            match service.start_auto_export(export_to.clone()) {
+                Ok(()) => eprintln!(
+                    "reflow2: keeping {export_to} current — the design is written through after \
+                     every change, debounced."
+                ),
+                Err(why) => eprintln!("reflow2: NOT keeping {export_to} current — {why}"),
+            }
+        }
+        match &self.caller {
+            Some(rule) => service.with_caller_rule(rule.clone()),
+            None => service,
+        }
+    }
+}
+
+/// How a recovering degraded surface opens its design when the store frees:
+/// with the SAME preparation the healthy start uses (`ServeAs`), so a design
+/// served after a wait is indistinguishable from one served at once.
+fn opener_for(graph_path: String, serve_as: ServeAs) -> reflow2_mcp::degraded::Opener {
+    use reflow2_mcp::degraded::OpenFailure;
+    std::sync::Arc::new(move || {
+        let (service, provenance) = ReflowService::new_reporting(&graph_path).map_err(|e| {
+            let raw: anyhow::Error = e.into();
+            let text = format!("{raw:#}");
+            if is_lock_contention(&text) {
+                OpenFailure::Held(text)
+            } else {
+                OpenFailure::Permanent(format!("{:#}", explain_open_failure(&raw, &graph_path)))
+            }
+        })?;
+        Ok(serve_as.prepare(service, provenance))
+    })
+}
+
+/// The degraded surface over HTTP: sessions, and — when its cause can clear —
+/// the design it may open later, for a stop to close.
+fn degraded_design(
+    degraded: DegradedService,
+) -> impl FnOnce(
+    HttpConfig,
+) -> (
+    rmcp::transport::streamable_http_server::StreamableHttpService<DegradedService, Sessions>,
+    reflow2_mcp::drain::Holds,
+) {
+    move |cfg| {
+        let sessions = std::sync::Arc::new(Sessions::default());
+        let holds = match degraded.recovery() {
+            Some(recovery) => {
+                reflow2_mcp::drain::Holds::recovering(std::sync::Arc::clone(&sessions), recovery)
+            }
+            None => reflow2_mcp::drain::Holds::nothing(std::sync::Arc::clone(&sessions)),
+        };
+        (
+            http_service_of(move || Ok(degraded.clone()), sessions, cfg),
+            holds,
+        )
+    }
+}
+
 /// One design over HTTP: its transport, and what a stop has to close.
 /// How the engine this command starts establishes who is calling
 /// (`reflow2_mcp::caller`, #616 fix 4), said once on the operator's banner.
@@ -2047,28 +2183,6 @@ fn one_design(
         (
             http_service_of(move || Ok(service.share()), sessions, cfg),
             holds,
-        )
-    }
-}
-
-/// The degraded surface over HTTP: sessions, and no design to close.
-fn no_design(
-    degraded: DegradedService,
-) -> impl FnOnce(
-    HttpConfig,
-) -> (
-    rmcp::transport::streamable_http_server::StreamableHttpService<DegradedService, Sessions>,
-    reflow2_mcp::drain::Holds,
-) {
-    move |cfg| {
-        let sessions = std::sync::Arc::new(Sessions::default());
-        (
-            http_service_of(
-                move || Ok(degraded.clone()),
-                std::sync::Arc::clone(&sessions),
-                cfg,
-            ),
-            reflow2_mcp::drain::Holds::nothing(sessions),
         )
     }
 }
@@ -2157,6 +2271,14 @@ where
     let streams = config.cancellation_token.clone();
     let (http, holds) = make(config);
     let http = reflow2_mcp::host_gate::HostGate::new(http, host_rule);
+    // `/readyz` and `/healthz` IN FRONT of the Host gate: an orchestrator probes
+    // by pod IP or name, which no allowlist names, and the two answers expose no
+    // design (`reflow2_mcp::readiness` says why that is safe).
+    let readiness = match &surface {
+        HttpSurface::Design => reflow2_mcp::readiness::Readiness::ready(),
+        HttpSurface::Degraded { readiness, .. } => std::sync::Arc::clone(readiness),
+    };
+    let http = reflow2_mcp::readiness::Probes::new(http, readiness);
 
     // Why a server stops itself, as opposed to being told to: a shared server
     // that nobody has used for its idle timeout.
@@ -2241,10 +2363,20 @@ where
         // Say what this one is, because it looks like a working server and is
         // not: a session that connects gets the reason and one tool, and an
         // operator who reads "serving over HTTP" and walks away would be wrong.
-        HttpSurface::Degraded => eprintln!(
+        HttpSurface::Degraded { recovers: true, .. } => eprintln!(
+            "reflow2: serving the DEGRADED surface over HTTP at http://{bound}/ — the design could \
+             not be opened because another process holds it, so sessions that connect get the \
+             reason and `reflow2_unavailable` for now. This server keeps trying and serves the \
+             design as soon as that process lets go, with no restart; GET /readyz says 503 until \
+             then."
+        ),
+        HttpSurface::Degraded {
+            recovers: false, ..
+        } => eprintln!(
             "reflow2: serving the DEGRADED surface over HTTP at http://{bound}/ — the design could \
              not be opened, so sessions that connect get the reason and `reflow2_unavailable`, \
-             not the design. Fix the cause above and restart to serve it properly."
+             not the design. Waiting will not fix this: fix the cause above and restart to serve \
+             it properly. GET /readyz says 503."
         ),
     }
     tracing::info!("reflow2-mcp serving over http at {bound}");

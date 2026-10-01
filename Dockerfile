@@ -142,17 +142,32 @@ ENV REFLOW2_GRAPH_PATH=/data/graphs/default/graph \
 # rate; only the driver's cap bounds the total. Raise verbosity per-run with
 # `-e RUST_LOG=info` when you are actually diagnosing something.
 
-# ⭐ READINESS: "the port is listening" is an HONEST readiness signal here, and
-# that was checked rather than assumed. In `main.rs` the graph is opened FIRST
-# and `serve_http` is only reached on the `Ok` arm, so the socket cannot be bound
-# before the store is open and its full-text index built — which on a large
-# design takes seconds, not milliseconds. A healthcheck that probes the port
-# therefore cannot report ready early.
+# ⭐ READINESS IS `GET /readyz`, NOT "THE PORT IS LISTENING" (2026-09-28).
+# Until then this probe was a bare TCP connect, and this comment called that
+# honest on the grounds that the port binds only after the graph opens. That
+# held for the HEALTHY start and was false for the other one: a server that
+# cannot open its design still binds the port, to serve the one-tool degraded
+# surface that explains why (`req:never-silently-absent`). On a rolling update
+# the new pod lost the store's lock to the old one, this check reported it
+# HEALTHY, and it stayed degraded after the old pod was removed (GitHub issue
+# #616; fact:root-cause-a-server-degraded-by-a-held-lock-never-retries-and-looks-alive-2026-09-28).
+#
+# /readyz answers 200 only while the design is served and 503 otherwise, and a
+# server whose store is held elsewhere now takes it over IN PLACE when the
+# holder lets go, turning ready with no restart. /healthz is liveness (200 while
+# the process serves). Both answer whatever the Host header, so an
+# orchestrator's httpGet probe by pod IP works without --http-allow-host; see
+# crates/reflow2-mcp/src/readiness.rs for why that exemption is safe.
+#
+# WRITTEN IN BASH, NOT curl, ON PURPOSE: the image carries no HTTP client, a
+# Kubernetes httpGet probe needs none, and this one line of bash (already the
+# shell the old probe used) sends a real HTTP request and reads the status line.
+# A probe mode in the binary would add CLI surface for no reader that lacks one.
 #
 # Deliberately NOT the rendezvous sidecar: that file is published by the
 # SHARED-server path, which this image does not run (see below).
 HEALTHCHECK --interval=30s --timeout=3s --start-period=60s --retries=3 \
-    CMD bash -c 'exec 3<>/dev/tcp/127.0.0.1/8080' || exit 1
+    CMD bash -c 'exec 3<>/dev/tcp/127.0.0.1/8080 && printf "GET /readyz HTTP/1.0\r\nHost: 127.0.0.1\r\n\r\n" >&3 && head -n1 <&3 | grep -q " 200 "' || exit 1
 
 # ⭐ `--http`, AND DELIBERATELY NOT `--shared` / `--serve-shared`.
 # CONFIRMED IN CODE, not inherited: the 120-minute `--idle-timeout` expiry is
