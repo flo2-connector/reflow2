@@ -441,11 +441,23 @@ impl Reply {
     }
 }
 
+/// One request addressed to the server's PUBLIC name — the exposed case.
 fn http(port: u16, method: &str, path: &str, extra: &[(&str, &str)], body: &str) -> Reply {
+    http_to(port, PUBLIC_HOST, method, path, extra, body)
+}
+
+fn http_to(
+    port: u16,
+    host: &str,
+    method: &str,
+    path: &str,
+    extra: &[(&str, &str)],
+    body: &str,
+) -> Reply {
     let mut s = std::net::TcpStream::connect(("127.0.0.1", port)).expect("connect");
     s.set_read_timeout(Some(Duration::from_secs(120))).ok();
     let mut req = format!(
-        "{method} {path} HTTP/1.1\r\nHost: {PUBLIC_HOST}\r\nContent-Type: application/json\r\n\
+        "{method} {path} HTTP/1.1\r\nHost: {host}\r\nContent-Type: application/json\r\n\
          Accept: application/json, text/event-stream\r\nContent-Length: {}\r\nConnection: close\r\n",
         body.len()
     );
@@ -1235,7 +1247,14 @@ fn an_operator_map_names_the_contributor() {
 #[test]
 fn loopback_http_without_an_issuer_takes_no_token() {
     let server = serve(&seeded_design("local"), &[]);
-    let r = http(server.port, "POST", "/mcp", &[], &initialize_body());
+    let r = http_to(
+        server.port,
+        "127.0.0.1",
+        "POST",
+        "/mcp",
+        &[],
+        &initialize_body(),
+    );
     assert_eq!(r.status, 200, "{} {}", r.status, r.body);
     assert!(r.header("www-authenticate").is_none());
 }
