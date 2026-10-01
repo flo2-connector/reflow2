@@ -260,6 +260,11 @@ if args[2] == "create":
     idx = index_of(sources)
     if dry:
         print(json.dumps(idx, indent=2)); sys.exit(0)
+    # A registry that ends up serving something other than what was composed.
+    drop = os.environ.get("FAKE_DROP_ON_PUSH")
+    if drop:
+        idx = dict(idx, manifests=[m for m in idx["manifests"]
+                                   if f"{m['platform']['os']}/{m['platform']['architecture']}" != drop])
     for t in tags:
         state[t] = idx
     json.dump(state, open(state_path, "w"))
@@ -280,7 +285,7 @@ AMD = "sha256:" + "a" * 64
 ARM = "sha256:" + "b" * 64
 
 
-def run_publish_index(digests: list[str], platforms: dict[str, str]):
+def run_publish_index(digests: list[str], platforms: dict[str, str], **extra_env: str):
     with tempfile.TemporaryDirectory() as tmp:
         tmp = Path(tmp)
         make_exe(tmp / "docker", FAKE_DOCKER)
@@ -292,6 +297,7 @@ def run_publish_index(digests: list[str], platforms: dict[str, str]):
             FAKE_LOG=str(tmp / "log.jsonl"),
             FAKE_PLATFORMS=json.dumps(platforms),
             GITHUB_OUTPUT=str(out),
+            **extra_env,
         )
         r = subprocess.run(
             ["bash", str(PUBLISH_INDEX), "registry.test/o/r/reflow2-mcp", "9.9.9", *digests],
@@ -341,6 +347,14 @@ def test_the_merge_verifies_both_platforms() -> None:
     other = "sha256:" + "c" * 64
     r, _, state, _ = run_publish_index([AMD, other], {AMD: "linux/amd64", other: "linux/amd64"})
     assert r.returncode != 0 and not state, "two amd64 digests are not an amd64+arm64 index"
+
+    # The registry serves something other than what was composed: the read-back
+    # catches it, and no digest reaches the release notes.
+    r, _, _, output = run_publish_index([AMD, ARM], {AMD: "linux/amd64", ARM: "linux/arm64"},
+                                        FAKE_DROP_ON_PUSH="linux/arm64")
+    assert r.returncode != 0 and "digest=" not in output, (
+        f"the pushed tag must be read back and checked, not trusted:\n{r.stdout}\n{r.stderr}"
+    )
 
     # Not a digest at all: refused before any registry call.
     r, calls, _, _ = run_publish_index(["latest", ARM], {ARM: "linux/arm64"})
