@@ -87,7 +87,13 @@ curl -fsS -o /dev/null -m 10 "http://127.0.0.1:18080/" 2>/dev/null \
   || curl -sS -o /dev/null -m 10 "http://127.0.0.1:18080/" 2>/dev/null \
   || fail "the published port did not answer from outside the container — check the bind address is routable, not loopback."
 
-echo "smoke: OK — $image starts, reports healthy, and answers on its published port"
+# Readiness from OUTSIDE too, addressed by a name no allowlist carries — what
+# an orchestrator's httpGet probe does. It must answer 200 (the design is
+# served), not the Host gate's 403 (GitHub issue #616).
+curl -fsS -o /dev/null -m 10 -H 'Host: pod-10-0-0-7.internal' "http://127.0.0.1:18080/readyz" \
+  || fail "GET /readyz from outside, by a name no --http-allow-host lists, did not answer 200 — an orchestrator's readiness probe would never pass."
+
+echo "smoke: OK — $image starts, reports healthy, answers on its published port, and /readyz says ready"
 
 # ─────────────────────────────────────────────────────────────────────────────
 # PHASE 2 — TWO DESIGNS IN THE IMAGE, AND THEY STAY APART

@@ -89,6 +89,14 @@ gateway in front, and approve from the team server again.
   - **`add_contributor`'s `description` parameter now says the same:** a role on this design, not a reader's persona.
   - **A new check guards it.** `no_served_text_writes_a_readers_persona_into_the_design.rs` reads every served surface through the real handlers against three stated shapes. That covers the lens on three rails in four states, every `get_instructions` section, every skill, every tool's description and schema, the handshake and `describe_schema`. It was observed failing first.
 
+- **A server whose design is held by another process serves it in place the moment that process lets go, and an HTTP server's readiness says whether the design is served.** (GitHub issue #616)
+  - Before: a second server started on a store another process held served the one-tool degraded surface forever. It never retried, stayed degraded after the holder stopped, and bound its port, so the image's TCP health check reported it healthy. On a rolling update the new pod looked fine while the design was unavailable.
+  - Now a plain server (stdio or `--http`) whose store is held keeps trying to open it, backing off to at most 5 s between attempts. When it opens, the SAME process and port serve the full design: every session gets its own seat, connected clients are sent `notifications/tools/list_changed`, and the handshake reason is gone. The handshake says it will recover by itself and declares `listChanged`.
+  - A `--shared` session whose server election timed out (usually a non-shared process holding the store) keeps re-electing in the background. When a shared server comes up, the session switches to it in place, introduced with the client's own handshake, and the client is told its tool list changed.
+  - A cause that waiting cannot fix is not polled: a stamp that will not read, a store from a newer reflow2, a corrupt store, a published refusal from a shared server, a bad pointer or identity. Those still say to fix the cause and restart. If the lock frees and the open then fails for such a reason, the retrying stops and says that instead.
+  - Every HTTP server answers `GET /readyz` (200 while the design is served; 503 with one path-free sentence otherwise) and `GET /healthz` (200 while the process serves). Both answer whatever the Host header, so an orchestrator's probe by pod IP needs no `--http-allow-host`, and they sit in front of the Host gate; everything else stays behind it. A registry is ready when it is up.
+  - The image's `HEALTHCHECK` probes `/readyz` over HTTP instead of a bare TCP connect, and `docker/smoke.sh` checks `/readyz` from outside by a name no allowlist carries.
+
 ## [0.75.0] — 2026-09-30
 
 **Minor. The schema stamp moves** (`ACTS_FOR` makes 66 edge types; `Constraint.composition` is a
