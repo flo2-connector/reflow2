@@ -52,11 +52,14 @@ async fn described(s: &ReflowService, id: &str, kind: &str, description: Option<
     })));
 }
 
-/// ⭐ THE CASE THE WHOLE THING EXISTS FOR. When the design cannot say whose
-/// vocabulary to use, the response SAYS SO — rather than omitting the field and
-/// letting silence read as "nothing to worry about". Absence is the signal.
+/// ⭐ THE CASE THE WHOLE THING EXISTS FOR. When nobody in the design has a
+/// role written down, the response SAYS that the design does not say who is
+/// reading — and is not meant to — rather than omitting the field and letting
+/// silence read as "nothing to worry about". Where the reader's lens DOES come
+/// from (host, own memory, their words) is pinned by
+/// `no_served_text_writes_a_readers_persona_into_the_design.rs`.
 #[tokio::test]
-async fn a_skill_says_plainly_when_nobody_s_background_is_recorded() {
+async fn a_skill_says_plainly_that_the_design_does_not_say_who_is_reading() {
     let s = service().await;
     described(&s, "who:ann", "person", None).await;
 
@@ -69,17 +72,17 @@ async fn a_skill_says_plainly_when_nobody_s_background_is_recorded() {
         .expect("a skill response carries a lens");
 
     assert!(
-        lens.contains("NOBODY'S BACKGROUND IS RECORDED"),
+        lens.contains("THIS DESIGN DOES NOT SAY WHO IS READING"),
         "the silent case must be stated, not implied by an empty list: {lens}"
     );
     assert!(
         lens.contains("who:ann"),
-        "and it must NAME who could be asked — a bare count is not actionable: {lens}"
+        "and it must NAME who is recorded — a bare count is not actionable: {lens}"
     );
 }
 
-/// The ordinary case: the response names who is described, so the agent can go
-/// and read the right one.
+/// The ordinary case: the response names who is described, for attribution
+/// and their role on this design.
 #[tokio::test]
 async fn a_skill_names_the_people_the_design_can_describe() {
     let s = service().await;
@@ -92,7 +95,7 @@ async fn a_skill_names_the_people_the_design_can_describe() {
 
     assert!(lens.contains("who:ann"), "{lens}");
     assert!(
-        !lens.contains("NOBODY'S BACKGROUND IS RECORDED"),
+        !lens.contains("THIS DESIGN DOES NOT SAY WHO IS READING"),
         "a design that CAN answer must not report itself silent: {lens}"
     );
 }

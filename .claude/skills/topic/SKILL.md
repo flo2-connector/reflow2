@@ -33,9 +33,10 @@ words a requirement or component here would use — before concluding the subjec
 
 ## 2. Render it in the reader's domain, not reflow2's
 
-Read the reader's recorded background (the lens on this skill) and say what the design holds in
-THEIR words: what is decided about the subject and whether it carries anyone's name, what is
-still open, what has been measured and when, what realizes and checks it, and what is missing.
+Take the reader's lens from your host or your own memory of them — with neither, from the words
+they use with you (the lens on this skill says so) — and say what the design holds in THEIR
+words: what is decided about the subject and whether it carries anyone's name, what is still
+open, what has been measured and when, what realizes and checks it, and what is missing.
 A systems engineer wants requirement, allocation, verification; someone who knows livestock or
 baseball wants theirs. This is a vocabulary swap, not simplification.
 

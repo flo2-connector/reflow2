@@ -63,8 +63,8 @@ you. The standing rule is in AGENTS.md.
 - `loop_status` → `loop_closure` — **has a real test result ever come back into this design?**
   `never_closed` means checks claim results and no real run has ever been compared against any of
   them, so every pass on record is what somebody typed. Read it before quoting any pass rate.
-- `scan_nodes` for `Contributor` — who is in this design, and whether the person you are
-  talking to has a recorded `description` of who they are. See **Who you are talking to**.
+- `scan_nodes` for `Contributor` — who contributed to this design and, where it matters, their
+  role on it: whom you credit, not whose words to use. See **Who you are talking to**.
 
 **On a mature design, read the shape before the prose.** `scan_nodes` answers with as many nodes
 as fit in one reply and then tells you what it withheld — `total` against `returned`, plus
@@ -77,14 +77,30 @@ the false completeness this skill exists to avoid.
 
 ## Who you are talking to
 
-**Ask once, at the start, if the design does not already say.** The same design gets read by the
+**Know whose words to use before you read the design back.** The same design gets read by the
 person who built it, by someone they brought in, and by people who have never heard of reflow2 —
 and the right way to explain it to each is not the same.
 
-**Ask for their BACKGROUND, not their identity.** "Who are you?" gets you *"Bob"*, which is a
-correct answer to a useless question and tells you nothing about how Bob sees his own design. What
-you need is the vocabulary he already owns. So ask for that, and **show what a useful answer looks
-like** — an example shapes a reply far more reliably than an instruction does:
+**The design does not hold the reader's lens, and you never put it there.** A design keeps who
+contributed to it — who wrote, who approved and, where it matters, their role on this design —
+and not a reader's persona: their background, the vocabulary they bring, or how they like to
+think. Applying the lens is your job, and it comes from, in order:
+
+1. **Your host.** A host such as flo2 hands over the signed-in person's persona with the design.
+   Use it, and do not ask.
+2. **Your own memory of the person**, when there is no host — what your harness already knows
+   about the person you work with.
+3. **With neither, the words they use with you — and you may ask once**, as below.
+
+Whatever you learn stays with you — in your own memory, or in your host's profile of them if it
+keeps one — and is **never written into the design**: not on a Contributor, not in any other node.
+A persona written there would stay in its history and travel with every copy of the design, and
+someone who only reads a design should leave no trace in it.
+
+**When you ask, ask for their BACKGROUND, not their identity.** "Who are you?" gets you *"Bob"*,
+which is a correct answer to a useless question and tells you nothing about how Bob sees his own
+design. What you need is the vocabulary he already owns. So ask for that, and **show what a useful
+answer looks like** — an example shapes a reply far more reliably than an instruction does:
 
 > *Before I read this back, tell me a bit about you so I pitch this right: what you do day to day,
 > and what you trained in. Those are often different and both matter — "software engineer, but my
@@ -104,26 +120,26 @@ still would rather not say, work without it. This is an opening courtesy, not an
 interrogating someone about themselves before answering their question is worse than pitching it
 slightly wrong.
 
-Record it **in their own words** with `add_contributor` (their `description`), not your paraphrase
-of them. **If a Contributor already carries one, read it and do not ask again** — being asked who
-you are every session is how someone learns the tool is not listening.
+Keep the answer **in their own words**, not your paraphrase of them, and keep it with you rather
+than in the design. **If you already know it, do not ask again** — being asked who you are every
+session is how someone learns the tool is not listening.
 
 **Keep listening after the first answer.** The opening reply is a starting point, not a verdict.
 People show you their vocabulary by using it, so when their own words tell you more than their
-answer did, update the record. A background written once and never revisited goes stale the same
+answer did, follow their words. A background noted once and never revisited goes stale the same
 way any other fact does.
 
 **You may guess, but never assume.** A login name, a git author, a handle already in the design is
 a reasonable *offer* — "you're the systems engineer who owns this, right?" — and a terrible silent
 default. Offer it and let them correct it: a description somebody did not choose is a stereotype
-the design will then repeat back at them forever.
+that would be repeated back at them.
 
-**When the design records MORE THAN ONE background, the design cannot say which one is reading —
-that is a fact about the session, and only you can see it.** Match the git author (or login, or
-handle) you can see against the names the lens line carries beside each id, and offer the match
-in one sentence: *"assuming you are AJ — if not, tell me who you are and your background so I
-pitch this right."* Then do not ask again that session. A correction is taken at face value and
-the corrected person is the reader from then on; if no recorded name matches, ask as you would a
+**When the design records MORE THAN ONE person, the design cannot say which one is reading — that
+is a fact about the session, and only you can see it.** Match the git author (or login, or handle)
+you can see against the names the lens line carries beside each id, and offer the match in one
+sentence: *"assuming you are AJ — if not, tell me who you are and your background so I pitch this
+right."* Then do not ask again that session. A correction is taken at face value and the corrected
+person is the one you are talking to from then on; if no recorded name matches, ask as you would a
 new reader. **And attribute to the person you assumed:** whatever you capture that session is
 `authored_by` the same Contributor you are speaking to, and you say so once — a wrong guess then
 costs one sentence to fix instead of a wrong name on the record. Same machine is not same person;
@@ -224,8 +240,9 @@ dump. Aim for something they could read in under a minute:
   name the mechanism only when it earns its place. **This is not the same as simplifying.** A
   systems engineer wants *requirement*, *interface* and *verification* kept, and softening them is
   condescension; someone who knows baseball and not software wants the whole thing in terms they
-  already own. Match the reader's recorded `description`. **If a user ever has to ask you for
-  plain language, the default was wrong** — this is that default.
+  already own. Take the reader's lens from your host, your own memory of them or their own words.
+  **If a user ever has to ask you for plain language, the default was wrong** — this is that
+  default.
 - **Never paste raw ids at the user.** `cmp:reading-store` means nothing to them; "the reading
   store" does. Ids belong in your tool calls, not your prose.
 - **Don't imply more certainty than the graph holds.** A Requirement recorded from an assumption

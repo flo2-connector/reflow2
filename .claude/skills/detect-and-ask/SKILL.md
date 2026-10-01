@@ -95,8 +95,8 @@ the record**: the gaps stay counted and stay loud (`req:no-idea-goes-quiet`).
      the detector's words (*unallocated capability*, *unsatisfied requirement*); the question the
      user reads must be in theirs. **This is a different axis from the language rule above**: that
      one picks English or Portuguese, this one picks whether you speak systems engineering,
-     livestock, or baseball. Read the reader's recorded `description` on their `Contributor` and
-     match it; absent one, follow the vocabulary they use with you. **A "plain" question is not
+     livestock, or baseball. Take the reader's lens from your host or your own memory of them;
+     with neither, follow the vocabulary they use with you. **A "plain" question is not
      automatically one in their domain**, and a vocabulary swap is not simplification — an SE
      wants *interface* and *verification* KEPT.
 
