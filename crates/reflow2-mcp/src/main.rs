@@ -108,9 +108,10 @@ struct Cli {
     /// graph — the store is single-writer, and with one server there is still
     /// exactly one writer — while every client session gets its own seat.
     ///
-    /// Bind to a loopback or tailnet address: there is no authentication yet,
-    /// so anything that can reach the port can write the design — unless
-    /// `--read-only` is also given, which is what that flag is for.
+    /// Bind to a loopback or tailnet address: with no `--http-oidc-issuer`
+    /// there is no authentication, so anything that can reach the port can
+    /// write the design — unless `--read-only` is also given, which is what
+    /// that flag is for.
     #[arg(long, value_name = "ADDR")]
     http: Option<String>,
 
@@ -348,6 +349,136 @@ struct Cli {
         env = "REFLOW2_TRUSTED_GATEWAY"
     )]
     http_trusted_gateway: Option<String>,
+
+    /// Make this HTTP server an OAuth 2.0 RESOURCE SERVER that verifies
+    /// access tokens from this OpenID Connect issuer ITSELF — no gateway in
+    /// front needed. For a team running reflow2 behind its own identity
+    /// provider (Keycloak, a lab's single sign-on). URL is the issuer
+    /// identifier, e.g. `https://sso.example.org/realms/team`.
+    ///
+    /// Every request must then carry `Authorization: Bearer <token>`, and
+    /// reflow2 checks it before anything runs: the signature against a key
+    /// the issuer publishes (found by OpenID discovery, or
+    /// --http-oidc-jwks-uri / --http-oidc-jwks-file), the issuer, the
+    /// audience (this resource, RFC 8707), expiry and not-before. `alg: none`
+    /// and HS* are refused. A token in the URL query string is refused and
+    /// never used. A missing or bad token gets 401 with `WWW-Authenticate:
+    /// Bearer resource_metadata=...`, so an MCP client can run the sign-in
+    /// itself; the metadata (RFC 9728) is served at
+    /// `/.well-known/oauth-protected-resource`.
+    ///
+    /// The caller is the Contributor --http-contributor-id derives from the
+    /// verified token, and every signature a call writes must be theirs. The
+    /// Contributor must already exist: reflow2 never invents the person. It
+    /// verifies tokens and never issues them (#616 fix 4,
+    /// `req:every-oauth-role-reflow2-plays-meets-oauth-2-1-at-a-minimum`).
+    ///
+    /// ⚠️ TLS: reflow2 does NOT terminate TLS. It serves plain HTTP on --http;
+    /// tokens must cross TLS only, so put a TLS-terminating proxy in front and
+    /// give its https:// address as --http-public-url (an http:// one is
+    /// refused unless it is loopback). Keep the hop from that proxy to this
+    /// port on this machine or a private network.
+    ///
+    /// Needs --http, --http-public-url and --http-contributor-id. Not with
+    /// --http-trusted-gateway (one way of knowing the caller per server), and
+    /// not with stdio or --shared, which are local and take no token.
+    #[arg(
+        long = "http-oidc-issuer",
+        value_name = "URL",
+        env = "REFLOW2_OIDC_ISSUER"
+    )]
+    http_oidc_issuer: Option<String>,
+
+    /// The https:// URL clients reach this server at — through the
+    /// TLS-terminating proxy in front of it, since reflow2 does not terminate
+    /// TLS itself. It is the resource identifier: the metadata's `resource`,
+    /// the default audience a token must name, and where the 401's
+    /// `resource_metadata` points. http:// is accepted only for loopback.
+    #[arg(
+        long = "http-public-url",
+        value_name = "URL",
+        env = "REFLOW2_PUBLIC_URL",
+        requires = "http_oidc_issuer"
+    )]
+    http_public_url: Option<String>,
+
+    /// The audience a token must name, if not --http-public-url (the RFC 8707
+    /// default). Use what the identity provider puts in `aud` for this server,
+    /// e.g. a Keycloak audience mapper's value.
+    #[arg(
+        long = "http-oidc-audience",
+        value_name = "AUD",
+        env = "REFLOW2_OIDC_AUDIENCE",
+        requires = "http_oidc_issuer"
+    )]
+    http_oidc_audience: Option<String>,
+
+    /// Fetch the issuer's keys (JWKS) from this URL instead of finding it by
+    /// OpenID discovery. https:// (or loopback).
+    #[arg(
+        long = "http-oidc-jwks-uri",
+        value_name = "URL",
+        env = "REFLOW2_OIDC_JWKS_URI",
+        requires = "http_oidc_issuer"
+    )]
+    http_oidc_jwks_uri: Option<String>,
+
+    /// Read the issuer's keys (a JWKS document) from this FILE: no network at
+    /// all, for a server that must not reach out. Re-read when a token names a
+    /// key it does not hold, so rotating means replacing the file.
+    #[arg(
+        long = "http-oidc-jwks-file",
+        value_name = "FILE",
+        env = "REFLOW2_OIDC_JWKS_FILE",
+        requires = "http_oidc_issuer"
+    )]
+    http_oidc_jwks_file: Option<String>,
+
+    /// A scope every token must grant (its `scope` or `scp` claim).
+    /// Repeatable. Missing it is 403 insufficient_scope, and the metadata
+    /// lists it as `scopes_supported`.
+    #[arg(
+        long = "http-oidc-required-scope",
+        value_name = "SCOPE",
+        requires = "http_oidc_issuer"
+    )]
+    http_oidc_required_scope: Vec<String>,
+
+    /// A claim every token must carry, NAME=VALUE: the claim equals VALUE or
+    /// is an array holding it (e.g. `groups=reflow2-team`). Repeatable.
+    /// Missing it is 403 insufficient_scope.
+    #[arg(
+        long = "http-oidc-required-claim",
+        value_name = "NAME=VALUE",
+        requires = "http_oidc_issuer"
+    )]
+    http_oidc_required_claim: Vec<String>,
+
+    /// Which Contributor a verified token is: a template over its claims, e.g.
+    /// `who:{preferred_username}` or `{sub}`. OPERATOR configuration, never a
+    /// Contributor property, so no caller can re-point someone else's sign-in.
+    /// Use a claim your identity provider keeps unique and stable (`sub`;
+    /// Keycloak's `preferred_username` is unique within a realm). With
+    /// --http-contributor-map the rendering is the key looked up there.
+    #[arg(
+        long = "http-contributor-id",
+        value_name = "TEMPLATE",
+        env = "REFLOW2_CONTRIBUTOR_ID",
+        requires = "http_oidc_issuer"
+    )]
+    http_contributor_id: Option<String>,
+
+    /// A TOML file mapping what --http-contributor-id renders to a Contributor
+    /// id, as a `[contributors]` table (`"f81d4fae-…" = "who:alice"`). A key
+    /// the map does not hold names nobody: that caller reads and proposes, and
+    /// cannot sign.
+    #[arg(
+        long = "http-contributor-map",
+        value_name = "FILE",
+        env = "REFLOW2_CONTRIBUTOR_MAP",
+        requires = "http_contributor_id"
+    )]
+    http_contributor_map: Option<String>,
 
     /// How long a stopping HTTP server lets requests in progress finish
     /// (default 5s). A number with `s` or `m`; a bare number is seconds, and `0`
@@ -992,6 +1123,44 @@ async fn main() -> anyhow::Result<()> {
         return reflow2_mcp::proxy::run_remote(&url, bearer).await;
     }
 
+    // THE OAUTH RESOURCE SERVER (`reflow2_mcp::bearer`), when the operator
+    // declared an issuer — refused here, before anything opens, wherever a
+    // token could not arrive or a second way of naming the caller competes.
+    // A one-shot mode (export, import, a single --call, ...) serves nobody,
+    // so the flags mean nothing there and are left alone.
+    let one_shot = cli.export
+        || cli.import.is_some()
+        || !cli.diff.is_empty()
+        || !cli.merge.is_empty()
+        || !cli.merge_apply.is_empty()
+        || cli.export_snapshot
+        || !cli.merge_driver.is_empty()
+        || cli.call.is_some()
+        || cli.stop_shared;
+    let bearer = if one_shot {
+        None
+    } else {
+        bearer_verifier(&cli)?
+    };
+    if let Some(v) = bearer.clone() {
+        // Load the keys now, so the operator learns at once whether the issuer
+        // answers — in the background, so an issuer that starts after reflow2
+        // (or is briefly down) delays nothing: each request retries.
+        tokio::spawn(async move {
+            match v.warm().await {
+                Ok(n) => eprintln!(
+                    "reflow2: loaded {n} signing key(s) for verifying bearer tokens — {}.",
+                    v.config().describe_keys()
+                ),
+                Err(e) => eprintln!(
+                    "reflow2: WARNING — the token issuer's keys did not load ({e}). Serving \
+                     anyway: requests retry, and until a key set loads every request is answered \
+                     503, never judged."
+                ),
+            }
+        });
+    }
+
     // ⚠️ SAY WHAT IS ACTUALLY BEING OPENED. This logged `--graph-path` for every
     // invocation, including ones that never touch it — an ephemeral design opens
     // no directory at all, and a registry server opens whichever design is asked
@@ -1117,13 +1286,14 @@ async fn main() -> anyhow::Result<()> {
 
         if let Some(addr) = cli.http.clone() {
             serve_http(
-                one_design(service.with_caller_rule(caller_rule(&cli, false))),
+                one_design(service.with_caller_rule(caller_rule(&cli, false, bearer.as_deref()))),
                 &addr,
                 &cli.http_allow_host,
                 HttpSurface::Design,
                 None,
                 false,
                 cli.shutdown_grace,
+                bearer.clone(),
             )
             .await?;
         } else {
@@ -1209,13 +1379,18 @@ async fn main() -> anyhow::Result<()> {
              {closes} (--registry-idle), and at most {} are held at once — past that the least \
              recently used idle one is closed to make room (--registry-max-open). THE ROOT IS THE \
              TENANT BOUNDARY: this server routes within {root} and has no operation that crosses \
-             it. There is NO authentication — reach it over loopback or a private network only.",
-            cli.registry_max_open
+             it. {auth}",
+            cli.registry_max_open,
+            auth = if bearer.is_some() {
+                "Every request must carry a verified bearer token (--http-oidc-issuer)."
+            } else {
+                "There is NO authentication — reach it over loopback or a private network only."
+            }
         );
 
         let read_only = cli.read_only;
         let max_open = cli.registry_max_open;
-        let rule = caller_rule(&cli, true);
+        let rule = caller_rule(&cli, true, bearer.as_deref());
         serve_http(
             move |cfg| {
                 let router = reflow2_mcp::registry_http::GraphRouter::serving(
@@ -1234,6 +1409,7 @@ async fn main() -> anyhow::Result<()> {
             None,
             true,
             cli.shutdown_grace,
+            bearer.clone(),
         )
         .await?;
         return Ok(());
@@ -1775,7 +1951,7 @@ async fn main() -> anyhow::Result<()> {
             eprintln!("reflow2: {note}");
         }
         serve_http(
-            one_design(service.with_caller_rule(caller_rule(&cli, false))),
+            one_design(service.with_caller_rule(caller_rule(&cli, false, bearer.as_deref()))),
             cli.http.as_deref().unwrap_or("127.0.0.1:0"),
             &cli.http_allow_host,
             HttpSurface::Design,
@@ -1785,6 +1961,7 @@ async fn main() -> anyhow::Result<()> {
             }),
             false,
             cli.shutdown_grace,
+            bearer.clone(),
         )
         .await?;
         return Ok(());
@@ -1866,7 +2043,7 @@ async fn main() -> anyhow::Result<()> {
     // and explains itself beats one that dies before it can be asked.
     match ReflowService::new_reporting(&cli.graph_path) {
         Ok((service, provenance)) => {
-            let service = ServeAs::of(&cli).prepare(service, provenance);
+            let service = ServeAs::of(&cli, bearer.as_deref()).prepare(service, provenance);
             if let Some(addr) = cli.http.clone() {
                 serve_http(
                     one_design(service),
@@ -1876,6 +2053,7 @@ async fn main() -> anyhow::Result<()> {
                     None,
                     false,
                     cli.shutdown_grace,
+                    bearer.clone(),
                 )
                 .await?;
             } else {
@@ -1929,7 +2107,7 @@ async fn main() -> anyhow::Result<()> {
                     reason,
                     cli.graph_path.clone(),
                     std::sync::Arc::clone(&readiness),
-                    opener_for(cli.graph_path.clone(), ServeAs::of(&cli)),
+                    opener_for(cli.graph_path.clone(), ServeAs::of(&cli, bearer.as_deref())),
                 )
             } else {
                 DegradedService::new(reason, cli.graph_path.clone())
@@ -1946,6 +2124,7 @@ async fn main() -> anyhow::Result<()> {
                     None,
                     false,
                     cli.shutdown_grace,
+                    bearer.clone(),
                 )
                 .await?;
             } else {
@@ -2061,14 +2240,17 @@ struct ServeAs {
 }
 
 impl ServeAs {
-    /// Read from the command line. Says the caller rule's banner, so a server
-    /// calls it once.
-    fn of(cli: &Cli) -> ServeAs {
+    /// Read from the command line, with the bearer verifier the operator
+    /// declared (`--http-oidc-issuer`), so a design opened by EITHER door is
+    /// held to the same caller rule — a recovered resource server verifies
+    /// tokens exactly as a healthy start does. Says the caller rule's banner,
+    /// so a server calls it once.
+    fn of(cli: &Cli, bearer: Option<&reflow2_mcp::bearer::Verifier>) -> ServeAs {
         ServeAs {
             read_only: cli.read_only,
             tree_root: cli.tree_root.clone(),
             export_to: cli.export_to.clone(),
-            caller: cli.http.as_ref().map(|_| caller_rule(cli, false)),
+            caller: cli.http.as_ref().map(|_| caller_rule(cli, false, bearer)),
         }
     }
 
@@ -2153,16 +2335,99 @@ fn degraded_design(
 }
 
 /// One design over HTTP: its transport, and what a stop has to close.
+/// The bearer verifier the operator declared with `--http-oidc-issuer`
+/// (`reflow2_mcp::bearer`), or `None`. Every combination where a token cannot
+/// arrive, or where a second way of naming the caller would compete, is
+/// refused with what would have worked — never silently ignored.
+fn bearer_verifier(
+    cli: &Cli,
+) -> anyhow::Result<Option<std::sync::Arc<reflow2_mcp::bearer::Verifier>>> {
+    let Some(issuer) = cli.http_oidc_issuer.as_deref() else {
+        return Ok(None);
+    };
+    if cli.shared || cli.serve_shared {
+        anyhow::bail!(
+            "--http-oidc-issuer makes a server verify OAuth bearer tokens, and --shared (with the \
+             --serve-shared server it starts) is LOCAL: its sessions run on this machine and send \
+             no token, so every one of them would be refused. Drop --http-oidc-issuer for local \
+             sharing, or serve the design for others with --http <ADDR> instead of --shared."
+        );
+    }
+    if cli.http.is_none() {
+        anyhow::bail!(
+            "--http-oidc-issuer makes this an OAuth 2.0 resource server, and a bearer token only \
+             arrives over HTTP: add --http <ADDR> (and --http-allow-host <the name clients use>). \
+             stdio is local and takes no token, so nothing was started."
+        );
+    }
+    if cli.http_trusted_gateway.is_some() {
+        anyhow::bail!(
+            "--http-oidc-issuer and --http-trusted-gateway (or REFLOW2_TRUSTED_GATEWAY) both say \
+             how this server knows who is calling — by verifying each caller's own bearer token, \
+             or by trusting a gateway in front to name them. A server takes ONE; pass the one \
+             that matches how it is deployed."
+        );
+    }
+    let Some(template) = cli.http_contributor_id.as_deref() else {
+        anyhow::bail!(
+            "--http-oidc-issuer needs --http-contributor-id <TEMPLATE>: the operator's mapping \
+             from a verified token to a Contributor, e.g. --http-contributor-id \
+             'who:{{preferred_username}}' or '{{sub}}' with --http-contributor-map <FILE>. \
+             Without it no caller could be named, so nobody could sign."
+        );
+    };
+    let Some(public_url) = cli.http_public_url.as_deref() else {
+        anyhow::bail!(
+            "--http-oidc-issuer needs --http-public-url <URL>: the https:// address clients reach \
+             this server at, through the TLS-terminating proxy in front of it (reflow2 does not \
+             terminate TLS). It is the resource a token's audience must name and where the \
+             protected resource metadata says it lives."
+        );
+    };
+    let map = match cli.http_contributor_map.as_deref() {
+        None => None,
+        Some(path) => Some((
+            path.to_string(),
+            std::fs::read_to_string(path)
+                .with_context(|| format!("could not read the contributor map {path}"))?,
+        )),
+    };
+    let mapping =
+        reflow2_mcp::bearer::ContributorMapping::new(template, map).map_err(anyhow::Error::msg)?;
+    let config = reflow2_mcp::bearer::BearerConfig::new(
+        issuer,
+        cli.http_oidc_audience.as_deref(),
+        public_url,
+        cli.http_oidc_jwks_uri.as_deref(),
+        cli.http_oidc_jwks_file.as_deref(),
+        &cli.http_oidc_required_scope,
+        &cli.http_oidc_required_claim,
+        mapping,
+    )
+    .map_err(anyhow::Error::msg)?;
+    Ok(Some(reflow2_mcp::bearer::Verifier::new(config)))
+}
+
 /// How the engine this command starts establishes who is calling
 /// (`reflow2_mcp::caller`, #616 fix 4), said once on the operator's banner.
 /// `registry` is the `--registry-root` path. Only the HTTP paths ask: stdio is
 /// local by construction.
-fn caller_rule(cli: &Cli, registry: bool) -> reflow2_mcp::caller::CallerRule {
-    let rule = reflow2_mcp::caller::CallerRule::for_serving(
-        registry,
-        &cli.http_allow_host,
-        cli.http_trusted_gateway.as_deref(),
-    );
+fn caller_rule(
+    cli: &Cli,
+    registry: bool,
+    bearer: Option<&reflow2_mcp::bearer::Verifier>,
+) -> reflow2_mcp::caller::CallerRule {
+    let rule = match bearer {
+        Some(v) => reflow2_mcp::caller::CallerRule::BearerToken {
+            issuer: v.config().issuer.clone(),
+            mapping: v.config().mapping.describe(),
+        },
+        None => reflow2_mcp::caller::CallerRule::for_serving(
+            registry,
+            &cli.http_allow_host,
+            cli.http_trusted_gateway.as_deref(),
+        ),
+    };
     if let Some(line) = rule.banner() {
         eprintln!("{line}");
     }
@@ -2187,6 +2452,10 @@ fn one_design(
     }
 }
 
+// Eight: the bearer verifier joined the seven. Each is a distinct property of
+// the one place every HTTP surface is served from, which is the point of this
+// function; bundling them would only move the list.
+#[allow(clippy::too_many_arguments)]
 async fn serve_http<Svc>(
     // ⭐ A MAKER OF THE TOWER SERVICE, not a factory of handlers, since
     // 2026-09-13. The single-graph path still passes a handler factory — it
@@ -2216,6 +2485,8 @@ async fn serve_http<Svc>(
     many_designs: bool,
     // How long work in progress may take to finish once a stop begins.
     grace: std::time::Duration,
+    // The OAuth resource server's verifier (`--http-oidc-issuer`), or None.
+    bearer: Option<std::sync::Arc<reflow2_mcp::bearer::Verifier>>,
 ) -> anyhow::Result<()>
 where
     Svc: tower_service::Service<
@@ -2270,10 +2541,42 @@ where
     // token.
     let streams = config.cancellation_token.clone();
     let (http, holds) = make(config);
+    // ⭐ THE BEARER GATE (`reflow2_mcp::bearer`) sits INSIDE the Host gate and
+    // in front of everything `make` returned — the single design, the registry
+    // router, the degraded surface — so no request reaches any of them without
+    // a verified token, and none reaches them WITH one: the gate removes the
+    // Authorization header before passing the request on. With no issuer
+    // declared it passes everything through unchanged.
+    let tls_note = bearer.as_ref().map(|v| {
+        let c = v.config();
+        format!(
+            "reflow2: OAuth 2.0 resource server for {resource} — every request must carry a \
+             Bearer token from {issuer} (keys {keys}; audience {aud}{scopes}). TLS: this server \
+             does NOT terminate TLS. It listens on plain HTTP at {bound}, so tokens must reach it \
+             only through the TLS-terminating proxy at {resource}; keep the hop from that proxy \
+             to this port on this machine or a private network.",
+            resource = c.resource,
+            issuer = c.issuer,
+            keys = c.describe_keys(),
+            aud = c.audience,
+            scopes = if c.required_scopes.is_empty() {
+                String::new()
+            } else {
+                format!("; scopes {}", c.required_scopes.join(" "))
+            },
+        )
+    });
+    let authenticated = bearer.is_some();
+    let http = reflow2_mcp::bearer::BearerGate::optional(http, bearer);
     let http = reflow2_mcp::host_gate::HostGate::new(http, host_rule);
+    if let Some(note) = tls_note {
+        eprintln!("{note}");
+    }
     // `/readyz` and `/healthz` IN FRONT of the Host gate: an orchestrator probes
     // by pod IP or name, which no allowlist names, and the two answers expose no
-    // design (`reflow2_mcp::readiness` says why that is safe).
+    // design (`reflow2_mcp::readiness` says why that is safe). In front of the
+    // bearer gate too, for the same reason: a probe carries no token, and the
+    // answer is a status and one path-free sentence, never the design.
     let readiness = match &surface {
         HttpSurface::Design => reflow2_mcp::readiness::Readiness::ready(),
         HttpSurface::Degraded { readiness, .. } => std::sync::Arc::clone(readiness),
@@ -2353,6 +2656,10 @@ where
         // A multi-design server already printed what it serves and how to
         // address it; this line would then claim it holds one design, which is
         // the kind of banner an operator reads and believes.
+        HttpSurface::Design if !many_designs && authenticated => eprintln!(
+            "reflow2: serving over HTTP at http://{bound}/ — several sessions may share this \
+             design, each request with its own verified bearer token."
+        ),
         HttpSurface::Design if !many_designs => eprintln!(
             "reflow2: serving over HTTP at http://{bound}/ — several sessions may share this \
              design. There is NO authentication: reach it over loopback or a private network only."
