@@ -75,10 +75,11 @@ async fn two_recorded_readers_are_named_beside_their_ids() {
     assert!(lens.contains("who:alex (Alex)"), "{lens}");
 }
 
-/// The silent case names who could be asked — by name as well, since the
-/// agent may be able to tell from the git author which of them is present.
+/// The silent case names who is recorded — by name as well, since the agent
+/// may be able to tell from the git author which of them is present, and
+/// credits what it captures to that person.
 #[tokio::test]
-async fn the_askable_people_are_named_too() {
+async fn the_people_with_nothing_on_record_are_named_too() {
     let s = service().await;
     person(&s, "who:ann", "Ann Example", None).await;
 
@@ -87,7 +88,10 @@ async fn the_askable_people_are_named_too() {
     })));
     let lens = out.get("lens").and_then(|v| v.as_str()).expect("lens");
 
-    assert!(lens.contains("NOBODY'S BACKGROUND IS RECORDED"), "{lens}");
+    assert!(
+        lens.contains("THIS DESIGN DOES NOT SAY WHO IS READING"),
+        "{lens}"
+    );
     assert!(lens.contains("who:ann (Ann Example)"), "{lens}");
 }
 

@@ -59,6 +59,13 @@ This file is the third view: *what changed, and when*.
   - **A Release at `planned`** with a `DEPLOYED_TO` edge not itself marked `planned`. One finding per release.
   - `in_progress` is never flagged. **Severity 0.40**, below `status_contradiction`'s 0.70: a record fallen behind evidence that exists, not a claim with nothing behind it — beside `decision_overtaken_by_promotion`, the same lag one type over. It never stops a build.
   - Each finding says what it means — "X is built but still says planned — move its status, or say why not" — names the call that moves the status (`set_capability_status`; `add_component` / `add_release` with the id and `status`), and is closed by that or by `acknowledge_gap` with the reason. detect-and-ask's resolution table has the row.
+### Fixed
+
+- **reflow2 no longer tells an agent to write a reader's background into the design** (`req:a-design-holds-who-contributed-never-a-readers-persona`, accepted 2026-09-28; root cause `fact:the-served-lens-still-tells-the-agent-to-record-a-readers-background-in-the-design-2026-09-30`). The lens on `list_skills`, `get_skill` and `loop_status` said *"Ask what they do day to day and what they trained in … then record it with `add_contributor`"*, and `where-am-i`, `topic`, `why`, `detect-and-ask` and the served instructions said the same in their own words. The requirement had been accepted with no capability and no check, so nothing read the served text against it.
+  - **Every one of them now says what the requirement says.** The reader's lens comes from the agent's host (a host such as flo2 hands over the signed-in person's persona with the design) or, with no host, from the agent's own memory of the person. With neither, the agent follows the person's own words and may ask once, and the answer is never written into the design. A Contributor is attribution and, where it matters, a role on this design.
+  - **The lens reads differently.** With nobody described, it opens *"THIS DESIGN DOES NOT SAY WHO IS READING, AND IS NOT MEANT TO"*. With someone described, it lists contributors for attribution and their role, never as the reader's lens. The git-author match now applies whenever more than one PERSON is recorded, for attribution.
+  - **`add_contributor`'s `description` parameter now says the same:** a role on this design, not a reader's persona.
+  - **A new check guards it.** `no_served_text_writes_a_readers_persona_into_the_design.rs` reads every served surface through the real handlers against three stated shapes. That covers the lens on three rails in four states, every `get_instructions` section, every skill, every tool's description and schema, the handshake and `describe_schema`. It was observed failing first.
 
 ## [0.75.0] — 2026-09-30
 
