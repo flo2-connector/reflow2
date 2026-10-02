@@ -1,0 +1,86 @@
+name: dependencies
+
+# req:reflow2-keeps-its-dependencies-at-or-near-their-latest-releases, accepted by
+# Anthony on 2026-10-02, with how it runs in his words: "both before release cuts and
+# monthly, CI job, include actions too".
+#
+# - MONTHLY: the schedule below.
+# - BEFORE EVERY CUT: step 1 of flow:release-cut moves the workspace version in
+#   Cargo.toml, so the cut's PR matches the path filter and runs both jobs. So does
+#   any PR that moves a dependency, a hold or a workflow.
+#
+# Two jobs, two questions:
+# - currency: is every Cargo.toml dependency, every GitHub Action and the declared
+#   rust-version at or near its latest release, or held on the record in
+#   dependency-holds.toml with a reason and a date? The dated report is this run's
+#   summary and an artifact.
+# - floor: does the workspace actually BUILD at the rust-version it declares? Until
+#   2026-10-02 that number (1.94) was set once and nothing compiled at it.
+#   Release binaries are built on current stable either way.
+
+on:
+  schedule:
+    - cron: "23 7 1 * *"
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - "Cargo.toml"
+      - "crates/*/Cargo.toml"
+      - "Cargo.lock"
+      - "dependency-holds.toml"
+      - ".github/workflows/**"
+      - "tools/dependency_currency.py"
+
+permissions:
+  contents: read
+
+jobs:
+  currency:
+    name: dependency currency (Cargo.toml, Actions, rust-version)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - name: Report every dependency against its latest release
+        env:
+          # Raises the GitHub API's rate limit for the Actions lookups. Read-only.
+          GITHUB_TOKEN: ${{ github.token }}
+        run: |
+          python3 tools/dependency_currency.py \
+            --json "dependency-report-$(date -u +%F).json" \
+            --summary "$GITHUB_STEP_SUMMARY"
+      - name: Keep the dated report
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: dependency-report
+          path: dependency-report-*.json
+          if-no-files-found: warn
+          retention-days: 90
+
+  floor:
+    name: builds at the declared rust-version
+    runs-on: ubuntu-22.04
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v7
+      # Same room-making as ci.yml's full job: a RocksDB build needs it.
+      - name: Free disk space
+        run: |
+          sudo rm -rf /usr/share/dotnet /usr/local/lib/android /opt/ghc /opt/hostedtoolcache/CodeQL
+          df -h /
+      - name: Read the declared floor
+        id: floor
+        run: |
+          floor=$(python3 -c 'import tomllib; print(tomllib.load(open("Cargo.toml","rb"))["workspace"]["package"]["rust-version"])')
+          echo "rust-version declared: $floor"
+          echo "version=$floor" >> "$GITHUB_OUTPUT"
+      - uses: dtolnay/rust-toolchain@master
+        with:
+          toolchain: ${{ steps.floor.outputs.version }}
+      - uses: Swatinem/rust-cache@v2
+        with:
+          shared-key: floor-${{ steps.floor.outputs.version }}
+      - name: Check the whole workspace, every target, at the floor
+        run: |
+          rustc --version
+          cargo check --workspace --all-targets --locked

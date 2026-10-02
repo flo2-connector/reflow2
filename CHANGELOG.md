@@ -31,6 +31,29 @@ This file is the third view: *what changed, and when*.
 
 ## [Unreleased]
 
+### Added
+
+- **A `dependencies` workflow, run monthly and before every release cut, that holds reflow2 to
+  `req:reflow2-keeps-its-dependencies-at-or-near-their-latest-releases`.** Anthony accepted the
+  requirement on 2026-10-02 and said how it runs: "both before release cuts and monthly, CI job,
+  include actions too".
+  - **`currency` job** (`tools/dependency_currency.py`). It reads every Cargo.toml dependency, every
+    GitHub Action and the Rust floor against their latest releases, and writes a dated report to
+    the run summary and an artifact.
+    - It **fails** on anything behind a new major or 0.x series that has no entry in the new
+      `dependency-holds.toml` (a reason and a look-again date), on a hold past its date, and on a
+      lookup it could not make.
+    - It **reports**, without failing, a newer release inside a declared range (a lock refresh
+      owed) and a hold whose bump has landed (remove it).
+  - **`floor` job.** It builds the whole workspace at the declared `rust-version`, so that number
+    is checked, not claimed. Until now nothing compiled at it.
+  - **Before every cut:** a cut's first step changes `Cargo.toml`, and any PR that touches a
+    manifest, the lockfile, a workflow or the holds file runs both jobs.
+  - Its checker is pinned on every push by `tools/test_dependency_currency.py` (12 hermetic cases,
+    mutation-checked).
+  - Its first live run found exactly the bumps then in flight: #649 and #650 (both since merged)
+    and the rocksdb 0.25 PR, which is held on the record until it lands.
+
 ### Changed
 
 - **`rmcp` 3.4.0 → 3.5.0, `base64` 0.22 → 0.23, and the lock refreshed** (23 crates within their
@@ -64,6 +87,18 @@ This file is the third view: *what changed, and when*.
   image smoke gate passed on both architectures. What a dry run gates off runs first at the next
   real tag: `docker/login-action` v4, the digest upload, and the pattern downloads in
   `container image` and `publish release`.
+
+- **`rust-version` 1.94 → 1.98.** The floor is now stable minus one, on Anthony's word of
+  2026-10-02. No dependency needed more than 1.90, and the workspace's tests already ran on 1.98.
+  The new `floor` job keeps the number true. Release binaries are built on current stable, as
+  before. Only a source build on a toolchain older than 1.98 is affected, and it is now told so.
+- **AGENTS.md's "do not bump the `rocksdb` pin as housekeeping" is replaced** by the requirement's
+  rule:
+  - patch and minor releases are taken promptly;
+  - a new series gets its own PR that adapts the code;
+  - every hold is recorded with a reason and a date;
+  - a bump touching stored data proves that existing stores open AND that the previous release
+    reads what the new one wrote.
 
 ### Fixed
 
