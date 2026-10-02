@@ -33,6 +33,19 @@ This file is the third view: *what changed, and when*.
 
 ### Changed
 
+- **`rmcp` 3.4.0 → 3.5.0, `base64` 0.22 → 0.23, and the lock refreshed** (23 crates within their
+  declared ranges). `rmcp` is now declared `"3.5"`, not `"3"`. rmcp 3.5 moved
+  `ProtocolVersion::LATEST` to 2026-07-28, the revision that removed the `initialize` handshake,
+  and this was followed deliberately rather than inherited:
+  - **`initialize` is answered with 2025-11-25** (rmcp's new `LATEST_WITH_INITIALIZE`), as before.
+    A server cannot answer `initialize` with a revision that has no handshake, and rmcp's docs say
+    to use this constant for exactly that.
+  - **2026-07-28 is still served.** `server/discover` lists every supported revision, as it did on
+    3.4.0.
+  - **Nothing changes for a client.** One that opens with `initialize` keeps a session, even if it
+    asks for 2026-07-28, so claims still need no seat. One that opens with `server/discover` and
+    sends 2026-07-28 per request is sessionless, as on 3.4.0. `base64` 0.23 is the version rmcp 3.5
+    already uses; the bearer-token code now uses it too.
 - **The workflows' GitHub Actions are on their current majors:** `actions/checkout` v5 → v7,
   `actions/upload-artifact` v4 → v7, `actions/download-artifact` v4 → v8, `docker/login-action`
   v3 → v4, `docker/setup-buildx-action` v3 → v4. All five run on Node 24 now, which GitHub-hosted
@@ -51,6 +64,15 @@ This file is the third view: *what changed, and when*.
   image smoke gate passed on both architectures. What a dry run gates off runs first at the next
   real tag: `docker/login-action` v4, the digest upload, and the pattern downloads in
   `container image` and `publish release`.
+
+### Fixed
+
+- **The handshake record (`<graph>.client.json`) names the revision rmcp actually sent.** reflow2
+  keeps a copy of rmcp's negotiation rule, because rmcp does not export it, and the copy was out of
+  date from rmcp 3.4.0 on. A client asking `initialize` for a revision with no handshake was
+  recorded as getting it, while the wire carried 2025-11-25. The copy is now rmcp 3.5.0's rule, and
+  a new test over the real binary compares the record with the wire for every revision rmcp knows.
+  The answer on the wire was always right.
 
 ## [0.77.0] — 2026-10-01
 
