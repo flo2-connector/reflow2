@@ -586,8 +586,31 @@ fn argument_sets(tool: &str, schema: &Value) -> Vec<(String, Value)> {
         let mut m = base(k);
         m.insert(k.clone(), synth(v, schema, k, 0));
         sets.push((k.clone(), Value::Object(m)));
+        // A value OUTSIDE a declared enum. The schema's `enum` is advertised,
+        // and not every field behind one is a Rust enum: a plain string field
+        // passes deserialisation and is checked later, after a write — which
+        // is exactly the measured `priority: "urgent-ish"` case.
+        if declares_enum(v, schema) {
+            let mut m = base(&format!("{k}-outside"));
+            m.insert(k.clone(), json!(NAMES_NOTHING));
+            sets.push((format!("{k} outside its enum"), Value::Object(m)));
+        }
     }
     sets
+}
+
+/// Does this property's schema (or its non-null alternative) list an enum?
+fn declares_enum(schema: &Value, root: &Value) -> bool {
+    let schema = resolve(schema, root);
+    if schema.get("enum").is_some() {
+        return true;
+    }
+    ["anyOf", "oneOf"].iter().any(|key| {
+        schema
+            .get(*key)
+            .and_then(Value::as_array)
+            .is_some_and(|alts| alts.iter().any(|a| resolve(a, root).get("enum").is_some()))
+    })
 }
 
 /// Seed a little design so references can resolve and a revise has something

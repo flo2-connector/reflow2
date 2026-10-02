@@ -120,13 +120,15 @@ impl StorageEngine {
         // all-or-nothing semantics (RocksDB `WriteBatch`; the in-memory
         // backend an in-order loop) and the `PrefixDelete`-supersedes-
         // earlier-puts ordering.
-        if let Err(e) = self.backend.commit_batch(buffer.into_ops()) {
-            // Nothing landed, so the index must not say otherwise — including
-            // any of this batch's text a search inside it already published.
-            #[cfg(feature = "fulltext")]
+        let landed = self.backend.commit_batch(buffer.into_ops());
+        // Nothing landed on a failure, so the index must not say otherwise —
+        // including any of this batch's text a search inside it already
+        // published.
+        #[cfg(feature = "fulltext")]
+        if landed.is_err() {
             self.revert_text(&text);
-            return Err(e);
         }
+        landed?;
 
         // Make this batch's buffered full-text writes visible now that the
         // authoritative backend write has landed. Only when the batch left
