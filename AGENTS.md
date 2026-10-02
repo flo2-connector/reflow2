@@ -370,7 +370,7 @@ python3 tools/render_skills_and_tools.py --check         # docs/skills-and-tools
 > `test_stale_seat`, `test_reflow2_check`, `test_impact_of_diff`, `test_why_history`, `check_doc_versions`, `test_check_doc_versions`,
 > `test_skill_lint`, `self_host_uses_documents`, `test_check_intent_authority`, `test_check_consumer_reach`, `test_check_verification_ratchet`, `test_vocabulary_reach`,
 > `test_export_to_reaches_the_daemon`, `test_shared_attach_from_another_folder`, `test_one_meaning_for_an_artifact_location`, `test_feedback_is_a_computed_tally`,
-> `test_a_lesson_is_served_at_the_step`, `test_release_workflow` — so **green here is not green
+> `test_a_lesson_is_served_at_the_step`, `test_release_workflow`, `test_dependency_currency` — so **green here is not green
 > there**, and *"believe CI"* below is not a figure of speech. Run the ones your change touches;
 > [docs/sharpening.md](docs/sharpening.md) says which instrument covers what.
 >
@@ -635,16 +635,44 @@ joined by *traceability* edges) for HEAL's topology detectors.
 - **Structural topology detectors are selective.** A design's golden thread is tree-shaped,
   where every internal node is a naive articulation point — so `single_point_of_failure`
   only fires when a node separates ≥2 real subsystems (see `structure.rs`).
-- **Do not bump the `rocksdb` pin as housekeeping.** The foundation pin this rule used to
-  name is gone (absorbed, 2026-08-24), but its reason outlived it and now attaches to the
-  storage dependency itself: moving `rocksdb` forces a full `librocksdb-sys` C++ rebuild
-  (~10 min) on **every** machine that pulls — yours, your collaborators', and every consumer
-  project. Bump it only when a reflow2 change actually needs something the new version
-  provides, and say which capability in the commit message. "Latest is probably better" is not
-  a reason; a routine reflow2 update should cost a consumer nothing but a text refresh.
-  ⚠️ `rocksdb` sits at 0.24, the historically-unmaintained wrapper, **deliberately** — see
-  `dec:absorb-rocksdb-024-unchanged-then-switch-separately`. The move to the maintained
-  `rust-rocksdb` gets its own PR so the migration has one variable.
+- **Dependencies stay at or near their latest releases, and a bump is proven, not assumed.**
+  This replaced the 2026-08 rule "do not bump the `rocksdb` pin as housekeeping", which held
+  every dependency to "only when a change needs it". Anthony accepted the replacement on
+  2026-10-02 (`req:reflow2-keeps-its-dependencies-at-or-near-their-latest-releases`). What it
+  asks of you:
+  - **Patch and minor releases** inside a declared range are taken promptly, with a lock refresh.
+  - **A new major or new 0.x series** gets its own PR that adapts reflow2's code. "Adapting is
+    work" is never a reason to stay behind.
+  - **A held-back dependency is recorded in [`dependency-holds.toml`](dependency-holds.toml)**,
+    with a reason and a date to look again. Real reasons: an upstream regression; a protocol
+    revision adopted deliberately rather than inherited by a bump
+    (`req:reflow2-conforms-to-the-mcp-specification-revision-it-serves`); a platform pin made on
+    purpose, such as the `ubuntu-22.04` runner and image base kept for glibc reach. A bump that is
+    merely in flight is a hold too, naming its PR. Remove the entry when the bump lands.
+  - **A bump that touches stored data or the release machinery proves it before merge.**
+    - For stored data, existing stores open unchanged under the new build, AND the last release
+      opens what the new build wrote. Rollback is checked, not assumed.
+    - For the release machinery, a `release.yml` `dry_run` dispatch passes.
+  - **The Rust floor (`rust-version`) is stable minus one**, Anthony's choice of 2026-10-02.
+    Release binaries are always built on current stable; the floor is the oldest compiler a
+    source build may use, and raising it is what lets the code use a newer language or library
+    feature.
+
+  **It is checked by `.github/workflows/dependencies.yml`, monthly and before every cut** (a
+  cut's step 1 changes `Cargo.toml`, which triggers it).
+  - Its `currency` job (`tools/dependency_currency.py`) reads every Cargo.toml dependency, every
+    GitHub Action and the floor against their latest releases. It FAILS on anything behind a new
+    major or 0.x series with no hold, on a hold past its date, and on a lookup it could not make.
+    It reports a newer release inside a declared range as a lock refresh owed.
+  - Its `floor` job builds the whole workspace at the declared `rust-version`, so the number is
+    true rather than claimed.
+
+  The cost the old rule rested on is still real, and it is now a reason to batch, not to stay
+  behind: moving `rocksdb` forces a full `librocksdb-sys` C++ rebuild (~10 min) on every machine
+  that pulls. `rocksdb` is the same crate it was absorbed as. Upstream resumed releasing, so the
+  "historically unmaintained" premise for switching to `rust-rocksdb` has moved
+  (`fact:the-unmaintained-premise-under-the-rocksdb-switch-has-moved`). That switch stays parked
+  (`dec:the-rust-rocksdb-switch-is-parked-until-the-store-question-settles`).
 - **A storage-format change is a data-migration question, not just a code change — and
   absorbing the store made it EASIER to make one by accident.** Nothing is stamped on the graph
   directory — not a schema version, not a foundation tag — and validation runs on write, never

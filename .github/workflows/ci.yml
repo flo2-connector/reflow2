@@ -100,6 +100,15 @@ jobs:
         # tools/install.sh) against stand-ins — GitHub issue #617. Needs the
         # PyYAML the schema step above installs.
         run: python3 tools/test_release_workflow.py
+      - name: Dependency-currency checker suite (hermetic — behind with no hold fails, in-range is reported, the floor is stable minus one)
+        # The checker the `dependencies` workflow runs monthly and before every
+        # cut. Its verdicts are pinned here on every push, against a fixture
+        # tree and a fake upstream, so a regression shows up the day it is
+        # written instead of the first of the month. tomli: this runner's Python
+        # is 3.10, which has no tomllib.
+        run: |
+          python3 -m pip install --quiet tomli
+          python3 tools/test_dependency_currency.py
 
   full:
     name: workspace + real-binary instruments
