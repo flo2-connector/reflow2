@@ -21,7 +21,7 @@ reflow2-core = { path = "../reflow2-core", features = ["rocksdb", "fulltext"] }
 # Official Rust MCP SDK. `server`+`macros` give the #[tool]/#[tool_router]
 # surface; `transport-io` gives the stdio transport grok build / claude code
 # connect over; `schemars` generates the tool-input JSON schemas.
-rmcp = { version = "3", features = ["server", "client", "macros", "transport-io", "schemars", "transport-streamable-http-server"] }
+rmcp = { version = "3.5", features = ["server", "client", "macros", "transport-io", "schemars", "transport-streamable-http-server"] }
 # One server, many client sessions (req:sessions-share-a-graph). rmcp hands us a
 # tower Service; hyper-util runs it. Deliberately NOT axum: routing, extractors
 # and middleware are all things we would not use, and every consumer pays the
@@ -78,7 +78,7 @@ rustls-native-certs = "0.8"
 #   named now because bearer.rs calls them (dec:design-dependencies-declared).
 jsonwebtoken = { version = "11", default-features = false }
 ring = "0.17"
-base64 = "0.22"
+base64 = "0.23"
 # `reflow2-mcp setup` (req:one-setup-command-chooses-local-or-remote-once):
 # the remote server's key is kept in the OS KEYCHAIN — macOS Keychain, the
 # Windows Credential Manager, the desktop Secret Service on Linux (the

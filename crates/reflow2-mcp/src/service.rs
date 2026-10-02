@@ -6849,12 +6849,6 @@ impl ReflowService {
 // ---- ServerHandler ----------------------------------------------------------
 
 impl ReflowService {
-    /// The MCP protocol version this server advertises.
-    ///
-    /// Exposed so a test can pin it. `get_info` builds a whole `ServerConfig`
-    /// behind a trait, which makes "what protocol do we actually claim?" awkward
-    /// to assert — and an unassertable claim is how the previous value sat four
-    /// releases stale without anyone noticing.
     /// The published input schema of one served tool, as JSON — `Null` when the
     /// name is not ours. Used only on the refusal path, so the `list_all` scan
     /// it costs is paid once per rejected call and never on a successful one.
@@ -6867,8 +6861,25 @@ impl ReflowService {
             .unwrap_or(JsonValue::Null)
     }
 
+    /// The MCP protocol version this server advertises.
+    ///
+    /// Exposed so a test can pin it. `get_info` builds a whole `ServerConfig`
+    /// behind a trait, which makes "what protocol do we actually claim?" awkward
+    /// to assert — and an unassertable claim is how the previous value sat four
+    /// releases stale without anyone noticing.
+    ///
+    /// It is the version `get_info` carries, which is read in exactly one place:
+    /// as the answer to `initialize`.
+    ///
+    /// `LATEST_WITH_INITIALIZE`, not `LATEST`, since rmcp 3.5.0 moved `LATEST`
+    /// to 2026-07-28, the revision that REMOVED the `initialize` handshake. A
+    /// server answering `initialize` can never name that revision; rmcp's own
+    /// docs say to use this constant "whenever the subject is the handshake
+    /// itself", and rmcp would replace `LATEST` with it on the wire anyway.
+    /// 2026-07-28 is still served: `server/discover` advertises every version
+    /// in `supported_protocol_versions`, and that list is where it appears.
     pub fn describe_protocol_version() -> ProtocolVersion {
-        ProtocolVersion::LATEST
+        ProtocolVersion::LATEST_WITH_INITIALIZE
     }
 }
 
@@ -7412,10 +7423,11 @@ impl ServerHandler for ReflowService {
     ///
     /// 🛑 THE NEGOTIATION IS MIRRORED, NOT CALLED. rmcp's
     /// `negotiate_protocol_version` is `pub(crate)`, so overriding `initialize`
-    /// means reproducing its four-line rule. [`crate::handshake::negotiate`]
-    /// holds the copy and a test pins it, so an rmcp change is loud rather than
-    /// a silent divergence in what this server answers `initialize` with. The
-    /// other three lines below are the default body verbatim.
+    /// means reproducing its rule. [`crate::handshake::negotiate`] holds the
+    /// copy, and an integration test compares what it records with what rmcp
+    /// put on the wire, so an rmcp change is loud rather than a silent
+    /// divergence. The refusal is rmcp's own error, as its default body
+    /// returns it.
     async fn initialize(
         &self,
         request: rmcp::model::InitializeRequestParams,
@@ -7424,11 +7436,15 @@ impl ServerHandler for ReflowService {
         context.peer.set_peer_info(request.clone());
         let mut info = self.get_info();
         let offered = info.protocol_version.clone();
+        let supported = ServerHandler::supported_protocol_versions(self);
         info.protocol_version = crate::handshake::negotiate(
             &request.protocol_version,
             info.protocol_version,
-            &ServerHandler::supported_protocol_versions(self),
-        );
+            &supported,
+        )
+        .ok_or_else(|| {
+            McpError::unsupported_protocol_version(request.protocol_version.clone(), &supported)
+        })?;
         // Best effort and last: a diagnostic must never be able to fail a
         // handshake. `Handshake::write` swallows its own IO errors for the same
         // reason.
@@ -7465,10 +7481,11 @@ impl ServerHandler for ReflowService {
             // drift class this project exists to catch, sitting in the one
             // layer the design graph does not reach.
             //
-            // `LATEST` means an rmcp bump moves it automatically — so the move
-            // is made LOUD by a test asserting which version LATEST currently
-            // resolves to. Following silently would trade one invisible
-            // staleness for another.
+            // An rmcp bump moves it automatically — so the move is made LOUD by
+            // a test asserting which version it currently resolves to.
+            // Following silently would trade one invisible staleness for
+            // another. See `describe_protocol_version` for why this is the
+            // newest revision WITH a handshake rather than rmcp's LATEST.
             .with_protocol_version(Self::describe_protocol_version())
             // The catalogue rides the instructions because that is the only
             // channel a client puts in the agent's context unasked — and a
@@ -7630,19 +7647,29 @@ mod tests {
         assert!(!version_is_per_request(None));
     }
 
-    /// LATEST is what rmcp reports when a client names nothing, and today it is
-    /// still 2025-11-25. If a future rmcp bump moves LATEST past the threshold,
-    /// this fails — which is the warning worth having, because that is the day
-    /// the default client stops being able to claim without a seat.
+    /// A client that opens with `initialize` keeps a session, whatever it asks
+    /// for: the version it ends on always has a handshake, and that is below
+    /// the threshold.
+    ///
+    /// This replaced `rmcps_latest_does_not_yet_cross_the_threshold`, which
+    /// guarded the same day by watching `LATEST`, on the premise that LATEST is
+    /// what rmcp reports when a client names nothing. rmcp 3.5.0 moved LATEST
+    /// to 2026-07-28 and the premise turned out not to hold: an `initialize`
+    /// cannot omit its version, a sessionless HTTP request that names none is
+    /// read as 2025-03-26, and every `initialize` is settled on a revision that
+    /// still has a handshake, which rmcp then records as the peer's. Only a
+    /// client that opens with `server/discover` and carries 2026-07-28 in each
+    /// request's `_meta` is per-request, and that was already so on 3.4.0. The
+    /// wire half of this is pinned over the real binary in
+    /// `tests/an_initialize_is_recorded_as_rmcp_answered_it.rs`.
     #[test]
-    fn rmcps_latest_does_not_yet_cross_the_threshold() {
+    fn a_session_opened_by_initialize_is_not_per_request() {
         assert!(
-            !version_is_per_request(Some(ProtocolVersion::LATEST)),
-            "rmcp's LATEST ({}) has reached {}: the sessionless path is now the DEFAULT, so \
-             mint_seat stops being advisory and every claiming client needs one. Re-read \
+            !version_is_per_request(Some(ProtocolVersion::LATEST_WITH_INITIALIZE)),
+            "the newest revision with a handshake ({}) reads as per-request: every client that \
+             opens with `initialize` would now need a seat to claim. Re-read \
              dec:stateless-seat-handle before changing this expectation.",
-            ProtocolVersion::LATEST.as_str(),
-            ProtocolVersion::STANDARD_HEADERS.as_str()
+            ProtocolVersion::LATEST_WITH_INITIALIZE.as_str()
         );
     }
 }

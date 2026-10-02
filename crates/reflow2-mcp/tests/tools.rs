@@ -920,32 +920,45 @@ async fn the_write_side_can_answer_what_detect_asks_for() {
 
 /// The protocol version we advertise, pinned so a change is never silent.
 ///
-/// `get_info` uses `ProtocolVersion::LATEST` deliberately: a hand-written
-/// literal sat at `V_2024_11_05` for the project's whole life with no recorded
-/// reason while rmcp's own LATEST moved on four releases, which is a claim about
-/// ourselves that nothing checked. Following the SDK fixes the staleness — but
-/// following it *silently* would just trade one invisible drift for another, so
-/// this test records what LATEST currently resolves to.
+/// `get_info` follows an rmcp constant deliberately: a hand-written literal sat
+/// at `V_2024_11_05` for the project's whole life with no recorded reason while
+/// rmcp's own LATEST moved on four releases, which is a claim about ourselves
+/// that nothing checked. Following the SDK fixes the staleness — but following
+/// it *silently* would just trade one invisible drift for another, so this test
+/// records what the constants currently resolve to.
 ///
 /// When an rmcp bump fails this, that is the test doing its job: look at what
 /// changed in the protocol, decide whether reflow2 should still speak it, and
 /// update the expectation deliberately. Same discipline as the schema type
 /// counts in `schema.rs` — growth must be conscious.
+///
+/// FOLLOWED DELIBERATELY ON 2026-10-02, rmcp 3.4.0 → 3.5.0: LATEST moved from
+/// 2025-11-25 to 2026-07-28, the revision with no `initialize` handshake, and
+/// rmcp added LATEST_WITH_INITIALIZE for the subject this value is about. The
+/// handshake answer stays 2025-11-25 and 2026-07-28 is served through
+/// `server/discover`, as `describe_protocol_version` explains.
 #[test]
 fn the_advertised_protocol_version_is_the_sdks_latest_and_is_pinned() {
     use rmcp::model::ProtocolVersion;
     assert_eq!(
         ProtocolVersion::LATEST,
-        ProtocolVersion::V_2025_11_25,
+        ProtocolVersion::V_2026_07_28,
         "rmcp's LATEST protocol version moved — decide deliberately whether \
          reflow2 should follow it, then update this expectation"
+    );
+    assert_eq!(
+        ProtocolVersion::LATEST_WITH_INITIALIZE,
+        ProtocolVersion::V_2025_11_25,
+        "rmcp's newest revision WITH a handshake moved — decide deliberately \
+         whether reflow2 should answer `initialize` with it, then update this"
     );
     let declared = ReflowService::describe_protocol_version();
     assert_eq!(
         declared,
-        ProtocolVersion::LATEST,
-        "the server must advertise the SDK's current protocol, not a literal \
-         copied from an example years ago"
+        ProtocolVersion::LATEST_WITH_INITIALIZE,
+        "the server must answer `initialize` with the SDK's newest handshake \
+         revision, not a literal copied from an example years ago, and never \
+         with a revision that has no handshake"
     );
 }
 

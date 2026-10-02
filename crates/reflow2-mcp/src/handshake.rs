@@ -140,25 +140,39 @@ impl Handshake {
 }
 
 /// Mirror of rmcp's `negotiate_protocol_version`, which is `pub(crate)` and
-/// therefore not callable from here.
+/// therefore not callable from here. `None` is rmcp's refusal: the server
+/// supports no revision that still has an `initialize` handshake.
 ///
-/// 🛑 THIS IS A COPY OF SOMEBODY ELSE'S RULE AND IT CAN DRIFT. rmcp 3.1.2's own
-/// doc comment states it exactly: *"Echoes the client-requested version if the
-/// server supports it; otherwise returns `server_fallback`."* Overriding
-/// `initialize` means reproducing that, because the function cannot be reached.
-/// `negotiation_mirrors_rmcp` pins the rule so a change in rmcp is LOUD, which
-/// is the same call this project already made for `ProtocolVersion::LATEST` —
-/// following the SDK silently would trade one invisible staleness for another.
+/// 🛑 THIS IS A COPY OF SOMEBODY ELSE'S RULE AND IT DID DRIFT. It was copied
+/// from rmcp 3.1.2 — *"echoes the client-requested version if the server
+/// supports it; otherwise returns `server_fallback`"* — and by 3.4.0 rmcp had
+/// changed the rule underneath it: a version is echoed only if it still HAS an
+/// `initialize` handshake, and a fallback that has none is replaced by the
+/// newest supported one that does. The unit test pinned the copy against
+/// itself, so nothing noticed. What it cost: the wire was always right, because
+/// rmcp re-runs its own rule on whatever this override returns, but this file
+/// recorded `negotiated` as a revision the client never received whenever a
+/// client asked for one past `NO_INITIALIZE`.
+///
+/// This is rmcp 3.5.0's rule (src/service/server.rs:486). What keeps it honest
+/// now is `tests/an_initialize_is_recorded_as_rmcp_answered_it.rs`, which
+/// compares this record with the version rmcp actually put on the wire.
 pub fn negotiate(
     client_requested: &ProtocolVersion,
-    server_fallback: ProtocolVersion,
+    preferred_fallback: ProtocolVersion,
     server_supported: &[ProtocolVersion],
-) -> ProtocolVersion {
-    if server_supported.contains(client_requested) {
-        client_requested.clone()
-    } else {
-        server_fallback
+) -> Option<ProtocolVersion> {
+    if client_requested.has_initialize() && server_supported.contains(client_requested) {
+        return Some(client_requested.clone());
     }
+    if preferred_fallback.has_initialize() {
+        return Some(preferred_fallback);
+    }
+    server_supported
+        .iter()
+        .filter(|v| v.has_initialize())
+        .max_by(|a, b| a.as_str().cmp(b.as_str()))
+        .cloned()
 }
 
 #[cfg(test)]
@@ -182,20 +196,42 @@ mod tests {
             .unwrap_or(ProtocolVersion::LATEST)
     }
 
-    /// The rule, pinned. If rmcp changes how it negotiates, this is where the
-    /// change becomes visible instead of reflow2 silently answering `initialize`
-    /// differently from the SDK it is built on.
+    /// The rule's three branches, as rmcp 3.5.0 states them. This pins the copy
+    /// against its own reading of rmcp; whether that reading matches what rmcp
+    /// DOES is the integration test's job, over the real binary.
     #[test]
     fn negotiation_mirrors_rmcp() {
         let supported = ProtocolVersion::KNOWN_VERSIONS;
-        // Supported: echoed back.
-        for known in supported {
+        for known in supported.iter().filter(|k| k.has_initialize()) {
             assert_eq!(
-                &negotiate(known, ProtocolVersion::LATEST, supported),
-                known,
-                "a version the server supports must be echoed, not replaced"
+                negotiate(known, ProtocolVersion::LATEST, supported).as_ref(),
+                Some(known),
+                "a supported version with a handshake is echoed, not replaced"
             );
         }
+        assert_eq!(
+            negotiate(
+                &ProtocolVersion::NO_INITIALIZE,
+                ProtocolVersion::LATEST,
+                supported
+            ),
+            Some(ProtocolVersion::LATEST_WITH_INITIALIZE),
+            "a revision with no handshake is never the answer to `initialize`, even when supported"
+        );
+        assert_eq!(
+            negotiate(&v("2025-06-18"), ProtocolVersion::V_2025_03_26, &[]),
+            Some(ProtocolVersion::V_2025_03_26),
+            "an unsupported request gets the server's preferred fallback when it has a handshake"
+        );
+        assert_eq!(
+            negotiate(
+                &v("2025-06-18"),
+                ProtocolVersion::NO_INITIALIZE,
+                &[ProtocolVersion::NO_INITIALIZE]
+            ),
+            None,
+            "a server with no handshake revision to offer refuses rather than naming one"
+        );
     }
 
     /// The one line a reader of the file actually acts on.
