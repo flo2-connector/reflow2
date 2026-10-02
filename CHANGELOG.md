@@ -46,8 +46,11 @@ This file is the third view: *what changed, and when*.
 
   One thing is stricter and wanted: download-artifact v8 FAILS on a digest mismatch, where v4
   logged a warning, so a binary corrupted between jobs can no longer reach a release. Proved by
-  a `dry_run` dispatch of `release.yml` on the branch before merge, which runs every changed
-  action except `docker/login-action`.
+  a `dry_run` dispatch of `release.yml` on the branch before merge (run 36965158231, green): it
+  ran checkout v7, upload-artifact v7, download-artifact v8 by name and setup-buildx v4, and the
+  image smoke gate passed on both architectures. What a dry run gates off runs first at the next
+  real tag: `docker/login-action` v4, the digest upload, and the pattern downloads in
+  `container image` and `publish release`.
 
 ## [0.77.0] — 2026-10-01
 
