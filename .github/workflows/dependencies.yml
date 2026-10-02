@@ -68,10 +68,14 @@ jobs:
         run: |
           sudo rm -rf /usr/share/dotnet /usr/local/lib/android /opt/ghc /opt/hostedtoolcache/CodeQL
           df -h /
+      # Read by the checker's own reader, so the floor built here is the floor the
+      # currency job reports on. tomli: ubuntu-22.04's Python is 3.10, no tomllib.
       - name: Read the declared floor
         id: floor
         run: |
-          floor=$(python3 -c 'import tomllib; print(tomllib.load(open("Cargo.toml","rb"))["workspace"]["package"]["rust-version"])')
+          python3 -m pip install --quiet tomli
+          floor=$(python3 -c 'import sys; from pathlib import Path; sys.path.insert(0, "tools"); import dependency_currency as d; print(d.declared_rust_version(Path(".")) or "")')
+          test -n "$floor" || { echo "no rust-version under [workspace.package] in Cargo.toml"; exit 1; }
           echo "rust-version declared: $floor"
           echo "version=$floor" >> "$GITHUB_OUTPUT"
       - uses: dtolnay/rust-toolchain@master

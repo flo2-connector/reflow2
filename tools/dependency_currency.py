@@ -39,8 +39,25 @@ import json
 import os
 import re
 import sys
-import tomllib
 import urllib.request
+
+# `tomllib` is Python 3.11+, and CI's ubuntu-22.04 (pinned to match release.yml)
+# carries 3.10, so the first CI run of this checker failed on its import. `tomli`
+# is the package `tomllib` was copied from, same API; ci.yml and dependencies.yml
+# install it. No line-reader fallback like reflow2_check.py's: that one reads
+# single-line pins, and this reads Cargo.lock and Rust's stable-channel manifest
+# too, which only a real parser reads correctly. Without either it stops and says
+# what to install, rather than reporting on a partial read.
+try:
+    import tomllib
+except ModuleNotFoundError:
+    try:
+        import tomli as tomllib
+    except ModuleNotFoundError:
+        raise SystemExit(
+            "dependency_currency.py reads TOML: it needs Python 3.11+ (tomllib) or the "
+            "tomli package on older Pythons — python3 -m pip install tomli"
+        )
 from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Callable
