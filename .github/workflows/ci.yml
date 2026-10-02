@@ -93,6 +93,13 @@ jobs:
         run: python3 tools/render_skills_and_tools.py --check
       - name: Doc-version checker suite (hermetic)
         run: python3 tools/test_check_doc_versions.py
+      - name: Release workflow shape (hermetic — arm64 built natively, each image smoked before any push, both platforms in one index, a dry run writes nothing)
+        # release.yml runs on a tag, so a tag used to be the first thing to test
+        # it. This reads its jobs and drives the scripts they call
+        # (docker/publish-index.sh, docker/image-release-notes.sh,
+        # tools/install.sh) against stand-ins — GitHub issue #617. Needs the
+        # PyYAML the schema step above installs.
+        run: python3 tools/test_release_workflow.py
 
   full:
     name: workspace + real-binary instruments

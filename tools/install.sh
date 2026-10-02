@@ -33,6 +33,8 @@ os="$(uname -s)"
 arch="$(uname -m)"
 case "$os/$arch" in
   Linux/x86_64)             target="linux-x86_64" ;;
+  # Linux reports aarch64; arm64 is what some report for the same machine.
+  Linux/aarch64|Linux/arm64) target="linux-arm64" ;;
   Darwin/arm64)             target="macos-arm64" ;;
   Darwin/x86_64)            target="macos-x86_64" ;;
   *) fail "no prebuilt binary for $os/$arch — build from source instead:

@@ -17,7 +17,11 @@
 #   mkdir -p /srv/reflow2-data && sudo chown -R 1000:1000 /srv/reflow2-data
 #   docker run --rm -p 8080:8080 -v /srv/reflow2-data:/data reflow2-mcp:dev
 #
-# ⚠️ NO AUTHENTICATION. Bind it to a private network, never the open internet.
+# ⚠️ WITHOUT --http-oidc-issuer (or a trusted gateway in front) IT DOES NOT
+# AUTHENTICATE CALLERS: keep the port private. Arguments after the image name
+# reach the binary, so `docker run … reflow2-mcp:dev --http-oidc-issuer <url> …`
+# turns it on; see the Dockerfile's "WHO MAY CALL IT". `--http-allow-host` is
+# DNS-rebinding protection, not authentication, and reflow2 does not terminate TLS.
 set -euo pipefail
 
 repo="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"

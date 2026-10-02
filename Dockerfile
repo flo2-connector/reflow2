@@ -5,9 +5,12 @@
 # rather than chasing `latest`.
 #
 # ⭐ THE BINARY IS COPIED IN, NOT BUILT HERE, AND THAT IS DELIBERATE.
-# `release.yml`'s `binaries` job has already produced the linux-x86_64 binary by
-# the time this image is built, so the container job downloads that artifact and
-# this Dockerfile just wraps it. Two reasons, both load-bearing:
+# `release.yml`'s `binaries` job has already produced the Linux binary for each
+# architecture by the time this image is built, so each per-architecture image job
+# downloads ITS binary (linux-x86_64 for linux/amd64, linux-arm64 for linux/arm64,
+# each built natively on its own runner) and this Dockerfile just wraps it. One
+# build context holds one binary, so nothing here branches on the platform. Two
+# reasons, both load-bearing:
 #   1. A multi-stage Rust build would recompile RocksDB — ~14 minutes, per the
 #      note at the top of release.yml — for a binary that already exists.
 #   2. More importantly, it guarantees THE IMAGE SHIPS THE EXACT BINARY THE
@@ -17,9 +20,9 @@
 # needs `reflow2-mcp` present in the build context. `docker/build.sh` in this
 # repo does that for a local build; CI does it from the release artifact.
 #
-# BASE IMAGE: ubuntu:22.04, matching the `binaries` job's runner EXACTLY. That
-# job pins ubuntu-22.04 precisely because the binary links the runner's glibc,
-# so the runtime image must not be older. Matching rather than merely
+# BASE IMAGE: ubuntu:22.04, matching the `binaries` job's runners EXACTLY
+# (ubuntu-22.04 and ubuntu-22.04-arm). That job pins 22.04 precisely because the
+# binary links the runner's glibc, so the runtime image must not be older. Matching rather than merely
 # "new enough" means the glibc the binary was linked against is the glibc it
 # runs on, and a base bump is then a deliberate act rather than a silent one.
 #
@@ -177,12 +180,30 @@ HEALTHCHECK --interval=30s --timeout=3s --start-period=60s --retries=3 \
 # on this path it cannot happen, and that is a property of the code rather than
 # of a flag someone must remember to pass.
 #
-# ⚠️ NO AUTHENTICATION. reflow2 has none, and `--http-allow-host` is Host-header
-# allowlisting — DNS-rebinding protection only. THIS IMAGE MUST BE DEPLOYED ON A
-# PRIVATE NETWORK, BEHIND A GATEWAY THAT DOES AUTHENTICATE. It does not defend
-# itself and was never designed to. Authorization is the job of the layer in
-# front; reflow2's only obligation is that a session bound to one design cannot
-# address another.
+# ⚠️ WHO MAY CALL IT. Since v0.76.0 reflow2 verifies OAuth bearer tokens itself
+# (#616; until #617 this block said it had no authentication). Arguments after
+# the image name reach the binary — the ENTRYPOINT forwards "$@" — and clap
+# reads the matching variables, so either form works:
+#
+#     docker run … <image> --http-oidc-issuer https://sso.example.org/realms/team \
+#         --http-public-url https://reflow2.example.org \
+#         --http-contributor-id 'who:{preferred_username}'
+#     docker run -e REFLOW2_OIDC_ISSUER=… -e REFLOW2_PUBLIC_URL=… \
+#         -e REFLOW2_CONTRIBUTOR_ID=… … <image>
+#
+#   · With the issuer, every request except the RFC 9728 metadata and the
+#     /readyz and /healthz probes needs a valid token, loopback Host included.
+#   · With neither an issuer nor --http-trusted-gateway (REFLOW2_TRUSTED_GATEWAY),
+#     a server set up for others — REFLOW2_REGISTRY_ROOT, or REFLOW2_ALLOW_HOST
+#     naming a host that is not loopback — serves reads and proposals only.
+#     Set up as neither, it is a LOCAL server: anything that reaches the port
+#     can write the design, so keep that port private.
+#   · `--http-allow-host` (REFLOW2_ALLOW_HOST) is DNS-rebinding protection, not
+#     authentication.
+#   · reflow2 does not terminate TLS. Put a TLS-terminating proxy in front and
+#     give its https:// address as --http-public-url.
+#
+# Whatever is in front, a session bound to one design cannot address another.
 #
 # ⚠️ EVERY FLAG HERE MUST EXIST IN THE BINARY THIS IMAGE COPIES IN. clap exits 2
 # on an unknown argument, so a flag removed from the CLI and left here is not a

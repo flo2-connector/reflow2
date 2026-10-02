@@ -31,6 +31,47 @@ This file is the third view: *what changed, and when*.
 
 ## [Unreleased]
 
+### Added
+
+- **The container image is linux/amd64 AND linux/arm64, and the release notes carry its digest**
+  (GitHub issue #617, Alex). `ghcr.io/sligara7/reflow2/reflow2-mcp:<version>` and `:latest` are
+  now one index for both platforms, and each release's notes name
+  `ghcr.io/sligara7/reflow2/reflow2-mcp@sha256:<digest>`, so a consumer can pin a name that never
+  moves.
+  - **A `linux-arm64` binary** (`reflow2-mcp-linux-arm64.tar.gz`), built natively on GitHub's
+    `ubuntu-22.04-arm` runner rather than cross-compiled, so it links the same glibc as the
+    x86_64 binary and runs on the same `ubuntu:22.04` base. `tools/install.sh` installs it on
+    Linux `aarch64` and `arm64`.
+  - **Each architecture's image is built and smoke-tested on its own runner before anything is
+    pushed**, then pushed by digest, untagged. `container image` joins the two digests into one
+    index with `docker/publish-index.sh`, which composes the index first and refuses, tagging
+    nothing, unless it lists both platforms. It then reads the pushed tag back and checks again.
+    A missing architecture leaves `latest` where it was.
+  - **`publish release` waits for the image** and writes the image's section into the notes
+    before the release goes live. The section is appended between markers, so notes the cut
+    wrote are kept and a re-run replaces the section instead of adding a second one. Until now
+    publish did not wait, and two releases (v0.60.0, v0.60.1) went live with every asset and no
+    image.
+  - **`release.yml` takes `dry_run` on a manual dispatch.** It builds every binary, builds and
+    smoke-tests both images, and pushes and publishes nothing. `tag` is optional on a dry run
+    and still required otherwise; `binaries` now waits for `consumer kit`, which refuses a
+    release dispatch with no tag, or a tag Cargo.toml disagrees with, before anything compiles.
+  - `tools/test_release_workflow.py` (core CI job) reads the workflow and drives
+    `publish-index.sh`, `image-release-notes.sh` and `install.sh` against stand-ins. It failed
+    0 of 8 on v0.76.0 before the change.
+
+### Fixed
+
+- **The image no longer says reflow2 has no authentication.** Its description label, the
+  Dockerfile and `docker/build.sh` all said so, and v0.76.0's `--http-oidc-issuer` made it false.
+  They now say what is true. With the issuer (`docker run <image> --http-oidc-issuer …`, or
+  `-e REFLOW2_OIDC_ISSUER=…`) the server verifies bearer tokens itself. With neither that nor
+  `--http-trusted-gateway`, a server set up for others serves reads and proposals only, and any
+  other must keep its port private. `--http-allow-host` is DNS-rebinding protection, not
+  authentication, and reflow2 does not terminate TLS.
+- `getting-started/UPDATING.md` named the image `ghcr.io/<owner>/reflow2-mcp`, which 404s. It now
+  names `ghcr.io/sligara7/reflow2/reflow2-mcp` and says how to pin it by digest.
+
 ## [0.76.0] — 2026-10-01
 
 **Minor. GitHub issue #616 is complete, and the schema stamp does not move** (28 node types,
