@@ -46,6 +46,24 @@ This file is the third view: *what changed, and when*.
     asks for 2026-07-28, so claims still need no seat. One that opens with `server/discover` and
     sends 2026-07-28 per request is sessionless, as on 3.4.0. `base64` 0.23 is the version rmcp 3.5
     already uses; the bearer-token code now uses it too.
+- **The workflows' GitHub Actions are on their current majors:** `actions/checkout` v5 → v7,
+  `actions/upload-artifact` v4 → v7, `actions/download-artifact` v4 → v8, `docker/login-action`
+  v3 → v4, `docker/setup-buildx-action` v3 → v4. All five run on Node 24 now, which GitHub-hosted
+  runners already carry. Read against how this repository calls them, none of the breaking notes
+  applies:
+  - artifacts are downloaded by name or pattern, never by ID, so download-artifact v5's path
+    change is moot;
+  - `setup-buildx` is given no inputs, so v4's removed ones are moot;
+  - no step pushes or reads git credentials, so checkout v6 keeping them in a separate file is
+    moot.
+
+  One thing is stricter and wanted: download-artifact v8 FAILS on a digest mismatch, where v4
+  logged a warning, so a binary corrupted between jobs can no longer reach a release. Proved by
+  a `dry_run` dispatch of `release.yml` on the branch before merge (run 36965158231, green): it
+  ran checkout v7, upload-artifact v7, download-artifact v8 by name and setup-buildx v4, and the
+  image smoke gate passed on both architectures. What a dry run gates off runs first at the next
+  real tag: `docker/login-action` v4, the digest upload, and the pattern downloads in
+  `container image` and `publish release`.
 
 ### Fixed
 
