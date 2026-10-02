@@ -113,6 +113,18 @@ impl ReadCache {
         );
     }
 
+    /// Move the generation without touching an entry: the VIEW changed though
+    /// nothing on disk did. A write staged in an open batch, and a batch
+    /// discarded, both change what a read inside the store answers — and a
+    /// derived scan memoised at the old generation would otherwise go on
+    /// answering for the design before them
+    /// (`dec:idea-a-refused-typed-write-stores-nothing`). The cache's ENTRIES
+    /// stay valid: a batch never reaches them, because a buffered read is
+    /// served from the buffer and never cached.
+    pub fn bump_generation(&mut self) {
+        self.generation += 1;
+    }
+
     /// Invalidate a single cache entry.
     pub fn invalidate(&mut self, key: &[u8]) {
         self.generation += 1;

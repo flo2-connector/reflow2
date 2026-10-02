@@ -1032,6 +1032,108 @@ fn batch_buffers_mixed_put_and_delete_visible_within_batch() {
     );
 }
 
+// -- Nested batches (dec:idea-a-refused-typed-write-stores-nothing): a batch
+// begun inside a batch is a savepoint, never a commit of the outer one.
+
+fn has(engine: &StorageEngine, id: &str) -> bool {
+    engine.get_node("g1", "Character", id).unwrap().is_some()
+}
+
+#[test]
+fn an_inner_batch_nests_and_only_the_outermost_commit_lands() {
+    let mut engine = test_engine(test_schema());
+    engine.begin_batch();
+    engine
+        .create_node("g1", "Character", "outer", props! { "name" => "Outer" })
+        .unwrap();
+    engine.begin_batch();
+    assert_eq!(engine.batch_depth(), 2);
+    engine
+        .create_node("g1", "Character", "inner", props! { "name" => "Inner" })
+        .unwrap();
+    assert!(
+        engine.commit_batch().unwrap() > 0,
+        "the inner batch reports its own ops"
+    );
+    assert_eq!(
+        engine.batch_depth(),
+        1,
+        "an inner commit closes only the inner batch"
+    );
+    assert!(has(&engine, "outer") && has(&engine, "inner"));
+    // Nothing reached the backend yet: discarding the outer batch drops both.
+    engine.discard_batch();
+    assert_eq!(engine.batch_depth(), 0);
+    assert!(
+        !has(&engine, "outer"),
+        "the inner begin must not have committed the outer batch"
+    );
+    assert!(
+        !has(&engine, "inner"),
+        "an inner commit belongs to the outer batch"
+    );
+}
+
+#[test]
+fn an_inner_discard_drops_only_its_own_writes() {
+    let mut engine = test_engine(test_schema());
+    engine
+        .create_node("g1", "Character", "before", props! { "name" => "Before" })
+        .unwrap();
+    engine.begin_batch();
+    engine
+        .create_node("g1", "Character", "outer", props! { "name" => "Outer" })
+        .unwrap();
+    // The inner batch overwrites an outer write and deletes a committed node.
+    engine.begin_batch();
+    engine
+        .create_node(
+            "g1",
+            "Character",
+            "outer",
+            props! { "name" => "Overwritten" },
+        )
+        .unwrap();
+    engine.delete_node("g1", "Character", "before").unwrap();
+    engine
+        .create_node("g1", "Character", "inner", props! { "name" => "Inner" })
+        .unwrap();
+    engine.discard_batch();
+
+    assert_eq!(engine.batch_depth(), 1);
+    let outer = engine
+        .get_node("g1", "Character", "outer")
+        .unwrap()
+        .unwrap();
+    assert_eq!(
+        outer.properties["name"],
+        Value::String("Outer".into()),
+        "the outer batch's own write survives the inner discard, as the outer wrote it"
+    );
+    assert!(has(&engine, "before"), "the inner delete is undone");
+    assert!(!has(&engine, "inner"));
+    engine.commit_batch().unwrap();
+    assert!(has(&engine, "outer") && has(&engine, "before") && !has(&engine, "inner"));
+}
+
+#[test]
+fn a_staged_write_and_a_discard_each_move_the_write_generation() {
+    let mut engine = test_engine(test_schema());
+    let g0 = engine.write_generation();
+    engine.begin_batch();
+    engine
+        .create_node("g1", "Character", "staged", props! { "name" => "Staged" })
+        .unwrap();
+    let g1 = engine.write_generation();
+    assert_ne!(g0, g1, "a staged write changes what a read answers");
+    engine.discard_batch();
+    assert_ne!(
+        engine.write_generation(),
+        g1,
+        "so does discarding it: a scan memoised inside the batch is stale now"
+    );
+}
+
 #[test]
 fn batch_discard_with_mixed_ops_leaves_pre_batch_state() {
     let mut engine = test_engine(test_schema());
