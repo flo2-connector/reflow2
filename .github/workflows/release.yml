@@ -97,7 +97,7 @@ jobs:
             target: x86_64-apple-darwin
     runs-on: ${{ matrix.runner }}
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v7
         with:
           ref: ${{ inputs.tag || github.ref }}
       - uses: dtolnay/rust-toolchain@stable
@@ -128,7 +128,7 @@ jobs:
           set -euo pipefail
           mkdir -p dist
           tar -C "target/${{ matrix.target }}/release" -czf "dist/reflow2-mcp-${{ matrix.name }}.tar.gz" reflow2-mcp
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         with:
           name: binary-${{ matrix.name }}
           path: dist/*
@@ -152,7 +152,7 @@ jobs:
             exit 1
           fi
           echo "tag='${TAG}' dry_run='${DRY_RUN:-false}'"
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v7
         with:
           ref: ${{ inputs.tag || github.ref }}
       - name: Package the kit
@@ -195,7 +195,7 @@ jobs:
             "$VERSION" "$COMMIT" "$COMMITTED_AT" > kit-stage/reflow2-kit/KIT_VERSION.json
           mkdir -p dist
           tar -C kit-stage -czf dist/reflow2-kit.tar.gz reflow2-kit
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         with:
           name: kit
           path: dist/*
@@ -240,10 +240,10 @@ jobs:
         reads and proposals only; otherwise keep its port private. --http-allow-host is
         DNS-rebinding protection, not authentication. It does not terminate TLS.
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v7
         with:
           ref: ${{ inputs.tag || github.ref }}
-      - uses: actions/download-artifact@v4
+      - uses: actions/download-artifact@v8
         with:
           name: binary-${{ matrix.binary }}
           path: dist
@@ -261,7 +261,7 @@ jobs:
           if [ -n "${TAG}" ]; then VERSION="${TAG#v}"; else VERSION="$(grep -m1 '^version' Cargo.toml | cut -d'"' -f2)"; fi
           echo "IMAGE=ghcr.io/$(echo "$GITHUB_REPOSITORY" | tr '[:upper:]' '[:lower:]')/reflow2-mcp" >> "$GITHUB_ENV"
           echo "VERSION=${VERSION}" >> "$GITHUB_ENV"
-      - uses: docker/setup-buildx-action@v3
+      - uses: docker/setup-buildx-action@v4
       # ⭐ THE IMAGE MUST START BEFORE IT IS PUBLISHED, AND THAT ORDER IS THE
       # WHOLE POINT OF THIS STEP.
       #
@@ -287,7 +287,7 @@ jobs:
             --label "org.opencontainers.image.description=${OCI_DESCRIPTION}" \
             .
           docker/smoke.sh reflow2-mcp:candidate
-      - uses: docker/login-action@v3
+      - uses: docker/login-action@v4
         if: github.event_name == 'push' || inputs.dry_run == false
         with:
           registry: ghcr.io
@@ -315,7 +315,7 @@ jobs:
           mkdir -p "${RUNNER_TEMP}/digests"
           echo "${digest}" > "${RUNNER_TEMP}/digests/${ARCH}"
           echo "pushed ${IMAGE}@${digest} (linux/${ARCH}, untagged)"
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         if: github.event_name == 'push' || inputs.dry_run == false
         with:
           name: digest-${{ matrix.arch }}
@@ -337,16 +337,16 @@ jobs:
       digest: ${{ steps.index.outputs.digest }}
       platforms: ${{ steps.index.outputs.platforms }}
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v7
         with:
           ref: ${{ inputs.tag || github.ref }}
-      - uses: actions/download-artifact@v4
+      - uses: actions/download-artifact@v8
         with:
           pattern: digest-*
           path: digests
           merge-multiple: true
-      - uses: docker/setup-buildx-action@v3
-      - uses: docker/login-action@v3
+      - uses: docker/setup-buildx-action@v4
+      - uses: docker/login-action@v4
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
@@ -392,17 +392,17 @@ jobs:
     runs-on: ubuntu-22.04
     steps:
       # Checked out first: checkout cleans the workspace, and dist/ comes after.
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v7
         with:
           ref: ${{ inputs.tag || github.ref }}
       # By name, never "every artifact": the per-architecture digest artifacts
       # are not release assets, and `gh release upload dist/*` would attach them.
-      - uses: actions/download-artifact@v4
+      - uses: actions/download-artifact@v8
         with:
           pattern: binary-*
           path: dist
           merge-multiple: true
-      - uses: actions/download-artifact@v4
+      - uses: actions/download-artifact@v8
         with:
           name: kit
           path: dist
