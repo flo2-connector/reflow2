@@ -56,11 +56,12 @@
 //! # The external crates this brought with it
 //!
 //! `rocksdb`, `tantivy`, `rmp-serde`, `lru`, `serde_yaml_ng`, `uuid`, `thiserror`.
-//! ⚠️ `rocksdb` is pinned at **0.24, absorbed verbatim** — it is the
-//! historically-unmaintained crate, and `rust-rocksdb` is the maintained one.
-//! Switching is deliberately NOT part of this change:
-//! `dec:absorb-rocksdb-024-unchanged-then-switch-separately` keeps the
-//! migration to one variable so a failure has one cause.
+//! `rocksdb` was absorbed verbatim at 0.24 and is the same crate today (0.25 since
+//! 2026-10-02, kept current under
+//! `req:reflow2-keeps-its-dependencies-at-or-near-their-latest-releases`).
+//! Switching to `rust-rocksdb` was deliberately NOT part of the absorption
+//! (`dec:absorb-rocksdb-024-unchanged-then-switch-separately`), and it is parked
+//! (`dec:the-rust-rocksdb-switch-is-parked-until-the-store-question-settles`).
 
 pub mod core;
 pub mod store;

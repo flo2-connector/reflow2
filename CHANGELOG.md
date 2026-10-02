@@ -108,6 +108,19 @@ This file is the third view: *what changed, and when*.
   recorded as getting it, while the wire carried 2025-11-25. The copy is now rmcp 3.5.0's rule, and
   a new test over the real binary compares the record with the wire for every revision rmcp knows.
   The answer on the wire was always right.
+- **`rocksdb` 0.24 → 0.25: the same crate, and the storage engine moves from RocksDB 10.4.2 to
+  11.8.1.** No reflow2 source changed. This is the first bump under
+  `req:reflow2-keeps-its-dependencies-at-or-near-their-latest-releases`, which Anthony accepted on
+  2026-10-02. That requirement's rule, in AGENTS.md and the `dependencies` workflow, lands in its own
+  PR. What an operator should know:
+  - **The first pull rebuilds `librocksdb-sys`** (~10 minutes of C++, once per machine).
+  - **Existing designs open unchanged.** Measured on 20 real stores, including reflow2's own
+    (6,170 nodes, 39,177 edges): each export is byte-identical to v0.77.0's.
+  - **Rolling back to v0.77.0 works.** The new engine writes table `format_version` 7, where
+    10.4.2 wrote 6, and it does so even on a read-only open. v0.77.0 opens every one of those 20
+    stores after the new engine has written to them, and reads the same content.
+  - **0.25 fixes memory leaks** in `set_info_log`, in column-family metadata and creation, and
+    in compaction filters. reflow2 calls none of those, so nothing here changes because of them.
 
 ## [0.77.0] — 2026-10-01
 
