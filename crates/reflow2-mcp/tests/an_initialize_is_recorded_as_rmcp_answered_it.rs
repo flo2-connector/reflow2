@@ -152,28 +152,96 @@ fn initialize_is_never_answered_with_a_revision_that_has_no_handshake() {
     }
 }
 
+/// What Claude Code 2.1.283 sends as `_meta` on the 2026-07-28 protocol, as
+/// `every_tool_list_carries_the_cache_hints_its_protocol_requires.rs` captured
+/// it: a request that carries this is sessionless.
+fn meta_2026() -> serde_json::Value {
+    serde_json::json!({
+        "io.modelcontextprotocol/protocolVersion": "2026-07-28",
+        "io.modelcontextprotocol/clientInfo": { "name": "claude-code", "version": "2.1.283" },
+        "io.modelcontextprotocol/clientCapabilities": { "roots": { "listChanged": true }, "elicitation": { "form": {}, "url": {} } }
+    })
+}
+
+/// `tools/call`, with the 2026-07-28 `_meta` when `sessionless`.
+fn call(
+    s: &mut Session,
+    id: u64,
+    tool: &str,
+    args: serde_json::Value,
+    sessionless: bool,
+) -> serde_json::Value {
+    let mut params = serde_json::json!({"name": tool, "arguments": args});
+    if sessionless {
+        params["_meta"] = meta_2026();
+    }
+    s.send(
+        serde_json::json!({"jsonrpc": "2.0", "id": id, "method": "tools/call", "params": params}),
+    );
+    s.reply(id)
+}
+
+/// Register the agent `writes_for` will name, then name it. `writes_for` is
+/// the probe because it is refused BY NAME on a sessionless request (a
+/// declaration there would vanish with the request), so its reply tells a
+/// session from a per-request handler.
+fn declare_an_agent(s: &mut Session, sessionless: bool) -> serde_json::Value {
+    let added = call(
+        s,
+        2,
+        "add_contributor",
+        serde_json::json!({"id": "who:handshake-test-agent", "name": "handshake test agent", "kind": "automated_agent"}),
+        sessionless,
+    );
+    assert!(
+        added.get("result").is_some() && added["result"]["isError"] != true,
+        "the agent is registered first, so the probe below is refused for no other reason: {added}"
+    );
+    call(
+        s,
+        3,
+        "writes_for",
+        serde_json::json!({"acting_agent": "who:handshake-test-agent"}),
+        sessionless,
+    )
+}
+
+const SESSIONLESS_REFUSAL: &str = "the transport has no sessions";
+
 /// The property `rmcps_latest_does_not_yet_cross_the_threshold` used to watch
 /// LATEST for: a client that asks for 2026-07-28 through `initialize` is
 /// settled on a revision with a handshake, so it keeps a session, and a
-/// session-scoped call is served instead of refused as sessionless.
+/// session-scoped call is served instead of refused as sessionless. The
+/// negative control is the same call on a sessionless 2026-07-28 request,
+/// which must be refused, or the probe could not tell the two apart.
 #[test]
 fn a_client_asking_for_2026_07_28_through_initialize_keeps_a_session() {
     let dir = tempfile::tempdir().unwrap();
     let mut s = Session::start(dir.path());
     let answered = s.initialize(ProtocolVersion::NO_INITIALIZE.as_str());
     assert_eq!(answered, ProtocolVersion::LATEST_WITH_INITIALIZE.as_str());
-    s.send(
-        serde_json::json!({"jsonrpc": "2.0", "id": 2, "method": "tools/call", "params": {
-        "name": "writes_for", "arguments": {"acting_agent": "handshake-test-agent"}}}),
-    );
-    let reply = s.reply(2);
-    let text = reply.to_string();
+    let reply = declare_an_agent(&mut s, false);
     assert!(
         reply.get("result").is_some() && reply["result"]["isError"] != true,
         "writes_for is served on a session opened by initialize: {reply}"
     );
     assert!(
-        !text.contains("the transport has no sessions"),
+        !reply.to_string().contains(SESSIONLESS_REFUSAL),
         "a session opened by initialize was read as sessionless: {reply}"
+    );
+
+    let dir = tempfile::tempdir().unwrap();
+    let mut s = Session::start(dir.path());
+    s.send(serde_json::json!({"jsonrpc": "2.0", "id": 1, "method": "server/discover", "params": {"_meta": meta_2026()}}));
+    let discover = s.reply(1);
+    assert!(
+        discover.get("result").is_some(),
+        "server/discover is answered: {discover}"
+    );
+    let reply = declare_an_agent(&mut s, true);
+    assert!(
+        reply.to_string().contains(SESSIONLESS_REFUSAL),
+        "NEGATIVE CONTROL: a sessionless 2026-07-28 request must be refused by name, \
+         or this probe cannot tell a session from a per-request handler: {reply}"
     );
 }
