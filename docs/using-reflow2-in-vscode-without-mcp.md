@@ -4,6 +4,25 @@ A guide, kept current, for running reflow2 from VS Code's Copilot agent where an
 blocks third-party MCP servers. **The running field log behind it is kept locally** in `docs/feedback/` (git-ignored,
 `dec:field-reports-are-untracked-because-the-repository-is-public`); generic lessons from it are folded in here.
 
+## Where reflow2 stands
+
+**This route is supported on purpose (2026-10-01).** One reflow2 serves both routes: native MCP for an agent that
+can call an MCP server, and the `--call` door for one that can only run a terminal command. MCP stays the main
+route. Every tool, check and refusal is written once and reached both ways, so there is no separate build or
+branch for the door.
+
+What is planned for the door, in order:
+
+1. a one-shot call never creates a design in a folder that names one on a server (limitation 16);
+2. a writing call keeps the committed export current (limitation 4, idea 3);
+3. `reflow2 read` / `reflow2 write`, so reads can be auto-approved (limitation 2, idea 4);
+4. a full tool description on the CLI (limitations 5 and 6, idea 5);
+5. `reflow2 init` installs this route for VS Code, `reflow2 update` refreshes it, and CI drives it the way an agent
+   does (limitations 1, 10 and 11, ideas 1, 7, 8 and 11);
+6. a batch of calls under one approval and one export (idea 6).
+
+Not planned yet: joining a running shared server (idea 2), and ideas 12–15.
+
 ## The problem
 
 With third-party MCP servers blocked, VS Code cannot register reflow2 through `.vscode/mcp.json` (the path
@@ -24,7 +43,8 @@ the object from stdin. `RUST_LOG=error` hides the per-call INFO line and the WAR
 Teach the agent to use it with a **user-scope VS Code instructions file**
 (`~/.config/Code/User/prompts/<name>.instructions.md`, `applyTo: '**'`) that says:
 
-- act only when the workspace has `.reflow2/` or `REFLOW2.md`;
+- act only when the workspace has `.reflow2/` or `REFLOW2.md`, and **not** where a `.reflow2.toml` names a design
+  on a server (limitation 16);
 - every "call `X`" in `REFLOW2.md`, a skill or a tool reply means `--call X`; never reimplement a tool or hand-edit
   `.reflow2/` or an export;
 - discover tools with `--call find_tools --args '{"query":"…"}'`, skills with `--call list_skills` and
@@ -77,6 +97,10 @@ hooks can supply what the `--call` door lacks (ideas 1 and 12 below).
 14. **A hub can't see a member's unexported changes.** `upstream_status` compares the committed export, not the
     live store; without write-through the export routinely lags.
 15. **A design can exist only in its store.** Nothing warns when a design has never been exported anywhere.
+16. **A call in a moved design's folder creates a stray, empty design.** Where a `.reflow2.toml` names a design on
+    a server, `--call` ignores that pointer and `--only-if-present` and creates a fresh local store with a new id.
+    The agent then works an empty design, with no error. Measured 2026-10-01. Until it is fixed (planned step 1),
+    don't run the door in such a folder.
 
 ### Tool friction found along the way
 
@@ -94,7 +118,8 @@ hooks can supply what the `--call` door lacks (ideas 1 and 12 below).
 2. **`--call` joins a running shared server** instead of refusing writes. Fixes 3.
 3. **`--call … --export-to FILE`** (or the path from project config) after a successful write. Fixes 4 and 14.
 4. **A read/write verb split** (`reflow2 read` refuses any tool not `read_only_hint`), so reads can be auto-approved
-   safely. Fixes 2.
+   safely. Fixes 2. Cheaper than it looks: `--call` already sorts every tool into read or write from that annotation,
+   to decide whether a held design may be read from a snapshot.
 5. **`--describe <tool>` / `--list-tools`** with full schemas and the lessons `tools/list` would append. Fixes 5, 6.
 6. **`--call-batch`**: JSONL of calls, one store open, one approval, stop at the first refusal.
 7. **Skill stubs in `.github/skills/`** that route to `get_skill`, so VS Code picks skills by description. Fixes 7.
