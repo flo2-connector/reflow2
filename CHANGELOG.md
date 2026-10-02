@@ -31,6 +31,27 @@ This file is the third view: *what changed, and when*.
 
 ## [Unreleased]
 
+## [0.77.0] — 2026-10-01
+
+**Minor. GitHub issue #617 (#646): one linux/amd64 + linux/arm64 image under one digest, and a
+linux-arm64 binary.** A new release asset and a second image platform are additive. The schema
+stamp does not move (28 node types, 66 edge types), and no Rust source changed except the version,
+so a caller who changes nothing sees nothing break and no upgrade note is owed. What a consumer
+or operator should know:
+
+- **An arm64 host now pulls a native image, from the same tag.** `:0.77.0` and `:latest` are one
+  index, and `docker pull` picks the host's platform. Nothing changes in how you pull or run it.
+- **Pin by the digest in the release notes** wherever a tag moving under you would matter. A tag
+  can be re-pushed; a digest names one image forever.
+- **Linux arm64 gets a prebuilt binary.** `tools/install.sh` installs
+  `reflow2-mcp-linux-arm64.tar.gz` on `aarch64` and `arm64`, where it used to stop with "no
+  prebuilt binary".
+- **If you run the image for others, read its text again.** It said reflow2 had no
+  authentication, which v0.76.0 made false. It now says that `--http-oidc-issuer` makes the
+  server verify bearer tokens itself, and what a server without it may do (under Fixed).
+- **Maintainers can rehearse a release.** A manual dispatch of `release.yml` with `dry_run` builds
+  every binary and smoke-tests both images, and pushes and publishes nothing.
+
 ### Added
 
 - **The container image is linux/amd64 AND linux/arm64, and the release notes carry its digest**
