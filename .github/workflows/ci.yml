@@ -30,7 +30,7 @@ jobs:
     runs-on: ubuntu-22.04
     timeout-minutes: 20
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v7
         with:
           # The export-lineage guard (BL-107) compares HEAD against HEAD~1, and
           # checkout defaults to depth 1 — so `git show HEAD~1:...` failed, the
@@ -106,7 +106,7 @@ jobs:
     runs-on: ubuntu-22.04
     timeout-minutes: 60
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v7
         with:
           # Same reason as the core job: the lineage guard runs in THIS job and
           # needs HEAD~1 to exist (BL-208).

@@ -31,6 +31,24 @@ This file is the third view: *what changed, and when*.
 
 ## [Unreleased]
 
+### Changed
+
+- **The workflows' GitHub Actions are on their current majors:** `actions/checkout` v5 → v7,
+  `actions/upload-artifact` v4 → v7, `actions/download-artifact` v4 → v8, `docker/login-action`
+  v3 → v4, `docker/setup-buildx-action` v3 → v4. All five run on Node 24 now, which GitHub-hosted
+  runners already carry. Read against how this repository calls them, none of the breaking notes
+  applies:
+  - artifacts are downloaded by name or pattern, never by ID, so download-artifact v5's path
+    change is moot;
+  - `setup-buildx` is given no inputs, so v4's removed ones are moot;
+  - no step pushes or reads git credentials, so checkout v6 keeping them in a separate file is
+    moot.
+
+  One thing is stricter and wanted: download-artifact v8 FAILS on a digest mismatch, where v4
+  logged a warning, so a binary corrupted between jobs can no longer reach a release. Proved by
+  a `dry_run` dispatch of `release.yml` on the branch before merge, which runs every changed
+  action except `docker/login-action`.
+
 ## [0.77.0] — 2026-10-01
 
 **Minor. GitHub issue #617 (#646): one linux/amd64 + linux/arm64 image under one digest, and a
