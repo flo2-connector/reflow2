@@ -114,6 +114,21 @@ jobs:
     name: workspace + real-binary instruments
     runs-on: ubuntu-22.04
     timeout-minutes: 60
+    # 🛑 C AND C++ DEPENDENCIES BUILD WITHOUT DEBUG INFO IN THIS JOB. Measured
+    # 2026-10-02 on #652 (rocksdb 0.24 → 0.25): the job died of "No space left on
+    # device" after "Workspace tests (both crates)" PASSED — the second time,
+    # after #593. librocksdb.a is 1.04 GB at RocksDB 11.8.1 (0.89 GB at 10.4.2),
+    # and 54% of it is DWARF debug info, against 24 MB of machine code; every
+    # test executable that links RocksDB carries its share, and the workspace
+    # has 331 test files. #651's runner had 105 GB free after the cleanup step,
+    # and a 17% bigger RocksDB, multiplied by every test binary, tipped it.
+    # -g0 drops the C/C++ debug info only (cc appends CFLAGS/CXXFLAGS after its
+    # own -g); Rust's own debug info is untouched, so panics and backtraces read
+    # as before. THE STEP AFTER THE TESTS REPORTS THE MARGIN on every run, so the
+    # next growth shows up as a number long before it is a crash.
+    env:
+      CFLAGS: -g0
+      CXXFLAGS: -g0
     steps:
       - uses: actions/checkout@v7
         with:
@@ -139,6 +154,17 @@ jobs:
           shared-key: ci-full
       - name: Workspace tests (both crates)
         run: cargo test --workspace --no-fail-fast
+      - name: Disk after the tests (the margin #593 and #652 ran out of)
+        if: always()
+        run: |
+          df -h /
+          du -sh target 2>/dev/null || true
+          for a in target/debug/build/librocksdb-sys-*/out/librocksdb.a; do [ -f "$a" ] && ls -la "$a"; done
+          avail=$(df --output=avail -B1G / | tail -1 | tr -d ' ')
+          echo "free after the workspace tests: ${avail} GB"
+          if [ "$avail" -lt 20 ]; then
+            echo "::warning::only ${avail} GB free after the workspace tests; this job's disk is close to the edge (#593, #652)"
+          fi
       - name: Clippy (mcp)
         run: cargo clippy -p reflow2-mcp --all-targets -- -D warnings
       - name: Build the served binary

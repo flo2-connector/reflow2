@@ -53,13 +53,17 @@ serde_yaml_ng = "0.10"
 uuid = { version = "1", features = ["v4", "serde"] }
 thiserror = "2"
 tantivy = "0.26"
-# ⚠️ ABSORBED VERBATIM AT 0.24, WHICH IS A DECISION AND NOT AN OVERSIGHT.
-# `rocksdb` is the historically-unmaintained wrapper; `rust-rocksdb` (0.52) is
-# the maintained one and is where this should end up. Switching is deliberately
-# NOT part of this change — dec:absorb-rocksdb-024-unchanged-then-switch-separately
-# keeps the 86-file migration to ONE variable, so a failure has one cause. The
-# switch gets its own PR.
-rocksdb = "0.24"
+# `rocksdb` 0.25 (RocksDB 11.8.1), the same crate as before, kept current under
+# req:reflow2-keeps-its-dependencies-at-or-near-their-latest-releases (accepted
+# 2026-10-02). It was absorbed at 0.24; the "historically-unmaintained" premise
+# for switching to `rust-rocksdb`
+# has moved, since upstream resumed releasing
+# (fact:the-unmaintained-premise-under-the-rocksdb-switch-has-moved), and the
+# switch itself stays parked (dec:the-rust-rocksdb-switch-is-parked-until-the-store-question-settles).
+# 0.25 writes table format_version 7; v0.77.0 (RocksDB 10.4.2) reads it, measured
+# on 20 real stores in
+# fact:rocksdb-0-25-opens-twenty-real-stores-identically-and-0-77-0-reads-what-it-wrote-2026-10-02.
+rocksdb = "0.25"
 # dynograph-graph was HERE until 2026-08-24. Absorbed: reflow2 imported eight
 # names — Graph, GraphBuilder, betweenness_centrality, connected_components,
 # cut_structure, find_cycle, leiden, strongly_connected_components — whose

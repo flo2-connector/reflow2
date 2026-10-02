@@ -52,7 +52,7 @@ This file is the third view: *what changed, and when*.
   - Its checker is pinned on every push by `tools/test_dependency_currency.py` (12 hermetic cases,
     mutation-checked).
   - Its first live run found exactly the bumps then in flight: #649 and #650 (both since merged)
-    and the rocksdb 0.25 PR, which is held on the record until it lands.
+    and the rocksdb 0.25 PR, held on the record until it landed in this same release (below).
 
 ### Changed
 
@@ -99,6 +99,20 @@ This file is the third view: *what changed, and when*.
   - every hold is recorded with a reason and a date;
   - a bump touching stored data proves that existing stores open AND that the previous release
     reads what the new one wrote.
+
+- **`rocksdb` 0.24 → 0.25: the same crate, and the storage engine moves from RocksDB 10.4.2 to
+  11.8.1.** No reflow2 source changed. This is the first bump under
+  `req:reflow2-keeps-its-dependencies-at-or-near-their-latest-releases`, which Anthony accepted on
+  2026-10-02. That requirement's rule, in AGENTS.md and the `dependencies` workflow, landed
+  first (#651); this bump also removes the hold #651 recorded for it. What an operator should know:
+  - **The first pull rebuilds `librocksdb-sys`** (~10 minutes of C++, once per machine).
+  - **Existing designs open unchanged.** Measured on 20 real stores, including reflow2's own
+    (6,170 nodes, 39,177 edges): each export is byte-identical to v0.77.0's.
+  - **Rolling back to v0.77.0 works.** The new engine writes table `format_version` 7, where
+    10.4.2 wrote 6, and it does so even on a read-only open. v0.77.0 opens every one of those 20
+    stores after the new engine has written to them, and reads the same content.
+  - **0.25 fixes memory leaks** in `set_info_log`, in column-family metadata and creation, and
+    in compaction filters. reflow2 calls none of those, so nothing here changes because of them.
 
 ### Fixed
 
