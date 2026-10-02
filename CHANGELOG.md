@@ -52,7 +52,7 @@ This file is the third view: *what changed, and when*.
   - Its checker is pinned on every push by `tools/test_dependency_currency.py` (12 hermetic cases,
     mutation-checked).
   - Its first live run found exactly the bumps then in flight: #649 and #650 (both since merged)
-    and the rocksdb 0.25 PR, which is held on the record until it lands.
+    and the rocksdb 0.25 PR, held on the record until it landed in this same release (below).
 
 ### Changed
 
@@ -100,19 +100,11 @@ This file is the third view: *what changed, and when*.
   - a bump touching stored data proves that existing stores open AND that the previous release
     reads what the new one wrote.
 
-### Fixed
-
-- **The handshake record (`<graph>.client.json`) names the revision rmcp actually sent.** reflow2
-  keeps a copy of rmcp's negotiation rule, because rmcp does not export it, and the copy was out of
-  date from rmcp 3.4.0 on. A client asking `initialize` for a revision with no handshake was
-  recorded as getting it, while the wire carried 2025-11-25. The copy is now rmcp 3.5.0's rule, and
-  a new test over the real binary compares the record with the wire for every revision rmcp knows.
-  The answer on the wire was always right.
 - **`rocksdb` 0.24 → 0.25: the same crate, and the storage engine moves from RocksDB 10.4.2 to
   11.8.1.** No reflow2 source changed. This is the first bump under
   `req:reflow2-keeps-its-dependencies-at-or-near-their-latest-releases`, which Anthony accepted on
-  2026-10-02. That requirement's rule, in AGENTS.md and the `dependencies` workflow, lands in its own
-  PR. What an operator should know:
+  2026-10-02. That requirement's rule, in AGENTS.md and the `dependencies` workflow, landed
+  first (#651); this bump also removes the hold #651 recorded for it. What an operator should know:
   - **The first pull rebuilds `librocksdb-sys`** (~10 minutes of C++, once per machine).
   - **Existing designs open unchanged.** Measured on 20 real stores, including reflow2's own
     (6,170 nodes, 39,177 edges): each export is byte-identical to v0.77.0's.
@@ -121,6 +113,15 @@ This file is the third view: *what changed, and when*.
     stores after the new engine has written to them, and reads the same content.
   - **0.25 fixes memory leaks** in `set_info_log`, in column-family metadata and creation, and
     in compaction filters. reflow2 calls none of those, so nothing here changes because of them.
+
+### Fixed
+
+- **The handshake record (`<graph>.client.json`) names the revision rmcp actually sent.** reflow2
+  keeps a copy of rmcp's negotiation rule, because rmcp does not export it, and the copy was out of
+  date from rmcp 3.4.0 on. A client asking `initialize` for a revision with no handshake was
+  recorded as getting it, while the wire carried 2025-11-25. The copy is now rmcp 3.5.0's rule, and
+  a new test over the real binary compares the record with the wire for every revision rmcp knows.
+  The answer on the wire was always right.
 
 ## [0.77.0] — 2026-10-01
 

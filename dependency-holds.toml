@@ -12,9 +12,3 @@
 #   name       = the crate name, the action's owner/repo, or "rust-version"
 #   reason     = why, in a sentence somebody else can check
 #   look_again = a date (YYYY-MM-DD) after which this hold stops counting
-
-[[hold]]
-kind = "crate"
-name = "rocksdb"
-reason = "the move to 0.25 (RocksDB 11.8.1) is in flight in its own PR; 20 real stores measured forward and rollback (fact:rocksdb-0-25-opens-twenty-real-stores-identically-and-0-77-0-reads-what-it-wrote-2026-10-02)"
-look_again = 2026-10-16
