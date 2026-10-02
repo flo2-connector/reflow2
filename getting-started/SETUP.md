@@ -6,8 +6,8 @@ There is no per-project setup.**
 ## Install
 
 If a [GitHub release](https://github.com/sligara7/reflow2/releases) exists for your platform
-(Linux x86_64, macOS arm64/x86_64), you need **no toolchain at all** — no Rust, no C++, no
-~10-minute RocksDB compile:
+(Linux x86_64 and arm64, macOS arm64/x86_64; Linux arm64 from the first release after v0.76.0),
+you need **no toolchain at all** — no Rust, no C++, no ~10-minute RocksDB compile:
 
 ```bash
 curl -fsSL https://raw.githubusercontent.com/sligara7/reflow2/main/tools/install.sh | sh
