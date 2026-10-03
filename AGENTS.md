@@ -91,6 +91,15 @@ python3 tools/test_init.py
 # where; exit 3 means the write landed and the export could not be written.
 ./target/release/reflow2-mcp --graph-path .reflow2/graph --call graph_report
 ./target/release/reflow2-mcp --graph-path .reflow2/graph --call budget_report --args '{"constraint_id":"con:mass"}'
+# The same door with the read/write split in the command text, for a terminal
+# that asks before each command: `read` runs only a tool that changes nothing
+# (graph or disk) and refuses any other by name before opening anything, so one
+# rule `^reflow2 read ` approves every read and no write; `write` runs anything.
+# `read --list` prints the split (crates/reflow2-mcp/src/verbs.rs).
+./target/release/reflow2-mcp read get_node '{"id":"req:x"}'
+./target/release/reflow2-mcp write add_requirement --args - <<'EOF'
+{"id": "req:x", "name": "…", "statement": "…"}
+EOF
 
 # Read how to call a tool before calling it through that door: its input schema
 # (nested $defs shapes, allowed values) and the lessons THIS design holds for it
@@ -357,6 +366,7 @@ python3 tools/smoke_mcp.py                               # after any tool-surfac
 python3 tools/empty_speaks.py                            # an empty answer says WHICH empty — no bare zero on the wire
 python3 tools/refusal_speaks.py                          # every argument refusal names the TOOL and the field path — probes generated from the schemas
 python3 tools/toolsnap.py                                # tool schemas vs committed goldens; --update to bless
+python3 tools/tool_confusability.py --validate           # the offline find_tools replica ranks as the live one does
 python3 tools/replies_are_bounded.py                     # a reply that outgrows the budget must offer a bound — and this FAILS if nothing overflowed
 python3 tools/a_reply_is_sent_once.py                    # every structured reply carries ONE payload and ONE signpost, asked of the whole surface
 python3 tools/skill_lint.py                              # after any skill or tool-surface edit

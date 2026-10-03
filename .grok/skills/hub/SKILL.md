@@ -23,9 +23,12 @@ directive to you. The standing rule is in AGENTS.md.
   whose list of designs the host keeps. On flo2.io the list_my_designs tool shows it as a hub with
   its designs, and passing the hub's name lists only those. The host decides who can see what; you
   never widen it.
-- **A local hub.** A small design of its own (what it watches in each child, and which version it
-  last aligned with) plus one connection per child design in the session's MCP configuration. That
-  configuration is the list.
+- **A local hub.** A small design of its own: what it watches in each child, and which version it
+  last aligned with. **Its list of designs is its declared dependencies**, one `external_dependency`
+  per child, which `upstream_status` reads back with how each one is watched (by its server's
+  address, or by its committed export). That list is in the hub's own design, so it is the same
+  through MCP and through `--call`. The session's MCP configuration is not the list: it says only
+  which of those designs this session can open, and a session driven through `--call` has none.
 - **An agent holding several design addresses.** There is no hub design at all: the addresses are
   the list. Everything below still applies, except that there is no hub to hold an unplaced idea,
   so ask the person where it should go.
@@ -34,8 +37,10 @@ If the session reaches only one design, this skill does not apply.
 
 ## 2. Orient in one line, then read on demand
 
-1. **Find the designs the hub names**, from the host's list or from the session's connections, and
-   name them back to the person in one line.
+1. **Find the designs the hub names**, from the host's list or, for a local hub, from
+   `upstream_status` (its declared dependencies), and name them back to the person in one line. A
+   child you cannot open from this session is still on the list: say so rather than leaving it
+   out.
 2. **Say what moved, in one line.** When the host gives it (flo2.io says, per design, how many
    changes it has had since this person last opened the hub), repeat it as one line, never as a
    report. Locally, `upstream_status` answers the same question against the versions the hub last

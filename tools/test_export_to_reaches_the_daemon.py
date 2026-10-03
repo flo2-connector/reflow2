@@ -34,9 +34,10 @@ import subprocess
 import sys
 import tempfile
 import time
+from reflow2_bin import default_bin  # noqa: E402  (one binary for every gate)
 
 REPO = pathlib.Path(__file__).resolve().parent.parent
-BINARY = REPO / "target" / "debug" / "reflow2-mcp"
+BINARY = pathlib.Path(default_bin())
 
 # The debounce is 2 s of quiet with a 10 s ceiling; give it room without making
 # a failure take a minute to report.

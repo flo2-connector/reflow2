@@ -255,7 +255,10 @@ impl Registry {
                     // 2026-08-12); the state is matched too, as the statement
                     // of intent and a defence if that ever stops being true.
                     (reflow2_core::DesignPathState::Design, Some(id)) => {
-                        if Path::new(store).exists() {
+                        // The rule every mode asks before it opens
+                        // (`crate::opening`): bind only a store that exists, so
+                        // serving this id never creates one.
+                        if crate::opening::store_exists(store) {
                             by_id.insert(id, store.to_string());
                             continue;
                         }

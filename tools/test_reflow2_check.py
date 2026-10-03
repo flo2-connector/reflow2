@@ -29,19 +29,15 @@ import unittest
 
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
 from smoke_mcp import Server  # noqa: E402
+from reflow2_bin import default_bin  # noqa: E402  (one binary for every gate)
 
 CHECK = pathlib.Path(__file__).resolve().parent / "reflow2_check.py"
 REPO = pathlib.Path(__file__).resolve().parent.parent
 
 
 def find_bin() -> str | None:
-    env = os.environ.get("REFLOW2_BIN")
-    if env and os.path.exists(env):
-        return env
-    for c in (REPO / "target/debug/reflow2-mcp", REPO / "target/release/reflow2-mcp"):
-        if c.exists():
-            return str(c)
-    return shutil.which("reflow2-mcp")
+    b = default_bin()
+    return b if os.path.exists(b) else None
 
 
 BIN = find_bin()

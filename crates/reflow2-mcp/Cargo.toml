@@ -110,6 +110,12 @@ clap = { version = "4", features = ["derive", "env"] }
 anyhow = "1"
 tracing = "0.1"
 tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+# A spawned shared daemon keeps nothing of the process that started it
+# (`shared::detach`): `setsid`, `close_range(2)` and `fcntl` in the child
+# before exec, none of which `std` exposes. Already in the tree through tokio,
+# and named because shared.rs now calls it (dec:design-dependencies-declared).
+# Called from Unix code only; the crate builds on every platform.
+libc = "0.2"
 
 # For iterating against the local rmcp checkout instead of crates.io, uncomment.
 # `rust-sdk` IS rmcp — the repo publishes the crate; they are not two things.

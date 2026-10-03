@@ -57,8 +57,6 @@
 //! empty, a session started there would open it the same way, and the installer
 //! exports it on purpose to mint the design's id (`tools/reflow2_init.py`).
 
-use std::path::Path;
-
 use clap::parser::ValueSource;
 use clap::{Arg, ArgMatches, Command};
 
@@ -92,6 +90,12 @@ pub enum Mode {
     Describe,
     /// `--list-tools`
     ListTools,
+    /// `reflow2-mcp read TOOL [JSON]`: `--call` for a tool that changes
+    /// nothing, refusing every other by name (`crate::verbs`).
+    Read,
+    /// `reflow2-mcp write TOOL [JSON]`: `--call` for any tool, the verb a
+    /// terminal keeps asking about (`crate::verbs`).
+    Write,
 }
 
 /// What a mode does to the design at `--graph-path`.
@@ -110,7 +114,7 @@ pub enum Access {
 
 impl Mode {
     /// Every one-shot mode, in the order `main` dispatches them.
-    pub const ALL: [Mode; 13] = [
+    pub const ALL: [Mode; 15] = [
         Mode::Setup,
         Mode::DiffStore,
         Mode::DiffFiles,
@@ -124,9 +128,12 @@ impl Mode {
         Mode::Call,
         Mode::Import,
         Mode::StopShared,
+        Mode::Read,
+        Mode::Write,
     ];
 
-    /// The argument id that selects this mode — `setup` is a subcommand.
+    /// The argument id that selects this mode — `setup`, `read` and `write`
+    /// are subcommands.
     pub fn id(self) -> &'static str {
         match self {
             Mode::Setup => "setup",
@@ -141,7 +148,14 @@ impl Mode {
             Mode::StopShared => "stop_shared",
             Mode::Describe => "describe",
             Mode::ListTools => "list_tools",
+            Mode::Read => "read",
+            Mode::Write => "write",
         }
+    }
+
+    /// Whether the mode is selected by a subcommand rather than by a flag.
+    pub fn is_subcommand(self) -> bool {
+        matches!(self, Mode::Setup | Mode::Read | Mode::Write)
     }
 
     /// How the mode is written on a command line, for the refusals.
@@ -160,6 +174,8 @@ impl Mode {
             Mode::StopShared => "--stop-shared",
             Mode::Describe => "--describe",
             Mode::ListTools => "--list-tools",
+            Mode::Read => "the `read` verb",
+            Mode::Write => "the `write` verb",
         }
     }
 
@@ -213,12 +229,39 @@ impl Mode {
                 "read_only",
                 "full",
             ],
+            // THE VERBS are `--call` with the read/write split in the command
+            // text (`crate::verbs`), so they read what `--call` reads, less
+            // what contradicts them: `write` refuses `--read-only`, and `read`,
+            // which writes nothing, keeps no export current. Their own words —
+            // the tool, its JSON, `--args`, `--list` — belong to the subcommand
+            // and are not here; `--graph-path` is the one flag that may also
+            // follow the verb, so reading a design elsewhere stays inside a
+            // `^reflow2 read ` approval rule.
+            Mode::Read => &[
+                "graph_path",
+                "store_memory",
+                "only_if_present",
+                "read_only",
+                "tree_root",
+            ],
+            // `write` is `--call`, so a writing call keeps the committed export
+            // current before it exits (`crate::call_export`): `--export-to`
+            // names the file, `--no-export` asks for none.
+            Mode::Write => &[
+                "graph_path",
+                "store_memory",
+                "only_if_present",
+                "tree_root",
+                "export_to",
+                "no_export",
+            ],
         }
     }
 
     /// Whether this mode opens the store at `--graph-path` — the modes the
     /// "where is this design?" step governs. `--call`'s access is its tool's,
-    /// which only the served tool list knows, so `main` supplies it.
+    /// which only the served tool list knows, so `main` supplies it; so is a
+    /// verb's.
     pub fn opens_the_store(self) -> bool {
         matches!(
             self,
@@ -229,6 +272,8 @@ impl Mode {
                 | Mode::Call
                 | Mode::Describe
                 | Mode::ListTools
+                | Mode::Read
+                | Mode::Write
         )
     }
 }
@@ -273,6 +318,14 @@ fn why_not(id: &str, mode: Mode) -> String {
         ("read_only", Mode::Import) => "--import writes the design, and --read-only refuses \
              every write; the two ask for opposite things."
             .to_string(),
+        ("read_only", Mode::Write) => "the `write` verb is the one that may change the design, \
+             and --read-only refuses every write; the two ask for opposite things. To run a tool \
+             that only reads, use `reflow2 read <tool>`."
+            .to_string(),
+        ("call_args", Mode::Read | Mode::Write) => "a verb takes the tool's arguments AFTER the \
+             tool — `reflow2 read <tool> '<json>'`, or `--args <json>` after the tool — not \
+             before the verb."
+            .to_string(),
         ("read_only", _) => "this mode writes (a file or a process's state), and --read-only \
              refuses every write."
             .to_string(),
@@ -305,8 +358,12 @@ pub fn gate(cmd: &Command, matches: &ArgMatches) -> Result<Option<Mode>, String>
     let is_given = |id: &str| given.iter().any(|a| a.get_id() == id);
 
     let mut modes: Vec<Mode> = Vec::new();
-    if matches.subcommand_name() == Some("setup") {
-        modes.push(Mode::Setup);
+    if let Some(sub) = matches.subcommand_name()
+        && let Some(mode) = Mode::ALL
+            .into_iter()
+            .find(|m| m.is_subcommand() && m.id() == sub)
+    {
+        modes.push(mode);
     }
     if is_given("diff") {
         let paths = matches
@@ -320,7 +377,10 @@ pub fn gate(cmd: &Command, matches: &ArgMatches) -> Result<Option<Mode>, String>
         });
     }
     for mode in Mode::ALL {
-        if !matches!(mode, Mode::Setup | Mode::DiffStore | Mode::DiffFiles) && is_given(mode.id()) {
+        if !mode.is_subcommand()
+            && !matches!(mode, Mode::DiffStore | Mode::DiffFiles)
+            && is_given(mode.id())
+        {
             modes.push(mode);
         }
     }
@@ -375,7 +435,10 @@ pub struct Asked<'a> {
     pub graph_path: &'a str,
     pub access: Access,
     pub only_if_present: bool,
-    pub read_only: bool,
+    /// What asked for "change nothing", as a person typed it — `--read-only`,
+    /// or the `read` verb — so a refusal names the thing that was typed;
+    /// `None` when nothing did.
+    pub read_only: Option<&'a str>,
 }
 
 /// ⭐ "WHERE IS THIS DESIGN?" — answered once, before any one-shot mode opens
@@ -394,7 +457,7 @@ pub fn resolve_design(asked: &Asked<'_>) -> Result<(), String> {
     match crate::pointer::read(&crate::pointer::location_for(graph_path)) {
         Ok(None) => {}
         Ok(Some(pointer)) => {
-            let leftover = if Path::new(graph_path).exists() {
+            let leftover = if crate::opening::store_exists(graph_path) {
                 format!(
                     " A design store also sits at {graph_path}. It was NOT opened: it is not the \
                      design this folder names, so do not read it, copy it or write to it \
@@ -429,10 +492,12 @@ pub fn resolve_design(asked: &Asked<'_>) -> Result<(), String> {
     }
 
     // 2. --read-only, HONOURED: a write is refused before anything is opened.
-    if asked.read_only && asked.access == Access::Writes {
+    if let Some(read_only) = asked.read_only
+        && asked.access == Access::Writes
+    {
         return Err(format!(
-            "{what} writes the design, and --read-only refuses every write: nothing was opened \
-             and nothing was written. Drop --read-only to write, or call a tool that only reads."
+            "{what} writes the design, and {read_only} refuses every write: nothing was opened \
+             and nothing was written. Drop {read_only} to write, or call a tool that only reads."
         ));
     }
 
@@ -448,19 +513,22 @@ pub fn resolve_design(asked: &Asked<'_>) -> Result<(), String> {
         ));
     }
 
-    // 4. NO STORE AT THE PATH. Asked without opening anything: `describe_at`
-    // reads only the sidecars, so looking cannot mint an identity.
-    if !Path::new(graph_path).exists() {
+    // 4. NO STORE AT THE PATH — "may this open create a store?", the one rule
+    // every mode asks (`crate::opening`). Asked without opening anything:
+    // `describe_at` reads only the sidecars, so looking cannot mint an identity.
+    if !crate::opening::store_exists(graph_path) {
         // A description of the served surface opens nothing where there is no
         // store, and says it read no design — so nothing here can make one.
         if asked.access == Access::Describes {
             return Ok(());
         }
         let found = reflow2_core::describe_at(graph_path);
-        if asked.read_only {
+        if !crate::opening::may_open(graph_path, asked.read_only.is_some()) {
+            // What asked for "change nothing", as it was typed.
+            let read_only = asked.read_only.unwrap_or("--read-only");
             return Err(format!(
                 "{what} opened nothing and created nothing: there is no design store at \
-                 {graph_path} ({}), and --read-only creates nothing.",
+                 {graph_path} ({}), and {read_only} creates nothing.",
                 found.reading
             ));
         }
@@ -495,7 +563,7 @@ mod tests {
             graph_path,
             access,
             only_if_present: false,
-            read_only: false,
+            read_only: None,
         }
     }
 
@@ -546,7 +614,7 @@ mod tests {
         std::fs::create_dir_all(d.path().join(".reflow2")).unwrap();
         let g = d.path().join(".reflow2").join("graph");
         let mut a = asked(g.to_str().unwrap(), Access::Writes);
-        a.read_only = true;
+        a.read_only = Some("--read-only");
         assert!(resolve_design(&a).unwrap_err().contains("--read-only"));
         a.access = Access::Reads;
         assert!(resolve_design(&a).unwrap_err().contains("--read-only"));
@@ -562,12 +630,12 @@ mod tests {
         let g = g.to_str().unwrap();
         let mut a = asked(g, Access::Describes);
         assert!(resolve_design(&a).is_ok());
-        a.read_only = true;
+        a.read_only = Some("--read-only");
         assert!(
             resolve_design(&a).is_ok(),
             "nothing is created, so --read-only holds"
         );
-        a.read_only = false;
+        a.read_only = None;
         a.only_if_present = true;
         assert!(
             resolve_design(&a)

@@ -741,23 +741,54 @@ impl ReflowService {
         // `include_edges` (dec:idea-an-edge-reader-returns-one-nodes-edges-and-find-tools-finds-it):
         // off by default, so every caller that does not ask gets the reply it
         // always got, byte for byte.
-        let Some((query, budget_chars)) = req.include_edges.query() else {
+        //
+        // AN ABSENT NODE SAYS WHICH EMPTY IT IS ON EVERY PATH. Until
+        // 2026-10-03 the typed path answered a bare `{"node": null}` while the
+        // untyped path, for the same absent id, said why
+        // (fact:get-node-given-a-node-type-answers-an-absent-id-with-a-bare-null-2026-10-03).
+        // The typed path can say one thing more: whether the id is held under
+        // a DIFFERENT type, the commonest reason a typed read of a real id
+        // comes back empty.
+        let query = req.include_edges.query();
+        if node.is_null() {
+            let elsewhere: Vec<String> = g
+                .node_types_holding(&req.id)
+                .map_err(dyno_err)?
+                .into_iter()
+                .filter(|t| *t != node_type)
+                .collect();
+            let because = if elsewhere.is_empty() {
+                format!(
+                    "no {node_type} with id {:?} exists, and no node of any other type holds that \
+                     id, so this is \"not in this design\" rather than \"present and blank\"{}. \
+                     Check the id, or find it by its words with search_design.",
+                    req.id,
+                    if query.is_some() {
+                        ", and there are no edges to read"
+                    } else {
+                        ""
+                    }
+                )
+            } else {
+                format!(
+                    "no {node_type} with id {:?} exists, but that id IS held as {}. Read it \
+                     without `node_type`, or with that type.",
+                    req.id,
+                    elsewhere.join(" and ")
+                )
+            };
+            let mut reply = json!({ "node": JsonValue::Null, "empty_because": because });
+            // Asked for edges: say there is no edges block because there is
+            // no node, rather than leave the key out and let its absence read
+            // as "no edges".
+            if query.is_some() {
+                reply["edges"] = JsonValue::Null;
+            }
+            return self.ok_read(&g, reply);
+        }
+        let Some((query, budget_chars)) = query else {
             return self.ok_read(&g, json!({ "node": node }));
         };
-        if node.is_null() {
-            return self.ok_read(
-                &g,
-                json!({
-                    "node": JsonValue::Null,
-                    "edges": JsonValue::Null,
-                    "empty_because": format!(
-                        "no {node_type} with id {:?} exists, so there is no node and no edges to \
-                         read. Check the id, or find it by its words with search_design.",
-                        req.id
-                    ),
-                }),
-            );
-        }
         // The node is sent whole, as it always is; the edges get what is left
         // of the budget.
         let spent_chars = node.to_string().len();

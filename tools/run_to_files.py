@@ -12,12 +12,24 @@ Three sources, any mix, one JSON list out (worst outcome per file wins):
 
   --cargo FILE      the text output of `cargo test --no-fail-fast` (`-` = stdin).
                     Each test TARGET's "test result:" line is its file's
-                    outcome. A target that failed to compile prints no result
-                    and is reported as failed, not dropped.
+                    outcome. A target cargo lists as failed that never STARTED
+                    (no "Running" line: it did not compile) is reported as
+                    `blocked`, not dropped and not `failed`; one that started
+                    and printed no result (it crashed while running) is failed.
   --junit FILE      JUnit XML — what pytest (--junitxml), cargo-nextest, jest,
                     go-junit-report and most CI runners write. Grouped by each
                     testcase's `file` attribute; testcases with none are
-                    counted and named in stderr, never guessed.
+                    counted and named in stderr, never guessed. An `<error>`
+                    that says the test body never ran — pytest's "collection
+                    failure" and "failed on setup" — is `blocked`; any other
+                    `<error>` (an exception raised while the test ran, as JUnit
+                    in Java reports one) is failed.
+
+`blocked` means the run could not run the check, so it says nothing about the
+thing checked. reconcile_verification takes it since 2026-10-03; before that a
+collection error could only be fed back as `failed`, and detect_gaps then said
+the part "did not work as designed"
+(fact:root-cause-a-check-that-did-not-run-reads-did-not-work-as-designed-because-only-failing-is-loud-2026-10-02).
   --run-python GLOB run each matching python test script and record its exit
                     code (0 = passed). This converter is named run_to_files.py,
                     NOT test_*.py, so that glob never runs it as a test. reflow2's own tools/test_*.py are plain
@@ -40,7 +52,14 @@ import subprocess
 import sys
 import xml.etree.ElementTree as ET
 
-RANK = {"passed": 0, "skipped": 1, "failed": 2}
+# Worst wins, and the order matches the core's (verify.rs `outcome_rank`): a
+# failure is evidence the thing is broken; a blocked run is evidence of
+# nothing, so it outranks a pass but never hides a failure.
+RANK = {"passed": 0, "skipped": 1, "blocked": 2, "failed": 3}
+
+# What pytest writes in an `<error message=...>` when the test BODY never ran.
+# Matched at the start of the message, case-insensitively.
+NEVER_RAN = ("collection failure", "failed on setup")
 
 RUNNING = re.compile(r"^\s*Running (?:unittests )?(\S+) \((\S+)\)")
 RESULT = re.compile(r"^test result: (ok|FAILED)\.")
@@ -91,6 +110,7 @@ def resolve_cargo_path(
 def from_cargo(text: str, root: pathlib.Path, out: dict[str, str]) -> list[str]:
     unresolved: list[str] = []
     current: str | None = None
+    started: set[str] = set()
     crates = crate_dirs(root)
     text = ANSI.sub("", text)
     for line in text.splitlines():
@@ -99,20 +119,24 @@ def from_cargo(text: str, root: pathlib.Path, out: dict[str, str]) -> list[str]:
             current = resolve_cargo_path(m.group(1), m.group(2), crates, root)
             if current is None:
                 unresolved.append(m.group(1))
+            else:
+                started.add(current)
             continue
         r = RESULT.match(line.strip())
         if r and current:
             worst(out, current, "passed" if r.group(1) == "ok" else "failed")
             current = None
-    # Targets cargo lists as failed after the run — including ones that never
-    # compiled and so never printed a result line.
+    # Targets cargo lists as failed after the run. One that STARTED (it has a
+    # Running line) and printed no result crashed while running: failed. One
+    # that never started did not compile, so none of its tests ran: blocked.
     for line in text.splitlines():
         f = FAILED_TARGET.match(line)
         if f and f.group(2) == "test" and f.group(3):
             for c in crates:
                 p = c / "tests" / f"{f.group(3)}.rs"
                 if p.exists():
-                    worst(out, str(p.resolve().relative_to(root.resolve())), "failed")
+                    rel = str(p.resolve().relative_to(root.resolve()))
+                    worst(out, rel, "failed" if rel in started else "blocked")
     return unresolved
 
 
@@ -124,8 +148,12 @@ def from_junit(path: str, root: pathlib.Path, out: dict[str, str]) -> int:
         if not f:
             no_file += 1
             continue
-        if case.find("failure") is not None or case.find("error") is not None:
+        error = case.find("error")
+        if case.find("failure") is not None:
             outcome = "failed"
+        elif error is not None:
+            message = (error.get("message") or "").strip().lower()
+            outcome = "blocked" if message.startswith(NEVER_RAN) else "failed"
         elif case.find("skipped") is not None:
             outcome = "skipped"
         else:

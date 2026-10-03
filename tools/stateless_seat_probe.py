@@ -60,9 +60,10 @@ import tempfile
 import time
 import urllib.error
 import urllib.request
+from reflow2_bin import default_bin  # noqa: E402  (one binary for every gate)
 
 REPO = pathlib.Path(__file__).resolve().parent.parent
-BINARY = REPO / "target" / "debug" / "reflow2-mcp"
+BINARY = pathlib.Path(default_bin())
 
 # The revision that removes protocol-level sessions (SEP-2567) and the
 # initialize handshake (SEP-2575), and from which the SEP-2243 standard headers

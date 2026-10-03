@@ -31,15 +31,25 @@ use rmcp::handler::server::tool::ToolCallContext;
 use rmcp::handler::server::wrapper::Parameters;
 use rmcp::model::{
     CallToolRequestParams, CallToolResponse, CallToolResult, ContentBlock, Implementation,
-    ListToolsResult, PaginatedRequestParams, ServerCapabilities, ServerConfig,
+    InitializeRequestParams, InitializeResult, ListToolsResult, PaginatedRequestParams,
+    ServerCapabilities, ServerConfig,
 };
 use rmcp::service::{RequestContext, RoleServer};
 use rmcp::{ErrorData as McpError, ServerHandler, tool, tool_router};
 use serde_json::json;
 use std::path::{Path, PathBuf};
-use std::sync::Arc;
+use std::sync::atomic::{AtomicBool, Ordering};
+use std::sync::{Arc, OnceLock};
 
+use crate::readiness::Readiness;
 use crate::service::ReflowService;
+
+/// How a design the latent surface opens is readied for serving — the same
+/// preparation the server's healthy start gives a design it opened at once
+/// (`main`'s `ServeAs`: read-only, the tree root, the provenance note, the
+/// write-through export, and over HTTP the rule for who is calling). Takes the
+/// opened service and the provenance note `new_reporting` returned.
+pub type Preparation = Arc<dyn Fn(ReflowService, Option<String>) -> ReflowService + Send + Sync>;
 
 /// Whether this directory has opted into being designed.
 ///
@@ -81,6 +91,22 @@ pub struct LatentService {
     /// The full service, once the design exists. Opened at most once per
     /// process; every call re-probes the directory first.
     full: Arc<tokio::sync::RwLock<Option<ReflowService>>>,
+    /// How the design is readied once opened; `None` opens it bare, as this
+    /// surface did before it was served over HTTP.
+    prepare: Option<Preparation>,
+    /// Over HTTP (`over_http`): what `/readyz` says, turned ready the moment a
+    /// design is served here.
+    readiness: Option<Arc<Readiness>>,
+    /// Over HTTP each session is a clone of one template, and each gets its
+    /// OWN share of the design once it is served (`ReflowService::share`): its
+    /// own seat and read-hint memory, as every session of a healthy HTTP server
+    /// has. Per clone on purpose; over stdio the one session serves the design
+    /// itself, as it always did.
+    session: OnceLock<ReflowService>,
+    shares_per_session: bool,
+    /// Set when a stopping server takes the design back (`take`), so no late
+    /// call re-opens it while the store is being released.
+    stopped: Arc<AtomicBool>,
 }
 
 #[derive(Debug, serde::Deserialize, schemars::JsonSchema)]
@@ -135,7 +161,38 @@ impl LatentService {
             read_only: false,
             tool_router: Self::tool_router(),
             full: Arc::new(tokio::sync::RwLock::new(None)),
+            prepare: None,
+            readiness: None,
+            session: OnceLock::new(),
+            shares_per_session: false,
+            stopped: Arc::new(AtomicBool::new(false)),
         }
+    }
+
+    /// Ready a design this surface opens the way the server's healthy start
+    /// readies one it opened at once. ⭐ ONE PREPARATION FOR EVERY DOOR: a
+    /// design served after a wait must not be served differently from one
+    /// served at once (GitHub issue #616, fix 4: a design served after a held
+    /// lock lost the caller rule its healthy start installed).
+    pub fn prepared_by(mut self, prepare: Preparation) -> Self {
+        self.prepare = Some(prepare);
+        self
+    }
+
+    /// Serve this surface over HTTP: every session gets its own share of a
+    /// design once one is served, and `readiness` (what `/readyz` answers) is
+    /// turned ready the moment it is.
+    pub fn over_http(mut self, readiness: Arc<Readiness>) -> Self {
+        self.readiness = Some(readiness);
+        self.shares_per_session = true;
+        self
+    }
+
+    /// Hand the design back for a stopping server to close, and open nothing
+    /// more (`crate::drain`).
+    pub async fn take(&self) -> Option<ReflowService> {
+        self.stopped.store(true, Ordering::SeqCst);
+        self.full.write().await.take()
     }
 
     /// The operator's `--read-only`, honoured here as everywhere: this server
@@ -149,33 +206,65 @@ impl LatentService {
         self
     }
 
-    /// The full design service, if a design exists here NOW — re-probed on
-    /// every call, opened at most once. Best-effort: a store that will not
-    /// open leaves the latent surface in place and says why on stderr, rather
-    /// than turning "no design yet" into an outage.
+    /// This session's design service, if a design exists here NOW —
+    /// re-probed on every call, opened at most once. Over HTTP each session
+    /// gets its own share of it (`over_http`).
     pub(crate) async fn promoted(&self) -> Option<ReflowService> {
+        if !self.shares_per_session {
+            return self.opened().await;
+        }
+        if let Some(s) = self.session.get() {
+            return Some(s.clone());
+        }
+        let full = self.opened().await?;
+        let _ = self.session.set(full.share());
+        self.session.get().cloned()
+    }
+
+    /// The full design service, if a design exists here NOW. Best-effort: a
+    /// store that will not open leaves the latent surface in place and says
+    /// why on stderr, rather than turning "no design yet" into an outage.
+    async fn opened(&self) -> Option<ReflowService> {
         if let Some(full) = self.full.read().await.as_ref() {
             return Some(full.clone());
         }
-        if !design_present(&self.graph_path) {
+        if self.stopped.load(Ordering::SeqCst) || !design_present(&self.graph_path) {
             return None;
         }
         // Read-only creates nothing: an opted-in directory with no store yet is
-        // not opened, because opening it would create the store.
-        if self.read_only && !Path::new(&self.graph_path).exists() {
+        // not opened, because opening it would create the store. The rule every
+        // mode asks (`crate::opening`).
+        if !crate::opening::may_open(&self.graph_path, self.read_only) {
             return None;
         }
         let mut slot = self.full.write().await;
         if slot.is_none() {
-            match ReflowService::new_reporting(&self.graph_path) {
+            // An open builds the search index, seconds on a large design:
+            // never on the runtime's own threads, which over HTTP serve every
+            // other session meanwhile.
+            let path = self.graph_path.clone();
+            let opened = tokio::task::spawn_blocking(move || ReflowService::new_reporting(&path))
+                .await
+                .map_err(|e| format!("the open task failed: {e}"))
+                .and_then(|r| r.map_err(|e| e.to_string()));
+            match opened {
                 Ok((svc, provenance)) => {
+                    let svc = match &self.prepare {
+                        Some(prepare) => prepare(svc, provenance),
+                        None => {
+                            if let Some(note) = provenance {
+                                eprintln!("reflow2: {note}");
+                            }
+                            svc
+                        }
+                    };
                     let svc = if self.read_only {
                         svc.into_read_only()
                     } else {
                         svc
                     };
-                    if let Some(note) = provenance {
-                        eprintln!("reflow2: {note}");
+                    if let Some(readiness) = &self.readiness {
+                        readiness.set_ready();
                     }
                     eprintln!(
                         "reflow2: a design now exists at {} — this server serves the full \
@@ -422,6 +511,21 @@ async fn announce_tool_list_changed(ctx: &RequestContext<RoleServer>) {
 }
 
 impl ServerHandler for LatentService {
+    /// A session that connects once a design is served here is the design's
+    /// session from its first message, handshake record included — over HTTP
+    /// a session can connect long after another one's call opened the design.
+    async fn initialize(
+        &self,
+        request: InitializeRequestParams,
+        context: RequestContext<RoleServer>,
+    ) -> Result<InitializeResult, McpError> {
+        if let Some(full) = self.promoted().await {
+            return full.initialize(request, context).await;
+        }
+        context.peer.set_peer_info(request.clone());
+        self.negotiate_initialize(&request)
+    }
+
     /// The latent tools, or the full surface once a design exists here.
     async fn list_tools(
         &self,
@@ -472,12 +576,23 @@ impl ServerHandler for LatentService {
     }
 
     fn get_info(&self) -> ServerConfig {
+        // Once a design is served here, this server IS that design's server.
+        if let Ok(full) = self.full.try_read()
+            && let Some(full) = full.as_ref()
+        {
+            return full.get_info();
+        }
         // Said at handshake time, because the agent's first wrong conclusion
         // would otherwise be "reflow2 is not set up here" — which on a
         // machine-wide install is false in a way that costs the user the whole
         // design loop.
         // `list_changed` is DECLARED, because this server sends it: the moment a
         // design exists here it serves the full surface and says so the MCP way.
+        let instructions = if self.read_only {
+            read_only_instructions(&self.graph_path)
+        } else {
+            not_started_instructions(&self.graph_path)
+        };
         ServerConfig::new(
             ServerCapabilities::builder()
                 .enable_tools()
@@ -490,8 +605,15 @@ impl ServerHandler for LatentService {
             info.version = env!("CARGO_PKG_VERSION").to_string();
             info
         })
-        .with_instructions(format!(
-            "reflow2 IS INSTALLED AND AVAILABLE HERE, AND THIS DIRECTORY HAS NO DESIGN YET. \
+        .with_instructions(instructions)
+    }
+}
+
+/// What a session is told where no design has been started and it may start
+/// one.
+fn not_started_instructions(graph_path: &str) -> String {
+    format!(
+        "reflow2 IS INSTALLED AND AVAILABLE HERE, AND THIS DIRECTORY HAS NO DESIGN YET. \
                  Nothing has failed: no design graph has ever been started at {}, so the design \
                  tools are not served and exactly one tool is — `reflow2_start_design`.\n\nThis is \
                  the ordinary state of a directory on a machine where reflow2 is installed once \
@@ -507,7 +629,30 @@ impl ServerHandler for LatentService {
                  worked, this view is stale, and a full client restart is what attaches the design \
                  surface. Do not re-import and do not report the restore as failed. \
                  `reflow2_start_design` re-probes and will tell you if this has happened.",
-            self.graph_path, self.graph_path
-        ))
-    }
+        graph_path, graph_path
+    )
+}
+
+/// What a session is told by a server started with `--read-only` where there
+/// is no design store: there is no design to read, and why none was made.
+///
+/// Anthony's choice, 2026-10-03
+/// (`dec:a-read-only-server-with-no-store-serves-the-latent-surface`): such a
+/// server starts and serves THIS, rather than refusing to start (an MCP client
+/// would be left with no server and no reason) or creating an empty store
+/// (which `--read-only` promises not to do).
+fn read_only_instructions(graph_path: &str) -> String {
+    format!(
+        "reflow2 IS SERVING HERE READ-ONLY, AND THERE IS NO DESIGN STORE AT {graph_path}. This \
+         server was started with --read-only, which creates nothing, so it has not created one: \
+         nothing has failed, and there is no design here to read yet. The design tools are not \
+         served for that reason alone.\n\nTwo tools are served. `describe_designs` says what \
+         design lives at any path, without opening or writing anything. `reflow2_start_design` \
+         is REFUSED here, because starting a design creates it; to start one, use a session \
+         started without --read-only.\n\nA design that appears at {graph_path} later (an \
+         import, a restore, a session that writes) is served READ-ONLY by this same server from \
+         then on: the next call opens it, and calling `reflow2_start_design` re-probes and says \
+         so. Do NOT report reflow2 as missing, broken or misconfigured, and do not write design \
+         notes into files as a substitute."
+    )
 }

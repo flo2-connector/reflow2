@@ -1299,6 +1299,40 @@ class UpdateIsItsOwnWord(unittest.TestCase):
                       "the help must say what it does NOT do, or a user will "
                       "expect a new binary from it")
 
+    def test_the_wrapper_hands_read_and_write_to_the_binary_unchanged(self):
+        # `reflow2 read` / `reflow2 write` are the binary's verbs (fix program
+        # item 7b): the wrapper must pass them through word for word — a JSON
+        # object with spaces and quotes included — or a terminal rule
+        # `^reflow2 read ` would approve a command the binary never saw as
+        # written. Driven for real, against a stub binary that echoes argv.
+        import importlib.util as _ilu
+        spec = _ilu.spec_from_file_location("reflow2_install", HERE / "reflow2_install.py")
+        inst = _ilu.module_from_spec(spec)
+        spec.loader.exec_module(inst)
+        sh = shutil.which("sh")
+        if sh is None:
+            self.skipTest("no POSIX sh on this machine")
+        d = pathlib.Path(tempfile.mkdtemp(prefix="reflow2-wrapper-"))
+        self.addCleanup(shutil.rmtree, d, True)
+        stub = d / "reflow2-mcp"
+        stub.write_text('#!/bin/sh\nfor a in "$@"; do printf \'[%s]\' "$a"; done\n')
+        stub.chmod(0o755)
+        wrapper = d / "reflow2"
+        wrapper.write_text(inst.WRAPPER.format(kit=d / "kit", binary=stub))
+        wrapper.chmod(0o755)
+        obj = '{"id": "req:x", "name": "it\'s"}'
+        for argv in (["read", "get_node", obj],
+                     ["write", "add_requirement", "--args", "-"],
+                     ["read", "--list"]):
+            out = subprocess.run([sh, str(wrapper), *argv], capture_output=True,
+                                 text=True, check=True).stdout
+            self.assertEqual(out, "".join(f"[{a}]" for a in argv),
+                             f"the wrapper changed `reflow2 {' '.join(argv)}`")
+        helptext = subprocess.run([sh, str(wrapper), "help"], capture_output=True,
+                                  text=True, check=True).stdout
+        for line in ("reflow2 read <tool>", "reflow2 write <tool>", "^reflow2 read "):
+            self.assertIn(line, helptext, "the wrapper's help must name the verbs")
+
 
 if __name__ == "__main__":
     unittest.main(verbosity=2)

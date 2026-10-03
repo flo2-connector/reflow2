@@ -29,18 +29,14 @@ import subprocess
 import sys
 import tempfile
 import unittest
+from reflow2_bin import default_bin  # noqa: E402  (one binary for every gate)
 
 REPO = pathlib.Path(__file__).resolve().parent.parent
 
 
 def find_binary() -> str | None:
-    env = os.environ.get("REFLOW2_MCP_BIN")
-    if env and pathlib.Path(env).exists():
-        return env
-    for c in (REPO / "target/debug/reflow2-mcp", REPO / "target/release/reflow2-mcp"):
-        if c.exists():
-            return str(c)
-    return shutil.which("reflow2-mcp")
+    b = default_bin()
+    return b if pathlib.Path(b).exists() else None
 
 
 class Client:

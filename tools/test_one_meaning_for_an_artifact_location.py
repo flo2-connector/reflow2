@@ -43,9 +43,10 @@ import tempfile
 
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
 from smoke_mcp import Server  # noqa: E402
+from reflow2_bin import default_bin  # noqa: E402  (one binary for every gate)
 
 REPO = pathlib.Path(__file__).resolve().parent.parent
-BINARY = os.environ.get("REFLOW2_BIN") or str(REPO / "target" / "debug" / "reflow2-mcp")
+BINARY = default_bin()
 CHECK = REPO / "tools" / "reflow2_check.py"
 
 

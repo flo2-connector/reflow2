@@ -42,9 +42,10 @@ import time
 import unittest
 import urllib.error
 import urllib.request
+from reflow2_bin import default_bin  # noqa: E402  (one binary for every gate)
 
 REPO = pathlib.Path(__file__).resolve().parent.parent
-BINARY = REPO / "target" / "debug" / "reflow2-mcp"
+BINARY = pathlib.Path(default_bin())
 
 
 def free_port() -> int:

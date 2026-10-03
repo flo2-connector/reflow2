@@ -461,6 +461,7 @@ NON_TOOL_TERMS = {
     "duplicate",
     "event",
     "failing_verification",
+    "blocked_verification",
     "flexible",
     "gap",
     "generated_content",

@@ -42,9 +42,10 @@ import shutil
 import subprocess
 import sys
 import tempfile
+from reflow2_bin import default_bin  # noqa: E402  (one binary for every gate)
 
 REPO = pathlib.Path(__file__).resolve().parent.parent
-BINARY = REPO / "target" / "debug" / "reflow2-mcp"
+BINARY = pathlib.Path(default_bin())
 
 CLIENT_NAME = "feedback-probe"
 CLIENT_VERSION = "9.9.9"

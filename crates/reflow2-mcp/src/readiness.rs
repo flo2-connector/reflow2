@@ -106,6 +106,12 @@ pub const HELD_ELSEWHERE: &str = "the design is held by another process; this se
 pub const CANNOT_OPEN: &str = "the design could not be opened, and waiting will not fix it; the \
                                server log says why, and a restart after fixing the cause serves it";
 
+/// What a probe of a server serving the latent surface is told: there is no
+/// design to serve yet (`crate::latent`). Turned ready when one appears.
+pub const NO_DESIGN_HERE: &str = "no design store exists where this server was pointed, so there \
+                                  is no design to serve yet; it serves one as soon as one exists \
+                                  there, with no restart";
+
 /// `inner`, with `/readyz` and `/healthz` answered in front of it.
 #[derive(Clone)]
 pub struct Probes<S> {

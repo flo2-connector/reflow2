@@ -423,7 +423,8 @@ impl ReflowService {
                        records — the P4 reconcile, last of the three feedback loops (BL-30): \
                        reconcile_artifacts asks about the code, this about the outcomes, \
                        reconcile_deployment about what runs. Supply one entry per check the \
-                       run executed ('passed'/'failed'/'skipped'). A recorded 'passing' that \
+                       run reached ('passed'/'failed'/'skipped', or 'blocked' when it could not \
+                       run the check at all). A recorded 'passing' that \
                        the run failed is the dangerous direction and sorts first — the design \
                        believed proven what is actually broken. With record_events each \
                        divergence is a persistent DriftEvent (and unresolved_drift gap), \

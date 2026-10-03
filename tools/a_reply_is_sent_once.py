@@ -48,6 +48,7 @@ import tempfile
 
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
 from smoke_mcp import Server  # noqa: E402  (path set above)
+from reflow2_bin import default_bin  # noqa: E402  (one binary for every gate)
 
 # Tools that answer with a DOCUMENT rather than a record: the text block is the
 # answer and there is no structured half to point at. They are recognised on the
@@ -86,9 +87,10 @@ def payload_is_duplicated(text: str, structured) -> bool:
 
 def main() -> int:
     ap = argparse.ArgumentParser()
-    ap.add_argument("--bin", default="target/debug/reflow2-mcp")
+    ap.add_argument("--bin", default=None, help="reflow2-mcp binary (default: $REFLOW2_BIN, else this checkout's debug build)")
     ap.add_argument("--export", default="docs/design/reflow2.json")
     a = ap.parse_args()
+    a.bin = a.bin or default_bin()
 
     export = pathlib.Path(a.export)
     if not export.exists():

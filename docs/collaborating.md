@@ -200,8 +200,10 @@ was the shipped default for a long time and it is worth naming, because the fail
 property of reflow2 rather than of a config line: a fleet of six sessions spent five days taking
 turns, and building a protocol for taking turns, around a limitation their binary had already lost.
 
-**Who owns the server: nobody.** It runs in its own process group, so the session that happened to
-start it can be closed, crash, or be Ctrl-C'd without disturbing the others. When no session has used
+**Who owns the server: nobody.** It runs in a session of its own, with no terminal and none of the
+files, pipes or locks its launcher had open, so the session that happened to start it can be closed,
+crash, or be Ctrl-C'd without disturbing the others, and a lock held by whatever launched that session
+(`flock`, an editor) is released when the launcher ends, not when the server does. When no session has used
 it for a while it exits and releases the store's write lock (`--idle-timeout`, default 120 minutes),
 because holding that lock blocks `--import`, a live `--diff`, and anything else that opens the graph
 directly. Sessions recover from that on their own — the next tool call starts a replacement and is

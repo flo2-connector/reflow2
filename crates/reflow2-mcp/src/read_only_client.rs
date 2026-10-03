@@ -33,7 +33,7 @@
 //!    a call names a tool it has not seen listed. A server that cannot be asked
 //!    (unreachable, refused, an unreadable list), a tool it does not list, and a
 //!    tool with no hint are all refused as writes.
-//! 3. **The file rule** ([`crate::service::FILE_WRITING_TOOLS`]): `export_graph`
+//! 3. **The file rule** ([`crate::service::writes_a_file`]): `export_graph`
 //!    and `export_surface` are annotated read-only because they do not write the
 //!    GRAPH, but with `path` they write a FILE on the server. With `path` they are
 //!    refused; without it they answer in the reply and pass — exactly what a
@@ -75,7 +75,7 @@ use std::sync::atomic::{AtomicU64, Ordering};
 use serde_json::{Value, json};
 use tokio::sync::{Mutex, RwLock};
 
-use crate::service::{FILE_WRITING_TOOLS, ReflowService};
+use crate::service::ReflowService;
 
 /// The phrase every client-side refusal starts with, so a reader — and a
 /// test — can tell this client's refusal from the server's.
@@ -315,11 +315,7 @@ impl ReadOnlyClient {
             Some(false) => return Err(Why::WritesHere),
             Some(true) => {}
         }
-        if FILE_WRITING_TOOLS.contains(&tool)
-            && args
-                .and_then(|a| a.get("path"))
-                .is_some_and(|p| !p.is_null())
-        {
+        if crate::service::writes_a_file(tool, args) {
             return Err(Why::WritesAFile);
         }
         match self.theirs_for(tool, up).await? {
@@ -514,6 +510,7 @@ fn reads_by_name_json(tools: &[Value]) -> HashMap<String, bool> {
 #[cfg(test)]
 mod tests {
     use super::*;
+    use crate::service::FILE_WRITING_TOOLS;
 
     /// A server that answers `tools/list` with `tools`, and counts what it is sent.
     struct Fake {

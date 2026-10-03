@@ -100,6 +100,36 @@ This file is the third view: *what changed, and when*.
     `REFLOW2_BLESS_ACCEPTANCE=1 cargo test -p reflow2-core --no-default-features --test
     a_schema_narrowing_ships_its_migration`. Until then that test fails on purpose, and the bless
     refuses while any narrowing is unaccounted for.
+- **`reflow2 read <tool>` and `reflow2 write <tool>`: a terminal can approve every read once and
+  still ask before each write.** Where an organisation blocks MCP, a VS Code agent reaches reflow2
+  through `--call`, and VS Code asked about every call. One approval rule could not tell a read
+  from a write: the command named a tool and nothing else, and nothing listed which of the 195
+  tools only read (78). This is step 3 of the plan for the `--call` door
+  (`req:a-terminal-agent-can-auto-approve-reads-and-confirm-each-write`).
+  - **`reflow2 read <tool> [JSON]`** runs a tool only if it changes nothing: its served annotation
+    says it only reads, and `export_graph` and `export_surface` are given no `path` (with one they
+    write a file). Every other tool is refused by name before anything is opened, exit 1, and the
+    refusal names `reflow2 write`. What it accepts runs as `--read-only --call` runs it, and it
+    never creates a design.
+  - **`reflow2 write <tool> [JSON]`** runs any tool, exactly as `--call` does, so a write keeps
+    the committed export current: `--export-to FILE` or `--no-export` go before the verb
+    (`reflow2 --no-export write …`).
+  - **Arguments:** a JSON object after the tool, or `--args JSON`, or `-` to read it from stdin
+    (use a quoted heredoc, `<<'EOF'`). Only the tool, its arguments and `--graph-path` may follow
+    the verb; any other flag there is refused.
+  - **Quiet:** neither verb prints routine log lines. stderr carries a refusal or a warning only
+    (`RUST_LOG` still overrides).
+  - **`reflow2 read --list`** prints which tools `read` runs and which need `write`, from the
+    served annotations.
+  - The verbs are the binary's own (`reflow2-mcp read …`). The `reflow2` command the installer
+    puts on your PATH hands them over unchanged, and its help now names them.
+  - **What to do:** in VS Code, add `"chat.tools.terminal.autoApprove": { "/^reflow2 read /": true
+    }` to your settings and leave `reflow2 write` out, so each write still asks. The snippet and
+    its limits are in getting-started/SETUP.md. In short: a shell redirection on the same line
+    (`> file`) is the shell writing, which reflow2 cannot see, and VS Code calls auto-approval a
+    best-effort convenience, not a security boundary. `--call` is unchanged. Re-run the installer
+    to get the new help text; the verbs already work through an older `reflow2` command.
+
 - **`get_node` reads a node's edges when you ask: pass `include_edges`.** Until now no read
   returned one node's edges as edges. `get_node` gave the properties only, and the nearest reader,
   `propagate_from` at depth 1, left out authorship and every edge's evidence. To see what a node is
@@ -313,6 +343,58 @@ This file is the third view: *what changed, and when*.
   late on purpose to keep it that way. `a_build_can_call_one_tool_from_the_shell.rs` had the same
   kind of wait, a write through `--call`, and now waits for its server's handshake instead.
   **What to do:** nothing. If a pull request failed on this message, re-run it.
+- **Seven small fixes from the VS Code `--call` field report** (fix program item 8). Each one
+  made reflow2 say something untrue or less than it knew.
+  - **`external_dependency` replies with a receipt, and re-declaring keeps what you leave out.**
+    It used to reply with every dependency the design declares, as TOML, growing about 150 bytes
+    per declaration and naming no node. Re-declaring (to move a pin) also cleared `components`,
+    `features`, the watch and the Resource's description, which hub sessions had to retype eight
+    times. Now the reply is the declared Resource, a `revision` block saying what changed or was
+    removed (the prior state is kept in a snapshot), and `address_baseline` for an address watch.
+    Leave a field out to keep it; pass `[]` to clear a list, or `""` to stop a watch. **What to
+    do:** read the whole manifest with `reconcile_dependencies` (it writes nothing) if you used to
+    read it from this reply. Every write's reply shape is now listed in a test, so a write that
+    joins the surface replying with something other than a receipt fails the build.
+  - **A check that could not run can say so.** `reconcile_verification` takes the outcome
+    `blocked` (a collection error, a test file that did not compile, a setup that failed before
+    the body ran). `tools/run_to_files.py` writes `blocked` for pytest's "collection failure" and
+    "failed on setup" errors and for a cargo test target that never started; any other JUnit
+    `<error>` is still `failed`. A check whose status is `blocked` now raises the gap
+    `blocked_verification` (severity 0.65), which says nothing is known about the part, never
+    that it failed. **What to do:** feed a collection error back as `blocked`, not `failed`; a
+    `failed` still raises `failing_verification`, "did not work as designed".
+  - **The served hub skill named the wrong list.** It said a local hub's designs are the
+    session's MCP configuration. They are the hub's declared dependencies, which `upstream_status`
+    reads back, through MCP and through `--call` alike.
+  - **`get_node` with a `node_type` says why an id is absent.** It answered a bare
+    `{"node": null}`; now `empty_because` says so, and names the type that does hold the id when
+    one does. `tools/empty_speaks.py` now probes each optional id- or type-shaped parameter too,
+    which is how this one was missed.
+  - **One binary for every gate.** About twenty gates hard-coded `target/debug/reflow2-mcp`, and
+    two read their own variables. They all take it from `tools/reflow2_bin.py` now: `$REFLOW2_BIN`,
+    else the debug build, else the release build (said on stderr). **What to do:** run
+    `REFLOW2_BIN=target/release/reflow2-mcp python3 tools/run_ci_gates.py` to check the whole set
+    against a release build; `$REFLOW2_MCP` and `$REFLOW2_MCP_BIN` are no longer read.
+  - **The `find_tools` replica ranks as `find_tools` does.** `tools/tool_confusability.py` scored
+    text that `tools/list` adds and `find_tools` never sees (the `draw_edges` sentence on 32 edge
+    helpers, the `echo` parameter), so it agreed with the live ranker on 186 of 193 queries. It
+    now strips them (193 of 193), `--validate` checks against the real binary and runs in CI, and
+    `--baseline` refuses to rewrite the rank ratchet from rankings the live ranker does not give.
+  - **reflow2's own design** now records the dependency-currency check (#651) as realized, with
+    the workflow and checker that realize it and the test that verifies it.
+
+- **A shared server started by a session no longer keeps that session's open files, locks or
+  terminal.** On Unix, a `--shared` client that starts the `--serve-shared` server used to pass on
+  every descriptor its own launcher had left open: a `flock` lock, a pipe, a terminal. The server
+  kept them for its whole life, two hours idle by default. On 2026-10-03 two such servers held a
+  build lock for about fifteen minutes and stopped every build on the machine. The server now
+  starts in a session of its own, with no controlling terminal, and keeps nothing of its launcher's
+  but the log and `/dev/null` it is given. The client that started it now also collects its exit
+  status when it stops. Before, each server that stopped while its client was still running stayed
+  in the process table as a zombie; one client up for a week had 42. **What to do:** nothing beyond
+  updating. A server already running keeps what it inherited until it stops, so run
+  `reflow2-mcp --graph-path <path> --stop-shared` if one is holding a lock. Windows is unchanged:
+  reflow2 ships no Windows build.
 - **A read through `--call` on a design another session holds is now as true as a read of the
   design itself.** While a `--serve-shared` server (another session) holds a design, `--call`
   answers a read-only tool from a copy of the store. That copy left out things the reads depend
@@ -446,6 +528,40 @@ This file is the third view: *what changed, and when*.
   `--read-only`. Drop the flag to write. A read-only client now also refuses `design_identity`,
   which is marked as a write, just as `--read-only --call design_identity` already does.
   (`fact:read-only-is-silently-ignored-by-the-remote-and-shared-clients-2026-10-02`)
+
+- **A server started with `--read-only` where there is no design store now creates nothing.**
+  Until now a stdio, `--http` or `--serve-shared` server started that way opened the path, which
+  created an empty store with its version stamp and identity beside it, and then served that empty
+  design read-only. `--serve-shared` also published its rendezvous file. The flag's help said "no
+  design store is created where there is none", and that was false for these servers from the day
+  it was written.
+
+  What happens now (Anthony's choice, 2026-10-03, over refusing to start and over keeping the old
+  behaviour):
+  - **The server starts and serves the latent surface**, the one `--only-if-present` serves where
+    no design has been started. Its handshake says there is no design store, and that `--read-only`
+    creates none. `describe_designs` answers. `reflow2_start_design` is refused.
+  - **Nothing is created:** no store, no version stamp, nothing beside it. A `--serve-shared` server
+    publishes no rendezvous.
+  - **Over `--http` and `--serve-shared` the latent surface is served over HTTP**, and `GET
+    /readyz` answers 503 until a design is served.
+  - **A store that appears there later**, from an import, a restore or a session that writes, is
+    served read-only by the same server with no restart. `/readyz` then answers 200.
+  - `--registry-root` already opened only the stores it found, and still does.
+
+  Two fixes to the latent surface came with this, for `--only-if-present` with or without
+  `--read-only`:
+  - **It is served on the transport you asked for.** With `--http ADDR`, it used to be served on
+    stdio instead. A server started with its stdin closed exited at once, and nothing listened at
+    ADDR.
+  - **A design it starts, or that appears under it, is readied the way the server would have
+    readied it at start.** That includes your `--export-to`, which was never started for that
+    design, and over HTTP the rule for who is calling.
+
+  **What to do:** nothing, unless something relied on a read-only server making an empty store.
+  To start a design, use a session without `--read-only`, or import one with `--import`. A
+  read-only server already running picks it up on its next call.
+  (`fact:a-read-only-server-creates-an-empty-store-where-there-is-none-2026-10-03`)
 
 - **The handshake record (`<graph>.client.json`) names the revision rmcp actually sent.** reflow2
   keeps a copy of rmcp's negotiation rule, because rmcp does not export it, and the copy was out of

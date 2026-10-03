@@ -19,8 +19,9 @@ import tempfile
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from smoke_mcp import Server  # noqa: E402
+from reflow2_bin import default_bin  # noqa: E402  (one binary for every gate)
 
-BIN = os.environ.get("REFLOW2_MCP", "target/debug/reflow2-mcp")
+BIN = default_bin()
 SIGNPOST_HEAD = "This reply's payload is in `structuredContent`."
 
 failures: list[str] = []
