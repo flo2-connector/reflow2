@@ -12,6 +12,7 @@ pub mod caller;
 pub mod client_setup;
 pub mod content_policy;
 pub mod degraded;
+pub mod describe_tool;
 pub mod drain;
 pub mod drawn_edges;
 pub mod dto;

@@ -259,6 +259,12 @@ the day, stopping is a perfectly good answer. Everything decided so far is alrea
   `--read-only --call …` changes nothing: a tool that writes is refused, and so is a file that
   `export_graph` or `export_surface` would write. A flag the call does not read, such as
   `--export-to`, `--remote` or `--shared`, is refused by name rather than ignored.
+- **Read how to call a tool before you call it.** `reflow2-mcp --graph-path .reflow2/graph
+  --describe add_decision` prints the tool's input schema (every nested shape, allowed value and
+  required field) and the lessons your design holds for it — what an MCP session on that design
+  is given, which `--call` alone never shows. It is brief by default; `--full` prints the entry
+  unchanged, and `--list-tools --full` prints every tool, for rendering a reference. It only
+  reads. The same answer is the tool `describe_schema` with `tool`, through any door.
 - **Gate CI on the committed export.** `tools/reflow2_check.py` (in the kit) rehashes every
   registered artifact against the working tree and runs the gap detectors, exiting non-zero on
   unaccepted drift or a serious open gap — so the design is checked on every commit, not once a

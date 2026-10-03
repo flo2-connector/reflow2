@@ -90,6 +90,15 @@ python3 tools/test_init.py
 ./target/release/reflow2-mcp --graph-path .reflow2/graph --call graph_report
 ./target/release/reflow2-mcp --graph-path .reflow2/graph --call budget_report --args '{"constraint_id":"con:mass"}'
 
+# Read how to call a tool before calling it through that door: its input schema
+# (nested $defs shapes, allowed values) and the lessons THIS design holds for it
+# — the tools/list entry a session on the design gets, which --call never reads.
+# Brief by default (under the reply budget); --full is the entry unaltered.
+# --list-tools --full is the whole served list, for a generator. Read-only; the
+# same answer is served as describe_schema with `tool`.
+./target/release/reflow2-mcp --graph-path .reflow2/graph --describe add_decision
+./target/release/reflow2-mcp --graph-path .reflow2/graph --list-tools --full
+
 # Load a design into a graph without speaking MCP — the sibling of --export.
 # Upsert, so it layers onto whatever is there. Takes `-` for stdin, so an export
 # on one machine pipes into an import on another. The graph is single-writer:

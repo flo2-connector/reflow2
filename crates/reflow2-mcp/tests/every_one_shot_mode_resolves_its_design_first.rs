@@ -253,6 +253,10 @@ fn in_a_folder_that_names_its_design_on_a_server_every_mode_that_opens_the_store
         vec!["--call", "import_graph", "--args", &import_args],
         vec!["--only-if-present", "--call", "design_identity"],
         vec!["--graph-path", ".reflow2/graph", "--call", "graph_report"],
+        // The lessons a described tool carries are the named design's, which
+        // this door cannot reach (step 4 of the door plan).
+        vec!["--describe", "get_node"],
+        vec!["--list-tools", "--full"],
     ];
     for args in &cases {
         let o = s.run(args);
@@ -565,6 +569,15 @@ fn honoured(mode: &str) -> &'static [&'static str] {
         "--diff BASE OTHER" | "--merge" => &["--read-only"],
         "--merge-apply" => &["--read-only", "--resolutions"],
         "--stop-shared" => &["--graph-path"],
+        // Step 4 of the door plan: they read the design's lessons and change
+        // nothing; `--full` asks for the tools/list entries unaltered.
+        "--describe" | "--list-tools" => &[
+            "--graph-path",
+            "--store-memory",
+            "--only-if-present",
+            "--read-only",
+            "--full",
+        ],
         other => panic!("no row for {other}"),
     }
 }
@@ -583,11 +596,13 @@ fn mode_argv(mode: &str) -> Vec<&'static str> {
         "--merge-driver" => vec!["--merge-driver", "a.json", "b.json", "c.json"],
         "--call" => vec!["--call", "graph_report"],
         "--stop-shared" => vec!["--stop-shared"],
+        "--describe" => vec!["--describe", "get_node"],
+        "--list-tools" => vec!["--list-tools"],
         other => panic!("no argv for {other}"),
     }
 }
 
-const MODES: [&str; 11] = [
+const MODES: [&str; 13] = [
     "setup",
     "--export",
     "--export-snapshot",
@@ -599,6 +614,8 @@ const MODES: [&str; 11] = [
     "--merge-driver",
     "--call",
     "--stop-shared",
+    "--describe",
+    "--list-tools",
 ];
 
 /// The mode a flag selects, when it selects one.
@@ -615,6 +632,8 @@ fn mode_of_flag(flag: &str) -> Option<&'static str> {
         "--merge-driver" => Some("--merge-driver"),
         "--call" => Some("--call"),
         "--stop-shared" => Some("--stop-shared"),
+        "--describe" => Some("--describe"),
+        "--list-tools" => Some("--list-tools"),
         _ => None,
     }
 }

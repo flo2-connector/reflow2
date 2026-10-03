@@ -2610,6 +2610,17 @@ pub struct DescribeSchemaReq {
     /// require?" answer. Ignored without `node_type`.
     #[serde(default)]
     pub required_only: bool,
+    /// A served TOOL's name, alone: how to call it — its input schema (every
+    /// nested shape and allowed value) and the lessons this design holds for
+    /// it, as tools/list gives them to a session on this design.
+    #[serde(default)]
+    pub tool: Option<String>,
+    /// With `tool`: the tools/list entry unaltered — the whole description,
+    /// lessons appended, and every field's whole description. Without it the
+    /// reply is brief: field descriptions cut to their first sentence, nothing
+    /// structural dropped.
+    #[serde(default)]
+    pub full: bool,
 }
 
 #[derive(Debug, Deserialize, JsonSchema)]
@@ -7424,6 +7435,22 @@ impl ReflowService {
     /// The served tool list with this design's lessons appended to the
     /// descriptions of the tools they name — the moment before the call.
     pub async fn tools_with_lessons(&self) -> Vec<rmcp::model::Tool> {
+        let by_step = {
+            let g = self.graph.read().await;
+            crate::lessons::lessons_by_step(&g)
+        };
+        self.served_list(&by_step)
+    }
+
+    /// THE served list, built from a given set of lessons — the one function
+    /// `tools/list`, the `--call` door, `--describe` / `--list-tools` and
+    /// `describe_schema` with `tool` all build it with, so no reader of the
+    /// surface can disagree with what a session is offered
+    /// (`req:the-cli-describes-any-tool-with-its-full-schema-and-lessons`).
+    fn served_list(
+        &self,
+        by_step: &std::collections::BTreeMap<String, Vec<crate::lessons::Lesson>>,
+    ) -> Vec<rmcp::model::Tool> {
         // Every write tool takes `echo` (`crate::receipt`); declared here, on
         // the one listing a session, `--call` and toolsnap all read. The
         // aliases the argument check reads (`crate::arguments`) are taken out:
@@ -7432,10 +7459,6 @@ impl ReflowService {
             .into_iter()
             .map(crate::arguments::published)
             .collect();
-        let by_step = {
-            let g = self.graph.read().await;
-            crate::lessons::lessons_by_step(&g)
-        };
         // Two list-time decorations, both generated from one table each:
         // which calls settle intent (crate::settles, served as _meta so a
         // gateway signing on its caller's behalf reads the rule instead of a
@@ -7443,8 +7466,31 @@ impl ReflowService {
         // at LIST time like the lessons so what `find_tools` ranks stays each
         // tool's own job.
         crate::bulk_edges::name_the_bulk_route(crate::settles::declare_on(
-            crate::lessons::enrich_tools(tools, &by_step),
+            crate::lessons::enrich_tools(tools, by_step),
         ))
+    }
+
+    /// The served list of THIS design and the lessons it carries, from one read
+    /// of the design — what `--describe`, `--list-tools` and `describe_schema`
+    /// with `tool` render (`crate::describe_tool`).
+    pub async fn tool_listing(&self) -> crate::describe_tool::ToolListing {
+        let by_step = {
+            let g = self.graph.read().await;
+            crate::lessons::lessons_by_step(&g)
+        };
+        self.listing_from(by_step)
+    }
+
+    /// [`Self::tool_listing`] for a caller that already holds the graph.
+    pub(crate) fn listing_from(
+        &self,
+        lessons: std::collections::BTreeMap<String, Vec<crate::lessons::Lesson>>,
+    ) -> crate::describe_tool::ToolListing {
+        crate::describe_tool::ToolListing {
+            served: self.served_list(&lessons),
+            bare: self.served_list(&std::collections::BTreeMap::new()),
+            lessons,
+        }
     }
 
     /// Test seam for the listing above — the `list_tools` override needs a

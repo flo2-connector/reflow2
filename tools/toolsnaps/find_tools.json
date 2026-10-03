@@ -2,7 +2,7 @@
   "annotations": {
     "readOnlyHint": true
   },
-  "description": "Find the reflow2 tool for a job you can describe but cannot name — 'how do I record that a file implements a capability?', 'what shows me the blast radius?'. Ranked over the served surface itself (name, description and parameter names), so it can never drift from the tools that actually exist. The whole surface is too large to hold in context at once; this is its catalogue. Descriptions come back trimmed — call the tool you picked, or read its full schema, once you know its name.",
+  "description": "Find the reflow2 tool for a job you can describe but cannot name — 'how do I record that a file implements a capability?', 'what shows me the blast radius?'. Ranked over the served surface itself (name, description and parameter names), so it can never drift from the tools that actually exist. The whole surface is too large to hold in context at once; this is its catalogue. Descriptions come back trimmed; once you know the name, `describe_schema` with `tool` reads its whole input schema and the lessons this design holds for it (the reply's `describe` says how, through any door).",
   "inputSchema": {
     "$schema": "https://json-schema.org/draft/2020-12/schema",
     "additionalProperties": false,
