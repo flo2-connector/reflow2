@@ -134,6 +134,17 @@ const ALLOWED: &[(&str, &str, &str)] = &[
          every design it opens.",
     ),
     (
+        "reflow2-mcp/src/arguments.rs",
+        "TRANSPORT",
+        "A tokio TASK-LOCAL beside WRITES_FOR, ACTING and SIGNER, and the same shape: it \
+         holds which door the ONE tool call now being served came through (an MCP \
+         session or the `--call` door), set by `call_tool` around that call's handler \
+         and gone when it returns, so a handler that checks arguments itself \
+         (`draw_edges`, per item) gives the advice the call would. It is a fact about \
+         the caller's connection, never about a design: two calls each see only their \
+         own value.",
+    ),
+    (
         "reflow2-mcp/src/content_policy.rs",
         "OVERRIDE",
         "The operator's `--content-policy` / REFLOW2_CONTENT_POLICY, parsed once \
