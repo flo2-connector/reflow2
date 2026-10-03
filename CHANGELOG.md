@@ -149,6 +149,24 @@ This file is the third view: *what changed, and when*.
 
 ### Fixed
 
+- **A refused write stores nothing.** Until now a typed write such as `add_requirement`,
+  `add_decision` or `add_verification` could store the node and then refuse the call over a later
+  argument: a bad `priority` or `kind`, a `related_to` naming nothing, an edge the schema does not
+  allow. The node stayed behind. That had three consequences:
+  - On an existing id, `add_capability` replied "nothing was written" after it had already
+    overwritten the description.
+  - The corrected retry was treated as a revise, so the duplicate check never ran on it.
+  - The leftover node could block your next, different capture as a near-duplicate.
+
+  Now every call to a write tool is one unit. Everything it writes, including the node, its fields,
+  its edges and the snapshot of what it replaced, lands together when the call succeeds and is
+  dropped when it is refused. The store's other paths join that unit rather than committing it
+  early: a bulk form, an import or a HEAL inside the call, and reads, searches and derived reports
+  made during it. A refused call also no longer sets off the write-through export. The same holds
+  through the `--call` door. **What to do:** nothing. If you worked around this by checking with
+  `get_node` before retrying a refused write, you can stop. A node such a refusal left in your
+  design before this release is still there, so delete it or keep it on purpose.
+  (`dec:idea-a-refused-typed-write-stores-nothing`)
 - **Every one-shot command now finds its design before it opens one, and refuses a flag it does not
   read instead of ignoring it.** The one-shot commands are `--call`, `--export`, `--export-snapshot`,
   `--import`, `--diff`, `--merge`, `--merge-apply`, `--merge-driver`, `--stop-shared` and `setup`.

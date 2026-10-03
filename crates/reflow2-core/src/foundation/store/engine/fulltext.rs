@@ -50,6 +50,10 @@ impl StorageEngine {
     /// first. Empty when the schema declares no `fulltext` property. Fails loud
     /// if full-text was enabled on a live engine that opened without an index
     /// (see `fulltext_unavailable`).
+    ///
+    /// INSIDE AN OPEN BATCH it answers for the batch's own writes, as every
+    /// other read does: the batch's pending text is published first (see
+    /// `TextBatch` for why, and for how a discard then undoes it).
     #[cfg(feature = "fulltext")]
     pub fn search_fulltext(
         &self,
@@ -59,6 +63,7 @@ impl StorageEngine {
         limit: usize,
     ) -> Result<Vec<FulltextHit>, DynoError> {
         if let Some(ti) = &self.text_index {
+            self.publish_text()?;
             return ti
                 .search(graph_id, query, node_type, limit)
                 .map(|hits| hits.into_iter().map(FulltextHit::from).collect())

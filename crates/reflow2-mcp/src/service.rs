@@ -9,6 +9,9 @@
 //!
 //! The deterministic core is synchronous; each tool briefly locks the graph,
 //! runs the sync op, and releases — never awaiting while the guard is held.
+//! A WRITE tool's hold is its call's write unit (`service::unit`): taken at its
+//! first write, kept to the end of the call, and settled there — committed if
+//! the call succeeded, discarded if it refused.
 
 use std::collections::HashMap;
 use std::sync::Arc;
@@ -27,12 +30,15 @@ use rmcp::{
 use schemars::JsonSchema;
 use serde::Deserialize;
 use serde_json::{Map as JsonMap, Value as JsonValue, json};
-use tokio::sync::RwLock;
 
 use reflow2_core::{
     ChangeType, DesignGraph, DriftDisposition, DynoError, LoopStatus, ReadinessKind, StoredNode,
     Value,
 };
+
+/// One write unit per tool call — `dec:idea-a-refused-typed-write-stores-nothing`.
+mod unit;
+pub(crate) use unit::{CallScope, CallUnit, GraphHold, Settled, SharedGraph};
 
 /// Who is actually answering: the crate version this binary was built from,
 /// and when the binary itself was last modified. The stale-server failure
@@ -290,7 +296,12 @@ pub struct ReflowService {
     /// sessions share one server (`req:sessions-share-a-graph`), and a mutex
     /// would queue every READ behind every other read. Writes still exclude
     /// everything, which is what keeps a client from seeing a partial one.
-    pub(crate) graph: Arc<RwLock<DesignGraph>>,
+    ///
+    /// A [`SharedGraph`], not the bare lock: its doors are unit-aware, so a
+    /// served write call's writes are one unit and its reads see them, and the
+    /// only door to `&mut DesignGraph` is [`ReflowService::write_lock`]
+    /// (`crate::service::unit`).
+    pub(crate) graph: SharedGraph,
     pub(crate) tool_router: ToolRouter<Self>,
     /// Where this seat's graph lives on disk, so it can remember which shared
     /// export it is in step with (`req:stale-seat-knows`) and which design it
@@ -453,7 +464,7 @@ tokio::task_local! {
 /// lock twice has each hold's writes credited by that hold, and a write made
 /// by another session between them is never mistaken for this one's.
 pub(crate) struct GraphWrite<'a> {
-    guard: tokio::sync::RwLockWriteGuard<'a, DesignGraph>,
+    guard: GraphHold<'a>,
     writes_for: Option<String>,
     /// Whether this hold named an agent, so the drop ends it — one call's
     /// agent must never leak into the next write.
@@ -6381,7 +6392,7 @@ impl ReflowService {
             + Self::claims_tools_router();
         let tool_router = crate::arguments::close_empty_schemas(tool_router);
         Self {
-            graph: Arc::new(RwLock::new(graph)),
+            graph: SharedGraph::new(graph),
             read_only: false,
             refuses_file_writes: false,
             seat: std::sync::Arc::new(reflow2_core::identity::SeatLease::attach()),
@@ -6431,7 +6442,7 @@ impl ReflowService {
         let auto = crate::auto_export::AutoExport::new(path);
         crate::auto_export::spawn(
             Arc::clone(&auto),
-            Arc::downgrade(&self.graph),
+            self.graph.downgrade(),
             self.graph_path.clone(),
         );
         self.auto_export = Some(auto);
@@ -6512,7 +6523,7 @@ impl ReflowService {
     /// would be a bug that is very hard to see.
     pub fn share(&self) -> Self {
         Self {
-            graph: Arc::clone(&self.graph),
+            graph: self.graph.clone(),
             tool_router: self.tool_router.clone(),
             graph_path: self.graph_path.clone(),
             // A property of the STORE, like the graph: every session on this
@@ -6603,6 +6614,18 @@ impl ReflowService {
     /// the read-side loop_hint knows the owed-set may have moved (BL-91). Every
     /// write site uses this in place of `self.graph.read()`; over-counting a
     /// non-mutating pass only costs one extra `loop_status`, never correctness.
+    ///
+    /// ⭐ INSIDE A SERVED WRITE CALL the hold is the call's WRITE UNIT
+    /// (`crate::service::unit`, `dec:idea-a-refused-typed-write-stores-nothing`):
+    /// everything written under it, through every hold the handler takes, is
+    /// committed once when the handler succeeds and discarded when it refuses.
+    /// The write generation and the write-through are then moved by
+    /// [`Self::announce_write`] when the unit COMMITS, never here — a refused
+    /// call changed nothing, so it must set nothing off.
+    ///
+    /// A tool the catalogue marks read-only is REFUSED the hold inside a served
+    /// call: it gets no unit, so a write it made would land outside one, and
+    /// the annotation that decides who gets a unit would be lying.
     pub(crate) async fn write_lock(&self) -> Result<GraphWrite<'_>, McpError> {
         if self.read_only {
             // REFUSED LOUDLY, NAMING THE MODE AND THE REASON. A caller that
@@ -6621,18 +6644,30 @@ impl ReflowService {
                 None,
             ));
         }
-        self.write_gen.fetch_add(1, Ordering::Relaxed);
-        // Ring the write-through's doorbell. Non-blocking by construction — it
-        // sets a notification and returns — so the guarantee that the export
-        // stays current never sits in front of a tool call.
-        if let Some(auto) = &self.auto_export {
-            auto.poke();
+        match CallScope::current() {
+            Some(CallScope { unit: None, tool }) => {
+                return Err(McpError::internal_error(
+                    format!(
+                        "`{tool}` is served as READ-ONLY (its read_only_hint), and it asked to \
+                         write the design. Refused, and nothing was written: a read-only tool \
+                         gets no write unit, so its write could not be taken back if the call \
+                         then failed. This is a defect in reflow2 — the tool's annotation and its \
+                         body disagree."
+                    ),
+                    None,
+                ));
+            }
+            // The unit announces the write when it commits (`call_tool`).
+            Some(_) => {}
+            // Not a served call — a handler driven directly, a one-shot mode:
+            // the write lands as it is made, so announce it now, as always.
+            None => self.announce_write(),
         }
         // Who this call writes for, when anybody said: recording starts under
         // the lock, so only this hold's writes are in the log it credits.
         let writes_for = WRITES_FOR.try_with(Clone::clone).ok().flatten();
         let acting = ACTING.try_with(Clone::clone).ok().flatten();
-        let mut guard = self.graph.write().await;
+        let mut guard = self.graph.hold_for_write().await;
         if writes_for.is_some() {
             guard.begin_touch_log();
         }
@@ -6657,6 +6692,19 @@ impl ReflowService {
             acting: named_agent,
             signing,
         })
+    }
+
+    /// Say that the design was written: advance the write generation (the
+    /// read-side loop_hint's signal, BL-91) and ring the write-through's
+    /// doorbell. Non-blocking by construction — the doorbell sets a
+    /// notification and returns — so keeping the export current never sits in
+    /// front of a tool call. Called when a served call's unit COMMITS, and by
+    /// `write_lock` for a write made outside any served call.
+    pub(crate) fn announce_write(&self) {
+        self.write_gen.fetch_add(1, Ordering::Relaxed);
+        if let Some(auto) = &self.auto_export {
+            auto.poke();
+        }
     }
 
     /// The read-side sibling of the write tools' `with_loop_hint` (BL-91,
@@ -7144,6 +7192,43 @@ impl ReflowService {
         self.write_tools.contains(tool)
     }
 
+    /// Settle a served write call's unit by its answer: COMMIT when the
+    /// handler succeeded, DISCARD when it refused, errored or did not complete
+    /// — so a refusal stores nothing and "nothing was written" is true. Only a
+    /// commit that wrote something announces a write, so a refused call sets
+    /// off no export and moves no loop signal.
+    ///
+    /// A success whose writes then fail to commit is turned into a refusal
+    /// saying so: the receipt the handler built names writes that never
+    /// landed, and handing it back would be the false reply this exists to end.
+    async fn settle_unit(
+        &self,
+        unit: &CallUnit,
+        answer: Result<rmcp::model::CallToolResponse, McpError>,
+    ) -> Result<rmcp::model::CallToolResponse, McpError> {
+        let succeeded = matches!(
+            &answer,
+            Ok(rmcp::model::CallToolResponse::Complete(r)) if r.is_error != Some(true)
+        );
+        match unit.settle(succeeded).await {
+            Settled::Committed(wrote) => {
+                if wrote > 0 {
+                    self.announce_write();
+                }
+                answer
+            }
+            Settled::Untouched | Settled::Discarded => answer,
+            Settled::CommitFailed(why) => Err(McpError::internal_error(
+                format!(
+                    "the call succeeded but its writes could not be committed, so NOTHING WAS \
+                     WRITTEN — the design is as it was before the call. Send the same call \
+                     again. ({why})"
+                ),
+                None,
+            )),
+        }
+    }
+
     /// The write tools of a router: every tool whose own annotation says it
     /// is not read-only. Computed once per service at assembly.
     fn write_tools_of(router: &ToolRouter<Self>) -> std::collections::HashSet<String> {
@@ -7390,6 +7475,18 @@ impl ServerHandler for ReflowService {
         // the usage ledger records it without reading the refusal's words.
         let argument_class = (!argument_violations.is_empty())
             .then(|| crate::arguments::usage_class(&argument_violations));
+        // ONE WRITE UNIT PER CALL (`crate::service::unit`,
+        // `dec:idea-a-refused-typed-write-stores-nothing`). A tool the
+        // catalogue marks as a write gets a unit; everything its handler
+        // writes is staged in it and settled below, once, by the answer. A call
+        // whose arguments the schema check refused gets NONE: no handler runs,
+        // so there is nothing to stage and nothing to settle.
+        let unit = (argument_violations.is_empty() && self.is_write_tool(&tool_name))
+            .then(|| CallUnit::for_graph(&self.graph));
+        let scope = CallScope {
+            tool: tool_name.as_str().into(),
+            unit: unit.clone(),
+        };
         let tcc = rmcp::handler::server::tool::ToolCallContext::new(self, request, context);
         let answer = match unknown_writer {
             // An argument refusal answers BEFORE anything runs — handler,
@@ -7414,20 +7511,26 @@ impl ServerHandler for ReflowService {
                 let signer = self
                     .caller_rule
                     .signer_verified(writes_for.as_deref(), verified.as_ref());
-                SIGNER
-                    .scope(
-                        signer,
-                        ACTING.scope(
-                            acting,
-                            WRITES_FOR.scope(
-                                writes_for,
-                                crate::arguments::TRANSPORT
-                                    .scope(transport, self.tool_router.call(tcc)),
+                scope
+                    .run(
+                        SIGNER.scope(
+                            signer,
+                            ACTING.scope(
+                                acting,
+                                WRITES_FOR.scope(
+                                    writes_for,
+                                    crate::arguments::TRANSPORT
+                                        .scope(transport, self.tool_router.call(tcc)),
+                                ),
                             ),
                         ),
                     )
                     .await
             }
+        };
+        let answer = match unit {
+            Some(unit) => self.settle_unit(&unit, answer).await,
+            None => answer,
         };
         self.record_usage(
             &tool_name,
