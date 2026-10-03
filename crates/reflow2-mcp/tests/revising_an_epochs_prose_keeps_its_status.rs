@@ -43,6 +43,7 @@ async fn status_of(s: &ReflowService, id: &str) -> String {
     let n = j!(s.get_node(Parameters(GetNodeReq {
         id: id.into(),
         node_type: None,
+        ..Default::default()
     })));
     n["node"]["properties"]["status"]
         .as_str()

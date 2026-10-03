@@ -190,6 +190,7 @@ async fn a_lesson_naming_no_step_is_kept_and_delivered_nowhere() {
     let n = j!(s.get_node(Parameters(GetNodeReq {
         id: "fact:a-thing-we-noticed".into(),
         node_type: None,
+        ..Default::default()
     })));
     assert!(!n["node"].is_null(), "recorded: {n}");
     assert!(skill_lessons(&s, "where-am-i").await.is_empty());
@@ -223,6 +224,7 @@ async fn an_unserved_step_is_refused_with_the_nearest_names() {
     let n = j!(s.get_node(Parameters(GetNodeReq {
         id: "fact:typo".into(),
         node_type: None,
+        ..Default::default()
     })));
     assert!(n["node"].is_null(), "nothing was written: {n}");
 }

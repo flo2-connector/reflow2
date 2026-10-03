@@ -175,6 +175,7 @@ async fn get_node_says_so() {
     let got = j!(s.get_node(Parameters(GetNodeReq {
         node_type: Some("Capability".into()),
         id: "cap:store".into(),
+        ..Default::default()
     })));
     assert_eq!(got["node"]["discontinued"], true, "got {got}");
 }
@@ -188,6 +189,7 @@ async fn the_stored_status_is_left_exactly_as_it_was() {
     let got = j!(s.get_node(Parameters(GetNodeReq {
         node_type: Some("Capability".into()),
         id: "cap:store".into(),
+        ..Default::default()
     })));
     assert_eq!(
         got["node"]["properties"]["status"], "realized",
@@ -254,6 +256,7 @@ async fn a_proposed_decision_discontinues_nothing() {
     let got = j!(s.get_node(Parameters(GetNodeReq {
         node_type: Some("Capability".into()),
         id: "cap:maybe".into(),
+        ..Default::default()
     })));
     assert_eq!(
         got["node"]["discontinued"], false,
@@ -301,6 +304,7 @@ async fn obsoleted_by_a_non_decision_is_not_a_discontinuation() {
     let got = j!(s.get_node(Parameters(GetNodeReq {
         node_type: Some("Capability".into()),
         id: "cap:old".into(),
+        ..Default::default()
     })));
     assert_eq!(
         got["node"]["discontinued"], false,
@@ -363,6 +367,7 @@ async fn it_is_not_a_capability_only_field() {
     let got = j!(s.get_node(Parameters(GetNodeReq {
         node_type: Some("Requirement".into()),
         id: "req:gone".into(),
+        ..Default::default()
     })));
     assert_eq!(got["node"]["discontinued"], true, "got {got}");
 }

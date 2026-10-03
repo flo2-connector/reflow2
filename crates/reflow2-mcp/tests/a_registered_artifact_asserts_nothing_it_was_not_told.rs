@@ -95,6 +95,7 @@ async fn a_file_read_off_disk_is_realized_on_first_registration_and_a_relink_kee
     let node = j!(s.get_node(Parameters(GetNodeReq {
         id: "art:trace-script".into(),
         node_type: None,
+        ..Default::default()
     })));
     assert_eq!(
         node["node"]["properties"]["status"], "realized",
@@ -109,6 +110,7 @@ async fn a_file_read_off_disk_is_realized_on_first_registration_and_a_relink_kee
     let node = j!(s.get_node(Parameters(GetNodeReq {
         id: "art:trace-script".into(),
         node_type: None,
+        ..Default::default()
     })));
     assert_eq!(
         node["node"]["properties"]["status"], "verified",

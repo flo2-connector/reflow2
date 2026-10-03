@@ -1627,7 +1627,8 @@ async fn a_wrong_edge_can_be_retracted_without_deleting_its_endpoints() {
     assert!(
         j!(s.get_node(Parameters(GetNodeReq {
             node_type: Some("Requirement".into()),
-            id: "req:physics".into()
+            id: "req:physics".into(),
+            ..Default::default()
         })))["node"]["node_id"]
             == "req:physics",
         "the requirement must survive the retraction"
@@ -2421,6 +2422,7 @@ async fn temporal_resource_and_realization_tools_round_trip() {
     let requires = j!(s.get_node(Parameters(GetNodeReq {
         node_type: Some("Resource".into()),
         id: "res:gpu".into(),
+        ..Default::default()
     })));
     assert_eq!(requires["node"]["node_id"], "res:gpu");
 
@@ -2499,6 +2501,7 @@ async fn temporal_resource_and_realization_tools_round_trip() {
     let gone = j!(s.get_node(Parameters(GetNodeReq {
         node_type: Some("Component".into()),
         id: "cmp:typo".into(),
+        ..Default::default()
     })));
     // get_node returns one named shape both ways (BL-57): `{node: null}` absent.
     assert!(
@@ -2664,7 +2667,8 @@ async fn a_read_after_a_write_does_not_carry_a_loop_debt_hint() {
     })));
     let after_write = j!(s.get_node(Parameters(GetNodeReq {
         node_type: Some("Capability".into()),
-        id: "cap:flight".into()
+        id: "cap:flight".into(),
+        ..Default::default()
     })));
     assert!(
         after_write
@@ -3170,7 +3174,8 @@ async fn choosing_a_mode_preserves_everything_else_about_the_project() {
     })));
     let after = j!(s.get_node(Parameters(GetNodeReq {
         node_type: Some("Project".into()),
-        id: "proj:m".into()
+        id: "proj:m".into(),
+        ..Default::default()
     })));
     assert_eq!(
         after["node"]["properties"]["name"].as_str(),
@@ -3204,7 +3209,8 @@ async fn an_unknown_mode_fails_loud_rather_than_leaving_the_old_one() {
 
     let after = j!(s.get_node(Parameters(GetNodeReq {
         node_type: Some("Project".into()),
-        id: "proj:m".into()
+        id: "proj:m".into(),
+        ..Default::default()
     })));
     assert_eq!(
         after["node"]["properties"]["mode"].as_str(),
@@ -3473,6 +3479,7 @@ async fn an_unknown_node_type_is_refused_rather_than_answered_null() {
         .get_node(Parameters(GetNodeReq {
             node_type: Some("Epoch".into()),
             id: "epoch:real".into(),
+            ..Default::default()
         }))
         .await
         .expect_err("an unknown node type must be refused, not answered null");
@@ -3490,7 +3497,8 @@ async fn an_unknown_node_type_is_refused_rather_than_answered_null() {
     // and nothing else.
     let found = j!(s.get_node(Parameters(GetNodeReq {
         node_type: Some("DesignEpoch".into()),
-        id: "epoch:real".into()
+        id: "epoch:real".into(),
+        ..Default::default()
     })));
     assert_eq!(found["node"]["node_id"], "epoch:real");
 
@@ -3498,7 +3506,8 @@ async fn an_unknown_node_type_is_refused_rather_than_answered_null() {
     // "no such node", and it must not have been collateral damage.
     let absent = j!(s.get_node(Parameters(GetNodeReq {
         node_type: Some("DesignEpoch".into()),
-        id: "epoch:nope".into()
+        id: "epoch:nope".into(),
+        ..Default::default()
     })));
     assert!(
         absent["node"].is_null(),
@@ -3835,7 +3844,8 @@ async fn get_node_resolves_by_id_alone_and_refuses_a_collision() {
     })));
     let got = j!(s.get_node(Parameters(GetNodeReq {
         id: "req:solo".into(),
-        node_type: None
+        node_type: None,
+        ..Default::default()
     })));
     assert_eq!(
         got["node"]["node_type"], "Requirement",
@@ -3844,7 +3854,8 @@ async fn get_node_resolves_by_id_alone_and_refuses_a_collision() {
     // Unknown id, no type: a null node, not an error (same as the typed form).
     let got = j!(s.get_node(Parameters(GetNodeReq {
         id: "req:nope".into(),
-        node_type: None
+        node_type: None,
+        ..Default::default()
     })));
     assert!(got["node"].is_null(), "{got}");
     // A COLLISION (the same id under two types — a convention violation, but
@@ -3860,6 +3871,7 @@ async fn get_node_resolves_by_id_alone_and_refuses_a_collision() {
         .get_node(Parameters(GetNodeReq {
             id: "req:solo".into(),
             node_type: None,
+            ..Default::default()
         }))
         .await
         .expect_err("two types hold this id — refuse, do not pick");
@@ -3928,7 +3940,8 @@ async fn a_bulk_write_can_be_checked_without_being_written() {
     // And NOTHING was written — not even the good item.
     let got = j!(s.get_node(Parameters(GetNodeReq {
         id: "req:ok".into(),
-        node_type: Some("Requirement".into())
+        node_type: Some("Requirement".into()),
+        ..Default::default()
     })));
     assert!(
         got["node"].is_null(),
@@ -3942,7 +3955,8 @@ async fn a_bulk_write_can_be_checked_without_being_written() {
     assert_eq!(out["would_apply"], true, "{out}");
     let got = j!(s.get_node(Parameters(GetNodeReq {
         id: "req:ok".into(),
-        node_type: Some("Requirement".into())
+        node_type: Some("Requirement".into()),
+        ..Default::default()
     })));
     assert!(got["node"].is_null(), "{got}");
 }
