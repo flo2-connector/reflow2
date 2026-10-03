@@ -31,6 +31,83 @@ This file is the third view: *what changed, and when*.
 
 ## [Unreleased]
 
+## [0.78.0] — 2026-10-03
+
+**Minor. This release ships the fix program after the VS Code `--call` field report, and keeps
+dependencies current.** It contains #649–#668 and the merge train #669 (#662, #663, #665, #666).
+**The schema stamp moves by one enum value:** `Verification.last_reconciled_outcome` gains
+`blocked` (#662). The type counts do not change (28 node types, 66 edge types). **An upgrade note
+is owed:** [docs/upgrading-to-v0.78.0.md](docs/upgrading-to-v0.78.0.md). Some arguments that used
+to be ignored are now refused, and two reply shapes changed. What a consumer or operator should
+know:
+
+- 🛑 **Upgrade every seat that opens a design, all together.** A v0.77.0 binary does NOT refuse a
+  design that stores the new value, so v0.65.0's note does not describe this release. Measured at
+  this cut, v0.77.0 does three things with such a design:
+  - it opens the design with no warning;
+  - it re-stamps the design as 0.77.0;
+  - it writes an export that v0.77.0 itself then refuses to import.
+
+  The value is written only when `reconcile_verification` records the outcome `blocked`. A seat
+  that is not yet upgraded keeps working until that happens once. The note says why the guard
+  missed it and what to do if you cannot upgrade a seat yet.
+- **Arguments that were ignored are now refused, and the refusal names the tool and the field**
+  (#654, #656, #658). Nothing is written when a call is refused. Drop what the refusal names.
+  - A wrong-typed, unknown or out-of-set argument is refused before the tool runs.
+  - Twelve tools that take no arguments now refuse one.
+  - A one-shot mode (`--call`, `--export`, `--import` and the rest) refuses a flag it does not
+    read.
+  - `--read-only` is now honoured by `--call` and by every client that forwards calls.
+- **Two reply shapes changed.**
+  - `external_dependency` now replies with a receipt, not the whole manifest. Read the manifest
+    with `reconcile_dependencies` (#662).
+  - `detect_defects` has a new category, `refused_by_schema` (#660).
+
+  Two replies gain a field: `search_design` and `topic_report` add `searched`, and `find_tools`
+  adds `describe`.
+- **Scripts that drive `--call`:**
+  - A call that writes now updates the committed export before it exits (#661). Exit code 3 means
+    the write landed but the export was not written. Pass `--no-export` when making many writes to
+    a large design.
+  - In a folder whose `.reflow2.toml` names a design on a server, `--call` and `--export` now
+    refuse instead of creating a local design (#654).
+  - A read where there is no design now refuses instead of creating one (#654).
+- **New for an agent that cannot use MCP:** `reflow2 read <tool>` and `reflow2 write <tool>`
+  (#666), `--describe <tool>` and `--list-tools` (#667), and `get_node` with `include_edges`
+  (#659).
+- **For operators:**
+  - **RocksDB moves from 10.4.2 to 11.8.1** (#652). Existing stores open unchanged. v0.77.0 reads
+    what v0.78.0 writes, measured on 20 real stores, with the exception in the first item above.
+  - **A `--read-only` server started where there is no store now creates nothing.** It answers
+    `/readyz` with 503 until a design appears (#665).
+  - **A shared server no longer keeps its launcher's locks and terminal** (#663). After upgrading,
+    stop any old one with `--stop-shared`.
+- **Building from source now needs Rust 1.98** (`rust-version`, #651). Prebuilt binaries are not
+  affected. The first build rebuilds `librocksdb-sys`, about ten minutes.
+
+**Shipped, by PR:**
+- #649: the workflows' Actions move to their current majors.
+- #650: rmcp 3.5.0, base64 0.23 and a lock refresh.
+- #651: the `dependencies` workflow, `dependency-holds.toml` and the Rust floor.
+- #652: rocksdb 0.25.
+- #653: the 2026-10-01/02 design-record fold.
+- #654: every one-shot mode resolves its design first.
+- #655: a refused write stores nothing.
+- #656: argument refusals name the tool and the field path.
+- #657: a read of a held design is as true as the live one.
+- #658: `--read-only` in every client.
+- #659: `get_node` with `include_edges`.
+- #660: `refused_by_schema` and the narrowing gate.
+- #661: a writing `--call` keeps the export current.
+- #664: the held-design test waits for its holder.
+- #667: `--describe` and `--list-tools`.
+- #668: the overtaken-defect question names the likeliest fix.
+- The train #669:
+  - #662: the small fixes from the `--call` triage;
+  - #663: a spawned shared daemon inherits nothing;
+  - #665: a read-only server with no store serves the latent surface;
+  - #666: `reflow2 read` and `reflow2 write`.
+
 ### Added
 
 - **The shell door can now read how to call a tool: `reflow2-mcp --describe <tool>`,
