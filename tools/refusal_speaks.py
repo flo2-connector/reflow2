@@ -243,13 +243,15 @@ def main() -> int:
 
         # …and the door, which reads the schema from its own binary on every call,
         # is never told to reconnect. It names the tool and the path, and exits 2:
-        # an argument refusal is a tool result marked as an error.
-        code, out = door(a.bin, str(tmp / "door-graph"), "loop_status", {UNKNOWN_KEY: 1})
+        # an argument refusal is a tool result marked as an error. It runs on the
+        # design the session above created (the server has released it): a read
+        # through the door refuses a path that holds no design.
+        code, out = door(a.bin, str(tmp / "graph"), "loop_status", {UNKNOWN_KEY: 1})
         if code != 2 or "`loop_status`" not in out or f"`{UNKNOWN_KEY}`" not in out:
             failures.append(f"--call loop_status: exit {code}, expected 2 naming the tool and the path — {out[:200]!r}")
         if "Reconnect" in out:
             failures.append(f"--call loop_status: the door is told to reconnect, which means nothing there — {out[:200]!r}")
-        code, out = door(a.bin, str(tmp / "door-graph"), "external_dependency", {"name": "x", "components": "core"})
+        code, out = door(a.bin, str(tmp / "graph"), "external_dependency", {"name": "x", "components": "core"})
         if code != 2 or "`external_dependency`" not in out or "`components`" not in out:
             failures.append(f"--call external_dependency: a wrong type does not name the tool and field — exit {code}, {out[:200]!r}")
     finally:
