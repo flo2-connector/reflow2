@@ -768,21 +768,35 @@ async fn call_one_tool(cli: &Cli, tool: &str) -> anyhow::Result<i32> {
             let snapshot = snapshot_dir(&cli.graph_path)?;
             eprintln!(
                 "reflow2: WARNING — BEST-EFFORT SNAPSHOT. The graph at {} is held by another \
-                 process, so `{tool}` reads a COPY: the design as of about now, which can lack \
-                 the newest unflushed writes. A read-only tool is answered this way rather than \
+                 process, so `{tool}` reads a COPY of its store: the design as of about now, \
+                 which can lack the newest unflushed writes. Its search index is rebuilt from \
+                 the copied nodes, and the project tree and the records beside the store are \
+                 read where the design lives. A read-only tool is answered this way rather than \
                  refused; nothing was written.",
                 cli.graph_path
             );
-            let s = ReflowService::new(snapshot.path())
-                .map_err(|e| anyhow::anyhow!("{e}"))
-                .with_context(|| {
-                    format!(
-                        "the snapshot at {} could not be opened: the copy caught the store \
-                         mid-write. Try again, or ask the holder to release the graph.",
-                        snapshot.path()
-                    )
-                })?;
-            (s.into_read_only(), Some(snapshot))
+            // THE COPY IS ONLY WHERE THE STORE IS OPENED. Everything else a
+            // read uses — the project tree, the sync record, the harness
+            // settings — is found from the design's REAL path, and nothing is
+            // written beside it (`ReflowService::reading_a_copy`).
+            // The copy carries the design's version stamp, so a binary behind
+            // the holder is refused here exactly as it is on the real store —
+            // which is why this context no longer asserts that a failure is
+            // the copy catching the store mid-write. It may be; the reason
+            // underneath says which.
+            let s = match ReflowService::reading_a_copy(snapshot.path(), &cli.graph_path) {
+                Ok(s) => s,
+                Err(e) => {
+                    snapshot.cleanup();
+                    return Err(anyhow::anyhow!("{e}").context(format!(
+                        "the copy of the held graph at {} could not be opened. If the reason \
+                         below is a storage error, the copy caught the store mid-write: try \
+                         again, or ask the holder to release the graph.",
+                        cli.graph_path
+                    )));
+                }
+            };
+            (s, Some(snapshot))
         }
         Err(e) => {
             let why = explain_open_failure(&e.into(), &cli.graph_path);
@@ -895,9 +909,14 @@ fn snapshot_dir(graph_path: &str) -> anyhow::Result<GraphSnapshot> {
         let target = dir.join(&name);
         if entry.file_type()?.is_dir() {
             // RocksDB keeps its own files flat, so the only nested directory is
-            // the full-text index — which a snapshot does not need, because
-            // export reads the store rather than the index. It is rebuilt empty
-            // in the copy, so do not use a snapshot for `search_design`.
+            // the full-text index. It is NOT copied — a copy taken while the
+            // holder commits can catch a segment half-written — and it does not
+            // need to be: opening the copy finds an index that does not hold
+            // what the store holds and REBUILDS it from the copied nodes
+            // (`DesignGraph::open_rocksdb`), so the copy searches exactly the
+            // nodes it holds. Until 2026-10-02 this comment said "do not use a
+            // snapshot for `search_design`", and `--call` did: the copy answered
+            // "nothing matched" from an index that held nothing.
             continue;
         }
         std::fs::copy(entry.path(), &target).with_context(|| {
@@ -922,6 +941,22 @@ fn snapshot_dir(graph_path: &str) -> anyhow::Result<GraphSnapshot> {
             format!(
                 "could not copy the design identity {} into the snapshot",
                 source_identity.display()
+            )
+        })?;
+    }
+    // AND THE SAME VERSION GUARD. The stamp of which reflow2 last wrote the
+    // store also lives beside it, and opening a store with no stamp reads it as
+    // unstamped — so a copy without it skipped the refusal a binary OLDER than
+    // the holder meets when it opens the real store ("written by a reflow2
+    // that knows more of the schema"), and read a design it cannot fully
+    // understand. The copy carries the stamp, and its open checks it.
+    let source_stamp = reflow2_core::provenance::stamp_path(graph_path);
+    if source_stamp.exists() {
+        let target_stamp = reflow2_core::provenance::stamp_path(&dir.display().to_string());
+        std::fs::copy(&source_stamp, &target_stamp).with_context(|| {
+            format!(
+                "could not copy the version stamp {} into the snapshot",
+                source_stamp.display()
             )
         })?;
     }

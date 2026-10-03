@@ -174,6 +174,7 @@ impl ReflowService {
             &mut export,
             &path,
             self.graph_path.as_deref(),
+            self.sidecar_path_for_writes(),
             req.accept_divergence.unwrap_or(false),
         ) {
             Ok(w) => w,

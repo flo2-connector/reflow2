@@ -540,6 +540,16 @@ pub struct ReflowService {
     /// is (`req:design-identity` — both live in sidecars beside the store).
     /// `None` for an in-memory graph, which has no sidecar to remember in.
     pub(crate) graph_path: Option<String>,
+    /// Whether this service may WRITE beside the store at `graph_path` — the
+    /// usage ledger, the handshake record, the sync record and its
+    /// observations. True for every service that holds its store.
+    ///
+    /// FALSE ONLY FOR A SERVICE READING A COPY of a store another process
+    /// holds ([`ReflowService::reading_a_copy`]): it READS every sidecar at
+    /// the design's real location, so its answers are the design's, and writes
+    /// none of them, because they are the holder's records and a second writer
+    /// racing it would corrupt them.
+    pub(crate) writes_beside_store: bool,
     /// The NEWER reflow2 that last wrote this store, when this binary is behind
     /// it (`reflow2_core::provenance::Provenance::NewerWriter`). `None` when
     /// the store was written by this version or an older one, or is in memory.
@@ -750,6 +760,21 @@ struct ReadHintCache {
     /// Per-design by construction: it rides on this handle, never a `static`
     /// (`rule:per-design-state-is-never-a-process-global`).
     parsed: crate::sync_debt::ParsedRecords,
+}
+
+impl ReadHintCache {
+    /// A fresh cache for a service that may (or may not) write beside its
+    /// store — a copy of a held store must not record its reads there.
+    fn for_service(writes_beside_store: bool) -> Self {
+        Self {
+            parsed: if writes_beside_store {
+                crate::sync_debt::ParsedRecords::default()
+            } else {
+                crate::sync_debt::ParsedRecords::without_recording()
+            },
+            ..Self::default()
+        }
+    }
 }
 
 // ---- error / result helpers -------------------------------------------------
@@ -6344,6 +6369,61 @@ impl ReflowService {
         ))
     }
 
+    /// Serve, READ-ONLY, a copy of the store whose design lives at
+    /// `design_path` — the copy `--call` reads while another process holds
+    /// that design.
+    ///
+    /// ⭐ THE COPY SUPPLIES THE STORE'S BYTES AND NOTHING ELSE. A read uses
+    /// more than the column families: the search index (rebuilt from the
+    /// copied nodes when the copy opens — `DesignGraph::open_rocksdb`), the
+    /// project tree registered files are measured under, the sync record of
+    /// what was exported, the harness settings the session-end nudge is read
+    /// from. All of those are found from the design's PATH. Opened at the copy's
+    /// path, as it was until 2026-10-02, every one of them was looked for in
+    /// the temporary directory: measured on a held design through `--call`,
+    /// `loop_status` reported its one registered file MISSING and told the
+    /// agent to record a disposition for it, `sync_status` reported no export
+    /// to check, `wall_check` measured `/tmp`, and search answered "nothing
+    /// matched" from an index rebuilt empty. So this service knows the design's
+    /// real path and reads everything there, and the copy is only where its
+    /// store is opened.
+    ///
+    /// AND IT WRITES NOTHING BESIDE THE REAL STORE (`writes_beside_store`):
+    /// those records are the holder's, and the door's own promise on a held
+    /// design is that nothing was written.
+    pub fn reading_a_copy(copy_path: &str, design_path: &str) -> Result<Self, DynoError> {
+        let mut graph = DesignGraph::open_rocksdb(copy_path)?;
+        // The copy is made without its search index, so its open always
+        // rebuilds one. That is how a copy searches, not news about the
+        // design, and `loop_status` must not report it as a repair.
+        let _ = graph.take_search_rebuilt_on_open();
+        let mut service = Self::wrap_at(graph, Some(design_path.to_string()));
+        service.read_only = true;
+        service.writes_beside_store = false;
+        service.read_hint = Arc::new(std::sync::Mutex::new(ReadHintCache::for_service(false)));
+        Ok(service)
+    }
+
+    /// The parsed-record cache a one-call sync check should use: one that
+    /// records what it read beside the store, unless this service may not write
+    /// there.
+    pub(crate) fn fresh_parsed_records(&self) -> crate::sync_debt::ParsedRecords {
+        if self.writes_beside_store {
+            crate::sync_debt::ParsedRecords::default()
+        } else {
+            crate::sync_debt::ParsedRecords::without_recording()
+        }
+    }
+
+    /// Where this service may write beside its store, if anywhere: the
+    /// store's path when it holds the store, `None` for an in-memory design
+    /// and for a copy of a store another process holds.
+    pub(crate) fn sidecar_path_for_writes(&self) -> Option<&str> {
+        self.graph_path
+            .as_deref()
+            .filter(|_| self.writes_beside_store)
+    }
+
     /// Open an in-memory design graph (tests / dry runs; not persisted).
     pub fn in_memory() -> Result<Self, DynoError> {
         Ok(Self::wrap(DesignGraph::open_in_memory()?))
@@ -6386,6 +6466,7 @@ impl ReflowService {
             session_writes: Arc::new(AtomicU64::new(0)),
             write_tools: Arc::new(Self::write_tools_of(&tool_router)),
             graph_path,
+            writes_beside_store: true,
             written_by: None,
             // adding a store did not have to change every constructor.
             // The skills are served, not installed (dec:skills-served), and
@@ -6507,6 +6588,9 @@ impl ReflowService {
             graph: Arc::clone(&self.graph),
             tool_router: self.tool_router.clone(),
             graph_path: self.graph_path.clone(),
+            // A property of the STORE, like the graph: a copy stays a copy for
+            // every session served from it.
+            writes_beside_store: self.writes_beside_store,
             // A property of the STORE, like the graph: every session on this
             // server is behind the same record.
             written_by: self.written_by.clone(),
@@ -6525,7 +6609,9 @@ impl ReflowService {
             // same owner, and a shared hint memory would land one session's
             // nudge on whichever session read next.
             seat: std::sync::Arc::new(reflow2_core::identity::SeatLease::attach()),
-            read_hint: Arc::new(std::sync::Mutex::new(ReadHintCache::default())),
+            read_hint: Arc::new(std::sync::Mutex::new(ReadHintCache::for_service(
+                self.writes_beside_store,
+            ))),
             auto_export: self.auto_export.clone(),
             tree_root: self.tree_root.clone(),
             reaches_out: self.reaches_out,
@@ -6905,7 +6991,7 @@ impl ReflowService {
         // for a store on disk, but the reads-without-writes question is about
         // the session and is asked of the loop, not of a file.
         self.count_call(tool);
-        let Some(graph_path) = self.graph_path.as_deref() else {
+        let Some(graph_path) = self.sidecar_path_for_writes() else {
             return;
         };
         let (outcome, refusal) = match answer {
@@ -7448,7 +7534,7 @@ impl ServerHandler for ReflowService {
         // Best effort and last: a diagnostic must never be able to fail a
         // handshake. `Handshake::write` swallows its own IO errors for the same
         // reason.
-        if let Some(graph_path) = self.graph_path.as_deref() {
+        if let Some(graph_path) = self.sidecar_path_for_writes() {
             crate::handshake::Handshake::new(
                 &request.client_info,
                 &request.protocol_version,

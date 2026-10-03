@@ -63,10 +63,16 @@ impl WriteRefusal {
 /// and the graph does not. The write-through never passes it: an automatic
 /// write that discards somebody's edit is the one outcome that cannot be undone
 /// from the thing that caused it.
+///
+/// `graph_path` is where the sync record is READ from (what this design last
+/// wrote to `path`); `record_to` is where the new one is WRITTEN, and is `None`
+/// for a service that may not write beside the store — a copy of a store
+/// another process holds, whose sync record is the holder's.
 pub(crate) fn chain_and_write(
     export: &mut GraphExport,
     path: &str,
     graph_path: Option<&str>,
+    record_to: Option<&str>,
     accept_divergence: bool,
 ) -> Result<Written, WriteRefusal> {
     let target = Path::new(path);
@@ -179,7 +185,7 @@ pub(crate) fn chain_and_write(
     // This seat is now in step with what it just wrote — so the next export
     // takes the one-hash fast path instead of comparing documents, and a file
     // that moves after this is detectable (req:stale-seat-knows).
-    if let (Some(gp), Some(hash)) = (graph_path, &export.content_hash) {
+    if let (Some(gp), Some(hash)) = (record_to, &export.content_hash) {
         reflow2_core::provenance::record_sync(gp, path, hash);
     }
 
