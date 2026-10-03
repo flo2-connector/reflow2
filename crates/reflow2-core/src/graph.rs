@@ -121,6 +121,11 @@ pub struct DesignGraph {
     /// (`crate::twins`). Kept so `loop_status` can say it: a repair on open
     /// that went only to a startup log would be the silent kind.
     pub(crate) repaired_on_open: crate::twins::TwinRepairs,
+    /// What opening this store found wrong with its search index, when the
+    /// open had to rebuild it (`crate::search::SearchIndexRebuild`). `None` is
+    /// an index that already held what the store holds, and every in-memory
+    /// graph, whose index is built by the same writes that build the graph.
+    pub(crate) search_rebuilt_on_open: Option<crate::search::SearchIndexRebuild>,
 }
 
 /// What [`DesignGraph::derived`] holds. `generation` is the engine write
@@ -349,6 +354,7 @@ impl DesignGraph {
             acting: None,
             signer: None,
             repaired_on_open: Default::default(),
+            search_rebuilt_on_open: None,
         })
     }
 
@@ -464,6 +470,7 @@ impl DesignGraph {
             acting: None,
             signer: None,
             repaired_on_open: Default::default(),
+            search_rebuilt_on_open: None,
         };
         // Legacy AUTHORED_BY edges (single `role`) move to the set shape on
         // every open — idempotent, one edge scan, and the only way to make an
@@ -482,6 +489,27 @@ impl DesignGraph {
         // `req:a-relation-stored-in-more-than-one-place-has-one-authoritative-copy-and-no-copy-drifts-unnoticed`
         // exists to end.
         graph.repaired_on_open = graph.repair_stored_twins()?;
+        // THE SEARCH INDEX IS A COPY DERIVED FROM THE STORE, and an open is where
+        // a store meets an index it may not have been written with: a directory
+        // copied without its `fulltext/` subdirectory (what `--call` reads while
+        // another process holds the design), a store written by a build without
+        // the feature, an index lost or restored from elsewhere. Every one of
+        // those opened cleanly onto an empty index and answered "nothing
+        // matched" for words the store held (measured 2026-10-02). So the open
+        // compares the two and rebuilds an index that does not hold what the
+        // store holds — the rebuild the shared server already ran at start, made
+        // a property of every open. A rebuild that fails fails the open, loudly,
+        // the way an index that cannot be opened already does.
+        #[cfg(feature = "fulltext")]
+        {
+            graph.search_rebuilt_on_open = graph
+                .engine
+                .ensure_fulltext_covers(&graph.graph_id)?
+                .map(|found| crate::search::SearchIndexRebuild {
+                    indexed_before: found.indexed,
+                    searchable: found.searchable,
+                });
+        }
         Ok((graph, provenance))
     }
 
@@ -664,6 +692,20 @@ impl DesignGraph {
     /// Empty for an in-memory graph and for a store that was already in step.
     pub fn repaired_on_open(&self) -> &crate::twins::TwinRepairs {
         &self.repaired_on_open
+    }
+
+    /// What opening this store found wrong with its search index, when the open
+    /// rebuilt it; `None` when the index already held what the store holds.
+    pub fn search_rebuilt_on_open(&self) -> Option<&crate::search::SearchIndexRebuild> {
+        self.search_rebuilt_on_open.as_ref()
+    }
+
+    /// Take the open's search-index rebuild out of the record, for a caller
+    /// to whom it is not news: a COPY of a store is made without its index,
+    /// so its open always rebuilds one, and that says nothing about the
+    /// design the copy was taken from.
+    pub fn take_search_rebuilt_on_open(&mut self) -> Option<crate::search::SearchIndexRebuild> {
+        self.search_rebuilt_on_open.take()
     }
 
     /// Refuse a write whose property NAMES a node that does not exist.

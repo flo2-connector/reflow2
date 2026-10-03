@@ -535,19 +535,44 @@ impl LiveDesign for ExportedDesign<'_> {
 /// A hit is valid on the same reasoning as the stat gate itself: unchanged
 /// `len` and `mtime` mean unchanged bytes, and `observed.hash` IS the hash of
 /// those bytes, computed on the read that populated this.
-#[derive(Default)]
-pub struct ParsedRecords(std::collections::HashMap<String, (String, std::sync::Arc<GraphExport>)>);
+///
+/// It also carries whether a check may RECORD what it read beside the store
+/// (the stat observation the next check answers from). It may, except for a
+/// service reading a copy of a store another process holds: the sync record is
+/// the holder's, and a second process rewriting it would race the holder's own
+/// writes (`ReflowService::reading_a_copy`).
+pub struct ParsedRecords {
+    docs: std::collections::HashMap<String, (String, std::sync::Arc<GraphExport>)>,
+    record_observations: bool,
+}
+
+impl Default for ParsedRecords {
+    fn default() -> Self {
+        Self {
+            docs: Default::default(),
+            record_observations: true,
+        }
+    }
+}
 
 impl ParsedRecords {
+    /// A cache whose checks read the sync record and never write it back.
+    pub fn without_recording() -> Self {
+        Self {
+            record_observations: false,
+            ..Self::default()
+        }
+    }
+
     fn get(&self, path: &str, hash: &str) -> Option<std::sync::Arc<GraphExport>> {
-        self.0
+        self.docs
             .get(path)
             .filter(|(h, _)| h == hash)
             .map(|(_, doc)| doc.clone())
     }
 
     fn put(&mut self, path: &str, hash: &str, doc: std::sync::Arc<GraphExport>) {
-        self.0.insert(path.to_string(), (hash.to_string(), doc));
+        self.docs.insert(path.to_string(), (hash.to_string(), doc));
     }
 }
 
@@ -675,7 +700,9 @@ pub fn sync_debt_with(
         // Remember this read, so the next check can answer from a stat. Only a
         // REAL read is recorded: a cache hit changes nothing on disk and must
         // not cost a sidecar write per check.
-        if let Some((len, mtime)) = freshly_read {
+        if let Some((len, mtime)) = freshly_read
+            && parsed.record_observations
+        {
             reflow2_core::provenance::record_sync_observation(
                 graph_path,
                 path,

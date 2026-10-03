@@ -81,10 +81,10 @@ fn search_design_declares_an_output_schema() {
         .and_then(|v| v.as_object())
         .expect("the declared schema must describe properties, or it tells a client nothing");
 
-    // The three fields SearchResult always serialises. Named individually so a
+    // The four fields SearchResult always serialises. Named individually so a
     // change to the payload shape fails HERE rather than silently shipping a
     // schema that describes a reply reflow2 no longer sends.
-    for field in ["hits", "stale", "limit"] {
+    for field in ["hits", "stale", "limit", "searched"] {
         assert!(
             props.contains_key(field),
             "the declared schema omits `{field}`, which search_design always returns"

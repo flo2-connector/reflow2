@@ -39,6 +39,10 @@ pub struct TopicReport {
     pub query: String,
     /// Hits found (before any budget trimming); `groups` lists them by type.
     pub count: usize,
+    /// How many of the design's nodes the search ran over — the search index's
+    /// own count. `not_found` states it, so "nothing matched" always says in
+    /// how many.
+    pub searched: usize,
     /// The search limit used; `count == limit` means there may be more.
     pub limit: usize,
     /// Hits per node type, in the order the groups appear.
@@ -304,12 +308,21 @@ impl DesignGraph {
             bb.partial_cmp(&ba).unwrap_or(std::cmp::Ordering::Equal)
         });
 
-        let not_found = not_found_line(query, count, limit, &populated, &by_type, &found.stale);
+        let not_found = not_found_line(
+            query,
+            count,
+            limit,
+            found.searched,
+            &populated,
+            &by_type,
+            &found.stale,
+        );
 
         let (budget, groups) = fit(groups, count, budget_chars);
         Ok(TopicReport {
             query: query.to_string(),
             count,
+            searched: found.searched,
             limit,
             by_type,
             not_found,
@@ -325,6 +338,7 @@ fn not_found_line(
     query: &str,
     count: usize,
     limit: usize,
+    searched: usize,
     populated: &BTreeMap<String, usize>,
     by_type: &BTreeMap<String, usize>,
     stale: &[String],
@@ -335,17 +349,24 @@ fn not_found_line(
         .filter(|(ty, _)| !by_type.contains_key(*ty))
         .map(|(ty, n)| format!("{ty} ({n})"))
         .collect();
+    // THE POPULATION NAMED HERE IS THE ONE THE SEARCH RAN OVER — the index's
+    // count — and the design's own size beside it. Until 2026-10-02 this line
+    // named only the design's size, as "across N node(s)", so an index that
+    // held nothing produced "NOTHING MATCHED … across 2 node(s)" for a word one
+    // of those two nodes held: a size the search never touched, stated as if
+    // it had been searched.
     let mut s = if count == 0 {
         format!(
-            "NOTHING MATCHED “{query}” across {total_nodes} node(s) in {} type(s). The design \
-             may hold nothing about this subject, or it may hold it in other words — search is \
-             keyword-based, so try the domain's own terms before concluding it is absent.",
+            "NOTHING MATCHED “{query}” in the {searched} node(s) searched, of the \
+             {total_nodes} the design holds in {} type(s). The design may hold nothing about \
+             this subject, or it may hold it in other words — search is keyword-based, so try \
+             the domain's own terms before concluding it is absent.",
             populated.len()
         )
     } else {
         format!(
             "Matched {count} node(s) across {} of the design's {} populated type(s), out of \
-             {total_nodes} node(s) searched.",
+             {searched} node(s) searched (the design holds {total_nodes}).",
             by_type.len(),
             populated.len()
         )

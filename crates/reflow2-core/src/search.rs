@@ -86,6 +86,22 @@ pub struct SearchResult {
     /// The limit that bounded this result — `hits.len() == limit` means there
     /// may be more; this is the no-silent-caps rule made visible.
     pub limit: usize,
+    /// How many of this design's nodes the search ran over: the index's own
+    /// count. It is what makes an empty `hits` say WHICH empty it is — "nothing
+    /// matched in 6,000" and "nothing matched in 0" were the same reply until
+    /// 2026-10-02, when a copy of a held design searched an empty index and
+    /// answered `{"hits": []}` for a word the design held.
+    pub searched: usize,
+}
+
+/// What opening a store found wrong with its search index, when the open had
+/// to rebuild it: the index held `indexed_before` documents for a store holding
+/// `searchable` nodes that belong in it. Kept so a surface can say it — a
+/// rebuild that went only to a log would be the silent kind.
+#[derive(Debug, Clone, Copy, PartialEq, Eq, serde::Serialize)]
+pub struct SearchIndexRebuild {
+    pub indexed_before: usize,
+    pub searchable: usize,
 }
 
 #[cfg(feature = "fulltext")]
@@ -104,6 +120,7 @@ impl DesignGraph {
         let raw = self
             .engine()
             .search_fulltext(self.graph_id(), query, node_type, limit)?;
+        let searched = self.engine().fulltext_indexed(self.graph_id())?;
         let mut hits = Vec::with_capacity(raw.len());
         let mut stale = Vec::new();
         // Read the clock ONCE for the whole result, not once per hit: two hits
@@ -126,7 +143,12 @@ impl DesignGraph {
                 None => stale.push(h.node_id),
             }
         }
-        Ok(SearchResult { hits, stale, limit })
+        Ok(SearchResult {
+            hits,
+            stale,
+            limit,
+            searched,
+        })
     }
 
     /// Rebuild the full-text index from the node store. Bounded by graph size

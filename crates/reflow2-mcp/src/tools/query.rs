@@ -97,12 +97,18 @@ fn search_design_output_schema() -> Arc<rmcp::model::JsonObject> {
                 "description": "The limit that bounded this result. hits.len() == limit means \
                                 there may be more; this is the no-silent-caps rule made visible."
             },
+            "searched": {
+                "type": "integer",
+                "description": "How many of the design's nodes the search ran over (the \
+                                search index's own count). It says WHICH empty an empty \
+                                `hits` is: nothing matched among this many."
+            },
             "loop_hint": {
                 "type": "string",
                 "description": "Present only when the coherence loop is owed something."
             }
         },
-        "required": ["hits", "stale", "limit"]
+        "required": ["hits", "stale", "limit", "searched"]
     });
     Arc::new(
         schema
