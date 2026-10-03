@@ -140,3 +140,46 @@ async fn the_shrink_is_reported_and_never_refused() {
         v["revision"]
     );
 }
+
+/// A write that REMOVES a property says so, and keeps what it removed.
+///
+/// MEASURED on main at 293f957 (fix program item 8, 2026-10-03): `create_node`
+/// with `{"rationale": null}` on a requirement holding a 29-character
+/// rationale removed it, listed it under `unset`, and its `revision` said
+/// `changed: false`, "This node already held exactly what this call passed;
+/// nothing moved", with no snapshot of the removed text. `revision_of` and
+/// `preserve_prior` looked only at the properties the node still held, so a
+/// removal was invisible to both — the same blindness that let a dependency
+/// re-declare drop its description with nothing said
+/// (`fact:re-declaring-a-dependency-drops-the-resources-description-2026-09-23`).
+#[tokio::test]
+async fn a_write_that_removes_a_property_says_what_left_and_keeps_it() {
+    let s = svc().await;
+    j!(s.create_node(Parameters(
+        serde_json::from_value::<CreateNodeReq>(json!({
+            "node_type": "Requirement", "id": "req:r",
+            "props": {"name": "R", "statement": "s", "rationale": LONG}
+        }))
+        .unwrap()
+    )));
+    let v = j!(s.create_node(Parameters(
+        serde_json::from_value::<CreateNodeReq>(json!({
+            "node_type": "Requirement", "id": "req:r", "props": {"rationale": null}
+        }))
+        .unwrap()
+    )));
+    let rev = &v["revision"];
+    assert_eq!(rev["changed"], true, "a removal is a change: {v:#}");
+    assert_eq!(rev["removed"], json!(["rationale"]), "{v:#}");
+    let replaced = &rev["replaced"][0];
+    assert_eq!(replaced["field"], "rationale", "{v:#}");
+    assert_eq!(
+        replaced["prior"], LONG,
+        "the removed value is reported: {v:#}"
+    );
+    assert!(
+        rev["prior_state_preserved_in"].as_str().is_some(),
+        "and kept in a snapshot: {v:#}"
+    );
+    assert_eq!(rev["shortened"][0]["removed_chars"], LONG.chars().count());
+}

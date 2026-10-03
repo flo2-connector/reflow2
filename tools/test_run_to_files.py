@@ -24,6 +24,7 @@ def tree() -> pathlib.Path:
     (root / "crates/alpha-core/tests/good.rs").write_text("")
     (root / "crates/alpha-mcp/tests/bad.rs").write_text("")
     (root / "crates/alpha-mcp/tests/broken.rs").write_text("")
+    (root / "crates/alpha-mcp/tests/crashed.rs").write_text("")
     # build output must never be searched or matched
     (root / "target/debug").mkdir(parents=True)
     (root / "target/debug/Cargo.toml").write_text("")
@@ -40,9 +41,12 @@ test result: ok. 1 passed; 0 failed
 test result: ok. 2 passed; 0 failed
      Running tests/bad.rs (target/debug/deps/bad-89abcdef)
 test result: FAILED. 1 passed; 1 failed
-error: 2 targets failed:
+     Running tests/crashed.rs (target/debug/deps/crashed-89abcdef)
+error: test failed, to rerun pass `-p alpha-mcp --test crashed`
+error: 3 targets failed:
     `-p alpha-mcp --test bad`
     `-p alpha-mcp --test broken`
+    `-p alpha-mcp --test crashed`
 """
 
 
@@ -65,8 +69,14 @@ class Cargo(unittest.TestCase):
     def test_a_failed_target_is_failed(self):
         self.assertEqual(self.out["crates/alpha-mcp/tests/bad.rs"], "failed")
 
-    def test_a_target_that_never_printed_a_result_is_failed_not_dropped(self):
-        self.assertEqual(self.out["crates/alpha-mcp/tests/broken.rs"], "failed")
+    def test_a_target_that_never_started_is_blocked_not_dropped(self):
+        # It did not compile, so none of its tests ran: that says nothing about
+        # the code under test, and `failed` would say it is broken.
+        self.assertEqual(self.out["crates/alpha-mcp/tests/broken.rs"], "blocked")
+
+    def test_a_target_that_started_and_printed_no_result_is_failed(self):
+        # It ran and died (a crash or an abort): that is a failure of the code.
+        self.assertEqual(self.out["crates/alpha-mcp/tests/crashed.rs"], "failed")
 
     def test_build_output_is_never_matched(self):
         self.assertFalse(any(k.startswith("target/") for k in self.out))
@@ -89,6 +99,44 @@ class Junit(unittest.TestCase):
         self.assertEqual(out, {"tests/a.py": "failed", "tests/b.py": "skipped"})
         self.assertEqual(no_file, 1)
 
+    def test_an_error_before_the_body_ran_is_blocked_and_one_while_it_ran_is_failed(self):
+        # fact:root-cause-a-check-that-did-not-run-reads-did-not-work-as-designed-because-only-failing-is-loud-2026-10-02:
+        # pytest writes a collection error as <error message="collection
+        # failure">, and every <error> used to become `failed`.
+        root = tree()
+        xml = root / "r.xml"
+        xml.write_text(
+            """<testsuite>
+  <testcase classname="" name="tests.test_c" file="tests/c.py"><error message="collection failure">ImportError</error></testcase>
+  <testcase classname="d" name="one" file="tests/d.py"><error message="failed on setup with &quot;fixture&quot;">E</error></testcase>
+  <testcase classname="e" name="one" file="tests/e.py"><error message="java.lang.NullPointerException">at Foo</error></testcase>
+  <testcase classname="f" name="one" file="tests/f.py"/>
+  <testcase classname="f" name="two" file="tests/f.py"><error message="collection failure"/></testcase>
+  <testcase classname="g" name="one" file="tests/g.py"><failure/></testcase>
+  <testcase classname="g" name="two" file="tests/g.py"><error message="collection failure"/></testcase>
+</testsuite>"""
+        )
+        out: dict[str, str] = {}
+        conv.from_junit(str(xml), root, out)
+        self.assertEqual(
+            out,
+            {
+                "tests/c.py": "blocked",
+                "tests/d.py": "blocked",
+                "tests/e.py": "failed",
+                "tests/f.py": "blocked",  # a file one of whose cases never ran did not pass
+                "tests/g.py": "failed",  # and a failure is never hidden by one
+            },
+        )
+
+    def test_the_outcomes_are_the_ones_the_reconcile_accepts(self):
+        # verify.rs OBSERVED_OUTCOMES — the reconcile refuses anything else.
+        root = pathlib.Path(__file__).resolve().parent.parent
+        src = (root / "crates/reflow2-core/src/verify.rs").read_text()
+        line = next(l for l in src.splitlines() if l.startswith("pub const OBSERVED_OUTCOMES"))
+        declared = line.split("= &[", 1)[1].split("]", 1)[0]
+        self.assertEqual(sorted(conv.RANK), sorted(x.strip('" ') for x in declared.split(",")))
+
 
 class Python(unittest.TestCase):
     def test_exit_code_is_the_result(self):
@@ -107,6 +155,7 @@ class Worst(unittest.TestCase):
         conv.worst(out, "f", "failed")
         conv.worst(out, "f", "passed")
         conv.worst(out, "f", "skipped")
+        conv.worst(out, "f", "blocked")
         self.assertEqual(out["f"], "failed")
 
 

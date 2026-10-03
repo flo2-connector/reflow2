@@ -403,3 +403,251 @@ async fn a_receipt_echoes_short_values_and_sizes_long_ones() {
         "and is not also echoed: {r}"
     );
 }
+
+/// EVERY served write is classified by what its default reply carries, and a
+/// write that joins the surface unclassified fails here.
+///
+/// `fact:root-cause-external-dependency-replies-with-the-whole-manifest-because-the-receipt-shapes-only-node-and-edge-records-2026-10-02`:
+/// the receipt contract was enforced by STRUCTURE — "a new write tool joins by
+/// being served" — and that holds only for a write whose reply is a node or
+/// edge record. `external_dependency` replied with every declaration in the
+/// design as TOML (about 150 bytes more per declared dependency), declared
+/// `echo`, passed every test above, and was silently exempt. So the membership
+/// a receipt cannot see is now written down and reviewed, like
+/// `replies_are_bounded.py`'s `DOCUMENT_SHAPED`: a new write must be put in
+/// one of the three lists below by whoever adds it, with a reason when it is a
+/// report.
+///
+/// What this pins is the REVIEW: membership can no longer be silent. The
+/// lists are claims a person checks when adding a write; the measured
+/// behaviour of the one write that was wrong is pinned in
+/// `a_dependency_declaration_replies_with_a_receipt.rs`, which failed on main
+/// at 293f957.
+#[tokio::test]
+async fn every_served_write_is_classified_by_what_its_reply_carries() {
+    // The reply carries the node or edge this call wrote, as a record (at the
+    // top or nested): the choke point shapes it into a receipt.
+    const RECORD: &[&str] = &[
+        "add_actor",
+        "add_artifact",
+        "add_capability",
+        "add_change_event",
+        "add_component",
+        "add_constraint",
+        "add_contributor",
+        "add_decision",
+        "add_design_rule",
+        "add_environment",
+        "add_environment_rule",
+        "add_epoch",
+        "add_flow",
+        "add_interface",
+        "add_project",
+        "add_readiness",
+        "add_release",
+        "add_requirement",
+        "add_resource",
+        "add_verification",
+        "allocate",
+        "answers",
+        "authored_by",
+        "calibrated_against",
+        "constrains",
+        "consumes",
+        "contains",
+        "create_edge",
+        "create_node",
+        "create_nodes",
+        "decomposes",
+        "deploy_to",
+        "depends_on",
+        "documents",
+        "external_dependency",
+        "forecast_readiness",
+        "gate_on",
+        "governed_by",
+        "invalidates",
+        "link_artifact",
+        "owned_by",
+        "part_of_flow",
+        "performed_in",
+        "plan_epoch",
+        "provides",
+        "realizes",
+        "record_alias",
+        "record_finding",
+        "release_includes",
+        "replace_text",
+        "require_resource",
+        "satisfies",
+        "set_artifact_checksum",
+        "set_artifact_checksums",
+        "set_artifact_intent",
+        "set_capability_delivery",
+        "set_capability_signature",
+        "set_capability_status",
+        "set_closure_criterion",
+        "set_decision_status",
+        "set_epoch_status",
+        "set_evidence_scope",
+        "set_interface_designation",
+        "set_interface_spec",
+        "set_project_mode",
+        "set_provenance",
+        "set_quality_target",
+        "set_requirement_designation",
+        "set_requirement_lineage",
+        "set_requirement_status",
+        "set_verification_kind",
+        "set_verification_status",
+        "snapshot_before_change",
+        "verifies",
+    ];
+    // A fixed-size acknowledgement: the ids this call acted on, and a flag or a
+    // status. Nothing stored comes back, so nothing can grow.
+    const ACKNOWLEDGEMENT: &[&str] = &[
+        "acknowledge_defect",
+        "acknowledge_gap",
+        "answer_question",
+        "complies_with",
+        "delete_edge",
+        "delete_node",
+        "imposes",
+        "operates_in",
+        "pin_at_epoch",
+        "precedes",
+        "release_claim",
+        "report_manual_work",
+        "schedule_for",
+        "set_violation_status",
+        "violates_rule",
+        "withdraw_defect_acknowledgement",
+        "withdraw_gap_acknowledgement",
+        "withdraw_question",
+    ];
+    // A REPORT about this call's own work. Each grows only with what the call
+    // was given or asked to do, never with the rest of the design — or is cut
+    // by `budget_chars`. The reason is the review.
+    const REPORT: &[(&str, &str)] = &[
+        ("acknowledge_gaps", "one line per gap the call acknowledged"),
+        (
+            "apply_heal",
+            "the operations of the proposal it was handed: applied, skipped, verified",
+        ),
+        ("apply_merge", "what the merge it was handed changed"),
+        (
+            "claim_region",
+            "the claim: its seed, depth and the region it covers",
+        ),
+        (
+            "collapse_decision",
+            "the alternatives of the one decision it collapsed",
+        ),
+        (
+            "contain_component",
+            "the one move it made: from, to, and what that changed",
+        ),
+        (
+            "design_identity",
+            "this design's own identity, a fixed set of fields",
+        ),
+        (
+            "draw_edges",
+            "one line per edge item it was handed; bounded by `budget_chars`",
+        ),
+        (
+            "create_edges",
+            "one line per edge it was handed; bounded by `budget_chars`",
+        ),
+        (
+            "gap_to_prompt",
+            "the prompt for the one gap it was asked about",
+        ),
+        (
+            "gaps_to_prompts",
+            "the prompts for the gaps it was asked about",
+        ),
+        (
+            "genesis",
+            "what it created from the paragraph it was handed",
+        ),
+        (
+            "import_graph",
+            "counts and ids of what the import it was handed wrote",
+        ),
+        (
+            "ingest_corpus_step",
+            "this step over the documents it was handed",
+        ),
+        ("ingest_step", "this step over the input it was handed"),
+        (
+            "mirror_surface",
+            "what it mirrored from the surface it was pointed at",
+        ),
+        (
+            "move_component",
+            "the one move it made: from, to, and what that changed",
+        ),
+        (
+            "reconcile_artifacts",
+            "one finding per artifact that diverged; bounded by `budget_chars`",
+        ),
+        (
+            "reconcile_deployment",
+            "one finding per environment it was handed",
+        ),
+        (
+            "reconcile_verification",
+            "one finding per observed check it was handed",
+        ),
+        (
+            "register_alternative",
+            "a reference to the one alternative it registered",
+        ),
+        (
+            "release_includes_all",
+            "the manifest of the one release it was asked about",
+        ),
+        (
+            "reopen_choice",
+            "the one decision it reopened and the one it created",
+        ),
+        ("review_relations", "one outcome per relation it was handed"),
+        (
+            "usage_report",
+            "the usage window it closes, which is the report it exists to give",
+        ),
+    ];
+    let c = connect().await;
+    let served: std::collections::BTreeSet<String> =
+        write_tools(&c).await.into_iter().map(|(n, _)| n).collect();
+    let mut listed: std::collections::BTreeMap<&str, &str> = std::collections::BTreeMap::new();
+    for (name, list) in RECORD
+        .iter()
+        .map(|n| (*n, "RECORD"))
+        .chain(ACKNOWLEDGEMENT.iter().map(|n| (*n, "ACKNOWLEDGEMENT")))
+        .chain(REPORT.iter().map(|(n, _)| (*n, "REPORT")))
+    {
+        if let Some(other) = listed.insert(name, list) {
+            panic!("`{name}` is in both {other} and {list}: a reply has one shape");
+        }
+    }
+    let unclassified: Vec<&String> = served
+        .iter()
+        .filter(|n| !listed.contains_key(n.as_str()))
+        .collect();
+    assert!(
+        unclassified.is_empty(),
+        "{} served write tool(s) are not classified by what their reply carries: \
+         {unclassified:?}. Put each in RECORD (it replies with the node or edge it wrote — the \
+         receipt layer then shapes it), ACKNOWLEDGEMENT (a fixed-size reply naming ids), or \
+         REPORT with the reason its reply does not grow with the rest of the design. A reply \
+         that is none of these is the defect this test exists for.",
+        unclassified.len()
+    );
+    let stale: Vec<&&str> = listed.keys().filter(|n| !served.contains(**n)).collect();
+    assert!(
+        stale.is_empty(),
+        "classified but not a served write tool (renamed, retired, or now read-only): {stale:?}"
+    );
+}

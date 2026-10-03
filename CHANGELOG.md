@@ -284,6 +284,46 @@ This file is the third view: *what changed, and when*.
   late on purpose to keep it that way. `a_build_can_call_one_tool_from_the_shell.rs` had the same
   kind of wait, a write through `--call`, and now waits for its server's handshake instead.
   **What to do:** nothing. If a pull request failed on this message, re-run it.
+- **Seven small fixes from the VS Code `--call` field report** (fix program item 8). Each one
+  made reflow2 say something untrue or less than it knew.
+  - **`external_dependency` replies with a receipt, and re-declaring keeps what you leave out.**
+    It used to reply with every dependency the design declares, as TOML, growing about 150 bytes
+    per declaration and naming no node. Re-declaring (to move a pin) also cleared `components`,
+    `features`, the watch and the Resource's description, which hub sessions had to retype eight
+    times. Now the reply is the declared Resource, a `revision` block saying what changed or was
+    removed (the prior state is kept in a snapshot), and `address_baseline` for an address watch.
+    Leave a field out to keep it; pass `[]` to clear a list, or `""` to stop a watch. **What to
+    do:** read the whole manifest with `reconcile_dependencies` (it writes nothing) if you used to
+    read it from this reply. Every write's reply shape is now listed in a test, so a write that
+    joins the surface replying with something other than a receipt fails the build.
+  - **A check that could not run can say so.** `reconcile_verification` takes the outcome
+    `blocked` (a collection error, a test file that did not compile, a setup that failed before
+    the body ran). `tools/run_to_files.py` writes `blocked` for pytest's "collection failure" and
+    "failed on setup" errors and for a cargo test target that never started; any other JUnit
+    `<error>` is still `failed`. A check whose status is `blocked` now raises the gap
+    `blocked_verification` (severity 0.65), which says nothing is known about the part, never
+    that it failed. **What to do:** feed a collection error back as `blocked`, not `failed`; a
+    `failed` still raises `failing_verification`, "did not work as designed".
+  - **The served hub skill named the wrong list.** It said a local hub's designs are the
+    session's MCP configuration. They are the hub's declared dependencies, which `upstream_status`
+    reads back, through MCP and through `--call` alike.
+  - **`get_node` with a `node_type` says why an id is absent.** It answered a bare
+    `{"node": null}`; now `empty_because` says so, and names the type that does hold the id when
+    one does. `tools/empty_speaks.py` now probes each optional id- or type-shaped parameter too,
+    which is how this one was missed.
+  - **One binary for every gate.** About twenty gates hard-coded `target/debug/reflow2-mcp`, and
+    two read their own variables. They all take it from `tools/reflow2_bin.py` now: `$REFLOW2_BIN`,
+    else the debug build, else the release build (said on stderr). **What to do:** run
+    `REFLOW2_BIN=target/release/reflow2-mcp python3 tools/run_ci_gates.py` to check the whole set
+    against a release build; `$REFLOW2_MCP` and `$REFLOW2_MCP_BIN` are no longer read.
+  - **The `find_tools` replica ranks as `find_tools` does.** `tools/tool_confusability.py` scored
+    text that `tools/list` adds and `find_tools` never sees (the `draw_edges` sentence on 32 edge
+    helpers, the `echo` parameter), so it agreed with the live ranker on 186 of 193 queries. It
+    now strips them (193 of 193), `--validate` checks against the real binary and runs in CI, and
+    `--baseline` refuses to rewrite the rank ratchet from rankings the live ranker does not give.
+  - **reflow2's own design** now records the dependency-currency check (#651) as realized, with
+    the workflow and checker that realize it and the test that verifies it.
+
 - **A read through `--call` on a design another session holds is now as true as a read of the
   design itself.** While a `--serve-shared` server (another session) holds a design, `--call`
   answers a read-only tool from a copy of the store. That copy left out things the reads depend

@@ -14,6 +14,14 @@ receives:
     over how much it looked: `searched` (how many it ran over) or a sentence.
     `{"hits": []}` from 0 searched and from 6,000 searched are opposite facts.
 
+Passes ② and ③ are then asked again with each OPTIONAL id-shaped or
+type-shaped parameter filled in, one at a time (an absent id, or a real node
+type), because an optional parameter can route a read down a path the
+required-only probe never takes. Added 2026-10-03: `get_node` given a
+`node_type` answered an absent id with a bare `{"node": null}` while the same
+id without it said why, and this gate passed, because it probed `get_node` by
+`id` alone (fact:get-node-given-a-node-type-answers-an-absent-id-with-a-bare-null-2026-10-03).
+
 All take the tool list from `tools/list`, so a new tool joins the class the
 moment it is served rather than when somebody remembers.
 
@@ -41,6 +49,7 @@ from __future__ import annotations
 import argparse, json, os, pathlib, shutil, sys, tempfile
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
 from smoke_mcp import Server
+from reflow2_bin import default_bin  # noqa: E402  (one binary for every gate)
 
 SPEAKS = ("empty_because", "loop_hint")
 
@@ -107,6 +116,45 @@ def probe_args(schema: dict):
     return args if id_shaped else None
 
 
+# A node type every reflow2 schema declares — what a type-shaped optional
+# parameter is filled with, so the read is asked a REAL question rather than
+# refused for a type that does not exist (a refusal would pass, and test
+# nothing).
+A_REAL_TYPE = "Requirement"
+
+
+def _type_of(spec: dict):
+    t = spec.get("type")
+    return t if isinstance(t, str) else next((x for x in t if x != "null"), None) if isinstance(t, list) else None
+
+
+def optional_probes(schema: dict, base: dict) -> list[tuple[str, dict]]:
+    """`base` plus ONE optional id-shaped or type-shaped parameter at a time.
+
+    id-shaped (`id`, `*_id`, a string): the deliberately absent id.
+    `*_ids` (an array): a list holding it. type-shaped (`node_type`,
+    `*_type`, a string with no enum): a real node type. Anything else is left
+    alone, so each probe differs from `base` by exactly one parameter.
+    """
+    props = schema.get("properties") or {}
+    required = set(schema.get("required") or [])
+    out = []
+    for p, spec in sorted(props.items()):
+        if p in required or p in base:
+            continue
+        t = _type_of(spec)
+        if (p == "id" or p.endswith("_id")) and t == "string":
+            value = ABSENT
+        elif p.endswith("_ids") and t == "array":
+            value = [ABSENT]
+        elif (p == "node_type" or p.endswith("_type")) and t == "string" and not spec.get("enum"):
+            value = A_REAL_TYPE
+        else:
+            continue
+        out.append((p, {**base, p: value}))
+    return out
+
+
 def query_args(schema: dict):
     """Arguments that ask a query-taking read for words nothing matches.
 
@@ -137,12 +185,13 @@ def speaks(v: dict) -> bool:
 
 def main() -> int:
     ap = argparse.ArgumentParser()
-    ap.add_argument("--bin", default="target/debug/reflow2-mcp")
+    ap.add_argument("--bin", default=None, help="reflow2-mcp binary (default: $REFLOW2_BIN, else this checkout's debug build)")
     a = ap.parse_args()
+    a.bin = a.bin or default_bin()
     store = tempfile.mkdtemp(prefix="reflow2-empty-")
     s = Server(a.bin, store)
     bare, spoke, skipped = [], [], []
-    queried = []
+    queried, widened = [], []
     try:
         listed = s.rpc("tools/list", {})["result"]["tools"]
         for t in sorted(listed, key=lambda t: t["name"]):
@@ -150,37 +199,51 @@ def main() -> int:
             req = (t.get("inputSchema") or {}).get("required") or []
             if not ro:
                 continue
+            schema = t.get("inputSchema") or {}
             if req:
-                args = probe_args(t.get("inputSchema") or {})
+                args = probe_args(schema)
                 if args is None:
-                    args = query_args(t.get("inputSchema") or {})
+                    args = query_args(schema)
                     if args is None:
                         continue
                     queried.append(t["name"])
             else:
                 args = {}
-            resp = s.rpc("tools/call", {"name": t["name"], "arguments": args})
-            res = resp.get("result") or {}
-            if "error" in resp or res.get("isError"):
-                # A refusal naming the absent referent IS the answer — better
-                # than an empty reply, and the pattern budget_report and
-                # flow_report already set.
-                spoke.append(t["name"]) if args else skipped.append((t["name"], "refused"))
-                continue
-            v = res.get("structuredContent")
-            if v is None:
-                skipped.append((t["name"], "prose")); continue
-            if not is_empty(v):
-                continue
-            if speaks(v):
-                spoke.append(t["name"])
-            else:
-                bare.append((t["name"], json.dumps(v)[:80]))
+            probes = [(t["name"], args)] + [
+                (f"{t['name']} +{p}", a) for p, a in optional_probes(schema, args)
+            ]
+            widened.extend(label for label, _ in probes[1:])
+            for label, call_args in probes:
+                resp = s.rpc("tools/call", {"name": t["name"], "arguments": call_args})
+                res = resp.get("result") or {}
+                if "error" in resp or res.get("isError"):
+                    # A refusal naming the absent referent IS the answer —
+                    # better than an empty reply, and the pattern
+                    # budget_report and flow_report already set.
+                    spoke.append(label) if call_args else skipped.append((label, "refused"))
+                    continue
+                v = res.get("structuredContent")
+                if v is None:
+                    skipped.append((label, "prose")); continue
+                if not is_empty(v):
+                    continue
+                if speaks(v):
+                    spoke.append(label)
+                else:
+                    bare.append((label, json.dumps(v)[:80]))
     finally:
         s.close(); shutil.rmtree(store, ignore_errors=True)
     print(f"empty on an empty design: {len(spoke) + len(bare)}   speaking: {len(spoke)}   BARE: {len(bare)}"
           f"   (skipped: {len(skipped)} refused/prose)")
     print(f"query-taking reads asked for words nothing matches (pass ③): {', '.join(queried) or 'NONE'}")
+    print(f"reads asked again with one optional id- or type-shaped parameter: {len(widened)}"
+          f" ({', '.join(widened) or 'NONE'})")
+    if "get_node +node_type" not in widened:
+        # The widening exists for this probe; a schema change that drops it
+        # must fail here rather than leave the widening asking nobody.
+        print("\nFAIL: the optional-parameter pass did not ask `get_node` with a `node_type` — "
+              "the path it was added for.")
+        return 1
     if "search_design" not in queried:
         # The pass exists for this tool; a schema change that drops it from
         # the pass must fail here rather than leave the pass asking nobody.

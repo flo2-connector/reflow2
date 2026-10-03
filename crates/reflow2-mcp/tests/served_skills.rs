@@ -400,3 +400,43 @@ fn the_pointer_a_project_holds_is_served_as_a_section_and_the_first_session_skil
         );
     }
 }
+
+/// A local hub's list of designs is its DECLARED DEPENDENCIES, and the served
+/// hub skill says so.
+///
+/// `fact:root-cause-a-local-hubs-list-is-its-watch-manifest-but-the-hub-skill-names-the-mcp-config-and-no-pin-says-where-a-store-is-2026-10-02`:
+/// the skill said a local hub's list was "one connection per child design in
+/// the session's MCP configuration. That configuration is the list." Measured
+/// the same day under `--call`, where there is no MCP configuration at all,
+/// `upstream_status` read the hub's members back from its declared
+/// dependencies. Anthony accepted the wording fix on 2026-10-02
+/// (`fact:the-hub-address-book-idea-stays-open-and-the-hub-skill-wording-is-to-be-fixed-2026-10-02`).
+/// OBSERVED FAILING on main at 293f957: the served body carried the sentence
+/// and named neither `external_dependency` nor `upstream_status` as the list.
+#[test]
+fn the_hub_skill_names_its_declared_dependencies_as_a_local_hubs_list() {
+    let hub = SKILLS
+        .iter()
+        .find(|s| s.name == "hub")
+        .expect("hub must be served");
+    let flat = hub.body.split_whitespace().collect::<Vec<_>>().join(" ");
+    assert!(
+        !flat.contains("That configuration is the list"),
+        "the MCP configuration is not a local hub's list of designs"
+    );
+    let local = flat
+        .split("**A local hub.**")
+        .nth(1)
+        .and_then(|rest| rest.split("- **").next())
+        .expect("the skill describes a local hub");
+    assert!(
+        local.contains("declared dependencies")
+            && local.contains("`external_dependency`")
+            && local.contains("`upstream_status`"),
+        "a local hub's list is its declared dependencies, read back by upstream_status: {local}"
+    );
+    assert!(
+        local.contains("`--call`"),
+        "and it is the same list through the door, where there is no MCP configuration: {local}"
+    );
+}

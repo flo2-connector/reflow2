@@ -18,6 +18,9 @@ So the four things pinned here are the four ways it could lie:
   4. the real ci.yml yields a plausible number of gates, so a future change to
      the workflow's shape cannot silently reduce the runner to a no-op.
 
+  5. every gate ci.yml runs takes its binary from one resolver, so
+     `REFLOW2_BIN=…` reaches all of them (added 2026-10-03).
+
 Hermetic: nothing here runs cargo, spawns a server, or touches the design.
 
 Usage:  python3 tools/test_run_ci_gates.py
@@ -123,6 +126,128 @@ class RunnerRefusesABrokenRead(unittest.TestCase):
             source,
             "pyyaml is not in the base image; skill_lint's text scan exists for that reason",
         )
+
+
+# Gates that name a binary path in code, and why each may. Every other gate
+# takes its binary from `reflow2_bin.default_bin()`.
+NAMES_ITS_OWN_BINARY = {
+    # Installed into consumer projects ALONE, where there is no target/ and no
+    # reflow2_bin.py, so it keeps its own copy of the order (plus PATH). It
+    # still reads $REFLOW2_BIN first, which the next test checks.
+    "tools/reflow2_check.py": "ships alone to consumer projects",
+    # A path that must NOT exist: the installer's suite proves a missing binary
+    # is handled. It never runs one.
+    "tools/test_init.py": "a deliberately non-existent binary, never run",
+}
+
+
+def binary_paths_named_in_code(source: str) -> list[tuple[int, str]]:
+    """Where a script names a reflow2-mcp build path, or a private env var for
+    one, in CODE. Docstrings are prose and are skipped: a usage line saying
+    `--bin target/release/reflow2-mcp` names nothing the script runs."""
+    import ast
+    import re
+
+    tree = ast.parse(source)
+    docstrings = {
+        id(n.body[0].value)
+        for n in ast.walk(tree)
+        if isinstance(n, (ast.Module, ast.FunctionDef, ast.AsyncFunctionDef, ast.ClassDef))
+        and n.body
+        and isinstance(n.body[0], ast.Expr)
+        and isinstance(n.body[0].value, ast.Constant)
+        and isinstance(n.body[0].value.value, str)
+    }
+    hits: list[tuple[int, str]] = []
+    for n in ast.walk(tree):
+        if isinstance(n, ast.Constant) and isinstance(n.value, str) and id(n) not in docstrings:
+            if re.search(r"target/(debug|release)/reflow2-mcp", n.value):
+                hits.append((n.lineno, n.value))
+            # Spelled by parts so this checker does not find itself.
+            elif n.value in ("_".join(("REFLOW2", "MCP")), "_".join(("REFLOW2", "MCP", "BIN"))):
+                hits.append((n.lineno, f"${n.value} (the variable is $REFLOW2_BIN)"))
+        # REPO / "target" / "debug" / "reflow2-mcp", or os.path.join(…, "target", …)
+        if isinstance(n, (ast.BinOp, ast.Call)):
+            parts = [c.value for c in ast.walk(n) if isinstance(c, ast.Constant)]
+            if "target" in parts and "reflow2-mcp" in parts:
+                hits.append((n.lineno, "a path built from target/ … /reflow2-mcp"))
+    return hits
+
+
+class EveryGateRunsTheBinaryItIsTold(unittest.TestCase):
+    """`REFLOW2_BIN=… python3 tools/run_ci_gates.py` must point EVERY gate at one
+    binary. Until 2026-10-03 reflow2_check read $REFLOW2_BIN and about twenty
+    gates hard-coded target/debug, so with only a release build the run passed
+    reflow2_check and failed replies_are_bounded and a_reply_is_sent_once for a
+    binary they never looked for (fix program item 8). Two other gates read
+    $REFLOW2_MCP and $REFLOW2_MCP_BIN."""
+
+    def test_no_gate_ci_runs_names_its_own_binary(self):
+        import re
+
+        sys.path.insert(0, str(REPO / "tools"))
+        from skill_lint import ci_gates
+
+        scripts = sorted(
+            {m.group(1) for c in ci_gates().values() for m in re.finditer(r"python3 (tools/\S+\.py)", c)}
+        )
+        self.assertGreater(len(scripts), 30, scripts)
+        offenders = {}
+        for script in scripts:
+            if script in NAMES_ITS_OWN_BINARY:
+                continue
+            hits = binary_paths_named_in_code((REPO / script).read_text(encoding="utf-8"))
+            if hits:
+                offenders[script] = hits
+        self.assertEqual(
+            offenders,
+            {},
+            "these gates choose their own binary; take it from reflow2_bin.default_bin() so "
+            "$REFLOW2_BIN reaches them, or add the script to NAMES_ITS_OWN_BINARY with why",
+        )
+
+    def test_the_exemptions_are_still_gates_that_name_a_binary(self):
+        for script in NAMES_ITS_OWN_BINARY:
+            self.assertTrue(
+                binary_paths_named_in_code((REPO / script).read_text(encoding="utf-8")),
+                f"{script} no longer names a binary; drop its exemption",
+            )
+
+    def test_reflow2_check_reads_the_same_variable_first(self):
+        source = (REPO / "tools" / "reflow2_check.py").read_text(encoding="utf-8")
+        body = source.split("def default_bin", 1)[1].split("\ndef ", 1)[0]
+        self.assertLess(body.index('"REFLOW2_BIN"'), body.index('"target"'))
+
+    def test_the_resolver_takes_the_variable_then_debug_then_says_it_fell_back_to_release(self):
+        import contextlib
+        import io
+        import os
+        import tempfile
+
+        sys.path.insert(0, str(REPO / "tools"))
+        import reflow2_bin
+
+        saved = (os.environ.get(reflow2_bin.ENV), reflow2_bin.DEBUG, reflow2_bin.RELEASE)
+        tmp = pathlib.Path(tempfile.mkdtemp(prefix="reflow2-bin-"))
+        try:
+            os.environ[reflow2_bin.ENV] = "/somewhere/else/reflow2-mcp"
+            self.assertEqual(reflow2_bin.default_bin(), "/somewhere/else/reflow2-mcp")
+            del os.environ[reflow2_bin.ENV]
+            reflow2_bin.DEBUG, reflow2_bin.RELEASE = tmp / "debug", tmp / "release"
+            self.assertEqual(reflow2_bin.default_bin(), str(tmp / "debug"), "absent: name the debug build")
+            (tmp / "release").write_text("")
+            err = io.StringIO()
+            with contextlib.redirect_stderr(err):
+                self.assertEqual(reflow2_bin.default_bin(), str(tmp / "release"))
+            self.assertIn("release", err.getvalue(), "a fallback to release is said, never silent")
+            (tmp / "debug").write_text("")
+            self.assertEqual(reflow2_bin.default_bin(), str(tmp / "debug"))
+        finally:
+            if saved[0] is None:
+                os.environ.pop(reflow2_bin.ENV, None)
+            else:
+                os.environ[reflow2_bin.ENV] = saved[0]
+            reflow2_bin.DEBUG, reflow2_bin.RELEASE = saved[1], saved[2]
 
 
 if __name__ == "__main__":

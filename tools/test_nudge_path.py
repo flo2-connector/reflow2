@@ -32,6 +32,7 @@ import shutil
 import subprocess
 import tempfile
 import unittest
+from reflow2_bin import default_bin  # noqa: E402  (one binary for every gate)
 
 REPO = pathlib.Path(__file__).resolve().parent.parent
 SETTINGS = REPO / ".claude" / "settings.json"
@@ -218,7 +219,7 @@ class TheServerKnowsWhetherTheNetExists(unittest.TestCase):
     """The backstop for projects with NO hook — which is every consumer project,
     since `reflow2_init.py` installs none."""
 
-    BINARY = REPO / "target" / "debug" / "reflow2-mcp"
+    BINARY = pathlib.Path(default_bin())
 
     @classmethod
     def setUpClass(cls):

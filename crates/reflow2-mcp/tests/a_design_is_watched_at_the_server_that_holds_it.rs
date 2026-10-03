@@ -274,12 +274,10 @@ async fn a_real_server_is_asked_and_a_real_change_is_seen_and_an_outage_is_never
     );
     assert_eq!(b["graph_id"], id.as_str());
     let first = b["fingerprint"].as_str().expect("fingerprint").to_string();
-    assert!(
-        reply["value"]
-            .as_str()
-            .unwrap()
-            .contains(&format!("design_address = \"{address}\"")),
-        "the manifest names the address: {reply}"
+    assert_eq!(
+        reply["properties"]["design_address"],
+        address.as_str(),
+        "the receipt names the address the watch was recorded at: {reply}"
     );
 
     let r = status(&mine).await;

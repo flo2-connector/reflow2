@@ -47,6 +47,7 @@ from __future__ import annotations
 import argparse, json, pathlib, shutil, subprocess, sys, tempfile
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
 from smoke_mcp import Server
+from reflow2_bin import default_bin  # noqa: E402  (one binary for every gate)
 
 BARE = "failed to deserialize parameters"
 UNKNOWN_KEY = "zz_no_such_field"
@@ -175,8 +176,9 @@ def door(binary: str, graph: str, tool: str, args: dict) -> tuple[int, str]:
 
 def main() -> int:
     ap = argparse.ArgumentParser()
-    ap.add_argument("--bin", default="target/debug/reflow2-mcp")
+    ap.add_argument("--bin", default=None, help="reflow2-mcp binary (default: $REFLOW2_BIN, else this checkout's debug build)")
     a = ap.parse_args()
+    a.bin = a.bin or default_bin()
 
     tmp = pathlib.Path(tempfile.mkdtemp(prefix="refusal-speaks-"))
     failures: list[str] = []

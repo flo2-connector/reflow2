@@ -33,6 +33,7 @@ import tempfile
 
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
 from smoke_mcp import Server  # noqa: E402
+from reflow2_bin import default_bin  # noqa: E402  (one binary for every gate)
 
 REPO = pathlib.Path(__file__).resolve().parent.parent
 DESIGNED = "Charges once per idempotency key, rejecting duplicates within 24h."
@@ -45,7 +46,7 @@ def sha(text: str) -> str:
 
 def main() -> int:
     tmp = tempfile.mkdtemp(prefix="reflow2-coherent-")
-    s = Server(str(REPO / "target/debug/reflow2-mcp"), str(pathlib.Path(tmp) / "graph"))
+    s = Server(default_bin(), str(pathlib.Path(tmp) / "graph"))
     out: list[tuple[str, bool, str]] = []
 
     def note(q: str, ok: bool, detail: str = "") -> None:

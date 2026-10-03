@@ -32,6 +32,7 @@ import tempfile
 
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
 from smoke_mcp import Server  # noqa: E402
+from reflow2_bin import default_bin  # noqa: E402  (one binary for every gate)
 
 REPO = pathlib.Path(__file__).resolve().parent.parent
 
@@ -65,7 +66,7 @@ FEEDBACK = [
 
 def main() -> int:
     tmp = tempfile.mkdtemp(prefix="reflow2-loop-")
-    s = Server(str(REPO / "target/debug/reflow2-mcp"), str(pathlib.Path(tmp) / "graph"))
+    s = Server(default_bin(), str(pathlib.Path(tmp) / "graph"))
     friction: list[str] = []
     try:
         s.call("genesis", {"project_id": "proj:loop", "name": "The reflow2 coherence loop",
