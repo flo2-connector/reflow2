@@ -100,6 +100,36 @@ This file is the third view: *what changed, and when*.
     `REFLOW2_BLESS_ACCEPTANCE=1 cargo test -p reflow2-core --no-default-features --test
     a_schema_narrowing_ships_its_migration`. Until then that test fails on purpose, and the bless
     refuses while any narrowing is unaccounted for.
+- **`reflow2 read <tool>` and `reflow2 write <tool>`: a terminal can approve every read once and
+  still ask before each write.** Where an organisation blocks MCP, a VS Code agent reaches reflow2
+  through `--call`, and VS Code asked about every call. One approval rule could not tell a read
+  from a write: the command named a tool and nothing else, and nothing listed which of the 195
+  tools only read (78). This is step 3 of the plan for the `--call` door
+  (`req:a-terminal-agent-can-auto-approve-reads-and-confirm-each-write`).
+  - **`reflow2 read <tool> [JSON]`** runs a tool only if it changes nothing: its served annotation
+    says it only reads, and `export_graph` and `export_surface` are given no `path` (with one they
+    write a file). Every other tool is refused by name before anything is opened, exit 1, and the
+    refusal names `reflow2 write`. What it accepts runs as `--read-only --call` runs it, and it
+    never creates a design.
+  - **`reflow2 write <tool> [JSON]`** runs any tool, exactly as `--call` does, so a write keeps
+    the committed export current: `--export-to FILE` or `--no-export` go before the verb
+    (`reflow2 --no-export write …`).
+  - **Arguments:** a JSON object after the tool, or `--args JSON`, or `-` to read it from stdin
+    (use a quoted heredoc, `<<'EOF'`). Only the tool, its arguments and `--graph-path` may follow
+    the verb; any other flag there is refused.
+  - **Quiet:** neither verb prints routine log lines. stderr carries a refusal or a warning only
+    (`RUST_LOG` still overrides).
+  - **`reflow2 read --list`** prints which tools `read` runs and which need `write`, from the
+    served annotations.
+  - The verbs are the binary's own (`reflow2-mcp read …`). The `reflow2` command the installer
+    puts on your PATH hands them over unchanged, and its help now names them.
+  - **What to do:** in VS Code, add `"chat.tools.terminal.autoApprove": { "/^reflow2 read /": true
+    }` to your settings and leave `reflow2 write` out, so each write still asks. The snippet and
+    its limits are in getting-started/SETUP.md. In short: a shell redirection on the same line
+    (`> file`) is the shell writing, which reflow2 cannot see, and VS Code calls auto-approval a
+    best-effort convenience, not a security boundary. `--call` is unchanged. Re-run the installer
+    to get the new help text; the verbs already work through an older `reflow2` command.
+
 - **`get_node` reads a node's edges when you ask: pass `include_edges`.** Until now no read
   returned one node's edges as edges. `get_node` gave the properties only, and the nearest reader,
   `propagate_from` at depth 1, left out authorship and every edge's evidence. To see what a node is

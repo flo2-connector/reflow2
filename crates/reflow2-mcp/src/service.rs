@@ -438,9 +438,24 @@ pub struct ReflowService {
 /// guards is listed here, and `tools::tests` holds every `file_write_permitted`
 /// call to a name in this list), and a `--read-only` CLIENT, which refuses a
 /// call to one of these that carries `path` before it is sent
-/// (`crate::read_only_client`). Each takes the file as its `path` argument;
+/// (`crate::read_only_client`), as does the `read` verb (`crate::verbs`) —
+/// both through [`writes_a_file`]. Each takes the file as its `path` argument;
 /// `read_only_client`'s tests hold the served schema to that.
 pub const FILE_WRITING_TOOLS: [&str; 2] = ["export_graph", "export_surface"];
+
+/// ITEM 1'S FILE RULE, as one function: whether a call to `tool` with
+/// `arguments` writes a file — one of [`FILE_WRITING_TOOLS`] given a `path`
+/// that is not null. Without a path those tools answer in the reply, which is
+/// a read. Everything that decides "does this call change nothing?" BEFORE
+/// sending or running it asks this, so the rule has one wording: a
+/// `--read-only` client (`crate::read_only_client`) and the `read` verb
+/// (`crate::verbs`).
+pub fn writes_a_file(tool: &str, arguments: Option<&serde_json::Value>) -> bool {
+    FILE_WRITING_TOOLS.contains(&tool)
+        && arguments
+            .and_then(|a| a.get("path"))
+            .is_some_and(|p| !p.is_null())
+}
 
 /// The request `_meta` key naming who ONE request writes for. It overrides the
 /// session's declaration for that request alone. A gateway that carries many

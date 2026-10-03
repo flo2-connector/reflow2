@@ -579,6 +579,25 @@ fn honoured(mode: &str) -> &'static [&'static str] {
             "--read-only",
             "--full",
         ],
+        // The verbs (fix program item 7b) read what --call reads, less what
+        // contradicts them; their tool and JSON are the subcommand's own.
+        // `write` is --call, so it keeps the committed export current
+        // (step 2 of the door plan): --export-to and --no-export.
+        "the `read` verb" => &[
+            "--graph-path",
+            "--store-memory",
+            "--only-if-present",
+            "--read-only",
+            "--tree-root",
+        ],
+        "the `write` verb" => &[
+            "--graph-path",
+            "--store-memory",
+            "--only-if-present",
+            "--tree-root",
+            "--export-to",
+            "--no-export",
+        ],
         other => panic!("no row for {other}"),
     }
 }
@@ -599,11 +618,13 @@ fn mode_argv(mode: &str) -> Vec<&'static str> {
         "--stop-shared" => vec!["--stop-shared"],
         "--describe" => vec!["--describe", "get_node"],
         "--list-tools" => vec!["--list-tools"],
+        "the `read` verb" => vec!["read", "graph_report"],
+        "the `write` verb" => vec!["write", "graph_report"],
         other => panic!("no argv for {other}"),
     }
 }
 
-const MODES: [&str; 13] = [
+const MODES: [&str; 15] = [
     "setup",
     "--export",
     "--export-snapshot",
@@ -617,6 +638,8 @@ const MODES: [&str; 13] = [
     "--stop-shared",
     "--describe",
     "--list-tools",
+    "the `read` verb",
+    "the `write` verb",
 ];
 
 /// The mode a flag selects, when it selects one.

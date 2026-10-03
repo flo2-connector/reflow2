@@ -48,5 +48,6 @@ pub mod tool_listing;
 pub mod tools;
 pub mod upstream;
 pub mod usage;
+pub mod verbs;
 pub mod wall_check;
 pub mod writers;

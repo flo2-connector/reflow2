@@ -416,10 +416,15 @@ def remove_hooks(check: bool) -> str:
 # ------------------------------------------------------------ the `reflow2` cmd
 
 
+# `reflow2 read` and `reflow2 write` are NOT dispatched here: they are the
+# binary's own verbs (crates/reflow2-mcp/src/verbs.rs), so they reach it through
+# the last line unchanged. The binary holds the read/write classification (its
+# served surface), and a verb kept in this script would be missing wherever
+# only the binary is installed. test_init.py drives this script to hold that.
 WRAPPER = """#!/bin/sh
 # reflow2 — installed by reflow2_install.py. Subcommands run the kit's tools;
-# anything else is handed to the server binary, so `reflow2 --version` and
-# `reflow2 --export` work exactly as the binary does.
+# anything else is handed to the server binary, so `reflow2 --version`,
+# `reflow2 --export` and `reflow2 read <tool>` work exactly as the binary does.
 set -eu
 KIT="{kit}"
 BIN="{binary}"
@@ -437,6 +442,14 @@ reflow2 — a persistent design brain for building things with an AI agent.
   reflow2 update        bring THIS project's reflow2 files up to the version
                         installed on this machine  (--check to preview)
   reflow2 check         run the design gate against the committed export
+
+  reflow2 read <tool> [JSON]    run ONE tool that changes nothing, print its reply
+  reflow2 write <tool> [JSON]   run ONE tool, any tool
+  reflow2 read --list           which tools `read` runs
+
+`read` refuses every tool that would change the design or write a file, so a
+terminal can auto-approve it with one rule (`^reflow2 read `) and keep asking
+before each `write`. VS Code: chat.tools.terminal.autoApprove.
 
 Anything else is passed to reflow2-mcp: reflow2 --version, reflow2 --export, ...
 

@@ -276,6 +276,38 @@ the day, stopping is a perfectly good answer. Everything decided so far is alrea
   is given, which `--call` alone never shows. It is brief by default; `--full` prints the entry
   unchanged, and `--list-tools --full` prints every tool, for rendering a reference. It only
   reads. The same answer is the tool `describe_schema` with `tool`, through any door.
+- **An agent in a terminal can have every read approved once and each write still asked.**
+  `reflow2 read <tool> '<json>'` runs a tool only if it changes nothing — no node, edge or
+  property of the design, and no file — and refuses every other tool by name before anything is
+  opened, naming `reflow2 write <tool>`, which runs any tool exactly as `--call` does, so a write
+  keeps the committed export current (`reflow2 --export-to FILE write …` names the file, and
+  `reflow2 --no-export write …` asks for none). Both take the arguments as a JSON object after
+  the tool, as `--args`, or as `-` from stdin; only the tool, its arguments and `--graph-path` may
+  follow the verb. `reflow2 read --list` prints which tools each verb runs. (`reflow2-mcp read …`
+  is the same thing without the installer's `reflow2` command.)
+
+  In **VS Code**, where the agent runs reflow2 as terminal commands, approve the reads in your
+  settings and leave the writes asking:
+
+  ```json
+  "chat.tools.terminal.autoApprove": {
+    "/^reflow2 read /": true
+  }
+  ```
+
+  (With only the binary on your PATH, the rule is `"/^reflow2-mcp read /": true`.) What this rule
+  does and does not cover:
+  - VS Code matches each command of a compound line, so `reflow2 read … && rm …` still asks
+    about the `rm`. A shell redirection (`reflow2 read export_graph > design.json`) is the SHELL
+    writing a file, which reflow2 never sees; VS Code's own detection of file writes
+    (`chat.tools.terminal.blockDetectedFileWrites`) is experimental. VS Code describes
+    auto-approval as a best-effort convenience, not a security boundary.
+  - How VS Code matches a heredoc body (`--args - <<'EOF'`) is not established, so a read with
+    a heredoc may still ask. The one-line form (`reflow2 read get_node '{"id":"req:x"}'`) is one
+    command the rule matches as written.
+  - Opening a design still updates the store's own housekeeping (RocksDB's files, and the version
+    stamp, handshake record and usage ledger beside it), as `--read-only` does. None of it is the
+    design.
 - **Gate CI on the committed export.** `tools/reflow2_check.py` (in the kit) rehashes every
   registered artifact against the working tree and runs the gap detectors, exiting non-zero on
   unaccepted drift or a serious open gap — so the design is checked on every commit, not once a
