@@ -266,6 +266,43 @@ async fn an_absent_node_says_so_and_reads_no_edges() {
     }
 }
 
+/// An absent node says which empty it is on EVERY path, `include_edges` or
+/// not, typed or not
+/// (`fact:get-node-given-a-node-type-answers-an-absent-id-with-a-bare-null-2026-10-03`).
+/// OBSERVED FAILING on main at 293f957: the typed read without
+/// `include_edges` answered exactly `{"node": null}`. A typed read of an id
+/// held under ANOTHER type names that type, because that is the commonest
+/// reason a typed read of a real id comes back empty.
+#[tokio::test]
+async fn an_absent_node_says_which_empty_on_every_path() {
+    let s = design().await;
+    for args in [
+        json!({"id": "req:nope"}),
+        json!({"id": "req:nope", "node_type": "Requirement"}),
+        json!({"id": "req:nope", "include_edges": true}),
+        json!({"id": "req:nope", "node_type": "Requirement", "include_edges": true}),
+    ] {
+        let got = get(&s, args.clone()).await.expect("absent is not an error");
+        assert!(got["node"].is_null(), "{args} -> {got:#}");
+        assert!(
+            got["empty_because"]
+                .as_str()
+                .is_some_and(|w| w.contains("req:nope")),
+            "an absent node is never a bare null: {args} -> {got:#}"
+        );
+    }
+    let wrong_type = get(&s, json!({"id": "req:r", "node_type": "Capability"}))
+        .await
+        .expect("absent under that type is not an error");
+    assert!(wrong_type["node"].is_null(), "{wrong_type:#}");
+    assert!(
+        wrong_type["empty_because"]
+            .as_str()
+            .is_some_and(|w| w.contains("Requirement")),
+        "names the type that does hold the id: {wrong_type:#}"
+    );
+}
+
 #[tokio::test]
 async fn a_node_with_no_edges_says_which_empty() {
     let s = design().await;

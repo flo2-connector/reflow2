@@ -346,6 +346,7 @@ python3 tools/smoke_mcp.py                               # after any tool-surfac
 python3 tools/empty_speaks.py                            # an empty answer says WHICH empty — no bare zero on the wire
 python3 tools/refusal_speaks.py                          # every argument refusal names the TOOL and the field path — probes generated from the schemas
 python3 tools/toolsnap.py                                # tool schemas vs committed goldens; --update to bless
+python3 tools/tool_confusability.py --validate           # the offline find_tools replica ranks as the live one does
 python3 tools/replies_are_bounded.py                     # a reply that outgrows the budget must offer a bound — and this FAILS if nothing overflowed
 python3 tools/a_reply_is_sent_once.py                    # every structured reply carries ONE payload and ONE signpost, asked of the whole surface
 python3 tools/skill_lint.py                              # after any skill or tool-surface edit

@@ -2,18 +2,21 @@
   "annotations": {
     "readOnlyHint": false
   },
-  "description": "Declare which version of ANOTHER DESIGN this one depends on — the pin a seam analysis is taken AS OF. Records the source, the version (a tag or commit), the parts taken, and the build switches forwarded BY NAME, because a renamed feature is a downstream build break that no API diff or surface export would mention. This is what you MEAN to depend on; reconcile_dependencies compares it against what the build actually resolves. A declaration without a version is refused: the version is the whole point. Pass `graph_id` when the dependency is ITSELF a reflow2 design, which makes it composable from this committed file rather than from a per-machine config — omit it otherwise, because absent means 'nobody has said', never 'there is no design'.",
+  "description": "Declare which version of ANOTHER DESIGN this one depends on — the pin a seam analysis is taken AS OF. Records the source, the version (a tag or commit), the parts taken, and the build switches forwarded BY NAME, because a renamed feature is a downstream build break that no API diff or surface export would mention. This is what you MEAN to depend on; reconcile_dependencies compares it against what the build actually resolves. A declaration without a version is refused: the version is the whole point. Pass `graph_id` when the dependency is ITSELF a reflow2 design, which makes it composable from this committed file rather than from a per-machine config — omit it otherwise, because absent means 'nobody has said', never 'there is no design'. Re-declaring revises: whatever you leave out keeps its stored value, and the reply is a receipt for this one declaration (what changed, and the baseline taken) — the whole manifest is reconcile_dependencies' reply.",
   "inputSchema": {
     "$schema": "https://json-schema.org/draft/2020-12/schema",
     "additionalProperties": false,
     "properties": {
       "components": {
-        "default": [],
-        "description": "The parts actually taken — crate names, service names.",
+        "default": null,
+        "description": "The parts actually taken — crate names, service names. Omit it on a\nre-declare to keep the stored list; pass `[]` to clear it.",
         "items": {
           "type": "string"
         },
-        "type": "array"
+        "type": [
+          "array",
+          "null"
+        ]
       },
       "declared_in": {
         "default": null,
@@ -25,7 +28,7 @@
       },
       "design_address": {
         "default": null,
-        "description": "The ADDRESS of the server that holds that design, when you\nmean to WATCH it there — `https://api.flo2.io/g/<graph_id>/mcp`, an\norganisation's own reflow2, or a local one. reflow2 asks that server for\nthe design NOW and records its fingerprint; later `upstream_status`\nreads ask again and report whether it has moved, and a server that\ncannot be reached or refuses is reported as exactly that, never as\nunchanged. The key sent is the one `reflow2-mcp setup` stored for that\nserver; never put a key here. Use this OR `design_export`, not both: a\ndesign is watched in one place.",
+        "description": "The ADDRESS of the server that holds that design, when you\nmean to WATCH it there — `https://api.flo2.io/g/<graph_id>/mcp`, an\norganisation's own reflow2, or a local one. reflow2 asks that server for\nthe design NOW and records its fingerprint; later `upstream_status`\nreads ask again and report whether it has moved, and a server that\ncannot be reached or refuses is reported as exactly that, never as\nunchanged. The key sent is the one `reflow2-mcp setup` stored for that\nserver; never put a key here. Use this OR `design_export`, not both: a\ndesign is watched in one place, so naming one drops a stored watch of\nthe other kind. Omitted on a re-declare, the stored watch is kept and\nits baseline re-taken; `\"\"` stops watching the address.",
         "type": [
           "string",
           "null"
@@ -41,7 +44,7 @@
       },
       "design_export": {
         "default": null,
-        "description": "Path to that design's COMMITTED EXPORT, when you mean to WATCH it — so\nthis design is told when the design it depends on moves. reflow2 reads\nthe file NOW and records what it looked like; later reads report whether\nit has changed since. Absent means \"nobody has said\": a dependency that\nnames a design and no export is reported as unwatched rather than\npassing quietly. The path is read, never searched for — reflow2 does no\nfile navigation, and this is a pointer this design supplies itself.",
+        "description": "Path to that design's COMMITTED EXPORT, when you mean to WATCH it — so\nthis design is told when the design it depends on moves. reflow2 reads\nthe file NOW and records what it looked like; later reads report whether\nit has changed since. Absent means \"nobody has said\": a dependency that\nnames a design and no export is reported as unwatched rather than\npassing quietly. The path is read, never searched for — reflow2 does no\nfile navigation, and this is a pointer this design supplies itself.\nOmitted on a re-declare, the stored watch is kept and its baseline\nre-taken; `\"\"` stops watching the export.",
         "type": [
           "string",
           "null"
@@ -65,12 +68,15 @@
         "type": "string"
       },
       "features": {
-        "default": [],
-        "description": "Build switches forwarded to the dependency BY NAME. A renamed feature is\na build break no API diff would mention, so it belongs in the record.",
+        "default": null,
+        "description": "Build switches forwarded to the dependency BY NAME. A renamed feature is\na build break no API diff would mention, so it belongs in the record.\nOmit it on a re-declare to keep the stored list; pass `[]` to clear it.",
         "items": {
           "type": "string"
         },
-        "type": "array"
+        "type": [
+          "array",
+          "null"
+        ]
       },
       "graph_id": {
         "default": null,
@@ -90,6 +96,7 @@
       },
       "note": {
         "default": null,
+        "description": "What a person should know about this dependency — kept as the\nResource's `description`. Omit it on a re-declare to keep what is\nwritten there.",
         "type": [
           "string",
           "null"

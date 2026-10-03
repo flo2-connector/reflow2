@@ -35,6 +35,7 @@ import tempfile
 
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
 from smoke_mcp import Server  # noqa: E402
+from reflow2_bin import default_bin  # noqa: E402  (one binary for every gate)
 
 REPO = pathlib.Path(__file__).resolve().parent.parent
 
@@ -126,9 +127,10 @@ def seed_design(s: Server, files: dict[str, pathlib.Path]) -> None:
 
 def main() -> int:
     ap = argparse.ArgumentParser()
-    ap.add_argument("--binary", default=str(REPO / "target/debug/reflow2-mcp"))
+    ap.add_argument("--binary", default=None)
     ap.add_argument("--graph", default=None)
     args = ap.parse_args()
+    args.binary = args.binary or default_bin()
 
     tmp = tempfile.mkdtemp(prefix="reflow2-phase-trial-")
     graph = args.graph or str(pathlib.Path(tmp) / "graph")

@@ -30,6 +30,7 @@ import shutil
 import subprocess
 import sys
 import tempfile
+from reflow2_bin import default_bin  # noqa: E402  (one binary for every gate)
 
 
 def _unwrap(value):
@@ -1408,7 +1409,7 @@ def run(binary: str, graph_path: str) -> int:
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__,
                                  formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument("--bin", default="target/debug/reflow2-mcp",
+    ap.add_argument("--bin", default=None,
                     help="path to the reflow2-mcp binary (default: %(default)s)")
     ap.add_argument("--graph-path", default=None,
                     help="graph directory (default: a fresh temp dir, removed afterwards)")
@@ -1417,6 +1418,7 @@ def main() -> int:
     ap.add_argument("--wipe", action="store_true",
                     help="allow --graph-path to delete an EXISTING directory")
     args = ap.parse_args()
+    args.bin = args.bin or default_bin()
 
     binary = os.path.abspath(args.bin)
     if not os.path.exists(binary):

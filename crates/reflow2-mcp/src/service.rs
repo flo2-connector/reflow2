@@ -3683,8 +3683,11 @@ pub struct FlowReportReq {
 pub struct ObservedVerificationReq {
     /// The Verification (`ver:…`) whose check this run executed.
     pub verification_id: String,
-    /// What the run reported: `passed` / `failed` / `skipped`. Anything else
-    /// refuses the whole call before anything is recorded, naming the item.
+    /// What the run reported: `passed` / `failed` / `skipped`, or `blocked`
+    /// when the run could not run the check at all (a collection error, a test
+    /// file that did not compile), which says nothing about what it checks.
+    /// Anything else refuses the whole call before anything is recorded,
+    /// naming the item.
     #[schemars(schema_with = "crate::enum_schema::observed_outcome_req")]
     pub outcome: String,
 }
@@ -3726,7 +3729,7 @@ pub struct ObservedFileReq {
     /// The test file, as a path relative to the project root.
     pub location: String,
     /// What the run reported for the whole file: `passed` / `failed` /
-    /// `skipped`.
+    /// `skipped`, or `blocked` when none of it could run.
     #[schemars(schema_with = "crate::enum_schema::observed_outcome_req")]
     pub outcome: String,
 }
@@ -4718,13 +4721,15 @@ pub struct ExternalDependencyReq {
     pub source: String,
     /// The version this design MEANS to depend on: a tag, a commit, a release.
     pub version: String,
-    /// The parts actually taken — crate names, service names.
+    /// The parts actually taken — crate names, service names. Omit it on a
+    /// re-declare to keep the stored list; pass `[]` to clear it.
     #[serde(default)]
-    pub components: Vec<String>,
+    pub components: Option<Vec<String>>,
     /// Build switches forwarded to the dependency BY NAME. A renamed feature is
     /// a build break no API diff would mention, so it belongs in the record.
+    /// Omit it on a re-declare to keep the stored list; pass `[]` to clear it.
     #[serde(default)]
-    pub features: Vec<String>,
+    pub features: Option<Vec<String>>,
     /// Which build file the pin actually lives in.
     #[serde(default)]
     pub declared_in: Option<String>,
@@ -4742,6 +4747,8 @@ pub struct ExternalDependencyReq {
     /// names a design and no export is reported as unwatched rather than
     /// passing quietly. The path is read, never searched for — reflow2 does no
     /// file navigation, and this is a pointer this design supplies itself.
+    /// Omitted on a re-declare, the stored watch is kept and its baseline
+    /// re-taken; `""` stops watching the export.
     #[serde(default)]
     pub design_export: Option<String>,
     /// The date the baseline was taken, for the record. reflow2 takes no clock,
@@ -4756,13 +4763,18 @@ pub struct ExternalDependencyReq {
     /// cannot be reached or refuses is reported as exactly that, never as
     /// unchanged. The key sent is the one `reflow2-mcp setup` stored for that
     /// server; never put a key here. Use this OR `design_export`, not both: a
-    /// design is watched in one place.
+    /// design is watched in one place, so naming one drops a stored watch of
+    /// the other kind. Omitted on a re-declare, the stored watch is kept and
+    /// its baseline re-taken; `""` stops watching the address.
     #[serde(default)]
     pub design_address: Option<String>,
     /// The date the address baseline was taken, for the record — the
     /// `design_export_seen_at` of an address watch.
     #[serde(default)]
     pub design_address_seen_at: Option<String>,
+    /// What a person should know about this dependency — kept as the
+    /// Resource's `description`. Omit it on a re-declare to keep what is
+    /// written there.
     #[serde(default)]
     pub note: Option<String>,
 }

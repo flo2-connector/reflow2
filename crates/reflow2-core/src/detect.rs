@@ -170,6 +170,22 @@ pub enum GapSource {
     /// which is the reflow1 failure in miniature (BL-30, the phase-coverage
     /// trial's headline).
     FailingVerification,
+    /// A `Verification` whose status says the check COULD NOT RUN (`blocked`):
+    /// a collection error, a test file that did not compile, a setup that
+    /// failed before the body ran.
+    ///
+    /// The honest status for a check that never executed, and until
+    /// 2026-10-03 the quiet one: `failing` raised a 0.8 gap saying the part
+    /// "did not work as designed", `blocked` raised nothing, so the dishonest
+    /// status was the loud one
+    /// (fact:root-cause-a-check-that-did-not-run-reads-did-not-work-as-designed-because-only-failing-is-loud-2026-10-02).
+    /// This says what IS known — the check did not run, so nothing is known
+    /// about the part — and never that the part failed. Below
+    /// `failing_verification` and `unresolved_drift`, because it is not reality
+    /// contradicting the design; above `unverified_capability`, because a
+    /// check somebody tried to run and could not is a fault in the checking
+    /// itself, and may be hiding a failure.
+    BlockedVerification,
     /// A recorded divergence whose second question was never answered: a
     /// `DriftEvent` with `resolved: false`. Reality moved, the movement was
     /// *observed and written down* — and then nobody said what it meant.
@@ -829,6 +845,7 @@ impl GapSource {
             // the acknowledgement Decision. Renaming it expires every existing
             // capability acknowledgement with nothing to tell the user why.
             GapSource::FailingVerification => "failing_verification",
+            GapSource::BlockedVerification => "blocked_verification",
             GapSource::UnresolvedDrift => "unresolved_drift",
             GapSource::UnreleasedComponent => "unreleased_component",
             // Must match the serde snake_case of the variant: clients match on
@@ -1089,6 +1106,7 @@ impl GapSource {
             | GapSource::UnallocatedCapability
             | GapSource::UnrealizedCapability
             | GapSource::FailingVerification
+            | GapSource::BlockedVerification
             | GapSource::UnresolvedDrift
             | GapSource::UnreleasedComponent
             | GapSource::StatusContradiction
@@ -2570,6 +2588,7 @@ impl DesignGraph {
         self.detect_encoding_undecided(&mut gaps)?;
         self.detect_repo_know_how(&mut gaps)?;
         self.detect_failing_verifications(&mut gaps)?;
+        self.detect_blocked_verifications(&mut gaps)?;
         self.detect_unresolved_drift(&mut gaps)?;
         self.detect_unreleased_components(&mut gaps)?;
         self.detect_releases_without_epoch(&mut gaps)?;
@@ -4169,6 +4188,97 @@ impl DesignGraph {
                      contradicting the design rather than absence of a check — but only as of that \
                      run; if code has landed since, the gap may be stale rather than real.",
                     ver.node_id
+                ),
+            });
+        }
+        Ok(())
+    }
+
+    /// A check recorded `blocked`: it COULD NOT RUN, so nothing is known about
+    /// what it checks. See [`GapSource::BlockedVerification`].
+    ///
+    /// The wording is the point. It never says the part failed or did not
+    /// work: a check that never executed is evidence of nothing, and the
+    /// failing gap's "did not work as designed" is exactly the overstatement
+    /// this exists to stop. The check's own `findings`, when recorded, are what
+    /// usually says what stopped it, so the gap points at them rather than
+    /// guessing.
+    fn detect_blocked_verifications(&self, gaps: &mut Vec<GapCandidate>) -> Result<(), DynoError> {
+        let index = self.node_type_index()?;
+        for ver in self.scan_live_nodes(node::VERIFICATION)? {
+            let status = ver
+                .properties
+                .get("status")
+                .and_then(crate::foundation::core::Value::as_str)
+                .unwrap_or("planned");
+            if status != "blocked" {
+                continue;
+            }
+            let name = node_name(&ver);
+            let mut affected = vec![ver.node_id.clone()];
+            let mut target_names = Vec::new();
+            for e in self.outgoing(&ver.node_id, Some(edge::VERIFIES))? {
+                if let Some(t) = index.get(&e.to_id)
+                    && let Some(n) = self.get_node(t, &e.to_id)?
+                {
+                    target_names.push(node_name(&n));
+                }
+                affected.push(e.to_id);
+            }
+            affected.sort();
+            let what = if target_names.is_empty() {
+                "what it checks".to_string()
+            } else {
+                target_names.sort();
+                format!("“{}”", target_names.join("”, “"))
+            };
+            // The same recency rule as the failing gap: a status is a reading
+            // at an instant, said next to when it was taken, and no clock is
+            // consulted.
+            let last_run = ver
+                .properties
+                .get("last_run_at")
+                .and_then(crate::foundation::core::Value::as_str)
+                .filter(|s| !s.is_empty());
+            let when = match last_run {
+                Some(t) => format!(" when it was last tried, at {t}"),
+                None => String::new(),
+            };
+            let has_findings = ver
+                .properties
+                .get("findings")
+                .and_then(crate::foundation::core::Value::as_str)
+                .is_some_and(|f| !f.trim().is_empty());
+            let why = if has_findings {
+                "Its recorded findings say what stopped it."
+            } else {
+                "Nothing recorded says what stopped it: set_verification_status with `findings` \
+                 is where that goes."
+            };
+            gaps.push(GapCandidate {
+                id: gap_id(GapSource::BlockedVerification, &affected),
+                gap_source: GapSource::BlockedVerification,
+                scope: GapScope::Capability,
+                severity: 0.65,
+                title: match last_run {
+                    Some(t) => format!("“{name}” could not run (last tried {t})"),
+                    None => format!("“{name}” could not run"),
+                },
+                description: format!(
+                    "The check “{name}” could not run{when}, so it says nothing about whether \
+                     {what} works: not that it works, and not that it fails. {why} Make it \
+                     runnable and run it again, then record what the run found."
+                ),
+                affected_ids: affected,
+                suggested_depth: 2,
+                evidence: format!(
+                    "Verification '{}' has status=blocked{}. A blocked check is the absence of \
+                     a result, not a failing one: no claim about the checked part is made here.",
+                    ver.node_id,
+                    match last_run {
+                        Some(t) => format!(", last_run_at={t}"),
+                        None => String::from(", no last_run_at recorded"),
+                    }
                 ),
             });
         }

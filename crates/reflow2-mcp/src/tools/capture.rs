@@ -436,6 +436,11 @@ pub(crate) struct Revision {
     /// `replaced` because conflating them would make every ordinary enrichment
     /// look like an overwrite.
     added: Vec<String>,
+    /// Properties this call REMOVED. Each is also in `replaced`, with its prior
+    /// value, because a removal loses that value exactly as an overwrite does.
+    /// Absent when nothing was removed.
+    #[serde(skip_serializing_if = "Vec::is_empty")]
+    removed: Vec<String>,
     /// Whether this call changed anything at all. A revision that changed
     /// nothing and one that replaced a paragraph are currently the same reply,
     /// which is the `wrote nothing` / `wrote something` ambiguity reported
@@ -576,6 +581,8 @@ pub(crate) fn with_settled_question_prose(
 
 pub(crate) fn preserve_prior(g: &mut DesignGraph, prior: Option<&StoredNode>, now: &NodeDto) {
     let Some(prior) = prior else { return };
+    // A property the write REMOVED is replaced by nothing, and its prior value
+    // is as unrecoverable as an overwritten one.
     let replaced: Vec<String> = now
         .properties
         .iter()
@@ -586,6 +593,7 @@ pub(crate) fn preserve_prior(g: &mut DesignGraph, prior: Option<&StoredNode>, no
                 .is_some_and(|old| old != *new_value)
         })
         .map(|(key, _)| key.clone())
+        .chain(removed_properties(prior, now))
         .collect();
     if replaced.is_empty() {
         return;
@@ -600,6 +608,18 @@ pub(crate) fn preserve_prior(g: &mut DesignGraph, prior: Option<&StoredNode>, no
     );
 }
 
+/// Properties the node held before a write and does not hold after it, sorted.
+fn removed_properties(prior: &StoredNode, now: &NodeDto) -> Vec<String> {
+    let mut removed: Vec<String> = prior
+        .properties
+        .keys()
+        .filter(|k| !now.properties.contains_key(*k))
+        .cloned()
+        .collect();
+    removed.sort();
+    removed
+}
+
 pub(crate) fn revision_of(
     g: &DesignGraph,
     prior: Option<&StoredNode>,
@@ -610,6 +630,33 @@ pub(crate) fn revision_of(
     let mut added: Vec<String> = Vec::new();
 
     let mut shortened: Vec<ShortenedField> = Vec::new();
+
+    // A REMOVED property is a replacement by nothing: it is listed in
+    // `replaced` with its prior value, so it is preserved, sized and offered
+    // back exactly like an overwrite, and named in `removed` so a reader can
+    // tell the two apart. Until 2026-10-03 a removal was invisible here: a
+    // write that only removed properties read "nothing moved"
+    // (fact:re-declaring-a-dependency-drops-the-resources-description-2026-09-23).
+    let removed = removed_properties(prior, now);
+    for key in &removed {
+        let old = &prior.properties[key];
+        if let Some(before) = serde_json::to_value(old)
+            .ok()
+            .and_then(|v| v.as_str().map(|s| s.chars().count()))
+            .filter(|n| *n > 0)
+        {
+            shortened.push(ShortenedField {
+                field: key.clone(),
+                before_chars: before,
+                after_chars: 0,
+                removed_chars: before,
+            });
+        }
+        replaced.push(ReplacedField {
+            field: key.clone(),
+            prior: serde_json::to_value(old).unwrap_or(JsonValue::Null),
+        });
+    }
 
     for (key, new_value) in &now.properties {
         match prior.properties.get(key) {
@@ -787,6 +834,7 @@ pub(crate) fn revision_of(
     Some(Revision {
         replaced,
         added,
+        removed,
         changed,
         prior_content_hash,
         prior_state_preserved_in: preserved,

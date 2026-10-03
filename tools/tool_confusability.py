@@ -3,11 +3,28 @@
 (dec:idea-prune-the-tool-surface-to-an-orthogonal-essential-set, 2026-09-18).
 
 An offline replica of find_tools' scorer over tools/toolsnaps (name,
-description, parameters), validated against the live binary at 185/185 top-1
-agreement on 2026-09-18. Run after `python3 tools/toolsnap.py --update`:
+description, parameters). Run after `python3 tools/toolsnap.py --update`:
 
     python3 tools/tool_confusability.py              # the report
-    python3 tools/tool_confusability.py --baseline   # rewrite the ratchet fixture
+    python3 tools/tool_confusability.py --validate   # agree with the live ranker, or exit 1
+    python3 tools/tool_confusability.py --baseline   # validate, then rewrite the ratchet fixture
+
+⭐ IT SCORES WHAT find_tools SCORES, NOT WHAT tools/list SENDS. The toolsnaps
+are tools/list's output, and tools/list adds to the router's tools at list
+time: the bulk-route sentence on the typed edge helpers ("MANY AT ONCE:
+`draw_edges` …", bulk_edges.rs `name_the_bulk_route`), the `echo` parameter
+on every write (receipt.rs `declare_echo`), and on a design with lessons the
+lessons block. find_tools ranks the router's tools, which carry none of them.
+Until 2026-10-03 the replica scored them anyway: `edges` had a document
+frequency of 49 here against 25 live, and the replica agreed with the live
+ranker on 186 of 193 corpus queries at top 1 and 115 at an exact top 5 while
+this header claimed 185 of 185
+(fact:the-confusability-replica-ranks-a-bulk-door-sentence-find-tools-never-sees-2026-10-03).
+`load_tools` now strips each of them, and `--validate` measures the agreement
+against the live binary instead of a file someone saved once: it exits 1 on
+any top-1 disagreement, and CI runs it, so the next thing tools/list adds is
+caught the day it is added. `--baseline` validates first and refuses to write
+a fixture from rankings the live ranker does not give.
 
 The report: which tools are NOT ranked first for their own corpus query and
 who beats them, the mutually confusable pairs, and the crowders (tools that
@@ -21,11 +38,30 @@ Description words count once (has_word is boolean) and a name match scores
 five times a description hit, so a tool beaten on a NAME match cannot be
 rescued by words; it belongs in the baseline with that reason.
 """
-import json, glob, math, re, sys
+import functools, json, glob, math, os, re, sys
 
 # Refusing stubs for renamed tools (service.rs DEPRECATED_TOOLS): find_tools
 # never offers them, so the replica leaves them out too.
 DEPRECATED = {"record_change", "manual_work_report"}
+
+# What tools/list adds to a router tool's description at list time, and
+# find_tools therefore never scores. Each pattern names where it is added.
+LISTED_ONLY_TEXT = [
+    # bulk_edges.rs name_the_bulk_route: " MANY AT ONCE: `draw_edges`, items
+    # {"tool": "<name>", "arguments": {…}}, same checks, all or nothing."
+    re.compile(r" MANY AT ONCE: `draw_edges`, items \{.*?\}\}, same checks, all or nothing\."),
+    # lessons.rs: the design's lessons for this tool, appended after a blank line.
+    re.compile(r"\n\n⭐ LESSONS THIS DESIGN HOLDS FOR .*\Z", re.S),
+]
+# receipt.rs declare_echo: every write's PUBLISHED schema carries `echo`; the
+# router's schema, which find_tools reads, does not.
+LISTED_ONLY_PARAMS = {"echo"}
+
+def router_view(desc, params):
+    """A tool as find_tools sees it: tools/list's additions taken back off."""
+    for pattern in LISTED_ONLY_TEXT:
+        desc = pattern.sub("", desc)
+    return desc, [p for p in params if p not in LISTED_ONLY_PARAMS]
 
 def load_tools(snapdir="tools/toolsnaps", overrides=None):
     tools = {}
@@ -36,7 +72,7 @@ def load_tools(snapdir="tools/toolsnaps", overrides=None):
             continue
         desc = d.get("description") or ""
         params = list((d.get("inputSchema", {}) or {}).get("properties", {}).keys())
-        tools[name] = (desc, params)
+        tools[name] = router_view(desc, params)
     if overrides:
         for k, v in overrides.items():
             if k in tools:
@@ -46,8 +82,12 @@ def load_tools(snapdir="tools/toolsnaps", overrides=None):
 def terms_of(query):
     return [t for t in re.split(r"[^0-9a-z_]", query.lower()) if t]
 
+@functools.lru_cache(maxsize=None)
+def _words(hay):
+    return frozenset(re.split(r"[^0-9a-zA-Z]", hay))
+
 def has_word(hay, term):
-    return term in re.split(r"[^0-9a-zA-Z]", hay)
+    return term in _words(hay)
 
 def weights(terms, tools):
     n = len(tools)
@@ -108,22 +148,58 @@ def report(baseline=False):
         doc["mutual"] = [list(m) for m in sorted(set(mutual) | set(kept))]
         json.dump(doc, open(path, "w"), indent=1); print("baseline rewritten:", path)
 
-if __name__ == "__main__":
-    if "--validate" not in sys.argv:
-        report(baseline="--baseline" in sys.argv)
-        sys.exit(0)
+def live_rankings(binary, corpus):
+    """Ask the live binary's find_tools every corpus query, in one session on
+    an empty design (the toolsnaps are taken on one too, so no lessons)."""
+    import shutil, tempfile
+    sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+    from smoke_mcp import Server
+    store = tempfile.mkdtemp(prefix="reflow2-confusability-")
+    s = Server(binary, os.path.join(store, "graph"))
+    try:
+        out = {}
+        for t, q in sorted(corpus.items()):
+            r = s.call("find_tools", {"query": q, "limit": 5})
+            out[t] = [x["tool"] for x in r["items"]]
+        return out
+    finally:
+        s.close()
+        shutil.rmtree(store, ignore_errors=True)
+
+def validate(binary):
+    """Agreement with the live ranker. Returns the number of top-1 disagreements."""
     corpus = json.load(open("crates/reflow2-mcp/tests/fixtures/find_tools_corpus.json"))["queries"]
     tools = load_tools()
-    live = {}
-    B = "/tmp/claude-1000/-home-ajs7-project-reflow2/db95cda5-9b0b-45f1-8b79-eed71eb2f89e/scratchpad/build/"
-    for line in open(B + "confus.out"):
-        if line.startswith("ok  find_tools: "):
-            r = json.loads(line[len("ok  find_tools: "):])
-            t = next(k for k, v in corpus.items() if v == r["query"])
-            live[t] = [x["tool"] for x in r["items"]]
-    agree1 = agree5 = 0
-    for t, q in corpus.items():
+    live = live_rankings(binary, corpus)
+    top1, top5 = [], 0
+    for t, q in sorted(corpus.items()):
         mine = [n for _, n in rank(q, tools)]
-        if mine[:1] == live[t][:1]: agree1 += 1
-        if mine == live[t]: agree5 += 1
-    print(f"replica vs live: top-1 agree {agree1}/{len(corpus)}, exact top-5 agree {agree5}/{len(corpus)}")
+        if mine[:1] != live[t][:1]:
+            top1.append((t, mine[:3], live[t][:3]))
+        if mine == live[t]:
+            top5 += 1
+    print(f"replica vs live ({binary}): top-1 agree {len(corpus) - len(top1)}/{len(corpus)}, "
+          f"exact top-5 agree {top5}/{len(corpus)}")
+    for t, mine, theirs in top1:
+        print(f"  DISAGREE {t}: replica {mine} — live {theirs}")
+    if top1:
+        print("FAIL: the replica ranks differently from find_tools, so its report and its "
+              "--baseline describe a ranker that is not served. Find what the replica scores "
+              "that find_tools does not (or the other way round) and fix load_tools.")
+    return len(top1)
+
+def binary_arg():
+    if "--bin" in sys.argv:
+        return sys.argv[sys.argv.index("--bin") + 1]
+    sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+    from reflow2_bin import default_bin
+    return default_bin()
+
+if __name__ == "__main__":
+    if "--validate" in sys.argv:
+        sys.exit(1 if validate(binary_arg()) else 0)
+    if "--baseline" in sys.argv and validate(binary_arg()):
+        print("refusing to rewrite the baseline from rankings the live ranker does not give")
+        sys.exit(1)
+    report(baseline="--baseline" in sys.argv)
+    sys.exit(0)

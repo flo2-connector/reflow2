@@ -40,6 +40,8 @@ the same shape as a detector with nothing to run on.
 Usage (from the repo root):
 
     python3 tools/run_ci_gates.py                    # everything ci.yml runs
+    REFLOW2_BIN=target/release/reflow2-mcp python3 tools/run_ci_gates.py
+                                                     # every gate on one build
     python3 tools/run_ci_gates.py --list             # show them, run none
     python3 tools/run_ci_gates.py reflow2_check.py   # only gates matching a word
     python3 tools/run_ci_gates.py clippy cargo test  # several words, any match
@@ -61,6 +63,7 @@ REPO = pathlib.Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(REPO / "tools"))
 
 from skill_lint import ci_gates  # noqa: E402  (path set above)
+from reflow2_bin import ENV, default_bin  # noqa: E402  (path set above)
 
 TAIL_LINES = 25
 
@@ -101,6 +104,15 @@ def main() -> int:
         )
         return 1
 
+    # Every gate that runs the binary takes it from reflow2_bin, and this run's
+    # environment reaches every gate, so `REFLOW2_BIN=… run_ci_gates.py` points
+    # the whole set at one build. Said up front, so a reader knows which build
+    # the verdict is about.
+    print(
+        f"binary for the gates that run one: {default_bin()} "
+        f"({'from $' + ENV if os.environ.get(ENV) else 'set $' + ENV + ' to choose another'})",
+        flush=True,
+    )
     failures: list[tuple[str, int]] = []
     started = time.time()
     for command in commands:

@@ -315,6 +315,15 @@ jobs:
         run: python3 tools/refusal_speaks.py
       - name: Toolsnaps — served surface matches the committed goldens (BL-76)
         run: python3 tools/toolsnap.py
+      - name: The confusability replica ranks as find_tools does
+        # tools/tool_confusability.py scores the toolsnaps offline, and its
+        # --baseline rewrites the find_tools rank ratchet. It agreed with the
+        # live ranker on 186 of 193 queries while its header claimed 185 of
+        # 185, because it scored text tools/list adds and find_tools never sees
+        # (fact:the-confusability-replica-ranks-a-bulk-door-sentence-find-tools-never-sees-2026-10-03).
+        # This asks the real binary every corpus query and fails on any top-1
+        # disagreement, so the next list-time addition is caught when it lands.
+        run: python3 tools/tool_confusability.py --validate
       - name: Every oversized reply offers a bound (the class, not the instance)
         # Toolsnaps pins the tools that EXIST, so a NEW tool returning 126 KB
         # with no `budget_chars` is a clean golden diff and a green build. This

@@ -50,6 +50,7 @@ readers:
   depends.rs::declare_external_dependency: { kind: unjudged, edges: [REQUIRES_RESOURCE] }
   derived.rs::evaluate_derived: { kind: not_derived, edges: [GATED_ON], why: "The served read's dispatcher: it finds the subjects with a GATED_ON edge and hands each to readiness_report, which readiness_gate declares." }
   detect.rs::detect_artifact_standard: { kind: unjudged, edges: [COMPLIES_WITH, VIOLATES_RULE] }
+  detect.rs::detect_blocked_verifications: { kind: not_derived, edges: [VERIFIES], why: "A detector over one node's status: it reads a blocked check's VERIFIES targets one hop, only to name and anchor what the gap is about. It derives no relation." }
   detect.rs::detect_compliance_gaps: { kind: unjudged, edges: [COMPLIES_WITH, VIOLATES_RULE] }
   detect.rs::detect_decision_overtaken_by_promotion: { kind: unjudged, edges: [EVOLVES_INTO] }
   detect.rs::detect_defect_overtaken_by_change: { kind: unjudged, edges: [CHANGED, INVALIDATES, REALIZES] }
