@@ -3,8 +3,26 @@
 //! rejected calls were filed upstream as schema drift because the refusal led
 //! with "your client's tool list may predate the server", when five of the six
 //! names had never existed in any release — the agent had guessed.
+//!
+//! Since 2026-10-02 an unknown key is refused by the argument check
+//! (`reflow2_mcp::arguments`) before serde sees it, so the nearest name comes
+//! from [`nearest_name`] over the schema's names, and the deserialiser's own
+//! refusal — a call the schema accepted — uses the same function over the
+//! names serde listed. These pin the rule and the order of the two sentences.
 
-use reflow2_mcp::service::stale_client_hint;
+use reflow2_mcp::arguments::{Transport, check, deserializer_refusal, nearest_name, refusal};
+use serde_json::json;
+
+/// What a caller is told about `unknown`, given the names a tool takes in
+/// the order serde lists them — the deserialiser's refusal, as it is worded.
+fn stale_client_hint(serde_message: &str) -> String {
+    deserializer_refusal(
+        "t",
+        &format!("failed to deserialize parameters: {serde_message}"),
+        Transport::Session,
+    )
+    .expect("a deserialiser refusal is rewritten")
+}
 
 fn serde_message(unknown: &str, legal: &[&str]) -> String {
     let list = legal
@@ -97,14 +115,29 @@ fn a_field_that_resembles_nothing_served_gets_no_nearest_name() {
 fn the_stale_client_line_comes_after_the_nearest_name_and_is_a_possibility() {
     let m = stale_client_hint(&serde_message("node_id", &["id", "name"]));
     let nearest = m.find("Nearest served parameter").expect("nearest first");
-    let stale = m.find("may predate the server").expect("stale second");
+    let stale = m.find("may predate this server").expect("stale second");
+    assert!(nearest < stale, "{m}");
+
+    // And the same order in the argument check's own refusal.
+    let schema = json!({"type": "object", "additionalProperties": false,
+        "required": ["decision_id"],
+        "properties": {"decision_id": {"type": "string"}, "status": {"type": "string"}}});
+    let args = json!({"decision_id": "dec:x", "id": "dec:x"});
+    let v = check(schema.as_object().unwrap(), args.as_object().unwrap());
+    let m = refusal("set_decision_status", &v, Transport::Session);
+    let nearest = m
+        .find("Nearest served parameter: `decision_id`")
+        .expect("nearest first");
+    let stale = m.find("may predate this server").expect("stale second");
     assert!(nearest < stale, "{m}");
     assert!(m.contains("If nothing listed is what you meant"), "{m}");
 }
 
 #[test]
-fn a_message_without_a_legal_list_still_reads_sensibly() {
-    let m = stale_client_hint("unknown field `x`");
-    assert!(!m.contains("Nearest served parameter"), "{m}");
-    assert!(m.contains("may predate the server"), "{m}");
+fn the_check_and_the_deserialiser_use_the_same_rule() {
+    assert_eq!(
+        nearest_name("id", &["decision_id", "status", "approver"]).as_deref(),
+        Some("decision_id")
+    );
+    assert_eq!(nearest_name("kind", &["id", "name", "statement"]), None);
 }

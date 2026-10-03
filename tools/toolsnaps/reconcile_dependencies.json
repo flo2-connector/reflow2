@@ -23,6 +23,7 @@
             "type": "array"
           },
           "name": {
+            "description": "The dependency's name as the build resolves it (`rmcp`, `serde`) — matched\nby name against each `external_dependency` the design declares; a name no\ndeclaration carries is reported `undeclared`.",
             "type": "string"
           },
           "observed_in": {
@@ -33,6 +34,7 @@
             ]
           },
           "version": {
+            "description": "The version the build ACTUALLY resolves, read from the lock or build file\nnow; one that differs from the declared version is a `version_mismatch`.",
             "type": "string"
           }
         },

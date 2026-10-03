@@ -314,9 +314,8 @@ impl ReflowService {
         let asserted: Vec<ObservedArtifact> = req
             .observed
             .into_iter()
-            .map(|o| serde_json::from_value(JsonValue::Object(o)))
-            .collect::<Result<_, _>>()
-            .map_err(|e| McpError::invalid_params(format!("invalid observation: {e}"), None))?;
+            .map(ObservedArtifact::from)
+            .collect();
         let opts = ReconcileOptions {
             record_events: req.record_events,
             exhaustive: req.exhaustive,

@@ -68,33 +68,105 @@ fn tools() -> Vec<rmcp::model::Tool> {
     all
 }
 
-/// Every `(tool, required parameter)` on the surface, with whether it carries
-/// a non-empty description.
+/// Every `(tool, required parameter)` on the surface — AT EVERY DEPTH — with
+/// whether it carries a non-empty description. A nested parameter is named by
+/// its path (`related_to[].evidence`), and its description may sit on the
+/// property itself or on the `$defs` entry its `$ref` names.
+///
+/// ⚠️ THIS WALKED ONLY THE TOP LEVEL UNTIL 2026-10-02, the same blind spot as
+/// the refusal it guards: the missing-argument hint read `properties` and
+/// never followed `$ref` into `$defs`, so it told callers 22 described nested
+/// fields had no description, and this test never saw the 13 that really had
+/// none (`fact:root-cause-a-missing-nested-field-refusal-says-the-schema-publishes-no-description-when-it-does-2026-10-02`).
+/// The check and the instrument shared one walk, so they were wrong together.
 fn required_parameters(tools: &[rmcp::model::Tool]) -> Vec<(String, String, bool)> {
     let mut out = Vec::new();
     for t in tools {
-        let schema: Value = serde_json::to_value(&t.input_schema).expect("schema");
-        let props = schema["properties"]
-            .as_object()
-            .cloned()
-            .unwrap_or_default();
-        let required: Vec<String> = schema["required"]
-            .as_array()
-            .map(|a| {
-                a.iter()
-                    .filter_map(|v| v.as_str().map(String::from))
-                    .collect()
-            })
-            .unwrap_or_default();
-        for p in required {
-            let described = props
-                .get(&p)
-                .and_then(|s| s["description"].as_str())
-                .is_some_and(|d| !d.trim().is_empty());
-            out.push((t.name.to_string(), p, described));
-        }
+        let root: Value = serde_json::to_value(&t.input_schema).expect("schema");
+        walk(&root, &root, "", &mut out, t.name.as_ref(), 0);
     }
     out
+}
+
+fn resolve<'a>(root: &'a Value, mut s: &'a Value) -> &'a Value {
+    for _ in 0..16 {
+        match s
+            .get("$ref")
+            .and_then(Value::as_str)
+            .and_then(|r| r.strip_prefix("#/$defs/"))
+            .and_then(|n| root["$defs"].get(n))
+        {
+            Some(t) => s = t,
+            None => break,
+        }
+    }
+    s
+}
+
+fn described(root: &Value, prop: &Value) -> bool {
+    let own = prop["description"].as_str();
+    let via_ref = resolve(root, prop)["description"].as_str();
+    own.or(via_ref).is_some_and(|d| !d.trim().is_empty())
+}
+
+fn walk(
+    root: &Value,
+    schema: &Value,
+    at: &str,
+    out: &mut Vec<(String, String, bool)>,
+    tool: &str,
+    depth: usize,
+) {
+    if depth > 8 {
+        return;
+    }
+    let s = resolve(root, schema);
+    let props = s["properties"].as_object().cloned().unwrap_or_default();
+    for r in s["required"].as_array().into_iter().flatten() {
+        let Some(r) = r.as_str() else { continue };
+        let path = if at.is_empty() {
+            r.to_string()
+        } else {
+            format!("{at}.{r}")
+        };
+        let ok = props.get(r).is_some_and(|p| described(root, p));
+        out.push((tool.to_string(), path, ok));
+    }
+    for (name, sub) in &props {
+        let here = if at.is_empty() {
+            name.clone()
+        } else {
+            format!("{at}.{name}")
+        };
+        walk(root, sub, &here, out, tool, depth + 1);
+    }
+    if let Some(items) = s.get("items") {
+        walk(root, items, &format!("{at}[]"), out, tool, depth + 1);
+    }
+}
+
+/// THE WALK REACHES THE NESTED FIELDS: measured 2026-10-02, 35 required
+/// nested fields across 16 tools. A walk that finds none is the old blind spot
+/// back, and would pass every day.
+#[test]
+fn the_walk_reaches_required_fields_inside_items() {
+    let nested: Vec<String> = required_parameters(&tools())
+        .into_iter()
+        .filter(|(_, p, _)| p.contains('.'))
+        .map(|(t, p, _)| format!("{t}.{p}"))
+        .collect();
+    assert!(
+        nested.len() >= 35,
+        "the walk found {} required nested fields; 35 were measured on 2026-10-02:\n  {}",
+        nested.len(),
+        nested.join("\n  ")
+    );
+    assert!(
+        nested
+            .iter()
+            .any(|n| n == "add_decision.related_to[].evidence"),
+        "add_decision's related_to[].evidence — the measured case — is not reached"
+    );
 }
 
 /// THE CLASS CONTRACT: a required parameter says what it is.
