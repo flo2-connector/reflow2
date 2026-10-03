@@ -74,12 +74,7 @@ impl ReflowService {
         &self,
         Parameters(req): Parameters<IngestStepReq>,
     ) -> Result<CallToolResult, McpError> {
-        let answers: Vec<AgentAnswer> = req
-            .answers
-            .into_iter()
-            .map(|a| serde_json::from_value(JsonValue::Object(a)))
-            .collect::<Result<_, _>>()
-            .map_err(|e| McpError::invalid_params(format!("invalid answer: {e}"), None))?;
+        let answers: Vec<AgentAnswer> = req.answers.into_iter().map(AgentAnswer::from).collect();
         let options = IngestOptions {
             fragment_id: req.fragment_id.clone(),
             fragment_title: req
@@ -119,12 +114,7 @@ impl ReflowService {
         &self,
         Parameters(req): Parameters<IngestCorpusStepReq>,
     ) -> Result<CallToolResult, McpError> {
-        let answers: Vec<AgentAnswer> = req
-            .answers
-            .into_iter()
-            .map(|a| serde_json::from_value(JsonValue::Object(a)))
-            .collect::<Result<_, _>>()
-            .map_err(|e| McpError::invalid_params(format!("invalid answer: {e}"), None))?;
+        let answers: Vec<AgentAnswer> = req.answers.into_iter().map(AgentAnswer::from).collect();
         let documents: Vec<CorpusDocument> = req
             .documents
             .into_iter()

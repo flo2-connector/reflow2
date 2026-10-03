@@ -64,255 +64,12 @@ pub fn export_stale_refusal(stale: Option<bool>, note: &str) -> Option<McpError>
     ))
 }
 
-/// The sentence appended to an unknown-field refusal, because the commonest
-/// cause on a machine that just updated is not the caller's spelling: a client
-/// keeps the tool list it fetched at connection, so a server restarted on a
-/// newer binary knows fields the client cannot send
-/// (`fact:defect-a-clients-tool-list-is-fixed-at-connection-so-a-restarted-servers-new-fields-are-unreachable`).
-/// What an unknown-field refusal says. THE NEAREST LEGAL NAME COMES FIRST,
-/// and the stale-client possibility is offered as exactly that — a
-/// possibility. Measured 2026-09-18 (flo2): eight rejected calls were reported
-/// upstream as "client/server schema drift" because this text led with it,
-/// when five of the six names had never existed in any release; the agent had
-/// guessed `node_id` for `id` and `parent_id` for `project_id`. The server
-/// cannot know its own history, but it can say which served name is closest,
-/// and that is the answer in the common case.
-pub fn stale_client_hint(message: &str) -> String {
-    let nearest = nearest_legal_field(message)
-        .map(|n| format!(" Nearest served parameter: `{n}`."))
-        .unwrap_or_default();
-    format!(
-        "{message} —{nearest} If nothing listed is what you meant, your client's tool list \
-         may predate the server ({}). Reconnect (a new session) to refresh the schema.",
-        env!("CARGO_PKG_VERSION")
-    )
-}
-
-/// From serde's `unknown field \`x\`, expected one of \`a\`, \`b\`` (or `expected
-/// \`a\``), the legal name closest to `x` by edit distance — ties broken by a
-/// shared prefix or suffix, which is how `node_id` reaches `id` and
-/// `parent_id` reaches `project_id`.
-pub(crate) fn nearest_legal_field(message: &str) -> Option<String> {
-    let unknown = message.split("unknown field `").nth(1)?.split('`').next()?;
-    let legal: Vec<&str> = message
-        .split("expected ")
-        .nth(1)?
-        .split('`')
-        .skip(1)
-        .step_by(2)
-        .collect();
-    if legal.is_empty() {
-        return None;
-    }
-    // THE SAME CONCEPT UNDER A DIFFERENT NAME is the case that matters (flo2
-    // F10, 2026-09-19: `id` for `decision_id`, `node_id` for `target_id`,
-    // `properties` for `props`), and edit distance alone gets it wrong —
-    // `id` is closer to `status` than to `decision_id` by letters. Three
-    // rules, in order: (1) a node-naming field (`id`, `…_id`) maps to the
-    // tool's node-naming fields — `id`/`node_id` to the FIRST one served,
-    // which is the primary node (serde lists fields in declaration order),
-    // any other `…_id` to the closest by letters; (2) otherwise a candidate
-    // sharing a whole `_` token or a four-letter prefix with the unknown
-    // (`props`/`properties`) wins, closest by letters among those; (3) only
-    // then letters alone, and a far guess is NOT offered — a wrong "nearest"
-    // is worse than none.
-    let indexed: Vec<(usize, &str)> = legal.iter().copied().enumerate().collect();
-    if is_node_field(unknown) {
-        let node_fields: Vec<(usize, &str)> = indexed
-            .iter()
-            .copied()
-            .filter(|(_, c)| is_node_field(c))
-            .collect();
-        if !node_fields.is_empty() {
-            let pick = if unknown == "id" || unknown == "node_id" {
-                node_fields.first().copied()
-            } else {
-                closest_by_letters(unknown, node_fields)
-            };
-            return pick.map(|(_, c)| c.to_string());
-        }
-    }
-    let sharing: Vec<(usize, &str)> = indexed
-        .iter()
-        .copied()
-        .filter(|(_, c)| shares_a_token(unknown, c))
-        .collect();
-    if let Some((_, c)) = closest_by_letters(unknown, sharing) {
-        return Some(c.to_string());
-    }
-    let (_, c) = closest_by_letters(unknown, indexed)?;
-    let d = edit_distance(unknown, c);
-    (d * 2 < unknown.len().max(c.len())).then(|| c.to_string())
-}
-
-fn is_node_field(s: &str) -> bool {
-    s == "id" || s.ends_with("_id")
-}
-
-fn name_tokens(s: &str) -> Vec<&str> {
-    s.split('_').filter(|t| !t.is_empty()).collect()
-}
-
-fn shares_a_token(unknown: &str, cand: &str) -> bool {
-    let unknown_tokens = name_tokens(unknown);
-    name_tokens(cand).iter().any(|t| unknown_tokens.contains(t))
-        || (unknown.len() >= 4 && cand.len() >= 4 && unknown[..4] == cand[..4])
-}
-
-fn closest_by_letters<'a>(unknown: &str, cands: Vec<(usize, &'a str)>) -> Option<(usize, &'a str)> {
-    cands
-        .into_iter()
-        .min_by_key(|(order, c)| (edit_distance(unknown, c), *order))
-}
-
-fn edit_distance(a: &str, b: &str) -> usize {
-    let a: Vec<char> = a.chars().collect();
-    let b: Vec<char> = b.chars().collect();
-    let mut prev: Vec<usize> = (0..=b.len()).collect();
-    for (i, ca) in a.iter().enumerate() {
-        let mut cur = vec![i + 1];
-        for (j, cb) in b.iter().enumerate() {
-            let cost = usize::from(ca != cb);
-            cur.push((prev[j] + cost).min(prev[j + 1] + 1).min(cur[j] + 1));
-        }
-        prev = cur;
-    }
-    prev[b.len()]
-}
-
-/// Turn a deserialiser's bare `missing field` string into a refusal that names
-/// the tool, the field, and what the schema says the field is FOR.
-///
-/// # Why this lives beside [`stale_client_hint`] and not in 139 handlers
-///
-/// The refusal is produced by the deserialiser BEFORE any handler runs, so no
-/// handler could improve it. Its sibling case (`unknown field`) was intercepted
-/// in `call_tool` for exactly that reason; this is the twin that was never
-/// written. **139 of 180 served tools declare at least one required parameter,
-/// across 230 required parameters**, and until now every one of them answered a
-/// missing argument with a string naming neither the tool nor the obligation.
-///
-/// # It names EVERY required field, on purpose
-///
-/// Serde reports only the first field it finds missing, so a caller who omitted
-/// three learns about them one refusal at a time — a round trip each. The
-/// published `required` list is right here, so the whole obligation is stated
-/// once. ⚠️ The list is what the tool REQUIRES, not what this call was missing:
-/// the deserialiser does not say which others were supplied, and claiming they
-/// were all absent would be a guess dressed as a diagnosis.
-///
-/// Anything that is not a missing-field deserialisation error is returned
-/// unchanged — this must never rewrite an ordinary refusal.
-pub fn missing_field_hint(message: &str, tool: &str, schema: &serde_json::Value) -> String {
-    missing_fields_hint(message, tool, schema, None)
-}
-
-/// [`missing_field_hint`] with the call's own arguments in hand, so the list
-/// of required fields can say which ones THIS call lacked rather than only
-/// what the tool requires. The deserialiser names one field; the caller
-/// passed some of the rest and not others, and only the server can tell
-/// which — flo2 F10 and bhome (2026-09-18) both learned the shape one round
-/// trip at a time.
-pub fn missing_fields_hint(
-    message: &str,
-    tool: &str,
-    schema: &serde_json::Value,
-    given: Option<&serde_json::Map<String, serde_json::Value>>,
-) -> String {
-    let Some(field) = message
-        .split_once("missing field `")
-        .and_then(|(_, rest)| rest.split_once('`'))
-        .map(|(f, _)| f)
-    else {
-        return message.to_string();
-    };
-
-    /// Descriptions in this schema run to paragraphs; a refusal wants the
-    /// opening sentence, not the essay. The full text is one `tools/list` away.
-    fn brief(schema: &serde_json::Value, field: &str) -> Option<String> {
-        let d = schema["properties"][field]["description"].as_str()?;
-        let d = d.split_whitespace().collect::<Vec<_>>().join(" ");
-        Some(if d.chars().count() > 240 {
-            let cut: String = d.chars().take(240).collect();
-            format!("{}…", cut.trim_end())
-        } else {
-            d
-        })
-    }
-
-    let required: Vec<String> = schema["required"]
-        .as_array()
-        .map(|a| {
-            a.iter()
-                .filter_map(|v| v.as_str().map(String::from))
-                .collect()
-        })
-        .unwrap_or_default();
-
-    let mut out = format!("`{tool}` was called without the required argument `{field}`");
-    match brief(schema, field) {
-        Some(d) => out.push_str(&format!(" — {d}\n")),
-        // A required field with no published description is itself a defect,
-        // and saying so is more use than saying nothing.
-        None => out.push_str(
-            ". Its own schema publishes no description of it, so what it wants \
-             cannot be quoted here.\n",
-        ),
-    }
-
-    if required.len() > 1 {
-        match given {
-            Some(args) => {
-                let missing: Vec<&String> =
-                    required.iter().filter(|f| !args.contains_key(*f)).collect();
-                let passed: Vec<&String> =
-                    required.iter().filter(|f| args.contains_key(*f)).collect();
-                out.push_str(&format!(
-                    "\nMISSING FROM THIS CALL, all of them at once so the shape costs one round \
-                     trip: {}.{}\n",
-                    missing
-                        .iter()
-                        .map(|f| format!("`{f}`"))
-                        .collect::<Vec<_>>()
-                        .join(", "),
-                    if passed.is_empty() {
-                        String::new()
-                    } else {
-                        format!(
-                            " Already passed: {}.",
-                            passed
-                                .iter()
-                                .map(|f| format!("`{f}`"))
-                                .collect::<Vec<_>>()
-                                .join(", ")
-                        )
-                    }
-                ));
-                for f in missing {
-                    match brief(schema, f) {
-                        Some(d) => out.push_str(&format!("  · {f} — {d}\n")),
-                        None => out.push_str(&format!("  · {f}\n")),
-                    }
-                }
-            }
-            None => {
-                out.push_str(
-                    "\nEVERY argument this tool requires, listed together because the \
-                     deserialiser reports only the FIRST one missing and learning them one \
-                     refusal at a time costs a round trip each. This is what the tool requires, \
-                     NOT a claim that you omitted all of them:\n",
-                );
-                for f in &required {
-                    match brief(schema, f) {
-                        Some(d) => out.push_str(&format!("  · {f} — {d}\n")),
-                        None => out.push_str(&format!("  · {f}\n")),
-                    }
-                }
-            }
-        }
-    }
-    out
-}
+/// The client name the one-shot `reflow2-mcp --call` door gives at handshake.
+/// Shared with `main.rs`, which sets it, so the server can tell the door from
+/// an MCP session by the name the door itself declared — the advice an
+/// argument refusal gives depends on which one is asking
+/// (`crate::arguments::Transport`).
+pub const CALL_DOOR_CLIENT: &str = "reflow2-mcp --call";
 
 pub(crate) fn served_by() -> serde_json::Value {
     let mtime = std::env::current_exe().ok().and_then(|p| {
@@ -2203,6 +1960,7 @@ pub struct RequirementStatusReq {
     /// The Requirement (`req:…`) whose lifecycle status moves. Every move off `proposed` records the USER's word — pass `approver`.
     #[serde(alias = "id")]
     #[serde(alias = "node_id")]
+    #[schemars(extend("x-reflow2-aliases" = ["id", "node_id"]))]
     pub requirement_id: String,
     /// `proposed` (default) / `accepted` / `deferred` / `dropped` / `met`.
     #[schemars(schema_with = "crate::enum_schema::requirement_status_req")]
@@ -2224,6 +1982,7 @@ pub struct ProjectModeReq {
     /// The Project (`proj:…`) whose governance mode is being set — `flexible` lets `apply_heal` apply structural repairs, `rigid` makes it propose and stop.
     #[serde(alias = "id")]
     #[serde(alias = "node_id")]
+    #[schemars(extend("x-reflow2-aliases" = ["id", "node_id"]))]
     pub project_id: String,
     /// `flexible` (the schema default) / `rigid`. In `rigid`, `apply_heal`
     /// proposes structural repairs and stops instead of applying them.
@@ -2237,6 +1996,7 @@ pub struct SetClosureCriterionReq {
     /// The Project (`proj:…`) declaring what closure means for its design.
     #[serde(alias = "id")]
     #[serde(alias = "node_id")]
+    #[schemars(extend("x-reflow2-aliases" = ["id", "node_id"]))]
     pub project_id: String,
     /// Which legs count, in the owner's order — the first named leg that
     /// fails is the first hole closure_report names. At least one.
@@ -2290,6 +2050,7 @@ pub struct RequirementLineageReq {
     /// The Requirement (`req:…`) whose lineage is being set — `original`, `decomposed` (a 1:1 split of a parent) or `derived` (technical necessity a Decision created).
     #[serde(alias = "id")]
     #[serde(alias = "node_id")]
+    #[schemars(extend("x-reflow2-aliases" = ["id", "node_id"]))]
     pub requirement_id: String,
     /// `original` (default) / `decomposed` / `derived`.
     #[schemars(schema_with = "crate::enum_schema::requirement_lineage_req")]
@@ -2302,6 +2063,7 @@ pub struct CapabilityStatusReq {
     /// The Capability (`cap:…`) whose lifecycle status moves. A status past `planned` with no passing check is reported as an unproven claim by `loop_status`.
     #[serde(alias = "id")]
     #[serde(alias = "node_id")]
+    #[schemars(extend("x-reflow2-aliases" = ["id", "node_id"]))]
     pub capability_id: String,
     /// `planned` (default) / `in_progress` / `realized` / `verified`.
     #[schemars(schema_with = "crate::enum_schema::capability_status_req")]
@@ -2319,6 +2081,7 @@ pub struct AliasReq {
     pub node_type: Option<String>,
     /// The node gaining the aliases; its type is `node_type`.
     #[serde(alias = "id")]
+    #[schemars(extend("x-reflow2-aliases" = ["id"]))]
     pub node_id: String,
     /// The user's own words for this thing. MERGED with what is already
     /// recorded, so a second term never costs the first, and a term already
@@ -2420,6 +2183,7 @@ pub struct ContainsReq {
     #[serde(alias = "from_id")]
     #[serde(alias = "node_id")]
     /// The Project (`proj:…`) that CONTAINS the child. This is project membership, not decomposition — a Component inside another Component is `contain_component` / `move_component`.
+    #[schemars(extend("x-reflow2-aliases" = ["from_id", "node_id"]))]
     pub project_id: String,
     /// Child node type (e.g. `Requirement`, `Capability`, `Component`).
     /// Optional since 2026-09-06: resolved from the id when omitted (the id
@@ -2427,9 +2191,11 @@ pub struct ContainsReq {
     /// guessed — pass it then.
     #[serde(default)]
     #[serde(alias = "to_type")]
+    #[schemars(extend("x-reflow2-aliases" = ["to_type"]))]
     pub child_type: Option<String>,
     /// The contained node; its type is `child_type`.
     #[serde(alias = "to_id")]
+    #[schemars(extend("x-reflow2-aliases" = ["to_id"]))]
     pub child_id: String,
 }
 
@@ -2450,9 +2216,11 @@ pub struct AllocateReq {
     /// The `Capability` being allocated.
     #[serde(alias = "capability_id")]
     #[serde(alias = "node_id")]
+    #[schemars(extend("x-reflow2-aliases" = ["capability_id", "node_id"]))]
     pub from_id: String,
     /// The `Component` it is allocated to.
     #[serde(alias = "component_id")]
+    #[schemars(extend("x-reflow2-aliases" = ["component_id"]))]
     pub to_id: String,
 }
 
@@ -2467,9 +2235,11 @@ pub struct SatisfiesReq {
     /// SATISFIES).
     #[serde(alias = "capability_id")]
     #[serde(alias = "node_id")]
+    #[schemars(extend("x-reflow2-aliases" = ["capability_id", "node_id"]))]
     pub from_id: String,
     /// The `Requirement` (or `Constraint`) being satisfied.
     #[serde(alias = "requirement_id")]
+    #[schemars(extend("x-reflow2-aliases" = ["requirement_id"]))]
     pub to_id: String,
     /// The `from_id` node's type.
     /// Optional: resolved from the id when omitted (the id prefix names the
@@ -2504,9 +2274,11 @@ pub struct ProvidesReq {
     /// The `Component` providing the contract.
     #[serde(alias = "component_id")]
     #[serde(alias = "node_id")]
+    #[schemars(extend("x-reflow2-aliases" = ["component_id", "node_id"]))]
     pub from_id: String,
     /// The `Interface` it provides.
     #[serde(alias = "interface_id")]
+    #[schemars(extend("x-reflow2-aliases" = ["interface_id"]))]
     pub to_id: String,
 }
 
@@ -2521,9 +2293,11 @@ pub struct ConsumesReq {
     /// interface (the schema accepts any consumer).
     #[serde(alias = "component_id")]
     #[serde(alias = "node_id")]
+    #[schemars(extend("x-reflow2-aliases" = ["component_id", "node_id"]))]
     pub from_id: String,
     /// The `Interface` it consumes.
     #[serde(alias = "interface_id")]
+    #[schemars(extend("x-reflow2-aliases" = ["interface_id"]))]
     pub to_id: String,
     /// The `from_id` node's type.
     /// Optional: resolved from the id when omitted (the id prefix names the
@@ -2546,9 +2320,11 @@ pub struct DecomposesReq {
     /// first. Here the child comes first: `from_id` DECOMPOSES `to_id`.
     #[serde(alias = "parent_id")]
     #[serde(alias = "node_id")]
+    #[schemars(extend("x-reflow2-aliases" = ["parent_id", "node_id"]))]
     pub from_id: String,
     /// The PARENT `Requirement` being split.
     #[serde(alias = "child_id")]
+    #[schemars(extend("x-reflow2-aliases" = ["child_id"]))]
     pub to_id: String,
 }
 
@@ -2562,9 +2338,11 @@ pub struct DependsOnReq {
     /// The `Component` (or `Capability`) that depends.
     #[serde(alias = "dependent_id")]
     #[serde(alias = "node_id")]
+    #[schemars(extend("x-reflow2-aliases" = ["dependent_id", "node_id"]))]
     pub from_id: String,
     /// The `Component` (or `Capability`) depended on.
     #[serde(alias = "dependency_id")]
+    #[schemars(extend("x-reflow2-aliases" = ["dependency_id"]))]
     pub to_id: String,
     /// The `from_id` node's type.
     /// Optional: resolved from the id when omitted (the id prefix names the
@@ -2593,9 +2371,11 @@ pub struct ContainComponentReq {
     /// ⚠️ Direction is the opposite of `decomposes`, which takes the child first.
     #[serde(alias = "parent_id")]
     #[serde(alias = "node_id")]
+    #[schemars(extend("x-reflow2-aliases" = ["parent_id", "node_id"]))]
     pub from_id: String,
     /// The CHILD `Component` being contained.
     #[serde(alias = "child_id")]
+    #[schemars(extend("x-reflow2-aliases" = ["child_id"]))]
     pub to_id: String,
 }
 
@@ -2605,11 +2385,13 @@ pub struct MoveComponentReq {
     /// The Component to move.
     #[serde(alias = "from_id")]
     #[serde(alias = "node_id")]
+    #[schemars(extend("x-reflow2-aliases" = ["from_id", "node_id"]))]
     pub child_id: String,
     /// The Component it should be contained by afterwards. Every OTHER parent
     /// it currently has is detached, and the reply names them.
     #[serde(alias = "to_id")]
     #[serde(alias = "parent_id")]
+    #[schemars(extend("x-reflow2-aliases" = ["to_id", "parent_id"]))]
     pub new_parent_id: String,
 }
 
@@ -2623,6 +2405,7 @@ pub struct CreateNodeReq {
     /// Property object; validated against the schema.
     #[serde(alias = "properties")]
     #[serde(default)]
+    #[schemars(extend("x-reflow2-aliases" = ["properties"]))]
     pub props: Option<JsonObject>,
     /// The node's `prior_content_hash` as you last READ it. Supply it and this
     /// write becomes a COMPARE-AND-SWAP: if the node has moved since, the write
@@ -2674,6 +2457,7 @@ pub struct CreateEdgeReq {
     pub to_id: String,
     #[serde(alias = "properties")]
     #[serde(default)]
+    #[schemars(extend("x-reflow2-aliases" = ["properties"]))]
     pub props: Option<JsonObject>,
 }
 
@@ -2810,6 +2594,7 @@ pub struct RealizesReq {
     #[serde(alias = "from_id")]
     #[serde(alias = "node_id")]
     /// The registered Artifact (`art:…`) that implements the target in code or hardware. For a document that describes rather than implements, use `documents`.
+    #[schemars(extend("x-reflow2-aliases" = ["from_id", "node_id"]))]
     pub artifact_id: String,
     /// Node type the artifact realizes (e.g. `Capability`, `Component`).
     /// Optional since 2026-09-06: resolved from the id when omitted (the id
@@ -2817,9 +2602,11 @@ pub struct RealizesReq {
     /// guessed — pass it then.
     #[serde(default)]
     #[serde(alias = "to_type")]
+    #[schemars(extend("x-reflow2-aliases" = ["to_type"]))]
     pub target_type: Option<String>,
     /// The realized node; its type is `target_type`.
     #[serde(alias = "to_id")]
+    #[schemars(extend("x-reflow2-aliases" = ["to_id"]))]
     pub target_id: String,
     /// `stub` / `partial` / `complete` — how much of the thing EXISTS.
     #[serde(default)]
@@ -2842,6 +2629,7 @@ pub struct DocumentsReq {
     #[serde(alias = "from_id")]
     #[serde(alias = "node_id")]
     /// The Artifact (`art:…`) that DOCUMENTS the target — a spec, an ICD, a page — as opposed to one that REALIZES it in code (`realizes`).
+    #[schemars(extend("x-reflow2-aliases" = ["from_id", "node_id"]))]
     pub artifact_id: String,
     /// Node type the artifact describes (e.g. `Component`, `Interface`, `Project`).
     /// Optional since 2026-09-06: resolved from the id when omitted (the id
@@ -2849,9 +2637,11 @@ pub struct DocumentsReq {
     /// guessed — pass it then.
     #[serde(default)]
     #[serde(alias = "to_type")]
+    #[schemars(extend("x-reflow2-aliases" = ["to_type"]))]
     pub target_type: Option<String>,
     /// The documented node; its type is `target_type`.
     #[serde(alias = "to_id")]
+    #[schemars(extend("x-reflow2-aliases" = ["to_id"]))]
     pub target_id: String,
     /// What kind of document: `design_doc` / `adr` / `readme` / `runbook` /
     /// `agent_instructions` / `dataflow` / `sequence_diagram` / `arch_diagram`.
@@ -2866,6 +2656,7 @@ pub struct LinkArtifactReq {
     #[serde(alias = "from_id")]
     #[serde(alias = "node_id")]
     /// The id to register the file under — `art:…` by convention. Re-linking an existing id to a second target is safe and keeps its stored name and prose.
+    #[schemars(extend("x-reflow2-aliases" = ["from_id", "node_id"]))]
     pub artifact_id: String,
     /// Required on a FIRST link. Omitting it on a re-link PRESERVES the stored
     /// name rather than blanking it — before 2026-09-07 this was mandatory, so
@@ -2886,9 +2677,11 @@ pub struct LinkArtifactReq {
     /// guessed — pass it then.
     #[serde(default)]
     #[serde(alias = "to_type")]
+    #[schemars(extend("x-reflow2-aliases" = ["to_type"]))]
     pub target_type: Option<String>,
     /// The node the artifact realizes; its type is `target_type`.
     #[serde(alias = "to_id")]
+    #[schemars(extend("x-reflow2-aliases" = ["to_id"]))]
     pub target_id: String,
     #[serde(default)]
     pub completeness: Option<String>,
@@ -2988,6 +2781,9 @@ pub struct VerifyTargetReq {
     /// an id held by more than one type is REFUSED, never guessed.
     #[serde(default)]
     pub target_type: Option<String>,
+    /// The node this check verifies — a Requirement (`req:…`), Capability
+    /// (`cap:…`), Interface or any node a VERIFIES edge may reach. Its type is
+    /// resolved from the id; `target_type` names it when the id is ambiguous.
     pub target_id: String,
 }
 
@@ -2997,6 +2793,7 @@ pub struct VerificationStatusReq {
     /// The Verification (`ver:…`) whose run outcome is being recorded. Pass the real outcome: a check left at `planned` counts as no confirmation.
     #[serde(alias = "id")]
     #[serde(alias = "node_id")]
+    #[schemars(extend("x-reflow2-aliases" = ["id", "node_id"]))]
     pub verification_id: String,
     /// `planned` / `passing` / `failing` / `skipped` / `blocked`.
     #[schemars(schema_with = "crate::enum_schema::verification_status_req")]
@@ -3021,6 +2818,7 @@ pub struct VerificationKindReq {
     /// The Verification (`ver:…`) being marked `verification` (built right) or `validation` (built the right thing).
     #[serde(alias = "id")]
     #[serde(alias = "node_id")]
+    #[schemars(extend("x-reflow2-aliases" = ["id", "node_id"]))]
     pub verification_id: String,
     /// `verification` (built right — meets the spec) or `validation` (the right
     /// thing — meets the operational intent).
@@ -3034,6 +2832,7 @@ pub struct VerifiesReq {
     #[serde(alias = "from_id")]
     #[serde(alias = "node_id")]
     /// The Verification (`ver:…`, from `add_verification`) that checks the target — the source of the VERIFIES edge.
+    #[schemars(extend("x-reflow2-aliases" = ["from_id", "node_id"]))]
     pub verification_id: String,
     /// Node type being verified (e.g. `Capability`, `Artifact`, `Component`).
     /// Optional since 2026-09-06: resolved from the id when omitted (the id
@@ -3041,9 +2840,11 @@ pub struct VerifiesReq {
     /// guessed — pass it then.
     #[serde(default)]
     #[serde(alias = "to_type")]
+    #[schemars(extend("x-reflow2-aliases" = ["to_type"]))]
     pub target_type: Option<String>,
     /// The checked node; its type is `target_type`.
     #[serde(alias = "to_id")]
+    #[schemars(extend("x-reflow2-aliases" = ["to_id"]))]
     pub target_id: String,
 }
 
@@ -3053,6 +2854,7 @@ pub struct EvidenceScopeReq {
     #[serde(alias = "from_id")]
     #[serde(alias = "node_id")]
     /// The Verification (`ver:…`) whose evidence scope is being set — which Environment its runs count for, and whether simulation-only.
+    #[schemars(extend("x-reflow2-aliases" = ["from_id", "node_id"]))]
     pub verification_id: String,
     /// Node type this check verifies (e.g. `Capability`).
     /// Optional since 2026-09-06: resolved from the id when omitted (the id
@@ -3060,9 +2862,11 @@ pub struct EvidenceScopeReq {
     /// guessed — pass it then.
     #[serde(default)]
     #[serde(alias = "to_type")]
+    #[schemars(extend("x-reflow2-aliases" = ["to_type"]))]
     pub target_type: Option<String>,
     /// The node the claim is about; its type is `target_type`.
     #[serde(alias = "to_id")]
+    #[schemars(extend("x-reflow2-aliases" = ["to_id"]))]
     pub target_id: String,
     /// Parameter names the check HELD FIXED for this claim. Passing an empty
     /// list clears them, which is how a scope recorded in error is withdrawn.
@@ -3083,9 +2887,11 @@ pub struct CalibratedAgainstReq {
     /// guessed — pass it then.
     #[serde(default)]
     #[serde(alias = "node_type")]
+    #[schemars(extend("x-reflow2-aliases" = ["node_type"]))]
     pub from_type: Option<String>,
     /// The fitted node; its type is `from_type`.
     #[serde(alias = "node_id")]
+    #[schemars(extend("x-reflow2-aliases" = ["node_id"]))]
     pub from_id: String,
     /// `Artifact` (a published anchor, a dataset, a measurement record) or
     /// `Verification` (the check whose output the value was fitted to).
@@ -3094,9 +2900,11 @@ pub struct CalibratedAgainstReq {
     /// guessed — pass it then.
     #[serde(default)]
     #[serde(alias = "to_type")]
+    #[schemars(extend("x-reflow2-aliases" = ["to_type"]))]
     pub evidence_type: Option<String>,
     /// The evidence fitted to; its type is `evidence_type`.
     #[serde(alias = "to_id")]
+    #[schemars(extend("x-reflow2-aliases" = ["to_id"]))]
     pub evidence_id: String,
     /// What was fitted, and how — the part a later reader needs in order to
     /// judge whether the fit still stands.
@@ -3115,9 +2923,11 @@ pub struct InvalidatesReq {
     /// guessed — pass it then.
     #[serde(default)]
     #[serde(alias = "node_type")]
+    #[schemars(extend("x-reflow2-aliases" = ["node_type"]))]
     pub from_type: Option<String>,
     /// The node doing the invalidating; its type is `from_type`.
     #[serde(alias = "node_id")]
+    #[schemars(extend("x-reflow2-aliases" = ["node_id"]))]
     pub from_id: String,
     /// Node type of the FINDING now stale — `Verification` (a run that found
     /// it) or `TemporalFact` (a measurement that recorded it).
@@ -3126,9 +2936,11 @@ pub struct InvalidatesReq {
     /// guessed — pass it then.
     #[serde(default)]
     #[serde(alias = "to_type")]
+    #[schemars(extend("x-reflow2-aliases" = ["to_type"]))]
     pub finding_type: Option<String>,
     /// The finding being invalidated; its type is `finding_type`.
     #[serde(alias = "to_id")]
+    #[schemars(extend("x-reflow2-aliases" = ["to_id"]))]
     pub finding_id: String,
     /// WHY this record invalidates that finding — the sentence a later reader
     /// needs to judge whether the claim still stands. Skipping it leaves an
@@ -3163,9 +2975,11 @@ pub struct UnclaimedFindingsReq {
 pub struct OperatesInReq {
     #[serde(alias = "from_id")]
     /// The Project (`proj:…`) that operates in the environment — the source of the OPERATES_IN edge.
+    #[schemars(extend("x-reflow2-aliases" = ["from_id"]))]
     pub project_id: String,
     #[serde(alias = "to_id")]
     /// The Environment (`env:…`, from `add_environment`) it operates in. Deployment of a RELEASE to an environment is `deploy_to`; this is the project-level statement.
+    #[schemars(extend("x-reflow2-aliases" = ["to_id"]))]
     pub environment_id: String,
 }
 
@@ -3175,9 +2989,11 @@ pub struct OperatesInReq {
 pub struct ImposesReq {
     #[serde(alias = "from_id")]
     /// The Environment (`env:…`, from `add_environment`) that imposes the rule — the source of the IMPOSES edge.
+    #[schemars(extend("x-reflow2-aliases" = ["from_id"]))]
     pub environment_id: String,
     /// The `EnvironmentRule` the environment imposes.
     #[serde(alias = "to_id")]
+    #[schemars(extend("x-reflow2-aliases" = ["to_id"]))]
     pub rule_id: String,
 }
 
@@ -3240,13 +3056,16 @@ pub struct CompliesWithReq {
     /// The design element that complies. Its type is resolved from the id.
     /// The complying node; its type is `element_type`.
     #[serde(alias = "node_id", alias = "from_id")]
+    #[schemars(extend("x-reflow2-aliases" = ["node_id", "from_id"]))]
     pub element_id: String,
     /// Optional; resolved from the id when omitted.
     #[serde(default, alias = "node_type", alias = "from_type")]
+    #[schemars(extend("x-reflow2-aliases" = ["node_type", "from_type"]))]
     pub element_type: Option<String>,
     /// The `EnvironmentRule` complied with.
     /// 🛑 NOT a `DesignRule` — see `violates_rule.rule_id`.
     #[serde(alias = "to_id")]
+    #[schemars(extend("x-reflow2-aliases" = ["to_id"]))]
     pub rule_id: String,
     /// Whether compliance was DEMONSTRATED rather than merely asserted.
     /// Defaults to false, for the reason every evidence field here does: a
@@ -3265,8 +3084,10 @@ pub struct ViolatesRuleReq {
     /// The design element that contradicts the rule; type resolved from the id.
     /// The node in violation; its type is `element_type`.
     #[serde(alias = "node_id", alias = "from_id")]
+    #[schemars(extend("x-reflow2-aliases" = ["node_id", "from_id"]))]
     pub element_id: String,
     #[serde(default, alias = "node_type", alias = "from_type")]
+    #[schemars(extend("x-reflow2-aliases" = ["node_type", "from_type"]))]
     pub element_type: Option<String>,
     /// The `EnvironmentRule` being violated.
     /// 🛑 NOT a `DesignRule`. This resolves to `EnvironmentRule` only, so a
@@ -3275,6 +3096,7 @@ pub struct ViolatesRuleReq {
     /// no served path from one to the other
     /// (`fact:the-27-design-rules-are-unreachable-by-the-violation-vocabulary-because-it-resolves-to-environment-rule`).
     #[serde(alias = "to_id")]
+    #[schemars(extend("x-reflow2-aliases" = ["to_id"]))]
     pub rule_id: String,
     /// `llm` (default) / `author` / `check` — who noticed.
     #[serde(default)]
@@ -3298,10 +3120,12 @@ pub struct ViolationStatusReq {
     /// request carries no `element_type`: the edge already exists and is what
     /// is being triaged, so a status for a pair with no edge is REFUSED.
     #[serde(alias = "node_id", alias = "from_id")]
+    #[schemars(extend("x-reflow2-aliases" = ["node_id", "from_id"]))]
     pub element_id: String,
     /// The `EnvironmentRule` of the violation being triaged.
     /// 🛑 NOT a `DesignRule` — see `violates_rule.rule_id`.
     #[serde(alias = "to_id")]
+    #[schemars(extend("x-reflow2-aliases" = ["to_id"]))]
     pub rule_id: String,
     /// `confirmed` — a variance or waiver was GRANTED, and the violation is
     /// kept and documented rather than deleted. `rejected` — it must be fixed.
@@ -3391,6 +3215,7 @@ pub struct ReleaseIncludesReq {
     #[serde(alias = "from_id")]
     #[serde(alias = "node_id")]
     /// The Release (`rel:…`) that ships the item — one INCLUDES edge per artifact or component, which is what makes the as-released view exist.
+    #[schemars(extend("x-reflow2-aliases" = ["from_id", "node_id"]))]
     pub release_id: String,
     /// `Artifact` or `Component`.
     /// Optional since 2026-09-06: resolved from the id when omitted (the id
@@ -3398,9 +3223,11 @@ pub struct ReleaseIncludesReq {
     /// guessed — pass it then.
     #[serde(default)]
     #[serde(alias = "to_type")]
+    #[schemars(extend("x-reflow2-aliases" = ["to_type"]))]
     pub target_type: Option<String>,
     /// The included node; its type is `target_type`.
     #[serde(alias = "to_id")]
+    #[schemars(extend("x-reflow2-aliases" = ["to_id"]))]
     pub target_id: String,
     /// The artifact's content hash AS SHIPPED in this release — frozen at cut
     /// time, so later baseline moves do not rewrite what a past release
@@ -3413,12 +3240,18 @@ pub struct ReleaseIncludesReq {
 #[derive(Debug, Deserialize, JsonSchema)]
 #[serde(deny_unknown_fields)]
 pub struct NodeSpecReq {
+    /// The schema type name as declared, e.g. `Requirement`, `DesignEpoch` —
+    /// `describe_schema` lists them. The same value `create_node` takes.
     pub node_type: String,
+    /// The new node's id, with the prefix convention the typed constructors use
+    /// (`req:`, `cap:`, `dec:` …) so the type is readable from the id anywhere it
+    /// appears.
     pub id: String,
     /// Property object; validated against the schema exactly as `create_node`
     /// validates it.
     #[serde(alias = "properties")]
     #[serde(default)]
+    #[schemars(extend("x-reflow2-aliases" = ["properties"]))]
     pub props: Option<JsonObject>,
     /// This node's approver — required when THIS node settles intent, as on
     /// `create_node`. Drawn as AUTHORED_BY role=approver.
@@ -3445,21 +3278,29 @@ pub struct CreateNodesReq {
 #[derive(Debug, Deserialize, JsonSchema)]
 #[serde(deny_unknown_fields)]
 pub struct EdgeSpecReq {
+    /// The edge type as declared, e.g. `SATISFIES`, `DEPENDS_ON` — the same value
+    /// `create_edge` takes. `describe_schema` with `from` and `to` names which types
+    /// may join two node types.
     pub edge_type: String,
     /// Optional since 2026-09-06: resolved from the id when omitted (the id
     /// prefix names the type); an id held by more than one type is REFUSED, never
     /// guessed — pass it then.
     #[serde(default)]
     pub from_type: Option<String>,
+    /// The source node's id; its type is `from_type`, resolved from the id when
+    /// omitted.
     pub from_id: String,
     /// Optional since 2026-09-06: resolved from the id when omitted (the id
     /// prefix names the type); an id held by more than one type is REFUSED, never
     /// guessed — pass it then.
     #[serde(default)]
     pub to_type: Option<String>,
+    /// The target node's id; its type is `to_type`, resolved from the id when
+    /// omitted.
     pub to_id: String,
     #[serde(alias = "properties")]
     #[serde(default)]
+    #[schemars(extend("x-reflow2-aliases" = ["properties"]))]
     pub props: Option<JsonObject>,
 }
 
@@ -3482,6 +3323,9 @@ pub struct CreateEdgesReq {
 #[derive(Debug, Deserialize, JsonSchema)]
 #[serde(deny_unknown_fields)]
 pub struct ChecksumAcceptReq {
+    /// The registered Artifact (`art:…`) whose baseline this item accepts — one
+    /// `reconcile_artifacts` or `reflow2_check` reported, or a new one getting its
+    /// first baseline.
     pub artifact_id: String,
     /// Omitted: measured by the server under the project root (basis
     /// `measured`); supplied: recorded as `asserted`.
@@ -3570,6 +3414,7 @@ pub struct ReleaseIncludesAllReq {
     /// The Release (`rel:…`) that ships everything realized since the previous cut — the roll-call `release_includes` would otherwise need one call per item.
     #[serde(alias = "id")]
     #[serde(alias = "node_id")]
+    #[schemars(extend("x-reflow2-aliases" = ["id", "node_id"]))]
     pub release_id: String,
     /// Artifact or Component ids this release does NOT ship. An id that names
     /// nothing in the design is refused rather than ignored — a caller who
@@ -3590,6 +3435,7 @@ pub struct ReleaseReportReq {
     /// The Release (`rel:…`) to report — what it includes, where it is deployed, and what it is pinned to.
     #[serde(alias = "id")]
     #[serde(alias = "node_id")]
+    #[schemars(extend("x-reflow2-aliases" = ["id", "node_id"]))]
     pub release_id: String,
 }
 
@@ -3633,10 +3479,12 @@ pub struct GateOnReq {
     #[serde(default)]
     #[serde(alias = "from_type")]
     #[serde(alias = "node_type")]
+    #[schemars(extend("x-reflow2-aliases" = ["from_type", "node_type"]))]
     pub subject_type: Option<String>,
     /// The gated increment; its type is `subject_type`.
     #[serde(alias = "from_id")]
     #[serde(alias = "node_id")]
+    #[schemars(extend("x-reflow2-aliases" = ["from_id", "node_id"]))]
     pub subject_id: String,
     /// The enabling technology it waits on.
     /// Optional since 2026-09-06: resolved from the id when omitted (the id
@@ -3644,9 +3492,11 @@ pub struct GateOnReq {
     /// guessed — pass it then.
     #[serde(default)]
     #[serde(alias = "to_type")]
+    #[schemars(extend("x-reflow2-aliases" = ["to_type"]))]
     pub target_type: Option<String>,
     /// The technology gated on; its type is `target_type`.
     #[serde(alias = "to_id")]
+    #[schemars(extend("x-reflow2-aliases" = ["to_id"]))]
     pub target_id: String,
     /// `TRL` or `MRL`.
     #[schemars(schema_with = "crate::enum_schema::gated_on_kind_req")]
@@ -3698,6 +3548,7 @@ pub struct ReadinessReportReq {
     /// `GATED_ON` edges.
     #[serde(alias = "id")]
     #[serde(alias = "node_id")]
+    #[schemars(extend("x-reflow2-aliases" = ["id", "node_id"]))]
     pub subject_id: String,
 }
 
@@ -3708,9 +3559,11 @@ pub struct PrecedesReq {
     /// `from_id` is accepted too: the ends are peers, and the taught peer spelling is
     /// `from_*` / `to_*` (dec:idea-one-way-to-name-which-node-across-the-tool-surface).
     #[serde(alias = "from_id")]
+    #[schemars(extend("x-reflow2-aliases" = ["from_id"]))]
     pub earlier_epoch: String,
     /// The DesignEpoch (`epoch:…`) that follows it.
     #[serde(alias = "to_id")]
+    #[schemars(extend("x-reflow2-aliases" = ["to_id"]))]
     pub later_epoch: String,
 }
 
@@ -3743,9 +3596,11 @@ pub struct PartOfFlowReq {
     #[serde(alias = "from_id")]
     #[serde(alias = "node_id")]
     /// The Capability (`cap:…`) that is a step of the flow.
+    #[schemars(extend("x-reflow2-aliases" = ["from_id", "node_id"]))]
     pub capability_id: String,
     #[serde(alias = "to_id")]
     /// The Flow (`flow:…`, from `add_flow`) the capability is a step of.
+    #[schemars(extend("x-reflow2-aliases" = ["to_id"]))]
     pub flow_id: String,
     /// Position of this capability within the flow. Steps without one are
     /// listed after the ordered ones, and the flow report says so.
@@ -3759,12 +3614,14 @@ pub struct FlowReportReq {
     /// The Flow (`flow:…`) to report — its steps in `step_order`, with unordered steps listed after and said so.
     #[serde(alias = "id")]
     #[serde(alias = "node_id")]
+    #[schemars(extend("x-reflow2-aliases" = ["id", "node_id"]))]
     pub flow_id: String,
 }
 
 #[derive(Debug, Deserialize, JsonSchema)]
 #[serde(deny_unknown_fields)]
 pub struct ObservedVerificationReq {
+    /// The Verification (`ver:…`) whose check this run executed.
     pub verification_id: String,
     /// What the run reported: `passed` / `failed` / `skipped`. Anything else
     /// is rejected by name; the rest of the batch still processes.
@@ -3844,6 +3701,7 @@ pub struct ReconcileVerificationReq {
 #[derive(Debug, Deserialize, JsonSchema)]
 #[serde(deny_unknown_fields)]
 pub struct ObservedEnvironmentReq {
+    /// The Environment you looked at (`env:…`), as the design records it.
     pub environment_id: String,
     /// Release ids actually running there. An empty list is a positive
     /// statement — nothing runs here — not missing evidence.
@@ -3959,6 +3817,7 @@ pub struct ConstrainsReq {
     #[serde(alias = "node_id")]
     /// The Constraint (`con:…`) that limits the target — the source of the CONSTRAINS edge. A
     /// `DesignRule` binding what it governs is accepted too.
+    #[schemars(extend("x-reflow2-aliases" = ["from_id", "node_id"]))]
     pub constraint_id: String,
     /// The `constraint_id` node's type — `Constraint` or `DesignRule`.
     /// Optional: resolved from the id when omitted (the id prefix names the
@@ -3967,6 +3826,7 @@ pub struct ConstrainsReq {
     /// typed tool is never narrower than its schema.
     #[serde(default)]
     #[serde(alias = "from_type")]
+    #[schemars(extend("x-reflow2-aliases" = ["from_type"]))]
     pub constraint_type: Option<String>,
     /// The spender's node type — anything can spend (Component mass,
     /// Interface latency, Resource cost).
@@ -3975,9 +3835,11 @@ pub struct ConstrainsReq {
     /// guessed — pass it then.
     #[serde(default)]
     #[serde(alias = "to_type")]
+    #[schemars(extend("x-reflow2-aliases" = ["to_type"]))]
     pub target_type: Option<String>,
     /// The constrained node; its type is `target_type`.
     #[serde(alias = "to_id")]
+    #[schemars(extend("x-reflow2-aliases" = ["to_id"]))]
     pub target_id: String,
     /// This target's spend, in the Constraint's quantity unit. Omitted =
     /// participates but unstated; budget_report reports it, never zeroes it.
@@ -4053,6 +3915,9 @@ pub struct RelationLinkReq {
     /// guessed — pass it then.
     #[serde(default)]
     pub other_type: Option<String>,
+    /// The node at the other end of the relation (`req:…`, `dec:…`, any node id).
+    /// The edge runs TO it unless `incoming` turns it round. Its type is resolved
+    /// from the id; `other_type` names it when the id is ambiguous.
     pub other_id: String,
     /// WHY this relation is true, in a sentence. Required — a relation with no
     /// evidence is an assertion the next reader can neither check nor overturn.
@@ -4079,6 +3944,7 @@ pub struct BudgetReportReq {
     #[serde(default)]
     #[serde(alias = "id")]
     #[serde(alias = "node_id")]
+    #[schemars(extend("x-reflow2-aliases" = ["id", "node_id"]))]
     pub constraint_id: Option<String>,
     /// How many characters the all-at-once reply may spend (default 30,000). Counts are never
     /// trimmed. Ignored when `constraint_id` is given.
@@ -4094,12 +3960,15 @@ pub struct PinAtEpochReq {
     /// guessed — pass it then.
     #[serde(default)]
     #[serde(alias = "from_type")]
+    #[schemars(extend("x-reflow2-aliases" = ["from_type"]))]
     pub node_type: Option<String>,
     /// The node being pinned; its type is `node_type`.
     #[serde(alias = "from_id")]
+    #[schemars(extend("x-reflow2-aliases" = ["from_id"]))]
     pub node_id: String,
     #[serde(alias = "to_id")]
     /// The DesignEpoch (`epoch:…`) a Release is pinned to (AT_EPOCH) — what puts it on the time axis, and without which `changelog_view` cannot bound a window.
+    #[schemars(extend("x-reflow2-aliases" = ["to_id"]))]
     pub epoch_id: String,
 }
 
@@ -4119,10 +3988,12 @@ pub struct ScheduleForReq {
     #[serde(default)]
     #[serde(alias = "from_type")]
     #[serde(alias = "node_type")]
+    #[schemars(extend("x-reflow2-aliases" = ["from_type", "node_type"]))]
     pub item_type: Option<String>,
     /// The scheduled item; its type is `item_type`.
     #[serde(alias = "from_id")]
     #[serde(alias = "node_id")]
+    #[schemars(extend("x-reflow2-aliases" = ["from_id", "node_id"]))]
     pub item_id: String,
     /// `DesignEpoch` (time axis) or `Release` (capability-increment axis).
     /// Optional since 2026-09-06: resolved from the id when omitted (the id
@@ -4130,9 +4001,11 @@ pub struct ScheduleForReq {
     /// guessed — pass it then.
     #[serde(default)]
     #[serde(alias = "to_type")]
+    #[schemars(extend("x-reflow2-aliases" = ["to_type"]))]
     pub target_type: Option<String>,
     /// The moment scheduled for; its type is `target_type`.
     #[serde(alias = "to_id")]
+    #[schemars(extend("x-reflow2-aliases" = ["to_id"]))]
     pub target_id: String,
     /// `expected` (a plan, the default) or `required` (an obligation whose
     /// miss at arrival is a violation). There is no `achieved`.
@@ -4167,6 +4040,7 @@ pub struct ArrivalDeltaReq {
     /// The DesignEpoch or Release to read the schedule of.
     #[serde(alias = "id")]
     #[serde(alias = "node_id")]
+    #[schemars(extend("x-reflow2-aliases" = ["id", "node_id"]))]
     pub target_id: String,
 }
 
@@ -4176,9 +4050,11 @@ pub struct DeployToReq {
     #[serde(alias = "from_id")]
     #[serde(alias = "node_id")]
     /// The Release (`rel:…`, from `add_release`) being deployed.
+    #[schemars(extend("x-reflow2-aliases" = ["from_id", "node_id"]))]
     pub release_id: String,
     #[serde(alias = "to_id")]
     /// The Environment (`env:…`, from `add_environment`) it is deployed to. A Release with no DEPLOYED_TO edge reads as never fielded in the operation band.
+    #[schemars(extend("x-reflow2-aliases" = ["to_id"]))]
     pub environment_id: String,
     /// `planned` / `active` / `rolled_back`.
     #[serde(default)]
@@ -4195,12 +4071,15 @@ pub struct RequireResourceReq {
     /// guessed — pass it then.
     #[serde(default)]
     #[serde(alias = "node_type")]
+    #[schemars(extend("x-reflow2-aliases" = ["node_type"]))]
     pub from_type: Option<String>,
     /// The node requiring it; its type is `from_type`.
     #[serde(alias = "node_id")]
+    #[schemars(extend("x-reflow2-aliases" = ["node_id"]))]
     pub from_id: String,
     #[serde(alias = "to_id")]
     /// The Resource (`res:…`, from `add_resource`) the component or release needs.
+    #[schemars(extend("x-reflow2-aliases" = ["to_id"]))]
     pub resource_id: String,
     /// `optional` / `recommended` / `required`.
     #[serde(default)]
@@ -4323,13 +4202,16 @@ pub struct AnswersReq {
     /// guessed — pass it then.
     #[serde(default)]
     #[serde(alias = "node_type")]
+    #[schemars(extend("x-reflow2-aliases" = ["node_type"]))]
     pub from_type: Option<String>,
     /// The answering node; its type is `from_type`.
     #[serde(alias = "node_id")]
+    #[schemars(extend("x-reflow2-aliases" = ["node_id"]))]
     pub from_id: String,
     /// The Question this record answered. Take it from `open_questions`'
     /// `question_id`.
     #[serde(alias = "to_id")]
+    #[schemars(extend("x-reflow2-aliases" = ["to_id"]))]
     pub question_id: String,
     /// HOW this record answers the question — the sentence a later reader
     /// needs when the answer is not obvious from the record alone.
@@ -4345,9 +4227,11 @@ pub struct GovernedByReq {
     /// guessed — pass it then.
     #[serde(default)]
     #[serde(alias = "node_type")]
+    #[schemars(extend("x-reflow2-aliases" = ["node_type"]))]
     pub from_type: Option<String>,
     /// The governed node; its type is `from_type`.
     #[serde(alias = "node_id")]
+    #[schemars(extend("x-reflow2-aliases" = ["node_id"]))]
     pub from_id: String,
     /// Usually `Decision` or `DesignRule`.
     /// Optional since 2026-09-06: resolved from the id when omitted (the id
@@ -4397,6 +4281,7 @@ pub struct ContributorReq {
     /// wherever the id appears (`who:claude-code` for an agent, initials or a
     /// short handle for a person).
     #[serde(alias = "contributor_id")]
+    #[schemars(extend("x-reflow2-aliases" = ["contributor_id"]))]
     pub id: String,
     #[serde(default)]
     pub name: Option<String>,
@@ -4466,12 +4351,15 @@ pub struct AuthoredByReq {
     /// guessed — pass it then.
     #[serde(default)]
     #[serde(alias = "node_type")]
+    #[schemars(extend("x-reflow2-aliases" = ["node_type"]))]
     pub from_type: Option<String>,
     /// The node being attributed; its type is `from_type`.
     #[serde(alias = "node_id")]
+    #[schemars(extend("x-reflow2-aliases" = ["node_id"]))]
     pub from_id: String,
     /// The `Contributor` whose word this node is.
     #[serde(alias = "to_id")]
+    #[schemars(extend("x-reflow2-aliases" = ["to_id"]))]
     pub contributor_id: String,
     /// `author` (default) / `reviewer` / `approver`.
     #[serde(default)]
@@ -4491,12 +4379,15 @@ pub struct OwnedByReq {
     /// guessed — pass it then.
     #[serde(default)]
     #[serde(alias = "node_type")]
+    #[schemars(extend("x-reflow2-aliases" = ["node_type"]))]
     pub from_type: Option<String>,
     /// The node being owned; its type is `from_type`.
     #[serde(alias = "node_id")]
+    #[schemars(extend("x-reflow2-aliases" = ["node_id"]))]
     pub from_id: String,
     /// The `Contributor` whose area this is.
     #[serde(alias = "to_id")]
+    #[schemars(extend("x-reflow2-aliases" = ["to_id"]))]
     pub contributor_id: String,
     /// What is actually owned, and any bound on it — the sentence a colleague
     /// needs when they find your name on something. "The ingest half, not the
@@ -4565,6 +4456,7 @@ pub struct GetNodeReq {
     /// `node_id` — what search_design hands back — is accepted as an alias
     /// (dec:idea-one-way-to-name-which-node-across-the-tool-surface, option D).
     #[serde(alias = "node_id")]
+    #[schemars(extend("x-reflow2-aliases" = ["node_id"]))]
     pub id: String,
     /// Optional since 2026-09-05: when omitted the type is resolved from the id.
     /// If the id is held by MORE THAN ONE type (a convention violation, but
@@ -4684,6 +4576,7 @@ pub struct CapabilityDeliveryReq {
     /// The Capability (`cap:…`) whose delivery form is being set — `artifact` (realised by a file) or `model` (realised by the design itself).
     #[serde(alias = "id")]
     #[serde(alias = "node_id")]
+    #[schemars(extend("x-reflow2-aliases" = ["id", "node_id"]))]
     pub capability_id: String,
     /// `artifact` (the default) — a file realizes it, and delivery needs both
     /// the file and a passing check. `model` — the deliverable IS the design
@@ -4699,6 +4592,7 @@ pub struct InterfaceDesignationReq {
     /// The Interface (`ifc:…`) whose role at the boundary is being set — `internal`, `published`, `required` or `both`. Read by `export_surface` and `pair_designs`.
     #[serde(alias = "id")]
     #[serde(alias = "node_id")]
+    #[schemars(extend("x-reflow2-aliases" = ["id", "node_id"]))]
     pub interface_id: String,
     /// `internal` (the default state), `published` (a boundary others are
     /// entitled to rely on), `required` (one this design needs FROM OUTSIDE), or
@@ -4811,7 +4705,12 @@ pub struct ReconcileDependenciesReq {
 #[derive(Debug, Default, Deserialize, JsonSchema)]
 #[serde(deny_unknown_fields)]
 pub struct ObservedDependencyDto {
+    /// The dependency's name as the build resolves it (`rmcp`, `serde`) — matched
+    /// by name against each `external_dependency` the design declares; a name no
+    /// declaration carries is reported `undeclared`.
     pub name: String,
+    /// The version the build ACTUALLY resolves, read from the lock or build file
+    /// now; one that differs from the declared version is a `version_mismatch`.
     pub version: String,
     #[serde(default)]
     pub components: Vec<String>,
@@ -4827,6 +4726,7 @@ pub struct RequirementDesignationReq {
     /// The Requirement (`req:…`) being marked `published` (a promise a consumer may rely on, carried by `export_surface`) or `internal`.
     #[serde(alias = "id")]
     #[serde(alias = "node_id")]
+    #[schemars(extend("x-reflow2-aliases" = ["id", "node_id"]))]
     pub requirement_id: String,
     /// `internal` (the default state) or `published` — a behavioural promise a
     /// consumer of this design is entitled to rely on.
@@ -4991,6 +4891,7 @@ pub struct CapabilitySignatureReq {
     /// a typo must not mint a capability whose only content is a signature.
     #[serde(alias = "id")]
     #[serde(alias = "node_id")]
+    #[schemars(extend("x-reflow2-aliases" = ["id", "node_id"]))]
     pub capability_id: String,
     /// What KIND of capability this is: validation / transform / query /
     /// persistence / decision / actuation / io / compute. Free text and
@@ -5073,6 +4974,7 @@ pub struct PropagateChangeReq {
     /// The ChangeEvent to propagate from.
     #[serde(alias = "id")]
     #[serde(alias = "node_id")]
+    #[schemars(extend("x-reflow2-aliases" = ["id", "node_id"]))]
     pub change_event_id: String,
     /// Max traversal depth (default 5).
     #[serde(default)]
@@ -5136,6 +5038,7 @@ pub struct InterfaceSpecReq {
     /// The Interface (`ifc:…`) whose contract axes are being stated — medium, paradigm, payload format, auth, transport security, operations, error model, schema.
     #[serde(alias = "id")]
     #[serde(alias = "node_id")]
+    #[schemars(extend("x-reflow2-aliases" = ["id", "node_id"]))]
     pub interface_id: String,
     /// How the contract is CARRIED: `REST` / `gRPC` / `json_rpc` / `event` /
     /// `graphql` / `cli` / `library` / `data` / `mechanical` / `electrical` /
@@ -5213,10 +5116,12 @@ pub struct PerformedInReq {
     /// The check that was carried out.
     #[serde(alias = "from_id")]
     #[serde(alias = "node_id")]
+    #[schemars(extend("x-reflow2-aliases" = ["from_id", "node_id"]))]
     pub verification_id: String,
     /// The Environment it was carried out in. Its `env_type` is what says
     /// whether that place was a simulation.
     #[serde(alias = "to_id")]
+    #[schemars(extend("x-reflow2-aliases" = ["to_id"]))]
     pub environment_id: String,
 }
 
@@ -5246,7 +5151,7 @@ pub struct IngestStepReq {
     /// replayed from the top rather than resumed, which is what keeps the
     /// handshake stateless.
     #[serde(default)]
-    pub answers: Vec<JsonObject>,
+    pub answers: Vec<AgentAnswerReq>,
 }
 
 /// One document in a corpus run.
@@ -5287,7 +5192,7 @@ pub struct IngestCorpusStepReq {
     /// Every answer gathered so far, earlier rounds included — the run replays
     /// from the top rather than resuming, which is what keeps it stateless.
     #[serde(default)]
-    pub answers: Vec<JsonObject>,
+    pub answers: Vec<AgentAnswerReq>,
 }
 
 #[derive(Debug, Deserialize, JsonSchema)]
@@ -5297,7 +5202,7 @@ pub struct CoverageReportReq {
     /// `{ "path": "src/thing.rs", "mass": 1200 }`. `mass` is your own unit —
     /// bytes, lines, entries — used only to rank the silences; omit it and
     /// ranking falls back to how many paths a region holds.
-    pub observed: Vec<JsonObject>,
+    pub observed: Vec<ObservedPathReq>,
     /// Paths (or directory prefixes) you deliberately left out — build output,
     /// vendored trees, generated code. Each excluded path comes back NAMED with
     /// the rule that excluded it, because "we ignored it" and "it is covered"
@@ -5337,7 +5242,7 @@ pub struct ReconcileArtifactsReq {
     /// given (basis `asserted`). A server that does not hold the tree refuses
     /// an omitted sweep by name.
     #[serde(default)]
-    pub observed: Vec<JsonObject>,
+    pub observed: Vec<ObservedArtifactReq>,
     /// Bound the report to this many characters (default the shared reply
     /// budget). Measured 2026-09-18: a no-argument sweep of reflow2's own 400
     /// registered files answered 124,716 characters. The counts and the
@@ -5374,6 +5279,7 @@ pub struct ArtifactIntentReq {
     /// The registered Artifact (`art:…`, from `link_artifact` or `add_artifact`) whose intent and note are being set.
     #[serde(alias = "id")]
     #[serde(alias = "node_id")]
+    #[schemars(extend("x-reflow2-aliases" = ["id", "node_id"]))]
     pub artifact_id: String,
     /// `atomic` (one deliverable — the default), `opaque` (a subtree claimed as
     /// a unit ON PURPOSE: a settled archive, a vendored tree — do not descend),
@@ -5508,6 +5414,7 @@ pub struct DimensionDriftReq {
     /// to `DimensionObservation` records.
     #[serde(alias = "id")]
     #[serde(alias = "node_id")]
+    #[schemars(extend("x-reflow2-aliases" = ["id", "node_id"]))]
     pub target_id: String,
     /// Quality dimension key (e.g. `reliability`, `security`).
     #[schemars(schema_with = "crate::enum_schema::dimension_assessment_dimension_req")]
@@ -5564,6 +5471,7 @@ pub struct EpochStatusReq {
     /// The DesignEpoch (`epoch:…`) moving between `planned` and `arrived`. Note the stored type name is `DesignEpoch`, not `Epoch`.
     #[serde(alias = "id")]
     #[serde(alias = "node_id")]
+    #[schemars(extend("x-reflow2-aliases" = ["id", "node_id"]))]
     pub epoch_id: String,
     /// `arrived` (it has happened) or `planned` (a claim about one that has
     /// not). `planned` → `arrived` is ARRIVAL.
@@ -5603,10 +5511,12 @@ pub struct RecordFindingReq {
     /// not a record.
     /// Its type is `node_type`, resolved from the id when omitted.
     #[serde(alias = "subject", alias = "target_id")]
+    #[schemars(extend("x-reflow2-aliases" = ["subject", "target_id"]))]
     pub subject_id: String,
     /// Optional type of the subject; resolved from the id when omitted, and
     /// refused on a cross-type collision rather than guessed.
     #[serde(default, alias = "subject_type", alias = "target_type")]
+    #[schemars(extend("x-reflow2-aliases" = ["subject_type", "target_type"]))]
     pub node_type: Option<String>,
     /// The assertion itself, in plain terms. This is the embedding field, so
     /// it is what `search_design` finds the finding by.
@@ -5635,6 +5545,7 @@ pub struct RecordFindingReq {
     pub confidence: Option<f64>,
     /// The DATE this became true, when there is no epoch to point at.
     #[serde(default, alias = "as_of")]
+    #[schemars(extend("x-reflow2-aliases" = ["as_of"]))]
     pub valid_from: Option<String>,
     /// The DATE it stopped being true; absent means still true.
     #[serde(default)]
@@ -5830,6 +5741,74 @@ pub struct RecordChangeReq {
     pub stands_in_for: Option<String>,
 }
 
+// ⭐ WHY THE OBSERVATION AND ANSWER LISTS ARE TYPED (ObservedPathReq,
+// ObservedArtifactReq, and AgentAnswerReq on the ingest tools). They were plain
+// JSON objects decoded inside the handler, so the published schema said "any
+// object", the argument check (`crate::arguments`) had nothing to check, and a
+// bad item was refused as `invalid observation: missing field \`path\`` —
+// naming neither the tool nor which item. Typed, the item shape is published
+// and every item is checked with its path like any other argument
+// (dec:idea-every-argument-refusal-names-the-tool-and-the-field-path). Each
+// conversion to the core type is a struct literal, so a field core adds is a
+// compile error here rather than a silent drop. The struct doc comments below
+// are published as each item's description, so they speak to the caller.
+
+/// One path your sweep saw.
+#[derive(Debug, Clone, Deserialize, JsonSchema)]
+#[serde(deny_unknown_fields)]
+pub struct ObservedPathReq {
+    /// The path as the sweep saw it, relative to the project root
+    /// (`src/thing.rs`).
+    pub path: String,
+    /// Your own unit — bytes, lines, entries — used only to rank the silences,
+    /// never compared across sweeps. Omitted, it counts as 0 and ranking falls
+    /// back to how many paths a region holds.
+    #[serde(default)]
+    pub mass: u64,
+}
+
+impl From<ObservedPathReq> for reflow2_core::ObservedPath {
+    fn from(o: ObservedPathReq) -> Self {
+        Self {
+            path: o.path,
+            mass: o.mass,
+        }
+    }
+}
+
+/// What you observed about one registered artifact.
+#[derive(Debug, Clone, Deserialize, JsonSchema)]
+#[serde(deny_unknown_fields)]
+pub struct ObservedArtifactReq {
+    /// The registered Artifact (`art:…`) this observation is about.
+    pub artifact_id: String,
+    /// Whether the file still exists at the artifact's recorded location.
+    pub present: bool,
+    /// Its current content hash, if you computed one. Omitted means "not
+    /// hashed", which is reported as having no baseline to compare rather than
+    /// silently passing.
+    #[serde(default)]
+    pub checksum: Option<String>,
+    /// The design node ids this file ACTUALLY implements today — what it would
+    /// draw `REALIZES` to if it were being registered now. More than the design
+    /// records is understatement, less is overstatement. Omitted means "not
+    /// assessed"; an empty list means "assessed, implements nothing
+    /// recognisable", which is a real claim.
+    #[serde(default)]
+    pub realizes: Option<Vec<String>>,
+}
+
+impl From<ObservedArtifactReq> for reflow2_core::ObservedArtifact {
+    fn from(o: ObservedArtifactReq) -> Self {
+        Self {
+            artifact_id: o.artifact_id,
+            present: o.present,
+            checksum: o.checksum,
+            realizes: o.realizes,
+        }
+    }
+}
+
 /// One filled answer from the ambient agent (mirrors core `AgentAnswer` with a
 /// JsonSchema for the tool boundary).
 #[derive(Debug, Deserialize, JsonSchema)]
@@ -5839,6 +5818,15 @@ pub struct AgentAnswerReq {
     pub id: String,
     /// The answer text (JSON string when the prompt expected JSON).
     pub text: String,
+}
+
+impl From<AgentAnswerReq> for reflow2_core::AgentAnswer {
+    fn from(a: AgentAnswerReq) -> Self {
+        Self {
+            id: a.id,
+            text: a.text,
+        }
+    }
 }
 
 #[derive(Debug, Deserialize, JsonSchema)]
@@ -5940,7 +5928,7 @@ pub struct FrontierReq {
     /// structure without intent and the deferrals, and says plainly that what
     /// is adjacent and uncaptured is not known.
     #[serde(default)]
-    pub observed: Vec<JsonObject>,
+    pub observed: Vec<ObservedPathReq>,
     /// Paths left out of the sweep, each named so "ignored" never reads as "covered".
     #[serde(default)]
     pub exclusions: Vec<String>,
@@ -6030,6 +6018,7 @@ pub struct SetDecisionStatusReq {
     /// The Decision whose lifecycle status moves. `dec:…` by convention; `search_design` finds one by its words.
     #[serde(alias = "id")]
     #[serde(alias = "node_id")]
+    #[schemars(extend("x-reflow2-aliases" = ["id", "node_id"]))]
     pub decision_id: String,
     /// `proposed` (opens a decision point) / `accepted` / `deferred` (set aside,
     /// not debt — carries an approver like `accepted`) / `superseded` /
@@ -6107,6 +6096,7 @@ pub struct SetQualityTargetReq {
     /// The Decision that STATES what the design is built for.
     #[serde(alias = "id")]
     #[serde(alias = "node_id")]
+    #[schemars(extend("x-reflow2-aliases" = ["id", "node_id"]))]
     pub decision_id: String,
     /// The quality axis this design is aiming at — `reliability` /
     /// `performance` / `maintainability` / `security` / `scalability` /
@@ -6126,9 +6116,11 @@ pub struct RegisterAlternativeReq {
     /// The proposed Decision this alternative is a fork of.
     #[serde(alias = "from_id")]
     #[serde(alias = "node_id")]
+    #[schemars(extend("x-reflow2-aliases" = ["from_id", "node_id"]))]
     pub decision_id: String,
     /// Id for the alternative pointer (an Artifact), e.g. `alt:laser`.
     #[serde(alias = "to_id")]
+    #[schemars(extend("x-reflow2-aliases" = ["to_id"]))]
     pub artifact_id: String,
     /// A short human name for the alternative — the road, not the file — as it will appear in `alternatives_for` and `analyze_alternatives`.
     pub name: String,
@@ -6142,6 +6134,7 @@ pub struct AlternativesForReq {
     /// The Decision whose registered alternatives to list — a `proposed` decision point that `register_alternative` has been called on.
     #[serde(alias = "id")]
     #[serde(alias = "node_id")]
+    #[schemars(extend("x-reflow2-aliases" = ["id", "node_id"]))]
     pub decision_id: String,
 }
 
@@ -6373,6 +6366,7 @@ impl ReflowService {
             + Self::exchange_router()
             + Self::query_router()
             + Self::claims_tools_router();
+        let tool_router = crate::arguments::close_empty_schemas(tool_router);
         Self {
             graph: Arc::new(RwLock::new(graph)),
             read_only: false,
@@ -6849,18 +6843,6 @@ impl ReflowService {
 // ---- ServerHandler ----------------------------------------------------------
 
 impl ReflowService {
-    /// The published input schema of one served tool, as JSON — `Null` when the
-    /// name is not ours. Used only on the refusal path, so the `list_all` scan
-    /// it costs is paid once per rejected call and never on a successful one.
-    fn schema_of(&self, tool: &str) -> JsonValue {
-        self.tool_router
-            .list_all()
-            .into_iter()
-            .find(|t| t.name == tool)
-            .and_then(|t| serde_json::to_value(&t.input_schema).ok())
-            .unwrap_or(JsonValue::Null)
-    }
-
     /// The MCP protocol version this server advertises.
     ///
     /// Exposed so a test can pin it. `get_info` builds a whole `ServerConfig`
@@ -6897,9 +6879,9 @@ impl ReflowService {
         tool: &str,
         answer: &Result<rmcp::model::CallToolResponse, McpError>,
         took: std::time::Duration,
-        client: String,
-        client_version: String,
+        (client, client_version): (String, String),
         skill: Option<String>,
+        known_class: Option<crate::usage::RefusalClass>,
     ) {
         // Counted for EVERY design, in memory included — the ledger below is
         // for a store on disk, but the reads-without-writes question is about
@@ -6909,6 +6891,8 @@ impl ReflowService {
             return;
         };
         let (outcome, refusal) = match answer {
+            // An argument refusal's class is what the schema check found.
+            _ if known_class.is_some() => (crate::usage::Outcome::Refused, known_class),
             Ok(rmcp::model::CallToolResponse::Complete(r)) if r.is_error == Some(true) => {
                 let text = r
                     .content
@@ -7166,8 +7150,13 @@ impl ReflowService {
     /// descriptions of the tools they name — the moment before the call.
     pub async fn tools_with_lessons(&self) -> Vec<rmcp::model::Tool> {
         // Every write tool takes `echo` (`crate::receipt`); declared here, on
-        // the one listing a session, `--call` and toolsnap all read.
-        let tools = crate::receipt::declare_echo(self.tool_router.list_all());
+        // the one listing a session, `--call` and toolsnap all read. The
+        // aliases the argument check reads (`crate::arguments`) are taken out:
+        // a courtesy on the way in, never a second name on the way out.
+        let tools = crate::receipt::declare_echo(self.tool_router.list_all())
+            .into_iter()
+            .map(crate::arguments::published)
+            .collect();
         let by_step = {
             let g = self.graph.read().await;
             crate::lessons::lessons_by_step(&g)
@@ -7188,6 +7177,26 @@ impl ReflowService {
     #[doc(hidden)]
     pub async fn tools_with_lessons_for_test(&self) -> Vec<rmcp::model::Tool> {
         self.tools_with_lessons().await
+    }
+
+    /// Test seam: hand `arguments` straight to the router, past every check
+    /// `call_tool` makes first — so a test can ask the DESERIALISER itself what
+    /// a request type accepts, and hold the published schema to it
+    /// (`tests/every_argument_refusal_names_the_tool_and_the_field_path.rs`
+    /// compares serde's own field list, aliases included, with the schema's at
+    /// every object of every tool). `context` comes from a served session's
+    /// peer, which is the one way a test can build one.
+    #[doc(hidden)]
+    pub async fn call_unchecked_for_test(
+        &self,
+        tool: &str,
+        arguments: rmcp::model::JsonObject,
+        context: rmcp::service::RequestContext<RoleServer>,
+    ) -> Result<rmcp::model::CallToolResponse, McpError> {
+        let request =
+            rmcp::model::CallToolRequestParams::new(tool.to_string()).with_arguments(arguments);
+        let tcc = rmcp::handler::server::tool::ToolCallContext::new(self, request, context);
+        self.tool_router.call(tcc).await
     }
 }
 
@@ -7221,9 +7230,29 @@ impl ServerHandler for ReflowService {
         // Captured before `request` moves: an argument refusal must name the
         // tool, and by the time the router answers, the name is gone.
         let tool_name = request.name.to_string();
+        // WHICH DOOR this call came through (`crate::arguments::Transport`):
+        // the `--call` door names itself at handshake, and the advice an
+        // argument refusal gives depends on it.
+        let transport = crate::arguments::transport_of(&context);
+        // EVERY ARGUMENT REFUSAL NAMES THE TOOL AND THE FIELD PATH
+        // (`crate::arguments`, dec:idea-every-argument-refusal-names-the-tool-and-the-field-path).
+        // The arguments are checked against the tool's PUBLISHED input schema —
+        // `echo` included on a write — before anything deserialises them, so a
+        // wrong type, a missing or unknown field and a value outside its set are
+        // refused at any depth with the path, what the schema expects there and
+        // the field's own description. Nothing below runs for such a call.
+        let argument_violations = self
+            .tool_router
+            .get(&tool_name)
+            .map(|t| {
+                let schema = crate::receipt::published_input_schema(t);
+                let empty = rmcp::model::JsonObject::new();
+                crate::arguments::check(&schema, request.arguments.as_ref().unwrap_or(&empty))
+            })
+            .unwrap_or_default();
         // A WRITE REPLIES WITH A RECEIPT (`crate::receipt`). `echo` is taken
         // out of a write's arguments here, before the handler or any hint reads
-        // them, and a value other than the two is refused before anything runs.
+        // them; its value was checked against the published schema above.
         // A read is untouched: `echo` stays an unknown argument there.
         let mut request = request;
         let echo = match self.tool_router.get(&tool_name) {
@@ -7261,10 +7290,6 @@ impl ServerHandler for ReflowService {
         // model only the text block gets the payload there too.
         let policy = crate::content_policy::for_client(Some(client.as_str()));
         let started = std::time::Instant::now();
-        // Kept for the missing-field refusal, which can then say which of
-        // the required fields THIS call lacked rather than only what the
-        // tool requires.
-        let given = request.arguments.clone();
         // WHAT THE TRANSPORT VERIFIED (`crate::bearer`): on a resource server,
         // the bearer gate put the token's verified caller into the HTTP
         // request's extensions, which rmcp carries here inside the request
@@ -7314,8 +7339,23 @@ impl ServerHandler for ReflowService {
                 }
             },
         };
+        // The refused-arguments class is known from what the check found, so
+        // the usage ledger records it without reading the refusal's words.
+        let argument_class = (!argument_violations.is_empty())
+            .then(|| crate::arguments::usage_class(&argument_violations));
         let tcc = rmcp::handler::server::tool::ToolCallContext::new(self, request, context);
         let answer = match unknown_writer {
+            // An argument refusal answers BEFORE anything runs — handler,
+            // write unit, signer — and is an `isError` result, the shape MCP
+            // gives an input-validation failure (SEP-1303), so the `--call`
+            // door exits 2 on it exactly as it did on the deserialiser's own.
+            _ if !argument_violations.is_empty() => Ok(rmcp::model::CallToolResponse::Complete(
+                CallToolResult::error(vec![ContentBlock::text(crate::arguments::refusal(
+                    &tool_name,
+                    &argument_violations,
+                    transport,
+                ))]),
+            )),
             Some(refusal) => Ok(rmcp::model::CallToolResponse::Complete(
                 CallToolResult::error(vec![ContentBlock::text(refusal)]),
             )),
@@ -7342,32 +7382,29 @@ impl ServerHandler for ReflowService {
             &tool_name,
             &answer,
             started.elapsed(),
-            client,
-            client_version,
+            (client, client_version),
             skill_fetched,
+            argument_class,
         );
 
         // 🛑 A DESERIALISATION REFUSAL ARRIVES AS `Ok(Complete { is_error })`,
         // NOT AS `Err`. rmcp 3 turns the deserialiser's failure into a normal
-        // tool result carrying `isError: true`, so the `Err` arms below reach
-        // nothing on the wire. MEASURED 2026-09-11 against a real binary: this
-        // whole interception was dead from the day it was written, because its
-        // test called `stale_client_hint` as a pure function and never asked a
-        // server. The `Err` arms are kept for transports or rmcp versions that
-        // do surface it that way; the `Ok` arm is the one that fires here.
+        // tool result carrying `isError: true`. MEASURED 2026-09-11 against a
+        // real binary: an interception written for the `Err` arm was dead from
+        // the day it was written, because its test never asked a server.
+        //
+        // The schema check above now answers every argument the published
+        // schema refuses, so a deserialiser refusal that still arrives here is
+        // a call the schema ACCEPTED and the request type did not — a defect in
+        // reflow2, and the refusal says so while still naming the tool. Both
+        // shapes are handled, so no transport or rmcp version can bring the
+        // bare string back.
         let answer = match answer {
-            Err(e) if e.message.contains("unknown field") => {
-                let hinted = stale_client_hint(&e.message);
-                Err(McpError::invalid_params(hinted, e.data.clone()))
-            }
-            Err(e) if e.message.contains("missing field") => {
-                let hinted = missing_fields_hint(
-                    &e.message,
-                    &tool_name,
-                    &self.schema_of(&tool_name),
-                    given.as_ref(),
-                );
-                Err(McpError::invalid_params(hinted, e.data.clone()))
+            Err(e) => {
+                match crate::arguments::deserializer_refusal(&tool_name, &e.message, transport) {
+                    Some(t) => Err(McpError::invalid_params(t, e.data.clone())),
+                    None => Err(e),
+                }
             }
             Ok(rmcp::model::CallToolResponse::Complete(r)) if r.is_error == Some(true) => {
                 let text = r
@@ -7376,18 +7413,7 @@ impl ServerHandler for ReflowService {
                     .and_then(|b| b.as_text())
                     .map(|t| t.text.clone())
                     .unwrap_or_default();
-                let rewritten = if text.contains("unknown field") {
-                    Some(stale_client_hint(&text))
-                } else if text.contains("missing field") {
-                    Some(missing_field_hint(
-                        &text,
-                        &tool_name,
-                        &self.schema_of(&tool_name),
-                    ))
-                } else {
-                    None
-                };
-                match rewritten {
+                match crate::arguments::deserializer_refusal(&tool_name, &text, transport) {
                     Some(t) => Ok(rmcp::model::CallToolResponse::Complete(
                         CallToolResult::error(vec![ContentBlock::text(t)]),
                     )),

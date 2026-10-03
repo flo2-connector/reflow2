@@ -41,6 +41,7 @@
             "type": "string"
           },
           "verification_id": {
+            "description": "The Verification (`ver:…`) whose check this run executed.",
             "type": "string"
           }
         },

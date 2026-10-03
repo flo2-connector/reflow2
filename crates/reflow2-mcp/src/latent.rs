@@ -421,6 +421,14 @@ impl ServerHandler for LatentService {
                 .map(|info| info.client_info.name.clone())
                 .as_deref(),
         );
+        // The argument check every surface shares (`crate::arguments`): a call
+        // that does not fit the published schema is refused naming the tool
+        // and the field path, before anything deserialises it.
+        if let Some(refused) = self.tool_router.get(&request.name).and_then(|t| {
+            crate::arguments::refuse_unfit(t, &request, crate::arguments::transport_of(&context))
+        }) {
+            return crate::content_policy::shape(policy, Ok(refused));
+        }
         let tcc = ToolCallContext::new(self, request, context);
         crate::content_policy::shape(policy, self.tool_router.call(tcc).await)
     }

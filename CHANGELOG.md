@@ -56,6 +56,33 @@ This file is the third view: *what changed, and when*.
 
 ### Changed
 
+- **Every argument refusal names the tool and the field path, at any depth.** A tool's arguments
+  are now checked against its published input schema before anything reads them. A wrong type, a
+  missing or unknown field, or a value outside its published set is refused before the tool runs,
+  so nothing is written. The refusal names the tool, the path (`related_to[0].evidence`), what the
+  schema expects there (its type or its allowed values), and the field's own description. Every
+  problem in the call is listed at once. Until now a wrong-typed argument came back as serde's bare
+  `failed to deserialize parameters: invalid type: …`, naming neither the tool nor the field, and a
+  field missing inside an item was said to have no description when its schema had one
+  (`dec:idea-every-argument-refusal-names-the-tool-and-the-field-path`). What changes for you:
+  - **Calls that worked still work, aliases included.** `id` and `node_id` for a typed key, and
+    `properties` for `props`, are still accepted, and the published schema still teaches only the
+    typed spelling.
+  - **Twelve tools that take no arguments now refuse one** instead of ignoring it silently
+    (`mirrors`, `claim_report`, `mint_seat`, `repair_report` and eight others). Drop the argument.
+  - **`reconcile_artifacts`, `coverage_report`, `frontier`, `ingest_step` and
+    `ingest_corpus_step` now publish the shape of their list items**, and an item with a key that
+    shape does not name is refused, naming the item. Send only the keys their descriptions list.
+  - **Through `--call`, an argument refusal still exits 2** (a reply the tool marked as an error,
+    as MCP specifies for input validation). Exit 1 stays a tool's own rule refusing, such as a
+    field a constructor needs only to create. Scripts that read the exit code need no change. The
+    door is no longer told to "reconnect": it reads the schema from its own binary on every call.
+  - **The usage ledger counts these refusals by kind**: `missing_argument`, `unknown_argument`,
+    and a new `invalid_argument` for a wrong type, a value outside its set or a field given twice.
+  - **The 13 required fields inside list items that had no description now have one.**
+    `tools/refusal_speaks.py` now generates its probes from every served schema: a wrong type,
+    an unknown key, a value outside each enum and an empty item, at every depth on every tool.
+
 - **`rmcp` 3.4.0 → 3.5.0, `base64` 0.22 → 0.23, and the lock refreshed** (23 crates within their
   declared ranges). `rmcp` is now declared `"3.5"`, not `"3"`. rmcp 3.5 moved
   `ProtocolVersion::LATEST` to 2026-07-28, the revision that removed the `initialize` handshake,

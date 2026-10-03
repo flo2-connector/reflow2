@@ -417,6 +417,12 @@ impl ServerHandler for DegradedService {
         if let Some(full) = self.promoted() {
             return full.call_tool(request, context).await;
         }
+        // The argument check every surface shares (`crate::arguments`).
+        if let Some(refused) = self.tool_router.get(&request.name).and_then(|t| {
+            crate::arguments::refuse_unfit(t, &request, crate::arguments::transport_of(&context))
+        }) {
+            return Ok(refused);
+        }
         let tcc = ToolCallContext::new(self, request, context);
         self.tool_router.call(tcc).await
     }
