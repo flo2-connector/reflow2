@@ -33,6 +33,35 @@ This file is the third view: *what changed, and when*.
 
 ### Added
 
+- **The shell door can now read how to call a tool: `reflow2-mcp --describe <tool>`,
+  `--list-tools`, and `describe_schema` with `tool`.** Before this, an agent using `--call` worked
+  out argument shapes by trial and error, one refused call at a time. The door had every tool's
+  input schema and printed none of it. `find_tools` gave only the top-level parameter names. The
+  lessons a design hangs on a tool (`steps`) arrived only through tools/list, which the door never
+  reads. On reflow2's own design that is 269 lessons on 91 tools, and none of them reached the
+  door. This is step 4 of the door plan (`dec:idea-the-cli-describes-a-tool-with-its-schema-and-lessons`).
+  - **`--describe <tool>`** prints how to call the tool: its input schema, with every nested shape
+    (`$defs`), allowed value and required field, and the lessons the design at `--graph-path` holds
+    for it.
+    - It is built from that design, by the same function that builds tools/list, so it cannot
+      disagree with what an MCP session on that design is given.
+    - The default is brief and stays within the 30,000-character reply budget. Each field
+      description is cut to its first sentence, and nothing structural is dropped.
+    - `--full` prints the tools/list entry unchanged.
+  - **`--list-tools`** lists every tool with whether it only reads, its required arguments and its
+    lesson count. `--list-tools --full` prints the whole tools/list array, for a generator that
+    renders a reference.
+  - **`describe_schema` takes `tool`** (and `full`), so the same answer is served to every door: a
+    session, a gateway, or `--call describe_schema --args '{"tool":"add_decision"}'`.
+  - **`find_tools` replies now say how to get the full description**, in a new `describe` field.
+  - **Both new modes only read.** While a server holds the design, they read a snapshot copy. In a
+    folder whose `.reflow2.toml` names a design on a server, they refuse and name that design.
+    Where there is no design, they create nothing: they describe the surface with no lessons and
+    say so.
+  - **What to do:** before calling a tool through `--call` for the first time, run
+    `reflow2-mcp --describe <tool>` (or `--call describe_schema` with `tool`) and read its shape and
+    lessons. An instructions generator can render its reference from `--list-tools --full`.
+
 - **`detect_defects` now names every stored node or edge the current schema refuses — the items
   that would make this design's export fail to import — and a test makes each future schema
   narrowing ship its migration.** Anthony accepted

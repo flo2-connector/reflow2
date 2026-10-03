@@ -110,7 +110,7 @@ pub fn validate_steps(
 
 /// The closest served names to a typo: shared prefix first, then containment,
 /// then a cheap edit distance. At most five.
-fn nearest(step: &str, served: &BTreeSet<String>) -> Vec<String> {
+pub(crate) fn nearest(step: &str, served: &BTreeSet<String>) -> Vec<String> {
     let lower = step.to_ascii_lowercase();
     let mut scored: Vec<(usize, &String)> = served
         .iter()
