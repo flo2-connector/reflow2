@@ -73,6 +73,7 @@ pub mod maturity;
 pub mod merge;
 pub mod narrowing;
 pub mod neighbourhood;
+pub mod node_edges;
 pub mod nodes;
 pub mod operate;
 pub mod preserve;

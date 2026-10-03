@@ -71,6 +71,32 @@ This file is the third view: *what changed, and when*.
     `REFLOW2_BLESS_ACCEPTANCE=1 cargo test -p reflow2-core --no-default-features --test
     a_schema_narrowing_ships_its_migration`. Until then that test fails on purpose, and the bless
     refuses while any narrowing is unaccounted for.
+- **`get_node` reads a node's edges when you ask: pass `include_edges`.** Until now no read
+  returned one node's edges as edges. `get_node` gave the properties only, and the nearest reader,
+  `propagate_from` at depth 1, left out authorship and every edge's evidence. To see what a node is
+  connected to you had to read the whole export. Anthony accepted this on 2026-10-02
+  (`dec:idea-an-edge-reader-returns-one-nodes-edges-and-find-tools-finds-it`).
+  - **`"include_edges": true`** lists every edge in and out. Each one carries its type, its
+    direction, the stored `from_id` and `to_id`, the node at the other end (id, type and name) and
+    the edge's own properties, evidence and note included.
+  - **An object narrows it:** `direction` (`in`, `out`, `both`), `edge_types`,
+    `exclude_edge_types`, `limit` (default 50), `offset` and `budget_chars`.
+  - **Nothing is left out without saying so.** `total` and `by_type` count every edge and are never
+    filtered. `capped_by` and `next_offset` say why a list stopped and where to read on. An edge is
+    listed whole, evidence included, or not at all. A type that crowds out the rest, such as a
+    Release's `INCLUDES` or a contributor's `AUTHORED_BY`, is listed last, and `dominant` names the
+    filter that drops it. An empty list says which empty it is.
+  - **Stored twins** (`HAS_TEMPORAL_FACT` and the rest) are listed and marked `twin_of`.
+  - **Off by default:** without `include_edges`, `get_node` replies exactly as before, so nothing
+    that reads `{node}` changes. An edge type the schema does not have is refused with the nearest
+    name.
+  - **`find_tools` now ranks `get_node` first** for "read one node by id with its properties and
+    edges" (it was 8th) and for paraphrases such as "show a node's edges" and "what is this node
+    connected to". The text explaining `node_type` moved from the tool's description to the
+    parameter's own.
+  - **What to do:** when you need to know what links to a node, or why it is shaped as it is, call
+    `get_node` with `"include_edges": true` instead of reading the export. Narrow with
+    `exclude_edge_types` when one type crowds out the rest.
 
 - **A `dependencies` workflow, run monthly and before every release cut, that holds reflow2 to
   `req:reflow2-keeps-its-dependencies-at-or-near-their-latest-releases`.** Anthony accepted the

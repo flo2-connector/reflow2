@@ -4508,7 +4508,7 @@ pub struct TypedIdReq {
     pub id: String,
 }
 
-#[derive(Debug, Deserialize, JsonSchema)]
+#[derive(Debug, Default, Deserialize, JsonSchema)]
 #[serde(deny_unknown_fields)]
 pub struct GetNodeReq {
     /// The node id. Its prefix (`req:`, `dec:`, `ver:` …) names the type by
@@ -4520,9 +4520,27 @@ pub struct GetNodeReq {
     pub id: String,
     /// Optional since 2026-09-05: when omitted the type is resolved from the id.
     /// If the id is held by MORE THAN ONE type (a convention violation, but
-    /// writable) the read REFUSES and names them — it never guesses.
+    /// writable) the read REFUSES and names them — it never guesses. A type you
+    /// DO pass that the schema does not declare is REFUSED rather than answered
+    /// `null`, because "no such type" and "no such node" are different facts
+    /// and must not share one reply.
     #[serde(default)]
     pub node_type: Option<String>,
+    /// Also read this node's EDGES: every link in and out, each with its edge
+    /// type, its `direction` (`out` leaves this node, `in` arrives), the stored
+    /// `from_id` and `to_id`, the node at the other end (id, type and name) and
+    /// the edge's own properties, evidence and note included. Off by default,
+    /// so the reply is unchanged unless you ask. `true` reads them all, up to 50
+    /// and within the reply budget; an object narrows the list — `direction`,
+    /// `edge_types`, `exclude_edge_types`, `limit`, `offset`, `budget_chars`.
+    /// The reply's `edges` counts every edge (`total`, and `by_type` per type
+    /// and direction, never filtered), says how many it listed and why it
+    /// stopped (`capped_by`, `next_offset`), marks stored twins (`twin_of`),
+    /// names a type that crowds the rest out (`dominant`), and says which
+    /// empty an empty list is (`empty_because`).
+    #[serde(default)]
+    #[schemars(schema_with = "crate::include_edges::schema")]
+    pub include_edges: crate::include_edges::IncludeEdges,
 }
 
 #[derive(Debug, Default, Deserialize, JsonSchema)]

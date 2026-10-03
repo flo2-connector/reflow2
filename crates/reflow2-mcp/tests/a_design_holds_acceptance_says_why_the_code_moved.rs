@@ -116,6 +116,7 @@ async fn a_stated_reason_is_recorded_as_given() {
     let node = j!(s.get_node(Parameters(GetNodeReq {
         id: id.clone(),
         node_type: None,
+        ..Default::default()
     })));
     assert_eq!(
         node["node"]["properties"]["change_type"], "refactor",
