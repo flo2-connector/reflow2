@@ -339,7 +339,7 @@ async fn write_through(
     // NEVER `accept_divergence`. An automatic write that discards somebody's
     // work is the one outcome that cannot be undone from the thing that caused
     // it, so a lossy write is a skip here and stays a deliberate act elsewhere.
-    match crate::export_write::chain_and_write(&mut export, &path, graph_path, false) {
+    match crate::export_write::chain_and_write(&mut export, &path, graph_path, graph_path, false) {
         Ok(w) => {
             tracing::debug!(path = %path, wrote = w.wrote, "write-through exported the design");
             auto.remember_written(export.content_hash.clone());

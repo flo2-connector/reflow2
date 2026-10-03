@@ -605,9 +605,12 @@ async fn reconcile_surfaces_a_code_change_back_to_the_design() {
 
     // Unchanged: no drift.
     let clean = j!(s.reconcile_artifacts(Parameters(ReconcileArtifactsReq {
-        observed: vec![obj(&serde_json::json!({
-            "artifact_id": "art:flight", "present": true, "checksum": "sha256:v1"
-        }))],
+        observed: vec![
+            serde_json::from_value(serde_json::json!({
+                "artifact_id": "art:flight", "present": true, "checksum": "sha256:v1"
+            }))
+            .expect("an observation")
+        ],
         record_events: false,
         exhaustive: false,
         budget_chars: None,
@@ -618,9 +621,12 @@ async fn reconcile_surfaces_a_code_change_back_to_the_design() {
 
     // The agent edits the file; now the hash differs.
     let drifted = j!(s.reconcile_artifacts(Parameters(ReconcileArtifactsReq {
-        observed: vec![obj(&serde_json::json!({
-            "artifact_id": "art:flight", "present": true, "checksum": "sha256:v2"
-        }))],
+        observed: vec![
+            serde_json::from_value(serde_json::json!({
+                "artifact_id": "art:flight", "present": true, "checksum": "sha256:v2"
+            }))
+            .expect("an observation")
+        ],
         record_events: true,
         exhaustive: false,
         budget_chars: None,
@@ -665,9 +671,12 @@ async fn reconcile_surfaces_a_code_change_back_to_the_design() {
         at: Some("2026-07-19T12:00:00Z".into()),
     })));
     let after = j!(s.reconcile_artifacts(Parameters(ReconcileArtifactsReq {
-        observed: vec![obj(&serde_json::json!({
-            "artifact_id": "art:flight", "present": true, "checksum": "sha256:v2"
-        }))],
+        observed: vec![
+            serde_json::from_value(serde_json::json!({
+                "artifact_id": "art:flight", "present": true, "checksum": "sha256:v2"
+            }))
+            .expect("an observation")
+        ],
         record_events: false,
         exhaustive: false,
         budget_chars: None,
@@ -748,9 +757,12 @@ async fn the_surface_can_say_that_nothing_moved() {
 
     // A clean sweep now says what it confirmed, instead of writing nothing.
     let clean = j!(s.reconcile_artifacts(Parameters(ReconcileArtifactsReq {
-        observed: vec![obj(&serde_json::json!({
-            "artifact_id": "art:flight", "present": true, "checksum": "sha256:v1"
-        }))],
+        observed: vec![
+            serde_json::from_value(serde_json::json!({
+                "artifact_id": "art:flight", "present": true, "checksum": "sha256:v1"
+            }))
+            .expect("an observation")
+        ],
         record_events: true,
         exhaustive: false,
         budget_chars: None,

@@ -202,19 +202,38 @@ struct Cli {
     /// searches and reports still work. Nothing in the design can be created,
     /// changed or deleted; no tool writes a file (`export_graph` and
     /// `export_surface` with a `path` are refused — without one they answer in
-    /// the reply); and no design store is created where there is none.
+    /// the reply); and no design store is created where there is none, with
+    /// the one exception named under SERVERS below.
     ///
     /// What it does NOT stop is the store's own housekeeping when an existing
     /// store is opened: RocksDB's log, manifest and table files, and the
     /// records beside the store (its version stamp, handshake record and usage
     /// ledger). Those change no node, edge or property of the design.
     ///
-    /// HONOURED BY `--call` the same way: a tool that writes is refused by name
-    /// before anything is opened, so a `reflow2-mcp --read-only --call …` command
-    /// cannot change the design whatever tool it names. The modes that only read
-    /// (`--export`, `--export-snapshot`, `--diff`, `--merge`, `--merge-apply`)
-    /// accept it; the ones that write (`--import`, `--merge-driver`) refuse it
-    /// rather than ignore it.
+    /// WHERE IT IS HONOURED — every mode honours it, or refuses it by name:
+    ///
+    /// · CLIENTS — `--remote URL`, `--shared`, and a session started in a folder
+    ///   whose `.reflow2.toml` names its design. This process screens every call
+    ///   before it is sent: a write is refused HERE, as a tool error naming
+    ///   --read-only, and nothing reaches the server. A call is sent only when
+    ///   this reflow2's own tool list, the server's tool list and the file rule
+    ///   all say it only reads; a tool it cannot classify (the server cannot be
+    ///   asked, or one side does not serve it) counts as a write. `--shared`
+    ///   where there is no store starts no server, since one would create it.
+    ///
+    /// · `--only-if-present` WHERE NO DESIGN HAS BEEN STARTED — the latent
+    ///   surface: `reflow2_start_design` is refused, and a design that appears
+    ///   later is served read-only.
+    ///
+    /// · ONE-SHOT MODES — `--call` refuses a tool that writes by name before
+    ///   anything is opened. The modes that only read (`--export`,
+    ///   `--export-snapshot`, `--diff`, `--merge`, `--merge-apply`) accept it;
+    ///   the ones that write (`--import`, `--merge-driver`) refuse it.
+    ///
+    /// · SERVERS — stdio, `--http`, `--serve-shared`, `--registry-root`,
+    ///   `--ephemeral`: refused at the write guard (below). ⚠️ A stdio, `--http`
+    ///   or `--serve-shared` server started where there is no store still
+    ///   creates an empty one as it opens the path.
     ///
     /// ⭐ THIS IS WHAT MAKES A REACHABLE SURFACE SURVIVABLE BEFORE
     /// AUTHENTICATION EXISTS (`req:the-hosted-surface-is-read-only-...`).
@@ -750,7 +769,7 @@ struct OneShotClient;
 impl rmcp::ClientHandler for OneShotClient {
     fn get_info(&self) -> rmcp::model::ClientConfig {
         let mut cfg = rmcp::model::ClientConfig::default();
-        cfg.client_info.name = "reflow2-mcp --call".to_string();
+        cfg.client_info.name = reflow2_mcp::service::CALL_DOOR_CLIENT.to_string();
         cfg.client_info.version = env!("CARGO_PKG_VERSION").to_string();
         cfg
     }
@@ -825,24 +844,38 @@ async fn call_one_tool(cli: &Cli, tool: &str, prepared: PreparedCall) -> anyhow:
             let snapshot = snapshot_dir(&cli.graph_path)?;
             eprintln!(
                 "reflow2: WARNING — BEST-EFFORT SNAPSHOT. The graph at {} is held by another \
-                 process, so `{tool}` reads a COPY: the design as of about now, which can lack \
-                 the newest unflushed writes. A read-only tool is answered this way rather than \
+                 process, so `{tool}` reads a COPY of its store: the design as of about now, \
+                 which can lack the newest unflushed writes. Its search index is rebuilt from \
+                 the copied nodes, and the project tree and the records beside the store are \
+                 read where the design lives. A read-only tool is answered this way rather than \
                  refused; nothing was written.",
                 cli.graph_path
             );
-            let s = ReflowService::new(snapshot.path())
-                .map_err(|e| anyhow::anyhow!("{e}"))
-                .with_context(|| {
-                    format!(
-                        "the snapshot at {} could not be opened: the copy caught the store \
-                         mid-write. Try again, or ask the holder to release the graph.",
-                        snapshot.path()
-                    )
-                })?;
-            // A COPY refuses graph writes because they would land in a copy
-            // that is thrown away — not because anyone asked for read-only, so
-            // a file the caller asks for (export_graph with a path) still lands.
-            (s.into_snapshot_copy(), Some(snapshot))
+            // THE COPY IS ONLY WHERE THE STORE IS OPENED. Everything else a
+            // read uses — the project tree, the sync record, the harness
+            // settings — is found from the design's REAL path, and nothing is
+            // written beside it (`ReflowService::reading_a_copy`). Like any
+            // snapshot copy it refuses graph writes, because they would land in
+            // a copy that is thrown away, and still writes a file the caller
+            // asks for (export_graph with a path).
+            // The copy carries the design's version stamp, so a binary behind
+            // the holder is refused here exactly as it is on the real store —
+            // which is why this context no longer asserts that a failure is
+            // the copy catching the store mid-write. It may be; the reason
+            // underneath says which.
+            let s = match ReflowService::reading_a_copy(snapshot.path(), &cli.graph_path) {
+                Ok(s) => s,
+                Err(e) => {
+                    snapshot.cleanup();
+                    return Err(anyhow::anyhow!("{e}").context(format!(
+                        "the copy of the held graph at {} could not be opened. If the reason \
+                         below is a storage error, the copy caught the store mid-write: try \
+                         again, or ask the holder to release the graph.",
+                        cli.graph_path
+                    )));
+                }
+            };
+            (s, Some(snapshot))
         }
         Err(e) => {
             let why = explain_open_failure(&e.into(), &cli.graph_path);
@@ -953,6 +986,27 @@ fn snapshot_dir(graph_path: &str) -> anyhow::Result<GraphSnapshot> {
     let _ = std::fs::remove_dir_all(&dir);
     std::fs::create_dir_all(&dir)
         .with_context(|| format!("could not create the snapshot directory {}", dir.display()))?;
+    // FROM HERE ON THE COPY EXISTS, so a failure must take it away again. The
+    // first version returned at the first file it could not copy and left a
+    // partial second copy of the design in the temp dir — found by the
+    // degraded-server suite on 2026-10-03, after the held-read tests had made
+    // reads while a holder was starting and deleting superseded files.
+    let snapshot = GraphSnapshot { dir };
+    match fill_snapshot(source, &snapshot.dir, graph_path) {
+        Ok(()) => Ok(snapshot),
+        Err(e) => {
+            snapshot.cleanup();
+            Err(e)
+        }
+    }
+}
+
+/// Copy the store's flat files, its identity and its version stamp into `dir`.
+fn fill_snapshot(
+    source: &std::path::Path,
+    dir: &std::path::Path,
+    graph_path: &str,
+) -> anyhow::Result<()> {
     for entry in std::fs::read_dir(source)
         .with_context(|| format!("could not read the graph directory {graph_path}"))?
     {
@@ -965,17 +1019,32 @@ fn snapshot_dir(graph_path: &str) -> anyhow::Result<GraphSnapshot> {
         let target = dir.join(&name);
         if entry.file_type()?.is_dir() {
             // RocksDB keeps its own files flat, so the only nested directory is
-            // the full-text index — which a snapshot does not need, because
-            // export reads the store rather than the index. It is rebuilt empty
-            // in the copy, so do not use a snapshot for `search_design`.
+            // the full-text index. It is NOT copied — a copy taken while the
+            // holder commits can catch a segment half-written — and it does not
+            // need to be: opening the copy finds an index that does not hold
+            // what the store holds and REBUILDS it from the copied nodes
+            // (`DesignGraph::open_rocksdb`), so the copy searches exactly the
+            // nodes it holds. Until 2026-10-02 this comment said "do not use a
+            // snapshot for `search_design`", and `--call` did: the copy answered
+            // "nothing matched" from an index that held nothing.
             continue;
         }
-        std::fs::copy(entry.path(), &target).with_context(|| {
-            format!(
-                "could not copy {} into the snapshot",
-                entry.path().display()
-            )
-        })?;
+        match std::fs::copy(entry.path(), &target) {
+            Ok(_) => {}
+            // GONE BETWEEN THE LISTING AND THE COPY: the holder deleted a file
+            // it no longer uses — a flushed WAL, a superseded MANIFEST or
+            // OPTIONS file — which an opening or compacting RocksDB does. The
+            // copy does not need it. If it did, the copy's open fails and says
+            // so, which is the crash-consistency caveat this read already
+            // carries.
+            Err(e) if e.kind() == std::io::ErrorKind::NotFound => {}
+            Err(e) => {
+                return Err(anyhow::Error::new(e).context(format!(
+                    "could not copy {} into the snapshot",
+                    entry.path().display()
+                )));
+            }
+        }
     }
 
     // THE COPY IS THE SAME DESIGN, so it must carry the same name
@@ -995,7 +1064,23 @@ fn snapshot_dir(graph_path: &str) -> anyhow::Result<GraphSnapshot> {
             )
         })?;
     }
-    Ok(GraphSnapshot { dir })
+    // AND THE SAME VERSION GUARD. The stamp of which reflow2 last wrote the
+    // store also lives beside it, and opening a store with no stamp reads it as
+    // unstamped — so a copy without it skipped the refusal a binary OLDER than
+    // the holder meets when it opens the real store ("written by a reflow2
+    // that knows more of the schema"), and read a design it cannot fully
+    // understand. The copy carries the stamp, and its open checks it.
+    let source_stamp = reflow2_core::provenance::stamp_path(graph_path);
+    if source_stamp.exists() {
+        let target_stamp = reflow2_core::provenance::stamp_path(&dir.display().to_string());
+        std::fs::copy(&source_stamp, &target_stamp).with_context(|| {
+            format!(
+                "could not copy the version stamp {} into the snapshot",
+                source_stamp.display()
+            )
+        })?;
+    }
+    Ok(())
 }
 
 /// Turn the RocksDB lock error into the sentence the operator needs.
@@ -1238,7 +1323,7 @@ async fn main() -> anyhow::Result<()> {
         };
         reflow2_mcp::proxy::check_remote_url(&url, bearer.is_some())?;
         tracing::info!(remote = %url, credential = bearer.is_some(), "working against a remote reflow2 server");
-        return reflow2_mcp::proxy::run_remote(&url, bearer).await;
+        return reflow2_mcp::proxy::run_remote(&url, bearer, cli.read_only).await;
     }
 
     // THE OAUTH RESOURCE SERVER (`reflow2_mcp::bearer`), when the operator
@@ -1947,6 +2032,11 @@ async fn main() -> anyhow::Result<()> {
             cli.graph_path
         );
         let latent = reflow2_mcp::latent::LatentService::new(cli.graph_path.clone());
+        let latent = if cli.read_only {
+            latent.into_read_only()
+        } else {
+            latent
+        };
         let running = latent
             .serve(stdio())
             .await
@@ -2060,6 +2150,20 @@ async fn main() -> anyhow::Result<()> {
     // Shared-session mode: attach to the server for this design (starting one if
     // there is none) and be this session's end of it.
     if cli.shared {
+        // --read-only CREATES NOTHING. With no store at the path there is no
+        // server holding one, and the server this session would start creates
+        // the store as it opens it. So start nothing, and say why in band.
+        if cli.read_only && !std::path::Path::new(&cli.graph_path).exists() {
+            let why = format!(
+                "there is no design store at {} and this session was started with --read-only, \
+                 which creates nothing: a shared server started here would create the store as \
+                 it opened it, so none was started. Point --graph-path at an existing design, \
+                 or start one with a session that is not read-only.",
+                cli.graph_path
+            );
+            eprintln!("reflow2: {why}");
+            return serve_degraded_stdio(why, &cli.graph_path).await;
+        }
         let log = cli.server_log.clone().map(std::path::PathBuf::from);
         match reflow2_mcp::shared::ensure_server_async(
             &cli.graph_path,
@@ -2075,8 +2179,13 @@ async fn main() -> anyhow::Result<()> {
                      immediately.",
                     cli.graph_path
                 );
-                return reflow2_mcp::proxy::run(&url, &cli.graph_path, cli.export_to.as_deref())
-                    .await;
+                return reflow2_mcp::proxy::run(
+                    &url,
+                    &cli.graph_path,
+                    cli.export_to.as_deref(),
+                    cli.read_only,
+                )
+                .await;
             }
             Err(e) => {
                 // The whole point of staying on stdio: this session can still be
@@ -2097,6 +2206,7 @@ async fn main() -> anyhow::Result<()> {
                         &cli.graph_path,
                         cli.export_to.as_deref(),
                         reason,
+                        cli.read_only,
                     )
                     .await;
                 }
@@ -2866,7 +2976,7 @@ async fn attach_to_named_design(
     );
     eprintln!("reflow2: {told}");
     tracing::info!(remote = %address, design = %pointer.design.id, "attached to the design this folder names");
-    reflow2_mcp::proxy::run_remote_with_notice(&address, bearer, Some(told)).await
+    reflow2_mcp::proxy::run_remote_with_notice(&address, bearer, Some(told), cli.read_only).await
 }
 
 /// Serve the degraded surface on stdio: one tool, and `reason` in the handshake,

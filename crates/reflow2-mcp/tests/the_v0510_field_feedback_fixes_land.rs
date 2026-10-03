@@ -177,15 +177,24 @@ async fn get_node_accepts_the_key_search_design_hands_back() {
     assert_eq!(out["node"]["node_id"], "cap:seal", "{out}");
 }
 
-/// (8) An unknown-field refusal says the client's tool list may predate the
-/// server, and names the server's version.
+/// (8) An unknown-field refusal over a session says the client's tool list may
+/// predate the server, and names the server's version. Since 2026-10-02 the
+/// argument check (`reflow2_mcp::arguments`) gives it; the `--call` door is
+/// never told this, because it reads the schema from its own binary.
 #[test]
 fn an_unknown_field_refusal_names_the_stale_client_case() {
-    let h = stale_client_hint("failed to deserialize parameters: unknown field `findings`");
+    use reflow2_mcp::arguments::{Transport, check, refusal};
+    let schema = json!({"type": "object", "additionalProperties": false,
+        "properties": {"since_export": {"type": "boolean"}}});
+    let args = json!({"findings": []});
+    let v = check(schema.as_object().unwrap(), args.as_object().unwrap());
+    let h = refusal("loop_status", &v, Transport::Session);
     assert!(
-        h.starts_with("failed to deserialize parameters: unknown field `findings`"),
+        h.contains("`loop_status`") && h.contains("`findings`"),
         "{h}"
     );
-    assert!(h.contains("tool list may predate the server"), "{h}");
+    assert!(h.contains("tool list may predate this server"), "{h}");
     assert!(h.contains(env!("CARGO_PKG_VERSION")), "{h}");
+    let door = refusal("loop_status", &v, Transport::CallDoor);
+    assert!(!door.contains("may predate"), "{door}");
 }

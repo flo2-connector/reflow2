@@ -10,9 +10,11 @@
         "description": "One edge for `create_edges`.",
         "properties": {
           "edge_type": {
+            "description": "The edge type as declared, e.g. `SATISFIES`, `DEPENDS_ON` — the same value\n`create_edge` takes. `describe_schema` with `from` and `to` names which types\nmay join two node types.",
             "type": "string"
           },
           "from_id": {
+            "description": "The source node's id; its type is `from_type`, resolved from the id when\nomitted.",
             "type": "string"
           },
           "from_type": {
@@ -32,6 +34,7 @@
             ]
           },
           "to_id": {
+            "description": "The target node's id; its type is `to_type`, resolved from the id when\nomitted.",
             "type": "string"
           },
           "to_type": {

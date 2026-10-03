@@ -216,6 +216,27 @@ mod featured {
         assert!(result.stale.is_empty());
     }
 
+    /// An empty result says WHICH empty it is: how many of the design's nodes
+    /// the search ran over. "Nothing matched in 0" and "nothing matched in 3"
+    /// were the same reply until 2026-10-02, when a copy of a held design
+    /// searched an empty index and said `{"hits": []}` for a word it held.
+    #[test]
+    fn a_result_says_how_many_nodes_it_searched() {
+        let g = thread();
+        let reindexed = g.reindex_search().expect("reindex");
+        let miss = g.search_design("zeppelin", None, 10).expect("search");
+        assert!(miss.hits.is_empty());
+        assert_eq!(
+            miss.searched, reindexed,
+            "a miss names the population it searched: every indexed node"
+        );
+        let hit = g.search_design("persists", None, 10).expect("search");
+        assert_eq!(hit.searched, reindexed);
+        // A fresh in-memory design has an index built by the same writes that
+        // built the graph, so its open has nothing to repair.
+        assert!(g.search_rebuilt_on_open().is_none());
+    }
+
     #[test]
     fn the_limit_is_visible_in_the_result() {
         // No silent caps: a caller can see hits.len() == limit and know the

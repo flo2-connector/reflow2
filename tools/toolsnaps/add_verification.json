@@ -10,6 +10,7 @@
         "description": "One target of a Verification, for `add_verification`'s `verifies` list.",
         "properties": {
           "target_id": {
+            "description": "The node this check verifies — a Requirement (`req:…`), Capability\n(`cap:…`), Interface or any node a VERIFIES edge may reach. Its type is\nresolved from the id; `target_type` names it when the id is ambiguous.",
             "type": "string"
           },
           "target_type": {
