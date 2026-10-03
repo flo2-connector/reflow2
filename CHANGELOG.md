@@ -272,6 +272,35 @@ This file is the third view: *what changed, and when*.
 
 ### Fixed
 
+- **The "did this repair fix it?" question (`defect_overtaken_by_change`) now names the change
+  that most likely fixed the defect, and asks about half as often.** A sweep of the 77 such
+  questions on reflow2's own design found that the change each one named was the real fix once.
+  Of the 20 defects that really were fixed, the question could see the fixing change for one: it
+  read only repairs dated strictly after the defect, so it missed fixes made the same day (7) and
+  undated ones (10), and it never read a change the record already joins to the defect. It also
+  asked about every defect on a file shared by many capabilities whenever a broad repair touched
+  that file. Now:
+  - **A change joined to the defect is named first**: the defect `CAUSES` it, it `MITIGATES` the
+    defect, or it is a repair that lists the defect among what it `CHANGED`. Any change type, with
+    or without a date, because the join places it after the defect.
+  - **A repair made the day the defect was recorded counts.** One dated earlier still does not.
+  - **Nearness counts only where it says something.** A repair that `CHANGED` the defect's subject,
+    or a file that realizes that subject alone, is offered. A repair on a file shared with other
+    capabilities is offered only where it `CHANGED` the subject itself. A repair already recorded
+    as the fix of another finding is not offered for this one, and an undated repair that is only
+    near cannot be ordered. Each of these is named in the evidence instead of dropped.
+  - **An answer is remembered per change.** Acknowledging the question records that each change it
+    named did not fix the defect. That change is not asked about again for that defect, even when
+    the question's id changes. Only a change nobody has judged asks again.
+
+  On reflow2's own design this asks 35 questions instead of 62, and names the real fix first for
+  9 of the 20 fixed defects (it named 1). **What to do:** read a question's first change first. If
+  it fixed the defect, draw `invalidates` from that change to the defect. A `CAUSES` or `MITIGATES`
+  edge records that a change answered a defect; it never closes one. When you acknowledge, pass
+  the gap's `affected_ids`, as `acknowledge_gap` already asks, so the changes you judged are
+  remembered. Some questions you answered before get new ids. Where your answer named its changes,
+  they stay answered.
+
 - **The held-design tests no longer fail CI at random with "the --serve-shared server never took
   the store".** For contributors; nothing changes for users. The tests started a shared server and
   then waited for it by reading the design through `--call`, once every 100 ms. On a design
