@@ -239,7 +239,7 @@ description, which an agent sees in the tool schema; this table is for a person 
 | `search_design` | read | Find design nodes by what they say, when you don't know their ids — 'what does the design say about persistence?', 'is there already a requirement about latency?' |
 | `describe_schema` | **read** | Discover the design vocabulary before writing to it: which node types exist, which properties they require, and which edge types may join two given types. |
 | `find_tools` | **read** | Find the reflow2 tool for a job you can describe but cannot name — 'how do I record that a file implements a capability?', 'what shows me the blast radius?'. |
-| `get_node` | **read** | Fetch a node by id — `{node: {...}}` when present, `{node: null}` when absent. |
+| `get_node` | **read** | Fetch one node by id and read everything recorded about it: its properties and, with `include_edges`, its edges — every link to and from it, each with its type, direction, the node at the other end (id, type, name) and the edge's own properties, evidence included. |
 | `scan_nodes` | **read** | List nodes of a type. |
 | `search_design` | **read** | Find design nodes by what they say, when you don't know their ids — 'what does the design say about persistence?', 'is there already a requirement about latency?'. |
 | `topic_report` | **read** | WHAT THE DESIGN HOLDS ABOUT ONE SUBJECT, read-only, in one call — the /topic view: 'show me something about X'. |

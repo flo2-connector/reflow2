@@ -573,18 +573,17 @@ impl ReflowService {
     }
 
     #[tool(
-        description = "Fetch a node by id — `{node: {...}}` when present, `{node: null}` when \
-                       absent. `node_type` is OPTIONAL: the id prefix names the type by \
-                       convention and it is resolved for you; if the id is held by more than \
-                       one type the read REFUSES and names them rather than guess. When you \
-                       do pass `node_type`, an unknown one is REFUSED rather \
-                       than answered `null`, because \"no such type\" and \"no such node\" are \
-                       different facts and must not share one reply. Carries `discontinued`: \
-                       true when an ACCEPTED Decision has withdrawn this node (OBSOLETES). \
-                       READ IT — the stored `status` still records what was BUILT, so a \
-                       withdrawn capability goes on saying `realized` and only this field \
-                       tells you the thing is gone. \
-                       Ask for this when you want everything recorded about one item — pull up the full record for a requirement, a component, any single node. \
+        description = "Fetch one node by id and read everything recorded about it: its \
+                       properties and, with `include_edges`, its edges — every link to and from \
+                       it, each with its type, direction, the node at the other end (id, type, \
+                       name) and the edge's own properties, evidence included. `{node: {...}}` \
+                       when present, `{node: null}` when absent; `node_type` is optional. \
+                       Carries `discontinued`: true when an ACCEPTED Decision has withdrawn this \
+                       node (OBSOLETES). READ IT — the stored `status` still records what was \
+                       BUILT, so a withdrawn capability goes on saying `realized`. \
+                       Ask for this when you want everything recorded about one item — pull up \
+                       the full record for a requirement or any single node — or a node and its \
+                       edges: what it is connected to, its neighbours, which nodes link to it. \
                        Ask for this to show me everything recorded about one item.",
         annotations(read_only_hint = true)
     )]
@@ -609,7 +608,7 @@ impl ReflowService {
                         // the server HAS and declines to give. An absent id
                         // reads identically to a node that exists and is
                         // empty, so it says which.
-                        return ok_json(json!({
+                        let mut reply = json!({
                             "node": JsonValue::Null,
                             "empty_because": format!(
                                 "no node with id {:?} exists under ANY declared type, so this is \
@@ -617,7 +616,14 @@ impl ReflowService {
                                  the id, or find it by its words with search_design.",
                                 req.id
                             ),
-                        }));
+                        });
+                        // Asked for edges: say there is no edges block
+                        // because there is no node, rather than leave the key
+                        // out and let its absence read as "no edges".
+                        if req.include_edges.query().is_some() {
+                            reply["edges"] = JsonValue::Null;
+                        }
+                        return ok_json(reply);
                     }
                     1 => holders.into_iter().next().unwrap_or_default(),
                     _ => {
@@ -691,7 +697,33 @@ impl ReflowService {
             Some(stored) => decorate(&g, stored_to_value(stored.clone())?, &stored.node_id)?,
             None => JsonValue::Null,
         };
-        self.ok_read(&g, json!({ "node": node }))
+        // `include_edges` (dec:idea-an-edge-reader-returns-one-nodes-edges-and-find-tools-finds-it):
+        // off by default, so every caller that does not ask gets the reply it
+        // always got, byte for byte.
+        let Some((query, budget_chars)) = req.include_edges.query() else {
+            return self.ok_read(&g, json!({ "node": node }));
+        };
+        if node.is_null() {
+            return self.ok_read(
+                &g,
+                json!({
+                    "node": JsonValue::Null,
+                    "edges": JsonValue::Null,
+                    "empty_because": format!(
+                        "no {node_type} with id {:?} exists, so there is no node and no edges to \
+                         read. Check the id, or find it by its words with search_design.",
+                        req.id
+                    ),
+                }),
+            );
+        }
+        // The node is sent whole, as it always is; the edges get what is left
+        // of the budget.
+        let spent_chars = node.to_string().len();
+        let edges = g
+            .node_edges(&node_type, &req.id, &query, budget_chars, spent_chars)
+            .map_err(dyno_err)?;
+        self.ok_read(&g, json!({ "node": node, "edges": edges }))
     }
 
     #[tool(
