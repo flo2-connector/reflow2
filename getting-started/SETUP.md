@@ -258,7 +258,18 @@ the day, stopping is a perfectly good answer. Everything decided so far is alrea
   refuses ("no design at …"), and only a tool that writes (or `--import`) creates one.
   `--read-only --call …` changes nothing: a tool that writes is refused, and so is a file that
   `export_graph` or `export_surface` would write. A flag the call does not read, such as
-  `--export-to`, `--remote` or `--shared`, is refused by name rather than ignored.
+  `--remote` or `--shared`, is refused by name rather than ignored.
+- **A call that writes keeps the committed export current.** When it succeeds, the design export
+  is written before the command exits, by the same write-through a running server uses — it
+  never overwrites a file changed since reflow2 last wrote it, and its lineage chains from the
+  committed record. The file is `--export-to FILE` if you pass one, otherwise the `--export-to`
+  your project's MCP configuration (`.mcp.json`, `opencode.json`, `.vscode/mcp.json` or
+  `.grok/config.toml`, which `reflow2 init` writes) names for this design. One line on stderr
+  says where it was written, or that no file is named anywhere. A read, or a write the tool
+  refused, writes no export. **Exit 3** means the write landed but the export could not be
+  written (stderr says why): fix the file, and do not repeat the write. Each write then costs an
+  export — seconds on a very large design — so a script making many writes can pass
+  `--no-export` on each and finish with one `--call export_graph`.
 - **Gate CI on the committed export.** `tools/reflow2_check.py` (in the kit) rehashes every
   registered artifact against the working tree and runs the gap detectors, exiting non-zero on
   unaccepted drift or a serious open gap — so the design is checked on every commit, not once a
