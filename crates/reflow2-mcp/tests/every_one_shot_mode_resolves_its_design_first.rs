@@ -13,7 +13,9 @@
 //! · `--read-only --call add_requirement` wrote the node, exit 0
 //!   (fact:call-ignores-read-only-and-the-write-lands-2026-10-02);
 //! · `--export-to FILE --call <writer>` never wrote FILE, exit 0
-//!   (fact:root-cause-call-accepts-export-to-and-never-reads-it-2026-10-02);
+//!   (fact:root-cause-call-accepts-export-to-and-never-reads-it-2026-10-02) —
+//!   refused by name in step 1, and HONOURED since step 2 of the door plan
+//!   (`a_writing_call_keeps_the_committed_export_current.rs`);
 //! · `--remote URL --call X` dropped the call and ran a proxy on nothing, exit 0.
 //!
 //! THE CLASS: which rules a run obeyed was decided by where its branch sat in
@@ -484,10 +486,11 @@ fn read_only_with_call_refuses_a_graph_write_and_a_file_write_and_still_answers_
     );
 }
 
-/// `--export-to` beside `--call` is refused by name until step 2 of the door
-/// plan honours it — never accepted and quietly not written.
+/// `--export-to` beside `--call` was refused by name in step 1, and step 2 of
+/// the door plan HONOURS it: a writing call writes the file before it exits —
+/// never accepted and quietly not written.
 #[test]
-fn export_to_with_call_is_refused_until_a_writing_call_keeps_the_export_current() {
+fn export_to_with_call_is_honoured_and_a_writing_call_writes_the_file() {
     let s = Scratch::seeded();
     let target = s.out_str("design.json");
     let o = s.run(&[
@@ -499,14 +502,10 @@ fn export_to_with_call_is_refused_until_a_writing_call_keeps_the_export_current(
         REQ,
     ]);
     let e = err(&o);
-    assert_eq!(o.status.code(), Some(1), "{e}");
-    assert!(e.contains("--export-to is not honoured by --call"), "{e}");
-    assert!(
-        e.contains("a writing call keeps the committed export current"),
-        "{e}"
-    );
-    assert!(!Path::new(&target).exists());
-    node_is_absent(&s, "req:door-probe");
+    assert_eq!(o.status.code(), Some(0), "{e}");
+    assert!(!e.contains("not honoured"), "{e}");
+    let written = std::fs::read_to_string(&target).expect("the named export was written");
+    assert!(written.contains("req:door-probe"), "{e}");
 }
 
 /// `--remote` beside a one-shot mode is refused, never dropped for a proxy
@@ -561,6 +560,8 @@ fn honoured(mode: &str) -> &'static [&'static str] {
             "--read-only",
             "--tree-root",
             "--args",
+            "--export-to",
+            "--no-export",
         ],
         "--diff BASE OTHER" | "--merge" => &["--read-only"],
         "--merge-apply" => &["--read-only", "--resolutions"],

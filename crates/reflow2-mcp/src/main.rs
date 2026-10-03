@@ -86,12 +86,27 @@ struct Cli {
     ///
     /// It NEVER overwrites a file that has changed since reflow2 last wrote it
     /// — a hand edit, a half-resolved merge — it declines and says so in
-    /// `loop_status`. Refused together with `--read-only`. A one-shot mode does
-    /// not serve, so it refuses this flag rather than ignore it — `--call`
-    /// included, until a writing call keeps the committed export current
-    /// (`req:a-writing-call-keeps-the-committed-export-current`).
+    /// `loop_status`. Refused together with `--read-only`.
+    ///
+    /// WITH `--call`: a call that writes and succeeds writes this file before
+    /// the process exits, through the same write-through and its rules
+    /// (`req:a-writing-call-keeps-the-committed-export-current`). Without the
+    /// flag, `--call` keeps the file the project's MCP configuration names for
+    /// this design. Every other one-shot mode does not serve, so it refuses
+    /// this flag rather than ignore it.
     #[arg(long = "export-to", value_name = "FILE")]
     export_to: Option<String>,
+
+    /// With `--call`: a writing call does NOT write the export afterwards, and
+    /// says the export is now behind. For a script making many writes to a
+    /// LARGE design, where each export costs seconds — measured on reflow2's
+    /// own design (6,478 nodes, a 28 MB export), a write took 1.6 s alone and
+    /// 6.0 s with its export. Finish with one writing call without it, or with
+    /// `--call export_graph`. Without this flag a writing call keeps the export
+    /// current, which is the default because a forgotten export is the loss
+    /// the write-through exists to end.
+    #[arg(long = "no-export", conflicts_with = "export_to")]
+    no_export: bool,
 
     /// Measure registered files under this directory instead of the one the
     /// store sits in (`<root>/.reflow2/graph` → `<root>`).
@@ -689,6 +704,18 @@ struct Cli {
     /// that only reads refuses ("no design at …"); only a tool that writes
     /// creates the store. `--read-only` and `--only-if-present` are honoured;
     /// any other flag `--call` does not read is refused by name, never ignored.
+    ///
+    /// A CALL THAT WRITES KEEPS THE COMMITTED EXPORT CURRENT: when it succeeds,
+    /// the design export is written before the process exits, by the same
+    /// write-through a long-lived server runs (its hand-edit guard, its lineage
+    /// from the committed record). The file is `--export-to`, else the one the
+    /// project's MCP configuration (`.mcp.json`, `opencode.json`,
+    /// `.vscode/mcp.json`, `.grok/config.toml`) names for this design. One line
+    /// on stderr says where it was written; with no file named anywhere it says
+    /// that instead. A read writes no export, and neither does a refused call;
+    /// `--no-export` asks a writing call for none. Exit 3 when the write LANDED
+    /// but the export could not be written (stderr says why) — do not repeat
+    /// that write.
     #[arg(long, value_name = "TOOL")]
     call: Option<String>,
 
@@ -783,6 +810,9 @@ struct PreparedCall {
     /// (`one_shot::resolve_design`) and for "may a held graph answer from a
     /// snapshot?" — never a second, hand-kept list.
     reads: bool,
+    /// For a call that writes: which file it keeps current, found before
+    /// anything is opened (`reflow2_mcp::call_export`). `None` for a read.
+    export: Option<reflow2_mcp::call_export::Found>,
 }
 
 /// Parse `--args`, find the tool on the served list and read whether it only
@@ -822,7 +852,11 @@ async fn prepare_call(cli: &Cli, tool: &str) -> anyhow::Result<PreparedCall> {
         .as_ref()
         .and_then(|a| a.read_only_hint)
         .unwrap_or(false);
-    Ok(PreparedCall { arguments, reads })
+    Ok(PreparedCall {
+        arguments,
+        reads,
+        export: None,
+    })
 }
 
 /// Run one served tool against the graph at `--graph-path` and print its
@@ -836,6 +870,7 @@ async fn call_one_tool(cli: &Cli, tool: &str, prepared: PreparedCall) -> anyhow:
     let PreparedCall {
         arguments,
         reads: read_only,
+        export,
     } = prepared;
 
     let (service, snapshot) = match ReflowService::new(&cli.graph_path) {
@@ -898,7 +933,21 @@ async fn call_one_tool(cli: &Cli, tool: &str, prepared: PreparedCall) -> anyhow:
     } else {
         service
     };
-    let service = with_cli_tree_root(service, cli);
+    let mut service = with_cli_tree_root(service, cli);
+    // A WRITING CALL KEEPS THE COMMITTED EXPORT CURRENT
+    // (req:a-writing-call-keeps-the-committed-export-current). The server's own
+    // write-through, installed with no background task — the exit would kill
+    // one — and run once below, after the reply. A handle is kept because the
+    // in-process server consumes the service.
+    let keeps = match &export {
+        Some(reflow2_mcp::call_export::Found::Target(target)) => {
+            service
+                .keep_export_current_at_exit(target.path.clone())
+                .map_err(anyhow::Error::msg)?;
+            Some((service.clone(), target.clone()))
+        }
+        _ => None,
+    };
     let outcome = call_over_pipe(service, tool, arguments).await;
     if let Some(snapshot) = snapshot {
         snapshot.cleanup();
@@ -931,11 +980,32 @@ async fn call_one_tool(cli: &Cli, tool: &str, prepared: PreparedCall) -> anyhow:
         }
     };
     println!("{}", serde_json::to_string_pretty(&body)?);
-    Ok(if result.is_error.unwrap_or(false) {
-        2
-    } else {
-        0
-    })
+    if result.is_error.unwrap_or(false) {
+        return Ok(2);
+    }
+    // The call succeeded. A write is in the store, so the export it owes is
+    // written now, before the process exits — and a run that could not write
+    // it says so and ends 3, because the design DID change.
+    let mut code = 0;
+    if !read_only {
+        match (keeps, &export) {
+            (Some((service, target)), _) => {
+                if let Some(flushed) = service.export_now().await {
+                    let (line, c) = reflow2_mcp::call_export::report(tool, &target, &flushed);
+                    eprintln!("{line}");
+                    code = c;
+                }
+            }
+            (None, Some(reflow2_mcp::call_export::Found::Unconfigured { root, notes })) => {
+                eprintln!("{}", reflow2_mcp::call_export::unconfigured(root, notes));
+            }
+            (None, Some(reflow2_mcp::call_export::Found::NotAsked)) => {
+                eprintln!("{}", reflow2_mcp::call_export::NOT_ASKED);
+            }
+            _ => {}
+        }
+    }
+    Ok(code)
 }
 
 /// Serve `service` to an in-process client over an in-memory pipe, make one
@@ -1289,6 +1359,22 @@ async fn main() -> anyhow::Result<()> {
             read_only: cli.read_only,
         })
         .map_err(anyhow::Error::msg)?;
+        // WHICH EXPORT A WRITING CALL KEEPS CURRENT, found here — after the
+        // design has been resolved, before anything is opened — so a project
+        // whose configurations disagree is refused with nothing written
+        // (reflow2_mcp::call_export).
+        if let Some(prepared) = prepared_call.as_mut()
+            && access == Access::Writes
+        {
+            prepared.export = Some(
+                reflow2_mcp::call_export::find(
+                    &cli.graph_path,
+                    cli.export_to.as_deref(),
+                    cli.no_export,
+                )
+                .map_err(|why| anyhow::anyhow!("{what} was refused: {why}"))?,
+            );
+        }
     }
     if let Some(raw) = cli.content_policy.as_deref() {
         match reflow2_mcp::content_policy::ContentPolicy::parse(raw) {
