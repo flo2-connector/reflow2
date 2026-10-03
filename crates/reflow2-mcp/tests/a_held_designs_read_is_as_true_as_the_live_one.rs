@@ -494,3 +494,64 @@ fn a_held_design_written_by_a_newer_reflow2_is_refused_as_the_live_one_is() {
         "the refusal is the one the live store gives, naming what this binary cannot read: {err}"
     );
 }
+
+/// A copy that fails part-way leaves nothing behind. Found by CI on this
+/// change (2026-10-03): the degraded-server suite found a
+/// `reflow2-snapshot-<pid>` directory in the temp dir after the workspace
+/// tests. `snapshot_dir` created the copy's directory and then returned at
+/// the first file it could not copy, leaving a partial second copy of a
+/// design on disk — the thing `GraphSnapshot::cleanup` exists to prevent. The
+/// held reads these tests make while a holder is starting are exactly where a
+/// copy can fail: an opening RocksDB deletes superseded files while the copy
+/// lists and copies them. Here the failure is made deterministic — the info
+/// LOG made unreadable — and the temp dir is the test's own.
+#[cfg(unix)]
+#[test]
+fn a_copy_that_fails_part_way_leaves_nothing_behind() {
+    use std::os::unix::fs::PermissionsExt;
+    let p = seeded();
+    let _held = hold(&p);
+    let tmp = tempfile::tempdir().expect("tempdir");
+    let log = p.graph.join("LOG");
+    let was = std::fs::metadata(&log)
+        .expect("RocksDB keeps an info LOG in the store directory")
+        .permissions();
+    std::fs::set_permissions(&log, std::fs::Permissions::from_mode(0o000)).unwrap();
+    let readable_anyway = std::fs::read(&log).is_ok();
+    let o = Command::new(bin())
+        .current_dir(&p.root)
+        .env("HOME", &p.home)
+        .env("TMPDIR", tmp.path())
+        .args([
+            "--graph-path",
+            p.graph.to_str().unwrap(),
+            "--call",
+            "get_node",
+            "--args",
+            r#"{"id":"req:stripes"}"#,
+        ])
+        .output()
+        .expect("the binary runs");
+    std::fs::set_permissions(&log, was).unwrap();
+    if readable_anyway {
+        eprintln!("not measured: this process reads a mode-000 file, so the copy cannot fail here");
+        return;
+    }
+    let err = String::from_utf8_lossy(&o.stderr);
+    assert_eq!(
+        o.status.code(),
+        Some(1),
+        "a copy that cannot be made is refused: {err}"
+    );
+    assert!(err.contains("could not copy"), "{err}");
+    let residue: Vec<String> = std::fs::read_dir(tmp.path())
+        .unwrap()
+        .flatten()
+        .map(|e| e.file_name().to_string_lossy().into_owned())
+        .filter(|n| n.starts_with("reflow2-snapshot-"))
+        .collect();
+    assert!(
+        residue.is_empty(),
+        "a failed copy left a partial design behind: {residue:?}"
+    );
+}

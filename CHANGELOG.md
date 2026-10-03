@@ -130,6 +130,9 @@ This file is the third view: *what changed, and when*.
     design lives. It still writes nothing beside the held store: those records are the holder's.
   - **The version stamp.** A binary older than the holder read the copy without the refusal it
     meets on the real store. The copy now carries the stamp, and its open checks it.
+  - **A copy that failed part-way** was left in the temp dir as a partial second copy of the
+    design. It is now removed, and a file the holder deletes while the copy is being made is
+    skipped rather than failing the read.
   - **Any store whose search index does not hold what the store holds** — copied or restored
     without its `fulltext/` subdirectory, or written by a build without search — now rebuilds
     the index when it is opened, and `loop_status` reports that once as

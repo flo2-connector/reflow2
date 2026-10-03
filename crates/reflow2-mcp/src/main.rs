@@ -967,6 +967,27 @@ fn snapshot_dir(graph_path: &str) -> anyhow::Result<GraphSnapshot> {
     let _ = std::fs::remove_dir_all(&dir);
     std::fs::create_dir_all(&dir)
         .with_context(|| format!("could not create the snapshot directory {}", dir.display()))?;
+    // FROM HERE ON THE COPY EXISTS, so a failure must take it away again. The
+    // first version returned at the first file it could not copy and left a
+    // partial second copy of the design in the temp dir — found by the
+    // degraded-server suite on 2026-10-03, after the held-read tests had made
+    // reads while a holder was starting and deleting superseded files.
+    let snapshot = GraphSnapshot { dir };
+    match fill_snapshot(source, &snapshot.dir, graph_path) {
+        Ok(()) => Ok(snapshot),
+        Err(e) => {
+            snapshot.cleanup();
+            Err(e)
+        }
+    }
+}
+
+/// Copy the store's flat files, its identity and its version stamp into `dir`.
+fn fill_snapshot(
+    source: &std::path::Path,
+    dir: &std::path::Path,
+    graph_path: &str,
+) -> anyhow::Result<()> {
     for entry in std::fs::read_dir(source)
         .with_context(|| format!("could not read the graph directory {graph_path}"))?
     {
@@ -989,12 +1010,22 @@ fn snapshot_dir(graph_path: &str) -> anyhow::Result<GraphSnapshot> {
             // "nothing matched" from an index that held nothing.
             continue;
         }
-        std::fs::copy(entry.path(), &target).with_context(|| {
-            format!(
-                "could not copy {} into the snapshot",
-                entry.path().display()
-            )
-        })?;
+        match std::fs::copy(entry.path(), &target) {
+            Ok(_) => {}
+            // GONE BETWEEN THE LISTING AND THE COPY: the holder deleted a file
+            // it no longer uses — a flushed WAL, a superseded MANIFEST or
+            // OPTIONS file — which an opening or compacting RocksDB does. The
+            // copy does not need it. If it did, the copy's open fails and says
+            // so, which is the crash-consistency caveat this read already
+            // carries.
+            Err(e) if e.kind() == std::io::ErrorKind::NotFound => {}
+            Err(e) => {
+                return Err(anyhow::Error::new(e).context(format!(
+                    "could not copy {} into the snapshot",
+                    entry.path().display()
+                )));
+            }
+        }
     }
 
     // THE COPY IS THE SAME DESIGN, so it must carry the same name
@@ -1030,7 +1061,7 @@ fn snapshot_dir(graph_path: &str) -> anyhow::Result<GraphSnapshot> {
             )
         })?;
     }
-    Ok(GraphSnapshot { dir })
+    Ok(())
 }
 
 /// Turn the RocksDB lock error into the sentence the operator needs.
