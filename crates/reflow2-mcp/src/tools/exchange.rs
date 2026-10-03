@@ -150,6 +150,9 @@ impl ReflowService {
         let Some(path) = req.path else {
             return ok_json(export);
         };
+        // A read-only server writes no file, whatever this tool's annotation
+        // says about the graph.
+        self.file_write_permitted("export_graph", &path)?;
         // Refuse to clobber an existing file unless the caller opts in. Graph
         // text is untrusted (the server's own instructions say so), so a stray
         // or injected `path` pointing at a real file must not silently destroy
@@ -300,6 +303,9 @@ impl ReflowService {
                 ok_json(surface)
             }
             Some(path) => {
+                // A read-only server writes no file, whatever this tool's
+                // annotation says about the graph.
+                self.file_write_permitted("export_surface", path)?;
                 let rendered = serde_json::to_string_pretty(&surface.document).map_err(ser_err)?;
                 if !req.overwrite.unwrap_or(false) && std::path::Path::new(path).exists() {
                     return Err(McpError::invalid_params(
