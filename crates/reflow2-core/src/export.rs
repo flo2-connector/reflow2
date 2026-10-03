@@ -309,9 +309,10 @@ pub struct ImportReport {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub adopted_identity: Option<String>,
     /// Edges written as something other than they arrived, each named with
-    /// what it became. Today one rule: a legacy `Artifact REALIZES
-    /// Verification` becomes IMPLEMENTS (2026-09-23, when REALIZES stopped
-    /// accepting any target). Reported, never done in silence.
+    /// what it became — every row of `narrowing::EDGE_REWRITES`. Today one: a
+    /// legacy `Artifact REALIZES Verification` becomes IMPLEMENTS (2026-09-23,
+    /// when REALIZES stopped accepting any target). Reported, never done in
+    /// silence.
     #[serde(skip_serializing_if = "Vec::is_empty")]
     pub migrated_edges: Vec<String>,
     /// Node-reference properties whose value names a node that is neither in
@@ -615,22 +616,21 @@ impl DesignGraph {
                         if e.edge_type == edge::AUTHORED_BY {
                             crate::graph::normalize_authored_by_props(&mut props);
                         }
-                        // A legacy `Artifact REALIZES Verification` arrives as
-                        // the IMPLEMENTS it always meant (see
-                        // `migrate_realizes_onto_checks`) and is REPORTED, so a
-                        // design written before 2026-09-23 still restores. Its
-                        // REALIZES properties have no home on IMPLEMENTS.
+                        // An edge a narrowing gave a single right answer
+                        // arrives as that answer and is REPORTED, so a design
+                        // written before the narrowing still restores — today
+                        // a legacy `Artifact REALIZES Verification` as the
+                        // IMPLEMENTS it always meant. One table
+                        // (`narrowing::EDGE_REWRITES`), read here, on every
+                        // open, and by the recheck. Its old properties have
+                        // no home on the new edge.
                         let mut edge_type = e.edge_type.as_str();
-                        if edge_type == edge::REALIZES
-                            && ft == node::ARTIFACT
-                            && tt == node::VERIFICATION
-                        {
-                            edge_type = edge::IMPLEMENTS;
+                        if let Some(r) = crate::narrowing::edge_rewrite_for(edge_type, ft, tt) {
+                            edge_type = r.becomes;
                             props.clear();
                             migrated_edges.push(format!(
-                                "REALIZES {} -> {} became IMPLEMENTS (a file that is a check \
-                                 implements it)",
-                                e.from_id, e.to_id
+                                "{} {} -> {} became {} ({})",
+                                e.edge_type, e.from_id, e.to_id, r.becomes, r.why
                             ));
                         }
                         match self.create_edge(edge_type, ft, &e.from_id, tt, &e.to_id, props) {
@@ -645,11 +645,12 @@ impl DesignGraph {
                                 }
                             }
                             Err(err) => {
-                                let hint = (e.edge_type == edge::REALIZES)
-                                    .then(|| crate::artifact::realizes_target_hint(tt))
-                                    .flatten()
-                                    .map(|h| format!(" — {h}"))
-                                    .unwrap_or_default();
+                                // The same replacement `detect_defects`
+                                // names for this edge on a store that holds it.
+                                let hint =
+                                    crate::narrowing::named_replacement(&e.edge_type, ft, tt)
+                                        .map(|h| format!(" — {h}"))
+                                        .unwrap_or_default();
                                 faults.push(format!(
                                     "edges[{index}] {} {} -> {}: {err}{hint}",
                                     e.edge_type, e.from_id, e.to_id

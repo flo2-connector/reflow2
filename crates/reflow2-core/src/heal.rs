@@ -143,6 +143,27 @@ pub enum HealCategory {
     /// edges is embedded in the design and its pointer is read down more paths.
     /// The old behaviour was most reliable where it mattered least.
     DanglingReference,
+    /// A stored node or edge the CURRENT schema refuses — written under an
+    /// older reflow2 whose vocabulary accepted it, and so an item an import of
+    /// this store's export would refuse, all-or-nothing.
+    ///
+    /// `dec:idea-stored-data-is-rechecked-against-the-current-schema`, accepted
+    /// by Anthony 2026-10-02. The schema was checked only on WRITE: opening a
+    /// store, `export_graph` and this sweep never re-judged what was stored, so
+    /// the first reader of a narrowed rule was the next import — musicjug's
+    /// move on 2026-10-01, where 0.75.0 exported an `Artifact REALIZES
+    /// Decision` without a word and then refused the whole document
+    /// (`fact:a-store-keeps-an-edge-a-newer-schema-refuses-and-its-export-cannot-be-imported-2026-10-01`).
+    ///
+    /// ONE RULE: the recheck asks `Schema::node_refusals` / `edge_refusals`,
+    /// the functions the store's write point refuses with, after the import's
+    /// own preparation (`crate::narrowing`). The finding carries WHICH rule,
+    /// and the replacement the import names where it knows one.
+    ///
+    /// ⚠️ THE REPLACEMENT IS A PROPOSAL. The musicjug repair chose GOVERNED_BY
+    /// for the file and the Decision while the import names DOCUMENTS, so
+    /// `propose_heal` drafts it for a person and nothing applies it.
+    RefusedBySchema,
 }
 
 impl HealCategory {
@@ -168,6 +189,7 @@ impl HealCategory {
         HealCategory::CircularDependency,
         HealCategory::DanglingReference,
         HealCategory::UntriagedReport,
+        HealCategory::RefusedBySchema,
     ];
 
     /// Stable snake_case key.
@@ -183,6 +205,7 @@ impl HealCategory {
             HealCategory::CircularDependency => "circular_dependency",
             HealCategory::DanglingReference => "dangling_reference",
             HealCategory::UntriagedReport => "untriaged_report",
+            HealCategory::RefusedBySchema => "refused_by_schema",
         }
     }
 }
@@ -478,6 +501,12 @@ pub struct HealIssue {
     /// are qualifications nothing can act on.
     #[serde(default, skip_serializing_if = "Vec::is_empty")]
     pub hubs: Vec<HubMembership>,
+    /// For `refused_by_schema` alone: the stored item, every rule that refuses
+    /// it, and the replacement the import names. Structured rather than prose
+    /// for the reason `hubs` gives — a qualification buried in a message is
+    /// one nothing can act on.
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub refusal: Option<crate::narrowing::StoredRefusal>,
 }
 
 /// A node that appears in more than one finding of the same category.
@@ -1347,6 +1376,14 @@ impl DesignGraph {
                 self.method_governed_documents(index)?,
                 "documents governed by a methodology rule",
             ),
+            // Every stored node and every edge an export would carry, each
+            // judged by the rule a write applies — counted by the enumeration
+            // the recheck itself walks (`narrowing::rechecked_edges`).
+            pop(
+                HealCategory::RefusedBySchema.as_str(),
+                self.recheck_population(index)?,
+                "stored nodes and edges judged by the current schema",
+            ),
         ])
     }
 
@@ -1725,8 +1762,18 @@ impl DesignGraph {
                     ),
                     affected_ids: affected,
                     hubs: Vec::new(),
+                    refusal: None,
                 });
             }
+        }
+
+        // refused_by_schema — a stored node or edge the current schema refuses,
+        // judged by the write rule itself (`crate::narrowing`). See
+        // `HealCategory::RefusedBySchema`. Parking does not suppress it: a
+        // ruling about ATTACHMENT says nothing about whether the store can be
+        // moved, and an unimportable export is not a state anybody can hold.
+        for refusal in self.recheck_stored_items(&index)?.refusals {
+            issues.push(refused_by_schema_issue(refusal));
         }
 
         // untriaged_report — a document parked under a methodology rule that
@@ -1767,6 +1814,7 @@ impl DesignGraph {
                 ),
                 affected_ids: affected,
                 hubs: Vec::new(),
+                refusal: None,
             });
         }
 
@@ -2150,6 +2198,7 @@ impl DesignGraph {
                 repair_is_a_judgement: None,
                 affected_ids: affected,
                 hubs: Vec::new(),
+                refusal: None,
             });
         }
 
@@ -2195,6 +2244,7 @@ impl DesignGraph {
                 repair_is_a_judgement: None,
                 affected_ids: affected,
                 hubs: Vec::new(),
+                refusal: None,
             });
         }
 
@@ -2273,6 +2323,7 @@ impl DesignGraph {
                 repair_is_a_judgement: None,
                 affected_ids: affected,
                 hubs: Vec::new(),
+                refusal: None,
             });
         }
 
@@ -2648,6 +2699,7 @@ impl DesignGraph {
                     ),
                     affected_ids: affected,
                     hubs: Vec::new(),
+                    refusal: None,
                 });
             }
         }
@@ -2722,6 +2774,7 @@ impl DesignGraph {
                     repair_is_a_judgement: None,
                     affected_ids: vec![id],
                     hubs: Vec::new(),
+                    refusal: None,
                 });
             }
         }
@@ -2830,6 +2883,7 @@ impl DesignGraph {
                 repair_is_a_judgement: None,
                 affected_ids: affected,
                 hubs: Vec::new(),
+                refusal: None,
             });
         }
 
@@ -2872,6 +2926,7 @@ impl DesignGraph {
                     ),
                     affected_ids: vec![id],
                     hubs: Vec::new(),
+                    refusal: None,
                 });
             }
         }
@@ -3049,6 +3104,17 @@ impl DesignGraph {
                          produced.",
                         issue.id
                     ),
+                }),
+                // PROPOSED FOR A PERSON, NEVER AN OPERATION. The import's
+                // replacement is a suggestion, and it was measured to differ
+                // from what the owner meant (musicjug, 2026-10-01: DOCUMENTS
+                // named, GOVERNED_BY chosen). `HealOp` cannot even express
+                // "delete this edge and draw that one", and must not learn to
+                // for this: choosing the replacement is reading two nodes.
+                HealCategory::RefusedBySchema => generated_content.push(GeneratedContentStub {
+                    for_issue: issue.id.clone(),
+                    kind: "replacement".to_string(),
+                    description: refused_by_schema_proposal(&issue),
                 }),
                 // Breaking a cycle is a design decision, not a mechanical edit —
                 // which edge to invert, whether to introduce an interface, whether
@@ -3842,6 +3908,105 @@ fn zero_degree_finding(node_type: &str, accepted: bool) -> (&'static str, HealSe
     }
 }
 
+/// What a `refused_by_schema` finding tells the reader to do instead of an
+/// operation. Static, so `lift_repair_notes` can carry it once per category.
+const REFUSED_BY_SCHEMA_REPAIR: &str = "No repair is applied, and the replacement \
+     is a proposal: the edge the import names and the edge the owner meant can \
+     differ — a file and a Decision were repaired to GOVERNED_BY in the field \
+     while the import named DOCUMENTS. Read the two nodes, draw the edge that \
+     says what was meant (or set a value the schema accepts), then delete the \
+     refused item. Until then the store works, and its export cannot be \
+     imported: the import refuses the whole document.";
+
+/// One `refused_by_schema` finding from a recheck result.
+///
+/// Its id hashes the WHOLE item — for an edge its type and both ends, for a
+/// node its id — not just the affected node ids: two refused edges between one
+/// pair are two repairs, and an acknowledgement of one must not silence the
+/// other.
+fn refused_by_schema_issue(refusal: crate::narrowing::StoredRefusal) -> HealIssue {
+    use crate::narrowing::RefusedItem;
+    let rules = refusal
+        .refused_by
+        .iter()
+        .map(|r| r.refusal.as_str())
+        .collect::<Vec<_>>()
+        .join("; ");
+    let (key, affected, what) = match &refusal.item {
+        RefusedItem::Node { node_type, node_id } => (
+            format!("node|{node_id}"),
+            vec![node_id.clone()],
+            format!("{node_type} '{node_id}'"),
+        ),
+        RefusedItem::Edge {
+            edge_type,
+            from_type,
+            from_id,
+            to_type,
+            to_id,
+        } => (
+            format!("edge|{edge_type}|{from_id}|{to_id}"),
+            vec![from_id.clone(), to_id.clone()],
+            format!("Edge {edge_type} {from_id} -> {to_id} ({from_type} -> {to_type})"),
+        ),
+    };
+    let replacement = match (&refusal.replacement, refusal.modelled_fits.as_slice()) {
+        (Some(r), _) => format!(" The import names the replacement: {r}."),
+        (None, []) => String::new(),
+        (None, fits) => format!(
+            " Nothing names a replacement; the edge types the schema models for this pair are: \
+             {}.",
+            fits.join(", ")
+        ),
+    };
+    HealIssue {
+        id: format!(
+            "heal:{:016x}",
+            fnv1a(&format!("{}|{key}", HealCategory::RefusedBySchema.as_str()))
+        ),
+        category: HealCategory::RefusedBySchema,
+        // CRITICAL, because the cost is the whole design, not this item: an
+        // import is all-or-nothing, so one refused item makes the export
+        // unloadable — no move, no restore onto another server, no fork —
+        // while every other read goes on looking healthy.
+        severity: HealSeverity::Critical,
+        message: format!(
+            "{what} is stored, and the current schema refuses it: {rules}. It was written under \
+             an older reflow2. Nothing reads it as broken today, but an export carrying it \
+             cannot be imported — the import refuses the whole document — so this design \
+             cannot be moved, restored or forked until it is repaired.{replacement}"
+        ),
+        suggested_fix_type: None,
+        repair_is_a_judgement: Some(REFUSED_BY_SCHEMA_REPAIR),
+        affected_ids: affected,
+        hubs: Vec::new(),
+        refusal: Some(refusal),
+    }
+}
+
+/// The sentence `propose_heal` hands a person for a `refused_by_schema`
+/// finding: the replacement when one is named, else the schema's modelled fits,
+/// and always that it is theirs to choose.
+fn refused_by_schema_proposal(issue: &HealIssue) -> String {
+    let named = issue.refusal.as_ref().and_then(|r| {
+        r.replacement
+            .clone()
+            .or_else(|| (!r.modelled_fits.is_empty()).then(|| r.modelled_fits.join(", ")))
+    });
+    match named {
+        Some(n) => format!(
+            "Propose the replacement for {} — named: {n}. A proposal for the owner to confirm \
+             against what was meant, never applied.",
+            issue.id
+        ),
+        None => format!(
+            "Propose what {} should become: nothing names a replacement, so the owner chooses \
+             a value or edge the current schema accepts.",
+            issue.id
+        ),
+    }
+}
+
 /// Build an `orphan_node` issue.
 fn orphan(id: &str, type_label: &str, what: &str, fix: Option<&'static str>) -> HealIssue {
     orphan_at(id, type_label, what, fix, HealSeverity::Warning)
@@ -3872,6 +4037,7 @@ fn orphan_at(
         // Filled by annotate_hubs once every issue is collected — a single
         // orphan cannot know what else names its node.
         hubs: Vec::new(),
+        refusal: None,
     }
 }
 
@@ -3903,7 +4069,8 @@ mod tests {
                 | HealCategory::DeadEnd
                 | HealCategory::CircularDependency
                 | HealCategory::DanglingReference
-                | HealCategory::UntriagedReport => HealCategory::ALL.contains(&c),
+                | HealCategory::UntriagedReport
+                | HealCategory::RefusedBySchema => HealCategory::ALL.contains(&c),
             }
         }
         for c in HealCategory::ALL {
@@ -3911,7 +4078,7 @@ mod tests {
         }
         assert_eq!(
             HealCategory::ALL.len(),
-            10,
+            11,
             "a category was added or removed — extend `ALL`, the match above, and this count \
              together, or the sweep will understate which rules it ran"
         );
