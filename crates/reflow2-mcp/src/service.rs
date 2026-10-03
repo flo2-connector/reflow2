@@ -431,6 +431,17 @@ pub struct ReflowService {
     caller_rule: Arc<crate::caller::CallerRule>,
 }
 
+/// The served tools that write a FILE at a caller's `path` — annotated
+/// read-only because they do not write the GRAPH, so `write_lock` never sees
+/// them. ONE LIST, read by both walls `--read-only` has:
+/// [`ReflowService::file_write_permitted`] on a server (it asserts the tool it
+/// guards is listed here, and `tools::tests` holds every `file_write_permitted`
+/// call to a name in this list), and a `--read-only` CLIENT, which refuses a
+/// call to one of these that carries `path` before it is sent
+/// (`crate::read_only_client`). Each takes the file as its `path` argument;
+/// `read_only_client`'s tests hold the served schema to that.
+pub const FILE_WRITING_TOOLS: [&str; 2] = ["export_graph", "export_surface"];
+
 /// The request `_meta` key naming who ONE request writes for. It overrides the
 /// session's declaration for that request alone. A gateway that carries many
 /// people over one session (flo2) names the person on each call; a sessionless
@@ -6450,18 +6461,11 @@ impl ReflowService {
         Ok(Self::wrap(DesignGraph::open_in_memory()?))
     }
 
-    /// The one place the service is assembled from an opened graph, so every
-    /// entry point starts the write generation and read-hint memory the same
-    /// way and a new constructor cannot forget one.
-    fn wrap(graph: DesignGraph) -> Self {
-        Self::wrap_at(graph, None)
-    }
-
-    /// `wrap`, remembering where the graph lives — the sync marker for
-    /// `req:stale-seat-knows` is a sibling of the store, so the path is the one
-    /// thing the service needs to keep.
-    fn wrap_at(graph: DesignGraph, graph_path: Option<String>) -> Self {
-        let tool_router = Self::tool_router()
+    /// THE SERVED SURFACE: the base router and the twelve slice routers,
+    /// summed. The one place the sum is written, so the surface a session is
+    /// served and the surface [`Self::served_tools`] reports cannot differ.
+    fn surface_router() -> ToolRouter<Self> {
+        let router = Self::tool_router()
             + Self::skills_router()
             + Self::capture_router()
             + Self::coherence_router()
@@ -6474,7 +6478,33 @@ impl ReflowService {
             + Self::exchange_router()
             + Self::query_router()
             + Self::claims_tools_router();
-        let tool_router = crate::arguments::close_empty_schemas(tool_router);
+        // Main's step (#656): an empty input schema is closed, so the served
+        // surface refuses an argument no tool takes.
+        crate::arguments::close_empty_schemas(router)
+    }
+
+    /// Every tool this build serves, as its router declares it (name, schema,
+    /// annotations) — read WITHOUT opening a design, because nothing about the
+    /// surface depends on one. A `--read-only` client reads each tool's
+    /// `read_only_hint` from here as this build's half of the classification
+    /// (`crate::read_only_client`); the lessons a design appends to
+    /// descriptions are not in it and are not needed for that.
+    pub fn served_tools() -> Vec<rmcp::model::Tool> {
+        Self::surface_router().list_all()
+    }
+
+    /// The one place the service is assembled from an opened graph, so every
+    /// entry point starts the write generation and read-hint memory the same
+    /// way and a new constructor cannot forget one.
+    fn wrap(graph: DesignGraph) -> Self {
+        Self::wrap_at(graph, None)
+    }
+
+    /// `wrap`, remembering where the graph lives — the sync marker for
+    /// `req:stale-seat-knows` is a sibling of the store, so the path is the one
+    /// thing the service needs to keep.
+    fn wrap_at(graph: DesignGraph, graph_path: Option<String>) -> Self {
+        let tool_router = Self::surface_router();
         Self {
             graph: SharedGraph::new(graph),
             read_only: false,
@@ -6681,6 +6711,11 @@ impl ReflowService {
     /// in `src/tools/` to it), so a read-only server refuses the file the way
     /// `write_lock` refuses the graph write — loudly, naming the mode.
     pub(crate) fn file_write_permitted(&self, tool: &str, path: &str) -> Result<(), McpError> {
+        debug_assert!(
+            FILE_WRITING_TOOLS.contains(&tool),
+            "`{tool}` writes a file and is not in FILE_WRITING_TOOLS, so a read-only CLIENT \
+             would send it (crate::read_only_client)"
+        );
         if !self.refuses_file_writes {
             return Ok(());
         }
