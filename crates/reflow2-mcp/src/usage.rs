@@ -86,6 +86,10 @@ pub enum RefusalClass {
     MissingArgument,
     /// A parameter the served schema does not know — usually a stale client.
     UnknownArgument,
+    /// An argument of the wrong type, outside its published values or range,
+    /// or given twice under two spellings — refused against the published
+    /// schema before the tool ran (`crate::arguments`).
+    InvalidArgument,
     /// An id that names nothing in the design.
     UnresolvedReference,
     /// An explicit `REFUSED` by a tool's own rule (lineage, stale binary,
