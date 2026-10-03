@@ -93,7 +93,7 @@ readers:
   drift.rs::write_drift_event: { kind: unjudged, edges: [DEPENDS_ON] }
   edge_prose.rs::stale_edge_evidence: { kind: unjudged, edges: [AT_EPOCH, HAS_SNAPSHOT] }
   export.rs::export_surface: { kind: unjudged, edges: [CONSUMES, CONTAINS, PROVIDES, REALIZES, SPECIFIES, VERIFIES] }
-  export.rs::import_graph_with: { kind: unjudged, edges: [AUTHORED_BY, IMPLEMENTS, REALIZES] }
+  export.rs::import_graph_with: { kind: not_derived, edges: [AUTHORED_BY], why: "The import: writes a document's nodes and edges, normalising a legacy AUTHORED_BY on the way in; its edge rewrites come from narrowing::edge_rewrite_for. It answers one restore and derives no relation." }
   fielded.rs::reconcile_deployment: { kind: unjudged, edges: [DEPENDS_ON, DEPLOYED_TO] }
   flow.rs::part_of_flow: { kind: unjudged, edges: [PART_OF_FLOW] }
   fork.rs::fork_point: { kind: unjudged, edges: [AT_EPOCH, CHANGED, GOVERNED_BY, OBSOLETES] }
@@ -114,7 +114,6 @@ readers:
   graph.rs::depends_on_between: { kind: unjudged, edges: [DEPENDS_ON] }
   graph.rs::governed_by: { kind: unjudged, edges: [GOVERNED_BY] }
   graph.rs::migrate_authored_by_roles: { kind: unjudged, edges: [AUTHORED_BY] }
-  graph.rs::migrate_realizes_onto_checks: { kind: unjudged, edges: [IMPLEMENTS, REALIZES] }
   graph.rs::owned_by: { kind: unjudged, edges: [OWNED_BY] }
   graph.rs::provides: { kind: unjudged, edges: [PROVIDES] }
   graph.rs::satisfies_between: { kind: unjudged, edges: [SATISFIES] }
@@ -137,6 +136,15 @@ readers:
   intent.rs::stored_authorship: { kind: not_derived, edges: [AUTHORED_BY], why: "Reads the one AUTHORED_BY between two ids so the signature guards can compare it with the write; it answers one pair, it derives no relation." }
   loop_closure.rs::loop_closure: { kind: unjudged, edges: [DEPENDS_ON] }
   maturity.rs::maturity_report: { kind: unjudged, edges: [ALLOCATED_TO, DEPLOYED_TO, REALIZES, SATISFIES, VERIFIES] }
+  narrowing.rs::edge_rewrite_for: { kind: not_derived, edges: [IMPLEMENTS, REALIZES], why: "A lookup in EDGE_REWRITES, the table of stored edges the import and every open rewrite (REALIZES Artifact->Verification becomes IMPLEMENTS). It names a migration, not a relation between nodes." }
+  narrowing.rs::endpoint_problems: { kind: not_derived, edges: [REALIZES, VERIFIES], why: "The narrowing gate: checks a NARROWINGS endpoint entry against today's schema. It reads the table and the schema, never the graph." }
+  narrowing.rs::entry_problems: { kind: not_derived, edges: [REALIZES, VERIFIES], why: "The narrowing gate: checks every NARROWINGS entry against today's schema. It reads the table and the schema, never the graph." }
+  narrowing.rs::named_replacement: { kind: not_derived, edges: [REALIZES, VERIFIES], why: "The sentence the import and detect_defects name when they refuse a stored REALIZES or VERIFIES. A refusal's wording, read from the schema; no graph is read." }
+  narrowing.rs::recheck_stored_items: { kind: not_derived, edges: [AUTHORED_BY], why: "The refused_by_schema recheck: judges each stored node and edge by the write rule after the import's preparation, which normalises a legacy AUTHORED_BY. It reports refusals; it derives no relation." }
+  narrowing.rs::retired_edge_types: { kind: not_derived, edges: [REALIZES, VERIFIES], why: "Reads the retired edge types out of NARROWINGS for the provenance guard. The table names REALIZES and VERIFIES for its endpoint entries; this returns type names, not a relation." }
+  narrowing.rs::retired_node_types: { kind: not_derived, edges: [REALIZES, VERIFIES], why: "Reads the retired node types out of NARROWINGS for the provenance guard; it returns type names, not a relation." }
+  narrowing.rs::uncovered: { kind: not_derived, edges: [REALIZES, VERIFIES], why: "The narrowing gate: which narrowings found by diffing two schema snapshots no NARROWINGS entry names. Schema against table; no graph is read." }
+  narrowing.rs::verifies_target_hint: { kind: not_derived, edges: [VERIFIES], why: "The sentence a refused VERIFIES names: what a check is evidence for instead, read from the schema's VERIFIES target list." }
   neighbourhood.rs::already_related_to: { kind: unjudged, edges: [ANTICIPATES, BLOCKS, CAUSES, CONTRADICTS, DEPENDS_ON, DUPLICATES, EVOLVES_INTO, MASKS, MITIGATES, OBSOLETES, RISKS, TRIGGERS, VIOLATES] }
   operate.rs::complies_with: { kind: unjudged, edges: [COMPLIES_WITH] }
   operate.rs::deploy_to: { kind: unjudged, edges: [DEPLOYED_TO] }

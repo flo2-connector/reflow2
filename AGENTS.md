@@ -86,7 +86,9 @@ python3 tools/test_init.py
 # tool's published schema are such a reply (exit 2, naming the tool and the
 # field path); exit 1 is a tool's own rule refusing. Read-only tools work while
 # a server holds the graph (best-effort snapshot, stderr says so); writers
-# refuse then.
+# refuse then. A writer that succeeds writes the export before exiting —
+# `--export-to`, else the one the project's MCP config names — and stderr says
+# where; exit 3 means the write landed and the export could not be written.
 ./target/release/reflow2-mcp --graph-path .reflow2/graph --call graph_report
 ./target/release/reflow2-mcp --graph-path .reflow2/graph --call budget_report --args '{"constraint_id":"con:mass"}'
 
@@ -439,6 +441,13 @@ forgotten export stops being a class of loss. The guarantee lives in the server 
 session is the thing that might not come back**: the Stop hook that used to carry it fires once and
 exists in one harness.
 
+**Since 2026-10-03 a writing `--call` does the same before it exits**
+(`req:a-writing-call-keeps-the-committed-export-current`): the door installs the same
+write-through with no background task and runs it once after a successful write, on the file
+`--export-to` names or, without it, the one the project's MCP configuration names for that store.
+A worktree has no MCP configuration (it is git-ignored), so a design record built there with
+`--call` is still exported by hand, once, last.
+
 > 🛑 **IT WILL NOT OVERWRITE A HAND EDIT, AND THAT MEANS IT CAN STOP.** If the file no longer
 > matches what reflow2 last wrote — you edited it, or a merge left it unparseable — the
 > write-through declines and **`loop_status` says so in `next`**, not in a log line nobody reads.
@@ -685,6 +694,19 @@ joined by *traceability* edges) for HEAL's topology detectors.
   defaults apply on create, not retroactively). This used to be gated by the friction of
   bumping someone else's pin; now it is an ordinary edit in this repo. Before touching either,
   ask what happens to a graph written by the previous version. See **BL-19**.
+- **A schema NARROWING ships its migration, and a test fails until it does**
+  (`dec:idea-stored-data-is-rechecked-against-the-current-schema`, Anthony 2026-10-02). A
+  narrowing is anything the write rule now refuses that the last release accepted: an endpoint
+  dropped, an enum value removed, a type retired, a property newly required with no default.
+  `tests/a_schema_narrowing_ships_its_migration.rs` diffs the schema against
+  `schema/accepted-at-last-release.json` and fails until `narrowing::NARROWINGS` names each one
+  with its migration — `Rewritten` (an `EDGE_REWRITES` row, applied on open and on import),
+  `RefusedByName` (the import and `detect_defects`' `refused_by_schema` name what fits), or
+  `Retired`. **At a cut, after the version bump, re-bless the snapshot**:
+  `REFLOW2_BLESS_ACCEPTANCE=1 cargo test -p reflow2-core --no-default-features --test
+  a_schema_narrowing_ships_its_migration` — it refuses while anything is unaccounted for. Stored
+  data is now re-judged by the same write rule on demand: `detect_defects` reports every stored
+  item the current schema refuses, before the import that would fail.
 - **Deterministic ids.** Gap/heal issue ids are a stable FNV-1a hash of
   `source + sorted affected ids` (not `std` `DefaultHasher`) so they're reproducible for
   dedup/caching.

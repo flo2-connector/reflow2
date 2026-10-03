@@ -232,12 +232,15 @@ fn axes_for(category: HealCategory) -> &'static [&'static str] {
         // `untriaged_report` joins them for the same reason one step out: a
         // report nobody triaged is a fact about this project's PROCESS, not
         // about any quality of the system the design describes.
+        // `refused_by_schema` too: a stored item an older vocabulary accepted
+        // is a fact about the RECORD's vintage, not about the system.
         HealCategory::OrphanNode
         | HealCategory::Duplicate
         | HealCategory::UnresolvedSetup
         | HealCategory::DeadEnd
         | HealCategory::DanglingReference
-        | HealCategory::UntriagedReport => &[],
+        | HealCategory::UntriagedReport
+        | HealCategory::RefusedBySchema => &[],
     }
 }
 

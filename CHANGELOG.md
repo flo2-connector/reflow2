@@ -33,6 +33,44 @@ This file is the third view: *what changed, and when*.
 
 ### Added
 
+- **`detect_defects` now names every stored node or edge the current schema refuses — the items
+  that would make this design's export fail to import — and a test makes each future schema
+  narrowing ship its migration.** Anthony accepted
+  `dec:idea-stored-data-is-rechecked-against-the-current-schema` on 2026-10-02. The cause: the
+  schema was checked only when something was written, so an edge written under an older reflow2
+  stayed in the store and in every export until an import refused the whole document. That
+  happened to musicjug's design on 2026-10-01 (`Artifact REALIZES Decision`, minted by 0.45.0).
+  - **New category `refused_by_schema`**, severity `critical`, one finding per stored item. Each
+    finding carries a `refusal` field:
+    - the item (node, or edge with its endpoint types);
+    - every rule that refuses it (`endpoint_pair`, `edge_type` or `property`), worded as the
+      import words it;
+    - `replacement`, the edge the import names, where it knows one;
+    - `modelled_fits`, the edge types the schema models for the pair.
+  - **It uses the write rule itself.** It applies the same checks the store applies on every
+    write, after the same preparation the import gives each item. A test holds it to the import:
+    the same items, no more and no fewer. On reflow2's own design it examined 48,266 nodes and
+    edges and found none, in about 120 ms of a 4.4 s sweep.
+  - **The replacement is only a suggestion.** `propose_heal` drafts it for a person and nothing
+    applies it. The field repair chose GOVERNED_BY where the import names DOCUMENTS.
+  - **A refused VERIFIES now says what fits**, both on import and in the finding: GOVERNED_BY for
+    a check on a Decision, and the Requirement or Capability for a check on a Project. The gate's
+    first run found eight dropped VERIFIES targets that were refused naming nothing.
+    dynograph-foundation's export holds five such checks.
+  - **The gate.** `schema/accepted-at-last-release.json` records what the last release's schema
+    accepted. `tests/a_schema_narrowing_ships_its_migration.rs` fails on any narrowing since then
+    that `narrowing::NARROWINGS` does not name with its migration: `Rewritten`, `RefusedByName` or
+    `Retired`. A narrowing is an endpoint dropped, an enum value removed, a type retired, a
+    property newly required with no default, or a type or range tightened. The edge rewrites that
+    the import and every open apply now come from one table (`narrowing::EDGE_REWRITES`). So do
+    the provenance guard's retired types, so retiring a type is one entry rather than two edits.
+  - **What to do.** Before moving, backing up or forking a long-lived design, run
+    `detect_defects`. For each `refused_by_schema` finding, read the two nodes, draw the edge that
+    says what was meant, then delete the refused item. If you parse `category`, expect a new
+    value. **At a release cut**, after the version bump, re-bless the snapshot with
+    `REFLOW2_BLESS_ACCEPTANCE=1 cargo test -p reflow2-core --no-default-features --test
+    a_schema_narrowing_ships_its_migration`. Until then that test fails on purpose, and the bless
+    refuses while any narrowing is unaccounted for.
 - **`get_node` reads a node's edges when you ask: pass `include_edges`.** Until now no read
   returned one node's edges as edges. `get_node` gave the properties only, and the nearest reader,
   `propagate_from` at depth 1, left out authorship and every edge's evidence. To see what a node is
@@ -80,6 +118,35 @@ This file is the third view: *what changed, and when*.
     mutation-checked).
   - Its first live run found exactly the bumps then in flight: #649 and #650 (both since merged)
     and the rocksdb 0.25 PR, held on the record until it landed in this same release (below).
+- **A `--call` that writes now keeps your committed design export current before it exits.**
+  Step 2 of the plan for the `--call` door (`req:a-writing-call-keeps-the-committed-export-current`).
+  Until now only a running MCP server kept the export current. After a write through `--call` the
+  export stayed behind until somebody remembered `export_graph` with the right path. Measured on
+  the previous build: in a project whose `.mcp.json` names `--export-to`, `--call add_requirement`
+  exited 0 and left the export unchanged.
+  - **What happens now:** when a call to a tool that writes succeeds, the export is written before
+    the command exits. It is the same write-through a running server uses, so the same rules hold:
+    it never overwrites a file changed since reflow2 last wrote it, and its lineage chains from the
+    committed export, not from the last file written.
+  - **Which file:** `--export-to FILE` if you pass one (it is now accepted with `--call`; it was
+    refused before). Otherwise the `--export-to` your project's MCP configuration names for this
+    design: `.mcp.json`, `opencode.json`, `.vscode/mcp.json` or `.grok/config.toml`, the files
+    `reflow2 init` writes. If two of them name different files, the call is refused before anything
+    is opened. If none names one, nothing is exported and stderr says so.
+  - **What you see:** one line on stderr saying where the export was written. stdout is still only
+    the tool's reply. A read, a refused write and a reply the tool marked an error write no export.
+  - **Exit 3 is new.** It means the write landed in the design but the export could not be written,
+    for example because the file was hand-edited, holds conflict markers, or its folder does not
+    exist. stderr says why. Fix the file and do not repeat the write; the next writing call (or
+    `--call export_graph`) brings the export current.
+  - **It costs an export per write.** On a small design that is milliseconds. On reflow2's own
+    design (6,478 nodes, a 28 MB export, release build) a write took 1.6 s alone and 6.0 s with its
+    export. For a script making many writes to a large design, pass **`--no-export`** on each call:
+    stderr then says the export is behind. Finish with one writing call without it, or with
+    `--call export_graph`.
+  - **What to do:** nothing, if your project was set up with `reflow2 init`. If a script followed
+    each writing `--call` with `--call export_graph`, you can drop that step. If a script treats any
+    non-zero exit as "the write failed", handle 3 as "written, export not".
 
 ### Changed
 
@@ -273,8 +340,9 @@ This file is the third view: *what changed, and when*.
   - **`--only-if-present` is honoured by the one-shot modes:** where no design has been started,
     they refuse and create nothing.
   - **A flag a one-shot mode does not read is refused** by name, with the mode, exit 1. The table
-    is in `crates/reflow2-mcp/src/one_shot.rs`. `--export-to` with `--call` waits for step 2 of the
-    `--call` door plan ("a writing call keeps the committed export current"). `--remote` and
+    is in `crates/reflow2-mcp/src/one_shot.rs`. `--export-to` with `--call` is honoured by step 2
+    of the `--call` door plan (under Added: a writing call keeps the committed export current).
+    `--remote` and
     `--shared` with `--call` wait for the open question of whether a one-shot call should reach
     a served design. Two modes on one command line are refused together, which includes `--call`
     and `--stop-shared` combined with anything. Flags set in the environment
