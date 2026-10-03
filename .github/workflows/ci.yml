@@ -311,7 +311,7 @@ jobs:
         run: python3 tools/smoke_mcp.py
       - name: an empty answer says which empty it is (wire-level class gate)
         run: python3 tools/empty_speaks.py
-      - name: A missing argument names the tool and what it wants (on the wire)
+      - name: Every argument refusal names the tool and the field path (on the wire, probes generated from every schema)
         run: python3 tools/refusal_speaks.py
       - name: Toolsnaps — served surface matches the committed goldens (BL-76)
         run: python3 tools/toolsnap.py
