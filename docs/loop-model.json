@@ -1,5 +1,5 @@
 {
-  "content_hash": "sha256:9ac33cc47d32345ae7146fdb40ad419c01ebe36cab963d15bfb8c2106de70b02",
+  "content_hash": "sha256:dd5bcfd92d591ccd0486f86dc62cf3fe2f3d1efbb7d6771d34d6514a26f1fbfd",
   "edges": [
     {
       "edge_type": "PART_OF_FLOW",
@@ -228,7 +228,7 @@
       "to_id": "cap:z-change"
     }
   ],
-  "graph_id": "118c6eddde4ef741",
+  "graph_id": "0c09c1ed86f17392",
   "nodes": [
     {
       "node_id": "cap:p0-intent",
@@ -325,6 +325,8 @@
       "node_type": "Flow",
       "properties": {
         "description": "CHANGE \u2192 PROPAGATE \u2192 DETECT \u2192 SURFACE \u2192 RESOLVE/HEAL, phase by phase, with the build teaching the design backwards.",
+        "entry_point": "cap:p0-intent",
+        "exit_point": "cap:p5-operate",
         "flow_type": "process",
         "name": "The coherence loop",
         "tier": "operational"
@@ -381,10 +383,8 @@
   "stamp": {
     "edge_type_names": [
       "ABOUT_ENTITY",
-      "ACTS_FOR",
       "ALLOCATED_TO",
       "ANNOTATES",
-      "ANSWERS",
       "ANTICIPATES",
       "ASKS_ABOUT",
       "ASSESSED_ON",
@@ -395,7 +395,6 @@
       "CAUSES",
       "CHANGED",
       "CLAIMS",
-      "COMPLEMENTS",
       "COMPLIES_WITH",
       "CONSTRAINS",
       "CONSUMES",
@@ -414,11 +413,9 @@
       "HAS_READINESS",
       "HAS_SNAPSHOT",
       "HAS_TEMPORAL_FACT",
-      "IMPLEMENTS",
       "IMPOSES",
       "INCLUDES",
       "INTERACTS_WITH",
-      "INVALIDATES",
       "MASKS",
       "MITIGATES",
       "OBSERVED_IN",
@@ -447,515 +444,7 @@
       "VIOLATES_RULE",
       "YIELDED"
     ],
-    "edge_types": 66,
-    "enum_values": {
-      "Actor.actor_type": [
-        "device",
-        "external_system",
-        "operator",
-        "service",
-        "stakeholder",
-        "user"
-      ],
-      "Artifact.artifact_type": [
-        "asset",
-        "binary",
-        "code",
-        "config",
-        "data",
-        "diagram",
-        "document",
-        "drawing",
-        "model",
-        "spec",
-        "test",
-        "test_result"
-      ],
-      "Artifact.audience": [
-        "consumer",
-        "internal"
-      ],
-      "Artifact.granularity": [
-        "atomic",
-        "opaque",
-        "pending_expansion"
-      ],
-      "Artifact.status": [
-        "in_progress",
-        "planned",
-        "realized",
-        "verified"
-      ],
-      "Artifact.volatility": [
-        "append_only",
-        "living",
-        "stable"
-      ],
-      "Capability.delivery": [
-        "artifact",
-        "model"
-      ],
-      "Capability.provenance": [
-        "authored",
-        "healed",
-        "imported",
-        "inferred",
-        "planned",
-        "reconciled"
-      ],
-      "Capability.status": [
-        "in_progress",
-        "planned",
-        "realized",
-        "verified"
-      ],
-      "Capability.tier": [
-        "operational",
-        "strategic",
-        "tactical"
-      ],
-      "ChangeEvent.change_type": [
-        "baseline_established",
-        "constraint_change",
-        "decision_settled",
-        "defect_fix",
-        "deprecation",
-        "documentation",
-        "environment_change",
-        "new_feature",
-        "performance_optimization",
-        "refactor",
-        "requirement_creep",
-        "resync",
-        "scope_change",
-        "test_failure_fix"
-      ],
-      "ChangeEvent.rationale_basis": [
-        "contemporaneous",
-        "recalled",
-        "unknown"
-      ],
-      "ChangeEvent.repair": [
-        "contained_symptom",
-        "corrected_cause"
-      ],
-      "ChangeEvent.subject": [
-        "record",
-        "system"
-      ],
-      "Component.kind": [
-        "assembly",
-        "layer",
-        "module",
-        "part",
-        "section",
-        "service",
-        "subsystem"
-      ],
-      "Component.provenance": [
-        "authored",
-        "healed",
-        "imported",
-        "inferred",
-        "planned",
-        "reconciled"
-      ],
-      "Component.status": [
-        "in_progress",
-        "planned",
-        "realized",
-        "verified"
-      ],
-      "Component.tier": [
-        "operational",
-        "strategic",
-        "tactical"
-      ],
-      "Constraint.category": [
-        "budget",
-        "business",
-        "kpp",
-        "operational",
-        "physical",
-        "regulatory",
-        "schedule",
-        "technical"
-      ],
-      "Constraint.composition": [
-        "path",
-        "sum"
-      ],
-      "Constraint.concern": [
-        "core",
-        "cost",
-        "environmental",
-        "logistics",
-        "manufacturability",
-        "other",
-        "safety",
-        "schedule",
-        "security",
-        "sustainment",
-        "usability"
-      ],
-      "Constraint.direction": [
-        "maximum",
-        "minimum"
-      ],
-      "Constraint.limit_basis": [
-        "asserted",
-        "computed",
-        "measured"
-      ],
-      "Constraint.priority": [
-        "critical",
-        "high",
-        "low",
-        "medium"
-      ],
-      "Contributor.kind": [
-        "automated_agent",
-        "organization",
-        "person"
-      ],
-      "Decision.kind": [
-        "choice",
-        "exploratory"
-      ],
-      "Decision.quality_target": [
-        "coupling",
-        "maintainability",
-        "maturity",
-        "observability",
-        "performance",
-        "reliability",
-        "scalability",
-        "security",
-        "testability"
-      ],
-      "Decision.status": [
-        "accepted",
-        "deferred",
-        "proposed",
-        "rejected",
-        "superseded"
-      ],
-      "DesignEpoch.epoch_type": [
-        "baseline",
-        "incident_response",
-        "milestone",
-        "release_cut",
-        "revision"
-      ],
-      "DesignEpoch.status": [
-        "arrived",
-        "planned"
-      ],
-      "DimensionAssessment.dimension": [
-        "coupling",
-        "maintainability",
-        "maturity",
-        "observability",
-        "performance",
-        "reliability",
-        "scalability",
-        "security",
-        "testability"
-      ],
-      "DimensionObservation.dimension": [
-        "coupling",
-        "maintainability",
-        "maturity",
-        "observability",
-        "performance",
-        "reliability",
-        "scalability",
-        "security",
-        "testability"
-      ],
-      "DriftEvent.drift_type": [
-        "checksum_change",
-        "deployment_contradicted",
-        "deployment_missing",
-        "deployment_undeclared",
-        "missing_artifact",
-        "spec_mismatch",
-        "status_mismatch",
-        "undocumented_addition"
-      ],
-      "DriftEvent.severity": [
-        "critical",
-        "high",
-        "low",
-        "medium"
-      ],
-      "Environment.env_type": [
-        "development",
-        "field",
-        "lab",
-        "physical_site",
-        "production",
-        "simulation",
-        "staging"
-      ],
-      "EnvironmentRule.rule_type": [
-        "building_code",
-        "constraint",
-        "environmental",
-        "interface",
-        "physical_law",
-        "regulatory",
-        "safety",
-        "standard",
-        "zoning"
-      ],
-      "Flow.flow_type": [
-        "capture",
-        "control_flow",
-        "data_flow",
-        "decision_flow",
-        "generation",
-        "process",
-        "retrieval"
-      ],
-      "Flow.tier": [
-        "cross_cutting",
-        "operational",
-        "strategic",
-        "tactical"
-      ],
-      "Fragment.fragment_type": [
-        "bug_fix",
-        "config",
-        "design",
-        "documentation",
-        "feedback",
-        "implementation",
-        "note",
-        "pseudocode",
-        "refactor",
-        "review",
-        "spec",
-        "test"
-      ],
-      "Fragment.note_kind": [
-        "author",
-        "director",
-        "reviewer"
-      ],
-      "Fragment.phase": [
-        "P0",
-        "P1",
-        "P2",
-        "P3",
-        "P4",
-        "P5",
-        "PM"
-      ],
-      "Fragment.provenance": [
-        "authored",
-        "healed",
-        "imported",
-        "inferred",
-        "planned",
-        "reconciled"
-      ],
-      "Fragment.status": [
-        "ingested",
-        "integrated",
-        "superseded"
-      ],
-      "Interface.auth": [
-        "api_key",
-        "basic",
-        "jwt",
-        "kerberos",
-        "mtls",
-        "none",
-        "oauth2",
-        "physical",
-        "signature",
-        "unspecified"
-      ],
-      "Interface.designation": [
-        "both",
-        "internal",
-        "published",
-        "required"
-      ],
-      "Interface.medium": [
-        "REST",
-        "cli",
-        "data",
-        "electrical",
-        "event",
-        "gRPC",
-        "graphql",
-        "human",
-        "json_rpc",
-        "library",
-        "mechanical",
-        "procedural",
-        "unspecified"
-      ],
-      "Interface.paradigm": [
-        "asynchronous",
-        "batch",
-        "streaming",
-        "synchronous",
-        "unspecified"
-      ],
-      "Interface.payload_format": [
-        "avro",
-        "binary",
-        "csv",
-        "form",
-        "json",
-        "msgpack",
-        "none",
-        "protobuf",
-        "text",
-        "unspecified",
-        "xml"
-      ],
-      "Interface.provenance": [
-        "authored",
-        "healed",
-        "imported",
-        "inferred",
-        "planned",
-        "reconciled"
-      ],
-      "Interface.transport_security": [
-        "air_gapped",
-        "ipsec",
-        "mtls",
-        "none",
-        "physical",
-        "tls",
-        "unspecified",
-        "vpn"
-      ],
-      "Project.mode": [
-        "flexible",
-        "rigid"
-      ],
-      "Project.status": [
-        "active",
-        "archived",
-        "paused"
-      ],
-      "Question.status": [
-        "answered",
-        "asked",
-        "withdrawn"
-      ],
-      "ReadinessAssessment.kind": [
-        "MRL",
-        "TRL"
-      ],
-      "Release.status": [
-        "built",
-        "deployed",
-        "planned",
-        "retired"
-      ],
-      "Release.unit_type": [
-        "binary",
-        "bundle",
-        "container",
-        "package",
-        "physical_build",
-        "publication"
-      ],
-      "Requirement.concern": [
-        "core",
-        "cost",
-        "environmental",
-        "logistics",
-        "manufacturability",
-        "other",
-        "safety",
-        "schedule",
-        "security",
-        "sustainment",
-        "usability"
-      ],
-      "Requirement.designation": [
-        "internal",
-        "published"
-      ],
-      "Requirement.kind": [
-        "business",
-        "functional",
-        "nonfunctional",
-        "quality"
-      ],
-      "Requirement.lineage": [
-        "decomposed",
-        "derived",
-        "original"
-      ],
-      "Requirement.priority": [
-        "critical",
-        "high",
-        "low",
-        "medium"
-      ],
-      "Requirement.provenance": [
-        "authored",
-        "healed",
-        "imported",
-        "inferred",
-        "planned",
-        "reconciled"
-      ],
-      "Requirement.status": [
-        "accepted",
-        "deferred",
-        "dropped",
-        "met",
-        "proposed"
-      ],
-      "TemporalFact.basis": [
-        "forecast",
-        "measured"
-      ],
-      "Verification.kind": [
-        "validation",
-        "verification"
-      ],
-      "Verification.last_reconciled_outcome": [
-        "blocked",
-        "failed",
-        "passed",
-        "skipped"
-      ],
-      "Verification.level": [
-        "acceptance",
-        "integration",
-        "system",
-        "unit"
-      ],
-      "Verification.method": [
-        "analysis",
-        "demonstration",
-        "inspection",
-        "measurement",
-        "observation",
-        "review",
-        "simulation",
-        "test"
-      ],
-      "Verification.status": [
-        "blocked",
-        "failing",
-        "passing",
-        "planned",
-        "skipped",
-        "superseded"
-      ]
-    },
+    "edge_types": 61,
     "node_type_names": [
       "Actor",
       "Anchor",
@@ -987,7 +476,7 @@
       "Verification"
     ],
     "node_types": 28,
-    "reflow2_version": "0.77.0",
+    "reflow2_version": "0.33.0",
     "schema_version": 1
   }
 }
