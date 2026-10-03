@@ -74,6 +74,9 @@ pub fn design_present(graph_path: &str) -> bool {
 #[derive(Clone)]
 pub struct LatentService {
     graph_path: String,
+    /// The operator's `--read-only`: start no design, and serve one that
+    /// appears read-only (`into_read_only`).
+    read_only: bool,
     tool_router: ToolRouter<Self>,
     /// The full service, once the design exists. Opened at most once per
     /// process; every call re-probes the directory first.
@@ -129,9 +132,21 @@ impl LatentService {
     pub fn new(graph_path: String) -> Self {
         Self {
             graph_path,
+            read_only: false,
             tool_router: Self::tool_router(),
             full: Arc::new(tokio::sync::RwLock::new(None)),
         }
+    }
+
+    /// The operator's `--read-only`, honoured here as everywhere: this server
+    /// starts no design (`reflow2_start_design` creates a directory and a
+    /// store), and a design that appears under it is served read-only and only
+    /// once its store exists, because opening a store where there is none
+    /// creates one. Builder rather than a constructor argument, the shape
+    /// `ReflowService::into_read_only` has.
+    pub fn into_read_only(mut self) -> Self {
+        self.read_only = true;
+        self
     }
 
     /// The full design service, if a design exists here NOW — re-probed on
@@ -145,10 +160,20 @@ impl LatentService {
         if !design_present(&self.graph_path) {
             return None;
         }
+        // Read-only creates nothing: an opted-in directory with no store yet is
+        // not opened, because opening it would create the store.
+        if self.read_only && !Path::new(&self.graph_path).exists() {
+            return None;
+        }
         let mut slot = self.full.write().await;
         if slot.is_none() {
             match ReflowService::new_reporting(&self.graph_path) {
                 Ok((svc, provenance)) => {
+                    let svc = if self.read_only {
+                        svc.into_read_only()
+                    } else {
+                        svc
+                    };
                     if let Some(note) = provenance {
                         eprintln!("reflow2: {note}");
                     }
@@ -298,6 +323,19 @@ impl LatentService {
             return Ok((result, promoted_now));
         }
 
+        // --read-only, HONOURED: starting a design creates its directory and
+        // its store, and read-only creates nothing.
+        if self.read_only {
+            return Err(McpError::invalid_request(
+                format!(
+                    "this reflow2 server is READ-ONLY (--read-only), and starting a design here \
+                     would create {} and a design store. Nothing was created. To start a design \
+                     here, use a session started without --read-only.",
+                    dir.display()
+                ),
+                None,
+            ));
+        }
         let already = dir.exists();
         if !already && let Err(e) = std::fs::create_dir_all(&dir) {
             // Say which directory and why, rather than a bare io error: the

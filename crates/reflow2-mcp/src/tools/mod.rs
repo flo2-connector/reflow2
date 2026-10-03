@@ -80,4 +80,58 @@ mod tests {
             "found only {checked} file writes: the scan is reading nothing"
         );
     }
+
+    /// EVERY TOOL THE FILE GUARD PROTECTS IS ON THE ONE LIST A READ-ONLY CLIENT
+    /// READS. A `--read-only` client refuses a file-writing call before it is
+    /// sent, and it can only know which tools write a file from
+    /// `service::FILE_WRITING_TOOLS` — their `read_only_hint` says they read.
+    /// So the tool each `file_write_permitted("…")` guards must be listed there,
+    /// or a read-only CLIENT would send the call and the server, which is not
+    /// read-only, would write the file.
+    #[test]
+    fn every_guarded_file_writer_is_on_the_list_a_read_only_client_reads() {
+        const GUARD: &str = "file_write_permitted(";
+        let dir = std::path::Path::new(env!("CARGO_MANIFEST_DIR")).join("src/tools");
+        let mut guarded = Vec::new();
+        for entry in std::fs::read_dir(&dir).expect("src/tools").flatten() {
+            let path = entry.path();
+            if path.extension().and_then(|e| e.to_str()) != Some("rs")
+                || path.file_name().and_then(|n| n.to_str()) == Some("mod.rs")
+            {
+                continue;
+            }
+            let text: String = std::fs::read_to_string(&path)
+                .unwrap()
+                .lines()
+                .filter(|l| !l.trim_start().starts_with("//"))
+                .collect::<Vec<_>>()
+                .join("\n");
+            for (i, _) in text.match_indices(GUARD) {
+                let name = text[i + GUARD.len()..]
+                    .trim_start()
+                    .strip_prefix('"')
+                    .and_then(|r| r.split_once('"'))
+                    .map(|(n, _)| n.to_string())
+                    .unwrap_or_else(|| {
+                        panic!(
+                            "{}: file_write_permitted must name its tool as a string literal, \
+                             so this check can hold it to FILE_WRITING_TOOLS",
+                            path.display()
+                        )
+                    });
+                guarded.push(name);
+            }
+        }
+        assert!(
+            guarded.len() >= 2,
+            "found only {guarded:?}: the scan is reading nothing"
+        );
+        for name in &guarded {
+            assert!(
+                crate::service::FILE_WRITING_TOOLS.contains(&name.as_str()),
+                "`{name}` writes a file behind file_write_permitted and is not in \
+                 service::FILE_WRITING_TOOLS, so a --read-only client would send it"
+            );
+        }
+    }
 }

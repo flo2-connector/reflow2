@@ -179,6 +179,42 @@ This file is the third view: *what changed, and when*.
 
   This is a **minor** change: arguments that were silently ignored are now refused.
 
+- **`--read-only` is honoured by every client, not only by a server.** Until now a client that
+  forwards your agent's calls to a server accepted `--read-only` and ignored it, so a write landed.
+  Measured on main:
+  - `--remote URL --read-only` wrote the requirement to the server.
+  - `--shared --read-only` wrote it through the shared server.
+  - A session started in a folder whose `.reflow2.toml` names a design wrote to that design.
+  - With `--only-if-present` and no design started, `reflow2_start_design` created the design, and
+    the surface it opened accepted writes.
+  - `--shared --read-only`, in a folder with `.reflow2/` but no store, started a server that
+    created the store.
+
+  What happens now:
+  - **Each of those clients refuses every write itself, before the call is sent.** The agent gets
+    a tool error that names `--read-only` and says nothing was sent. A call is sent only when three
+    checks agree that it only reads: this reflow2's own tool list, the server's tool list, and the
+    file rule (`export_graph` and `export_surface` with a `path` are refused, and without one they
+    answer in the reply).
+  - **A tool the client cannot classify is refused as a write.** That covers a server that cannot
+    be asked, a tool the server does not list, and a tool this reflow2 does not serve (a newer
+    server's, say).
+  - **Reads, searches and reports pass through unchanged.**
+  - **With `--only-if-present` and no design**, `reflow2_start_design` is refused and nothing is
+    created. A design that appears later is served read-only.
+  - **`--shared --read-only` where there is no store** starts nothing and creates nothing. The
+    session is told why.
+  - `--read-only --help` now lists the modes that honour the flag, and how each one does it.
+
+  Separately, and with or without `--read-only`: a `--shared` or `--remote` call whose arguments
+  contained the word `initialize` was mistaken for a handshake. It got no reply, and every later
+  call in the session failed. It is now an ordinary call.
+
+  **What to do:** nothing, unless you relied on writing through a client you started with
+  `--read-only`. Drop the flag to write. A read-only client now also refuses `design_identity`,
+  which is marked as a write, just as `--read-only --call design_identity` already does.
+  (`fact:read-only-is-silently-ignored-by-the-remote-and-shared-clients-2026-10-02`)
+
 - **The handshake record (`<graph>.client.json`) names the revision rmcp actually sent.** reflow2
   keeps a copy of rmcp's negotiation rule, because rmcp does not export it, and the copy was out of
   date from rmcp 3.4.0 on. A client asking `initialize` for a revision with no handshake was
