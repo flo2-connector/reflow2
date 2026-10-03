@@ -470,6 +470,40 @@ This file is the third view: *what changed, and when*.
   which is marked as a write, just as `--read-only --call design_identity` already does.
   (`fact:read-only-is-silently-ignored-by-the-remote-and-shared-clients-2026-10-02`)
 
+- **A server started with `--read-only` where there is no design store now creates nothing.**
+  Until now a stdio, `--http` or `--serve-shared` server started that way opened the path, which
+  created an empty store with its version stamp and identity beside it, and then served that empty
+  design read-only. `--serve-shared` also published its rendezvous file. The flag's help said "no
+  design store is created where there is none", and that was false for these servers from the day
+  it was written.
+
+  What happens now (Anthony's choice, 2026-10-03, over refusing to start and over keeping the old
+  behaviour):
+  - **The server starts and serves the latent surface**, the one `--only-if-present` serves where
+    no design has been started. Its handshake says there is no design store, and that `--read-only`
+    creates none. `describe_designs` answers. `reflow2_start_design` is refused.
+  - **Nothing is created:** no store, no version stamp, nothing beside it. A `--serve-shared` server
+    publishes no rendezvous.
+  - **Over `--http` and `--serve-shared` the latent surface is served over HTTP**, and `GET
+    /readyz` answers 503 until a design is served.
+  - **A store that appears there later**, from an import, a restore or a session that writes, is
+    served read-only by the same server with no restart. `/readyz` then answers 200.
+  - `--registry-root` already opened only the stores it found, and still does.
+
+  Two fixes to the latent surface came with this, for `--only-if-present` with or without
+  `--read-only`:
+  - **It is served on the transport you asked for.** With `--http ADDR`, it used to be served on
+    stdio instead. A server started with its stdin closed exited at once, and nothing listened at
+    ADDR.
+  - **A design it starts, or that appears under it, is readied the way the server would have
+    readied it at start.** That includes your `--export-to`, which was never started for that
+    design, and over HTTP the rule for who is calling.
+
+  **What to do:** nothing, unless something relied on a read-only server making an empty store.
+  To start a design, use a session without `--read-only`, or import one with `--import`. A
+  read-only server already running picks it up on its next call.
+  (`fact:a-read-only-server-creates-an-empty-store-where-there-is-none-2026-10-03`)
+
 - **The handshake record (`<graph>.client.json`) names the revision rmcp actually sent.** reflow2
   keeps a copy of rmcp's negotiation rule, because rmcp does not export it, and the copy was out of
   date from rmcp 3.4.0 on. A client asking `initialize` for a revision with no handshake was
