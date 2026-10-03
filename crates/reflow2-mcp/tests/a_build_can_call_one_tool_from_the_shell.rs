@@ -142,7 +142,7 @@ fn args_can_come_from_stdin() {
 /// keep open.
 #[test]
 fn while_a_server_holds_the_graph_a_read_answers_from_a_snapshot_and_a_write_refuses() {
-    use std::io::Write;
+    use std::io::{BufRead, Write};
     let dir = tempfile::tempdir().expect("tempdir");
     let graph = dir.path().join("graph");
     let o = call(&graph, "add_project", r#"{"id":"proj:held","name":"Held"}"#);
@@ -152,29 +152,55 @@ fn while_a_server_holds_the_graph_a_read_answers_from_a_snapshot_and_a_write_ref
         .args(["--graph-path", graph.to_str().unwrap()])
         .stdin(std::process::Stdio::piped())
         .stdout(std::process::Stdio::piped())
-        .stderr(std::process::Stdio::piped())
+        .stderr(std::process::Stdio::null())
         .spawn()
         .expect("spawn holder");
-    // Wait until the holder has the lock: a write from the shell must refuse.
-    let mut held = false;
-    for _ in 0..100 {
-        let o = call(
-            &graph,
-            "add_project",
-            r#"{"id":"proj:second","name":"Second"}"#,
-        );
-        if !o.status.success() {
-            let err = String::from_utf8_lossy(&o.stderr);
-            assert!(
-                err.contains("writes") || err.contains("holds") || err.contains("lock"),
-                "{err}"
-            );
-            held = true;
-            break;
-        }
-        std::thread::sleep(std::time::Duration::from_millis(100));
-    }
-    assert!(held, "the holder never took the lock");
+    // WAIT FOR THE HOLDER'S OWN WORD, AND OPEN NOTHING WHILE IT STARTS. A stdio
+    // server opens the store before it reads its first message, so its answer
+    // to `initialize` comes once it holds the store, and a holder that found
+    // the store taken says so in that answer ("UNAVAILABLE").
+    //
+    // Until 2026-10-03 this waited by probing with a WRITE through `--call`,
+    // which takes the store when it is free. A probe that reached the store
+    // before the holder did wrote into the design and left the holder degraded,
+    // until one of its retries fell between two probes: a wait that raced the
+    // thing it was waiting for. The same wait in
+    // a_held_designs_read_is_as_true_as_the_live_one.rs made its holder exit
+    // and failed CI twice
+    // (fact:a-held-design-test-flakes-waiting-30s-for-the-holder-to-take-the-store-2026-10-03).
+    let mut stdin = holder.stdin.take().expect("the holder's stdin");
+    writeln!(
+        stdin,
+        r#"{{"jsonrpc":"2.0","id":1,"method":"initialize","params":{{"protocolVersion":"2025-06-18","capabilities":{{}},"clientInfo":{{"name":"held-test","version":"0"}}}}}}"#
+    )
+    .expect("send initialize to the holder");
+    let stdout = holder.stdout.take().expect("the holder's stdout");
+    let (tx, rx) = std::sync::mpsc::channel();
+    std::thread::spawn(move || {
+        let mut line = String::new();
+        let _ = std::io::BufReader::new(stdout).read_line(&mut line);
+        let _ = tx.send(line);
+    });
+    let hello = rx
+        .recv_timeout(std::time::Duration::from_secs(120))
+        .expect("the holder answered initialize");
+    assert!(
+        hello.contains("\"result\"") && !hello.contains("UNAVAILABLE"),
+        "the holder did not take the store: {hello}"
+    );
+
+    // Held: a write from the shell refuses.
+    let o = call(
+        &graph,
+        "add_project",
+        r#"{"id":"proj:second","name":"Second"}"#,
+    );
+    let err = String::from_utf8_lossy(&o.stderr);
+    assert!(!o.status.success(), "a write while held must refuse: {err}");
+    assert!(
+        err.contains("writes") || err.contains("holds") || err.contains("lock"),
+        "{err}"
+    );
 
     let o = call(&graph, "graph_report", "{}");
     let err = String::from_utf8_lossy(&o.stderr);
@@ -185,7 +211,7 @@ fn while_a_server_holds_the_graph_a_read_answers_from_a_snapshot_and_a_write_ref
     );
     assert!(stdout_json(&o).is_object());
 
-    let _ = holder.stdin.take().map(|mut s| s.write_all(b""));
+    drop(stdin);
     let _ = holder.kill();
     let _ = holder.wait();
 }

@@ -176,6 +176,18 @@ This file is the third view: *what changed, and when*.
 
 ### Fixed
 
+- **The held-design tests no longer fail CI at random with "the --serve-shared server never took
+  the store".** For contributors; nothing changes for users. The tests started a shared server and
+  then waited for it by reading the design through `--call`, once every 100 ms. On a design
+  nobody holds yet, that read opens the store itself. When the read got there first, the server
+  found the store taken and exited (a shared server that loses that race always exits, because
+  normally the session that started it attaches to the winner). Every later read then opened the
+  store itself, and after about 80 s the test gave up. This failed CI on main once and on two pull
+  requests, and failed 2 of 30 times when reproduced on a busy machine. The tests now wait for the
+  server's own record that it holds the store, which opens nothing. A new test starts the server
+  late on purpose to keep it that way. `a_build_can_call_one_tool_from_the_shell.rs` had the same
+  kind of wait, a write through `--call`, and now waits for its server's handshake instead.
+  **What to do:** nothing. If a pull request failed on this message, re-run it.
 - **A read through `--call` on a design another session holds is now as true as a read of the
   design itself.** While a `--serve-shared` server (another session) holds a design, `--call`
   answers a read-only tool from a copy of the store. That copy left out things the reads depend
