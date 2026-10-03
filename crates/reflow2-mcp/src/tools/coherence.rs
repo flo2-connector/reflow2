@@ -911,7 +911,7 @@ impl ReflowService {
                        empty graph does); `coupling_by_level` says how much coupling exists AT each declared \
                        level, and that is the one that bites — measured here, the cycle rule walked 182 pairs \
                        and found none while ZERO joined two subsystems, so a clean result was SILENT about the \
-                       subsystems rather than clean about them. Ask for this to find structural trouble like cycles, single points of failure and orphans.",
+                       subsystems rather than clean about them. `refused_by_schema` names each STORED node or edge the current schema refuses — written under an older reflow2, so an export of this design would not import — with the rule and the replacement the import names; the replacement is a proposal, never applied. Ask for this to find structural trouble like cycles, single points of failure and orphans, or to learn before a move whether this design's export will import.",
         annotations(read_only_hint = true)
     )]
     pub async fn detect_defects(
