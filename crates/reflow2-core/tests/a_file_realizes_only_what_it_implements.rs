@@ -8,10 +8,11 @@
 //! before the change still imports — a legacy REALIZES onto a check arrives as
 //! IMPLEMENTS and is reported; any other legacy target is refused by name.
 //!
-//! NOT PINNED HERE, stated so it is not assumed: the on-open rewrite
-//! (`migrate_realizes_onto_checks`) cannot be exercised through the public API,
-//! because the schema now refuses the very edge it migrates. It applies the
-//! same rule as the import path below.
+//! The on-open rewrite (`migrate_edge_rewrites`) could not be exercised through
+//! the public API until 2026-10-03, because the schema refuses the very edge it
+//! migrates. `write_under_schema` now writes that edge the way an older reflow2
+//! did, so the last test pins it — and it reads the same table the import
+//! does (`narrowing::EDGE_REWRITES`).
 
 use reflow2_core::artifact::LinkArtifactOptions;
 use reflow2_core::export::GraphExport;
@@ -168,4 +169,54 @@ fn a_legacy_realizes_onto_a_change_is_refused_by_name_with_the_fit() {
     let mut g = DesignGraph::open_in_memory().expect("open");
     let err = g.import_graph(&doc).expect_err("refused");
     assert!(format!("{err}").contains("CHANGED"), "{err}");
+}
+
+/// The on-open rewrite, finally exercised: a store an older reflow2 wrote with
+/// `Artifact REALIZES Verification` holds IMPLEMENTS after the migration every
+/// open runs, and nothing of the old edge.
+#[test]
+fn the_open_rewrite_brings_a_legacy_realizes_onto_a_check_over() {
+    let mut g = world();
+    g.create_node(
+        node::ARTIFACT,
+        "art:legacy",
+        Props::new()
+            .set("name", "legacy.rs")
+            .set("location", "legacy.rs"),
+    )
+    .expect("artifact");
+    let mut older = reflow2_core::schema::load_schema().expect("schema");
+    older
+        .edge_types
+        .get_mut(edge::REALIZES)
+        .expect("REALIZES")
+        .to = reflow2_core::foundation::core::EdgeEndpoint::Single("*".into());
+    g.write_under_schema(older, |g| {
+        g.create_edge(
+            edge::REALIZES,
+            node::ARTIFACT,
+            "art:legacy",
+            node::VERIFICATION,
+            "ver:flow",
+            Props::new(),
+        )
+    })
+    .expect("the older schema accepted it");
+    assert_eq!(g.migrate_edge_rewrites().expect("migrate"), 1);
+    assert!(
+        g.outgoing("art:legacy", Some(edge::REALIZES))
+            .expect("edges")
+            .is_empty()
+    );
+    assert!(
+        g.outgoing("art:legacy", Some(edge::IMPLEMENTS))
+            .expect("edges")
+            .iter()
+            .any(|e| e.to_id == "ver:flow")
+    );
+    assert_eq!(
+        g.migrate_edge_rewrites().expect("again"),
+        0,
+        "idempotent — it runs on every open"
+    );
 }

@@ -71,6 +71,7 @@ pub mod loop_closure;
 pub mod manual_work;
 pub mod maturity;
 pub mod merge;
+pub mod narrowing;
 pub mod neighbourhood;
 pub mod nodes;
 pub mod operate;

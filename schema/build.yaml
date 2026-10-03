@@ -123,10 +123,14 @@ schema:
       # all-or-nothing. The one class with a single right answer — REALIZES
       # onto a Verification, the only class found in the other designs on the
       # maintainer's machine — is rewritten to IMPLEMENTS on open
-      # (migrate_realizes_onto_checks) and on import (reported in
-      # `migrated_edges`). Any other dropped target is refused BY NAME, naming
-      # the edge that fits (artifact::realizes_target_hint). Re-derive from live
-      # edges before ever trimming this list further.
+      # (migrate_edge_rewrites) and on import (reported in `migrated_edges`),
+      # both reading narrowing::EDGE_REWRITES. Any other dropped target is
+      # refused BY NAME, naming the edge that fits
+      # (artifact::realizes_target_hint), and detect_defects reports it as
+      # `refused_by_schema` on a store that still holds it. Re-derive from live
+      # edges before ever trimming this list further — and since 2026-10-03 a
+      # trim fails tests/a_schema_narrowing_ships_its_migration.rs until
+      # narrowing::NARROWINGS names its migration.
       to: ["Capability", "Component", "Interface"]
       reading: { form: "primitive", primitive: "instance-of", sub: "realizes", modifiers: { completeness: "strength", conformance: "lifecycle" }, basis: "classified" }
       extraction_hint: An Artifact implements/realizes a Capability, a Component, or the Interface it serves. A file that IS a check IMPLEMENTS the Verification; one that describes something DOCUMENTS it; a change records its files with CHANGED.

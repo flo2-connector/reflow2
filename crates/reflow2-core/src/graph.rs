@@ -50,7 +50,7 @@ pub fn node_content_hash(props: &std::collections::HashMap<String, Value>) -> St
 /// and only when exact: an integer a `f64` cannot represent is left alone to
 /// fail loud, and a property the schema does not declare float is never
 /// touched.
-fn widen_ints_for_float_props(
+pub(crate) fn widen_ints_for_float_props(
     defs: &std::collections::HashMap<String, PropertyDef>,
     props: &mut std::collections::HashMap<String, Value>,
 ) {
@@ -470,10 +470,11 @@ impl DesignGraph {
         // on-disk store uniform when nothing is stamped on it to key a
         // one-shot migration.
         graph.migrate_authored_by_roles()?;
-        // REALIZES onto a Verification became IMPLEMENTS on 2026-09-23 when
-        // REALIZES stopped accepting any target; a store written before then is
-        // brought over on open, the same way and for the same reason.
-        graph.migrate_realizes_onto_checks()?;
+        // An edge a narrowing gave a single right answer is brought over on
+        // open, the same way the import brings it over — today REALIZES onto a
+        // Verification, IMPLEMENTS since 2026-09-23 when REALIZES stopped
+        // accepting any target (`narrowing::EDGE_REWRITES`).
+        graph.migrate_edge_rewrites()?;
         // Relations stored twice are brought into step with their authority
         // on every open, idempotently, and what changed is KEPT for
         // `loop_status` rather than dropped: the two migrations above discard
@@ -538,6 +539,40 @@ impl DesignGraph {
     /// The merged schema backing this graph.
     pub fn schema(&self) -> &Schema {
         self.engine.schema()
+    }
+
+    /// Run `write` against this store under `schema` instead of this binary's
+    /// own, then put this binary's schema back — the store an OLDER reflow2
+    /// wrote, whose vocabulary accepted something this one refuses.
+    ///
+    /// ⭐ WHY IT EXISTS. A narrowing's whole hazard is data written BEFORE it,
+    /// and that data cannot be made through this binary's write path, because
+    /// the write path is exactly what refuses it. Until 2026-10-03 that made
+    /// the class untestable here: `a_file_realizes_only_what_it_implements.rs`
+    /// says in its header that the on-open rewrite "cannot be exercised through
+    /// the public API". The store keeps no vocabulary of its own — nodes and
+    /// edges are bytes — so writing under the older schema and reading under
+    /// this one IS the upgrade, not a simulation of it.
+    ///
+    /// For tests of what a newer binary does with an older store. Not a way to
+    /// write something this schema refuses: the schema comes back before this
+    /// returns, and every read after it judges what was written by today's rules.
+    #[doc(hidden)]
+    pub fn write_under_schema<T>(
+        &mut self,
+        schema: Schema,
+        write: impl FnOnce(&mut Self) -> Result<T, DynoError>,
+    ) -> Result<T, DynoError> {
+        let current = self.engine.schema().clone();
+        self.engine.replace_schema(schema);
+        let out = write(self);
+        self.engine.replace_schema(current);
+        // A memo filled under the other schema answered by the other rules.
+        self.derived
+            .lock()
+            .expect("derived memo poisoned")
+            .generation = None;
+        out
     }
 
     // ---- Generic, schema-validated CRUD -----------------------------------
@@ -2615,43 +2650,43 @@ impl DesignGraph {
         Ok(moved)
     }
 
-    /// Rewrite every stored `Artifact REALIZES Verification` as `Artifact
-    /// IMPLEMENTS Verification`, and return how many moved.
+    /// Rewrite every stored edge [`crate::narrowing::EDGE_REWRITES`] names —
+    /// today `Artifact REALIZES Verification` as `Artifact IMPLEMENTS
+    /// Verification` — and return how many moved.
     ///
-    /// The ONE class of the old wildcard's misuse with a single right answer:
-    /// a file registered against a check is that check's executable form,
-    /// which is what IMPLEMENTS says and what `link_artifact` has drawn since
-    /// #567. MEASURED before this was written: every refused REALIZES found
-    /// in the other designs on the maintainer's machine (dynograph-foundation
-    /// 3, qbench 5) was this class. Idempotent — one edge scan, runs on every
-    /// open like the AUTHORED_BY migration — so a store is uniform without a
-    /// one-shot marker. Other refused targets are NOT guessed at: they stay
-    /// and are named when an export carrying them is imported.
-    pub fn migrate_realizes_onto_checks(&mut self) -> Result<usize, DynoError> {
+    /// The REALIZES row is the ONE class of the old wildcard's misuse with a
+    /// single right answer: a file registered against a check is that check's
+    /// executable form, which is what IMPLEMENTS says and what `link_artifact`
+    /// has drawn since #567. MEASURED before it was written: every refused
+    /// REALIZES found in the other designs on the maintainer's machine
+    /// (dynograph-foundation 3, qbench 5) was this class. Idempotent — one edge
+    /// scan, runs on every open like the AUTHORED_BY migration — so a store is
+    /// uniform without a one-shot marker. Other refused targets are NOT guessed
+    /// at: they stay, `detect_defects` reports them (`refused_by_schema`) with
+    /// the replacement the import names, and an export carrying them is
+    /// refused on import by name.
+    ///
+    /// Read from the same table the import reads, so the two doors cannot come
+    /// to disagree about what an old edge becomes (until 2026-10-03 each
+    /// carried its own copy of the one rule).
+    pub fn migrate_edge_rewrites(&mut self) -> Result<usize, DynoError> {
         let index = self.node_type_index()?;
         let mut moved = 0usize;
         for e in self.engine.scan_all_edges(&self.graph_id)? {
-            if e.edge_type != edge::REALIZES
-                || index.get(&e.to_id).map(String::as_str) != Some(node::VERIFICATION)
-                || index.get(&e.from_id).map(String::as_str) != Some(node::ARTIFACT)
-            {
+            let (Some(ft), Some(tt)) = (index.get(&e.from_id), index.get(&e.to_id)) else {
                 continue;
-            }
+            };
+            let Some(r) = crate::narrowing::edge_rewrite_for(&e.edge_type, ft, tt) else {
+                continue;
+            };
             let already = self
-                .outgoing(&e.from_id, Some(edge::IMPLEMENTS))?
+                .outgoing(&e.from_id, Some(r.becomes))?
                 .iter()
                 .any(|x| x.to_id == e.to_id);
             if !already {
-                self.create_edge(
-                    edge::IMPLEMENTS,
-                    node::ARTIFACT,
-                    &e.from_id,
-                    node::VERIFICATION,
-                    &e.to_id,
-                    Props::new(),
-                )?;
+                self.create_edge(r.becomes, ft, &e.from_id, tt, &e.to_id, Props::new())?;
             }
-            self.delete_edge(edge::REALIZES, &e.from_id, &e.to_id)?;
+            self.delete_edge(&e.edge_type, &e.from_id, &e.to_id)?;
             moved += 1;
         }
         Ok(moved)
