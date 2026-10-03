@@ -324,6 +324,18 @@ This file is the third view: *what changed, and when*.
   - **reflow2's own design** now records the dependency-currency check (#651) as realized, with
     the workflow and checker that realize it and the test that verifies it.
 
+- **A shared server started by a session no longer keeps that session's open files, locks or
+  terminal.** On Unix, a `--shared` client that starts the `--serve-shared` server used to pass on
+  every descriptor its own launcher had left open: a `flock` lock, a pipe, a terminal. The server
+  kept them for its whole life, two hours idle by default. On 2026-10-03 two such servers held a
+  build lock for about fifteen minutes and stopped every build on the machine. The server now
+  starts in a session of its own, with no controlling terminal, and keeps nothing of its launcher's
+  but the log and `/dev/null` it is given. The client that started it now also collects its exit
+  status when it stops. Before, each server that stopped while its client was still running stayed
+  in the process table as a zombie; one client up for a week had 42. **What to do:** nothing beyond
+  updating. A server already running keeps what it inherited until it stops, so run
+  `reflow2-mcp --graph-path <path> --stop-shared` if one is holding a lock. Windows is unchanged:
+  reflow2 ships no Windows build.
 - **A read through `--call` on a design another session holds is now as true as a read of the
   design itself.** While a `--serve-shared` server (another session) holds a design, `--call`
   answers a read-only tool from a copy of the store. That copy left out things the reads depend

@@ -709,10 +709,12 @@ fn relaunchable_exe_from(raw: PathBuf) -> anyhow::Result<PathBuf> {
 
 /// Start a detached server for this graph and return its pid.
 ///
-/// Detached on purpose, in both senses: its own process group, so a Ctrl-C in
-/// the session that happened to start it does not take the shared server down
-/// with it; and no stdio inherited, so it cannot write a stray byte into a
-/// session's JSON-RPC channel.
+/// Detached on purpose, in every sense, by [`detach`]: a session of its own, so
+/// a Ctrl-C or a closing terminal in the session that happened to start it does
+/// not take the shared server down with it; no stdio inherited, so it cannot
+/// write a stray byte into a session's JSON-RPC channel; and no other
+/// descriptor of its launcher's, so it holds no lock, pipe or file for them.
+/// Its exit status is collected when it exits ([`collect_when_it_exits`]).
 fn spawn_daemon(
     graph_path: &str,
     log_to: Option<&Path>,
@@ -793,15 +795,8 @@ fn spawn_daemon(
         cmd.env(k, v);
     }
 
-    #[cfg(unix)]
-    {
-        use std::os::unix::process::CommandExt;
-        // Its own process group. Without this the server is in the session's
-        // group and a terminal signal reaches it, which would make "the shared
-        // server" quietly a child of whichever session started it — the exact
-        // holder relationship this module exists to remove.
-        cmd.process_group(0);
-    }
+    // Its own session, and nothing of its launcher's but the stdio set above.
+    detach(&mut cmd);
 
     // NAME THE PATH. The old message was "could not spawn the shared reflow2
     // server: No such file or directory (os error 2)" and stopped there, so a
@@ -814,7 +809,171 @@ fn spawn_daemon(
             exe.display()
         )
     })?;
-    Ok(child.id())
+    let pid = child.id();
+    collect_when_it_exits(child);
+    Ok(pid)
+}
+
+/// Make `cmd` start a process that keeps nothing of the process starting it
+/// except what `cmd` hands it on purpose (its stdio, its arguments, its
+/// environment, its working directory).
+///
+/// ⭐ THIS IS THE ONE PLACE FOR IT. Every process reflow2 starts to OUTLIVE its
+/// parent goes through here; today that is the shared daemon
+/// ([`spawn_daemon`]). Every other process reflow2 starts (`git`, `kill`,
+/// `ps`, the wall-check's Python) is waited for, so it ends before its parent
+/// does. The one other long-lived process in the repo is the Stop hook's graph
+/// probe, which is Python and gets the same two guarantees from
+/// `subprocess.Popen`: `close_fds=True` (its default) and
+/// `start_new_session=True` (`tools/loop_nudge.py`).
+///
+/// # What a daemon must not keep (fact:a-spawned-shared-daemon-keeps-every-file-descriptor-its-parent-left-open-2026-10-03)
+///
+/// MEASURED 2026-10-03 on the shared build box: two daemons started by
+/// `--shared` clients in a failed test run held a `flock(1)` lock on fd 3 for
+/// about fifteen minutes, and every guarded build on the machine waited.
+///
+/// 1. **Descriptors.** `std::process::Command` closes nothing. It relies on
+///    every descriptor being close-on-exec, which is true of the ones Rust
+///    opens and FALSE of the ones this process inherited from whoever launched
+///    it: `flock(1)`'s lock, a shell's `exec 7>file`, an editor's pipe, a
+///    terminal's pty. A daemon then holds each one for its whole life
+///    (`--idle-timeout`, two hours by default), and with it the lock, or the
+///    reader waiting for EOF. So in the child, after the stdio is in place and
+///    before exec, every descriptor above stderr is marked close-on-exec. It
+///    is MARKED, not closed: `std` reports a failed exec to the parent through
+///    a close-on-exec pipe of its own, and closing that would turn a failed
+///    exec into a reported success.
+/// 2. **The session and its terminal.** `setsid`: a session and a process
+///    group of its own, and no controlling terminal. A terminal that closes
+///    does not hang it up, and it cannot take the terminal. (This replaces
+///    `process_group(0)`, which gave it a group of its own inside its
+///    launcher's session.)
+///
+/// # Windows (not done, and why)
+///
+/// reflow2 ships no Windows build (`release.yml` builds Linux and macOS), and
+/// shared mode cannot stop or replace a server there (`kill` is Unix-only
+/// above), so nothing is done for it here. The equivalents, for whoever ports
+/// it: Windows handles are inherited only when marked inheritable, and `std`
+/// opens its own non-inheritable, but it starts every child with
+/// `bInheritHandles = TRUE`, so an inheritable handle the client itself
+/// inherited is passed on. Restricting that takes
+/// `PROC_THREAD_ATTRIBUTE_HANDLE_LIST`, which stable `std` does not expose; the
+/// session half is the `DETACHED_PROCESS | CREATE_NEW_PROCESS_GROUP` creation
+/// flags (`CommandExt::creation_flags`).
+fn detach(cmd: &mut std::process::Command) {
+    #[cfg(unix)]
+    {
+        use std::os::unix::process::CommandExt;
+        // Read in the PARENT: the child may only make async-signal-safe calls.
+        let ceiling = descriptor_ceiling();
+        // SAFETY: the closure runs in the child between fork and exec. It
+        // allocates nothing, takes no lock, and calls only `setsid`, `syscall`
+        // and `fcntl`, which are async-signal-safe.
+        unsafe {
+            cmd.pre_exec(move || {
+                if libc::setsid() == -1 {
+                    return Err(std::io::Error::last_os_error());
+                }
+                close_on_exec_above_stderr(ceiling);
+                Ok(())
+            });
+        }
+    }
+    #[cfg(not(unix))]
+    let _ = cmd;
+}
+
+/// One past the highest descriptor the fallback walk in
+/// [`close_on_exec_above_stderr`] visits: the soft `RLIMIT_NOFILE`, bounded so
+/// an unlimited one does not become a walk of billions. No descriptor can be
+/// opened at or above the soft limit, so this misses only one opened before
+/// the limit was lowered.
+#[cfg(unix)]
+fn descriptor_ceiling() -> libc::c_int {
+    const BOUND: libc::rlim_t = 1 << 20;
+    let mut lim = libc::rlimit {
+        rlim_cur: 0,
+        rlim_max: 0,
+    };
+    // SAFETY: getrlimit writes only the struct it is given.
+    let cur = if unsafe { libc::getrlimit(libc::RLIMIT_NOFILE, &mut lim) } == 0 {
+        lim.rlim_cur
+    } else {
+        1024
+    };
+    cur.min(BOUND) as libc::c_int
+}
+
+/// Mark every descriptor above stderr close-on-exec, in the child.
+///
+/// Linux 5.11 and later do it in one call, for every descriptor however high
+/// (`close_range` with `CLOSE_RANGE_CLOEXEC`). Elsewhere (macOS, an older
+/// kernel) each descriptor below `ceiling` is marked in turn.
+#[cfg(unix)]
+fn close_on_exec_above_stderr(ceiling: libc::c_int) {
+    #[cfg(any(target_os = "linux", target_os = "android"))]
+    {
+        // SAFETY: a raw syscall on integers; it touches no memory.
+        let marked = unsafe {
+            libc::syscall(
+                libc::SYS_close_range,
+                3 as libc::c_uint,
+                libc::c_uint::MAX,
+                libc::CLOSE_RANGE_CLOEXEC,
+            )
+        } == 0;
+        if marked {
+            return;
+        }
+        // ENOSYS before 5.9, EINVAL for the flag before 5.11: walk instead.
+    }
+    close_on_exec_by_walking(ceiling);
+}
+
+/// The walk [`close_on_exec_above_stderr`] falls back to, and the only path on
+/// macOS: separate so a Linux test can run the path a Linux kernel never takes.
+#[cfg(unix)]
+fn close_on_exec_by_walking(ceiling: libc::c_int) {
+    for fd in 3..ceiling {
+        // SAFETY: fcntl on an integer; a closed descriptor answers EBADF.
+        unsafe {
+            let flags = libc::fcntl(fd, libc::F_GETFD);
+            if flags >= 0 && flags & libc::FD_CLOEXEC == 0 {
+                libc::fcntl(fd, libc::F_SETFD, flags | libc::FD_CLOEXEC);
+            }
+        }
+    }
+}
+
+/// Collect the daemon's exit status when it exits, so it never stays in the
+/// process table as a zombie of the session that started it.
+///
+/// MEASURED 2026-09-21 (fact:a-long-lived-shared-proxy-leaks-zombie-children-42-in-seven-days):
+/// one `--shared` client up seven days had 42 zombie `reflow2-mcp` children.
+/// They were the daemons it started: each one that exits while its client is
+/// still running (it lost the store-lock race, idled out, or was stopped or
+/// replaced) left an exit status nobody read, because `spawn_daemon` returned
+/// the pid and dropped the `Child`, and dropping a `Child` does not wait.
+///
+/// A thread blocked in `wait` costs nothing while the daemon runs. If the
+/// client exits first, the daemon is reparented and whoever adopts it collects
+/// it, which is the ordinary end of a detached process.
+fn collect_when_it_exits(mut child: std::process::Child) {
+    let pid = child.id();
+    if let Err(e) = std::thread::Builder::new()
+        .name(format!("reflow2-collect-{pid}"))
+        .spawn(move || {
+            let _ = child.wait();
+        })
+    {
+        tracing::warn!(
+            pid,
+            "could not start a thread to collect the shared server's exit status ({e}); if it \
+             exits before this session does, it stays a zombie until this session ends"
+        );
+    }
 }
 
 /// A shared server's activity clock, so it can expire when nobody is using it.
@@ -1329,6 +1488,47 @@ mod allocator_env_tests {
             None,
             "a launcher that stated MALLOC_ARENA_MAX has a reason, and silently \
              replacing it would be the tool deciding something it was not asked to"
+        );
+    }
+}
+
+#[cfg(all(test, unix))]
+mod detach_tests {
+    use super::{close_on_exec_by_walking, descriptor_ceiling};
+
+    /// The walk is the only path on macOS and on a Linux older than 5.11, and
+    /// the real-binary tests (tests/a_spawned_daemon_inherits_nothing_it_should_not.rs)
+    /// run on a kernel that never takes it. So it is run here directly: a
+    /// descriptor with close-on-exec cleared, as one inherited from a launcher
+    /// would be, comes out marked.
+    #[test]
+    fn the_walk_marks_an_inherited_descriptor_close_on_exec() {
+        use std::os::fd::AsRawFd;
+        let file = tempfile::tempfile().expect("a temporary file");
+        let fd = file.as_raw_fd();
+        // SAFETY: fcntl on a descriptor this test owns.
+        let flags = unsafe { libc::fcntl(fd, libc::F_GETFD) };
+        assert!(flags >= 0);
+        assert_eq!(
+            unsafe { libc::fcntl(fd, libc::F_SETFD, flags & !libc::FD_CLOEXEC) },
+            0
+        );
+        assert_eq!(
+            unsafe { libc::fcntl(fd, libc::F_GETFD) } & libc::FD_CLOEXEC,
+            0,
+            "the premise: the descriptor is now inheritable, as flock(1)'s is"
+        );
+
+        let ceiling = descriptor_ceiling();
+        assert!(
+            fd < ceiling,
+            "the walk's ceiling ({ceiling}) is above an open descriptor ({fd})"
+        );
+        close_on_exec_by_walking(ceiling);
+        assert_ne!(
+            unsafe { libc::fcntl(fd, libc::F_GETFD) } & libc::FD_CLOEXEC,
+            0,
+            "the walk marked the inherited descriptor close-on-exec"
         );
     }
 }
