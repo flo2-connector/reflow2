@@ -33,9 +33,11 @@ use serde_json::Value;
 const EXPORT: &str = "docs/design/proj.json";
 const PROJECT: &str = r#"{"id":"proj:p","name":"P"}"#;
 const REQ: &str = r#"{"id":"req:through-the-door","name":"Through the door","statement":"Written through the --call door, so the export must carry it."}"#;
-/// Refused by the handler AFTER its node write (an enum checked later), so the
-/// call's write unit has something to discard.
-const REFUSED: &str = r#"{"id":"req:refused","name":"Refused","statement":"Refused after its node was staged.","priority":"nope"}"#;
+/// Refused by the handler AFTER the Decision is staged (its relation names a
+/// node that does not exist), so the call's write unit has something to
+/// discard. A schema-shaped mistake would not do: since #656 it is answered
+/// before the handler runs.
+const REFUSED: &str = r#"{"id":"dec:probe-link","name":"Probe link","decision":"A decision whose relation names nothing.","related_to":[{"relation":"DEPENDS_ON","other_id":"dec:no-such-decision","evidence":"named on purpose, so the link cannot resolve"}]}"#;
 
 fn bin() -> &'static str {
     env!("CARGO_BIN_EXE_reflow2-mcp")
@@ -286,7 +288,8 @@ fn a_writing_call_in_a_configured_project_keeps_its_export_current() {
 }
 
 /// A read writes no export, and a write the tool REFUSED writes none either
-/// (its write unit discarded what it staged, so there is nothing new to carry).
+/// (its write unit discarded what it staged, so there is nothing new to carry),
+/// nor does a reply the tool marked an error.
 #[test]
 fn a_read_or_a_refused_write_leaves_the_export_untouched() {
     let p = Project::configured();
@@ -311,7 +314,7 @@ fn a_read_or_a_refused_write_leaves_the_export_untouched() {
         assert_eq!(fingerprint(&export), before, "`{tool}` rewrote the export");
     }
 
-    let o = p.call("add_requirement", REFUSED);
+    let o = p.call("add_decision", REFUSED);
     assert_eq!(o.status.code(), Some(1), "{}", err(&o));
     assert!(!err(&o).contains("export written"), "{}", err(&o));
     assert_eq!(
@@ -319,7 +322,21 @@ fn a_read_or_a_refused_write_leaves_the_export_untouched() {
         before,
         "a refused write rewrote the export"
     );
-    assert!(!holds(&export_at(&export), "req:refused"));
+    assert!(!holds(&export_at(&export), "dec:probe-link"));
+
+    // A reply the tool marks an error (exit 2) — here, an argument that does
+    // not fit the published schema — writes none either.
+    let o = p.call(
+        "add_requirement",
+        r#"{"id":"req:off-schema","name":"Off schema","statement":"Its priority is not one of the four.","priority":"nope"}"#,
+    );
+    assert_eq!(o.status.code(), Some(2), "{}", err(&o));
+    assert!(!err(&o).contains("export written"), "{}", err(&o));
+    assert_eq!(
+        fingerprint(&export),
+        before,
+        "a tool error rewrote the export"
+    );
 }
 
 /// `--export-to` with `--call` is HONOURED now: the file it names is written,
@@ -361,6 +378,47 @@ fn export_to_names_the_file_a_writing_call_keeps_and_wins_over_the_configuration
     ]);
     ok(&o);
     assert!(!unread.exists(), "a read wrote the export it was given");
+}
+
+/// `--no-export` asks a writing call for no export — for a script making many
+/// writes to a large design — and the run says the export is now behind rather
+/// than leaving that to be noticed. It cannot be combined with `--export-to`.
+#[test]
+fn no_export_writes_none_and_says_the_export_is_behind() {
+    let p = Project::configured();
+    ok(&p.call("add_project", PROJECT));
+    let export = p.path(EXPORT);
+    let before = fingerprint(&export);
+    std::thread::sleep(Duration::from_millis(1100));
+
+    let o = p.run(&["--no-export", "--call", "add_requirement", "--args", REQ]);
+    ok(&o);
+    let e = err(&o);
+    assert!(e.contains("--no-export") && e.contains("behind"), "{e}");
+    assert_eq!(
+        fingerprint(&export),
+        before,
+        "--no-export rewrote the export"
+    );
+
+    let named = p.out("named.json");
+    let o = p.run(&[
+        "--no-export",
+        "--export-to",
+        named.to_str().unwrap(),
+        "--call",
+        "add_requirement",
+        "--args",
+        r#"{"id":"req:never","name":"Never","statement":"Never written: the flags contradict."}"#,
+    ]);
+    assert_eq!(o.status.code(), Some(2), "{}", err(&o));
+    assert!(!named.exists());
+    let o = p.call("get_node", r#"{"id":"req:never"}"#);
+    ok(&o);
+    assert!(
+        json_of(&o)["node"].is_null(),
+        "a contradictory command wrote"
+    );
 }
 
 /// VS Code's own MCP file is read too, with its `${workspaceFolder}`: an agent

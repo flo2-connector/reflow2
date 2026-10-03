@@ -48,7 +48,12 @@
 //!    this call's store. The project is the folder the store sits in
 //!    (`<project>/.reflow2/graph`), the same root a server measures under.
 //! 3. Otherwise nothing is exported, and one line on stderr says so and how to
-//!    name one. Not a guess: deriving the path from export history or from a
+//!    name one.
+//!
+//! `--no-export` asks a writing call for no export, for a script making many
+//! writes to a large design: measured on reflow2's own design (6,478 nodes, a
+//! 28 MB export, release build), a write took 1.6 s alone and 6.0 s with its
+//! export. The default stays "keep it current". Not a guess: deriving the path from export history or from a
 //!    naming convention was ruled out for the server on 2026-09-12 (one export
 //!    to a scratch path would silently re-target every later write), and the
 //!    door follows the same ruling.
@@ -126,13 +131,23 @@ pub enum Found {
         root: PathBuf,
         notes: Vec<String>,
     },
+    /// The caller asked for no export (`--no-export`).
+    NotAsked,
 }
+
+/// The line a writing call prints under `--no-export`.
+pub const NOT_ASKED: &str = "reflow2: export NOT written (--no-export): the committed export is \
+     now behind this write. One writing call without --no-export, or `--call export_graph`, \
+     brings it current.";
 
 /// Which file a writing call to the store at `graph_path` keeps current.
 ///
 /// `Err` is a refusal to print before anything is opened: the project's
 /// configurations disagree about which file it is.
-pub fn find(graph_path: &str, export_to: Option<&str>) -> Result<Found, String> {
+pub fn find(graph_path: &str, export_to: Option<&str>, no_export: bool) -> Result<Found, String> {
+    if no_export {
+        return Ok(Found::NotAsked);
+    }
     if let Some(path) = export_to {
         return Ok(Found::Target(Target {
             path: path.to_string(),
@@ -581,6 +596,7 @@ mod tests {
             find(
                 &root.join(".reflow2/graph").display().to_string(),
                 Some("out.json"),
+                false,
             )
             .unwrap(),
         );

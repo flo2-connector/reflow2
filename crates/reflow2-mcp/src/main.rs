@@ -97,6 +97,17 @@ struct Cli {
     #[arg(long = "export-to", value_name = "FILE")]
     export_to: Option<String>,
 
+    /// With `--call`: a writing call does NOT write the export afterwards, and
+    /// says the export is now behind. For a script making many writes to a
+    /// LARGE design, where each export costs seconds — measured on reflow2's
+    /// own design (6,478 nodes, a 28 MB export), a write took 1.6 s alone and
+    /// 6.0 s with its export. Finish with one writing call without it, or with
+    /// `--call export_graph`. Without this flag a writing call keeps the export
+    /// current, which is the default because a forgotten export is the loss
+    /// the write-through exists to end.
+    #[arg(long = "no-export", conflicts_with = "export_to")]
+    no_export: bool,
+
     /// Measure registered files under this directory instead of the one the
     /// store sits in (`<root>/.reflow2/graph` → `<root>`).
     ///
@@ -682,9 +693,10 @@ struct Cli {
     /// project's MCP configuration (`.mcp.json`, `opencode.json`,
     /// `.vscode/mcp.json`, `.grok/config.toml`) names for this design. One line
     /// on stderr says where it was written; with no file named anywhere it says
-    /// that instead. A read writes no export, and neither does a refused call.
-    /// Exit 3 when the write LANDED but the export could not be written (stderr
-    /// says why) — do not repeat that write.
+    /// that instead. A read writes no export, and neither does a refused call;
+    /// `--no-export` asks a writing call for none. Exit 3 when the write LANDED
+    /// but the export could not be written (stderr says why) — do not repeat
+    /// that write.
     #[arg(long, value_name = "TOOL")]
     call: Option<String>,
 
@@ -953,6 +965,9 @@ async fn call_one_tool(cli: &Cli, tool: &str, prepared: PreparedCall) -> anyhow:
             }
             (None, Some(reflow2_mcp::call_export::Found::Unconfigured { root, notes })) => {
                 eprintln!("{}", reflow2_mcp::call_export::unconfigured(root, notes));
+            }
+            (None, Some(reflow2_mcp::call_export::Found::NotAsked)) => {
+                eprintln!("{}", reflow2_mcp::call_export::NOT_ASKED);
             }
             _ => {}
         }
@@ -1267,8 +1282,12 @@ async fn main() -> anyhow::Result<()> {
             && access == Access::Writes
         {
             prepared.export = Some(
-                reflow2_mcp::call_export::find(&cli.graph_path, cli.export_to.as_deref())
-                    .map_err(|why| anyhow::anyhow!("{what} was refused: {why}"))?,
+                reflow2_mcp::call_export::find(
+                    &cli.graph_path,
+                    cli.export_to.as_deref(),
+                    cli.no_export,
+                )
+                .map_err(|why| anyhow::anyhow!("{what} was refused: {why}"))?,
             );
         }
     }

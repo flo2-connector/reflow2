@@ -167,8 +167,8 @@ impl Mode {
                 "only_if_present",
                 "accept_newer",
             ],
-            // `export_to`: a writing call keeps that file current before it
-            // exits (`crate::call_export`).
+            // `export_to` / `no_export`: which file a writing call keeps
+            // current before it exits, or none (`crate::call_export`).
             Mode::Call => &[
                 "graph_path",
                 "store_memory",
@@ -177,6 +177,7 @@ impl Mode {
                 "tree_root",
                 "call_args",
                 "export_to",
+                "no_export",
             ],
             // File-pure: no store is opened and nothing is written but stdout.
             Mode::DiffFiles | Mode::Merge => &["read_only"],
@@ -215,6 +216,9 @@ fn long(arg: &Arg) -> String {
 /// would work instead.
 fn why_not(id: &str, mode: Mode) -> String {
     match (id, mode) {
+        ("no_export", _) => "--no-export tells a writing `--call` not to write the export \
+             afterwards; this mode keeps no export current, so there is nothing to turn off."
+            .to_string(),
         ("export_to", _) => "--export-to is the write-through of a server that keeps running, \
              and a writing `--call` keeps it current before it exits; this mode does neither, so \
              it would write nothing."

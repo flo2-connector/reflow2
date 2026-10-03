@@ -561,6 +561,7 @@ fn honoured(mode: &str) -> &'static [&'static str] {
             "--tree-root",
             "--args",
             "--export-to",
+            "--no-export",
         ],
         "--diff BASE OTHER" | "--merge" => &["--read-only"],
         "--merge-apply" => &["--read-only", "--resolutions"],

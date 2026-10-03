@@ -267,7 +267,9 @@ the day, stopping is a perfectly good answer. Everything decided so far is alrea
   `.grok/config.toml`, which `reflow2 init` writes) names for this design. One line on stderr
   says where it was written, or that no file is named anywhere. A read, or a write the tool
   refused, writes no export. **Exit 3** means the write landed but the export could not be
-  written (stderr says why): fix the file, and do not repeat the write.
+  written (stderr says why): fix the file, and do not repeat the write. Each write then costs an
+  export — seconds on a very large design — so a script making many writes can pass
+  `--no-export` on each and finish with one `--call export_graph`.
 - **Gate CI on the committed export.** `tools/reflow2_check.py` (in the kit) rehashes every
   registered artifact against the working tree and runs the gap detectors, exiting non-zero on
   unaccepted drift or a serious open gap — so the design is checked on every commit, not once a
