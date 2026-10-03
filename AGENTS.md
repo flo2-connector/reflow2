@@ -82,11 +82,13 @@ python3 tools/test_init.py
 
 # Call ONE tool from the shell — the door a build script or a Makefile uses.
 # Prints the reply's JSON on stdout; a refusal goes to stderr with exit 1; a
-# reply the tool marked as an error exits 2. Read-only tools work while a server
-# holds the graph (best-effort snapshot, stderr says so); writers refuse then.
-# A writer that succeeds writes the export before exiting — `--export-to`, else
-# the one the project's MCP config names — and stderr says where; exit 3 means
-# the write landed and the export could not be written.
+# reply the tool marked as an error exits 2. Arguments that do not fit the
+# tool's published schema are such a reply (exit 2, naming the tool and the
+# field path); exit 1 is a tool's own rule refusing. Read-only tools work while
+# a server holds the graph (best-effort snapshot, stderr says so); writers
+# refuse then. A writer that succeeds writes the export before exiting —
+# `--export-to`, else the one the project's MCP config names — and stderr says
+# where; exit 3 means the write landed and the export could not be written.
 ./target/release/reflow2-mcp --graph-path .reflow2/graph --call graph_report
 ./target/release/reflow2-mcp --graph-path .reflow2/graph --call budget_report --args '{"constraint_id":"con:mass"}'
 
@@ -344,7 +346,7 @@ python3 tools/validate_schema.py                         # after any schema/*.ya
 python3 tools/check_discrimination_rules.py               # the schema's discrimination rules vs capture-intent's routing table — one contract, two records
 python3 tools/smoke_mcp.py                               # after any tool-surface change
 python3 tools/empty_speaks.py                            # an empty answer says WHICH empty — no bare zero on the wire
-python3 tools/refusal_speaks.py                          # a missing argument names the TOOL and what it wants — no bare serde string
+python3 tools/refusal_speaks.py                          # every argument refusal names the TOOL and the field path — probes generated from the schemas
 python3 tools/toolsnap.py                                # tool schemas vs committed goldens; --update to bless
 python3 tools/replies_are_bounded.py                     # a reply that outgrows the budget must offer a bound — and this FAILS if nothing overflowed
 python3 tools/a_reply_is_sent_once.py                    # every structured reply carries ONE payload and ONE signpost, asked of the whole surface
