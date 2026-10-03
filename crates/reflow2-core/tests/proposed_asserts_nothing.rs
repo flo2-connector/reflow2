@@ -442,6 +442,11 @@ fn every_category_states_whether_it_reads_proposed() {
             // adjacent categories all turn on a node's confidence in itself,
             // and this one turns on whether anybody read a file.
             HealCategory::UntriagedReport => false,
+            // Does NOT read it: whether the schema accepts a stored item is a
+            // fact about the store and the vocabulary, not about the item's
+            // confidence in itself. A `proposed` Decision holding a value the
+            // schema no longer declares makes the export just as unimportable.
+            HealCategory::RefusedBySchema => false,
         };
         // The assertion is not the value — it is that somebody wrote one down.
         // Both answers are legitimate; an unconsidered category is not.

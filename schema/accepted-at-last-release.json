@@ -1,0 +1,2667 @@
+{
+  "reflow2_version": "0.77.0",
+  "node_types": {
+    "Actor": {
+      "actor_type": {
+        "type": "enum",
+        "values": [
+          "device",
+          "external_system",
+          "operator",
+          "service",
+          "stakeholder",
+          "user"
+        ]
+      },
+      "description": {
+        "type": "string"
+      },
+      "name": {
+        "type": "string",
+        "required": true,
+        "refuses_null": true
+      }
+    },
+    "Anchor": {
+      "checksum": {
+        "type": "string"
+      },
+      "created_at": {
+        "type": "string"
+      },
+      "design_intent": {
+        "type": "string"
+      },
+      "key_decisions": {
+        "type": "string"
+      },
+      "name": {
+        "type": "string",
+        "required": true,
+        "refuses_null": true
+      }
+    },
+    "Artifact": {
+      "artifact_type": {
+        "type": "enum",
+        "values": [
+          "asset",
+          "binary",
+          "code",
+          "config",
+          "data",
+          "diagram",
+          "document",
+          "drawing",
+          "model",
+          "spec",
+          "test",
+          "test_result"
+        ]
+      },
+      "audience": {
+        "type": "enum",
+        "values": [
+          "consumer",
+          "internal"
+        ]
+      },
+      "checksum": {
+        "type": "string"
+      },
+      "checksum_basis": {
+        "type": "string"
+      },
+      "created_at": {
+        "type": "string"
+      },
+      "description": {
+        "type": "string"
+      },
+      "granularity": {
+        "type": "enum",
+        "values": [
+          "atomic",
+          "opaque",
+          "pending_expansion"
+        ]
+      },
+      "last_confirmed_at": {
+        "type": "string"
+      },
+      "location": {
+        "type": "string"
+      },
+      "name": {
+        "type": "string",
+        "required": true,
+        "refuses_null": true
+      },
+      "signature": {
+        "type": "string"
+      },
+      "status": {
+        "type": "enum",
+        "values": [
+          "in_progress",
+          "planned",
+          "realized",
+          "verified"
+        ]
+      },
+      "volatility": {
+        "type": "enum",
+        "values": [
+          "append_only",
+          "living",
+          "stable"
+        ]
+      }
+    },
+    "Capability": {
+      "aliases": {
+        "type": "list:string"
+      },
+      "capability_type": {
+        "type": "string"
+      },
+      "delivery": {
+        "type": "enum",
+        "values": [
+          "artifact",
+          "model"
+        ]
+      },
+      "description": {
+        "type": "string",
+        "required": true,
+        "refuses_null": true
+      },
+      "distinct_from": {
+        "type": "list:string"
+      },
+      "inputs": {
+        "type": "string"
+      },
+      "name": {
+        "type": "string",
+        "required": true,
+        "refuses_null": true
+      },
+      "outputs": {
+        "type": "string"
+      },
+      "provenance": {
+        "type": "enum",
+        "values": [
+          "authored",
+          "healed",
+          "imported",
+          "inferred",
+          "planned",
+          "reconciled"
+        ]
+      },
+      "status": {
+        "type": "enum",
+        "values": [
+          "in_progress",
+          "planned",
+          "realized",
+          "verified"
+        ]
+      },
+      "tier": {
+        "type": "enum",
+        "values": [
+          "operational",
+          "strategic",
+          "tactical"
+        ]
+      }
+    },
+    "ChangeEvent": {
+      "change_type": {
+        "type": "enum",
+        "values": [
+          "baseline_established",
+          "constraint_change",
+          "decision_settled",
+          "defect_fix",
+          "deprecation",
+          "documentation",
+          "environment_change",
+          "new_feature",
+          "performance_optimization",
+          "refactor",
+          "requirement_creep",
+          "resync",
+          "scope_change",
+          "test_failure_fix"
+        ],
+        "required": true,
+        "refuses_null": true
+      },
+      "commits": {
+        "type": "string"
+      },
+      "detected_at": {
+        "type": "string"
+      },
+      "name": {
+        "type": "string",
+        "required": true,
+        "refuses_null": true
+      },
+      "rationale": {
+        "type": "string"
+      },
+      "rationale_basis": {
+        "type": "enum",
+        "values": [
+          "contemporaneous",
+          "recalled",
+          "unknown"
+        ]
+      },
+      "repair": {
+        "type": "enum",
+        "values": [
+          "contained_symptom",
+          "corrected_cause"
+        ]
+      },
+      "stands_in_for": {
+        "type": "string"
+      },
+      "subject": {
+        "type": "enum",
+        "values": [
+          "record",
+          "system"
+        ]
+      },
+      "summary": {
+        "type": "string"
+      }
+    },
+    "Component": {
+      "aliases": {
+        "type": "list:string"
+      },
+      "distinct_from": {
+        "type": "list:string"
+      },
+      "kind": {
+        "type": "enum",
+        "values": [
+          "assembly",
+          "layer",
+          "module",
+          "part",
+          "section",
+          "service",
+          "subsystem"
+        ]
+      },
+      "level": {
+        "type": "string"
+      },
+      "location": {
+        "type": "string"
+      },
+      "name": {
+        "type": "string",
+        "required": true,
+        "refuses_null": true
+      },
+      "provenance": {
+        "type": "enum",
+        "values": [
+          "authored",
+          "healed",
+          "imported",
+          "inferred",
+          "planned",
+          "reconciled"
+        ]
+      },
+      "purpose": {
+        "type": "string",
+        "required": true,
+        "refuses_null": true
+      },
+      "status": {
+        "type": "enum",
+        "values": [
+          "in_progress",
+          "planned",
+          "realized",
+          "verified"
+        ]
+      },
+      "tier": {
+        "type": "enum",
+        "values": [
+          "operational",
+          "strategic",
+          "tactical"
+        ]
+      }
+    },
+    "Constraint": {
+      "category": {
+        "type": "enum",
+        "values": [
+          "budget",
+          "business",
+          "kpp",
+          "operational",
+          "physical",
+          "regulatory",
+          "schedule",
+          "technical"
+        ]
+      },
+      "composition": {
+        "type": "enum",
+        "values": [
+          "path",
+          "sum"
+        ]
+      },
+      "concern": {
+        "type": "enum",
+        "values": [
+          "core",
+          "cost",
+          "environmental",
+          "logistics",
+          "manufacturability",
+          "other",
+          "safety",
+          "schedule",
+          "security",
+          "sustainment",
+          "usability"
+        ]
+      },
+      "direction": {
+        "type": "enum",
+        "values": [
+          "maximum",
+          "minimum"
+        ]
+      },
+      "distinct_from": {
+        "type": "list:string"
+      },
+      "limit": {
+        "type": "float"
+      },
+      "limit_basis": {
+        "type": "enum",
+        "values": [
+          "asserted",
+          "computed",
+          "measured"
+        ]
+      },
+      "limit_measured_at": {
+        "type": "string"
+      },
+      "limit_source": {
+        "type": "string"
+      },
+      "margin": {
+        "type": "float"
+      },
+      "name": {
+        "type": "string",
+        "required": true,
+        "refuses_null": true
+      },
+      "objective": {
+        "type": "float"
+      },
+      "priority": {
+        "type": "enum",
+        "values": [
+          "critical",
+          "high",
+          "low",
+          "medium"
+        ]
+      },
+      "quantity": {
+        "type": "string"
+      },
+      "rationale": {
+        "type": "string"
+      },
+      "statement": {
+        "type": "string",
+        "required": true,
+        "refuses_null": true
+      },
+      "unit": {
+        "type": "string"
+      }
+    },
+    "Contributor": {
+      "description": {
+        "type": "string"
+      },
+      "handle": {
+        "type": "string"
+      },
+      "kind": {
+        "type": "enum",
+        "values": [
+          "automated_agent",
+          "organization",
+          "person"
+        ]
+      },
+      "name": {
+        "type": "string",
+        "required": true,
+        "refuses_null": true
+      }
+    },
+    "Decision": {
+      "alternatives": {
+        "type": "string"
+      },
+      "chose": {
+        "type": "string"
+      },
+      "decision": {
+        "type": "string",
+        "required": true,
+        "refuses_null": true
+      },
+      "distinct_from": {
+        "type": "list:string"
+      },
+      "kind": {
+        "type": "enum",
+        "values": [
+          "choice",
+          "exploratory"
+        ]
+      },
+      "name": {
+        "type": "string",
+        "required": true,
+        "refuses_null": true
+      },
+      "no_relation_note": {
+        "type": "string"
+      },
+      "quality_target": {
+        "type": "enum",
+        "values": [
+          "coupling",
+          "maintainability",
+          "maturity",
+          "observability",
+          "performance",
+          "reliability",
+          "scalability",
+          "security",
+          "testability"
+        ]
+      },
+      "rationale": {
+        "type": "string"
+      },
+      "status": {
+        "type": "enum",
+        "values": [
+          "accepted",
+          "deferred",
+          "proposed",
+          "rejected",
+          "superseded"
+        ]
+      }
+    },
+    "DesignEpoch": {
+      "checksum": {
+        "type": "string"
+      },
+      "created_at": {
+        "type": "string"
+      },
+      "description": {
+        "type": "string"
+      },
+      "epoch_type": {
+        "type": "enum",
+        "values": [
+          "baseline",
+          "incident_response",
+          "milestone",
+          "release_cut",
+          "revision"
+        ]
+      },
+      "name": {
+        "type": "string",
+        "required": true,
+        "refuses_null": true
+      },
+      "sequence": {
+        "type": "int"
+      },
+      "status": {
+        "type": "enum",
+        "values": [
+          "arrived",
+          "planned"
+        ]
+      }
+    },
+    "DesignRule": {
+      "category": {
+        "type": "string"
+      },
+      "distinct_from": {
+        "type": "list:string"
+      },
+      "enforced": {
+        "type": "bool"
+      },
+      "name": {
+        "type": "string",
+        "required": true,
+        "refuses_null": true
+      },
+      "statement": {
+        "type": "string",
+        "required": true,
+        "refuses_null": true
+      },
+      "steps": {
+        "type": "list:string"
+      },
+      "units": {
+        "type": "list:string"
+      }
+    },
+    "DimensionAssessment": {
+      "assessed_at": {
+        "type": "string"
+      },
+      "confidence": {
+        "type": "float",
+        "range": [
+          0.0,
+          1.0
+        ]
+      },
+      "description": {
+        "type": "string"
+      },
+      "dimension": {
+        "type": "enum",
+        "values": [
+          "coupling",
+          "maintainability",
+          "maturity",
+          "observability",
+          "performance",
+          "reliability",
+          "scalability",
+          "security",
+          "testability"
+        ],
+        "required": true,
+        "refuses_null": true
+      },
+      "evidence": {
+        "type": "string"
+      },
+      "evidence_count": {
+        "type": "int"
+      },
+      "score": {
+        "type": "float",
+        "range": [
+          0.0,
+          1.0
+        ]
+      },
+      "target_id": {
+        "type": "string",
+        "required": true,
+        "refuses_null": true
+      },
+      "target_type": {
+        "type": "string"
+      }
+    },
+    "DimensionObservation": {
+      "dimension": {
+        "type": "enum",
+        "values": [
+          "coupling",
+          "maintainability",
+          "maturity",
+          "observability",
+          "performance",
+          "reliability",
+          "scalability",
+          "security",
+          "testability"
+        ],
+        "required": true,
+        "refuses_null": true
+      },
+      "observed_at": {
+        "type": "string"
+      },
+      "score": {
+        "type": "float",
+        "range": [
+          0.0,
+          1.0
+        ]
+      },
+      "source_fragment_id": {
+        "type": "string"
+      },
+      "target_id": {
+        "type": "string",
+        "required": true,
+        "refuses_null": true
+      },
+      "target_type": {
+        "type": "string"
+      }
+    },
+    "DriftEvent": {
+      "detected_at": {
+        "type": "string"
+      },
+      "drift_type": {
+        "type": "enum",
+        "values": [
+          "checksum_change",
+          "deployment_contradicted",
+          "deployment_missing",
+          "deployment_undeclared",
+          "missing_artifact",
+          "spec_mismatch",
+          "status_mismatch",
+          "undocumented_addition"
+        ]
+      },
+      "name": {
+        "type": "string",
+        "required": true,
+        "refuses_null": true
+      },
+      "resolved": {
+        "type": "bool"
+      },
+      "severity": {
+        "type": "enum",
+        "values": [
+          "critical",
+          "high",
+          "low",
+          "medium"
+        ]
+      },
+      "summary": {
+        "type": "string"
+      }
+    },
+    "Environment": {
+      "description": {
+        "type": "string"
+      },
+      "env_type": {
+        "type": "enum",
+        "values": [
+          "development",
+          "field",
+          "lab",
+          "physical_site",
+          "production",
+          "simulation",
+          "staging"
+        ]
+      },
+      "location": {
+        "type": "string"
+      },
+      "name": {
+        "type": "string",
+        "required": true,
+        "refuses_null": true
+      }
+    },
+    "EnvironmentRule": {
+      "authority": {
+        "type": "string"
+      },
+      "checker": {
+        "type": "string"
+      },
+      "effects": {
+        "type": "string"
+      },
+      "jurisdiction": {
+        "type": "string"
+      },
+      "mandatory": {
+        "type": "bool"
+      },
+      "name": {
+        "type": "string",
+        "required": true,
+        "refuses_null": true
+      },
+      "priority": {
+        "type": "int"
+      },
+      "reference": {
+        "type": "string"
+      },
+      "rule_type": {
+        "type": "enum",
+        "values": [
+          "building_code",
+          "constraint",
+          "environmental",
+          "interface",
+          "physical_law",
+          "regulatory",
+          "safety",
+          "standard",
+          "zoning"
+        ]
+      },
+      "statement": {
+        "type": "string",
+        "required": true,
+        "refuses_null": true
+      }
+    },
+    "Flow": {
+      "aliases": {
+        "type": "list:string"
+      },
+      "description": {
+        "type": "string"
+      },
+      "flow_type": {
+        "type": "enum",
+        "values": [
+          "capture",
+          "control_flow",
+          "data_flow",
+          "decision_flow",
+          "generation",
+          "process",
+          "retrieval"
+        ]
+      },
+      "name": {
+        "type": "string",
+        "required": true,
+        "refuses_null": true
+      },
+      "tier": {
+        "type": "enum",
+        "values": [
+          "cross_cutting",
+          "operational",
+          "strategic",
+          "tactical"
+        ]
+      }
+    },
+    "Fragment": {
+      "content_ref": {
+        "type": "string"
+      },
+      "created_at": {
+        "type": "string"
+      },
+      "created_by": {
+        "type": "string"
+      },
+      "fragment_type": {
+        "type": "enum",
+        "values": [
+          "bug_fix",
+          "config",
+          "design",
+          "documentation",
+          "feedback",
+          "implementation",
+          "note",
+          "pseudocode",
+          "refactor",
+          "review",
+          "spec",
+          "test"
+        ]
+      },
+      "intent": {
+        "type": "string"
+      },
+      "note_kind": {
+        "type": "enum",
+        "values": [
+          "author",
+          "director",
+          "reviewer"
+        ]
+      },
+      "phase": {
+        "type": "enum",
+        "values": [
+          "P0",
+          "P1",
+          "P2",
+          "P3",
+          "P4",
+          "P5",
+          "PM"
+        ]
+      },
+      "provenance": {
+        "type": "enum",
+        "values": [
+          "authored",
+          "healed",
+          "imported",
+          "inferred",
+          "planned",
+          "reconciled"
+        ]
+      },
+      "status": {
+        "type": "enum",
+        "values": [
+          "ingested",
+          "integrated",
+          "superseded"
+        ]
+      },
+      "summary": {
+        "type": "string"
+      },
+      "title": {
+        "type": "string",
+        "required": true,
+        "refuses_null": true
+      }
+    },
+    "Interface": {
+      "aliases": {
+        "type": "list:string"
+      },
+      "auth": {
+        "type": "enum",
+        "values": [
+          "api_key",
+          "basic",
+          "jwt",
+          "kerberos",
+          "mtls",
+          "none",
+          "oauth2",
+          "physical",
+          "signature",
+          "unspecified"
+        ]
+      },
+      "description": {
+        "type": "string"
+      },
+      "designation": {
+        "type": "enum",
+        "values": [
+          "both",
+          "internal",
+          "published",
+          "required"
+        ]
+      },
+      "endpoint": {
+        "type": "string"
+      },
+      "error_model": {
+        "type": "string"
+      },
+      "medium": {
+        "type": "enum",
+        "values": [
+          "REST",
+          "cli",
+          "data",
+          "electrical",
+          "event",
+          "gRPC",
+          "graphql",
+          "human",
+          "json_rpc",
+          "library",
+          "mechanical",
+          "procedural",
+          "unspecified"
+        ]
+      },
+      "name": {
+        "type": "string",
+        "required": true,
+        "refuses_null": true
+      },
+      "operations": {
+        "type": "string"
+      },
+      "paradigm": {
+        "type": "enum",
+        "values": [
+          "asynchronous",
+          "batch",
+          "streaming",
+          "synchronous",
+          "unspecified"
+        ]
+      },
+      "payload_format": {
+        "type": "enum",
+        "values": [
+          "avro",
+          "binary",
+          "csv",
+          "form",
+          "json",
+          "msgpack",
+          "none",
+          "protobuf",
+          "text",
+          "unspecified",
+          "xml"
+        ]
+      },
+      "payload_schema": {
+        "type": "string"
+      },
+      "provenance": {
+        "type": "enum",
+        "values": [
+          "authored",
+          "healed",
+          "imported",
+          "inferred",
+          "planned",
+          "reconciled"
+        ]
+      },
+      "spec": {
+        "type": "string"
+      },
+      "transport_security": {
+        "type": "enum",
+        "values": [
+          "air_gapped",
+          "ipsec",
+          "mtls",
+          "none",
+          "physical",
+          "tls",
+          "unspecified",
+          "vpn"
+        ]
+      },
+      "units": {
+        "type": "list:string"
+      }
+    },
+    "Project": {
+      "closure_legs": {
+        "type": "list:string"
+      },
+      "closure_threshold": {
+        "type": "float"
+      },
+      "created_at": {
+        "type": "string"
+      },
+      "decomposition_levels": {
+        "type": "list:string"
+      },
+      "description": {
+        "type": "string"
+      },
+      "domain": {
+        "type": "string"
+      },
+      "mirror_content_hash": {
+        "type": "string"
+      },
+      "mirror_nodes": {
+        "type": "string"
+      },
+      "mirror_of": {
+        "type": "string"
+      },
+      "mirrored_at": {
+        "type": "string"
+      },
+      "mode": {
+        "type": "enum",
+        "values": [
+          "flexible",
+          "rigid"
+        ]
+      },
+      "name": {
+        "type": "string",
+        "required": true,
+        "refuses_null": true
+      },
+      "objective": {
+        "type": "string"
+      },
+      "status": {
+        "type": "enum",
+        "values": [
+          "active",
+          "archived",
+          "paused"
+        ]
+      }
+    },
+    "Question": {
+      "answer": {
+        "type": "string"
+      },
+      "answered_at": {
+        "type": "string"
+      },
+      "answered_by": {
+        "type": "string"
+      },
+      "answered_via": {
+        "type": "string"
+      },
+      "asked_at": {
+        "type": "string"
+      },
+      "asked_of": {
+        "type": "string"
+      },
+      "batch": {
+        "type": "string"
+      },
+      "batch_position": {
+        "type": "int"
+      },
+      "context_setter": {
+        "type": "string"
+      },
+      "gap_id": {
+        "type": "string",
+        "required": true,
+        "refuses_null": true
+      },
+      "prompt_id": {
+        "type": "string"
+      },
+      "question": {
+        "type": "string",
+        "required": true,
+        "refuses_null": true
+      },
+      "rephrase_degraded": {
+        "type": "bool"
+      },
+      "status": {
+        "type": "enum",
+        "values": [
+          "answered",
+          "asked",
+          "withdrawn"
+        ]
+      }
+    },
+    "ReadinessAssessment": {
+      "assessed_at": {
+        "type": "string"
+      },
+      "evidence": {
+        "type": "string"
+      },
+      "kind": {
+        "type": "enum",
+        "values": [
+          "MRL",
+          "TRL"
+        ],
+        "required": true,
+        "refuses_null": true
+      },
+      "level": {
+        "type": "int",
+        "required": true,
+        "refuses_null": true
+      },
+      "target_id": {
+        "type": "string",
+        "required": true,
+        "refuses_null": true
+      },
+      "target_type": {
+        "type": "string"
+      }
+    },
+    "Release": {
+      "created_at": {
+        "type": "string"
+      },
+      "description": {
+        "type": "string"
+      },
+      "name": {
+        "type": "string",
+        "required": true,
+        "refuses_null": true
+      },
+      "status": {
+        "type": "enum",
+        "values": [
+          "built",
+          "deployed",
+          "planned",
+          "retired"
+        ]
+      },
+      "unit_type": {
+        "type": "enum",
+        "values": [
+          "binary",
+          "bundle",
+          "container",
+          "package",
+          "physical_build",
+          "publication"
+        ]
+      },
+      "version": {
+        "type": "string"
+      }
+    },
+    "Requirement": {
+      "aliases": {
+        "type": "list:string"
+      },
+      "concern": {
+        "type": "enum",
+        "values": [
+          "core",
+          "cost",
+          "environmental",
+          "logistics",
+          "manufacturability",
+          "other",
+          "safety",
+          "schedule",
+          "security",
+          "sustainment",
+          "usability"
+        ]
+      },
+      "designation": {
+        "type": "enum",
+        "values": [
+          "internal",
+          "published"
+        ]
+      },
+      "distinct_from": {
+        "type": "list:string"
+      },
+      "kind": {
+        "type": "enum",
+        "values": [
+          "business",
+          "functional",
+          "nonfunctional",
+          "quality"
+        ]
+      },
+      "lineage": {
+        "type": "enum",
+        "values": [
+          "decomposed",
+          "derived",
+          "original"
+        ]
+      },
+      "name": {
+        "type": "string",
+        "required": true,
+        "refuses_null": true
+      },
+      "priority": {
+        "type": "enum",
+        "values": [
+          "critical",
+          "high",
+          "low",
+          "medium"
+        ]
+      },
+      "provenance": {
+        "type": "enum",
+        "values": [
+          "authored",
+          "healed",
+          "imported",
+          "inferred",
+          "planned",
+          "reconciled"
+        ]
+      },
+      "rationale": {
+        "type": "string"
+      },
+      "source": {
+        "type": "string"
+      },
+      "statement": {
+        "type": "string",
+        "required": true,
+        "refuses_null": true
+      },
+      "status": {
+        "type": "enum",
+        "values": [
+          "accepted",
+          "deferred",
+          "dropped",
+          "met",
+          "proposed"
+        ]
+      }
+    },
+    "Resource": {
+      "components": {
+        "type": "string"
+      },
+      "declared_in": {
+        "type": "string"
+      },
+      "description": {
+        "type": "string"
+      },
+      "features": {
+        "type": "string"
+      },
+      "name": {
+        "type": "string",
+        "required": true,
+        "refuses_null": true
+      },
+      "provider": {
+        "type": "string"
+      },
+      "resource_type": {
+        "type": "string"
+      },
+      "version": {
+        "type": "string"
+      }
+    },
+    "Snapshot": {
+      "captured_at": {
+        "type": "string"
+      },
+      "edges": {
+        "type": "string"
+      },
+      "state": {
+        "type": "string"
+      },
+      "target_id": {
+        "type": "string",
+        "required": true,
+        "refuses_null": true
+      },
+      "target_type": {
+        "type": "string"
+      }
+    },
+    "TemporalFact": {
+      "basis": {
+        "type": "enum",
+        "values": [
+          "forecast",
+          "measured"
+        ]
+      },
+      "confidence": {
+        "type": "float",
+        "range": [
+          0.0,
+          1.0
+        ]
+      },
+      "fact_type": {
+        "type": "string"
+      },
+      "name": {
+        "type": "string"
+      },
+      "source": {
+        "type": "string"
+      },
+      "statement": {
+        "type": "string"
+      },
+      "steps": {
+        "type": "list:string"
+      },
+      "subject_id": {
+        "type": "string",
+        "required": true,
+        "refuses_null": true
+      },
+      "valid_from": {
+        "type": "string"
+      },
+      "valid_to": {
+        "type": "string"
+      },
+      "value": {
+        "type": "string"
+      }
+    },
+    "Verification": {
+      "description": {
+        "type": "string"
+      },
+      "findings": {
+        "type": "string"
+      },
+      "kind": {
+        "type": "enum",
+        "values": [
+          "validation",
+          "verification"
+        ]
+      },
+      "last_failed_run_at": {
+        "type": "string"
+      },
+      "last_reconciled_at": {
+        "type": "string"
+      },
+      "last_reconciled_outcome": {
+        "type": "enum",
+        "values": [
+          "failed",
+          "passed",
+          "skipped"
+        ]
+      },
+      "last_run_at": {
+        "type": "string"
+      },
+      "level": {
+        "type": "enum",
+        "values": [
+          "acceptance",
+          "integration",
+          "system",
+          "unit"
+        ]
+      },
+      "location": {
+        "type": "string"
+      },
+      "method": {
+        "type": "enum",
+        "values": [
+          "analysis",
+          "demonstration",
+          "inspection",
+          "measurement",
+          "observation",
+          "review",
+          "simulation",
+          "test"
+        ]
+      },
+      "name": {
+        "type": "string",
+        "required": true,
+        "refuses_null": true
+      },
+      "status": {
+        "type": "enum",
+        "values": [
+          "blocked",
+          "failing",
+          "passing",
+          "planned",
+          "skipped",
+          "superseded"
+        ]
+      }
+    }
+  },
+  "edge_types": {
+    "ABOUT_ENTITY": {
+      "from": [
+        "TemporalFact"
+      ],
+      "to": [
+        "*"
+      ]
+    },
+    "ACTS_FOR": {
+      "from": [
+        "Contributor"
+      ],
+      "to": [
+        "Contributor"
+      ],
+      "properties": {
+        "route": {
+          "type": "string"
+        }
+      }
+    },
+    "ALLOCATED_TO": {
+      "from": [
+        "Capability"
+      ],
+      "to": [
+        "Component"
+      ],
+      "properties": {
+        "data_volume": {
+          "type": "float"
+        },
+        "frequency": {
+          "type": "float"
+        },
+        "note": {
+          "type": "string"
+        },
+        "weight": {
+          "type": "float",
+          "range": [
+            0.0,
+            1.0
+          ]
+        },
+        "weight_basis": {
+          "type": "enum",
+          "values": [
+            "estimated",
+            "evidence",
+            "measured"
+          ]
+        }
+      }
+    },
+    "ANNOTATES": {
+      "from": [
+        "Fragment"
+      ],
+      "to": [
+        "*"
+      ],
+      "properties": {
+        "note_kind": {
+          "type": "enum",
+          "values": [
+            "author",
+            "director",
+            "reviewer"
+          ]
+        },
+        "resolved": {
+          "type": "bool"
+        }
+      }
+    },
+    "ANSWERS": {
+      "from": [
+        "*"
+      ],
+      "to": [
+        "Question"
+      ],
+      "properties": {
+        "note": {
+          "type": "string"
+        }
+      }
+    },
+    "ANTICIPATES": {
+      "from": [
+        "*"
+      ],
+      "to": [
+        "*"
+      ],
+      "properties": {
+        "confidence": {
+          "type": "float",
+          "range": [
+            0.0,
+            1.0
+          ]
+        }
+      }
+    },
+    "ASKS_ABOUT": {
+      "from": [
+        "Question"
+      ],
+      "to": [
+        "*"
+      ],
+      "properties": {
+        "note": {
+          "type": "string"
+        }
+      }
+    },
+    "ASSESSED_ON": {
+      "from": [
+        "DimensionAssessment"
+      ],
+      "to": [
+        "*"
+      ]
+    },
+    "AT_EPOCH": {
+      "from": [
+        "*"
+      ],
+      "to": [
+        "DesignEpoch"
+      ]
+    },
+    "AUTHORED_BY": {
+      "from": [
+        "*"
+      ],
+      "to": [
+        "Contributor"
+      ],
+      "properties": {
+        "approved_at": {
+          "type": "string"
+        },
+        "approved_via": {
+          "type": "list:string"
+        },
+        "authored_at": {
+          "type": "string"
+        },
+        "authored_via": {
+          "type": "list:string"
+        },
+        "reviewed_at": {
+          "type": "string"
+        },
+        "reviewed_via": {
+          "type": "list:string"
+        },
+        "roles": {
+          "type": "list:string"
+        }
+      }
+    },
+    "BLOCKS": {
+      "from": [
+        "*"
+      ],
+      "to": [
+        "*"
+      ],
+      "properties": {
+        "confidence": {
+          "type": "float",
+          "range": [
+            0.0,
+            1.0
+          ]
+        },
+        "evidence": {
+          "type": "string"
+        }
+      }
+    },
+    "CALIBRATED_AGAINST": {
+      "from": [
+        "*"
+      ],
+      "to": [
+        "Artifact",
+        "Verification"
+      ],
+      "properties": {
+        "calibrated_at": {
+          "type": "string"
+        },
+        "note": {
+          "type": "string"
+        }
+      }
+    },
+    "CAUSES": {
+      "from": [
+        "*"
+      ],
+      "to": [
+        "*"
+      ],
+      "properties": {
+        "basis": {
+          "type": "enum",
+          "values": [
+            "causal",
+            "correlational",
+            "observed",
+            "spurious"
+          ]
+        },
+        "confidence": {
+          "type": "float",
+          "range": [
+            0.0,
+            1.0
+          ]
+        },
+        "evidence": {
+          "type": "string"
+        },
+        "validation_status": {
+          "type": "enum",
+          "values": [
+            "hypothesis",
+            "refuted",
+            "unvalidated",
+            "validated"
+          ]
+        }
+      }
+    },
+    "CHANGED": {
+      "from": [
+        "ChangeEvent"
+      ],
+      "to": [
+        "*"
+      ],
+      "properties": {
+        "accepted_baseline": {
+          "type": "bool"
+        },
+        "action": {
+          "type": "enum",
+          "values": [
+            "added",
+            "modified",
+            "removed"
+          ]
+        },
+        "field": {
+          "type": "string"
+        }
+      }
+    },
+    "CLAIMS": {
+      "from": [
+        "Contributor"
+      ],
+      "to": [
+        "*"
+      ],
+      "properties": {
+        "claimed_at": {
+          "type": "string"
+        },
+        "depth": {
+          "type": "int"
+        },
+        "note": {
+          "type": "string"
+        },
+        "seat": {
+          "type": "string"
+        }
+      }
+    },
+    "COMPLEMENTS": {
+      "from": [
+        "DesignRule"
+      ],
+      "to": [
+        "DesignRule"
+      ],
+      "properties": {
+        "evidence": {
+          "type": "string"
+        }
+      }
+    },
+    "COMPLIES_WITH": {
+      "from": [
+        "Artifact",
+        "Capability",
+        "Component",
+        "Interface",
+        "Project",
+        "Release"
+      ],
+      "to": [
+        "EnvironmentRule"
+      ],
+      "properties": {
+        "evidence": {
+          "type": "string"
+        },
+        "verified": {
+          "type": "bool"
+        }
+      }
+    },
+    "CONSTRAINS": {
+      "from": [
+        "Constraint",
+        "DesignRule"
+      ],
+      "to": [
+        "*"
+      ],
+      "properties": {
+        "basis": {
+          "type": "enum",
+          "values": [
+            "estimated",
+            "evidence",
+            "measured"
+          ]
+        },
+        "contribution": {
+          "type": "float"
+        },
+        "measured_at": {
+          "type": "string"
+        },
+        "note": {
+          "type": "string"
+        },
+        "source": {
+          "type": "string"
+        },
+        "unit": {
+          "type": "string"
+        }
+      }
+    },
+    "CONSUMES": {
+      "from": [
+        "*"
+      ],
+      "to": [
+        "Interface"
+      ],
+      "properties": {
+        "data_volume": {
+          "type": "float"
+        },
+        "frequency": {
+          "type": "float"
+        },
+        "weight": {
+          "type": "float",
+          "range": [
+            0.0,
+            1.0
+          ]
+        },
+        "weight_basis": {
+          "type": "enum",
+          "values": [
+            "estimated",
+            "evidence",
+            "measured"
+          ]
+        }
+      }
+    },
+    "CONTAINS": {
+      "from": [
+        "Component",
+        "Project"
+      ],
+      "to": [
+        "*"
+      ],
+      "properties": {
+        "note": {
+          "type": "string"
+        }
+      }
+    },
+    "CONTAINS_EPOCH": {
+      "from": [
+        "DesignEpoch"
+      ],
+      "to": [
+        "DesignEpoch"
+      ]
+    },
+    "CONTRADICTS": {
+      "from": [
+        "*"
+      ],
+      "to": [
+        "*"
+      ],
+      "properties": {
+        "alignment": {
+          "type": "enum",
+          "values": [
+            "opposing",
+            "supporting"
+          ]
+        },
+        "confidence": {
+          "type": "float",
+          "range": [
+            0.0,
+            1.0
+          ]
+        },
+        "evidence": {
+          "type": "string"
+        }
+      }
+    },
+    "DECOMPOSES": {
+      "from": [
+        "Requirement"
+      ],
+      "to": [
+        "Requirement"
+      ],
+      "properties": {
+        "note": {
+          "type": "string"
+        }
+      }
+    },
+    "DEPENDS_ON": {
+      "from": [
+        "*"
+      ],
+      "to": [
+        "*"
+      ],
+      "properties": {
+        "data_volume": {
+          "type": "float"
+        },
+        "dependency_type": {
+          "type": "enum",
+          "values": [
+            "control_flow",
+            "data_flow",
+            "error_flow",
+            "function_call",
+            "physical"
+          ]
+        },
+        "frequency": {
+          "type": "float"
+        },
+        "optional": {
+          "type": "bool"
+        },
+        "weight": {
+          "type": "float",
+          "range": [
+            0.0,
+            1.0
+          ]
+        },
+        "weight_basis": {
+          "type": "enum",
+          "values": [
+            "estimated",
+            "evidence",
+            "measured"
+          ]
+        }
+      }
+    },
+    "DEPLOYED_TO": {
+      "from": [
+        "Release"
+      ],
+      "to": [
+        "Environment"
+      ],
+      "properties": {
+        "status": {
+          "type": "enum",
+          "values": [
+            "active",
+            "planned",
+            "rolled_back"
+          ]
+        }
+      }
+    },
+    "DOCUMENTS": {
+      "from": [
+        "Artifact"
+      ],
+      "to": [
+        "*"
+      ],
+      "properties": {
+        "doc_kind": {
+          "type": "string"
+        }
+      }
+    },
+    "DUPLICATES": {
+      "from": [
+        "*"
+      ],
+      "to": [
+        "*"
+      ],
+      "properties": {
+        "basis": {
+          "type": "enum",
+          "values": [
+            "asserted",
+            "suspected"
+          ]
+        },
+        "confidence": {
+          "type": "float",
+          "range": [
+            0.0,
+            1.0
+          ]
+        }
+      }
+    },
+    "EVOLVES_INTO": {
+      "from": [
+        "*"
+      ],
+      "to": [
+        "*"
+      ],
+      "properties": {
+        "confidence": {
+          "type": "float",
+          "range": [
+            0.0,
+            1.0
+          ]
+        }
+      }
+    },
+    "GATED_ON": {
+      "from": [
+        "*"
+      ],
+      "to": [
+        "*"
+      ],
+      "properties": {
+        "kind": {
+          "type": "enum",
+          "values": [
+            "MRL",
+            "TRL"
+          ],
+          "required": true,
+          "refuses_null": true
+        },
+        "min_level": {
+          "type": "int",
+          "required": true,
+          "refuses_null": true
+        },
+        "rationale": {
+          "type": "string"
+        }
+      }
+    },
+    "GOVERNED_BY": {
+      "from": [
+        "*"
+      ],
+      "to": [
+        "*"
+      ],
+      "properties": {
+        "note": {
+          "type": "string"
+        },
+        "ruling": {
+          "type": "enum",
+          "values": [
+            "parks"
+          ]
+        }
+      }
+    },
+    "HAS_OBSERVATION": {
+      "from": [
+        "*"
+      ],
+      "to": [
+        "DimensionObservation"
+      ]
+    },
+    "HAS_READINESS": {
+      "from": [
+        "*"
+      ],
+      "to": [
+        "ReadinessAssessment"
+      ]
+    },
+    "HAS_SNAPSHOT": {
+      "from": [
+        "*"
+      ],
+      "to": [
+        "Snapshot"
+      ]
+    },
+    "HAS_TEMPORAL_FACT": {
+      "from": [
+        "*"
+      ],
+      "to": [
+        "TemporalFact"
+      ]
+    },
+    "IMPLEMENTS": {
+      "from": [
+        "Artifact"
+      ],
+      "to": [
+        "Verification"
+      ],
+      "properties": {
+        "covers": {
+          "type": "enum",
+          "values": [
+            "partial",
+            "whole"
+          ]
+        },
+        "note": {
+          "type": "string"
+        }
+      }
+    },
+    "IMPOSES": {
+      "from": [
+        "Environment"
+      ],
+      "to": [
+        "EnvironmentRule"
+      ]
+    },
+    "INCLUDES": {
+      "from": [
+        "Release"
+      ],
+      "to": [
+        "Artifact",
+        "Component"
+      ],
+      "properties": {
+        "as_checksum": {
+          "type": "string"
+        }
+      }
+    },
+    "INTERACTS_WITH": {
+      "from": [
+        "Actor"
+      ],
+      "to": [
+        "*"
+      ],
+      "properties": {
+        "interaction": {
+          "type": "string"
+        }
+      }
+    },
+    "INVALIDATES": {
+      "from": [
+        "*"
+      ],
+      "to": [
+        "*"
+      ],
+      "properties": {
+        "at": {
+          "type": "string"
+        },
+        "note": {
+          "type": "string"
+        }
+      }
+    },
+    "MASKS": {
+      "from": [
+        "*"
+      ],
+      "to": [
+        "*"
+      ],
+      "properties": {
+        "confidence": {
+          "type": "float",
+          "range": [
+            0.0,
+            1.0
+          ]
+        },
+        "evidence": {
+          "type": "string"
+        }
+      }
+    },
+    "MITIGATES": {
+      "from": [
+        "*"
+      ],
+      "to": [
+        "*"
+      ],
+      "properties": {
+        "confidence": {
+          "type": "float",
+          "range": [
+            0.0,
+            1.0
+          ]
+        },
+        "evidence": {
+          "type": "string"
+        }
+      }
+    },
+    "OBSERVED_IN": {
+      "from": [
+        "DimensionObservation"
+      ],
+      "to": [
+        "Fragment"
+      ]
+    },
+    "OBSOLETES": {
+      "from": [
+        "*"
+      ],
+      "to": [
+        "*"
+      ],
+      "properties": {
+        "confidence": {
+          "type": "float",
+          "range": [
+            0.0,
+            1.0
+          ]
+        }
+      }
+    },
+    "OCCURS_DURING": {
+      "from": [
+        "*"
+      ],
+      "to": [
+        "DesignEpoch"
+      ]
+    },
+    "OPERATES_IN": {
+      "from": [
+        "Project"
+      ],
+      "to": [
+        "Environment"
+      ]
+    },
+    "OWNED_BY": {
+      "from": [
+        "*"
+      ],
+      "to": [
+        "Contributor"
+      ],
+      "properties": {
+        "note": {
+          "type": "string"
+        },
+        "since": {
+          "type": "string"
+        }
+      }
+    },
+    "PART_OF_FLOW": {
+      "from": [
+        "Capability"
+      ],
+      "to": [
+        "Flow"
+      ],
+      "properties": {
+        "data_volume": {
+          "type": "float"
+        },
+        "frequency": {
+          "type": "float"
+        },
+        "step_order": {
+          "type": "int"
+        },
+        "weight": {
+          "type": "float",
+          "range": [
+            0.0,
+            1.0
+          ]
+        },
+        "weight_basis": {
+          "type": "enum",
+          "values": [
+            "estimated",
+            "evidence",
+            "measured"
+          ]
+        }
+      }
+    },
+    "PERFORMED_IN": {
+      "from": [
+        "Verification"
+      ],
+      "to": [
+        "Environment"
+      ]
+    },
+    "PRECEDES": {
+      "from": [
+        "DesignEpoch"
+      ],
+      "to": [
+        "DesignEpoch"
+      ]
+    },
+    "PRODUCES": {
+      "from": [
+        "Verification"
+      ],
+      "to": [
+        "Artifact"
+      ],
+      "properties": {
+        "outcome": {
+          "type": "enum",
+          "values": [
+            "error",
+            "fail",
+            "partial",
+            "pass"
+          ]
+        }
+      }
+    },
+    "PROVIDES": {
+      "from": [
+        "Component"
+      ],
+      "to": [
+        "Interface"
+      ],
+      "properties": {
+        "data_volume": {
+          "type": "float"
+        },
+        "frequency": {
+          "type": "float"
+        },
+        "weight": {
+          "type": "float",
+          "range": [
+            0.0,
+            1.0
+          ]
+        },
+        "weight_basis": {
+          "type": "enum",
+          "values": [
+            "estimated",
+            "evidence",
+            "measured"
+          ]
+        }
+      }
+    },
+    "REALIZES": {
+      "from": [
+        "Artifact"
+      ],
+      "to": [
+        "Capability",
+        "Component",
+        "Interface"
+      ],
+      "properties": {
+        "completeness": {
+          "type": "enum",
+          "values": [
+            "complete",
+            "partial",
+            "stub"
+          ]
+        },
+        "conformance": {
+          "type": "enum",
+          "values": [
+            "reviewed",
+            "unchecked",
+            "verified"
+          ]
+        }
+      }
+    },
+    "REQUIRES_RESOURCE": {
+      "from": [
+        "*"
+      ],
+      "to": [
+        "Resource"
+      ],
+      "properties": {
+        "criticality": {
+          "type": "enum",
+          "values": [
+            "optional",
+            "recommended",
+            "required"
+          ]
+        }
+      }
+    },
+    "RISKS": {
+      "from": [
+        "*"
+      ],
+      "to": [
+        "*"
+      ],
+      "properties": {
+        "confidence": {
+          "type": "float",
+          "range": [
+            0.0,
+            1.0
+          ]
+        },
+        "evidence": {
+          "type": "string"
+        },
+        "severity": {
+          "type": "enum",
+          "values": [
+            "critical",
+            "high",
+            "low",
+            "medium"
+          ]
+        }
+      }
+    },
+    "SATISFIES": {
+      "from": [
+        "*"
+      ],
+      "to": [
+        "*"
+      ],
+      "properties": {
+        "coverage": {
+          "type": "enum",
+          "values": [
+            "full",
+            "partial",
+            "planned"
+          ]
+        },
+        "evidence": {
+          "type": "string"
+        }
+      }
+    },
+    "SCHEDULED_FOR": {
+      "from": [
+        "Capability",
+        "Decision",
+        "Question",
+        "Requirement",
+        "Verification"
+      ],
+      "to": [
+        "DesignEpoch",
+        "Release"
+      ],
+      "properties": {
+        "modality": {
+          "type": "enum",
+          "values": [
+            "expected",
+            "required"
+          ]
+        },
+        "recorded_at": {
+          "type": "string"
+        }
+      }
+    },
+    "SPECIFIES": {
+      "from": [
+        "Artifact"
+      ],
+      "to": [
+        "Capability",
+        "Component",
+        "Interface"
+      ],
+      "properties": {
+        "format": {
+          "type": "string"
+        }
+      }
+    },
+    "SUPERSEDES": {
+      "from": [
+        "Fragment",
+        "Verification"
+      ],
+      "to": [
+        "Fragment",
+        "Verification"
+      ],
+      "properties": {
+        "diff_summary": {
+          "type": "string"
+        }
+      }
+    },
+    "SUPPLEMENTS": {
+      "from": [
+        "Fragment"
+      ],
+      "to": [
+        "Fragment"
+      ],
+      "properties": {
+        "domain": {
+          "type": "string"
+        },
+        "grounding": {
+          "type": "enum",
+          "values": [
+            "contradicts_known",
+            "extrapolated",
+            "speculative",
+            "verified"
+          ]
+        }
+      }
+    },
+    "TRIGGERS": {
+      "from": [
+        "*"
+      ],
+      "to": [
+        "*"
+      ],
+      "properties": {
+        "confidence": {
+          "type": "float",
+          "range": [
+            0.0,
+            1.0
+          ]
+        },
+        "evidence": {
+          "type": "string"
+        },
+        "role": {
+          "type": "string"
+        }
+      }
+    },
+    "VALID_FROM": {
+      "from": [
+        "TemporalFact"
+      ],
+      "to": [
+        "DesignEpoch"
+      ]
+    },
+    "VALID_TO": {
+      "from": [
+        "TemporalFact"
+      ],
+      "to": [
+        "DesignEpoch"
+      ]
+    },
+    "VERIFIES": {
+      "from": [
+        "Verification"
+      ],
+      "to": [
+        "Artifact",
+        "Capability",
+        "Component",
+        "Constraint",
+        "DesignRule",
+        "Interface",
+        "Requirement"
+      ],
+      "properties": {
+        "coverage": {
+          "type": "enum",
+          "values": [
+            "full",
+            "partial",
+            "smoke"
+          ]
+        },
+        "pinned": {
+          "type": "string"
+        },
+        "swept": {
+          "type": "string"
+        }
+      }
+    },
+    "VIOLATES": {
+      "from": [
+        "*"
+      ],
+      "to": [
+        "*"
+      ],
+      "properties": {
+        "confidence": {
+          "type": "float",
+          "range": [
+            0.0,
+            1.0
+          ]
+        },
+        "evidence": {
+          "type": "string"
+        }
+      }
+    },
+    "VIOLATES_RULE": {
+      "from": [
+        "Artifact",
+        "Capability",
+        "Component",
+        "Fragment",
+        "Interface",
+        "Release"
+      ],
+      "to": [
+        "EnvironmentRule"
+      ],
+      "properties": {
+        "detected_at": {
+          "type": "string"
+        },
+        "evidence": {
+          "type": "string"
+        },
+        "proposer": {
+          "type": "enum",
+          "values": [
+            "author",
+            "check",
+            "llm"
+          ]
+        },
+        "rationale": {
+          "type": "string"
+        },
+        "resolved_at": {
+          "type": "string"
+        },
+        "severity": {
+          "type": "enum",
+          "values": [
+            "critical",
+            "high",
+            "low",
+            "medium"
+          ]
+        },
+        "status": {
+          "type": "enum",
+          "values": [
+            "confirmed",
+            "proposed",
+            "rejected"
+          ]
+        }
+      }
+    },
+    "YIELDED": {
+      "from": [
+        "Fragment"
+      ],
+      "to": [
+        "*"
+      ],
+      "properties": {
+        "action": {
+          "type": "enum",
+          "values": [
+            "created",
+            "merged",
+            "updated"
+          ]
+        }
+      }
+    }
+  }
+}

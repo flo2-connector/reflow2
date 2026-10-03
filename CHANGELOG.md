@@ -33,6 +33,44 @@ This file is the third view: *what changed, and when*.
 
 ### Added
 
+- **`detect_defects` now names every stored node or edge the current schema refuses — the items
+  that would make this design's export fail to import — and a test makes each future schema
+  narrowing ship its migration.** Anthony accepted
+  `dec:idea-stored-data-is-rechecked-against-the-current-schema` on 2026-10-02. The cause: the
+  schema was checked only when something was written, so an edge written under an older reflow2
+  stayed in the store and in every export until an import refused the whole document. That
+  happened to musicjug's design on 2026-10-01 (`Artifact REALIZES Decision`, minted by 0.45.0).
+  - **New category `refused_by_schema`**, severity `critical`, one finding per stored item. Each
+    finding carries a `refusal` field:
+    - the item (node, or edge with its endpoint types);
+    - every rule that refuses it (`endpoint_pair`, `edge_type` or `property`), worded as the
+      import words it;
+    - `replacement`, the edge the import names, where it knows one;
+    - `modelled_fits`, the edge types the schema models for the pair.
+  - **It uses the write rule itself.** It applies the same checks the store applies on every
+    write, after the same preparation the import gives each item. A test holds it to the import:
+    the same items, no more and no fewer. On reflow2's own design it examined 48,266 nodes and
+    edges and found none, in about 120 ms of a 4.4 s sweep.
+  - **The replacement is only a suggestion.** `propose_heal` drafts it for a person and nothing
+    applies it. The field repair chose GOVERNED_BY where the import names DOCUMENTS.
+  - **A refused VERIFIES now says what fits**, both on import and in the finding: GOVERNED_BY for
+    a check on a Decision, and the Requirement or Capability for a check on a Project. The gate's
+    first run found eight dropped VERIFIES targets that were refused naming nothing.
+    dynograph-foundation's export holds five such checks.
+  - **The gate.** `schema/accepted-at-last-release.json` records what the last release's schema
+    accepted. `tests/a_schema_narrowing_ships_its_migration.rs` fails on any narrowing since then
+    that `narrowing::NARROWINGS` does not name with its migration: `Rewritten`, `RefusedByName` or
+    `Retired`. A narrowing is an endpoint dropped, an enum value removed, a type retired, a
+    property newly required with no default, or a type or range tightened. The edge rewrites that
+    the import and every open apply now come from one table (`narrowing::EDGE_REWRITES`). So do
+    the provenance guard's retired types, so retiring a type is one entry rather than two edits.
+  - **What to do.** Before moving, backing up or forking a long-lived design, run
+    `detect_defects`. For each `refused_by_schema` finding, read the two nodes, draw the edge that
+    says what was meant, then delete the refused item. If you parse `category`, expect a new
+    value. **At a release cut**, after the version bump, re-bless the snapshot with
+    `REFLOW2_BLESS_ACCEPTANCE=1 cargo test -p reflow2-core --no-default-features --test
+    a_schema_narrowing_ships_its_migration`. Until then that test fails on purpose, and the bless
+    refuses while any narrowing is unaccounted for.
 - **`get_node` reads a node's edges when you ask: pass `include_edges`.** Until now no read
   returned one node's edges as edges. `get_node` gave the properties only, and the nearest reader,
   `propagate_from` at depth 1, left out authorship and every edge's evidence. To see what a node is

@@ -41,12 +41,23 @@ use serde::{Deserialize, Serialize};
 /// ordinary graph as one from the future, so the message told the operator
 /// their reflow2 was BEHIND and to rebuild — the exact opposite of what to do.
 /// A retirement is two edits, not one.
-const RETIRED_NODE_TYPES: &[&str] = &["QualityGate"];
+///
+/// READ FROM `crate::narrowing::NARROWINGS` SINCE 2026-10-03: a retirement is
+/// one table entry there, and `tests/a_schema_narrowing_ships_its_migration.rs`
+/// fails a release whose schema lost a type that entry does not name — so the
+/// second edit this comment warns about can no longer be forgotten.
+fn retired_node_types() -> Vec<&'static str> {
+    crate::narrowing::retired_node_types()
+}
 
 /// Edge types this reflow2 retired. `VALIDATES` and `ENABLES` were removed by
 /// the edge-orthogonality change (55 → 53) without a version bump — the exact
 /// case that made the count-only stamp ambiguous.
-const RETIRED_EDGE_TYPES: &[&str] = &["VALIDATES", "ENABLES"];
+///
+/// Read from `crate::narrowing::NARROWINGS`, like the node types above.
+fn retired_edge_types() -> Vec<&'static str> {
+    crate::narrowing::retired_edge_types()
+}
 
 /// The reflow2 that wrote a graph, as recorded beside it.
 ///
@@ -247,7 +258,7 @@ impl GraphStamp {
                 let mut retired = Vec::new();
                 let mut unknown = Vec::new();
                 for t in gnodes.iter().filter(|t| !now_nodes.contains(t.as_str())) {
-                    if RETIRED_NODE_TYPES.contains(&t.as_str()) {
+                    if retired_node_types().contains(&t.as_str()) {
                         retired.push(t.clone());
                         // Only NODE types can be counted — an edge of a retired
                         // type is not addressable by a node scan, so an edge
@@ -258,7 +269,7 @@ impl GraphStamp {
                     }
                 }
                 for t in gedges.iter().filter(|t| !now_edges.contains(t.as_str())) {
-                    if RETIRED_EDGE_TYPES.contains(&t.as_str()) {
+                    if retired_edge_types().contains(&t.as_str()) {
                         retired.push(t.clone());
                     } else {
                         unknown.push(t.clone());
@@ -295,8 +306,8 @@ impl GraphStamp {
                 }
                 let node_excess = self.node_types.saturating_sub(now.node_types);
                 let edge_excess = self.edge_types.saturating_sub(now.edge_types);
-                let retired_explains = node_excess <= RETIRED_NODE_TYPES.len()
-                    && edge_excess <= RETIRED_EDGE_TYPES.len();
+                let retired_explains = node_excess <= retired_node_types().len()
+                    && edge_excess <= retired_edge_types().len();
                 VocabularyGap::Behind(refusal_by_count(retired_explains, self, now))
             }
         }
@@ -416,7 +427,7 @@ fn refusal_by_count(retired_explains: bool, was: &GraphStamp, now: &GraphStamp) 
         format!(
             "{head}\nThis excess is exactly consistent with a graph written before this reflow2 \
              retired {}, so most likely:\n{}\nIf instead this graph came from a NEWER reflow2:\n{}",
-            RETIRED_EDGE_TYPES.join(", "),
+            retired_edge_types().join(", "),
             predates,
             behind
         )
