@@ -565,6 +565,21 @@ fn honoured(mode: &str) -> &'static [&'static str] {
         "--diff BASE OTHER" | "--merge" => &["--read-only"],
         "--merge-apply" => &["--read-only", "--resolutions"],
         "--stop-shared" => &["--graph-path"],
+        // The verbs (fix program item 7b) read what --call reads, less what
+        // contradicts them; their tool and JSON are the subcommand's own.
+        "the `read` verb" => &[
+            "--graph-path",
+            "--store-memory",
+            "--only-if-present",
+            "--read-only",
+            "--tree-root",
+        ],
+        "the `write` verb" => &[
+            "--graph-path",
+            "--store-memory",
+            "--only-if-present",
+            "--tree-root",
+        ],
         other => panic!("no row for {other}"),
     }
 }
@@ -583,11 +598,13 @@ fn mode_argv(mode: &str) -> Vec<&'static str> {
         "--merge-driver" => vec!["--merge-driver", "a.json", "b.json", "c.json"],
         "--call" => vec!["--call", "graph_report"],
         "--stop-shared" => vec!["--stop-shared"],
+        "the `read` verb" => vec!["read", "graph_report"],
+        "the `write` verb" => vec!["write", "graph_report"],
         other => panic!("no argv for {other}"),
     }
 }
 
-const MODES: [&str; 11] = [
+const MODES: [&str; 13] = [
     "setup",
     "--export",
     "--export-snapshot",
@@ -599,6 +616,8 @@ const MODES: [&str; 11] = [
     "--merge-driver",
     "--call",
     "--stop-shared",
+    "the `read` verb",
+    "the `write` verb",
 ];
 
 /// The mode a flag selects, when it selects one.

@@ -23,6 +23,48 @@ enum Command {
         #[command(subcommand)]
         action: Option<SetupAction>,
     },
+    /// Run ONE tool that CHANGES NOTHING and print its reply as JSON — safe to
+    /// approve once: a terminal rule `^reflow2 read ` cannot approve a write.
+    ///
+    /// `reflow2 read get_node '{"id":"req:x"}'`, `reflow2 read loop_status`.
+    /// It is `--read-only --call TOOL`: it runs a tool whose served annotation
+    /// says it only reads, and refuses every other tool BY NAME before anything
+    /// is opened (exit 1, naming `reflow2 write`). `export_graph` and
+    /// `export_surface` run without `path` — the document is the reply — and
+    /// are refused with one, because then they write a file. Nothing it runs
+    /// can change the design or write a file, and it never creates a design.
+    /// Only the tool, its arguments and `--graph-path` may follow it.
+    /// `--list` prints which tools it runs. Logging is quiet: stderr carries a
+    /// refusal or a warning, never routine lines (RUST_LOG still overrides).
+    Read(VerbArgs),
+    /// Run ONE tool, any tool, and print its reply as JSON — the verb a
+    /// terminal keeps asking about.
+    ///
+    /// `reflow2 write add_requirement --args - <<'EOF' … EOF`. Exactly
+    /// `--call TOOL`, with quiet logging: the same exits (0 a reply, 1 a
+    /// refusal on stderr, 2 a reply the tool marked an error), and it may
+    /// create the design where there is none.
+    Write(VerbArgs),
+}
+
+/// What follows `read` or `write`: the tool and its arguments, nothing that
+/// could change what the verb is allowed to do (`reflow2_mcp::verbs`).
+#[derive(Debug, clap::Args)]
+struct VerbArgs {
+    /// The served tool to run (`--list` names them).
+    #[arg(value_name = "TOOL", required_unless_present = "list")]
+    tool: Option<String>,
+    /// The tool's arguments, as one JSON object (default `{}`). `-` reads the
+    /// object from stdin, so it can come from a quoted heredoc (`<<'EOF'`).
+    #[arg(value_name = "JSON", conflicts_with = "args")]
+    json: Option<String>,
+    /// The same object as a flag, as `--call` takes it.
+    #[arg(long = "args", value_name = "JSON")]
+    args: Option<String>,
+    /// Print which served tools `read` runs and which need `write`, as JSON,
+    /// and exit. Opens nothing.
+    #[arg(long, conflicts_with_all = ["tool", "json", "args"])]
+    list: bool,
 }
 
 #[derive(Debug, clap::Subcommand)]
@@ -57,7 +99,10 @@ enum SetupAction {
 #[command(name = "reflow2-mcp", version, about)]
 struct Cli {
     /// Directory for the on-disk (RocksDB) design graph. Created if absent.
-    #[arg(long, default_value = "./.reflow2/graph")]
+    ///
+    /// The one flag that may also follow `read` or `write`, so a design
+    /// elsewhere is reached without leaving a `^reflow2 read ` approval rule.
+    #[arg(long, default_value = "./.reflow2/graph", global = true)]
     graph_path: String,
 
     /// What the `content` block of a JSON reply carries, for EVERY client:
@@ -228,7 +273,8 @@ struct Cli {
     /// · ONE-SHOT MODES — `--call` refuses a tool that writes by name before
     ///   anything is opened. The modes that only read (`--export`,
     ///   `--export-snapshot`, `--diff`, `--merge`, `--merge-apply`) accept it;
-    ///   the ones that write (`--import`, `--merge-driver`) refuse it.
+    ///   the ones that write (`--import`, `--merge-driver`) refuse it. The
+    ///   `read` verb IS `--read-only --call`, and the `write` verb refuses it.
     ///
     /// · SERVERS — stdio, `--http`, `--serve-shared`, `--registry-root`,
     ///   `--ephemeral`: refused at the write guard (below). ⚠️ A stdio, `--http`
@@ -689,6 +735,11 @@ struct Cli {
     /// that only reads refuses ("no design at …"); only a tool that writes
     /// creates the store. `--read-only` and `--only-if-present` are honoured;
     /// any other flag `--call` does not read is refused by name, never ignored.
+    ///
+    /// For a terminal that asks before each command, `reflow2 read TOOL` and
+    /// `reflow2 write TOOL` are this door with the read/write split in the
+    /// command text, so one rule (`^reflow2 read `) can approve every read and
+    /// no write (`reflow2-mcp read --help`).
     #[arg(long, value_name = "TOOL")]
     call: Option<String>,
 
@@ -1206,6 +1257,15 @@ fn read_resolutions(
 /// thing to restore by accident while debugging.
 const DEFAULT_LOG_FILTER: &str = "warn,reflow2_mcp=info,reflow2_core=info";
 
+/// The tracing filter for the `read` and `write` verbs: errors only. A verb is
+/// typed by an agent in a terminal, which reads stderr as the answer; the
+/// door's own refusals and warnings are printed there directly, so a routine
+/// INFO line on every call ("opening reflow2 design graph") and an rmcp WARN
+/// line repeating each refusal were measured noise (main 293f957, 2026-10-03;
+/// `req:a-terminal-agent-can-auto-approve-reads-and-confirm-each-write`:
+/// "keep logging quiet"). RUST_LOG still overrides it.
+const VERB_LOG_FILTER: &str = "error";
+
 #[tokio::main]
 async fn main() -> anyhow::Result<()> {
     // FIRST, before anything can replace the binary under us: remember what
@@ -1230,10 +1290,17 @@ async fn main() -> anyhow::Result<()> {
     // dependency's only when something is wrong.
     //
     // RUST_LOG overrides all of it, including back to `info` for everything.
+    // The command line is parsed first, because the `read` and `write` verbs
+    // are quieter still (VERB_LOG_FILTER); parsing logs nothing.
+    let command = Cli::command();
+    let matches = command.clone().get_matches();
+    let default_filter = match matches.subcommand_name() {
+        Some("read" | "write") => VERB_LOG_FILTER,
+        _ => DEFAULT_LOG_FILTER,
+    };
     tracing_subscriber::fmt()
         .with_env_filter(
-            EnvFilter::try_from_default_env()
-                .unwrap_or_else(|_| EnvFilter::new(DEFAULT_LOG_FILTER)),
+            EnvFilter::try_from_default_env().unwrap_or_else(|_| EnvFilter::new(default_filter)),
         )
         .with_writer(std::io::stderr)
         .with_ansi(false)
@@ -1245,10 +1312,42 @@ async fn main() -> anyhow::Result<()> {
     // early past the code that would have read it. The POSITION is the fix: a
     // guard placed among the branches protects only the branches below it
     // (fact:root-cause-one-shot-modes-return-before-the-pointer-check-and-opening-a-store-creates-it-2026-10-02).
-    let command = Cli::command();
-    let matches = command.clone().get_matches();
-    let cli = Cli::from_arg_matches(&matches).unwrap_or_else(|e| e.exit());
+    let mut cli = Cli::from_arg_matches(&matches).unwrap_or_else(|e| e.exit());
     let one_shot = reflow2_mcp::one_shot::gate(&command, &matches).map_err(anyhow::Error::msg)?;
+
+    // ⭐ THE VERBS ARE `--call`, NOT A SECOND DOOR
+    // (`req:a-terminal-agent-can-auto-approve-reads-and-confirm-each-write`).
+    // `read` and `write` fill in the same fields `--call TOOL --args JSON`
+    // does, and `read` also asks for `--read-only`, so everything below — the
+    // "where is this design?" step, the held-graph snapshot, the read-only
+    // service, the exit codes — is the door's own. What `read` adds is the
+    // refusal of a tool that is not a read, before anything is opened
+    // (`reflow2_mcp::verbs::read_may_run`, below).
+    use reflow2_mcp::one_shot::Mode;
+    if let Some(Command::Read(verb) | Command::Write(verb)) = &cli.command {
+        if verb.list {
+            let tools = ReflowService::served_tools();
+            println!(
+                "{}",
+                serde_json::to_string_pretty(&reflow2_mcp::verbs::listing(&tools))?
+            );
+            return Ok(());
+        }
+        cli.call = verb.tool.clone();
+        cli.call_args = verb
+            .json
+            .clone()
+            .or_else(|| verb.args.clone())
+            .unwrap_or_else(|| "{}".to_string());
+    }
+    let read_only_asked_by = if one_shot == Some(Mode::Read) {
+        cli.read_only = true;
+        Some("the `read` verb")
+    } else if cli.read_only {
+        Some("--read-only")
+    } else {
+        None
+    };
     // Before anything can open a store: the budget is fixed once one does.
     reflow2_core::set_store_memory_budget(cli.store_memory.max(8) * 1024 * 1024);
 
@@ -1265,18 +1364,34 @@ async fn main() -> anyhow::Result<()> {
     if let Some(mode) = one_shot
         && mode.opens_the_store()
     {
-        use reflow2_mcp::one_shot::{Access, Asked, Mode, resolve_design};
+        use reflow2_mcp::one_shot::{Access, Asked, resolve_design};
         let (what, access) = match mode {
-            Mode::Call => {
+            Mode::Call | Mode::Read | Mode::Write => {
                 let tool = cli.call.clone().unwrap_or_default();
                 let prepared = prepare_call(&cli, &tool).await?;
+                // `read` runs only what changes nothing — the served
+                // annotation and the file rule — and refuses the rest by
+                // name, here, before anything is opened.
+                if mode == Mode::Read {
+                    reflow2_mcp::verbs::read_may_run(
+                        &tool,
+                        prepared.reads,
+                        &serde_json::Value::Object(prepared.arguments.clone()),
+                    )
+                    .map_err(anyhow::Error::msg)?;
+                }
                 let access = if prepared.reads {
                     Access::Reads
                 } else {
                     Access::Writes
                 };
                 prepared_call = Some(prepared);
-                (format!("`--call {tool}`"), access)
+                let what = match mode {
+                    Mode::Read => format!("`reflow2 read {tool}`"),
+                    Mode::Write => format!("`reflow2 write {tool}`"),
+                    _ => format!("`--call {tool}`"),
+                };
+                (what, access)
             }
             Mode::Import => (format!("`{}`", mode.named()), Access::Writes),
             _ => (format!("`{}`", mode.named()), Access::Reads),
@@ -1286,7 +1401,7 @@ async fn main() -> anyhow::Result<()> {
             graph_path: &cli.graph_path,
             access,
             only_if_present: cli.only_if_present,
-            read_only: cli.read_only,
+            read_only: read_only_asked_by,
         })
         .map_err(anyhow::Error::msg)?;
     }
@@ -3219,10 +3334,11 @@ mod tests {
             .map(|a| a.get_id().to_string())
             .collect();
         for mode in Mode::ALL {
-            if mode == Mode::Setup {
+            if mode.is_subcommand() {
                 assert!(
                     cmd.find_subcommand(mode.id()).is_some(),
-                    "no `setup` subcommand"
+                    "no `{}` subcommand",
+                    mode.id()
                 );
             } else {
                 assert!(

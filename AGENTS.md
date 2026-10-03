@@ -89,6 +89,15 @@ python3 tools/test_init.py
 # refuse then.
 ./target/release/reflow2-mcp --graph-path .reflow2/graph --call graph_report
 ./target/release/reflow2-mcp --graph-path .reflow2/graph --call budget_report --args '{"constraint_id":"con:mass"}'
+# The same door with the read/write split in the command text, for a terminal
+# that asks before each command: `read` runs only a tool that changes nothing
+# (graph or disk) and refuses any other by name before opening anything, so one
+# rule `^reflow2 read ` approves every read and no write; `write` runs anything.
+# `read --list` prints the split (crates/reflow2-mcp/src/verbs.rs).
+./target/release/reflow2-mcp read get_node '{"id":"req:x"}'
+./target/release/reflow2-mcp write add_requirement --args - <<'EOF'
+{"id": "req:x", "name": "…", "statement": "…"}
+EOF
 
 # Load a design into a graph without speaking MCP — the sibling of --export.
 # Upsert, so it layers onto whatever is there. Takes `-` for stdin, so an export
