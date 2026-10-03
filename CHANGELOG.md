@@ -73,6 +73,12 @@ This file is the third view: *what changed, and when*.
   - **`reconcile_artifacts`, `coverage_report`, `frontier`, `ingest_step` and
     `ingest_corpus_step` now publish the shape of their list items**, and an item with a key that
     shape does not name is refused, naming the item. Send only the keys their descriptions list.
+  - **`reconcile_verification` refuses the whole call when an `outcome` is not `passed`, `failed`
+    or `skipped`**, naming the item, and records nothing. It used to drop that item into
+    `rejected` and record the rest, which the published enum already ruled out. Map your runner's
+    results onto the three values before sending (`tools/run_to_files.py` already does).
+  - **`draw_edges` checks each item's arguments as its helper would**, and refuses a bad item in
+    the helper's own words.
   - **Through `--call`, an argument refusal still exits 2** (a reply the tool marked as an error,
     as MCP specifies for input validation). Exit 1 stays a tool's own rule refusing, such as a
     field a constructor needs only to create. Scripts that read the exit code need no change. The

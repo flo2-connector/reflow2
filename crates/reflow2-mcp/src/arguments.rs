@@ -105,6 +105,20 @@ pub enum Transport {
     CallDoor,
 }
 
+tokio::task_local! {
+    /// The transport of the tool call now being served, set by `call_tool`
+    /// around the handler — so a handler that checks arguments of its own (the
+    /// bulk `draw_edges` runs each item's helper check) gives the same advice
+    /// the call itself would.
+    pub(crate) static TRANSPORT: Transport;
+}
+
+/// The transport of the call now being served; a session when no call scope is
+/// set (a handler driven directly).
+pub(crate) fn current_transport() -> Transport {
+    TRANSPORT.try_with(|t| *t).unwrap_or(Transport::Session)
+}
+
 /// Which door a call came through: the `--call` door names itself at
 /// handshake (`crate::service::CALL_DOOR_CLIENT`), and every other client is
 /// an MCP session.

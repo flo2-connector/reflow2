@@ -32,7 +32,7 @@
         "additionalProperties": false,
         "properties": {
           "outcome": {
-            "description": "What the run reported: `passed` / `failed` / `skipped`. Anything else\nis rejected by name; the rest of the batch still processes.",
+            "description": "What the run reported: `passed` / `failed` / `skipped`. Anything else\nrefuses the whole call before anything is recorded, naming the item.",
             "enum": [
               "passed",
               "failed",

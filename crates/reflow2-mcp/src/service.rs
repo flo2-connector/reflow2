@@ -3624,7 +3624,7 @@ pub struct ObservedVerificationReq {
     /// The Verification (`ver:…`) whose check this run executed.
     pub verification_id: String,
     /// What the run reported: `passed` / `failed` / `skipped`. Anything else
-    /// is rejected by name; the rest of the batch still processes.
+    /// refuses the whole call before anything is recorded, naming the item.
     #[schemars(schema_with = "crate::enum_schema::observed_outcome_req")]
     pub outcome: String,
 }
@@ -7372,7 +7372,11 @@ impl ServerHandler for ReflowService {
                         signer,
                         ACTING.scope(
                             acting,
-                            WRITES_FOR.scope(writes_for, self.tool_router.call(tcc)),
+                            WRITES_FOR.scope(
+                                writes_for,
+                                crate::arguments::TRANSPORT
+                                    .scope(transport, self.tool_router.call(tcc)),
+                            ),
                         ),
                     )
                     .await
