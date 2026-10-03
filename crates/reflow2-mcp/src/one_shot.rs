@@ -52,8 +52,6 @@
 //! empty, a session started there would open it the same way, and the installer
 //! exports it on purpose to mint the design's id (`tools/reflow2_init.py`).
 
-use std::path::Path;
-
 use clap::parser::ValueSource;
 use clap::{Arg, ArgMatches, Command};
 
@@ -354,7 +352,7 @@ pub fn resolve_design(asked: &Asked<'_>) -> Result<(), String> {
     match crate::pointer::read(&crate::pointer::location_for(graph_path)) {
         Ok(None) => {}
         Ok(Some(pointer)) => {
-            let leftover = if Path::new(graph_path).exists() {
+            let leftover = if crate::opening::store_exists(graph_path) {
                 format!(
                     " A design store also sits at {graph_path}. It was NOT opened: it is not the \
                      design this folder names, so do not read it, copy it or write to it \
@@ -408,11 +406,12 @@ pub fn resolve_design(asked: &Asked<'_>) -> Result<(), String> {
         ));
     }
 
-    // 4. NO STORE AT THE PATH. Asked without opening anything: `describe_at`
-    // reads only the sidecars, so looking cannot mint an identity.
-    if !Path::new(graph_path).exists() {
+    // 4. NO STORE AT THE PATH — "may this open create a store?", the one rule
+    // every mode asks (`crate::opening`). Asked without opening anything:
+    // `describe_at` reads only the sidecars, so looking cannot mint an identity.
+    if !crate::opening::store_exists(graph_path) {
         let found = reflow2_core::describe_at(graph_path);
-        if asked.read_only {
+        if !crate::opening::may_open(graph_path, asked.read_only) {
             return Err(format!(
                 "{what} opened nothing and created nothing: there is no design store at \
                  {graph_path} ({}), and --read-only creates nothing.",
