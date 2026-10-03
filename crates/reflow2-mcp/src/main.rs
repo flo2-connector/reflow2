@@ -269,9 +269,10 @@ struct Cli {
     /// there is always something able to say what happened
     /// (`req:never-silently-absent`).
     ///
-    /// **No session owns the server.** It runs in its own process group, so the
-    /// session that happened to start it can end — or be Ctrl-C'd — without
-    /// taking anybody else's design brain with it.
+    /// **No session owns the server.** It runs in a session of its own, with no
+    /// terminal and none of its launcher's open files or locks, so the session
+    /// that happened to start it can end — or be Ctrl-C'd — without taking
+    /// anybody else's design brain with it.
     #[arg(long)]
     shared: bool,
 
