@@ -59,6 +59,7 @@ async fn subject_of(s: &ReflowService, id: &str) -> Option<String> {
     let node = j!(s.get_node(Parameters(GetNodeReq {
         node_type: Some("ChangeEvent".into()),
         id: id.into(),
+        ..Default::default()
     })));
     node["node"]["properties"]["subject"]
         .as_str()
@@ -170,6 +171,7 @@ async fn an_axis_outside_the_enum_is_refused() {
     let node = j!(s.get_node(Parameters(GetNodeReq {
         node_type: Some("ChangeEvent".into()),
         id: "chg:typo".into(),
+        ..Default::default()
     })));
     assert!(
         node["node"].is_null(),

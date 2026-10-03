@@ -125,6 +125,7 @@ async fn a_refused_create_leaves_no_node_behind() {
     let stored = j!(s.get_node(Parameters(GetNodeReq {
         node_type: Some("Requirement".into()),
         id: "req:cumulative-totals".into(),
+        ..Default::default()
     })));
     assert!(
         stored["node"].is_null(),

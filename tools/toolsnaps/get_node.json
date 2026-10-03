@@ -2,7 +2,7 @@
   "annotations": {
     "readOnlyHint": true
   },
-  "description": "Fetch a node by id — `{node: {...}}` when present, `{node: null}` when absent. `node_type` is OPTIONAL: the id prefix names the type by convention and it is resolved for you; if the id is held by more than one type the read REFUSES and names them rather than guess. When you do pass `node_type`, an unknown one is REFUSED rather than answered `null`, because \"no such type\" and \"no such node\" are different facts and must not share one reply. Carries `discontinued`: true when an ACCEPTED Decision has withdrawn this node (OBSOLETES). READ IT — the stored `status` still records what was BUILT, so a withdrawn capability goes on saying `realized` and only this field tells you the thing is gone. Ask for this when you want everything recorded about one item — pull up the full record for a requirement, a component, any single node. Ask for this to show me everything recorded about one item.",
+  "description": "Fetch one node by id and read everything recorded about it: its properties and, with `include_edges`, its edges — every link to and from it, each with its type, direction, the node at the other end (id, type, name) and the edge's own properties, evidence included. `{node: {...}}` when present, `{node: null}` when absent; `node_type` is optional. Carries `discontinued`: true when an ACCEPTED Decision has withdrawn this node (OBSOLETES). READ IT — the stored `status` still records what was BUILT, so a withdrawn capability goes on saying `realized`. Ask for this when you want everything recorded about one item — pull up the full record for a requirement or any single node — or a node and its edges: what it is connected to, its neighbours, which nodes link to it. Ask for this to show me everything recorded about one item.",
   "inputSchema": {
     "$schema": "https://json-schema.org/draft/2020-12/schema",
     "additionalProperties": false,
@@ -11,9 +11,80 @@
         "description": "The node id. Its prefix (`req:`, `dec:`, `ver:` …) names the type by\nconvention, so `node_type` may be omitted.\n`node_id` — what search_design hands back — is accepted as an alias\n(dec:idea-one-way-to-name-which-node-across-the-tool-surface, option D).",
         "type": "string"
       },
+      "include_edges": {
+        "additionalProperties": false,
+        "description": "Also read this node's EDGES: every link in and out, each with its edge\ntype, its `direction` (`out` leaves this node, `in` arrives), the stored\n`from_id` and `to_id`, the node at the other end (id, type and name) and\nthe edge's own properties, evidence and note included. Off by default,\nso the reply is unchanged unless you ask. `true` reads them all, up to 50\nand within the reply budget; an object narrows the list — `direction`,\n`edge_types`, `exclude_edge_types`, `limit`, `offset`, `budget_chars`.\nThe reply's `edges` counts every edge (`total`, and `by_type` per type\nand direction, never filtered), says how many it listed and why it\nstopped (`capped_by`, `next_offset`), marks stored twins (`twin_of`),\nnames a type that crowds the rest out (`dominant`), and says which\nempty an empty list is (`empty_because`).",
+        "properties": {
+          "budget_chars": {
+            "description": "Characters of JSON the reply may spend (default 30,000). Edges are listed whole, evidence included, until the next would pass it; raise it only if this client has the room.",
+            "format": "uint",
+            "minimum": 0,
+            "type": [
+              "integer",
+              "null"
+            ]
+          },
+          "direction": {
+            "description": "Which edges: `in` (they arrive at this node), `out` (they leave it) or `both` (the default).",
+            "enum": [
+              "in",
+              "out",
+              "both",
+              null
+            ],
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "edge_types": {
+            "description": "Keep only these edge types, as the schema names them (SATISFIES, AUTHORED_BY …). An unknown name is refused with the nearest one.",
+            "items": {
+              "type": "string"
+            },
+            "type": [
+              "array",
+              "null"
+            ]
+          },
+          "exclude_edge_types": {
+            "description": "Drop these edge types — for a type that crowds the rest out, such as a Release's INCLUDES. Nothing is dropped unless you name it here.",
+            "items": {
+              "type": "string"
+            },
+            "type": [
+              "array",
+              "null"
+            ]
+          },
+          "limit": {
+            "description": "How many edges to list (default 50). 0 returns the counts only.",
+            "format": "uint",
+            "minimum": 0,
+            "type": [
+              "integer",
+              "null"
+            ]
+          },
+          "offset": {
+            "description": "Where to start in the ordered list: pass the reply's `next_offset` to read on.",
+            "format": "uint",
+            "minimum": 0,
+            "type": [
+              "integer",
+              "null"
+            ]
+          }
+        },
+        "type": [
+          "boolean",
+          "object",
+          "null"
+        ]
+      },
       "node_type": {
         "default": null,
-        "description": "Optional since 2026-09-05: when omitted the type is resolved from the id.\nIf the id is held by MORE THAN ONE type (a convention violation, but\nwritable) the read REFUSES and names them — it never guesses.",
+        "description": "Optional since 2026-09-05: when omitted the type is resolved from the id.\nIf the id is held by MORE THAN ONE type (a convention violation, but\nwritable) the read REFUSES and names them — it never guesses. A type you\nDO pass that the schema does not declare is REFUSED rather than answered\n`null`, because \"no such type\" and \"no such node\" are different facts\nand must not share one reply.",
         "type": [
           "string",
           "null"
