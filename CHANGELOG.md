@@ -56,6 +56,39 @@ This file is the third view: *what changed, and when*.
 
 ### Changed
 
+- **Every argument refusal names the tool and the field path, at any depth.** A tool's arguments
+  are now checked against its published input schema before anything reads them. A wrong type, a
+  missing or unknown field, or a value outside its published set is refused before the tool runs,
+  so nothing is written. The refusal names the tool, the path (`related_to[0].evidence`), what the
+  schema expects there (its type or its allowed values), and the field's own description. Every
+  problem in the call is listed at once. Until now a wrong-typed argument came back as serde's bare
+  `failed to deserialize parameters: invalid type: …`, naming neither the tool nor the field, and a
+  field missing inside an item was said to have no description when its schema had one
+  (`dec:idea-every-argument-refusal-names-the-tool-and-the-field-path`). What changes for you:
+  - **Calls that worked still work, aliases included.** `id` and `node_id` for a typed key, and
+    `properties` for `props`, are still accepted, and the published schema still teaches only the
+    typed spelling.
+  - **Twelve tools that take no arguments now refuse one** instead of ignoring it silently
+    (`mirrors`, `claim_report`, `mint_seat`, `repair_report` and eight others). Drop the argument.
+  - **`reconcile_artifacts`, `coverage_report`, `frontier`, `ingest_step` and
+    `ingest_corpus_step` now publish the shape of their list items**, and an item with a key that
+    shape does not name is refused, naming the item. Send only the keys their descriptions list.
+  - **`reconcile_verification` refuses the whole call when an `outcome` is not `passed`, `failed`
+    or `skipped`**, naming the item, and records nothing. It used to drop that item into
+    `rejected` and record the rest, which the published enum already ruled out. Map your runner's
+    results onto the three values before sending (`tools/run_to_files.py` already does).
+  - **`draw_edges` checks each item's arguments as its helper would**, and refuses a bad item in
+    the helper's own words.
+  - **Through `--call`, an argument refusal still exits 2** (a reply the tool marked as an error,
+    as MCP specifies for input validation). Exit 1 stays a tool's own rule refusing, such as a
+    field a constructor needs only to create. Scripts that read the exit code need no change. The
+    door is no longer told to "reconnect": it reads the schema from its own binary on every call.
+  - **The usage ledger counts these refusals by kind**: `missing_argument`, `unknown_argument`,
+    and a new `invalid_argument` for a wrong type, a value outside its set or a field given twice.
+  - **The 13 required fields inside list items that had no description now have one.**
+    `tools/refusal_speaks.py` now generates its probes from every served schema: a wrong type,
+    an unknown key, a value outside each enum and an empty item, at every depth on every tool.
+
 - **`rmcp` 3.4.0 → 3.5.0, `base64` 0.22 → 0.23, and the lock refreshed** (23 crates within their
   declared ranges). `rmcp` is now declared `"3.5"`, not `"3"`. rmcp 3.5 moved
   `ProtocolVersion::LATEST` to 2026-07-28, the revision that removed the `initialize` handshake,
@@ -116,6 +149,40 @@ This file is the third view: *what changed, and when*.
 
 ### Fixed
 
+- **A read through `--call` on a design another session holds is now as true as a read of the
+  design itself.** While a `--serve-shared` server (another session) holds a design, `--call`
+  answers a read-only tool from a copy of the store. That copy left out things the reads depend
+  on, and each one produced a confident wrong answer with exit 0:
+  - **The search index.** `search_design` answered `{"hits": []}` and `topic_report` "NOTHING
+    MATCHED" for words the design holds. The copy now rebuilds its index from the copied nodes.
+  - **Where the design lives.** The copy was opened in the temporary directory, and reads that
+    find things from the design's path looked there. `loop_status` measured registered files
+    under `/tmp`, reported them MISSING, and told the agent to record a disposition for them.
+    `sync_status` said there was no export to check, and `wall_check` read `/tmp` as the project.
+    The copy now reads the project tree, the sync record and the harness settings where the
+    design lives. It still writes nothing beside the held store: those records are the holder's.
+  - **The version stamp.** A binary older than the holder read the copy without the refusal it
+    meets on the real store. The copy now carries the stamp, and its open checks it.
+  - **A copy that failed part-way** was left in the temp dir as a partial second copy of the
+    design. It is now removed, and a file the holder deletes while the copy is being made is
+    skipped rather than failing the read.
+  - **Any store whose search index does not hold what the store holds** — copied or restored
+    without its `fulltext/` subdirectory, or written by a build without search — now rebuilds
+    the index when it is opened, and `loop_status` reports that once as
+    `search_index_rebuilt_on_open`. Before, it opened onto an empty index and every search said
+    "nothing matched". As a floor under that, a search that would answer "nothing matched" from
+    an index that does not cover the store now refuses, naming both counts.
+  - **`search_design` and `topic_report` now say how many nodes they searched** (`searched`, a
+    new field), so an empty answer says which empty it is. `topic_report`'s `not_found` line
+    names that number; it used to name the design's size as if all of it had been searched.
+    `tools/empty_speaks.py` gains a pass that asks every query-taking read for words nothing
+    matches. It had never asked one anything, which is why it missed this.
+
+  A new test asks every read-only tool `--call` can probe the same question with the design free
+  and with it held, and requires the same answer. **What to do:** if you drove reflow2 through
+  `--call` while a session held the design, and acted on "nothing matched" (for example, you
+  created a node because search found no duplicate) or on "registered file missing", run that
+  search or check again.
 - **A refused write stores nothing.** Until now a typed write such as `add_requirement`,
   `add_decision` or `add_verification` could store the node and then refuse the call over a later
   argument: a bad `priority` or `kind`, a `related_to` naming nothing, an edge the schema does not

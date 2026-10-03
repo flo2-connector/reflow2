@@ -123,28 +123,35 @@ pub(crate) fn declare_echo(tools: Vec<Tool>) -> Vec<Tool> {
     tools
         .into_iter()
         .map(|mut t| {
-            if !is_write(&t) {
-                return t;
-            }
-            let mut schema: JsonObject = (*t.input_schema).clone();
-            let props = schema
-                .entry("properties")
-                .or_insert_with(|| Value::Object(Map::new()));
-            if let Value::Object(p) = props {
-                p.insert(
-                    ECHO.into(),
-                    serde_json::json!({
-                        "type": "string",
-                        "enum": ECHO_VALUES,
-                        "default": "receipt",
-                        "description": ECHO_DESCRIPTION,
-                    }),
-                );
-            }
-            t.input_schema = Arc::new(schema);
+            t.input_schema = published_input_schema(&t);
             t
         })
         .collect()
+}
+
+/// One tool's input schema as it is PUBLISHED: a write's carries `echo`. The
+/// argument check (`crate::arguments`) reads this, so what is checked is what
+/// a caller was shown — a read's schema is shared, not copied.
+pub(crate) fn published_input_schema(t: &Tool) -> Arc<JsonObject> {
+    if !is_write(t) {
+        return Arc::clone(&t.input_schema);
+    }
+    let mut schema: JsonObject = (*t.input_schema).clone();
+    let props = schema
+        .entry("properties")
+        .or_insert_with(|| Value::Object(Map::new()));
+    if let Value::Object(p) = props {
+        p.insert(
+            ECHO.into(),
+            serde_json::json!({
+                "type": "string",
+                "enum": ECHO_VALUES,
+                "default": "receipt",
+                "description": ECHO_DESCRIPTION,
+            }),
+        );
+    }
+    Arc::new(schema)
 }
 
 /// A write's reply, as a receipt. `v` is the structured reply the handler

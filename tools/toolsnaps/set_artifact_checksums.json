@@ -10,6 +10,7 @@
         "description": "One accepted baseline for `set_artifact_checksums`, carrying **its own**\ndisposition. That is the point of the shape, not an inconvenience: a batch\nunder one shared disposition would be the silent bulk accept\n`dec:two-sided-accept` exists to forbid.",
         "properties": {
           "artifact_id": {
+            "description": "The registered Artifact (`art:…`) whose baseline this item accepts — one\n`reconcile_artifacts` or `reflow2_check` reported, or a new one getting its\nfirst baseline.",
             "type": "string"
           },
           "at": {

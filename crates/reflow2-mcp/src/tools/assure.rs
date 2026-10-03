@@ -700,12 +700,8 @@ impl ReflowService {
         &self,
         Parameters(req): Parameters<CoverageReportReq>,
     ) -> Result<CallToolResult, McpError> {
-        let observed: Vec<ObservedPath> = req
-            .observed
-            .into_iter()
-            .map(|o| serde_json::from_value(JsonValue::Object(o)))
-            .collect::<Result<_, _>>()
-            .map_err(|e| McpError::invalid_params(format!("invalid observation: {e}"), None))?;
+        let observed: Vec<ObservedPath> =
+            req.observed.into_iter().map(ObservedPath::from).collect();
         let g = self.graph.read().await;
         ok_json(
             g.coverage_report(&observed, &req.exclusions, req.swept_at.as_deref())

@@ -20,5 +20,5 @@ mod keys;
 
 pub use cache::{CacheConfig, ReadCache};
 #[cfg(feature = "fulltext")]
-pub use engine::FulltextHit;
+pub use engine::{FulltextCoverage, FulltextHit};
 pub use engine::{StorageEngine, StoredEdge, StoredNode};

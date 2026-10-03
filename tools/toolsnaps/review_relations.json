@@ -22,6 +22,7 @@
             ]
           },
           "other_id": {
+            "description": "The node at the other end of the relation (`req:…`, `dec:…`, any node id).\nThe edge runs TO it unless `incoming` turns it round. Its type is resolved\nfrom the id; `other_type` names it when the id is ambiguous.",
             "type": "string"
           },
           "other_type": {

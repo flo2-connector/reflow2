@@ -49,6 +49,19 @@
 //! SENTENCE; only the gate proves a caller receives it. Do not let this file
 //! stand in for that one.
 //!
+//! # Since 2026-10-02 the refusal is built from the schema, not from serde
+//!
+//! The hint this file pinned read the field's description from the schema's
+//! TOP-LEVEL `properties` only, so a required field missing inside an item
+//! (`related_to[0].evidence`) was refused with "its own schema publishes no
+//! description of it" — false for 22 of the 35 nested required fields on the
+//! surface (`fact:root-cause-a-missing-nested-field-refusal-says-the-schema-publishes-no-description-when-it-does-2026-10-02`).
+//! Arguments are now checked against the published schema before anything
+//! deserialises them (`reflow2_mcp::arguments`), at every depth, and every
+//! property this file asked of the old hint is asked of the new refusal here.
+//! The wire is asked by `every_argument_refusal_names_the_tool_and_the_field_path.rs`
+//! and by `tools/refusal_speaks.py`.
+//!
 //! # What this does NOT claim
 //!
 //! It checks that the refusal names the tool, the missing field, and what the
@@ -57,8 +70,18 @@
 //! field whose published description is thin produces a thin refusal here.
 //! Presence is what is derivable; quality is not.
 
-use reflow2_mcp::service::{ReflowService, missing_field_hint};
-use serde_json::Value;
+use reflow2_mcp::arguments::{Transport, check, deserializer_refusal, refusal};
+use reflow2_mcp::service::ReflowService;
+use serde_json::{Map, Value};
+
+/// The refusal a call with `given` arguments receives, built exactly as
+/// `call_tool` builds it.
+fn refused(tool: &str, given: Map<String, Value>) -> String {
+    let schema = schema_for(tool);
+    let violations = check(schema.as_object().expect("object schema"), &given);
+    assert!(!violations.is_empty(), "`{tool}` {given:?} fits its schema");
+    refusal(tool, &violations, Transport::Session)
+}
 
 fn schema_for(tool: &str) -> Value {
     let mut all = ReflowService::capture_router().list_all();
@@ -87,15 +110,14 @@ fn schema_for(tool: &str) -> Value {
 /// THE MEASURED CASE, in the reporter's own words.
 #[test]
 fn the_reported_call_is_answered_with_the_field_and_its_purpose() {
-    let msg = "failed to deserialize parameters: missing field `change_event_ids`";
-    let hint = missing_field_hint(msg, "unclaimed_findings", &schema_for("unclaimed_findings"));
+    let hint = refused("unclaimed_findings", Map::new());
 
     assert!(
-        hint.contains("unclaimed_findings"),
+        hint.contains("`unclaimed_findings`"),
         "the refusal must name the TOOL — the caller may have several in flight:\n{hint}"
     );
     assert!(
-        hint.contains("change_event_ids"),
+        hint.contains("`change_event_ids`"),
         "the refusal must keep naming the missing field:\n{hint}"
     );
     // The schema's own description of that field, not a sentence invented here.
@@ -115,10 +137,10 @@ fn the_reported_call_is_answered_with_the_field_and_its_purpose() {
     );
 }
 
-/// EVERY required field, not just the one serde happened to notice first.
+/// EVERY required field, not just the one serde would have noticed first.
 #[test]
 fn a_caller_learns_the_whole_obligation_from_one_refusal() {
-    // `record_change` declares five required parameters; serde names one.
+    // `record_change` declares five required parameters; serde named one.
     let schema = schema_for("record_change");
     let required: Vec<String> = schema["required"]
         .as_array()
@@ -132,13 +154,12 @@ fn a_caller_learns_the_whole_obligation_from_one_refusal() {
         required.len()
     );
 
-    let msg = format!(
-        "failed to deserialize parameters: missing field `{}`",
-        required[0]
-    );
-    let hint = missing_field_hint(&msg, "record_change", &schema);
+    let hint = refused("record_change", Map::new());
 
-    let unnamed: Vec<&String> = required.iter().filter(|f| !hint.contains(*f)).collect();
+    let unnamed: Vec<&String> = required
+        .iter()
+        .filter(|f| !hint.contains(&format!("`{f}`")))
+        .collect();
     assert!(
         unnamed.is_empty(),
         "a refusal that names one required field at a time costs a round trip per field. \
@@ -149,24 +170,22 @@ fn a_caller_learns_the_whole_obligation_from_one_refusal() {
     );
 }
 
-/// The guard on the guard: a message that is NOT a missing-field error must
-/// pass through untouched, or this branch would rewrite unrelated refusals.
+/// The guard on the guard: a message that is NOT a deserialiser refusal must
+/// pass through untouched, or the fallback would rewrite unrelated refusals.
 #[test]
 fn an_unrelated_refusal_is_left_alone() {
     let msg = "the design holds no Contributor with id `nobody`";
-    let hint = missing_field_hint(msg, "loop_status", &schema_for("loop_status"));
     assert_eq!(
-        hint, msg,
-        "only a missing-field deserialisation error may be rewritten"
+        deserializer_refusal("loop_status", msg, Transport::Session),
+        None,
+        "only a deserialisation refusal may be rewritten"
     );
 }
 
-/// With the call's own arguments in hand the refusal says which required
-/// fields THIS call lacked, and sets the ones already passed apart — instead
-/// of listing the whole obligation and leaving the caller to diff it.
+/// With the call's own arguments in hand the refusal names exactly what THIS
+/// call lacked, and never a field it passed.
 #[test]
 fn with_the_arguments_in_hand_the_refusal_names_what_this_call_lacked() {
-    use reflow2_mcp::service::missing_fields_hint;
     let schema = schema_for("record_change");
     let required: Vec<String> = schema["required"]
         .as_array()
@@ -175,30 +194,29 @@ fn with_the_arguments_in_hand_the_refusal_names_what_this_call_lacked() {
         .filter_map(|v| v.as_str().map(String::from))
         .collect();
     assert!(required.len() >= 3);
-    let passed = required[0].clone();
-    let mut given = serde_json::Map::new();
+    let passed = required
+        .iter()
+        .find(|f| schema["properties"][f.as_str()]["type"] == "string")
+        .expect("record_change has a required string field")
+        .clone();
+    let mut given = Map::new();
     given.insert(passed.clone(), Value::String("x".into()));
-    let msg = format!(
-        "failed to deserialize parameters: missing field `{}`",
-        required[1]
-    );
-    let hint = missing_fields_hint(&msg, "record_change", &schema, Some(&given));
-    assert!(hint.contains("MISSING FROM THIS CALL"), "{hint}");
-    let (before, after) = hint
-        .split_once("Already passed")
-        .expect("the passed field is set apart");
-    for f in &required[1..] {
+    let hint = refused("record_change", given);
+    for f in required.iter().filter(|f| **f != passed) {
         assert!(
-            before.contains(&format!("`{f}`")),
+            hint.contains(&format!("`{f}` is required")),
             "{f} was not passed and must be named as missing:\n{hint}"
         );
     }
     assert!(
-        after.contains(&format!("`{passed}`")),
-        "{passed} was passed and must be set apart, not listed as missing:\n{hint}"
-    );
-    assert!(
-        !before.contains(&format!("`{passed}`")),
+        !hint.contains(&format!("`{passed}` is required")),
         "{passed} was passed and must not be listed as missing:\n{hint}"
+    );
+    let (_, after) = hint
+        .split_once("Already passed")
+        .expect("the passed field is set apart");
+    assert!(
+        after.contains(&format!("`{passed}`")),
+        "{passed} was passed and must be set apart:\n{hint}"
     );
 }

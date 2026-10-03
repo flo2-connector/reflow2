@@ -61,9 +61,11 @@
             ]
           },
           "id": {
+            "description": "The new node's id, with the prefix convention the typed constructors use\n(`req:`, `cap:`, `dec:` …) so the type is readable from the id anywhere it\nappears.",
             "type": "string"
           },
           "node_type": {
+            "description": "The schema type name as declared, e.g. `Requirement`, `DesignEpoch` —\n`describe_schema` lists them. The same value `create_node` takes.",
             "type": "string"
           },
           "props": {
