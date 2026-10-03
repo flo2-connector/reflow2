@@ -974,26 +974,75 @@ impl Schema {
     /// field. The default is applied for every missing property that
     /// declares one (not just required ones), matching the principle
     /// that "the schema's default IS the value" when no value is given.
+    ///
+    /// Refuses with the FIRST of [`node_refusals`](Self::node_refusals) —
+    /// one rule with two readers: the store's write point, which stops at
+    /// the first, and the recheck of stored data, which wants them all.
     pub fn validate_node(
         &self,
         node_type: &str,
         properties: &mut HashMap<String, Value>,
     ) -> Result<(), DynoError> {
-        let node_def = self
-            .node_types
-            .get(node_type)
-            .ok_or_else(|| DynoError::UnknownNodeType(node_type.to_string()))?;
+        match self
+            .collect_node_refusals(node_type, properties)
+            .into_iter()
+            .next()
+        {
+            Some(first) => Err(first),
+            None => Ok(()),
+        }
+    }
+
+    /// EVERY reason this schema refuses a node of `node_type` holding
+    /// `properties` — the rule [`validate_node`](Self::validate_node) applies
+    /// at the store's single write point, collected rather than stopped at the
+    /// first. Empty means a write of exactly this would be accepted.
+    ///
+    /// ⭐ WHY THE WRITE RULE GREW A SECOND READER. The schema was checked only
+    /// when something was written, so a node written under an older reflow2
+    /// was never judged by the newer one until an import refused the whole
+    /// document (`dec:idea-stored-data-is-rechecked-against-the-current-schema`).
+    /// The recheck asks THIS function about what is stored, so the two cannot
+    /// come to disagree about what a refusal is — a second copy of the rule
+    /// is the hand-maintained duplicate that drifts.
+    ///
+    /// Defaults are applied to a copy first, exactly as a write applies them,
+    /// so a property the schema can fill is not a refusal. Ordered: missing
+    /// required properties first, then each property's value, each by name,
+    /// so repeated calls agree.
+    pub fn node_refusals(
+        &self,
+        node_type: &str,
+        properties: &HashMap<String, Value>,
+    ) -> Vec<DynoError> {
+        let mut properties = properties.clone();
+        self.collect_node_refusals(node_type, &mut properties)
+    }
+
+    /// [`node_refusals`](Self::node_refusals) over a map it may fill with
+    /// defaults — the shared body of the write rule and the recheck.
+    fn collect_node_refusals(
+        &self,
+        node_type: &str,
+        properties: &mut HashMap<String, Value>,
+    ) -> Vec<DynoError> {
+        let Some(node_def) = self.node_types.get(node_type) else {
+            return vec![DynoError::UnknownNodeType(node_type.to_string())];
+        };
+        let mut refusals = Vec::new();
 
         // Apply defaults for any missing properties that declare one,
         // then check that every required property is now present.
-        for (prop_name, prop_def) in &node_def.properties {
+        let mut declared: Vec<(&String, &PropertyDef)> = node_def.properties.iter().collect();
+        declared.sort_by(|a, b| a.0.cmp(b.0));
+        for (prop_name, prop_def) in declared {
             if !properties.contains_key(prop_name)
                 && let Some(default) = &prop_def.default
             {
                 properties.insert(prop_name.clone(), default.clone());
             }
             if prop_def.required && !properties.contains_key(prop_name) {
-                return Err(DynoError::Validation {
+                refusals.push(DynoError::Validation {
                     node_type: node_type.to_string(),
                     property: prop_name.to_string(),
                     message: "required property is missing".to_string(),
@@ -1002,11 +1051,74 @@ impl Schema {
         }
 
         // Validate each property (now including any applied defaults).
-        for (prop_name, value) in properties.iter() {
-            self.validate_property(node_type, prop_name, value)?;
+        let mut present: Vec<(&String, &Value)> = properties.iter().collect();
+        present.sort_by(|a, b| a.0.cmp(b.0));
+        for (prop_name, value) in present {
+            if let Err(e) = self.validate_property(node_type, prop_name, value) {
+                refusals.push(e);
+            }
         }
+        refusals
+    }
 
-        Ok(())
+    /// The store's whole edge write rule: the endpoint pair, then the
+    /// properties — what `StorageEngine::create_edge` enforces, refusing with
+    /// the FIRST of [`edge_refusals`](Self::edge_refusals). Mutates
+    /// `properties` to apply schema defaults, as
+    /// [`validate_edge_properties`](Self::validate_edge_properties) does.
+    pub fn validate_edge_write(
+        &self,
+        edge_type: &str,
+        from_type: &str,
+        to_type: &str,
+        properties: &mut HashMap<String, Value>,
+    ) -> Result<(), DynoError> {
+        match self
+            .collect_edge_refusals(edge_type, from_type, to_type, properties)
+            .into_iter()
+            .next()
+        {
+            Some(first) => Err(first),
+            None => Ok(()),
+        }
+    }
+
+    /// EVERY reason this schema refuses an edge of `edge_type` from a
+    /// `from_type` to a `to_type` carrying `properties` — the rule
+    /// [`validate_edge_write`](Self::validate_edge_write) applies at the
+    /// store's single write point, collected. See
+    /// [`node_refusals`](Self::node_refusals) for why the write rule has a
+    /// second reader.
+    ///
+    /// An unknown edge type is the only refusal when it applies: there is no
+    /// declaration to check endpoints or properties against. A refused pair
+    /// does not stop the property checks, so one call names everything.
+    pub fn edge_refusals(
+        &self,
+        edge_type: &str,
+        from_type: &str,
+        to_type: &str,
+        properties: &HashMap<String, Value>,
+    ) -> Vec<DynoError> {
+        let mut properties = properties.clone();
+        self.collect_edge_refusals(edge_type, from_type, to_type, &mut properties)
+    }
+
+    fn collect_edge_refusals(
+        &self,
+        edge_type: &str,
+        from_type: &str,
+        to_type: &str,
+        properties: &mut HashMap<String, Value>,
+    ) -> Vec<DynoError> {
+        let mut refusals = Vec::new();
+        match self.validate_edge(edge_type, from_type, to_type) {
+            Ok(()) => {}
+            Err(e @ DynoError::UnknownEdgeType(_)) => return vec![e],
+            Err(e) => refusals.push(e),
+        }
+        refusals.extend(self.collect_edge_property_refusals(edge_type, properties));
+        refusals
     }
 
     /// Validate all properties for an edge against its type definition.
@@ -1018,19 +1130,42 @@ impl Schema {
         edge_type: &str,
         properties: &mut HashMap<String, Value>,
     ) -> Result<(), DynoError> {
-        let edge_def = self
-            .edge_types
-            .get(edge_type)
-            .ok_or_else(|| DynoError::UnknownEdgeType(edge_type.to_string()))?;
+        if !self.edge_types.contains_key(edge_type) {
+            return Err(DynoError::UnknownEdgeType(edge_type.to_string()));
+        }
+        match self
+            .collect_edge_property_refusals(edge_type, properties)
+            .into_iter()
+            .next()
+        {
+            Some(first) => Err(first),
+            None => Ok(()),
+        }
+    }
 
-        for (prop_name, prop_def) in &edge_def.properties {
+    /// Every property refusal for an edge of a KNOWN `edge_type` (an unknown
+    /// one yields none here; the callers above refuse it first). Ordered like
+    /// the node rule: missing required properties, then values, each by name.
+    fn collect_edge_property_refusals(
+        &self,
+        edge_type: &str,
+        properties: &mut HashMap<String, Value>,
+    ) -> Vec<DynoError> {
+        let Some(edge_def) = self.edge_types.get(edge_type) else {
+            return Vec::new();
+        };
+        let mut refusals = Vec::new();
+
+        let mut declared: Vec<(&String, &PropertyDef)> = edge_def.properties.iter().collect();
+        declared.sort_by(|a, b| a.0.cmp(b.0));
+        for (prop_name, prop_def) in declared {
             if !properties.contains_key(prop_name)
                 && let Some(default) = &prop_def.default
             {
                 properties.insert(prop_name.clone(), default.clone());
             }
             if prop_def.required && !properties.contains_key(prop_name) {
-                return Err(DynoError::EdgeValidation {
+                refusals.push(DynoError::EdgeValidation {
                     edge_type: edge_type.to_string(),
                     property: prop_name.to_string(),
                     message: "required property is missing".to_string(),
@@ -1038,18 +1173,21 @@ impl Schema {
             }
         }
 
-        for (prop_name, value) in properties.iter() {
+        let mut present: Vec<(&String, &Value)> = properties.iter().collect();
+        present.sort_by(|a, b| a.0.cmp(b.0));
+        for (prop_name, value) in present {
             let Some(prop_def) = edge_def.properties.get(prop_name) else {
                 continue; // Extra properties are allowed (schema is additive)
             };
-            check_property_value(prop_def, value).map_err(|message| DynoError::EdgeValidation {
-                edge_type: edge_type.to_string(),
-                property: prop_name.to_string(),
-                message,
-            })?;
+            if let Err(message) = check_property_value(prop_def, value) {
+                refusals.push(DynoError::EdgeValidation {
+                    edge_type: edge_type.to_string(),
+                    property: prop_name.to_string(),
+                    message,
+                });
+            }
         }
-
-        Ok(())
+        refusals
     }
 
     /// Generate a text summary of this schema for LLM consumption.
