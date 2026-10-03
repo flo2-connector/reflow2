@@ -419,13 +419,32 @@ impl ReflowService {
     ) -> Result<CallToolResult, McpError> {
         let indexed: Vec<(usize, crate::bulk_edges::DrawEdgeItem)> =
             req.edges.into_iter().enumerate().collect();
+        // EACH ITEM GETS THE ARGUMENT CHECK ITS HELPER WOULD (`crate::arguments`):
+        // checked against the helper's own input schema before its body
+        // deserialises anything, refused in the very words the helper's own call
+        // would receive — the bulk form's whole promise is "its checks, its
+        // refusal words".
+        let transport = crate::arguments::current_transport();
+        let unfit: Vec<Option<String>> = indexed
+            .iter()
+            .map(|(_, item)| {
+                let t = self.tool_router.get(&item.tool)?;
+                let args = item.arguments.as_object()?;
+                let violations = crate::arguments::check(&t.input_schema, args);
+                (!violations.is_empty())
+                    .then(|| crate::arguments::refusal(&item.tool, &violations, transport))
+            })
+            .collect();
         let mut g = self.write_lock().await?;
         let report = g
             .atomically(
                 &indexed,
                 |(_, item)| item.tool.clone(),
-                |g, (index, item)| {
-                    crate::bulk_edges::draw_one(g, item).map(|r| (*index, item.tool.clone(), r))
+                |g, (index, item)| match &unfit[*index] {
+                    Some(refusal) => Err(refusal.clone()),
+                    None => {
+                        crate::bulk_edges::draw_one(g, item).map(|r| (*index, item.tool.clone(), r))
+                    }
                 },
                 req.check_only,
             )

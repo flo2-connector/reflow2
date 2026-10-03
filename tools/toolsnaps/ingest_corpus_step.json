@@ -5,6 +5,25 @@
   "description": "Turn a WHOLE FOLDER of documents into one design, with you as the model (cap:corpus-ingest). The corpus sibling of ingest_step, and preferable to looping it: it gathers the prompts for EVERY document into one round, so a hundred documents cost the same ~3 rounds a single document does instead of three hundred. YOU walk the directory and read the files — reflow2 performs no file I/O — and hand over `text` per document plus an opaque `source` locator it stores and never parses. Drive it like ingest_step: call with no `answers`, answer everything it returns, call again with the SAME documents plus every answer so far, until `status: done`. NOTHING IS WRITTEN until that final round, so an abandoned corpus leaves no half-design behind. WHAT IT DOES THAT A LOOP CANNOT: one epoch for the whole run rather than one per file; cross-document identity, so the same component named in forty specs converges on ONE node; and the ambiguous near-match band gathered across the corpus and DEDUPLICATED into one question instead of the same question forty times. RE-RUNNING IS SAFE AND IS THE RESUME PATH: a document whose fragment_id already exists comes back `skipped`, not `failed`, so pointing it at a grown folder ingests only what is new. Read `failures` before you trust the result — it names every document that could not be taken. Ask for this to extract design content from a set of documents.",
   "inputSchema": {
     "$defs": {
+      "AgentAnswerReq": {
+        "additionalProperties": false,
+        "description": "One filled answer from the ambient agent (mirrors core `AgentAnswer` with a\nJsonSchema for the tool boundary).",
+        "properties": {
+          "id": {
+            "description": "The `AgentPrompt.id` this answers.",
+            "type": "string"
+          },
+          "text": {
+            "description": "The answer text (JSON string when the prompt expected JSON).",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "text"
+        ],
+        "type": "object"
+      },
       "CorpusDocumentReq": {
         "additionalProperties": false,
         "description": "One document in a corpus run.",
@@ -42,11 +61,9 @@
     "additionalProperties": false,
     "properties": {
       "answers": {
-        "default": [],
         "description": "Every answer gathered so far, earlier rounds included — the run replays\nfrom the top rather than resuming, which is what keeps it stateless.",
         "items": {
-          "additionalProperties": true,
-          "type": "object"
+          "$ref": "#/$defs/AgentAnswerReq"
         },
         "type": "array"
       },

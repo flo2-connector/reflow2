@@ -750,7 +750,7 @@ struct OneShotClient;
 impl rmcp::ClientHandler for OneShotClient {
     fn get_info(&self) -> rmcp::model::ClientConfig {
         let mut cfg = rmcp::model::ClientConfig::default();
-        cfg.client_info.name = "reflow2-mcp --call".to_string();
+        cfg.client_info.name = reflow2_mcp::service::CALL_DOOR_CLIENT.to_string();
         cfg.client_info.version = env!("CARGO_PKG_VERSION").to_string();
         cfg
     }

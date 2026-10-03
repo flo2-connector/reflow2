@@ -4,6 +4,7 @@
 //! over a single reflow2 design graph. The `reflow2-mcp` binary (`main.rs`) is a
 //! thin stdio entry point over it; integration tests drive the service directly.
 
+pub mod arguments;
 pub mod auto_export;
 pub mod bearer;
 pub mod bulk_edges;

@@ -1519,9 +1519,8 @@ impl ReflowService {
         let observed: Vec<reflow2_core::coverage::ObservedPath> = req
             .observed
             .into_iter()
-            .map(|o| serde_json::from_value(JsonValue::Object(o)))
-            .collect::<Result<_, _>>()
-            .map_err(|e| McpError::invalid_params(format!("invalid observation: {e}"), None))?;
+            .map(reflow2_core::coverage::ObservedPath::from)
+            .collect();
         let g = self.graph.read().await;
         let sweep = if observed.is_empty() {
             None
