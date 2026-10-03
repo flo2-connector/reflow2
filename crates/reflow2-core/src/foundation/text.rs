@@ -334,6 +334,24 @@ impl TextIndex {
         Ok(())
     }
 
+    /// How many documents this index holds for `graph_id`, as of the last
+    /// commit: the population a [`search`](Self::search) in that graph runs over.
+    ///
+    /// It exists so an empty result can say WHICH empty it is. "Nothing matched
+    /// in 6,000 documents" and "nothing matched in 0 documents" return the same
+    /// empty list, and only this number tells them apart. Measured 2026-10-02: a
+    /// copy of a held store, opened with an index rebuilt empty, answered
+    /// "nothing matched" for a word the store held, and nothing in the reply
+    /// could show that the search had run over nothing.
+    pub fn count(&self, graph_id: &str) -> Result<usize, TextError> {
+        let searcher = self.reader.searcher();
+        let in_graph = TermQuery::new(
+            Term::from_field_text(self.fields.graph_id, graph_id),
+            IndexRecordOption::Basic,
+        );
+        Ok(searcher.search(&in_graph, &tantivy::collector::Count)?)
+    }
+
     /// BM25 keyword search within one graph.
     ///
     /// `query` is tokenized with the same analyzer as the indexed text and

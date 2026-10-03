@@ -84,6 +84,10 @@
         "description": "Present only when the coherence loop is owed something.",
         "type": "string"
       },
+      "searched": {
+        "description": "How many of the design's nodes the search ran over (the search index's own count). It says WHICH empty an empty `hits` is: nothing matched among this many.",
+        "type": "integer"
+      },
       "stale": {
         "description": "Ids the index returned but the store no longer holds. NON-EMPTY MEANS THE INDEX HAS DRIFTED and a reindex is due — it is not a list of results.",
         "items": {
@@ -95,7 +99,8 @@
     "required": [
       "hits",
       "stale",
-      "limit"
+      "limit",
+      "searched"
     ],
     "type": "object"
   }

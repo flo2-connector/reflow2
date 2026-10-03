@@ -30,6 +30,7 @@ pub mod one_shot;
 pub mod pointer;
 pub mod prose_currency;
 pub mod proxy;
+pub mod read_only_client;
 pub mod readiness;
 pub mod receipt;
 pub mod registry;

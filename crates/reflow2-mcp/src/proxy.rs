@@ -20,6 +20,7 @@
 //! it breaks loudly (a message with no request to answer).
 
 use crate::mcp_http::{CALL_TIMEOUT, PROBE_TIMEOUT, SessionGone, post, post_with};
+use crate::read_only_client::{Forwarder, ReadOnlyClient, Screened};
 use anyhow::{Context, bail};
 use std::sync::Arc;
 use tokio::io::{AsyncBufReadExt, AsyncWriteExt, BufReader};
@@ -33,7 +34,17 @@ use tokio::sync::Mutex;
 /// are correlated by JSON-RPC `id`, so returning them out of order is correct
 /// rather than merely tolerated. stdout is behind a mutex: interleaving two
 /// replies mid-line would corrupt the channel.
-pub async fn run(url: &str, graph_path: &str, export_to: Option<&str>) -> anyhow::Result<()> {
+///
+/// `read_only` is the session's `--read-only`, and it is REQUIRED here and in
+/// every other forwarding entry point, so no client mode can forward without
+/// deciding it: a read-only session screens every line before it is sent
+/// ([`crate::read_only_client`]).
+pub async fn run(
+    url: &str,
+    graph_path: &str,
+    export_to: Option<&str>,
+    read_only: bool,
+) -> anyhow::Result<()> {
     let up = Arc::new(Upstream {
         graph_path: graph_path.to_string(),
         export_to: export_to.map(str::to_string),
@@ -43,7 +54,34 @@ pub async fn run(url: &str, graph_path: &str, export_to: Option<&str>) -> anyhow
     });
     let out = Arc::new(Mutex::new(tokio::io::stdout()));
     let lines = BufReader::new(tokio::io::stdin()).lines();
-    forward_lines(up, out, lines).await
+    forward_lines(up, out, lines, shared_screen(read_only, graph_path)).await
+}
+
+/// The read-only screen for a session on the shared server for `graph_path`,
+/// when the session asked for one — said on stderr as it starts.
+fn shared_screen(read_only: bool, graph_path: &str) -> Option<Arc<ReadOnlyClient>> {
+    read_only.then(|| {
+        let screen = ReadOnlyClient::new(format!("the shared reflow2 server for {graph_path}"));
+        eprintln!("reflow2: {}", screen.banner());
+        Arc::new(screen)
+    })
+}
+
+/// Screen one line for a read-only session: `Ok(body)` is what to send (the
+/// line as classified), `Err(replies)` answers the client and sends nothing.
+/// With no screen the line goes as it came.
+async fn screened<F: Forwarder>(
+    screen: Option<&ReadOnlyClient>,
+    line: &str,
+    up: &F,
+) -> Result<(String, bool), Vec<String>> {
+    match screen {
+        None => Ok((line.to_string(), false)),
+        Some(s) => match s.screen(line, up).await {
+            Screened::Forward { body, lists_tools } => Ok((body, lists_tools)),
+            Screened::Answer(replies) => Err(replies),
+        },
+    }
 }
 
 type Stdout = Arc<Mutex<tokio::io::Stdout>>;
@@ -56,6 +94,7 @@ async fn forward_lines(
     up: Arc<Upstream>,
     out: Stdout,
     mut lines: StdinLines,
+    screen: Option<Arc<ReadOnlyClient>>,
 ) -> anyhow::Result<()> {
     let mut tasks = tokio::task::JoinSet::new();
 
@@ -69,7 +108,13 @@ async fn forward_lines(
         // letting a second request race ahead of it would have the server open a
         // NEW session — silently giving this seat two identities, and
         // `claim_report` two owners for one agent.
-        if line.contains("\"initialize\"") {
+        //
+        // Recognised by its parsed METHOD. This was a substring test for
+        // `"initialize"`, so a tool call whose ARGUMENTS held the word was
+        // posted as a fresh handshake with no session: it got no reply and
+        // every later call lost the session (measured on main c4e1cbd). It is
+        // also what a read-only screen must not be bypassed through.
+        if is_initialize(&line) {
             *up.hello.lock().await = Some(line.clone());
             let url = up.url.lock().await.clone();
             // **The handshake gets the same safety net as every other request,
@@ -124,17 +169,27 @@ async fn forward_lines(
 
         let up = Arc::clone(&up);
         let out = Arc::clone(&out);
+        let screen = screen.clone();
         tasks.spawn(async move {
-            let replies = match up.send(line.clone()).await {
-                Ok(messages) => messages,
-                Err(e) => forwarding_error(&line, &format!("{e:#}"))
-                    .map(|m| vec![m])
-                    // A notification (no id) has nobody waiting on a reply, so
-                    // there is nothing to answer; the log is the right place.
-                    .unwrap_or_else(|| {
-                        tracing::error!("forwarding to the shared server failed: {e:#}");
-                        Vec::new()
-                    }),
+            let replies = match screened(screen.as_deref(), &line, &*up).await {
+                // Refused by the read-only screen: answered here, nothing sent.
+                Err(answers) => answers,
+                Ok((body, lists_tools)) => match up.send(body).await {
+                    Ok(messages) => {
+                        if lists_tools && let Some(s) = &screen {
+                            s.learn(&messages).await;
+                        }
+                        messages
+                    }
+                    Err(e) => forwarding_error(&line, &format!("{e:#}"))
+                        .map(|m| vec![m])
+                        // A notification (no id) has nobody waiting on a reply, so
+                        // there is nothing to answer; the log is the right place.
+                        .unwrap_or_else(|| {
+                            tracing::error!("forwarding to the shared server failed: {e:#}");
+                            Vec::new()
+                        }),
+                },
             };
             let mut w = out.lock().await;
             for m in replies {
@@ -173,6 +228,7 @@ pub async fn run_waiting(
     graph_path: &str,
     export_to: Option<&str>,
     reason: String,
+    read_only: bool,
 ) -> anyhow::Result<()> {
     use rmcp::ServiceExt;
     let out: Stdout = Arc::new(Mutex::new(tokio::io::stdout()));
@@ -273,7 +329,9 @@ pub async fn run_waiting(
             .await?;
         w.flush().await?;
     }
-    forward_lines(up, out, lines).await
+    // Until now the client spoke to the degraded surface in this process, whose
+    // one tool only reads; from here on every line goes to the server, screened.
+    forward_lines(up, out, lines, shared_screen(read_only, graph_path)).await
 }
 
 /// Whether a JSON-RPC line is the client's `initialize` — read from the parsed
@@ -437,6 +495,15 @@ impl Upstream {
     }
 }
 
+impl Forwarder for Upstream {
+    fn forward(
+        &self,
+        body: String,
+    ) -> impl std::future::Future<Output = anyhow::Result<Vec<String>>> + Send {
+        self.send(body)
+    }
+}
+
 /// A JSON-RPC error for a request that could not be forwarded.
 ///
 /// The alternative is to log and say nothing, which leaves the client waiting on
@@ -547,9 +614,19 @@ impl Remote {
     }
 }
 
+impl Forwarder for Remote {
+    fn forward(
+        &self,
+        body: String,
+    ) -> impl std::future::Future<Output = anyhow::Result<Vec<String>>> + Send {
+        self.send(body)
+    }
+}
+
 /// Forward this session's stdio JSON-RPC to a REMOTE reflow2 until stdin ends.
-pub async fn run_remote(url: &str, bearer: Option<String>) -> anyhow::Result<()> {
-    run_remote_with_notice(url, bearer, None).await
+/// `read_only` is the session's `--read-only` (see [`run`]).
+pub async fn run_remote(url: &str, bearer: Option<String>, read_only: bool) -> anyhow::Result<()> {
+    run_remote_with_notice(url, bearer, None, read_only).await
 }
 
 /// `run_remote`, with `notice` put in front of the server's handshake
@@ -560,12 +637,18 @@ pub async fn run_remote_with_notice(
     url: &str,
     bearer: Option<String>,
     notice: Option<String>,
+    read_only: bool,
 ) -> anyhow::Result<()> {
     let up = Arc::new(Remote {
         url: url.to_string(),
         bearer,
         session: Mutex::new(None),
         hello: Mutex::new(None),
+    });
+    let screen = read_only.then(|| {
+        let screen = ReadOnlyClient::new(url.to_string());
+        eprintln!("reflow2: {}", screen.banner());
+        Arc::new(screen)
     });
     let out = Arc::new(Mutex::new(tokio::io::stdout()));
     let mut lines = BufReader::new(tokio::io::stdin()).lines();
@@ -576,8 +659,9 @@ pub async fn run_remote_with_notice(
             continue;
         }
         // The handshake inline, before any concurrency: its reply may carry
-        // the session id every later request must quote.
-        if line.contains("\"initialize\"") {
+        // the session id every later request must quote. Recognised by its
+        // parsed method, never a substring (see `forward_lines`).
+        if is_initialize(&line) {
             *up.hello.lock().await = Some(line.clone());
             let replies = match up.handshake(&line).await {
                 Ok(m) => match notice.as_deref() {
@@ -597,15 +681,27 @@ pub async fn run_remote_with_notice(
         }
         let up = Arc::clone(&up);
         let out = Arc::clone(&out);
+        let screen = screen.clone();
         tasks.spawn(async move {
-            let replies = match up.send(line.clone()).await {
-                Ok(messages) => messages,
-                Err(e) => remote_error(&line, &up.url, &format!("{e:#}"))
-                    .map(|m| vec![m])
-                    .unwrap_or_else(|| {
-                        tracing::error!("forwarding to the remote reflow2 server failed: {e:#}");
-                        Vec::new()
-                    }),
+            let replies = match screened(screen.as_deref(), &line, &*up).await {
+                // Refused by the read-only screen: answered here, nothing sent.
+                Err(answers) => answers,
+                Ok((body, lists_tools)) => match up.send(body).await {
+                    Ok(messages) => {
+                        if lists_tools && let Some(s) = &screen {
+                            s.learn(&messages).await;
+                        }
+                        messages
+                    }
+                    Err(e) => remote_error(&line, &up.url, &format!("{e:#}"))
+                        .map(|m| vec![m])
+                        .unwrap_or_else(|| {
+                            tracing::error!(
+                                "forwarding to the remote reflow2 server failed: {e:#}"
+                            );
+                            Vec::new()
+                        }),
+                },
             };
             let mut w = out.lock().await;
             for m in replies {

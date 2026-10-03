@@ -332,6 +332,32 @@ impl ReflowService {
                 );
             }
         }
+        // THE SEARCH INDEX OPENING THIS STORE REBUILT, when the index it found
+        // did not hold what the store holds (a store copied or restored
+        // without its `fulltext/` directory, or written by a build without
+        // search). Before 2026-10-02 such a store answered every search
+        // "nothing matched"; now its open rebuilds the index, and this says
+        // so once, for the same reason `repaired_on_open` does. Absent on
+        // every ordinary open.
+        if let Some(rebuilt) = g.search_rebuilt_on_open()
+            && let Some(obj) = payload.as_object_mut()
+        {
+            obj.insert(
+                "search_index_rebuilt_on_open".into(),
+                json!({
+                    "indexed_before": rebuilt.indexed_before,
+                    "searchable": rebuilt.searchable,
+                    "summary": format!(
+                        "Opening this design found its search index holding {} of the {} \
+                         node(s) it should, and rebuilt it from the store, so search now \
+                         covers all of them. Nothing to do. A search made through a build \
+                         older than this one may have answered \"nothing matched\" for \
+                         words the design holds.",
+                        rebuilt.indexed_before, rebuilt.searchable
+                    ),
+                }),
+            );
+        }
         // THE SERVER'S WRITE-THROUGH, and whether it is currently declining.
         //
         // Same shape as `served_by` above and for the same reason: cheap when
@@ -604,7 +630,7 @@ impl ReflowService {
                 graph_path,
                 live_nodes,
                 &crate::sync_debt::StoreMembership::new(&g),
-                &mut crate::sync_debt::ParsedRecords::default(),
+                &mut self.fresh_parsed_records(),
             );
             if let Some(obj) = payload.as_object_mut() {
                 let behind: Vec<_> = debts.iter().filter(|d| d.is_actionable()).collect();
@@ -1591,7 +1617,7 @@ impl ReflowService {
             graph_path,
             live_nodes,
             &crate::sync_debt::StoreMembership::new(&g),
-            &mut crate::sync_debt::ParsedRecords::default(),
+            &mut self.fresh_parsed_records(),
         );
         let mut out = json!({
             "sync": debts,
