@@ -505,7 +505,10 @@ impl ReflowService {
                        given types. Call this instead of guessing at create_node / create_edge. \
                        No arguments returns everything; `node_type` focuses one type and the \
                        edges it can carry; `from` + `to` together answer 'what may connect an X \
-                       to a Y?'. \
+                       to a Y?'; `tool` alone answers 'how do I call this TOOL?' \u{2014} its \
+                       input schema, every nested shape and allowed value, and the lessons this \
+                       design holds for it, as tools/list gives them (brief by default, `full` \
+                       for the entry unaltered). \
                        THE RANKING HAS FOUR TIERS, and the third is the one that used to be \
                        missing: edges naming BOTH types; then edges that DECLARE they are for \
                        this pair (their endpoint is open by design, not by oversight \u{2014} \
@@ -525,6 +528,44 @@ impl ReflowService {
         Parameters(req): Parameters<DescribeSchemaReq>,
     ) -> Result<CallToolResult, McpError> {
         let g = self.graph.read().await;
+        // HOW TO CALL ONE TOOL (`crate::describe_tool`): the served list of
+        // THIS design, built from the lessons read under this same lock by the
+        // function tools/list uses, so the answer is what a session on this
+        // design is given — through every door a served tool reaches, the
+        // `--call` door included, none of which reads tools/list
+        // (req:the-cli-describes-any-tool-with-its-full-schema-and-lessons).
+        if let Some(tool) = req.tool.as_deref() {
+            if req.node_type.is_some() || req.from.is_some() || req.to.is_some() {
+                return Err(McpError::invalid_params(
+                    "describe_schema takes `tool` alone (how to call one served tool), or the \
+                     vocabulary arguments (`node_type`, or `from` and `to`) \u{2014} not a mix."
+                        .to_string(),
+                    None,
+                ));
+            }
+            let listing = self.listing_from(crate::lessons::lessons_by_step(&g));
+            drop(g);
+            return crate::describe_tool::describe_one(
+                &listing,
+                tool,
+                req.full,
+                crate::describe_tool::Door::Served,
+                &crate::describe_tool::Source::Design("this design".to_string()),
+                req.budget_chars
+                    .unwrap_or(crate::reply_budget::DEFAULT_REPLY_BUDGET_CHARS),
+            )
+            .map_err(|why| McpError::invalid_params(why, None))
+            .and_then(ok_json);
+        }
+        if req.full {
+            return Err(McpError::invalid_params(
+                "`full` only means something with `tool`: it asks for one tool's tools/list \
+                 entry unaltered. The vocabulary is narrowed with `node_type`, or `from` and \
+                 `to` together."
+                    .to_string(),
+                None,
+            ));
+        }
         // The vocabulary's bytes are in its `hint` and `description` prose, and
         // the part a caller acts on is the type and edge NAMES — so trimming
         // prose leaves this tool answering the question it is asked.
@@ -867,8 +908,10 @@ impl ReflowService {
                        the blast radius?'. Ranked over the served surface itself (name, \
                        description and parameter names), so it can never drift from the tools \
                        that actually exist. The whole surface is too large to hold in context at \
-                       once; this is its catalogue. Descriptions come back trimmed — call the \
-                       tool you picked, or read its full schema, once you know its name.",
+                       once; this is its catalogue. Descriptions come back trimmed; once you \
+                       know the name, `describe_schema` with `tool` reads its whole input schema \
+                       and the lessons this design holds for it (the reply's `describe` says \
+                       how, through any door).",
         annotations(read_only_hint = true)
     )]
     pub async fn find_tools(
@@ -946,6 +989,13 @@ impl ReflowService {
             "omitted": matched.saturating_sub(items.len()),
             "searched": searched,
             "query": req.query,
+            // A summary and parameter NAMES are not enough to call a tool:
+            // the shapes, allowed values and lessons were learned one refusal
+            // at a time through the door
+            // (fact:root-cause-argument-shapes-are-learned-by-refusal-because-the-door-holds-the-full-schema-and-prints-none-of-it-2026-10-02).
+            // So the reply names the route to the rest, in the words every
+            // door can act on.
+            "describe": crate::describe_tool::ROUTE_FROM_FIND_TOOLS,
         }))
     }
 

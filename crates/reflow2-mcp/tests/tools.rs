@@ -983,6 +983,8 @@ async fn describe_schema_returns_the_whole_vocabulary() {
         from: None,
         to: None,
         required_only: false,
+        tool: None,
+        full: false,
     })));
     assert_eq!(
         v["node_types"].as_array().unwrap().len(),
@@ -1018,6 +1020,8 @@ async fn describe_schema_answers_the_directed_question() {
         from: Some("Capability".into()),
         to: Some("Component".into()),
         required_only: false,
+        tool: None,
+        full: false,
     })));
     assert!(
         q["exact_matches"].as_u64().unwrap() >= 1,
@@ -1040,6 +1044,8 @@ async fn release_pairs_report_their_true_standing() {
         from: Some("Release".into()),
         to: Some("Component".into()),
         required_only: false,
+        tool: None,
+        full: false,
     })));
     assert_eq!(
         q["exact_matches"].as_u64().unwrap(),
@@ -1052,6 +1058,8 @@ async fn release_pairs_report_their_true_standing() {
         from: Some("Release".into()),
         to: Some("Requirement".into()),
         required_only: false,
+        tool: None,
+        full: false,
     })));
     assert_eq!(
         loose["exact_matches"].as_u64().unwrap(),
@@ -1074,6 +1082,8 @@ async fn describe_schema_focuses_one_node_type() {
         from: None,
         to: None,
         required_only: false,
+        tool: None,
+        full: false,
     })));
     let outgoing = d["outgoing"].as_array().unwrap();
     assert!(
@@ -1102,6 +1112,8 @@ async fn describe_schema_required_only_is_compact() {
         from: None,
         to: None,
         required_only: false,
+        tool: None,
+        full: false,
     })));
     let compact = j!(s.describe_schema(Parameters(DescribeSchemaReq {
         budget_chars: None,
@@ -1109,6 +1121,8 @@ async fn describe_schema_required_only_is_compact() {
         from: None,
         to: None,
         required_only: true,
+        tool: None,
+        full: false,
     })));
 
     // The full view carries the edge lists; the compact one drops them.
@@ -1143,6 +1157,8 @@ async fn describe_schema_rejects_a_half_given_pair() {
             from: Some("Release".into()),
             to: None,
             required_only: false,
+            tool: None,
+            full: false,
         }))
         .await
         .is_err(),
@@ -1156,6 +1172,8 @@ async fn describe_schema_rejects_a_half_given_pair() {
             from: None,
             to: None,
             required_only: false,
+            tool: None,
+            full: false,
         }))
         .await
         .is_err(),

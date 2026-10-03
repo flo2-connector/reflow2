@@ -46,7 +46,10 @@
 //!
 //! The split is the one the door already makes from each tool's served
 //! `read_only_hint` (`--call`), or that the mode is (`--export` reads, `--import`
-//! writes) — no second list. A design that comes into being because somebody
+//! writes) — no second list. `--describe` and `--list-tools` are a third case
+//! ([`Access::Describes`]): they read only a design's LESSONS, so where there is
+//! no store they open nothing and describe the surface from no design, saying
+//! so — nothing is made, so nothing can be mistaken for a design. A design that comes into being because somebody
 //! asked what was in it answers as a healthy empty design, and nothing says it
 //! was made by asking. A write is the caller putting a design at that path.
 //! The one exception for a read is a folder that has OPTED IN (`.reflow2/` is
@@ -85,6 +88,10 @@ pub enum Mode {
     Call,
     /// `--stop-shared`
     StopShared,
+    /// `--describe TOOL`
+    Describe,
+    /// `--list-tools`
+    ListTools,
 }
 
 /// What a mode does to the design at `--graph-path`.
@@ -94,11 +101,16 @@ pub enum Access {
     Reads,
     /// It changes the design, and may therefore create it.
     Writes,
+    /// It reads the design's LESSONS where there is a design, and where there
+    /// is none it opens and creates nothing and answers from no design, saying
+    /// so (`--describe`, `--list-tools`): the surface it describes is the
+    /// binary's, and only the lessons are the design's.
+    Describes,
 }
 
 impl Mode {
     /// Every one-shot mode, in the order `main` dispatches them.
-    pub const ALL: [Mode; 11] = [
+    pub const ALL: [Mode; 13] = [
         Mode::Setup,
         Mode::DiffStore,
         Mode::DiffFiles,
@@ -107,6 +119,8 @@ impl Mode {
         Mode::MergeDriver,
         Mode::ExportSnapshot,
         Mode::Export,
+        Mode::Describe,
+        Mode::ListTools,
         Mode::Call,
         Mode::Import,
         Mode::StopShared,
@@ -125,6 +139,8 @@ impl Mode {
             Mode::ExportSnapshot => "export_snapshot",
             Mode::Call => "call",
             Mode::StopShared => "stop_shared",
+            Mode::Describe => "describe",
+            Mode::ListTools => "list_tools",
         }
     }
 
@@ -142,6 +158,8 @@ impl Mode {
             Mode::ExportSnapshot => "--export-snapshot",
             Mode::Call => "--call",
             Mode::StopShared => "--stop-shared",
+            Mode::Describe => "--describe",
+            Mode::ListTools => "--list-tools",
         }
     }
 
@@ -186,6 +204,15 @@ impl Mode {
             Mode::MergeDriver => &[],
             // Reads the server record beside the store at --graph-path.
             Mode::StopShared => &["graph_path"],
+            // Reads the design's lessons and changes nothing, so --read-only's
+            // promise holds; `full` asks for the tools/list entries unaltered.
+            Mode::Describe | Mode::ListTools => &[
+                "graph_path",
+                "store_memory",
+                "only_if_present",
+                "read_only",
+                "full",
+            ],
         }
     }
 
@@ -195,7 +222,13 @@ impl Mode {
     pub fn opens_the_store(self) -> bool {
         matches!(
             self,
-            Mode::Export | Mode::ExportSnapshot | Mode::DiffStore | Mode::Import | Mode::Call
+            Mode::Export
+                | Mode::ExportSnapshot
+                | Mode::DiffStore
+                | Mode::Import
+                | Mode::Call
+                | Mode::Describe
+                | Mode::ListTools
         )
     }
 }
@@ -242,6 +275,9 @@ fn why_not(id: &str, mode: Mode) -> String {
             .to_string(),
         ("read_only", _) => "this mode writes (a file or a process's state), and --read-only \
              refuses every write."
+            .to_string(),
+        ("full", _) => "--full asks --describe or --list-tools for the tools/list entries \
+             unaltered; this mode describes no tool."
             .to_string(),
         ("only_if_present" | "graph_path" | "store_memory", _) => {
             "this mode never opens a design store, so there is nothing for it to govern."
@@ -415,6 +451,11 @@ pub fn resolve_design(asked: &Asked<'_>) -> Result<(), String> {
     // 4. NO STORE AT THE PATH. Asked without opening anything: `describe_at`
     // reads only the sidecars, so looking cannot mint an identity.
     if !Path::new(graph_path).exists() {
+        // A description of the served surface opens nothing where there is no
+        // store, and says it read no design — so nothing here can make one.
+        if asked.access == Access::Describes {
+            return Ok(());
+        }
         let found = reflow2_core::describe_at(graph_path);
         if asked.read_only {
             return Err(format!(
@@ -509,6 +550,41 @@ mod tests {
         assert!(resolve_design(&a).unwrap_err().contains("--read-only"));
         a.access = Access::Reads;
         assert!(resolve_design(&a).unwrap_err().contains("--read-only"));
+    }
+
+    /// `--describe` / `--list-tools` where there is no store: nothing to open
+    /// and nothing to create, so it may answer from no design (and says so);
+    /// a pointer and `--only-if-present` still refuse it.
+    #[test]
+    fn a_description_where_there_is_no_design_opens_nothing_and_a_pointer_still_refuses_it() {
+        let d = scratch("describes");
+        let g = d.path().join(".reflow2").join("graph");
+        let g = g.to_str().unwrap();
+        let mut a = asked(g, Access::Describes);
+        assert!(resolve_design(&a).is_ok());
+        a.read_only = true;
+        assert!(
+            resolve_design(&a).is_ok(),
+            "nothing is created, so --read-only holds"
+        );
+        a.read_only = false;
+        a.only_if_present = true;
+        assert!(
+            resolve_design(&a)
+                .unwrap_err()
+                .contains("--only-if-present")
+        );
+        assert!(
+            !d.path().join(".reflow2").exists(),
+            "resolving opens nothing"
+        );
+        std::fs::write(
+            d.path().join(".reflow2.toml"),
+            "[design]\nid = \"abc123def4567890\"\naddress = \"http://127.0.0.1:9/g/abc123def4567890/mcp\"\n",
+        )
+        .unwrap();
+        let why = resolve_design(&asked(g, Access::Describes)).unwrap_err();
+        assert!(why.contains("abc123def4567890"), "{why}");
     }
 
     #[test]
