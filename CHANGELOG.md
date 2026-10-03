@@ -149,6 +149,40 @@ This file is the third view: *what changed, and when*.
 
 ### Fixed
 
+- **A read through `--call` on a design another session holds is now as true as a read of the
+  design itself.** While a `--serve-shared` server (another session) holds a design, `--call`
+  answers a read-only tool from a copy of the store. That copy left out things the reads depend
+  on, and each one produced a confident wrong answer with exit 0:
+  - **The search index.** `search_design` answered `{"hits": []}` and `topic_report` "NOTHING
+    MATCHED" for words the design holds. The copy now rebuilds its index from the copied nodes.
+  - **Where the design lives.** The copy was opened in the temporary directory, and reads that
+    find things from the design's path looked there. `loop_status` measured registered files
+    under `/tmp`, reported them MISSING, and told the agent to record a disposition for them.
+    `sync_status` said there was no export to check, and `wall_check` read `/tmp` as the project.
+    The copy now reads the project tree, the sync record and the harness settings where the
+    design lives. It still writes nothing beside the held store: those records are the holder's.
+  - **The version stamp.** A binary older than the holder read the copy without the refusal it
+    meets on the real store. The copy now carries the stamp, and its open checks it.
+  - **A copy that failed part-way** was left in the temp dir as a partial second copy of the
+    design. It is now removed, and a file the holder deletes while the copy is being made is
+    skipped rather than failing the read.
+  - **Any store whose search index does not hold what the store holds** — copied or restored
+    without its `fulltext/` subdirectory, or written by a build without search — now rebuilds
+    the index when it is opened, and `loop_status` reports that once as
+    `search_index_rebuilt_on_open`. Before, it opened onto an empty index and every search said
+    "nothing matched". As a floor under that, a search that would answer "nothing matched" from
+    an index that does not cover the store now refuses, naming both counts.
+  - **`search_design` and `topic_report` now say how many nodes they searched** (`searched`, a
+    new field), so an empty answer says which empty it is. `topic_report`'s `not_found` line
+    names that number; it used to name the design's size as if all of it had been searched.
+    `tools/empty_speaks.py` gains a pass that asks every query-taking read for words nothing
+    matches. It had never asked one anything, which is why it missed this.
+
+  A new test asks every read-only tool `--call` can probe the same question with the design free
+  and with it held, and requires the same answer. **What to do:** if you drove reflow2 through
+  `--call` while a session held the design, and acted on "nothing matched" (for example, you
+  created a node because search found no duplicate) or on "registered file missing", run that
+  search or check again.
 - **A refused write stores nothing.** Until now a typed write such as `add_requirement`,
   `add_decision` or `add_verification` could store the node and then refuse the call over a later
   argument: a bad `priority` or `kind`, a `related_to` naming nothing, an edge the schema does not

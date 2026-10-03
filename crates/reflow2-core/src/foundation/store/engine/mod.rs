@@ -123,7 +123,7 @@ mod nodes;
 mod scan;
 
 #[cfg(feature = "fulltext")]
-pub use fulltext::FulltextHit;
+pub use fulltext::{FulltextCoverage, FulltextHit};
 
 /// The write buffer, with an index over its own ops.
 ///
