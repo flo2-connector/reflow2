@@ -116,6 +116,51 @@ This file is the third view: *what changed, and when*.
 
 ### Fixed
 
+- **Every one-shot command now finds its design before it opens one, and refuses a flag it does not
+  read instead of ignoring it.** The one-shot commands are `--call`, `--export`, `--export-snapshot`,
+  `--import`, `--diff`, `--merge`, `--merge-apply`, `--merge-driver`, `--stop-shared` and `setup`.
+  Until now, which rules a run obeyed depended on where its branch sat in `main()`, and the store
+  opener created a missing store. Measured on 0.77.0:
+  - In a folder whose `.reflow2.toml` names a design on a server, `--call` and `--export` made a
+    new, empty local design, with exit 0 and nothing on stderr. The next `--call loop_status` there
+    reported it `clean: true`. Even `find_tools` and `get_skill` did this, and they read no design.
+  - `--read-only --call add_requirement` wrote the requirement.
+  - `--export-to FILE --call <writer>` never wrote FILE.
+  - `--remote URL --call X` ran nothing and exited 0.
+
+  What happens now, and what to do:
+  - **In a folder that names its design on a server**, `--call`, `--export`, `--export-snapshot`,
+    `--import` and `--diff BASE` refuse with exit 1 and create nothing. The refusal names the
+    design's id and its address. Reach that design through an MCP client: a session started in the
+    folder attaches to it, or use `reflow2-mcp --remote <address>`. The file-only modes
+    (`--diff BASE OTHER`, `--merge*`) still work there.
+  - **Where there is no design, a read refuses** ("no design at …", exit 1) and creates nothing.
+    This covers `--export`, `--export-snapshot`, `--diff BASE` and any `--call` of a tool marked
+    read-only. A tool that writes, and `--import`, still create the design where you point them.
+    A folder that has opted in (`.reflow2/` is there but empty) is read as the empty design it is,
+    so the installer's first export still names the design.
+  - **`--read-only` means "change nothing, in the design or on disk"**, and `--call` honours it.
+    A tool that writes is refused by name, and so are `export_graph` and `export_surface` with a
+    `path`. Without a `path` they still answer in the reply. Opening an existing store still does
+    the store's own housekeeping (RocksDB's files, and the version stamp, handshake record and usage
+    ledger beside it); no node, edge or property changes. A read-only server (`--http`,
+    `--registry-root`, `--serve-shared`) also no longer writes those files. Before this, a caller
+    could write any file the server process could write, and replace one with `overwrite: true`.
+  - **`--only-if-present` is honoured by the one-shot modes:** where no design has been started,
+    they refuse and create nothing.
+  - **A flag a one-shot mode does not read is refused** by name, with the mode, exit 1. The table
+    is in `crates/reflow2-mcp/src/one_shot.rs`. `--export-to` with `--call` waits for step 2 of the
+    `--call` door plan ("a writing call keeps the committed export current"). `--remote` and
+    `--shared` with `--call` wait for the open question of whether a one-shot call should reach
+    a served design. Two modes on one command line are refused together, which includes `--call`
+    and `--stop-shared` combined with anything. Flags set in the environment
+    (`REFLOW2_CONTENT_POLICY`, `REFLOW2_OIDC_*`) are not refused.
+  - **If a script now fails:** drop the flag the refusal names. If the script reads a folder that
+    has no design yet, either point it at the design, or create the design first with a write or
+    `--import`.
+
+  This is a **minor** change: arguments that were silently ignored are now refused.
+
 - **The handshake record (`<graph>.client.json`) names the revision rmcp actually sent.** reflow2
   keeps a copy of rmcp's negotiation rule, because rmcp does not export it, and the copy was out of
   date from rmcp 3.4.0 on. A client asking `initialize` for a revision with no handshake was
