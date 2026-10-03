@@ -6438,6 +6438,30 @@ impl ReflowService {
     /// change anything, and a task writing files on its behalf is exactly the
     /// kind of exception that makes a guarantee stop meaning what it says.
     pub fn start_auto_export(&mut self, path: String) -> Result<(), String> {
+        let auto = self.install_auto_export(path)?;
+        crate::auto_export::spawn(auto, self.graph.downgrade(), self.graph_path.clone());
+        Ok(())
+    }
+
+    /// Turn on the write-through for a process that serves ONE call and exits
+    /// (`--call`): the same [`crate::auto_export::AutoExport`], with no
+    /// background task, written by [`Self::export_now`] before the process
+    /// ends (`req:a-writing-call-keeps-the-committed-export-current`).
+    ///
+    /// No task, because the door's exit would kill it: the write-through
+    /// waits for two seconds of quiet, and the door tears its server down the
+    /// moment the reply arrives
+    /// (`fact:root-cause-call-accepts-export-to-and-never-reads-it-2026-10-02`).
+    /// Refused on a read-only service, exactly as [`Self::start_auto_export`] is.
+    pub fn keep_export_current_at_exit(&mut self, path: String) -> Result<(), String> {
+        self.install_auto_export(path).map(|_| ())
+    }
+
+    /// Install the write-through, without deciding when it runs.
+    fn install_auto_export(
+        &mut self,
+        path: String,
+    ) -> Result<Arc<crate::auto_export::AutoExport>, String> {
         if self.read_only {
             return Err(
                 "this server is read-only, so it will not write the export through. Start it \
@@ -6446,13 +6470,22 @@ impl ReflowService {
             );
         }
         let auto = crate::auto_export::AutoExport::new(path);
-        crate::auto_export::spawn(
-            Arc::clone(&auto),
-            self.graph.downgrade(),
-            self.graph_path.clone(),
-        );
-        self.auto_export = Some(auto);
-        Ok(())
+        self.auto_export = Some(Arc::clone(&auto));
+        Ok(auto)
+    }
+
+    /// Write the export NOW, through the write-through and waiting for it:
+    /// the replaced-binary check, the hand-edit guard, the lineage anchored at
+    /// the committed record and the shared file-write seam, exactly as the
+    /// background task writes it. What the door runs after a writing call
+    /// succeeds. `None` when no write-through is installed.
+    pub async fn export_now(&self) -> Option<crate::auto_export::Flushed> {
+        let auto = self.auto_export.as_ref()?;
+        // This service holds the design, so the upgrade cannot fail while it
+        // runs; the weak handle is the one door the store's lifetime code uses.
+        let graph = self.graph.downgrade().upgrade()?;
+        auto.poke();
+        Some(auto.flush(&graph, self.graph_path.as_deref()).await)
     }
 
     /// What the write-through has done, for the reports. `None` when the server

@@ -84,6 +84,9 @@ python3 tools/test_init.py
 # Prints the reply's JSON on stdout; a refusal goes to stderr with exit 1; a
 # reply the tool marked as an error exits 2. Read-only tools work while a server
 # holds the graph (best-effort snapshot, stderr says so); writers refuse then.
+# A writer that succeeds writes the export before exiting — `--export-to`, else
+# the one the project's MCP config names — and stderr says where; exit 3 means
+# the write landed and the export could not be written.
 ./target/release/reflow2-mcp --graph-path .reflow2/graph --call graph_report
 ./target/release/reflow2-mcp --graph-path .reflow2/graph --call budget_report --args '{"constraint_id":"con:mass"}'
 
@@ -435,6 +438,13 @@ writes cannot starve it) and exports once, so a burst of thirty writes costs one
 forgotten export stops being a class of loss. The guarantee lives in the server because **the
 session is the thing that might not come back**: the Stop hook that used to carry it fires once and
 exists in one harness.
+
+**Since 2026-10-03 a writing `--call` does the same before it exits**
+(`req:a-writing-call-keeps-the-committed-export-current`): the door installs the same
+write-through with no background task and runs it once after a successful write, on the file
+`--export-to` names or, without it, the one the project's MCP configuration names for that store.
+A worktree has no MCP configuration (it is git-ignored), so a design record built there with
+`--call` is still exported by hand, once, last.
 
 > 🛑 **IT WILL NOT OVERWRITE A HAND EDIT, AND THAT MEANS IT CAN STOP.** If the file no longer
 > matches what reflow2 last wrote — you edited it, or a merge left it unparseable — the

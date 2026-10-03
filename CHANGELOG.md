@@ -167,8 +167,9 @@ This file is the third view: *what changed, and when*.
   - **`--only-if-present` is honoured by the one-shot modes:** where no design has been started,
     they refuse and create nothing.
   - **A flag a one-shot mode does not read is refused** by name, with the mode, exit 1. The table
-    is in `crates/reflow2-mcp/src/one_shot.rs`. `--export-to` with `--call` waits for step 2 of the
-    `--call` door plan ("a writing call keeps the committed export current"). `--remote` and
+    is in `crates/reflow2-mcp/src/one_shot.rs`. `--export-to` with `--call` is honoured by step 2
+    of the `--call` door plan (under Added: a writing call keeps the committed export current).
+    `--remote` and
     `--shared` with `--call` wait for the open question of whether a one-shot call should reach
     a served design. Two modes on one command line are refused together, which includes `--call`
     and `--stop-shared` combined with anything. Flags set in the environment
