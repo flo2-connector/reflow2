@@ -22,6 +22,8 @@
 //!   (`fact:call-ignores-read-only-and-the-write-lands-2026-10-02`).
 //! · `--export-to FILE --call <writer>` never wrote FILE
 //!   (`fact:root-cause-call-accepts-export-to-and-never-reads-it-2026-10-02`).
+//!   Refused here first; since step 2 of the door plan `--call` HONOURS it
+//!   (`crate::call_export`).
 //! · `--remote URL --call X` ran a stdio proxy on nothing and exited 0
 //!   (`fact:root-cause-the-door-opens-the-store-itself-and-never-reads-the-shared-servers-rendezvous-2026-10-02`).
 //!
@@ -183,6 +185,8 @@ impl Mode {
                 "only_if_present",
                 "accept_newer",
             ],
+            // `export_to` / `no_export`: which file a writing call keeps
+            // current before it exits, or none (`crate::call_export`).
             Mode::Call => &[
                 "graph_path",
                 "store_memory",
@@ -190,6 +194,8 @@ impl Mode {
                 "read_only",
                 "tree_root",
                 "call_args",
+                "export_to",
+                "no_export",
             ],
             // File-pure: no store is opened and nothing is written but stdout.
             Mode::DiffFiles | Mode::Merge => &["read_only"],
@@ -243,14 +249,12 @@ fn long(arg: &Arg) -> String {
 /// would work instead.
 fn why_not(id: &str, mode: Mode) -> String {
     match (id, mode) {
-        ("export_to", Mode::Call) => "a one-shot call does not keep the committed export current \
-             yet. That is step 2 of the plan for the --call door (\"a writing call keeps the \
-             committed export current\", req:a-writing-call-keeps-the-committed-export-current), \
-             which will honour this flag. Until then, follow a writing call with `--call \
-             export_graph --args '{\"path\":\"<FILE>\",\"overwrite\":true}'`."
+        ("no_export", _) => "--no-export tells a writing `--call` not to write the export \
+             afterwards; this mode keeps no export current, so there is nothing to turn off."
             .to_string(),
-        ("export_to", _) => "--export-to is the write-through of a server that keeps running; \
-             this mode does not serve, so it would write nothing."
+        ("export_to", _) => "--export-to is the write-through of a server that keeps running, \
+             and a writing `--call` keeps it current before it exits; this mode does neither, so \
+             it would write nothing."
             .to_string(),
         ("remote", Mode::Call) => "a one-shot call opens the design on THIS machine and cannot \
              reach one on a server yet (whether it should is the open question \

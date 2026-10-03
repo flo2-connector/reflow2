@@ -147,6 +147,35 @@ This file is the third view: *what changed, and when*.
     mutation-checked).
   - Its first live run found exactly the bumps then in flight: #649 and #650 (both since merged)
     and the rocksdb 0.25 PR, held on the record until it landed in this same release (below).
+- **A `--call` that writes now keeps your committed design export current before it exits.**
+  Step 2 of the plan for the `--call` door (`req:a-writing-call-keeps-the-committed-export-current`).
+  Until now only a running MCP server kept the export current. After a write through `--call` the
+  export stayed behind until somebody remembered `export_graph` with the right path. Measured on
+  the previous build: in a project whose `.mcp.json` names `--export-to`, `--call add_requirement`
+  exited 0 and left the export unchanged.
+  - **What happens now:** when a call to a tool that writes succeeds, the export is written before
+    the command exits. It is the same write-through a running server uses, so the same rules hold:
+    it never overwrites a file changed since reflow2 last wrote it, and its lineage chains from the
+    committed export, not from the last file written.
+  - **Which file:** `--export-to FILE` if you pass one (it is now accepted with `--call`; it was
+    refused before). Otherwise the `--export-to` your project's MCP configuration names for this
+    design: `.mcp.json`, `opencode.json`, `.vscode/mcp.json` or `.grok/config.toml`, the files
+    `reflow2 init` writes. If two of them name different files, the call is refused before anything
+    is opened. If none names one, nothing is exported and stderr says so.
+  - **What you see:** one line on stderr saying where the export was written. stdout is still only
+    the tool's reply. A read, a refused write and a reply the tool marked an error write no export.
+  - **Exit 3 is new.** It means the write landed in the design but the export could not be written,
+    for example because the file was hand-edited, holds conflict markers, or its folder does not
+    exist. stderr says why. Fix the file and do not repeat the write; the next writing call (or
+    `--call export_graph`) brings the export current.
+  - **It costs an export per write.** On a small design that is milliseconds. On reflow2's own
+    design (6,478 nodes, a 28 MB export, release build) a write took 1.6 s alone and 6.0 s with its
+    export. For a script making many writes to a large design, pass **`--no-export`** on each call:
+    stderr then says the export is behind. Finish with one writing call without it, or with
+    `--call export_graph`.
+  - **What to do:** nothing, if your project was set up with `reflow2 init`. If a script followed
+    each writing `--call` with `--call export_graph`, you can drop that step. If a script treats any
+    non-zero exit as "the write failed", handle 3 as "written, export not".
 
 ### Changed
 
@@ -243,6 +272,18 @@ This file is the third view: *what changed, and when*.
 
 ### Fixed
 
+- **The held-design tests no longer fail CI at random with "the --serve-shared server never took
+  the store".** For contributors; nothing changes for users. The tests started a shared server and
+  then waited for it by reading the design through `--call`, once every 100 ms. On a design
+  nobody holds yet, that read opens the store itself. When the read got there first, the server
+  found the store taken and exited (a shared server that loses that race always exits, because
+  normally the session that started it attaches to the winner). Every later read then opened the
+  store itself, and after about 80 s the test gave up. This failed CI on main once and on two pull
+  requests, and failed 2 of 30 times when reproduced on a busy machine. The tests now wait for the
+  server's own record that it holds the store, which opens nothing. A new test starts the server
+  late on purpose to keep it that way. `a_build_can_call_one_tool_from_the_shell.rs` had the same
+  kind of wait, a write through `--call`, and now waits for its server's handshake instead.
+  **What to do:** nothing. If a pull request failed on this message, re-run it.
 - **A read through `--call` on a design another session holds is now as true as a read of the
   design itself.** While a `--serve-shared` server (another session) holds a design, `--call`
   answers a read-only tool from a copy of the store. That copy left out things the reads depend
@@ -328,8 +369,9 @@ This file is the third view: *what changed, and when*.
   - **`--only-if-present` is honoured by the one-shot modes:** where no design has been started,
     they refuse and create nothing.
   - **A flag a one-shot mode does not read is refused** by name, with the mode, exit 1. The table
-    is in `crates/reflow2-mcp/src/one_shot.rs`. `--export-to` with `--call` waits for step 2 of the
-    `--call` door plan ("a writing call keeps the committed export current"). `--remote` and
+    is in `crates/reflow2-mcp/src/one_shot.rs`. `--export-to` with `--call` is honoured by step 2
+    of the `--call` door plan (under Added: a writing call keeps the committed export current).
+    `--remote` and
     `--shared` with `--call` wait for the open question of whether a one-shot call should reach
     a served design. Two modes on one command line are refused together, which includes `--call`
     and `--stop-shared` combined with anything. Flags set in the environment
