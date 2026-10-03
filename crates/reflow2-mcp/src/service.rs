@@ -328,6 +328,19 @@ pub struct ReflowService {
     /// maintained by hand with nothing checking it, which is the defect class
     /// this project spent 2026-08-26 fixing three times over.
     read_only: bool,
+    /// Refuse a FILE a tool would write at a caller's path — `export_graph` and
+    /// `export_surface` with `path` — at [`Self::file_write_permitted`].
+    ///
+    /// ⭐ WHY IT IS ITS OWN FLAG, SET WITH `read_only` BY `into_read_only`. The
+    /// operator's `--read-only` means "changes nothing, graph or disk", and
+    /// those two tools are annotated read-only — they do not write the GRAPH —
+    /// so they never met `write_lock`: on a read-only server they wrote a file
+    /// at any path, overwrite included
+    /// (fact:root-cause-one-regex-cannot-separate-door-reads-because-the-read-set-is-not-in-the-command-and-not-served-2026-10-02).
+    /// A SNAPSHOT COPY is read-only for another reason — a graph write would
+    /// land in a copy that is thrown away — so it refuses graph writes and still
+    /// writes the file a caller asks for (`into_snapshot_copy`).
+    refuses_file_writes: bool,
     write_gen: Arc<AtomicU64>,
     /// Fire-on-change memory for the read-side loop_hint: the write generation
     /// at which `loop_status` was last computed for a read, and the hint then
@@ -6370,6 +6383,7 @@ impl ReflowService {
         Self {
             graph: Arc::new(RwLock::new(graph)),
             read_only: false,
+            refuses_file_writes: false,
             seat: std::sync::Arc::new(reflow2_core::identity::SeatLease::attach()),
             tree_root: graph_path
                 .as_deref()
@@ -6515,6 +6529,9 @@ impl ReflowService {
             // whoever just connected, which is why they are treated oppositely
             // three lines apart.
             read_only: self.read_only,
+            // Inherited for the same reason: a read-only server's sessions must
+            // not write files either.
+            refuses_file_writes: self.refuses_file_writes,
             // Fresh per session: a shared seat would report every client as the
             // same owner, and a shared hint memory would land one session's
             // nudge on whichever session read next.
@@ -6539,12 +6556,42 @@ impl ReflowService {
         }
     }
 
-    /// Turn this service read-only. Builder rather than a constructor argument
-    /// so every existing entry point keeps its signature and cannot silently
-    /// acquire a new default.
+    /// Turn this service read-only — the operator's `--read-only`: no graph
+    /// write and no file a tool would write. Builder rather than a constructor
+    /// argument so every existing entry point keeps its signature and cannot
+    /// silently acquire a new default.
     pub fn into_read_only(mut self) -> Self {
         self.read_only = true;
+        self.refuses_file_writes = true;
         self
+    }
+
+    /// Serve a best-effort SNAPSHOT COPY of a held graph: graph writes refused,
+    /// because they would land in a copy that is thrown away, while a file the
+    /// caller asks for (`export_graph` with a `path`) is still written — nobody
+    /// asked for read-only, the graph was merely held.
+    pub fn into_snapshot_copy(mut self) -> Self {
+        self.read_only = true;
+        self
+    }
+
+    /// Whether a tool may write a file at `path` for its caller. Every tool
+    /// that writes a file calls this first (`tools::tests` holds each file-write
+    /// in `src/tools/` to it), so a read-only server refuses the file the way
+    /// `write_lock` refuses the graph write — loudly, naming the mode.
+    pub(crate) fn file_write_permitted(&self, tool: &str, path: &str) -> Result<(), McpError> {
+        if !self.refuses_file_writes {
+            return Ok(());
+        }
+        Err(McpError::invalid_request(
+            format!(
+                "this reflow2 server is READ-ONLY, and `{tool}` would write {path}. Read-only \
+                 changes nothing, in the design or on disk, so no file was written. Call \
+                 `{tool}` without `path` to get the document in the reply, or use a server \
+                 started without --read-only."
+            ),
+            None,
+        ))
     }
 
     /// Whether this service refuses writes.
