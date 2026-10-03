@@ -34,8 +34,9 @@ the record**: the gaps stay counted and stay loud (`req:no-idea-goes-quiet`).
    moved or only the record of it did, and nothing can tell them apart afterwards), **fixes that
    recorded no cause** (`fix_without_recorded_cause` — a repair joined to no finding and no cause,
    indistinguishable from a symptom fix; the root-cause skill is the door) and **defects the
-   record never closed** (`defect_overtaken_by_change` — a later repair touched the subject after the defect was
-   recorded and nothing says whether that was the fix; a stale open defect sent a session down a
+   record never closed** (`defect_overtaken_by_change` — a change joined to the defect, or a repair on its
+   subject since the day it was recorded, and nothing says whether that was the fix; it names the
+   likeliest first, and only INVALIDATES closes it; a stale open defect sent a session down a
    wrong re-fix), **open questions the design already answered by building them**
    (`decision_overtaken_by_promotion` — an idea still reading `proposed` that EVOLVES_INTO an
    accepted requirement, a realized capability or a recorded change; the promotion landed and

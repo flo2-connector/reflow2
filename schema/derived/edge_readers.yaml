@@ -53,7 +53,8 @@ readers:
   detect.rs::detect_blocked_verifications: { kind: not_derived, edges: [VERIFIES], why: "A detector over one node's status: it reads a blocked check's VERIFIES targets one hop, only to name and anchor what the gap is about. It derives no relation." }
   detect.rs::detect_compliance_gaps: { kind: unjudged, edges: [COMPLIES_WITH, VIOLATES_RULE] }
   detect.rs::detect_decision_overtaken_by_promotion: { kind: unjudged, edges: [EVOLVES_INTO] }
-  detect.rs::detect_defect_overtaken_by_change: { kind: unjudged, edges: [CHANGED, INVALIDATES, REALIZES] }
+  detect.rs::changes_that_may_have_fixed: { kind: not_derived, edges: [CAUSES, CHANGED, MITIGATES, REALIZES], why: "Ranks the changes that MAY have fixed one open defect — joined to it by CAUSES, MITIGATES or a repair CHANGED it, or a dated repair that CHANGED its subject or a file realizing that subject alone — so defect_overtaken_by_change can ASK which did. It asserts no relation: the answer is the owner's, recorded as INVALIDATES or an acknowledgement." }
+  detect.rs::detect_defect_overtaken_by_change: { kind: unjudged, edges: [INVALIDATES] }
   detect.rs::detect_encoding_undecided: { kind: unjudged, edges: [GOVERNED_BY] }
   detect.rs::detect_failing_verifications: { kind: unjudged, edges: [VERIFIES] }
   detect.rs::detect_fix_without_recorded_cause: { kind: unjudged, edges: [CAUSES, CHANGED, INVALIDATES] }
@@ -81,9 +82,12 @@ readers:
   detect.rs::detect_unverified_enforced_rules: { kind: unjudged, edges: [VERIFIES] }
   detect.rs::detect_unverified_published_contracts: { kind: unjudged, edges: [VERIFIES] }
   detect.rs::direct_build_evidence: { kind: not_derived, edges: [REALIZES, VERIFIES], why: "A read of a node's OWN one-hop evidence, returned as it lists it: the Artifacts that REALIZE it whose own status is realized/verified, and the passing Verifications that VERIFY it. One hop and no further — it composes nothing, and deliberately does not reach a component the node is allocated to." }
+  detect.rs::fix_candidate: { kind: not_derived, edges: [CHANGED], why: "Reads one ChangeEvent's own record for the overtaken-defect question: its type, its date, and how many records it CHANGED (its breadth, a ranking tie-break). One node and its one-hop out-degree; it composes nothing." }
   detect.rs::owner_claims_built: { kind: unjudged, edges: [ALLOCATED_TO] }
   detect.rs::open_questions_for: { kind: not_derived, edges: [ANSWERS, ASKS_ABOUT], why: "A read of each open Question's OWN one-hop links, returned as it lists them: the nodes it ASKS_ABOUT (its evidence, handed to an addressee as links) and the records that ANSWER it. It composes nothing past the Question's direct edges (req:a-question-is-addressed-to-a-person-and-records-who-answered)." }
   detect.rs::record_asked_question: { kind: unjudged, edges: [ASKS_ABOUT] }
+  detect.rs::recorded_as_fixing_another: { kind: not_derived, edges: [CAUSES, INVALIDATES, MITIGATES], why: "A one-hop guard for the overtaken-defect question: is this change already on record as the fix of ANOTHER finding (it INVALIDATES or MITIGATES one, or one CAUSES it)? Such a change is not offered by nearness alone. It composes nothing past those one-hop reads." }
+  detect.rs::repairs_judged_for: { kind: not_derived, edges: [GOVERNED_BY], why: "Reads back what an acknowledgement recorded: the changes GOVERNED_BY the same accepted decision:ack Decision as the defect, so a change already judged not to be its fix is not asked about again. It reads a judgement somebody wrote, and derives none." }
   dimensions.rs::add_dimension_observation: { kind: unjudged, edges: [HAS_OBSERVATION, OBSERVED_IN] }
   dimensions.rs::dimension_drift: { kind: unjudged, edges: [HAS_OBSERVATION] }
   dimensions.rs::rollup_assessment: { kind: unjudged, edges: [ASSESSED_ON] }
