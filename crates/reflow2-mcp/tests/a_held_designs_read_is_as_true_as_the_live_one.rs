@@ -29,8 +29,10 @@
 //! Both take only a `query`, so both are in the probed set, and the test
 //! asserts that rather than assuming it.
 
+use std::cell::RefCell;
 use std::path::PathBuf;
 use std::process::{Child, Command, Output, Stdio};
+use std::time::{Duration, Instant};
 
 fn bin() -> &'static str {
     env!("CARGO_BIN_EXE_reflow2-mcp")
@@ -44,10 +46,16 @@ struct Project {
     root: PathBuf,
     graph: PathBuf,
     home: PathBuf,
+    /// Every `--call` this project made, in order: the tool, and whether a
+    /// holder had already published that it holds the store when the call
+    /// started. A call made before that can open the store itself.
+    calls: RefCell<Vec<(String, bool)>>,
 }
 
 impl Project {
     fn call(&self, tool: &str, args: &str) -> Output {
+        let published = reflow2_mcp::shared::rendezvous_path(self.graph.to_str().unwrap()).exists();
+        self.calls.borrow_mut().push((tool.to_string(), published));
         Command::new(bin())
             .current_dir(&self.root)
             .env("HOME", &self.home)
@@ -127,6 +135,7 @@ fn seeded() -> Project {
         root,
         graph,
         home,
+        calls: RefCell::new(Vec::new()),
     };
     let source = b"fn main() {}\n";
     std::fs::write(p.root.join("src/main.rs"), source).unwrap();
@@ -161,6 +170,8 @@ fn seeded() -> Project {
 struct Holder<'a> {
     project: &'a Project,
     child: Child,
+    /// Where its stderr goes, so a holder that does not come up says why.
+    log: PathBuf,
 }
 
 impl Drop for Holder<'_> {
@@ -179,27 +190,124 @@ impl Drop for Holder<'_> {
 }
 
 fn hold(p: &Project) -> Holder<'_> {
-    let child = Command::new(bin())
+    hold_started_late(p, None)
+}
+
+/// [`hold`], with the holder started `late` — as a loaded machine can start
+/// it, behind the reads the test makes next.
+fn hold_started_late(p: &Project, late: Option<Duration>) -> Holder<'_> {
+    let mut cmd = match late {
+        None => Command::new(bin()),
+        Some(d) => {
+            let mut sh = Command::new("sh");
+            sh.args([
+                "-c",
+                &format!("sleep {}; exec \"$0\" \"$@\"", d.as_secs_f64()),
+                bin(),
+            ]);
+            sh
+        }
+    };
+    // Beside the project, not beside the store: the records beside the store
+    // are what `sidecars` compares.
+    let log = p.root.with_file_name("holder.stderr");
+    let child = cmd
         .current_dir(&p.root)
         .env("HOME", &p.home)
         .args(["--graph-path", p.graph.to_str().unwrap(), "--serve-shared"])
         .stdin(Stdio::null())
         .stdout(Stdio::null())
-        .stderr(Stdio::null())
+        .stderr(std::fs::File::create(&log).expect("the holder's log"))
         .spawn()
         .expect("spawn the holder");
-    let holder = Holder { project: p, child };
-    // Held means the door answers a read from a copy, and says so: wait for
-    // exactly that, with a read, so the probe cannot change the design the
-    // reads below compare.
-    for _ in 0..300 {
-        let o = p.call("get_node", r#"{"id":"proj:zoo"}"#);
-        if String::from_utf8_lossy(&o.stderr).contains("SNAPSHOT") {
-            return holder;
+    let mut holder = Holder {
+        project: p,
+        child,
+        log,
+    };
+    let said = |h: &Holder| std::fs::read_to_string(&h.log).unwrap_or_default();
+
+    // ⭐ HELD IS THE HOLDER'S OWN WORD, READ WITHOUT TOUCHING THE STORE. The
+    // server writes its rendezvous only once it holds the store and its port
+    // is bound (`shared::Rendezvous`), so a rendezvous naming this holder's
+    // pid is "held", and reading it opens nothing.
+    //
+    // 🛑 UNTIL 2026-10-03 THIS WAITED BY PROBING WITH `--call get_node`, and
+    // the probe was a rival for the thing it was waiting for. On a free store
+    // `--call` opens the store and takes its lock. A `--serve-shared` server
+    // that finds the lock taken exits at once, by design: it has lost the
+    // race, and the session that spawned it attaches to the winner, except
+    // that here nothing spawned it and nothing respawns it. So whenever the
+    // first probe reached the store before the holder did (a loaded CI runner
+    // starting the holder late), the holder exited, every later probe opened
+    // the store itself, and after 300 of them, about 80 s, the test said "the
+    // --serve-shared server never took the store". CI failed so twice on
+    // 2026-10-03, and a replica of this loop failed 2 of 30 times on a loaded
+    // box, the holder's own log saying "not becoming the shared server"
+    // (fact:a-held-design-test-flakes-waiting-30s-for-the-holder-to-take-the-store-2026-10-03).
+    // `a_holder_that_starts_late_is_waited_for_without_being_raced` pins it.
+    let pid = holder.child.id();
+    let graph = p.graph.to_str().unwrap();
+    let deadline = Instant::now() + Duration::from_secs(120);
+    loop {
+        if reflow2_mcp::shared::read_rendezvous(graph).is_some_and(|r| r.pid == pid) {
+            break;
         }
-        std::thread::sleep(std::time::Duration::from_millis(100));
+        if let Ok(Some(status)) = holder.child.try_wait() {
+            panic!(
+                "the --serve-shared server exited ({status}) before it took the store; it \
+                 said:\n{}",
+                said(&holder)
+            );
+        }
+        assert!(
+            Instant::now() < deadline,
+            "the --serve-shared server did not take the store within 120 s; it said:\n{}",
+            said(&holder)
+        );
+        std::thread::sleep(Duration::from_millis(50));
     }
-    panic!("the --serve-shared server never took the store");
+    // Held means the door answers a read from a copy, and says so. Read, so
+    // the check cannot change the design the reads below compare.
+    let o = p.call("get_node", r#"{"id":"proj:zoo"}"#);
+    let err = String::from_utf8_lossy(&o.stderr);
+    assert!(
+        o.status.success() && err.contains("SNAPSHOT"),
+        "the holder published that it holds the store, and a read through the door did not \
+         answer from a copy: {err}\nthe holder said:\n{}",
+        said(&holder)
+    );
+    holder
+}
+
+/// THE FLAKE, PINNED
+/// (fact:a-held-design-test-flakes-waiting-30s-for-the-holder-to-take-the-store-2026-10-03).
+/// A holder that starts late is waited for without anything opening the store
+/// before the holder has it. Whatever opens a free store takes its lock, and a
+/// `--serve-shared` server that finds the lock taken exits as the loser of a
+/// race, by design, so a wait that opens the store can make the holder it is
+/// waiting for exit.
+#[test]
+fn a_holder_that_starts_late_is_waited_for_without_being_raced() {
+    let p = seeded();
+    let before = p.calls.borrow().len();
+    let held = hold_started_late(&p, Some(Duration::from_millis(1500)));
+    let early: Vec<String> = p.calls.borrow()[before..]
+        .iter()
+        .filter(|(_, published)| !published)
+        .map(|(tool, _)| tool.clone())
+        .collect();
+    assert!(
+        early.is_empty(),
+        "the wait for the holder made {} call(s) that could open the store before the holder \
+         had published that it holds it: {early:?}",
+        early.len()
+    );
+    assert_eq!(
+        reflow2_mcp::shared::read_rendezvous(p.graph.to_str().unwrap()).map(|r| r.pid),
+        Some(held.child.id()),
+        "the holder that was waited for is the one holding the store"
+    );
 }
 
 /// THE MEASURED INSTANCE, and it fails on main: a word the design holds is
