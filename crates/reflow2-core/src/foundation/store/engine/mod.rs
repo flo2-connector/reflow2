@@ -52,6 +52,19 @@ pub struct StorageEngine {
     /// here instead of hitting the backend. `commit_batch` flushes
     /// atomically; `discard_batch` drops them.
     write_buffer: Option<WriteBuffer>,
+    /// One entry per batch opened INSIDE the open one: the buffer length at
+    /// which it began. Empty when no batch is open, or only the outermost is.
+    ///
+    /// A batch opened inside a batch NESTS rather than committing the first
+    /// (which is what `begin_batch` used to do, with a warning). The served
+    /// surface stages every write a tool call makes in one batch
+    /// (`dec:idea-a-refused-typed-write-stores-nothing`), and a handler inside
+    /// it may reach a bulk form or an import that opens its own. Committing
+    /// the outer batch there would make the call's earlier writes durable
+    /// before anyone knew whether the call succeeded. So an inner commit hands
+    /// its writes to the outer batch, and an inner discard truncates the
+    /// buffer back to its savepoint, dropping only its own.
+    savepoints: Vec<usize>,
     /// Optional sidecar full-text index (only with the `fulltext` feature).
     /// `Some` only when the schema declares at least one `fulltext` property —
     /// otherwise there's nothing to mirror and we skip the writer arena. RocksDB
@@ -59,6 +72,47 @@ pub struct StorageEngine {
     /// `reindex_fulltext`.
     #[cfg(feature = "fulltext")]
     text_index: Option<crate::foundation::text::TextIndex>,
+    /// What the open batch has done to the full-text index — see
+    /// [`TextBatch`]. Behind a mutex because the index is mirrored from
+    /// `&self` paths (an upsert inside `create_node`, a search).
+    #[cfg(feature = "fulltext")]
+    text_batch: Mutex<TextBatch>,
+}
+
+/// The full-text side of an open batch.
+///
+/// # Why a batch's text must become searchable before it commits
+///
+/// The index is a separate store (Tantivy) whose uncommitted writes are
+/// invisible to search. While a batch was something only a bulk form or an
+/// import opened, nothing searched inside one, so the batch's text simply
+/// waited for `commit_batch`. A tool call's unit is different: the duplicate
+/// guard every capture constructor runs (`search_first`) searches for the node
+/// THE CALL HAS JUST WRITTEN, to score it against its own text — and inside a
+/// unit that node would never be found, so the guard would silently stop
+/// guarding. Every other read in a batch sees the batch's writes; search must
+/// too.
+///
+/// So a search inside a batch first PUBLISHES the batch's pending text (a
+/// Tantivy commit), and the batch remembers every document it touched. A
+/// discard then cannot simply roll the index back — part of it is already
+/// committed — so it re-derives every touched document from the store as it
+/// now stands (the backend, or the outer batch's view after an inner discard).
+/// The index stays what it always was: derived from the node store, which
+/// remains the authority, and rebuilt in full at server start.
+#[cfg(feature = "fulltext")]
+#[derive(Default)]
+struct TextBatch {
+    /// Every `(graph_id, node_id)` the open batch upserted or deleted in the
+    /// index, with the node type it was written under.
+    touched: BTreeMap<(String, String), String>,
+    /// Graphs the open batch cleared outright (`clear_graph`).
+    cleared: std::collections::BTreeSet<String>,
+    /// The writer holds text ops not yet committed.
+    pending: bool,
+    /// Some of this batch's text has been committed to the index already, by
+    /// a search inside the batch.
+    published: bool,
 }
 
 mod batch;
@@ -124,6 +178,26 @@ impl WriteBuffer {
             }
         }
         self.ops.push(op);
+    }
+
+    /// Drop every op from position `len` on — an inner batch discarded back to
+    /// its savepoint. The index is rebuilt over what remains rather than
+    /// patched: an exact key's latest position may now be an EARLIER op of the
+    /// outer batch, and finding it means walking the outer ops anyway. That
+    /// walk is linear in the outer batch, which is the handful of writes a
+    /// tool call made before it reached a bulk form or an import.
+    fn truncate(&mut self, len: usize) {
+        if len >= self.ops.len() {
+            return;
+        }
+        self.ops.truncate(len);
+        self.prefix_deletes.retain(|(at, _, _)| *at < len);
+        self.latest.clear();
+        for (at, op) in self.ops.iter().enumerate() {
+            if let BufferedOp::Put { cf, key, .. } | BufferedOp::Delete { cf, key } = op {
+                self.latest.insert((*cf, key.clone()), at);
+            }
+        }
     }
 
     fn is_empty(&self) -> bool {
@@ -217,8 +291,11 @@ impl StorageEngine {
             backend: Box::new(MemoryBackend::new()),
             read_cache: Mutex::new(ReadCache::new(CacheConfig::default())),
             write_buffer: None,
+            savepoints: Vec::new(),
             #[cfg(feature = "fulltext")]
             text_index,
+            #[cfg(feature = "fulltext")]
+            text_batch: Mutex::new(TextBatch::default()),
         }
     }
 
@@ -251,8 +328,11 @@ impl StorageEngine {
             backend: Box::new(backend),
             read_cache: Mutex::new(ReadCache::new(CacheConfig::default())),
             write_buffer: None,
+            savepoints: Vec::new(),
             #[cfg(feature = "fulltext")]
             text_index,
+            #[cfg(feature = "fulltext")]
+            text_batch: Mutex::new(TextBatch::default()),
         })
     }
 
@@ -351,8 +431,21 @@ impl StorageEngine {
         if self.write_buffer.is_none() {
             ti.commit()
                 .map_err(|e| DynoError::Storage(format!("full-text commit failed: {e}")))?;
+        } else {
+            self.text_touched(graph_id, node_type, node_id);
         }
         Ok(())
+    }
+
+    /// Note a document the open batch wrote, so a discard can put it back.
+    #[cfg(feature = "fulltext")]
+    fn text_touched(&self, graph_id: &str, node_type: &str, node_id: &str) {
+        let mut tb = self.text_batch.lock().expect("text batch lock poisoned");
+        tb.touched.insert(
+            (graph_id.to_string(), node_id.to_string()),
+            node_type.to_string(),
+        );
+        tb.pending = true;
     }
 
     /// Mirror a node delete into the full-text index. See `fulltext_upsert` for
@@ -377,6 +470,8 @@ impl StorageEngine {
         if self.write_buffer.is_none() {
             ti.commit()
                 .map_err(|e| DynoError::Storage(format!("full-text commit failed: {e}")))?;
+        } else {
+            self.text_touched(graph_id, node_type, node_id);
         }
         Ok(())
     }
@@ -384,11 +479,24 @@ impl StorageEngine {
     /// The store's write generation — see [`ReadCache::generation`]. Every
     /// write path (direct `put`/`delete`/`prefix_delete`, and `commit_batch`'s
     /// per-op invalidation) moves it, so equality means "unwritten since".
+    ///
+    /// A write STAGED in an open batch moves it too, and so does a discard:
+    /// both change what a read answers, and the derived scans memoised on this
+    /// number would otherwise answer for the design as it was before them.
     pub fn write_generation(&self) -> u64 {
         self.read_cache
             .lock()
             .expect("read_cache lock poisoned")
             .generation()
+    }
+
+    /// The view moved without the disk moving — see
+    /// [`ReadCache::bump_generation`].
+    fn view_moved(&self) {
+        self.read_cache
+            .lock()
+            .expect("read_cache lock poisoned")
+            .bump_generation();
     }
 
     fn put(&mut self, cf: &str, key: Vec<u8>, value: Vec<u8>) -> Result<(), DynoError> {
@@ -402,6 +510,7 @@ impl StorageEngine {
                 key,
                 value,
             });
+            self.view_moved();
             return Ok(());
         }
 
@@ -465,6 +574,7 @@ impl StorageEngine {
                 cf: cf_id,
                 key: key.to_vec(),
             });
+            self.view_moved();
             return Ok(());
         }
 
@@ -554,6 +664,7 @@ impl StorageEngine {
                 cf: cf_id,
                 prefix: prefix.to_vec(),
             });
+            self.view_moved();
             return Ok(());
         }
         // Invalidate cached entries under this prefix before deleting —
@@ -679,6 +790,10 @@ impl StorageEngine {
             if self.write_buffer.is_none() {
                 ti.commit()
                     .map_err(|e| DynoError::Storage(format!("full-text commit failed: {e}")))?;
+            } else {
+                let mut tb = self.text_batch.lock().expect("text batch lock poisoned");
+                tb.cleared.insert(graph_id.to_string());
+                tb.pending = true;
             }
         }
         Ok(())

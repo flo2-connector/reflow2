@@ -94,8 +94,11 @@ impl StorageEngine {
     /// empty result; a store's open rebuilds an index that does not cover it
     /// ([`ensure_fulltext_covers`](Self::ensure_fulltext_covers)), so on any
     /// store opened through `DesignGraph` this refusal is the floor under that
-    /// guarantee, not the normal path. Skipped inside an open batch, whose
-    /// buffered nodes the store reads and the index by design does not yet.
+    /// guarantee, not the normal path.
+    ///
+    /// INSIDE AN OPEN BATCH it answers for the batch's own writes, as every
+    /// other read does: the batch's pending text is published first (see
+    /// `TextBatch` for why, and for how a discard then undoes it).
     #[cfg(feature = "fulltext")]
     pub fn search_fulltext(
         &self,
@@ -105,16 +108,15 @@ impl StorageEngine {
         limit: usize,
     ) -> Result<Vec<FulltextHit>, DynoError> {
         if let Some(ti) = &self.text_index {
+            self.publish_text()?;
             let hits: Vec<FulltextHit> = ti
                 .search(graph_id, query, node_type, limit)
                 .map(|hits| hits.into_iter().map(FulltextHit::from).collect())
                 .map_err(|e| DynoError::Storage(format!("full-text search failed: {e}")))?;
-            // Not inside an open batch: there the store already reads the
-            // batch's buffered nodes and the index by design does not (they
-            // become searchable at commit), so the two counts differ for a
-            // reason that is not a missing index.
+            // Inside an open batch too: the batch's pending text was just
+            // published, so the index holds the batch's writes exactly as the
+            // store's reads do, and the two counts still compare like for like.
             if hits.is_empty()
-                && !self.is_batching()
                 && let Some(coverage) = self.fulltext_coverage(graph_id)?
                 && !coverage.covers()
             {

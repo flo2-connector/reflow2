@@ -258,7 +258,7 @@ impl Holds {
     pub fn one(service: &ReflowService, sessions: Arc<LocalSessionManager>) -> Self {
         Holds::One {
             sessions,
-            store: Arc::downgrade(&service.graph),
+            store: service.graph.downgrade(),
             auto_export: service.auto_export_handle(),
             graph_path: service.graph_path.clone(),
         }

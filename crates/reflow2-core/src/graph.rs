@@ -1256,23 +1256,106 @@ impl DesignGraph {
             .delete_edge(&self.graph_id, edge_type, from_id, to_id)
     }
 
-    // ---- Atomic batches (used by HEAL's apply step) -----------------------
+    // ---- Atomic batches (HEAL's apply step, import, the bulk forms) --------
 
     /// Begin buffering writes; nothing hits the store until [`commit_batch`].
+    /// Inside an open batch (a tool call's write unit, say) this opens an
+    /// inner one that nests rather than committing the outer.
     ///
     /// [`commit_batch`]: Self::commit_batch
     pub(crate) fn begin_batch(&mut self) {
         self.engine.begin_batch();
     }
 
-    /// Flush all buffered writes atomically.
+    /// Flush all buffered writes atomically — or, for an inner batch, hand
+    /// them to the batch around it.
     pub(crate) fn commit_batch(&mut self) -> Result<usize, DynoError> {
         self.engine.commit_batch()
     }
 
-    /// Drop all buffered writes without applying them.
+    /// Drop all buffered writes without applying them — for an inner batch,
+    /// only its own.
     pub(crate) fn discard_batch(&mut self) {
         self.engine.discard_batch();
+    }
+
+    // ---- One write unit per tool call ---------------------------------------
+    //
+    // `dec:idea-a-refused-typed-write-stores-nothing` (accepted 2026-10-02):
+    // ONE ATOMIC WRITE PER TOOL CALL, AT THE STORE'S SINGLE WRITE POINT. The
+    // served surface opens a unit before a write tool's handler first writes,
+    // and settles it once when the handler answers: committed if it succeeded,
+    // discarded if it refused. Everything the call writes — the node body, its
+    // optional fields, its links and edges, the twin edges the store draws,
+    // the snapshot of what it replaced, the credit to whoever it wrote for —
+    // lands together or not at all.
+    //
+    // The unit IS the store's atomic batch, not a second mechanism beside it:
+    // reads inside it see its writes (derived scans and search included), and
+    // a bulk form, an import or HEAL inside it nests.
+    //
+    // MEASURED BEFORE IT EXISTED, on 0.77.0
+    // (`fact:root-cause-a-typed-constructor-writes-the-node-before-its-later-checks-and-a-refusal-leaves-it-2026-10-02`):
+    // 13 typed constructors stored the node, then checked an optional enum, a
+    // link item or an edge in a later write, and a refusal there left the node
+    // behind — on a revise, after a reply saying "nothing was written".
+
+    /// Open a write unit. Every write until [`commit_unit`] or
+    /// [`discard_unit`] is staged; reads see it.
+    ///
+    /// A batch already open here was left behind by a call that never settled
+    /// (it cannot belong to a live one: the unit is opened under the write
+    /// lock). It is DISCARDED — nobody committed it, so nothing in it may land
+    /// — and said in the log, because silently building on it would commit a
+    /// dead call's writes with the next one's.
+    ///
+    /// [`commit_unit`]: Self::commit_unit
+    /// [`discard_unit`]: Self::discard_unit
+    pub fn begin_unit(&mut self) {
+        let left_open = self.engine.batch_depth();
+        if left_open > 0 {
+            tracing::error!(
+                "a write unit was opened over {left_open} batch(es) nobody settled; they are \
+                 discarded, so none of their writes land"
+            );
+            self.discard_unit();
+        }
+        self.engine.begin_batch();
+    }
+
+    /// Commit the open write unit: everything it staged lands in one atomic
+    /// write. Returns how many store operations it wrote (`0` when the unit
+    /// wrote nothing, or none is open).
+    ///
+    /// REFUSED, with everything discarded, when a batch opened inside the unit
+    /// was never settled: committing would land part of a write that never
+    /// finished, which is the very thing the unit exists to prevent.
+    pub fn commit_unit(&mut self) -> Result<usize, DynoError> {
+        match self.engine.batch_depth() {
+            0 => Ok(0),
+            1 => self.engine.commit_batch(),
+            depth => {
+                self.discard_unit();
+                Err(DynoError::Storage(format!(
+                    "the write could not be committed: {} batch(es) opened inside it were never \
+                     settled, so it was discarded and nothing was written",
+                    depth - 1
+                )))
+            }
+        }
+    }
+
+    /// Discard the open write unit, and anything opened inside it: the store
+    /// is left exactly as the unit found it.
+    pub fn discard_unit(&mut self) {
+        while self.engine.is_batching() {
+            self.engine.discard_batch();
+        }
+    }
+
+    /// Whether a write unit (or any batch) is open.
+    pub fn in_unit(&self) -> bool {
+        self.engine.is_batching()
     }
 
     // ---- Typed golden-thread constructors ---------------------------------

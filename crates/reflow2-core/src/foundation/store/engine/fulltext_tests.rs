@@ -167,12 +167,18 @@ fn batch_commit_makes_writes_visible_and_discard_rolls_back() {
             props! { "title" => "committed", "body" => "x" },
         )
         .unwrap();
-    // Buffered: not yet visible.
-    assert!(
+    // Inside the batch a search answers for the batch's own writes, as every
+    // other read does. It used to be empty here — Tantivy's uncommitted text
+    // is invisible — which was harmless until a tool call's write unit made
+    // the duplicate guard search for the node its own call had just written
+    // (dec:idea-a-refused-typed-write-stores-nothing).
+    assert_eq!(
         engine
             .search_fulltext("g1", "committed", None, 10)
             .unwrap()
-            .is_empty()
+            .len(),
+        1,
+        "read-your-own-writes holds for search inside a batch"
     );
     engine.commit_batch().unwrap();
     assert_eq!(
@@ -208,6 +214,116 @@ fn batch_commit_makes_writes_visible_and_discard_rolls_back() {
             .len(),
         1
     );
+}
+
+fn found(engine: &StorageEngine, word: &str) -> Vec<String> {
+    let mut ids: Vec<String> = engine
+        .search_fulltext("g1", word, None, 10)
+        .unwrap()
+        .into_iter()
+        .map(|h| h.node_id)
+        .collect();
+    ids.sort();
+    ids
+}
+
+/// A search inside a batch PUBLISHES the batch's text so far; discarding the
+/// batch afterwards must take it back out, and put back what a revise inside
+/// the batch replaced. Rolling the writer back alone cannot: part of the
+/// batch's text is already committed to the index.
+#[test]
+fn a_discard_after_a_search_inside_the_batch_restores_the_index() {
+    let mut engine = StorageEngine::new_in_memory(ft_schema());
+    engine
+        .create_node(
+            "g1",
+            "Document",
+            "kept",
+            props! { "title" => "original", "body" => "before" },
+        )
+        .unwrap();
+
+    engine.begin_batch();
+    engine
+        .create_node(
+            "g1",
+            "Document",
+            "staged",
+            props! { "title" => "transient", "body" => "y" },
+        )
+        .unwrap();
+    engine
+        .create_node(
+            "g1",
+            "Document",
+            "kept",
+            props! { "title" => "rewritten", "body" => "inside" },
+        )
+        .unwrap();
+    // The search publishes both.
+    assert_eq!(found(&engine, "transient"), vec!["staged"]);
+    assert_eq!(found(&engine, "rewritten"), vec!["kept"]);
+    assert!(found(&engine, "original").is_empty());
+    // Written after the publish: still pending when the batch is discarded.
+    engine
+        .create_node(
+            "g1",
+            "Document",
+            "late",
+            props! { "title" => "latecomer", "body" => "z" },
+        )
+        .unwrap();
+    engine.discard_batch();
+
+    assert!(
+        found(&engine, "transient").is_empty(),
+        "a discarded create is unindexed"
+    );
+    assert!(found(&engine, "latecomer").is_empty());
+    assert!(
+        found(&engine, "rewritten").is_empty(),
+        "a discarded revise is unindexed"
+    );
+    assert_eq!(
+        found(&engine, "original"),
+        vec!["kept"],
+        "and what it replaced is searchable again"
+    );
+}
+
+/// An inner discard after a publish drops the inner batch's text and keeps the
+/// outer batch's, which then commits with it.
+#[test]
+fn an_inner_discard_after_a_search_keeps_the_outer_batchs_text() {
+    let mut engine = StorageEngine::new_in_memory(ft_schema());
+    engine.begin_batch();
+    engine
+        .create_node(
+            "g1",
+            "Document",
+            "outer",
+            props! { "title" => "outerword", "body" => "a" },
+        )
+        .unwrap();
+    engine.begin_batch();
+    engine
+        .create_node(
+            "g1",
+            "Document",
+            "inner",
+            props! { "title" => "innerword", "body" => "b" },
+        )
+        .unwrap();
+    assert_eq!(found(&engine, "innerword"), vec!["inner"]);
+    engine.discard_batch();
+    assert!(
+        found(&engine, "innerword").is_empty(),
+        "the inner discard takes its published text back out"
+    );
+    assert_eq!(found(&engine, "outerword"), vec!["outer"]);
+    engine.commit_batch().unwrap();
+    assert_eq!(found(&engine, "outerword"), vec!["outer"]);
+    assert!(found(&engine, "innerword").is_empty());
 }
 
 #[cfg(feature = "rocksdb")]
