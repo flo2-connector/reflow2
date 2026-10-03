@@ -3083,7 +3083,11 @@ impl ReflowService {
         let node_type = self
             .resolve_type(req.node_type.as_deref(), &req.node_id, "node_type")
             .await?;
-        let mut g = self.graph.write().await;
+        // Through `write_lock` like every other write. This took the raw lock
+        // until 2026-10-02, so its edges were written outside the crediting,
+        // agent stamp and signing the hold carries; the unit
+        // (`crate::service::unit`) closed the raw lock to handlers.
+        let mut g = self.write_lock().await?;
         ok_json(
             g.review_relations(&node_type, &req.node_id, &links, req.note.as_deref())
                 .map_err(dyno_err)?,

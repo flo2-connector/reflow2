@@ -624,7 +624,7 @@ impl GraphRouter {
         } else {
             opened
         };
-        let store = Arc::downgrade(&svc.graph);
+        let store = svc.graph.downgrade();
         let sessions = Arc::new(LocalSessionManager::default());
         Ok(Arc::new(OpenDesign {
             http: StreamableHttpService::new(
