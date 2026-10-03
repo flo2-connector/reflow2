@@ -510,14 +510,12 @@ mod tests {
         write(
             &root,
             ".mcp.json",
-            &format!(
-                r#"{{"mcpServers":{{
-                    "other":{{"command":"r","args":["--graph-path","./elsewhere/graph","--export-to","a.json"]}},
-                    "ro":{{"command":"r","args":["--graph-path","./.reflow2/graph","--read-only","--export-to","b.json"]}},
-                    "remote":{{"command":"r","args":["--remote","https://x/g/1/mcp","--export-to","c.json"]}},
-                    "plain":{{"command":"r","args":["--graph-path","./.reflow2/graph","--shared"]}}
-                }}}}"#
-            ),
+            r#"{"mcpServers":{
+                "other":{"command":"r","args":["--graph-path","./elsewhere/graph","--export-to","a.json"]},
+                "ro":{"command":"r","args":["--graph-path","./.reflow2/graph","--read-only","--export-to","b.json"]},
+                "remote":{"command":"r","args":["--remote","https://x/g/1/mcp","--export-to","c.json"]},
+                "plain":{"command":"r","args":["--graph-path","./.reflow2/graph","--shared"]}
+            }}"#,
         );
         assert!(matches!(
             from_configs(&root, &store, None).unwrap(),
