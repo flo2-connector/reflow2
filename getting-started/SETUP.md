@@ -252,7 +252,13 @@ the day, stopping is a perfectly good answer. Everything decided so far is alrea
   JSON on stdout (the arguments are a JSON object; `-` reads them from stdin). A report a
   document cites can be read from the graph at build time instead of hand-copied. If a server
   holds the graph, a READ-ONLY tool answers from a best-effort snapshot copy (stderr says so);
-  a tool that writes refuses, because a copy is not the design.
+  a tool that writes refuses, because a copy is not the design. It works on a design on THIS
+  machine and never creates one by asking. In a folder whose `.reflow2.toml` names a design on a
+  server, it refuses and names that design's address. Where there is no design, a tool that reads
+  refuses ("no design at …"), and only a tool that writes (or `--import`) creates one.
+  `--read-only --call …` changes nothing: a tool that writes is refused, and so is a file that
+  `export_graph` or `export_surface` would write. A flag the call does not read, such as
+  `--export-to`, `--remote` or `--shared`, is refused by name rather than ignored.
 - **Gate CI on the committed export.** `tools/reflow2_check.py` (in the kit) rehashes every
   registered artifact against the working tree and runs the gap detectors, exiting non-zero on
   unaccepted drift or a serious open gap — so the design is checked on every commit, not once a
