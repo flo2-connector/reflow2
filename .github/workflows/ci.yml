@@ -87,6 +87,12 @@ jobs:
         run: python3 tools/test_run_to_files.py
       - name: The launcher serves a release binary and builds nothing there
         run: python3 tools/launch_serves_release.py
+      - name: CHANGELOG fragments are well formed, and nobody wrote into [Unreleased] directly
+        # One fragment per PR in changelog.d/, assembled at the cut
+        # (dec:idea-how-changelog-md-gets-written-once-the-design-is-the-record).
+        run: python3 tools/changelog_fragments.py --check
+      - name: CHANGELOG fragment suite (hermetic — the cut assembles and removes them; two PRs' fragments merge in either order)
+        run: python3 tools/test_changelog_fragments.py
       - name: Doc-version drift (prose vs what the build actually pins)
         run: python3 tools/check_doc_versions.py
       - name: skills-and-tools.md matches the served surface
@@ -260,6 +266,11 @@ jobs:
         # reads at the moment it invents one. The gate also caught a second
         # person's first name in two schema files and two skill bodies.
         run: python3 tools/the_served_surface_names_no_real_person.py
+      - name: The item layout merges under git's ordinary merge (real binary, real branches, no driver)
+        # req:the-saved-design-merges-correctly-under-gits-ordinary-merge: two PRs'
+        # records and fragments merge in either order, the merge equals a
+        # sequential replay, lineage stays one hop through a mid-merge export.
+        run: python3 tools/test_item_layout_merges.py
       - name: Merge-driver suite (real git branches, not a home-grown client)
         # Git is the client this contract is with, so git runs the test: two
         # branches editing different parts of one export must merge with no

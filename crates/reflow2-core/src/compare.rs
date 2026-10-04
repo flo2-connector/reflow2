@@ -214,6 +214,34 @@ fn property_divergences(
         .collect()
 }
 
+/// Each node's properties as the import would store them: an Artifact whose
+/// export left `checksum` off gets it back from its current acceptance
+/// ([`crate::export::fill_accepted_checksum`]); every other node is borrowed.
+fn with_accepted_checksums(
+    doc: &GraphExport,
+) -> Vec<std::borrow::Cow<'_, BTreeMap<String, Value>>> {
+    let accepted = crate::export::current_acceptances(&doc.edges);
+    doc.nodes
+        .iter()
+        .map(|n| {
+            if n.properties.contains_key("checksum") || !accepted.contains_key(&n.node_id) {
+                return std::borrow::Cow::Borrowed(&n.properties);
+            }
+            let mut props = n.properties.clone();
+            if crate::export::fill_accepted_checksum(
+                &n.node_type,
+                &n.node_id,
+                &mut props,
+                &accepted,
+            ) {
+                std::borrow::Cow::Owned(props)
+            } else {
+                std::borrow::Cow::Borrowed(&n.properties)
+            }
+        })
+        .collect()
+}
+
 /// Compare two export documents, directionally: what `other` added, removed
 /// and changed relative to `base`. Pure and deterministic — the same pair of
 /// documents always yields the byte-identical report.
@@ -223,17 +251,31 @@ pub fn compare_designs(
     base_label: &str,
     other_label: &str,
 ) -> DesignDiff {
+    // AN ACCEPTED CHECKSUM IS READ WHERE EITHER RECORD KEEPS IT. Since
+    // 2026-10-03 an export leaves an Artifact's `checksum` off while the
+    // change that accepted it carries it (`checksum_after`, decision 3 of
+    // dec:item-13-checksums-move-to-change-edges-and-main-converts-in-one-pr),
+    // and the import puts it back. Compared raw, a record written before that
+    // and one written after read as every accepted artifact "changed" — 541 of
+    // them across reflow2's own conversion, measured 2026-10-04 — though not
+    // one checksum moved. So both sides are read with the import's own rule;
+    // the CHANGED edges that now carry the checksums still show as edges.
+    let base_props = with_accepted_checksums(base);
+    let other_props = with_accepted_checksums(other);
+
     // Nodes by id. Exports are already sorted, but keying by BTreeMap makes
     // the walk order a property of this function, not of its input's history.
     let base_nodes: BTreeMap<&str, (&str, &BTreeMap<String, Value>)> = base
         .nodes
         .iter()
-        .map(|n| (n.node_id.as_str(), (n.node_type.as_str(), &n.properties)))
+        .zip(base_props.iter())
+        .map(|(n, p)| (n.node_id.as_str(), (n.node_type.as_str(), p.as_ref())))
         .collect();
     let other_nodes: BTreeMap<&str, (&str, &BTreeMap<String, Value>)> = other
         .nodes
         .iter()
-        .map(|n| (n.node_id.as_str(), (n.node_type.as_str(), &n.properties)))
+        .zip(other_props.iter())
+        .map(|(n, p)| (n.node_id.as_str(), (n.node_type.as_str(), p.as_ref())))
         .collect();
 
     let mut design = DiffBand::default();

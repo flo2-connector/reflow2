@@ -32,9 +32,10 @@ import sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from smoke_mcp import Server  # noqa: E402
+import design_io  # noqa: E402  (the one reader of a saved design, either form)
 
 BIN = "target/debug/reflow2-mcp"
-EXPORT = "docs/design/reflow2.json"
+EXPORT = design_io.default_export()
 
 
 def call(server: Server, name: str, args: dict):
@@ -59,7 +60,7 @@ def main() -> None:
     )
     s = Server(BIN, graph_dir)
 
-    doc = json.load(open(EXPORT))
+    doc = design_io.load_design(EXPORT)
     print(f"nodes {len(doc['nodes'])}  edges {len(doc['edges'])}")
 
     # ---- TIME ---------------------------------------------------------------

@@ -223,9 +223,8 @@ fn observe_one(t: &UpstreamTarget) -> ObservedUpstream {
     if !path.exists() {
         return bare(t, "missing");
     }
-    let Some(doc) = std::fs::read_to_string(path)
+    let Some(doc) = crate::saved_design::read_export(&path.to_string_lossy())
         .ok()
-        .and_then(|raw| serde_json::from_str::<GraphExport>(&raw).ok())
         .and_then(identified)
     else {
         return bare(t, "unreadable");
@@ -255,9 +254,8 @@ fn observe_one(t: &UpstreamTarget) -> ObservedUpstream {
 /// wrong must still be recordable, and it comes back as `missing` on the next
 /// read rather than being refused now.
 pub fn baseline_hash(path: &str) -> Option<String> {
-    std::fs::read_to_string(path)
+    crate::saved_design::read_export(path)
         .ok()
-        .and_then(|raw| serde_json::from_str::<GraphExport>(&raw).ok())
         .and_then(identified)
         .map(|doc| doc.compute_content_hash())
 }

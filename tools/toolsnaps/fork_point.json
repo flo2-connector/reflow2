@@ -13,7 +13,7 @@
       },
       "export_path": {
         "default": null,
-        "description": "The committed design export to search when the decision is pinned to no\nepoch. Defaults to the export this server keeps current, else\n`docs/design/reflow2.json` under the project root.",
+        "description": "The committed design to search when the decision is pinned to no\nepoch — the item layout's directory or a single-file export. Defaults to\nthe export this server keeps current, else `docs/design/reflow2/` (or\n`docs/design/reflow2.json`) under the project root.",
         "type": [
           "string",
           "null"

@@ -36,6 +36,26 @@ pub(crate) struct Written {
     pub sync_note: Option<String>,
     /// Bytes written.
     pub bytes: usize,
+    /// For the item layout: how many item files were written, changed,
+    /// deleted and left alone. None for the single file.
+    pub items: Option<ItemCounts>,
+}
+
+/// What a write to the item layout did, file by file.
+#[derive(Debug, Clone, Copy, serde::Serialize)]
+pub(crate) struct ItemCounts {
+    /// Files written (created, changed, or rewritten into canonical form).
+    pub written: usize,
+    /// Items whose content changed.
+    pub changed: usize,
+    /// Item files removed because the design no longer holds the item.
+    pub deleted: usize,
+    /// Item files left exactly as they were.
+    pub unchanged: usize,
+    /// Items whose content did not change but whose `prev_item_hash` was
+    /// rewritten to name their hash at the anchor (a merge resolved by an
+    /// export anchored before it leaves these).
+    pub relinked: usize,
 }
 
 /// Why nothing was written. Both are refusals rather than failures: the caller
@@ -76,6 +96,19 @@ pub(crate) fn chain_and_write(
     accept_divergence: bool,
 ) -> Result<Written, WriteRefusal> {
     let target = Path::new(path);
+
+    // THE ITEM LAYOUT (dec:how-the-saved-design-is-laid-out-so-git-merges-it):
+    // a directory path is written one file per node and per edge, with
+    // per-item lineage. Same seam, same four answers.
+    if crate::saved_design::is_item_layout(target) {
+        return crate::saved_design::write_items(
+            export,
+            path,
+            graph_path,
+            record_to,
+            accept_divergence,
+        );
+    }
 
     // WHERE THE LINEAGE ANCHORS, asked once and used by every branch below.
     //
@@ -195,5 +228,6 @@ pub(crate) fn chain_and_write(
         chain_note,
         sync_note,
         bytes: text.len(),
+        items: None,
     })
 }

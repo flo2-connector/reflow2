@@ -585,7 +585,18 @@ impl ReflowService {
                 .export_path
                 .map(std::path::PathBuf::from)
                 .or_else(|| self.auto_export_status().map(|(p, _)| p.into()))
-                .or_else(|| self.tree_root().map(|r| r.join("docs/design/reflow2.json")));
+                .or_else(|| {
+                    // The item layout when the project has one, else the
+                    // single file it replaced.
+                    self.tree_root().map(|r| {
+                        let items = r.join("docs/design/reflow2");
+                        if items.is_dir() {
+                            items
+                        } else {
+                            r.join("docs/design/reflow2.json")
+                        }
+                    })
+                });
             let git = match path {
                 Some(p) => match crate::git::earliest_export_containing(&p, &req.decision_id) {
                     Ok(ev) => serde_json::to_value(ev).map_err(ser_err)?,

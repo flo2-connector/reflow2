@@ -66,6 +66,7 @@ pub mod identity;
 pub mod ility;
 pub mod ingest;
 pub mod intent;
+pub mod item_layout;
 pub mod llm;
 pub mod loop_closure;
 pub mod manual_work;

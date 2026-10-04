@@ -29,6 +29,12 @@ use std::process::Command;
 /// tracks the file, so editing the script rebuilds the server.
 pub const SCRIPT: &str = include_str!("../../../tools/wall_check.py");
 
+/// The one reader of a saved design, which the instrument imports as a
+/// SIBLING (`tools/design_io.py`). Written beside the script, or the import
+/// fails and the check refuses for a reason that has nothing to do with the
+/// design.
+pub const READER: &str = include_str!("../../../tools/design_io.py");
+
 /// Where the walk runs from: the project root the design describes.
 ///
 /// Artifact locations are project-relative paths, so the root is the
@@ -82,6 +88,8 @@ pub fn run(export_json: &str, root: &Path, python: &str) -> Result<String, Strin
     let export = dir.join("design.json");
     let result = (|| {
         std::fs::write(&script, SCRIPT).map_err(|e| format!("could not write the script: {e}"))?;
+        std::fs::write(dir.join("design_io.py"), READER)
+            .map_err(|e| format!("could not write the design reader: {e}"))?;
         std::fs::write(&export, export_json)
             .map_err(|e| format!("could not write the design export: {e}"))?;
         let out = Command::new(python)

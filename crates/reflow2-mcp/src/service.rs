@@ -1665,15 +1665,11 @@ pub(crate) fn with_loop_hint<T: serde::Serialize>(
 /// Read an export document from a caller-supplied path. A path that cannot be
 /// read or parsed is the caller's mistake — `invalid_params`, with the path
 /// named so the error is actionable.
+///
+/// Either saved form: the single-file export or the per-item layout
+/// (`crate::saved_design`, the one reader every caller shares).
 pub(crate) fn read_export_document(path: &str) -> Result<reflow2_core::GraphExport, McpError> {
-    let raw = std::fs::read_to_string(path)
-        .map_err(|e| McpError::invalid_params(format!("cannot read {path}: {e}"), None))?;
-    serde_json::from_str(&raw).map_err(|e| {
-        McpError::invalid_params(
-            format!("{path} is not a reflow2 export document: {e}"),
-            None,
-        )
-    })
+    crate::saved_design::read_export(path).map_err(|e| McpError::invalid_params(e, None))
 }
 
 // ---- request shapes ---------------------------------------------------------
@@ -3723,9 +3719,10 @@ pub struct ObservedVerificationReq {
 pub struct ForkPointReq {
     /// The settled decision you might go back to (`dec:...`).
     pub decision_id: String,
-    /// The committed design export to search when the decision is pinned to no
-    /// epoch. Defaults to the export this server keeps current, else
-    /// `docs/design/reflow2.json` under the project root.
+    /// The committed design to search when the decision is pinned to no
+    /// epoch — the item layout's directory or a single-file export. Defaults to
+    /// the export this server keeps current, else `docs/design/reflow2/` (or
+    /// `docs/design/reflow2.json`) under the project root.
     #[serde(default)]
     pub export_path: Option<String>,
 }

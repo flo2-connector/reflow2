@@ -16,8 +16,9 @@
 >
 > **Before you start:** run **`git pull --rebase`**, then run **`claim_report`** and claim what you
 > take with **`claim_region`** — the board moved into the graph on 2026-08-04
-> (`dec:coord-board-in-graph`), so claims travel in `docs/design/reflow2.json` and a graph you
-> haven't pulled is out of date. **[COORD.md](COORD.md)** keeps the handles, the conventions, and
+> (`dec:coord-board-in-graph`), so claims travel in the committed design (`docs/design/reflow2/`,
+> or `docs/design/reflow2.json` until the conversion lands) and a graph you haven't pulled is out
+> of date. **[COORD.md](COORD.md)** keeps the handles, the conventions, and
 > resolving merge conflicts without discarding anyone's work.
 > **The graph** has what is open and why: the graph — `loop_status` for what the loop owes, `detect_gaps` for the open questions, `search_design` to find a past finding by its words. `docs/backlog.md` was retired 2026-08-07 (`dec:backlog-is-retired`); its open rows are nodes now.
 
@@ -114,12 +115,15 @@ EOF
 # Upsert, so it layers onto whatever is there. Takes `-` for stdin, so an export
 # on one machine pipes into an import on another. The graph is single-writer:
 # stop any running MCP server first, and the error says so if you forget.
-./target/release/reflow2-mcp --graph-path .reflow2/graph --import docs/design/reflow2.json
+./target/release/reflow2-mcp --graph-path .reflow2/graph --import docs/design/reflow2/
+# (--import, import_graph, --diff and compare_designs take either saved form: the
+# item layout's directory, or a single-file export such as docs/design/reflow2.json.)
 
-# reflow2's own functional design, as a reflow2 graph (~215 nodes). The export at
-# docs/design/reflow2.json is the durable record — .reflow2/ is gitignored, so
-# the JSON is what gets reviewed and diffed. Rebuild it after a design change;
-# --analyse-only re-imports the committed export and re-runs the analysis.
+# reflow2's own functional design, as a reflow2 graph. The committed design at
+# docs/design/reflow2/ (one file per node and per edge; docs/design/reflow2.json
+# until the conversion lands) is the durable record — .reflow2/ is gitignored, so
+# the committed files are what gets reviewed and diffed. Rebuild it after a design
+# change; --analyse-only re-imports the committed design and re-runs the analysis.
 python3 tools/build_design_graph.py
 python3 tools/build_design_graph.py --analyse-only
 
@@ -312,20 +316,15 @@ you hit one.
 
 **Branches.** `feat/<short-name>` off `main`, one per claimed item where practical.
 
-**One-time setup per clone — the design-export merge driver.** `.gitattributes` points
-`docs/design/reflow2.json` at reflow2's own three-way merge, but git deliberately does not let a
-repository configure an executable, so each clone defines it once:
-
-```bash
-git config merge.reflow2.name 'reflow2 design export merge'
-git config merge.reflow2.driver 'target/release/reflow2-mcp --merge-driver %O %A %B'
-```
-
-Then two people editing different parts of the design merge with no conflict, and a real
-both-sides conflict stops with its ids and the `--merge-apply` command that finishes it. Without
-the config git falls back to a text merge of a 600KB JSON file — safe, but you resolve it by hand.
-**Never resolve a design conflict with `--ours`/`--theirs`**: for code that drops a hunk, for a
-design it drops a node someone wrote and nothing will tell you it is gone.
+**No merge driver to set up.** The committed design is the item layout — one file per node and
+one per edge — so git's ORDINARY merge merges it: two people editing different parts of the
+design touch different files and merge with no conflict, on GitHub as anywhere
+(`dec:how-the-saved-design-is-laid-out-so-git-merges-it`). The `.gitattributes` line that pointed
+the single file at `merge=reflow2` came out on 2026-10-03. `reflow2-mcp --merge-driver` still
+exists for a project whose design is still a single file, and is optional there. A real conflict
+is one item both sides changed, shown as that item's file. **Never resolve a design conflict
+with `--ours`/`--theirs` without reading both sides**: for code that drops a hunk, for a design
+it drops what someone wrote and nothing will tell you it is gone.
 
 > **`--no-fail-fast` is not optional and not a nicety.** `cargo test` ABORTS EVERY REMAINING TEST
 > BINARY the moment one fails, and this workspace has ~155 of them behind a ~13-minute run. So a
@@ -383,6 +382,8 @@ python3 tools/check_verification_ratchet.py docs/design/reflow2.json # a capabil
 python3 tools/vocabulary_reach.py --check                # a NEW declared property the surface cannot write
 python3 tools/check_command_surface.py                   # the skill/command copies still agree
 python3 tools/the_served_surface_names_no_real_person.py   # no served text names a real person from this design
+python3 tools/changelog_fragments.py --check             # every CHANGELOG fragment is well formed, and nobody wrote into [Unreleased] directly
+python3 tools/test_item_layout_merges.py                 # two PRs' design records merge with plain git in either order, lineage stays one hop (real binary, real branches)
 python3 tools/launch_serves_release.py                   # the launcher serves release and builds nothing there
 python3 tools/render_skills_and_tools.py --check         # docs/skills-and-tools.md rows and counts vs the served surface
 ```
@@ -394,7 +395,7 @@ python3 tools/render_skills_and_tools.py --check         # docs/skills-and-tools
 > `test_stale_seat`, `test_reflow2_check`, `test_impact_of_diff`, `test_why_history`, `check_doc_versions`, `test_check_doc_versions`,
 > `test_skill_lint`, `self_host_uses_documents`, `test_check_intent_authority`, `test_check_consumer_reach`, `test_check_verification_ratchet`, `test_vocabulary_reach`,
 > `test_export_to_reaches_the_daemon`, `test_shared_attach_from_another_folder`, `test_one_meaning_for_an_artifact_location`, `test_feedback_is_a_computed_tally`,
-> `test_a_lesson_is_served_at_the_step`, `test_release_workflow`, `test_dependency_currency` — so **green here is not green
+> `test_a_lesson_is_served_at_the_step`, `test_release_workflow`, `test_dependency_currency`, `test_changelog_fragments` — so **green here is not green
 > there**, and *"believe CI"* below is not a figure of speech. Run the ones your change touches;
 > [docs/sharpening.md](docs/sharpening.md) says which instrument covers what.
 >
@@ -408,52 +409,68 @@ python3 tools/render_skills_and_tools.py --check         # docs/skills-and-tools
 > `ci.yml` means adding it here — to the block if a developer should run it every time, to the
 > sentence above if not. Both answers are honest; silence is the one that is not.
 
-**Export the design EXACTLY ONCE PER PULL REQUEST, straight onto the committed file** — not once
-per commit. The distinction is not pedantry and it cost a broken chain on `56bc698`: PRs merge by
-**squash**, so N commits become one on `main`, and only the *last* export's `prev_content_hash`
-survives. If two commits on a branch each exported, the surviving one links to an intermediate that
-`main` never saw, and the history has a hole. A branch may hold as many commits as you like; only
-one of them may touch `docs/design/reflow2.json`, and it should be the last.
+**The design record: one file per node and per edge, exported as often as you like.** Since
+2026-10-03 (`dec:how-the-saved-design-is-laid-out-so-git-merges-it`,
+`dec:the-designs-lineage-is-kept-per-item`, Anthony) the committed design is the ITEM LAYOUT at
+`docs/design/reflow2/`: `nodes/<Type>/<escaped-id>.json`, `edges/<xx>/<hash>.json`, and a small
+`design.json` holding only `graph_id`, `schema_version` and `migrated_from`. It replaced
+`docs/design/reflow2.json`, whose whole-file header (`content_hash`, `prev_content_hash`,
+`taken_at`) every export rewrote — so every pair of concurrently open PRs conflicted on it (46 of
+46 in #640–#668, 39 of them on nothing else), and a queue of approved PRs landed one at a time.
 
-> ⚠️ **The old corollary here — "put the COORD claim commit first, it carries no export" — died
-> with the claim board's move into the graph on 2026-08-04, and what replaced it is a real
-> tension rather than a rewording.** A claim is now graph state, so it travels in
-> `docs/design/reflow2.json` — and that file may only be written once per PR, last. So a claim
-> made *before* the work is not visible to anyone else until the PR **merges**, which is after
-> the work is done. That defeats the point of claiming first.
->
-> With one writer this costs nothing and is why the move was still right. With two it is a
-> regression against the file it replaced, because COORD.md could be committed and pushed on its
-> own the moment work started. Recorded as `dec:a-graph-claim-cannot-be-published-before-its-pr`;
-> do not treat the claims layer as proven under contention until that is answered.
+What that means for a pull request:
 
-The gate checks this since BL-107 and will fail the build if you get it wrong.
+- **Export as often as you like, in any commit.** `export_graph` with a path ending in `/`, or
+  `--export-to docs/design/reflow2/` on each `--call` write, rewrites only the files whose item
+  changed. There is no "once, last" rule and no `chained_from` to read.
+- **Lineage is per item, and anchored for you.** A changed item records, in `prev_item_hash`, its
+  hash at the merge-base with the default branch; an unchanged item keeps main's file byte for
+  byte. A squash-merge lands each changed item one hop, and an export taken mid-merge anchors
+  where the merge will land (the merge-base of main with `HEAD` and `MERGE_HEAD`), so it cannot
+  mis-chain the way #571's fourth CI failure did. Every export also re-checks the lineage of the
+  items the branch has already changed, so re-exporting repairs one a merge left stale. The gate
+  checks it (`LINEAGE`, per item).
+- **To bring main in: `git merge origin/main`.** No rebuild, no replay onto main's export. Two PRs
+  that changed different items merge in either order with no conflict. A conflict is one small
+  file named after an item both sides changed — a real conflict. A file with conflict markers in
+  it is not an item, so first take one side of THAT file (`git checkout --theirs -- <file>`, after
+  reading both), then import the layout into your store, write what the item should say, and
+  export — before or after committing the merge.
+- **An accepted checksum rides the change that accepted it** — `checksum_after` on the change's
+  CHANGED edge, numbered by `accepted_seq` — so two PRs that edit one file each write their OWN
+  edge (decision 3 of `dec:item-13-checksums-move-to-change-edges-and-main-converts-in-one-pr`).
+  `set_artifact_checksums` is called exactly as before. The gate's design-vs-build check is
+  git-aware: on a PR, every registered file the PR changed must be covered by an acceptance in
+  the PR that matches the file at the PR head; on main, every registered file a commit changed
+  must be covered by an acceptance in that commit. A file two PRs both edited is the merge of two
+  accepted changes: the gate notes it, and the server's own reconcile reports it until somebody
+  accepts the merged content.
+- **A PR need not be up to date with main to merge** (decision 4). Main's push CI catches a bad
+  combination, as it does for code.
+- **`taken_at` lives in `docs/design/reflow2/taken_at.json`, which the layout git-ignores**
+  (decision 5). The whole-design content hash is computed on read and equals what the single file
+  stated for the same design, so watch baselines and release pins survive the move.
+- **The CHANGELOG entry is a fragment**, `changelog.d/<slug>.md` ([changelog.d/README.md](changelog.d/README.md)).
+  The cut assembles them with `tools/changelog_fragments.py --cut`.
 
-Each export records the `content_hash` of the one it replaced, which gives the design a history
-independent of git. **Since 2026-09-12 that link anchors at the COMMITTED record, not at the file
-on disk** (`req:the-server-keeps-the-working-tree-export-current`): inside a git repository the new
-document chains from this path as it stands at the *merge-base with the default branch*. So any
-number of exports on a branch each chain from the same committed ancestor, a squash-merge lands
-exactly one hop, and **`dec:export-once-per-pr` now holds by construction** — the old dance of
+**One release of overlap.** Every reader takes either form — `--import`, `import_graph`,
+`--diff`/`compare_designs`, `--merge`, the upstream watch, `fork_point`, and every Python gate
+and tool through the one loader, `tools/design_io.py`. A `.json` path is still written as the
+single file, whose chain anchors at the same merge-base and whose gate checks are unchanged.
 
-```bash
-git checkout docs/design/reflow2.json    # start from what is committed
-# …then export ONCE, last of all
-```
+> ⚠️ **UNTIL THE CONVERSION PR LANDS, reflow2's own record is still `docs/design/reflow2.json`**,
+> and the single file's rule still binds it: export ONCE, as the last commit, and after merging
+> main replay your record onto main's export. The conversion is one PR, landed while no other
+> design-touching PR is open (decision 6).
 
-is no longer required to keep the chain honest. Export when you like; the anchor does not move.
-Read **`chained_from`** in the receipt — `origin/main@<sha>` means the committed anchor was used,
-`disk` means the fallback was, and `chain_note` says why. Merge-base rather than the tip of the
-default branch is deliberate: on a long-lived branch `origin/main` moves underneath you, and
-anchoring at the tip would claim descent from work the branch never contained.
+> ⚠️ **The claim board's old tension is gone with the layout.** A claim is graph state, and the
+> single file could only be written once per PR, last — so a claim made before the work was
+> invisible until the PR merged (`dec:a-graph-claim-cannot-be-published-before-its-pr`). In the
+> item layout a claim is one more item: export it in the PR's first commit and push.
 
-Outside git, or before the export path is committed, the old on-disk behaviour stands unchanged
-and both of its silent breakages still apply — exporting somewhere else and copying the file into
-place (there was nothing to link to), or exporting twice between commits. reflow2 assumes nothing
-about git; the improvement is to the anchor, never a requirement.
-
-**Since 2026-09-12 the server also keeps that file current on its own** — `--export-to <FILE>`,
-which this repo's `.mcp.json` and every project `reflow2_init.py` installs now pass. After each
+**Since 2026-09-12 the server also keeps the committed design current on its own** —
+`--export-to <PATH>` (a directory ending in `/` for the item layout, a `.json` file for the single
+form), which this repo's `.mcp.json` and every project `reflow2_init.py` installs now pass. After each
 change the write-through waits for two seconds of quiet (ten at the outside, so a steady stream of
 writes cannot starve it) and exports once, so a burst of thirty writes costs one export and a
 forgotten export stops being a class of loss. The guarantee lives in the server because **the
@@ -464,8 +481,8 @@ exists in one harness.
 (`req:a-writing-call-keeps-the-committed-export-current`): the door installs the same
 write-through with no background task and runs it once after a successful write, on the file
 `--export-to` names or, without it, the one the project's MCP configuration names for that store.
-A worktree has no MCP configuration (it is git-ignored), so a design record built there with
-`--call` is still exported by hand, once, last.
+A worktree has no MCP configuration (it is git-ignored), so pass `--export-to docs/design/reflow2/`
+on each `--call` write there, or `export_graph` to that path when you are done.
 
 > 🛑 **IT WILL NOT OVERWRITE A HAND EDIT, AND THAT MEANS IT CAN STOP.** If the file no longer
 > matches what reflow2 last wrote — you edited it, or a merge left it unparseable — the
@@ -539,7 +556,7 @@ and the records are the project's memory:
 
 | Record | Update when |
 |---|---|
-| [CHANGELOG.md](CHANGELOG.md) | a user would notice |
+| a fragment in [changelog.d/](changelog.d/README.md) (never `CHANGELOG.md` itself; the cut assembles them) | a user would notice |
 | [docs/requirements-coverage.md](docs/requirements-coverage.md) | a status moves |
 | the graph (a TemporalFact `defect`, a `planned` Capability, a `proposed` Decision, a DesignRule) | an item is discovered — see `dec:backlog-is-retired` for which shape |
 | [docs/trials/](docs/trials/) | a real session went wrong — verbatim, append-only |

@@ -34,10 +34,13 @@ readers:
   alternatives.rs::register_alternative: { kind: unjudged, edges: [CONTRADICTS, GOVERNED_BY] }
   artifact.rs::accept_changed_edge: { kind: unjudged, edges: [CHANGED] }
   artifact.rs::conformance_tally: { kind: unjudged, edges: [REALIZES] }
+  artifact.rs::current_acceptance: { kind: not_derived, edges: [CHANGED], why: "Picks which of an artifact's own acceptances is current — the highest accepted_seq among the CHANGED edges into it that carry checksum_after (dec:item-13-checksums-move-to-change-edges-and-main-converts-in-one-pr). One hop, one node's own record; it composes no relation." }
   artifact.rs::documents: { kind: unjudged, edges: [DOCUMENTS] }
   artifact.rs::link_artifact: { kind: unjudged, edges: [REALIZES] }
   artifact.rs::realizes: { kind: unjudged, edges: [REALIZES] }
   artifact.rs::set_artifact_checksum: { kind: unjudged, edges: [DEPENDS_ON] }
+  artifact.rs::set_checksum_basis: { kind: not_derived, edges: [CHANGED], why: "A writer: stamps the basis onto the artifact's current acceptance edge as well as the node, so the two copies of one fact say the same thing." }
+  artifact.rs::stamp_acceptance: { kind: not_derived, edges: [CHANGED], why: "A writer: puts the checksum an accept accepted on the accepting change's CHANGED edge, numbered one above the artifact's other acceptances." }
   artifact.rs::write_artifact_link: { kind: unjudged, edges: [IMPLEMENTS, YIELDED] }
   budget.rs::constrains_by: { kind: unjudged, edges: [CONSTRAINS] }
   claims.rs::claim_region: { kind: unjudged, edges: [CLAIMS] }
@@ -97,6 +100,7 @@ readers:
   drift.rs::realized_targets: { kind: unjudged, edges: [REALIZES] }
   drift.rs::write_drift_event: { kind: unjudged, edges: [DEPENDS_ON] }
   edge_prose.rs::stale_edge_evidence: { kind: unjudged, edges: [AT_EPOCH, HAS_SNAPSHOT] }
+  export.rs::current_acceptances: { kind: not_derived, edges: [CHANGED], why: "The document form of artifact.rs::current_acceptance: which acceptance is current for each artifact in an export, so export_graph can elide the node copy it equals and import_graph can derive it back. One hop per artifact; it composes no relation." }
   export.rs::export_surface: { kind: unjudged, edges: [CONSUMES, CONTAINS, PROVIDES, REALIZES, SPECIFIES, VERIFIES] }
   export.rs::import_graph_with: { kind: not_derived, edges: [AUTHORED_BY], why: "The import: writes a document's nodes and edges, normalising a legacy AUTHORED_BY on the way in; its edge rewrites come from narrowing::edge_rewrite_for. It answers one restore and derives no relation." }
   fielded.rs::reconcile_deployment: { kind: unjudged, edges: [DEPENDS_ON, DEPLOYED_TO] }

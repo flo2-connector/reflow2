@@ -199,6 +199,217 @@ pub fn committed_predecessor(path: &Path) -> Result<CommittedPredecessor, NoAnch
     })
 }
 
+/// Where an ITEM LAYOUT's per-item lineage anchors: the merge-base with the
+/// default branch, and the layout's path as git names it.
+///
+/// Unlike [`committed_predecessor`] this does not require the layout to be
+/// committed there: a layout the anchor does not hold yet (a new project, or
+/// the pull request that converts a single-file export) is a layout whose
+/// every item is new, so each item carries no `prev_item_hash` — which is
+/// exactly what [`ItemAnchor::lookup`] answering nothing produces.
+#[derive(Debug, Clone)]
+pub struct ItemAnchor {
+    root: PathBuf,
+    base: String,
+    rel_dir: String,
+    /// Human-readable provenance, e.g. `origin/main@0b10966`.
+    pub source: String,
+}
+
+/// Find the [`ItemAnchor`] for a layout at `dir`, or the reason there is none.
+pub fn item_anchor(dir: &Path) -> Result<ItemAnchor, NoAnchor> {
+    if Command::new("git").arg("--version").output().is_err() {
+        return Err(NoAnchor::NoGit);
+    }
+    // The layout may not exist yet; ask git from the nearest directory that does.
+    let mut probe: PathBuf = dir.to_path_buf();
+    while !probe.is_dir() {
+        match probe.parent() {
+            Some(p) if !p.as_os_str().is_empty() => probe = p.to_path_buf(),
+            _ => {
+                probe = PathBuf::from(".");
+                break;
+            }
+        }
+    }
+    let toplevel = git(&probe, &["rev-parse", "--show-toplevel"]).ok_or(NoAnchor::NotARepo)?;
+    let root = std::fs::canonicalize(&toplevel).unwrap_or_else(|_| PathBuf::from(&toplevel));
+    let abs_probe = std::fs::canonicalize(&probe).map_err(|_| NoAnchor::NotARepo)?;
+    let rest = dir.strip_prefix(&probe).unwrap_or(Path::new(""));
+    let abs = abs_probe.join(rest);
+    let rel = abs.strip_prefix(&root).map_err(|_| NoAnchor::NotARepo)?;
+    let rel_dir = rel.to_string_lossy().replace('\\', "/");
+    let branch = default_branch(&root).ok_or(NoAnchor::NoDefaultBranch)?;
+    // MID-MERGE, HEAD IS STILL THE BRANCH'S OWN TIP, so merge-base(HEAD, main)
+    // is the OLD base — and an item both sides changed (the one a conflict is
+    // resolved on, which is exactly when a mid-merge export happens) would
+    // chain from a version main has already replaced. Once the merge is
+    // committed the gate asks merge-base(HEAD, main) of the merge commit, which
+    // is the merge-base of main with HEAD and MERGE_HEAD together: anchor there
+    // now, so the export written during the merge is the one the gate expects.
+    let merge_head =
+        git(&root, &["rev-parse", "-q", "--verify", "MERGE_HEAD"]).filter(|h| !h.is_empty());
+    let base = match &merge_head {
+        Some(theirs) => git(&root, &["merge-base", &branch, "HEAD", theirs]),
+        None => git(&root, &["merge-base", "HEAD", &branch]),
+    }
+    .ok_or(NoAnchor::NoMergeBase)?;
+    if base.is_empty() {
+        return Err(NoAnchor::NoMergeBase);
+    }
+    let during = if merge_head.is_some() {
+        ", with the merge in progress"
+    } else {
+        ""
+    };
+    Ok(ItemAnchor {
+        source: format!("{branch}@{}{during}", &base[..base.len().min(7)]),
+        root,
+        base,
+        rel_dir,
+    })
+}
+
+impl ItemAnchor {
+    /// The item files (paths inside the layout) that differ from the anchor
+    /// in the working tree — modified, staged, or new and untracked: the items
+    /// this branch has changed so far. Their lineage is what the gate judges,
+    /// so a write re-checks it for each of them, not only for the items the
+    /// write itself changes. None when git could not say, and then nothing is
+    /// re-checked (the write is no worse than before).
+    ///
+    /// `-z`, so a path git would otherwise quote (any byte past ASCII, which an
+    /// escaped id passes through) arrives exactly as written.
+    pub fn differing(&self) -> Option<std::collections::BTreeSet<String>> {
+        let scope = if self.rel_dir.is_empty() {
+            ".".to_string()
+        } else {
+            self.rel_dir.clone()
+        };
+        let prefix = if self.rel_dir.is_empty() {
+            String::new()
+        } else {
+            format!("{}/", self.rel_dir)
+        };
+        let diff = git_bytes(
+            &self.root,
+            &[
+                "diff",
+                "--name-only",
+                "--no-renames",
+                "-z",
+                &self.base,
+                "--",
+                &scope,
+            ],
+        )?;
+        let untracked = git_bytes(
+            &self.root,
+            &[
+                "ls-files",
+                "--others",
+                "--exclude-standard",
+                "-z",
+                "--",
+                &scope,
+            ],
+        )?;
+        let mut out = std::collections::BTreeSet::new();
+        for raw in diff.split(|b| *b == 0).chain(untracked.split(|b| *b == 0)) {
+            let path = String::from_utf8_lossy(raw);
+            let Some(rel) = path.strip_prefix(prefix.as_str()) else {
+                continue;
+            };
+            let top = rel.split('/').next().unwrap_or("");
+            if rel.ends_with(".json")
+                && (top == reflow2_core::item_layout::NODES_DIR
+                    || top == reflow2_core::item_layout::EDGES_DIR)
+            {
+                out.insert(rel.to_string());
+            }
+        }
+        Some(out)
+    }
+
+    /// The committed hashes of those of `rels` (paths inside the layout) that
+    /// exist at the anchor — ONE `git cat-file --batch` for all of them, so a
+    /// write that changes thousands of items still costs one process.
+    pub fn lookup(
+        &self,
+        rels: &[String],
+    ) -> std::collections::BTreeMap<String, reflow2_core::item_layout::Anchored> {
+        let mut out = std::collections::BTreeMap::new();
+        if rels.is_empty() {
+            return out;
+        }
+        let prefix = if self.rel_dir.is_empty() {
+            String::new()
+        } else {
+            format!("{}/", self.rel_dir)
+        };
+        let mut input = String::new();
+        for rel in rels {
+            input.push_str(&format!("{}:{prefix}{rel}\n", self.base));
+        }
+        let Ok(mut child) = Command::new("git")
+            .arg("-C")
+            .arg(&self.root)
+            .args(["cat-file", "--batch"])
+            .stdin(std::process::Stdio::piped())
+            .stdout(std::process::Stdio::piped())
+            .stderr(std::process::Stdio::null())
+            .spawn()
+        else {
+            return out;
+        };
+        let Some(mut stdin) = child.stdin.take() else {
+            return out;
+        };
+        let writer = std::thread::spawn(move || {
+            use std::io::Write as _;
+            let _ = stdin.write_all(input.as_bytes());
+        });
+        let Ok(output) = child.wait_with_output() else {
+            return out;
+        };
+        let _ = writer.join();
+        let buf = output.stdout;
+        let mut at = 0usize;
+        for rel in rels {
+            let Some(nl) = buf[at..].iter().position(|b| *b == b'\n') else {
+                break;
+            };
+            let header = String::from_utf8_lossy(&buf[at..at + nl]).to_string();
+            at += nl + 1;
+            if header.ends_with(" missing") || header.ends_with(" ambiguous") {
+                continue;
+            }
+            let size: usize = header
+                .rsplit(' ')
+                .next()
+                .and_then(|s| s.parse().ok())
+                .unwrap_or(0);
+            if at + size > buf.len() {
+                break;
+            }
+            let blob = &buf[at..at + size];
+            at += size + 1; // the content, then a newline
+            if let Ok(parsed) = reflow2_core::item_layout::parse_item(rel, blob) {
+                out.insert(
+                    rel.clone(),
+                    reflow2_core::item_layout::Anchored {
+                        // What the committed file SAYS it is, when it says so:
+                        // that is the hash its successor must name.
+                        content_hash: parsed.stated_hash.clone().unwrap_or(parsed.computed_hash),
+                        prev_item_hash: parsed.prev_item_hash,
+                    },
+                );
+            }
+        }
+        out
+    }
+}
+
 /// The working tree `path` sits in, as [`reflow2_core::TakenAt`]: branch (None
 /// on a detached HEAD), HEAD's commit, and whether anything OTHER than the
 /// export file itself is uncommitted. None outside a repository, with no git
@@ -278,6 +489,120 @@ pub struct EarliestEvidence {
 /// that introduced it, which the caller reports as evidence rather than origin.
 /// Every failure returns `Err` with the reason in words.
 pub fn earliest_export_containing(path: &Path, node_id: &str) -> Result<EarliestEvidence, String> {
+    if crate::saved_design::is_item_layout(path) {
+        return earliest_item_containing(path, node_id);
+    }
+    earliest_export_containing_until(path, node_id, "HEAD")
+}
+
+/// [`earliest_export_containing`] for the ITEM LAYOUT, where the question is
+/// direct: the first commit on HEAD's first-parent line that ADDED the node's
+/// own file. No bisection, because a node's file appears exactly once.
+///
+/// When that commit is the one that CREATED the layout — the conversion from
+/// a single-file export — the node was already on the record before it, so
+/// the search continues in the single file's history (`<dir>.json`) up to the
+/// conversion's parent.
+fn earliest_item_containing(dir: &Path, node_id: &str) -> Result<EarliestEvidence, String> {
+    let dir_trimmed = PathBuf::from(
+        dir.to_string_lossy()
+            .trim_end_matches(['/', std::path::MAIN_SEPARATOR])
+            .to_string(),
+    );
+    let name = format!("{}.json", reflow2_core::item_layout::escape_id(node_id));
+    let nodes = dir_trimmed.join(reflow2_core::item_layout::NODES_DIR);
+    let mut rel_item: Option<String> = None;
+    if let Ok(rd) = std::fs::read_dir(&nodes) {
+        let mut types: Vec<PathBuf> = rd.flatten().map(|e| e.path()).collect();
+        types.sort();
+        for t in types {
+            if t.join(&name).exists() {
+                let ty = t
+                    .file_name()
+                    .map(|n| n.to_string_lossy().to_string())
+                    .unwrap_or_default();
+                rel_item = Some(format!(
+                    "{}/{ty}/{name}",
+                    reflow2_core::item_layout::NODES_DIR
+                ));
+                break;
+            }
+        }
+    }
+    let Some(rel_item) = rel_item else {
+        return Err(format!(
+            "{node_id} has no file in the item layout at {} — it is not in the design as saved",
+            dir_trimmed.display()
+        ));
+    };
+    let toplevel = git(&dir_trimmed, &["rev-parse", "--show-toplevel"])
+        .ok_or_else(|| "the design is not inside a git work tree".to_string())?;
+    let root = std::fs::canonicalize(&toplevel).unwrap_or_else(|_| PathBuf::from(&toplevel));
+    let abs = std::fs::canonicalize(&dir_trimmed).unwrap_or_else(|_| dir_trimmed.clone());
+    let rel_dir = abs
+        .strip_prefix(&root)
+        .map_err(|_| "the design is outside the repository".to_string())?
+        .to_string_lossy()
+        .replace('\\', "/");
+    let item = format!("{rel_dir}/{rel_item}");
+    let first_add = |path: &str| -> Option<(String, String)> {
+        let out = git(
+            &root,
+            &[
+                "log",
+                "--first-parent",
+                "--reverse",
+                "--diff-filter=A",
+                "--format=%H %cs",
+                "HEAD",
+                "--",
+                path,
+            ],
+        )?;
+        let line = out.lines().next()?.to_string();
+        let mut parts = line.splitn(2, ' ');
+        Some((
+            parts.next()?.to_string(),
+            parts.next().unwrap_or("").to_string(),
+        ))
+    };
+    let Some((commit, date)) = first_add(&item) else {
+        return Err(format!(
+            "{item} has no committed history — it has never been committed"
+        ));
+    };
+    let created_layout = first_add(&format!(
+        "{rel_dir}/{}",
+        reflow2_core::item_layout::DESIGN_FILE
+    ));
+    let single = format!("{rel_dir}.json");
+    if created_layout.as_ref().map(|(c, _)| c.as_str()) == Some(commit.as_str())
+        && git(&root, &["cat-file", "-e", &format!("{commit}^:{single}")]).is_some()
+    {
+        let parent = format!("{commit}^");
+        let old = root.join(&single);
+        if let Ok(ev) = earliest_export_containing_until(&old, node_id, &parent) {
+            return Ok(ev);
+        }
+    }
+    let content_hash = git_bytes(&root, &["show", &format!("{commit}:{item}")])
+        .and_then(|blob| reflow2_core::item_layout::parse_item(&rel_item, &blob).ok())
+        .and_then(|p| p.stated_hash);
+    Ok(EarliestEvidence {
+        location: format!("git:{commit}:{item}"),
+        commit,
+        date,
+        content_hash,
+        reads: 1,
+    })
+}
+
+/// [`earliest_export_containing`] over the single file's history up to `until`.
+fn earliest_export_containing_until(
+    path: &Path,
+    node_id: &str,
+    until: &str,
+) -> Result<EarliestEvidence, String> {
     let dir: PathBuf = path
         .parent()
         .filter(|p| !p.as_os_str().is_empty())
@@ -294,14 +619,7 @@ pub fn earliest_export_containing(path: &Path, node_id: &str) -> Result<Earliest
         .replace('\\', "/");
     let list = git(
         &root,
-        &[
-            "rev-list",
-            "--first-parent",
-            "--reverse",
-            "HEAD",
-            "--",
-            &rel,
-        ],
+        &["rev-list", "--first-parent", "--reverse", until, "--", &rel],
     )
     .ok_or_else(|| format!("git could not list the history of {rel}"))?;
     let commits: Vec<&str> = list.lines().filter(|l| !l.is_empty()).collect();

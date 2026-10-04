@@ -542,8 +542,27 @@ def test_install_sh_maps_linux_aarch64() -> None:
     assert "no prebuilt binary for Linux/riscv64" in r.stderr, r.stderr
 
 
+# ─────────────────────────────────────────────────────────────────────────────
+# 9. the kit carries every sibling the gate imports
+# ─────────────────────────────────────────────────────────────────────────────
+
+
+def test_the_kit_ships_the_design_reader_beside_the_gate() -> None:
+    """reflow2_check.py reads the saved design through tools/design_io.py — a
+    SIBLING import — and exits 2 without it. A kit that shipped the gate alone
+    would turn every consumer's CI red with "this kit is incomplete" the day
+    they upgraded (the item layout, 2026-10-03)."""
+    text = RELEASE.read_text(encoding="utf-8")
+    assert "cp tools/reflow2_check.py kit-stage/reflow2-kit/tools/" in text
+    assert "cp tools/design_io.py kit-stage/reflow2-kit/tools/" in text, (
+        "release.yml ships reflow2_check.py without design_io.py, which it imports")
+    gate = (REPO / "tools" / "reflow2_check.py").read_text(encoding="utf-8")
+    assert "import design_io" in gate, "the gate no longer imports the reader; drop this test"
+
+
 def main() -> int:
     tests = [
+        test_the_kit_ships_the_design_reader_beside_the_gate,
         test_linux_arm64_is_built_natively_on_an_arm_runner,
         test_each_per_arch_image_is_smoke_tested_before_any_push_in_the_same_job,
         test_the_merge_verifies_both_platforms,
