@@ -40,6 +40,10 @@ import json
 import pathlib
 import subprocess
 import sys
+import os
+
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import design_io  # noqa: E402  (the one reader of a saved design, either form)
 
 REPO = pathlib.Path(__file__).resolve().parent.parent
 
@@ -857,12 +861,12 @@ def load_document(args: argparse.Namespace) -> tuple[dict, str]:
             sys.exit(proc.stderr.strip() or "export failed with no message")
         return json.loads(proc.stdout), f"live graph at {args.graph_path}"
     p = pathlib.Path(args.export)
-    return json.loads(p.read_text()), p.name
+    return design_io.load_design(str(p)), p.name
 
 
 def main() -> int:
     ap = argparse.ArgumentParser()
-    ap.add_argument("export", nargs="?", default=str(REPO / "docs/design/reflow2.json"))
+    ap.add_argument("export", nargs="?", default=design_io.default_export(str(REPO)))
     ap.add_argument("--graph-path", default=None,
                     help="project a live graph directory instead of an export file "
                          "(runs `reflow2-mcp --export`; single-writer — stop any "

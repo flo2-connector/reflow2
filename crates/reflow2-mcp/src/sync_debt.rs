@@ -662,9 +662,7 @@ pub fn sync_debt_with(
             Some((doc, hash)) => (doc, hash, None),
             None => {
                 let stat_before = stat_of(target);
-                let document = std::fs::read_to_string(target)
-                    .ok()
-                    .and_then(|raw| serde_json::from_str::<GraphExport>(&raw).ok());
+                let document = crate::saved_design::read_export(path).ok();
                 let Some(document) = document else {
                     out.push(bare(
                         path,
@@ -812,6 +810,11 @@ pub fn sync_debt_with(
 
 /// `(len, mtime as unix nanos)` of a file, or None if it cannot be stat'ed.
 fn stat_of(target: &std::path::Path) -> Option<(u64, i64)> {
+    // An item layout's own directory time does not move when an item inside a
+    // subdirectory does, so it gets a fingerprint over its directories.
+    if target.is_dir() {
+        return crate::saved_design::layout_stat(target);
+    }
     let md = std::fs::metadata(target).ok()?;
     let mtime = md
         .modified()

@@ -9,8 +9,16 @@ registered artifact's hash from the working tree, reconciles, and runs the gap
 detectors.
 
     tools/reflow2_check.py                          # design.json, cwd as root
-    tools/reflow2_check.py --export docs/design/reflow2.json
+    tools/reflow2_check.py --export docs/design/reflow2/        # the item layout
+    tools/reflow2_check.py --export docs/design/reflow2.json    # the single file
     tools/reflow2_check.py --gap-threshold 0.9
+
+The saved design may be the single-file export or the per-item layout (one
+file per node and per edge, dec:how-the-saved-design-is-laid-out-so-git-merges-it).
+For the layout, INTEGRITY is checked per item, LINEAGE per item against the
+merge-base, and the design-vs-build check is GIT-AWARE: every registered file a
+change touched must be covered by an acceptance in that change
+(dec:item-13-checksums-move-to-change-edges-and-main-converts-in-one-pr).
 
 The build FAILS (exit 1) when:
   - a registered artifact changed or vanished with no two-sided accept — an
@@ -47,6 +55,18 @@ import tempfile
 import traceback
 
 _REPO_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+# THE ONE READER OF A SAVED DESIGN, in either form — the single-file export or
+# the per-item layout (dec:how-the-saved-design-is-laid-out-so-git-merges-it).
+# It ships beside this file in the kit; a kit without it cannot read a layout,
+# and saying so is exit 2, never a guess.
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+try:
+    import design_io  # noqa: E402
+except ImportError:  # pragma: no cover — a broken kit
+    print("reflow2_check: design_io.py must sit beside reflow2_check.py (it reads the saved "
+          "design in either form); this kit is incomplete", file=sys.stderr)
+    sys.exit(2)
 
 
 def die(code: int, msg: str) -> None:
@@ -769,6 +789,345 @@ def check_taken_on_this_branch(path: str, doc: dict) -> str | None:
     )
 
 
+# ---- the change this run is judging (per-item lineage and coverage) --------
+
+
+class ChangeRange:
+    """What this run judges as "the change": everything between `base` and the
+    working tree.
+
+    Three shapes, decided from git and nothing else:
+
+    - **pr** — CI on a pull request, where the checkout is the merge commit
+      (two parents). `base` is main's tip (HEAD^1), so the range is exactly
+      what the PR brings to main, and `pr_head` (HEAD^2) is where its
+      acceptances must match its files: "at the PR head", decision 3.
+    - **branch** — a working tree on a branch (or uncommitted work on the
+      trunk): `base` is the merge-base with the default branch (or HEAD), and
+      acceptances must match the files as they are on disk.
+    - **trunk** — a commit on the default branch itself (CI's push to main):
+      `base` is HEAD^1 and only COVERAGE is asked — a file two PRs both edited
+      is a merge of two accepted changes, which neither acceptance can match.
+    """
+
+    def __init__(self, root: str, base: str, mode: str, pr_head: str | None, label: str):
+        self.root, self.base, self.mode, self.pr_head, self.label = root, base, mode, pr_head, label
+
+    @property
+    def requires_match(self) -> bool:
+        return self.mode in ("pr", "branch")
+
+
+def change_range(start: str) -> ChangeRange | None:
+    """The range this run judges, or None when git cannot say (no repository,
+    no commits) — and then the git-aware checks are skipped, SAID, and the
+    record-only checks stand."""
+    top = _git(["rev-parse", "--show-toplevel"], start)
+    if not top:
+        return None
+    root = top.strip()
+    head = (_git(["rev-parse", "--verify", "--quiet", "HEAD"], root) or "").strip()
+    if not head:
+        return None
+    parents = (_git(["rev-parse", "HEAD^@"], root) or "").split()
+    # A pull request's CI checks out the merge commit GitHub made, and says so:
+    # GITHUB_SHA is that commit. Requiring it to BE HEAD keeps any other merge
+    # commit (a scratch repository a test builds, a local merge) out of PR mode.
+    if (os.environ.get("GITHUB_EVENT_NAME") == "pull_request"
+            and os.environ.get("GITHUB_SHA") == head and len(parents) == 2):
+        return ChangeRange(root, parents[0], "pr", parents[1],
+                           f"this pull request ({parents[1][:7]} merged onto {parents[0][:7]})")
+    merge_base = None
+    for candidate in ("origin/HEAD", "origin/main", "origin/master", "main", "master"):
+        mb = _git(["merge-base", "HEAD", candidate], root)
+        if mb and mb.strip():
+            merge_base = mb.strip()
+            break
+    if merge_base and merge_base != head:
+        return ChangeRange(root, merge_base, "branch", None,
+                           f"this branch since {merge_base[:7]}, as on disk")
+    dirty = (_git(["status", "--porcelain", "--untracked-files=no"], root) or "").strip()
+    if dirty:
+        return ChangeRange(root, head, "branch", None, f"uncommitted work on {head[:7]}")
+    if parents:
+        return ChangeRange(root, parents[0], "trunk", None,
+                           f"commit {head[:7]} on the default branch")
+    return None
+
+
+def _changed_since(rng: ChangeRange, under: str | None = None) -> set[str]:
+    """Repo-relative paths that differ between `rng.base` and the working tree
+    (tracked changes plus untracked files), optionally only `under` a path."""
+    tail = ["--", under] if under else []
+    out: set[str] = set()
+    diff = _git(["diff", "--name-only", "--no-renames", rng.base, *tail], rng.root) or ""
+    out.update(line.strip() for line in diff.splitlines() if line.strip())
+    untracked = _git(["ls-files", "--others", "--exclude-standard", *tail], rng.root) or ""
+    out.update(line.strip() for line in untracked.splitlines() if line.strip())
+    return out
+
+
+def check_item_lineage(path: str, rng: ChangeRange | None) -> list[str]:
+    """PER-ITEM LINEAGE (dec:the-designs-lineage-is-kept-per-item): every item
+    file the change touched names, in `prev_item_hash`, that item's hash at the
+    base — or nothing, when the item is new. An unchanged item is not judged.
+    That is what makes a squash-merge land each changed item one hop, and what
+    lets a branch export as often as it likes, before or during a merge."""
+    if rng is None:
+        return []
+    located = _repo_relative(path)
+    if located is None:
+        return []
+    _, rel_dir = located
+    rel_dir = rel_dir.rstrip("/")
+    prefix = rel_dir + "/"
+    touched = sorted(
+        p[len(prefix):] for p in _changed_since(rng, rel_dir)
+        if p.startswith(prefix) and p.endswith(".json")
+        and p[len(prefix):].split("/", 1)[0] in (design_io.NODES_DIR, design_io.EDGES_DIR)
+    )
+    if not touched:
+        return []
+    at_base = design_io.items_at(rng.root, rng.base, rel_dir, touched)
+    broken = []
+    for rel in touched:
+        full = os.path.join(path, rel)
+        if not os.path.exists(full):
+            continue  # deleted: nothing left to chain
+        with open(full, "rb") as fh:
+            try:
+                now = design_io.parse_item(rel, fh.read())
+            except ValueError:
+                continue  # unreadable items fail the load itself
+        before = at_base.get(rel)
+        expected = before.stated if before is not None else None
+        if before is not None and before.stated == now.stated:
+            continue  # same content as the base: not part of this change
+        if now.prev != expected:
+            broken.append(f"{rel}: records {now.prev or 'nothing'}, expected "
+                          f"{expected or 'nothing (new in this change)'}")
+    if not broken:
+        return []
+    shown = "; ".join(broken[:5]) + (f" (+{len(broken) - 5} more)" if len(broken) > 5 else "")
+    return [
+        f"LINEAGE  {len(broken)} item(s) in '{path}' do not name their hash at {rng.base[:7]} "
+        f"({rng.label}): {shown}. Each changed item's prev_item_hash must be its content_hash "
+        f"at the merge-base with the default branch (dec:the-designs-lineage-is-kept-per-item). "
+        f"The usual cause is an item copied in from another tree or edited by hand; re-export "
+        f"from the graph with a current reflow2, which anchors every changed item there."
+    ]
+
+
+def _repo_rel_location(root: str, project_root: str, location: str) -> str | None:
+    """A registered location as a repo-relative path, or None when it is not a
+    plain file inside the repository (a URI, an escape, a directory)."""
+    loc = location.split("#", 1)[0]
+    if not loc or "://" in loc:
+        return None
+    full = os.path.normpath(os.path.join(project_root, loc))
+    try:
+        rel = os.path.relpath(full, root)
+    except ValueError:
+        return None
+    if rel.startswith(".."):
+        return None
+    return rel.replace(os.sep, "/")
+
+
+def _sha256_bytes(data: bytes) -> str:
+    return "sha256:" + hashlib.sha256(data).hexdigest()
+
+
+def range_acceptances(path: str, doc: dict, rng: ChangeRange) -> dict:
+    """`{artifact_id: [(seq, change_id, checksum)]}` — the acceptances THIS
+    change made: CHANGED edges carrying `checksum_after` that are new, or carry
+    a different checksum, relative to the design at `rng.base`."""
+    located = _repo_relative(path)
+    if located is None:
+        return {}
+    _, rel = located
+    rel = rel.rstrip("/")
+    found: dict = {}
+
+    def note(e, checksum):
+        props = e.get("properties") or {}
+        found.setdefault(e["to_id"], []).append(
+            (props.get("accepted_seq") or 0, e["from_id"], checksum))
+
+    if doc.get("layout") == "items":
+        prefix = rel + "/" + design_io.EDGES_DIR + "/"
+        touched = sorted(p[len(rel) + 1:] for p in _changed_since(rng, rel)
+                         if p.startswith(prefix) and p.endswith(".json"))
+        at_base = design_io.items_at(rng.root, rng.base, rel, touched)
+        for r in touched:
+            full = os.path.join(path, r)
+            if not os.path.exists(full):
+                continue
+            with open(full, "rb") as fh:
+                it = design_io.parse_item(r, fh.read())
+            body = it.body
+            if body.get("edge_type") != "CHANGED":
+                continue
+            checksum = (body.get("properties") or {}).get("checksum_after")
+            if not checksum:
+                continue
+            before = at_base.get(r)
+            if before is not None and (before.body.get("properties") or {}).get("checksum_after") == checksum:
+                continue
+            note(body, checksum)
+        return found
+
+    base_doc = design_io.load_design_at(rng.root, rng.base, rel) or {"edges": []}
+    before = design_io.acceptances(base_doc.get("edges", []))
+    for e in doc.get("edges", []):
+        if e.get("edge_type") != "CHANGED":
+            continue
+        checksum = (e.get("properties") or {}).get("checksum_after")
+        if checksum and before.get((e["from_id"], e["to_id"])) != checksum:
+            note(e, checksum)
+    return found
+
+
+def check_checksum_coverage(path: str, doc: dict, rng: ChangeRange,
+                            project_root: str) -> tuple[list[str], set[str]]:
+    """THE GIT-AWARE DESIGN-VS-BUILD CHECK (decision 3 of
+    dec:item-13-checksums-move-to-change-edges-and-main-converts-in-one-pr).
+
+    Every registered file this change touched must be covered by an acceptance
+    in this change; on a PR or a branch, the acceptance must also MATCH the file
+    at the PR head (or on disk). On the trunk only coverage is asked: a file two
+    PRs both edited is the merge of two accepted changes, and neither one's
+    checksum can be the merged file's.
+
+    Returns the failures and the artifact ids it judged, so the server's
+    record-only drift verdict on those is not reported twice."""
+    failures: list[str] = []
+    judged: set[str] = set()
+    changed = _changed_since(rng)
+    accepted = range_acceptances(path, doc, rng)
+    by_artifact: dict[str, str] = {}
+    for n in doc.get("nodes", []):
+        if n.get("node_type") != "Artifact":
+            continue
+        props = n.get("properties") or {}
+        if props.get("volatility") in ("append_only", "living"):
+            continue  # an expected change, reported by the server as such
+        loc = props.get("location")
+        if not loc:
+            continue
+        rel = _repo_rel_location(rng.root, project_root, loc)
+        if rel:
+            by_artifact[n["node_id"]] = rel
+
+    def file_at_target(rel: str) -> bytes | None:
+        if rng.pr_head:
+            out = subprocess.run(["git", "show", f"{rng.pr_head}:{rel}"], cwd=rng.root,
+                                 capture_output=True, timeout=60)
+            return out.stdout if out.returncode == 0 else None
+        full = os.path.join(rng.root, rel)
+        if not os.path.isfile(full):
+            return None
+        with open(full, "rb") as fh:
+            return fh.read()
+
+    for art, rel in sorted(by_artifact.items()):
+        mine = sorted(accepted.get(art, []), key=lambda t: (-t[0], t[1]))
+        touched = rel in changed
+        if not touched and not mine:
+            continue
+        if touched and not os.path.isfile(os.path.join(rng.root, rel)):
+            continue  # deleted: the server's missing_artifact owns it
+        judged.add(art)
+        if touched and not mine:
+            failures.append(
+                f"DRIFT  {art}: checksum_change — {rel} changed in {rng.label} and no change in "
+                f"it accepted the new checksum. Accept it two-sided (set_artifact_checksums, a "
+                f"disposition per file), then export."
+            )
+            continue
+        if not rng.requires_match:
+            continue
+        content = file_at_target(rel)
+        if content is None:
+            continue
+        actual = _sha256_bytes(content)
+        _, change, checksum = mine[0]
+        if not _checksums_agree(checksum, actual):
+            where = f"the PR head {rng.pr_head[:7]}" if rng.pr_head else "disk"
+            failures.append(
+                f"DRIFT  {art}: checksum_change — {change} accepted {checksum} for {rel}, and the "
+                f"file at {where} is {actual}. Re-accept it after the last edit "
+                f"(set_artifact_checksums), then export."
+            )
+    return failures, judged
+
+
+def _checksums_agree(a: str, b: str) -> bool:
+    """The core's `checksums_agree`: one digest, whatever length it was written at."""
+    if a == b:
+        return True
+    if not (a.startswith("sha256:") and b.startswith("sha256:")):
+        return False
+    ah, bh = a[7:], b[7:]
+    return bool(ah) and bool(bh) and (ah.startswith(bh) or bh.startswith(ah))
+
+
+def check_layout_identity(path: str, rng: ChangeRange | None) -> str | None:
+    """BL-169 for the item layout: `graph_id` in design.json did not move."""
+    if rng is None:
+        return None
+    located = _repo_relative(path)
+    if located is None:
+        return None
+    _, rel = located
+    before = _git(["show", f"{rng.base}:{rel.rstrip('/')}/{design_io.DESIGN_FILE}"], rng.root)
+    try:
+        with open(os.path.join(path, design_io.DESIGN_FILE), encoding="utf-8") as fh:
+            now = json.load(fh).get("graph_id")
+        was = json.loads(before).get("graph_id") if before else None
+    except (OSError, ValueError):
+        return None
+    if not was or not now or was == now:
+        return None
+    return (
+        f"IDENTITY  '{path}' changed the design's name from '{was}' to '{now}'. `graph_id` is "
+        f"minted once and never negotiated — it namespaces every stored key. The usual cause is "
+        f"a replay through a TEMP graph; seed one with `reflow2-mcp --graph-path <tmp> --import "
+        f"<design>`, which adopts the design's identity into an empty store."
+    )
+
+
+def check_layout_taken_on_this_branch(path: str) -> str | None:
+    """The PHANTOM check for the item layout: its `taken_at` lives in the
+    git-ignored sidecar, and "about to be committed" means any item file in the
+    layout is modified or new."""
+    try:
+        with open(os.path.join(path, design_io.TAKEN_AT_FILE), encoding="utf-8") as fh:
+            taken = json.load(fh) or {}
+    except (OSError, ValueError):
+        return None
+    taken_branch = taken.get("branch")
+    if not taken_branch:
+        return None
+    rel = _repo_relative(os.path.join(path, design_io.DESIGN_FILE))
+    if rel is None:
+        return None
+    root, _ = rel
+    here = (_git(["rev-parse", "--abbrev-ref", "HEAD"], root) or "").strip()
+    if not here or here == "HEAD" or here == taken_branch:
+        return None
+    status = _git(["status", "--porcelain", "--", os.path.abspath(path)], root)
+    if not status or not status.strip():
+        return None
+    return (
+        f"PHANTOM  '{path}' was taken on branch '{taken_branch}' and is about to be committed on "
+        f"'{here}'. The graph does not branch with git — one store serves every branch checked "
+        f"out here — so a design taken elsewhere carries that branch's writes into this one. "
+        f"Restore the committed layout (`git checkout -- {path}`) and export again FROM THIS "
+        f"BRANCH; if the other branch's writes really belong here, say so and re-export anyway."
+    )
+
+
 def synced_export_path(root: str) -> str | None:
     """The export the graph under `root` last recorded itself in step with —
     `.reflow2/graph.sync.json`'s `last_synced` keys — the first that exists,
@@ -850,13 +1209,40 @@ def main() -> int:
     # detectable before anything downstream trusts it. The canonical form must
     # byte-match the Rust side's: compact separators, sorted keys, raw unicode
     # (tools/smoke_mcp.py pins the two implementations against each other).
+    # For the item layout the same question is asked PER ITEM: each file
+    # carries its own content_hash, and the whole-design hash is computed.
     try:
-        with open(opts.export, encoding="utf-8") as fh:
-            doc = json.load(fh)
+        doc = design_io.load_design(opts.export, verify=True)
     except (OSError, ValueError) as e:
-        die(2, f"could not read '{opts.export}' as JSON: {e}")
-    embedded = doc.get("content_hash")
-    if embedded:
+        die(2, f"could not read '{opts.export}' as a reflow2 design: {e}")
+    items_layout = doc.get("layout") == "items"
+    # The git-aware checks belong to the item layout: the single file keeps
+    # its whole-file chain and record-only drift check for the overlap
+    # release, exactly as before, so a project that has not converted sees no
+    # change in what fails its build.
+    rng = change_range(os.path.abspath(opts.export)) if items_layout else None
+    embedded = None if items_layout else doc.get("content_hash")
+    if items_layout:
+        if doc.get("tampered"):
+            shown = ", ".join(doc["tampered"][:5])
+            more = f" (+{len(doc['tampered']) - 5} more)" if len(doc["tampered"]) > 5 else ""
+            failures.append(
+                f"INTEGRITY  {len(doc['tampered'])} item file(s) in '{opts.export}' do not match "
+                f"their own content_hash — edited outside reflow2 or corrupted: {shown}{more}. "
+                f"Re-export from the graph, or review what changed them."
+            )
+        if doc.get("misplaced"):
+            failures.append(
+                f"INTEGRITY  {len(doc['misplaced'])} item file(s) in '{opts.export}' sit at a path "
+                f"their content does not belong at: {', '.join(doc['misplaced'][:5])}. A merge "
+                f"that kept a renamed copy looks like this; re-export from the graph."
+            )
+        notes.append(
+            f"design: item layout, {len(doc.get('nodes', []))} nodes and "
+            f"{len(doc.get('edges', []))} edges, content hash {doc.get('content_hash')} "
+            f"(computed on read)"
+        )
+    elif embedded:
         canonical = json.dumps(
             {"edges": doc.get("edges", []), "graph_id": doc.get("graph_id"),
              "nodes": doc.get("nodes", [])},
@@ -872,17 +1258,26 @@ def main() -> int:
     else:
         notes.append("integrity: export predates content hashing (no content_hash)")
 
-    # LINEAGE (BL-107) — a severed chain used to be completely silent.
-    broken_chain = check_export_chain(opts.export, doc)
-    if broken_chain:
-        failures.append(broken_chain)
-    phantom = check_taken_on_this_branch(opts.export, doc)
+    # LINEAGE (BL-107) — a severed chain used to be completely silent. The
+    # single file keeps its whole-file chain for the overlap release; the item
+    # layout's lineage is per item (dec:the-designs-lineage-is-kept-per-item).
+    if items_layout:
+        failures.extend(check_item_lineage(opts.export, rng))
+        if rng is None:
+            notes.append("lineage: not judged — git could not say what this change is (no "
+                         "repository or no commits), so per-item lineage was not checked")
+        phantom = check_layout_taken_on_this_branch(opts.export)
+        renamed = check_layout_identity(opts.export, rng)
+    else:
+        broken_chain = check_export_chain(opts.export, doc)
+        if broken_chain:
+            failures.append(broken_chain)
+        phantom = check_taken_on_this_branch(opts.export, doc)
+        # IDENTITY (BL-169) — a rename passes every check above, because
+        # graph_id is inside the content hash and the chain links across it.
+        renamed = check_export_identity(opts.export, doc)
     if phantom:
         failures.append(phantom)
-
-    # IDENTITY (BL-169) — a rename passes every check above, because graph_id is
-    # inside the content hash and the chain links across it perfectly well.
-    renamed = check_export_identity(opts.export, doc)
     if renamed:
         failures.append(renamed)
 
@@ -1082,13 +1477,41 @@ def main() -> int:
                     f"responsible moment (dec:idea-allocation-waits-for-the-last-responsible-moment)."
                 )
 
+            # THE DESIGN-VS-BUILD CHECK IS GIT-AWARE when git can say what this
+            # change is (decision 3 of
+            # dec:item-13-checksums-move-to-change-edges-and-main-converts-in-one-pr):
+            # every registered file the change touched is covered by an
+            # acceptance in it, matching the file on a PR or a branch. The
+            # server's record-only verdict then judges only what that cannot —
+            # a vanished file — and a checksum mismatch on a file this change
+            # did NOT touch is the merge of two accepted changes, a note.
+            covered: set[str] = set()
+            if items_layout and rng is None:
+                notes.append(
+                    "design vs build: git could not say what this change is, so drift is judged "
+                    "against the record alone (every checksum mismatch fails)")
+            if rng is not None:
+                coverage, covered = check_checksum_coverage(
+                    opts.export, doc, rng, os.path.abspath(opts.root))
+                failures.extend(coverage)
+                notes.append(f"design vs build: judged per change — {rng.label}")
             for finding in drift.get("findings", []):
                 kind = finding.get("kind")
-                what = f"{finding.get('artifact_id')}: {kind}"
-                if kind in ("checksum_change", "missing_artifact"):
+                art = finding.get("artifact_id")
+                what = f"{art}: {kind}"
+                if kind == "missing_artifact" or (kind == "checksum_change" and rng is None):
                     failures.append(
                         f"DRIFT  {what} — the build no longer matches the committed design. "
                         f"Reconcile and accept two-sided (set_artifact_checksum), then re-export."
+                    )
+                elif kind == "checksum_change" and art in covered:
+                    continue  # judged above, against this change
+                elif kind == "checksum_change":
+                    notes.append(
+                        f"drift: {what} — the file is not part of {rng.label}, so this is not "
+                        f"this change's to accept; its latest acceptance differs from it, which "
+                        f"is what a merge of two accepted edits to one file leaves. Accept the "
+                        f"merged content (set_artifact_checksums) when convenient."
                     )
                 else:
                     notes.append(f"drift: {what}")

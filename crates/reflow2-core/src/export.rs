@@ -403,6 +403,33 @@ impl DesignGraph {
                 .then(a.to_id.cmp(&b.to_id))
         });
 
+        // A CHECKSUM THE RECORD ALREADY HOLDS ON ITS ACCEPTING CHANGE IS NOT
+        // WRITTEN TWICE. Since 2026-10-03 an accept puts the checksum on the
+        // accepting change's CHANGED edge (`checksum_after`), and the Artifact's
+        // own `checksum` is the current one of those — derived, not a second
+        // record. Kept on the node it would be ONE value every pull request that
+        // edits the file rewrites, which is exactly the conflict decision 3 of
+        // dec:item-13-checksums-move-to-change-edges-and-main-converts-in-one-pr
+        // removes. Elided only while it EQUALS what the edges derive; a node
+        // value that disagrees (a direct write) is kept, so nothing is lost, and
+        // the import puts the derived value back.
+        let current = current_acceptances(&edges);
+        for n in nodes.iter_mut().filter(|n| n.node_type == node::ARTIFACT) {
+            let Some((checksum, basis)) = current.get(&n.node_id) else {
+                continue;
+            };
+            let stated = n.properties.get("checksum").and_then(Value::as_str);
+            if stated != Some(checksum.as_str()) {
+                continue;
+            }
+            n.properties.remove("checksum");
+            if basis.is_some()
+                && n.properties.get("checksum_basis").and_then(Value::as_str) == basis.as_deref()
+            {
+                n.properties.remove("checksum_basis");
+            }
+        }
+
         let mut export = GraphExport {
             taken_at: None,
             stamp: Some(GraphStamp::current(self.schema())),
@@ -532,9 +559,26 @@ impl DesignGraph {
             let mut faults: Vec<String> = Vec::new();
             let mut materialized: BTreeMap<String, usize> = BTreeMap::new();
             let mut pending_refs: Vec<(usize, &str, &str, String, String)> = Vec::new();
+            // The checksum `export_graph` left off an Artifact because its
+            // accepting change already carries it comes back here — derived
+            // from the document's own edges, so it is not "materialised": the
+            // document stated it, once, where it belongs.
+            let accepted = current_acceptances(&doc.edges);
             for (index, n) in doc.nodes.iter().enumerate() {
+                let mut stated = n.properties.clone();
+                if n.node_type == node::ARTIFACT
+                    && !stated.contains_key("checksum")
+                    && let Some((checksum, basis)) = accepted.get(&n.node_id)
+                {
+                    stated.insert("checksum".into(), Value::String(checksum.clone()));
+                    if let Some(basis) = basis
+                        && !stated.contains_key("checksum_basis")
+                    {
+                        stated.insert("checksum_basis".into(), Value::String(basis.clone()));
+                    }
+                }
                 let props: std::collections::HashMap<String, Value> =
-                    n.properties.clone().into_iter().collect();
+                    stated.clone().into_iter().collect();
                 for (prop, target) in self.declared_node_refs(&n.node_type, &props) {
                     pending_refs.push((
                         index,
@@ -547,7 +591,7 @@ impl DesignGraph {
                 match self.create_node_refs_checked_later(&n.node_type, &n.node_id, props) {
                     Ok(stored) => {
                         for key in stored.properties.keys() {
-                            if !n.properties.contains_key(key) {
+                            if !stated.contains_key(key) {
                                 *materialized
                                     .entry(format!("{}.{key}", n.node_type))
                                     .or_insert(0) += 1;
@@ -717,6 +761,43 @@ impl DesignGraph {
             }
         }
     }
+}
+
+/// For each artifact, the checksum its CURRENT acceptance carries, and that
+/// acceptance's basis: among the `CHANGED` edges into it with `checksum_after`,
+/// the highest `accepted_seq`, ties to the smaller change id. The one rule
+/// [`DesignGraph::current_acceptance`] applies to a store, applied to a
+/// document, so an export's elision and an import's derivation cannot disagree.
+pub fn current_acceptances(edges: &[ExportedEdge]) -> BTreeMap<String, (String, Option<String>)> {
+    let mut best: BTreeMap<String, (i64, &str, String, Option<String>)> = BTreeMap::new();
+    for e in edges.iter().filter(|e| e.edge_type == edge::CHANGED) {
+        let Some(checksum) = e.properties.get("checksum_after").and_then(Value::as_str) else {
+            continue;
+        };
+        let seq = e
+            .properties
+            .get("accepted_seq")
+            .and_then(Value::as_i64)
+            .unwrap_or(0);
+        let basis = e
+            .properties
+            .get("checksum_basis")
+            .and_then(Value::as_str)
+            .map(str::to_string);
+        let better = match best.get(&e.to_id) {
+            None => true,
+            Some((s, from, _, _)) => seq > *s || (seq == *s && e.from_id.as_str() < *from),
+        };
+        if better {
+            best.insert(
+                e.to_id.clone(),
+                (seq, e.from_id.as_str(), checksum.to_string(), basis),
+            );
+        }
+    }
+    best.into_iter()
+        .map(|(id, (_, _, checksum, basis))| (id, (checksum, basis)))
+        .collect()
 }
 
 /// What a published-surface export contains, and what it deliberately does not.

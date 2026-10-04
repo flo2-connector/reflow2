@@ -532,10 +532,7 @@ impl ReflowService {
                 std::collections::BTreeSet::new();
             let state = reflow2_core::provenance::read_sync_state(graph_path);
             for path in state.last_synced.keys() {
-                let Ok(raw) = std::fs::read_to_string(path) else {
-                    continue;
-                };
-                let Ok(doc) = serde_json::from_str::<reflow2_core::GraphExport>(&raw) else {
+                let Ok(doc) = crate::saved_design::read_export(path) else {
                     continue;
                 };
                 for n in &doc.nodes {

@@ -81,54 +81,60 @@ until you push. Point your agent's MCP config at *this* worktree's graph path.
 If you are not using worktrees, an ordinary branch is fine — the isolation that matters is the
 branch, and a worktree only saves you from switching back and forth.
 
-## 4. Export once per branch, and make it the last commit
+## 4. Export the design onto the branch — how often depends on how it is saved
 
-The live graph is not what travels; the export is. A branch that pushes code the design does not
-describe carries exactly the drift `reconcile_artifacts` exists to catch and the CI gate exists to
-fail on — so the design must be exported before the branch leaves your machine.
+The live graph is not what travels; the committed design is. A branch that pushes code the design
+does not describe carries exactly the drift `reconcile_artifacts` exists to catch and the CI gate
+exists to fail on — so the design must be exported before the branch leaves your machine.
 
-**But export ONCE, not once per commit.** A branch may hold as many commits as it likes; exactly
-one of them may write the export, and it should be the last. The reason is not tidiness: the
-export records the hash of the export it replaced, and CI checks out the pull request's *merge*
-commit — so its view of "the export before yours" is the base branch, not your branch's previous
-export. Two exporting commits chain perfectly against each other and still read as a severed
-chain from CI's position, which fails the lineage check.
+**If the design is saved as the ITEM LAYOUT** — a directory, `docs/design/<project>/`, holding one
+file per node and one per edge (`export_graph` with a path ending in `/` writes it) — export as
+often as you like, in any commit. Only the files whose item changed are rewritten, and each changed
+item records the hash it had where your branch left the default branch, so a squash-merge lands it
+one step on and an export taken in the middle of merging main is still right. There is no "last
+commit" rule.
 
-So: work, commit as often as you like, and when the branch is ready —
+**If it is still ONE `.json` file**, export ONCE, as the last commit. That file carries a header
+every export rewrites, and CI checks out the pull request's *merge* commit, so two exporting
+commits read as a severed chain from CI's position:
 
-1. restore the export from the base branch (`git checkout origin/main -- <the export>`), so the
-   new one chains from what CI will compare against;
+1. restore the export from the base branch (`git checkout origin/main -- <the export>`);
 2. `export_graph` to the committed path, once;
-3. commit that, last.
+3. commit that, last — and amend it rather than adding another if you re-export.
 
-If you need to re-export after further design work, amend that commit rather than adding another.
+## 5. Let git do the merge
 
-## 5. Let reflow2 do the merge
+**The item layout needs nothing set up.** `git merge` — and the merge GitHub runs — handles the
+design the way it handles code: two branches that changed different nodes or edges touched
+different files and merge with no conflict, in either order. A conflict is REAL: the same node or
+edge changed differently on both sides, shown as that one item's file. Decide what the item should
+say, import the merged design into your graph, write it, and export; the exporter rewrites the file
+with the right lineage.
 
-Install the merge driver **once per clone** (git will not let a repository configure an
-executable, so `.gitattributes` names the driver and your config defines it):
+**A single `.json` file needs reflow2's merge driver**, installed once per clone (git will not let
+a repository configure an executable, so `.gitattributes` names the driver and your config defines
+it):
 
 ```bash
 git config merge.reflow2.name 'reflow2 design export merge'
 git config merge.reflow2.driver 'reflow2-mcp --merge-driver %O %A %B'
 ```
 
-Then `git merge` handles the design the same way it handles code. Disjoint work merges with no
-human. A genuine both-sides conflict stops, names each conflict id and its question, and leaves
-the file unmerged with the command that finishes it:
+Then disjoint work merges with no human, and a genuine both-sides conflict stops, names each
+conflict id and its question, and leaves the file unmerged with the command that finishes it:
 
 ```bash
 reflow2-mcp --merge-apply <base> <ours> <theirs> --resolutions decisions.json > <the export>
 git add <the export>
 ```
 
-where `decisions.json` maps each conflict id to `base`, `ours` or `theirs`.
+where `decisions.json` maps each conflict id to `base`, `ours` or `theirs`. GitHub cannot run a
+driver, so on a single file two pull requests that both touched the design conflict whenever one
+merges first — which is why the item layout exists.
 
-**Never resolve a design conflict with `--ours` or `--theirs`.** For code that discards a hunk; for
-a design it discards a node someone wrote — a requirement, a decision and its reasoning — and
-nothing will ever tell you it is gone. If the driver is not configured, git falls back to its
-normal text merge, which is safe but means you are hand-editing a large JSON document; configure
-it instead.
+**Never resolve a design conflict with `--ours` or `--theirs` without reading both sides.** For
+code that discards a hunk; for a design it discards what someone wrote — a requirement, a decision
+and its reasoning — and nothing will ever tell you it is gone.
 
 ## 6. Release the claim, and reconcile
 

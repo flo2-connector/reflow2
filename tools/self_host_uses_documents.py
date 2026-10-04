@@ -31,6 +31,10 @@ import json
 import sys
 from collections import defaultdict
 from pathlib import Path
+import os
+
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import design_io  # noqa: E402  (the one reader of a saved design, either form)
 
 # Edges that do NOT attach an Artifact — bookkeeping drawn by the machinery
 # rather than by anyone saying what a file is FOR. Kept in step with
@@ -48,12 +52,12 @@ MIN_DESCRIBED = 5
 
 
 def main(argv: list[str]) -> int:
-    export = Path(argv[1] if len(argv) > 1 else "docs/design/reflow2.json")
-    if not export.is_file():
+    export = Path(argv[1] if len(argv) > 1 else design_io.default_export())
+    if not export.exists():
         print(f"FAIL: no export at {export}", file=sys.stderr)
         return 2
 
-    doc = json.loads(export.read_text())
+    doc = design_io.load_design(str(export))
     artifacts = {
         n["node_id"]: n.get("properties", {})
         for n in doc["nodes"]

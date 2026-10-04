@@ -51,6 +51,10 @@ Exit 0 clean, 1 on a violation, 2 if it could not run — never a silent pass.
 
 import json
 import sys
+import os
+
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import design_io  # noqa: E402  (the one reader of a saved design, either form)
 
 RULE_ID = "rule:design-intent-moves-only-on-the-owners-word"
 GRANDFATHER_ID = "dec:the-authority-check-guards-forward-not-backward"
@@ -88,8 +92,7 @@ def settles_intent(node):
 
 
 def load(path):
-    with open(path, encoding="utf-8") as fh:
-        return json.load(fh)
+    return design_io.load_design(path)
 
 
 def check(design):

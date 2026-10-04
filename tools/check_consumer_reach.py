@@ -25,6 +25,10 @@ import json
 import re
 import sys
 from pathlib import Path
+import os
+
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import design_io  # noqa: E402  (the one reader of a saved design, either form)
 
 CLAIM = re.compile(
     r"any project|a reflow2 user|whatever project|on your project|every project|"
@@ -92,9 +96,8 @@ def check(doc: dict, shipped: set[str] | None = None) -> list[str]:
 
 
 def main() -> int:
-    path = sys.argv[1] if len(sys.argv) > 1 else "docs/design/reflow2.json"
-    with open(path, encoding="utf-8") as fh:
-        doc = json.load(fh)
+    path = sys.argv[1] if len(sys.argv) > 1 else design_io.default_export()
+    doc = design_io.load_design(path)
     failures = check(doc)
     for f in failures:
         print(f"  FAIL  {f}")

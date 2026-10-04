@@ -195,7 +195,7 @@ schema:
       reading:
         form: "primitive"
         primitive: "causes"
-        modifiers: { accepted_baseline: "lifecycle", action: "subtype", field: "other" }
+        modifiers: { accepted_baseline: "lifecycle", accepted_seq: "lifecycle", action: "subtype", checksum_after: "identity", checksum_basis: "provenance", field: "other" }
         splits:
           - property: "action"
             note: "Unset keeps the reading above: the change had some effect on the node."
@@ -209,6 +209,9 @@ schema:
         action: { type: enum, values: [added, modified, removed] }
         field: { type: string, description: "Which property/edge changed, when scoped." }
         accepted_baseline: { type: bool, default: false, description: "True when this edge records a drift-baseline accept (BL-33): the event carries the disposition claim the confirmation ledger reads. Ordinary change history stays false." }
+        checksum_after: { type: string, description: "The artifact checksum THIS change accepted, written by set_artifact_checksum(s) on the accepting change's CHANGED edge (dec:item-13-checksums-move-to-change-edges-and-main-converts-in-one-pr, decision 3, Anthony 2026-10-03). It lives here rather than only on the Artifact because two pull requests that edit one file each accept their own checksum, and a value both rewrite on one shared node made about a third of concurrent PR pairs conflict (15 of 46, #640–#668). An edge per accepting change is a file per change in the item layout, so two acceptances never touch one file. The Artifact's `checksum` is DERIVED from these on import and elided from the record while it equals them; see accepted_seq for which one is current." }
+        checksum_basis: { type: string, description: "How checksum_after came to be on the record: `measured` (the server hashed the file under the project root) or `asserted` (a caller supplied it). The same line as Artifact.checksum_basis, carried with the acceptance it describes." }
+        accepted_seq: { type: int, description: "Which acceptance of this artifact is the CURRENT one: one more than the highest accepted_seq on the artifact's other acceptances when it was written. No clock is involved, so two branches that each accept the same file get the SAME number and, once merged, both stand; the file then matches neither and is reported until somebody accepts the merged content. A design's Artifact.checksum is derived from the highest." }
 
     OCCURS_DURING:
       from: "*"

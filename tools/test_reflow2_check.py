@@ -601,6 +601,129 @@ class Reflow2Check(unittest.TestCase):
 
 
 @unittest.skipUnless(BIN, "reflow2-mcp binary not found (build it: cargo build -p reflow2-mcp)")
+@unittest.skipUnless(BIN, "reflow2-mcp binary not found (build it: cargo build -p reflow2-mcp)")
+class ItemLayoutGate(unittest.TestCase):
+    """The gate on the ITEM LAYOUT (dec:how-the-saved-design-is-laid-out-so-git-merges-it):
+    integrity per item, lineage per item, and the git-aware design-vs-build
+    check of decision 3 of dec:item-13-checksums-move-to-change-edges-and-main-converts-in-one-pr
+    — every registered file a change touched is covered by an acceptance in it,
+    matching the file on a branch; on the trunk, coverage only."""
+
+    LAYOUT = "docs/design/demo"
+
+    def setUp(self):
+        self._tmp = tempfile.TemporaryDirectory(prefix="reflow2-items-gate-")
+        self.tmp = pathlib.Path(self._tmp.name)
+        self.repo = self.tmp / "repo"
+        self.repo.mkdir()
+        for args in (["init", "-q", "-b", "main"], ["config", "user.email", "t@t"],
+                     ["config", "user.name", "t"]):
+            self._git(*args)
+        (self.repo / "a.txt").write_text("the built thing, v1")
+        self.graph = self.tmp / "graph"
+        s = Server(BIN, str(self.graph))
+        try:
+            coherent(s)
+            s.call("create_node", {"node_type": "Artifact", "id": "art:a", "props": {
+                "name": "a.txt", "location": "a.txt", "checksum": self.sha("a.txt")}})
+            s.call("create_edge", {"edge_type": "REALIZES", "from_type": "Artifact",
+                                   "from_id": "art:a", "to_type": "Capability", "to_id": "cap:a"})
+            s.call("export_graph", {"path": self.layout_path(), "overwrite": True})
+        finally:
+            s.close()
+        self._git("add", "-A")
+        self._git("commit", "-qm", "main")
+
+    def tearDown(self):
+        self._tmp.cleanup()
+
+    def layout_path(self) -> str:
+        return str(self.repo / self.LAYOUT) + "/"
+
+    def sha(self, rel: str) -> str:
+        return "sha256:" + hashlib.sha256((self.repo / rel).read_bytes()).hexdigest()
+
+    def _git(self, *args):
+        return subprocess.run(["git", *args], cwd=self.repo, check=True, capture_output=True,
+                              text=True, timeout=60)
+
+    def gate(self, env=None):
+        cmd = [sys.executable, str(CHECK), "--export", self.LAYOUT + "/", "--root",
+               str(self.repo), "--bin", BIN]
+        return subprocess.run(cmd, capture_output=True, text=True, timeout=180,
+                              cwd=str(self.repo), env={**os.environ, **(env or {})})
+
+    def accept(self, checksum: str):
+        s = Server(BIN, str(self.graph))
+        try:
+            s.call("set_artifact_checksums", {"accepts": [{
+                "artifact_id": "art:a", "checksum": checksum, "disposition": "design_holds",
+                "change_type": "refactor", "note": "test edit"}]})
+            s.call("export_graph", {"path": self.layout_path(), "overwrite": True})
+        finally:
+            s.close()
+
+    def test_a_committed_layout_passes_and_says_its_hash_is_computed(self):
+        r = self.gate()
+        self.assertEqual(r.returncode, 0, r.stdout + r.stderr)
+        self.assertIn("item layout", r.stdout)
+        self.assertIn("computed on read", r.stdout)
+
+    def test_a_tampered_item_fails_integrity_by_name(self):
+        rel = "nodes/Requirement/req%3Aa.json"
+        p = self.repo / self.LAYOUT / rel
+        p.write_text(p.read_text().replace("A need", "A need, by hand"))
+        r = self.gate()
+        self.assertEqual(r.returncode, 1, r.stdout)
+        self.assertIn("INTEGRITY", r.stdout)
+        self.assertIn(rel, r.stdout)
+
+    def test_a_file_changed_on_a_branch_without_an_acceptance_fails(self):
+        self._git("checkout", "-qb", "feature")
+        (self.repo / "a.txt").write_text("the built thing, v2")
+        self._git("commit", "-qam", "edit a.txt, design not told")
+        r = self.gate()
+        self.assertEqual(r.returncode, 1, r.stdout)
+        self.assertIn("DRIFT  art:a", r.stdout)
+        self.assertIn("no change in it accepted", r.stdout)
+
+    def test_an_acceptance_that_matches_the_file_passes_and_one_that_does_not_fails(self):
+        self._git("checkout", "-qb", "feature")
+        (self.repo / "a.txt").write_text("the built thing, v2")
+        self.accept(self.sha("a.txt"))
+        layout = (self.repo / self.LAYOUT)
+        art = json.loads((layout / "nodes/Artifact/art%3Aa.json").read_text())
+        self.assertNotIn("checksum", art["properties"],
+                         "the accepted checksum lives on the change, not the Artifact node")
+        self._git("add", "-A")
+        self._git("commit", "-qm", "edit a.txt and accept it")
+        r = self.gate()
+        self.assertEqual(r.returncode, 0, r.stdout + r.stderr)
+        (self.repo / "a.txt").write_text("the built thing, v3 — edited after the accept")
+        r = self.gate()
+        self.assertEqual(r.returncode, 1, r.stdout)
+        self.assertIn("accepted", r.stdout)
+
+    def test_on_the_trunk_a_squashed_change_is_judged_by_coverage(self):
+        self._git("checkout", "-qb", "one")
+        (self.repo / "a.txt").write_text("v1\none\n")
+        self.accept(self.sha("a.txt"))
+        self._git("add", "-A")
+        self._git("commit", "-qm", "one")
+        self._git("checkout", "-q", "main")
+        self._git("merge", "--squash", "one")
+        self._git("commit", "-qm", "squash one")
+        r = self.gate()
+        self.assertEqual(r.returncode, 0, r.stdout + r.stderr)
+        self.assertIn("on the default branch", r.stdout)
+        # A commit on the trunk that edits the file and accepts nothing fails.
+        (self.repo / "a.txt").write_text("v1\none\nand an unaccepted line\n")
+        self._git("commit", "-qam", "unaccepted edit on main")
+        r = self.gate()
+        self.assertEqual(r.returncode, 1, r.stdout)
+        self.assertIn("DRIFT  art:a", r.stdout)
+
+
 class TakenOnThisBranch(unittest.TestCase):
     """An export about to be committed on one branch, taken on another, is the
     phantom-drift shape (`dec:idea-should-a-node-carry-its-git-coordinate`,

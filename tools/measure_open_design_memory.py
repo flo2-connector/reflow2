@@ -47,6 +47,9 @@ import threading
 import time
 import urllib.request
 
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import design_io  # noqa: E402  (the one reader of a saved design, either form)
+
 
 def rss(pid):
     out = {}
@@ -109,7 +112,7 @@ def main():
     ap = argparse.ArgumentParser(description=__doc__.split("\n")[0])
     ap.add_argument("--bin", required=True)
     ap.add_argument("--designs", type=int, default=4)
-    ap.add_argument("--source", default="docs/design/reflow2.json")
+    ap.add_argument("--source", default=design_io.default_export())
     ap.add_argument("--writes", type=int, default=300)
     ap.add_argument("--out")
     ap.add_argument("--keep", action="store_true", help="keep the temporary registry root")
@@ -128,7 +131,7 @@ def main():
 
     binary = os.path.abspath(a.bin)
     version = subprocess.run([binary, "--version"], capture_output=True, text=True).stdout.strip()
-    doc = json.load(open(a.source))
+    doc = design_io.load_design(a.source)
     root = tempfile.mkdtemp(prefix="reflow2-measure-memory-")
     ids = []
     try:

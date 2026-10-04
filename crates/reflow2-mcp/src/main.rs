@@ -1932,11 +1932,10 @@ async fn main() -> anyhow::Result<()> {
     // Diff-and-exit. Two files never touch the graph; one file compares
     // against the live graph, which needs the (single-writer) store.
     if !cli.diff.is_empty() {
+        // Either saved form — the single file or the item layout — through
+        // the one reader every caller shares (`saved_design`).
         let read_doc = |path: &str| -> anyhow::Result<reflow2_core::GraphExport> {
-            let raw = std::fs::read_to_string(path)
-                .with_context(|| format!("failed to read the design from {path}"))?;
-            serde_json::from_str(&raw)
-                .with_context(|| format!("{path} is not a reflow2 export document"))
+            reflow2_mcp::saved_design::read_export(path).map_err(anyhow::Error::msg)
         };
         let base_path = &cli.diff[0];
         let base = read_doc(base_path)?;
@@ -1960,11 +1959,10 @@ async fn main() -> anyhow::Result<()> {
     // Merge-and-exit. Three files, never the graph — so it runs while a server
     // holds the lock. It proposes; it writes nothing.
     if !cli.merge.is_empty() {
+        // Either saved form — the single file or the item layout — through
+        // the one reader every caller shares (`saved_design`).
         let read_doc = |path: &str| -> anyhow::Result<reflow2_core::GraphExport> {
-            let raw = std::fs::read_to_string(path)
-                .with_context(|| format!("failed to read the design from {path}"))?;
-            serde_json::from_str(&raw)
-                .with_context(|| format!("{path} is not a reflow2 export document"))
+            reflow2_mcp::saved_design::read_export(path).map_err(anyhow::Error::msg)
         };
         let (base_path, ours_path, theirs_path) = (&cli.merge[0], &cli.merge[1], &cli.merge[2]);
         let base = read_doc(base_path)?;
@@ -1980,11 +1978,10 @@ async fn main() -> anyhow::Result<()> {
     // decisions in, the merged document out, never the graph. resolve_merge
     // refuses (no document, non-zero exit) unless every conflict is decided.
     if !cli.merge_apply.is_empty() {
+        // Either saved form — the single file or the item layout — through
+        // the one reader every caller shares (`saved_design`).
         let read_doc = |path: &str| -> anyhow::Result<reflow2_core::GraphExport> {
-            let raw = std::fs::read_to_string(path)
-                .with_context(|| format!("failed to read the design from {path}"))?;
-            serde_json::from_str(&raw)
-                .with_context(|| format!("{path} is not a reflow2 export document"))
+            reflow2_mcp::saved_design::read_export(path).map_err(anyhow::Error::msg)
         };
         let (base_path, ours_path, theirs_path) = (
             &cli.merge_apply[0],
@@ -2015,11 +2012,10 @@ async fn main() -> anyhow::Result<()> {
     // Merge-driver-and-exit. Git's side of the same file-pure merge: it hands us
     // three temporary files and reads the result back out of the middle one.
     if !cli.merge_driver.is_empty() {
+        // Either saved form — the single file or the item layout — through
+        // the one reader every caller shares (`saved_design`).
         let read_doc = |path: &str| -> anyhow::Result<reflow2_core::GraphExport> {
-            let raw = std::fs::read_to_string(path)
-                .with_context(|| format!("failed to read the design from {path}"))?;
-            serde_json::from_str(&raw)
-                .with_context(|| format!("{path} is not a reflow2 export document"))
+            reflow2_mcp::saved_design::read_export(path).map_err(anyhow::Error::msg)
         };
         let (base_path, ours_path, theirs_path) = (
             &cli.merge_driver[0],
@@ -2166,21 +2162,22 @@ async fn main() -> anyhow::Result<()> {
     // committed export, a backup, or a design built on another machine could
     // only be restored by passing the whole document through the tool boundary.
     if let Some(source) = cli.import {
-        let raw = if source == "-" {
-            std::io::read_to_string(std::io::stdin())
-                .context("failed to read the design from stdin")?
+        // Stdin carries the single-file form; a path may name either form.
+        let read = if source == "-" {
+            let raw = std::io::read_to_string(std::io::stdin())
+                .context("failed to read the design from stdin")?;
+            let export: reflow2_core::GraphExport =
+                serde_json::from_str(&raw).context("stdin is not a reflow2 export document")?;
+            reflow2_mcp::saved_design::ReadDesign {
+                export,
+                items: None,
+            }
         } else {
-            std::fs::read_to_string(&source)
-                .with_context(|| format!("failed to read the design from {source}"))?
+            reflow2_mcp::saved_design::read_design(&source).map_err(anyhow::Error::msg)?
         };
-        let doc: reflow2_core::GraphExport = serde_json::from_str(&raw).with_context(|| {
-            let where_from = if source == "-" {
-                "stdin"
-            } else {
-                source.as_str()
-            };
-            format!("{where_from} is not a reflow2 export document")
-        })?;
+        reflow2_mcp::saved_design::refuse_newer_schema(&read, cli.accept_newer)
+            .map_err(anyhow::Error::msg)?;
+        let doc = &read.export;
 
         let mut graph = reflow2_core::DesignGraph::open_rocksdb(&cli.graph_path)
             .map_err(|e| explain_open_failure(&e.into(), &cli.graph_path))?;
@@ -2195,14 +2192,15 @@ async fn main() -> anyhow::Result<()> {
         // tool silently renamed a design, and it was committed and pushed with
         // every gate green. It now lives in `import_graph` itself, so every
         // caller gets it and this one only has to REPORT what happened.
-        let report = graph
+        let mut report = graph
             .import_graph_with(
-                &doc,
+                doc,
                 reflow2_core::export::ImportOptions {
                     accept_newer: cli.accept_newer,
                 },
             )
             .context("failed to import the design")?;
+        reflow2_mcp::saved_design::annotate_import(&read, &mut report);
         // Absorbing a file puts this store in step with it, the record the
         // `import_graph` tool already makes. Without it, an import that
         // REPAIRED relations stored twice left the store looking unsynced, and
@@ -2211,7 +2209,11 @@ async fn main() -> anyhow::Result<()> {
         if source != "-"
             && let Some(hash) = &doc.content_hash
         {
-            reflow2_core::provenance::record_sync(&cli.graph_path, &source, hash);
+            reflow2_core::provenance::record_sync(
+                &cli.graph_path,
+                &reflow2_mcp::saved_design::sync_key(&source),
+                hash,
+            );
         }
         if let Some(adopted) = &report.adopted_identity {
             eprintln!(

@@ -94,9 +94,13 @@ import collections
 import json
 import pathlib
 import sys
+import os
+
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import design_io  # noqa: E402  (the one reader of a saved design, either form)
 
 REPO = pathlib.Path(__file__).resolve().parent.parent
-EXPORT = REPO / "docs/design/reflow2.json"
+EXPORT = pathlib.Path(design_io.default_export(str(REPO)))
 SCHEMA_DIR = REPO / "schema"
 TOOLSNAPS = REPO / "tools/toolsnaps"
 
@@ -358,7 +362,7 @@ def main(argv: list[str] | None = None) -> int:
             file=sys.stderr,
         )
         return 2
-    doc = json.loads(EXPORT.read_text())
+    doc = design_io.load_design(str(EXPORT))
 
     # Corpus usage.
     per_type: dict[str, collections.Counter] = collections.defaultdict(collections.Counter)

@@ -54,14 +54,17 @@ from __future__ import annotations
 import collections
 import json
 import sys
+import os
+
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import design_io  # noqa: E402  (the one reader of a saved design, either form)
 
 RULING_ID = "dec:a-capability-may-not-newly-reach-verified-on-a-claim-alone"
 BASELINE_FIELD = "baseline_ids"
 
 
 def load(path: str) -> dict:
-    with open(path) as fh:
-        return json.load(fh)
+    return design_io.load_design(path)
 
 
 def claim_only(design: dict) -> tuple[set[str], int, int]:

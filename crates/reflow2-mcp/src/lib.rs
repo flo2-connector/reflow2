@@ -39,6 +39,7 @@ pub mod receipt;
 pub mod registry;
 pub mod registry_http;
 pub mod reply_budget;
+pub mod saved_design;
 pub mod service;
 pub mod settles;
 pub mod shared;

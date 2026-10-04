@@ -24,6 +24,7 @@ import shutil
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from smoke_mcp import Server  # noqa: E402
+import design_io  # noqa: E402  (the one reader of a saved design, either form)
 
 BIN = "target/debug/reflow2-mcp"
 
@@ -41,7 +42,7 @@ def call(server: Server, name: str, args: dict):
 
 def main() -> None:
     graph_dir = sys.argv[1]
-    export = "docs/design/reflow2.json"
+    export = design_io.default_export()
 
     if os.path.exists(graph_dir):
         shutil.rmtree(graph_dir)
@@ -53,7 +54,7 @@ def main() -> None:
 
     s = Server(BIN, graph_dir)
 
-    doc = json.load(open(export))
+    doc = design_io.load_design(export)
     acks = {n["node_id"] for n in doc["nodes"] if n["node_id"].startswith("decision:ack:")}
     print(f"acknowledgement records in the graph: {len(acks)}")
     print(f"nodes {len(doc['nodes'])}  edges {len(doc['edges'])}")
