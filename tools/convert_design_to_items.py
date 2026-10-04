@@ -120,7 +120,8 @@ def main() -> int:
             artifacts.append((n["node_id"], checksum, basis))
         call(opts.bin, graph, "add_change_event", {
             "id": change_id,
-            "description": (
+            "name": "reflow2's committed design moves to the item layout, and its accepted checksums onto one baseline change",
+            "summary": (
                 f"The committed design moves from the single file docs/design/reflow2.json to "
                 f"the item layout docs/design/reflow2/ (one file per node and per edge), and this "
                 f"baseline puts the {len(artifacts)} registered artifacts' current checksums on "
@@ -132,7 +133,7 @@ def main() -> int:
                 f"dec:item-13-checksums-move-to-change-edges-and-main-converts-in-one-pr "
                 f"(decisions 3 and 6). Reassembled, the layout's whole-design hash equals the "
                 f"single file's ({recomputed}) before this baseline."),
-            "change_type": "baseline_established",
+            "change_type": "refactor",
             "subject": "record",
             "detected_at": opts.date,
         })
