@@ -106,7 +106,7 @@ def find_binary(explicit: str | None) -> Path:
             return candidate.resolve()
     sys.exit(
         "error: no reflow2-mcp found. Install a release:\n"
-        "  curl -fsSL https://raw.githubusercontent.com/sligara7/reflow2/main/tools/install.sh | sh\n"
+        "  curl -fsSL https://raw.githubusercontent.com/flo2-connector/reflow2/main/tools/install.sh | sh\n"
         "or build one: cargo build --release -p reflow2-mcp"
     )
 

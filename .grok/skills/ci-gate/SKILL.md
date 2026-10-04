@@ -53,7 +53,7 @@ not run (no export, no binary) — also loud, never a silent pass.
      steps:
        - uses: actions/checkout@v4
        - name: Install reflow2
-         run: curl -fsSL https://raw.githubusercontent.com/sligara7/reflow2/main/tools/install.sh | sh
+         run: curl -fsSL https://raw.githubusercontent.com/flo2-connector/reflow2/main/tools/install.sh | sh
        - name: Design coherence gate
          run: python3 ~/.local/share/reflow2/kit/tools/reflow2_check.py --export design.json
    ```

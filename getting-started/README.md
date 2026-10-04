@@ -9,7 +9,7 @@ the agent what a change breaks.
 
 1. **Install reflow2 — once, for this machine — [SETUP.md](SETUP.md).**
    ```bash
-   curl -fsSL https://raw.githubusercontent.com/sligara7/reflow2/main/tools/install.sh | sh
+   curl -fsSL https://raw.githubusercontent.com/flo2-connector/reflow2/main/tools/install.sh | sh
    ```
    That installs the server and registers it with your agent for **every** project: the MCP
    server at user scope, the slash commands, and the coherence-loop hooks. SETUP.md also has the
