@@ -279,11 +279,20 @@ pub fn layout_stat(dir: &Path) -> Option<(u64, i64)> {
 
 /// Write `contents` to `path` through a sibling temporary file and a rename,
 /// so a reader never sees half an item and the directory's time moves.
+///
+/// The temporary file is a HIDDEN one (`.<name>.tmp`): every reader skips
+/// hidden entries, so a write killed between the two steps leaves a stray
+/// file that nothing reads — never a `*.json.tmp` that would make the whole
+/// layout unreadable as "not an item file" until somebody deleted it by hand.
 fn write_atomic(path: &Path, contents: &[u8]) -> std::io::Result<()> {
     if let Some(parent) = path.parent() {
         std::fs::create_dir_all(parent)?;
     }
-    let tmp = path.with_extension("json.tmp");
+    let name = path
+        .file_name()
+        .map(|n| n.to_string_lossy().to_string())
+        .unwrap_or_default();
+    let tmp = path.with_file_name(format!(".{name}.tmp"));
     std::fs::write(&tmp, contents)?;
     std::fs::rename(&tmp, path)
 }
@@ -426,13 +435,29 @@ pub(crate) fn write_items(
         Ok(a) => (a.source.clone(), None),
         Err(reason) => ("disk".to_string(), Some(reason.reason())),
     };
+    // The items this branch has already changed are re-checked too, not only
+    // the ones this write changes: a merge resolved by an earlier export can
+    // leave one naming the wrong predecessor, and re-exporting must be the
+    // remedy the gate says it is (`item_layout::plan_write_rechecking`).
     let plan = match &anchor {
         Ok(a) => {
+            let recheck = a.differing().unwrap_or_default();
             let mut lookup = |rels: &[String]| -> BTreeMap<String, Anchored> { a.lookup(rels) };
-            item_layout::plan_write(export, &on_disk, Anchor::Committed(&mut lookup))
+            item_layout::plan_write_rechecking(
+                export,
+                &on_disk,
+                Anchor::Committed(&mut lookup),
+                &recheck,
+            )
         }
         Err(_) => item_layout::plan_write(export, &on_disk, Anchor::Disk),
     };
+    // The design is the same, but files are not: a lineage relinked or an
+    // item put back into canonical form. "unchanged" promises nothing was
+    // written, and the receipt then says so in capitals.
+    if wrote == "unchanged" && (!plan.writes.is_empty() || !plan.deletes.is_empty()) {
+        wrote = "changed";
+    }
 
     // THE STAMP: graph_id and schema_version, and where a converted design
     // came from. `migrated_from` is set once — when this writes a layout for
@@ -512,6 +537,7 @@ pub(crate) fn write_items(
             changed: plan.changed_items,
             deleted: plan.deletes.len(),
             unchanged: plan.unchanged,
+            relinked: plan.relinked,
         }),
     })
 }

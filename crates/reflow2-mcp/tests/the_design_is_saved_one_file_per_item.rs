@@ -237,3 +237,68 @@ async fn a_directory_holding_something_else_is_refused_and_a_tampered_item_is_na
     );
     let _ = std::fs::remove_dir_all(&root);
 }
+
+/// THE MIGRATION PATH for a project whose design is still one file — every
+/// project but reflow2 itself today, and every design flo2.io holds. The old
+/// single file still imports as it always did; exported to the directory
+/// BESIDE it (`demo.json` → `demo/`), the same design becomes the layout, its
+/// stamp records the single file's hash as `migrated_from`, and nothing is
+/// lost either way round: the layout reads back to the single file's hash,
+/// and a layout read back out as a single file is that file's design again.
+#[tokio::test]
+async fn a_single_file_design_still_imports_and_converts_to_the_layout_beside_it() {
+    let root = scratch("migrate");
+    let design_dir = root.join("docs").join("design");
+    std::fs::create_dir_all(&design_dir).unwrap();
+    let single = design_dir.join("demo.json");
+    let single_path = single.display().to_string();
+    let layout = design_dir.join("demo");
+    let layout_path = format!("{}/", layout.display());
+
+    // The project as it is today: a single-file export.
+    let s = ReflowService::in_memory().expect("service");
+    j!(s.add_requirement(Parameters(req("req:a", "the first need"))));
+    j!(s.add_requirement(Parameters(req(
+        "req:b",
+        "the second need, with an Upper-Case id"
+    ))));
+    let receipt = j!(s.export_graph(Parameters(export_to(&single_path))));
+    assert_eq!(
+        receipt["layout"], "file",
+        "a .json path is still the single file"
+    );
+    let single_hash = receipt["content_hash"].clone();
+
+    // The old form still loads, through the same reader as the new one.
+    let t = ReflowService::in_memory().expect("service");
+    let report = j!(t.import_graph(Parameters(import_from(&single_path))));
+    assert!(report.get("integrity_note").is_none(), "{report:?}");
+
+    // Converted: exported to the directory beside the single file.
+    let converted = j!(t.export_graph(Parameters(export_to(&layout_path))));
+    assert_eq!(converted["layout"], "items", "{converted:?}");
+    assert_eq!(
+        converted["content_hash"], single_hash,
+        "the layout holds exactly the single file's design"
+    );
+    let stamp: serde_json::Value =
+        serde_json::from_str(&std::fs::read_to_string(layout.join("design.json")).unwrap())
+            .unwrap();
+    assert_eq!(
+        stamp["migrated_from"], single_hash,
+        "the stamp links the layout's history to the single file it replaced"
+    );
+
+    // Read back, either way round, it is the same design.
+    let u = ReflowService::in_memory().expect("service");
+    let report = j!(u.import_graph(Parameters(import_from(&layout_path))));
+    assert!(report.get("integrity_note").is_none(), "{report:?}");
+    let back_out = design_dir.join("back.json").display().to_string();
+    let back = j!(u.export_graph(Parameters(export_to(&back_out))));
+    assert_eq!(back["layout"], "file");
+    assert_eq!(
+        back["content_hash"], single_hash,
+        "the layout read back out as a single file is the original design"
+    );
+    let _ = std::fs::remove_dir_all(&root);
+}

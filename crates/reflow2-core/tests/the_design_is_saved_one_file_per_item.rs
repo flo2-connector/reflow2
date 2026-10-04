@@ -214,6 +214,121 @@ fn a_changed_item_names_its_hash_at_the_anchor_however_many_times_it_is_exported
     }
 }
 
+/// The plan for writing `export` over `dir`, anchored at `committed`, with
+/// `recheck` — the item files that already differ from the anchor — re-checked.
+fn plan_rechecking(
+    export: &GraphExport,
+    dir: &BTreeMap<String, String>,
+    committed: &BTreeMap<String, String>,
+    recheck: &std::collections::BTreeSet<String>,
+) -> item_layout::WritePlan {
+    let on_disk: BTreeMap<String, OnDisk> = dir
+        .iter()
+        .map(|(rel, text)| {
+            let p = item_layout::parse_item(rel, text.as_bytes()).expect("item parses");
+            (rel.clone(), OnDisk::from(&p))
+        })
+        .collect();
+    let mut lookup = |rels: &[String]| -> BTreeMap<String, Anchored> {
+        rels.iter()
+            .filter_map(|r| {
+                let p = item_layout::parse_item(r, committed.get(r)?.as_bytes()).ok()?;
+                Some((
+                    r.clone(),
+                    Anchored {
+                        content_hash: p.stated_hash.clone()?,
+                        prev_item_hash: p.prev_item_hash.clone(),
+                    },
+                ))
+            })
+            .collect()
+    };
+    item_layout::plan_write_rechecking(export, &on_disk, Anchor::Committed(&mut lookup), recheck)
+}
+
+/// Measured 2026-10-04 on #672, with the real binary and real branches: an
+/// item both sides changed, resolved by an export taken against an OLDER
+/// anchor, names a predecessor main has already replaced — and because its
+/// content no longer moves, a plain re-export left it that way while the gate
+/// failed LINEAGE on it and told the author to re-export. The lineage is the
+/// anchor's to state: an item that already differs from the anchor has its
+/// `prev_item_hash` re-checked on every write.
+#[test]
+fn a_write_relinks_an_item_whose_lineage_names_the_wrong_predecessor() {
+    let mut g = design();
+    let old_base = write(&g.export_graph().unwrap(), &BTreeMap::new(), None);
+    let rel = node_rel_path("Requirement", "req:live");
+    let at_old_base = hash_of(&old_base, &rel);
+
+    // Main moved the item since: the anchor (the merge-base after the merge)
+    // holds main's version, chained from the old base.
+    g.upsert_node(
+        node::REQUIREMENT,
+        "req:live",
+        reflow2_core::nodes::Props::new().set("statement", "scores update as main says"),
+    )
+    .expect("main's edit");
+    let new_base = write(&g.export_graph().unwrap(), &old_base, Some(&old_base));
+    let at_new_base = hash_of(&new_base, &rel);
+    assert_ne!(at_new_base, at_old_base);
+
+    // The branch's resolution, exported against the OLD anchor: it names the
+    // version main replaced.
+    g.upsert_node(
+        node::REQUIREMENT,
+        "req:live",
+        reflow2_core::nodes::Props::new().set("statement", "scores update, both sides merged"),
+    )
+    .expect("the resolution");
+    let resolved = write(&g.export_graph().unwrap(), &new_base, Some(&old_base));
+    assert_eq!(prev_of(&resolved, &rel), Some(at_old_base.clone()));
+
+    // A plain write against the right anchor leaves it: its content did not move.
+    let export = g.export_graph().unwrap();
+    let plain = plan_rechecking(
+        &export,
+        &resolved,
+        &new_base,
+        &std::collections::BTreeSet::new(),
+    );
+    assert!(
+        plain.writes.is_empty(),
+        "nothing re-checked, nothing rewritten"
+    );
+
+    // Re-checked, it names its hash at the anchor, and nothing else is touched.
+    let recheck: std::collections::BTreeSet<String> = [rel.clone()].into_iter().collect();
+    let plan = plan_rechecking(&export, &resolved, &new_base, &recheck);
+    assert_eq!(plan.relinked, 1, "{plan:?}");
+    assert_eq!(plan.changed_items, 0, "the content did not change");
+    assert_eq!(plan.writes.len(), 1);
+    let (written_rel, text) = &plan.writes[0];
+    assert_eq!(written_rel, &rel);
+    let fixed = item_layout::parse_item(&rel, text.as_bytes()).expect("parses");
+    assert_eq!(fixed.prev_item_hash, Some(at_new_base));
+    assert!(fixed.intact());
+
+    // Written, it is stable: the next re-checked write changes nothing.
+    let mut dir = resolved.clone();
+    dir.insert(rel.clone(), text.clone());
+    let again = plan_rechecking(&export, &dir, &new_base, &recheck);
+    assert!(again.writes.is_empty() && again.relinked == 0, "{again:?}");
+
+    // An item back to EXACTLY the anchor's content gets the anchor's file
+    // back, byte for byte, whatever lineage it carried.
+    let at_anchor = write(&export, &BTreeMap::new(), None);
+    let mut forged = at_anchor.clone();
+    let mut data: serde_json::Value = serde_json::from_str(&forged[&rel]).unwrap();
+    data["prev_item_hash"] = serde_json::json!(format!("sha256:{}", "0".repeat(64)));
+    forged.insert(
+        rel.clone(),
+        format!("{}\n", serde_json::to_string_pretty(&data).unwrap()),
+    );
+    let restore = plan_rechecking(&export, &forged, &at_anchor, &recheck);
+    assert_eq!(restore.relinked, 1);
+    assert_eq!(restore.writes[0].1, at_anchor[&rel]);
+}
+
 #[test]
 fn an_item_new_on_the_branch_carries_no_prev_and_outside_git_an_item_chains_from_disk() {
     let mut g = design();
@@ -435,6 +550,68 @@ fn the_record_carries_an_accepted_checksum_once_and_the_import_derives_the_node_
     assert_eq!(
         again.content_hash, export.content_hash,
         "the round trip is byte-identical"
+    );
+}
+
+/// compare_designs reads a record written BEFORE the checksum moved (stated on
+/// the Artifact) and one written AFTER (on the accepting change) as the same
+/// design: measured 2026-10-04, reflow2's own conversion read as 541 artifacts
+/// "changed" though no checksum moved. The edge that now carries the checksum
+/// is still a difference, and a checksum that really moved still shows.
+#[test]
+fn compare_reads_a_checksum_on_the_node_and_on_its_change_as_one_design() {
+    let mut g = design();
+    link(&mut g, "sha256:aaaa");
+    g.set_artifact_checksum(
+        "art:score",
+        "sha256:bbbb",
+        DriftDisposition::DesignHolds {
+            change_type: ChangeType::Refactor,
+        },
+        None,
+        None,
+    )
+    .expect("accept");
+    let after = g.export_graph().expect("export");
+    // The same design as a build before the move wrote it: the checksum on
+    // the node, the change edge without it.
+    let mut before = after.clone();
+    for n in before.nodes.iter_mut().filter(|n| n.node_id == "art:score") {
+        n.properties
+            .insert("checksum".into(), Value::String("sha256:bbbb".into()));
+    }
+    for e in before
+        .edges
+        .iter_mut()
+        .filter(|e| e.edge_type == edge::CHANGED)
+    {
+        for k in ["checksum_after", "checksum_basis", "accepted_seq"] {
+            e.properties.remove(k);
+        }
+    }
+    let diff = reflow2_core::compare_designs(&before, &after, "before", "after");
+    assert_eq!(
+        diff.summary.design_changed + diff.summary.supporting_changed,
+        0,
+        "no node changed: {:?}",
+        diff.summary
+    );
+    assert_eq!(
+        diff.summary.edges_changed, 1,
+        "the CHANGED edge now carrying the checksum is a real record change"
+    );
+
+    // A checksum that really moved is still a change.
+    for n in before.nodes.iter_mut().filter(|n| n.node_id == "art:score") {
+        n.properties
+            .insert("checksum".into(), Value::String("sha256:cccc".into()));
+    }
+    let diff = reflow2_core::compare_designs(&before, &after, "before", "after");
+    assert_eq!(
+        diff.summary.design_changed + diff.summary.supporting_changed,
+        1,
+        "{:?}",
+        diff.summary
     );
 }
 

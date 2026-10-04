@@ -240,12 +240,30 @@ pub fn item_anchor(dir: &Path) -> Result<ItemAnchor, NoAnchor> {
     let rel = abs.strip_prefix(&root).map_err(|_| NoAnchor::NotARepo)?;
     let rel_dir = rel.to_string_lossy().replace('\\', "/");
     let branch = default_branch(&root).ok_or(NoAnchor::NoDefaultBranch)?;
-    let base = git(&root, &["merge-base", "HEAD", &branch]).ok_or(NoAnchor::NoMergeBase)?;
+    // MID-MERGE, HEAD IS STILL THE BRANCH'S OWN TIP, so merge-base(HEAD, main)
+    // is the OLD base — and an item both sides changed (the one a conflict is
+    // resolved on, which is exactly when a mid-merge export happens) would
+    // chain from a version main has already replaced. Once the merge is
+    // committed the gate asks merge-base(HEAD, main) of the merge commit, which
+    // is the merge-base of main with HEAD and MERGE_HEAD together: anchor there
+    // now, so the export written during the merge is the one the gate expects.
+    let merge_head =
+        git(&root, &["rev-parse", "-q", "--verify", "MERGE_HEAD"]).filter(|h| !h.is_empty());
+    let base = match &merge_head {
+        Some(theirs) => git(&root, &["merge-base", &branch, "HEAD", theirs]),
+        None => git(&root, &["merge-base", "HEAD", &branch]),
+    }
+    .ok_or(NoAnchor::NoMergeBase)?;
     if base.is_empty() {
         return Err(NoAnchor::NoMergeBase);
     }
+    let during = if merge_head.is_some() {
+        ", with the merge in progress"
+    } else {
+        ""
+    };
     Ok(ItemAnchor {
-        source: format!("{branch}@{}", &base[..base.len().min(7)]),
+        source: format!("{branch}@{}{during}", &base[..base.len().min(7)]),
         root,
         base,
         rel_dir,
@@ -253,6 +271,66 @@ pub fn item_anchor(dir: &Path) -> Result<ItemAnchor, NoAnchor> {
 }
 
 impl ItemAnchor {
+    /// The item files (paths inside the layout) that differ from the anchor
+    /// in the working tree — modified, staged, or new and untracked: the items
+    /// this branch has changed so far. Their lineage is what the gate judges,
+    /// so a write re-checks it for each of them, not only for the items the
+    /// write itself changes. None when git could not say, and then nothing is
+    /// re-checked (the write is no worse than before).
+    ///
+    /// `-z`, so a path git would otherwise quote (any byte past ASCII, which an
+    /// escaped id passes through) arrives exactly as written.
+    pub fn differing(&self) -> Option<std::collections::BTreeSet<String>> {
+        let scope = if self.rel_dir.is_empty() {
+            ".".to_string()
+        } else {
+            self.rel_dir.clone()
+        };
+        let prefix = if self.rel_dir.is_empty() {
+            String::new()
+        } else {
+            format!("{}/", self.rel_dir)
+        };
+        let diff = git_bytes(
+            &self.root,
+            &[
+                "diff",
+                "--name-only",
+                "--no-renames",
+                "-z",
+                &self.base,
+                "--",
+                &scope,
+            ],
+        )?;
+        let untracked = git_bytes(
+            &self.root,
+            &[
+                "ls-files",
+                "--others",
+                "--exclude-standard",
+                "-z",
+                "--",
+                &scope,
+            ],
+        )?;
+        let mut out = std::collections::BTreeSet::new();
+        for raw in diff.split(|b| *b == 0).chain(untracked.split(|b| *b == 0)) {
+            let path = String::from_utf8_lossy(raw);
+            let Some(rel) = path.strip_prefix(prefix.as_str()) else {
+                continue;
+            };
+            let top = rel.split('/').next().unwrap_or("");
+            if rel.ends_with(".json")
+                && (top == reflow2_core::item_layout::NODES_DIR
+                    || top == reflow2_core::item_layout::EDGES_DIR)
+            {
+                out.insert(rel.to_string());
+            }
+        }
+        Some(out)
+    }
+
     /// The committed hashes of those of `rels` (paths inside the layout) that
     /// exist at the anchor — ONE `git cat-file --batch` for all of them, so a
     /// write that changes thousands of items still costs one process.

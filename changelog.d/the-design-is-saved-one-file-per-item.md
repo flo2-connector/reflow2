@@ -6,9 +6,12 @@
   `edges/<xx>/<hash>.json` and a small `design.json`, rewriting only the files whose item changed.
   Two branches that changed different parts of the design touch different files and merge with
   no conflict, in either order; a real conflict is one item both sides changed, shown as that
-  item's file. Each changed item records the hash it had where the branch left the default branch
+  item's file (take one side of that file, import, write what the item should say, export). Each
+  changed item records the hash it had where the branch left the default branch
   (`prev_item_hash`), so you can export as often as you like — before, during or after merging
-  main — and a squash-merge still lands each item one step on. The whole-design hash is computed
+  main — and a squash-merge still lands each item one step on; an export during a merge anchors
+  where the merge will land, and every export re-checks the lineage of the items your branch
+  changed, so re-exporting repairs one a merge left stale. The whole-design hash is computed
   when the design is read and equals what the single file stated for the same design, so watch
   baselines and release pins keep working. `taken_at` moves to a git-ignored `taken_at.json`
   beside the items. **What to do:** nothing yet if you keep a single `.json` file — every reader

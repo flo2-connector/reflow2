@@ -52,6 +52,10 @@ pub(crate) struct ItemCounts {
     pub deleted: usize,
     /// Item files left exactly as they were.
     pub unchanged: usize,
+    /// Items whose content did not change but whose `prev_item_hash` was
+    /// rewritten to name their hash at the anchor (a merge resolved by an
+    /// export anchored before it leaves these).
+    pub relinked: usize,
 }
 
 /// Why nothing was written. Both are refusals rather than failures: the caller

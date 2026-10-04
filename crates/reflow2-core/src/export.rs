@@ -566,17 +566,7 @@ impl DesignGraph {
             let accepted = current_acceptances(&doc.edges);
             for (index, n) in doc.nodes.iter().enumerate() {
                 let mut stated = n.properties.clone();
-                if n.node_type == node::ARTIFACT
-                    && !stated.contains_key("checksum")
-                    && let Some((checksum, basis)) = accepted.get(&n.node_id)
-                {
-                    stated.insert("checksum".into(), Value::String(checksum.clone()));
-                    if let Some(basis) = basis
-                        && !stated.contains_key("checksum_basis")
-                    {
-                        stated.insert("checksum_basis".into(), Value::String(basis.clone()));
-                    }
-                }
+                fill_accepted_checksum(&n.node_type, &n.node_id, &mut stated, &accepted);
                 let props: std::collections::HashMap<String, Value> =
                     stated.clone().into_iter().collect();
                 for (prop, target) in self.declared_node_refs(&n.node_type, &props) {
@@ -761,6 +751,34 @@ impl DesignGraph {
             }
         }
     }
+}
+
+/// Put back the `checksum` (and its `checksum_basis`) an export left off an
+/// Artifact because its current acceptance carries it — the IMPORT'S rule,
+/// written once so every reader of a document applies the same one: the
+/// import, and `compare_designs`, which must read a record written before the
+/// checksum moved (on the node) and one written after (on the change) as the
+/// same design. A value the node states is never overridden. `accepted` is
+/// [`current_acceptances`] of the same document. Returns whether it filled.
+pub fn fill_accepted_checksum(
+    node_type: &str,
+    node_id: &str,
+    props: &mut Props,
+    accepted: &BTreeMap<String, (String, Option<String>)>,
+) -> bool {
+    if node_type != node::ARTIFACT || props.contains_key("checksum") {
+        return false;
+    }
+    let Some((checksum, basis)) = accepted.get(node_id) else {
+        return false;
+    };
+    props.insert("checksum".into(), Value::String(checksum.clone()));
+    if let Some(basis) = basis
+        && !props.contains_key("checksum_basis")
+    {
+        props.insert("checksum_basis".into(), Value::String(basis.clone()));
+    }
+    true
 }
 
 /// For each artifact, the checksum its CURRENT acceptance carries, and that

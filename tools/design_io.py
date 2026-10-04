@@ -12,8 +12,9 @@ form for the one-release overlap the decision grants, and returns the shape the
 single file always had: `{"graph_id", "nodes", "edges", "content_hash", ...}`.
 
 The layout, as `crates/reflow2-core/src/item_layout.rs` writes it (that file is
-the authority; this one mirrors it and `tools/test_design_io.py` pins the two
-against each other on the real binary):
+the authority; this one mirrors it, and `tools/test_item_layout_merges.py`
+pins the two against each other on the real binary — names, hashes and the
+odd ids that exercise the escaping):
 
     <dir>/design.json                 {"graph_id", "schema_version", "migrated_from"?}
     <dir>/nodes/<Type>/<escaped>.json one node + content_hash (+ prev_item_hash)

@@ -858,12 +858,16 @@ def change_range(start: str) -> ChangeRange | None:
 def _changed_since(rng: ChangeRange, under: str | None = None) -> set[str]:
     """Repo-relative paths that differ between `rng.base` and the working tree
     (tracked changes plus untracked files), optionally only `under` a path."""
+    # -z: without it git QUOTES any path holding a byte past ASCII ("\303\251"),
+    # and an escaped item id passes such characters through, so that item —
+    # or a registered file with such a name — would silently drop out of
+    # every check that reads this set.
     tail = ["--", under] if under else []
     out: set[str] = set()
-    diff = _git(["diff", "--name-only", "--no-renames", rng.base, *tail], rng.root) or ""
-    out.update(line.strip() for line in diff.splitlines() if line.strip())
-    untracked = _git(["ls-files", "--others", "--exclude-standard", *tail], rng.root) or ""
-    out.update(line.strip() for line in untracked.splitlines() if line.strip())
+    diff = _git(["diff", "--name-only", "--no-renames", "-z", rng.base, *tail], rng.root) or ""
+    out.update(p for p in diff.split("\0") if p)
+    untracked = _git(["ls-files", "--others", "--exclude-standard", "-z", *tail], rng.root) or ""
+    out.update(p for p in untracked.split("\0") if p)
     return out
 
 
