@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:7dff4f9ada0eb2f932999ca6fde7ffb05a3e12472010916cd830810345517efb",
+  "node_id": "req:the-reasons-behind-an-existing-system-are-recorded-from-the-person-who-designed-it",
+  "node_type": "Requirement",
+  "properties": {
+    "kind": "functional",
+    "lineage": "original",
+    "name": "The reasons behind an existing system are recorded from the person who designed it",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "Anthony Sligar, 2026-09-23, after a field user said the code is not the important part: the decisions behind it are",
+    "statement": "When a system already exists and the person who designed it is available, reflow2 can record WHY it is the way it is — who needed each feature and why each change was made — from that person, with the version history setting the questions and every answer theirs, and without requiring a model of the code's structure.",
+    "status": "accepted"
+  }
+}

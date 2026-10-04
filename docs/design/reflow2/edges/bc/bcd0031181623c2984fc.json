@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:e90b22165f652702f1f1cdede6533aba61ebda39424257789b4481d89754199a",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:a-failing-check-says-against-what",
+  "properties": {
+    "approved_at": "2026-08-01",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

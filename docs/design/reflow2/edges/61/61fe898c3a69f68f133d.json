@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:c9faea8d468cf8853bd4c38573b7e28e30d245bf6634bad9251437c7e02f862c",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "fact:the-server-already-sees-sessions-end-and-a-disciplined-session-still-ran-5-hours-unexported",
+  "properties": {
+    "authored_at": "2026-08-25",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:claude-code"
+}

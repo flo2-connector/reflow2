@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:f54c3dc00676ffb9153b04dbfd8f5756d19c2634ae1d2ab81d55145ea41bbd5c",
+  "edge_type": "REALIZES",
+  "from_id": "art:every-edge-type-declares-what-it-means-test",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:edges-are-selected-by-their-declared-reading"
+}

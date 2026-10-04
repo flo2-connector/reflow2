@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:6a341b8f26e5e41611404f55d0bafdea8e1135bc508f0fe52914e3699734e634",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:a-node-attached-to-nothing-is-reported-whatever-its-type",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:heal"
+}

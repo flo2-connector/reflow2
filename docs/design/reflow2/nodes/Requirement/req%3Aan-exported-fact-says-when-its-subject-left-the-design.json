@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:7936eebbbff5db788909804b9d60fd681c344b56135b1e69b2e6de3e36661421",
+  "node_id": "req:an-exported-fact-says-when-its-subject-left-the-design",
+  "node_type": "Requirement",
+  "properties": {
+    "concern": "core",
+    "lineage": "original",
+    "name": "An exported fact says when its subject is no longer something this design holds",
+    "priority": "high",
+    "provenance": "authored",
+    "statement": "A dated fact whose subject is a component, dependency or interface this design has since RETIRED, ABSORBED or DISCONTINUED is marked as such where it is read — in the graph and in the published export — rather than going on reading as a current statement about this project.\n\nWHAT IT MUST NOT DO: close the fact, or edit its wording. The fact was true of its subject when measured, and asserting otherwise would claim something unmeasured. The obligation is to say WHAT THE SUBJECT IS NOW, not to revise what was observed then.\n\nWHY THIS RATHER THAN A NOTE. The hazard was written up on 2026-08-28 and the write-up did not prevent the second sighting on 2026-09-13, because nothing joins the correction to the fact and nobody reads a correction they do not know exists. A note beside a hazard is not a guard — this design has now proven that twice on its own ground.\n\nWHY IT IS NOW REFLOW2'S OBLIGATION AND NOT THE READER'S. flo2 declared reflow2's committed export a watched dependency on 2026-09-13 and reads these facts routinely. flo2's own rule — check whether a cited fact's subject is still a component that design holds — can only be followed by reading BOTH designs. reflow2 is the side that knows when a subject left, so reflow2 is the side that can say it cheaply.\n\nRELATED MECHANISM ALREADY NAMED, not yet applied to this: the 2026-08-28 record points at unclaimed_findings scoped to an absorption's ChangeEvents as what WOULD reach such a fact. loop_status cannot see it today because a TemporalFact is not a debt class.\n\nSCOPE NOT SETTLED HERE: whether this is a detector, an export-time annotation, or both; and whether it fires on every retirement or only on absorbed dependencies. Also unestablished — how many facts in this graph currently name a retired subject. One fact is known, with two victims.",
+    "status": "proposed"
+  }
+}

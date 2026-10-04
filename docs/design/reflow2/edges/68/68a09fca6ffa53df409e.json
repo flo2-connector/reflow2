@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:8309059ac79d9c3f988692b5409725f312133dab18473a4b04a42c99b8c8224c",
+  "edge_type": "REALIZES",
+  "from_id": "art:test-a-bulk-edge-write-keeps-each-helpers-checks",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:bulk-forms"
+}

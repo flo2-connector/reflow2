@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:13cbf0ef776eb9834e7bfb1060993b163305ae98951f9b1d42097f623e3c6e01",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:no-fabricated-repair",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:heal"
+}

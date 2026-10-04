@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:e7ad69e847e8168f740d60fe7c900fdba789a6aba33aa20b2fde45e7b9ca887b",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:machine-wide-install",
+  "properties": {},
+  "to_id": "req:no-setup-per-project"
+}

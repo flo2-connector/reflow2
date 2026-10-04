@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:c1c02482f6abd802f812f75ff0c384e9a1dd8cef2328883240dce66c3b081379",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:a-session-runs-a-release-binary",
+  "properties": {
+    "approved_at": "2026-09-11",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

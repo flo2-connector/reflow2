@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:f96add27ea39c1d412bc3028bfd3df356735297bf732ea7d28910fb2b75efc16",
+  "node_id": "fact:the-first-move-of-a-session-did-not-fit",
+  "node_type": "TemporalFact",
+  "properties": {
+    "as_of": "2026-08-23",
+    "basis": "measured",
+    "confidence": 1.0,
+    "fact_type": "defect",
+    "statement": "THE ONE CALL EVERY INSTRUCTION FILE TELLS A SESSION TO MAKE FIRST COULD NOT BE MADE AT ALL ON A MATURE DESIGN. Unscoped `detect_gaps` on reflow2's own graph (2,920 nodes, 77 open gaps) serialized to 79,566 characters and went out TWICE — once as `structuredContent` and once as a text `content` block — for 157,785 bytes on the wire, which the harness refused outright. ⇒ THE FAILURE IS INVISIBLE TO REFLOW2: the refusal happens in the CLIENT, so the session sees a wall of harness text and reflow2 never gets to suggest `scope`. That is the whole shape of it — the thing that knows how to narrow is the one thing that cannot speak. || WHAT THE REPLY WAS MADE OF, and it is not what the guess would be: 35% affected_ids, 25% description, 18% evidence, 15% title. Almost all of the id lists sat in THREE rollup gaps — one enumerating 468 ChangeEvents whose own title already read '468 of 605'. So capping the id lists alone took it only to 60,437 and did not fit; only dropping the prose (to 22,194) got under any cap worth the name. || THE CLAIM THAT WAS ALREADY IN THE GRAPH: `cap:bounded-reads` — 'a read that would not fit answers with a bounded page and says what it left out' — has read `verified` since 2026-07-25. Its check, `ver:bounded-reads`, drives `scan_nodes` paging. It was true of what it covered and silent about the call the loop orbits. || TWO CONSEQUENCES FOUND ONLY BY FIXING IT. (1) `reflow2_check.py` decided a gap was ANCHORED by `affected_ids` being non-empty, and only an anchored gap fails a build — so a budgeted reply would have turned the gate GREEN on a design full of critical gaps, more reliably the bigger the design got. Reproduced: 100 unsatisfied critical requirements, gate printed 'OK — design and build agree (103 notes)'. (2) The Python clients' envelope unwrap took anything carrying `count` and `items` and returned the list, which had ALREADY been silently discarding `scan_nodes`' own `omitted` and `capped_by` — the 'what I left out' a bounded read exists to report, thrown away before any reader saw it. || SIBLINGS, SAME SHAPE, STILL OPEN: `graph_report` refused at 88,932 and 91,330 chars (`fact:defect-graph-report-outgrows-its-own-reply-linearly`), `loop_status` measured at 72,886, `detect_defects` unbudgeted at 50 findings. || SOURCE: measured here 2026-08-23 on reflow2 0.38.0, driving the built binary over real stdio.",
+    "subject_id": "cmp:detect",
+    "valid_from": "2026-08-23"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:2e27ead3234503eb69380652352891ea256ed0d728e3e75713a44dd0a0eb2186",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:skill-lint-test",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:skill-lint-test"
+}

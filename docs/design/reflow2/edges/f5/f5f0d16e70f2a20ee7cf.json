@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:67b5338def01af57353da6d56d0e5ebfa994c6368ac7805dcbcac5d96f1bce50",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:the-cli-describes-a-tool-with-its-schema-and-lessons",
+  "properties": {},
+  "to_id": "req:the-cli-describes-any-tool-with-its-full-schema-and-lessons"
+}

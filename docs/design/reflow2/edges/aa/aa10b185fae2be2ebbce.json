@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:90c010d9f0e2d992ab446994ad52294909a7de297e372fef626d63f8d2f9bede",
+  "edge_type": "HAS_TEMPORAL_FACT",
+  "from_id": "cap:hosted-state-on-a-volume",
+  "properties": {},
+  "to_id": "fact:root-cause-the-registry-drops-a-store-without-identity-and-says-no-designs-2026-09-28"
+}

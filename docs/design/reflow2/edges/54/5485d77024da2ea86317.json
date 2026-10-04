@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:0e47b19f4fb36d447e79266e2d3f9fb83342c3749874149ef99691f1547a8af5",
+  "edge_type": "REALIZES",
+  "from_id": "art:graph-probe",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "verified"
+  },
+  "to_id": "cap:stop-nudge-asks-the-graph"
+}

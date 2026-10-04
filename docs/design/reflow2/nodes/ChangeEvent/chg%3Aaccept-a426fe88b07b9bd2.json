@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:664864cfe91bfc02b3cbde0b2b62fe3c7afa4d850a8de6ba8f2cfd9ffca3ebbd",
+  "node_id": "chg:accept-a426fe88b07b9bd2",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "resync",
+    "detected_at": "2026-09-15",
+    "name": "v0.61.1 cut: the version string moved; the design meaning of a cut lives in rel:v0611 and epoch:v0611-cut, not in reflow2.toml.",
+    "subject": "system"
+  }
+}

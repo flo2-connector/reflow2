@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:06a5382228738e1b6823308ca906276fb771caa13adc25209e09edacd1fb36be",
+  "node_id": "frag:art:registering-the-file-that-is-a-check-test",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered crates/reflow2-core/tests/registering_the_file_that_is_a_check_gives_it_an_executable_form.rs"
+  }
+}

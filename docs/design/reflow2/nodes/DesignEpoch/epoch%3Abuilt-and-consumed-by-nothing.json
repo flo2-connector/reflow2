@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:2391fc1561b5e11550508296ca59a71a66a4044c38da8d91bb3b3a5e2876174a",
+  "node_id": "epoch:built-and-consumed-by-nothing",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "epoch_type": "revision",
+    "name": "The design can say what it built and records no consumer for — and refuses to say \"unused\". The detector Anthony asked for after the content store was withdrawn \"built, shipped, correct, and used zero times\", written TEST-FIRST, which is what produced its central rule: run over reflow2's own design the raw signal named 100 of 110 built capabilities, so absence of a recorded consumer is reported only where recording one is the design's habit, and otherwise the RATIO is the finding.",
+    "sequence": 322,
+    "status": "arrived"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:a2c4de7fdd88d83ad9d62d95e52fd668ba86507b16d3c359f68fccbf14192b47",
+  "node_id": "chg:accept-8cef54856c069f19",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "refactor",
+    "name": "Mechanical: one call site takes the new trailing argument.",
+    "subject": "system"
+  }
+}

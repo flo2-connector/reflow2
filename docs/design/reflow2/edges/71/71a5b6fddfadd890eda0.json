@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:4b475394a07d1476a4ec617367943d2536cd2c3f010d82b34535f2d257a45779",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "cap:fork-alternatives",
+  "properties": {
+    "authored_at": "2026-07-22",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:claude-code"
+}

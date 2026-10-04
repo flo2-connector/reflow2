@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:af2ea4fa8babae36a71f06c31ca3e866cf6a4e3694c950e3a8c360fe10567ec6",
+  "node_id": "chg:accept-a69e742f8b16626f",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "refactor",
+    "detected_at": "2026-08-02",
+    "name": "v0.22.1 cut: the version string in reflow2.toml moved 0.22.0 -> 0.22.1. The design meaning of a cut lives in the Release node and its epoch, not in a version string, so the design holds unchanged. Accepted BEFORE release_includes_all so the manifest freezes the post-bump value — the ordering the v0.20.0 cut got wrong and paid for with a retry."
+  }
+}

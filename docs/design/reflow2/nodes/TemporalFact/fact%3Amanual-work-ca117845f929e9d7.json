@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:1c085445d91c6ffedbd7f1ce8604a00c5f59826a8296dd6dce73296d8e2d3b04",
+  "node_id": "fact:manual-work-ca117845f929e9d7",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "manual_work",
+    "statement": "Wrote a Python script over the exported design to build a per-project FEEDBACK LEDGER: for each reporting source (dev_storyflow, qs, Alex, chama, bhome, musicjug), which recorded defect facts carry an INVALIDATES edge from a ChangeEvent (fixed / partially fixed, read from the closing note's wording) versus none (open), and which exploratory ideas carry EVOLVES_INTO (built) versus none (awaiting a ruling). The owner asked 'have we addressed all feedback?' and nothing served answers it — find_tools returned gaps_to_prompts, confirmation_ledger and loop_status, none of which groups findings by the source that reported them with their fix status. The hand-rolled classifier also mis-flagged 'partial' wherever a closing note stated an honest bound, which a tool reading a structured field rather than prose would not.",
+    "subject_id": "proj:reflow2",
+    "valid_from": "2026-09-06",
+    "value": "{\"diagnosis\":\"tool_missing\",\"reflow2_tool\":null}"
+  }
+}

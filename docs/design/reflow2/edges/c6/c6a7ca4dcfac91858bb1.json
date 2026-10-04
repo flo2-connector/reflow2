@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:48f09330d9150f623780fa1603a82aa7033054e2a049d2b33b20eed3edfd5193",
+  "edge_type": "REALIZES",
+  "from_id": "art:compare",
+  "properties": {
+    "conformance": "verified"
+  },
+  "to_id": "cap:comparing-two-designs-does-not-reach-into-the-reporting-layer"
+}

@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:82021de1da22b302fe73be34bf8c59bcdc5404f2ff2b39de7d023a6138333daa",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:idea-can-reflow2-see-the-work-a-session-did-by-hand",
+  "properties": {
+    "authored_at": "2026-08-26",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:claude-code"
+}

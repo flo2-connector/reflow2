@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:6cd53d981bc2bd47d5bfe577e2697f4c82c46b26c18f4440b7416c4935d595cc",
+  "node_id": "dec:bulk-keeps-the-judgement-per-item",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Any bulk form over a tool that records a JUDGEMENT carries that judgement per item, never hoisted to a call-level argument: set_artifact_checksums takes a disposition per artifact, acknowledge_gaps a reason per gap, and gaps_to_prompts groups answers per gap. A shared timestamp is allowed because it is a fact about the call; a shared disposition is not, because it would be a shared decision.",
+    "name": "A bulk form collapses the round trip, never the judgement",
+    "rationale": "BL-153 stated the trap before the build: \"a batch of 144 acknowledgements with one reason is exactly the erosion those decisions exist to prevent, so a bulk form needs per-item dispositions or it is worse than the loop.\" This is the line that keeps dec:two-sided-accept (\"silent drift-accept does not exist\") and dec:ask-not-repair true under a bulk surface — 244 accepts now cost one call and still 244 decisions. It is also the distinction that let dec:manifest-derived-is-not-manifest-accepted go the other way and take no per-item disposition at all: a DERIVATION records no judgement, so there is none to preserve. For gaps_to_prompts the per-item grouping is additionally mechanical, not only doctrinal: grouping answers by gap is what stops two gaps' prompt ids colliding, so no gap is ever replayed against another's answers — and a half-answered batch is refused rather than half-served, because serving half would record some questions and silently drop the rest.",
+    "status": "accepted"
+  }
+}

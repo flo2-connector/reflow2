@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:38edfcc0817c15b80e745dedd22eae1a5d3b92780dd8840fc477da082e97ad2b",
+  "edge_type": "CHANGED",
+  "from_id": "chg:every-served-skill-carries-a-line-for-a-person-and-says-who-it-is-for",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:skill-ingest-corpus"
+}

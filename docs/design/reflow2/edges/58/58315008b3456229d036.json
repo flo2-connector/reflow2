@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:269f5342b50e9e72d51c6d91315d8f3aaf43ab89f1aab9135d6c178ee6e2e1b7",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:every-typed-edge-helper-has-a-bulk-form-that-keeps-its-checks",
+  "properties": {
+    "approved_at": "2026-09-29",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:c877a3554da43f42d3b60c8ec3d337c262f7fae7f1230bfacf371fd2de414e7c",
+  "node_id": "fact:bl-197",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "defect",
+    "statement": "[BL-197] Two served descriptions describe a world that has changed, and both mislead in the direction of \"do it the old way\"",
+    "subject_id": "cmp:skills",
+    "value": "{\"evidence\": \"*Same field report, 2026-08-03/04.* (a) claim_region's own description still says the design *\\\"lives as a file in each person's checkout with no shared server to hold a lock\\\"*. Since --shared shipped there IS a shared server and every session attaches to it, so the tool's description now argues against what the fleet's protocol binds; the worker who hit it knew better, the next one will read it as current. It should describe advisory claims under the shared server and treat the file plus merge-driver path as the cross-clone case rather than the default. (b) import_graph warns honestly that a hand-authored document *\\\"had no stamp\\\"* and that provenance and the upgrade-direction check therefore cannot be run \\u2014 but nothing says whether a hand-authored document is ALLOWED to claim one, and the stamp's minimal shape is discoverable only by exporting a graph and reading the result. Every adopt pass \\u2014 the exact workflow that produces hand-authored documents \\u2014 silently forfeits the check you most want on the day someone imports an old document into a newer binary. Fix: either accept a minimal {reflow2_version, schema_version} stamp and say so in the warning, or state plainly that hand-authored documents cannot be stamped and the check is unavailable to them. Related, known, still unactioned: this repo's own .mcp.json does not pass --shared (it is [\\\"--graph-path\\\", \\\"./.reflow2/graph\\\"] only) while every config reflow2_init.py generates does \\u2014 the sole reason the stale-server export replay is hand-rolled at every release cut. Size S\", \"origin\": \"Migrated from docs/backlog.md BL-197 on 2026-08-07 (epoch:backlog-retired). Size estimate carried from the row: S.\"}"
+  }
+}

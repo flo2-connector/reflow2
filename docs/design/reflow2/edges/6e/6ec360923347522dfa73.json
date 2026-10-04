@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:c72afd47758cf1679b45777bf0bebe366628a0a0611e7340a887f28cf5f1e828",
+  "edge_type": "REALIZES",
+  "from_id": "art:seam",
+  "properties": {
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:a-boundary-quantity-carries-its-unit-and-the-seam-compares-them"
+}

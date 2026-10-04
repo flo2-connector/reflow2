@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:a9629b1aec1d66cb3d776db304ea0c5ffddaa4dd0db2b5cd85c0084d0f53ae37",
+  "edge_type": "REALIZES",
+  "from_id": "art:revising-an-epochs-prose-keeps-its-status-test",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "verified"
+  },
+  "to_id": "cap:planned-epochs"
+}

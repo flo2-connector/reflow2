@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:239d761b73a5de4d187cb6bb9e792bb2987b141ac7b52303e3beb01a9fddb981",
+  "edge_type": "VERIFIES",
+  "from_id": "ver:two-branches-with-disjoint-design-changes-merge-with-plain-git",
+  "properties": {},
+  "to_id": "req:the-saved-design-merges-correctly-under-gits-ordinary-merge"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:40a590b45b97e16f6637fa6e1740276000ecdce737e87b4e78d7c4ce6b15bc38",
+  "edge_type": "CHANGED",
+  "from_id": "chg:accept-eight-requirements",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "req:corpus-ingest"
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:ddb592e3edacdfdc0aba9f4bf57cf4685995c7b5ac9c9d49011c975b750a05b3",
+  "edge_type": "ANTICIPATES",
+  "from_id": "fact:the-lens-that-carries-the-persona-was-built-on-a-branch-and-never-shipped",
+  "properties": {
+    "evidence": "That measurement is what turned the question from 'which leg is missing' into 'the leg was built and never landed', which is a different repair at a different cost. It saw the disposition question coming by establishing that the code already exists."
+  },
+  "to_id": "dec:idea-the-persona-has-no-delivery-leg-so-what-carries-it"
+}

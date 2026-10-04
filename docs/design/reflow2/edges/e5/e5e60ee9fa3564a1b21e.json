@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:a51a5c97fb809ab6a13a2a1390aae1136110773b83902f6481bd05224a04f432",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-read-only-surface-refuses-at-the-write-guard",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:tools-exchange"
+}

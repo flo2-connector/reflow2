@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:b01e814174c43f1d7f479a1e80440984fbe43cdeaaa31286a34f851aedaf37c2",
+  "edge_type": "GOVERNED_BY",
+  "from_id": "req:the-cli-describes-any-tool-with-its-full-schema-and-lessons",
+  "properties": {
+    "note": "Step 4 of making the door a supported route."
+  },
+  "to_id": "dec:idea-the-call-door-becomes-a-supported-harness-for-an-agent-that-cannot-use-mcp"
+}

@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:7801f899be7ff1d33d8f4784e6d38b5e41d84ade89cab70372635fd615991c37",
+  "node_id": "ver:a-question-is-put-to-a-person-and-records-who-answered",
+  "node_type": "Verification",
+  "properties": {
+    "description": "Eight tests through call_tool by tool name (failed 8/8 on origin/main 6329079 before the fix) and seven core tests: addressee and number recorded; unknown addressee, evidence, answerer or record refused with nothing written; ANSWERS drawn in the same call; a later answer naming nobody does not inherit the last answerer; open_questions(asked_of) returns the batch in order with evidence links and says what it left out; an unaddressed question reads asked_of null; loop_status(contributor_id) lists questions_put_to_them; an answer through an agent records answered_via and ACTS_FOR.",
+    "kind": "verification",
+    "last_run_at": "2026-09-29",
+    "level": "integration",
+    "location": "crates/reflow2-mcp/tests/a_question_is_put_to_a_person_and_records_who_answered.rs",
+    "method": "test",
+    "name": "A question is put to a named person as a numbered batch with evidence links, and one answer_question call records the answerer and draws ANSWERS",
+    "status": "passing"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:053de804572a8a077422ffa2e6e9b795a984b34ebe776bdd166bff3411547808",
+  "edge_type": "ANTICIPATES",
+  "from_id": "dec:mosa-conformance",
+  "properties": {
+    "evidence": "dec:mosa-conformance (2026-07-25) named this gap 18 months of design-time before it was measured: under WHAT IS GENUINELY MISSING it records '(2) NOTHING CHECKS STANDARDS COMPLIANCE, and the vocabulary for it is present and unused: DesignRule is defined as a chosen standard or convention with an `enforced` flag, and there are zero DesignRules in any graph.' The population has since gone 0 -> 27 while the check stayed at zero, and this finding supplies the mechanism it could not have known: VIOLATES_RULE and COMPLIES_WITH resolve to EnvironmentRule, so no served path reaches a DesignRule at all."
+  },
+  "to_id": "fact:the-27-design-rules-are-unreachable-by-the-violation-vocabulary-because-it-resolves-to-environment-rule"
+}

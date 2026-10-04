@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:8eaeccae461281e2b18dfa54b154562394e1a4b0ddb7fa2d489979687aaa323f",
+  "node_id": "art:test-every-one-shot-mode-resolves-its-design-first",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "test",
+    "description": "Nine real-binary tests with an isolated HOME and a per-run deadline: every store-opening mode in a pointer folder (read, write, no-design and design-making tools) refuses naming the design id and address and leaves the folder byte-for-byte as it was; a store left beside a pointer is neither opened nor written; in an empty folder a read refuses and creates nothing while a write creates; an opted-in folder reads as its empty design; --only-if-present; --read-only with a graph write, export_graph/export_surface writing a file (new and existing with overwrite), reads still answering, and --import; --export-to and --remote with --call; and the walk of every flag --help lists against all eleven one-shot modes.",
+    "location": "crates/reflow2-mcp/tests/every_one_shot_mode_resolves_its_design_first.rs",
+    "name": "every_one_shot_mode_resolves_its_design_first.rs — the real binary in real folders, and every --help flag against every one-shot mode",
+    "status": "realized"
+  }
+}

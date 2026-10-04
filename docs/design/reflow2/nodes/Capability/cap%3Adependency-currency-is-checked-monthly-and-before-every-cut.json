@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:46b02fc15c6cffb48240ede6a78ce2aacc45ad9dd2676d27fb2c223587368a83",
+  "node_id": "cap:dependency-currency-is-checked-monthly-and-before-every-cut",
+  "node_type": "Capability",
+  "properties": {
+    "description": ".github/workflows/dependencies.yml, built 2026-10-02 in the PR that also raises rust-version to 1.98.\n\n- `currency` job: tools/dependency_currency.py reads every Cargo.toml dependency (workspace and crate tables, dev and build), every `uses:` in the workflows and the declared rust-version.\n  - It compares them with crates.io's sparse index, GitHub releases and the stable channel.\n  - It FAILS on anything behind a new major or 0.x series with no hold in dependency-holds.toml, on a hold past its look_again date, on a hold with no reason, and on a lookup it could not make.\n  - It REPORTS a newer release inside a declared range (lock refresh owed) and a hold whose bump has landed.\n  - The dated report goes to the run summary and an artifact.\n- `floor` job: builds the workspace, every target, at the declared rust-version.\n- Triggers: monthly cron, manual dispatch, and any PR touching a manifest, the lockfile, a workflow, the holds file or the checker. A cut's step 1 changes Cargo.toml, so every cut runs it.\n- Pinned by tools/test_dependency_currency.py (12 hermetic cases, mutation-checked), run in ci.yml's core gates.",
+    "name": "Every dependency, GitHub Action and the Rust floor is checked against its latest release monthly and before every cut, and anything behind a new series without a dated, reasoned hold fails the run",
+    "provenance": "authored",
+    "status": "realized"
+  }
+}

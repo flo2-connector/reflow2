@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:3b5d5b8408b4e2fe1df0a6cd48d8f14d8310ec97053d5ef3197153da36b52451",
+  "edge_type": "ANTICIPATES",
+  "from_id": "dec:idea-where-does-the-10k-work-actually-land",
+  "properties": {
+    "evidence": "The earlier one saw this coming and named the mechanism. It established that the byte store is already swappable behind KvBackend and that reflow2 holds StorageEngine, which does not change type — which is exactly why MemoryBackend can serve every graph operation today. It framed that as headroom for a hosted backend; the same fact also licenses removing the persistent store entirely, which it did not consider."
+  },
+  "to_id": "dec:idea-does-reflow2-need-a-byte-store-at-all-or-only-durability"
+}

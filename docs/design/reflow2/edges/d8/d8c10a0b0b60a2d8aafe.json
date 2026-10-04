@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:177074b4c92b2e5d7fbf988f3a2aa18119acf014f141a758c3eebde662d72cd7",
+  "edge_type": "REALIZES",
+  "from_id": "art:edge-prose",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "verified"
+  },
+  "to_id": "cap:edge-prose-is-read-when-the-node-moves"
+}

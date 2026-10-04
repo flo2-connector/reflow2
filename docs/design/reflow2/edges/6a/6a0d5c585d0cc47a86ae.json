@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:b88e8cdd679f1e65e1507cd6f6eb02c5dbba93df45180958cb0bedae7877c421",
+  "edge_type": "HAS_SNAPSHOT",
+  "from_id": "dec:a-restore-reports-an-unresolvable-reference-rather-than-refusing-it",
+  "properties": {},
+  "to_id": "snap:epoch:a-dangling-reference-is-found-on-its-own-terms:dec:a-restore-reports-an-unresolvable-reference-rather-than-refusing-it"
+}

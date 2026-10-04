@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:ff8664bd78ceb12a8215d58cb5bbbe89c4f25fa093b037ca1ced2e2b994dfcaa",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:test-a-write-records-the-agent-beside-the-principal",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:test-a-write-records-the-agent-beside-the-principal"
+}

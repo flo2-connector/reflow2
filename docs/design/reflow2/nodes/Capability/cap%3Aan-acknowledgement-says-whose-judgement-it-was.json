@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:e2dc8724ef8234dce94597ab30e3061d6ef8fde31810572b3d6f085aa2e83adf",
+  "node_id": "cap:an-acknowledgement-says-whose-judgement-it-was",
+  "node_type": "Capability",
+  "properties": {
+    "description": "BUILT 2026-08-23 on Anthony's word, closing `fact:acknowledge-gap-records-a-judgement-without-recording-whose`. DISTINCT FROM that fact, which is the MEASUREMENT: it holds the numbers and how the defect stayed hidden; this is the remedy, so the design can say whether the fix happened separately from what it found.\n\n`acknowledge_gap` and `acknowledge_gaps` take an optional `approver` (and `acted_at`) and draw `AUTHORED_BY role=approver` on the Decision they mint. The bulk form carries it PER ITEM, for the same reason `reason` is per item: a batch under one shared approver would record a judgement nobody made for every gap but one.\n\nTHREE BEHAVIOURS, and the middle one is a decision about consequence rather than a shortcut.\n1. A named approver is recorded.\n2. AN ABSENT APPROVER IS ALLOWED AND REPORTED. Refusing would leave a design that has modelled no Contributor unable to accept a gap at all — which is most solo designs on day one. So the reply says the acknowledgement carries nobody's name and will be reported by `check_intent_authority`, rather than accepting it in silence. That silence is what let 49 unattributed nodes be written in a single pass.\n3. AN APPROVER NAMING NO CONTRIBUTOR IS REFUSED AND NOTHING IS WRITTEN. A typo would otherwise attach the owner's authority to somebody who does not exist, which is worse than recording none.\n\nADDITIVE: `acknowledge_gap`'s old signature is unchanged, so every existing caller still compiles and still works — it simply now gets told when it recorded nobody.",
+    "name": "An acknowledgement records whose judgement it was, and says so plainly when nobody's name is on it",
+    "provenance": "authored",
+    "status": "realized"
+  }
+}

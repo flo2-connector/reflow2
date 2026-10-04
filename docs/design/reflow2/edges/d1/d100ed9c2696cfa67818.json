@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:fca690f1dc19291427ba91a086f93ce8c4cfecaa83abae0291b4575348273a95",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:store",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:byte-store"
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:34a8aa6bc3cf42f93c9b05911dfad96e75c982f84de4dd7fede6cb19c343bcfc",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:test-flow",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:test-flow"
+}

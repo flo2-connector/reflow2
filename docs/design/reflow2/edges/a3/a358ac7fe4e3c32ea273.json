@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:44296654885b64b582ce872231cac483bedc0cbfdac4b9bc4e5a0c391349653f",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:nudge-absence-says-why",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:packaging"
+}

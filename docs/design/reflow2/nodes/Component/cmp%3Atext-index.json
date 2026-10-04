@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:807d81b80ca1cee42f81aa62d91c6cea100cb1f2092a95020ba25d09aa1d4264",
+  "node_id": "cmp:text-index",
+  "node_type": "Component",
+  "properties": {
+    "level": "component",
+    "name": "text-index",
+    "provenance": "authored",
+    "purpose": "The tantivy-backed full-text index behind `search_design` — BM25 keyword search over every property the schema marks `fulltext`.\n\nAbsorbed from `dynograph-text` at v0.12.0 on 2026-08-24 into `crates/reflow2-core/src/foundation/text.rs` — 847 lines, reached only through the `fulltext` feature.\n\n🛑 IT WAS INVISIBLE TO EVERY EARLIER COSTING OF THE ABSORPTION. reflow2 never named `dynograph-text` in any manifest: it arrived transitively through `dynograph-storage`'s optional `fulltext` feature, which reflow2 enables. Three separate scopings of this work counted five crates; there were six. **A dependency reached only through a feature flag is absent from the dependency list a reader would check**, and it brought `tantivy` with it.\n\n⚠️ AND IT IS THE ONE PIECE WITH A KNOWN HISTORY OF LEAKING. The v0.11.0 → v0.12.0 pin bump was made precisely because `search_fulltext` returned `dynograph_text::TextHit` — a type from a crate reflow2 never named, reachable only through an optional feature. In-tree that class of leak stops being possible: there is no boundary left for a type to cross unnoticed.\n\n(Distinct from `dep:dynograph-foundation`, the Resource recording the external dependency this ENDS, and from reflow2's own search module, which is the caller rather than the index.)",
+    "status": "planned"
+  }
+}

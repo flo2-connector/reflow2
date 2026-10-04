@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:21293f0b7a4b45bf0183172f728485e4bd6f3d74d714675dc3d1c457846e11f7",
+  "node_id": "req:a-session-cannot-address-another-design",
+  "node_type": "Requirement",
+  "properties": {
+    "concern": "core",
+    "designation": "internal",
+    "kind": "functional",
+    "lineage": "original",
+    "name": "A session bound to one design cannot read or write any other design in the same process — and this must be proven before multi-graph hosting ships",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "When one process holds several design graphs (dec:one-process-many-stores, accepted 2026-08-06), a client session attached to design X must not be able to read or write design Y through any tool on the surface — not by passing a graph_id it was not attached to, not by a path, not by reconnecting, and not by a handler that resolves the wrong entry from the registry.\n\nTHIS IS THE SHIPPING CONDITION, not a nice-to-have. Anthony accepted dec:one-process-many-stores on 2026-08-06 conditional on exactly this: the isolation guarantee carried as its own requirement, with a check, landing BEFORE any of the multi-graph work ships. The reason is the failure mode rather than the principle — an isolation regression does not error, it CORRUPTS: a handler that reaches the wrong graph writes one design's nodes into another, and nothing in the loop would report it because both graphs would still be internally coherent. That is strictly worse than a crash, and it is invisible to every detector reflow2 has.\n\nTHE SECOND HALF, and it must be stated rather than assumed: reflow2 HAS NO AUTHENTICATION OF ANY KIND. Whoever fronts a hosted reflow2 — flo2 today — owns authentication and authorization: deciding WHICH designs a given human may reach. reflow2's obligation is narrower and absolute: given that a session has been attached to design X by the layer in front, reflow2 must not let it touch design Y. Those two are not the same guarantee and neither substitutes for the other. If this split is not written down and held, accepting dec:one-process-many-stores quietly converts an accepted \"no hosted service\" into a hosted service with no security story — the drift dec:reopen-supersedes exists to prevent, and the counter-argument that decision's own rationale already records.\n\nSCOPE NOTE: this says nothing about the single-graph case, which has this property today for free because the process holds exactly one store. The requirement exists because that free guarantee is what the registry removes.",
+    "status": "proposed"
+  }
+}

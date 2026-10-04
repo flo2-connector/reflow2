@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:55990315c71d41357774836933a730d14340709dfb87efa8a25082b5b18ba4fd",
+  "node_id": "epoch:update-is-one-word",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "epoch_type": "milestone",
+    "name": "The update half of req:frictionless-update lands — a project already set up is brought forward by one word, and the mechanism that already existed stops hiding behind a word that says \"start\"",
+    "sequence": 333,
+    "status": "arrived"
+  }
+}

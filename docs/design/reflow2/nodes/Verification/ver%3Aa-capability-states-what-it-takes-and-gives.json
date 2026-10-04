@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:5c03f2ca674aa6e5d90e3a3c9f1a02094ff75b5ab464e0cfd7ad19554875a118",
+  "node_id": "ver:a-capability-states-what-it-takes-and-gives",
+  "node_type": "Verification",
+  "properties": {
+    "description": "crates/reflow2-core/tests/a_capability_can_state_what_it_takes_and_gives.rs.\\n\\nThe first probe restates the DEFECT as a test before testing the fix: it asserts `add_capability` writes no signature, so the 0-of-170 measurement is pinned rather than remembered.\\n\\nFour mutations, each caught: outputs never written; replace-instead-of-merge; an unknown capability created rather than refused; an empty list treated as 'nobody said'. The fourth was run twice \\u2014 the first attempt was a `sed` whose delimiter collided with a `|` in the pattern, so it silently changed nothing and the green result meant nothing. Redone in python, it failed exactly the empty-list probe.\\n\\nEXERCISED ON THE LIVE SURFACE TOO: three capabilities built this session were given real signatures through the MCP tool, and a deliberate typo was refused by the running binary.",
+    "findings": "5 probes pass, 4 mutations each caught. Used on the live surface: three capabilities now carry signatures, taking Capability.inputs from 0 of 170 to 3.",
+    "kind": "verification",
+    "last_run_at": "2026-08-18T07:40:00Z",
+    "level": "integration",
+    "method": "test",
+    "name": "Five probes: the signature is writable at all, one half never erases the other, what the capability already said survives, a typo is refused, and an empty list is a statement rather than a silence",
+    "status": "passing"
+  }
+}

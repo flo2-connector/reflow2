@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:13b5ba87c71477b6b8375be63e4e58f5dc2e0cc52f4ddda0d7bfaac2a8c1e4e1",
+  "edge_type": "REALIZES",
+  "from_id": "art:skills-catalog",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cmp:docs"
+}

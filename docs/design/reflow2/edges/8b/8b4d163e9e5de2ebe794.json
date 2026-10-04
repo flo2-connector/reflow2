@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:d1bb0541aadf84b544650a646648839c01ad988b987ef8712a18f44332400fd8",
+  "edge_type": "CHANGED",
+  "from_id": "chg:session-chooses-its-design",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "req:a-session-chooses-its-design"
+}

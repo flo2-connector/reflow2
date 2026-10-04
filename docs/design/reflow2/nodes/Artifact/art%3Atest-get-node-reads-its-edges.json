@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:9814dfa01cafee028d7bc016234cf8df02490edc48b0e0294fdafaa25e7c677f",
+  "node_id": "art:test-get-node-reads-its-edges",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "test",
+    "description": "6 tests over ReflowService. All 6 observed failing on main c4e1cbd with `unknown field include_edges`.",
+    "location": "crates/reflow2-mcp/tests/get_node_reads_its_edges.rs",
+    "name": "get_node_reads_its_edges.rs — the served door: the unchanged default reply, include_edges true, the filter object, refusals, an absent node, a node with no edges",
+    "status": "realized"
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:60f2031af6414ed4ea0ad1fd2df7a2020d20caec3ac03b5748c38b47997ecfeb",
+  "node_id": "req:what-is-this-says-what-to-do-once-you-have-a-design",
+  "node_type": "Requirement",
+  "properties": {
+    "concern": "usability",
+    "kind": "functional",
+    "lineage": "original",
+    "name": "/what-is-this also answers \"I have a design — what now?\", with a short everyday set before the full list",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "/what-is-this (the help skill) answers two questions, not one. It already answers \"where do I start?\" (/genesis, /adopt or /where by situation). It also answers \"I have a design, what can I do now?\", with a short everyday set of about five skills in plain words, each with its slash command. Only after that does it point to everything else, through list_skills or /find-skills.\n\nThe everyday five, settled by Anthony 2026-09-24 (\"go with those five\"): /where, /gaps, /req, /brainstorm and /jot.\n\nAnthony, 2026-09-24: \"we some how have to create a cheat sheet for new users ... when a user types /what-is-this in an AI chat, to explain what skills you can use and how to use it\", and \"the same problem also affects reflow2 at the lower level for users using reflow2 like I am here.\" He kept this as intent from dec:idea-a-person-learns-what-to-do-next-once-they-have-a-design, option (b).\n\nDISTINCT FROM req:a-skill-that-creates-a-design-ends-by-naming-what-to-do-next: that one PUSHES two or three next moves at the moment a design is created; this one ANSWERS when a person ASKS what they can do, at any time, with the fuller everyday set.\n\nLimits:\n- The everyday set is picked by hand in the skill's text. If it starts being repeated in other places (flo2's cheat sheet, a menu), the idea's option (c), a marker on each skill so the set is chosen in one place, becomes worth building. Not before.\n- As with the closing words, a suggestion is something the person can ask for in plain words. The command is a shortcut, never the only way in.",
+    "status": "accepted"
+  }
+}

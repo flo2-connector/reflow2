@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:f02c6c4c00cdbe474dbea9932b2e94bc7011bdcc5653232e5762d72dec5d1524",
+  "edge_type": "CHANGED",
+  "from_id": "chg:decomposition-count-corrected",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "dec:bl83a-functional-decomposition"
+}

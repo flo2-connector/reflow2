@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:1378c8065b7c3a93c5ba939fc668543f284dfba77178066d5b374fa3403dc883",
+  "node_id": "chg:procedural-joins-the-interface-media",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "detected_at": "2026-09-15",
+    "name": "Interface.medium gains `procedural` — a rule-governed exchange between institutions or roles",
+    "rationale": "The US-government genesis session (2026-08-15) filed seventeen constitutional check-and-balance boundaries under `human` because nothing else fit, and `medium` is READ by the single-point-of-failure exemption and by seam_report, so those boundaries were being reasoned about as human-factors touchpoints. dec:procedural-is-the-medium-for-a-boundary-between-institutions settles on one word rather than a family: the enum stays closed so pairing compares like with like, and a second governance domain can bring its own evidence for a second value. CORRECTED THE CAUSE: yes, for the reported class — the vocabulary now has the kind of boundary the domain needed; whether one word is enough is a question the next governance design answers.",
+    "subject": "system",
+    "summary": "schema/structure.yaml adds `procedural` to Interface.medium with a definition in the property's own description; the ingest mirror MEDIUM_VALUES (ingest.rs) and the two tool descriptions that spell the enum (set_interface_spec's `medium` doc in service.rs, add_interface's description in capture.rs) carry the same word. Additive: enum values do not move the schema stamp. Pinned by crates/reflow2-core/tests/a_procedural_boundary_has_a_word.rs — the value validates on an Interface, and the word the reporter reached for (`process`) is still refused with a message that lists `procedural`."
+  }
+}

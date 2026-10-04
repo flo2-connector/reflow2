@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:c9c222e8e6bbd46c49dfeb47d5de4599a320a8eeb1502e19b8a8101a06bb850f",
+  "edge_type": "CHANGED",
+  "from_id": "chg:accept-810a2caa708c73cb",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:test-a-design-says-whether-a-result-ever-came-back"
+}

@@ -1,0 +1,18 @@
+{
+  "content_hash": "sha256:519543108e9dc71dec62aaac198a1d6f0361a8c085e0691844bf95d6811d77f0",
+  "node_id": "fact:an-export-watch-reads-unchanged-over-unexported-work-and-an-address-watch-sees-it-2026-10-02",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "finding",
+    "name": "MEASURED 2026-10-02 (0.77.0), limitation 14 CONFIRMED for an export watch and PARTLY overturned in general. A hub's export watch says \"exactly as this design last saw it\" while the child holds an unexported requirement. An address watch on the same child, served on a fixed local port, reported `moved` with nothing exported",
+    "source": "art:vscode-call-door-field-report-2026-10-02",
+    "statement": "RUN AS THE SKILL (root-cause, fetched fresh), triage agent A, on limitation 14 of art:vscode-call-door-field-report-2026-10-02 (\"A hub can't see a member's unexported changes. upstream_status compares the committed export, not the live store; without write-through the export routinely lags\").\n\n① OBSERVED, all through `--call` on scratch stores (log: /home/ajs7/.claude/jobs/fa666a94/tmp/triage-A/measure.log, HUB-*):\n1. Child `c` (1 requirement) exported to child-export.json. Hub `h` declares dep:child with that design_export.\n2. Child gains req:child-lambda, NOT exported. Hub `upstream_status` → dep:child `unchanged`: \"'child' is exactly as this design last saw it, on 2026-10-02.\"\n3. Child re-exported → hub `upstream_status` → `moved`.\n4. Child served with `--http 127.0.0.1:47911`. Hub declares dep:child-live with design_address http://127.0.0.1:47911/ (baseline taken live: 2 nodes). The server is stopped, the child gains req:child-mu through `--call` (never exported), the server restarts on the same port, and hub `upstream_status` → dep:child-live `moved`.\n\n② PRECEDENT: fact:a-moved-design-cannot-be-watched-and-its-frozen-export-reads-as-live-2026-09-27, the same class for a design that moved to a server, fixed for that case by the address watch (ver:a-design-is-watched-at-the-server-that-holds-it).\n\n③/④ CANDIDATES: (a) upstream_status can only read exports (the reporter's reading); (b) it reads whatever the declaration names, and a local child is usually declared by export because a local child has no stable address; (c) I measured the wrong thing.\n(a) refuted by step 4. (b) confirmed: --serve-shared binds an OS-assigned port that changes on every start (measured on this triage: 43227, then 42181), so only a fixed `--http` port or a hosted server gives an address a pin can keep. (c) refuted: step 2 and step 4 differ only in how the child is watched.\n\nWHAT FOLLOWS. The reporter's remedy (idea 3: export after each door write) would close this for export watches. The accepted blueprint (dec:idea-one-blueprint-the-store-is-the-design-and-an-export-is-a-perishable-photocopy, rule 3 and \"a child is watched by asking its server (address), never a file\") points the other way: watch the live design. For a Copilot-only local setup there is no server to ask, which is the gap idea 13 (a hub address book) would have to fill. It would need a per-machine store path the hub may open read-only (or snapshot), and no such watch kind exists.\n\n⑨ NOT MEASURED: an address watch against a `--serve-shared` server across a restart (inferred from the port change only).",
+    "steps": [
+      "upstream_status",
+      "external_dependency"
+    ],
+    "subject_id": "cap:a-declared-dependency-is-watched-not-imported",
+    "valid_from": "2026-10-02"
+  }
+}

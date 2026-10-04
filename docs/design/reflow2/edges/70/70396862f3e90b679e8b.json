@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:ee4e2618c0a994f10104fc8bb2ea969890e4a5bc68f14626c9f8c0a50b962000",
+  "edge_type": "CHANGED",
+  "from_id": "chg:release-without-manifest-detector",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "req:a-release-that-shipped-says-what-it-shipped"
+}

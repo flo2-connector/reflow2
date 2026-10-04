@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:694492812530001a4978eebc74ba11e64bee02ddebd7cc2d5da39721249702ae",
+  "edge_type": "CAUSES",
+  "from_id": "art:tools-assure",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "The `verifies` helper in tools/assure.rs returns the bare \"Invalid edge: VERIFIES cannot connect Verification to Decision\" with no alternative, while create_edge for the same pair names GOVERNED_BY first as the modelled fit. Its description names 4 of VERIFIES' 7 targets and never GOVERNED_BY. So the modelled, read route was invisible at the moment the reporter reached for it (measured on 0.72.0).",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:root-cause-a-check-on-a-ruling-is-modelled-as-governed-by-and-the-verifies-refusal-never-says-so-2026-09-28"
+}

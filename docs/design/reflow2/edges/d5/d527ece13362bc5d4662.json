@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:12884804bc1dee86537abf71b554f2745ed9098668d200d02b060d90e75240de",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "rule:a-consumer-facing-fact-about-the-served-surface-is-served-never-copied",
+  "properties": {
+    "approved_at": "2026-09-19",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

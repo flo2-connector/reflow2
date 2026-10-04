@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:4371e18f6fe0d1241148afc5ce9a31c2de5e122e549b7271d39a4efff082a945",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0610",
+  "properties": {
+    "as_checksum": "sha256:db04212f650fe01e840ce708319bf1f6744100d9c1c478129559b1eb85e03a49"
+  },
+  "to_id": "art:registry-http"
+}

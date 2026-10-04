@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:e17abbbafc97b3af2d6b5aaac34795f147a2f7e049d5d06f985342ae825a0c68",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:test-a-settled-choice-can-be-gone-back-to",
+  "properties": {
+    "covers": "whole"
+  },
+  "to_id": "ver:a-settled-choice-can-be-gone-back-to"
+}

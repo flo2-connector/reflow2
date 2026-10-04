@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:e065a10f9c166800995b2db15b7dcf637d6609f93efe2a8996e9bc0df1f2bea4",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-owner-rules-on-scope-and-reachability",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "dec:the-default-scope-depth-should-be-two"
+}

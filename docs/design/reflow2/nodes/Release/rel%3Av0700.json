@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:f4cc5fc305a36226a719039b7fea7770c7b892a9b15b7d5eebf697dd35dc7cbc",
+  "node_id": "rel:v0700",
+  "node_type": "Release",
+  "properties": {
+    "description": "One change since v0.69.0: the new served skill `jot` replaces `log-issue`. /jot records a note untagged, /note tags it as an idea, and /log-issue tags it as an issue and keeps working as before; get_skill's `requested_as` tells the skill which word was typed. loop_status's follow_ups carry each note's `tag` (from fact_type follow_up:<tag>) and `settle_toward`, and the `next` line counts open notes by tag; follow-ups captured before this read as untagged.\n\nMinor, because it adds a skill and two optional fields on loop_status's rows. No schema stamp change (28 node types, 65 edge types, schema_version 1), so no upgrade note. Also carries the design-only records of the same day: two accepted requirements for telling a person what to do next once they have a design (not built), and the skill_lint stale-toolsnap finding.",
+    "name": "v0.70.0 — /jot: one skill, three words, and the word is the tag",
+    "status": "retired",
+    "unit_type": "binary",
+    "version": "0.70.0"
+  }
+}

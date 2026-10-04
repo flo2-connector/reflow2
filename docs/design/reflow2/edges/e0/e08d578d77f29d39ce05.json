@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:b38defe9b867a201cb5f2852bddd2882cdd1027edab9617f947b34c426504d7f",
+  "edge_type": "TRIGGERS",
+  "from_id": "fact:unresolved-setup-says-nothing-follows-through-and-never-checks-whether-anything-did",
+  "properties": {
+    "evidence": "Instance ④, and the strongest one: `unresolved_setup`'s message says \"nothing follows through\" while its computation asks only \"is either side still a parked idea?\". The sentence and the code ask DIFFERENT QUESTIONS rather than the sentence merely over-reaching its data — and it was found by walking into it during ordinary work, not by looking."
+  },
+  "to_id": "dec:idea-the-load-bearing-prose-is-unchecked-against-the-code-it-describes"
+}

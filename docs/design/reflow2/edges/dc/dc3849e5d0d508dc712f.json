@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:61362af0e6a6c00f9f31427d6ce2354b4b5e88f4eef1f13e3163f5f08e494ceb",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:an-import-knows-its-own-age-and-a-server-behind-its-record-says-so",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:export"
+}

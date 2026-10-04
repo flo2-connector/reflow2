@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:674637e7681420658e3ee5c0b8772c992f99b71d8efcf6e25e1be90620dbb24e",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:aggregate-gap-keying",
+  "properties": {},
+  "to_id": "req:set-scoped-acknowledgement-keys-on-its-rule"
+}

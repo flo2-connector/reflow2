@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:ab922a68e23d63855b6a32d893ce0fbf0eb0df807e4ae808181c62545b59b66e",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:a-coupling-has-a-typed-call-of-its-own",
+  "properties": {},
+  "to_id": "req:a-coupling-is-one-typed-call-and-the-name-that-says-so-means-that"
+}

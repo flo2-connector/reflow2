@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:3eaf4fa157a5f3344a763f9b46033373f88ab45f54642aa9d2754731ee1136d4",
+  "node_id": "ver:a-bulk-edge-write-keeps-each-helpers-checks",
+  "node_type": "Verification",
+  "properties": {
+    "description": "crates/reflow2-mcp/tests/a_bulk_edge_write_keeps_each_helpers_checks.rs. Helpers enumerated from writers.json and the served tool list, never a hand list.",
+    "findings": "2026-09-29, under the shared-target lock protocol (clean rebuild of both workspace crates under one flock, no stash). FAILING FIRST on origin/main 449ba2b plus the test alone: 6 of 6 failed for the reported reason — no draw_edges is served (\"tool not found\"); in the pair suite the helper answered and the bulk form could not, 80 disagreements across the pair-driven helpers; the semantic cases (constrains contribution/unit/basis/source, a governed_by ruling, two authored_by roles in one call) and the all-or-nothing case all refused at draw_edges. One harness correction before that run: two setup calls lacked required fields and the ruling case wrongly expected governed_by to refuse a parks ruling on a proposed decision (it accepts it; closure and the detectors ignore a proposed ruling), so the case now asserts the helper and the bulk form answer alike. ON THE FIX: 6 of 6 pass; the find_tools suites, the lib tests (157) and the constructor/route/revise suites pass; toolsnap (33 changed, 1 added, all intended), smoke, empty_speaks, refusal_speaks, replies_are_bounded, a_reply_is_sent_once, vocabulary_reach and render_skills_and_tools pass. Measured cost of the naming: appending the bulk sentence on the ROUTER moved five helpers off first place in find_tools, so it is appended at LIST time, like the lessons.",
+    "kind": "verification",
+    "last_run_at": "2026-09-29",
+    "level": "integration",
+    "method": "test",
+    "name": "A bulk typed-edge write keeps each helper's own checks: every helper names the bulk form or takes a list; one bulk item and one helper call answer alike for every pair-driven helper; semantics survive; all or nothing",
+    "status": "passing"
+  }
+}

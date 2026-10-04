@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:82812902de8abb8a72a8a7c933a8de7e2a02ef0618b31dbc0f4b11750e0076a2",
+  "edge_type": "CONTRADICTS",
+  "from_id": "fact:a-gate-is-only-as-wide-as-the-toolchain-that-runs-it",
+  "properties": {
+    "alignment": "supporting",
+    "confidence": 0.9,
+    "evidence": "One shape, two layers. Both are a check NARROWER than the green it reports, and in both the narrowing is invisible from the result: the first because the gate's width is set by a compiler version nobody records, the second because a suite's width is set by which lines it actually executes. Neither is reachable by reading the gate list more carefully, which is what separates them from the habit-shaped instances of the same family."
+  },
+  "to_id": "fact:a-gates-own-suite-stayed-green-through-a-rewrite-of-the-half-it-never-covered"
+}

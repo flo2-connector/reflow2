@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:365db35bdec65bba62751a6432fcf14d96d0c862f724d23130718d0488e3fa9d",
+  "edge_type": "CAUSES",
+  "from_id": "fact:root-cause-an-exposed-server-accepts-any-callers-signature-because-the-boundary-where-write-rules-attach-was-named-and-no-rule-was-chosen-2026-09-28",
+  "properties": {
+    "basis": "causal",
+    "evidence": "The cause — an exposed server with the boundary named and no rule chosen for who is calling — is what this change corrects: it builds the bearer-token rule the 2026-09-28 ruling chose (CallerRule::BearerToken), beside #636's gateway and undeclared rules. Validated by ver:an-exposed-server-verifies-bearer-tokens-to-the-oauth-2-1-floor, red on origin/main 45613b4 and green on the branch.",
+    "validation_status": "validated"
+  },
+  "to_id": "chg:an-exposed-server-verifies-bearer-tokens-itself"
+}

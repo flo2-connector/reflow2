@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:129d63504381462345382c07b46868b4802720252eb987be55fd56cf7aee2398",
+  "edge_type": "REALIZES",
+  "from_id": "art:drain",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "verified"
+  },
+  "to_id": "cap:a-server-drains-before-it-stops"
+}

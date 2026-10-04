@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:23856c4dc54738c9ed05ff47bfa261fa854534740e06ff3afbeb0f4274be99e2",
+  "edge_type": "CONTRADICTS",
+  "from_id": "dec:idea-reading-coverage-says-how-much-of-a-subject-this-session-has-actually-read",
+  "properties": {
+    "alignment": "opposing",
+    "evidence": "A read-coverage figure needs to know WHICH nodes this session fetched, and the usage ledger's verified design is to hold the verb and never the object; one of the two has to give, or coverage has to be computed from a separate per-seat record the ledger does not keep."
+  },
+  "to_id": "ver:the-ledger-holds-the-verb-and-never-the-object"
+}

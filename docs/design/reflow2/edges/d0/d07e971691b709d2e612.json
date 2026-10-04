@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:4db5303805870e03cc6fd4e179639b9b36e8b4d19fbf6d489fa4b3a8eed5fa66",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:time-and-tokens-are-measured-per-task-against-budgets",
+  "properties": {
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

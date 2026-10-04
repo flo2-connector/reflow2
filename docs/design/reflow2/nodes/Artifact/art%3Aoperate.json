@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:0a82168ddf2a39b62ea2ffe5f4e8d9646ed6e0ef4be1ccf18e3c993f3a4e2ca6",
+  "node_id": "art:operate",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "granularity": "atomic",
+    "location": "crates/reflow2-core/src/operate.rs",
+    "name": "operate.rs",
+    "status": "realized",
+    "volatility": "stable"
+  }
+}

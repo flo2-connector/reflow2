@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:1cf98f9f64e78070c46e6a341cd9f552a753c5b60a554c25b30487f4b1bf2cb4",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-record-can-say-which-question-it-answered",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:smoke-mcp"
+}

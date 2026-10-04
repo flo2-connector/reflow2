@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:e96ae2d9bf2f4e5d1de481c9f622aa84c3bec354390295889ceaf53b68a3fc64",
+  "node_id": "chg:bl199-reattachment",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "refactor",
+    "name": "art:upgrading-v0210 drops REALIZES cap:independent-evidence for DOCUMENTS rel:v0210"
+  }
+}

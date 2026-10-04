@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:3f80b9a1c9ae185024c1b101dd8f1a2c2ae93b776318ead030e90263ba1b8454",
+  "edge_type": "CHANGED",
+  "from_id": "chg:bl58-silent-failure-batch",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:propagate"
+}

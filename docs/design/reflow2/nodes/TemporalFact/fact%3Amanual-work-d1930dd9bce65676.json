@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:68090d20bc6fad98135b2fecb2f7e9d3240572150412a678d47621b2ed7e0388",
+  "node_id": "fact:manual-work-d1930dd9bce65676",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "manual_work",
+    "statement": "Wrote a Python diff of ChangeEvent ids between the committed export and the previous tag's export, to find which changes belonged to the release INCREMENT rather than to the session. THE TOOL FOR THIS EXISTS and is step 2 of the recorded cut procedure, and I did not reach for it — but testing it afterwards showed it would not have helped either: changelog_view from the previous release epoch to the new one returns ZERO entries, because it derives from nodes pinned AT_EPOCH and the increment's ChangeEvents carry no such pins. The cut procedure creates the epoch and pins the RELEASE to it, and pins nothing else. So a discoverability failure on my part masked a data-model gap underneath it, and only the hand-rolled diff produced the 8 events the changelog was actually written from.",
+    "subject_id": "proj:reflow2",
+    "valid_from": "2026-09-03",
+    "value": "{\"diagnosis\":\"tool_not_found\",\"reflow2_tool\":\"changelog_view\"}"
+  }
+}

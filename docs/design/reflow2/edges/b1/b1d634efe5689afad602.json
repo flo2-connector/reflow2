@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:37af507dc122a92ece622b64b0f7013f6e591b898904c76d30f54ccd60a01d07",
+  "edge_type": "GOVERNED_BY",
+  "from_id": "cap:the-loop-counts-this-sessions-reads-and-writes-and-says-when-a-write-is-owed",
+  "properties": {},
+  "to_id": "rule:a-finding-is-written-before-the-answer-and-needs-no-permission"
+}

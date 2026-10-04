@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:b726b8b6d11efba7da929479fd694e5529b578079beb9646bcae290a073600c4",
+  "edge_type": "REALIZES",
+  "from_id": "art:capture-intent-skill",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:capture-registers-its-source"
+}

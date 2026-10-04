@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:d6b91f46298480c349d8e8ae97bce2b4948473e8ba7c50c1937f86e7a6bdbe8a",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:test-item-layout-merges",
+  "properties": {
+    "covers": "whole"
+  },
+  "to_id": "ver:two-branches-with-disjoint-design-changes-merge-with-plain-git"
+}

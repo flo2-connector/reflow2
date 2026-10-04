@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:f8e7db5a1cda880c78c936826c8cc1925dc0182ef166228c55b0d94c5554cb6b",
+  "edge_type": "CHANGED",
+  "from_id": "chg:authorship-survives-approval",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:smoke-mcp"
+}

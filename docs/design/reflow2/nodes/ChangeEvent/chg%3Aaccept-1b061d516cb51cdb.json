@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:f043380e77b0a142cb740c7e607ebca4c64b5666e4611b4f9726fc650cd4936f",
+  "node_id": "chg:accept-1b061d516cb51cdb",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "refactor",
+    "detected_at": "2026-09-16",
+    "name": "DesignRuleReq gained `units`; this fixture's struct literal names the new field as None. No behaviour moved.",
+    "subject": "system"
+  }
+}

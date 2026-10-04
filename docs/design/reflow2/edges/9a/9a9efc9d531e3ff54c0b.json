@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:bfb4348909ef77fda326ea412272afe1bae334bbe2ab879fb597ab59fddbdf48",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:a-budget-says-whether-its-parts-add-up-or-run-along-a-path",
+  "properties": {
+    "approved_at": "2026-09-29",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

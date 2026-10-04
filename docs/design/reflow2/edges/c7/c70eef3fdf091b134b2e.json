@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:42cb5829f9193e7b57e108006f3aa78f8c3c3353903b84331207e3e7e0b6f256",
+  "edge_type": "CHANGED",
+  "from_id": "chg:two-repair-rules-compute-the-condition-their-message-names",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:heal"
+}

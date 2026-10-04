@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:5d2cdd6ff066ac959152057b5230be48fa8d96df44a4e0c69feb5ac51458e72b",
+  "node_id": "chg:a-required-interface-is-not-an-unprovided-one",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "test_failure_fix",
+    "name": "unprovided_interface stops firing on `required` boundaries — declaring what you need from outside was creating one 0.72 nag per requirement, forever"
+  }
+}

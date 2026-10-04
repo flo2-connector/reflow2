@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:e600ad281000bd22c4d70f9186610e29f67a355d1fd4caeb0df4c1c064ce6100",
+  "edge_type": "MITIGATES",
+  "from_id": "dec:idea-a-recency-view-lists-the-designs-changes-newest-first",
+  "properties": {
+    "evidence": "That finding records that no served read answers where-am-i's 'since last time' and that a same-day re-walk was invisible to every read tried. A recency view, in any of options (a) to (d), is an answer to that hazard."
+  },
+  "to_id": "fact:root-cause-no-served-read-answers-since-last-time-2026-09-28"
+}

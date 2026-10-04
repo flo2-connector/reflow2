@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:5322b7c77380c7f4dd9a90105e64d4c546bca001dcb0f464707603f5cfbfe251",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0640",
+  "properties": {
+    "as_checksum": "sha256:5655660611869f181b62586abb5d0b6ae70effc628d15d481f60cb1eee2a8948"
+  },
+  "to_id": "art:granularity"
+}

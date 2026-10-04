@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:b74b88cafb517fb911af39ef7921582e735c3c0f33dc3763d835359f0104d920",
+  "node_id": "cmp:coverage",
+  "node_type": "Component",
+  "properties": {
+    "kind": "module",
+    "level": "component",
+    "name": "coverage",
+    "provenance": "authored",
+    "purpose": "COVERAGE — what the design has never been told about, computed against a caller-supplied sweep of what exists.",
+    "status": "planned",
+    "tier": "operational"
+  }
+}

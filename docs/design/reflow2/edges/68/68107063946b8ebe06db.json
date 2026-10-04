@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:ef3f0fe8509132cf1d55d52bb9e52b7a9f4da494e3537f72afd3e02afac7aa52",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:a-taxonomy-is-decided-once-before-bulk-capture-and-every-instance-cites-it",
+  "properties": {
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:alex"
+}

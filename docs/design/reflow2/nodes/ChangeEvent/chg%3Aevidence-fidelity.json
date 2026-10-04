@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:b7d8e2e3c0c481f600ffe50d3844b2ec6b4eaa25a841c2849d71438996e765c4",
+  "node_id": "chg:evidence-fidelity",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "name": "A check records where it ran, so simulation stops looking like reality"
+  }
+}

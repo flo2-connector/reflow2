@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:b187a9abf954f185bc8160651f3ab5f46567980f3607482c1f988fc520f9fcf8",
+  "edge_type": "CHANGED",
+  "from_id": "chg:acknowledgement-not-structure",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "ver:acknowledgement-not-structure"
+}

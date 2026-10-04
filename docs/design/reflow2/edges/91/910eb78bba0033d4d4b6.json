@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:61973b347c8fc85a1c35b9fd7527f430e38848113323f61b4febc52b28a6389c",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:the-graph-engine-keeps-a-compact-index-per-primitive",
+  "properties": {
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

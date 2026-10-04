@@ -1,0 +1,20 @@
+{
+  "content_hash": "sha256:68372e8666e62bf76926d719dd3415f6a0a5cccc106878e34ffe908b8436a37e",
+  "node_id": "fact:the-out-of-tree-notion-exists-but-is-keyed-on-the-path-shape-and-only-one-instrument-honours-it",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "confidence": 1.0,
+    "fact_type": "defect",
+    "name": "MEASURED 2026-09-21: reflow2 DOES distinguish an out-of-tree artifact from a missing one — but keys it on the LOCATION'S SHAPE rather than a declared property, so flo2's twelve can never reach it, and the CI gate does not honour it even when they could",
+    "source": "who:flo2",
+    "statement": "FLO2 F29, triaged with a measurement rather than from the report. Their cause, verbatim: \"There is no property that means 'this artifact is real, and it belongs to another repository'\", and \"reconcile resolves `location` against the repo root regardless of what it contains.\"\n\n⭐ THE MEASUREMENT REFINES THAT, AND THE REFINEMENT CHANGES THE REPAIR. Probed 2026-09-21 against the real binary over stdio, one scratch graph, two artifacts:\n\n    location shape                                         reconcile_artifacts\n    absolute path to a REAL file OUTSIDE the graph root -> unmeasurable, why: outside_root  (NOT a finding)\n    relative path resolving UNDER the root, absent      -> missing_artifact                 (a finding)\n\nSo the notion of \"not ours to measure\" EXISTS and is already implemented. It is simply keyed on THE SHAPE OF THE LOCATION — absolute, and resolving outside the root — rather than on anything the author declares. flo2's twelve carry relative locations like `schema/core.yaml`, which resolve under their root and are then indistinguishable from a deleted file. They can never reach the branch that would describe them correctly.\n\n🛑 AND THE SECOND HALF, MEASURED THE SAME DAY FROM THE OTHER DIRECTION: EVEN WHEN THE BRANCH IS REACHED, ONLY ONE INSTRUMENT HONOURS IT. An artifact registered here at an absolute path in another repository was reported by `loop_status`/`reconcile_artifacts` as `unmeasurable / outside_root`, and by `tools/reflow2_check.py` in CI as `FAIL DRIFT ... missing_artifact`, failing the build on the same node in the same state (`fact:an-out-of-tree-artifact-registration-passed-locally-as-unmeasurable-and-failed-ci-as-missing`). So the honest answer exists in the reconcile path and the gate does not read it.\n\n⇒ THE CAUSE IS NOT \"NO SUCH NOTION\". It is that the notion is INFERRED FROM A PATH instead of DECLARED, and is not shared between the two instruments that ask the question. That is a different and cheaper repair than inventing a concept from scratch: the concept is there.\n\nWHAT THE REPORT GOT RIGHT AND THE MEASUREMENT CONFIRMS: all four dispositions genuinely are wrong for this case (`design_updated` and `design_holds` need a file to measure; `expected_absence` needs an accepted Decision and an OBSOLETES edge, i.e. RETIRED, and these are alive and in active upstream use); `provenance: imported` does not stop reconcile expecting a file; and `audience`/`granularity` answer different questions. Their cost figure stands too — 12 of 22 findings permanently unactionable, identical on every pass, which is the condition that trains a reader to skim.\n\nTWO INDEPENDENT INSTANCES NOW, WHICH IS WHY THIS IS A CLASS AND NOT A PROJECT'S QUIRK: flo2's twelve schema files, and this design's own registration of flo2's feedback file on 2026-09-21, which failed CI within the hour.\n\nNOT ESTABLISHED: whether `reflow2_check.py` ignores `outside_root` deliberately or simply predates it — nothing in the design says, and the two were written at different times.",
+    "steps": [
+      "reconcile_artifacts",
+      "add_artifact",
+      "link_artifact"
+    ],
+    "subject_id": "cap:a-declared-dependency-is-watched-not-imported",
+    "valid_from": "2026-09-21"
+  }
+}

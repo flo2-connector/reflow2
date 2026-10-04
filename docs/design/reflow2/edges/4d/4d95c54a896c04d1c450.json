@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:726e35c121024072fe65c5ecc452a63623c2faaac8a9be5f9f3d7590894b6861",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-check-and-its-findings-are-different-things",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "ver:siblings-are-not-merged-away"
+}

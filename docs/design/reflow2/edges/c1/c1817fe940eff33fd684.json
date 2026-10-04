@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:597cce17e6695b1aebd9b8dfec42a390ac41d86fbf0089dc921d701550e45907",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-capability-states-what-it-takes-and-gives",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:tools-capture"
+}

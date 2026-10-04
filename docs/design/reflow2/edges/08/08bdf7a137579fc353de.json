@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:d4a7edf2ccf44d67031f3e6e75ee0f2087e86b17e2c87395bcd01392510d44b5",
+  "edge_type": "HAS_SNAPSHOT",
+  "from_id": "cap:a-server-drains-before-it-stops",
+  "properties": {},
+  "to_id": "snap:epoch:preserved-on-write:cap:a-server-drains-before-it-stops"
+}

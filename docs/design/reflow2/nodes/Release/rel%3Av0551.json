@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:f7dd424f7a5788b1e8bc57591da7d7ce07be362cf42cabbcc3c81cee132a4db4",
+  "node_id": "rel:v0551",
+  "node_type": "Release",
+  "properties": {
+    "description": "A PATCH, AND THE STAMP IS UNMOVED: 28 node types, 65 edge types, unchanged from v0.55.0. No upgrade action is owed and nothing needs migrating. Anyone coming from v0.54.0 or earlier still owes v0.55.0's required migration.\n\nONE FIX. The default tracing filter was a bare `info`, which let every dependency's info level through. Measured on this project's own server log: 368 of 473 lines — 78% — were tantivy's per-commit and garbage-collect bookkeeping, against 11 lines from reflow2 itself. The default is now `warn,reflow2_mcp=info,reflow2_core=info`.\n\nWHY A LOGGING DEFAULT IS WORTH A RELEASE. Docker's default json-file driver has no size limit, and in a container that stream is stderr — so a long-running reflow2 server grew an unbounded log made almost entirely of a dependency's internal chatter. That failure presents as the HOST dying rather than as anything wrong with the container, which is the shape of failure that takes longest to attribute. The image now also tells an operator to cap it, because reflow2 can only reduce the rate; only the driver's cap bounds the total.\n\nMeasured end to end on one import: 15 lines to 6, all nine tantivy lines gone, and the error still through in full. RUST_LOG restores everything.\n\nFOUND BY A QUESTION RATHER THAN BY A CHECK — a user's laptop filled by a different container's log led to measuring what reflow2's own image would do in the same situation.",
+    "name": "v0.55.1 — the default log filter stops letting a dependency dominate the stream",
+    "status": "retired",
+    "unit_type": "binary",
+    "version": "0.55.1"
+  }
+}

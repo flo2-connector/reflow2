@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:c264e61d1ed06c95521aa2f6114e74df33672cefb991ac419da5fc01a071fad5",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:the-loop-counts-this-sessions-reads-and-writes-and-says-when-a-write-is-owed",
+  "properties": {
+    "completeness": "partial",
+    "note": "the detector half; cap:session-memory stays planned for the rest"
+  },
+  "to_id": "req:session-memory-in-graph"
+}

@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:ee958c937f0519e18a3c3552168982ec680af26fc51c1283e5ef5b45e26c3220",
+  "node_id": "frag:alex-2026-08-14-remainder",
+  "node_type": "Fragment",
+  "properties": {
+    "content_ref": "docs/feedback/2026-08-14-alex-grok-session.md",
+    "fragment_type": "feedback",
+    "note_kind": "reviewer",
+    "provenance": "imported",
+    "status": "ingested",
+    "title": "The remainder of Alex's 2026-08-14 report, captured 2026-08-15 on Anthony's word to keep the documents and move the rest into the graph: the six Strengths; issues 3, 4, 7, 8, 9, 10, 12 and 14; his four self-assessed process gaps; and the Opportunities not already routed to their own nodes. Items 1, 2, 5, 11 and 13 and the environment block were captured earlier and carry their own Fragments."
+  }
+}

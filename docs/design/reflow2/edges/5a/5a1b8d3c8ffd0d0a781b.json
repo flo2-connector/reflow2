@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:8c40fc3e83c081ef2d3a7c9ae8ed9530c44faa2945af27e4ce281b646baaafbc",
+  "edge_type": "CHANGED",
+  "from_id": "chg:isolation-check-written",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "ver:sessions-cannot-cross-designs"
+}

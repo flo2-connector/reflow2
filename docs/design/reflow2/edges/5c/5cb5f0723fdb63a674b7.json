@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:49394890f417025dfa9ac90494e3d9d3d3345b153dd5edabfd0e6ca4dfa5c8f2",
+  "edge_type": "EVOLVES_INTO",
+  "from_id": "dec:idea-a-design-apart-from-its-code-knows-where-its-implementation-is",
+  "properties": {
+    "evidence": "Kept as intent 2026-09-25: the return leg."
+  },
+  "to_id": "req:results-from-the-code-flow-back-into-a-design-that-lives-elsewhere"
+}

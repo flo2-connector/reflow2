@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:eb235556f883a6eeb295e0cd23b5cdb5a68048cf47278e5383f15de4bd1c139d",
+  "edge_type": "REALIZES",
+  "from_id": "art:reply-sent-once-test",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "verified"
+  },
+  "to_id": "cap:bounded-reads"
+}

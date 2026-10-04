@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:4ac86123e063e68c90aa5ed43c9d30326be2880826bf5e65e707a9a6adc939f8",
+  "node_id": "epoch:2026-08-23-record-to-record-vocabulary",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "epoch_type": "revision",
+    "name": "Record-to-record relations become modelled, and capture-session gains the question that closes a finding",
+    "sequence": 383,
+    "status": "arrived"
+  }
+}

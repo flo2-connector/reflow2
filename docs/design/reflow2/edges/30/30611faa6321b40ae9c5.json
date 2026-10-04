@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:90f3b726d8b5b998a860e9bdf7c2b3707d0911ead4a937b7175fd8c951f92998",
+  "edge_type": "CONTRADICTS",
+  "from_id": "dec:idea-does-the-graph-write-itself-through-to-the-repo-on-every-change",
+  "properties": {
+    "alignment": "opposing",
+    "evidence": "Both cannot hold as written, and the design will have to pick. That decision is ACCEPTED and says exactly one commit on a branch may write docs/design/reflow2.json and it should be the last, because prev_content_hash chains each export to the one it replaced and squash-merge collapses a longer chain. Auto-exporting on every graph change writes that file hundreds of times per session, so the chain advances continuously and 'one export, last' stops being enforceable by construction rather than by forgetting."
+  },
+  "to_id": "dec:export-once-per-pr"
+}

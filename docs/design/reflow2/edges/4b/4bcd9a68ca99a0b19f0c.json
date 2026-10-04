@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:c50d4a146335eea3b2e64af2bec4277fc577bbd08068a5bba184c115bfd4097d",
+  "edge_type": "INVALIDATES",
+  "from_id": "chg:eight-field-feedback-fixes-land-for-v0510",
+  "properties": {
+    "at": "2026-09-07",
+    "note": "artifact_type gains `test` — the SOURCE of a check, beside test_result, the output of a run — after the second field report of the same miss. Pinned by a_test_file_can_be_registered_as_a_test. Existing test files registered as `code` are not relabelled."
+  },
+  "to_id": "fact:defect-link-artifact-has-no-type-for-a-test-source"
+}

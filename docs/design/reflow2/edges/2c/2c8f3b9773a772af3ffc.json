@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:d951644a4f5b8edec0c2e6bab9731f7ebb2c0cee04ac0d453835dd07881f57ec",
+  "edge_type": "CHANGED",
+  "from_id": "ce:subsystem-split-2026-08-25",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "sub:surface-shaping"
+}

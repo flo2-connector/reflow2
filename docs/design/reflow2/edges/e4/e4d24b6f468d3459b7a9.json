@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:a0bacdaa15f62f7cda34103818db49b597c3cebdc621d9a34f9e9e3848b986cf",
+  "edge_type": "CHANGED",
+  "from_id": "chg:bl70-fork-layer",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "cap:revise-trigger"
+}

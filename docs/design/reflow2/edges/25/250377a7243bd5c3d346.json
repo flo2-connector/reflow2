@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:5b79af7192e5fa46c22d8480812e4a3d6e828e59065b7db7d4d2fc5d5eb35325",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-reply-carries-its-payload-once-on-every-tool",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cap:a-reply-takes-the-shape-its-client-can-read"
+}

@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:cd53b94c295746cf424534b87daff77592ffcee82360bea361ca8b31f856afe1",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-saved-design-moves-to-the-item-layout-2026-10-03",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:24c201e5e508bd2f5ed6f8a96a71100e380f9b30eb9692616ff1565b0c374e66"
+  },
+  "to_id": "art:scheduling-a-question-test"
+}

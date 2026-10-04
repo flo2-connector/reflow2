@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:5c13c06023ade151b7662a4bf6c884cd4de8c83ef23c8d9db8bf5cd5a1d8cf66",
+  "node_id": "req:every-typed-edge-helper-has-a-bulk-form-that-keeps-its-checks",
+  "node_type": "Requirement",
+  "properties": {
+    "kind": "functional",
+    "lineage": "original",
+    "name": "Every typed edge helper has a bulk form that runs that helper's own checks on every edge, and each helper names it",
+    "priority": "high",
+    "provenance": "authored",
+    "source": "Anthony, 2026-09-29, in the dev_reflow2 hub session, relayed by the hub agent: \"Fix all the root causes and go with the 7 ideas you'd promote\". This is idea 4 (reflow2 half), dec:idea-every-typed-edge-helper-has-a-bulk-form-that-keeps-its-checks. The flo2 half is in flo2's design.",
+    "statement": "Many edges of one kind are drawn in one call without losing what the typed helper checks. That covers constrains (contribution, unit, source), governed_by (ruling), authored_by (roles), provides, consumes, allocate and satisfies. Either create_edges runs each edge type's own typed checks, or the helpers take lists. Every typed helper's description names the bulk route.\n\nCounter-argument kept: constructors that draw edges inline are where the silent-drop bug lives (add_decision related_to). So any bulk path replies with the edges it actually drew.\n\nFound by the two-agent exercise (I24): about 270 single-edge calls. create_edges was reachable and no helper named it, and about 100 of those calls had no bulk route that kept the helper's checks.",
+    "status": "accepted"
+  }
+}

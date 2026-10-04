@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:e9e04ee20128499c7b98e66b9163516e4d25242ae431e41d3b09b1c986f17054",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:test-a-write-records-the-agent-it-went-through",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:test-a-write-records-the-agent-it-went-through"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:7548a6f10697070dd7ef72372df0492ad4846b99e8e06ea57d32ea7f08cfa7fa",
+  "edge_type": "REALIZES",
+  "from_id": "art:test-edge-prose-is-governed-like-node-prose",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "verified"
+  },
+  "to_id": "cap:edge-prose-is-read-when-the-node-moves"
+}

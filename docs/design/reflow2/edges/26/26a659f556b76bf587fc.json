@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:e517ef43208e75614f8cc11835fad0a1028be5f99f6b3ce9b62ea5eb395fcd90",
+  "edge_type": "CHANGED",
+  "from_id": "chg:granularity-optimised-against-a-written-budget",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "con:granularity-reads-scale-with-artifacts-not-edges"
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:a0fdbd8270cefde17ec90a5010077001805952b82a520cb9f58d7ca1f18c3369",
+  "edge_type": "ANTICIPATES",
+  "from_id": "fact:reflow2s-black-boxes-hold-no-functions-allocation-went-straight-to-the-modules",
+  "properties": {
+    "evidence": "That fact measured 177 of 178 ALLOCATED_TO edges landing on a module and DECOMPOSES at zero, and named the missing function layer as a real allocation-recording gap. It saw this question coming; this idea states what the missing layer would be. Drawn FROM the fact TO this decision."
+  },
+  "to_id": "dec:idea-a-capability-is-a-set-of-functions-and-a-black-box-delivers-functions"
+}

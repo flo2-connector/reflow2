@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:309ffbafd6553c81daf5a13b025ca303d276815a6bdbd453a4ca1ddd09341498",
+  "node_id": "art:reply-budget-test",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "location": "crates/reflow2-core/tests/reply_budget.rs",
+    "name": "reply_budget.rs",
+    "status": "realized"
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:dfe2d0afdd8038a95b3e9fc716930dfc87ffb10ec2a4860b9da5671cd8362b07",
+  "node_id": "question:5c02d9fc4c3ab022",
+  "node_type": "Question",
+  "properties": {
+    "answer": "KEEP IT — and write the requirement. (Anthony, 2026-08-05, answering the question as asked.)\n\nThe problem it solves, in the terms the question put: the two states read IDENTICALLY without it and they are OPPOSITE. A folder claimed deliberately and a placeholder nobody has got to yet are a decision and unfinished work — a registration check reported \"every live doc is registered\", truthfully, over 359 individually unreferenceable files. And a file that is supposed to keep changing fired drift forever, so the same meaningless disposition was owed on every reconcile.\n\nRecorded as `req:an-artifact-declares-what-only-its-author-knows`, accepted, and `cap:artifact-declares-its-own-shape` now SATISFIES it. The general form that made it worth a requirement rather than two properties: some facts about an artifact are only knowable by the person who put it there, and reflow2 performs no file IO by doctrine, so it cannot even try to observe them.\n\nNoted rather than tidied: the capability shipped BEFORE the requirement, which is the reverse of the loop this project prescribes. The gap was right to fire and the intent is catching up.",
+    "asked_at": "2026-08-04",
+    "context_setter": "Nothing asked for capability “An artifact declares what it stands for and how its content behaves, so a report can tell two opposite states apart”",
+    "gap_id": "gap:5c02d9fc4c3ab022",
+    "question": "When a file or folder is registered, reflow2 now lets you say what it stands for — whether it's one finished thing, a whole folder you're deliberately treating as a single item, or a placeholder you still mean to break up — and whether its contents are expected to keep changing. Nothing in your written-down needs actually asked for that. Was it worth adding, and if so, what problem of yours does it solve? Or should it come back out?",
+    "rephrase_degraded": false,
+    "status": "answered"
+  }
+}

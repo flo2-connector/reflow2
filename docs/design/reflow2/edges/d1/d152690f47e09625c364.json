@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:30dde332b3ac3cd8fc27eca51fa2b8e9065c3d3cf73c9d945f6183c29934451b",
+  "edge_type": "CHANGED",
+  "from_id": "chg:brainstorm-skill-built",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:readme"
+}

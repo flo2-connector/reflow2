@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:c06307ed54b7103480662ffb2f0eede08e541e45ff087760173e0a7324152216",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:test-edges-need-both-ends",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:test-edges-need-both-ends"
+}

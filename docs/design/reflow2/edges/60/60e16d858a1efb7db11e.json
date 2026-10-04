@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:6f6a761ee195be64b2efbb5caaa834ef66a216f095a66ae3672352b0a5db0456",
+  "edge_type": "CAUSES",
+  "from_id": "fact:neither-the-container-nor-the-kit-carries-the-toolsnaps-so-a-consumer-cannot-diff-the-contract-it-is-told-to-check",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "The packaging half of the same hole.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "dec:idea-should-the-contract-be-readable-in-session-and-ship-with-the-artifact"
+}

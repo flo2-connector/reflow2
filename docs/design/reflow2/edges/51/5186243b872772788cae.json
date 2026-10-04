@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:1bc1b97ab3817656270e88e1f5678b17e99abe9325637ad28c8aa2671e8e2f56",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:test-flow",
+  "properties": {
+    "covers": "whole"
+  },
+  "to_id": "ver:a-flows-entry-and-exit-follow-its-step-order"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:b2a52fe9b9eedc125df1997db5ad9fc91232be888093390eb799d2d2f3e9b495",
+  "edge_type": "CHANGED",
+  "from_id": "chg:reflow2-states-its-own-rules-20260808",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "rule:fixes-are-judged-by-the-third-party"
+}

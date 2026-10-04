@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:6737773b8e9d160fcecbd1cada0e2900b60dae4b6cc13bb1a3996f6325c40caf",
+  "node_id": "rel:v0180",
+  "node_type": "Release",
+  "properties": {
+    "name": "v0.18.0",
+    "notes": "Cut 2026-07-28. A MINOR bump that locks NOBODY out and rebuilds NOTHING: no node or edge type was added (stamp holds at 28/56) and the dynograph-foundation pin stays at v0.12.0.\n\nTHE RELEASE THAT MAKES INSTALL ONCE-PER-MACHINE REAL. v0.17.0's install.sh on main already promised machine-wide registration, but the v0.17.0 assets predate the promise: the kit tarball lacked reflow2_install.py and the binary refused --only-if-present, so the curl install died at its final step on every machine (observed live on the maintainer's own machine, 2026-07-28, and bridged there by a hand-rolled shim). This release is the first whose assets actually carry req:no-setup-per-project: the machine-wide installer, the latent surface (cap:latent-surface -- one tool served where no design exists, nothing created), and /genesis + /adopt as discoverable doors.\n\nAlso ships: seam disagreement reporting finished honestly -- seam_report's design parameter now DECLARES it takes an object (BL-28), the defect that held main red between the cuts, fixed with the design gate's own drift catch reconciled two-sided (chg:accept-975fcb51ce6ec113); and Interface.medium no longer defaults to REST, so two silences cannot agree on a protocol neither chose.\n\nVerified by CI run 30371232790 (workspace tests, clippy, fmt, 117 toolsnaps, smoke over real stdio, design gate, doc versions, skill lint) -- this machine holds no Rust toolchain, so the release rides the same runners that build the binaries. Epoch note: v0.17.0 was cut without an epoch or deploy/retire bookkeeping; this cut records its own epoch (sequence 210) and the deploy is recorded separately once the published assets are observed installed.",
+    "status": "retired",
+    "unit_type": "binary",
+    "version": "0.18.0"
+  }
+}

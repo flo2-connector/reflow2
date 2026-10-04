@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:96eea96b542a8b1cb614b0e4414e614fbd447995a6ea8b114e429a219bdc0585",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:find-tools-ranks-what-the-query-means-test",
+  "properties": {
+    "covers": "whole"
+  },
+  "to_id": "ver:get-node-reads-its-edges"
+}

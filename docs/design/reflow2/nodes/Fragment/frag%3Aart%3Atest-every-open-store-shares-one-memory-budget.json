@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:4434d16da126d4bdef7d1c11863263fa30f26b5044df7fdb31feaf13d67e6442",
+  "node_id": "frag:art:test-every-open-store-shares-one-memory-budget",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered every_open_store_shares_one_memory_budget.rs — two stores' memtables are charged to one write-buffer budget, fixed once set"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:c2274d1a67f829ca8fbcb2079df07490abb0e73cd10a00e1b8975985b6fcc31d",
+  "edge_type": "CHANGED",
+  "from_id": "chg:every-argument-refusal-names-the-tool-and-the-field-path",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:tools-query"
+}

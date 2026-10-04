@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:efd913895026eeef06ae9034b54bb83b668bf24a5badfff10fd0b42e424cb205",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:test-a-near-match-of-another-type-is-named-as-a-layer",
+  "properties": {
+    "covers": "whole",
+    "note": "conformance stated at registration: verified | migrated 2026-09-22 from a REALIZES link_artifact drew in error"
+  },
+  "to_id": "ver:a-cross-type-near-match-is-named-as-a-layer"
+}

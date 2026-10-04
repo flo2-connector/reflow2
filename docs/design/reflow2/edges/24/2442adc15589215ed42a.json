@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:030224ef811adfe1cee4c5f5bb842361419d11a3f951556949dc7335d14c0987",
+  "edge_type": "OBSOLETES",
+  "from_id": "dec:field-reports-are-untracked-because-the-repository-is-public",
+  "properties": {
+    "evidence": "Inbound field reports are kept out of git (docs/feedback/ is gitignored) because the repository is public; the file stays on this machine and the design keeps what it yielded. Retired by the same accepted decision as the field reports before it, so a checkout without the file reads expected_absence, not missing_artifact. Drawn 2026-09-30 while folding the 2026-09-29 live records into main: the report was registered in the live store without this edge, and main's reflow2_check failed on it as missing_artifact."
+  },
+  "to_id": "art:dev-reflow2-two-agent-exercise-feedback-2026-09-29"
+}

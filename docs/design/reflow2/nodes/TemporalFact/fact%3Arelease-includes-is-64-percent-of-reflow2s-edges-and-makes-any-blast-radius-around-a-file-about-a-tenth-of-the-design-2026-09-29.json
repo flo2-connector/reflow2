@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:b80e0c73ad192c8a6cb30d54ac47e0e5f7d5659a580b80f91cd50f034f917bc4",
+  "node_id": "fact:release-includes-is-64-percent-of-reflow2s-edges-and-makes-any-blast-radius-around-a-file-about-a-tenth-of-the-design-2026-09-29",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "finding",
+    "name": "Release→INCLUDES is 64% of all edges in reflow2's own design (24,839 of 38,532), and propagate_from walks it both ways. So a depth-2 blast radius around any file record is a median 634 nodes (10.6% of the design): every file is one hop from up to 82 releases and two hops from everything they ship. Without INCLUDES the median edited-node radius drops from 178 to 14",
+    "source": "who:claude-code",
+    "statement": "MEASURED 2026-09-29 for the islands study (dec:idea-a-claimed-blast-radius-is-an-island-no-other-session-writes-in). The method was a Python replica of propagate_from, run on the committed export (6,009 nodes). It matched the live server exactly on 5 seeds, for both total_impacted and truncated_beyond_depth.\n\nTHE TRAVERSAL: INCLUDES (Release→Artifact/Component) is a walked structural edge (nodes.rs:457), and propagate_from reads out-edges and in-edges (propagate.rs:255, 269).\n\nAT DEPTH 2:\n\n| population | median | p90 | max | share of design (median) |\n|---|---|---|---|---|\n| 983 nodes that are ChangeEvent CHANGED targets | 178 | 675 | 906 | 3.0% |\n| the 379 Artifacts among them | 634 | 686 | 788 | 10.6% |\n\n- Any two Artifact regions intersect: 100% of pairs.\n- rel:v0740 alone reaches 585 nodes at depth 1 and 1,184 at depth 2.\n\nAT propagate_from's OWN DEFAULT DEPTH OF 5: the median edited-node radius is 2,462 nodes, 41% of the design.\n\nSENSITIVITY RUN, INCLUDES dropped (a measurement, not a proposal):\n- median 178 → 14;\n- p90 675 → 67;\n- pairwise overlap 73% → 19%.\n\nWHY IT MATTERS BEYOND CLAIMS: every blast radius a file change produces (impact-check, propagate_change on a code change, tools/impact_of_diff.py) is dominated by release packaging. \"Which releases shipped this file\" says nothing about which design intent the change touches. Whether INCLUDES should stay a traceability edge, be walked one way only, or be walked only on request is an OPEN question, not settled here. The other three designs measured (flo2, storyflow, graph-primitives) have few releases and median depth-2 radii of 6–18 nodes.",
+    "subject_id": "cap:propagate",
+    "valid_from": "2026-09-29"
+  }
+}

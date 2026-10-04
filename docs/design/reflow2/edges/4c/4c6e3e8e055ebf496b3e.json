@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:1a4ef33b147ad474f84bfe2ec2955321ed876d083ca446cc5c4294b94758bef7",
+  "edge_type": "DOCUMENTS",
+  "from_id": "art:dev-storyflow-feedback-2026-09-27",
+  "properties": {
+    "evidence": "The brainstorm pass this rule requires: this exploratory Decision is the 09-23 'Opportunity' (on a revise, compute the note from the stored node after the merge), recorded in the reporter's words from this document. The 09-25 'keep omitted fields on record_finding revise' is that finding's proposed fix, not a separate idea."
+  },
+  "to_id": "dec:idea-revise-notes-guards-and-defaults-read-the-merged-node"
+}

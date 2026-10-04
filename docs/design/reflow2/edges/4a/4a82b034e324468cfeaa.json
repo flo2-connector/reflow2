@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:595a1347d18f13c23eed6a4b94b8468b74cc7e02b4a7c942c135ded4826afca9",
+  "edge_type": "REALIZES",
+  "from_id": "art:tools-assure",
+  "properties": {
+    "completeness": "partial",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:a-status-advance-says-whether-its-prose-predates-it"
+}

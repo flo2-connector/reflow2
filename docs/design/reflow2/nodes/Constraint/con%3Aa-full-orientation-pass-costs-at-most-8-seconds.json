@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:879d14df4fbf5b66b47316c07db95d17ac113fbfcffbf7e53522b68f915e8a48",
+  "node_id": "con:a-full-orientation-pass-costs-at-most-8-seconds",
+  "node_type": "Constraint",
+  "properties": {
+    "category": "budget",
+    "concern": "core",
+    "direction": "maximum",
+    "limit": 8000.0,
+    "name": "A full orientation pass costs at most 8,000 ms",
+    "priority": "medium",
+    "quantity": "latency_ms",
+    "statement": "The four orientation rollups a session runs together - loop_status, open_questions, detect_gaps, graph_report - cost at most 8,000 ms in sum, warm. Derived: the expensive scans (open_defects ~5 s, detect_gaps ~1.5 s) are paid ONCE per graph state, not once per rollup that reports them. Measured 2026-09-05 before any change: ~31,000 ms, because open_defects is recomputed inside loop_status, graph_report and debt_since with no memo, and each rollup re-derives what its sibling just computed. Anthony accepted 2026-09-05. Bounds: release, this machine, live store, stdio. Note the ~7 s inside open_questions that is still unexplained - this budget is only meetable if that is found too."
+  }
+}

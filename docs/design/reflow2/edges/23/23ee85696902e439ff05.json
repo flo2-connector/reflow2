@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:57fb553da7382871c42722a5c6c411191c1a512eb48eb4955e7e1791b83b3a84",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:an-acknowledgement-says-whose-judgement-it-was",
+  "properties": {},
+  "to_id": "req:settled-intent-carries-the-owners-name"
+}

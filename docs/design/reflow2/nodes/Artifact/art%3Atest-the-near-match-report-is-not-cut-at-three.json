@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:975f9827ec26299db3550a487d69a7ee50802e340d48d9355f6c289bb49d07a2",
+  "node_id": "art:test-the-near-match-report-is-not-cut-at-three",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "test",
+    "description": "Pins the CLASS behind `fact:the-near-match-guard-shows-three-of-a-nine-way-tie-so-relevance-is-decided-by-score-noise`: seeds a neighbourhood of eight close Decisions inside a wider corpus, writes a ninth into it, and requires that the guard report MORE than three of them while staying within the 12-hit query window. The upper bound is not decoration — \"report everything\" is the other way to make the first assertion pass, and it is the failure the original NEAR_MATCH_LIMIT comment named.\n\nOBSERVED FAILING FIRST, and twice for the wrong reason before it failed for the right one, which is recorded in the file because both are instructive:\n1. With the band as the whole corpus and every member carrying IDENTICAL text, BM25's IDF collapsed — a term in every document distinguishes nothing, so the shared body scored ~0, the probe's self-score came only from its unique title words, and NOTHING cleared the floor. The guard emitted no block at all and the test panicked before its assertion. A filler corpus of unrelated material is therefore load-bearing.\n2. With the probe carrying a sentence the band lacked, its own score climbed, and because the floor is HALF THE PROBE'S SCORE the floor climbed with it: only two of eight cleared, so the cap of three was never reached and raising it would not have turned the test green.\nOnly on the third shape — probe body identical to the shared topic, band members adding one clause each — did it fail with \"the guard reported 3\", which is the cut actually being exercised.\n\n⚠️ WHAT IT DOES NOT COVER: the refusal path. NEAR_MATCH_LIMIT governs both, and this test names every seeded id in `distinct_from` so the write is not refused, because the advisory block is what it measures.",
+    "location": "crates/reflow2-mcp/tests/the_near_match_report_is_not_cut_at_three.rs",
+    "name": "the_near_match_report_is_not_cut_at_three.rs — a crowded band is not reported as three, and the report stays bounded",
+    "status": "realized"
+  }
+}

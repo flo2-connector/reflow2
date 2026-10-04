@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:cd87c22ec3059f3af7289b5f697a49ee9aea155072f441a9d85a38883ecb1869",
+  "edge_type": "GOVERNED_BY",
+  "from_id": "cap:a-file-realizes-only-what-it-implements",
+  "properties": {},
+  "to_id": "dec:realizes-is-restricted-to-capability-component-and-interface"
+}

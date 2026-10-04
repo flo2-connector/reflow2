@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:0378fae123266e91b731d6ba0387691dfb24bb20cac70df977b45209a56b5899",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-the-ility-chooses-the-allocation-graph",
+  "properties": {
+    "note": "if the ility chooses the graph, it also chooses WHEN the moment arrives",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "dec:idea-allocation-waits-for-the-last-responsible-moment"
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:5765a075991b8c634735b05ebb469dbc48f2308e059f496c25bdec31aef394ad",
+  "node_id": "frag:art:test-stale-seat",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered stale_seat.rs + test_stale_seat.py"
+  }
+}

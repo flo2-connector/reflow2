@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:b6463ca8253fa95f45a32ce8427c25bceebcb2121d849a6bd1c94a134f628057",
+  "node_id": "fact:manual-work-b80153a8b362591b",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "manual_work",
+    "statement": "Joined two instruments by hand to rank the tool surface by frequency x cost: call volume per tool from the transcript scanner (tools/surface_usage.py, 47 sessions) against a controlled per-tool cost run on a copy of the store (hard-coded arguments for the top 40, reads timed cold and warm, refusals recorded as unmeasured), then weighted reads by how often they actually follow a write. Nothing serves a cost-weighted ranking; the two halves live in two scripts and the join was a third.",
+    "subject_id": "proj:reflow2",
+    "valid_from": "2026-09-12",
+    "value": "{\"diagnosis\":\"tool_missing\",\"reflow2_tool\":null}"
+  }
+}

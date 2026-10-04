@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:5b99155869a28c7582e6d1496fa7678c6f3e769f0341e310e75e917c4efd7172",
+  "edge_type": "CHANGED",
+  "from_id": "chg:user-is-still-the-reminder",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "req:skill-use-survives-a-long-session"
+}

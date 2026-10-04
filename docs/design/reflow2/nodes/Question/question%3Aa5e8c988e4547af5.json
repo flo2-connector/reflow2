@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:7adb206b18c0b7fb9dd95b18ab2edcd5bd661bd903e312bffb785c1e869c3134",
+  "node_id": "question:a5e8c988e4547af5",
+  "node_type": "Question",
+  "properties": {
+    "answer": "\"go with req:composed-analysis and req:interface-spec-complete next\" (Anthony, 2026-07-27). Build it, and build it before the seam work — which is the order the dependency already implied.",
+    "asked_at": "2026-07-27",
+    "context_setter": "Nothing satisfies requirement “Import one design into another and analyse the whole”",
+    "gap_id": "gap:a5e8c988e4547af5",
+    "question": "You want to pull a dependency's design into your own and then run reflow2's normal checks over both together. reflow2 cannot do that yet: loading one design into another overwrites anything sharing a name, because that loader was built for reloading a design onto itself. Making both sit side by side is real work — do you want it, and does it come before the connection-details work or after?",
+    "rephrase_degraded": false,
+    "status": "answered"
+  }
+}

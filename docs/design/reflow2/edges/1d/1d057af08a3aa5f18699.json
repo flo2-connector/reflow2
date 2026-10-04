@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:6bccb7b503537b1979372d776d39d0fd9f9a95a887890e50aace4b1552f8e745",
+  "edge_type": "CAUSES",
+  "from_id": "fact:the-schema-serves-the-types-and-not-the-rules-that-tell-them-apart-so-a-numeric-prohibition-was-filed-as-a-requirement",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "The misclassification is what puts the question on the table.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "dec:idea-should-the-rules-that-tell-the-types-apart-be-served-as-data"
+}

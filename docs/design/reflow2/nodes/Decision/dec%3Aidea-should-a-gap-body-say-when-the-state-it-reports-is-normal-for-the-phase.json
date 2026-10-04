@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:e3c551ee9006428e4c23f601f31f2a099c8307a59012820b883f398730350ce7",
+  "node_id": "dec:idea-should-a-gap-body-say-when-the-state-it-reports-is-normal-for-the-phase",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Recorded as brainstorming on 2026-09-19 from flo2 F20, not as a proposal, and filed by its reporter as a quality observation rather than a blocker.\n\nTHE OBSERVATION: two gap sources answer with a paragraph that routes to who can answer and says whether the thing is even a defect; a third answers with one line. The third is the one that fires once per capability on a design with nothing built — 17 times on flo2's own graph — and a person reads seventeen of those as seventeen defects.\n\nOPTIONS. (a) One sentence in that body saying planned work is a normal state for a young design. Smallest, and it is what the reporter suggests. (b) Have the per-capability finding INHERIT the neighbouring aggregate one, which already states the phase correctly ('Design laid out, but nothing built yet') — structural, and it fixes the class rather than the instance. (c) Suppress the per-capability form entirely while the aggregate holds, so a young design gets one finding instead of seventeen. COUNTER to (c): the aggregate cannot say WHICH capability, and naming them is the useful part once building starts.\n\n⚠️ POSSIBLY DELIBERATE, and the reporter says so. The one-line form may be a considered choice about a detector whose answer really is just a question. What is not deliberate is the asymmetry: the routing and the is-this-a-defect framing were written per detector as each was added, so nothing made the third inherit what the first two carry.",
+    "kind": "exploratory",
+    "name": "OPEN — should a gap body say when the state it reports is a NORMAL phase rather than a defect, given one source fires once per capability on every young design?",
+    "status": "accepted"
+  }
+}

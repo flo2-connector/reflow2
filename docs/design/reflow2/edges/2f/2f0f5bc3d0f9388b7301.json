@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:fc9d27427ab6f6a0e75fad2df506540b3c65ffa07e8dda832e4c107142db3d1b",
+  "edge_type": "CAUSES",
+  "from_id": "art:dev-storyflow-feedback-2026-09-27",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "The root-cause pass on this document's 09-27 gap (no bulk 'is this already represented?'): the only comparable matcher runs as a write guard; search_design takes one query with raw scores.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:root-cause-a-population-check-has-no-served-form-2026-09-28"
+}

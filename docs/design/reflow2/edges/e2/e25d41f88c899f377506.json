@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:2e0122b8d433d76e6fb7f17092713c449fe098841786de3b900f395f07b6aa4a",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0610",
+  "properties": {
+    "as_checksum": "sha256:429aed138b99595ab8434fe1ad7e03f36bfbec7622120fa920e2561e9ac1f3f9"
+  },
+  "to_id": "art:every-reference-parameter-names-its-type-test"
+}

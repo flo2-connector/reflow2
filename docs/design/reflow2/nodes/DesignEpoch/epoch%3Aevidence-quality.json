@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:fcd67d7723baee72733c72bd907810da814c9de777b5293fe9845735a7de97f0",
+  "node_id": "epoch:evidence-quality",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "epoch_type": "revision",
+    "name": "The evidence-quality family — a check's TIME, INPUT and INDEPENDENCE become facts the graph holds (BL-106/126/136)",
+    "sequence": 250,
+    "status": "arrived"
+  }
+}

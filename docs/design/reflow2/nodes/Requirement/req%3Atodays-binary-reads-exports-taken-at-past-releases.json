@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:1ca897a2d15d342f7849f192f7ddf2df242fd93cd951a1fa2b19f907ae5572c4",
+  "node_id": "req:todays-binary-reads-exports-taken-at-past-releases",
+  "node_type": "Requirement",
+  "properties": {
+    "concern": "core",
+    "kind": "functional",
+    "lineage": "original",
+    "name": "Today's binary reads exports taken at past releases without inventing or dropping a field",
+    "priority": "high",
+    "provenance": "authored",
+    "statement": "A small, curated corpus of design exports taken at PAST releases is kept in the repo, and the build requires that today's binary import each one and round-trip it without inventing a field, dropping a field, or silently materialising a schema default the document did not carry.\n\nBOUNDED ON PURPOSE: three fixtures, with a stated rule for retiring one, because the failure this guards is VERSION SKEW and not coverage. A corpus that grows with every release becomes maintenance nobody does.\n\nWHAT IT IS FOR: every gate today runs this commit's binary against this commit's data, so the whole skew axis is untested — while the defects consuming projects actually report are old-data-meets-new-binary. The 853 edges that \"gained a field on import\" were an older binary injecting a stale default onto a newer document, and no gate could have caught it.\n\nNOT IN SCOPE HERE: running an OLD binary against a NEW document, which is the other direction and needs a published release downloaded into the build.",
+    "status": "accepted"
+  }
+}

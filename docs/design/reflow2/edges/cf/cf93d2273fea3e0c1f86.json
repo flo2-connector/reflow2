@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:364ad18817ac8d3f19697fb2d185a0ffd757782e40b872bd1f354ba4276ea8cd",
+  "edge_type": "MITIGATES",
+  "from_id": "dec:idea-the-audience-is-not-the-trigger-orientation-fires-when-the-agent-is-about-to-assert-status",
+  "properties": {
+    "evidence": "The finding's first and second candidate causes are the trigger wording and the absent demand at the moment of the claim; this idea is the proposed answer to both."
+  },
+  "to_id": "fact:field-report-hxm-a-progress-deck-was-written-from-a-checklist-and-recency-and-the-design-was-read-only-after-a-challenge"
+}

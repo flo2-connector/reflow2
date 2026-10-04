@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:db5ba195bcc14a7e501b2bcb87301d91ab3fdd998023f4194f4573dba55365f8",
+  "node_id": "chg:v0370-version-bump",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "refactor",
+    "name": "Version strings bumped to 0.37.0 for the cut",
+    "subject": "record"
+  }
+}

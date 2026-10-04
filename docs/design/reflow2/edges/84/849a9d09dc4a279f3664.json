@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:613cf827ff05e378f1f17cb0a48b72a4d235210b8a9e7fa6f0cf59885bc59062",
+  "edge_type": "CHANGED",
+  "from_id": "chg:seam-incompatibility",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:service"
+}

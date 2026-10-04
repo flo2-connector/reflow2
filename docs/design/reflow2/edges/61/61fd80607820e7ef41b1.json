@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:97c26aba0a1236add4f17535ddd1307605c446ebbb796ec31a9516b01cab459e",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "req:skill-adherence-is-measured",
+  "properties": {
+    "evidence": "Without a measurement, whether that requirement is ever met is unknowable — the decay it names was found by asking an agent, not by any mechanism.",
+    "optional": false,
+    "weight_basis": "evidence"
+  },
+  "to_id": "req:skill-use-survives-a-long-session"
+}

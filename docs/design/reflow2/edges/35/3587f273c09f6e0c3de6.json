@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:28178a645b28bc87102080bd8979bdde8ea0d133fc90535f9661402043f92733",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:change",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:temporal"
+}

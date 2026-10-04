@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:9ed3791c2f2f1f55d98056c86c67c3c2a6d290bf0fa323ad11215dd6ac5d32a3",
+  "node_id": "epoch:feedback-corpus-ingested-then-deleted",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "epoch_type": "milestone",
+    "name": "The no-documents rule is stated and made gate-blocking on Anthony's word — and the deletion it implied is HELD, because mass ingest turned out not to move prose into the graph and `req:sources-are-kept-not-just-parsed` forbids consuming a source and discarding it (2026-08-15)",
+    "sequence": 341,
+    "status": "arrived"
+  }
+}

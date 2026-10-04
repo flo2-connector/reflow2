@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:77a326ef370ce27b838df124278b0dc0ca57cfb198621884ce300b5ba58201e0",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-lineage-anchor-moves-from-the-file-to-the-commit",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:tools-exchange"
+}

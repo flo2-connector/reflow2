@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:566fe2abff1b0fa292cb62d45da05fbc2aa8c1357a88f118b718518b41aa1210",
+  "edge_type": "TRIGGERS",
+  "from_id": "fact:defect-add-epoch-requires-a-sequence-the-refusal-cannot-name-because-the-required-field-helper-is-generic",
+  "properties": {
+    "evidence": "The measured defect (a generic refusal that cannot name the sequence) is what raises this question. The fact records the mechanism; this idea records Alex's two proposed responses to it and the counter-argument from the record. A measurement and the decision it informs — the prescribed pair."
+  },
+  "to_id": "dec:idea-add-epoch-assigns-the-next-sequence-or-names-it"
+}

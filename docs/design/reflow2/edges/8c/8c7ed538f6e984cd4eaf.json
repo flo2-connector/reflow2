@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:41b5f0187caf1fdc2ed3dffb02cc06da0aeaea60216bcc23a024f63f0e87f826",
+  "edge_type": "CONSUMES",
+  "from_id": "cmp:service",
+  "properties": {
+    "weight": 0.9,
+    "weight_basis": "evidence"
+  },
+  "to_id": "ifc:mcp-protocol"
+}

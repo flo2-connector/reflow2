@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:bd7e1a29dbd7317ed53f640a4691b17b7c450125d545dc7c446aafa5802f1059",
+  "edge_type": "REALIZES",
+  "from_id": "art:graph",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:plan-movement-recorded"
+}

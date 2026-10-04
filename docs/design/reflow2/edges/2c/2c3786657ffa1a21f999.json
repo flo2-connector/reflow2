@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:8459d753d0899f41d4021e73e99b4d8ac881a073e5ae46d962b951b72b167bb1",
+  "edge_type": "REALIZES",
+  "from_id": "art:drawn-edges",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:a-drawn-relation-is-read-back-as-a-sentence-and-the-skill-names-the-direction-flag"
+}

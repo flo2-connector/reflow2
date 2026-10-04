@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:5e910ab9c7774a156d77558c47240970c01cc8fb79f789e17f07c032935f0d3a",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-saved-design-moves-to-the-item-layout-2026-10-03",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 2,
+    "action": "modified",
+    "checksum_after": "sha256:df600719c5fa241aba942cb320206c02bb5c87bbee37e6823b64b25e3dc354e7",
+    "checksum_basis": "measured"
+  },
+  "to_id": "art:parallel-work-skill"
+}

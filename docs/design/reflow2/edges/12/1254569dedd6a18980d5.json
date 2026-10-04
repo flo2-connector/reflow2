@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:5e99d68281a11dbf3962a2b7a158805cd1aab9bb1595159f389dbae1eb98bf7f",
+  "edge_type": "CHANGED",
+  "from_id": "chg:seams-detector-built",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "art:maturity"
+}

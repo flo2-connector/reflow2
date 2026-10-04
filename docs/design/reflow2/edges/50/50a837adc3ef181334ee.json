@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:293fd384f14515663c231c76d2ce6618e73748c93b337b0be19e72a726f46885",
+  "edge_type": "CONSTRAINS",
+  "from_id": "con:pairing-stops-at-the-boundary",
+  "properties": {
+    "basis": "evidence"
+  },
+  "to_id": "req:complementary-pairing"
+}

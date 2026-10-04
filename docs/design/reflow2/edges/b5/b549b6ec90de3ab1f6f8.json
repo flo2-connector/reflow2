@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:b400cfbb3cebd934270a05d71e0b44017c480a48fce4485efe0dffa657821497",
+  "edge_type": "HAS_SNAPSHOT",
+  "from_id": "art:docker-smoke-script",
+  "properties": {},
+  "to_id": "snap:epoch:v0602-cut:art:docker-smoke-script"
+}

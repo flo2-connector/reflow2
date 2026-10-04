@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:1ca452eeae7267178506c52f1b0addccb6c3f899b359f297044a2aa40080a53f",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:a-drawn-relation-is-read-back-as-a-sentence-and-the-skill-names-the-direction-flag",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:vocabulary"
+}

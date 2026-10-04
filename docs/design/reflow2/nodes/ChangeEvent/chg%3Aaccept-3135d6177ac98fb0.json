@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:9cd0e144563fc445d2f62444f97a53a08219e497c5cb866582a52772d236e4fc",
+  "node_id": "chg:accept-3135d6177ac98fb0",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "resync",
+    "detected_at": "2026-09-15",
+    "name": "v0.61.2 cut: the version string moved; the design meaning of a cut lives in rel:v0612 and epoch:v0612-cut.",
+    "subject": "system"
+  }
+}

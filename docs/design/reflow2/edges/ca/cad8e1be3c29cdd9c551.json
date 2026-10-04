@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:35f3b5502558a7964faad10f1adb8dc29b502848b12f3096780da7eec52e3339",
+  "edge_type": "CHANGED",
+  "from_id": "chg:seat-handle",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "art:skill-lint"
+}

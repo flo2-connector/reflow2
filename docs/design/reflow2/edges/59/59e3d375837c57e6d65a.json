@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:8395e6cf265ae907dedf8ebce3cdbd913ba884f8a630aff2a2e66681107ea65e",
+  "edge_type": "VERIFIES",
+  "from_id": "ver:check-reconciles-dependencies",
+  "properties": {},
+  "to_id": "cap:design-dependencies-declared"
+}

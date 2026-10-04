@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:30ad432ba7f2590fb177637a24faafe11b9c828484d2f0dcb0808b495b4cf798",
+  "node_id": "art:test-a-change-says-how-its-reason-is-known",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "test",
+    "description": "Tool boundary: basis and commits stored (commits normalised), repair rides the same call, non-commits and an undeclared basis refused naming the legal values, a workaround without its proper fix refused, and a refused call writes nothing.",
+    "location": "crates/reflow2-mcp/tests/a_change_says_how_its_reason_is_known.rs",
+    "name": "a_change_says_how_its_reason_is_known.rs",
+    "status": "realized"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:768aa71ab46e7b1ebe5e2459d376c2c2c9935e9d99de52da66a1a87059172180",
+  "node_id": "art:surface-usage-instrument",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "granularity": "atomic",
+    "location": "tools/surface_usage.py",
+    "name": "Surface-usage instrument — which parts of reflow2 real sessions actually drive",
+    "status": "realized",
+    "volatility": "stable"
+  }
+}

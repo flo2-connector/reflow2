@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:784cd3444836739e52e54ccc722ab044e7ce1c7b68c240f5fa7a3a92acd6d1c8",
+  "edge_type": "GOVERNED_BY",
+  "from_id": "req:a-server-offers-a-consistent-live-snapshot-of-every-store",
+  "properties": {
+    "note": "Rule 6: backups are of stores, across all designs, so the server has to be able to copy its stores consistently while it runs."
+  },
+  "to_id": "dec:idea-one-blueprint-the-store-is-the-design-and-an-export-is-a-perishable-photocopy"
+}

@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:98bc393b10b10f56d5b4998e56978e9e4657c56d61a55c3bd2e12317323f1ded",
+  "node_id": "art:check-doc-versions",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "description": "The drift class it exists for: a bump lands in a manifest and the prose still advertises the previous value, so a reader orienting from AGENTS.md gets a confident wrong answer — and confidently wrong is worse than absent, because nobody goes to check.\n\nITS ONE DELIBERATE DIFFERENCE FROM THE UPSTREAM SCRIPT IT WAS ADAPTED FROM is the thing worth knowing about it: a pattern that matches nothing FAILS rather than passing quietly. The upstream greps with `|| true` and its own header admits that rewording a doc line disables the corresponding check silently. reflow2 holds req:no-silent-fallback at critical priority, so here rewording breaks the build loudly and both sides get fixed together.\n\nEXTENDED 2026-09-07 FROM 3 CLAIMS TO 11. It guarded version strings only. Retiring QualityGate moved the node count 29 to 28, and a sweep found the EDGE count in the same four sentences had been wrong for weeks — three said 60 and one said 64 against a real 65 — because nothing checked structural claims at all. It now reads both counts from schema/*.yaml and asserts them across AGENTS.md, README.md, docs/overview.md and docs/interaction-surfaces.md.\n\nEach schema-count pattern matches EVERY occurrence in its file rather than the first, which is the specific lesson from that drift: README carried the size in two sentences and both were wrong, so a check anchored on one would have passed while the other rotted.\n\nREGISTERED LATE, on the day it was extended. It had been a CI gate outside the design record, which is the same silence that let constructors_preserve.rs guard a class while its own scope was wrong.",
+    "location": "tools/check_doc_versions.py",
+    "name": "check_doc_versions.py — the gate that asserts a doc's factual claims against what the build actually says, where a pattern matching nothing is a FAILURE",
+    "status": "realized"
+  }
+}

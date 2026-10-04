@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:f0af93fd624fed87e48132482da1e3900c80371464771ffd91e2e04df1ada69b",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-should-reflow2-serve-a-root-cause-analysis-method",
+  "properties": {
+    "evidence": "Overconfident diagnosis — fixing a symptom while believing it is the cause — is an AI-agent failure mode, and that node asks which such modes reflow2 can actually reach as opposed to merely assert it addresses. Whether this idea is worth building turns on that answer: if this pitfall is in the class reflow2 cannot reach, a served RCA method would be the overstating failure that node warns against.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "dec:idea-which-agent-pitfalls-can-reflow2-actually-reach"
+}

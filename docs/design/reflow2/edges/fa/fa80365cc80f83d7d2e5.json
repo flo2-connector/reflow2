@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:8254811e4a39c65ba9a5c76c0eb22807f1d88b68318ee19cef4f8d2ff950ca45",
+  "edge_type": "YIELDED",
+  "from_id": "frag:usgov-2026-08-15-item-1",
+  "properties": {
+    "action": "updated"
+  },
+  "to_id": "fact:defect-typed-tool-parameter-names-are-inconsistent"
+}

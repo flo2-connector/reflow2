@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:92c6d06a48d70908a77ded398cf971bc41622781a1e56597aaf6e8ccda220c98",
+  "node_id": "ver:a-settling-status-carries-a-name-or-is-refused-and-a-check-lands-wired",
+  "node_type": "Verification",
+  "properties": {
+    "description": "crates/reflow2-mcp/tests/a_constructor_accepts_the_owners_word_in_one_call.rs (9 tests) plus plan_epoch_without_a_sequence_names_where_you_are_too in tests/tools.rs. Pins: a Decision lands accepted with the approver edge in one call; accepted with no approver is refused and nothing is written (Decision and Requirement); an approver naming no Contributor is refused before any write; the landing status needs no signature; a Requirement lands accepted signed; a rule's stated power (true or false) needs the owner's name and unstated power does not; set_decision_status / set_requirement_status draw the edge when given one and reply with carries_nobodys_name when not, superseding is not flagged, an unknown approver is refused; add_verification draws VERIFIES and records status/findings/last_run_at in one call and the reply lists the targets; findings without status is refused; an unresolvable target refuses the whole call; plan_epoch names the highest existing sequence like add_epoch.",
+    "findings": "10 of 10 passed (9 new + the plan_epoch pin), inside a reflow2-mcp run of 374 passed / 1 failed where the one failure was the pre-existing enforcement test that needed an approver under the new rule, then corrected; tools suite 80 / 0 afterwards; clippy clean; toolsnap goldens regenerated for exactly the six tools whose schema changed. NOT recorded with the one-call form it verifies: the server was restarted with the new binary, but this session's client kept the tool list it fetched at connection and serialized `verifies` as a string — recorded as fact:defect-a-clients-tool-list-is-fixed-at-connection-so-a-restarted-servers-new-fields-are-unreachable. The one refusal observed failing first: the duplicate-guard collision in the landing-status test, a test-fixture fault, corrected.",
+    "kind": "verification",
+    "last_run_at": "2026-09-06",
+    "level": "integration",
+    "method": "test",
+    "name": "A settling status on a constructor is refused without an approver and signed with one; setters report nobody's name; a check lands with its targets and its run",
+    "status": "passing"
+  }
+}

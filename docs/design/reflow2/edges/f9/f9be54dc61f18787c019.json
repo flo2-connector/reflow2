@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:dcbcd26f330af0118f73cccbd14c0195935c4cdce5fff575f3bbb0e83b848948",
+  "edge_type": "CHANGED",
+  "from_id": "chg:baseline-51b4ae0c8b2eaa5e",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:claim-not-hidden-test"
+}

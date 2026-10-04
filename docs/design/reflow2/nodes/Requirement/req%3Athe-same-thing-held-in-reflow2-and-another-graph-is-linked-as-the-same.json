@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:488eaaf0a49cb47a08ac6f440d1166df838a219419b83d69c2fcea619000191e",
+  "node_id": "req:the-same-thing-held-in-reflow2-and-another-graph-is-linked-as-the-same",
+  "node_type": "Requirement",
+  "properties": {
+    "concern": "core",
+    "kind": "functional",
+    "lineage": "original",
+    "name": "When the same thing is held in a reflow2 design and somewhere else — another design, the codebase, StoryFlow — the two are joined by an identity link that says who asserts it, a question can follow the link, and identity is never held only as text",
+    "priority": "medium",
+    "provenance": "imported",
+    "source": "Anthony, 2026-09-28, in a dev_reflow2 session: \"what is applicable to reflow2 and storyflow from the 5 tests? If we need to apply things to reflow2 and storyflow, then please add them to their respective design graphs also.\" Test 5 of dec:what-a-true-knowledge-graph-is (graph-primitives design on flo2, graph 85a2a1a36e7c942d), accepted on his word the same day.",
+    "statement": "Test 5 of the accepted definition of a true knowledge graph (graph-primitives design on flo2: dec:what-a-true-knowledge-graph-is), applied to reflow2.\n\nBaseline @ 4659832b: 15 identity relationships exist (aliases, handle, mirror_of + mirror_content_hash between designs, Artifact location + checksum to files, version, snapshots). A design already links to its codebase and to mirrored designs (req:linking-two-projects-is-a-served-process, req:design-composes); nothing links a reflow2 design to a StoryFlow graph; and whether a question can follow every identity link has not been measured.\n\nRequired: every identity reflow2 records is a link, never only a name in prose or a string field; it says who asserts the identity and on what basis; and a question can follow it into the other design or graph (composed analysis, req:composed-analysis). Met when a check over every identity-bearing field and edge finds each one a followable link with an asserter.",
+    "status": "proposed"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:870e6b6e11a6e1e3efa73f6af7521b4ab0286c1ce2c61986bb0c4cd5fb412110",
+  "node_id": "frag:art:replace-text-test",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered replace_text_moves_one_sentence_without_resending_the_field.rs"
+  }
+}

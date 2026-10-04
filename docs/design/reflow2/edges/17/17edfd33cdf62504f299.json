@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:43eea2cbe6ae9118a0b4e8ff55230680f4d3e31451fd880850666c7913e06769",
+  "edge_type": "REALIZES",
+  "from_id": "art:manual-work",
+  "properties": {
+    "conformance": "unchecked"
+  },
+  "to_id": "cmp:manual-work"
+}

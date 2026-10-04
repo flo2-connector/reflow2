@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:fe7ae3c120a24cdd2417e5a971151c3922d4a8592ea988848e914b7fd0ceb559",
+  "edge_type": "CHANGED",
+  "from_id": "chg:read-only-is-honoured-by-every-client-mode-2026-10-03",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "art:read-only-client"
+}

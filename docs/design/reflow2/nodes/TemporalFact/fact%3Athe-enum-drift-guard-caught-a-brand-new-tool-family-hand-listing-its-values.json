@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:1a6d36f0b83b5a536316a0274b8af30e8552adb82fcf7cdc11daa4c347c9db90",
+  "node_id": "fact:the-enum-drift-guard-caught-a-brand-new-tool-family-hand-listing-its-values",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "confidence": 1.0,
+    "fact_type": "observation",
+    "statement": "THE GUARD CAUGHT ITS OWN CLASS ON A TOOL FAMILY THAT DID NOT EXIST WHEN IT WAS WRITTEN, WITHIN HOURS. The enum-publishing work shipped in v0.53.0 with a check in tools/toolsnap.py: a request property whose DESCRIPTION hand-lists values must PUBLISH an enum containing every one of them. On 2026-09-07 the environment compliance layer added six new tools, and the same run reported two findings against violates_rule — proposer listing llm/author/check and severity listing low/medium/high/critical in prose, publishing plain string. Both were genuine. rule_type on the constructor had been wired correctly and the two edge-property fields had not, which is exactly the inconsistency a person cannot see by reading their own diff.\n\nWHY IT IS WORTH RECORDING RATHER THAN JUST FIXING. The three-legs doctrine says vocabulary reaches a user only with a typed tool, an instruction and a detector that notices absence. This is the third leg paying out on a case nobody anticipated: the guard's author was not the author of the new tools, the new tools came from a different schema domain, and no instruction pointed at the rule. A guard that only catches what its author already knew about is a test; a guard that catches the next instance is a gate.\n\nTHE FIX WAS AT THE CAUSE, NOT THE SYMPTOM. The two fields now read their values from the compiled-in schema through enum_schema, the same source the validator enforces, so nothing can drift. VIOLATES_RULE.status was published the same way in the same edit though the gate had not flagged it, because it is the same class and leaving it would have left the next reader a puzzle about why two of three fields were wired.\n\nWHAT THIS DOES NOT SHOW. The guard fires on a description that HAND-LISTS values. A field whose description names no values and publishes no enum is invisible to it, and nothing has measured how many of those exist.",
+    "subject_id": "req:a-refusal-names-what-would-have-worked",
+    "valid_from": "2026-09-07"
+  }
+}

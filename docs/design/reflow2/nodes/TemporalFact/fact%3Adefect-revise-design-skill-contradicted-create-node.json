@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:cecce309f60f52f2f2fcc829a68e932370cb8a0b497bc892577b00bb0b393ca1",
+  "node_id": "fact:defect-revise-design-skill-contradicted-create-node",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "confidence": 1.0,
+    "fact_type": "defect",
+    "statement": "A SERVED SKILL AND A SERVED TOOL STATED OPPOSITE SEMANTICS FOR THE SAME CALL, AND THE DISAGREEMENT WAS ABOUT WHETHER A WRITE DESTROYS DATA. FIXED 2026-08-09.\n\nThe tool description said create_node MERGES — 'the props you pass overwrite, every stored property you omit survives'. The revise-design skill said 'Do NOT reach for the generic create_node to revise. It is create-or-REPLACE, so passing only the changed field resets every other property to its schema default'.\n\nSETTLED FROM THE SOURCE: the served tool calls upsert_node (crates/reflow2-mcp/src/tools/query.rs), whose own doc reads 'Merge props onto id if it exists... every stored property the caller does not name survives'. THE TOOL WAS RIGHT AND THE SKILL WAS WRONG.\n\nTHE DIRECTION IS WHAT MAKES IT EXPENSIVE: the skill scared agents away from the SAFE call. A dev_storyflow worker filed it after being unable to tell which was true without risking nine accepted requirements, and passed the whole property set to be safe under either reading. A session here did exactly the same thing the same day on a DesignRule, for the same reason. Both paid the cost; neither lost data, which is why it went unnoticed.\n\nAND IT COMPOUNDS WITH A GAP THE SAME WORKER FOUND: the skill prescribes revising via a typed constructor, but there is no typed constructor for a DesignRule at all, and add_requirement accepts only id/name/statement — so a requirement's `source` is unreachable that way. The prescribed safe route did not exist for those fields, and nothing said so. The skill now says both things.\n\nGENERAL SHAPE, and it is the fourth skill-versus-tool drift recorded here: nothing checks a skill's claims about tool BEHAVIOUR. skill_lint verifies that every tool a skill NAMES exists on the served surface — which is why this survived: every name was real, only the semantics were wrong.",
+    "subject_id": "cap:skills-served",
+    "valid_from": "2026-08-09",
+    "valid_to": "2026-08-09",
+    "value": "{\"reported\":\"dev_storyflow w-d890d2b3 2026-08-09 item 1; hit independently in this repo the same day\",\"settled_by\":\"reading crates/reflow2-mcp/src/tools/query.rs — create_node calls upsert_node\",\"verdict\":\"tool description correct, skill wrong\",\"compounding_gap\":\"no typed constructor for DesignRule; add_requirement cannot express source\",\"class\":\"fourth skill-vs-tool drift; skill_lint checks tool NAMES, never tool BEHAVIOUR\"}"
+  }
+}

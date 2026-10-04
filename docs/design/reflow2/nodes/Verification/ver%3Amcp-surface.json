@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:430bcc968fc03ba3af2138f04436c8d34f6d291a764e680b8d94f013c47e2eff",
+  "node_id": "ver:mcp-surface",
+  "node_type": "Verification",
+  "properties": {
+    "kind": "verification",
+    "level": "integration",
+    "method": "test",
+    "name": "tools.rs",
+    "status": "passing"
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:90b1ad1a296e07a4fa47c0d4624342aa80165ac9cf3c6e917ffb8c7f569d70db",
+  "edge_type": "VERIFIES",
+  "from_id": "ver:two-branches-with-disjoint-design-changes-merge-with-plain-git",
+  "properties": {},
+  "to_id": "cap:the-design-is-saved-one-file-per-item"
+}

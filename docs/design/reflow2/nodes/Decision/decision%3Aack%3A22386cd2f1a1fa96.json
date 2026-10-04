@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:4902c9295f362fafb39255dac6208bc85063cedbfa8238ee6d44027774e0c3a2",
+  "node_id": "decision:ack:22386cd2f1a1fa96",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Accepted the gap gap:22386cd2f1a1fa96.",
+    "name": "Reviewed: gap:22386cd2f1a1fa96",
+    "rationale": "User (who:ajs, standing policy from 2026-07-23): validation happens through the trials programme — docs/trials/ is where \"built the right thing\" is exercised against operational intent; formal validation-kind Verification nodes are not this project's tracking mechanism. Re-fired because cap:drift-direction joined the set (34 → 35). Notably apt this time: whether directional drift reports the delta a PERSON would have named is not answerable by a unit test, and its intended validation is explicitly a field one — run it against storyflow, where the understatement was observed, and see whether it agrees.",
+    "status": "accepted"
+  }
+}

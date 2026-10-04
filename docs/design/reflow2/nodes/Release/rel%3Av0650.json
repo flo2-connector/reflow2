@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:5dbce1c7f7907f323da1ccf12083b79624b0066393b8d757fd7c1bec958979d7",
+  "node_id": "rel:v0650",
+  "node_type": "Release",
+  "properties": {
+    "description": "Cut 2026-09-19 on Anthony's word. Eleven PRs since v0.64.0. THE SURFACE: `--call <tool> --args <json>` is the door a build script uses to read a report without an MCP session (bhome S3); `find_skills` finds a skill from a sentence in a person's words, with its own held-out corpus and rank ratchet (flo2 F8); `replace_text` moves one sentence of a node's text without re-sending the field; every constructor of a status-carrying type takes `status` and names what omitting it lands, and 25 tools accept `id`/`node_id` beside their typed key (flo2 F10, dev_storyflow, bhome — the constructor half of a defect three projects recorded). THE INSTRUCTIONS: every served skill carries a summary and an audience; a project's first session leaves the pointer file in place; a field report is triaged by a served step; a contribution may be negative; a missing-field refusal names what this call lacked. THE STAMP MOVED: ChangeEvent.change_type gained `decision_settled`, so docs/upgrading-to-v0.65.0.md is owed and written — an older binary refuses by name a design that stores it.",
+    "name": "v0.65.0 — the build door, the skill finder, and one status contract across the constructors",
+    "status": "retired",
+    "unit_type": "container",
+    "version": "0.65.0"
+  }
+}

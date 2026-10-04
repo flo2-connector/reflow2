@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:4f3f1d8867f51bcc4cd84c3f3a16f55539a01f870d4ab52a22883a2e470d9ef6",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0290",
+  "properties": {
+    "as_checksum": "sha256:771424fd9bca485932d2b5e429b16f8940e982566102bef0fc2a905a0211adea"
+  },
+  "to_id": "art:test-sessions-cannot-cross-designs"
+}

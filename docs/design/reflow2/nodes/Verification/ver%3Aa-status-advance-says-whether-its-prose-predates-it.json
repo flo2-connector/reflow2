@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:dbdc3d6e72a58d44455dc42fb4be71a160a8a055a340697528d9fb9cc1748927",
+  "node_id": "ver:a-status-advance-says-whether-its-prose-predates-it",
+  "node_type": "Verification",
+  "properties": {
+    "description": "`crates/reflow2-mcp/tests/a_status_that_outruns_its_prose_says_so.rs`, driven through the real MCP service rather than the helper, so it checks what a caller actually receives.\n\nTHE CASE: prose written under `planned`, status moved to `realized` — the reply names both statuses, the field, and quotes the prose.\nBACKWARDS: a status moving `realized` -> `planned` is reported too, since prose written under the later status is just as stale. That arm exists because the same field report's sibling finding was six `planned` capabilities whose descriptions asserted they were built.\nCOUNTERWEIGHT 1: re-setting a status to what it already was says nothing.\nCOUNTERWEIGHT 2: a node with no prose says nothing.\n\nThe counterweights are the load-bearing half — a block that appeared on every call would be the noise its siblings are explicitly built not to become.",
+    "findings": "4 passed, 0 failed (2026-09-04, release and debug).\n\nOBSERVED FAILING FIRST, and the shape of the failure is the evidence that the tests bind to the feature rather than to its scaffolding: with `with_prose_currency` neutered to return the value unchanged, the two POSITIVE arms failed (`a_status_that_moves_past_its_description_is_reported`, `a_status_moving_backwards_is_reported_too`) and BOTH COUNTERWEIGHTS STAYED GREEN — which is correct, since they assert an absence and absence is what the neutered build produced. Restored, all four pass.\n\nONE THING THE TESTS TAUGHT WHILE BEING WRITTEN, kept because it changes what the counterweight means: a Capability CANNOT be created without a `description` — the required-fields guard refuses it. So \"a node with no prose\" is reachable only as an EMPTY or whitespace-only description, which is the branch `currency_note` trims for. The counterweight is real; it is not the shape it first looked like.",
+    "kind": "verification",
+    "last_run_at": "2026-09-04",
+    "level": "integration",
+    "method": "test",
+    "name": "Four probes: the divergence is reported, and the two silent cases stay silent",
+    "status": "passing"
+  }
+}

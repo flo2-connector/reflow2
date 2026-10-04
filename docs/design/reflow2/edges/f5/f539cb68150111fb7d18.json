@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:56a3b831f57f7d6955d6af63d205343a09357797bd1f0c399fc38d434ddeb661",
+  "edge_type": "REALIZES",
+  "from_id": "art:tools-assure",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cmp:tools-assure"
+}

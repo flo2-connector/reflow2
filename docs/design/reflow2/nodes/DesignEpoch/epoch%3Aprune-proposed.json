@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:f2506dad5b2d9b796855f22e01780604685159166a53603bfde84d5a3f2657c8",
+  "node_id": "epoch:prune-proposed",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "epoch_type": "revision",
+    "name": "Ten proposed requirements considered and not accepted",
+    "sequence": 235,
+    "status": "arrived"
+  }
+}

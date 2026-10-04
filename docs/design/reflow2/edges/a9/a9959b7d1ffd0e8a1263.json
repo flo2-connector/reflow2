@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:02def5f8298cc98ee2564aa14ffe1bdef13bcb04e65173f5a1151392b2791d61",
+  "edge_type": "CHANGED",
+  "from_id": "chg:link-projects-skill-served",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:skill-lint"
+}

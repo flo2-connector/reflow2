@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:03c19b7f535ffd59a75d4ae010474afd69014f1fba7e0855ea858da0c7b0f6e0",
+  "node_id": "dec:two-sided-accept",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "set_artifact_checksum requires a disposition: design_holds (a dated claim) or design_updated (naming the design-side ChangeEvent, linked to the artifact).",
+    "name": "Silent drift-accept does not exist",
+    "rationale": "'Accept the file, leave the design alone, say nothing' is how a design erodes into fiction over N legitimate fix cycles while reporting zero gaps — the failure that sank the original reflow. Decided 2026-07-19 (https://claude.ai/code/session_013aumVdHrRHu24cLirn6Cam); evidence: erosion trials, BL-33.",
+    "status": "accepted"
+  }
+}

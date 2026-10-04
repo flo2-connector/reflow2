@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:462e0b09f4c3e447e585a313510bc93916963225278d5d2b936218e8e35da10e",
+  "edge_type": "CHANGED",
+  "from_id": "chg:accept-1e7665d6348d37ad",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:docker-build-script"
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:fb8d33c212cbbd7599fc4f196c1ffefdf95e5a157898668764c9db7a701180e3",
+  "edge_type": "CAUSES",
+  "from_id": "fact:the-reachability-gate-pools-54-tools-parameter-names-into-every-type-so-it-reported-zero-holes-while-two-properties-had-no-writer",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "The measured miscalibration is what puts the gate's design, rather than the two fields, on the table.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "dec:idea-should-the-reachability-gate-attach-a-tools-parameters-only-to-the-types-it-writes"
+}

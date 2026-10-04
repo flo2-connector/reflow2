@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:e1ae6f64e36f931ca3b1113260532e432770a2607a6d6a7fa1e06e31c2ce99ef",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "fact:the-hosted-case-breaks-the-git-transport-and-the-access-topology-is-now-stated",
+  "properties": {
+    "authored_at": "2026-08-09",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

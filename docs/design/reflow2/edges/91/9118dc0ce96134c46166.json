@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:e45d30a3ffba38f4afa1fc417e496b45ec3e24019df091ead24f75b8372a9651",
+  "edge_type": "CHANGED",
+  "from_id": "chg:loop-status-takes-a-contributor",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:report"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:63b731e599deb4a7d0050a41642f03f44cd5ccb17f31d4f06cb1389f83955687",
+  "edge_type": "REALIZES",
+  "from_id": "art:test-flow",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:a-flows-entry-and-exit-are-computed-from-its-step-order"
+}

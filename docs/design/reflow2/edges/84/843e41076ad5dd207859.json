@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:195e0ce5f5697c7d3e23ccdc8f34b71148bc6ef11389f1874ae252cb2ec46499",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:idea-a-change-upstream-reaches-the-sibling-that-never-asked",
+  "properties": {
+    "authored_at": "2026-08-09",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:2e4770611a36d09b9bd85582e5dbe46de1e2f6a6887f2dc0eeff8eb56400d953",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-saved-design-moves-to-the-item-layout-2026-10-03",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:196fa38802309fd377a360769264f4916825fa2fcfaf7e5cc35ed3b1b87f60d2"
+  },
+  "to_id": "art:fleet-lessons"
+}

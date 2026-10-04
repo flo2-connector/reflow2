@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:a870f064065b79cb39fd399550863ab2854e86ae9b0684916f15fbda198ab26f",
+  "edge_type": "CHANGED",
+  "from_id": "chg:rocksdb-0-25-the-same-crate-2026-10-02",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:foundation"
+}

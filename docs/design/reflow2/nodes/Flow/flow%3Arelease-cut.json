@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:e9cf052d4eaaad63626245abbe3a7108bff31a821f0450e2a46c1da20e5636a7",
+  "node_id": "flow:release-cut",
+  "node_type": "Flow",
+  "properties": {
+    "description": "The ordered procedure for producing a reflow2 release, recorded so a cut is read from the design rather than reconstructed from the last one. Nine steps; read back with `flow_report`.\n\nORDER IS LOAD-BEARING IN THREE PLACES, and each was learned by getting it wrong:\n— Step 1 before step 4, because `release_includes_all` freezes each artifact's CURRENT checksum and the version bump drifts `reflow2.toml`.\n— The binary is rebuilt after step 1 and before step 6, because the export's schema stamp carries the version of the binary that wrote it.\n— Step 9 is after the tag is verified published (step 8), because the binary it rebuilds is the one every OTHER project on the builder's box is served at user scope, with no launcher banner in the path; until it runs, those sessions keep the previous release. Added 2026-09-18 after a real adopt ran on 0.62.0 while 0.64.0 was out.\n— Step 6 is last of the graph work, because exporting from the real store means killing the server and ending MCP access for the session.\n\nTAGGING AND PUBLISHING IS THIS PROJECT'S DEPLOY. It reaches other people's machines and cannot be recalled, so AGENTS.md makes it per-session: ask every time, however recently it was granted.\n\nWHAT THIS FLOW DOES NOT COVER: which of the release's contents are worth an increment at all. That is `dec:release-trigger` and the `plan-increments` skill, upstream of step 1.",
+    "flow_type": "process",
+    "name": "Cutting a reflow2 release",
+    "tier": "operational"
+  }
+}

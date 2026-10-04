@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:f23d0386dd2e3ce3ffad648e65620bfa6546c97535fe9d86dfd6701662847e8b",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-missing-argument-names-the-tool-and-what-it-wants",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:service"
+}

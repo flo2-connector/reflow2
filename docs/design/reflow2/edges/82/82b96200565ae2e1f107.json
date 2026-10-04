@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:425f33f68311ef13a3a7062ef478cb18782b479c1878a4e43c001ebbb0441d63",
+  "edge_type": "CHANGED",
+  "from_id": "chg:dependencies-declared",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:service"
+}

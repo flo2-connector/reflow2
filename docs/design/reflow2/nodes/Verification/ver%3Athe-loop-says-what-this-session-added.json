@@ -1,0 +1,17 @@
+{
+  "content_hash": "sha256:506961229b7c423ecb90aa85360c26576bfbdcdd5609b42053f02528bdbb4108",
+  "node_id": "ver:the-loop-says-what-this-session-added",
+  "node_type": "Verification",
+  "properties": {
+    "description": "The loop can be asked what the record does not yet hold, and says so when it cannot tell (crates/reflow2-core/tests/debt_since_the_record.rs) — 5 cases, all passing 2026-08-16. THE BASELINE IS THE LAST EXPORT, which is the only session boundary the graph can compute without a clock or a session identity: `debt_since(&baseline)` diffs the live node ids against the ids the committed export holds, and reports the difference plus only those gaps and defects whose `affected_ids` intersect it. THE CASES, by their real names: `a_node_the_record_lacks_is_reported_as_new`; `a_fully_recorded_design_reports_no_new_ground`; `debt_on_recorded_ground_is_not_called_new` — a gap standing entirely on old ground is NOT reported as this session's, which is the whole point; `an_empty_baseline_says_it_cannot_tell`, the difference between \"you added 205 things\" and \"I have no record to compare against\", which are opposite answers and would otherwise be the same one; and `the_note_always_states_the_baseline_and_that_it_moves`, which pins that the reply never leaves the reader to guess WHICH boundary was used — a scoped number whose scope is implicit is a worse number than none. COST WAS A DECIDED HALF, NOT AN OVERSIGHT: `since_export` is `#[serde(default)]` so the extra diff runs only when scoping is asked for and every existing caller is byte-identical; a failure to read the sync state inserts `since_export_unavailable` rather than failing the call, because a loop that refuses to answer is worse than one that answers narrowly. NOT COVERED: nothing here tests the boundary against a REAL multi-session history — every case builds its baseline in-test, so the claim is about the computation and not about what a week of real use would put in front of it.",
+    "findings": "MUTATION-CHECKED, each killing exactly one test: ignoring the baseline entirely fails `a_fully_recorded_design_reports_no_new_ground`, and removing the empty-baseline branch fails `an_empty_baseline_says_it_cannot_tell`. VERIFIED END-TO-END over stdio on a scratch graph: `unexported_nodes: 1`, `sample: [\"req:new\"]`, and the unscoped call omits the block entirely. TRIPLE-CORROBORATED IN ORIGIN — Alex twice (§3.3 on 0.24.0 and his 2026-08-14 Opportunities), dev_storyflow independently, and reproduced first-hand across a whole session on 2026-08-16 where loop_status reported the identical 80 gaps and 16 defects from the first call to the last.",
+    "kind": "verification",
+    "last_reconciled_at": "2026-09-23",
+    "last_reconciled_outcome": "passed",
+    "last_run_at": "2026-08-16",
+    "level": "unit",
+    "method": "test",
+    "name": "The loop can be asked what the record does not yet hold",
+    "status": "passing"
+  }
+}

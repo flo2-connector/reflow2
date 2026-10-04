@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:33b2f3aa7a71664a625c8418beb22715c21bbe403e45cdd365cd0b4253168823",
+  "node_id": "frag:art:intent",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered reflow2-core intent.rs — which stored values settle intent, one predicate"
+  }
+}

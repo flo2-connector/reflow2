@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:f6631345999586a042f0773e5f328787ee8e4de7ed2b029601919178038235f3",
+  "edge_type": "CAUSES",
+  "from_id": "art:schema-build",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "schema/build.yaml declares Artifact.location as a free string with no anchor, and no node type in the schema carries a repository or root. The anchor lived only in the running process (the folder the store sits in), and design_identity and the export record none of it. Measured 2026-09-28: export → import into another folder re-anchored `docs/note.md` and reported the unchanged file missing_artifact.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:root-cause-a-location-is-anchored-to-a-root-the-design-never-records-2026-09-28"
+}

@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:6b3b64d65b230ee2a77363c2c426f6c60f1055c09831a514e4ea840d1339971c",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-saved-design-moves-to-the-item-layout-2026-10-03",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:acccfe9a30a4c45a273299fdf8cc35c8f722ff76dea00e8adf003824f3422e2e"
+  },
+  "to_id": "art:reflow-spirit-review-2026-09-13"
+}

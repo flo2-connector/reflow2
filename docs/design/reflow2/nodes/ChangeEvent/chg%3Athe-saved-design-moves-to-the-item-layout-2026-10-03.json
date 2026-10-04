@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:5548a8ccd44e556f4db07f247e8bac991e112993f10d43a8943522d3575ccd9e",
+  "node_id": "chg:the-saved-design-moves-to-the-item-layout-2026-10-03",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "refactor",
+    "detected_at": "2026-10-03",
+    "name": "reflow2's committed design moves to the item layout, and its accepted checksums onto one baseline change",
+    "subject": "record",
+    "summary": "The committed design moves from the single file docs/design/reflow2.json to the item layout docs/design/reflow2/ (one file per node and per edge), and this baseline puts the 578 registered artifacts' current checksums on its CHANGED edges (checksum_after), so from here every accepted checksum lives on the change that accepted it. Nothing about the system moved: the checksums are the ones the record already held. Settled by Anthony 2026-10-03: dec:how-the-saved-design-is-laid-out-so-git-merges-it, dec:the-designs-lineage-is-kept-per-item, dec:item-13-checksums-move-to-change-edges-and-main-converts-in-one-pr (decisions 3 and 6). Reassembled, the layout's whole-design hash equals the single file's (sha256:e94003bf3b0edb9545deb09445392a6bdfb6fcd7cc2e2f7e7d67c8eca466c2d7) before this baseline."
+  }
+}

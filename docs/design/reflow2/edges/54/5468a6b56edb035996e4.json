@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:e1369c9506e3500068ec5a6963df6830886eb20e0c3ffa08b7e8ccc2a63c9946",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:kpp",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:detect"
+}

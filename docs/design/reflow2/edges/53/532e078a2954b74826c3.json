@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:8a3ab05b04c09677a91fcef4f78a7684079d7df4468d6ac9afc48168c06c9fe9",
+  "edge_type": "REALIZES",
+  "from_id": "art:test-a-node-records-what-the-user-calls-it",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "verified"
+  },
+  "to_id": "cap:a-design-holds-the-users-own-vocabulary"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:f1ce634cb49a9add9129468fb05bf49f3b81a19e2ca06aaaf7abf21bfd28c6d1",
+  "edge_type": "INVALIDATES",
+  "from_id": "chg:eight-field-feedback-fixes-land-for-v0510",
+  "properties": {
+    "at": "2026-09-07",
+    "note": "TemporalFact now declares `name` (indexed, fulltext, optional) in schema/temporal.yaml; a fact written with one no longer warns. Pinned by a_fact_can_carry_a_name_without_a_warning. The 380 nameless facts stay nameless; that was never the defect."
+  },
+  "to_id": "fact:defect-temporal-fact-name-is-undeclared-while-49-facts-carry-one"
+}

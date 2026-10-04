@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:fa0775cbfd28daa21a9a99a68f038aabce4e54c9c04117cbecf4298f27909bb2",
+  "node_id": "fact:bl-216",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "defect",
+    "statement": "[BL-216] Three graphs on one repo minted by three different reflow2 versions (0.17.0 / 0.22.1 / 0.23.0) and no stated cross-version policy",
+    "subject_id": "cmp:identity",
+    "value": "{\"evidence\": \"*hxm_program field report, 2026-08-05, item 6.* No breakage observed. Filed because it becomes load-bearing the moment cross-graph linking ([BL-214]) lands: a parent on 0.24.0 reading a child minted at 0.17.0 needs a stated answer, and the schema stamp is the thing that would carry it. Small now, and the cheapest time to decide.\", \"origin\": \"Migrated from docs/backlog.md BL-216 on 2026-08-07 (epoch:backlog-retired). Size estimate carried from the row: S.\"}"
+  }
+}

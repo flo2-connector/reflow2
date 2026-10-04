@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:2d81e3003cff560aa2998d5de78fa6156bb7b434d05b5a0f49f742de29465e04",
+  "edge_type": "GOVERNED_BY",
+  "from_id": "req:stale-seat-knows",
+  "properties": {},
+  "to_id": "dec:advisory-concurrency"
+}

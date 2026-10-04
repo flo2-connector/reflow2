@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:dddd1dbfee7470b51be2756884f5208519726b51316705d78d0e729c0e95da0a",
+  "node_id": "decision:ack:heal:81571c7881a57813",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Accepted the structural defect heal:81571c7881a57813 (single point of failure: cmp:export).",
+    "name": "Reviewed: heal:81571c7881a57813",
+    "rationale": "Carries dec:export-door-spof-accepted (2026-07-24): dec:repo-file-embedded made the deterministic export the durable, diffable record, and req:survives-upgrade makes export-with-the-old-build the migration path. One door is the point — a second export format would be a second thing that must stay byte-identical to the first.",
+    "status": "accepted"
+  }
+}

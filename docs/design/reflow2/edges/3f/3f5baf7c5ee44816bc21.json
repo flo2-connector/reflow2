@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:7eb8266de80885c70b97122faa62f2eea46a6a38d5f7fa54a0723d76a9b4eb6d",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-saved-design-moves-to-the-item-layout-2026-10-03",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:07fa8bebaecd2fb6e841af82c1d09e222d7fc280c9e2e715157e23565ca339c1",
+    "checksum_basis": "measured"
+  },
+  "to_id": "art:test-a-finding-or-refusal-names-the-route-that-works"
+}

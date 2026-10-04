@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:b6b7ff72beeebd8612360214f9d732c8332787c173be8dfb4142ecc7af0931f9",
+  "node_id": "art:test-bad-news-reaches-the-decision-behind-it",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "test",
+    "description": "The eight tests behind decisions_in_doubt.",
+    "location": "crates/reflow2-core/tests/bad_news_reaches_the_decision_behind_it.rs",
+    "name": "bad_news_reaches_the_decision_behind_it.rs",
+    "status": "realized"
+  }
+}

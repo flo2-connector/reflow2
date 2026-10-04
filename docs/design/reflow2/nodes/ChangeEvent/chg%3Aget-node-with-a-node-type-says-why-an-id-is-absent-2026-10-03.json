@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:7428edc8f7c8e43b0f13d054a20f483040854dcf238951ee63345349a1b5c728",
+  "node_id": "chg:get-node-with-a-node-type-says-why-an-id-is-absent-2026-10-03",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "defect_fix",
+    "commits": "2da7e72502bf431c7f54f51aa6cd4aa89d793185,c43538875f18954bec7c6d59dc10b32ddf76df60,d9ba2ad2fb9782ad09dccfa27ce12aba397ea368,6359527049b8f695a304ffbd03298a3249182a63,24ba00b0417ea018879c988ea3ce86ed0fc148ad",
+    "detected_at": "2026-10-03",
+    "name": "get_node with a node_type says why an absent id is empty, and the empty-answer gate probes optional parameters",
+    "rationale": "fact:get-node-given-a-node-type-answers-an-absent-id-with-a-bare-null-2026-10-03, confirmed on main at 293f957: the widened gate reported exactly one BARE reply, `get_node +node_type {\"node\": null}`. THE CLASS: the gate probed required parameters only, so an optional parameter routing a read down another path was never asked; it now asks nine such probes and found no other bare empty.",
+    "rationale_basis": "contemporaneous",
+    "repair": "corrected_cause",
+    "subject": "system",
+    "summary": "get_node's typed path answers an absent id with empty_because, naming the type that does hold the id when one does; tools/empty_speaks.py asks every read again with each optional id- or type-shaped parameter filled, one at a time."
+  }
+}

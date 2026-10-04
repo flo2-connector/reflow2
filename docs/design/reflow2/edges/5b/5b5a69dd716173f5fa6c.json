@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:8fa13723a1afa6b1400a8f28e83fbe49045bd4de6d3f1ef22b2c5ee621562dd3",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-saved-design-moves-to-the-item-layout-2026-10-03",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:4656ea730bdd666f9b13ff8441faa0db8b21601957dfc2db928006e4412d22e5"
+  },
+  "to_id": "art:genesis"
+}

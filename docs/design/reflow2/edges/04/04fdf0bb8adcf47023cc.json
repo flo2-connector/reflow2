@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:732d97c50535fb324eb3559b9daa57b72448ca5ee8823dd9c1fa5742346b7b47",
+  "edge_type": "MITIGATES",
+  "from_id": "dec:idea-a-rejected-field-says-whether-it-moved-or-was-never-there",
+  "properties": {
+    "evidence": "The delete_edge friction is not a missing field but a refusal that cannot say the dropped fields were unnecessary rather than misspelled, which is exactly what that idea proposes the refusal should say."
+  },
+  "to_id": "fact:defect-two-more-constructor-shape-frictions-met-while-working-add-artifact-cannot-set-a-checksum-and-delete-edge-refuses-the-types-create-edge-requires"
+}

@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:652fe7aff9dffec192aae210835c8de47e6c686df062d25538ef95adab5fd94b",
+  "node_id": "req:a-ci-run-leaves-a-machine-readable-record-of-what-it-ran",
+  "node_type": "Requirement",
+  "properties": {
+    "concern": "core",
+    "kind": "functional",
+    "lineage": "original",
+    "name": "A CI run leaves a machine-readable record of which gates ran",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "Every CI run leaves behind a machine-readable record of the gates it ran — gate name, exit code, duration, commit sha and timestamp — published as a build artifact. It is emitted by the runner that already reads the gate list from the workflow, so the record cannot drift from the set actually executed, and a run that executed nothing must be readable AS nothing rather than as an absence of failures.\n\nSCOPE, STATED SO THE BOUNDARY IS NOT LOST: nothing writes this into the design automatically. Turning a run record into a Verification's status stays a deliberate act by a person or a session. The stronger form — CI setting status, last_run_at and commit on Verification nodes directly — is NOT required here, because it would make reflow2 the writer of a claim it elsewhere only records, and that question is still open.\n\nWHAT IT IS FOR: 46 of this design's 312 checks have never run, 282 carry no executable form, and the rollups cannot tell an unrun check from a passing one. A dated run record with a commit behind it is also the missing source for quantities the closure reading currently counts at zero of fourteen.",
+    "status": "accepted"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:6b909fe18a3bdf5774fb9196e9b1097de5a39442832806e6b4c574ce5efc125a",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:corpus-ingest",
+  "properties": {
+    "authored_at": "2026-07-24",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

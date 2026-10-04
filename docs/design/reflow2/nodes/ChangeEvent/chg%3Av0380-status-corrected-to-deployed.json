@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:371f3ef2fb4b1778d9c6cacc5f91337c985ab32985537140a763fe0034b9dd02",
+  "node_id": "chg:v0380-status-corrected-to-deployed",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "defect_fix",
+    "name": "Snapshot of rel:v0380 before its status is corrected from `planned` to `deployed`",
+    "subject": "record"
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:ab3f37374c2ddd2be0ea41d84d99fa3c1d6ceb0fb7781ea97e5e4ed633efdd66",
+  "edge_type": "HAS_SNAPSHOT",
+  "from_id": "req:the-agent-says-which-recorded-reader-it-assumes-and-the-lens-names-them",
+  "properties": {},
+  "to_id": "snap:epoch:preserved-on-write:req:the-agent-says-which-recorded-reader-it-assumes-and-the-lens-names-them"
+}

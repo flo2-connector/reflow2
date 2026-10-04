@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:312f0bbb0e7c3df2659f5244e552ea304aadecd2c514f712aeaea68fd0b86855",
+  "edge_type": "ANTICIPATES",
+  "from_id": "rule:an-identified-issue-is-enduring-never-dropped",
+  "properties": {
+    "evidence": "His 2026-08-20 rule already demands that an identified issue become a node, a named Question, or a recurring finding before moving on; this idea is about giving that rule a MOMENT and a mechanism mid-task, where the agent is least likely to stop."
+  },
+  "to_id": "dec:idea-a-failure-met-mid-task-is-parked-where-a-boundary-revisits-it"
+}

@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:9b624098d0210c6f37dd225b95a321dc70faf358358938993ca9479c08482c59",
+  "node_id": "art:heal",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "granularity": "atomic",
+    "location": "crates/reflow2-core/src/heal.rs",
+    "name": "heal.rs",
+    "status": "realized",
+    "volatility": "stable"
+  }
+}

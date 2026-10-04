@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:29579947881790e37a966494ab8d435506deb01cfe725db66704fa36daf53fe6",
+  "node_id": "epoch:instruments-stop-overstating",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "epoch_type": "milestone",
+    "name": "The instruments stop overstating — every item here is reflow2 telling a user something that is not true: a green that could not fail, a write that reports success while losing data, a defect that is not one, and a name that is really a report",
+    "sequence": 346,
+    "status": "arrived"
+  }
+}

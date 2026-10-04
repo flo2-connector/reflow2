@@ -1,0 +1,20 @@
+{
+  "content_hash": "sha256:468a7beb30bf4f70f49036bd6d04224d9c7e2322fccb5604239904c7d3b53083",
+  "node_id": "proj:reflow2",
+  "node_type": "Project",
+  "properties": {
+    "decomposition_levels": [
+      "part",
+      "component",
+      "subsystem",
+      "system",
+      "system_of_systems",
+      "enterprise"
+    ],
+    "domain": "software",
+    "mode": "rigid",
+    "name": "Reflow 2.0",
+    "objective": "Keep a design coherent from concept through operations",
+    "status": "active"
+  }
+}

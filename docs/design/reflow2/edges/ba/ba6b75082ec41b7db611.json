@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:b3b724f9e5e617e0db03fcedbee3cec8cd1a75842c2048ac4ffb15bbb0ed5066",
+  "edge_type": "GOVERNED_BY",
+  "from_id": "art:chama-genesis-feedback-2026-09-02",
+  "properties": {
+    "note": "A dated field report from proj:chama's first genesis session, written from outside reflow2's development. Frozen observation: it must not be revised as reflow2 moves, so no DOCUMENTS edge is honest. Third member of the genre after the two ophyd/hxm reports of 2026-08-19.",
+    "ruling": "parks"
+  },
+  "to_id": "dec:a-dated-field-report-is-registered-and-parked"
+}

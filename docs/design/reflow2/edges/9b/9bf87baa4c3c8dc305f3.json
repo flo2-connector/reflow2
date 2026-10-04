@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:2ee7b9fc2d05661f617d22912631ae5735356c521a85f5df6fe4151abdfa7067",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:the-design-says-what-its-own-tools-cannot-write",
+  "properties": {},
+  "to_id": "req:declared-vocabulary-is-reachable-from-the-surface"
+}

@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:075f7ee8c78e0769abe95fa4c4181da97dd1dd204585b220fabd8bc8f972c2c2",
+  "node_id": "epoch:planned-the-call-door-works-for-an-agent-that-cannot-use-mcp",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "description": "PLANNED 2026-10-01 on Anthony's word. His organisation's only allowed agent is GitHub Copilot with third-party MCP servers disabled, and it would not allowlist reflow2: \"we'll have to make the '--call' option work as best we can\". On the order: \"I agree\". One reflow2 serves both routes (dec:one-reflow2-serves-both-routes-mcp-and-the-call-door). Each step is its own short-lived branch and PR into main, with tests watched failing first. Source: using_call.md (branch feat/vscode-call-door) and fact:field-report-vscode-copilot-with-mcp-blocked-reaches-reflow2-only-through-the-call-door-2026-10-01.\n\nTHE ORDER, chosen for his setup (Copilot only, the design kept local):\n1. req:a-one-shot-call-never-creates-a-design-where-a-folder-names-one-on-a-server. A silent stray design, so it goes first, and it is small.\n2. req:a-writing-call-keeps-the-committed-export-current.\n3. req:a-terminal-agent-can-auto-approve-reads-and-confirm-each-write.\n4. req:the-cli-describes-any-tool-with-its-full-schema-and-lessons.\n5. req:init-installs-the-terminal-route-for-vs-code-and-update-keeps-it-current.\n6. req:a-batch-of-calls-runs-under-one-approval-and-one-export.\n\nNOT IN IT: routing a one-shot call through a running shared daemon or to a pointer's server (the rest of dec:idea-a-one-shot-call-reaches-the-design-where-it-is-served, still open). Under Copilot alone no daemon holds the design. A VS Code extension is also out (not pursued; dec:idea-where-an-org-blocks-third-party-mcp-ask-for-an-allowlist-before-building-around-it).\n\nSTARTS after #617 (the multi-arch image PR) lands. Not ordered against the other planned epochs; that is Anthony's call.",
+    "epoch_type": "milestone",
+    "name": "Planned: the `--call` door works as well as it can for an agent that cannot use MCP",
+    "sequence": 700,
+    "status": "planned"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:4f45bd96ccd91d5bebd3cca5c5420788186e31a6184fe2202bd2b03e5286fb71",
+  "node_id": "epoch:v0150",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "epoch_type": "release_cut",
+    "name": "v0.15.0 cut",
+    "sequence": 180,
+    "status": "arrived"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:1a1d8857b43e179ca78e32ba973452328fdba469428702086ab20fed3d7ac144",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-first-move-must-fit",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cap:bounded-reads"
+}

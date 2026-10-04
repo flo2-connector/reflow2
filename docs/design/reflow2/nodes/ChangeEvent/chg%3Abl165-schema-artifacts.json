@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:abbf6e3c37abeb659c1eb24f8eab3888e13585583ee55905e3ce58b5bd3791f9",
+  "node_id": "chg:bl165-schema-artifacts",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "name": "The eleven schema domains become registered Artifacts, and the self-model's filesystem sweep stops being blind to schema/ (BL-165)"
+  }
+}

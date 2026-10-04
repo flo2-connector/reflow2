@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:a2ecc12527418f0548559eb60df7d159b71b9fdc43e78ca56da0980930fde243",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-saved-design-moves-to-the-item-layout-2026-10-03",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:c4fa5ee3d8e3671ca2bb39a71f5cae07a7f33d20ebc16a72a832e73ad2540d0b"
+  },
+  "to_id": "art:check-kit-manifest"
+}

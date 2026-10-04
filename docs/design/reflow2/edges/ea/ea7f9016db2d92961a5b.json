@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:891a07d8cbff45e861855dac46f3bd1a11ee62cf2aaf321889940843f9950f67",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-saved-design-moves-to-the-item-layout-2026-10-03",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:60b908e8b517db6eab3e06e4fdf30054eb0667748091d34093e5cff506aede1d",
+    "checksum_basis": "measured"
+  },
+  "to_id": "art:test-the-guard-reads-the-request-before-refusing"
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:9793c457b5349eb2a0a54f296e8326e2e3316331e733a93de9e956b4f64f34fb",
+  "node_id": "frag:art:test-a-question-is-put-to-a-person",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered a_question_is_put_to_a_person_and_records_who_answered.rs - the served surface, by tool name"
+  }
+}

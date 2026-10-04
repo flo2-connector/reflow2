@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:8df04b31acd4a2c49826444465c82e55a813d0d9cbf74fb6caa17c34d521afd1",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-check-and-its-findings-are-different-things",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "ver:the-record-moved-is-surfaced"
+}

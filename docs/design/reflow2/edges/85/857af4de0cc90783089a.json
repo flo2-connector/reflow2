@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:98f6ab7168107e971d45853b5700887b379e24f3647dcdeb984966839ba4158d",
+  "edge_type": "GOVERNED_BY",
+  "from_id": "chg:the-two-reported-fields-get-their-parameters",
+  "properties": {
+    "evidence": "Eight declared properties move from unreachable to writable, which is this requirement being met on eight more counts."
+  },
+  "to_id": "req:declared-vocabulary-is-reachable-from-the-surface"
+}

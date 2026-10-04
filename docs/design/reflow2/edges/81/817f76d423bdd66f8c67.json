@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:54ebc9386e9ce799d9b3f941e79afede9d4cbc3a4c71bd13bde897961b347c91",
+  "edge_type": "CHANGED",
+  "from_id": "chg:complementary-pairing",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "req:complementary-pairing"
+}

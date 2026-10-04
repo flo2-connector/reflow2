@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:8075183690c607e0ea164eaeec801ef4f6a8a762fe333c338cb8be45329ad689",
+  "edge_type": "ANTICIPATES",
+  "from_id": "dec:idea-how-does-an-ingesting-agent-ask-what-the-graph-already-holds-without-paying-to-read-it",
+  "properties": {
+    "evidence": "BL-97 already states that the missing half of folder-scale ingest is identity resolution ACROSS documents, which is precisely the duplicate-component symptom reported here, arriving from a real workplace corpus rather than from reflow2's own reasoning."
+  },
+  "to_id": "cap:bl-97"
+}

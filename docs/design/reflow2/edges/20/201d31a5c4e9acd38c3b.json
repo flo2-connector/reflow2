@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:245e6a5850435382eff5bc23660a985491c3a808300edbb0a8d44863716da34f",
+  "edge_type": "REALIZES",
+  "from_id": "art:skills-build",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cmp:skills"
+}

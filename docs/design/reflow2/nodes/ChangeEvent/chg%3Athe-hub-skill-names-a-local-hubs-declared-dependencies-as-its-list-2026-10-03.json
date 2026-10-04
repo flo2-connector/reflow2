@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:24fb1856c1be0a96287206cffa7064310c41e1c4a383051c791ae2e89c69494e",
+  "node_id": "chg:the-hub-skill-names-a-local-hubs-declared-dependencies-as-its-list-2026-10-03",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "defect_fix",
+    "commits": "2da7e72502bf431c7f54f51aa6cd4aa89d793185,c43538875f18954bec7c6d59dc10b32ddf76df60,d9ba2ad2fb9782ad09dccfa27ce12aba397ea368,6359527049b8f695a304ffbd03298a3249182a63,24ba00b0417ea018879c988ea3ce86ed0fc148ad",
+    "detected_at": "2026-10-03",
+    "name": "The served hub skill names a local hub's declared dependencies as its list of designs, not the session's MCP configuration",
+    "rationale": "fact:root-cause-a-local-hubs-list-is-its-watch-manifest-but-the-hub-skill-names-the-mcp-config-and-no-pin-says-where-a-store-is-2026-10-02 measured that upstream_status reads a local hub's members from its declarations under --call, where there is no MCP configuration, while the skill said \"That configuration is the list.\" Anthony accepted the wording fix on 2026-10-02 (fact:the-hub-address-book-idea-stays-open-and-the-hub-skill-wording-is-to-be-fixed-2026-10-02). That finding is NOT invalidated: its other half, that nothing records where each child's store is on this machine, stays open with dec:idea-a-hub-on-one-machine-can-say-where-each-tracked-design-is-reached-from-the-door. ver:the-served-text-asks-for-a-tracked-search-and-where-an-absence-was-checked does not cover this sentence: it is planned and its test file does not exist. The new served_skills.rs test was observed failing on main's served body.",
+    "rationale_basis": "contemporaneous",
+    "repair": "corrected_cause",
+    "subject": "system",
+    "summary": "Section 1 of the hub skill now says a local hub's list of designs is its declared dependencies (external_dependency), read back by upstream_status the same way through MCP and through --call; the MCP configuration only says which of them this session can open. Step 2.1 finds the designs from upstream_status."
+  }
+}

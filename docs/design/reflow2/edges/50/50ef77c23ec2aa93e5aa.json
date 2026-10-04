@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:97e4913f8df7ac80a251226772d74c96834437239b36c6faee9f30d029cbe120",
+  "edge_type": "CAUSES",
+  "from_id": "art:tools-capture",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "PRESCRIBED_LAYER_PAIRS at capture.rs:128 is a hand-enumerated list of the cross-type pairs the loop prescribes to read alike. It lacks Decision-Verification and Requirement-Decision; the reporter's fires cluster on exactly those (plus one n=1 Decision-DesignEpoch). Under-enumeration is the cause; the resend-with-distinct_from is the symptom.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:defect-two-prescribed-layer-pairs-are-missing-so-a-check-beside-its-ruling-is-refused-as-a-duplicate"
+}

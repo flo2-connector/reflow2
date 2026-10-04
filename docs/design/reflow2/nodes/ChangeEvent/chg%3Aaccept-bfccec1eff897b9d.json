@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:fcb83fb72653a992cb730c16a8680958ee3c8c2c2388e405a4ea886127048d6c",
+  "node_id": "chg:accept-bfccec1eff897b9d",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "baseline_established",
+    "detected_at": "2026-09-14",
+    "name": "v0.60.2 cut: the version string moved 0.60.1 -> 0.60.2 and nothing else. Accepted before the manifest is frozen.",
+    "subject": "system"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:c32093587724761915fff5d272610f6a83f1d9f422f4a27f6000b61050490bb4",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "rule:a-lesson-is-generalised-before-it-is-built",
+  "properties": {
+    "authored_at": "2026-08-14",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:799e1764c7add51a3ecb5b27ec1bd9894b18eeb1bb25eb4f35c89bbaa9a1599d",
+  "edge_type": "CHANGED",
+  "from_id": "chg:absorb-core-storage-text",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:budget"
+}

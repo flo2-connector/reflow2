@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:40566c50e1ff99a0bc071534b5837c8a8c2afbee31e92f70303ef77a008f0949",
+  "node_id": "fact:bl-121",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "defect",
+    "statement": "[BL-121] add_component silently defaults provenance to authored",
+    "subject_id": "cmp:nodes",
+    "value": "{\"evidence\": \"*Found 2026-07-31 by the same external adopt pass.* For an ADOPTION, inferred/imported is the honest default, and a silent authored lets recovered content masquerade as stakeholder-stated \\u2014 the precise confusion dec:certainty-derived exists to prevent for requirements, arriving through a component-shaped door. Fix shapes: require provenance explicitly, or default it to inferred when the project was created by an adopt flow. The second is more convenient and more dangerous \\u2014 it makes the honest answer depend on ambient state rather than on what the caller said, which is the shape of a silent fallback. Prefer the explicit demand unless someone argues the other way on the record. Relates to [BL-120](a) \\u2014 same failure, different property, and worth fixing together so provenance honesty is one change rather than two. Size XS\", \"origin\": \"Migrated from docs/backlog.md BL-121 on 2026-08-07 (epoch:backlog-retired). Size estimate carried from the row: XS.\"}"
+  }
+}

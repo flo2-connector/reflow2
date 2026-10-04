@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:375d233c2e8436c37cb43f3547b93c10a51d8b877e0c25f2dd16a8ff513e24c2",
+  "edge_type": "CHANGED",
+  "from_id": "chg:baseline-644e32d36f68250d",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:optimize-command"
+}

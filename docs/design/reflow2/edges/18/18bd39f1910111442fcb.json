@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:bd39ff18e60646e8a1b1e1a354ecc2e33c3f5590355ef6e6fe95aafb03874df3",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-null-and-a-vacuous-zero-now-say-which-they-are",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:tools-query"
+}

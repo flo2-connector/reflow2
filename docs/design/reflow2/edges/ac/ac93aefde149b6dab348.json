@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:6c90d52c3134b3fc7bf8228f8e775736f58a87abced7987b5e1ac9569d4c8257",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0770",
+  "properties": {
+    "as_checksum": "sha256:8d9f94a314969bf4f1a3e6e88e594391636bc59efb1b043f8222404ed0c652e0"
+  },
+  "to_id": "art:test-every-rule-a-project-parent-cures-says-so"
+}

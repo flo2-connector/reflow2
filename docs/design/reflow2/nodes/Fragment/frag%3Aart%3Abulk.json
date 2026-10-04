@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:2f99112fd4e5700d565ea1ed62777f8f766e22e3db80c3dd9c52e600794931a6",
+  "node_id": "frag:art:bulk",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered bulk.rs"
+  }
+}

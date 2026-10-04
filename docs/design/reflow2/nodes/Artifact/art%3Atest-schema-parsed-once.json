@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:085d998ad7a82f5f8a9e4b8f4e93f61779a6c8a16c90dec03b85b38323cabc9f",
+  "node_id": "art:test-schema-parsed-once",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "location": "crates/reflow2-core/tests/the_schema_is_parsed_once.rs",
+    "name": "the_schema_is_parsed_once.rs",
+    "status": "realized"
+  }
+}

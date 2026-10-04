@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:2acf05f9ed8625a9c996310ff0b72ca5d713c3d7a9b915cab33b7fd3bafe61f7",
+  "node_id": "art:kit-instructions",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "document",
+    "granularity": "atomic",
+    "location": "getting-started/AGENTS.md",
+    "name": "getting-started/AGENTS.md",
+    "status": "realized",
+    "volatility": "stable"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:8bf083d7226a2715e37812339eb757d141761e4851650ab0c08eb9665c8e4311",
+  "node_id": "frag:art:test-a-degraded-server-recovers-when-its-cause-clears",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered a_degraded_server_recovers_when_its_cause_clears.rs — a held store is served in place when it frees, and readiness says so"
+  }
+}

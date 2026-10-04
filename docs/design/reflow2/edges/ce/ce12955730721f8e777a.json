@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:a7101e1ba06429955bead5ba27ab98971f3f2ae12f9516997aa814a77750a12f",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-which-license-keeps-reflow2-public-and-stops-competitors-to-flo2",
+  "properties": {
+    "evidence": "A license is granted by the owner; a license change, and any paid commercial grant, binds only if the owners hold the rights — so ownership has to be settled first.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "dec:idea-who-owns-reflow2-and-what-an-accepted-contribution-becomes"
+}

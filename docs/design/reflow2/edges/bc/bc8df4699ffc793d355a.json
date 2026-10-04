@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:9880631d01f7e0254a4e8e611580e0c9b7c2be09bd9de5029cb14a0657bd67b3",
+  "edge_type": "CAUSES",
+  "from_id": "art:detect",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "ROOT CAUSE, walked with the root-cause skill (fetched fresh) and confirmed on main 73cf37b: detect_defect_overtaken_by_change chose a defect's candidate fixes by nearness alone — a defect_fix/test_failure_fix dated strictly after valid_from that CHANGED the subject or ANY Artifact realizing it — and never read the edges that already tie a change to a defect (the defect CAUSES it, it MITIGATES the defect, a repair's CHANGED set names the defect). Strictly-later dropped same-day fixes, the any-realizer hop and repairs already attributed to other findings filled each question with unrelated broad repairs, and the acknowledgement was keyed on the whole candidate set, so any movement of the set re-asked answered questions. Measured, not inferred: the old rule reproduced exactly the sweep's 61 gap ids on 293f9577 and 77 on #662's export.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:the-overtaken-defect-question-named-the-real-fix-once-in-77-2026-10-03"
+}

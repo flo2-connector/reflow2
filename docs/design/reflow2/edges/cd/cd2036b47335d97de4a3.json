@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:9495bfdf9776a603a216c6406b3fc5c6b7430912c032a709dfefb3958fc04287",
+  "edge_type": "MITIGATES",
+  "from_id": "chg:closure-is-one-computation-and-both-read-surfaces-use-it",
+  "properties": {
+    "evidence": "Makes closure one computation both read surfaces call, so a finding another record refuted can no longer come back unmarked."
+  },
+  "to_id": "fact:closure-was-one-question-with-two-answers-so-a-refuted-finding-read-as-current-on-the-surface-a-person-meets-first"
+}

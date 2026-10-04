@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:c0e49b6d19b34b93681056be05fd0980969d3d063d51ee1759912000faf9cda3",
+  "node_id": "decision:ack:1f5b3e413f5f3e53",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Accepted the gap gap:1f5b3e413f5f3e53.",
+    "name": "Reviewed: gap:1f5b3e413f5f3e53",
+    "rationale": "Checked against the v0.51.0 build on 2026-09-07: still open, and the later repairs were unrelated. The served instructions still give the stop-and-import recipe and then mention export in the same paragraph, with nothing saying the export tool needs no stop; the export tool description does not say it either.",
+    "status": "accepted"
+  }
+}

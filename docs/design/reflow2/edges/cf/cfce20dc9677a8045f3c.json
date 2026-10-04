@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:a4b291a73bbea887cd8e3bf1c421cc2c7e8d586c6f0948352d82686e536ac961",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-linking-half-ideas-needs-a-task-that-can-be-run",
+  "properties": {
+    "evidence": "That node's detector is BUILT and firing at 110 of 183, which is what makes this question askable at all — without the count there is no backlog to work and no way to tell whether working it helps. This starts where that one finished.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "dec:idea-what-notices-an-idea-that-connects-to-nothing"
+}

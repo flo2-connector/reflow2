@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:60154e30656a50b55fc8154f0e4dd8a2ee66f88ad09958ee9dcc219441d81ee0",
+  "edge_type": "ANTICIPATES",
+  "from_id": "dec:idea-feedback-arrives-by-git-push-and-pull",
+  "properties": {
+    "evidence": "That idea named the per-clone merge driver as one of three steps in the git exchange path that fail silently; this is the same silence met on a project whose export is off the conventional path."
+  },
+  "to_id": "dec:idea-the-loop-says-when-git-will-line-merge-a-committed-design"
+}

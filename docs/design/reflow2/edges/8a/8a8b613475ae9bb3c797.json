@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:e8223012562d9c87e16ce6dccfe76066650a17631fbc8cc593aae25acb90f400",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-capability-states-what-it-takes-and-gives",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "cap:a-capability-states-what-it-takes-and-gives"
+}

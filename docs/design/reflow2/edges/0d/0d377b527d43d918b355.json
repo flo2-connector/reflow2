@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:6970179a967b40e3d8cb9d3db72ce1b3f51eaaa1acd48ddd504d376f32cfd639",
+  "edge_type": "REALIZES",
+  "from_id": "art:docker-publish-index-script",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:release-publishes-a-container"
+}

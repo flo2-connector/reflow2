@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:a3f1bf4152ed7fd091b1273e7dc558b0b7e83d9a479fd756849f4ffe1f1abda3",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:revise-trigger",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:alternatives"
+}

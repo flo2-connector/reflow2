@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:c6c6a82b717830ed765ce46b5af9e2aaf79449522091f3896e0e33f612f17bec",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-saved-design-moves-to-the-item-layout-2026-10-03",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:c2c27390423ce0b2eb448f77e9467a8be772bdd401ca0fc23b37ca863db056a0",
+    "checksum_basis": "measured"
+  },
+  "to_id": "art:loop-nudge"
+}

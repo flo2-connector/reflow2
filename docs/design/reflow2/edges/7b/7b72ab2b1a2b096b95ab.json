@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:6fc92c2177944d7a21ac0857a8c5380d336bb52a1792150e4d69e91ff338c0d6",
+  "edge_type": "VALID_FROM",
+  "from_id": "fact:defect-add-verification-cannot-reach-its-own-fields",
+  "properties": {},
+  "to_id": "epoch:dev-storyflow-2026-08-15"
+}

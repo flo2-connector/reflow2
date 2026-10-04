@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:9588d53ae3760c9f56508cb73c0c8897f3f65f0809d0b16d20407c75e86d171e",
+  "edge_type": "CHANGED",
+  "from_id": "chg:an-empty-answer-says-which-empty-it-is",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:tools-temporal"
+}

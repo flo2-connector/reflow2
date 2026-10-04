@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:c8841892c0b2b2ef22939dc9900f0259eedb5ebc4cd761df6e39a42bded9d66d",
+  "node_id": "req:interface-spec-complete",
+  "node_type": "Requirement",
+  "properties": {
+    "concern": "core",
+    "designation": "internal",
+    "kind": "functional",
+    "lineage": "original",
+    "name": "A published interface carries enough to check compatibility, not just prose",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "When a design publishes an Interface, the published spec must carry the things two systems actually have to agree on, in a form a computation can compare — not a free-text blob a human has to read. The user's six characteristics: (1) ARCHITECTURAL STYLE AND PROTOCOL — the technology (REST, gRPC, GraphQL, WebSockets; RS-232, PCIe, CAN bus) and the communication paradigm, synchronous request-response versus asynchronous event-driven; (2) DATA STRUCTURE AND TYPES — payload serialization (JSON, XML, protobuf, raw binary) and a schema saying which fields are mandatory, their types, and their formatting constraints; (3) OPERATIONS AND ENDPOINTS — where to send a request (URL, port, memory address, function name) and what actions are permitted (HTTP verbs, RPC methods, read/write commands); (4) AUTHENTICATION AND SECURITY — how identity is verified (API keys, OAuth2, TLS certificates, cryptographic signatures) and how data is protected in transit and at rest; (5) ERROR HANDLING AND STATE CODES — the status vocabulary and a consistent failure structure the consumer can parse automatically; (6) PERFORMANCE AND CONSTRAINTS — rate limits, throttling, maximum concurrency, and timeout thresholds. THE POINT IS NOT COMPLETENESS FOR ITS OWN SAKE: it is that two designs cannot be checked for INCOMPATIBILITY at their seam unless the seam is described in comparable terms. Today reflow2 structures roughly one and a half of these six (medium, and designation) and puts the rest into one free-text `spec` string or nowhere at all — so mirror_surface can link two designs and still not tell you they disagree.",
+    "status": "accepted"
+  }
+}

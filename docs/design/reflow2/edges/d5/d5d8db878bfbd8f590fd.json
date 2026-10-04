@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:e0e931af955d92f004cd9b3a6a6c7e85317e6a7766871f51615ecef4f7cb0f13",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-real-run-is-fed-back-by-file",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:tools-assure"
+}

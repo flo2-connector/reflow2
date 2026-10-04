@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:830c92304921423a2e0b33553ab61d455620ffeba5a9c0f9763dc8c8e21e9ef1",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-saved-design-moves-to-the-item-layout-2026-10-03",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:6081f0a2792154cf9abab7d75961cd2223ecf2505bdb45496768b77eda7ed59d",
+    "checksum_basis": "measured"
+  },
+  "to_id": "art:test-a-server-drains-before-it-stops"
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:8cd3cd9ba568dbc5755e8e3387d5ecdf5cf4766ee0da103feaa5d5c68f5c5882",
+  "edge_type": "EVOLVES_INTO",
+  "from_id": "dec:idea-a-claimed-blast-radius-is-an-island-no-other-session-writes-in",
+  "properties": {
+    "evidence": "Option (c) of this idea, bounded to one hop by the measured island sizes, promoted by Anthony on 2026-09-29 as item 4."
+  },
+  "to_id": "req:a-write-in-another-agents-claim-lands-and-names-who-holds-it"
+}

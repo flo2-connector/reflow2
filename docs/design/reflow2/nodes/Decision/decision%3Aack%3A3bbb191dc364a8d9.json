@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:5356011025ccc40a62b7a94d1b65b425ce1d1329826bd3112e4e29b6e51e005f",
+  "node_id": "decision:ack:3bbb191dc364a8d9",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Accepted the gap gap:3bbb191dc364a8d9.",
+    "name": "Reviewed: gap:3bbb191dc364a8d9",
+    "rationale": "RULED 2026-09-15 (Anthony): PARTLY ADDRESSED, NOT CLOSED. The discriminating experiment the finding proposed has been BUILT — search_design declares an output schema and every other tool is the control (chg:one-tool-declares-its-output-contract, ver:one-tool-declares-its-output-contract passing) — but the client arm has not run: the 2026-09-15 Grok Build session called maturity_report, what_next, scan_nodes and open_questions and never the declared tool, and the headless probe waits on Grok quota. So the asymmetry the finding records stands at 1 declared of 191, and whether an output contract is what a content-only client needs is still unmeasured. None of the four listed repairs (authorship survives approval, the enum wiring, the concern enum, a checksum acceptance) bears on it. Acknowledged for these repairs; closes when the probe runs, from its result.",
+    "status": "accepted"
+  }
+}

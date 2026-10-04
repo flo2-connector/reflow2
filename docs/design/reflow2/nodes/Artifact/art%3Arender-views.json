@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:7253ad5dfd23f82bd8ee073fb5c4dad2a4acf1cbfcda3dcd5dd5c275e2027669",
+  "node_id": "art:render-views",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "granularity": "atomic",
+    "location": "tools/render_views.py",
+    "name": "render_views.py",
+    "status": "realized",
+    "volatility": "stable"
+  }
+}

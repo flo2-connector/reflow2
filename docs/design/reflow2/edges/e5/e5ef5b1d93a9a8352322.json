@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:83b89cfabeec26cd4c5ac9fe4fb32966a5648fe230b0c7e8cf2706da214d70a2",
+  "edge_type": "CHANGED",
+  "from_id": "chg:bl88",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cap:reconcile-built"
+}

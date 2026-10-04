@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:3348e1eb63d5c5990eebde079b12fa961239adb0532ba2802a8d06f6d03afbf4",
+  "node_id": "fact:defect-add-verification-cannot-reach-its-own-fields",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "confidence": 1.0,
+    "fact_type": "defect",
+    "statement": "`add_verification` CANNOT SET `description` OR `location`, SO A CHECK RECORDED INCREMENTALLY CANNOT SAY WHAT IT ACTUALLY IS. Reported with a proposed `create_node` merge as the retrofit; a peer then corrected the prescription within the hour with the better answer — `import_graph` takes a DOCUMENT, and a document reaches the WHOLE schema, so BULK creation already has a route that does not need the constructor widened. ⚠️ THAT DOES NOT RETIRE THIS: bulk has a document route and INCREMENTAL work does not. Recording one verification mid-session is a typed call, and that call still cannot reach the field. The constructor is still too narrow; it is just no longer the only door, and it is the wrong door for bulk. SEPARATELY AND CHEAPLY: the `adopt` skill ALREADY recommends the document route but justifies it on TOOL-CALL COST — a reader who does not care about call count reads that as a performance tip and skips it, which is exactly what happened. Fidelity is the better reason and one sentence in that skill would have prevented both this retrofit and a second seat's. || SOURCE: Observed by the dev_storyflow fleet on 2026-08-15, on reflow2 0.31.0 with served == installed verified through /proc/<pid>/exe. Three agent seats, one shared graph, one day.\n\n▸ HALF ADDRESSED 2026-08-15. The cheap half is done: the `adopt` skill now justifies the import document on FIDELITY — a document reaches the whole schema and the constructors do not — instead of on tool-call count, and says out loud that there is no incremental equivalent. The constructor itself is UNCHANGED: `add_verification` still cannot set `description` or `location`, so VALID_TO stays absent.",
+    "subject_id": "cmp:verify",
+    "value": "{\"unreachable_fields\":[\"description\",\"location\"],\"bulk_route\":\"import_graph document\",\"incremental_route\":\"none\",\"skill_to_amend\":\"adopt\",\"corrected_by\":\"peer, same session, within the hour\"}"
+  }
+}

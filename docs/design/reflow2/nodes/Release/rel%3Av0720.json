@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:50acbce4e7bfded57045926d804f9bc99fcc83f138ba5af8a28be611af56d115",
+  "node_id": "rel:v0720",
+  "node_type": "Release",
+  "properties": {
+    "description": "Step 1 of the tracked-export retirement plan (epoch:planned-v0720-the-remote-client-is-released). Three built changes and one fix since v0.71.0:\n- `reflow2-mcp --remote <url>` works a design on a remote reflow2 server from your own agent, with a key the agent never sees (#592).\n- `reflow2-mcp setup` chooses local or a remote server once; the key is checked against the server and kept in the OS keychain (#593).\n- `external_dependency` takes `design_address`, and `upstream_status` asks that server for the design's fingerprint; a server that cannot be reached or refuses is reported as `unreachable` or `refused`, never as unchanged (#602). The watch also no longer takes any JSON document for a design.\n- Fixed: every tool list carries the cache hints Claude Code 2.1.283 requires, so the machine-wide entry works again in a folder with no design (#595).\n\nMinor, because tools gained parameters. The schema stamp is unmoved against v0.71.0 (28 node types, 65 edge types, the same enum values, schema_version 1), so no upgrade note is owed. Also carries the design-only records of 2026-09-25 to 09-27, including the accepted design-and-export rules and the tracked-export retirement plan.",
+    "name": "v0.72.0 — the remote client, its setup command, and a design watched at the server that holds it",
+    "status": "retired",
+    "unit_type": "binary",
+    "version": "0.72.0"
+  }
+}

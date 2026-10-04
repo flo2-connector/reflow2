@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:6163e13bc4bd01a14f0d35ff11df6c034a8a1d7f082bcb8e2c85d9ce15ccee67",
+  "edge_type": "SPECIFIES",
+  "from_id": "art:schema-structure",
+  "properties": {
+    "format": "json_schema"
+  },
+  "to_id": "ifc:mcp-tools"
+}

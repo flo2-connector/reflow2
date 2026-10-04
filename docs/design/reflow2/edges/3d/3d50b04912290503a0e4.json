@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:eb50aee29fd8c298f7398f3a14d3d3b62bd5f1ade9e34c1902d9c967f5b2cf39",
+  "edge_type": "CHANGED",
+  "from_id": "chg:every-skill-has-a-command",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:skill-lint"
+}

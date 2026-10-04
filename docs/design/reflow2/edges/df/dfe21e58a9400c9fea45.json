@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:844bbbe1c4e4b21c496e5f8c976cfa7c334ab1c830621d6173893e2ccfed0160",
+  "edge_type": "CAUSES",
+  "from_id": "art:hxm-program-feedback-2026-09-10",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "The report is the source of the observation, not of the defect: F-03 (2026-08-25), F-11 (2026-08-26→28) and the 2026-09-09→10 measurement row all describe the same symptom — \"loop_status repeats N structural defects outstanding to the user at every check\" while the user is mid-task — across three sessions and two reflow2 versions. Three occurrences of one symptom is what made this worth root-causing rather than answering.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:the-defect-count-is-severity-blind-so-parked-ideas-are-reported-as-outstanding-debt"
+}

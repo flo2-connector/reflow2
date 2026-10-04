@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:9fd07f133c09b20cd77a92f32becffbbcee4c8c11c6e6959a0798979ddcf2e46",
+  "edge_type": "SCHEDULED_FOR",
+  "from_id": "req:a-photocopy-says-it-is-one",
+  "properties": {
+    "modality": "expected",
+    "recorded_at": "2026-09-27"
+  },
+  "to_id": "epoch:planned-flo2-then-reflow2-move-and-the-photocopy-retires"
+}

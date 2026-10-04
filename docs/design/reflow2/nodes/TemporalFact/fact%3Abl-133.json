@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:38c8aa1c5661cf75f5cfd5be3f8e95a0e4e2a875a73ccc88f7aa0566effd81f7",
+  "node_id": "fact:bl-133",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "defect",
+    "statement": "[BL-133] The edit path exists and is invisible: two independent readings of the surface concluded statements are write-once",
+    "subject_id": "cmp:skills",
+    "value": "{\"evidence\": \"*Found 2026-07-31. Filed as a DISCOVERABILITY defect, not a missing capability \\u2014 the reported bug is wrong and the underlying problem is real.* A case study reported three times that Requirement and Capability statements cannot be edited over MCP, that the only path is drop-and-recreate under a new id (inflating the graph with near-duplicates, which is the opposite of what dropped is for), and that its Project objective was therefore *\\\"permanently stale\\\"*. All of that is false. create_node calls upsert_node (graph.rs:232) and the merge is literal \\u2014 merged.extend(supplied) \\u2014 so passing {statement: \\u2026} with an existing id edits the statement and every omitted property survives. The tool's own description says so. What makes this worth an item rather than a correction: that same session USED the upsert an hour earlier to set Interface.medium, and still did not generalise it; and the belief was stable enough to survive into a standalone consolidated fix list, from which it would have propagated as fact. The add_* tools never say where to go to CHANGE one. Fix: one sentence in the add_* descriptions naming create_node as the edit path. Size XS\", \"origin\": \"Migrated from docs/backlog.md BL-133 on 2026-08-07 (epoch:backlog-retired). Size estimate carried from the row: XS.\"}"
+  }
+}

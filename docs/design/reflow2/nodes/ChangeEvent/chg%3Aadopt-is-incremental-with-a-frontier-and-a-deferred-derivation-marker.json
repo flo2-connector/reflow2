@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:63f5ce6de103394914f979821246099d5f923307646ead9a53bc68ebcd31636e",
+  "node_id": "chg:adopt-is-incremental-with-a-frontier-and-a-deferred-derivation-marker",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "detected_at": "2026-09-17",
+    "name": "Adopt is incremental and resumable: a frontier read and a deferred-derivation marker",
+    "rationale": "Second of Alex's three ideas promoted on Anthony's word 2026-09-17, built after the v0.63.0 cut on his word (\"Can we move into Alex's second requirement?\"). The shape is the two primitives Alex named, on vocabulary the design already had: the marker is the follow_up shape with a different fact_type, the frontier reuses the two intent detectors' rules and coverage_report's sweep. The breadth-first payoff is kept by construction — the frontier refuses to read clean about what is uncaptured until a sweep is handed in — and a deferral is never a way to make a question disappear: it quiets the finding on its subject and is listed as owed at the boundary instead. The scoped-detector dependency was already settled (dec:the-default-scope-depth-should-be-two, 2026-08-17).",
+    "summary": "frontier.rs: DEFERRED_DERIVATION (a TemporalFact fact_type), open_deferrals / deferred_subjects (open = no valid_to and no INVALIDATES, the follow_up rule), and frontier(observed, exclusions) — structure_without_intent (capabilities with no SATISFIES, leaf components with no ALLOCATED_TO, the detectors' own rules, minus deferred subjects), deferred oldest first, uncaptured (coverage_report's unclaimed regions when a sweep is handed in; absent, never empty, without one), resume_point (the most recent deferral). detect.rs: unmotivated_capability and unallocated_component skip subjects under an open deferral. report.rs: LoopStatus.deferrals_open / deferrals, a next line, and the not-attributable tuple. Served: frontier (coherence router; observed as {path, mass} objects like coverage_report). Skills: adopt gains Region mode (model the region; mark what you leave with record_finding fact_type deferred_derivation; scoped detect_gaps; resume with frontier; settle by closing the marker). Corpus query for frontier; CHANGELOG entry. Tests: adopt_is_incremental_with_a_frontier_and_a_deferred_derivation_marker.rs (core, four cases) and the_frontier_is_served_and_a_deferral_is_a_recorded_finding.rs (served, two)."
+  }
+}

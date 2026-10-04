@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:4b8c9db21d54a063c7cf41043c3d5cd355679d195acef7abd00feeb0eab25352",
+  "edge_type": "REALIZES",
+  "from_id": "art:a-fix-says-whether-it-corrected-the-cause-test",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:a-repair-says-which-kind-it-was"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:555539d7f6c279d0ce75ead550a7ebc9832566bd1434a52a55be1590439261e6",
+  "edge_type": "CHANGED",
+  "from_id": "chg:commands-ship",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:skill-lint"
+}

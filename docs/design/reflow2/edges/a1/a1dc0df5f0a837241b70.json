@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:7a9b8161c433b5e15e18e4ce822dae4fb83aad9156bb6aff98902d51fc93d83a",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:a-discipline-is-delivered-at-the-tool-not-in-a-catalogue",
+  "properties": {
+    "authored_at": "2026-08-09",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:aea5917958fd35cb8b2c47d3190324645271ad3a39c823c831a597b88e6ead37",
+  "edge_type": "HAS_TEMPORAL_FACT",
+  "from_id": "cap:gap-carries-a-reading",
+  "properties": {},
+  "to_id": "fact:gap-to-prompt-welds-the-title-and-the-why-into-one-string-and-returns-only-the-string-so-the-one-consumer-splits-prose"
+}

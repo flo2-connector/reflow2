@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:eafde07ea06f53d5dabe0625d6d156b26d7381725c1468f76a363a0bb5b6021d",
+  "node_id": "req:a-skill-that-creates-a-design-ends-by-naming-what-to-do-next",
+  "node_type": "Requirement",
+  "properties": {
+    "concern": "usability",
+    "kind": "functional",
+    "lineage": "original",
+    "name": "When a design has just been created, the person is told two or three things they can do next, in their own terms",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "When genesis or adopt finishes creating a design, its closing words name two or three things the person can do next, in plain words with the slash command beside each as a shortcut. For example: \"see what is still open (/gaps)\", \"add something it needs (/req)\", \"see where it stands (/where)\".\n\nAnthony, 2026-09-24, about his brother's first design on flo2: \"I don't think he'll know anything beyond /genesis. So I'd imagine to him, he's probably like, cool, I created a design, so what now?\" And: \"the same problem also affects reflow2 at the lower level for users using reflow2 like I am here.\" He kept this as intent from dec:idea-a-person-learns-what-to-do-next-once-they-have-a-design, option (a).\n\nScope and limits, from the pushback recorded on that idea:\n- Only the skills that CREATE a design (genesis, adopt) end this way. A suggestion after every skill becomes noise for someone who knows them.\n- Each suggestion is phrased as something the person can ASK FOR. The command is a handle, never the only way in. This does not make the person the trigger for the agent's own skill use (req:skill-use-survives-a-long-session): the agent still reaches for skills on its own. This tells a newcomer what is possible to ask.\n- It reaches flo2's chat users with nothing built in flo2, because flo2 serves these skills unchanged. On Grok the person must still say \"use flo2\"; that line is flo2's to carry.",
+    "status": "accepted"
+  }
+}

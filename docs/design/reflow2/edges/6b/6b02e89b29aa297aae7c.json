@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:b94ace43f7d135f11fc83f4d5f4818bea12b0f1664a30bc28257b12c82dc7c15",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:loop-status-lens-test",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:loop-status-lens-test"
+}

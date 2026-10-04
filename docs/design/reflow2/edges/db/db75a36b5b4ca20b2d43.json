@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:82dfea287b5ecaed234c9828b65cd4c43106c9a3718cc634df4f76e967ea0052",
+  "edge_type": "VERIFIES",
+  "from_id": "ver:handed-out-seat-liveness",
+  "properties": {},
+  "to_id": "cap:claim-liveness"
+}

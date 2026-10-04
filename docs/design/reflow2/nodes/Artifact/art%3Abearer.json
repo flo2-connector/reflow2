@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:a3a71980a1433ee06e2fbba716c0e4f22e56ebbe9120593005360e7d207bd3ab",
+  "node_id": "art:bearer",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "location": "crates/reflow2-mcp/src/bearer.rs",
+    "name": "bearer.rs — the OAuth 2.0 resource server: bearer gate, JWT verification, key set, metadata",
+    "status": "realized"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:f8efdf9956d81d6c0efe5af594fd8316d44566e58fa68b00df743de87375f17a",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "req:reflow2-declares-its-derived-relations-and-serves-a-read-that-runs-them",
+  "properties": {
+    "evidence": "A derived relation is declared by the primitive it reads as, and the per-edge-type readings (PR #621, draft) supply that vocabulary.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "req:every-edge-type-declares-what-it-means"
+}

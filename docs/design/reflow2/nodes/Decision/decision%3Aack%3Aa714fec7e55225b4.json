@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:c67dc82015c855ff24feee5e421b3074ab91538b734718f34948535a291d12a2",
+  "node_id": "decision:ack:a714fec7e55225b4",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Accepted the gap gap:a714fec7e55225b4.",
+    "name": "Reviewed: gap:a714fec7e55225b4",
+    "rationale": "Extends the user's standing 2026-07-23 disposition on this same gap, with its wording brought up to date (2026-07-24): BL-80 has now landed in full, and BL-70's fork layer has been DESIGNED — the fork point is a coordinate (dec:fork-point-address), re-opening supersedes (dec:reopen-supersedes), and the epoch chain it addresses is backfilled and anchored. What remains unbuilt is the read-only fork_point operation itself, so a verification would have nothing to run against. Verification arrives with that build, not before; the capability's status stays `planned` and its description names exactly what is still to build, so nothing here claims more than is true. NOTE for whoever picks this up: the sibling unrealized_capability gap (gap:72f2c38d8acdeac2) has now RETIRED itself, because cap:fork-alternatives became allocated to cmp:alternatives and alternatives.rs realizes that component — the detector treats component-level realization as covering the capability. That is a detector generosity, not evidence the fork point is built. Do not read its silence as progress.",
+    "status": "accepted"
+  }
+}

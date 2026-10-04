@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:aa64221c500a528bdfd287f8063cde4cfd5833312086460b3d273966760b5c06",
+  "edge_type": "INVALIDATES",
+  "from_id": "chg:the-wall-check-is-served",
+  "properties": {
+    "at": "2026-09-14",
+    "note": "Served, named and gated. The claim on the capability is now true for a consumer; the record of it having been false for 25 days stays readable."
+  },
+  "to_id": "fact:defect-the-wall-check-claims-any-project-and-ships-only-in-the-dev-repo"
+}

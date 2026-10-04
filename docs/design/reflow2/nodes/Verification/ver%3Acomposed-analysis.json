@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:670dca2eb0dfb93d14ee54033182773b149ccd5a38df47757c469195412c0784",
+  "node_id": "ver:composed-analysis",
+  "node_type": "Verification",
+  "properties": {
+    "description": "Two designs that both name something `cmp:store` do NOT overwrite each other, and the consumer's design is untouched — the corruption a plain import would cause silently; findings are attributed ours/theirs/seam with a seam finding required to name ids from BOTH sides; composing is READ-ONLY, pinned by the consumer's export content_hash being byte-identical afterwards and carrying none of the dependency's nodes; and an empty namespace is REFUSED rather than allowed to collide by omission (crates/reflow2-core/tests/compose.rs, 5 cases)",
+    "kind": "verification",
+    "last_reconciled_at": "2026-09-23",
+    "last_reconciled_outcome": "passed",
+    "last_run_at": "2026-07-27",
+    "level": "integration",
+    "method": "test",
+    "name": "Two designs are analysed together without either overwriting the other",
+    "status": "passing"
+  }
+}

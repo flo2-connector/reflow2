@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:65e570b65dbddd2de51abddb150578c72c6ae866594859f916c5d3cc22c82f9f",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:kit",
+  "properties": {
+    "coverage": "partial",
+    "evidence": "install.sh is checksum-verified and pulls published binaries (no rebuild), and reflow2_init.py updates a project in place — but the installer is not yet reachable from a stable public one-liner URL, there is no single self-update command, and the release cadence is not yet frequent-and-minor. The delta is the backlog's frictionless-update item."
+  },
+  "to_id": "req:frictionless-update"
+}

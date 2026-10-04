@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:c198294284e50901137faf7ee889845c4e86f65481a8aece656f9e4b3aaa8f28",
+  "node_id": "cap:a-composed-prompt-serves-its-pieces-and-a-closed-gap-refuses-branchably",
+  "node_type": "Capability",
+  "properties": {
+    "description": "As built 2026-09-20. THE PIECES: the prepare pass now answers `{status: needs_llm, prompts, gap: {id, title, why}}`. The prompt is composed by joining the gap's title and description in one statement (detect.rs), and only the joined string came back — so flo2, which wants the CONTEXT folded into a model turn it already pays for rather than a phrased question bought with a second turn, split that string on the literal 'Why it matters:'. That marker is in no schema and rewording the template is legitimate for any release; flo2 declared it as its single breach of the black-box rule and guarded it with a test. The two-phase protocol is UNCHANGED. THE REFUSAL: a replayed gap that is no longer open was already refused with good prose and nothing else, so a consumer could only tell it apart by matching that prose — and flo2 therefore re-ran detect_gaps before EVERY send, a whole graph computation per click, purely to know whether a chip was stale. The refusal now carries `reason: gap_closed` and the id in the error's data. Test: crates/reflow2-mcp/tests/a_composed_prompt_serves_its_pieces.rs (the pieces are the values the prompt was built from, asserted against the composed text; a stale gap refuses with the reason, the id, and the prose intact).",
+    "name": "The first gap-prompt reply carries the gap's own pieces, and a gap that has closed refuses with a reason a consumer can branch on",
+    "provenance": "authored",
+    "status": "realized"
+  }
+}

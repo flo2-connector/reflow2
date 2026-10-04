@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:7a0dce144ba318d299e152651887089c1f2f26735795e28976379ed455d3b363",
+  "node_id": "chg:a-revise-keeps-what-it-was-not-passed",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "defect_fix",
+    "detected_at": "2026-09-29",
+    "name": "A revise keeps what it was not passed, in every tool that promises it; a create with no name is refused instead of stored empty",
+    "rationale": "Fixes the CLASS walked in fact:root-cause-the-revise-contract-is-implemented-per-handler-and-guarded-by-instances-2026-09-28: the contract \"omitted fields keep their stored value\" is carried by shared mechanisms that are correct, and broken by code in single handlers that computes from the call. The instances are fixed, and the fix that stops the NEXT one is the test: membership is read off the served tool list, so a new constructor or a new default in an old one is held to the promise the day it is served. Found beyond the report while writing that test: the REQUIRED-TO-CREATE half was broken in seven handlers that never called finish(). NOT CHANGED, on purpose: whether new findings on a revise may inherit a stored verdict is open (dec:idea-revise-notes-guards-and-defaults-read-the-merged-node), so the guard keeps its rule and only stops sending the caller back blind; and external_dependency still REPLACES on re-declaration (it does not promise the revise contract, and a merge would keep a watch target the new declaration dropped — fact:re-declaring-a-dependency-drops-the-resources-description-2026-09-23 stands). The third field sighting, fact:sighting-3-record-finding-revise-demotes-a-defect-on-0-74-0-and-the-class-is-still-live-2026-09-29, lives in the live design only.",
+    "rationale_basis": "contemporaneous",
+    "repair": "corrected_cause",
+    "subject": "system",
+    "summary": "record_finding applies its fact_type/basis defaults on CREATE only; plan_epoch writes through upsert_node (merge) and lands `planned` only when no epoch exists; add_change_event computes `undated` from the stored event; add_verification findings-without-status refusal names the verdict and run date the check already holds (rule unchanged); add_artifact, add_contributor, add_environment, add_flow, add_release, add_resource and add_verification now call RequiredFields::finish before writing, so an id-only create is refused instead of storing name: \"\". RequiredFields gains revising(), default_on_create() and stored_str(), so a handler can read passed-else-stored-else-default. Pinned by the class test a_revise_keeps_what_it_was_not_passed.rs."
+  }
+}

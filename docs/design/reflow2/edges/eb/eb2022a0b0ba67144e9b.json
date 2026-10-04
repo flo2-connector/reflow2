@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:bd9feb4dad07c140fcffb65000f65a285c5bc69e70fbcab4fd74a00ddd9f5124",
+  "edge_type": "ABOUT_ENTITY",
+  "from_id": "fact:the-hub-wants-what-an-accepted-requirement-already-half-built",
+  "properties": {
+    "note": "The accepted requirement whose second named check — declared-versus-upstream — was never built, and which is hub want #2."
+  },
+  "to_id": "req:design-dependencies-declared"
+}

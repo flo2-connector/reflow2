@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:442036d6ac6c67599a3d97764c841022e00e3357b1fac49aa8a3ade64ea40299",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-server-and-the-gate-share-one-meaning-for-an-artifact-location",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:coherence-gate-test"
+}

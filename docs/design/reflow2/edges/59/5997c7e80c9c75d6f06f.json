@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:e6dc3d8b763c11e5db3e0f6d07e255ea1216a317b94cc8e7f6ce1d5b85c27dc6",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:drift-direction",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:drift"
+}

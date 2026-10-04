@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:c07a8eccff6bf7a700bb40888678c24b15edc9b055b4889876512a78205bdaf7",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:a-declared-dependency-is-watched-not-imported",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:depends"
+}

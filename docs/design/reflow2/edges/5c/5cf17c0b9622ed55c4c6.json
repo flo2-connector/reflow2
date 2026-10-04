@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:fd0f1d2e97183944f96e6d8083f757a44b23e2f07e966b07f256e9e0b801bfaa",
+  "edge_type": "CHANGED",
+  "from_id": "chg:resolution-bands",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cap:ingest"
+}

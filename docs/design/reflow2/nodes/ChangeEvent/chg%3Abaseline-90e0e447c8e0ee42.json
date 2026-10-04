@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:ebde82361ea60320de8d263e1381aa56c13ebe02c9b262d6f4e9ef914a36429c",
+  "node_id": "chg:baseline-90e0e447c8e0ee42",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "baseline_established",
+    "name": "Recorded as a FIRST BASELINE (baseline_established): 'art:dev-storyflow-feedback-2026-09-08' had no checksum, so the disposition passed could claim nothing about a movement nobody observed. Nothing moved and the design took no position. Caller's note: First baseline. The file is gitignored (dec:field-reports-are-untracked-because-the-repository-is-public) and removed once captured (dec:reflow2s-own-feedback-documents-are-removed-once-captured), so recording the checksum is what lets its absence read as expected_absence rather than missing_artifact — which is exactly how the other sixteen field reports are held.",
+    "subject": "record"
+  }
+}

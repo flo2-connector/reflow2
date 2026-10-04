@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:46a8d9b811a76a321ebea3f67ed311547a605542d604b9bbf05831c6c9910bd9",
+  "node_id": "decision:ack:350d55cf9c8c3247",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Accepted the gap gap:350d55cf9c8c3247.",
+    "name": "Reviewed: gap:350d55cf9c8c3247",
+    "rationale": "Failing ON PURPOSE, and accepted for exactly as long as the fix is unbuilt. `ver:stateless-seat` is the measurement that made the rmcp v3 exposure visible instead of arguable: one client, two claims, count the distinct seats — stdio one, HTTP at 2025-06-18 one, HTTP at 2026-07-28 two. Recording it as `passing` would be the lie; deleting it would restore the blind spot that let every gate stay green through the upgrade.\n\nWhy it is acceptable rather than urgent: no path reflow2 controls reaches the broken one. Claude Code and grok build connect over stdio; `proxy.rs` pins `2025-06-18` on both handshakes, so shared and remote mode still get a session and a seat each; and rmcp's own `ProtocolVersion::LATEST` is still `V_2025_11_25`. Only an external client dialling `--http` and choosing 2026-07-28 itself lands on it, and the 2026-07-28 revision's 12-month feature-lifecycle window applies.\n\nNot open-ended. Anthony chose the fix on 2026-07-30 — mint-and-carry with a loud refusal, option (a) of `dec:stateless-seat-handle`: a tool mints a seat and returns it, the client passes it on the calls that care (`ClaimReq.seat` already accepts one), and a claim-family call arriving on a sessionless transport WITHOUT a seat is refused by name saying what would have worked, rather than silently minting a per-request seat and reporting success — `req:no-silent-fallback` applied to identity. When that lands, this verification flips to passing on its own evidence and this acknowledgement should be withdrawn rather than left standing.",
+    "status": "superseded"
+  }
+}

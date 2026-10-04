@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:219a227421d0372011893c3fb0328df301cfef3846168982f2a49e02d0e4d0ec",
+  "edge_type": "CHANGED",
+  "from_id": "chg:brainstorm-skill-built",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "dec:exploratory-staging"
+}

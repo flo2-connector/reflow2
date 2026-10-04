@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:eb9d12f6506626ca5584c5484a97315dad417df45e39a5ade892beee8dd509ea",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:a-relationship-stored-as-a-node-names-the-role-each-participant-plays",
+  "properties": {
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

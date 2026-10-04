@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:f5a467ed59f74d88126cc5194253514a4ff0e1f79e076a319080d34625263655",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-saved-design-moves-to-the-item-layout-2026-10-03",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:ef034ce196d5a466cbff2c0ab343b2ce7ad8dd0859ff1f4c329e2645d8725dc4",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:test-a-setup-command-chooses-local-or-remote-once"
+}

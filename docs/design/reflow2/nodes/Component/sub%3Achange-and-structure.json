@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:8e546ac068c96b18c345384479edec5fd7389a8a6013696d13d1311ac68c3484",
+  "node_id": "sub:change-and-structure",
+  "node_type": "Component",
+  "properties": {
+    "level": "subsystem",
+    "name": "Change and structure",
+    "provenance": "authored",
+    "purpose": "What a change touches, and how the design is shaped — impact propagation and its budget, the decomposition spine, allocation of function to parts, the relations between nodes, and the coordination of who holds which region while it all moves.\n\nGrouped because they answer one question from different sides: WHAT IS CONNECTED TO WHAT, and therefore what moves when something does. Propagation reads the shape; allocation and structure write it; relate records the reasoning edges; claims says who may be writing it right now.\n\n⚠️ `cmp:claims` sits here uneasily and the discomfort is recorded rather than smoothed over: coordination of parallel work is arguably not coherence-loop machinery at all. It was placed here because it is about the design MOVING, and flagged because this split surfaced the question rather than created it.",
+    "status": "planned"
+  }
+}

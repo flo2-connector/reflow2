@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:d7e582f47f99ccb1df2285c66bfdac624dc0de751ca917009e18ba34f804e66a",
+  "edge_type": "ANTICIPATES",
+  "from_id": "fact:vocabulary-needs-three-legs-and-a-users-project-gets-none-of-it",
+  "properties": {
+    "evidence": "The three-legs finding — that vocabulary reaches a user's design only with a typed tool AND an instruction AND a detector that notices absence — is the same claim one level down: a mechanic present in one skill and enforced nowhere has an instruction and no detector. \"Speak the reader's domain\" is stated in the served instructions for every skill, carried by one and enforced for one, which is exactly the two-of-three failure that finding names."
+  },
+  "to_id": "fact:the-contracts-are-the-same-shape-and-the-code-says-so-twice"
+}

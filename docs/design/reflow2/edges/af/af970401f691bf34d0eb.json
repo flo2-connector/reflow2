@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:a423d49f0ce6fbf9b2175a41c0d4bb0c5f25cf47548a50e7bce39b9a0a8e169d",
+  "edge_type": "ABOUT_ENTITY",
+  "from_id": "fact:correction-stranded-server-is-recoverable-without-a-reconnect",
+  "properties": {},
+  "to_id": "cap:shared-sessions"
+}

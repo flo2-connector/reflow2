@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:9fadd13df125a6141e4f9d617f03b5d42527a128eecabf2ce20db0b7c12ab57d",
+  "edge_type": "CHANGED",
+  "from_id": "chg:every-required-parameter-and-every-thin-description-says-what-it-is",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:tools-built"
+}

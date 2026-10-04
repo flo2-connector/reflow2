@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:eeb07ca70fc0030acaecfc7d05065d40f06f59ad9bbe24a83dc4a9cf65982f55",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-setup-command-chooses-local-or-remote-2026-09-26",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cmp:proxy"
+}

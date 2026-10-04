@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:50db52c5beb0c94d1178a917939e324b9c66141f53f79eb8db0061b97047faf5",
+  "edge_type": "CHANGED",
+  "from_id": "chg:scaling-to-many-tenants-20260809",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cap:graph-registry"
+}

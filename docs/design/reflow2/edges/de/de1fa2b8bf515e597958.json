@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:48664c21b9ed9a19c863301b4f044cba4f883edd3eaa5e8bbea0a630afdd9ec4",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-revising-write-says-whether-the-state-survived",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "cap:a-revising-write-says-whether-the-state-survived"
+}

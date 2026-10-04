@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:057ddfe992e63f680a79b3efe248d06a90d8954426618227e8e028c8962ed6ff",
+  "edge_type": "ANTICIPATES",
+  "from_id": "req:scenarios-are-modelled",
+  "properties": {
+    "evidence": "The scenarios requirement (proposed since July) asked for the end-to-end walk-through that UAF 1.3 models as Mission Threads and Phases."
+  },
+  "to_id": "dec:idea-what-reflow2-takes-from-uaf-1-3"
+}

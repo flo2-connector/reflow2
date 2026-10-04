@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:1085d80dc6d0cdbe44470f19e72be51fcefb4a65ab5daa94569477648795bbaa",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:a-project-records-how-it-ships",
+  "properties": {
+    "authored_at": "2026-07-31",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

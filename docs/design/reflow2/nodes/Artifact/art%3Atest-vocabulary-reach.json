@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:b6571ba1feb55fd817116f55d952608676cefeaa566bdd681cb104129032500e",
+  "node_id": "art:test-vocabulary-reach",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "test",
+    "location": "tools/test_vocabulary_reach.py",
+    "name": "test_vocabulary_reach.py",
+    "status": "realized"
+  }
+}

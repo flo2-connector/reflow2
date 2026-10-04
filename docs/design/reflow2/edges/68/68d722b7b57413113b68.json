@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:4786a549a6e5bbb9e1b36cc21c06bb688b4949786b6de4b56d4d701142b56d06",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "req:edge-defaults-do-not-assert",
+  "properties": {
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "req:defaults-do-not-assert"
+}

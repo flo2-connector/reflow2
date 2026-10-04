@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:4c9efdf12016dcfa308ca2fed2cef2135883e024487786885d9d44c8a00e44b1",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-saved-design-moves-to-the-item-layout-2026-10-03",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:d7cd41644a25d6624d9be6381718482cfb8db6a1e8c656738a776afe9197e76c"
+  },
+  "to_id": "art:a-fix-says-whether-it-corrected-the-cause-test"
+}

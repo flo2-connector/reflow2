@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:b23709f96c5781b3013c76043b3f6a1787a789d32c77208677eeeb806cd609dc",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:skills-served",
+  "properties": {},
+  "to_id": "req:thin-install"
+}

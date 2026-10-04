@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:48c8a3ac55d02d3e8064c90d5c2507516b3e01d260cb443c65087d90b44b7cad",
+  "edge_type": "CHANGED",
+  "from_id": "chg:planned-epochs",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:temporal"
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:ef786678bf9bb37f95d50f0840e9e5e0b934933806acb3836c36a025d34a6a5f",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0640",
+  "properties": {
+    "as_checksum": "sha256:da3403e99db87df4d908546166ce7fb13e72e96e44ab910fc0d2b9822bf98b37"
+  },
+  "to_id": "art:test-a-project-is-asked-what-its-artifacts-must-be-in"
+}

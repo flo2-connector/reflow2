@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:84ed33d64ed12ebdb30a1057bf54e027b7c08ab26395cec4340363d4478b427f",
+  "edge_type": "CHANGED",
+  "from_id": "chg:bl172-coverage-scope-derived",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cap:coverage"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:c6a1bafc445f088af9ce2da0e74cd98ea9ede61d97e78331843f67fafbe4b302",
+  "node_id": "chg:accept-c0465886f065332b",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "test_failure_fix",
+    "name": "The v0.57.0 version bump. Accepted BEFORE release_includes_all freezes the manifest, because that call freezes each artifact's CURRENT checksum and accepting afterwards would record that the release shipped the pre-bump file. The design meaning of a cut lives in the Release and its epoch, never in a version string, so the design holds.",
+    "subject": "system"
+  }
+}

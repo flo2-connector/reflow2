@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:dba422160ae9083084859e320d9f6aaf7e9810db1b0fa0edeb607c0e667e1cb1",
+  "edge_type": "REALIZES",
+  "from_id": "art:every-tool-is-found-by-a-query-in-the-users-words-test",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "reviewed"
+  },
+  "to_id": "cap:tool-search"
+}

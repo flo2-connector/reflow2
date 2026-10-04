@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:a93fa2875616749c12f6eb81426a0b9132f0c6e570c53e3623dd2ee0357de108",
+  "edge_type": "CAUSES",
+  "from_id": "chg:a-contribution-may-be-negative-and-a-refusal-says-which-fields-are-missing",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "That change added the call's arguments to missing_fields_hint and wired them only into the Err arm of call_tool's interception; the Ok(isError) arm rmcp 3 actually takes kept calling missing_field_hint with no arguments (read at d9e2a8f, measured through --call).",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:the-already-passed-listing-never-reached-the-wire-because-it-was-wired-only-into-the-err-arm-2026-10-02"
+}

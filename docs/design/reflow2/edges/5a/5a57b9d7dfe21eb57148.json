@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:4eb2f6c29bd4c803ec9f371bff82307014d1adb181411c3be181599ac9cc121b",
+  "edge_type": "ANTICIPATES",
+  "from_id": "dec:idea-genesis-reflow3-from-the-requirements-alone",
+  "properties": {
+    "evidence": "That idea measured what starting a new design from the requirements alone would lose — 18 capabilities and 389 decisions — which is exactly the cost Anthony weighed when he chose to start qs rather than unwind ophyd-service."
+  },
+  "to_id": "dec:idea-a-design-cements-from-the-core-outward-and-past-a-point-starting-over-is-cheaper-than-unwinding"
+}

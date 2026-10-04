@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:2c155632c154d8d1df72fe93f42b32bfba90ec0465bf71c225fd5d534ce68950",
+  "node_id": "fact:field-report-hxm-2026-09-28-worked-where-am-i-shape-fits-a-returning-operator",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "observation",
+    "name": "WHAT WORKED (hxm_program, 2026-09-28): /where's shape is right for a returning operator. It gives what is settled, what is delivered, and what was already asked, in the wording the user saw. \"Nothing has changed since last time\" was a legitimate one-line answer",
+    "source": "art:hxm-program-feedback-2026-09-28",
+    "statement": "Recorded so a regression is checkable. Reporter (the hxm_program hub, 2026-09-28): \"/where's shape is right for a returning operator. It says what is settled, what is delivered, and what was already asked (in the wording the user saw). 'Nothing has changed since last time' was a legitimate one-line answer, and the skill explicitly permits it.\"\nWhat must not regress:\n· the three bands;\n· questions quoted in the words the user saw;\n· permission to give a one-line answer.\nA QUALIFICATION, from the day's other triage: fact:root-cause-no-served-read-answers-since-last-time-2026-09-28 measured that no served read computes \"since last time\". So \"nothing has changed\" is an answer the skill permits, not one a read established, and a same-day revision would not have shown. The same report also found /where failing wholesale when several of its roughly eight reads were unavailable (F-36, triaged separately).",
+    "subject_id": "art:where-am-i-skill",
+    "valid_from": "2026-09-28"
+  }
+}

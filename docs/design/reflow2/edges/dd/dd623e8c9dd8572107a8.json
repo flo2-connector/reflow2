@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:20fbe9b9b71762453fe6dd6160995d7bef73e878919eb85442275b94e8aee915",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:mcp-surface",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:main"
+}

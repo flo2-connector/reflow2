@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:db04eadba2d490b1166d73e1a9520e761217e7f07210c75a22d36705f5b37aa7",
+  "edge_type": "GOVERNED_BY",
+  "from_id": "dec:backlog-is-retired",
+  "properties": {
+    "note": "Bound by the accepted rule rather than competing with it: dec:what-lives-where already says the design record should stop being prose you navigate and become a graph you query, with the prose kept as provenance hanging off the nodes it produced. This decision is that rule applied to the last document in this repo that still violated it. Drawn deliberately, the same reason the superseded question carried this edge: a Decision whose only edge is AUTHORED_BY is invisible to propagate_from and to the orphan detector, which is how dec:export-once-per-pr came to be violated by the session that then re-announced it as new."
+  },
+  "to_id": "dec:what-lives-where"
+}

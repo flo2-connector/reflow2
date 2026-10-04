@@ -1,0 +1,17 @@
+{
+  "content_hash": "sha256:fd9fcf874931358f43db1d5904db7e86882a4b52ca90f4e945e100b85330c8ce",
+  "node_id": "ver:a-convention-reaches-the-skill-it-bears-on",
+  "node_type": "Verification",
+  "properties": {
+    "description": "crates/reflow2-mcp/tests/a_convention_reaches_the_skill_it_bears_on.rs — three cases through the JSON request shapes.",
+    "findings": "kh run: 3 passed, 0 failed.",
+    "kind": "verification",
+    "last_reconciled_at": "2026-09-23",
+    "last_reconciled_outcome": "passed",
+    "last_run_at": "2026-09-17",
+    "level": "integration",
+    "method": "test",
+    "name": "A convention recorded with steps rides get_skill for the skill it names; an unknown step is refused with the nearest name; the adapter is asked for through detect_gaps and a documents edge with the doc_kind answers it",
+    "status": "passing"
+  }
+}

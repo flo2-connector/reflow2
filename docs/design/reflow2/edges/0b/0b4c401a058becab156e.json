@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:3b9bfea921dba6514a448fdb944f4eef43ff4b0cdfed588ffacb245f20c6e992",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-saved-design-moves-to-the-item-layout-2026-10-03",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:5cf91c278506bde2f4a865edebf16f8503e9b991e934f941192c50229961da89"
+  },
+  "to_id": "art:test-a-quantity-says-how-it-was-obtained"
+}

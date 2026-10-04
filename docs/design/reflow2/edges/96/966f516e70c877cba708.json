@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:5e696a0d22ebf931a89f461d4a3a323b7d5d945d7225330224e150697a39765d",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:a-remote-client-signs-in-to-its-server-with-oauth-2-1",
+  "properties": {
+    "coverage": "partial"
+  },
+  "to_id": "req:one-setup-command-chooses-local-or-remote-once"
+}

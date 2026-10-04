@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:3590232df839187f2730cfa8556cdd288a3dff1ede61e3cb56d3817ee965d52a",
+  "node_id": "req:every-oversized-reply-offers-a-bound",
+  "node_type": "Requirement",
+  "properties": {
+    "concern": "usability",
+    "lineage": "original",
+    "name": "A read tool whose reply outgrows what a client accepts offers a way to bound it, and never goes quiet to fit",
+    "priority": "high",
+    "provenance": "authored",
+    "statement": "Any tool whose reply can exceed what a client will accept offers a bound (`budget_chars`), and a bounded reply withholds PROSE while never changing a count, a total or an id. A shorter answer is never a quieter one.\n\nTWO KINDS OF PAYLOAD, and the distinction is the requirement rather than a detail:\n · A REPORT may be trimmed — its prose is commentary on counts and ids the reader acts on.\n · A DOCUMENT may NOT. Half an export, half an instruction set or half a published surface reads exactly like a whole one, and nothing in the reply would say otherwise. Such a tool must WITHHOLD WHOLE over budget and name the narrower call that works, never truncate.\n\nCOMPLETENESS IS PART OF THE ANSWER WHERE IT IS THE ANSWER. A vocabulary, or a catalogue something picks from, must come back complete even when its prose is dropped entirely. Shortening such a list is forbidden rather than merely discouraged: a list of 1 that is shaped like a list of 65 is the worst possible reply.\n\nWHY THIS IS INTENT AND NOT A FIX: the failure is not a slow call, it is the CLIENT refusing the payload — at which point the session sees harness text and reflow2 never gets to suggest narrowing. A reader who receives nothing cannot be told to narrow their question.\n\nAND IT MUST BE CHECKED AS A CLASS. Three tools carried a bound for months while 178 did not, each fixed by hand after somebody personally met it. A golden-file check cannot catch this, because it pins the tools that exist; a NEW tool returning 126 KB unbounded is a clean diff and a green build.",
+    "status": "proposed"
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:963948a6c13dca1df64be12dc130066d79e6ec89278ef22e1c3d5e8daccfaddd",
+  "node_id": "fact:field-report-dev-storyflow-2026-09-27-worked-replace-text-append-carries-a-finding-through-stages",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "observation",
+    "name": "WHAT WORKED (dev_storyflow, 2026-09-27): `replace_text` append mode carried one root-cause finding through four stages (handoff → ⑥ → built → deployed) in one node, each prior state preserved and named in the reply",
+    "source": "art:dev-storyflow-feedback-2026-09-27",
+    "statement": "Recorded so a regression is checkable. Reporter (session 62995724): \"`replace_text` (append mode) was ideal for carrying a root-cause finding through four stages (handoff → ⑥ → built → deployed) in one node, each prior state preserved and named in the reply.\" The 09-27 evening session used it again for three prose fixes after prose_currency. What must not regress: append never re-sends the body, and the reply names the prior state it preserved.",
+    "subject_id": "cap:replace-text-moves-one-unique-sentence-or-appends-under-the-revision-guard",
+    "valid_from": "2026-09-27"
+  }
+}

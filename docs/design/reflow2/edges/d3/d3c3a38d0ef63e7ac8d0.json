@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:cfc32277873c6d030469cd01bf2bc14267dcd9802430afa74db14da1ed0abade",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:root-cause-skill",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:skills"
+}

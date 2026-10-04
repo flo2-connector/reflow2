@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:c16d00a82653fca15176f0addfa6ed9b8970709b0bc1a01558367d1abcd27d0d",
+  "edge_type": "REALIZES",
+  "from_id": "art:fuzzy",
+  "properties": {
+    "completeness": "partial",
+    "conformance": "verified"
+  },
+  "to_id": "cap:ingest"
+}

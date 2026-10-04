@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:4c0fe30639b198f0fdc3db0b2c07db167314cd8b17698063c0b7302470b37dab",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-schema-serves-the-rules-that-tell-the-types-apart",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "art:check-discrimination-rules"
+}

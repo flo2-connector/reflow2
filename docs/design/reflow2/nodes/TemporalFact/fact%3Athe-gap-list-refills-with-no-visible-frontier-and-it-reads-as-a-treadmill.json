@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:b45b9bcb4a48cd0489ed5752925eb775c8f5fff704c5de032e2317c1f3927ae0",
+  "node_id": "fact:the-gap-list-refills-with-no-visible-frontier-and-it-reads-as-a-treadmill",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "confidence": 0.9,
+    "fact_type": "observation",
+    "statement": "EVERY FIX SURFACED MORE GAPS, EVERY ONE OF THEM LEGITIMATE, AND NOTHING SAID HOW LONG THE ROAD WAS. Measured in musicjug, 2026-08-31 (art:musicjug-genesis-feedback-2026-08-31, \"The bad\" §5), on a 71-node design taken from a paragraph to a clean structural sweep in one session.\n\nThe observed chain, each step triggered by completing the one above it:\n\n    declare component dependencies  -> undeclared_seam × 12 pairs\n    declare interfaces              -> no_published_boundary\n    designate one published         -> unverified_published_contract + incomplete_published_contract\n    add components                  -> unallocated_component + design_without_build + no_deploy_operate\n    add a release                   -> release_without_epoch\n\n\"Every one of these was legitimate and I acted on all of them. But at no point could I tell the owner 'three more rounds and we're clean' versus 'this goes on for twenty.'\"\n\n🛑 THE COST IS BORNE BY THE HUMAN WATCHING, NOT BY THE AGENT WORKING. \"To a user watching an agent work, an ever-refilling list reads as a treadmill even when each item is genuinely worth doing.\" The design is getting better and the experience is of losing ground — and a user who quits at round three quits a working process.\n\n⭐ THE INFORMATION EXISTS ALREADY: `detect_gaps` knows which phase transition triggers each gap source, which is exactly what a frontier estimate is made of. musicjug's proposal is deliberately coarse — \"fixing these 3 will likely surface ~5 more, mostly `undeclared_seam` and `unverified_*`; the phase-level gaps clear only when artifacts exist.\" Enough to say how long the road is, not a schedule.\n\n📌 RELATED AND NOT THE SAME: the session also asked for a phase-transition HINT at the moment components first appear (\"next: declare dependencies, then interfaces on the coupled pairs, then verifications\"), which would have compressed five detect rounds into one plan. The frontier says HOW FAR; the hint says WHAT ORDER. It got the ordering one `loop_hint` at a time, which is the same information delivered so as to be unusable as a plan.",
+    "subject_id": "cap:detect",
+    "valid_from": "2026-08-31"
+  }
+}

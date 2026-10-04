@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:ab0365913e25bd4ecdfd7add3f552bcf0996580bc674aa6129f06edbbf18bf70",
+  "node_id": "epoch:coord-moves-into-the-graph",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "epoch_type": "milestone",
+    "name": "The claim board moves into the graph on Anthony's word, after claim_region's first real use (2026-08-04)",
+    "sequence": 274,
+    "status": "arrived"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:d0a496e1826302187485afe23f539050b18000a418b9492959f7f9bf7c44a0bb",
+  "edge_type": "EVOLVES_INTO",
+  "from_id": "dec:idea-how-does-a-hub-learn-two-of-its-projects-duplicate-or-contradict-each-other",
+  "properties": {
+    "evidence": "Signal 1 (identical checksums) at trigger (c) (when a child moves), promoted to intent on Anthony's word, 2026-09-22. Not chosen, kept as considered: the periodic full sweep (d), name/text similarity (3), model comparison (4), and contradiction detection at shared anchors."
+  },
+  "to_id": "req:a-hub-flags-an-identical-file-in-two-projects-when-a-project-changes"
+}

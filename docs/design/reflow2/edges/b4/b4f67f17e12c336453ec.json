@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:b7d28ef8ec34555a21303d36a01ded7754991a501e19cbcd550b2526167cc512",
+  "edge_type": "CAUSES",
+  "from_id": "art:schema-structure",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "schema/structure.yaml:92 names the authentication-mechanism enum `auth` — a word whose other common meaning (authorization: who may access) has no field anywhere in the schema, because req:vocabulary-covers-personnel is deferred. The narrow enum under a broad name is where the role gate lands and hard-fails.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:defect-interface-auth-names-a-mechanism-and-authorization-roles-have-no-home-so-the-role-gate-lands-on-the-wrong-field"
+}

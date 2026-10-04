@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:56a8a345922f3eb27f2be51d60a5b4d74ec37e8d9a459f0b1e7d1d381d72773b",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-saved-design-moves-to-the-item-layout-2026-10-03",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:53c91e013e1f7dcbf643a0148b95c4a692508b8ef0a40a7f6742441aac4df5a0"
+  },
+  "to_id": "art:test-an-edge-says-only-what-it-was-told"
+}

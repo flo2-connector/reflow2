@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:ca985ae000bc1415160fb5767362bd374de14662b74eaa60bf29eb75baa3f02c",
+  "edge_type": "CAUSES",
+  "from_id": "cap:every-tool-carries-the-users-phrasing-and-the-corpus-is-the-test",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "The catalogue was built to help a caller CHOOSE a tool and returns names for that purpose, so the shape a caller needs next has no served source; describe_schema answers the adjacent question about node types and is mistaken for it.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:the-contract-is-the-toolsnaps-and-no-served-tool-will-hand-a-session-one-tools-input-schema"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:8e30e436c6516747638cd5af59a1f3c3e39977eb207ac65789e5c72346b182fc",
+  "edge_type": "CHANGED",
+  "from_id": "chg:an-idea-is-a-declared-kind",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:tools-capture"
+}

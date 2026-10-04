@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:6a2bf1a4272c428e7519287f66e001366a0fbe1c87ea7dd1b4fdaa5290b8cf7e",
+  "edge_type": "CAUSES",
+  "from_id": "fact:field-report-flo2-2026-09-18-skills-are-not-findable-by-words-find-tools-scores-tools-only",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "The finding measured that find_tools scores tools only; this is the skills' finder.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "chg:a-skill-is-found-by-describing-the-job-the-way-a-tool-is"
+}

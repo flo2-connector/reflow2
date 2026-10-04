@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:87bb48d222735e0e5c0f91ff4e4e6cf83383ecb9e5b244a31a1dd0ba0c3476d2",
+  "edge_type": "GOVERNED_BY",
+  "from_id": "art:migrate-backlog",
+  "properties": {
+    "note": "GOVERNED_BY and deliberately NOT REALIZES. This script delivers no product capability — it ran once, on 2026-08-07, to execute dec:backlog-is-retired, and asserting that it realizes something would be the false claim this project treats as a defect. It is committed rather than discarded because its CLASSIFY table is the judgement half of the migration: which of the four types each retired row became, and which node it was attached to. That mapping exists nowhere else, and without it 'why is BL-140 a defect against cmp:detect' is unanswerable. The prose it moved came from the row verbatim; only the routing was decided, and this file is where that decision is legible."
+  },
+  "to_id": "dec:backlog-is-retired"
+}

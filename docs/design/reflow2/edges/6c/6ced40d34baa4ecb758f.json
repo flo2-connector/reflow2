@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:f0889be59cd7055b85cd0f625ec3b0761d1182ccbf51d818491f85c6499d5f2a",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-reflow2-does-fewer-things-and-does-them-really-well",
+  "properties": {
+    "evidence": "Choosing which few things reflow2 keeps (Alex's idea) is only grounded once a review says where it leaks or drifts from the identity, so Alex's idea depends on this one.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "dec:idea-review-reflow2-against-its-core-identity-and-how-it-delivers-on-it"
+}

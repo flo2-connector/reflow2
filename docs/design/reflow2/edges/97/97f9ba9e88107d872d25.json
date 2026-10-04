@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:363a3e176a01c780a011b0c3507de76d3970d0c01d6ab93aaf71d5f390c984d2",
+  "edge_type": "CONTRADICTS",
+  "from_id": "fact:a-skill-is-loaded-only-when-something-already-in-hand-demands-it",
+  "properties": {
+    "alignment": "opposing",
+    "evidence": "alignment=supporting: this is CORROBORATION, not conflict. That requirement argued from reasoning that a catalogue read once cannot serve a discipline applying mid-flow; this root-cause pass measured it three weeks later and found the mechanism — a skill loads only when something already in hand demands it, and no reflow2 tool demands one. The requirement predicted the shape and the fact confirmed it, and until now nothing connected them."
+  },
+  "to_id": "req:a-discipline-is-delivered-at-the-tool-not-in-a-catalogue"
+}

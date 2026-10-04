@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:fb2cf28fdc40e04b3a35a1e7c7319e88b8435025812cd4c31c13877ee7b90b9e",
+  "node_id": "art:test-nudge-path",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "granularity": "atomic",
+    "location": "tools/test_nudge_path.py",
+    "name": "test_nudge_path.py",
+    "status": "realized",
+    "volatility": "stable"
+  }
+}

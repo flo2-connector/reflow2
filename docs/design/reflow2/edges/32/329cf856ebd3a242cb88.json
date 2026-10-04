@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:711b49f0e5dfc34ae4aeb091c3a400ce6b6eb0f20b0607170b9c348db80b6e94",
+  "edge_type": "REALIZES",
+  "from_id": "art:why-skill",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:why-an-existing-system-is-the-way-it-is-is-recorded-by-interview"
+}

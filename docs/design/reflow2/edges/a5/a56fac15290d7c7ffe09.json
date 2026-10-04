@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:22b1a9d1a889ed2b3cee753d5a7b1771419a7ad286604c0215daccc79094f523",
+  "edge_type": "YIELDED",
+  "from_id": "frag:alex-2026-08-14-remainder",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "fact:defect-propagate-change-distance-two-is-not-an-edit-list"
+}

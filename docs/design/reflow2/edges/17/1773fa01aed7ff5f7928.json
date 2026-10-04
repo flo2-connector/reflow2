@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:a8017bc8ff3a31ca6935620573f1b4a797c224f85b6ff410bc4f9ceaedf8c1e2",
+  "edge_type": "GOVERNED_BY",
+  "from_id": "req:the-server-keeps-the-working-tree-export-current",
+  "properties": {
+    "evidence": "The chain-from-main half of this requirement is that decision's road (a), ruled 2026-09-11 — it is what keeps dec:export-once-per-pr true under continuous writing."
+  },
+  "to_id": "dec:idea-does-the-graph-write-itself-through-to-the-repo-on-every-change"
+}

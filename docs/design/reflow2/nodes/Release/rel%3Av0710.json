@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:6a488f1f3d86778bd51f73e31eed3a0d69e6dfa7b09ec5da4735132348e8bd3a",
+  "node_id": "rel:v0710",
+  "node_type": "Release",
+  "properties": {
+    "description": "One built change since v0.70.0: the new tool `writes_for`. A session names a Contributor once, or one call names someone in its `_meta` under `reflow2/writes_for` (which wins, and is the only way on the stateless transport), and every node written afterwards gets an AUTHORED_BY edge with role author to them. The person must already be a Contributor. Credit only; it never sets an approver. It is built into the write guard, so every write site is covered.\n\nMinor, because it adds a tool. No schema stamp change (28 node types, 65 edge types, schema_version 1), so no upgrade note. Also carries the day's design-only records: req:persistence is retired, replaced by accepted requirements saying the design may live apart from its code but must keep a clear two-way link to where its implementation is.",
+    "name": "v0.71.0 — a session names who it writes for",
+    "status": "retired",
+    "unit_type": "binary",
+    "version": "0.71.0"
+  }
+}

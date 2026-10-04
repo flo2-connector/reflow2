@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:34d76250dd2d7db23536f231556788ffe73d7eba85fbdabbea590f21e9dc8ad4",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:a-store-opened-without-its-search-index-rebuilds-it-test",
+  "properties": {
+    "covers": "whole"
+  },
+  "to_id": "ver:a-store-opened-without-its-search-index-rebuilds-it"
+}

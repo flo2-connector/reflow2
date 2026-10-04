@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:4fb91a15223af687ec53980c223dfb891ff85f5b44e07658da85ca39fba32523",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-how-does-a-capability-get-a-ci-check-that-is-genuinely-its-own",
+  "properties": {
+    "evidence": "Option (c) is the second half of that accepted requirement: the run record is the input a gate-to-Verification mapping consumes, and without it there is nothing to write back from.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "req:a-ci-run-leaves-a-machine-readable-record-of-what-it-ran"
+}

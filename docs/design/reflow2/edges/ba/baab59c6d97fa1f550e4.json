@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:7a7d7a0d8c8b5eeb330d0806fd2c2f4a375a7d7e3a5a16eeec8338ee6bc14e5d",
+  "edge_type": "GOVERNED_BY",
+  "from_id": "dec:three-party-checks",
+  "properties": {
+    "note": "The LLM speaks, the graph counts, the human decides - the division this rule states as policy"
+  },
+  "to_id": "rule:design-intent-moves-only-on-the-owners-word"
+}

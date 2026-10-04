@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:f6f70da276441f6d6dab2dedbb5b3efa5f5b2ef425bae521b2ee34973d31bb11",
+  "edge_type": "CHANGED",
+  "from_id": "chg:absorb-core-storage-text",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:regions-rs"
+}

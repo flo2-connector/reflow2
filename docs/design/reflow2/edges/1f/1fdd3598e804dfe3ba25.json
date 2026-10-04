@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:f73082679ba81069c4faaddde47348cc81cb9480b99987d6d7c71ad1a863a676",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:a-settled-decision-names-governed-prose-that-still-reads-open",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:temporal"
+}

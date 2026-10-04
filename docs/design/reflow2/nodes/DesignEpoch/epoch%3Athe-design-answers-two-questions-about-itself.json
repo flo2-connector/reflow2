@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:dd29b2ad32ad5488497984bd201c54d12b8e2ce521a593b17b6e208ffb667e16",
+  "node_id": "epoch:the-design-answers-two-questions-about-itself",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "description": "Unreleased after v0.56.0. Two accepted requirements that had nothing delivering them, both of them questions a user asks in their own words rather than reflow2's. Taken together because they are the same shape: a fact about the design that somebody was answering with a hand-written script, or not at all. The first reading of each on reflow2's own graph: 248 repairs and not one states its disposition; 11 of 208 Requirements carry an incoming VERIFIES.",
+    "epoch_type": "revision",
+    "name": "The design answers two questions about itself — what still rests on a patch, and what fraction of a kind carries a relation",
+    "sequence": 407,
+    "status": "arrived"
+  }
+}

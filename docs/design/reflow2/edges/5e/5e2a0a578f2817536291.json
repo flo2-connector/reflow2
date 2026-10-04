@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:ac8d4953dfbcac546802f4e8af278217b3baa4f3a3334d0ebfeb3e2ad872c966",
+  "edge_type": "EVOLVES_INTO",
+  "from_id": "dec:idea-a-person-learns-what-to-do-next-once-they-have-a-design",
+  "properties": {
+    "evidence": "Anthony kept option (b), a \"now you have a design\" tier in /what-is-this, as intent on 2026-09-24 (\"keep reflow2 (a) and (b) as intent\")."
+  },
+  "to_id": "req:what-is-this-says-what-to-do-once-you-have-a-design"
+}

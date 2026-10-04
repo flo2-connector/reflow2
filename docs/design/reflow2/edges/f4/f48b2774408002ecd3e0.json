@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:27b56caa90bfad8e4398d71528a3062c6b5ee7dfc16e830610e09dec0132221d",
+  "edge_type": "CAUSES",
+  "from_id": "art:dev-storyflow-feedback-2026-09-27",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "The root-cause pass this rule requires on this document's 'path citations carry no repository' gap (09-27): a location is a free string anchored to a root no node or export records.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:root-cause-a-location-is-anchored-to-a-root-the-design-never-records-2026-09-28"
+}

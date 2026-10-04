@@ -1,0 +1,19 @@
+{
+  "content_hash": "sha256:c33b7c5ff51875624624d2e239b04b94b0642c6e3abbef141094b4525bdea1d5",
+  "node_id": "fact:an-out-of-tree-artifact-registration-passed-locally-as-unmeasurable-and-failed-ci-as-missing",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "confidence": 1.0,
+    "fact_type": "defect",
+    "name": "MEASURED 2026-09-21: registering a field report at a path in ANOTHER repo reads `unmeasurable — outside_root` locally and `missing_artifact — FAIL` in CI, so the local instrument's honest \"I cannot tell\" and the gate's verdict disagree on the same node",
+    "statement": "WHAT HAPPENED. flo2's field report was registered as `art:flo2-feedback-2026-09-21` with `location: /home/ajs7/project/flo2/reflow2_feedback.md` — a path in a DIFFERENT repository on the same box — and deliberately without a checksum, on the reasoning that a baseline would make every reconcile report it missing.\n\nTHE LOCAL READING LOOKED LIKE CONFIRMATION AND WAS NOT EVIDENCE. `loop_status` reported it under `unmeasurable` with `why: outside_root`, which is an honest \"I cannot tell\", and that was read back to the owner as confirmation that the registration had not manufactured drift. CI refuted it on the next push: `tools/reflow2_check.py` in a fresh checkout has no such path, so it reported `FAIL DRIFT art:flo2-feedback-2026-09-21: missing_artifact` and failed the build — one finding against 110 notes, on a PR about something else entirely.\n\n⭐ THE TWO INSTRUMENTS DISAGREE BECAUSE ONLY ONE OF THEM KNOWS THE ROOT. `reconcile_artifacts` running on the box that holds both trees can see that the path lies outside the project root and say so; the gate in CI sees an absent file and cannot tell \"outside this repo on purpose\" from \"deleted by accident\". That is the same cannot-tell-none-from-cannot-say shape this design names elsewhere, arriving in the gap BETWEEN two instruments rather than inside one.\n\nTHIS IS THE CLASS flo2 THEMSELVES FILED AS F29 — \"an artifact that lives in ANOTHER repo has no way to say so, and it costs the reconcile its readership\" — met from the other side, by this design, on its own build.\n\nTHE CONVENTION THAT WAS MISSED, and it is fully established: ten prior inbound reports were COPIED into `docs/feedback/<date>-<project>-feedback.md` (a gitignored directory, so the content never enters the public repo), registered at THAT path, and then retired by `dec:reflow2s-own-feedback-documents-are-removed-once-captured` with an OBSOLETES edge — which is what makes their absence read `expected_absence` instead of `missing_artifact`. Registration alone is not the pattern; registration plus retirement is.\n\n⚠️ AND TWO DOCUMENTS EDGES WERE DRAWN THAT THIS VERY RULING FORBIDS. The parking ruling says in as many words that a DOCUMENTS edge \"would lie about the direction of obligation\" for this genre, because a field report is correct precisely by NOT tracking the design. Both were drawn anyway, to the two ideas triaged out of the report. They were removed.\n\nWHAT WAS NOT DONE, and why: the artifact was NOT retired under the removal policy, because that policy's condition is \"once ingested\" and it is load-bearing. Only F31 of this report has been captured; F29, F30 and the 2026-09-18 session have not. Retiring it would have made the build green by asserting a capture that did not happen. The registration was backed out instead, and how flo2's reports should be registered is put to the owner as its own question rather than settled inside an unrelated change.",
+    "steps": [
+      "add_artifact",
+      "link_artifact",
+      "reconcile_artifacts"
+    ],
+    "subject_id": "dec:a-dated-field-report-is-registered-and-parked",
+    "valid_from": "2026-09-21"
+  }
+}

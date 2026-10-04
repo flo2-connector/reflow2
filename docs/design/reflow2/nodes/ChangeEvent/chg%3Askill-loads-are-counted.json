@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:ec5899e187e6939469a322c33d6ddc4edc0f572c0388b8ef74c755e5a8293d87",
+  "node_id": "chg:skill-loads-are-counted",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "name": "The hook counts skill loads and names the session that opened none — the half of req:skill-adherence-is-measured that cap:skill-triggers structurally could not see"
+  }
+}

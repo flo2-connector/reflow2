@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:809b0f051c4c248a11b7e49679b54b2509e368c8c012e41e06cac7cb5757767f",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:a-skill-that-creates-a-design-ends-by-naming-what-to-do-next",
+  "properties": {
+    "approved_at": "2026-09-24",
+    "authored_at": "2026-09-24",
+    "roles": [
+      "author",
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

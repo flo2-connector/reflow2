@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:93e301a9dea42450fcbe56d0a7ee71a24a9cb7662798436bafc9c4f5bf57e00e",
+  "edge_type": "CHANGED",
+  "from_id": "chg:replace-text-moves-one-sentence-without-resending-the-field",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:skill-lint"
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:995e7c46f35a1884362b98945297be0831bb490f2fcc8282083be9764ee3e1a7",
+  "node_id": "epoch:reads-are-the-failing-half",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "epoch_type": "revision",
+    "name": "The root question is reframed: transitioning documents to the graph is two halves, and the unscheduled half is reading it back (2026-08-04)",
+    "sequence": 273,
+    "status": "arrived"
+  }
+}

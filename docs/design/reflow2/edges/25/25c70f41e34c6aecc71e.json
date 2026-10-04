@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:76051025e20ea961c08059319d905b8680e403d8faf8110040086d7349c42117",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:a-session-with-no-seed-can-find-one",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:regions"
+}

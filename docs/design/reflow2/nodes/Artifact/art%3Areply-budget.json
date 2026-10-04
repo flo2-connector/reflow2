@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:65d3c89a3f95a6ac512a7c7d80bcd1b29c818f3911b28ec250c8d04ca39bebd4",
+  "node_id": "art:reply-budget",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "description": "The ONE place a reply is bounded, so a tenth tool cannot quietly miss it. Trims prose progressively (4000/2000/800/240/120/0 characters) and never touches numbers, counts or ids. Shortening a LIST is opt-in via `Sampling::Allowed`; the default is Forbidden, so a vocabulary or catalogue overflows loudly rather than coming back as a complete-looking fragment. `NEVER_TRIM_BELOW` (80 chars) is what makes the 0 rung safe — names, ids and enum values survive every rung. Carries `BudgetReq` for the tools that took no arguments at all, which was most of the overflowing set. 8 unit tests, two of which pin bugs this module itself shipped and a committed test caught.",
+    "location": "crates/reflow2-mcp/src/reply_budget.rs",
+    "name": "reply_budget.rs",
+    "status": "realized"
+  }
+}

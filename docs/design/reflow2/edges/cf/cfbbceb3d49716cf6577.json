@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:ee9e17695f45e662a02eef217b33916aeefdfe844c520b5de9123116967dfc4e",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:check-doc-versions",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:check-doc-versions"
+}

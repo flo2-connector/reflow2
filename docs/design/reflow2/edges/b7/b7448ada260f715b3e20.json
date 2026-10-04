@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:1ac492fe14c512efc0f06c693ee8e4844702543afaff876def8060e21e0aec78",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:freshness",
+  "properties": {},
+  "to_id": "req:released-eq-designed"
+}

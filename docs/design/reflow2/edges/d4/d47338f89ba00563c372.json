@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:b31474458baacd32f69c703623dec891523af069cad356db21bd91e84d72a92b",
+  "edge_type": "CHANGED",
+  "from_id": "chg:baseline-25a00405f8d9201e",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:fuzzy"
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:fd8979130cdf13027a72c8fb4bd3a88192233ced1c922905a89de47ae4fa2fbd",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:test-a-unit-crosses-a-seam-and-the-two-sides-are-compared",
+  "properties": {
+    "covers": "whole"
+  },
+  "to_id": "ver:a-unit-crosses-a-seam-and-the-two-sides-are-compared"
+}

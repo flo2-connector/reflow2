@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:d145e16c05a483444d24af8e810a980b94c8c2302096a43bc85e69c67065154e",
+  "node_id": "ver:content-store",
+  "node_type": "Verification",
+  "properties": {
+    "description": "Content store round-trip and failure modes: the same bytes yield the same hash and are stored once; get(hash) returns exactly what put() took; a blob whose bytes no longer match its hash is REFUSED on read rather than returned (content addressing is only worth having if it is checked); a missing blob fails loud naming the hash and what referenced it; an interrupted write leaves no partial file, proven by writing to a temp path and renaming. PLANNED — written before the build so the shape of the proof is settled first.",
+    "kind": "verification",
+    "last_run_at": "2026-07-31",
+    "level": "unit",
+    "method": "test",
+    "name": "Content store round-trip, and its failure modes",
+    "status": "passing"
+  }
+}

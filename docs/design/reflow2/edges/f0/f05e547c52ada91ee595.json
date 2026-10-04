@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:82b342815b7601b72a20b9984ce9017f60621d1227d140c391f5950c8d8e43b5",
+  "edge_type": "CONTAINS",
+  "from_id": "sys:time-history",
+  "properties": {},
+  "to_id": "cmp:readiness"
+}

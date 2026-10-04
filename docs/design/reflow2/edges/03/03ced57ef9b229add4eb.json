@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:ddd0dc0570d111595e8f07e1fec97ec3060449db2335e3e49c598979e57ece1c",
+  "edge_type": "HAS_SNAPSHOT",
+  "from_id": "cap:release-publishes-a-container",
+  "properties": {},
+  "to_id": "snap:epoch:the-image-is-two-architectures-and-names-its-digest:cap:release-publishes-a-container"
+}

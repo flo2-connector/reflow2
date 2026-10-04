@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:79ee22e19764f8796674bcde941741b7db356b560874e38d4ca0227ccc543a0c",
+  "edge_type": "CHANGED",
+  "from_id": "chg:accept-9d5a6783c47cd30d",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:enum-schema"
+}

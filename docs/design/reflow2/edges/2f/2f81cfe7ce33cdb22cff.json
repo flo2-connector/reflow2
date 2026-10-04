@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:96adfb78aa2a350f7a2f9c2c5efaefc52b2f7be23c42ea2e158cec0a6dff48f8",
+  "edge_type": "CHANGED",
+  "from_id": "chg:seam-incompatibility",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "cap:seam-incompatibility"
+}

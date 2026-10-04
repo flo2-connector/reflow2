@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:3093f28d23a3d56ef1508a627d98ba56321c8cfec73d8a10bd5b719c8bb2f268",
+  "edge_type": "GOVERNED_BY",
+  "from_id": "req:stale-seat-knows",
+  "properties": {},
+  "to_id": "decision:ack:acaf4106e0b94ec0"
+}

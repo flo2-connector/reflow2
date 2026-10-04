@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:72698236fb7b05c5b712cb6fddf2930883b4fb61e6ef813916f0186b152d119a",
+  "node_id": "ver:every-client-mode-honours-read-only",
+  "node_type": "Verification",
+  "properties": {
+    "description": "Eight real-binary tests with an isolated HOME (see art:test-every-client-mode-honours-read-only), plus read_only_client's unit tests (a write refused without asking the server; a read both sides agree on forwarded and the list read once; an unconfirmable read refused; the file rule; the server's own list replies learned; every file writer served and taking its file as `path`; this build's half is the whole served surface) and tools::tests::every_guarded_file_writer_is_on_the_list_a_read_only_client_reads.",
+    "findings": "OBSERVED FAILING FIRST on main c4e1cbd: all 8 failed — the write landed through --remote, --shared and a pointer-attached client; the stand-in received add_requirement; the latent surface started a design; --shared --read-only created a store; the \"initialize\" call got no reply; a plain --remote client lost its session. On the branch: 8/8 pass, and the finding's own measurement script re-run on the branch binary shows every client refusing with the store unchanged (measure-fix.log).",
+    "kind": "verification",
+    "last_run_at": "2026-10-03",
+    "level": "system",
+    "location": "crates/reflow2-mcp/tests/every_client_mode_honours_read_only.rs",
+    "method": "test",
+    "name": "Every client mode honours --read-only: a write is refused before it is sent, a read passes, the store is unchanged",
+    "status": "passing"
+  }
+}

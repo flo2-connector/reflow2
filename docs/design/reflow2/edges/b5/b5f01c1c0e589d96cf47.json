@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:2c2c1f4b683aab3ded9c431d6ce39e2723f5e179785fa59870837e86557e6210",
+  "edge_type": "CHANGED",
+  "from_id": "ce:subsystem-split-2026-08-25",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "sub:change-and-structure"
+}

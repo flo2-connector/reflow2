@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:f1552f8b50c1f379d314bcd1f23fadf73a084e0652caa3bf2f8ad8f35a592c2c",
+  "node_id": "art:test-a-write-records-the-agent-it-went-through",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "test",
+    "location": "crates/reflow2-core/tests/a_write_records_the_agent_it_went_through.rs",
+    "name": "Test: the core stamps the acting agent on every authorship it records",
+    "status": "realized"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:bc4f85befb3c79548dbba2fe680cf5568e5cdc5f16c55a745ad5f55e428a7aee",
+  "edge_type": "CHANGED",
+  "from_id": "chg:mcp-tools-http-medium-json-rpc",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "ifc:mcp-tools-http"
+}

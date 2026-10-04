@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:9680fb42ff78d5b1a13cc5f92d63f5699017486d569d2fa32967db6d4c4b87db",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-a-domain-seed-template-starts-a-design-in-the-fields-own-shape",
+  "properties": {
+    "evidence": "Same axis, one rung further out. That question asks whether reflow2 enforces a process or only supplies the vocabulary; a domain template would supply far more than vocabulary — a whole starting structure, and in some options the field's standards as Constraints — which makes answering it first load-bearing rather than academic.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "dec:idea-does-reflow2-enforce-an-se-process-or-only-supply-the-vocabulary"
+}

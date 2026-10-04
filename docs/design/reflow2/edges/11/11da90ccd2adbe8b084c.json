@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:777f7e0aa491d4e08c0d2c5e99350b7b1b1e8964e6e88d11d880e12996a461bc",
+  "edge_type": "YIELDED",
+  "from_id": "frag:genesis-skill-registered",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:genesis-skill"
+}

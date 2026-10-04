@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:b211182c9d99d8f0872a768d4960085b5d4f393ae4b1687803505565f5d4c59e",
+  "node_id": "ver:an-accepted-checksum-rides-the-accepting-change-and-derives-back",
+  "node_type": "Verification",
+  "properties": {
+    "description": "Core: an accept writes checksum_after and accepted_seq on its CHANGED edge, the next accept takes the next number, re-stating the current acceptance keeps it, going back to earlier content makes that change current again; the export leaves the node checksum and basis off while they equal the current acceptance and the import derives them with nothing counted as materialised (round trip byte-identical); a node checksum the edges do not derive stays on the record; two branches accepting one file leave the Artifact node identical and the union derives a stable pick.",
+    "findings": "2026-10-03 (chg:the-design-is-saved-one-file-per-item-2026-10-03): the 4 acceptance tests in the_design_is_saved_one_file_per_item.rs pass.",
+    "kind": "verification",
+    "last_run_at": "2026-10-03",
+    "level": "integration",
+    "method": "test",
+    "name": "An accepted checksum is written on the accepting change's edge, numbered, elided from the record while equal, and derived back on import",
+    "status": "passing"
+  }
+}

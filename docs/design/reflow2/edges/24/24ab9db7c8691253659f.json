@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:f172fb4d649061ed9a411f4a46676e181c77c0786f2a13854299445adaf2548b",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:enforced-rule-detector-test",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:enforced-rule-detector-test"
+}

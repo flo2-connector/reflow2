@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:08a7d01028869b17171a4289346b3573df473837f8411043920e4f25aaa2aa1e",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0551",
+  "properties": {
+    "as_checksum": "sha256:72a58c6a685b5e3726d75d7917f64edb23553ff2af60444d111f438419e4a823"
+  },
+  "to_id": "art:sync-debt"
+}

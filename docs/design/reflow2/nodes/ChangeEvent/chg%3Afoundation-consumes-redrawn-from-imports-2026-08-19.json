@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:5375bb279545f59d84a8cda1e97b63377dbe8befdce0dd086063bde33bbaba46",
+  "node_id": "chg:foundation-consumes-redrawn-from-imports-2026-08-19",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "resync",
+    "name": "Three ifc:req-dyno-* CONSUMES edges redrawn from what the code actually imports — the design was wrong, the code was right, so this is a resync of the record and not a fix to the system",
+    "subject": "record"
+  }
+}

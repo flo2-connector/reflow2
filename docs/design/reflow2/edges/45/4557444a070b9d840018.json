@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:d36fa1ab0a749d5479c6d419101c0166f17f9988e343fd8305b8827c01e0b9c9",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:an-unchanged-sync-target-is-not-re-parsed",
+  "properties": {
+    "approved_at": "2026-09-05",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

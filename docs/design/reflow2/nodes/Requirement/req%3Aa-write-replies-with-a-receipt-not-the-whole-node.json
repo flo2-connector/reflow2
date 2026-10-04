@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:0b06d4c48dac377ee1a031413ce74643bb9e0419cd27a29c31493b384310858a",
+  "node_id": "req:a-write-replies-with-a-receipt-not-the-whole-node",
+  "node_type": "Requirement",
+  "properties": {
+    "kind": "functional",
+    "lineage": "original",
+    "name": "A write replies with a receipt — the id, which fields changed and by how much, every edge drawn as a subject-first sentence, and every warning — not the whole stored node",
+    "priority": "high",
+    "provenance": "authored",
+    "source": "Anthony, 2026-09-29, in the dev_reflow2 hub session, relayed by the hub agent: \"Fix all the root causes and go with the 7 ideas you'd promote\". This is idea 3, part (a) of req:the-mcp-surface-is-sized-for-tokens-per-task, which the hub put to him as \"only needs your yes\".",
+    "statement": "This is part (a), RECEIPTS, of req:the-mcp-surface-is-sized-for-tokens-per-task, accepted on its own. The broad requirement, parts (b) to (e), stays proposed.\n\nA write replies with:\n- the node id;\n- which fields changed, with characters before and after;\n- every edge the call drew, as a subject-first sentence;\n- every warning, and what a shortened field lost (by size, with the prior text available on request, per req:a-revising-write-says-what-it-removed).\n\nIt does not reply with the whole stored node, and replace_text does not echo the prior field in full.\n\nCounter-argument kept: replies were made loud on purpose, because a silently dropped paragraph was caught only because the reply showed it. So a receipt keeps every warning and every removal report.\n\nMeasured by the two-agent exercise (I4): a 12-character append returned 7,501 characters, and about 290 KB was echoed for about 40 KB of edits over three rounds.",
+    "status": "accepted"
+  }
+}

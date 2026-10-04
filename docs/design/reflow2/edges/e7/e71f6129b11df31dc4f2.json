@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:d491521de14209d8ae6b4785314bb9cbfd42f88e3f05493a9d2aacd0f41d7173",
+  "edge_type": "REALIZES",
+  "from_id": "art:loop-closure",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:the-loop-closure-reading"
+}

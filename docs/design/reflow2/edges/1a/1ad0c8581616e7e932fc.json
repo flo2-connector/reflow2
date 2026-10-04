@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:f929e42c9e043697163f1f5929ee1831ca5923d1448ff2f914338d2fe75fc333",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-a-design-measures-under-a-configured-list-of-extra-roots",
+  "properties": {
+    "evidence": "For a design on a server (storyflow's case since 2026-09-27) nothing measures local files until this planned client exists, and that client is scoped to one folder's own files, so extra roots would have to extend it.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "epoch:planned-local-files-are-measured-for-a-remote-design"
+}

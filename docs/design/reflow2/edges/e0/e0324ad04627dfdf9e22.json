@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:12b07c34a2643bf8b261575e2e3cacc371d015af5ae8cbdd39a39c93d374a078",
+  "edge_type": "CHANGED",
+  "from_id": "chg:an-edge-says-whether-anyone-checked-it",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:verify"
+}

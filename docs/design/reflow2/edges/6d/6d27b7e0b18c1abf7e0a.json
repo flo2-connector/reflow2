@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:9c4d8bf8038457a8cc641975ba7ed8f15962b61592b4c61325e3402a757d08db",
+  "edge_type": "CHANGED",
+  "from_id": "chg:jot-one-skill-three-words-and-the-word-is-the-tag",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:skill-lint"
+}

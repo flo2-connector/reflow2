@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:e4c5770a5625108828d7a0dc6c54c1703d90f5267d73debecab256e9e1dd15b4",
+  "node_id": "req:a-node-records-what-the-user-calls-it",
+  "node_type": "Requirement",
+  "properties": {
+    "lineage": "original",
+    "name": "A node records what the user calls it, in their own words, and learning a second word never costs the first",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "Anthony, 2026-09-08: \"add the alias property so the procedure has somewhere to write.\"\n\nWHAT IS OWED. Any node that names a THING in the user's world — a Requirement, Capability, Component, Interface or Flow — can carry the domain nouns the user actually uses for it, recorded in the design rather than in a private layer beside it. The record is ADDITIVE: a second word never costs the first. It RENAMES NOTHING and GATES NOTHING — `name` stays the design's word and every computation keys on the node type.\n\nWHY IT IS OWED, and this is measured rather than asserted. reflow2's vocabulary is abstract on purpose so it spans a house, a spacecraft and a service. That abstraction leaves every user translating their field's nouns into it, and a user did exactly that by writing a private translator skill — putting the mapping outside the design, where nothing could read it, check it, or carry it to the next session. Swept 2026-09-08: NO node type in the schema had any alias-like property, so \"update/annotate with the new name\" had nowhere to write. That was the one step of Anthony's five-step black-box capture procedure with no surface under it; the other four already existed.\n\nTHE BOUNDARY IS PART OF THE REQUIREMENT. Constraint, DesignRule and Artifact are excluded: a constraint and a rule are STATEMENTS rather than things somebody has their own word for, and an artifact's name is the file's. A term recorded must be one the user ACTUALLY USED — a synonym the agent thought of is a false neighbour every later search repeats.\n\nWHAT THIS DOES NOT PROMISE. It does not choose a node type for a domain noun. `dec:idea-a-users-domain-vocabulary-has-no-route-into-se-vocabulary` measured a noun for which Interface, Capability, Requirement and Flow were all defensible, and recording the word does not disambiguate it — it records the answer once somebody has made that call, so the next session inherits it instead of re-deriving it.",
+    "status": "proposed"
+  }
+}

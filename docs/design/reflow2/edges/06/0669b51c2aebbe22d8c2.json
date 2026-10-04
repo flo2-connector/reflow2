@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:1c344ea8a910acc99eaf01a5a1d0be3a5240f2ef7c8b15580787f48bfb9c3218",
+  "edge_type": "REALIZES",
+  "from_id": "art:stateless-seat-probe",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:seat-handle"
+}

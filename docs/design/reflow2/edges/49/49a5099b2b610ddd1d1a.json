@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:c2f456e1cb0129805e85ebe93bb5d9001d272f8dff6251b5f2f22916965540e2",
+  "edge_type": "CHANGED",
+  "from_id": "chg:param-name-mismatch-hits-a-third-independent-source",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "fact:defect-typed-tool-parameter-names-are-inconsistent"
+}

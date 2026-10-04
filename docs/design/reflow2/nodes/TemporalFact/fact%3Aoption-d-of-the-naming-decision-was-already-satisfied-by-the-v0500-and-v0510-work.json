@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:2c41fb98b342e7c55f34870e432ce8157e3e105ecba35877515a231eab2916d7",
+  "node_id": "fact:option-d-of-the-naming-decision-was-already-satisfied-by-the-v0500-and-v0510-work",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "confidence": 1.0,
+    "fact_type": "finding",
+    "name": "Option D was overtaken before it was ruled on — the get_node round trip it would have saved can no longer happen",
+    "statement": "Anthony ruled on 2026-09-07 to build option D of the naming decision (\"yes, agree with all 5\"), which the decision records as \"get_node's message alone (one word, `and`)\" and calls separable, cheap, and still open. CHECKED BEFORE BUILDING IT: there is nothing left to change. The complaint option D answered was that get_node needed both `id` and `node_type`, the first refusal named only one of them, and discovering the pair cost two failed calls. Both halves of that are already gone, from two different pieces of work: (1) `node_type` on GetNodeReq became OPTIONAL on 2026-09-05 and is resolved from the id prefix, refusing only on a genuine cross-type collision, so a caller can no longer be told to supply it; (2) the v0.50.0 alias work put `#[serde(alias = \"node_id\")]` on GetNodeReq.id — the code comment cites option D by name — so the key search_design hands back is accepted directly. Separately, the RequiredFields helper now collects every missing field and names them all in one refusal, which is the general form of the same complaint and is documented in its own doc comment as answering it. VERIFIED by calling get_node with `id` alone on 2026-09-07: the node came back, no refusal, no second call. WHAT THIS DOES NOT ESTABLISH: no message anywhere else on the surface was surveyed for the same either/or reading; this covers get_node only, which is all option D named. NO CODE CHANGE WAS MADE, and none is owed. Recorded rather than silently skipped because the decision still reads \"stays open\" and the next reader would otherwise spend the same check.",
+    "subject_id": "dec:idea-one-way-to-name-which-node-across-the-tool-surface",
+    "valid_from": "2026-09-07"
+  }
+}

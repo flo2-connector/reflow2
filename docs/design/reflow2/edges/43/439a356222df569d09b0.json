@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:286482b1953c4d68555060a93e5df0eb5e0d1c8875ff6c117036b852fabf06b1",
+  "edge_type": "REALIZES",
+  "from_id": "art:graph",
+  "properties": {
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:a-write-can-be-conditional-on-what-was-read"
+}

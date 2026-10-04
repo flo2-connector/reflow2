@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:6f21e633d6d409cd0a688bee5edd84c46a6dee4d7a62f778134fba5f1612f53d",
+  "node_id": "req:a-code-folder-names-the-design-it-implements-and-its-server",
+  "node_type": "Requirement",
+  "properties": {
+    "concern": "core",
+    "kind": "functional",
+    "lineage": "original",
+    "name": "A code folder names the design it implements, and the server holding it, in a small committed file; a client started there attaches to that design and never opens a stale local store in its place",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "Anthony (who:ajs): settled 2026-09-25 (dec:idea-a-checkout-knows-which-remote-design-it-implements), scheduled in the tracked-export retirement plan 2026-09-27",
+    "statement": "A code folder shall be able to name, in a small committed file, the design it implements (by id) and the server that holds it (by address), and optionally other designs open beside it with their roles. It holds no secret. reflow2's client started in that folder attaches to exactly that design, so the agent works the design without knowing whether it is local or remote. A folder that names a remote design follows the file even when a local store is also present, and says so; a store left behind by a move is never opened as the design in its place (fact:an-agent-opened-in-a-moved-designs-folder-is-served-the-frozen-store-2026-09-27 is the observation, this is the intent). This is option (a) plus (d) of dec:idea-a-checkout-knows-which-remote-design-it-implements, settled 2026-09-25, written as a requirement so it can be scheduled. It replaces the stopgap in cure's folder (a Claude Code local-scope entry pointing at flo2.io, 2026-09-27). Distinct from the AGENTS.md pointer of req:a-projects-first-session-leaves-the-adapter-in-place-whichever-route-reached-reflow2.",
+    "status": "accepted"
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:b135c1c7a4e8d69905445dc0e9eb004783b969484c4f2888aedec2bbe039eb63",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:session-artifacts",
+  "properties": {},
+  "to_id": "req:agent-artifacts-are-captured"
+}

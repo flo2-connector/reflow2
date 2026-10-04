@@ -1,0 +1,18 @@
+{
+  "content_hash": "sha256:8d1984379bf740e6e2094ca22565372514f5b6250b9b692ac587f5d8a8bffc07",
+  "node_id": "fact:a-thread-pair-near-match-noted-on-add-capability-in-a-flo2-session-2026-09-29",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "confidence": 0.6,
+    "fact_type": "finding",
+    "name": "OBSERVED 2026-09-29 (0.74.0, flo2 connector): add_capability \"Searches across a user's designs\" carried a ~300-char near-match note naming the Component \"Per-user search index\", the part that delivers it. Noted, not refused, as chg:a-cross-type-near-match-is-named-as-a-layer intends; the reporter still read it as noise. Evidence for this idea: a thread pair should not even note",
+    "source": "art:dev-reflow2-two-agent-exercise-feedback-2026-09-29",
+    "statement": "Triage of art:dev-reflow2-two-agent-exercise-feedback-2026-09-29, item I27 (friction-log entry #14).\n\nWalked briefly:\n- Precedent: chg:a-cross-type-near-match-is-named-as-a-layer and this idea. The 2026-09-16 and 09-28 root causes of cross-type refusals: fact:root-cause-the-guard-still-refuses-thread-pairs-because-the-prescribed-set-was-built-from-evidence-and-the-evidence-for-capability-component-arrived-today and fact:root-cause-a-dated-finding-blocks-four-intent-constructors-because-an-unlisted-cross-type-pair-refuses-2026-09-28.\n\nThe reporter's words: \"A capability 'Searches across …' was flagged as near the component 'Per-user search index'. Cost: noise, ~300 chars.\"\n- The write succeeded, so this is the NOTE path (working as designed since the chg), not a refusal.\n- The pair is a Capability and the Component it is ALLOCATED to. That is a thread pair: the two SHOULD read alike, because one delivers the other.\n- The report's own reading, \"noise\", is right about the cost and wrong about the cause. The guard did what it was built to do.\n- The open question is whether a thread pair should produce any note at all. This idea's option of noting only same-type matches would have made it silent.\n\nNot reproduced here: the exact note text and whether allocated_to was passed in the same call are from the designer's log, not measured. So confidence is 0.6.",
+    "steps": [
+      "add_capability"
+    ],
+    "subject_id": "dec:idea-a-cross-type-near-match-is-a-note-and-only-a-same-type-one-refuses",
+    "valid_from": "2026-09-29"
+  }
+}

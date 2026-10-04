@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:39c9802a9798f38527d5535e043fa47c3e1f552a4702626e06af56c217fb856d",
+  "edge_type": "REALIZES",
+  "from_id": "art:a-settled-decision-names-governed-prose-test",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "verified"
+  },
+  "to_id": "cap:a-settled-decision-names-governed-prose-that-still-reads-open"
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:ff759f44ba890eb08adb643292ff4f8861e36aa568a53532b148499ad8c7162d",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-genesis-ergonomics-a-brief-that-already-answers-the-structure-a-schema-read-that-answers-one-question-tools-a-skill-needs-and-one-finding-for-nothing-built",
+  "properties": {
+    "evidence": "The one-finding-for-nothing-built idea is that capability's question again — when does a per-node finding become a rollup — asked about unrealized_capability on a design where by definition nothing is built.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "cap:aggregate-gap-keying"
+}

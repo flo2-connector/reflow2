@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:a506994f51af759fbb73b5863053f10cd5a98329bb85f18349c25164d82deed9",
+  "node_id": "ver:unallocated-component-detector",
+  "node_type": "Verification",
+  "properties": {
+    "description": "Eleven cases over the `unallocated_component` rule, in `crates/reflow2-core/tests/structure_with_no_function_is_asked_about.rs`.\n\nTHE COUNTERWEIGHTS CARRY MORE WEIGHT THAN THE POSITIVES, because every plausible way this rule goes wrong is a false positive on correct modelling: a parent is not a finding (it is allocated through its children); the parent exemption does NOT extend down to its empty children; a design with no capabilities is not asked, because there is no allocation to have performed yet; and allocating only to a parent must not be reported as never having started, since that claim is about the whole design and would be false in the one sentence its author would act on.\n\nAlso pinned: the rollup is ONE finding however many empty boxes (BL-73 anti-flood), its id does NOT move when somebody adds a component (aggregate keying, so an acknowledgement is not expired by an unrelated write), the finding names `propose_allocation` as the method, and a box beside a Flow is still asked what it holds — deliberately NOT inheriting `unallocated_capability`'s PART_OF_FLOW exemption, because \"which box performs which step?\" is a real question.",
+    "findings": "11 passed / 0 failed, on the final tree (`cargo test -p reflow2-core --no-default-features --test structure_with_no_function_is_asked_about`). The whole core suite alongside it: 127 suites, 1469 passed, 0 failed, exit 0.\n\nTWO OF THE ELEVEN EXIST BECAUSE THE FIRST DRAFT WAS WRONG, and both are recorded rather than quietly fixed. `never_started` was derived from \"every leaf is empty\", which is a different statement wearing the same words — a design that allocated only to its parents has empty leaves and has plainly done the step, and it would have been told \"nothing in this design is allocated at all\". It now tracks allocation over every component, parents included. The Flow case was undecided rather than wrong, and is now pinned as deliberate in either direction.\n\n⚠️ HOW THE FIRST GREEN ON THIS WORK WAS FALSE, recorded because the mechanism outlives this change: the first full-workspace run was piped through `grep`, so the reported exit code was grep's and not cargo's, and 60 of 150 test binaries had run when it reported success. `fact:a-piped-gate-reports-the-pipes-exit-code-not-the-gates` describes exactly this and it still caught nobody until the suite count was compared against the number of test files on disk.",
+    "kind": "verification",
+    "last_run_at": "2026-08-25",
+    "level": "unit",
+    "method": "test",
+    "name": "structure_with_no_function_is_asked_about.rs",
+    "status": "passing"
+  }
+}

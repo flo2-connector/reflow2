@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:e8d092103da872b63940e4419c78395f3d9efaab178ae4523801d75bccd82611",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-name-is-not-a-report",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "ver:changelog-view"
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:4ea09989457727e04d0805beba1b450292784cb17a19feef3e6eb8464638deb4",
+  "node_id": "decision:ack:2162197689aecdb2",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Accepted the gap gap:2162197689aecdb2.",
+    "name": "Reviewed: gap:2162197689aecdb2",
+    "rationale": "Same standing disposition as the other planned-but-unbuilt capabilities captured today (the user's 2026-07-23 call, applied again 2026-07-24): cap:kpp is `planned`, captured from the brothers' idea list, and nothing is built — a Verification would have nothing to run against, and it arrives with the build (BL-96). Worth noting for whoever builds it: the verification here is not incidental. dec:edge-orthogonality holds that a vocabulary distinction earns its keep only if a computation reads it, so the detector that fires on a KPP violation IS the justification for KPP being its own concept rather than a Constraint with priority critical. If that detector is ever cut for scope, the concept should be reconsidered with it rather than left as an uncomputed noun.",
+    "status": "accepted"
+  }
+}

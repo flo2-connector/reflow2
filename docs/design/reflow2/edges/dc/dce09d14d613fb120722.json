@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:360b76e4ea840cb81fa35a7c2d525db0ba808569fde2a9d745d36d79c9d96e55",
+  "edge_type": "CHANGED",
+  "from_id": "chg:v0210-rescoped",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "rel:v0210"
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:eeb34ac9fcb4c87bca35dc154ccbbf8f5a06285962973c84f1ddacfa8bd263db",
+  "node_id": "epoch:v0460",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "epoch_type": "release_cut",
+    "name": "v0.46.0 — component coupling gets a typed call and the name it needed, a revising write keeps what it would have lost, and the command surface answers for itself",
+    "sequence": 392,
+    "status": "arrived"
+  }
+}

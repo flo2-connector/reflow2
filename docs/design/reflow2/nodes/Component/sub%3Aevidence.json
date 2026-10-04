@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:3d9fdd8065f7ff70bce1d42fdcbed35435b47c3c8cac3e5ab53d15c16f0a2430",
+  "node_id": "sub:evidence",
+  "node_type": "Component",
+  "properties": {
+    "level": "subsystem",
+    "name": "Evidence",
+    "provenance": "authored",
+    "purpose": "Where the design meets reality — the parts that hold what was actually checked, built, deployed or observed, and what has since moved: verifications and their outcomes, artifacts and their checksums, the confirmation ledger, drift, field observation, and the operating world.\n\nDistinct from Finding and Telling because those two reason ABOUT THE DESIGN, and these reason about the WORLD THE DESIGN CLAIMS TO DESCRIBE. That is the boundary where as-designed and as-built are allowed to disagree, and keeping it a boundary is what makes the disagreement visible instead of silently resolved.",
+    "status": "planned"
+  }
+}

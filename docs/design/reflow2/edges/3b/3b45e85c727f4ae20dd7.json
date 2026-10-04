@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:c83e6360fc72f545b865cdaf8e2521af7b09ac45b906e1a0b3b2e9aa6c897568",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "req:the-graph-engine-keeps-a-compact-index-per-primitive",
+  "properties": {
+    "evidence": "Gated on measurement: built only where the budgets show adjacency work is the cost.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "req:time-and-tokens-are-measured-per-task-against-budgets"
+}

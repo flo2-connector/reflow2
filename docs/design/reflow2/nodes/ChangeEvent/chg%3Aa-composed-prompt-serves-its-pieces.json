@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:49fedf1c5e0418a7d3f3849e4d0efaf84b24ecb5b91c71f91a9af8dcb139edcd",
+  "node_id": "chg:a-composed-prompt-serves-its-pieces",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "detected_at": "2026-09-20",
+    "name": "A composed prompt serves the pieces it was composed from, and a closed gap refuses branchably",
+    "rationale": "flo2 F18 and F22, promoted 2026-09-20 on Anthony's word and built second in the order he agreed. The option chosen for F22 was the distinguishable refusal rather than accepting a bare id, because it removes the consumer's extra computation instead of making it cheaper to avoid.",
+    "summary": "ask.rs: the needs_llm reply carries `gap: {id, title, why}`; gap_is_gone carries `reason: gap_closed` and the id in the error data; the tool description says both. One test file. CHANGELOG."
+  }
+}

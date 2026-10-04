@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:5291d907faf0d9a4847223519413fa86f14e80bca97d70cc71c7c17f68348489",
+  "node_id": "chg:mcp-tools-http-medium-json-rpc",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "refactor",
+    "name": "The HTTP tool surface's medium moves from unspecified to json_rpc, and its spec stops saying the blank was deliberate",
+    "subject": "record"
+  }
+}

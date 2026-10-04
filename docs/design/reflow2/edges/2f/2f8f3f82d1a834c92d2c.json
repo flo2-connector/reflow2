@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:c7df0877c998bafa742da718dc7de8cebe40a420c4f06f5a8cf9ccef19adea0f",
+  "edge_type": "CHANGED",
+  "from_id": "chg:storyflow-second-field-report-20260808",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "fact:defect-causes-validation-status-hint-names-the-wrong-enum"
+}

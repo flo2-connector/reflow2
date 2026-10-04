@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:170d6a7e6fdc0fed363e7e5d7769e7f1bfa5234adc1a8890fbd574abdc7b40df",
+  "node_id": "art:detect-and-ask-skill",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "document",
+    "location": "getting-started/skills/detect-and-ask/SKILL.md",
+    "name": "detect-and-ask/SKILL.md — the ask half of the loop, and now the rule for when NOT to ask",
+    "status": "realized"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:62ce3eee7f6fc988d5ff14bc1f5ad05616fbbea87591ef6ef169b28adf94bf1d",
+  "edge_type": "CONTRADICTS",
+  "from_id": "dec:commands-are-the-exception",
+  "properties": {
+    "alignment": "supporting",
+    "evidence": "Qualifies rather than overturns: skills stay served because a stale skill is silently wrong; commands are installed because a stale command is still correct, and the one way it could rot (naming a skill that no longer exists) is now a lint failure."
+  },
+  "to_id": "dec:skills-served"
+}

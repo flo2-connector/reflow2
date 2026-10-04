@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:653342508b3b1e07bfdef09970cdeb4f25940a6921bff8016a06aafc0d47d393",
+  "node_id": "frag:art:test-a-write-replies-with-a-receipt",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered a_write_replies_with_a_receipt.rs — every write tool declares echo and is seen by the choke point; the write mix stays under 3,000 characters"
+  }
+}

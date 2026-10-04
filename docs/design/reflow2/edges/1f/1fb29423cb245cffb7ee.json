@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:74e92ac09d67b41fc08d0af1a6ed32a5c7f6cbd52690e029300984b8be099553",
+  "edge_type": "EVOLVES_INTO",
+  "from_id": "dec:idea-a-change-justification-skill-walks-the-commit-history-and-asks-why",
+  "properties": {
+    "evidence": "The brainstorm and its walkthrough are what shipped: one skill, two walks, the scripted agenda and the recalled marker. The payoff it flagged as separate work is still separate."
+  },
+  "to_id": "chg:the-why-skill-records-why-an-existing-system-is-the-way-it-is"
+}

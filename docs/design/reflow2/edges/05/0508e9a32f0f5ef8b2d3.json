@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:397bf3105af0248a385d7f62648b1eebf5aab704d68d47760cf91147d4073be1",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "chg:an-understated-status-is-reported",
+  "properties": {
+    "authored_at": "2026-09-30",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:claude-code"
+}

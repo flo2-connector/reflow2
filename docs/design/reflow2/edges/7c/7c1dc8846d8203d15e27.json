@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:139fa1f578556f5210923fabccf23fe75fc6278221b9e0a45f1fc8156cf4ab0f",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:what-is-this-says-what-to-do-once-you-have-a-design",
+  "properties": {
+    "approved_at": "2026-09-24",
+    "authored_at": "2026-09-24",
+    "roles": [
+      "author",
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

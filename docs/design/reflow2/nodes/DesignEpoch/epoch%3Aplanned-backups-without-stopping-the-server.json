@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:d614ce62e7fcadce3321d3df8fd7221582d0e48a81bfeb0a4a336d5649df8595",
+  "node_id": "epoch:planned-backups-without-stopping-the-server",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "description": "Accepted 2026-09-27 alongside the tracked-export retirement plan and deliberately NOT ordered within it: nothing in steps 1 to 8 waits on it. Delivers req:a-server-offers-a-consistent-live-snapshot-of-every-store (RocksDB checkpoint, every store in one command), so flo2's nightly backup stops pausing the reflow2 container. Retention is flo2's and still open (flo2's fact:follow-up-how-many-days-of-backups-to-keep).",
+    "epoch_type": "milestone",
+    "name": "Backups without stopping the server — a consistent live snapshot of every store (outside the export order)",
+    "sequence": 648,
+    "status": "planned"
+  }
+}

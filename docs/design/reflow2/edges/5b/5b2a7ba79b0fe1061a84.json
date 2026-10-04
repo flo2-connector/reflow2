@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:4556412cbbfbaff36fdd64c1f7ac678b1c3122669b802570212655b6084f9e57",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-saved-design-moves-to-the-item-layout-2026-10-03",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:338b62918b01d994aa02af0c425eb3ff5fefb28f9ca27d81a3d2c5132d520e77",
+    "checksum_basis": "measured"
+  },
+  "to_id": "art:test-every-finding-that-reads-parking-names-it"
+}

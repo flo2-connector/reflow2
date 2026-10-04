@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:8d168477d66c65fa4da0aa541e06db9c6c6f525d5845b112dc7a158688567a96",
+  "node_id": "req:computed-evidence-reaches-its-axis",
+  "node_type": "Requirement",
+  "properties": {
+    "concern": "core",
+    "designation": "internal",
+    "kind": "functional",
+    "lineage": "original",
+    "name": "What the graph computes reaches the quality axis it informs",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "Where reflow2 computes something that bears on a quality axis, it shall report that evidence against the axis by name, and shall say plainly of each axis whether a design graph can inform it at all — never deriving a score, never re-judging a finding the computation that produced it declined to call a defect, and never ruling on which side is right where a computed signal and an asserted assessment disagree.",
+    "status": "accepted"
+  }
+}

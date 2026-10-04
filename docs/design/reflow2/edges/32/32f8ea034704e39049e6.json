@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:d615b79542bad93994f4f2f023bb2869f2a95a62d1ca9c01eb9834e2e95f2b31",
+  "edge_type": "CHANGED",
+  "from_id": "chg:seat-handle",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "cap:seat-handle"
+}

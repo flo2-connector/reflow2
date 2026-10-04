@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:0bfc651aa86ce16700aec169a2b836f1b294051fe6bfc79a538de3c0bf3fcdd3",
+  "edge_type": "REALIZES",
+  "from_id": "art:latent",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cmp:latent"
+}

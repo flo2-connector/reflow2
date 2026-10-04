@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:d0775234a6759c58d7c2a7a834fa2b1236260463baec72fa5005a541830094da",
+  "node_id": "epoch:2026-09-10-three-capture-surface-fixes-from-the-field",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "description": "F-02, F-06 and F-19 from the 2026-09-10 hxm_program report, taken on Anthony's word. Each pinned by a test observed FAILING against the unfixed binary before the fix existed.\n\nTwo of the report's items were checked and NOT re-fixed because they had already shipped: F-01 (`suggested_depth` default) and F-11 (ANTICIPATES between proposed brainstorms, exempt since v0.41.0). F-02's own headline — the duplicate guard refusing a capability written after its requirement — was also already fixed on 2026-08-31; only its ergonomics half was built here.",
+    "epoch_type": "revision",
+    "name": "Three capture-surface fixes from the hxm_program field report",
+    "sequence": 412,
+    "status": "arrived"
+  }
+}

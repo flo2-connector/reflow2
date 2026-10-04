@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:ae1b670328b3579229e95f8ec4b5b4340836a9bd1a690426f4c7e0ff56abb01d",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "rule:reflow2-is-one-of-three-parts-and-does-not-compete-with-the-others",
+  "properties": {
+    "approved_at": "2026-09-02",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

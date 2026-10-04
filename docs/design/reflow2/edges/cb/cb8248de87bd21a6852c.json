@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:a812a2d4d1953f39dc1e6aec74c68bc7ddba816d0d62e5aa4ace0d383c2f6971",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:the-design-is-saved-one-file-per-item",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:export"
+}

@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:ead06fc187ecb350c162d733b97c8ae878de3a61e851e6bbd319d3aae312da0e",
+  "node_id": "art:attribution",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "description": "begin_touch_log / take_touch_log (the log create_node appends to), require_writes_for (the named contributor must exist; never invented), and credit_writes (one AUTHORED_BY role author per written node, once each, skipping Snapshot and Contributor and nodes gone by the end of the call).",
+    "location": "crates/reflow2-core/src/attribution.rs",
+    "name": "attribution.rs — crediting a call's writes to who it was for",
+    "status": "realized"
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:867b9e7cfaabfc4b5c8ada07b4e7fe44ca224a00ffda29bbd818b53558716a1a",
+  "node_id": "fact:two-active-sessions-claims-both-read-gone-2026-09-22",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "confidence": 0.85,
+    "fact_type": "defect",
+    "name": "MEASURED 2026-09-22: with two sessions actively working one design through the shared server, claim_report lists BOTH sessions' current claims as `gone`: the inverse of the 2026-08-08 defect",
+    "source": "dev_reflow2 hub session, claim_report on reflow2's shared server (pid 36234, v0.66.0), 2026-09-22 ~19:12",
+    "statement": "OBSERVED during a deliberate two-session trial. The dev_reflow2 hub session was fixing a bug in a separate worktree while Anthony's reflow2 session implemented other work in the main checkout. Both reach reflow2's design through the same shared server (pid 36234): the hub via a `--shared` stdio proxy started from the hub's folder, the owner via reflow2's own `.mcp.json`. Each took a claim minutes apart: the hub on cmp:shared (seat asligar-bitecool:36234:6278dc51), and the owner on dec:idea-can-reflow2-say-whether-a-design-has-ever-closed-its-own-loop (seat asligar-bitecool:36234:0d9e400c). While BOTH sessions were demonstrably active (tool calls, builds and file edits in progress), claim_report listed both claims with `liveness: gone` and moved both into `stale`. A third claim from the same server (seat …:db24bf76) read `unknown`. EXPECTED: an actively working session's claim reads `live`, or at worst `unknown`. `gone` tells a colleague the ground is free, which is the expensive mistake the capability's own text names. PRECEDENT: fact:defect-claim-liveness-is-the-servers-pid-not-the-sessions and chg:seat-liveness-is-the-session-20260808 fixed the OPPOSITE direction (a gone client read live). This may be the other side of that fix, but NOT ROOT-CAUSED: the untested candidates include (i) the seat being tied to a per-request or per-proxy session that ends between calls, (ii) the claim being made without an explicit seat, so the server attached one it then stops holding, and (iii) the observation reading a stale state. WHY IT MATTERS: claims exist for exactly this situation, two agents on one design at once, and today they said the opposite of the truth for both.",
+    "subject_id": "cap:claim-liveness",
+    "valid_from": "2026-09-22"
+  }
+}

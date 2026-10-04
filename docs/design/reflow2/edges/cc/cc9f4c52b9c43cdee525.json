@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:5f116cb4b386576bbf8063e25af6f7a6a09ef7d715725e3dfaaf5224d16964b5",
+  "edge_type": "REALIZES",
+  "from_id": "art:service",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:the-owners-word-rides-the-same-call-as-the-status-it-signs"
+}

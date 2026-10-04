@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:68b92288af53766387ee4f04d07d59d515f1a008cab145b15e82bc80bfa72d89",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-scope-actually-narrows",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "req:a-scoped-answer-actually-narrows"
+}

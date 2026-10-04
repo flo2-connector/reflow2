@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:207dda6151089cd623b19a0100fc0bb6c36cfeb45a8b26368c95cfaeb83c6314",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-loop-stops-recomputing-itself-on-every-read",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cap:read-loop-hint"
+}

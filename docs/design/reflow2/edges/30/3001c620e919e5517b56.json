@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:8fab690d0b5b0be43db111087b4e3be8356e1e1c1fa546c9dc4d43ad0040ba11",
+  "edge_type": "GOVERNED_BY",
+  "from_id": "cap:claim-liveness",
+  "properties": {},
+  "to_id": "decision:ack:b25bb8d8db80dfd3"
+}

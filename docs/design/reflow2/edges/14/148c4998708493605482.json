@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:ed587cd49fb25bf9f9cc7f3086dc0a8ec592040fd2a2b82b6c2afbdc3da9d2de",
+  "edge_type": "CHANGED",
+  "from_id": "chg:storyflow-second-field-report-20260808",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "fact:defect-add-verification-cannot-set-kind-or-last-run-at"
+}

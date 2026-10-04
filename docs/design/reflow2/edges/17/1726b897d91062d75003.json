@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:d58e8f843eebb99f3454285b25821a25b7011cade10f9d7f6b2c8b9806444b59",
+  "edge_type": "REALIZES",
+  "from_id": "art:cycles-test",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:cycle-names-its-basis"
+}

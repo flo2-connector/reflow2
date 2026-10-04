@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:618b4801f386eb6badd54e6d533b5d6fee320944e380b997173f311c39f731d5",
+  "edge_type": "CHANGED",
+  "from_id": "chg:spawn-daemon-survives-a-replaced-binary",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:service"
+}

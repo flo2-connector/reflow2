@@ -1,0 +1,17 @@
+{
+  "content_hash": "sha256:c978a4e238addcfe220d74a31d00c2f53df8580e1dd8735b94d5c206a330ebb0",
+  "node_id": "cap:reflow2-installs-as-one-plugin-for-claude-code-and-grok",
+  "node_type": "Capability",
+  "properties": {
+    "description": "Planned 2026-10-01 on Anthony's word (\"plan the plugin after the dependency PRs\").\n\nWHAT IT IS: one plugin folder in Claude Code's format, which Grok Build also reads:\n- `.claude-plugin/plugin.json` at the release version;\n- `.mcp.json` registering `reflow2-mcp --graph-path .reflow2/graph --shared --only-if-present`, the same entry today's user-scope registration writes;\n- `commands/` and `skills/`;\n- `hooks/hooks.json` carrying the loop nudge.\nThe Agent Plugins spec's root plugin.json and mcp.json sit beside it for the spec's other hosts.\nIt is listed in a `.claude-plugin/marketplace.json` in reflow2's repository, so `claude plugin marketplace add flo2-connector/reflow2` and `grok plugin marketplace add flo2-connector/reflow2` find it. `claude plugin update` and `grok plugin update` keep it current.\n\nWHY THIS SHAPE IS SAFE: measured on both hosts (fact:claude-code-and-grok-start-a-plugins-mcp-server-in-the-project-folder-2026-10-01).\n- Both start a plugin's MCP server in the PROJECT folder, so the relative graph path finds the project's design unchanged.\n- Both expand ${CLAUDE_PLUGIN_ROOT}.\n- Both loaded a Claude-format plugin as-is.\n- Only Claude Code offers MCP roots, so the working directory stays primary.\n\nWHAT IT DOES NOT CHANGE:\n- The binary still comes from install.sh (\"plugins deliver files, not binaries\", in both hosts' terms).\n- reflow2_install.py and reflow2_init.py stay for every other client. They learn not to register a second `reflow2` server when the plugin is present.\n- MCP stays the mechanism (rule:mcp-and-the-graph-are-the-only-common-ground). The plugin is an addition for the hosts that load it.\n\nThe plan: epoch:planned-reflow2-ships-as-a-plugin.",
+    "distinct_from": [
+      "fact:grok-builds-plugin-format-accepts-claude-codes-so-one-folder-serves-both-2026-10-01",
+      "fact:claude-code-and-grok-start-a-plugins-mcp-server-in-the-project-folder-2026-10-01",
+      "fact:the-agent-plugins-requirement-is-unstarted-and-a-plugin-launched-reflow2-would-look-for-its-design-in-the-plugin-2026-10-01"
+    ],
+    "name": "reflow2 installs as one plugin that Claude Code and Grok Build both load — its MCP entry, commands, skills and loop-nudge hooks — from a marketplace in reflow2's own repository",
+    "provenance": "authored",
+    "status": "planned",
+    "tier": "operational"
+  }
+}

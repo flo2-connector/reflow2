@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:6653cdc3d4f6e8409d32ea694171cbe74d3ac5081e6f47d8a9948b1c968843cf",
+  "node_id": "epoch:aggregate-gap-ack",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "epoch_type": "revision",
+    "name": "An aggregate gap is keyed on its rule, so a standing judgement stops expiring",
+    "sequence": 233,
+    "status": "arrived"
+  }
+}

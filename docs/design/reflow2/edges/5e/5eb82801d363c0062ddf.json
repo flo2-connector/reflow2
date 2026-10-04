@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:a9ab75fd11c759f5672161dbcac401377446ef44e8e1d46a5ba70e76f4e6e430",
+  "edge_type": "ABOUT_ENTITY",
+  "from_id": "fact:defect-ingest-writes-duplicates-that-heal-then-merges",
+  "properties": {},
+  "to_id": "dec:ask-not-repair"
+}

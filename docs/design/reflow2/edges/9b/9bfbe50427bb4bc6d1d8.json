@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:b6bfbcd6e2bcf0228fb406c77cc155c20bf45cffc18517943e2d67f059342ca6",
+  "edge_type": "CONTRADICTS",
+  "from_id": "fact:the-target-dir-reached-263-gib-of-this-projects-own-test-binaries",
+  "properties": {
+    "alignment": "opposing",
+    "evidence": "alignment: this WEAKENS one of that brainstorm's arguments rather than opposing the idea. The node lists RocksDB's disk footprint as an uncontested cost of keeping it (one cached librocksdb-sys dir at 1.7 GB). Measured here, RocksDB's artifact is 856 MB against 263 GiB of reflow2's own duplicated test binaries — 0.3% of the problem. A backend swap would not have prevented this failure, so the disk argument should not carry weight in that decision."
+  },
+  "to_id": "dec:idea-a-byte-backend-that-compiles-in-seconds"
+}

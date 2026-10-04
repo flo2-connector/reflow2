@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:a81e9e07e01383a8f7e10f3a6ac7e7d35053a6d0425ed23ce0a46a7362b2016d",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:understated-status-test",
+  "properties": {
+    "covers": "whole"
+  },
+  "to_id": "ver:understated-status-tests"
+}

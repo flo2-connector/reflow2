@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:d0869be4fb78376c8358dc3d8e23ce13c48f9b0b676014a0a76591fbc45e1cc0",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-saved-design-moves-to-the-item-layout-2026-10-03",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:de0871a98e6007aa5ee9e202d5396f014b3799efd72600f2a1a94de6d58ff182"
+  },
+  "to_id": "art:scope-corpus-ingest"
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:3ebbe5c5e18a1b0d3558672e2f732654cadf2da5cbb59462badc23f9240ce4f3",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-the-ility-chooses-the-allocation-graph",
+  "properties": {
+    "evidence": "This idea allocates FUNCTIONS to systems, and that node establishes reflow2 has no Function type — a Capability is the nearest unit and may be a set of functions across several parts. Whichever graph an ility selects, it is built over whatever the unit of allocation turns out to be, so this cannot be built until that is settled.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "dec:idea-a-capability-is-a-set-of-functions-and-a-black-box-delivers-functions"
+}

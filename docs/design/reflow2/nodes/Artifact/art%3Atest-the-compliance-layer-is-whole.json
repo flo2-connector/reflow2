@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:b5b679d705bfddd03218805fcb922c7f253f12b96667e84826b0eea88eb54274",
+  "node_id": "art:test-the-compliance-layer-is-whole",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "test",
+    "description": "Five tests holding the whole leg together, which is the point of the file rather than an accident of packaging. The ruling was that the constructor, the edges and the detectors land together or not at all, so they are pinned in one place: split across three files, a later session could delete the read side and still see green.\n\nThe two judgement calls are pinned as behaviour, not as comments. An ADVISORY rule raises nothing, because asking about guidance every sweep is how a finding becomes noise. And a CONFIRMED violation — a granted variance — keeps its edge: the test asserts the edge still exists after triage, because deleting it would destroy the audit trail that is the only reason to record a violation at all.\n\nThe scoping choice is written into the header where the next reader will meet it: unchecked_compliance fires once per unanswered mandatory rule, not once per element-and-rule pair. With 234 capabilities and 10 rules the per-pair shape would raise 2,340 findings, which is the hub-shaped noise that got an earlier detector narrowed in the same week it shipped.",
+    "location": "crates/reflow2-core/tests/the_compliance_layer_is_whole.rs",
+    "name": "the_compliance_layer_is_whole.rs — the environment compliance layer pinned as one leg: the rule is recordable with its authority, the edges are writable without the escape hatch, a mandatory rule nobody answered is asked about, an advisory one is not, and a granted variance is KEPT",
+    "status": "realized"
+  }
+}

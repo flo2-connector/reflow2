@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:657698178fb91a2ad00942e5210a1a589b8573f6e3fc4960e7381a3ce55536a7",
+  "node_id": "act:driving-agent",
+  "node_type": "Actor",
+  "properties": {
+    "actor_type": "user",
+    "description": "The primary actor, and the one req:driving-agent names: \"The driving agents are coding agents, not humans.\" A coding agent attached over MCP drives the whole loop — captures intent, runs the detectors, builds, reconciles. req:agent-native (\"an agent can drive the whole loop\") is its requirement. Recorded 2026-08-07: the Actor type existed with ZERO instances for 24 releases, so every operational view rendered empty and nothing said why. Not a Contributor — a Contributor authors the design; this is who the design SERVES. ON THE actor_type CHOICE, because it is arguable: `user` records the ROLE (it is who reflow2 is for) rather than the NATURE (it is a system). `external_system` would record the nature and lose the point that this is the primary user, which is the whole of req:driving-agent.",
+    "name": "The driving coding agent"
+  }
+}

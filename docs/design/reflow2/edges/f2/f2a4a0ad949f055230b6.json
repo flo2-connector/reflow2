@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:97f776733d35bac5930cdad528869239c5af570b7baa2134337e4c60a851f5a8",
+  "edge_type": "CHANGED",
+  "from_id": "chg:accept-40175f24d4af1021",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:plan-increments-skill"
+}

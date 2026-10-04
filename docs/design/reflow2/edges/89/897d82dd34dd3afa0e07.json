@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:56db17f3ad98049c384374c717bffdde38c7e08bfb867e85774f9fa099be7330",
+  "edge_type": "CAUSES",
+  "from_id": "art:detect",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "detect.rs's failing_verification detector reads Verification.status alone. For `failing` it writes \"so <capability> did not work as designed then\", whatever the findings say. `blocked`, the status that means the check could not run, raises no gap at all. So the only status that gets the reader's attention is the one that asserts the system ran and was wrong.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:root-cause-a-check-that-did-not-run-reads-did-not-work-as-designed-because-only-failing-is-loud-2026-10-02"
+}

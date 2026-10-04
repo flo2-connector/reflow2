@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:524b888e820ea23343a79a447cce1493ea147787a44b0eb42a0ebd9af150b670",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:test-item-layout-merges",
+  "properties": {
+    "covers": "whole"
+  },
+  "to_id": "ver:item-lineage-survives-squash-merge-and-a-mid-merge-export"
+}

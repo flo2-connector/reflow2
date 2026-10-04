@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:0887602acda6fdd63c15c85808ccf5c53eb94ada4060e292047f420489f4205b",
+  "node_id": "ver:defaults-are-declared-and-injected-deliberately",
+  "node_type": "Verification",
+  "properties": {
+    "description": "The schema's declared defaults are readable, checked, and injected only where injection is a statement (crates/reflow2-core/tests/schema_defaults.rs, 7 cases). WHY THIS EXISTS: `default:` in the schema YAML is executed by dynograph-core at WRITE time (schema.rs:507 inserts any missing property that declares one), which is where 3,207 stored values across 59% of this design came from — an injected value and a chosen one stored identically, so absence meant nothing. THE CASES: declared_defaults() parses all of them from the embedded YAML with no new dependency, and a floor assertion fails loudly if the line shape ever moves and the parser silently stops seeing them; schema_default() resolves by type and property, and answers None rather than guessing for a property that declares none — GATED_ON.min_level is deliberately undefaulted because defaulting it would pick a risk posture for the user; the ten properties removed for BL-198 step 1 are asserted ABSENT after a plain constructor call, which is the behaviour change itself; a value the caller DOES supply is still stored, so absence and choice are finally distinguishable. AND THE COUNTERWEIGHTS, which are the point rather than an afterthought: `Requirement.status = proposed` and `provenance` are asserted STILL INJECTED, because the whole certainty doctrine reads them and removing those would break derivation rather than clean it; `Requirement.lineage = original` is asserted still injected too, and it is there because it CAME OFF the confirmed removal list — requirement_lineage.rs refused the change, since `original` is the base case of a three-way classification whose other values (`decomposed`, `derived`) are set explicitly by operations. THE CASE THAT EARNS ITS KEEP BEYOND THIS ROUND: every_declared_default_is_a_legal_value_of_its_own_enum is a cross-check nothing could previously make — the validator checks stored values against `values`, the parser ignored `default` entirely, so a default naming a value its own enum forbids was invisible to both. WHAT IS NOT COVERED, stated rather than discovered later: nothing here proves the ten removed are the RIGHT ten. That was a per-property judgement made by the owner on measured evidence (single-valued in the data, no string-literal occurrence anywhere, no setter), and three mechanically-obvious candidates were kept on evidence — the reflex that single-valued means informationless was wrong three times in ten.",
+    "kind": "verification",
+    "last_run_at": "2026-08-10",
+    "level": "unit",
+    "method": "test",
+    "name": "Declared defaults are readable, checked, and injected only where injection is a statement",
+    "status": "passing"
+  }
+}

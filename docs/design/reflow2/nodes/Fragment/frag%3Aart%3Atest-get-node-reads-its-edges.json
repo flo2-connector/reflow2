@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:a01ebef90bf4966ffdb2a9e0c76012d865dc1f67a4dd603c5e4d454c4a490650",
+  "node_id": "frag:art:test-get-node-reads-its-edges",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered get_node_reads_its_edges.rs — the served door: the unchanged default reply, include_edges true, the filter object, refusals, an absent node, a node with no edges"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:bd8f4265b6f271a7972daaf01b5588b0e0b1eefab7098c7f407955c4c3a1c058",
+  "edge_type": "SCHEDULED_FOR",
+  "from_id": "cap:decomposition-coverage-is-asked",
+  "properties": {
+    "modality": "expected",
+    "recorded_at": "2026-08-14"
+  },
+  "to_id": "epoch:tiering-and-proportion"
+}

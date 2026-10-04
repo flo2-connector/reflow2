@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:c84e14ede72b394e7e0e85aa711ca6152306935bcc3b3b1a25fc6bad6a71f326",
+  "edge_type": "CHANGED",
+  "from_id": "chg:accept-e8c0453fe2602f25",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:dependency-manifest"
+}

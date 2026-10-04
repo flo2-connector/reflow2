@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:cf6376c78c59fa4a5d04ab0caca8043a5aec5185ae6e16ad342cc6e899bfdc33",
+  "node_id": "chg:accept-d7aae58830cf84a6",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "refactor",
+    "detected_at": "2026-08-09",
+    "name": "rustfmt reflowed the file after the first baseline was taken; behaviour is unchanged and all three tests still pass. NO DESIGN MEANING. Caught by the CI design-coherence gate, not by me — and it is the fourth instance of the same self-inflicted error: HASHING BEFORE THE LAST EDIT. The specific trap here is new and worth naming: `cargo fmt --check` is a CI gate, so running fmt is a REQUIRED step that happens AFTER the work looks finished, which puts a file mutation after the natural moment to hash. The rule that actually holds is hash last, after fmt, immediately before the export."
+  }
+}

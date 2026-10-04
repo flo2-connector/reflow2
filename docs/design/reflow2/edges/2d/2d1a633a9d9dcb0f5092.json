@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:b82470e0e8e094c8c1ba4793e7e67f648275087413039e48c07a02ac041e394d",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-saved-design-moves-to-the-item-layout-2026-10-03",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:dcc9b0fa31e9458a2ed0c602b1bd6b18dda388d202add3660a69090e6fa6f158",
+    "checksum_basis": "measured"
+  },
+  "to_id": "art:design-holds-says-why-test"
+}

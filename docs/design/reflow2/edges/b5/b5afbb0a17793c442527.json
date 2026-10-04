@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:2c478b5c8b718ebf543e34fa99bbe1deba547a23edf23ece358de6256a5189f1",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:non-goal-reflow2-does-not-validate-that-your-intent-is-sound",
+  "properties": {
+    "approved_at": "2026-08-17",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

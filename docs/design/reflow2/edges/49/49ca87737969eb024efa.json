@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:63f0c88ac8830067aaafbed281d0ee41c6c1f92f04fd81653a26b202be96ac5d",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:reflow2s-skills-conform-to-the-agent-skills-specification",
+  "properties": {
+    "approved_at": "2026-09-28",
+    "authored_at": "2026-09-28",
+    "roles": [
+      "author",
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

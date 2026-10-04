@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:4ad4cf2a1a1f6ed7a3a75e4bf8398460b7076d79142f772ebb1d97fc44ffe4dc",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-image-smoke-waits-for-the-store-instead-of-breaking-on-running",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:docker-smoke-script"
+}

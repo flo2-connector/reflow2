@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:2aa131bbe5e8db7c21a0d0f67d2294fc90d0c4f8528d18651520845f902a0c92",
+  "node_id": "dec:where-reflow2s-oauth-client-identity-lives",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Raised 2026-10-01 while planning cap:a-remote-client-signs-in-to-its-server-with-oauth-2-1. On flo2.io (Clerk, DCR off), a client with no pre-registration is known by a Client ID Metadata Document. That is an https URL serving a small JSON document whose `client_id` is the URL itself (draft-ietf-oauth-client-id-metadata-document-02). THE URL IS THE CLIENT'S IDENTITY: every consent a person gives is to it, and moving it later means everyone consents again.\n\nWHERE IT COULD LIVE:\n(a) A raw file in the reflow2 GitHub repository, as rust-sdk does. Free, versioned with the code. Against: a raw.githubusercontent path breaks if the repo or default branch is renamed.\n(b) GitHub Pages for the reflow2 repo (https://sligara7.github.io/reflow2/oauth/client.json). Free, a stable https origin. Against: it is tied to the GitHub account name.\n(c) flo2.io (https://flo2.io/oauth/reflow2-client.json). Already a domain Anthony controls. Against: it ties reflow2's identity to one host, and other servers (a team's Keycloak) would show \"flo2.io\" on the consent screen.\n(d) A domain of reflow2's own. The cleanest identity. Against: it costs money and needs hosting.\n\nWHICH REDIRECTS IT LISTS: http://127.0.0.1/callback and http://[::1]/callback, port-less. OAuth 2.1 -16 §8.4.2 calls `localhost` NOT RECOMMENDED and requires an authorization server to allow any port on a loopback IP. Claude Code's document lists localhost and 127.0.0.1, port-less, and signs in to flo2.io. Whether Clerk honours any port is measured in increment 0 before this is built on.\n\nLEAN: (b), unless Anthony wants a reflow2 domain now. 127.0.0.1 and [::1] only, no `localhost`. A pre-registered client_id (increment 7) covers servers that do not take CIMD.",
+    "kind": "choice",
+    "name": "OPEN — where reflow2's OAuth client identity (its Client ID Metadata Document) lives, and which loopback redirects it lists",
+    "status": "proposed"
+  }
+}

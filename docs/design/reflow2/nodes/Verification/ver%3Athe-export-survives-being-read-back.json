@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:9fe4d4cacf83ea6a80695b6c10aef2d2f97932d4a337ae6855a278e7e463d8ab",
+  "node_id": "ver:the-export-survives-being-read-back",
+  "node_type": "Verification",
+  "properties": {
+    "description": "A committed export survives export → import → re-export (tools/test_reflow2_check.py) — 5 cases. END TO END through the real binary: a coherent design round-trips clean and gates 0. THREE DETECTION CASES against a stub re-export, because driving these through the real binary could only ever produce a FAITHFUL round trip — which is the case that must NOT fire: a dropped node is caught AND NAMED, a dropped EDGE is caught and named (the dev_storyflow case was two VERIFIES edges, so a check watching only nodes would have missed it), and a property that comes back different is caught (import is an upsert and the schema has defaults, so a document can return COMPLETE and still not be the same design — the half a count cannot see). THE COUNTERWEIGHT IS THE FOURTH: a faithful round trip reports NOTHING, because a check that fires on a correct design runs on every commit and would be switched off inside a day.",
+    "findings": "MUTATION-CHECKED TWICE, each killing exactly what it should: forcing the comparison to always agree fails the three detection cases and leaves the counterweight passing, which is what proves the counterweight carries weight; ignoring edges fails exactly the edge case and nothing else. PROVEN ON THE REAL DESIGN: run against reflow2's own 2,308-node export through the built binary, the round trip is clean and the gate's only finding was the checksum of the file this change edited.",
+    "kind": "verification",
+    "last_run_at": "2026-08-15",
+    "level": "unit",
+    "method": "test",
+    "name": "A committed export survives export, import and re-export",
+    "status": "passing",
+    "verification_type": "test"
+  }
+}

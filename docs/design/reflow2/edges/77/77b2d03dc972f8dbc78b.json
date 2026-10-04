@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:c7d30eba7763817ec068c019c1bb5d338bd20463dd1ec85f9b1f8c974ec2c1c1",
+  "edge_type": "VERIFIES",
+  "from_id": "ver:ingest-handshake",
+  "properties": {},
+  "to_id": "cap:ingest"
+}

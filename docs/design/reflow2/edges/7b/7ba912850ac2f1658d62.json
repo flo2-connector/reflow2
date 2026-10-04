@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:ed25b41309e71038fe8a251f93336efd7f877c217f41d8005c67237a0522d73f",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:a-write-and-an-approval-record-the-agent-and-the-person-it-acts-for",
+  "properties": {
+    "approved_at": "2026-09-29",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

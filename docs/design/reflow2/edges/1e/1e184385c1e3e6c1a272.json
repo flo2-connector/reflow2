@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:67f83d3bb424a8e0cb47ac7b3f82ea40160b4f1f39db13cc41d25bce964663a7",
+  "edge_type": "OBSOLETES",
+  "from_id": "dec:idea-a-planned-increment-is-named-by-content-not-by-number",
+  "properties": {
+    "confidence": 1.0
+  },
+  "to_id": "dec:an-unplanned-cut-slips-every-later-increment-by-one"
+}

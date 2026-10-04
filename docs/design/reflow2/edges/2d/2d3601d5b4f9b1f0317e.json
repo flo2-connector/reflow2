@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:5a74c66602f23e015fb301c76d64525aacae9b741c7bb1037ba4eb16612c37ea",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-the-tool-partnership-needs-a-named-contract-basis-measured-subject-record-and-a-word-for-apparatus",
+  "properties": {
+    "evidence": "This is what the bhome trial of that idea found the partnership needs on reflow2's side once the loop actually closed: the contract was already there (constrains, basis: measured) and nothing named it; the vocabulary lacked a word for the tool itself.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "dec:idea-pair-with-mcp-for-blender-as-the-hands-that-make-and-show-the-cad-artifact"
+}

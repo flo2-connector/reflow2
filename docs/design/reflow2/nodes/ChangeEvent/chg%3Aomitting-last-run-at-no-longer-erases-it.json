@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:60ec8bfd35d18d5ddfc67e1ec564848be538a15b9089df7f54f4e9de8a6b6209",
+  "node_id": "chg:omitting-last-run-at-no-longer-erases-it",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "test_failure_fix",
+    "name": "set_verification_status stops deleting last_run_at when the optional parameter is omitted — the convention three sibling setters already documented"
+  }
+}

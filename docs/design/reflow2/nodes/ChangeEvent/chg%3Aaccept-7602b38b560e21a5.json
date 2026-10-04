@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:7e56513f4d4f121e0d22c725a62c8e74f8a7b8ca5b404d56db40c78f753c836f",
+  "node_id": "chg:accept-7602b38b560e21a5",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "test_failure_fix",
+    "detected_at": "2026-08-01",
+    "name": "BL-141(b): a cycle running only through library/data contracts, with no real DEPENDS_ON hop, drops from Critical to Warning. Downgraded, never silenced — the finding keeps its place, affected set, suggested fix and explanation."
+  }
+}

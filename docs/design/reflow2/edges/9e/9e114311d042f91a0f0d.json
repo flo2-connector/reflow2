@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:fc0d30fb349b7d3c10ea17274dee9dc9c90455a5962425bc1173d8694d626f9d",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:plan-time-axis",
+  "properties": {
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "cap:model-process"
+}

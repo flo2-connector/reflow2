@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:9e8f32c8e68ab243dbd739f61e578e193809d3e92153dd116bd81d8dfa40d5d9",
+  "node_id": "decision:ack:3a667fe34b66bffd",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Accepted the gap gap:3a667fe34b66bffd.",
+    "name": "Reviewed: gap:3a667fe34b66bffd",
+    "rationale": "Deferred on Anthony's word, 2026-07-28. Accepted and not dropped: adopt has no completeness measure, so \"we adopted it\" cannot be told from \"we adopted what we happened to read\", where reflow's RE-06 computed extraction coverage and gated at 80%. Deferred rather than built because the honest measure has to be expressed in what adopt actually models — unmapped entry points, unmodelled contracts, untouched modules — and a naive nodes-per-LOC ratio would punish the coarse-but-honest granularity adopt correctly requires. That design work is the increment.",
+    "status": "accepted"
+  }
+}

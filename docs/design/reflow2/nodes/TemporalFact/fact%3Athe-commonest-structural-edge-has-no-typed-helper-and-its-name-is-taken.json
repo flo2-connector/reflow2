@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:73d6a0d6d4277a5b91f59c1d59e8da445cc4b930da60fa9596168d902f7a5e95",
+  "node_id": "fact:the-commonest-structural-edge-has-no-typed-helper-and-its-name-is-taken",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "confidence": 1.0,
+    "fact_type": "defect",
+    "statement": "COMPONENT `DEPENDS_ON` — the edge that feeds cycle detection, single-point-of-failure analysis and the seam gap — HAS NO TYPED HELPER, AND THE OBVIOUS NAME IS ALREADY TAKEN BY SOMETHING ELSE. Measured in musicjug, 2026-08-31 (art:musicjug-genesis-feedback-2026-08-31, \"The bad\" §4).\n\nThe session searched for a way to record that one component depends on another. `declare_dependency` matched by name and turned out to be CROSS-DESIGN version pinning — git tags, feature flags, export watching (cap:design-dependencies-declared). Completely different concept. It fell back to raw `create_edge` with `DEPENDS_ON`.\n\nTHE TYPED SURFACE COVERS: contains, contain_component, satisfies, allocate, realizes, provides, consumes, governed_by, decomposes. It does not cover the single most common structural edge in any design.\n\n🛑 TWO DEFECTS, NOT ONE, AND THEY COMPOUND. The absence alone would cost a raw `create_edge`. The name collision actively routes a searching agent to the wrong tool first — and `find_tools` ranks by name, so the misdirection is systematic rather than unlucky. musicjug's proposal: add `depends_on(from_component, to_component)`, and rename the existing one `declare_external_dependency` or `declare_design_dependency`.\n\n⚠️ THIS IS NOT AN ISOLATED NAMING SLIP — it joins a counted family. `fact:defect-typed-tool-parameter-names-are-inconsistent` and `chg:param-name-mismatch-hits-a-third-independent-source` record ten prior helper-vs-schema disagreements from three independent sources. This is the eleventh, and the first where the disagreement is the TOOL's name rather than a parameter's.\n\n📌 AND IT HAS A KNOWN DOWNSTREAM COST ALREADY IN THE GRAPH: `fact:coupling-and-contract-are-recorded-in-vocabularies-that-never-meet` — couplings read from DEPENDS_ON, contracts from PROVIDES/CONSUMES, disjoint by construction on reflow2's own design. A missing typed helper on the coupling side is one reason that set stays thin. reflow2's own snapshot, same day: 1 of 70 components carries any modelled coupling, so modularity is not measurable.",
+    "subject_id": "cap:design-dependencies-declared",
+    "valid_from": "2026-08-31",
+    "valid_to": "2026-09-01"
+  }
+}

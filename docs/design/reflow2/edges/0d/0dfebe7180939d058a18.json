@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:cbc60dbc55f34d3c33c4e07ccf58e461578cc268c90937d3ff7049b6d355cc1b",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-sweep-findings-requirement-is-withdrawn-as-a-requirement",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "removed"
+  },
+  "to_id": "req:every-finding-of-the-tool-sweep-is-addressed-or-ruled-on"
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:8b482bf177b32bdee424747827f6053fd3e6377008a6b7da272ad0f793d32ea1",
+  "edge_type": "ANTICIPATES",
+  "from_id": "fact:the-root-cause-was-on-the-record-and-a-session-re-derived-it-anyway",
+  "properties": {
+    "evidence": "This 2026-08-22 measurement saw the proposal's central weakness coming, six days early and from real work rather than from reasoning: a root cause was already recorded and findable by the error string, and a session re-derived it from scratch anyway. Its conclusion — \"the gap is not accumulation, it is SURFACING\" — is the argument that a METHOD may not be the missing piece, which is exactly what this Decision has to weigh."
+  },
+  "to_id": "dec:idea-should-reflow2-serve-a-root-cause-analysis-method"
+}

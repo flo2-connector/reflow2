@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:cdeb7eabe598975aac5181423ceda5b37282036fb94f9edf047c747d19984eed",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-declared-dependency-can-be-watched-without-being-imported",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:service"
+}

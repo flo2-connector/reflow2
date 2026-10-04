@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:f37f1715d75bbfb68a33888f2541998ffff8036deae1b7ceb70a64009023c0be",
+  "node_id": "art:test-a-stored-item-the-schema-now-refuses-is-reported",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "test",
+    "description": "Core tests for the refused_by_schema detector and its agreement with the import.",
+    "location": "crates/reflow2-core/tests/a_stored_item_the_schema_now_refuses_is_reported.rs",
+    "name": "a_stored_item_the_schema_now_refuses_is_reported.rs — the refused_by_schema detector, against stores written under a wider schema",
+    "status": "realized"
+  }
+}

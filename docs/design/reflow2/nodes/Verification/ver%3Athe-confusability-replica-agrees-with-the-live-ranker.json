@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:3000d94c619b79668bcaf4252b51ebc48829a1a2b15606e05dc685b11428421c",
+  "node_id": "ver:the-confusability-replica-agrees-with-the-live-ranker",
+  "node_type": "Verification",
+  "properties": {
+    "findings": "193/193 top-1 and 189/193 exact top-5 against the branch and main binaries; the replica's old scoring gave 186/193 and 115/193 through the same validator.",
+    "kind": "verification",
+    "last_run_at": "2026-10-03",
+    "level": "system",
+    "location": "tools/tool_confusability.py",
+    "method": "test",
+    "name": "tool_confusability.py --validate asks the live find_tools every corpus query and fails on any top-1 disagreement with the offline replica",
+    "status": "passing"
+  }
+}

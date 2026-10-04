@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:79e135eba1451902c1d5f3acb25457fb0ad917a29fd6d5e1789f2e38e3ec8a48",
+  "node_id": "ver:tools-reject-unknown-args",
+  "node_type": "Verification",
+  "properties": {
+    "kind": "verification",
+    "level": "system",
+    "method": "test",
+    "name": "A served tool refuses an argument it does not know — including a tool whose FIRST parameter is new, where the old surface has nothing to reject with (friction 2026-07-25, unwritten)",
+    "status": "planned"
+  }
+}

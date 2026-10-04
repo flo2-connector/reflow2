@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:eda7b6c33438734e2aafae2ccad287e997c1a0564d1c91ddc3ace8df9ceee3a5",
+  "edge_type": "CHANGED",
+  "from_id": "chg:accept-27f611941c80b9ae",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:provenance"
+}

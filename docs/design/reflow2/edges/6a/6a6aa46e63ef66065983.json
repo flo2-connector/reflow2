@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:f0c7352f9ba3e243345e89bbe1f77b51fbb020c55eb3c530ccf90f67d8e0ca69",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-saved-design-moves-to-the-item-layout-2026-10-03",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:90924adc6acc08eed6cad538fc1570b801bf76e5f8365c2a084ba71ab45ac9e0",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:stateless-seat-probe"
+}

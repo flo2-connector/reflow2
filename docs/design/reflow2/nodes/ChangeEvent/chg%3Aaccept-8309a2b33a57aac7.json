@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:08d1000586a57f0ca84b7187d3f00ede1083e0cc6a8c5baf71248e99268f8766",
+  "node_id": "chg:accept-8309a2b33a57aac7",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "defect_fix",
+    "detected_at": "2026-08-19",
+    "name": "Three cases added for the fourth instance: loop_status states its own currency; a CURRENT server costs three fields and does not touch `next`; and the next-entries name both the remedy (`--stop-shared`) and the trap that produced all four instances (a session restart re-attaches to the same daemon).",
+    "subject": "system"
+  }
+}

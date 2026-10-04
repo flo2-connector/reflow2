@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:0250d20413dfb243f67334fd2fa7ceda763aa5e6c56909d2ed72308d89ff748c",
+  "node_id": "chg:accept-three-built-requirements",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "requirement_creep",
+    "name": "Anthony accepted the three requirements that were already delivered"
+  }
+}

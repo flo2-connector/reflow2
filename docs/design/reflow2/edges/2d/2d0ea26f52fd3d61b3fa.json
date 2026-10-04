@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:e9e124b1593dad50278dbf93a0517a4106bfa4270161061a3547e28966963e27",
+  "edge_type": "CHANGED",
+  "from_id": "chg:stored-data-is-rechecked-against-the-current-schema",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:agent-instructions"
+}

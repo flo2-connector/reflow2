@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:aee7a5f3df0f53a308c1fe3567b51c8874254279c21c455d3510dd8c912a29a2",
+  "node_id": "chg:a-session-names-its-design",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "name": "crates/reflow2-mcp/src/registry.rs — a session names a design by graph_id and the server maps id to path (cap:select-graph-by-id, second half of the accepted req:a-session-chooses-its-design). RESOLUTION HALF ONLY: no transport is wired, so cap:select-graph-by-id is in_progress and NOT realized — the spec prefers an HTTP path prefix /g/<graph_id>/ and warns an attaching tool call is worst because a reconnect silently loses it. THE TRIPWIRE DID ITS JOB: the_registry_clauses_are_not_covered_here fired the moment registry.rs appeared, exactly as designed, forcing the two clauses of ver:a-session-cannot-name-another-design to be written rather than assumed met — that verification is now passing and the tripwire is retired into a pointer that fails if the coverage is deleted. ISOLATION HOLDS BY CONSTRUCTION rather than by check: attach() always treats its argument as an ID so a path is refused as an unknown id (no path_for, no attach_path — absent rather than documented), the registry ROOT is the boundary so a real design elsewhere on the machine is refused identically, and a Binding exposes one design with no operation taking another id. 8 tests written before the module; 3 of 4 mutations killed. THE SURVIVOR IS DOCUMENTED, NOT HIDDEN: the state==Design guard provably does no work because describe_at sets graph_id Some on exactly that path — clippy flagged the same redundancy independently — so it is kept as defence and labelled as belt to the Some(id) braces. UNANSWERED AND NOW LIVE: graph_ids() lists what the OPERATOR put under the root, which is right for one owner and is NOT a multi-tenant policy (dec:idea-a-session-holds-several-graphs). The root is a parameter, so neither answer is foreclosed."
+  }
+}

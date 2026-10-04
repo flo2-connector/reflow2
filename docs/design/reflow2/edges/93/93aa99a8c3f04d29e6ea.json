@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:f5d2ee31d659a568bfcf949a512cd3a8b72901369e07a852cbc8ee1464f2452b",
+  "edge_type": "CAUSES",
+  "from_id": "art:dev-storyflow-feedback-2026-09-27",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "The root-cause pass on this document's 09-27 evening report (related_to echoes no edges): add_decision draws the edges through review_relations and discards its reply; on a choice it draws none.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:root-cause-add-decision-discards-the-edge-echo-its-related-to-computed-2026-09-28"
+}

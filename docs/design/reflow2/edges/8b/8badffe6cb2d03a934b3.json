@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:c7147b1bee70ac5dcea9d41a6900b55be4215c6c816538ccb571b1681dd5f0b2",
+  "edge_type": "RISKS",
+  "from_id": "fact:no-uncontaminated-sample-of-a-well-decomposed-design-exists-yet",
+  "properties": {
+    "confidence": 0.85,
+    "evidence": "That idea proposes computing required depth from a 3-7 span-of-control bound. This is the hazard it runs into: the only systems available to calibrate that bound against are organically grown, and Conway's Law — rule 3 of the very same doctrine — predicts organic growth will LOOK conformant at some boundaries without any SE having occurred. So a threshold tuned on this evidence would be fitted to what accretion produces rather than to what good decomposition needs. It does not refute the idea; it says the number cannot be calibrated from anything currently in reach, which is a reason to REPORT fan-out rather than ship a threshold.",
+    "severity": "medium"
+  },
+  "to_id": "dec:idea-depth-is-derived-from-fan-out-not-declared-by-a-ladder"
+}

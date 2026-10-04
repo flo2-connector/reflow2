@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:5a377831fff6e56c7eb25e6d6d29c3e6ddce77cedf0110970637ffd0a4d2f70b",
+  "edge_type": "VERIFIES",
+  "from_id": "ver:a-terminal-agent-auto-approves-reads-and-confirms-each-write",
+  "properties": {},
+  "to_id": "cap:a-build-can-call-one-tool-from-the-shell-and-read-the-reply-as-json"
+}

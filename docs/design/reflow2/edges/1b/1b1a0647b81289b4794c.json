@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:c389f296f1e54f3c24e4f151db8764ceb5d4766c334ac8d3551e04bbffb9e5e7",
+  "edge_type": "CAUSES",
+  "from_id": "art:brainstorm-skill",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "The skill states the hazard (direction is part of the claim, a backwards edge asserts something false) at the exact step where the flag would be used, and never names the flag, so the reader meets the warning and no remedy.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:the-direction-flag-on-a-relation-exists-and-no-skill-names-it-so-two-edges-landed-reversed"
+}

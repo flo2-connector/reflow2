@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:799f80eae1e02b91f14a92c9e216aa095d3e88cea3f533ef22ec5c2ffb6bde06",
+  "node_id": "snap:epoch:preserved-on-write:chg:the-loop-closure-reading-lands",
+  "node_type": "Snapshot",
+  "properties": {
+    "edges": "[{\"direction\":\"out\",\"edge_type\":\"CHANGED\",\"other_type\":\"Artifact\",\"other_id\":\"art:report\",\"properties\":{\"accepted_baseline\":false,\"action\":\"modified\"}},{\"direction\":\"out\",\"edge_type\":\"CHANGED\",\"other_type\":\"Artifact\",\"other_id\":\"art:schema-verify\",\"properties\":{\"accepted_baseline\":false,\"action\":\"modified\"}},{\"direction\":\"out\",\"edge_type\":\"CHANGED\",\"other_type\":\"Artifact\",\"other_id\":\"art:tools-assure\",\"properties\":{\"accepted_baseline\":false,\"action\":\"modified\"}},{\"direction\":\"out\",\"edge_type\":\"CHANGED\",\"other_type\":\"Artifact\",\"other_id\":\"art:verify\",\"properties\":{\"accepted_baseline\":false,\"action\":\"modified\"}},{\"direction\":\"out\",\"edge_type\":\"CHANGED\",\"other_type\":\"Artifact\",\"other_id\":\"art:where-am-i-skill\",\"properties\":{\"accepted_baseline\":false,\"action\":\"modified\"}},{\"direction\":\"out\",\"edge_type\":\"CHANGED\",\"other_type\":\"Capability\",\"other_id\":\"cap:the-loop-closure-reading\",\"properties\":{\"accepted_baseline\":false,\"action\":\"added\"}}]",
+    "state": "{\"change_type\":\"new_feature\",\"detected_at\":\"2026-09-22\",\"name\":\"loop_status says whether a real result ever came back, and a recorded reconcile stamps every check it compared\",\"rationale\":\"An agreeing run left no trace, so a design could not tell \\\"never fed a result back\\\" from \\\"every result matched\\\" — the entry point of Anthony's founding chain was invisible. His word 2026-09-22 on both the reading and the stamp.\",\"subject\":\"system\",\"summary\":\"Step 3 of the approved ordering. New loop_closure module; LoopStatus.loop_closure plus a never_closed line in next (not counted in clean); reconcile_verification with record_events stamps last_reconciled_outcome / last_reconciled_at / last_failed_run_at on each observed check and returns `stamped`; three declared properties on Verification; where-am-i reads the reading beside the delivery line; the reconcile tool description names the stamp.\"}",
+    "target_id": "chg:the-loop-closure-reading-lands",
+    "target_type": "ChangeEvent"
+  }
+}

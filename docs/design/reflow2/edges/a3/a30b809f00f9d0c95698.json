@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:e76f894ad0787d2082f343f3e521c7c21ac3dc71383551f05cc3d808bee4920b",
+  "edge_type": "ABOUT_ENTITY",
+  "from_id": "fact:three-of-eight-reported-verification-gaps-were-already-built",
+  "properties": {
+    "evidence": "Field evidence for exactly this open question: three of eight gaps a real project reported as missing were already built (PERFORMED_IN with its performed_in tool, SUPERSEDES between Verifications, and pinned/swept via set_evidence_scope). The vocabulary existed and the project that needed it never acquired it."
+  },
+  "to_id": "dec:idea-how-does-a-users-project-acquire-vocabulary-it-never-uses"
+}

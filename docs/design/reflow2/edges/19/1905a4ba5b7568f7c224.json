@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:3ef28eaa38f979753801282b26a98677879a2151d88628068d2f7f8b66bc6e36",
+  "edge_type": "REALIZES",
+  "from_id": "art:heal",
+  "properties": {
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:a-sweep-names-its-own-scope-and-the-category-names-what-it-computes"
+}

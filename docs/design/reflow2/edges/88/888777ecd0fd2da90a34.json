@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:91326fa6b0f3b6a04e0a54c934b7ffdbb91bd80791b06e035b0c6ab4290f3e38",
+  "edge_type": "CHANGED",
+  "from_id": "chg:an-exposed-server-verifies-bearer-tokens-itself",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cap:an-exposed-server-establishes-who-is-calling-before-intent-can-be-settled"
+}

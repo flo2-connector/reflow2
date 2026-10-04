@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:265d7d757066a1c486e7e128b1f16c5f4be8d87401655103450a8e14dbb4a2d3",
+  "edge_type": "CHANGED",
+  "from_id": "chg:hosted-collaboration-raised",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "req:concurrent-planning"
+}

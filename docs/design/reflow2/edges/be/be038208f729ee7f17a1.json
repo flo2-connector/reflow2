@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:a6fc98f0f541b1564bd7ee199ce983f5f89d032662c3afeb0c4401f47818bcc1",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:a-local-client-reaches-a-remote-server",
+  "properties": {
+    "coverage": "partial"
+  },
+  "to_id": "req:a-local-client-works-against-a-remote-reflow2-server-by-url"
+}

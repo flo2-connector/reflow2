@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:d56bbbc617a0916482126f2363fd3d6a1c05923c20431a60da708a106f9e931f",
+  "node_id": "ver:orphan-attachment",
+  "node_type": "Verification",
+  "properties": {
+    "description": "An Artifact is an orphan only when every edge it carries is bookkeeping — a document attached by DOCUMENTS and a contract attached by SPECIFIES are attached (BL-176). Six cases in crates/reflow2-core/tests/orphan_attachment.rs. What must still fire is pinned: an artifact attached by nothing, a document that documents nothing (artifact_type is never a free pass), and an artifact carrying only a Release INCLUDES edge — which is why this is NOT the degree-zero rule the Decision arm uses.",
+    "findings": "WRITTEN BEFORE THE FIX, and the split is the evidence: the 2 defect cases FAILED and all 4 counterweights PASSED against the old rule, so the counterweights were not passing by accident of the bug.",
+    "kind": "verification",
+    "last_run_at": "2026-08-04",
+    "level": "unit",
+    "method": "test",
+    "name": "An Artifact is an orphan only when every edge it carries is bookkeeping",
+    "status": "passing"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:c0a037d715d4831c5153d750b9255d47333dedd2a79bf4e76d16a8c189c6f26d",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-saved-design-moves-to-the-item-layout-2026-10-03",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:78f40db894ad9b12044ba08846b0282789788a65bc43169c967221064b3bf824",
+    "checksum_basis": "measured"
+  },
+  "to_id": "art:find-tools-ranks-what-the-query-means-test"
+}

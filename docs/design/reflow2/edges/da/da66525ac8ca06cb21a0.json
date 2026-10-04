@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:1f2f3d6224b47633f557d42fa1c2a8f3e4e30714d74a2b8724d74e04cad4d08a",
+  "edge_type": "REALIZES",
+  "from_id": "art:one-shot",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "verified"
+  },
+  "to_id": "cap:a-build-can-call-one-tool-from-the-shell-and-read-the-reply-as-json"
+}

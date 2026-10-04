@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:c5bc622c1f7937cb5c3643ce481b3647554ce9fe9b8e481b4f7346d2797a4e2c",
+  "node_id": "art:test-a-schema-narrowing-ships-its-migration",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "test",
+    "description": "The narrowing gate: today's schema against the last release's acceptance snapshot, the NARROWINGS entries, and the diff on deliberately narrowed schemas.",
+    "location": "crates/reflow2-core/tests/a_schema_narrowing_ships_its_migration.rs",
+    "name": "a_schema_narrowing_ships_its_migration.rs — the narrowing gate and its diff",
+    "status": "realized"
+  }
+}

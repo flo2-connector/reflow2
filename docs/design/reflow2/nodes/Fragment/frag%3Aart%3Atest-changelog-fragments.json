@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:5382723b6ac67a8ce15e2fd4a3c557c52d5d3e52e8e24ce672812c1a19c1844d",
+  "node_id": "frag:art:test-changelog-fragments",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered tools/test_changelog_fragments.py"
+  }
+}

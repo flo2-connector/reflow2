@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:fa0ef07dc983d794b2fe94deb2ffcd30d59fe90e0a8bc27a2ad06a3c4570e4a6",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-a-claimed-blast-radius-is-an-island-no-other-session-writes-in",
+  "properties": {
+    "evidence": "An enforced island is only safe once a claim's liveness is right. Measured wrong both ways, an island would either strand ground or lock an agent out of its own claim after a silent seat change.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "req:a-claim-reads-gone-only-when-the-server-holding-its-session-saw-it-end"
+}

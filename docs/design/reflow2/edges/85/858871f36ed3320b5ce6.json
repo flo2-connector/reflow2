@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:9779e9b84644267587d3a8f990951b7b01529a318e7ab10e78653e11cfb1801a",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:a-capability-carries-its-thread-test",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:a-capability-carries-its-thread-test"
+}

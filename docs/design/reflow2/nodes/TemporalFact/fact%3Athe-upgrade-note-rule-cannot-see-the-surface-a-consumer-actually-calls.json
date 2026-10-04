@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:d68c21cbc7c3d0987ef9253eb0859ba14a5da632d7c1a58e47d52a0d586b4af0",
+  "node_id": "fact:the-upgrade-note-rule-cannot-see-the-surface-a-consumer-actually-calls",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "confidence": 1.0,
+    "fact_type": "defect",
+    "statement": "THE RULE THAT DECIDES WHETHER TO WARN A CONSUMER IS KEYED ON A SIGNAL THAT CANNOT SEE THE BREAK. Measured during the v0.46.0 cut, 2026-09-01.\n\n`flow:release-cut` step 3 says an upgrade note is owed IF AND ONLY IF the schema stamp moved, and that conditionality is recorded as one of the two unguessable steps of a cut. Measured against v0.45.0, the stamp did NOT move: 29 node types, 64 edge types, schema version 1, identical.\n\n🛑 AND v0.46.0'S ONLY BREAKING CHANGE WAS A TOOL RENAME. `declare_dependency` -> `external_dependency`. Any script, skill or agent instruction naming the old word fails. The stamp carries node and edge TYPE NAMES and knows nothing about the served tool surface — so a consumer loses a tool from under them and the rule that decides whether to warn them is structurally unable to notice.\n\nThe note was written anyway (`docs/upgrading-to-v0.46.0.md`) and the divergence recorded in the changelog rather than worked around. But the RULE is unchanged and would give the same wrong answer on the next rename.\n\n⭐ THE SHAPE IS THE ONE THIS PROJECT KEEPS FINDING: a check keyed on a signal that does not cover the case it exists for. `toolsnap` DOES see the tool surface and caught the rename as one removed and one added — so the information exists, in a different gate, and nothing joins the two. A cut could ask the toolsnaps whether any tool was removed or renamed since the last tag, and owe a note on that as well as on the stamp.\n\n📌 AND THE ANNEX'S RECORDED TRAPS ALL RECURRED AGAIN, which is now the fourth cut running and is itself the argument that these are design defects rather than operator error: ALL 16 ChangeEvents of the increment were unpinned and were found only by diffing ids against the previous tag's export; `release_includes_all` still defaults to a dry run; the served binary still had to be restarted or the export would have stamped 0.45.0. A procedure whose traps recur on every execution is not a procedure people keep getting wrong.\n\n⚠️ WHAT IS NOT ESTABLISHED: whether anyone has ever been bitten by a missing note. v0.46.0 is the first cut in this record whose only break was in the tool surface, so the rule may simply never have been tested against this case before.",
+    "subject_id": "cap:a-cut-is-read-from-the-design",
+    "valid_from": "2026-09-01"
+  }
+}

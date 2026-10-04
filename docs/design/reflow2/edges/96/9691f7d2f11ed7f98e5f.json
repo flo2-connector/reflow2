@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:00b566d8f7d3da45f01bce6680019ef6154c0d1e72617ada153f70c7792a1ebd",
+  "edge_type": "CHANGED",
+  "from_id": "chg:prune-proposed",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "removed"
+  },
+  "to_id": "req:drift-rolls-up-to-a-score"
+}

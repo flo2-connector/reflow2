@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:d4072e5ed4aecec6ebcf43ea949871cf44a61c9832eb06a55861914a66856fea",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:a-status-that-claims-less-than-the-design-shows-is-reported",
+  "properties": {
+    "approved_at": "2026-09-30",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

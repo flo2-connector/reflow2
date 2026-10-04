@@ -1,0 +1,17 @@
+{
+  "content_hash": "sha256:b47d737b1e0688ec36cac85a40a5277d564d206515c58b8aad14011fd9b7b6e4",
+  "node_id": "ver:skill-lint",
+  "node_type": "Verification",
+  "properties": {
+    "description": "skill_lint.py — the contracts the build refuses to let drift, enforced in CI on every push. (1) THE SKILLS' contract with the served surface: every tool a skill names is served, the three mirrors are byte-identical, frontmatter, the standing rule, the tool-convention register and its description budget, the detect-and-ask obligations. (2) THE BUILD'S OWN GATE LIST (BL-159, 2026-08-01), four checks over AGENTS.md's \"A change is done when all of these are clean\" block and `.github/workflows/ci.yml` — two hand-kept records of one contract, where following the documented one exactly still produced a red build (PR #27). COVERAGE: every cargo/python3 gate ci.yml runs is either in the block or named in the blockquote as deliberately omitted, because a gate in neither is one a developer cannot know to run. FIDELITY: a listed gate is spelled exactly as CI runs it, FLAGS INCLUDED — and this is the load-bearing one the row did not ask for, because the defect that filed BL-159 was a flags difference on a gate that WAS listed (`-p reflow2-core` clippy lacking `-D warnings`), which coverage alone cannot see. Both rot directions are closed too: a documented gate ci.yml does not run, and an omitted name ci.yml has stopped running. THE SPLIT THAT KEEPS IT HONEST: the lint OBSERVES (is this line a gate at all — mechanical) and the document JUDGES (does it belong in the everyday subset — in AGENTS.md, where a human reads it). 14 hermetic cases there covering the parsing the real files cannot exercise.",
+    "findings": "FOUND ON DAY ONE: `cargo test -p reflow2-core --no-default-features` and `test_check_doc_versions` sat in ci.yml and in neither list — the second being the exact trap the design anticipated, since `check_doc_versions` is a SUBSTRING of it and a substring match would have called it covered. MUTATION-CHECKED SEVEN WAYS, each failing exactly the check that names it: an undeclared gate in ci.yml → coverage; stripping `-D warnings` from the block → fidelity, which is BL-159's own defect reproduced; ci.yml dropping a listed gate → the phantom check; ci.yml dropping an omitted one → the stale-omission check; dropping the comment stripper → fidelity plus its own hermetic case; dropping the paragraph scoping → its two hermetic cases; dropping scoping AND the runner-word exclusion → the stale-omission check. THE CHECK CAUGHT A DEFECT IN ITSELF ON ITS OWN COMMIT: scanning the whole blockquote read the backticked words `cargo` and `python3` out of the new paragraph describing the lint and reported them as gates CI had stopped running. AND ONE REDUNDANCY IS REPORTED RATHER THAN HIDDEN — reverting the paragraph scoping ALONE leaves every real-file check green, because the runner-word exclusion covers the only two words today's prose backticks; the two are not redundant in general, so the scoping is pinned on synthetic text in tools/test_skill_lint.py where the redundancy cannot hide it.",
+    "kind": "verification",
+    "last_reconciled_at": "2026-09-23",
+    "last_reconciled_outcome": "passed",
+    "last_run_at": "2026-08-01",
+    "level": "integration",
+    "method": "analysis",
+    "name": "The contracts the build refuses to let drift",
+    "status": "passing"
+  }
+}

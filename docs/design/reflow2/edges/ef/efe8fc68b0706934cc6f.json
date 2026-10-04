@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:c1a497fa759d15bd5c0e8a492c1331c163b9f83327e2cfe0a8180f4b6fcdb3f6",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-coupling-edge-gets-its-name-back",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:tools-capture"
+}

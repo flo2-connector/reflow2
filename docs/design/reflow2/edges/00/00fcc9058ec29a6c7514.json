@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:8280c906252ef3e7c235bc73de99d3898b8a45519a96637e85ce63d7c9c82deb",
+  "edge_type": "INVALIDATES",
+  "from_id": "chg:the-unexported-claim-is-answered-once-for-the-seat",
+  "properties": {
+    "at": "2026-09-03",
+    "note": "ANSWERS ITS SECOND \"NOT ESTABLISHED\" CLAUSE, AND NOTHING ELSE. That clause asks \"whether the right home is `sync` or a separate loop debt class\". It is answered, and answered the hard way: the home is NOT the sync row, and putting it there is precisely what made the sentence false. Computed per target, \"N node(s) here have never been exported\" is a claim about ONE FILE phrased as a claim about the SEAT, and on a seat with six records it fired five times, every time untruthfully, while the record holding all 3662 live nodes stayed silent. `sync_debt::unexported_work` now answers it once for the seat.\n\n⭐ SO THE FACT ASKED THE RIGHT QUESTION AND THE FIRST IMPLEMENTATION PICKED THE WRONG ANSWER. It flagged the choice as unsettled on 2026-08-16; the aid shipped on the sync row on 2026-08-23 without the question being taken up; the defect that produced followed on 2026-09-03. The open clause was load-bearing and was passed over.\n\n🛑 ITS OTHER NOT-ESTABLISHED CLAUSE IS UNTOUCHED — whether a count comparison alone is sufficient, since equal counts with different ids still pass. That is as open as it was, and the seat-level form inherits it unchanged."
+  },
+  "to_id": "fact:defect-nothing-in-the-loop-reports-unexported-work-and-in-step-is-read-as-if-it-did"
+}

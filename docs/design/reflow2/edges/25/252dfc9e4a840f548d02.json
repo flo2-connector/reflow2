@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:d32341c5a989dd566677ea2c137269be4b42ddc01a1c4756ec5ce70d743f69d0",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:test-a-terminal-agent-auto-approves-reads-and-confirms-each-write",
+  "properties": {
+    "covers": "whole"
+  },
+  "to_id": "ver:a-terminal-agent-auto-approves-reads-and-confirms-each-write"
+}

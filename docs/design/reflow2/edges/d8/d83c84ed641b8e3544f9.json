@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:374a0c593c94299889681f9825e503ab6c98432472b39b536c2a9b9253bd1110",
+  "edge_type": "SCHEDULED_FOR",
+  "from_id": "req:implementation-facts-travel-with-the-branch-that-produced-them",
+  "properties": {
+    "modality": "expected",
+    "recorded_at": "2026-09-27"
+  },
+  "to_id": "epoch:planned-branch-facts-live-in-the-store"
+}

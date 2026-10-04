@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:3b6f09e7feb065a45a105d905b2520a5981080325e2cb99423e8a88d45c1cfd9",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-name-is-not-a-report",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "ver:the-export-chain-is-unbroken"
+}

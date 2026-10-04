@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:95e3a35e45e1765bad56c94ecfcfcca7030001436fd4d70a71b1c705fdefbede",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "cmp:budget",
+  "properties": {
+    "dependency_type": "function_call",
+    "optional": false,
+    "weight_basis": "evidence"
+  },
+  "to_id": "cmp:graph"
+}

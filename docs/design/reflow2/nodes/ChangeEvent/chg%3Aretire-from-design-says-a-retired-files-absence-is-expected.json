@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:f0d3101c38cae8dc022102ba6398c2ac1ca0f55c3671c6b8bfe2332cdb60a764",
+  "node_id": "chg:retire-from-design-says-a-retired-files-absence-is-expected",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "documentation",
+    "detected_at": "2026-09-19",
+    "name": "retire-from-design says a retired file's absence is expected_absence, never drift",
+    "rationale": "flo2 F7, root-caused: the gate has honoured OBSOLETES since the fix; the reporter reasoned from the stale fact and never re-ran the gate. The instruction leg was missing, not the detector.",
+    "subject": "record",
+    "summary": "getting-started/skills/retire-from-design/SKILL.md step 3 gains the Artifact case (+ mirrors); skill_lint NON_TOOL_TERMS gains expected_absence. The 2026-08-15 fact recording the defect is INVALIDATED by the finding that measured it fixed."
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:bfbf908e1cc7ac3f21c3794b06f0e859f87a030d4332bba7fe0e1103453e2b89",
+  "node_id": "frag:art:acting",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered acting.rs: which agent a write went through (ACTS_FOR)"
+  }
+}

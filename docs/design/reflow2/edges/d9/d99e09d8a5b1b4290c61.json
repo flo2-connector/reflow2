@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:9e5abb2cc0a8e49987139e1d8f26cf3bcfc01227c7db65d9cd53d8f4c5ee81d1",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:decision-point",
+  "properties": {},
+  "to_id": "req:intent-preserved"
+}

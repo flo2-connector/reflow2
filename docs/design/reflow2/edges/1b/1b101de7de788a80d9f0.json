@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:81fc57ef04449ffb110749b8ed3f452939cf2e87a4cfec0ff9f51c55851402bc",
+  "edge_type": "CHANGED",
+  "from_id": "chg:four-root-causes-from-two-field-reports-are-fixed-at-the-cause",
+  "properties": {
+    "accepted_baseline": false
+  },
+  "to_id": "art:test-an-edge-says-only-what-it-was-told"
+}

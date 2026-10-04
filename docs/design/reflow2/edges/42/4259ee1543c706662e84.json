@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:2e6180840bf0daf2bd5eec3da116e4e9cb6fcb3b1de491c3ef801591d94acf64",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:idea-cross-org-federation",
+  "properties": {
+    "authored_at": "2026-08-03",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:claude-code"
+}

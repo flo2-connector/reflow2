@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:f57b56ccb8ee295eddafe42afab46e906ffff8454295ecaf7f3b039a21571f57",
+  "node_id": "req:closure-reads-design-done-separately-from-build-done",
+  "node_type": "Requirement",
+  "properties": {
+    "kind": "functional",
+    "lineage": "original",
+    "name": "The done check reads \"design done\" separately from \"build done\" — a design can close before anything is built, on estimates marked as such, while build done needs built work and measurements",
+    "priority": "high",
+    "provenance": "authored",
+    "source": "Anthony, 2026-09-29, in the dev_reflow2 hub session, relayed by the hub agent: \"Fix all the root causes and go with the 7 ideas you'd promote\". This is idea 5, dec:idea-closure-has-a-design-phase-reading-and-a-build-phase-reading.",
+    "statement": "closure_report gives a DESIGN-PHASE reading and a BUILD-PHASE reading.\n\nIn the design phase:\n- traceability counts a requirement as closed when it is satisfied by an allocated capability with a planned check, not only when delivered;\n- a budget closes on an estimate that carries its basis;\n- parked items count as parked, not as holes.\n\nBuild done keeps today's meaning: delivered, checked, and measured.\n\nCounter-argument kept: \"design done\" gets quoted as \"done\". So every reading names its phase, and the build reading is never replaced.\n\nFound by the two-agent exercise (I15): the owner's criterion \"design done may close on asserted estimates; build done needs measurements\" could not be computed. Traceability read 0/7 before any code existed, seams and decisions read null, and a parked requirement read as a hole.",
+    "status": "accepted"
+  }
+}

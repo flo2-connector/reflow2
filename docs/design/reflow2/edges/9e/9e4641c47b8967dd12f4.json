@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:bfa553db659e930cf918e32489b844345ec6857bec871f3fe485d3ba843c7c69",
+  "edge_type": "REALIZES",
+  "from_id": "art:relation-coverage",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:a-design-says-what-fraction-of-a-kind-carries-a-relation"
+}

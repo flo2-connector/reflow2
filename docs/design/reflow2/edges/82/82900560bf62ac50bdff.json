@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:ab8322f2a55ef7ccc1149e811911b203a1fb68760ba0f48e86215a1f6286d345",
+  "edge_type": "CAUSES",
+  "from_id": "art:vocabulary-reach",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "The instrument is invoked by no workflow step, no gate script and no build target, so it runs only when a person remembers it. That is a cause of the same missed defects, independent of what its filter does.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:the-reachability-instrument-is-wired-into-no-gate-so-its-filter-was-never-the-only-cause"
+}

@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:096c832df3558d407b63a17a81ef852396dad7b5bc554bc112ce71bf0b7a66cd",
+  "node_id": "fact:manual-work-9a1bceeb20b41503",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "manual_work",
+    "statement": "Wrote scripts to read a month of agent session transcripts off a peer machine and count, per skill, how often it was loaded versus how often the user typed its command — then the same per tool, to compare tools whose description demands a skill against tools that demand none. The output was the evidence for two experiments about why skills go unused. Three passes were needed because the first two mis-attributed every load: the harness records tool results as user turns, and records a slash command and its expansion as two separate turns, so any naive \"previous user turn\" test returns a clean-looking 100% that is entirely an artifact. Nothing in the design surface reads session history, so the whole question — is the kit actually being reached for — is answerable only from outside it.",
+    "subject_id": "proj:reflow2",
+    "valid_from": "2026-08-29",
+    "value": "{\"diagnosis\":\"tool_missing\",\"reflow2_tool\":null}"
+  }
+}

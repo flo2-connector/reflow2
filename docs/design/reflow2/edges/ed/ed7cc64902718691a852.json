@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:4f5bda504f7d9900f979d39dced343ff19b2d1e54ce7d4202eec387fd2b90349",
+  "edge_type": "OBSOLETES",
+  "from_id": "dec:the-loop-speaks-on-loop-status-not-inside-every-read",
+  "properties": {
+    "confidence": 1.0,
+    "evidence": "dec:read-hint-shape chose option C: reads surface loop debt, state-derived, fire-on-change. Measured 2026-09-05, that choice cost a full loop_status on the first read after every write - 9.5 times a session, 1.2-1.9 minutes - for a sentence the session gets from the loop_status call anyway. Anthony reversed the loop-debt half on 2026-09-05. The record_moved half of the same read-side hint is NOT withdrawn; it has its own ruling (2026-08-13) and stays."
+  },
+  "to_id": "dec:read-hint-shape"
+}

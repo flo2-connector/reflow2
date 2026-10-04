@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:c6da32c8f5946288246c15fbf4559cdf34c0e8ce7ab903b01114eb29ed23a2c2",
+  "node_id": "question:acaf4106e0b94ec0",
+  "node_type": "Question",
+  "properties": {
+    "answer": "Approved (Anthony, 2026-07-25: \"go with your recommendations. they are approved\"). Build it: a seat is told the committed design moved before it writes. Warn-and-name rather than hard-refuse, since a claim never blocks anybody in this design (dec:advisory-concurrency) — the write proceeds once the mover is named and the divergence shown, the way git makes you look at a non-fast-forward.",
+    "asked_at": "2026-07-25",
+    "context_setter": "Nothing satisfies requirement “A seat learns the shared design moved before it writes over it”",
+    "gap_id": "gap:acaf4106e0b94ec0",
+    "question": "When two people work on the same design at once, should reflow2 stop you and say so before you save over a version that has already moved on — the way git refuses a push that is out of date? Today it saves quietly, and the other person's work disappears without anyone seeing a conflict. Do you want that warning built, and should it refuse the write or only warn?",
+    "rephrase_degraded": false,
+    "status": "answered"
+  }
+}

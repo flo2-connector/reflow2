@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:70e651bd345d30dc21c40f607aa6dd77058644016766196e8687a5503eed9845",
+  "edge_type": "CONSUMES",
+  "from_id": "cmp:allocate",
+  "properties": {
+    "dependency_type": "function_call",
+    "weight": 0.8,
+    "weight_basis": "evidence"
+  },
+  "to_id": "ifc:req-dyno-graph-api"
+}

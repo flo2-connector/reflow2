@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:1b71c00972677571c23cdb6e941c656c511359dff088b40d24a6c2b5151066ae",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:test-a-finding-or-refusal-names-the-route-that-works",
+  "properties": {
+    "covers": "whole",
+    "note": "The file that runs the check."
+  },
+  "to_id": "ver:a-finding-or-refusal-names-the-route-that-works"
+}

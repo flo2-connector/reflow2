@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:515765d1c647a09872e289e028ce46375b6410a20f7fd223cb025acdaf9e1373",
+  "node_id": "epoch:the-opt-in-finishes-inside-mcp-on-any-client",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "description": "Recorded with add_epoch because it HAPPENED, on Anthony's \"very critical and something we need to address immediately\": Alex's first project on Grok Build stopped at opt-in because the only instruction that completed it was Claude Code's /mcp. Sequence 495, after the three walks of epoch:planned-the-mechanism-reaches-the-moment; not part of that increment — an incident.\n\nWHAT ARRIVED. The root-cause walk (fact:root-cause-the-opt-in-was-finished-by-a-client-command-and-the-latent-process-never-grew-the-surface) and the fix at its cause: LatentService re-probes on every call, opens the store once when the design directory exists, delegates to the full service in the same process, sends notifications/tools/list_changed after reflow2_start_design, declares the capability at the handshake, and returns a next step that names no client command as the way (the restart is the fallback, per-product hints ride as additions). Four tests over the real binary on stdio with a client-neutral clientInfo, three observed failing first; the CI runs them against the built binary. This is option (a) of fact:defect-the-latent-surface-never-re-probes-after-a-cli-restore (2026-08-15), built a month late.\n\nWHAT DID NOT ARRIVE, and said so: no lint reads served strings for client-specific commands (rule:mcp-and-the-graph-are-the-only-common-ground stays advisory by Anthony's choice); the Claude-Code-shaped hooks and slash commands are unchanged; whether every client honours tools/list_changed is unmeasured and the fallback line covers it.",
+    "epoch_type": "incident_response",
+    "name": "ARRIVED 2026-09-14 — the opt-in finishes inside MCP on any client: the latent server promotes itself in place, opens the store, and announces the changed tool list; no client command is the way",
+    "sequence": 495,
+    "status": "arrived"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:40a343f217a7b407ba4f77b30b6e740f5b2eca376b616afe2443e528417a5c1d",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-cut-ends-by-rebuilding-the-served-release-binary",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified",
+    "note": "ninth step and description"
+  },
+  "to_id": "flow:release-cut"
+}

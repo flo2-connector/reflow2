@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:8500394820ea70cd2ff4579b269f39939ffb1998ef6d5c3c8161190008c28aed",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-saved-design-moves-to-the-item-layout-2026-10-03",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:c6b836d74cf80defe412d3f729468a593d410d2efd92ca7af90cd7d007bfa891"
+  },
+  "to_id": "art:by-hand-names-a-real-tool-test"
+}

@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:5a65ae1e72a8cced394c74d85a5073e82d2b05d6cc409a10d835837a99c5115d",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:every-finding-of-the-tool-sweep-is-addressed-or-ruled-on",
+  "properties": {
+    "approved_at": "2026-09-11",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

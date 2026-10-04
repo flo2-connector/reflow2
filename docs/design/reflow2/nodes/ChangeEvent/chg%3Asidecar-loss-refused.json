@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:b362b5d46a6d82f33c4f16c28d04d10424cfe9bb8b0d5f9a8dc989588a3ce60a",
+  "node_id": "chg:sidecar-loss-refused",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "test_failure_fix",
+    "name": "A store that outlived its identity sidecar is now refused instead of opened empty — the volume clause of cap:hosted-state-on-a-volume enforced in code rather than in a Dockerfile comment"
+  }
+}

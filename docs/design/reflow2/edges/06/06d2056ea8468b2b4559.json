@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:8fd31dafd2dfb4249972df287fb04f9604ed7483f0384a027b9f3753b72f3065",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0410",
+  "properties": {
+    "as_checksum": "sha256:23ce30979251fee34495cd72eeaa3f9cc070931eb20b1d2b0730a42fc55732ff"
+  },
+  "to_id": "art:test-review-relations"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:ddf13646429587097ea70f85e31b17efb0ff938818fb40b571e28613a9414e64",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-settled-decisions-name-stops-asking",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:heal"
+}

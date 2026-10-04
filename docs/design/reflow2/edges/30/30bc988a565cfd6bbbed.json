@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:33b219c71a8a74869e29ea050f540674f9aab51dce25acc4c098b08f49a7365c",
+  "edge_type": "BLOCKS",
+  "from_id": "cap:the-skill-response-carries-the-lens",
+  "properties": {
+    "evidence": "That capability stands at `in_progress` and its own description says it moves to `realized` only 'when the branch merges'. Until this question is answered one way or the other, it cannot move — and a capability parked indefinitely at in_progress is what makes the release report read as though it shipped."
+  },
+  "to_id": "dec:idea-the-persona-has-no-delivery-leg-so-what-carries-it"
+}

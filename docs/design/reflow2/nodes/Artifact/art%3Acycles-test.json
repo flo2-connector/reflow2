@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:c3873c3d1c71fdbd533d1b86aeca5e13b5ad9b541863a79a3ee6e4296ff83145",
+  "node_id": "art:cycles-test",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "granularity": "atomic",
+    "location": "crates/reflow2-core/tests/cycles.rs",
+    "name": "Circular-dependency suite — detection, selectivity, and what the finding says it walked",
+    "status": "realized",
+    "volatility": "stable"
+  }
+}

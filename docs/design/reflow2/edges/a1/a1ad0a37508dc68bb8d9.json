@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:790fc02c989ab61c886f2684c5f764a114ce8ec59a696932166ae0e3c199e353",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:change",
+  "properties": {},
+  "to_id": "req:snapshot-per-revision-not-per-epoch"
+}

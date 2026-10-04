@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:b1ff4f8ad1e661f11ab41a04ed810d6aca5b055726c6a58b2870bd654a2f838d",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:independent-evidence",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:verify"
+}

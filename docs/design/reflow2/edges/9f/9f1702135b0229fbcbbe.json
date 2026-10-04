@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:1af7f0c06fcbb63ddc790090e69bb8c798b434d227198a8d8d52bd8c56e41621",
+  "edge_type": "REALIZES",
+  "from_id": "art:a-missing-argument-names-the-tool-and-what-it-wants-test",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:a-missing-field-refusal-names-the-fields-this-call-lacked"
+}

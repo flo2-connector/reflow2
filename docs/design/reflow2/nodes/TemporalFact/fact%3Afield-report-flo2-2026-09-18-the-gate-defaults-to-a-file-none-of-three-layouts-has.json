@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:595a80712803afde7c0ecafb135aaefc0ba4945fdb8a5a572f60b578e9e7843e",
+  "node_id": "fact:field-report-flo2-2026-09-18-the-gate-defaults-to-a-file-none-of-three-layouts-has",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "confidence": 0.9,
+    "fact_type": "defect",
+    "name": "FIELD REPORT (flo2, 2026-09-18): `reflow2 check` with no arguments looks for `design.json`; the three designs on the maintainer's box keep their export at docs/design/reflow2.json, docs/design/flo2.json and .reflow2/design.json, and the graph's own sync sidecar already records which export it is in step with",
+    "source": "flo2 reflow2_feedback.md, session 2026-09-18 (Anthony's own project; the agent triaging was this session, root-cause skill run at Anthony's prompt)",
+    "statement": "F6: 'the bare reflow2 check fails with a helpful message naming --export. Minor, but the default does not match the layout the tool's own init produces.' MEASURED: tools/reflow2_check.py line 781 `--export default=\"design.json\"`; the three exports on this box are at three other paths; .reflow2/graph.sync.json holds `last_synced: {<absolute export path>: <hash>}` — the honest default is already on disk.",
+    "subject_id": "cap:the-server-writes-the-export-through-and-chains-it-from-main",
+    "valid_from": "2026-09-18"
+  }
+}

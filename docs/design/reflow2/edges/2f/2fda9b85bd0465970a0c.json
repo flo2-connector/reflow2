@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:22e09f825d32e6ff892392fd6c8230855f3ebf705dff05fda42001f7b4f31fec",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:a-write-replies-with-a-receipt-not-the-whole-node",
+  "properties": {
+    "approved_at": "2026-09-29",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

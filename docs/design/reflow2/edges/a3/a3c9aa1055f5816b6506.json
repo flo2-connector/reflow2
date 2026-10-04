@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:c86622a3a949b07d203466555964f6dbb480c831a49e8cffefae2161295cae88",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-name-is-not-a-report",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "ver:a-session-cannot-name-another-design"
+}

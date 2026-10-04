@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:1b6989ea479b7e2823a0cf2ceac23f5f19d7ca9a26158c6d896582e4375d9154",
+  "edge_type": "CHANGED",
+  "from_id": "chg:github-mcp-imports",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:service"
+}

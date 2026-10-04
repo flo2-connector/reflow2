@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:4204ab653d4effd5bfb801f8056cd7c96f00b524d80ae3ea95af7d754131dd55",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-server-keeps-a-usage-ledger-and-feedback-renders-it",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:find-tools-corpus-fixture"
+}

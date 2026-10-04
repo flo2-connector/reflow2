@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:eb1b225d10c9a8470f02bbf4162b4057fca174c84efa2d4a6c8e3b94c6bc54bf",
+  "edge_type": "REALIZES",
+  "from_id": "art:compose",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cmp:compose"
+}

@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:c8b61937c4882d057623151c9b631214dcb657db998a0af2fd47716a6a552e1b",
+  "edge_type": "CHANGED",
+  "from_id": "chg:baseline-369dbb688010362b",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:0ff3d7b6d2fcad7dd4d0c24a2c08f2652a85279638492214062372acbb84a206",
+    "checksum_basis": "measured"
+  },
+  "to_id": "art:check-consumer-reach"
+}

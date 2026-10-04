@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:23167656bf1aa30cd729d27654f301159c71adfef3ff7a83e580e3b2c6c71004",
+  "node_id": "art:dependencies-workflow",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "config",
+    "location": ".github/workflows/dependencies.yml",
+    "name": "dependencies.yml — the monthly, manual and manifest-touching dependency currency and Rust-floor run",
+    "status": "realized"
+  }
+}

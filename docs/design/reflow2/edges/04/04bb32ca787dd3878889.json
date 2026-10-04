@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:1d5d8d1372e2d739b0bb2cc63bbc3b72bdc232410950ba3b4a65c648c27c9471",
+  "edge_type": "REALIZES",
+  "from_id": "art:lens-names-test",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "verified"
+  },
+  "to_id": "cap:the-lens-names-the-person-beside-the-id-and-orientation-offers-the-match"
+}

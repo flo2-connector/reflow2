@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:49f3f7c6b0ed56bedb0862e3247d149a7c61b30ea8840fd860502c5c5ea75dc9",
+  "node_id": "frag:art:service-unit",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered service/unit.rs — one write unit per served tool call: CallUnit, CallScope and SharedGraph, the only doors to the design"
+  }
+}

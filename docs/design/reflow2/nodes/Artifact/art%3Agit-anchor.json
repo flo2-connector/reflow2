@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:183f856f78fc02586a5c2d4a12b305da341a9e91fd1e008da1292dee4ccd62a5",
+  "node_id": "art:git-anchor",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "description": "Where an export's lineage is anchored: the record as COMMITTED, not the file on disk. Resolves the default branch (origin/HEAD first, then origin/main, origin/master, main, master), takes the merge-base with HEAD, and reads that path's blob at that commit. Every failure — no git on PATH, not a repository, no default branch, no merge-base, path not committed, the committed blob not an export — returns a NAMED reason rather than an error, and the caller falls back to on-disk chaining. reflow2's first use of git anywhere in either crate; it lives in the MCP crate so the core stays the pure graph library.",
+    "location": "crates/reflow2-mcp/src/git.rs",
+    "name": "git.rs",
+    "status": "realized"
+  }
+}

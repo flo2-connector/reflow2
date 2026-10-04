@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:520429ac8354f512d209d1e84e98d97e6bd904445dca0405f87e3b20b69c06fc",
+  "node_id": "frag:art:llm",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered llm.rs"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:fed39bc2867058aec6fded14f88bbe8d725a94f0890b1e574c29bfbb5fa1097f",
+  "node_id": "decision:ack:1e7c0975c76f27fe",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Accepted the gap gap:1e7c0975c76f27fe.",
+    "name": "Reviewed: gap:1e7c0975c76f27fe",
+    "rationale": "Deferred on Anthony's word, 2026-07-28. Accepted and not dropped: reflow could BLOCK the drifted features and continue with non-drifted work, where reflow2_check.py thresholds which findings count but answers with one sys.exit(1) and a wholly red build. Deferred because the shape is undecided, not because the need is doubted: whether a partial block is advisory (reported, never enforced, per dec:report-dont-judge) or actually refuses writes against the frozen region, and whether the frozen set is computed from the drift's blast radius or named by the user. Those choices change what gets built. The inputs already exist — propagate_change gives the affected set, claim_region gives the part someone holds, and status proposed already means not agreed — so what is missing is a reader, which is why this is smaller than it looks once the shape is settled.",
+    "status": "accepted"
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:819aebf92633af60588902bfa7a89026f54002f43abec28c25ff5d611eb5c3ba",
+  "edge_type": "GOVERNED_BY",
+  "from_id": "flow:release-cut",
+  "properties": {},
+  "to_id": "rule:a-cut-ends-by-rebuilding-the-served-release-binary"
+}

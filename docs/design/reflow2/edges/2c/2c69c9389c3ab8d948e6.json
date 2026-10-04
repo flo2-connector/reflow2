@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:6995db3135ee37bb82d2d68e8385bc51f05db6a483407826d7dd154e141d242d",
+  "edge_type": "REALIZES",
+  "from_id": "art:tools-coherence",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "verified"
+  },
+  "to_id": "cap:the-orientation-call-says-whether-its-own-answers-are-current"
+}

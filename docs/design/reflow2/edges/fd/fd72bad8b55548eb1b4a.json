@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:bd752a02616768fea641a3108d7318a042ee92d166d2bab5b42e21c1953f5c11",
+  "edge_type": "CONTRADICTS",
+  "from_id": "fact:the-profile-switch-is-no-longer-occasional-so-the-rocksdb-compile-cost-is-paid-for-real",
+  "properties": {
+    "alignment": "opposing",
+    "evidence": "That finding read four FLAT debug timings (5851/5942/5904/5784 ms) as evidence the per-write-generation memo was not taking effect on the plain-stdio path. The release run on the SAME path and the SAME bytes is 1614 / 70 / 88 / 62 ms — the memo working exactly as designed, with the first call paying the build. So the 'memo not taking effect' reading is REFUTED: in debug the walk is slow enough to bury the memo's contribution. ⚠️ ONLY THAT READING IS REFUTED. The daemon-versus-stdio gap that node reports is NOT explained by the profile and remains open — both were debug — so the node stays open rather than closed, and this edge marks the half that did not survive."
+  },
+  "to_id": "fact:the-walk-memo-takes-effect-on-the-daemon-path-and-not-on-plain-stdio-same-bytes-same-binary"
+}

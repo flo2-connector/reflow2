@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:68f0aa6eac46c31aa242d33a940118497394783bd76995cbde1ebcee3286e703",
+  "node_id": "art:test-changelog-fragments",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "test",
+    "location": "tools/test_changelog_fragments.py",
+    "name": "tools/test_changelog_fragments.py",
+    "status": "realized"
+  }
+}

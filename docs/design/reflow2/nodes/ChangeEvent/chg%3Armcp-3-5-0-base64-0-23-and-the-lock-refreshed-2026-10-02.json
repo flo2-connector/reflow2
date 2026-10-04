@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:8b658978b5441685a8b50db0bb94e550a78cc33eb7536aff8d4d9b74a24b92e5",
+  "node_id": "chg:rmcp-3-5-0-base64-0-23-and-the-lock-refreshed-2026-10-02",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "refactor",
+    "commits": "90f83a0496c03ed8883eb5305b80bb7b40e83f01,c58823ebd7df511104172053e5a635a09ccdb033,7007101f6f52ce8bd5946ffe75cf5ec6ba2f7402,b9688c3b1d22c7206a3aee51a36c649e38302225",
+    "detected_at": "2026-10-02",
+    "name": "rmcp 3.4.0 → 3.5.0 (declared \"3.5\"), base64 0.22 → 0.23, and the lock refreshed (23 crates); initialize keeps answering with the newest revision that has a handshake",
+    "rationale": "Approved-queue item (a) of the 2026-10-01 dependency audit (fact:dependency-audit-2026-10-01-the-full-sweep), its own PR. The pin test failed on purpose (req:reflow2-conforms-to-the-mcp-specification-revision-it-serves: a new revision is adopted deliberately, never inherited by a bump) and was followed deliberately. The threshold test's premise was checked in rmcp's source and did not hold: fact:rmcp-latest-is-not-what-a-nameless-client-gets-and-the-seat-threshold-test-watched-a-proxy-2026-10-02. Verified: cargo test --workspace (2,865 passed), clippy -D warnings, smoke_mcp, stateless_seat_probe.",
+    "rationale_basis": "contemporaneous",
+    "subject": "system",
+    "summary": "rmcp 3.5.0 moved ProtocolVersion::LATEST to 2026-07-28 (the revision with no initialize handshake) and added LATEST_WITH_INITIALIZE. describe_protocol_version, read only as the answer to initialize, now returns LATEST_WITH_INITIALIZE (2025-11-25), so nothing on the wire changes; 2026-07-28 stays served through server/discover's supported list. The pin test now pins LATEST, LATEST_WITH_INITIALIZE and the advertised version. rmcps_latest_does_not_yet_cross_the_threshold is replaced by a_session_opened_by_initialize_is_not_per_request plus a wire test with a sessionless negative control. base64 0.23 is what rmcp 3.5 already pulls; bearer.rs now uses it. cargo update moved 23 crates within their declared ranges."
+  }
+}

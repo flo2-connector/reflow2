@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:21be2d8cc8dc87654fc72a51b3e2c60100e5d221e0bfd1acc8861ed591ec19c6",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-retired-artifact-may-be-absent",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "fact:defect-a-retired-artifact-still-reports-missing-forever"
+}

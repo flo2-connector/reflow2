@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:a1af750f86e699b8e6d2019d8bcbadf119970d3f8ae40df34f5bb453cfa87b58",
+  "node_id": "frag:art:bulk-edges",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered bulk_edges.rs — draw_edges: the bulk form of every typed edge helper, running each helper's own body per item"
+  }
+}

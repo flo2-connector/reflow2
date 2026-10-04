@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:818f91a3dd7ab95dbda51ac4b9943f84cae4e713ba2c4203929f272ba3cb6d21",
+  "node_id": "chg:seams-detector-built",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "name": "The seams band's discarded difference became a finding — undeclared_seam, and seam_sets extracted so the band and the detector share one definition of a contract"
+  }
+}

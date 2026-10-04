@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:96344fbabc6ddb59a345892acf7b133da18e1c2829825ea5b3bede5525a5db19",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-three-real-internal-seams-are-declared",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "ifc:ingress-trust-boundary"
+}

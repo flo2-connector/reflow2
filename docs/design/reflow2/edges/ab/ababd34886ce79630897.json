@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:cfd68e1bc83ecfe9eb501e74ef32a6d701d1f138e47553b685aa737a7b3554f3",
+  "edge_type": "GOVERNED_BY",
+  "from_id": "req:telemetry-carries-usage-never-design-content",
+  "properties": {},
+  "to_id": "decision:ack:8f0d325e9c91034d"
+}

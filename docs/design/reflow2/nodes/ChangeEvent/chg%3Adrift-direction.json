@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:e2499886bdf51e07aa1130e6b379f7f104010de715e47bfbac69e8515a439350",
+  "node_id": "chg:drift-direction",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "name": "Drift direction and write-back captured, from the storyflow field observation that docs understate what is built"
+  }
+}

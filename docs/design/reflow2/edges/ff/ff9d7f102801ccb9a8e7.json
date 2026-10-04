@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:3703d7f60013d021852f9c72f344e2e9bf12230697e2a4a5d27dae4ff8cd59f7",
+  "edge_type": "MITIGATES",
+  "from_id": "dec:idea-tool-descriptions-match-the-hosted-door",
+  "properties": {
+    "evidence": "That finding is the hazard: served text that a hosting layer contradicts. Descriptions that say what the door expects answer its approver instance directly."
+  },
+  "to_id": "fact:root-cause-the-served-text-describes-one-deployment-and-a-host-changes-the-rules-under-it-2026-09-28"
+}

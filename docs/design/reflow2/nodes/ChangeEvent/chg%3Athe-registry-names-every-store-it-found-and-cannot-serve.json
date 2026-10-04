@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:edf9ce009528effbe431c0dbb8461a5879941a768e52c52ccf12b6424b8fafed",
+  "node_id": "chg:the-registry-names-every-store-it-found-and-cannot-serve",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "defect_fix",
+    "detected_at": "2026-09-28",
+    "name": "A registry names every store it found and cannot serve, with why and the remedy, instead of dropping it and saying \"no designs\"",
+    "rationale": "Fixes the class in fact:root-cause-the-registry-drops-a-store-without-identity-and-says-no-designs-2026-09-28: a verdict reached on one path (single-design open refuses loudly, since 2026-08-07) was not carried to its sibling path (the registry, 2026-08-12), which classified the same store as Unnamed and threw the classification away. GitHub issue #616 met it as \"the design silently comes up looking empty\". A second member of the class was found while fixing it: describe_at reads an identity whose store is missing as \"identity recorded, but the store itself is not here\", the registry registered it anyway, and opening it served an empty design under the old id. req:no-silent-fallback (accepted). The single-design open path is not changed; local use stays exactly as it is.",
+    "repair": "corrected_cause",
+    "subject": "system",
+    "summary": "Registry::discover keeps what describe_at classified. A store with data and no identity file, a store whose identity file cannot be read, and an identity file whose store is gone are all held as found-but-not-served, each with the reason and the remedy, rather than discarded. Startup names each one. The listing (GET on a bare path) lists them beside the designs it serves, and never says \"no designs\" while one is there. The refusal for an unknown /g/<id>/ says how many were found and not served, and where they are listed. Nothing opens, mints or repairs an identity for such a store. An identity whose store is gone is no longer opened, because opening it created an empty store under that id and served the design as empty. The Dockerfile's sidecar note now describes both modes as they behave."
+  }
+}

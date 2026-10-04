@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:eea3e673ed20219092d491cef504424a112e78aa3d790bdc3aceb6e300258ced",
+  "node_id": "chg:embeddings-question-findings",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "scope_change",
+    "name": "The embeddings question gains verified findings and a per-path distinction, and BL-186 is scoped lexical without it"
+  }
+}

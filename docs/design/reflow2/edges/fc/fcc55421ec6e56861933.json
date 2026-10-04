@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:7c11e06343821994d85c184de960504fcfba26e17ed42688339eeda2281dbebb",
+  "edge_type": "CONTRADICTS",
+  "from_id": "dec:idea-a-capability-is-a-set-of-functions-and-a-black-box-delivers-functions",
+  "properties": {
+    "alignment": "opposing",
+    "evidence": "That requirement says every element is a black box with INNER FUNCTION and interfaces. This idea says a black box delivers FUNCTIONS but not capabilities, and that a capability is a set of functions across several boxes. Both cannot sit comfortably while Capability is ALLOCATED_TO exactly one Component — the design has to say whether a capability lives in a box or across a configuration."
+  },
+  "to_id": "req:recursive-black-box-decomposition"
+}

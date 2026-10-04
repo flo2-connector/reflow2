@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:adb0c28cb0f648da29fde6306891c496791011ef6db86d64fde3685c81e94dd3",
+  "edge_type": "CHANGED",
+  "from_id": "chg:bl70-fork-layer",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "dec:fork-point-address"
+}

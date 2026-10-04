@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:055e893e9ae47e5535bb54d522701c24b197ebe1d20b233dc7bb1dcd187d0d93",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0770",
+  "properties": {
+    "as_checksum": "sha256:421948ef1300964b94c3d2a2c156eb677bceaae88770628bf963801e78477eda"
+  },
+  "to_id": "art:supersede"
+}

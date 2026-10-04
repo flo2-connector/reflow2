@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:cd08c656be64473a9ef572e03fa9325761b646612329341b4274fcb5b090a273",
+  "edge_type": "CHANGED",
+  "from_id": "ce:unallocated-component-detector-2026-08-25",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cmp:detect"
+}

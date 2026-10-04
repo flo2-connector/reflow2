@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:04605545f1f0a0b8ee84f15f660b5c063519efeca1e8e492293f4a1792a488e2",
+  "node_id": "chg:accept-61c8584ff9679e9c",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "detected_at": "2026-09-22",
+    "name": "loop_closure and its four state names allowlisted as field terms where-am-i names.",
+    "subject": "system"
+  }
+}

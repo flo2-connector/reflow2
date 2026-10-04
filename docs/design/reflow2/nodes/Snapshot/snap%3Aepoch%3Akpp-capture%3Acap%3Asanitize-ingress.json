@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:0aa6a3017eb7db9d80595d9e67cfde55734af8a740c62a34587f496f4a644d73",
+  "node_id": "snap:epoch:kpp-capture:cap:sanitize-ingress",
+  "node_type": "Snapshot",
+  "properties": {
+    "edges": "[{\"direction\":\"out\",\"edge_type\":\"ALLOCATED_TO\",\"other_type\":\"Component\",\"other_id\":\"cmp:sanitize\",\"properties\":{\"weight_basis\":\"estimated\"}},{\"direction\":\"out\",\"edge_type\":\"GOVERNED_BY\",\"other_type\":\"DesignRule\",\"other_id\":\"rule:no-foreclosure\",\"properties\":{}},{\"direction\":\"out\",\"edge_type\":\"SATISFIES\",\"other_type\":\"Requirement\",\"other_id\":\"req:trust-boundary-at-ingress\",\"properties\":{}}]",
+    "state": "{\"description\":\"The mechanical half of \\\"graph text is data, never instructions\\\" (BL-41's deferred M piece), imported from github-mcp-server's pkg/sanitize after the 2026-07-25 study. Strips the characters whose only purpose is to make text read differently to a human than to a machine: Unicode tag characters (the smuggling channel), bidirectional overrides, and zero-width or hidden formatting characters. Applied where foreign text ENTERS — INGEST extraction and graph import — because the trust question is where text came from, not which field it landed in. REFLOW2'S OWN ADDITION, and the reason this is not a copy: it REPORTS. GitHub sanitises silently, which is right for rendering an issue body; a design brain that quietly rewrote a requirement statement would be unauditable, and rule 6 forbids silent drops. So the count and the kinds stripped ride back with the result. ZWJ is deliberately NOT stripped — it is load-bearing inside emoji sequences, and a filter that mangles legitimate content teaches people to turn it off.\",\"is_entry_point\":false,\"is_exit_point\":false,\"name\":\"Neutralise hidden instructions in text arriving from outside, and say what was stripped\",\"provenance\":\"authored\",\"status\":\"planned\",\"tier\":\"operational\"}",
+    "target_id": "cap:sanitize-ingress",
+    "target_type": "Capability"
+  }
+}

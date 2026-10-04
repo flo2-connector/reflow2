@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:2b783aaca43162150ee600adaf5901d216e3ce6844e66cf64ebede66d473849b",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-check-records-what-it-found-separately-from-what-it-is",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:tools-coherence"
+}

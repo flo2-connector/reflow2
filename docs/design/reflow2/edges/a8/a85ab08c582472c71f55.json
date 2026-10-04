@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:3172a6d8b614230acc4d50cdf39b9a8c29f85101c6108d793d8c27d547ac59e4",
+  "edge_type": "CHANGED",
+  "from_id": "chg:every-argument-refusal-names-the-tool-and-the-field-path",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:tools-ingest"
+}

@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:0d720211774c0c430cad207e75c61cae4f2159026d3ee2e950559ea2c27867e1",
+  "node_id": "epoch:2026-09-22-the-instructed-route-produces-a-runnable-check",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "description": "THE LESSON: a wildcard in a schema is not a permission, it is a silence, and silence gets written into data.\n\n`REALIZES` is declared `to: \"*\"`. `link_artifact` ended in `self.realizes(...)` whatever the target was. So registering the file that IS a check — the exact step `quantity_check_without_executable_form` tells a reader to take — drew REALIZES onto a Verification, which the schema's own hint on IMPLEMENTS calls the wrong edge for that pair: \"Not REALIZES (that says a file implements a CAPABILITY; a check interrogates one rather than providing it).\" The note beside IMPLEMENTS had even predicted the failure mode in advance — \"a wildcard would ACCEPT this pair and never MODEL it\" — and the wildcard accepted it for months.\n\n⭐ THE HALF THAT MAKES THIS WORTH RECORDING: the fix did not add a single test. It corrected how 46 already-existing links were recorded, and 36 capabilities that had been sitting in a grandfathered claim-only baseline turned out to have had a runnable check the whole time. The tests were never missing. The EDGE recording them was. That is the same shape as the number this whole arc started from — the code at 85% coverage while the record said otherwise — arriving a second time, one layer down, and it is why \"the record is wrong\" should be a candidate before \"the work was not done\".\n\nMEASURED, before and after, on this design's own export:\n  · Verifications with an executable form: 30 -> 71\n  · capabilities verified by a check something re-runs: 22 -> 58\n  · checks with a registered file and NO form (the trap): 40 -> 0\n  · the ratchet's grandfathered baseline: 220 -> 184, pruned the same day it was set\n\nAND THE RATCHET HELD WHILE THIS HAPPENED: zero capabilities newly claimed a check nothing implements, which is the one thing the gate exists to refuse.",
+    "epoch_type": "revision",
+    "name": "The instructed route finally produces a runnable check, and 40 checks stop lying about themselves",
+    "sequence": 540,
+    "status": "arrived"
+  }
+}

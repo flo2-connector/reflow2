@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:332432450e2bb576d6778216903dd7ebc79c64b70bf36c907a2eb832a4a1fb5e",
+  "edge_type": "BLOCKS",
+  "from_id": "req:publishable-promise",
+  "properties": {
+    "evidence": "The published-surface export cannot carry a behavioural promise, so the capability ships a document that is structurally incomplete for the job it is offered for. Found by the dynograph-foundation trial, 2026-07-28."
+  },
+  "to_id": "cap:publish-surface"
+}

@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:863c1ad92dc487b0cc0f1263f5d68591ea0925ad88dfc4d84f5b4e979da2c0c1",
+  "node_id": "ver:the-gate-runner-never-passes-having-run-nothing",
+  "node_type": "Verification",
+  "properties": {
+    "description": "tools/test_run_ci_gates.py, five hermetic tests, run in CI. Nothing here runs cargo, spawns a server or touches the design. It exists because the runner's own failure mode is the one the runner exists to end, and a runner that reports green having run nothing would be the joke telling itself.",
+    "findings": "First run 2026-09-20: four passed and ONE FAILED, and the failing one was the test rather than the runner. It asserted that running from a directory with no ci.yml must be refused; the runner resolves the workflow from its own file location, so it is correctly immune to the working directory and that cannot be used to fake a broken read. The test was rewritten to drive the guard directly with a patched parser, which is what it should have done in the first place. All five pass. The runner itself was corrected before this net existed: its first draft printed a clean summary on a filter matching nothing and never returned a non-zero exit code at all.",
+    "kind": "verification",
+    "last_run_at": "2026-09-20",
+    "level": "unit",
+    "method": "test",
+    "name": "The gate runner fails on zero gates, on a broken workflow read, and in its exit code",
+    "status": "passing"
+  }
+}

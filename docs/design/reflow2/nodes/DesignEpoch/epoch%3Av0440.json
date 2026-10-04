@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:2b50429eb17f6d163fe59a4359ea2c482175765588590e6fbf752eefa75c5566",
+  "node_id": "epoch:v0440",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "epoch_type": "release_cut",
+    "name": "v0.44.0 — a cross-type near-match is named as a layer, and one tool declares its output contract",
+    "sequence": 391,
+    "status": "arrived"
+  }
+}

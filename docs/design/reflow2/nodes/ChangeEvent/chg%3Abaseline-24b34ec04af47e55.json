@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:103eafaf9aa5d81d2651dcd9270a4b65bd116ead57ea4fc8f972693e5f636120",
+  "node_id": "chg:baseline-24b34ec04af47e55",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "baseline_established",
+    "detected_at": "2026-08-15",
+    "name": "First baseline. Copied verbatim from ~/project/usgov/feedback.md so the location resolves for anyone reading the nodes it produced; the source project is a separate repo and was not modified."
+  }
+}

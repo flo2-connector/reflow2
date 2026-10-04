@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:b9c8eb88988c70b0b92f62a2aa8476dd4b93837f22c4ce16cfc9f20aa634411b",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:a-local-client-reaches-a-remote-server",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:proxy"
+}

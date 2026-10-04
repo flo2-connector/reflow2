@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:2d72c8ed146425bcc3fed23180bd658352afa9aaa7df10b0f672dbb0972b415a",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-wall-check-is-served",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:check-health-skill"
+}

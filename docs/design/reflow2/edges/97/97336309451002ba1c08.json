@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:b3f8c507ebff8e5a9d8a6c129bbc3c9e922afa987721ef80fe5cdad28b6b986e",
+  "edge_type": "EVOLVES_INTO",
+  "from_id": "dec:idea-a-quantity-says-how-it-was-obtained-and-a-check-can-be-rerun",
+  "properties": {
+    "evidence": "Promoted to intent on Anthony's word, 2026-09-16: 'accept all 3 as intent' — option A (provenance on a quantity), with the unit-system requirement built first."
+  },
+  "to_id": "req:a-quantity-carries-how-it-was-obtained-and-an-unsourced-one-is-reported"
+}

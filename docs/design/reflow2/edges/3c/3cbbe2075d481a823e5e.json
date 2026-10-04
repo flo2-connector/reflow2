@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:2072d28c993617dd60b8eed4e19d7d993b475060405dc9149204dcec67862076",
+  "edge_type": "VERIFIES",
+  "from_id": "ver:a-read-only-server-with-no-store-serves-the-latent-surface",
+  "properties": {},
+  "to_id": "cap:select-graph-by-id"
+}

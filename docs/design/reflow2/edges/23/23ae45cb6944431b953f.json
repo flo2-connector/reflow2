@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:fee29d612bd878e2b48197d3432464c32cb4e24f3e8f4a45a68f79a9d2bf258d",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-saved-design-moves-to-the-item-layout-2026-10-03",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:b11bb9070a9e3e15f099bdd5f1ee6cd04a50ac4b8afe184dca96177e6903478f"
+  },
+  "to_id": "art:bhome-genesis-feedback-2026-08-31"
+}

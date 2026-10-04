@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:3cd5133bfbdfc09185dc869f5f893811cb1e9b042d2076e48b6d2e3eacc5c444",
+  "edge_type": "CHANGED",
+  "from_id": "chg:key-interfaces-built",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "req:key-interfaces"
+}

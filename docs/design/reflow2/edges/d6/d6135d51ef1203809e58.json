@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:a2f1f6f1539bb5dc6279c4ffb400fdb7fcb9b9f01e776b7986f8a9c7c490274b",
+  "edge_type": "HAS_TEMPORAL_FACT",
+  "from_id": "cap:shared-sessions",
+  "properties": {},
+  "to_id": "fact:a-forwarded-call-whose-arguments-hold-initialize-is-taken-for-a-handshake-and-breaks-the-session-2026-10-03"
+}

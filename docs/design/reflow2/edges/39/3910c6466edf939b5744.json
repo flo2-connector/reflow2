@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:185df52d2b38ebc398c8b9c2811324b4172037ba4d62d45aff2b6cec8da3e78c",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-saved-design-moves-to-the-item-layout-2026-10-03",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:d7c45552fbbe496538c59d284ba7fabdb9a619d974d220ab7153fbc9b3b2e4b2"
+  },
+  "to_id": "art:test-a-convention-reaches-the-skill-it-bears-on"
+}

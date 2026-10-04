@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:6840dfcabd31b28d369c62b6c52e65666d1e1f6b16ee5c22a1cf752ac23872c0",
+  "node_id": "ver:a-finding-or-refusal-names-the-route-that-works",
+  "node_type": "Verification",
+  "properties": {
+    "kind": "verification",
+    "last_run_at": "2026-09-29",
+    "level": "integration",
+    "location": "crates/reflow2-mcp/tests/a_finding_or_refusal_names_the_route_that_works.rs",
+    "method": "test",
+    "name": "A finding or refusal names the route that works — every edge tool accepts every pair its schema models; every node type names its writer; each cure a message names clears it",
+    "status": "passing"
+  }
+}

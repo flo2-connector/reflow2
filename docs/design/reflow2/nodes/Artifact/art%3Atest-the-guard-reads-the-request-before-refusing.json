@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:1c8639c89dc42dbdea2d8a4d1223f6e2d00adfc48f8484890796f6e8a237fcff",
+  "node_id": "art:test-the-guard-reads-the-request-before-refusing",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "test",
+    "description": "Three cases, observed failing against the stashed unfixed guard (2 refused, the counterweight passed before and after — which is what shows the change narrows the guard rather than blinding it).",
+    "location": "crates/reflow2-mcp/tests/the_guard_reads_the_request_before_refusing.rs",
+    "name": "the_guard_reads_the_request_before_refusing.rs — a near-match the write names as its own relation target is never refused; Requirement↔Component reports and does not refuse; a same-type near duplicate still does",
+    "status": "realized"
+  }
+}

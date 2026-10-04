@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:d848c29446ff0cae0f6b2c59f08318d8cf18c14cea2b031dd965f778be248660",
+  "node_id": "frag:art:node-edges",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered crates/reflow2-core/src/node_edges.rs — one node's edges read back as edges: both directions, the other end named, each edge's own properties, twins marked, filtered and bounded"
+  }
+}

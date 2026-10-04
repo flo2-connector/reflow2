@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:c2e806c937dd5dff66aef1c4a91feda6baad0739f65d22c16fe2ea8dfc41ec5e",
+  "node_id": "cmp:docs",
+  "node_type": "Component",
+  "properties": {
+    "kind": "module",
+    "level": "component",
+    "name": "docs",
+    "provenance": "authored",
+    "purpose": "The human-facing documents: the README that says what reflow2 is and how it runs, the getting-started material that installs and connects it, and the diagrams. Distinct from the skills, which instruct the agent, and from the questions the Human Channel asks — this is what a person reads before they are a user, and possibly before they are convinced.",
+    "status": "planned",
+    "tier": "operational"
+  }
+}

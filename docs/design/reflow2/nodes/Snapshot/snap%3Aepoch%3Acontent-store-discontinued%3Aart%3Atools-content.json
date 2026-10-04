@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:47753a0fa67400450ba59130f73f57a46f920567e40cd51b4c01654d333b7a90",
+  "node_id": "snap:epoch:content-store-discontinued:art:tools-content",
+  "node_type": "Snapshot",
+  "properties": {
+    "edges": "[{\"direction\":\"in\",\"edge_type\":\"INCLUDES\",\"other_type\":\"Release\",\"other_id\":\"rel:v0230\",\"properties\":{\"as_checksum\":\"sha256:18d0d737affde3064dabb7c858fdefa64df918ee7088fe83f9b225229bb50a56\"}},{\"direction\":\"in\",\"edge_type\":\"INCLUDES\",\"other_type\":\"Release\",\"other_id\":\"rel:v0240\",\"properties\":{\"as_checksum\":\"sha256:5a81f97e05afd62edc28afabdf816c821216b14f0e7eaa2710acf600524b3019\"}},{\"direction\":\"in\",\"edge_type\":\"INCLUDES\",\"other_type\":\"Release\",\"other_id\":\"rel:v0250\",\"properties\":{\"as_checksum\":\"sha256:173cceae74216ee1deb6037dfc94b29d40678922d9d5313b14943b989418dadd\"}},{\"direction\":\"in\",\"edge_type\":\"INCLUDES\",\"other_type\":\"Release\",\"other_id\":\"rel:v0260\",\"properties\":{\"as_checksum\":\"sha256:173cceae74216ee1deb6037dfc94b29d40678922d9d5313b14943b989418dadd\"}},{\"direction\":\"in\",\"edge_type\":\"INCLUDES\",\"other_type\":\"Release\",\"other_id\":\"rel:v0261\",\"properties\":{\"as_checksum\":\"sha256:173cceae74216ee1deb6037dfc94b29d40678922d9d5313b14943b989418dadd\"}},{\"direction\":\"out\",\"edge_type\":\"REALIZES\",\"other_type\":\"Capability\",\"other_id\":\"cap:content-manifest\",\"properties\":{\"completeness\":\"complete\"}},{\"direction\":\"out\",\"edge_type\":\"REALIZES\",\"other_type\":\"Capability\",\"other_id\":\"cap:content-store\",\"properties\":{\"completeness\":\"complete\"}}]",
+    "state": "{\"artifact_type\":\"code\",\"checksum\":\"sha256:173cceae74216ee1deb6037dfc94b29d40678922d9d5313b14943b989418dadd\",\"granularity\":\"atomic\",\"location\":\"crates/reflow2-mcp/src/tools/content_tools.rs\",\"name\":\"tools/content_tools.rs\",\"status\":\"realized\",\"volatility\":\"stable\"}",
+    "target_id": "art:tools-content",
+    "target_type": "Artifact"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:5369bac7ba042368b8b6db03b4e7256451da9f48932e04b17e6ed1af71e9da4e",
+  "node_id": "art:test-a-budget-says-how-it-composes",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "test",
+    "location": "crates/reflow2-mcp/tests/a_budget_says_how_it_composes.rs",
+    "name": "A budget says how it composes (MCP test)",
+    "status": "realized"
+  }
+}

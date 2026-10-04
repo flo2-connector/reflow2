@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:0d83375563ab792c951bafbe1d4cab6c4198c832e089aabaf13a5228bc861535",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:test-a-signature-is-the-callers-own-through-every-writer",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:test-a-signature-is-the-callers-own-through-every-writer"
+}

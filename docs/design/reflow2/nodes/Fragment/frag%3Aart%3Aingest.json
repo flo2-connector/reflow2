@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:730e075a870a91ef1d5510c3e1beabbf35f2a6b13a7a9b68dca2b1289595da76",
+  "node_id": "frag:art:ingest",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered ingest.rs"
+  }
+}

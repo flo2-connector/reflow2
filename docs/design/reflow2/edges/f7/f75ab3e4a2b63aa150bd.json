@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:e5cadfe70e225ae8ff0045696d7a489fb7a2da6bb6782b5f96969e77ed0ecfc7",
+  "edge_type": "CHANGED",
+  "from_id": "chg:linked-repos-trial-run",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cap:complementary-pairing"
+}

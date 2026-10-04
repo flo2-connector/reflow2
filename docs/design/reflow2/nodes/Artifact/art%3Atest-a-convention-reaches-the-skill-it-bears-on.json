@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:424261ce40a0a2b6dc7070315a294e493542390b2ce154f50c74ea1df97fe24c",
+  "node_id": "art:test-a-convention-reaches-the-skill-it-bears-on",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "test",
+    "location": "crates/reflow2-mcp/tests/a_convention_reaches_the_skill_it_bears_on.rs",
+    "name": "a_convention_reaches_the_skill_it_bears_on.rs — the delivery leg pinned where it is read, the refusal names the nearest step, the adapter asked for and answered",
+    "status": "realized"
+  }
+}

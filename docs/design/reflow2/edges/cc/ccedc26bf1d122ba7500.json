@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:e9e79f1c7e3402f4df3a043b6392902da5d3d773d586d75557d11f29fecae5f1",
+  "edge_type": "CONTRADICTS",
+  "from_id": "dec:idea-detect-ownership-orphans",
+  "properties": {
+    "alignment": "supporting",
+    "evidence": "Third member of one family found in a single day: built-but-unconsumed, declared-but-unread, shipping-but-unowned. Every existing gap asks what is missing FROM a node; all three ask what is missing AROUND one."
+  },
+  "to_id": "req:the-design-says-what-was-built-and-never-used"
+}

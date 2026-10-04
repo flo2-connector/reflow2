@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:28721c7bbb49eaa551dc0337b160f238b382aa3a9d367d037361c191831f9715",
+  "node_id": "req:many-designs-one-service",
+  "node_type": "Requirement",
+  "properties": {
+    "concern": "core",
+    "designation": "published",
+    "kind": "functional",
+    "lineage": "original",
+    "name": "One reflow2 can hold several designs, and a session says which one it is working on",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "A person works on more than one project at a time, so reflow2 must be able to hold more than one design without their contents mixing, and a session must state which design it is operating on before it can read or write. Anthony, 2026-07-25: he has reflow2 itself and storyflow; his brother has several. Three properties follow. Selection is EXPLICIT — a session that has not named its design must be refused rather than defaulted to the last one used or the only one present, because a tool call landing in the wrong project is a silent corruption that no gap detector would ever notice. Segregation is enforced by the store, not by convention: every node and edge already carries a graph_id, which is exactly the primitive this needs, and today it is pinned to the constant \"reflow2\" — so the mechanism exists and is unused, the same shape as the temporal axis and the inviolable-intent vocabulary before them. And the identity of a design must be stable across machines, so the same project reached from two places is one design rather than two that happen to share a name. This is deliberately silent on where the designs live: one process per design and one holding many are both answers to it, and that is the hosting question, not this requirement.",
+    "status": "accepted"
+  }
+}

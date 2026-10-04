@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:240dd5ae847f009b55868c7a3ce25f23ba4e17229e5d0d8590ccc2db0f8dfa71",
+  "node_id": "art:adopt-skill",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "document",
+    "granularity": "atomic",
+    "location": "getting-started/skills/adopt/SKILL.md",
+    "name": "adopt/SKILL.md",
+    "status": "realized",
+    "volatility": "stable"
+  }
+}

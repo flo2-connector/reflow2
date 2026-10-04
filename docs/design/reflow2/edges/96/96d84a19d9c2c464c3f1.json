@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:275ad7d340e5b4919a7ee42b73440288e71cc14725959b0d27eb6e2075d81b29",
+  "edge_type": "CAUSES",
+  "from_id": "art:github-issue-616-oauth-resource-server",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "The root-cause pass on this issue's hosting note (a missing --http-allow-host presents as a broken ingress): the per-request refusal is rmcp's generic 403, and reflow2 names the flag only once, at startup.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:root-cause-the-host-refusal-is-the-librarys-opaque-403-and-the-fix-is-named-only-at-startup-2026-09-28"
+}

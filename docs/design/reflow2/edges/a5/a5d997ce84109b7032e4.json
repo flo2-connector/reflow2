@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:ec6b0f8ff3d41840f877522d2e5957bf6ef52c2dbd7405842c2b5c2810676901",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:idea-a-session-that-cannot-reach-the-graph-has-nowhere-to-put-what-it-learned",
+  "properties": {
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

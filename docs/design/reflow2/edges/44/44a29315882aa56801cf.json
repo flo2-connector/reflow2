@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:44a1fc92bb6a7b89f16fbedc4b2cc09e60651adcdffb488f934f8e77c70bf9ef",
+  "edge_type": "PROVIDES",
+  "from_id": "cmp:handshake",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "ifc:mcp-protocol"
+}

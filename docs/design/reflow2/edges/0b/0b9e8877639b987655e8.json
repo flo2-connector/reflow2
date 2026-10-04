@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:43aca799b4f33e86d6d2d3eb2b4518aba782a8f8219b7c63bbbc466b176d1516",
+  "edge_type": "REALIZES",
+  "from_id": "art:test-a-code-folder-attaches-to-the-design-it-names",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "verified"
+  },
+  "to_id": "cap:a-code-folder-names-its-design"
+}

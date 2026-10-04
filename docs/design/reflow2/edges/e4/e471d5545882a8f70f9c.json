@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:26203a474589cbf46092213dabaf2e52d29cc6b317349ddd4e7249516971d2f9",
+  "edge_type": "ANTICIPATES",
+  "from_id": "dec:idea-extraction-is-two-pass-against-an-se-schema-stated-up-front",
+  "properties": {
+    "evidence": "That idea already holds that capture should run against a schema stated up front rather than one improvised per node; Alex's ask is the project-level instance of it — the encoding of THIS project's recurring parts, decided once and cited by every later capture."
+  },
+  "to_id": "dec:idea-establish-the-taxonomy-once-before-bulk-capture"
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:64250917e08757b95f90b33732be33f122f684d8b4a3b68caf23bffbf32644aa",
+  "node_id": "dec:evidence-scope-on-the-verifies-edge",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "What a check SWEPT and what it PINNED is recorded on the VERIFIES edge, as two comma-separated lists of parameter names, not as properties of the Verification node. A capability is reported as narrowly proven when every passing check that verifies it pins a parameter and none sweeps it.",
+    "name": "A check's input scope is a fact about the CLAIM, so it lives on the VERIFIES edge",
+    "rationale": "Anthony's call, 2026-08-01, from three options. Scope is a property of the relationship between a check and a claim, not of the check: one suite can cover capability A across the whole input space and touch capability B at a single point, and a per-node property has to average that away — it would report the same narrowness for every target, so the detector could not say WHICH claim is thin. Placing it on the edge mirrors PERFORMED_IN's placement of WHERE, which is the same sentence rotated (BL-126's own framing). The existing VERIFIES.coverage enum (full/partial/smoke) was considered and rejected as the vehicle: it is a self-assessed adjective set by the person who wrote the check, and BL-126's founding case was a guard written by an author to protect a belief they had formed an hour earlier — they would have labelled it `full`. Named parameters are checkable against what the design says the capability is independent of; an adjective is not. Storage is a comma-separated string because the schema has no list type (the QualityGate.criteria precedent); the MCP surface takes and returns proper lists, so only the encoding is flat.",
+    "status": "accepted"
+  }
+}

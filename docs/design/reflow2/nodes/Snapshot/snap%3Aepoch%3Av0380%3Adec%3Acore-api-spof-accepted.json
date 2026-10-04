@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:638ac13d14a7f6c6cbcbe6cb0e8b49c22efcb8c44e4729003b2be5cf499c2a4c",
+  "node_id": "snap:epoch:v0380:dec:core-api-spof-accepted",
+  "node_type": "Snapshot",
+  "properties": {
+    "edges": "[{\"direction\":\"in\",\"edge_type\":\"GOVERNED_BY\",\"other_type\":\"Interface\",\"other_id\":\"ifc:core-api\",\"properties\":{}}]",
+    "state": "{\"decision\":\"ifc:core-api — the DesignGraph API cmp:graph provides and the MCP service consumes — is the sole operational path between the Design Store and the Agent Surface subsystems. Accepted as a SPOF, like dec:graph-spof-accepted and dec:service-spof-accepted.\",\"name\":\"The DesignGraph API is an accepted single point of failure\",\"rationale\":\"One store, one surface over it (req:agent-native, single-writer storage): the bridge between them is inherently single. Surfaced when BL-83a retired cmp:core and moved the API's provider to cmp:graph; the topology is honest, not a defect to engineer away.\",\"status\":\"accepted\"}",
+    "target_id": "dec:core-api-spof-accepted",
+    "target_type": "Decision"
+  }
+}

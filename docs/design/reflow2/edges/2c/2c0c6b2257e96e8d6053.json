@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:8706d30cbf6287ee73bc6bbbe3026ef56c3880005261636083d92ee4b463252a",
+  "edge_type": "TRIGGERS",
+  "from_id": "cap:release-pinned-to-time",
+  "properties": {
+    "role": "feeds — every graph write is done, so the record can be exported. Creating the epoch node is NOT enough; the Release needs the AT_EPOCH edge, and v0.17.0 still lacks one"
+  },
+  "to_id": "cap:a-cut-exports-the-record-once-from-the-new-binary"
+}

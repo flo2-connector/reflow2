@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:933a91f87e44e053751db4f843fef4ed2eecd5f022b3356162df7c82feaeef54",
+  "edge_type": "INVALIDATES",
+  "from_id": "chg:the-overtaken-defect-records-were-triaged-against-the-v0510-build",
+  "properties": {
+    "evidence": "Every typed constructor and generic create_node now returns a revision block listing replaced fields with their prior values, emitted even when nothing changed (capture.rs:473-530,855-863). Bulk create_nodes is the one path still without it."
+  },
+  "to_id": "fact:defect-an-exact-id-overwrite-is-silent-while-a-near-miss-is-guarded"
+}

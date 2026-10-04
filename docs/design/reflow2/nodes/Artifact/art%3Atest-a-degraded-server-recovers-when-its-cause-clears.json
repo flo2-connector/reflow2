@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:68e63155f1d242320bf5d1b05a44493283ea617b2876f8829794e1b095837239",
+  "node_id": "art:test-a-degraded-server-recovers-when-its-cause-clears",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "test",
+    "description": "Six real-binary tests pinning the class, each a surface a held lock used to leave degraded forever:\n- over HTTP, the same process and port serve the design after the holder stops, and /readyz goes 503 → 200;\n- a server served for others (--http-allow-host naming another machine) that waited out the lock serves the design under the caller rule a healthy start installs (#616 fix 4): the handshake says SERVED FOR OTHERS and a settle is refused naming --http-trusted-gateway;\n- over stdio, the client is told notifications/tools/list_changed and then sees the full list;\n- a --shared session whose election timed out re-elects and serves in place;\n- /readyz and /healthz answer any Host while the design itself stays gated, and a registry is ready when it is up;\n- a stamp that will not read is not polled, and readiness stays 503.\nThe original five failed against unfixed main (329a074); the caller-rule test failed against the merge of main into this branch before chg:a-design-served-after-a-held-lock-frees-is-prepared-the-way-a-healthy-start-prepares-it.",
+    "location": "crates/reflow2-mcp/tests/a_degraded_server_recovers_when_its_cause_clears.rs",
+    "name": "a_degraded_server_recovers_when_its_cause_clears.rs — a held store is served in place when it frees, and readiness says so",
+    "status": "realized"
+  }
+}

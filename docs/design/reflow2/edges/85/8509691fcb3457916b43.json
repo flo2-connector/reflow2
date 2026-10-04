@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:8ee891c9e5df8eaa2354bb56b2c4584f29d9f9f82e604cc2ddf526a9cc0feac9",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:export-says-what-it-cannot-carry",
+  "properties": {
+    "authored_at": "2026-07-31",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "ctr:claude-fable"
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:3777318b3202db0fa449e33eb33c544fd4a1369e8eb581993e2ba8257bb3332d",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:docker-image-release-notes-script",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:docker-image-release-notes-script"
+}

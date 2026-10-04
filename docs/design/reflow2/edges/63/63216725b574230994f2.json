@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:e2568b2e9d3d37267a79ef265d3d770672f9dde3e899a120337a974834fa0d27",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-session-can-report-what-it-did-by-hand",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:capture-session-skill"
+}

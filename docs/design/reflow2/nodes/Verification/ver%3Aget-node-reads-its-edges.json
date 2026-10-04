@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:f0fc13300ed0be83102c9f5df9303f5221ff026d45d26f3fba038a379d3c1b4d",
+  "node_id": "ver:get-node-reads-its-edges",
+  "node_type": "Verification",
+  "properties": {
+    "description": "crates/reflow2-mcp/tests/get_node_reads_its_edges.rs, 6 tests over ReflowService; all 6 observed failing on main c4e1cbd (unknown field include_edges) and passing on the branch, 2026-10-03. The find_tools half is find_tools_ranks_what_the_query_means.rs::reading_one_node_with_its_edges_finds_get_node_first (7 of 11 queries first written failed on main).",
+    "kind": "verification",
+    "last_run_at": "2026-10-03",
+    "level": "integration",
+    "location": "crates/reflow2-mcp/tests/get_node_reads_its_edges.rs",
+    "method": "test",
+    "name": "get_node replies exactly as before without include_edges, returns every edge with its other end and evidence with include_edges true, narrows and bounds by a filter object, refuses a bad filter by name, and says so for an absent node and a node with no edges",
+    "status": "passing"
+  }
+}

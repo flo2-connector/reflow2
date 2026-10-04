@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:82ebc0afd7ba2536f19eb561530c9605dc36f4974083e8b195ed8b6028b60fdc",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:content-store",
+  "properties": {},
+  "to_id": "req:the-store-is-reachable-from-a-session"
+}

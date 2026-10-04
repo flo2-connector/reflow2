@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:019a66c873eb9738807c2ca80d0a26b48fdd90c040331fbf3e2cecf72d394e72",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:a-published-contract-is-asked-for-its-evidence",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:detect"
+}

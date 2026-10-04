@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:7680d45fb67a09dc5b488879c8705ac01df60aa13d336ad2fd9d03dc32fe057f",
+  "edge_type": "HAS_SNAPSHOT",
+  "from_id": "req:a-local-client-works-against-a-remote-reflow2-server-by-url",
+  "properties": {},
+  "to_id": "snap:epoch:preserved-on-write:req:a-local-client-works-against-a-remote-reflow2-server-by-url:r2"
+}

@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:f8b7014b96c7bc1b563710da8c397ee08b05488f810e0849a6bd0abc7a83a943",
+  "node_id": "ver:a-dependency-declaration-replies-with-a-receipt",
+  "node_type": "Verification",
+  "properties": {
+    "findings": "2/2 on the item 8 branch. On main at 293f957 the reply was {value: <TOML>} with no node_id, growing 444 to 969 bytes over six declarations, and a re-declare cleared components, features and the description.",
+    "kind": "verification",
+    "last_run_at": "2026-10-03",
+    "level": "integration",
+    "location": "crates/reflow2-mcp/tests/a_dependency_declaration_replies_with_a_receipt.rs",
+    "method": "test",
+    "name": "external_dependency replies with its own Resource and does not grow with other declarations; a re-declare keeps components, features, declared_in, graph_id, watch and description, and names what it changed and removed",
+    "status": "passing"
+  }
+}

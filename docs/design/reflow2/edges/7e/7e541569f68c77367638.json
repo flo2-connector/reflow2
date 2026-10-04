@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:eb6734c14486bdc5be4585d224a5d79edec857583ea208971b6060211450e0a5",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0670",
+  "properties": {
+    "as_checksum": "sha256:655672e9914e77ec51e21e9804d35ce5356351a1859591458a042945c58435fb"
+  },
+  "to_id": "art:triage-feedback-skill"
+}

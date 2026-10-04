@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:2fd6d949f9a741ba59506a4e9405b279ff35f07798ba831a5d5058330e29569d",
+  "node_id": "fact:changelog-view-is-step-two-of-the-cut-and-returns-nothing-for-a-real-cut",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "confidence": 1.0,
+    "fact_type": "defect",
+    "statement": "MEASURED DURING THE v0.47.0 CUT, and found by testing a tool AFTER hand-rolling its job rather than before.\n\n`cap:changelog-view` is **step 2 of `flow:release-cut`** — \"a changelog is a derivable view of the graph's own delta\" — and the transition into step 3 states the discipline it exists to enforce: *\"Pin every ChangeEvent of the INCREMENT first, found by diffing ids against the previous tag's export rather than against memory: v0.22.0's changelog read 12 entries before that diff and 47 after.\"*\n\n**RUN ON THE REAL CUT, IT RETURNS NOTHING.** `changelog_view{from: epoch:v0460, to: epoch:v0470-cut}` → `entries: []`, `unmapped: []`, `notes: []`. The two epochs resolve (sequences 392 and 393); the answer is simply empty.\n\n**WHY:** it derives from nodes pinned `AT_EPOCH`, and the increment's ChangeEvents carry no such pins. The cut procedure creates the epoch and pins the RELEASE to it — `pin_at_epoch` on `rel:v0470`, which the flow rightly insists on because v0.17.0 lacks that edge — and pins nothing else. So the eight ChangeEvents of this increment are joined to no moment, and the tool that reads moments finds none of them.\n\n⭐ THE INCREMENT WAS FOUND BY A HAND-WRITTEN DIFF INSTEAD, which produced the 8 events the changelog was actually written from. The flow's own instruction — diff ids against the previous tag's export — describes exactly that hand-rolled shape, so the PROCEDURE assumes the manual method while naming the tool as the step. Both halves have been true for some time and nobody has read them together.\n\n⚠️ NOT ESTABLISHED: whether the repair is to pin ChangeEvents at the cut epoch (making the tool work as the flow implies), to have `changelog_view` fall back to a date or export diff, or to change the flow to describe what actually happens. The first would add a step to every cut; the third is honest but leaves step 2 doing nothing. Nobody has been asked.\n\n⚠️ AND AN EMPTY ANSWER HERE IS INDISTINGUISHABLE FROM A QUIET INCREMENT. `entries: []` reads exactly like \"nothing changed since the last release\" — which on a six-PR increment is the reassuring kind of wrong this design names elsewhere as the vacuous zero.",
+    "subject_id": "cap:changelog-view",
+    "valid_from": "2026-09-03"
+  }
+}

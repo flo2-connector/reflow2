@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:658a7b7e00b33d6b6cdab90130f0fd2158cc83f498ca5eea3de5305dc3e89bd0",
+  "node_id": "epoch:the-loop-check-stops-firing-twice",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "description": "The first measured prioritisation of reflow2's own tool surface, and the first repair driven by the usage ledger shipped in v0.59.0.\n\nWHAT PROMPTED IT: Anthony observed, unmeasured, that \"some tools take a long time — I think one takes 12.5s\" and asked for a campaign ranking tools by how often they are used. The ledger made that rankable for the first time. loop_status was 71.4% of all time spent inside reflow2 (604 s of 846 s across 150 calls), at a median of 12,089 ms — and his 12.5 s estimate was accurate.\n\nWHAT THE INVESTIGATION FOUND, and it inverted the plan: the baseline is 1,284 ms, not 12 s. Four hypotheses were falsified by measurement (debug binary, shared-daemon transport, RocksDB compaction debt, and the instrument itself). The 12 s is three measured amplifiers — a per-write memo invalidation (x3.2), concurrency (x1.6 at four clients) and machine load (up to x6). And 32 of 39 calls came from the Stop/PostToolUse probe rather than from the agent, fourteen of them in same-second pairs.\n\nWHAT THIS EPOCH CONTAINS: the duplicate hook registration removed, and the probe's check-then-write guard replaced with an atomic claim — the class fix, since PostToolUse and Stop can legitimately arrive together even with one registration. Plus a second latency budget for the path a working session actually takes, and the correction of a stale budget edge that had been reporting `exceeded` on a budget that held.\n\nWHAT IT MUST NOT BE READ AS: the budget is NOT met. This epoch reduces how OFTEN the expensive rollup runs; it does not make it faster. 4,096 ms against a 1,000 ms limit stands, and the two levers that would close it — the write-tax and the intrinsic scan cost — were left unstarted and need their own ruling.",
+    "epoch_type": "revision",
+    "name": "The loop check stops firing twice — the first usage ledger prices a \"wasted read\" at 71% of all tool time, and the guard that was supposed to stop it was never atomic (2026-09-12)",
+    "sequence": 441,
+    "status": "arrived"
+  }
+}

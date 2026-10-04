@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:4a9517b17f143af5a62cb387c3a22271b1231b28c96a2392d8cb1ab8f6e4f715",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-capture-that-replaces-a-node-says-so",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:test-the-guard-reads-the-request-before-refusing"
+}

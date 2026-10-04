@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:eba0a2b6d7c3d6429e2bc2a486ec4568b7a4e43800628add020395cf7d65125a",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:the-default-scope-depth-should-be-two",
+  "properties": {
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

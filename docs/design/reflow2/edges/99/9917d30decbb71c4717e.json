@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:491aedd2641874d66016da6221afa4da214bbf24e8314cd3bc3d93bbb6cb88b9",
+  "edge_type": "VERIFIES",
+  "from_id": "ver:every-client-mode-honours-read-only",
+  "properties": {},
+  "to_id": "cap:a-surface-can-refuse-every-write"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:a6783e03dad31673705d5f7c4ca141cbdd09551d76c362bab4beccc0199a7a92",
+  "edge_type": "CHANGED",
+  "from_id": "chg:no-fabricated-repairs",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "cap:no-fabricated-repair"
+}

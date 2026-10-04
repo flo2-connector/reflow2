@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:dc5ebfa7c9771d287140491fcc426b636c97060553d4e0e30a1db1f1faca2108",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:dependency-currency-is-checked-monthly-and-before-every-cut",
+  "properties": {},
+  "to_id": "req:reflow2-keeps-its-dependencies-at-or-near-their-latest-releases"
+}

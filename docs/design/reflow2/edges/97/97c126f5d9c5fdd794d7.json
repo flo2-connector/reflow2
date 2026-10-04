@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:6d8d5eb8938d44711e7eef048d48f3a4159f5f20b9401331e9c267b22d798496",
+  "edge_type": "CAUSES",
+  "from_id": "cap:a-published-contract-says-what-two-systems-must-agree-on",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "That capability is the ONLY instrument in the design that reads an Interface's spec content, and `detect_incomplete_published_contracts` filters to `designation in (\"published\",\"both\")` and `continue`s on everything else. So the 10 `internal` interfaces are examined by nothing: seam_coverage counts them without reading their spec, and the completeness check never looks at them. Neither instrument is wrong on its own; the scopes do not meet, and the gap between them is exactly where an empty contract lives.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:seam-coverage-counts-that-a-contract-exists-and-never-that-it-says-anything"
+}

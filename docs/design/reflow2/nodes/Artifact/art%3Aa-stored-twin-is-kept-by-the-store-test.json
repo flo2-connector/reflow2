@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:5d6a0d0b5a6cf3cbe1c7e552db47da6774dc0868e7c400b20c02971d7512d59d",
+  "node_id": "art:a-stored-twin-is-kept-by-the-store-test",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "test",
+    "description": "Five MCP tests at the tool doors: the generic create_node gets the edge; create_edge, create_edges (all or nothing) and delete_edge refuse a copy against its property; a repairing CLI import records its sync, so an export back over the same file goes through.",
+    "location": "crates/reflow2-mcp/tests/a_stored_twin_is_kept_by_the_store.rs",
+    "name": "crates/reflow2-mcp/tests/a_stored_twin_is_kept_by_the_store.rs",
+    "status": "realized"
+  }
+}

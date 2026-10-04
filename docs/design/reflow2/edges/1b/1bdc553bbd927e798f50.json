@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:cc3c9d5a46f41370c0569c027c1fc4d234e018736fa7f5e425ea27859a6ef8d8",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:release-pinned-to-time",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:detect"
+}

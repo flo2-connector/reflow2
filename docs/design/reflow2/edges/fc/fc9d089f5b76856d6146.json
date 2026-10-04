@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:48fe430778a19f0c581baacba7d5d15d1ea8972a37445a8a4739782a03b0be9e",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:repair",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:repair"
+}

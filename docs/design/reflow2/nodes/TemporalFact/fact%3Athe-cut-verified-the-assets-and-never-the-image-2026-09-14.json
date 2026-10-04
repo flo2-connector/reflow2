@@ -1,0 +1,18 @@
+{
+  "content_hash": "sha256:c2f183e28de04e69e10f1c74df9b55c7fbf035a478fa3ecd834816f8c25d2396",
+  "node_id": "fact:the-cut-verified-the-assets-and-never-the-image-2026-09-14",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "confidence": 1.0,
+    "fact_type": "defect",
+    "name": "Two releases looked complete and shipped no container image — the cut verifies ASSETS off the release object, and the image is not an asset",
+    "statement": "MEASURED across the v0.60.0 and v0.60.1 cuts. Both were tagged, both published all five release assets, both read `draft: false` — and NEITHER published a container image.\n\n🛑 THE RELEASE OBJECT DID NOT LIE. It was complete, for the assets. The image is not an asset and never appears there, so the standing check — \"verify the release published, don't trust the workflow's green\", which the cut already does — cannot see it. A cut that passes that check has verified everything except the one artefact a container consumer pulls.\n\nWHAT TO ADD, at the same point the assets are verified:\n\n    gh run view <run> --json jobs --jq '.jobs[] | \"\\(.conclusion)\\t\\(.name)\"'\n\nThe `container image` job must read `success`. Its last step prints\n`published <IMAGE>:<VERSION>` after an `imagetools inspect`, so the log carries\nthe confirmation directly.\n\n⚠️ TWO TRAPS INSIDE THAT, both met on 2026-09-14:\n · THE RUN'S OWN CONCLUSION IS USELESS HERE IN BOTH DIRECTIONS. A run reads RED while the assets published fine, because the container job fails AFTER `publish release` has succeeded. Read the JOB.\n · THE IMAGE NAME IS `ghcr.io/<owner>/<repo>/reflow2-mcp`, not `ghcr.io/<owner>/reflow2-mcp`. The shorter guess 404s and is indistinguishable from a missing image — which is how a successful publish was nearly reported as a failure minutes after the real one.\n\n⭐ THE GATE WAS RIGHT ALL THREE TIMES and must not be blamed: the smoke test runs BEFORE the push, so both failures refused to ship an unverified image rather than shipping one. The capability held. What failed was a new check inside it, and the CUT had no step that would notice the difference between \"no image was built\" and \"no image was published\".\n\n📌 THE GENERAL SHAPE, and it is the same one `rule:success-is-read-from-the-authoritative-object` already states on three other surfaces: an object can be complete about what it covers and silent about what it does not, and the silence reads as consent. The assets object is authoritative for assets only.",
+    "steps": [
+      "release_report"
+    ],
+    "subject_id": "cap:release-publishes-a-container",
+    "valid_from": "2026-09-14",
+    "value": "{\"tags_affected\":[\"v0.60.0\",\"v0.60.1\"],\"assets_published\":5,\"draft\":false,\"image_published\":false,\"why_invisible\":\"the image is not a release asset, so the asset check cannot see it\",\"verify\":\"gh run view <run> --json jobs, the 'container image' job must read success\",\"run_conclusion_useless\":\"a red run can still have published all assets\",\"image_name\":\"ghcr.io/<owner>/<repo>/reflow2-mcp\"}"
+  }
+}

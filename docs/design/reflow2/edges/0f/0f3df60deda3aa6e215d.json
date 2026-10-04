@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:13b1ceb25ad20e2342168e594b230af40df0ab7f67549ea6cb75e1ad379820df",
+  "edge_type": "CAUSES",
+  "from_id": "fact:field-report-flo2-2026-09-19-f10-seven-more-rejections-are-the-constructor-half-of-a-defect-recorded-by-three-projects-and-half-fixed",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "F10 named the constructor/setter half and measured it across the served surface; this is that half.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "chg:one-status-contract-across-sibling-constructors-and-a-node-is-named-by-the-key-the-last-tool-used"
+}

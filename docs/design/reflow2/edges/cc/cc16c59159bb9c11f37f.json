@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:42d1c9e8c029f077b9fd267adf42af4d912be3edcaacacc73ac827a220b7eb99",
+  "edge_type": "CHANGED",
+  "from_id": "chg:bl74a-loop-nudge",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "sys:agent-surface"
+}

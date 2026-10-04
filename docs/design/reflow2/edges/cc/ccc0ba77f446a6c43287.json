@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:cfb044b6d209c05aa0503ac6370932b33dda5ef28c71083af9a8f5f054097eec",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:a-session-names-who-it-writes-for-test",
+  "properties": {
+    "covers": "whole"
+  },
+  "to_id": "ver:a-session-names-who-it-writes-for"
+}

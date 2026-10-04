@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:d8b521f99cc4df51789e5a7123d75a66f7f2612b11e3d3af3c0a6801169e8c40",
+  "edge_type": "CAUSES",
+  "from_id": "fact:defect-import-materialises-defaults-so-a-restored-graph-reads-as-changed",
+  "properties": {
+    "basis": "causal",
+    "confidence": 1.0,
+    "evidence": "The mechanism is known and was exercised in both directions on the reporter's own file, which is what makes this `causal` rather than `correlational`: dynograph-core inserts any missing property declaring a `default:` at write time (schema.rs:507), so import materialised granularity/volatility onto all 35 of music_graph's Artifacts. Removing the two `default:` tokens and re-running the same import -> re-export gave 0 changed nodes; restoring them gave 35 again. The shipped gate agrees — reflow2_check.py against their export dropped its ROUND TRIP finding, 5 findings -> 4.",
+    "validation_status": "validated"
+  },
+  "to_id": "chg:artifact-intent-stops-being-injected"
+}

@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:02c2cc8414c19321042bdf251f47285d39a51dbd0164b79af3e0cdbab4965996",
+  "edge_type": "HAS_TEMPORAL_FACT",
+  "from_id": "cap:change",
+  "properties": {},
+  "to_id": "fact:defect-propagate-change-distance-two-is-not-an-edit-list"
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:5c84085faf8c6c0ab88937b773e0c4af6f29f38ee7b11f1c107628a9247a7ab0",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:search",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:text-index"
+}

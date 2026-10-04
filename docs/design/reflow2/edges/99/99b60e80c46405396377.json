@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:cde5aeb5d573628beff7994df013724a79e3f65e93161a881fb50cf70b491c4f",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:a-status-that-claims-less-than-the-design-shows-is-reported",
+  "properties": {
+    "authored_at": "2026-09-30",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:claude-code"
+}

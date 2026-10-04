@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:18189b5d0bc2802590024e36177c722d3c09da20fd38b34557aa2d356710acad",
+  "node_id": "chg:accept-bbe019ae0e071a28",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "detected_at": "2026-09-23",
+    "name": "reopen_choice added to the write-tool set the Stop hook counts; test_loop_nudge checks it against the served goldens.",
+    "subject": "system"
+  }
+}

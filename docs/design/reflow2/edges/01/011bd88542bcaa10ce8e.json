@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:fde58272ccf2dca2b44dab85122d70216d68e77031efe94b952290a35a509246",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:github-mcp-tandem",
+  "properties": {
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "cap:mirror-surface"
+}

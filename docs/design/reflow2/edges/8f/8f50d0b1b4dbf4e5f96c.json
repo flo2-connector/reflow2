@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:e1710a0a70e4c2086d477b0d39484502b74b0d06f54261375b1e85f51620d27d",
+  "edge_type": "INVALIDATES",
+  "from_id": "chg:sidecar-loss-refused",
+  "properties": {
+    "at": "2026-08-07",
+    "note": "The fact opens \"CLOSED 2026-08-07, same day, by dec:sidecar-loss-guarded-by-store-evidence — the refusal now exists in code (identity::resolve_on_open + store_has_content), ver:sessions-cannot-cross-designs passes 5/5\". This ChangeEvent is that work. ⚠️ THE CLOSURE IS PARTIAL IN ONE NAMED WAY, stated on the fact itself: the refusal STOPS the loss but does not RECOVER a design already lost, because the id still cannot be read back off the store. This edge claims the recorded measurement is stale, not that the whole class is solved."
+  },
+  "to_id": "fact:defect-lost-identity-sidecar-opens-empty"
+}

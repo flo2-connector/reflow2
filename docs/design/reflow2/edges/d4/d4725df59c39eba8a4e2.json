@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:e86a271603148f484fe7beba4a275c28b91712d886955f198b7d5498955c1693",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:onboarding",
+  "properties": {},
+  "to_id": "req:onboard-newcomer"
+}

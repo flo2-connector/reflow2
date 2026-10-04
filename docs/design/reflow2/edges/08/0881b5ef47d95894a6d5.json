@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:63e5936c6818c4ce02b122a617b0389337ce7993debaab61ff04f41cba2abeca",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-declared-dependency-can-be-watched-without-being-imported",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cmp:sync-debt"
+}

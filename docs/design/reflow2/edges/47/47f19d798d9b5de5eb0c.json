@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:ac1679e98ecc92d16d3056837226c10ff7edfde28cd06850a825597cb57e0d78",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:the-cli-describes-a-tool-with-its-schema-and-lessons",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:service"
+}

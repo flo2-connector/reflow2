@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:cc0bfb3f34ed77bfcf4a43b6cd6fe48c74c487d3b56b5ec63c67edba483f6c0a",
+  "edge_type": "ANTICIPATES",
+  "from_id": "dec:idea-outward-docs-are-rendered-from-the-graph",
+  "properties": {
+    "evidence": "The docs-as-views idea saw derived documents coming; this is the same need with no agent in the loop."
+  },
+  "to_id": "dec:idea-a-derived-document-cites-the-graph-the-way-it-cites-the-model-through-a-door-a-build-can-use"
+}

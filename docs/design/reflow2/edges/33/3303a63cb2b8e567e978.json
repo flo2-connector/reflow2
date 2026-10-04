@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:af885ae39ddf211de9d3b61d09f50444a7f000f4e0bf113a2d5dcb47fe2bff7a",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:publish-surface",
+  "properties": {},
+  "to_id": "req:design-reachable-without-the-repo"
+}

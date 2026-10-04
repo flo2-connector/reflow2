@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:ebb19b45f38117f324b54c27548b4692a942e25144d66bb231ae64753b44cf09",
+  "edge_type": "RISKS",
+  "from_id": "fact:a-hydrated-seat-keeps-every-confirmation-date-and-loses-only-its-sync-state",
+  "properties": {
+    "confidence": 0.9,
+    "evidence": "That requirement rests on last_synced: the export-overwrite refusal compares a file's current content hash against what this graph believes it last wrote there. A seat hydrated from the document starts with an EMPTY last_synced map (measured: sync_status returns checked:0 against the live seat's 6 entries), so on its first export it has no baseline to refuse against. The risk is specific to a document-as-truth model and does not exist today, and it is narrow: the map is path -> content hash and could be carried in the document, kept beside it, or recomputed.",
+    "severity": "medium"
+  },
+  "to_id": "req:stale-seat-knows"
+}

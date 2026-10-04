@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:5f3dc0efa691204a799d2abd1de8cc71f864a5c96f0eec3d1ee23d093bf56e3f",
+  "edge_type": "CHANGED",
+  "from_id": "chg:accept-7cad4c0b8177a583",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:kit-instructions"
+}

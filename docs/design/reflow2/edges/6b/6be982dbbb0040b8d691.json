@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:da087d4099a7172587b9ce77fa5e58f79cf94758ccf0146f0fef5f1e5d9e9228",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-saved-design-moves-to-the-item-layout-2026-10-03",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:659b1ee07b9f2c236d5bdfb392349f7c202794c291570019b67f24243009a0fe",
+    "checksum_basis": "measured"
+  },
+  "to_id": "art:test-the-commonest-edge-has-a-typed-helper"
+}

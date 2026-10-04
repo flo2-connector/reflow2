@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:47d3945c28374c7847319f7d7fe1c1eac65038c3ea27b05acf2ad87de239668c",
+  "node_id": "cap:declared-rules-run-by-an-embedded-datalog-engine-and-updated-by-delta",
+  "node_type": "Capability",
+  "properties": {
+    "description": "Evaluates the declared derived-relationship rules with semi-naive evaluation in an embedded engine; updates derived facts and report counts by the delta a write introduces where defined, else recomputes the needed projection; invalidates any maintained result on a write to its inputs before the next read.",
+    "name": "Declared rules run by an embedded Datalog-style engine, and derived results and reports updated by what a write touched — never served stale",
+    "provenance": "authored",
+    "status": "planned"
+  }
+}

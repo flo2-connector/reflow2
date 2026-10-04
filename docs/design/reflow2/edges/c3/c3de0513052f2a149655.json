@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:33e2ff6c08b02ad3dd2d484a242d6dfd75748314dd6d91d37b25321eb0f7df70",
+  "edge_type": "VERIFIES",
+  "from_id": "ver:every-open-store-shares-one-memory-budget",
+  "properties": {},
+  "to_id": "cmp:rocksdb-backend"
+}

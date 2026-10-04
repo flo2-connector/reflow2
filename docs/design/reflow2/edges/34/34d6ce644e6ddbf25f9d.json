@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:7f0ab9d8990f9d922203c1e4b1f5321a8833499ee52526db54fb07d09c254dc2",
+  "edge_type": "VERIFIES",
+  "from_id": "ver:a-scoped-answer-actually-narrows",
+  "properties": {},
+  "to_id": "cap:a-scoped-answer-says-whether-it-narrowed"
+}

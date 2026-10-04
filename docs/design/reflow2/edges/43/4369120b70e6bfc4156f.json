@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:ddf4b8ebafedfd5852c98a0e696163794757411169f2b65ea5bd91a32afebf19",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-retired-artifact-may-be-absent",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:drift"
+}

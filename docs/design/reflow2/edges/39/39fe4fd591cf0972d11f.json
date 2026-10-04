@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:f67789f511971b2eb56bf335e7df3baf46b52181caf2a5d7f7e0bed17aa2fbf2",
+  "edge_type": "VERIFIES",
+  "from_id": "ver:a-check-that-could-not-run-lands-as-blocked",
+  "properties": {},
+  "to_id": "cap:a-real-run-is-fed-back-by-file"
+}

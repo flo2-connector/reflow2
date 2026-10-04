@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:724c8e3da03233a865e15e15fcf8ac1b4b1d3ccee0f91c0baf2dc4e533dc1ff7",
+  "edge_type": "CAUSES",
+  "from_id": "cap:the-command-surface-answers-for-itself",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "list_skills reply keys ['description','name','shortcut'] (2026-09-19); build.rs:119-150; openers and lengths counted from the served list; schema/build.yaml Artifact.audience",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:field-report-flo2-2026-09-18-a-skill-states-what-a-person-types-but-not-what-a-person-reads-nor-who-it-is-for"
+}

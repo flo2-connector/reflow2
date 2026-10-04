@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:846fd4a730e858dde6ee3ad86debd2a1aa5c41900e0e46a3cff2178167a767fd",
+  "node_id": "art:revise-design-skill",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "document",
+    "location": "getting-started/skills/revise-design/SKILL.md",
+    "name": "revise-design SKILL.md — teaches `replaces` for a new node that takes an old one's place",
+    "status": "realized"
+  }
+}

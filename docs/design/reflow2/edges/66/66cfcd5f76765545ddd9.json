@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:20ea8583d124d77f9a6fe0990dd247198b3127934ec7be30ac5df54f57d7d4e8",
+  "edge_type": "CHANGED",
+  "from_id": "chg:dynograph-stays-its-own-repo-for-now",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "dec:idea-dynograph-crates-independent-in-code-coupled-in-release"
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:158b1c933c9ff1c34deba7a1e6d08a818b5b92f26200e0a83a4e351b4e05eb42",
+  "edge_type": "CAUSES",
+  "from_id": "cap:a-session-serves-a-release-binary",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "The launcher serves target/release and rebuilds it only on the builder's word; after #505 changed AUTHORED_BY's stored shape that release binary (0.59.0) went on serving every session on this box, and measured directly (M3) it rewrites the current export's 853 AUTHORED_BY edges with the old schema default `role: author` on import — the exact number and field flo2 reported — while the current binary round-trips the same document unchanged (M2).",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:root-cause-the-853-is-an-older-binary-writing-the-old-role-default-onto-a-newer-document-not-the-export-leaving-a-default-implicit"
+}

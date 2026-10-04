@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:ec959a0a5d12b61195bbade9ae16914c360fd7c0f3dcec578f380213507f11db",
+  "node_id": "fact:manual-work-03124c1ffe2b42b1",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "manual_work",
+    "statement": "Wrote a script that reads each capability's furthest lifecycle phase off the graph — no allocation / allocated / realized by an artifact / passing check / realizing artifact in a deployed release — and weighted the population by a cost-of-change curve to say what share of the design's change cost sits in the fielded tier. The phase-coverage detectors walk the same ladder internally but nothing serves it per node or as a distribution.",
+    "subject_id": "proj:reflow2",
+    "valid_from": "2026-09-06",
+    "value": "{\"diagnosis\":\"tool_missing\",\"reflow2_tool\":null}"
+  }
+}

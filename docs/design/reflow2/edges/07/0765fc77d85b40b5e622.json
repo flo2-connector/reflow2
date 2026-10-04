@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:e1c6b07bbc905aef666fe6a6e5282195e238da115e51e65134d30cc5a1086043",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-node-records-what-the-user-calls-it",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:service"
+}

@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:f665b3dc31bcdd43cee5ea71f8f7499d3b6b31d90c7a31e8adfd26bc171fb9b2",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:derived-relations-are-declared-checked-against-the-code-and-evaluated-by-a-served-read",
+  "properties": {},
+  "to_id": "req:reflow2-declares-its-derived-relations-and-serves-a-read-that-runs-them"
+}

@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:ea6e61be4df2eeebc55e6246dbbfb2fe82931aea14f4fc5d7162bf3a6803d8bd",
+  "node_id": "ver:vocabulary-reach-is-validated-against-known-cases",
+  "node_type": "Verification",
+  "properties": {
+    "description": "Not a unit test — an instrument checked against ground truth. Run `python3 tools/vocabulary_reach.py`.\n\nIT MUST REPORT, because all three are independently known: `SUPERSEDES` as an edge type with zero edges; `GOVERNED_BY.ruling` as a property never set (added 2026-08-17, 0 of 912 edges); and `DECOMPOSES` as an edge type with zero edges despite `req:decomposition-covers-its-parent` being accepted.\n\nIT MUST STOP REPORTING `SPECIFIES` once the 44 schema-to-interface edges are in the export — verified dead-to-live across one export on 2026-08-18.\n\nIT MUST NOT REPORT `Verification.description`, which was unreachable until 2026-08-17 and now has both a constructor parameter and real uses — the instrument has to notice a repair, not just a defect.",
+    "findings": "All four checks hold. Reports SUPERSEDES, GOVERNED_BY.ruling and DECOMPOSES; stopped reporting SPECIFIES after the export; does not report Verification.description. Buckets on reflow2's own design: 18 candidates / 10 unused-but-offered / 46 says-nothing / 42 edge-vocabulary.",
+    "kind": "verification",
+    "last_run_at": "2026-08-18T04:30:00Z",
+    "level": "system",
+    "method": "analysis",
+    "name": "The reachability instrument is validated against vocabulary already known to be dead before its new findings are believed",
+    "status": "passing"
+  }
+}

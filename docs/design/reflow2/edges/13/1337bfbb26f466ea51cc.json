@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:d1a70d21b01aef5baefb268bb0cc43f87c948dd83e2e0d9ce17961e763fc191f",
+  "edge_type": "VERIFIES",
+  "from_id": "ver:a-design-is-watched-at-the-server-that-holds-it",
+  "properties": {},
+  "to_id": "req:a-design-watches-another-design-at-the-server-that-holds-it"
+}

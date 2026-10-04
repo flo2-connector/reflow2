@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:8c7b9037f6298eea9e3d5f212c78a1d799c5b1e7ca0c1e8ebaf60bd078b84b2c",
+  "edge_type": "CHANGED",
+  "from_id": "chg:surface-says-what-it-orphaned",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cap:publish-surface"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:ad315b5f62691facdeecd189e3b06c5984318658753c5695c6506e541f7a484e",
+  "edge_type": "CONTRADICTS",
+  "from_id": "fact:the-per-capability-build-question-is-already-silent-while-nothing-is-built-so-the-promoted-sentence-was-unreachable",
+  "properties": {
+    "alignment": "opposing",
+    "evidence": "The report's framing implies the finding fires while nothing is built; the guard makes that impossible, so the seventeen were on a design that had started building."
+  },
+  "to_id": "fact:one-gap-body-is-a-single-line-where-its-neighbours-carry-the-routing-and-it-fires-once-per-capability-on-a-young-design"
+}

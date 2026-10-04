@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:9472091e78f083aefe69b46d272bc84a23b00e594e96f5f6dc9f7c98aecd3b65",
+  "node_id": "epoch:v0250-planned",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "epoch_type": "release_cut",
+    "name": "RETIRED 2026-08-08 — superseded by epoch:planned-read-half. This node's id names a version (v0.25.0) it never delivered and then a version (v0.26.0) it also would not have kept. Kept, not deleted, because it holds the plan's snapshot history — dec:arrival-delta reads plan movement from a target's FIRST snapshot, and deleting the node would delete the trail. The content lives on at epoch:planned-read-half under dec:idea-a-planned-increment-is-named-by-content-not-by-number.",
+    "sequence": 250,
+    "status": "arrived"
+  }
+}

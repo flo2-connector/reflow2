@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:bcb2946d44cb2d59ad2afd02e115f87c875b484a3f555919fd7ed16791fff933",
+  "node_id": "ver:sessions-cannot-cross-designs",
+  "node_type": "Verification",
+  "properties": {
+    "description": "A write lands in the attached design ONLY — two designs open simultaneously in one process, written to in interleaved turns, and each store proven to contain only its own nodes; plus the two properties that half rests on: the STORE is the isolation boundary rather than the id (naming another design's graph_id from a different store serves nothing and writes nothing into it), and a reopen re-attaches to the same design even with a different design opened first and still held. NARROWED 2026-08-07 (epoch:isolation-check-scope-split): this node previously also claimed \"a graph_id it was not attached to is REFUSED rather than served\" and \"a path is not an alternative route in\", and was set PASSING while no test could reach either — both need a surface on which a session NAMES a design, and cmp:registry is planned. Those two clauses are now ver:a-session-cannot-name-another-design, which is PLANNED and says so. dec:one-process-many-stores was accepted conditional on ALL FOUR, so its condition is HALF MET, and the graph now computes that instead of resting on a comment in a test file.",
+    "kind": "verification",
+    "last_reconciled_at": "2026-09-23",
+    "last_reconciled_outcome": "passed",
+    "last_run_at": "2026-08-07",
+    "level": "integration",
+    "method": "test",
+    "name": "A write lands in the attached design only, and the store is the boundary",
+    "status": "passing"
+  }
+}

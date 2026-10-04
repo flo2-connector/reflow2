@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:aa2886c65f6f38dd4767dbf4ced681516b2668c4ac17851fd6eefc9e19446531",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-move-decisions-write-back-clause-is-withdrawn-2026-09-27",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "req:a-local-client-works-against-a-remote-reflow2-server-by-url"
+}

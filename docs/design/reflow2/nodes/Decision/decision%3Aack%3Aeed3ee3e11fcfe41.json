@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:87cf9f14d8fded775e2b854bd8aae97c9389c524b1eaf9194c70189023589c8b",
+  "node_id": "decision:ack:eed3ee3e11fcfe41",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Accepted the gap gap:eed3ee3e11fcfe41.",
+    "name": "Reviewed: gap:eed3ee3e11fcfe41",
+    "rationale": "Anthony, 2026-08-23: this is the BACKLOG, not a hole. These requirements are recorded forward work and the trace should keep showing them until something delivers them; dropping them to shorten the list would trade a commitment record for a to-do list. Reviewed as a class rather than one at a time, and the review expires per requirement if its text changes, so a requirement that is quietly re-scoped comes back to be judged again.",
+    "status": "accepted"
+  }
+}

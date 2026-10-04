@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:7190a431dadecb8ce8464abb9f2e868ceb300b4774699efe4deef0c3767a58d8",
+  "node_id": "ver:a-vocabulary-change-is-never-silent",
+  "node_type": "Verification",
+  "properties": {
+    "description": "`crates/reflow2-core/tests/a_vocabulary_change_is_never_silent.rs`, five tests against real stamp files and the shipped schema.\n\n1. A stamp declaring `Decision.status = deferred` on a graph that stores none of them OPENS — the rule bought with two lockouts: refuse on a population, never on a declaration.\n2. The same stamp on a graph that STORES it is refused, and the refusal names `Decision.status` and `deferred` and both reflow2 versions — a version number alone is what this change exists to stop.\n3. A stamp with no enum record (every stamp written before this) opens; an absent record is not a claim that nothing changed.\n4. A population that cannot be counted refuses with the scan's own error rather than reading as empty.\n5. The collector really records the declared vocabulary — Decision.status holds proposed and accepted, does NOT yet hold deferred, and more than twenty enum fields are recorded. This is the test the other four rest on: a collector quietly returning nothing would pass them all while the guard saw nothing.\n\nSHOWN TO FAIL BEFORE IT WAS TRUSTED: blinding `unknown_enum_values` makes exactly the two refusal tests (2 and 4) fail and leaves the three open-path tests passing.\n\nWHAT IT DOES NOT COVER: the population probe's own scan on a real RocksDB store is exercised only through the closure boundary here; the wiring in graph.rs uses scan_nodes_by_property, whose correctness is pinned by the engine's own tests. Property additions and semantic changes are outside this guard by decision, not by omission.",
+    "findings": "All five pass. Mutation check: with the comparison blinded, a_value_the_graph_holds_is_refused_and_named and an_uncountable_population_refuses fail; the other three still pass. Full core suite (156 binaries) and mcp suite (64 binaries) green alongside; toolsnap reports 180 schemas unchanged, as expected — the stamp is data in the export, not a tool schema.",
+    "kind": "verification",
+    "last_run_at": "2026-09-12",
+    "level": "integration",
+    "method": "test",
+    "name": "An enum value the graph holds and this binary lacks is refused by name; one it merely declares opens",
+    "status": "passing"
+  }
+}

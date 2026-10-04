@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:b10184e50d44cbfe509e6b72ba54593ca85ded6d1b7393c049bcf4e62ab2c61f",
+  "node_id": "art:a-dependency-declaration-replies-with-a-receipt-test",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "test",
+    "location": "crates/reflow2-mcp/tests/a_dependency_declaration_replies_with_a_receipt.rs",
+    "name": "a_dependency_declaration_replies_with_a_receipt.rs — the receipt does not grow with other declarations, and a re-declare keeps what it was not passed",
+    "status": "realized"
+  }
+}

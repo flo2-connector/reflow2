@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:f7613c3f9327a5b0be02eb135fa6e90356de61213399ef85b094534b323126da",
+  "node_id": "decision:ack:9ff80e5afcd024e9",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Accepted the gap gap:9ff80e5afcd024e9.",
+    "name": "Reviewed: gap:9ff80e5afcd024e9",
+    "rationale": "Deferred on the established disposition for this review, 2026-07-28. Accepted and not dropped; like the correspondence requirement it comes from general architecture and risk practice rather than from reflow, which had no equivalent either. Deferred because the modelling choice is unsettled and cheap-versus-honest pull in opposite directions: a new node type keeps the distinction sharp (an assumption is not enforced like a Constraint, not chosen like a Decision, and not reducible like a Risk), while adding a kind to Constraint is cheaper and risks blurring the very difference that makes it useful. Also undecided: what edge carries \"rests on\", and whether an assumption carries a confirmation cadence — cap:freshness already models when a claim was last confirmed, so \"nobody has checked this in six months\" could be computed rather than remembered. The computation matters more than the node: once assumptions have things hanging off them, \"X no longer holds\" becomes a propagate query with a real answer instead of prose inside a Decision rationale that nothing can walk.",
+    "status": "accepted"
+  }
+}

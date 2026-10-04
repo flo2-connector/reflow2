@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:baff7abe46b00e29e4b53611941b797d6cb12adbba2ec8111c2b9e374ede13a3",
+  "edge_type": "REALIZES",
+  "from_id": "art:status-question-finds-the-read-test",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "verified"
+  },
+  "to_id": "cap:tool-search"
+}

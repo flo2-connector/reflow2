@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:8b76b95def5341cd0d31d84c17ccb900051796ec01e024b26862e7bae3fc5c5e",
+  "edge_type": "CHANGED",
+  "from_id": "chg:absorb-vector-stats",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "art:dependency-manifest"
+}

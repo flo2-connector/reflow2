@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:0cc1fbe48b69ac0625fa75ce75e5d5e533d3c07105944ca6e06d8f25b1441fe4",
+  "node_id": "req:never-silently-absent",
+  "node_type": "Requirement",
+  "properties": {
+    "concern": "core",
+    "designation": "internal",
+    "kind": "functional",
+    "lineage": "original",
+    "name": "A session that has no design graph is told so, in band",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "When reflow2 cannot open the graph — another session holds the single-writer lock, or the graph was stamped by a different reflow2 — the MCP server must still complete the handshake and carry the reason where the agent will read it. Exiting at startup makes the outage indistinguishable from \"reflow2 was never configured for this project\", and an agent that concludes that skips the design-first process for a reason nobody recorded. Field-reported by the StoryFlow fleet, 2026-07-25.",
+    "status": "accepted"
+  }
+}

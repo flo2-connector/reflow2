@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:b5a2d2d8cb2c27ccda868315c6a84430551fbb9080f5ec6768cb559061d121be",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0261",
+  "properties": {
+    "as_checksum": "sha256:8196df94f5775161"
+  },
+  "to_id": "art:genesis"
+}

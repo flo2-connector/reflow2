@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:17ddcb9ac30e5a4d6daee2f771816f361b64c2a85123b80c38d80aed29aeec6e",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-name-is-not-a-report",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "ver:a-withdrawn-decision-is-not-a-conflict"
+}

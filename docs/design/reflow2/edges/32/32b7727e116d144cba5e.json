@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:31c36c9a85da0ca9f6ddea8ed22713f6410791256898fee24762bd9095e39cd6",
+  "edge_type": "REALIZES",
+  "from_id": "art:allocate",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cmp:allocate"
+}

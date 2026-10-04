@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:96d9a54ea3cb24ccac12c605a491f493c0cce10509d0e07ae2540fa8a70003c5",
+  "node_id": "art:test-one-nodes-edges-are-read-back-as-edges",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "test",
+    "description": "10 tests on the in-memory backend. The first builds the shape the impact walk mishandled on reflow2's own design (an AUTHORED_BY, an incoming and an outgoing traceability edge with evidence, a stored twin) and asks for every one back as stored.",
+    "location": "crates/reflow2-core/tests/one_nodes_edges_are_read_back_as_edges.rs",
+    "name": "one_nodes_edges_are_read_back_as_edges.rs — the core edge reader: both directions with evidence and a twin, filters, refusals, every empty answer, the limit, the dominant type, the size bound, a self-loop",
+    "status": "realized"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:714a41216d7e1488e6e7e1e6143d813d47ae5ee0ed8a3d7ff9870e74424ce6f9",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-capture-that-replaces-a-node-says-so",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:a-prose-field-that-swallowed-a-parameter-says-so"
+}

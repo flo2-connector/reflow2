@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:bf30b061ab91ed66a833b8c55199ffee4404edad93e0925ee6cc629460b3e8c9",
+  "node_id": "art:release-workflow",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "granularity": "atomic",
+    "location": ".github/workflows/release.yml",
+    "name": "release.yml",
+    "status": "realized",
+    "volatility": "stable"
+  }
+}

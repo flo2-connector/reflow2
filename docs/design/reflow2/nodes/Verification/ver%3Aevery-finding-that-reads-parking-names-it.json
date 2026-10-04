@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:e9dd82ad725e8d9af38273612b98daa8a0a8f0afb5f5cb81506d87edc4048cae",
+  "node_id": "ver:every-finding-that-reads-parking-names-it",
+  "node_type": "Verification",
+  "properties": {
+    "kind": "verification",
+    "last_run_at": "2026-09-29",
+    "level": "unit",
+    "location": "crates/reflow2-core/tests/every_finding_that_reads_parking_names_it.rs",
+    "method": "test",
+    "name": "Every rule that reads parking is mapped to the finding it feeds, and every one is reached by the shared parks sentence (walks the crate source)",
+    "status": "passing"
+  }
+}

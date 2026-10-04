@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:ce30174ca7fdad258b6e136e8399051559242b08a968e1fbe8b51bf460f731df",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:a-brainstormed-idea-is-a-first-class-kind",
+  "properties": {
+    "approved_at": "2026-08-30T00:00:00Z",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

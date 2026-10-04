@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:7b5e26bd40d49b5d8a861d6fe815fbc7b3b860fdea7456e4b64f7ee5d25f0e7f",
+  "node_id": "chg:tool-minted-seat-liveness-20260808",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "test_failure_fix",
+    "name": "A seat the server handed out but never leased stops borrowing the server's liveness: on a shared server it reads unknown, and mint_seat stops promising otherwise"
+  }
+}

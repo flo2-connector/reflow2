@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:47a680e0cf23c226270c5b561267cb1578edc5ef4a9a06e62b18bf5c2cd05c7f",
+  "node_id": "rel:v0450",
+  "node_type": "Release",
+  "properties": {
+    "name": "v0.45.0 — a container is found by its level not by how its id is spelled, a derived number carries what it was computed over, and an idea becomes a declared kind",
+    "status": "retired",
+    "unit_type": "container",
+    "version": "0.45.0"
+  }
+}

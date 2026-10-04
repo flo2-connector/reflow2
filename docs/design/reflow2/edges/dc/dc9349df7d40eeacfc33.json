@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:c5cb7f89d1904a38f881ed75edbcd6a221ca8ceabb6f75ddc93050e4d634e91f",
+  "edge_type": "CAUSES",
+  "from_id": "fact:one-gap-body-is-a-single-line-where-its-neighbours-carry-the-routing-and-it-fires-once-per-capability-on-a-young-design",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "The seventeen single-line findings on a three-day-old design are what raise the question.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "dec:idea-should-a-gap-body-say-when-the-state-it-reports-is-normal-for-the-phase"
+}

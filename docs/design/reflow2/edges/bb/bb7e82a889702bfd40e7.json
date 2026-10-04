@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:c6165e337036344fea85dc4af965ee84d1308c41e44c26914b271cc52c54b2a6",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:ingest-handshake-test",
+  "properties": {
+    "covers": "whole",
+    "note": "migrated 2026-09-22 from a REALIZES link_artifact drew in error"
+  },
+  "to_id": "ver:ingest-handshake"
+}

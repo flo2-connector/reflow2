@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:e135392df8a6cd2ae54b091ae61250c2523b1b195ef5620f4f007b4c2bb8b471",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:loop-status",
+  "properties": {},
+  "to_id": "req:coherence"
+}

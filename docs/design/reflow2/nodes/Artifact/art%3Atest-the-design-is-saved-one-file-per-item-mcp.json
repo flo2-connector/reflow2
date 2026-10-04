@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:010f2ca383407eacd58ae0f485c8de620202c1a8765121e668161f31cda43c4e",
+  "node_id": "art:test-the-design-is-saved-one-file-per-item-mcp",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "test",
+    "location": "crates/reflow2-mcp/tests/the_design_is_saved_one_file_per_item.rs",
+    "name": "the_design_is_saved_one_file_per_item.rs (mcp)",
+    "status": "realized"
+  }
+}

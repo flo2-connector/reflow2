@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:cfdda8ac96c75eb17b575800ebc61c3b3531f7bd8221c1218b0bb19c1b5ea435",
+  "edge_type": "AT_EPOCH",
+  "from_id": "snap:epoch:preserved-on-write:fact:the-duplicate-guard-cannot-tell-a-second-layer-from-a-second-copy",
+  "properties": {},
+  "to_id": "epoch:preserved-on-write"
+}

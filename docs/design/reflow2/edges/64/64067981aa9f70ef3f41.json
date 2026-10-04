@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:97ba7a02b46089b3662cfbfe217d72ec69af18cc4522eeb3383ac5d9825c7d83",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:ingest",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:ingest"
+}

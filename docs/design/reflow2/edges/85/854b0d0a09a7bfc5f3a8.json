@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:da343c4bb7b5e85540c081894d1be982d0ed0bb9784aac0dafc7ce299a9c54bf",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:server-currency-test",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:server-currency-test"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:db7eee93884ef79a8ac79d0dcc2aefd05c6cea58b9b717f7843b1a97ba5d94b8",
+  "edge_type": "CHANGED",
+  "from_id": "chg:who-edges-name-their-fix",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:skill-lint"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:2d1620594d65b8381c031dba04b5f2c66664fff59afe87ee9228489cf44e19a1",
+  "edge_type": "CHANGED",
+  "from_id": "chg:dependencies-to-current-2026-09-15",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cap:mcp-surface"
+}

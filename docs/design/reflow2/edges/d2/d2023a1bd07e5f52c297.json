@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:ecc5da5a825d0e6578dc7e884c70f4ebf679426d134b4cfe016e2451e5609cef",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0710",
+  "properties": {
+    "as_checksum": "sha256:8056ebc860d20b59708da635c27a0dcbd0f481ae892e021e1a3cf1dae45ec506"
+  },
+  "to_id": "art:the-export-chains-from-main-test"
+}

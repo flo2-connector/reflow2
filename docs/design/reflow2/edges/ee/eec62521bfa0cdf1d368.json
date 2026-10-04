@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:f97a4fa18dbbd5f34b9e52856de25f4c7e49f01b22816149e7d9cca4252c7ad3",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-capability-states-what-it-takes-and-gives",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "req:recursive-black-box-decomposition"
+}

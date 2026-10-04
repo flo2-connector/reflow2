@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:ba503d58ee9308eaa433070b51459478cf5a64c94c456cca09947a65dc00f2e8",
+  "edge_type": "GOVERNED_BY",
+  "from_id": "cap:reflow2-installs-as-one-plugin-for-claude-code-and-grok",
+  "properties": {
+    "note": "It decides what the plugin's skills/ folder holds, and whether it can drift from the binary."
+  },
+  "to_id": "dec:how-skills-ride-in-the-reflow2-plugin"
+}

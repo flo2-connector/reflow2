@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:8bab3cc1862596d78373c4efb689661e45fe4318f4002c3dd5ac27fbcfcff9df",
+  "edge_type": "SCHEDULED_FOR",
+  "from_id": "req:a-write-cannot-silently-lose-someone-elses-work",
+  "properties": {
+    "modality": "required",
+    "recorded_at": "2026-08-16"
+  },
+  "to_id": "epoch:instruments-stop-overstating"
+}

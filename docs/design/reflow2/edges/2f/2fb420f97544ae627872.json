@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:21446e0b6cb262f386e6626458705c7e41a085e566a262fa437c02e444f6586c",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "req:a-relationship-stored-as-a-node-names-the-role-each-participant-plays",
+  "properties": {
+    "evidence": "A participant's role is carried in the declared reading of each edge from the relation-node, which that requirement establishes for every edge type.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "req:every-edge-type-declares-what-it-means"
+}

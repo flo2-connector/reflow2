@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:05eaf1fd05b0337176873fd625bf85699383c29ef8b50139a52600cdfe52c80c",
+  "edge_type": "EVOLVES_INTO",
+  "from_id": "dec:idea-what-reflow2-takes-from-uaf-1-3",
+  "properties": {
+    "evidence": "@ajs kept option (d) as intent on 2026-09-28 (\"Who needs to understand it (d)\"): UAF's stakeholder-concern-viewpoint, asked in plain words, became this requirement."
+  },
+  "to_id": "req:the-agent-renders-the-design-for-the-reader-who-needs-it"
+}

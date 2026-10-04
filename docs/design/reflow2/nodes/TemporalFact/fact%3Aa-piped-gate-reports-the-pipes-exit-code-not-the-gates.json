@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:40c6b3a0bc6b5e0266acd7d1225ae78d04f9b3b49fb61766208f4aac210b87de",
+  "node_id": "fact:a-piped-gate-reports-the-pipes-exit-code-not-the-gates",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "method_defect",
+    "statement": "MEASURED 2026-08-12, and self-reported because it produced a false green in this session.\n\nWHAT HAPPENED: `cargo test --workspace 2>&1 | grep -E \"^test result:|FAILED\" | tail -20` was run as the pre-PR gate. It was reported to the owner as passing. ⚠️ THE EXIT CODE OF A SHELL PIPELINE IS THE EXIT CODE OF ITS LAST COMMAND — `tail` — which is 0 whether cargo passed, failed, or never compiled. The `tail -20` also truncated the evidence to the last 20 result lines, so the absence of a FAILED line in what came back proved nothing about the other 83 suites.\n\nCaught only by noticing the totals looked low: 20 suites / 250 tests against a project that runs 103 suites / 1,138 tests. The re-run with cargo's status captured directly (`cargo test --workspace > log 2>&1; echo $?`) reported exit 0, 103 suites, 1,138 tests, 0 failures — so the answer was right and the METHOD that produced it could not have known.\n\n⇒ THE GENERAL FORM, which is why this is worth a node: PIPING A GATE THROUGH A FILTER CONVERTS ITS VERDICT INTO ITS OUTPUT. Everything the filter drops is unfalsifiable, and the status that survives belongs to the filter. This is the same class as every finding this project already holds about self-report — a green that describes the reporter rather than the thing.\n\nIt is also unusually well-camouflaged HERE, because filtering long cargo output is the obviously sensible thing to do, and the filtered output looks like exactly what a passing run looks like.\n\nTHE RULE THAT FALLS OUT: redirect a gate to a file and read `$?` from the gate itself; filter the FILE afterwards. `set -o pipefail` also works and is easier to forget. Never take the presence-or-absence of a pattern in filtered output as the verdict.\n\nNOT BUILT INTO ANYTHING. Recorded as a fact rather than a rule because nothing detects it — an agent's shell pipeline is not something reflow2 can see, which is precisely why it needs to be written down where the next session will read it.",
+    "subject_id": "proj:reflow2"
+  }
+}

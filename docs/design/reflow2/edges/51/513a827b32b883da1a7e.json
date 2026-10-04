@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:43091d63799a83af45f37f3c7fdbec26d66379eeacca4a0d78ac11b3ac11a591",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:test-the-guard-reads-the-request-before-refusing",
+  "properties": {
+    "covers": "whole"
+  },
+  "to_id": "ver:the-guard-reads-the-request-before-refusing"
+}

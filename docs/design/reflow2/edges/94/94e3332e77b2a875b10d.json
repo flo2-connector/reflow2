@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:e32231c3fcf295ada1efa85dcf31476b5d27de5c9eed3397ea2f6db056896c2a",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-stored-twin-has-one-authority",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:test-the-guard-reads-the-request-before-refusing"
+}

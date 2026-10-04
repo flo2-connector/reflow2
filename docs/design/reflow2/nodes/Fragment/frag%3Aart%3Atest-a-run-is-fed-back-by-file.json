@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:28a51828c92c9727b6ab859271a83aedb408d7ff4dcbeba8dca6a266c70a4a1a",
+  "node_id": "frag:art:test-a-run-is-fed-back-by-file",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered a_run_is_fed_back_by_file.rs"
+  }
+}

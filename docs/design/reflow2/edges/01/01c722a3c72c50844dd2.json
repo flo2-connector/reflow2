@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:2b1fa58129285889694152310428e785fd3ba08a127ee71a29977b3766311639",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:test-a-capture-that-replaces-a-node-says-so",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:test-a-capture-that-replaces-a-node-says-so"
+}

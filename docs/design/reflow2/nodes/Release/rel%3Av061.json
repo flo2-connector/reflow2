@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:4b9bcf9e1e1b9c408beb1b0ec5a38ee7d8a42764d2dbd2ae26b88d34fe7f1a1d",
+  "node_id": "rel:v061",
+  "node_type": "Release",
+  "properties": {
+    "description": "Patch: the BL-58 core silent-failure batch (12 doctrine/correctness fixes). Superseded in place by v0.7.0.",
+    "name": "v0.6.1",
+    "status": "retired",
+    "unit_type": "binary",
+    "version": "0.6.1"
+  }
+}

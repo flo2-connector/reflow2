@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:d2423885c4643925c82bb722f0f649714ebdf6f15dd2da6fb5bc6c77002abd31",
+  "node_id": "ver:a-deliberate-state-is-counted",
+  "node_type": "Verification",
+  "properties": {
+    "description": "Five probes in tests/a_deliberate_state_is_not_a_defect.rs, built around the fleet's own case — a superseded scope proposal registered with no claim edges. (1) An unruled registration is still a defect, the counterweight that keeps the rest meaningful. (2) A parked node is skipped as a defect AND appears in swept.parked, which is the requirement's actual ask rather than silence. (3) Parking on a PROPOSED ruling neither counts nor suppresses — a musing must not silence a finding. (4) Case (b): a requirement an accepted ruling forbids satisfying stops being asked about by unsatisfied_requirement, the half no edge could silence incidentally because that detector looks for incoming SATISFIES. (5) Plain unmarked governance never parks, or every governed node in a mature design would quietly stop being checked.",
+    "findings": "5/5 passing; workspace 1292 tests, 0 failures. MUTATION-CHECKED TWO WAYS, each verified applied before running: dropping the accepted-ruling requirement fails `parking_on_an_unsettled_ruling_does_not_count` alone, and disabling the parked skip fails `a_parked_node_is_counted_rather_than_silenced` alone — so neither guard is vacuous and the two probes are not testing the same thing. Probe (3) FAILED ON ITS FIRST RUN and that failure found the real defect: an unsettled parking claim was silencing a genuine finding, because the GOVERNED_BY edge itself counted as attachment.",
+    "kind": "verification",
+    "last_run_at": "2026-08-17",
+    "level": "integration",
+    "method": "test",
+    "name": "A ruling parks a node, and parked nodes are counted",
+    "status": "passing"
+  }
+}

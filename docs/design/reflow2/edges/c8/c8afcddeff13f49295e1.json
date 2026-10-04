@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:2c07cf5babb67f703839d3d60ca7a61f37fb90749ec574f390e746ca1ea4e517",
+  "edge_type": "CHANGED",
+  "from_id": "chg:dependency-names-its-design",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "req:design-dependencies-declared"
+}

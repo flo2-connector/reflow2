@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:60216f12067f3b63865e411bdbb33cdb9bc045455af958d2c783f9942b57d800",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:upstream-judgement-test",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:upstream-judgement-test"
+}

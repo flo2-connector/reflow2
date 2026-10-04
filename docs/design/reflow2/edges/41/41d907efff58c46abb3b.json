@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:a4366c1dddfe1448108cc0d78d6b0dbdb0dec041c672a42e2af1f0e11c5d2dab",
+  "edge_type": "HAS_TEMPORAL_FACT",
+  "from_id": "cmp:service",
+  "properties": {},
+  "to_id": "fact:bl-147"
+}

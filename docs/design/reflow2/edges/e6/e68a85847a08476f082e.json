@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:fdbc0514b598002e4ca58d3f97b531cd8e4da05183d9805b626e6271a5376554",
+  "edge_type": "HAS_SNAPSHOT",
+  "from_id": "fact:root-cause-a-server-degraded-by-a-held-lock-never-retries-and-looks-alive-2026-09-28",
+  "properties": {},
+  "to_id": "snap:epoch:preserved-on-write:fact:root-cause-a-server-degraded-by-a-held-lock-never-retries-and-looks-alive-2026-09-28"
+}

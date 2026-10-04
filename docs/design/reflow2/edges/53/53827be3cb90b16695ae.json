@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:5c895171daadd5479040624b6647920f16d2cfaa86f2cda9bba3e6b71e71fcff",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:the-graph-asks-what-a-session-made-false",
+  "properties": {
+    "approved_at": "2026-08-24",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

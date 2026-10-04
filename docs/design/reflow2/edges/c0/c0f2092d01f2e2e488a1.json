@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:30ccb0f548806e5e4fa300e76b0028245e9915c1d7d5bd7d0eaeb09c534e6952",
+  "edge_type": "CHANGED",
+  "from_id": "chg:baseline-c389615b2823d8c9",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:a-fix-says-whether-it-corrected-the-cause-test"
+}

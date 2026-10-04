@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:e62bb03584397540b8ceb7b75479aa76c97297199f0e07f3a9e9a3455ef33037",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:complementary-pairing",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:seam"
+}

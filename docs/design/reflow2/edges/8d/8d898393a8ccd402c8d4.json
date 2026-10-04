@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:e9319ae9dfcf0521034d0bb59f6a74580998a64273b8e44d3be4d8eff56f5862",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:reflow2-installs-as-one-plugin-for-claude-code-and-grok",
+  "properties": {},
+  "to_id": "req:reflow2s-kit-is-packaged-to-the-agent-plugins-specification"
+}

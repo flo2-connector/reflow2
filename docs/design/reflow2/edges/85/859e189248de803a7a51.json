@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:46d7de544c8a4727b90f4f1820b3f0bd7d0820f55cec30c33f3e460e7673b9a1",
+  "edge_type": "GOVERNED_BY",
+  "from_id": "cap:quality-target-is-stated-or-asked-for",
+  "properties": {
+    "note": "This capability IS that decision built. The decision chose a governing Decision over a Constraint or an overloaded DimensionAssessment, and chose genesis over allocation-time; both choices are visible here — the target lives on a Decision node, and the genesis skill is where the question is asked. If the decision is ever revisited, this is what would have to move."
+  },
+  "to_id": "dec:the-ility-target-is-a-governing-decision-asked-at-genesis"
+}

@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:79c06bc33f17495b0a9b4407ec94ba777cc8370689897309c5924f1e8f3c0be9",
+  "node_id": "cap:the-design-reference-is-served-compact-code-shaped-and-derived-for-the-implementing-agent",
+  "node_type": "Capability",
+  "properties": {
+    "description": "One served read that takes a REQUIRED seed — the Component (or Capability) under work — and renders its black box in a code-like form: the requirements that box satisfies; each of its capabilities as a function header with its signature (name, inputs, outputs, kind) or an explicit \"unsigned\" marker; the Constraints and enforced DesignRules that bind it, with units and consequence; each Interface it provides or consumes as a port, `unspecified` shown as such, and for every port the far-side box as a header only; the parent's contract; nothing else. The region is the seed's containment closure plus a propagation radius — the same computation claim_region and scoped detect_gaps use — and the reply reports what it left out (share of the design in scope, total against in-scope) so a narrowed reference never reads as the whole. The whole design is refused as a seed: there is no unscoped form, by Anthony's word 2026-09-13 (chg:the-design-reference-capability-takes-a-required-seed) — \"here is the whole car design again\" is the failure this exists to avoid. Every line traces to a node id, so a fill-in is detectable; the reply reports its own size and the fraction of the box's capabilities unsigned. The same payload is what req:intent-is-reinjected re-injects into a long build. Not a persisted document and not a grammar: a projection over the schema that already exists, in the structured natural language language models already read. Planned 2026-09-13.",
+    "name": "The design reference for one black box — its function, constraints, ports and the far side of each port — is served compact and code-shaped for the implementing agent, derived from the graph on every read",
+    "provenance": "authored",
+    "status": "planned",
+    "tier": "operational"
+  }
+}

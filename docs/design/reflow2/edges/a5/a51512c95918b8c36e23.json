@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:97acb89f1b9db9e290e57383a43675a9cf4bf0cd5f6beb98629fe0f404496d3f",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-wall-check-is-served",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:adopt-skill"
+}

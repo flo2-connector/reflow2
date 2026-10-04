@@ -1,0 +1,18 @@
+{
+  "content_hash": "sha256:d8764b21286703a8b937be155e2c89a3adaa2062557ac8e15408b1e353f20cff",
+  "node_id": "fact:one-gap-body-is-a-single-line-where-its-neighbours-carry-the-routing-and-it-fires-once-per-capability-on-a-young-design",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "confidence": 0.8,
+    "fact_type": "finding",
+    "name": "One gap body is a single line where its neighbours carry a paragraph of routing, and it is the one that fires once per capability on a young design",
+    "source": "flo2 reflow2_feedback.md, session of 2026-09-19 (evening)",
+    "statement": "FLO2 F20, filed as a quality observation rather than a blocker, and it is the best evidence in the file for why flo2 owns no table of verbs. Probing three gap sources on flo2's graph: `closure_criterion_undeclared` and `unallocated_component` each answer with a paragraph that routes to WHO can answer and says whether the thing is even a defect — 'Closure is a report, not a gate'; 'Allocating without asking silently picks performance'. The reporter: 'the routing is already in your text, and it already differs by who can answer.'\n\n`unrealized_capability` answers with one line entire: \"'Generate a document from the design' has no artifact realizing it — what actually gets built for it?\"\n\nWHY THE ODD ONE OUT MATTERS MOST on the designs flo2 exists to serve: a weekend design three days old has nothing built, so this source fires once per capability — MEASURED at 17 times on flo2's own graph — each phrased as a thing to answer, with no hint that 'nothing built yet' may simply be where the project IS. A person reads seventeen of those as seventeen defects. The neighbouring aggregate finding ('Design laid out, but nothing built yet') states the phase correctly and this one does not inherit it.\n\nThe reporter's own bound: not a blocker, possibly deliberate, and worth one sentence in the body saying planned work is a normal state for a young design.",
+    "steps": [
+      "gap_to_prompt"
+    ],
+    "subject_id": "cap:gap-carries-a-reading",
+    "valid_from": "2026-09-19"
+  }
+}

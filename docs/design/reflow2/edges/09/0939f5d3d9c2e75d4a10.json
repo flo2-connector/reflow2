@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:4e0c9af65aa49936fd38598b74c3ea3db406bfd1c7e72dfe47d08fc9f49ab0a7",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:check-command-surface",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:check-command-surface"
+}

@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:93c1498fdd2d700704aa934bfbdc34e390ab5a6ff36c0c86447cabca41e5ea61",
+  "node_id": "art:check-verification-ratchet",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "description": "The CI gate: reads the committed export, fails when a capability NEWLY claims a passing check nothing implements, grandfathering the 220 named on the ruling. Exits 2 on every way of not knowing.",
+    "location": "tools/check_verification_ratchet.py",
+    "name": "tools/check_verification_ratchet.py",
+    "status": "realized"
+  }
+}

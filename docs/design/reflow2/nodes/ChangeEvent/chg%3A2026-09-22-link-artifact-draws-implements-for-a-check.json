@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:156d06448d557260db39228866fd6fdfb62773da7a51678517c13672b49cd40c",
+  "node_id": "chg:2026-09-22-link-artifact-draws-implements-for-a-check",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "defect_fix",
+    "name": "link_artifact draws IMPLEMENTS when the target is a Verification, and the 46 REALIZES links it had drawn in error are migrated",
+    "repair": "corrected_cause",
+    "subject": "system"
+  }
+}

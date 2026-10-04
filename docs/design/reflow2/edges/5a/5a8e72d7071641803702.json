@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:85e56381a7e99171fb86bb89fb3a1b8f6f439c3c1234902da513e439c572a250",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:test-test-run-to-files",
+  "properties": {
+    "covers": "whole"
+  },
+  "to_id": "ver:a-test-run-becomes-per-file-outcomes"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:7289a27d30dd861f9b52b24edf4cafae658053b0af645b3b4aa97bdadfb322a6",
+  "edge_type": "REALIZES",
+  "from_id": "art:test-init",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:init-asks-which-harness"
+}

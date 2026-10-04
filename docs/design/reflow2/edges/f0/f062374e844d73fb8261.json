@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:b750ab4ebd8c423d304381d8715303754ab4ef20a9b80ab70390d841b79df1a4",
+  "edge_type": "ANTICIPATES",
+  "from_id": "fact:a-worktree-fix-recorded-its-design-changes-in-the-live-store-and-the-branch-gate-failed-2026-09-22",
+  "properties": {
+    "evidence": "That finding named the missing distinction ('two kinds of design write') on the trial's first CI failure; this idea is the design change it pointed at."
+  },
+  "to_id": "dec:idea-the-design-gets-a-branch-dimension-for-implementation-facts"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:07e0ce1c88e3c1d71eb6f0b2d6a9212071d685d29f848c314b8e22610c16e4f5",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-suppressed-finding-is-counted-rather-than-silenced",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:proposed-asserts-nothing-test"
+}

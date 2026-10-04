@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:57689caebedd7b5b3265cec2074f18c0851ae5e02083900f42673c24f2098beb",
+  "node_id": "question:b8af9d16871259e9",
+  "node_type": "Question",
+  "properties": {
+    "answer": "Committed in the git repo. The bytes travel exactly as the design does — clone and you have everything, nothing to configure, nothing to be down. Accepting repo weight, and that git handles binary churn poorly, as the cost. (Anthony, 2026-07-31.)",
+    "asked_at": "2026-07-31",
+    "context_setter": "Nothing satisfies requirement “A pointer resolves for everyone holding the design, not only for the machine that wrote it”",
+    "gap_id": "gap:b8af9d16871259e9",
+    "question": "If you and your brother are both working on the same design from different machines, the diagrams and notes need to open for both of you — or clearly say they are missing. Should they travel in the git repository alongside the design, or be kept somewhere separate that each person sets up?",
+    "rephrase_degraded": false,
+    "status": "withdrawn"
+  }
+}

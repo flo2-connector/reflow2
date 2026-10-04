@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:e71eb8d253f63cf8f31a0b8ed6536ea8351517546490a488fcf77ebb30936a53",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-write-replies-with-a-receipt",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:service"
+}

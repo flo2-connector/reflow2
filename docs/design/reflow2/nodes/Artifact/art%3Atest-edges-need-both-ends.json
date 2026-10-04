@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:5b735ceeeb54776c71ed9300b9acf0e81f68bcda6286b3594e2631982eaa0271",
+  "node_id": "art:test-edges-need-both-ends",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "granularity": "atomic",
+    "location": "crates/reflow2-core/tests/edges_need_both_ends.rs",
+    "name": "edges_need_both_ends.rs",
+    "status": "realized",
+    "volatility": "stable"
+  }
+}

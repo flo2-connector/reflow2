@@ -1,0 +1,17 @@
+{
+  "content_hash": "sha256:f1d1919fa912829a306784164114c779d03b188734f1d74fb0dd168cb237d570",
+  "node_id": "ver:a-closure-criterion-is-declared-on-the-served-surface",
+  "node_type": "Verification",
+  "properties": {
+    "description": "crates/reflow2-mcp/tests/a_closure_criterion_is_declared_on_the_served_surface.rs — three cases; reach is the point, since a report the core computes and no tool serves is the class the vocabulary-reach requirement exists to end.",
+    "findings": "closure2 run: 3 passed, 0 failed.",
+    "kind": "verification",
+    "last_reconciled_at": "2026-09-23",
+    "last_reconciled_outcome": "passed",
+    "last_run_at": "2026-09-17",
+    "level": "integration",
+    "method": "test",
+    "name": "The served surface declares what closure means and reads whether the design closes: set_closure_criterion, closure_report, and margin on add_constraint, driven through the JSON request shapes",
+    "status": "passing"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:31ee59d679b3d0fd8935d975bf8d9448bf909ae1e4fdc8326fb5c69bbb9984ce",
+  "edge_type": "CAUSES",
+  "from_id": "fact:a-skill-is-loaded-only-when-something-already-in-hand-demands-it",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "That fact is the measured root cause this idea answers: 'No reflow2 tool makes any reflow2 skill a precondition of itself', with one counter-example where a NON-reflow2 tool (Artifact) demanded a skill and the skill was duly loaded. Building governance into the tool is the shape that measurement points at, so the finding produced the idea rather than merely resembling it.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "dec:idea-governance-rides-the-tool-that-does-the-thing"
+}

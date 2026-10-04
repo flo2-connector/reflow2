@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:3d9a8b6a49adbfce84ed5243d80f0166e21dab75bf0f4d0c30c40e31593ea550",
+  "node_id": "epoch:v0370",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "epoch_type": "release_cut",
+    "name": "v0.37.0 cut — re-decomposition becomes an operation, model work can be reported delivered, and a sweep says what it could not have found",
+    "sequence": 371,
+    "status": "arrived"
+  }
+}

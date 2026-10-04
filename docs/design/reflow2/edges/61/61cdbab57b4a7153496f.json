@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:669e4d1720844f080c6d580580b977aa4a174cdfa7acfe57288486c419bd88f4",
+  "edge_type": "CAUSES",
+  "from_id": "art:hxm-program-feedback-2026-09-28",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "The root-cause pass on this document's 2026-09-11 addendum (the served version moved on a reconnect and nothing said so): a newer binary computes the prior version at open and on re-election, prints it only to stderr, and served_by carries only the behind-the-record case.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:root-cause-an-upgrade-under-a-session-is-known-at-open-and-said-only-to-stderr-2026-09-28"
+}

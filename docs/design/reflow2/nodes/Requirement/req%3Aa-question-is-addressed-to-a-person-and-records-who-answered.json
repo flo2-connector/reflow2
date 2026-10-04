@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:02e499c0738d6faf3cab7f9f0ef4bd3d53e9b36aabfecc3ad21c082bf002a111",
+  "node_id": "req:a-question-is-addressed-to-a-person-and-records-who-answered",
+  "node_type": "Requirement",
+  "properties": {
+    "kind": "functional",
+    "lineage": "original",
+    "name": "A question is put to a named person, travels to them as a batch, and records who answered it, in one call",
+    "priority": "high",
+    "provenance": "authored",
+    "source": "Anthony, 2026-09-29, in the dev_reflow2 hub session, relayed by the hub agent: \"Fix all the root causes and go with the 7 ideas you'd promote\". This is idea 2, dec:idea-a-question-is-addressed-to-a-person-and-travels-as-a-batch-with-its-evidence, from the triage of art:dev-reflow2-two-agent-exercise-feedback-2026-09-29.",
+    "statement": "A Question records WHOM it was put to and WHO answered. answer_question takes the answerer and draws ANSWERS in the same call. A person's open questions can be read, and sent to them, as one batch, with the evidence each question rests on attached as links. So an owner who is not in the chat, whether a person or an agent standing in for one, can be reached, and their answer is attributed.\n\nCounter-argument kept: evidence the recommender attaches is curated. The owner in the exercise won by reading sources the designer had not picked, so the batch links to evidence and does not replace the owner's own reading.\n\nFound by the two-agent exercise (I25, I29, I28): the hub carried every batch by hand, the designer kept its question map in a scratch file, and answering took two calls.",
+    "status": "accepted"
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:124f53d760ee614f4713a842996ba5d7f483a88aae22050543b2ceb73c990934",
+  "edge_type": "ABOUT_ENTITY",
+  "from_id": "fact:defect-change-event-has-no-type-for-a-field-reported-defect",
+  "properties": {},
+  "to_id": "cap:loop-status"
+}

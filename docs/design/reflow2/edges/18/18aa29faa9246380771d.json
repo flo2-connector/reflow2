@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:affc973cb5552a118e6d0b0cb1a5ac7f9fd7f1ba3076f9fdc36fc6f535d4a6b1",
+  "edge_type": "CHANGED",
+  "from_id": "chg:dependency-names-its-design",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:service"
+}

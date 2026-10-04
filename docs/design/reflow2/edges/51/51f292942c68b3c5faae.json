@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:780dc99a57bd22fbfae2d3eb95fc4759f95ef60760df2b4313a755ec4fa48ae7",
+  "edge_type": "CHANGED",
+  "from_id": "chg:confirmation-vocabulary",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:service"
+}

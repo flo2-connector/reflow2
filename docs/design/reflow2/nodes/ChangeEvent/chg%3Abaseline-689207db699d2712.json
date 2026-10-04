@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:27168268b273cfba3280d319cc84abf9e50ece40e31845a9e09b461cff59481e",
+  "node_id": "chg:baseline-689207db699d2712",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "baseline_established",
+    "name": "First baseline for the rendered doc. A future content change means the render was re-run — which is precisely the diff-churn caveat the page states about itself, so drift here will need reading as \"re-rendered\", not as \"the design moved\"."
+  }
+}

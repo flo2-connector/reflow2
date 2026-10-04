@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:65bd85beb3de3c7f36b0f3af64c1cddcc0e10f63efa250afed69f8154240dc91",
+  "node_id": "ver:launch-serves-release",
+  "node_type": "Verification",
+  "properties": {
+    "description": "`tools/launch_serves_release.py`, a CI gate in the core-gates job, plus the four behavioural paths exercised by hand on the way in.\n\nTHE GATE READS THE SCRIPT: the profile it defaults to is release; the release arm runs no cargo; the release arm compares the source hash against the binary's stamp, so staleness cannot go silent; and the refusal names tools/reflow2-rebuild.sh rather than merely failing.\n\nWHAT IT CANNOT SEE, stated on the gate itself: it reads the script, never a running session. Whether the binary on a given box is current is a different question, answered by the wrapper's own banner and by `graph_report`'s `served_by.stale`. This gate passes on a machine whose release binary is a month old.\n\nTHE GATE WAS SHOWN TO FAIL, which is the part that makes it evidence: two mutations of the real script — the default flipped to debug, and the staleness comparison disabled — were each rejected with the specific reason. A check that has never been seen to fail is the NEW-01 shape on this project's own record, where a unit test called a helper as a pure function and passed every day while the wiring it stood for had been dead since v0.51.0.",
+    "findings": "Gate passes on the merged script and fails on both injected regressions. Four paths exercised live against the real wrapper: REFLOW2_PROFILE=bogus refused with the legal values; a missing release binary refused with the rebuild command and the debug escape hatch; a release binary older than source served the server behind an unconditional banner naming both hashes; REFLOW2_PROFILE=debug rebuilt-or-skipped exactly as before. Then tools/reflow2-rebuild.sh --force rebuilt the binary in 7m28s warm (RocksDB already compiled; the ~34-minute figure is the cold case) and the launcher went from the banner to \"release binary current (source hash 11ddf2b49894)\".",
+    "kind": "verification",
+    "last_run_at": "2026-09-12",
+    "level": "integration",
+    "method": "test",
+    "name": "The launcher serves a release binary, builds nothing there, and says so when stale",
+    "status": "passing"
+  }
+}

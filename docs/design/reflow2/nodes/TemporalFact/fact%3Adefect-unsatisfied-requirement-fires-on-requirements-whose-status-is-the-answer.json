@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:1a5b35609bd0b3e42d7392cea68bb9e704a2c2772239b92be5397abfdb0cba11",
+  "node_id": "fact:defect-unsatisfied-requirement-fires-on-requirements-whose-status-is-the-answer",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "confidence": 1.0,
+    "fact_type": "defect",
+    "statement": "`unsatisfied_requirement` ASKS A QUESTION THE REQUIREMENT'S OWN STATUS HAS ALREADY ANSWERED. Reported by dev_storyflow 2026-08-23, measured over the whole class rather than sampled.\n\nTHEIR NUMBERS: of 28 open `unsatisfied_requirement` gaps — 14 `accepted`, 8 `deferred`, 6 `proposed`. The gap text reads 'has no capability delivering it — is it COVERED, DEFERRED, or DROPPED?' and eight of the twenty-eight are already marked deferred. THE STATUS IS THE ANSWER, and the design asks anyway. A 29% noise rate on this one class.\n\nWHY IT COSTS MORE THAN EIGHT ROWS, in their framing: the headline number — '392 gaps never put to the user' — is what makes a backlog feel unworkable, and it is inflated by classes nobody should be asked about. 118 more are the parked possible-duplicate class. They cite `acknowledge_gap`'s own description back at the project: A LIST THAT CAN NEVER REACH ZERO GETS SKIMMED.\n\n⭐ THEY EXPLICITLY DO NOT CLAIM THE SIX `proposed` ONES AS NOISE — 'asking early about a requirement nobody has accepted is defensible' — and counted them only so the split is visible. That restraint is why the 8 is worth acting on: it is a measured subset, not a complaint about the detector.\n\nCONFIRMED 2026-09-04: the detector reports `status=` in its own message (detect.rs, the unsatisfied-requirement arm formats 'status={status} priority={priority}') and does not gate on it. So the status is READ, PRINTED, and NOT ACTED ON — which is the same shape as the `discontinued` finding beside this one.\n\nTHEIR SUGGESTION, offered as an either/or rather than a demand: a deferred or dropped requirement should not generate this gap at all, OR should generate a visibly different one ('this is parked; still parked?').\n\nNOT ESTABLISHED: whether reflow2's own graph shows the same ratio — their 28/14/8/6 is measured on the dev_storyflow design only, and the equivalent count here has not been taken.",
+    "subject_id": "art:dev-storyflow-feedback-2026-09-04",
+    "valid_from": "2026-09-04",
+    "value": "{\"reported_by\":\"dev_storyflow, 2026-08-23, second entry\",\"measured\":\"28 open gaps: 14 accepted, 8 deferred, 6 proposed\",\"noise_rate\":\"29% on this class\",\"context\":\"392 gaps never put to the user; 118 more are the parked duplicate class\",\"confirmed\":\"detector formats status into its message and does not gate on it\"}"
+  }
+}

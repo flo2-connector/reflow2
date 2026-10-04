@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:29ac2c6104e5ba0c83099a89b01301494562e9c30867fb798148139bb32f4399",
+  "edge_type": "MITIGATES",
+  "from_id": "dec:idea-the-requirement-tiers-exist-and-nothing-reads-them",
+  "properties": {
+    "evidence": "The derived tier is the substrate that would make a fork safe. The schema already says a derived requirement loses its reason to exist when its governing Decision is re-opened — which is precisely 'what does this fork retire?', the question that makes reversing a settled choice tractable instead of destructive. Nothing computes it today, and lineage is 0% populated, so the fork currently has no way to answer it."
+  },
+  "to_id": "fact:the-fork-ask-is-a-deferred-branch-whose-reopening-condition-is-now-met"
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:c2c50f9d84e6bef42a96b1167f76df2a9722c9fe932c3ac41fa3a1ca4be55988",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:test-a-question-names-whom-it-was-put-to",
+  "properties": {
+    "covers": "whole"
+  },
+  "to_id": "ver:a-question-is-put-to-a-person-and-records-who-answered"
+}

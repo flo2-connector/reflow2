@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:f71d36bc34c939fc31769582dd1fb37865bd269924a6ffa8fcc4beaa2ca4723e",
+  "node_id": "rule:an-identified-issue-is-enduring-never-dropped",
+  "node_type": "DesignRule",
+  "properties": {
+    "category": "practice",
+    "enforced": false,
+    "name": "An identified issue is enduring — a finding is never 'not mine to fix here'",
+    "statement": "Anthony, 2026-08-20, correcting this agent: \"I don't like when something is identified and dropped/forgotten. If it is identified as a gap/issue in the graph, that means it is enduring and we'll eventually come around to fixing it.\"\n\nWHAT HE WAS CORRECTING: the sentence \"which are a different defect and not mine to fix here\", written about two level_spine_disagreement findings. The scoping was true — they were out of that PR — but the wording reads as dismissal, and dismissal is how a real finding leaves the record.\n\nWHAT THE RULE DEMANDS. Name which PR or increment something is out of scope FOR, never whether it matters. And before moving on, make sure it is either (a) a durable node, (b) an asked Question with somebody's name on it, or (c) a computed finding that will fire again — never only a sentence in a conversation.\n\nWHY HE IS RIGHT ON THE MECHANICS TOO, checked rather than assumed: gaps ARE durable. gap:4e24a202aa6f1737 carried the same id morning and afternoon, because a gap is recomputed from the condition and disappears only when the condition is fixed. So the record already endures; what does not endure is anyone's attention to it.\n\nWARNING — THE FAILURE IT GUARDS IS NOT FORGETTING, IT IS SKIMMING. This design carried 89 open gaps of which 85 had never been put to anybody. That list endured perfectly and was useless. Two were surfaced and answered only because he said this out loud. A durable finding nobody reads is indistinguishable from a lost one, which is why the remedy is to ASK rather than merely to record — and why scheduling the resolution of a gap into an increment was built the following day.\n\nDELIBERATELY ADVISORY, not gate-blocking: no computation can tell a scoping sentence from a dismissal, so a check here would fire on correct behaviour. Its power is `enforced: false` until somebody states otherwise, per dec:enforced-is-stated-not-defaulted."
+  }
+}

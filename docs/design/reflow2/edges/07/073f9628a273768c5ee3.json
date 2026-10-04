@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:94b15a9b2ba8c0544e639d472a554dbf0d491e3e733ed4a068a5c512eb94f20d",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-read-of-a-held-design-is-as-true-as-the-live-one",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:test-one-tool-declares-its-output-contract"
+}

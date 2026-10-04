@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:832be9d980885795c7ac30cbcdad358df57870f4ebfa8538a893a72305a5a354",
+  "node_id": "ver:key-interfaces",
+  "node_type": "Verification",
+  "properties": {
+    "kind": "verification",
+    "last_run_at": "2026-07-25",
+    "level": "integration",
+    "method": "test",
+    "name": "Published boundaries: internal until designated, a crossing is named, an internal change crosses nothing, standing on a boundary is not crossing it, withdrawal removes it — and the depth-bound bug that reported an unreached boundary (tests/key_interfaces.rs, 8 cases)",
+    "status": "passing"
+  }
+}

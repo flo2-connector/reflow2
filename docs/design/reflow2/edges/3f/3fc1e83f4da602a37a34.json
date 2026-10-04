@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:f29653b88e285ab75b9d3d54823109a6141b4d1169198431cd68643352de6f66",
+  "edge_type": "CHANGED",
+  "from_id": "ce:unallocated-component-detector-2026-08-25",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "cap:unallocated-component-detector"
+}

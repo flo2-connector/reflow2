@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:92f9ecb41116bac847ba81eb7c56531fe4e9da7d6825ca336ac7436058e9b3fd",
+  "node_id": "cmp:tools-coherence",
+  "node_type": "Component",
+  "properties": {
+    "kind": "module",
+    "level": "component",
+    "name": "coherence",
+    "provenance": "authored",
+    "purpose": "The COHERENCE slice of the served surface, 31 tools: the loop itself — what is owed, what is missing, what a change would touch. detect_gaps, loop_status, what_next, propagate_change, detect_defects, vocabulary_coverage.",
+    "status": "planned",
+    "tier": "operational"
+  }
+}

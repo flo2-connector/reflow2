@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:4d4430f9f62f33e399ab2a9d9c52e3e9a9d00fd18203ca5bcc0f7042ed1fd89e",
+  "edge_type": "CHANGED",
+  "from_id": "ce:subsystem-split-2026-08-25",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "sub:telling"
+}

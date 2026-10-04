@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:ded52ed1002c76bbacb1af418b2a1895fa402e47eb171c494b9fa1fef50c0d4d",
+  "edge_type": "INVALIDATES",
+  "from_id": "chg:the-reachability-gate-reads-tools-not-names",
+  "properties": {
+    "at": "2026-09-20",
+    "note": "The pool is removed, every write tool is placed, an unplaceable one stops the gate, and both properties flo2 named now have parameters. The finding stands as the measurement."
+  },
+  "to_id": "fact:the-reachability-gate-pools-54-tools-parameter-names-into-every-type-so-it-reported-zero-holes-while-two-properties-had-no-writer"
+}

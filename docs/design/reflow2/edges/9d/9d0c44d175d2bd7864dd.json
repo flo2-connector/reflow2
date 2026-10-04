@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:0a92908f2aa5d41160627b7078e8bdad7c221104b9ce7b53c44908cb96173be4",
+  "edge_type": "SCHEDULED_FOR",
+  "from_id": "req:ci-checks-the-code-against-its-design-on-the-server",
+  "properties": {
+    "modality": "expected",
+    "recorded_at": "2026-09-27"
+  },
+  "to_id": "epoch:planned-ci-asks-the-blueprint"
+}

@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:b05b6ff1b5fed02abf7e24821c2f018bfffe4fd59d6dd048512d49bd17e02589",
+  "edge_type": "VERIFIES",
+  "from_id": "ver:every-settling-call-declares-what-settles-it",
+  "properties": {},
+  "to_id": "cap:an-acknowledgement-says-whose-judgement-it-was"
+}

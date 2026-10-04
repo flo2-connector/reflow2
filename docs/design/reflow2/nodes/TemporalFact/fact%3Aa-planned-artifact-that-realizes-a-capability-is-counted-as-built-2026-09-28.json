@@ -1,0 +1,18 @@
+{
+  "content_hash": "sha256:ae29b62831519b0a686a2abde1cac1317eed566585417f71b57348791b22afe3",
+  "node_id": "fact:a-planned-artifact-that-realizes-a-capability-is-counted-as-built-2026-09-28",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "finding",
+    "name": "An Artifact registered with status PLANNED that REALIZES a capability is counted as BUILT: loop_status reported 7 \"built\" capabilities never checked, and the unrealized gaps turned into unverified ones — the status the 09-16 fix made writable is not read where \"built\" is decided",
+    "source": "graph-primitives design on flo2, loop_status and detect_gaps before and after, 2026-09-28",
+    "statement": "OBSERVED 2026-09-28 in the graph-primitives design (flo2-hosted, reflow2 0.74.0), in a dev_reflow2 hub session closing gaps. Seven planned capabilities raised unrealized_capability. Four Artifacts were registered with add_artifact status: planned (name, description and location all saying \"planned, not yet written\") and linked with realizes to the seven. Then:\n· loop_status: unexamined_claims 7, next \"7 built capability(ies) never checked against reality (reconcile_artifacts)\".\n· detect_gaps: the seven unrealized_capability gaps disappeared and seven unverified_capability gaps appeared in their place.\nDeleting the four Artifacts (and so the REALIZES edges) returned unexamined_claims to 0 and the unrealized gaps to the list.\n\nSo the sequel to this fact's fix is open: add_artifact now accepts `status` (absent means nobody said), and a caller can say PLANNED — but the computations that decide a capability is built (the unexamined-claims count, the unrealized/unverified gap pair, and plausibly the maturity 'realization' band, not checked) read the REALIZES edge and not the Artifact's status. A planned file therefore reads as delivered work.\n\nNOT ESTABLISHED: which code paths ignore the status, and whether the maturity band and the delivery line do too — observed through loop_status and detect_gaps only, not traced. Workaround used: the planned locations were written into each capability's description instead of as Artifacts, and the unrealized gaps acknowledged as planned work.",
+    "steps": [
+      "add_artifact",
+      "realizes"
+    ],
+    "subject_id": "fact:root-cause-add-artifact-materialises-realized-because-the-affirmative-default-was-outside-the-2026-07-28-sweep-and-the-constructor-has-no-status",
+    "valid_from": "2026-09-28"
+  }
+}

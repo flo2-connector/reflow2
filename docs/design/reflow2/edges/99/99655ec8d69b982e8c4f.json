@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:96c8581eba3114da5af2dc9fee08329b3371f59366d4f8d59bc63a3367cd8021",
+  "edge_type": "INVALIDATES",
+  "from_id": "chg:add-artifact-takes-the-first-checksum",
+  "properties": {
+    "at": "2026-09-15",
+    "note": "Half (1) is fixed: add_artifact takes `checksum` and stores it as the first baseline, refusing to move one that exists. Half (2), delete_edge refusing endpoint types, stands as built on the record's own judgement that the refusal is defensible; the friction it names — a rejected field not saying whether it moved or was never there — is the open wish dec:idea-a-rejected-field-says-whether-it-moved-or-was-never-there, not this record."
+  },
+  "to_id": "fact:defect-two-more-constructor-shape-frictions-met-while-working-add-artifact-cannot-set-a-checksum-and-delete-edge-refuses-the-types-create-edge-requires"
+}

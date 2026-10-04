@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:afbcf4d1d38ed2801009c13ae08666dd256a6e830703b681672315207c867b18",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:a-tied-merge-breaks-by-degree-not-by-alphabet",
+  "properties": {
+    "authored_at": "2026-08-10",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

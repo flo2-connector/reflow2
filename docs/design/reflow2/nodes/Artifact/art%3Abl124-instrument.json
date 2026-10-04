@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:79a00563801fa43c11238050a0d2d20baf09102fd90f20259e42299cd35eeaa7",
+  "node_id": "art:bl124-instrument",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "granularity": "atomic",
+    "location": "tools/bl124_instrument.py",
+    "name": "bl124_instrument.py",
+    "status": "realized",
+    "volatility": "stable"
+  }
+}

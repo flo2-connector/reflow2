@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:660eac1fd3d9f658158a4c5a1295efc6bc9904acc397133bd63eeab08d99e9bb",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:drift",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:drift"
+}

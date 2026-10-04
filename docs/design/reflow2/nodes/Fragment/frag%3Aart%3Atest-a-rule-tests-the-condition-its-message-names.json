@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:627ac40f09c56aaeb920f09f2cb13773fedd90883ac907acdfba8913fa974a47",
+  "node_id": "frag:art:test-a-rule-tests-the-condition-its-message-names",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered a_rule_tests_the_condition_its_message_names.rs"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:75eaa41b84af17f5a001f93226df903a9464cdd7e765a0adbf2bf2b14b5240b3",
+  "node_id": "epoch:the-key-is-renamed-and-the-sweep-says-what-it-swept",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "epoch_type": "revision",
+    "name": "Fixed properly rather than patched — the misnamed category is renamed and the unscoped sweep returns what it examined",
+    "sequence": 349,
+    "status": "arrived"
+  }
+}

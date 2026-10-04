@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:21f3cb36da86c63d06176ee37f52e96403288162fc1a20200f6bb03dfe11e737",
+  "edge_type": "CHANGED",
+  "from_id": "chg:bl57-tool-boundary-honesty",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:service"
+}

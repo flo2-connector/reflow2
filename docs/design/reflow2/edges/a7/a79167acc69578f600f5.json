@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:692e77e379d744fb7f28a67c984a17a6955eac30e16027115629a9fa92b37bbb",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:reconcile-built",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:drift"
+}

@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:43afdc6fca870073986b92155f1033a871bc9e365d576ac3fa7237c0e3fc40bf",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:graph-theory-undergirds-the-design-brain",
+  "properties": {
+    "approved_at": "2026-08-24",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

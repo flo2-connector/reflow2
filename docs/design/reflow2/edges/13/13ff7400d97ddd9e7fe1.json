@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:329a083bebc758c06d461eac7866b840a6c6a586a71b164e1d2d627800b3491d",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "drift:2df9aeb2250d9b16",
+  "properties": {
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "art:vocabulary"
+}

@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:08d089be57aac455947ecacbdab69925250b1ec7b79d7c733d542ff8c616b9ea",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:a-published-contract-says-what-two-systems-must-agree-on",
+  "properties": {},
+  "to_id": "req:interface-spec-complete"
+}

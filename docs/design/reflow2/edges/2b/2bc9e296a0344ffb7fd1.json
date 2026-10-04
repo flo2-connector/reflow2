@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:256b00457cfe5fe49ce3c79257d9da2b69bcda185be267e98f2e3fe97414a0e9",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:test-edge-prose-is-governed-like-node-prose",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:test-edge-prose-is-governed-like-node-prose"
+}

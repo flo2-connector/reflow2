@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:48e77cc76c0521c329167faaa1f49944a64b49504ca479730272c5f12462b47a",
+  "node_id": "question:3f04e352bc497c5b",
+  "node_type": "Question",
+  "properties": {
+    "answer": "A new requirement, mirroring KPPs: a rule the project follows is recorded with its consequence stated, and a violation is computed rather than remembered. Not req:defaults-do-not-assert — that covers ten properties and this addresses one.",
+    "context_setter": "Nothing asked for capability “A rule the project follows is captured with its consequence stated, not inherited from a default”",
+    "gap_id": "gap:3f04e352bc497c5b",
+    "question": "The skill that asks you what breaking a project rule should cost is built and shipping, but nothing in the design says why it was needed — so what was the need it answers: that a rule's power over the build should never be inherited from a setting nobody chose, or that a rule the project follows should be written down with its consequence and a way to catch violations, the way you already require for intent that must hold no matter what?",
+    "rephrase_degraded": false,
+    "status": "answered"
+  }
+}

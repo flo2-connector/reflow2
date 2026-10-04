@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:fd60cbff3a665f69c2cbf1dc4fa9bf5a179902726ba595b566a02da4e048a3ef",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:multi-writer-architecture",
+  "properties": {
+    "approved_at": "2026-09-27",
+    "authored_at": "2026-07-25",
+    "roles": [
+      "author",
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

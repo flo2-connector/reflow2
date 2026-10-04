@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:f7c1bf134cfc77a462b16e8222eee04d8c2229a1a2bfbd235f98062090fdfdfb",
+  "edge_type": "CAUSES",
+  "from_id": "fact:a-revising-write-that-shrinks-a-field-reports-nothing-and-two-load-bearing-paragraphs-were-lost",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "The two silent losses are what this reports.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "chg:a-revising-write-says-what-it-removed"
+}

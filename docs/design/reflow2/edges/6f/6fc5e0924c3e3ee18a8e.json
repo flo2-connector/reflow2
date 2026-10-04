@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:5462e510275d3bba1336d742bf78c6677bfc84bad9c8ba64a3d61d958e2e8bab",
+  "edge_type": "CONTRADICTS",
+  "from_id": "dec:idea-should-the-export-be-compressed-or-committed-less-often",
+  "properties": {
+    "alignment": "opposing",
+    "evidence": "Option D — commit the export less often — cannot hold at the same time as a rule requiring exactly one exporting commit per PR as the reviewable record of that PR. Both cannot be true as stated, and the measurement is what makes the tension real: 550 revisions at 664 KB each is 357 MB of the 539 MB repository, and the rule is what produces the 550. Recorded so whichever is chosen has to face the other rather than quietly winning."
+  },
+  "to_id": "dec:export-once-per-pr"
+}

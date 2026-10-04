@@ -1,0 +1,17 @@
+{
+  "content_hash": "sha256:2cc7c655066f721860823d7e1798034eda3462fc1eba63f0da5249b7f175b4fa",
+  "node_id": "req:what-changed-since-i-looked-and-by-whom",
+  "node_type": "Requirement",
+  "properties": {
+    "concern": "core",
+    "designation": "internal",
+    "kind": "functional",
+    "lineage": "original",
+    "name": "A returning session can ask what happened while it was gone",
+    "priority": "medium",
+    "provenance": "authored",
+    "rationale": "SESSIONS TODAY DETECT THAT THE GRAPH MOVED BY RE-RUNNING A ROLLUP AND SEEING A DIFFERENT NUMBER — the reporter calls this the worst possible detector, and the record bears it out: a worker checking in reported gaps 55->69 and defects 12->26 between two check-ins hours apart and, correctly, COULD NAME NO CAUSE. WHY IT IS ACUTE RATHER THAN CONVENIENT, and this is the part that generalises past their fleet: their sessions are EPHEMERAL BY DESIGN — they die on context exhaustion constantly and are replaced by a fresh seat that cold-starts from files. A returning seat's FIRST REAL QUESTION is 'what happened while I was gone', and there is no way to ask it. This sits directly under their stated primary use of reflow2, which is not design capture at all but DURABLE MEMORY ACROSS SESSION DEATH. THE RAW MATERIAL MAY ALREADY BE PRESENT: ChangeEvent exists as a node type and AT_EPOCH/OCCURS_DURING pin events in time; what is missing is the query. Worth checking whether this is a reporting surface over existing data rather than new machinery. RELATED ASKS THAT MAY SHARE A MECHANISM: claim visibility without polling (an overlapping claim never reaches the peer, so claim_report must be polled — the reporter's phrase is 'advisory should still be observable'), and the per-node revision in req:a-node-carries-a-revision. All three are forms of 'tell me what moved'.",
+    "statement": "The graph SHALL answer 'what changed since time T, and by whom' — writes by other seats over an interval — as a query, rather than leaving a session to infer movement by re-running a rollup and noticing a different number. Requested as the #3 fleet ask by dev_storyflow's api-boss 5d608b85, 2026-08-07.",
+    "status": "accepted"
+  }
+}

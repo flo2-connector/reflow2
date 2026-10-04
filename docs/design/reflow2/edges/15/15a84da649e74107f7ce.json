@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:b0378235a4fbc2872521e272553c35d7cce9cf73725d8cee309a3f248a1bc004",
+  "edge_type": "CAUSES",
+  "from_id": "cap:a-build-can-call-one-tool-from-the-shell-and-read-the-reply-as-json",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "As built (#544), call_one_tool's only route to a design is ReflowService::new(&cli.graph_path). On lock contention it chooses between a snapshot (read) and a refusal (write). It never reads <graph>.server.json, the rendezvous that --shared uses to find the holder, so a design held by a shared server is unreachable for writes by construction, and --shared is ignored.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:root-cause-the-door-opens-the-store-itself-and-never-reads-the-shared-servers-rendezvous-2026-10-02"
+}

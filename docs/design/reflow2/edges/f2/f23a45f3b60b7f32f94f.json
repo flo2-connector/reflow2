@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:241b1c683fd56fc0c111dee81ee0dc796c8400d1ebe62ede32640ca3cd9c79f2",
+  "edge_type": "CONTAINS",
+  "from_id": "proj:reflow2",
+  "properties": {},
+  "to_id": "req:a-session-that-reads-and-never-writes-is-seen"
+}

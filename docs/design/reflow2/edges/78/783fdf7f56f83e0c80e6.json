@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:164925fa639c75ce73823c0fd4acc7dfb72404767ff82f46dfd337bf421c473c",
+  "edge_type": "INVALIDATES",
+  "from_id": "fact:the-wall-arrived-and-the-god-struct-did-not-move",
+  "properties": {
+    "at": "2026-08-31",
+    "note": "ITS HEADLINE IS NOW FALSE AND WAS FALSE WITHIN A DAY OF BEING WRITTEN. That fact says \"VERIFIES cannot target an Interface, so no contract in any reflow2 design can carry a check\" and \"Every Interface in every design using reflow2 is unverifiable by construction\". Interface was added to the VERIFIES `to` list on 2026-08-22 — the day after — on Anthony's call, and schema/verify.yaml carries the reasoning in full. Measured 2026-08-31: all THREE published contracts now carry a check, including `ifc:mcp-tools`, the node that fact named as the sharpest instance of the gap.\n\n⚠️ THIS IS THE THIRD STALE FINDING FOUND IN ONE SESSION, and the pattern is now worth more than any of them individually: the parallel-batch finding (overtaken by PR #392 the same day), the optimize decision (asking whether to build a skill that exists and has run twice), and this one (fixed the day after it was written). All three were correct when written, none carried a claim against it, and each was read back as current. `req:the-graph-can-say-what-has-already-been-done` exists because of exactly this and is evidently not yet satisfied by anything.\n\n🛑 WHAT STILL STANDS AND IS NOT CLAIMED HERE: everything the fact says about WHY it mattered. Its argument that a contract is the node MOSA turns on, that \"does this boundary actually hold?\" is the most natural question to ask of a published contract, and its reading of the VERIFIES list as having under-enumerated itself three times — all untouched, and the third instance it predicted is precisely the one that got fixed. Its closing caution that adding Interface \"deserves the same scrutiny in reverse\" was heeded rather than ignored: the schema comment records the decision and its reasoning at length."
+  },
+  "to_id": "fact:a-contract-is-the-one-thing-reflow2-cannot-attach-evidence-to"
+}

@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:c1f8646d5774be445ae51098e2613ff99aecd525530e3381a6c91dd37a3782cf",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:idea-a-hosted-tier-of-many-single-writer-tenants",
+  "properties": {
+    "authored_at": "2026-08-09",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

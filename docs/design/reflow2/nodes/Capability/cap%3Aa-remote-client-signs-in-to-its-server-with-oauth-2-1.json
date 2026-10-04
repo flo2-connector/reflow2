@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:cacec8ce9a202181a053b04c7916b18dc11eb0aff7093586c23fbaedf07184b5",
+  "node_id": "cap:a-remote-client-signs-in-to-its-server-with-oauth-2-1",
+  "node_type": "Capability",
+  "properties": {
+    "description": "The OAuth 2.1 CLIENT role that req:every-oauth-role-reflow2-plays-meets-oauth-2-1-at-a-minimum named as \"LATER\", planned 2026-10-01 on Anthony's word (\"Plan it now\", no code yet).\n\nWHAT IT DOES: `reflow2-mcp setup remote <url>` signs in instead of asking for a pasted key whenever the server says it is a protected resource. The steps:\n- Read the 401's WWW-Authenticate.\n- Find the protected-resource metadata (RFC 9728), then the authorization server's metadata (RFC 8414 / OIDC, issuer checked).\n- Register in the MCP order: pre-registered, then a Client ID Metadata Document, then DCR.\n- Open the system browser at an authorization-code request carrying PKCE S256, state and `resource` (RFC 8707).\n- Take the code on a one-shot loopback listener, check state and `iss` (RFC 9207), and exchange it.\n- Keep the refresh token in the OS keychain beside today's keys.\n`--remote`, the pointer attach and the design watch (upstream.rs) then take a token SOURCE that refreshes before expiry. It retries a 401 once after a refresh, never after a timeout, and steps up scope on 403 insufficient_scope.\n\nWHAT IT DOES NOT CHANGE: personal keys stay supported and keep working exactly as today. Local use (stdio, --shared, loopback) involves no OAuth. reflow2 still issues no tokens.\n\nThe plan, the owner's open choices and the tests to write first are on epoch:planned-reflow2-signs-in-as-an-oauth-client.",
+    "name": "reflow2's remote client signs in to its server with the browser (OAuth 2.1 authorization code + PKCE), and keeps and refreshes the token in the OS keychain",
+    "provenance": "authored",
+    "status": "planned",
+    "tier": "operational"
+  }
+}

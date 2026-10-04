@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:c321aa1d6fe8871763ddb0c0080312832d04846ff3df4c9cff1543ea3ad631f4",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "cap:plan-increments",
+  "properties": {
+    "authored_at": "2026-08-06T12:55:00Z",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

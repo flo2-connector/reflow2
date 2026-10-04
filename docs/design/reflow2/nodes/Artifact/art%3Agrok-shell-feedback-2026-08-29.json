@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:aa994ffcb6d14f054e1b5195edab27a13a811d06ac61666102957375c5072883",
+  "node_id": "art:grok-shell-feedback-2026-08-29",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "document",
+    "location": "docs/feedback/2026-08-29-grok-shell-agent-feedback.md",
+    "name": "Alex's agent-session feedback, 2026-08-29 (grok-shell-reflow2 1.0.13, macOS) — two items: the client forwards only `content` so almost every tool payload is invisible to the model, and the near-duplicate guard matches across node types",
+    "status": "realized"
+  }
+}

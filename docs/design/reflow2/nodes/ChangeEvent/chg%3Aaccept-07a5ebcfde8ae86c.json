@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:7eb07ffccccb71cfdf79f7082329119510abdf46869ee5f6c89d3227b9984edb",
+  "node_id": "chg:accept-07a5ebcfde8ae86c",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "refactor",
+    "detected_at": "2026-09-16",
+    "name": "rmcp 3.4 alias rename (chg:dependencies-to-current-2026-09-15).",
+    "subject": "system"
+  }
+}

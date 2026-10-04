@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:0c03e3b994b60c4aadbd4b4636a75020a61997f6d265b4c6e3c4d257e896e807",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:idea-replace-one-sentence-in-a-field-without-resending-the-field",
+  "properties": {
+    "approved_at": "2026-09-19",
+    "roles": [
+      "author",
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

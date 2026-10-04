@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:dc068a08fe5beeada2adb91485c913173b81b8591057bb7542e444c3bd34384b",
+  "node_id": "fact:manual-work-cdf01b3c712784c5",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "manual_work",
+    "statement": "Scanned every node's text in the committed export for an exact string (a GitHub issue number) to find where the design mentioned that issue. search_design was not tried first, so it is not known whether its keyword search would have found it.",
+    "subject_id": "proj:reflow2",
+    "valid_from": "2026-10-01",
+    "value": "{\"diagnosis\":\"unknown\",\"reflow2_tool\":null}"
+  }
+}

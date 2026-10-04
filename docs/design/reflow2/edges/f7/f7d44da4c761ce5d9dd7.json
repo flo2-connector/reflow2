@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:1a3d2ef8bcf7c560ffc313c3a74c8a70999ddcdc6d16b630c41fcc4c10384eab",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-capture-that-replaces-a-node-says-so",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:the-export-chains-from-main-test"
+}

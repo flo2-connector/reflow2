@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:48b6cede4dacae2b573f1d0cb72ef7b5a9577822b871112dec9f7515c7cb39b1",
+  "node_id": "snap:epoch:surface-export:cap:skills-served",
+  "node_type": "Snapshot",
+  "properties": {
+    "edges": "[{\"direction\":\"in\",\"edge_type\":\"REALIZES\",\"other_type\":\"Artifact\",\"other_id\":\"art:upgrading-v0120\",\"properties\":{\"completeness\":\"complete\"}},{\"direction\":\"in\",\"edge_type\":\"VERIFIES\",\"other_type\":\"Verification\",\"other_id\":\"ver:served-skills\",\"properties\":{}},{\"direction\":\"out\",\"edge_type\":\"ALLOCATED_TO\",\"other_type\":\"Component\",\"other_id\":\"cmp:skills\",\"properties\":{\"weight_basis\":\"estimated\"}},{\"direction\":\"out\",\"edge_type\":\"GOVERNED_BY\",\"other_type\":\"Decision\",\"other_id\":\"dec:skills-served\",\"properties\":{}},{\"direction\":\"out\",\"edge_type\":\"GOVERNED_BY\",\"other_type\":\"Decision\",\"other_id\":\"decision:ack:2a9626b1798c1959\",\"properties\":{}},{\"direction\":\"out\",\"edge_type\":\"SATISFIES\",\"other_type\":\"Requirement\",\"other_id\":\"req:thin-install\",\"properties\":{}}]",
+    "state": "{\"description\":\"Both the fifteen skills and the ~20 KB instruction document are compiled in at build time (build.rs embeds getting-started/), served by list_skills, get_skill and get_instructions, and advertised by a catalogue plus a call-get_instructions-first line in the server instructions — the one channel a client puts in the agent's context unasked. What an install leaves in a project is a 2.4 KB pointer file naming those three tools, the MCP configs, .reflow2/ and a gitignore line; nothing else, and nothing that a later release rewrites. The installer removes the skill copies an older kit left: untouched ones deleted with the reason, edited ones kept and reported as SHADOWING the served skill, because a harness does auto-load those.\",\"is_entry_point\":false,\"is_exit_point\":false,\"name\":\"Serve the skills AND the working instructions from the binary, so a project holds only a pointer\",\"provenance\":\"authored\",\"status\":\"planned\",\"tier\":\"operational\"}",
+    "target_id": "cap:skills-served",
+    "target_type": "Capability"
+  }
+}

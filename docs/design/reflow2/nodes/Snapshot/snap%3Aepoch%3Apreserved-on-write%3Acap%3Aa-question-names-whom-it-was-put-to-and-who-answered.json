@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:e3de06319b3aef338e758ee785e70b8f923efbd542a788b944543a6930556f49",
+  "node_id": "snap:epoch:preserved-on-write:cap:a-question-names-whom-it-was-put-to-and-who-answered",
+  "node_type": "Snapshot",
+  "properties": {
+    "edges": "[{\"direction\":\"in\",\"edge_type\":\"CLAIMS\",\"other_type\":\"Contributor\",\"other_id\":\"who:claude-code\",\"properties\":{\"claimed_at\":\"2026-09-29\",\"depth\":1,\"note\":\"R-H (dev_reflow2 hub fix agent): building idea 2 on branch feat/a-question-is-addressed-and-records-who-answered. A Question records asked_of and answered_by; answer_question takes the answerer and the record and draws ANSWERS in one call; open_questions(asked_of) returns that person's batch with evidence links.\",\"seat\":\"asligar-bitecool:410383:83363336\"}},{\"direction\":\"out\",\"edge_type\":\"ALLOCATED_TO\",\"other_type\":\"Component\",\"other_id\":\"cmp:tools-ask\",\"properties\":{\"weight_basis\":\"estimated\"}},{\"direction\":\"out\",\"edge_type\":\"SATISFIES\",\"other_type\":\"Requirement\",\"other_id\":\"req:a-question-is-addressed-to-a-person-and-records-who-answered\",\"properties\":{}},{\"direction\":\"out\",\"edge_type\":\"SCHEDULED_FOR\",\"other_type\":\"DesignEpoch\",\"other_id\":\"epoch:fix-what-the-two-agent-exercise-found-2026-09-29\",\"properties\":{\"modality\":\"expected\",\"recorded_at\":\"2026-09-29\"}}]",
+    "state": "{\"description\":\"A Question gains an addressee and an answerer. answer_question takes the answerer and the record the answer became, and draws ANSWERS in the same call. A read returns one person's open questions as a batch, each with the evidence it rests on. Planned by the 2026-09-29 fix program.\",\"name\":\"A Question names whom it was put to and who answered; answer_question draws ANSWERS in the same call; a person's open questions read as one batch with evidence links\",\"provenance\":\"authored\",\"status\":\"planned\"}",
+    "target_id": "cap:a-question-names-whom-it-was-put-to-and-who-answered",
+    "target_type": "Capability"
+  }
+}

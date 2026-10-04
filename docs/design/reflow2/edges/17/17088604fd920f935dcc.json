@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:432227f5135e86bbb7fe2c081b1b96beb922ead320111b686d8cd004635afbe7",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:a-flows-entry-and-exit-are-computed-from-its-step-order",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:flow"
+}

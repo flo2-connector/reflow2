@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:675c336a408deb05f1487ef07851f41cd43fecb6f8915eef674d538f1ec7d108",
+  "node_id": "ver:a-unit-crosses-a-seam-and-the-two-sides-are-compared",
+  "node_type": "Verification",
+  "properties": {
+    "description": "crates/reflow2-core/tests/a_unit_crosses_a_seam_and_the_two_sides_are_compared.rs — five cases over the tenth axis, compared quantity by quantity.",
+    "kind": "verification",
+    "last_reconciled_at": "2026-09-23",
+    "last_reconciled_outcome": "passed",
+    "last_run_at": "2026-09-16",
+    "name": "The Mars Climate Orbiter seam is an incompatibility; the same unit both sides is agreement; a silent side and a quantity only one side names are unstated, never agreed; `none` on both sides is an answer",
+    "status": "passing"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:74190313a03e2de2bedd20c04a6b29c946666d2ffe127218cf076161d3845768",
+  "node_id": "frag:art:git-anchor",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered git.rs"
+  }
+}

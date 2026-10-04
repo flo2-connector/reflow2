@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:173045cab4950626ce87c5efa39745ffab85e2321943420af7057b9664c9f642",
+  "node_id": "decision:ack:heal:d6d4f53469211481",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Accepted the structural defect heal:d6d4f53469211481.",
+    "name": "Reviewed: heal:d6d4f53469211481",
+    "rationale": "Accepted and deliberate, re-recorded because adding cmp:skills changed the shape and expired the previous acceptance. ifc:mcp-tools IS reflow2's single front door: one MCP surface over one core is the architecture (dec:one-surface), and \"add redundancy\" would mean a second way to reach the same graph — more surface, more drift, no benefit. The honest mitigation already exists: the degraded server means losing that door tells you why rather than looking like reflow2 was never installed.",
+    "status": "accepted"
+  }
+}

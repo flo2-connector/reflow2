@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:eab367fe2f4dd97dce911754af6842e407357030e36919e48d155ce8e4aa1f26",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-how-does-a-testing-standard-arrive-without-a-day-one-cliff",
+  "properties": {
+    "evidence": "The size of the cliff is set by where the bar lands: at 'executable form' the baseline is 282, at 'any recorded check' it is 47, and those are different delivery problems.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "dec:idea-what-must-a-check-be-before-the-design-counts-it"
+}

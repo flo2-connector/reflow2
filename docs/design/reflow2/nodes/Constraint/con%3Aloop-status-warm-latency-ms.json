@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:fcbbb80997f2df04272c2d23c86144d9bc628bbcd8c42b8de5e5432899484c77",
+  "node_id": "con:loop-status-warm-latency-ms",
+  "node_type": "Constraint",
+  "properties": {
+    "category": "budget",
+    "concern": "core",
+    "direction": "maximum",
+    "limit": 2000.0,
+    "name": "loop_status warm answers in at most 2,000 ms",
+    "priority": "medium",
+    "quantity": "latency_ms",
+    "statement": "A warm loop_status - the ONE CHEAP CALL cap:loop-status promises every session will run - answers in at most 2,000 ms. Derived: the orientation call may cost no more than the single most expensive DERIVED fact it reports, computed once; that fact is detect_gaps at ~1.5 s. Measured 2026-09-05 before any change: 12,502 ms warm on the live store, release. Composed of open_defects 5.8 s (uncached, run for a count), sync-target reads 3.6 s (five dead /tmp exports), detect_gaps 1.8 s, other ~1.3 s. Anthony accepted 2026-09-05. Bounds: release, this machine, live store, stdio - the shared-daemon path is slower still. An aspirational floor of 1,000 ms applies if detect_gaps is also shared across rollups."
+  }
+}

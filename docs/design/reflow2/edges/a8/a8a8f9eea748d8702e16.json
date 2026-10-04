@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:90561ad139133d6ca9738035f76c8abcea674bfd2dd0fe03ad2d5353dc61e428",
+  "edge_type": "CHANGED",
+  "from_id": "chg:two-answers-2026-07-25",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cmp:docs"
+}

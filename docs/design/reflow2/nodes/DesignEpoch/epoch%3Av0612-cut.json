@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:1f7983b20ceb6ca10b0dc69c1974f07abf0ce8cf5570b6ea621bd0a862c3ab02",
+  "node_id": "epoch:v0612-cut",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "description": "The release cut for v0.61.2, 2026-09-15, on Anthony's word. Ships #516 (epoch 500, the three-leg import fix) and #515 (serde_yaml_ng + lock refresh). Sequence 501 follows the import fix's incident epoch (500) and the v0.61.1 cut (499). Patch bucket on his word (the new optional import_graph parameter would file as minor by the table); the schema stamp did not move (28 node types, 65 edge types, schema 1), so no upgrade note. ChangeEvents of the increment: chg:an-import-knows-its-own-age-and-a-server-behind-its-record-says-so and chg:serde-yaml-ng-replaces-serde-yaml-and-the-lock-is-refreshed, plus the accept/baseline events they carried.",
+    "epoch_type": "release_cut",
+    "name": "v0.61.2 cut — an import knows its own age; serde_yaml_ng",
+    "sequence": 501,
+    "status": "arrived"
+  }
+}

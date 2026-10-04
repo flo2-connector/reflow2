@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:f9e5c8aabd457ebc3ae3ca49eb35801b06c061060f5d9ab5ccc8050504dfecb2",
+  "node_id": "ver:the-build-question-is-silent-while-nothing-is-built-and-asked-once-building-starts",
+  "node_type": "Verification",
+  "properties": {
+    "description": "crates/reflow2-core/tests/a_finding_says_when_the_state_is_normal_for_the_phase.rs: two tests pinning the behaviour the promoted sentence would have changed.",
+    "findings": "2 of 2 passing. Pins a behaviour rather than a change; the requirement stays open pending one number from the reporter.",
+    "kind": "verification",
+    "last_run_at": "2026-09-20",
+    "level": "unit",
+    "method": "test",
+    "name": "The build question is silent while nothing is built, the phase is stated once by the aggregate, and the question is asked per capability once building starts",
+    "status": "passing"
+  }
+}

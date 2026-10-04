@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:b02718f6e6d0894a03c0f7ded63a8745a29796a5d4fd50cb51d3f816e5202a7e",
+  "edge_type": "CAUSES",
+  "from_id": "cap:search-first-at-the-tool",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "That capability implements the near-match guard on the WRITE path only, and scores candidates against the new node's own text — so on a long session it surfaces the session's own recent nodes and cannot reach a node written in different vocabulary, which is why the only check that fired confirmed the framing instead of challenging it.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:the-brainstorms-only-search-was-the-write-guard-and-it-returned-only-nodes-the-session-had-just-written"
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:a8b92d8dda7c9956206305c7c02a13c9fea7042839f76db3cc3be35975960e82",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-physical-domains-need-ordered-parts-dimensioned-quantities-and-a-physical-medium",
+  "properties": {
+    "evidence": "A dimensioned quantity on a Component is only worth declaring if the unit machinery can read it; that requirement's sweep (built 2026-09-16) reads Constraint, CONSTRAINS and Interface units and would need one more field to reach a part's own dimensions.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "req:a-project-declares-its-unit-system-as-a-governed-rule-and-undeclared-or-off-system-units-are-reported"
+}

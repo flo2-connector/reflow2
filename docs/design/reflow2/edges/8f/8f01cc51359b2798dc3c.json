@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:5d9934774de20eb7dc544ba1a9d9ff5715efa65b9469573e9f6c19df505ca8e4",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:store",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:foundation-vocabulary"
+}

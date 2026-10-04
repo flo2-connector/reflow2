@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:2f316f0a77ffbc2ef0bef910bdd4228870c21f7abcd85a5673e9f2fcd944410e",
+  "node_id": "decision:ack:0a77650b58242054",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Accepted the gap gap:0a77650b58242054.",
+    "name": "Reviewed: gap:0a77650b58242054",
+    "rationale": "Anthony's standing policy from 2026-07-23, unchanged: validation for this project is the trials programme — reflow2 used on real designs, logged in docs/trials/ and docs/trials-private/ (the brownfield ophyd-service pass, the greenfield aidrone pass) plus sustained real use of the StoryFlow fleet. Formal validation-kind Verification nodes are not this project's tracking mechanism, and recording 68 near-identical ones would turn the number green without anyone having checked anything — the dishonesty `dec:passing-is-verified` exists to prevent.\n\nACCEPTED AT 68 CAPABILITIES, and the count is recorded here on purpose: this gap's id is now keyed on its RULE rather than its member set (`dec:aggregate-gap-keyed-on-rule`), so this acknowledgement CARRIES as the design grows instead of expiring on every addition. That is the fix for the churn — the same disposition had been re-recorded about twenty times, at 33, 34, 35 … 65, 67 and 68 capabilities. The trade-off is deliberate: a capability added tomorrow is covered by this judgement without a fresh look, which is what a standing disposition means. The growth stays VISIBLE without the churn, by comparing the count named here against the count in the live gap's title — if that gap says 90 and this says 68, twenty-two capabilities joined under a judgement made when there were 68, and whether that still holds is a question a reader can now actually ask.\n\nThis should be the last acknowledgement this gap ever needs. If it re-fires because the id moved again, the keying regressed and `an_aggregate_gaps_id_does_not_move_when_the_population_grows` should have caught it.",
+    "status": "accepted"
+  }
+}

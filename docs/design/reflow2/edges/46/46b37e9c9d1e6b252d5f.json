@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:33412fb08cbe1f48e15f554e3b883b72c4d87399b93ee3e4fae278f43570fb3c",
+  "edge_type": "MITIGATES",
+  "from_id": "dec:idea-a-relation-offered-on-any-decision-is-drawn-or-said-to-be-ignored",
+  "properties": {
+    "evidence": "Each option either draws the offered relations or makes their loss visible, and option (a) restores the invariant #527's guard exemption relies on."
+  },
+  "to_id": "fact:related-to-on-a-choice-passes-the-duplicate-guard-and-is-then-dropped-2026-09-23"
+}

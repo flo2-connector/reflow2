@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:72c007155d49fc1e36e605c15c204f72e5cfe8b5a8f2e8c66b30930862d4d4f1",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-design-is-saved-one-file-per-item-2026-10-03",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:75180452beacb425810eb8017c18e54499f592ca2d9589ae700f746dd73a235a",
+    "checksum_basis": "measured"
+  },
+  "to_id": "art:wall-check"
+}

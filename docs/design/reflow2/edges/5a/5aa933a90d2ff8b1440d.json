@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:43bbdbb8d3358dd950ceb5007a97e8bf5c3a32319950d3d56c1b39009df78109",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:test-every-rule-a-project-parent-cures-says-so",
+  "properties": {
+    "covers": "whole",
+    "note": "The file that runs the check."
+  },
+  "to_id": "ver:every-rule-a-project-parent-cures-says-so"
+}

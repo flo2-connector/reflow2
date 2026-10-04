@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:4e6150d0e28d4adb8365e05dd7acb8ce784215ca91d207b98ce04aaa7161117b",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:owed-to-a-contributor",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "sys:coherence-loop"
+}

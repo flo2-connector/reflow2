@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:ffa71c57d164abe763eb06d0742290f97ea835231c4a7c96f33a51e9ab2cd811",
+  "node_id": "cap:governance-mode",
+  "node_type": "Capability",
+  "properties": {
+    "description": "`set_project_mode` chooses a project's `mode` after genesis and can change it later, so the one default that actually alters behaviour stops being asserted by omission. The mode gates exactly one thing — `apply_heal` applies structural repairs in `flexible` and only proposes them in `rigid` — and the schema description now says that rather than the older, broader \"design is the source of truth\", which promised a breadth the code does not implement. An unknown mode is refused by schema validation and leaves the previous choice intact.",
+    "name": "The governance mode is a choice a project makes and can revisit",
+    "provenance": "authored",
+    "status": "realized",
+    "tier": "operational"
+  }
+}

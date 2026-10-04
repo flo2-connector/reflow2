@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:a99f57a8246bd1a557a8c5121a11d8ce5e8052ce30304186e8b8939a36a966c0",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:a-sweep-says-what-it-could-not-have-found",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:heal"
+}

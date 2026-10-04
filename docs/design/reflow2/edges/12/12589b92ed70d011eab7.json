@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:2ad18e35b7cfb4cebe61b1044b4ba3e01278ec8034c339dcf4263a70b167df24",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-module-stands-behind-the-read-contract",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "cap:a-module-can-be-read-swapped-and-tested-behind-a-contract"
+}

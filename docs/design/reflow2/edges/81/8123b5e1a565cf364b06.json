@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:6cdda9d60afe8789633d3acd86b24bff7fc69c8b9c8c1f235492a3533b8a604a",
+  "edge_type": "CHANGED",
+  "from_id": "chg:skills-are-composed-of-attribute-classes",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:root-cause-skill"
+}

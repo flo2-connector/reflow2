@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:c66d1122be3dfea675bde9a3511cb84b5daba022dfd16892c35068d249ee7af7",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:evidence-scope",
+  "properties": {},
+  "to_id": "req:evidence-says-what-it-covered"
+}

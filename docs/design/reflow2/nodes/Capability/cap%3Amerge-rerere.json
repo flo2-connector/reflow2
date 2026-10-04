@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:a798aab8f2d560ff01a8bdf62af018d5bba206d6c2c2cd08f8318a7b76699cc0",
+  "node_id": "cap:merge-rerere",
+  "node_type": "Capability",
+  "properties": {
+    "description": "Record how a human resolved a merge conflict — content-keyed (property + base/ours/theirs values, node-independent) — and offer it back when the same conflict recurs. Stored in the graph as an answered Question whose id IS the content key (rr: prefix; the Question schema has no source field, so the prefix distinguishes it and it stays invisible to open_questions). Advisory: recall_resolutions surfaces the recorded choice; the human confirms, or bulk-accepts via apply_merge use_recorded. BUILT + VERIFIED (art:merge, ver:merge): resolution_key on each property/edge-property conflict, record on apply, recall_resolutions tool. Extends cap:merge-designs; BL-80 #5. v1 covers property + edge-property conflicts (node-type/delete-modify keys deferred).",
+    "name": "Reuse a recorded conflict resolution (rerere)",
+    "provenance": "authored",
+    "status": "verified",
+    "tier": "operational"
+  }
+}

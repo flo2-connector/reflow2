@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:9af13078ade60534e2e4a821d25016b9b2d217769bd799d6e88d5a31de4af4bd",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-launch-wrapper-sees-everything-compiled-in",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cmp:schema"
+}

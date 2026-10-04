@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:68490f07f3ebd35de16031aed9256475703ac9d874e828f386c47681bd3f7a3a",
+  "edge_type": "EVOLVES_INTO",
+  "from_id": "dec:idea-prune-the-tool-surface-to-an-orthogonal-essential-set",
+  "properties": {
+    "evidence": "Promoted on Anthony's word 2026-09-18 ('Go with your recommendation'): the orthogonality test became a ratchet on rank and mutual confusability, and deletion was deferred to usage evidence with stubs first."
+  },
+  "to_id": "req:every-served-tool-ranks-first-for-its-own-job-and-the-surface-does-not-grow-more-confusable"
+}

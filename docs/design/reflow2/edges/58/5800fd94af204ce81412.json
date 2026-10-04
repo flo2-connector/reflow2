@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:4ca147af08aa7d5a8a78aa373f96ee6ef0d4ad7d2a570f6e96c5084697ab4eb4",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:a-verified-capability-names-something-that-can-re-run-its-check",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:detect"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:609a36b71102a9b741339e7d82342dc6105cd843e516ba7f2df7f6f4ea82d330",
+  "edge_type": "CHANGED",
+  "from_id": "chg:linking-process-requirement-accepted",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "req:linking-two-projects-is-a-served-process"
+}

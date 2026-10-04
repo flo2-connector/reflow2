@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:c710e16b7550693f993587e1b583c1ce539e9d04ba5154ecc104a4c1c756cbf2",
+  "edge_type": "CHANGED",
+  "from_id": "chg:baseline-d06eb1ad9d4aec57",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:test-surface-orphaned"
+}

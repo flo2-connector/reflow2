@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:4c46f99cee9343df759c90a476475bc9d2a0c49af825985efc8a871af0913d1e",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-reply-carries-its-payload-once-on-every-tool",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:agent-instructions"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:a24a8208e44130b0d6d8eb4e4bf49f6779b196bd5c95615c8428f892525a9824",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-check-and-its-findings-are-different-things",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "ver:content-manifest"
+}

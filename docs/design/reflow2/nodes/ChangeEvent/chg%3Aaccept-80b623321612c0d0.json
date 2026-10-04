@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:49425c3ff8bc1927d6b5fe4b4ec5e460eeb2bd3502567386550217ec48c80a80",
+  "node_id": "chg:accept-80b623321612c0d0",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "detected_at": "2026-08-19",
+    "name": "The two new hierarchy kinds wired through to detect_gaps as GapSource::MultipleParents (severity 0.65 — an ambiguous containment walk outranks a floating level) and GapSource::LevelSpineDisagreement (0.5). The exhaustive matches here are what forced the wiring: adding a kind without surfacing it does not compile.",
+    "subject": "system"
+  }
+}

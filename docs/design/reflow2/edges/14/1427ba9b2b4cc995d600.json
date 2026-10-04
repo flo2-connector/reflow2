@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:6545a71df715d28bcde49eb9a9629329d167860425a077c6372cadda0a55ad36",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:orphan-attachment-test",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:orphan-attachment-test"
+}

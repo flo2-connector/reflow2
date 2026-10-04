@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:e2486fd39d78cede26d19954c8ce80769cb7fb5741a37de91390cfce2fc3b040",
+  "node_id": "cap:a-published-surface-with-no-promise-is-asked-about",
+  "node_type": "Capability",
+  "properties": {
+    "description": "`detect_gaps` raises `published_surface_carries_no_intent` when a design declares at least one `published` or `both` Interface and marks not one Requirement `published`.\n\n⭐ THE THIRD LEG. `cap:publish-surface` is VERIFIED and `req:publishable-promise` is ACCEPTED — \"a published surface must be able to carry a behavioural promise, not only structure\". The vocabulary existed and the tool existed. Nothing anywhere NOTICED that nobody had used them, which is the standing shape: vocabulary reaches a design only with a typed tool, an instruction, AND a detector that notices absence.\n\nWHAT IT MEASURED ON ITS OWN DESIGN, 2026-09-22: reflow2 held 262 Requirements with 0 published and 3 published Interfaces, and flo2 — a real consumer that had mirrored it correctly — held 22 nodes with zero Requirements, Capabilities or Decisions among them, reachable from flo2's own design through a single edge.\n\nTWO SILENCES, BOTH DELIBERATE. Silent when NOTHING is published: a design with no published boundary has no consumer and owes nobody a promise, and asking every private design would fire on nearly all of them. Silent at ONE: it fires on zero and never on \"too few\", because how many promises a design owes is not something a detector can know, and `set_requirement_designation` is explicit that publishing is a commitment the owner makes.\n\n`both` counts as published: such a boundary consumes a contract and re-offers it onward, so a consumer relies on it exactly as much.",
+    "name": "A design that publishes contracts and publishes no promise is asked about it, once",
+    "provenance": "authored",
+    "status": "realized"
+  }
+}

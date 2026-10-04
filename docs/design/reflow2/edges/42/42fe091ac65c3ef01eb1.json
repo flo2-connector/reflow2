@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:edf957f3c86561b0007b2f079b19d11620db9f131ab0d68a93797029e40a4c66",
+  "edge_type": "CHANGED",
+  "from_id": "chg:2026-09-22-verified-splits-into-runnable-and-claimed",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:agent-instructions"
+}

@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:798d3a6d900a881d3018933725ded7de298f167b3a4690ffbc69ac7c9711be90",
+  "node_id": "art:test-stale-seat",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "granularity": "atomic",
+    "location": "crates/reflow2-core/tests/stale_seat.rs",
+    "name": "stale_seat.rs + test_stale_seat.py",
+    "status": "realized",
+    "volatility": "stable"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:1e0cea10d77339435f63c1ec279b3d23a8ba41d17e84367684195a1534062be6",
+  "node_id": "art:collaborating",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "document",
+    "granularity": "atomic",
+    "location": "docs/collaborating.md",
+    "name": "collaborating.md",
+    "status": "realized",
+    "volatility": "stable"
+  }
+}

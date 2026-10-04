@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:44ed9f8bea4a23b4d3def574e861c67a95dd16c01bf7b022db8716af0a67526c",
+  "node_id": "art:contradiction-alignment-test",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "granularity": "atomic",
+    "location": "crates/reflow2-core/tests/contradiction_alignment.rs",
+    "name": "tests/contradiction_alignment.rs",
+    "status": "realized",
+    "volatility": "stable"
+  }
+}

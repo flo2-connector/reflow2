@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:cf54ac0c98e18f28fffc3849f041aad979733a85dbd4c36a379707c043d24d4a",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:test-an-edge-says-only-what-it-was-told",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:test-an-edge-says-only-what-it-was-told"
+}

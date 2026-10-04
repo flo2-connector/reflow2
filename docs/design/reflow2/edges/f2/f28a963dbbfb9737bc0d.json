@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:7334ecd52fe77631659c5bbeb5ee3899c26f21c561a52b19526073316ac9f966",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-reply-is-not-sent-twice",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:service"
+}

@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:bc9846c2feb59c9613eace51b0f9962425050f5a7a2e20005a5823d6312c6fea",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "rule:no-foreclosure",
+  "properties": {
+    "authored_at": "2026-07-25",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

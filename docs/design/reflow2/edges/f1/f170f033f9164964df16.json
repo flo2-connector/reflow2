@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:fb28fd4160ec68ba4d2769c8fbf607802d881de49414ee0321e4241cbaa68cbb",
+  "edge_type": "CHANGED",
+  "from_id": "chg:currency-has-a-non-linux-answer",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:main"
+}

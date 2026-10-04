@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:6ed0dfa9b4d6e89ff79ec67c3584232830956921dae392d63763586622c8746c",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "rule:field-feedback-issues-are-root-caused-and-ideas-are-brainstormed",
+  "properties": {
+    "approved_at": "2026-09-09",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

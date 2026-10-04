@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:4e49b4bf8043244cb9490f788830f8aaa3e2743fa74bc90538bef3cce0fbee71",
+  "edge_type": "CHANGED",
+  "from_id": "chg:github-mcp-imports",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cap:sanitize-ingress"
+}

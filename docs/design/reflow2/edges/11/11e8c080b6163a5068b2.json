@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:191ef39c974393d11ee812ea44824c95d88a2f3fc97b25e4a1bc3e778bf951fd",
+  "edge_type": "MITIGATES",
+  "from_id": "dec:the-decomposition-ladder-is-open-not-a-fixed-enum",
+  "properties": {
+    "evidence": "One is a hazard, the other answers it. That accepted requirement asks for nesting 'as deep as the design needs, from code projects to biology projects', and the closed enum makes the downward half unsatisfiable rather than merely unpopulated. An open ladder is the change that makes the requirement satisfiable at all. It does not satisfy it — the interface half and the beyond-two-levels exercise are still owed."
+  },
+  "to_id": "req:recursive-black-box-decomposition"
+}

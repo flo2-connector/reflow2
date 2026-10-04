@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:839d920b3aa845339de6dcd772834c4a94bfcec5f597e11327a8fa29ebfe53f3",
+  "edge_type": "CHANGED",
+  "from_id": "chg:arrival-delta-decided",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "dec:arrival-delta"
+}

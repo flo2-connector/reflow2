@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:a8cab7688077cc8a3682bdd5cb2f1705cc74796dfca0d8a24b9383e90e2a4720",
+  "edge_type": "CONSUMES",
+  "from_id": "cmp:service",
+  "properties": {
+    "weight": 0.7,
+    "weight_basis": "evidence"
+  },
+  "to_id": "ifc:authenticating-gateway"
+}

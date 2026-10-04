@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:cb465fc90fc08cf90c07fde9779afe7e589f218c25101b350a8fa095c9132a65",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-name-is-not-a-report",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "ver:orphan-attachment"
+}

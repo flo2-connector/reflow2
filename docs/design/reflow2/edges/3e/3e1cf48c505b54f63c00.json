@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:55f4abf62c97bdf305cff663dd9f2934e4792658c532e4e45ffdb64836fc0c17",
+  "edge_type": "CAUSES",
+  "from_id": "art:hxm-program-feedback-2026-09-28",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "The root-cause pass on this document's 09-28 report (F-31, precedent blind to the file archive): by accepted design the server never reads file text, so file-held precedent is the agent's to search, and the root-cause skill's step ② names only search_design.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:root-cause-precedent-is-searched-only-where-the-design-was-written-and-the-skill-never-sends-the-agent-to-the-files-2026-09-28"
+}

@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:c450505fd26474563eb8a2066acc35a42bcbe706753b87641d4fa84b0c179b30",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:graph-registry",
+  "properties": {},
+  "to_id": "req:a-hosted-server-closes-idle-designs-and-says-busy-when-full"
+}

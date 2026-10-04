@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:e03187a9deac2e720467eda5e5b9c44aba524ecd9f53d6925a3980cb8eaaffcd",
+  "node_id": "ver:a-budget-says-how-it-composes",
+  "node_type": "Verification",
+  "properties": {
+    "description": "Drives the MCP surface: the owner agent's write path (5/2/6/20 with 13 beside the commit; path 33, sum 46) judged within 40 on its path when declared `path`; kept on the sum and named when undeclared; incomplete when a path budget has no dependency drawn; an unknown composition refused naming the set; budget_report with no constraint_id reads every budget, counts the prohibition, and is bounded; constrains names DEPENDS_ON and composition. The core file crates/reflow2-core/tests/a_budget_says_how_it_composes.rs pins every reader of the verdict (closure margin, sweep, minimum, unstated path).",
+    "findings": "Failing first on a clean origin/main build (42259ba) under the shared lock: 7 of 7 failed. On the fix: 7 of 7 pass; core 10 new + budget 15 + kpp 12 pass; clippy -D warnings clean on both crates.",
+    "kind": "verification",
+    "last_run_at": "2026-09-29",
+    "level": "integration",
+    "location": "crates/reflow2-mcp/tests/a_budget_says_how_it_composes.rs",
+    "method": "test",
+    "name": "A budget declares sum or path, its verdict and every other reader follow the declaration, and one read reports every budget",
+    "status": "passing"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:68b93f6f6db77d6df38202568fb53bf33210e863d705714f1c28557190add109",
+  "edge_type": "REALIZES",
+  "from_id": "art:hierarchy",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "verified"
+  },
+  "to_id": "cap:a-component-can-be-moved-not-just-given-another-parent"
+}

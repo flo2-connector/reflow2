@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:4659b1d9bd736f467767f82aa8292d8897c9cec43b9a4d50ecf13083d0363d48",
+  "node_id": "art:setup",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "document",
+    "granularity": "atomic",
+    "location": "getting-started/SETUP.md",
+    "name": "getting-started/SETUP.md",
+    "status": "realized",
+    "volatility": "stable"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:ed4040f32658da72dca5af0ffed516856a43c25e6049df79dcb9c41fd506d226",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-loop-closure-reading-lands",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "cap:the-loop-closure-reading"
+}

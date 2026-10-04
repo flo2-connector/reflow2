@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:fbe1e9f7e02018e7fbcfee49e728825271ff034b28f2017f0e6a4b1b5485030a",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:a-skill-run-in-a-session-holding-several-designs-writes-where-the-fact-belongs",
+  "properties": {
+    "approved_at": "2026-09-22",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:332d65dff69430734b2ec98f5d4ea5e6180b6560617d97e65440c8d292c43d5c",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:shared",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:shared"
+}

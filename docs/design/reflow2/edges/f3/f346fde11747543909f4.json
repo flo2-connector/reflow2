@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:8bc88aea1a68a8e2f69c5963cb8fba69acbdec8f69e49a54b679efb4cf3eb29b",
+  "edge_type": "CHANGED",
+  "from_id": "chg:scheduled-for",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cap:as-of-epoch"
+}

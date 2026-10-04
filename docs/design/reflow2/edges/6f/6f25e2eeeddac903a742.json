@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:3d6da7a63df81017d0eb03785cdd01bb42dc92673faa87f293458083865ae972",
+  "edge_type": "REALIZES",
+  "from_id": "art:coverage",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cmp:coverage"
+}

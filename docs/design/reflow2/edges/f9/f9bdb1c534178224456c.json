@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:1471cf4e3014016f63eabbff24e3658b6bd58970ce7283097104079511c227e1",
+  "edge_type": "CHANGED",
+  "from_id": "chg:bl58-silent-failure-batch",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:drift"
+}

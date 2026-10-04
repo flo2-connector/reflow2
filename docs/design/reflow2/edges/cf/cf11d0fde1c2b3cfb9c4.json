@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:6c789c14b05b317e9ee8dd7b9e9035f9ce07703367802a24f50e2543c8968c49",
+  "edge_type": "CAUSES",
+  "from_id": "fact:alex-grok-0240-feedback-triaged-2026-08-16",
+  "properties": {
+    "basis": "observed",
+    "confidence": 1.0,
+    "evidence": "Alex asked for it twice across two files, dev_storyflow reached it independently, and it was reproduced first-hand across a whole session where the numbers never moved. Triple corroboration is why this one is stated as intent rather than left as a report.",
+    "validation_status": "validated"
+  },
+  "to_id": "req:the-loop-can-say-what-this-session-owes"
+}

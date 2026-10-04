@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:80f86a049cd00d13410faf8c3dce0d14867bf383e05f1550b123747d4094cfd9",
+  "edge_type": "REALIZES",
+  "from_id": "art:detect",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked",
+    "note": "the two findings"
+  },
+  "to_id": "cap:a-repos-conventions-are-delivered-by-step-and-its-adapter-is-registered"
+}

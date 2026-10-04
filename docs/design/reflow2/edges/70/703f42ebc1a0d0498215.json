@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:5e2957dbd0dae31ab49ad9a64063e36901ce53e09581425bcdb14ef23908b74a",
+  "edge_type": "INVALIDATES",
+  "from_id": "fact:a-name-is-not-a-report",
+  "properties": {
+    "at": "2026-08-23",
+    "note": "Retired by the 2026-08-23 verification-text work, verified 2026-08-24 rather than assumed. BOTH of this finding's claims are answered: (1) 'a Verification has nowhere to put its evidence' is false — `description` (what the check IS) and `findings` (what a RUN FOUND) both exist and were both used on this design today; (2) 'median name 79.5 words' was re-measured by fact:a-name-is-not-a-report as 173 of 199 checks at 0-25 words and ZERO above 60. Closed as a CLAIM, not a computation: the finding keeps its status, its method and its numbers, which outlive the figures. Its sibling fact:defect-add-verification-cannot-reach-its-own-fields is deliberately LEFT OPEN — `description` became reachable but `location` did not, and a PARTIALLY superseded finding is not closed."
+  },
+  "to_id": "fact:defect-a-verification-has-nowhere-to-put-its-evidence-so-the-name-became-the-report"
+}

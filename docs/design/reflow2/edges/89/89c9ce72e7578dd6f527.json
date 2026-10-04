@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:e95bf040a1251960b84860745f5ef494aeb4af2a9c7bd2f4a9cfacfc3c250df5",
+  "edge_type": "CHANGED",
+  "from_id": "chg:qualitygate-leaves-the-schema",
+  "properties": {
+    "accepted_baseline": false
+  },
+  "to_id": "art:check-doc-versions"
+}

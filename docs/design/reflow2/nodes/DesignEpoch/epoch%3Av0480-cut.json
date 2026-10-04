@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:0916c26ca162955ef849b13c7066fd9a979f296f39ff9b386d078e4b9dc11264",
+  "node_id": "epoch:v0480-cut",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "epoch_type": "release_cut",
+    "name": "v0.48.0 cut — Alex's five, the feedback-triage rule, and three additive surface fixes",
+    "sequence": 395,
+    "status": "arrived"
+  }
+}

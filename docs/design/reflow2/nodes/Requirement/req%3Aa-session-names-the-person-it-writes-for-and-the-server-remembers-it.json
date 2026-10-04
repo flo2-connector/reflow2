@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:9b3722651b9a8eeb7b7135ad44dea629b20db3a450648bc8f794cc12753053ac",
+  "node_id": "req:a-session-names-the-person-it-writes-for-and-the-server-remembers-it",
+  "node_type": "Requirement",
+  "properties": {
+    "concern": "core",
+    "kind": "functional",
+    "lineage": "decomposed",
+    "name": "A session names, once, the person (or project) it writes for; the server remembers it for that session and attributes every write to it, on trust, for attribution only",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "A client declares a contributor id once per session, at initialize or through one call made once, and the server remembers it for that session. Every write in the session is attributed to that contributor without the caller repeating it. The id is taken ON TRUST: reflow2 verifies nothing, because the caller (flo2's gateway, or a person's own agent) is what authenticated it. It is used for ATTRIBUTION ONLY, meaning who a change is recorded as coming from. It grants no authority: approving, accepting or settling still requires the approver path and rule:design-intent-moves-only-on-the-owners-word. Whether a caller-asserted identity may ever carry authority stays open in dec:idea-may-a-caller-asserted-identity-be-trusted-and-for-what. The caller chooses whose name it is. It is the PERSON whenever there is one, and the project (e.g. who:flo2) for writes no person made, such as a scheduled job or a reconcile. That is flo2's answer, relayed 2026-09-22: \"reflow2 records what flo2 tells it, and flo2 supplies the person when there is one.\" A session that declares nothing behaves as today. Clause 1 of the levied req:a-write-carries-who-made-it-and-the-server-records-that-it-happened, split out so it can be scheduled alone. Anthony, 2026-09-23 (\"Schedule the small half\"). Clause 2, the automatic journal, stays with the parent and is not scheduled.",
+    "status": "accepted"
+  }
+}

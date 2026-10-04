@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:ef568b7cdd11f90111278b4e708a65c83a2b3fbdd5e133fd4b8735c35a8a279e",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:a-skill-is-found-by-describing-the-job-and-the-corpus-is-the-test",
+  "properties": {},
+  "to_id": "req:a-skill-is-reachable-from-a-description-of-the-job-in-a-persons-words"
+}

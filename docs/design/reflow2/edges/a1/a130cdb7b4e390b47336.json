@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:f1a96154c61386e183a05c09a472cbe1758ae2f21548734cc186c2acca98e4dd",
+  "edge_type": "CHANGED",
+  "from_id": "chg:storyflow-second-field-report-20260808",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "fact:defect-loop-status-next-routes-to-the-destructive-skill"
+}

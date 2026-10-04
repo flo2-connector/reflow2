@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:3e0cbe7e9716c0669f6ccbec5f06ee4d71df44dc7b4775f1c9916e18e0212558",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:closure-reads-design-done-separately-from-build-done",
+  "properties": {
+    "approved_at": "2026-09-29",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

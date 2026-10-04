@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:c34ab661a4890211f6b3ae4addc6627c396fc82df54f47933f455da0883f17d6",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-contract-can-carry-evidence",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:schema-verify"
+}

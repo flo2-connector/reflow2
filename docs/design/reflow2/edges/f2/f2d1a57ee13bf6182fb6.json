@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:ec176022c25ccaccafc51e3e3bb1649ec98673ff3a49a7ccb250c353db7f4f52",
+  "edge_type": "REALIZES",
+  "from_id": "art:readme",
+  "properties": {
+    "completeness": "partial",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:explains-itself"
+}

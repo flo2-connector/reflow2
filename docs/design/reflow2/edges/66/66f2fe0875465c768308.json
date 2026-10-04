@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:f14fd7cc6e078cfc15983dcab3a64326642d029ef20906c344fdf3eec0695d08",
+  "edge_type": "MITIGATES",
+  "from_id": "dec:idea-does-the-deferred-structuring-step-need-a-skill-of-its-own",
+  "properties": {
+    "evidence": "One is a hazard, the other answers it. That finding measured that vocabulary reaches a user's design only with a typed tool AND an instruction AND a detector that notices absence. propose_allocation is a typed tool with neither of the other two legs, so it reaches nobody. Every option here supplies at least one missing leg, and option E supplies the detector first — which is the leg that makes the loop ask rather than wait to be told."
+  },
+  "to_id": "fact:vocabulary-needs-three-legs-and-a-users-project-gets-none-of-it"
+}

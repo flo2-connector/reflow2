@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:dc497c9207fbe78b43c652742ccb4c3361d114eb14e2b0d21a3e145f6498147a",
+  "edge_type": "CHANGED",
+  "from_id": "chg:baseline-90df8b6b5825da7d",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:read-only-surface-test"
+}

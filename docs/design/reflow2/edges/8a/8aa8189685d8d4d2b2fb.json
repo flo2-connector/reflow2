@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:41a3d0eb02658ee14b2b1217c09fe4e17860055f16968ce51dcf9b09531f4f86",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-a-skill-is-found-by-describing-it-the-way-a-tool-is",
+  "properties": {
+    "evidence": "A skills search worth having scores a line written for a person; without the summary field it scores trigger prose.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "dec:idea-a-skill-carries-a-line-for-a-person-and-says-who-it-is-for"
+}

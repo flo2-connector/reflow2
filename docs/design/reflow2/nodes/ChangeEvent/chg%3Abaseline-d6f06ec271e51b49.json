@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:11f6f3c79114dc69aa4933f7ec8875786e32be5aefb7128980a2f407b107deea",
+  "node_id": "chg:baseline-d6f06ec271e51b49",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "baseline_established",
+    "detected_at": "2026-08-16",
+    "name": "First baseline for the 5-case suite behind req:the-loop-can-say-what-this-session-owes. Nothing moved — the file is new.",
+    "subject": "record"
+  }
+}

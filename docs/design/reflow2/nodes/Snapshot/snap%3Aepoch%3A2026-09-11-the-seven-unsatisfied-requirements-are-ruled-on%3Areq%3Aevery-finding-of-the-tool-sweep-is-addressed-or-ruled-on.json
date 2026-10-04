@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:a432b8b5adb128aada979da979bc31b9e923b43bd236a9cd945fb43775474b7f",
+  "node_id": "snap:epoch:2026-09-11-the-seven-unsatisfied-requirements-are-ruled-on:req:every-finding-of-the-tool-sweep-is-addressed-or-ruled-on",
+  "node_type": "Snapshot",
+  "properties": {
+    "edges": "[{\"direction\":\"out\",\"edge_type\":\"AUTHORED_BY\",\"other_type\":\"Contributor\",\"other_id\":\"who:ajs\",\"properties\":{\"acted_at\":\"2026-09-11\",\"role\":\"author\"}}]",
+    "state": "{\"concern\":\"core\",\"lineage\":\"original\",\"name\":\"Every finding from the 2026-09-10/11 tool sweep is either fixed by a merged change or closed by a recorded decision not to — never by a belief\",\"priority\":\"high\",\"provenance\":\"authored\",\"statement\":\"Anthony, 2026-09-11, stating the success criteria for the tool-sweep effort: \\\"that all issues identified in the earlier tranches have been addressed properly\\\". The sweep exercised all 180 served tools (430 scripted calls plus the interactive tranches) and recorded 24 D-/C- findings, 6 W- findings and 4 F- findings, tracked in docs/local/tool-sweep/REMEDIATION.md. Each row shall reach one of two states: a merged pull request that fixes it, or a Decision on the record saying why it is not being fixed. Where a finding belongs to a CLASS (a required reference parameter with no stated type: 40 tools; a read-only reply with no size bound: 58 of 68; a caller-assembled inline payload with no file handle: 22; a bare-zero reply that cannot say which empty it is), it is addressed at the class with one contract test that fails on a new member, not one tool at a time — dec:idea-a-factory-builds-the-mechanics-in-so-a-class-fix-is-one-edit is the settled shape. Where a finding is a one-off (seven of thirteen distinct deficiencies), it is an ordinary fix. F-02 (both budgets breached) was withdrawn as a stale-edge misreading and is already closed.\",\"status\":\"proposed\"}",
+    "target_id": "req:every-finding-of-the-tool-sweep-is-addressed-or-ruled-on",
+    "target_type": "Requirement"
+  }
+}

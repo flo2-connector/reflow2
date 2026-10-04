@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:29d155e998976dea22f40939c13c112025c2fa50f416eb3b26c04c5e0de256a4",
+  "edge_type": "SCHEDULED_FOR",
+  "from_id": "cap:the-server-writes-the-export-through-and-chains-it-from-main",
+  "properties": {
+    "modality": "expected",
+    "recorded_at": "2026-09-11"
+  },
+  "to_id": "epoch:planned-the-server-guarantees-the-export"
+}

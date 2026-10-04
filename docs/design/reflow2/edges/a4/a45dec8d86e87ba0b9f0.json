@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:72f056df00fd50b7b8c750d8b6f37ad08fce75aad62e4db7e05cef42be8dd0eb",
+  "edge_type": "CHANGED",
+  "from_id": "chg:complementary-pairing",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:seam-test"
+}

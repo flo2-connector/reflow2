@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:ee866dc250225c16164f620e1af62cfc19e9fce9d0496d9332eccc170da5220a",
+  "node_id": "chg:the-installer-says-the-graph-is-tracked-20260808",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "test_failure_fix",
+    "name": "The installer stops skipping the one ignore entry most likely to be already tracked, and the remedy it prints works on a directory"
+  }
+}

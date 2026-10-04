@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:1d5c226c665741c28d9c4d04679901898dd0be57ba14bd465bb8f1a7cdbb1416",
+  "node_id": "cmp:tools-query",
+  "node_type": "Component",
+  "properties": {
+    "kind": "module",
+    "level": "component",
+    "name": "query",
+    "provenance": "authored",
+    "purpose": "The QUERY slice of the served surface (11 tools): the generic read and write path for any node or edge type, including the compare-and-swap that prevents a lost update — create_node, create_edge, get_node, scan_nodes, describe_schema.",
+    "status": "planned",
+    "tier": "operational"
+  }
+}

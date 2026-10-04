@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:ddb313a921e56eb6a9953a0d48ad31a3269155533944d396abcb519fc9997e00",
+  "node_id": "cmp:tools-assure",
+  "node_type": "Component",
+  "properties": {
+    "kind": "module",
+    "level": "component",
+    "name": "assure",
+    "provenance": "authored",
+    "purpose": "The ASSURE slice of the served surface (10 tools): checks and the quality of their evidence — add_verification, set_verification_status, set_verification_kind, verifies, set_evidence_scope, calibrated_against.",
+    "status": "planned",
+    "tier": "operational"
+  }
+}

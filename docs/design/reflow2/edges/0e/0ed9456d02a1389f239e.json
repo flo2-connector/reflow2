@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:92adc9c01ca06394a346828160679338c36ee472270941ccba1f9abaa50810e1",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:every-served-skill-conforms-to-agent-skills-and-the-lint-checks-it",
+  "properties": {},
+  "to_id": "req:reflow2s-skills-conform-to-the-agent-skills-specification"
+}

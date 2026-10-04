@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:244eb90e9a04db8cec7787060d42690d0177da513dc90f537357f5bc0011bfbe",
+  "node_id": "chg:the-design-reference-capability-takes-a-required-seed",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "scope_change",
+    "name": "The design-reference capability's scope goes from optional narrowing to a required seed: the reference is served for one black box and its ports, never for the whole design",
+    "subject": "record"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:fb4438b457bf03f7f696f4613bb03b81033a2233c996f267dd7f11143f24b687",
+  "node_id": "rel:v0400",
+  "node_type": "Release",
+  "properties": {
+    "name": "v0.40.0 — allocation follows the code, a deliberate state stops reading as a defect, and the record-to-record vocabulary lands",
+    "status": "retired",
+    "unit_type": "binary",
+    "version": "0.40.0"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:b740931c40fe5bb18b77081e5e6dd08b68dff93cba3f8b1d57a55e615b24a2a6",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-name-is-not-a-report",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "ver:seam-incompatibility"
+}

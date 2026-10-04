@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:7b0ee5ee85b4efb1aa2428f408d1735a10ef64b16bd5595293d54cf2a2472e4a",
+  "edge_type": "GOVERNED_BY",
+  "from_id": "cap:root-cause-skill",
+  "properties": {},
+  "to_id": "rule:an-issue-is-root-caused-then-pinned-by-a-test-then-fixed"
+}

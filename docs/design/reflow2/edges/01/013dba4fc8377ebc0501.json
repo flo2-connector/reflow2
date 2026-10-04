@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:db998419c86c7b9d80c919481e35a25ffce55933ac5638acfa3117d3a6e3ce32",
+  "edge_type": "HAS_TEMPORAL_FACT",
+  "from_id": "cap:a-server-drains-before-it-stops",
+  "properties": {},
+  "to_id": "fact:a-drained-stop-in-production-cut-the-backup-pause-to-2s-2026-09-28"
+}

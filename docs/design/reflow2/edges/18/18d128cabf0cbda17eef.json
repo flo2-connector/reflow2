@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:ddac6ce46826d6a258424d7b046d9d56ba002863b939371913f74a04fc29706a",
+  "edge_type": "HAS_SNAPSHOT",
+  "from_id": "dec:idea-what-guarantees-the-export-if-the-export-is-the-only-durable-copy",
+  "properties": {},
+  "to_id": "snap:epoch:preserved-on-write:dec:idea-what-guarantees-the-export-if-the-export-is-the-only-durable-copy"
+}

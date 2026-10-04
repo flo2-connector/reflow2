@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:09660e19ebfe15f2eefe38acc26f2c60fefb3a272d3ec8ab52cd510cf0446c4d",
+  "edge_type": "CHANGED",
+  "from_id": "chg:accept-2d7b12d88e41ddfc",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:machine-install"
+}

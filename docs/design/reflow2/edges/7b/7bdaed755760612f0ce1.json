@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:04196bd7dbe124f0101f235d02dc27835b599a0ae170e04b0adbe3f14b9697ea",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-orientation-call-stops-rereading-stale-records",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cap:a-repair-can-say-what-it-invalidated"
+}

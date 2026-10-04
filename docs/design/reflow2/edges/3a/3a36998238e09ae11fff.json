@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:2232d8d471f1e6c4e167a609fb9382acb85d7f461b43c48625a19b35f13999a8",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0410",
+  "properties": {
+    "as_checksum": "sha256:c221daad4dd73582e3abec93e7d0493e75f71f7809f138c1852271fa63f37ea4"
+  },
+  "to_id": "art:skill-ingest-corpus"
+}

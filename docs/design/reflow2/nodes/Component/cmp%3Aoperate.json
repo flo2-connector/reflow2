@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:f78a77cb12e87c28b2105bf0ca78654e7aa5037434581bef759ac6c23a3f217e",
+  "node_id": "cmp:operate",
+  "node_type": "Component",
+  "properties": {
+    "kind": "module",
+    "level": "component",
+    "name": "operate",
+    "provenance": "authored",
+    "purpose": "The operate module.",
+    "status": "planned",
+    "tier": "operational"
+  }
+}

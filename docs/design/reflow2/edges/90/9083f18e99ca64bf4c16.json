@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:ad3405f31bd442d829c1e484c1f5ee838ff92de0fb5c7541958b341f95a30d97",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:a-session-that-reads-and-never-writes-is-seen-test",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:a-session-that-reads-and-never-writes-is-seen-test"
+}

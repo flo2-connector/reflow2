@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:e9030a207680232b8dbdd61d9400f9cafc454f7fa49e16cf97232e7ecd1bc302",
+  "node_id": "ver:a-design-says-what-it-is-for",
+  "node_type": "Verification",
+  "properties": {
+    "description": "Eight cases over `quality_target_unstated` and `set_quality_target`, in `crates/reflow2-core/tests/a_design_says_what_it_is_for.rs`.\n\nTHE LOAD-BEARING CASE IS THE MIDDLE STATE: `weighing_it_without_settling_reads_differently_from_never_asking` asserts a different title AND a strictly lower severity than the never-asked case. Without it a deferral and a silence are the same finding, which is the failure `Decision.no_relation_note` exists to prevent on this node type.\n\nAlso pinned: an accepted target ends the question; a REJECTED target is history and not a position (so it does not read as somebody leaning); a design that has not said what it DOES is not asked what it is FOR; the refusal on an unknown axis names both what was passed and what would have worked; setting the target preserves the decision's text, rationale and status; and the finding names `acknowledge_gap` as the WRONG way to defer, because it is aggregate-keyed and would silence the question permanently.",
+    "findings": "8 passed / 0 failed on the final tree. Whole workspace alongside it: `cargo test --workspace --no-fail-fast` exit 0, 156 result lines against 151 test files, 1786 passed, 0 failed; core-only 128 suites / 1477 / 0.\n\n⚠️ FIVE EXISTING TESTS FAILED BEFORE THIS PASSED, AND EVERY ONE WAS A REAL HOLE RATHER THAN FIXTURE NOISE. Three designs asserted to be COMPLETE had never said what they were built for — the same precedent `build_without_governance` set in those same files. reflow2 then caught, twice and on its own, that an accepted Decision GOVERNING NOTHING is a structural defect: a quality target nothing points at is a preference, not an architecture driver, so each fixture now links what the trade shaped. One assertion was over-specific (`scope == Phase` where it meant \"names no nodes\") and one used `gaps.last()` as a proxy for a named gap; both now assert what they mean rather than what they happened to observe.\n\n🛑 AND FINDING THOSE FIVE TOOK FOUR SUITE RUNS, WHICH IS THE LARGER FINDING. `cargo test` aborts every remaining test binary on the first failure, so successive runs reached 31, then 47, then 114 suites, surfacing exactly one new failure each. All five were in `reflow2-core`, and one `--no-fail-fast` run of the CHEAP core gate found the last of them in seconds with all 128 suites executed. Both gates in AGENTS.md and ci.yml now carry the flag (`dec:the-gate-runs-every-test-binary-before-reporting`).",
+    "kind": "verification",
+    "last_run_at": "2026-08-25",
+    "level": "unit",
+    "method": "test",
+    "name": "a_design_says_what_it_is_for.rs",
+    "status": "passing"
+  }
+}

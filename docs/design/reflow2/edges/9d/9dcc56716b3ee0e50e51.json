@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:5c0ebf71d02dafd2c2167a08bd9a32ddfa10cbaf783019921dd7612b37ab7ae3",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:test-constructors-preserve",
+  "properties": {
+    "covers": "whole"
+  },
+  "to_id": "ver:constructors-preserve"
+}

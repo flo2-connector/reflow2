@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:fb1ffe7a6287c3dbf22cfd8934172386c5903c55df078740f53db81990cc92fb",
+  "node_id": "art:stateless-seat-probe",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "granularity": "atomic",
+    "location": "tools/stateless_seat_probe.py",
+    "name": "stateless_seat_probe.py",
+    "status": "realized",
+    "volatility": "stable"
+  }
+}

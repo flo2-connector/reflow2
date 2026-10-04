@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:ae7325747dda48cd5f486382524f8a67683e2223bd9317de656e91558032c4f1",
+  "node_id": "req:modularity-computed",
+  "node_type": "Requirement",
+  "properties": {
+    "concern": "core",
+    "designation": "internal",
+    "kind": "functional",
+    "lineage": "original",
+    "name": "Modularity is computed from the design, not asserted by the architecture diagram",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "A design that calls something a module must be able to be CHECKED on it. From the MOSA guidebook's conformance criteria (Table D-1: \"demonstrate severable modular components\"; components \"encapsulated, cohesive, loosely coupled\"), reframed to reflow2's own rule that a claim is derived from evidence rather than set by hand — the same move already made for requirement certainty and for delivery. The operative test is severability, and reflow2 already owns the machinery: if the blast radius of a change inside a part stops at that part's published boundaries, the part is severable; if it leaks past them, the part is not modular whatever the diagram says. Cohesion and coupling are already computed (community structure, the modularity score, the god-component finding) — the gap is severability, which needs req:key-interfaces to know where a boundary is. Two guards. This reports, never scores: a coarse-but-honest module is not a defect, and a single opaque part legitimately encapsulates everything beneath it (dec:report-dont-judge). And the vocabulary stays neutral (req:design-anything) — the acquisition community's words for these criteria belong in a VIEW over the computation, never in the schema, or reflow2 will have adopted one domain's language as its own.",
+    "status": "accepted"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:dd732f438c57f18dae42163b718c84cc30106931bf264436b62ab950a582b816",
+  "node_id": "dec:loop-status-state-not-history",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "loop_status reports what the coherence loop is owed — anchored gaps never surfaced, questions waiting or answered-but-unwritten, structural defects, capabilities claiming realized/verified with no passing check, drift awaiting disposition, claims never examined — computed entirely from current graph state. reflow2 does not track when tools were run: phase nudges are excluded (guidance, not debt), and the write tools carry static loop_hint pointers at the next loop step in their own results.",
+    "name": "Loop debt is computed from graph state, never from run history",
+    "rationale": "From the StoryFlow fleet trial (BL-74): under operational load the agent kept bookkeeping via raw tools while the loop skills silently stopped — 'a design-discipline tool that depends on being remembered will lose to operational urgency every time; fire on a trigger, not on virtue.' Run-history ('no detect_gaps since Tuesday') is not honestly computable here: the core takes no clock, and looking-is-not-writing is doctrine — recording reads so observation could be tracked would make looking mutate the record. Outstanding debt is the state-based equivalent and the actionable truth regardless of who ran what when. The hint rides the tool result the agent already reads (zero extra round-trip to see it), and loop_status is the cheap computation a client hook can fire on its own events — rung a of the BL-74 ladder builds on exactly this call. Decided 2026-07-21.",
+    "status": "accepted"
+  }
+}

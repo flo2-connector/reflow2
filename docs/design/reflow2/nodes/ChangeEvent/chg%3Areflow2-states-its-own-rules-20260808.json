@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:8982e62e21bcb9b6a83da18689f6604922d02ce1ef2b7dc15eea16c7abcaf5fb",
+  "node_id": "chg:reflow2-states-its-own-rules-20260808",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "constraint_change",
+    "name": "Snapshot of the third-party judgement rule while it still reads enforced: true — a status its own statement contradicts, since it says plainly that nothing verifies it"
+  }
+}

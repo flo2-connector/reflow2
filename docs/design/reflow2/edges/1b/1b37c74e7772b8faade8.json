@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:0c669457deda95c784f725a61c072ee87e58ca1cac13809a88a8f37f1e0e3ce3",
+  "edge_type": "CAUSES",
+  "from_id": "art:dev-storyflow-feedback-2026-09-27",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "The root-cause pass on this document's 09-24 report (a class cause has no node for caused_by): recording the finding first and drawing CAUSES later works, and no instruction names that route.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:root-cause-a-cause-with-no-node-yet-has-a-working-deferred-route-that-no-instruction-names-2026-09-28"
+}

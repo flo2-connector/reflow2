@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:c39e9a87acf3d10b22fdb1f17aa9b105e775b364b1fd15366d06c5ca164b96b4",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "chg:re-linking-an-artifact-no-longer-renames-it",
+  "properties": {
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

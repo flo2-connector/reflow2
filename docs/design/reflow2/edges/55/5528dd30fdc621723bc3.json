@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:f281c094821437e575b4e5e6f2d5880db837ce4b0b98da8de4a16601abb237b6",
+  "edge_type": "REALIZES",
+  "from_id": "art:an-undated-change-event-says-so-test",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "verified"
+  },
+  "to_id": "cap:a-change-event-is-written-complete-in-one-call"
+}

@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:4df56298449ea87d1f5b625ca07b258a03f1a55b20d4c179c67280674f98c910",
+  "node_id": "dec:step-4-is-built-on-real-runs-with-no-threshold-and-unscored-good-news",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Anthony, 2026-09-22, four rulings for step 4 of the approved ordering:\n(1) ORDER — first make real test runs flow back into the design (reflow2's own included), then build the doubt trace, so it has real evidence on its first run. This honours his own sequencing condition that step 4 waits until failing checks actually flow.\n(2) READINESS — NOT a trigger yet. A thing can be correctly designed and simply immature; low TRL/MRL is a schedule fact, not evidence a choice was wrong. Revisit once the trace has run on real history. Settles option (c) of dec:idea-what-else-should-cast-doubt-on-a-settled-decision-and-what-should-strengthen-one part (1), for now.\n(3) GOOD NEWS — shown beside a decision as what has held up under it, COMPUTED ON READ and never stored as a confidence number. Option (b) of part (2) of the same idea; keeps faith with dec:alternatives-unranked-forkable.\n(4) THRESHOLD — none. Every decision with any bad news traced to it is listed with its evidence, and the owner judges. Consistent with cap:revise-trigger's note that no threshold be fixed until the detector has run against real history.",
+    "kind": "choice",
+    "name": "Step 4 (doubt and fork) starts by making real runs flow back, then traces every piece of bad news to its decisions with no threshold, shows good news as a computed count never a score, and leaves readiness out for now",
+    "rationale": "Each ruling was offered with alternatives and a recommendation; he took all four recommendations. The first is the load-bearing one: a doubt layer built before any failure has ever flowed would be tested only against fixtures, and the founding chain's entry point would still never have fired.",
+    "status": "accepted"
+  }
+}

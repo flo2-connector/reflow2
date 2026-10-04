@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:232fc3ceb06e6278f3cedecc88593e29fcc17eab218ef7202b5ea33a0df336a5",
+  "node_id": "art:opening",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "description": "store_exists(graph_path) and may_open(graph_path, read_only): a store exists at the path or it does not, and --read-only opens only one that exists, because opening a missing store creates it. Asked of the path alone, before anything is opened. Asked by the one-shot door (one_shot::resolve_design), the --shared client, the latent surface's promotion, every serving mode in main (stdio, --http, --serve-shared serve the latent surface where they may not open) and the registry's discovery. A unit test scans src/ so no other code tests a graph path for a store itself.",
+    "location": "crates/reflow2-mcp/src/opening.rs",
+    "name": "opening.rs — \"may this open create a store?\", one rule for every mode",
+    "status": "realized"
+  }
+}

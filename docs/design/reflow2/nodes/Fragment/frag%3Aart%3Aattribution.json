@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:478769d289d4a9cf954b6dad68f3aae136fda0d5c51439e4d048fd3d2f283b8e",
+  "node_id": "frag:art:attribution",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered attribution.rs — crediting a call's writes to who it was for"
+  }
+}

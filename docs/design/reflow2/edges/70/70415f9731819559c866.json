@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:bcbe78641fda3f95c42c1589798f9c06482f26dc59a0e333a4b161297eca4ac3",
+  "edge_type": "REALIZES",
+  "from_id": "art:temporal",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "verified"
+  },
+  "to_id": "cap:a-capability-declares-what-kind-of-thing-delivers-it"
+}

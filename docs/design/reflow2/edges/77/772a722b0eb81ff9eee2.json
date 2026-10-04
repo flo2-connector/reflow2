@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:45d56424d5891648298ec1ae255a1c452542292fe637e1d766c62813fa3b2f5b",
+  "edge_type": "CAUSES",
+  "from_id": "fact:a-skill-is-loaded-only-when-something-already-in-hand-demands-it",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "The 2026-08-28 cause predicted this occurrence exactly: a skill loads only when something already in hand demands it, and unprompted self-invocation is close to absent. Measured again 2026-09-09 across a whole session: zero skills self-invoked, and both that DID run were typed by the user.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:the-demand-that-enforces-root-cause-sits-downstream-of-the-moment-it-exists-to-catch"
+}

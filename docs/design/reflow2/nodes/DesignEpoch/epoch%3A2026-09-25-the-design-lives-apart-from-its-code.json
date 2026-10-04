@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:a401a30266a668d8bf79a9dd1caa0db73b7b1e0ff889faa49590d422ff1502fd",
+  "node_id": "epoch:2026-09-25-the-design-lives-apart-from-its-code",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "description": "Anthony keeps as intent that a reflow2 design lives in its server rather than in the code repository it describes, saving itself wherever its owner chooses, while reflow2 keeps the link to every implementation. req:persistence (\"the design persists in-repo alongside the code\") is retired on Anthony's word and replaced by the principle underneath it: design and implementation stay coherent in both directions.",
+    "epoch_type": "revision",
+    "name": "2026-09-25: a design lives apart from its code, and coherence between them becomes the principle",
+    "sequence": 620,
+    "status": "arrived"
+  }
+}

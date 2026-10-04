@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:971d439b4719e4c0ec3930f3afa5d2dcfe74fbbe500ca5c31b70fa7ea236ab23",
+  "edge_type": "ANSWERS",
+  "from_id": "cap:a-session-serves-a-release-binary",
+  "properties": {
+    "note": "His \"build it, first\" became this capability, allocated to the shipping subsystem and scheduled into the first increment."
+  },
+  "to_id": "question:afc66a528788b6f9"
+}

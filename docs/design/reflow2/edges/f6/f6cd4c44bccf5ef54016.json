@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:dad5022dd209cde7fff7bed44cf4d8b4a736b1495e85d31a273656e8d66c3b72",
+  "edge_type": "CAUSES",
+  "from_id": "art:schema-verify",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "schema/verify.yaml:22,24 declare method default: test and level default: unit. The injector writes whatever a schema declares; these two declarations are the instance. Artifact.granularity/volatility had their defaults REMOVED for exactly this reason (BL-198) and Verification's were not.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:defect-a-verifications-level-and-method-can-be-set-only-at-birth-so-a-wrong-default-is-on-the-record-forever"
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:82e4c16cd5f723df68b437451602371613ad47456dc2c142edb8bc74df2a7588",
+  "edge_type": "ANTICIPATES",
+  "from_id": "dec:idea-a-top-level-graph-holds-what-the-component-graphs-share",
+  "properties": {
+    "evidence": "Its section \"WHY VERTICAL IS NOT HORIZONTAL REUSED\" is where this design first held that there is MORE THAN ONE KIND of cross-graph link — horizontal is an INTERFACE and a reference, vertical is a DECOMPOSITION with arithmetic attached. This node is that observation generalised: if there are two kinds already, the question is how many axes there are and who chooses. It also measured the blocker both axes share."
+  },
+  "to_id": "dec:idea-design-is-composable-on-two-axes-authority-and-role"
+}

@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:b329e89f914f01fde7e1cef7d4b341b8c04b5636fa76bc406b45a21736ea79a3",
+  "edge_type": "HAS_SNAPSHOT",
+  "from_id": "rule:design-information-lives-in-the-graph-not-in-documents",
+  "properties": {},
+  "to_id": "snap:epoch:feedback-corpus-ingested-then-deleted:rule:design-information-lives-in-the-graph-not-in-documents"
+}

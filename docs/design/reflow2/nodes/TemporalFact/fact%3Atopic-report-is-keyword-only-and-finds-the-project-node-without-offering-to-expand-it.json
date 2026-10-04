@@ -1,0 +1,18 @@
+{
+  "content_hash": "sha256:26e8d6070971fdd3e8f1515667a07cf08341dce29a8d9580b08190d9345cddba",
+  "node_id": "fact:topic-report-is-keyword-only-and-finds-the-project-node-without-offering-to-expand-it",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "confidence": 0.85,
+    "fact_type": "finding",
+    "name": "MEASURED on hxm_program (2026-09-14, v0.60.2): a topic call on the project's name returned the project node and 19 other hits across 9 types, and did not offer to expand the project node, so the two things the user named (the monochromator, the upstream contributions) were still missed",
+    "statement": "Relayed by Anthony from the hxm_program hub design, 2026-09-14. After being challenged on an unread status claim, the session tested whether the topic view could have answered it. It could: one call, 20 hits across 9 node types, including the project, the accepted top-level requirement and five capabilities with statuses. The limit the same test found: the view is keyword-based, so the project node came back as a HIT and its neighbourhood was not offered. The two items the user named, the monochromator and every upstream contribution, are reached from the project node by edges and not by the query's words, and were missed. The session did not know the tool existed before the challenge, which is a discoverability finding rather than a missing-feature one. Related open question already on the record: dec:idea-search-expands-with-the-projects-own-domain-vocabulary. The proposal it led to is recorded as dec:idea-a-project-scoped-status-rollup-answers-what-has-this-project-achieved-in-one-call.",
+    "steps": [
+      "topic_report",
+      "where-am-i"
+    ],
+    "subject_id": "cap:the-design-holds-about-one-subject-is-read-back-in-one-call",
+    "valid_from": "2026-09-14"
+  }
+}

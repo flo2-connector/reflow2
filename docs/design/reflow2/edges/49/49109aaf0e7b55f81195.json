@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:c4e57b3060388dc067a2b5744ee2b581f270d7392e061e6b87345a4a7d46b528",
+  "edge_type": "EVOLVES_INTO",
+  "from_id": "dec:idea-is-there-a-lightweight-task-capture-below-the-increment-grain",
+  "properties": {
+    "evidence": "Yesterday's question asked where 'these are the things I need to do next' has a cheap home, and its options were all about NODE TYPE and ceremony. This is the same need one day later with a different mechanism proposed — edges as the worklist rather than a Task type — which sidesteps the tracker objection that killed option B there. The earlier node stays live because its option C (tasks are already sayable as absences and statuses) is untested and would make this unnecessary."
+  },
+  "to_id": "dec:idea-a-hotspot-node-holds-the-live-worklist-and-is-deliberately-not-history"
+}

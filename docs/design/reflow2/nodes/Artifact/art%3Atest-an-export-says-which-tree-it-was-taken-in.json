@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:6136cff6c104fe5e226c5eb5dd7f49f1f005906b21774cdb2e0cc3ada33b131e",
+  "node_id": "art:test-an-export-says-which-tree-it-was-taken-in",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "test",
+    "description": "Against a real git repository: the receipt and the file carry branch and HEAD; dirty ignores the export file itself and notices anything else; an unchanged design keeps the coordinate it was taken at, byte-identical across a commit; outside git there is no coordinate rather than a made-up one.",
+    "location": "crates/reflow2-mcp/tests/an_export_says_which_tree_it_was_taken_in.rs",
+    "name": "an_export_says_which_tree_it_was_taken_in.rs",
+    "status": "realized"
+  }
+}

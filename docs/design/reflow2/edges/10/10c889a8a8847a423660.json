@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:c691de691156a3965a53cb0cc5da9f2b06e53402fdf733e540ccd20c2a5bac52",
+  "edge_type": "CHANGED",
+  "from_id": "ce:quality-target-2026-08-25",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:detect"
+}

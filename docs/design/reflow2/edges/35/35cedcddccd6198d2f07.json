@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:11884d61b635aee6a77d94833a529e4914b1fe9f056af821c8af65d12d353a4c",
+  "edge_type": "REALIZES",
+  "from_id": "art:proxy",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:a-local-client-reaches-a-remote-server"
+}

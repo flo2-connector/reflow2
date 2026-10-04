@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:b34652372f3b40e7fd2a8d0583f1bc81a52f4bb9696209845cc207d81d1a5583",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-loop-hint-says-where-the-node-landed",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "art:tools-capture"
+}

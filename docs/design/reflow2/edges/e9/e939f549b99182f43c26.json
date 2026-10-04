@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:7f411ac6e2719152e6b6a2319058ad3cb3efc732c34e2c9f401d85eb91eed502",
+  "edge_type": "GOVERNED_BY",
+  "from_id": "req:a-relation-stored-in-more-than-one-place-has-one-authoritative-copy-and-no-copy-drifts-unnoticed",
+  "properties": {
+    "note": "Settles which copy is authoritative for a finding's subject, and what a second hand-drawn link becomes."
+  },
+  "to_id": "dec:has-temporal-fact-means-only-the-subject-and-also-concerns-is-about-entity"
+}

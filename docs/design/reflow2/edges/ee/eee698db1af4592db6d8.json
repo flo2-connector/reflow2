@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:65cfd570282c6e2258ebc503cbec3565c725d15e84eacdacabc2249df0f4b8f9",
+  "edge_type": "INVALIDATES",
+  "from_id": "chg:the-overtaken-defect-records-were-triaged-against-the-v0510-build",
+  "properties": {
+    "evidence": "The unrecorded judgement is now written into the schema for both properties: Snapshot.target_id as a deliberate historical anchor (temporal.yaml:69) and Question.gap_id as resolving to nothing by construction (core.yaml:140)."
+  },
+  "to_id": "fact:which-properties-are-node-references-is-a-judgement-made-once-and-never-recorded-for-the-others"
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:916d9e126832dc43d89f0236d7d7508d08383751fb8d0aed6e50fe4ab8525c27",
+  "node_id": "chg:accept-870d9c0cae791b62",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "test_failure_fix",
+    "name": "Accepted a new baseline: the change carries no design meaning"
+  }
+}

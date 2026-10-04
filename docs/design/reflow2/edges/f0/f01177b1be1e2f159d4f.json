@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:a6151e5924ce2e6228f60994caefa71a42c03d14f11f8e2a440f57f46b063ee9",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "req:assumptions-are-first-class",
+  "properties": {
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "req:as-built-honest"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:f68ff53581e8a19ab2ba2e4703629a00125e65934a3a399be8dc831a05a933b8",
+  "edge_type": "CHANGED",
+  "from_id": "chg:every-declared-enum-is-wired-or-exempt",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:service"
+}

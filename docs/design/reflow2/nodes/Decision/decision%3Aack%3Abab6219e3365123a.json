@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:71e911d3a9f111a331850ad1d9e3a4855e0a55a0a8bc4718f458d8a4b50d2e9b",
+  "node_id": "decision:ack:bab6219e3365123a",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Accepted the gap gap:bab6219e3365123a.",
+    "name": "Reviewed: gap:bab6219e3365123a",
+    "rationale": "Standing disposition for planned-but-unbuilt capabilities. The check divides as the capability does, and the cheap half is genuinely cheap: the conjunction scan and the single-owner rule are deterministic and get ordinary fixture tests (\"must do X AND Y\" is flagged; a leaf whose satisfying capabilities allocate to three components is flagged). The over-decomposition half cannot be unit-tested for correctness — a test asserting the fixture was flagged only proves the fixture was flagged — so what must be pinned there is that a complaint about grain never edits or splits anything, only asks. Worth building the conjunction scan first regardless: it is a text check needing no model, it catches the commonest compound requirement, and it would have something to say about real designs on day one.",
+    "status": "accepted"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:36a4183f5f51837577376144baa54254e40762b2cf88173a9c8b78138665e8c3",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-saved-design-moves-to-the-item-layout-2026-10-03",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:15e875957734e0ac3021f0e4d41bff0c169fea82a879d550bd752d4eb583d4d1"
+  },
+  "to_id": "art:test-recording-a-finding-demands-the-skill"
+}

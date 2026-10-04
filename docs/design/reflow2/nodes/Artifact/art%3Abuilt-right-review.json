@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:d1d1cdc5f1d1fed7cfcb2f56c0307797f75955f872ebf3dcf0750f0dbe74ff01",
+  "node_id": "art:built-right-review",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "document",
+    "granularity": "atomic",
+    "location": "docs/built-right-review.md",
+    "name": "built-right-review.md",
+    "status": "realized",
+    "volatility": "stable"
+  }
+}

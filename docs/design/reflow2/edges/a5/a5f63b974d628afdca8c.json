@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:14b80fc9805f4688d8afe15fafaf898a22f67f1bd8aa361dfe06da10bffd49ca",
+  "edge_type": "REALIZES",
+  "from_id": "art:merge-driver-test",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:git-merge-driver"
+}

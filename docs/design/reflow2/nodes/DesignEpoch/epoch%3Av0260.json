@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:fd932433d1a9439077b04cced529e622b18a052eb7d255cedf1c2b038065230b",
+  "node_id": "epoch:v0260",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "epoch_type": "release_cut",
+    "name": "v0.26.0 cut — governance becomes a question the graph can be asked, and the server stops lying about its own currency",
+    "sequence": 292,
+    "status": "arrived"
+  }
+}

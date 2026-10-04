@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:339c76f9d5295360a1a65288b370965437e5bc1df3130e58d71015bc133690f6",
+  "edge_type": "CAUSES",
+  "from_id": "cap:a-build-can-call-one-tool-from-the-shell-and-read-the-reply-as-json",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "call_one_tool computes read_only from the served read_only_hint (main.rs:757-762) but keeps it internal: the command line carries only the tool name, no CLI call serves the read set, and --read-only is not applied on this path. So the approval layer, which sees only text, has nothing reliable to match.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:root-cause-one-regex-cannot-separate-door-reads-because-the-read-set-is-not-in-the-command-and-not-served-2026-10-02"
+}

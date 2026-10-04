@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:88e97d7f840df72cc1a550f98efd9519b9d2a4a851fc7aacc1ee1ad32b6e455c",
+  "edge_type": "CHANGED",
+  "from_id": "chg:required-to-create-optional-to-revise",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:tools-assure"
+}

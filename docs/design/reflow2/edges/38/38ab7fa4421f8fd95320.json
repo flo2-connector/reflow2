@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:3eb0d10ecab9ced4cb419d5a0023d8a9879f9bd4d7a3e3a2dd6e0cdf148932fb",
+  "edge_type": "OBSOLETES",
+  "from_id": "dec:absorb-the-foundation-subset-and-end-the-dependency",
+  "properties": {
+    "note": "reflow2 stopped linking dynograph-foundation on 2026-08-24. The declaration is RETIRED, not deleted: it recorded a real pin for the whole life of the dependency, and its note carries the reasoning for every version bump — the v0.11.0 to v0.12.0 move for a TextHit type leak especially. That history is the successor the absorption's own objection said in-tree code would lack. The gate's `unobserved` finding was CORRECT and is the retirement's trigger, not a defect."
+  },
+  "to_id": "dep:dynograph-foundation"
+}

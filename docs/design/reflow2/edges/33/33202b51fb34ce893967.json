@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:7cf96495c3f1c11bb40951c2623d45ed7162885708deb6987f20491db61f7f27",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-saved-design-moves-to-the-item-layout-2026-10-03",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:aafed6e61bb4eeb363c373c930ece237fafcd503d3f94457ad9bea788448e21a",
+    "checksum_basis": "measured"
+  },
+  "to_id": "art:dockerfile"
+}

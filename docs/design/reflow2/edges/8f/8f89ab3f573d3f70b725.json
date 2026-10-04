@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:68d0b79c9f2e589a96386f12c7b16d040cbe5f1c84425df6ebaca35044c33a59",
+  "edge_type": "CHANGED",
+  "from_id": "chg:cycle-break",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:agent"
+}

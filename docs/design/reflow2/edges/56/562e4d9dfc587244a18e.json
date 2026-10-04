@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:25f44a874d68aed7f6ca12f2979c9f8f3c8b5fbc9ab7d53031f5338a871ee362",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:idea-a-graph-whose-children-are-themselves-reflow2-designs",
+  "properties": {
+    "approved_at": "2026-09-26",
+    "authored_at": "2026-09-22T00:00:00Z",
+    "roles": [
+      "author",
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

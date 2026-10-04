@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:0fb3ff09de31fa544f78ad0e6661c8d930d9cc7e89ecda2a234fe7805bdc5ebb",
+  "node_id": "frag:art:drawn-edges",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered drawn_edges.rs — the one path by which a constructor names the edges it drew"
+  }
+}

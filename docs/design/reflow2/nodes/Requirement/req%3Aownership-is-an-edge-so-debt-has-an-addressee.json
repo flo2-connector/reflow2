@@ -1,0 +1,17 @@
+{
+  "content_hash": "sha256:3899032941ab76fa98a0649d1db489b76b2031abb0334849d68d9239396bb37c",
+  "node_id": "req:ownership-is-an-edge-so-debt-has-an-addressee",
+  "node_type": "Requirement",
+  "properties": {
+    "concern": "core",
+    "designation": "internal",
+    "kind": "functional",
+    "lineage": "original",
+    "name": "A gap arrives as YOURS, because the graph can say who owns the thing it is about",
+    "priority": "high",
+    "provenance": "authored",
+    "rationale": "THE EVIDENCE IS A NUMBER THAT NEVER MOVED. The fleet maintains an ownership matrix in markdown — ~25 rows mapping each component/surface/process to the boss who owns it and the bus where changes get flagged. The graph already holds the components; it cannot say who owns one. So detect_gaps BROADCASTS: every one of 7 attached sessions received the same '69 gaps / 26 defects / 20 / 20', almost none of it theirs. FIVE CONSECUTIVE SEATS REPORTED THOSE IDENTICAL NUMBERS AND NOT ONE MOVED — because debt addressed to everyone is addressed to no one. Their framing: with an OWNED_BY edge a gap could arrive as 'yours' rather than 'the graph's', and the rollup could say '12 of 69 are in regions you own'. That single change would convert their biggest standing number from wallpaper into a work queue. COMPOUNDS WITH A SECOND REPORTED DEFECT: fact:defect-an-aggregate-gap-hides-partial-progress — a gap naming 48 capabilities is one item, so a worker who closes it for one capability sees the total stay put. Unaddressed debt that also cannot register progress is doubly inert. WHAT ALREADY EXISTS HERE, and this requirement should be judged against it rather than beside it: cap:owed-to-a-contributor is already `in_progress` and holds exactly this thesis — but its chosen first cut is narrow (loop_status counting proposed Decisions carrying an AUTHORED_BY role=approver edge), which answers 'what has a named person been asked to settle' and NOT 'which of these gaps are in the part of the system I own'. The fleet's ask is the second one. Its own description records the larger shapes as considered-but-not-chosen. THE INPUT MAY ALREADY BE IN THE GRAPH TOO: claim_region records what a seat holds, computed as a propagation region from a seed — and the fleet's separate #5 ask notes 'nothing else consumes it'. So a seat-scoped loop_status may be reachable from claims without any new edge type at all, which is worth weighing before adding OWNED_BY. NOTE the deliberate constraint cap:owed-to-a-contributor already records and that this requirement must not overturn silently: notification is out of scope — the server never initiates a message, verified against the service rather than assumed, and a consumer polls.",
+    "statement": "The design graph SHALL be able to record who owns a component, surface or process, and the loop's reporting SHALL be answerable in terms of that ownership — so debt reaches an addressee instead of broadcasting. Requested as the #1 fleet-specific gap by dev_storyflow's api-boss 5d608b85 on 2026-08-08, ranked by what would have saved them the most: 'this is the biggest fleet-specific gap and it is not on anyone's list.'",
+    "status": "accepted"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:cee5be5b8195d1b20dd25847d1eb4953b60c0d2481310d127873057aa17ed72d",
+  "edge_type": "CAUSES",
+  "from_id": "rule:field-feedback-issues-are-root-caused-and-ideas-are-brainstormed",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "detect_gaps 2026-09-18: convention_delivered_nowhere names 5 of 10 conventions incl. this rule (steps: None); grep of served skills: no maintainer-side triage skill exists, `feedback` is the usage-tally renderer; the flo2 session log shows the same lapse in the other direction the same day (F0)",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:field-feedback-was-triaged-by-reading-a-fourth-time-after-the-rule-and-the-rule-is-delivered-at-no-step"
+}

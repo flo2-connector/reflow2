@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:7e831aa2e9be381b54c04829efcebcc2a20607eb5285788daac54c06f298d9ef",
+  "node_id": "fact:defect-loop-status-asserts-an-answer-never-reached-the-design-from-a-fact-that-cannot-say-so",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "confidence": 1.0,
+    "fact_type": "property",
+    "statement": "MEASURED ON REFLOW2'S OWN ORIENTATION CALL, 2026-08-16, and it is this epoch's own theme firing on the instrument a new session reads FIRST. `loop_status` reported '1 answered question(s) never reached the design — write the answer in, or acknowledge the gap'. The answer HAD reached the design: `dec:the-authority-check-guards-forward-not-backward` is accepted, dated 2026-08-11, carries an AUTHORED_BY role=approver edge to who:ajs and a GOVERNED_BY edge from the rule it shapes, and records the ruling, both rejected options and the measurement behind them. The claim was false and I repeated it to the user as fact before checking.\n\nTHE CODE CANNOT SUPPORT WHAT THE MESSAGE ASSERTS. report.rs:755 is `questions.iter().filter(|q| q.status == \"answered\").count()`. That knows one thing — the question is answered and its gap is still open — and the message turns it into a claim about whether design nodes exist. Nothing looks for them.\n\nAND THE STATE IT FLAGS IS DELIBERATE, which is what makes this `req:a-deliberate-state-is-not-a-defect` rather than a wording bug. The decision says in its own text that it does NOT close the gap: the gap is `unverified_enforced_rule`, it needs a PASSING Verification, none exists, and closing it would record a judgement the owner did not make. So the correct action — rule, record it, leave the debt honestly open — is exactly what makes the instrument report false debt, and the only ways to silence it are to acknowledge a gap that is real or to stop recording rulings.\n\nTHE FIX IS NOT OBVIOUS AND IS NOT ASSERTED HERE: 'was this answer written into the design' has no general computation, since an answer may land as a Decision, a Requirement, a status move or an edge. The narrow honest repair is for the message to say what it actually knows.",
+    "subject_id": "req:a-deliberate-state-is-not-a-defect",
+    "valid_from": "2026-08-16"
+  }
+}

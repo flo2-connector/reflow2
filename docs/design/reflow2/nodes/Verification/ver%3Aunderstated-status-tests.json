@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:cecb8f2c3cc39d0b1e9859e9e7a81bb1e4af04ec873c9d5a3bfff46d9a7716f8",
+  "node_id": "ver:understated-status-tests",
+  "node_type": "Verification",
+  "properties": {
+    "description": "crates/reflow2-core/tests/understated_status.rs — 15 tests, run on the in-memory backend. Written against origin/main's detect.rs first and watched failing there (9 of 15; the six that passed are the negatives, which the unfixed code satisfies by raising nothing).\n\nPOSITIVES: a planned capability a realized artifact realizes, or a passing check verifies, is raised with its evidence named and the call that moves it; the components hosting built capabilities, or realized/checked directly, are ONE finding naming every one, keyed on the set; a planned release with a DEPLOYED_TO (active or unset) is raised; each capability is its own finding.\n\nNEGATIVES: an artifact that is itself planned or has no status is not a build; a check at planned/failing/skipped/blocked/superseded shows nothing; a file or check on the component a capability is allocated to is not read for the capability; in_progress, realized and verified are never flagged; a discontinued capability is not asked about; a release whose DEPLOYED_TO is marked planned is intent, not a deployment.\n\nACKNOWLEDGEMENT: acknowledge_gap removes a finding from the open list and keeps it in reviewed_gaps with its reason; for the components an acknowledged set stays acknowledged and a newly understated component re-asks under a new id. Every finding ranks below status_contradiction's 0.70.",
+    "findings": "15 of 15 pass on the fixed code (cargo test -p reflow2-core --no-default-features, whole suite green). On flo2's export at origin/main 29b569c the rule raises ONE finding naming 11 of 21 components, cmp:edge-gateway first with 22 built capabilities; origin/main raises none.",
+    "kind": "verification",
+    "last_run_at": "2026-09-30",
+    "level": "unit",
+    "location": "crates/reflow2-core/tests/understated_status.rs",
+    "method": "test",
+    "name": "understated_status is raised on built work still reading planned, and on nothing else",
+    "status": "passing"
+  }
+}

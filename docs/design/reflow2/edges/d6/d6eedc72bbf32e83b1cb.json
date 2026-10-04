@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:ac75a5686d4c30130c2d98c31653bd1a048d5a11ccd5ebb0f7af562fc9253d0c",
+  "edge_type": "CHANGED",
+  "from_id": "chg:accept-b75bfe9286b04eda",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:skill-ingest-corpus"
+}

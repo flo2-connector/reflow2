@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:ba6b0c4e6f35c42fd15c5f03719c77d34bf1e06359d2e097898c696b10e3e5c9",
+  "edge_type": "CHANGED",
+  "from_id": "chg:bl74a-loop-nudge",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cap:loop-status"
+}

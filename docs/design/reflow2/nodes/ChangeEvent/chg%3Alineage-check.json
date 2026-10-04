@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:6a183efbc1491ef68d982cb49a6338d6dd13c99e2a5e8e36c98bf4e75d514567",
+  "node_id": "chg:lineage-check",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "name": "The gate reads the export chain, so a severed lineage stops being silent"
+  }
+}

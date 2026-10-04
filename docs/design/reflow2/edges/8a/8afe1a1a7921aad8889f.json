@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:bbad2965479dd4933b2f16e0ac279c1fc447909585cf09e0f77b617de4dfd18a",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:prose-currency",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:prose-currency"
+}

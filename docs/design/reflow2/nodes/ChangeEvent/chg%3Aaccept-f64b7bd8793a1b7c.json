@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:557a81f0b30fb288e2c7a44d6e1554271b6c6a970d80e37ec7147b21a2186202",
+  "node_id": "chg:accept-f64b7bd8793a1b7c",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "refactor",
+    "detected_at": "2026-09-06",
+    "name": "Two depends_on literals moved from the shared EdgePairReq to DependsOnReq when the pair struct was split per tool for role aliases (chg:every-relation-tool-accepts-the-other-familys-names). The test's claim is unchanged.",
+    "subject": "system"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:53cf36f75b3cae76d0130e23dbb12776fac1209246ca9ea58ae935ceafbf1ecc",
+  "node_id": "art:test-an-export-says-where-it-was-taken",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "test",
+    "description": "The document contract: taken_at survives a JSON round trip; an older document reads with None rather than a default; a detached HEAD is a commit with no branch; the coordinate is not part of the content hash.",
+    "location": "crates/reflow2-core/tests/an_export_says_where_it_was_taken.rs",
+    "name": "an_export_says_where_it_was_taken.rs",
+    "status": "realized"
+  }
+}

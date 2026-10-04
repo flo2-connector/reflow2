@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:575fa7e8c2e989df9de9e39237c94fb8726713eec74495c09e878dd458fb6048",
+  "node_id": "chg:export-reports-what-it-wrote",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "name": "export_graph returns wrote: created|changed|unchanged, and a note on the misleading case"
+  }
+}

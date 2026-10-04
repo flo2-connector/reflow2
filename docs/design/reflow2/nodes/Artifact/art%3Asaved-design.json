@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:b7ecce09aab7b4dc653d90c83ca9f1163d6c95244511c56f4d0eb20978fa86c4",
+  "node_id": "art:saved-design",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "location": "crates/reflow2-mcp/src/saved_design.rs",
+    "name": "saved_design.rs",
+    "status": "realized"
+  }
+}

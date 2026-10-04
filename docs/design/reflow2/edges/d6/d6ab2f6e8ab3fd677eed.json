@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:c3210f3bc456c5685b0047b01ad5856db35531516505d6ff7f4a99e83dc02c19",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:the-design-says-what-its-own-tools-cannot-write",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:vocabulary"
+}

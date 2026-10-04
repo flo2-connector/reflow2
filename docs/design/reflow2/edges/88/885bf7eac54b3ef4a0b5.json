@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:87061e4b4ff53548b5cc6db0d1a34aa293cb756c41bba8d1580cdf6f89b6084a",
+  "edge_type": "DOCUMENTS",
+  "from_id": "art:collaborating",
+  "properties": {
+    "doc_kind": "design_doc"
+  },
+  "to_id": "cap:git-merge-driver"
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:dd4d40f047cb164ad71aada8afd143f25adf615f9b5a6d0bc438848980a58b21",
+  "node_id": "epoch:the-systems-views-are-rendered-from-the-graph",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "epoch_type": "release_cut",
+    "name": "PLANNED — the systems views are rendered from the graph, and what they cannot render is the finding. SV-1/SvcV-1 (Systems/Services Interface Description) and SV-4/SvcV-4 (Systems/Services Functionality Description), produced by the AGENT querying the design rather than by a fixed renderer — the division dec:agent-navigates-content and docs/viewpoints.md already state, where reflow2 serves the content and the agent renders. Anthony, 2026-08-30: \"we've done so much SE work on reflow2 itself and one of the features of reflow2 is for it to report the design graph content back to agent and the agent renders these views.\" DELIBERATELY AFTER THE SEAM WORK: SV-1 IS an interface description, so it can only be as good as the seam picture — which is why it is the honest test of whether that increment worked, and a better one than hand-writing contracts for reflow2's own six boundaries. NO VERSION NUMBER BY DESIGN (dec:idea-a-planned-increment-is-named-by-content-not-by-number).",
+    "sequence": 267,
+    "status": "planned"
+  }
+}

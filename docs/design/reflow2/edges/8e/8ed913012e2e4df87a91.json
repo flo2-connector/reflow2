@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:80b82800df86d2cc2048bb451b785f255fd306c69126407bcff8b56b7e8deb81",
+  "edge_type": "CHANGED",
+  "from_id": "chg:2026-09-22-link-artifact-draws-implements-for-a-check",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:artifact"
+}

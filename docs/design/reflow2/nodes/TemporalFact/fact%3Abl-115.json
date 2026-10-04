@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:32e29329470a3f58d219f9e29053683f794957318d9d199adb313edf9591819f",
+  "node_id": "fact:bl-115",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "defect",
+    "statement": "[BL-115] unverified_capability and unrealized_capability are unusable on a pre-construction design",
+    "subject_id": "cmp:detect",
+    "value": "{\"evidence\": \"*Found 2026-07-31 by the same external adopt pass \\u2014 23 of 51 gaps were unverified_capability and another 23 unrealized_capability, on a baseline where NOTHING is built yet and that is the honest state. Independently confirmed in reflow2's own graph the same day, where four unverified_capability gaps were the ONLY notes on the gate and Anthony accepted all four as noise in one judgement.* Two sessions, different designs, same verdict \\u2014 that is a defect, not a preference. The detector raises one alarm per capability because its verification is status=planned rather than passing, which is correct and useless: 23 identical alarms drown the four gaps that actually need a human, and a gap list that can never approach zero gets skimmed. dec:passing-is-verified is right and must not be weakened \\u2014 a check that has not passed is not proof \\u2014 but *\\\"nothing proves this\\\"* and *\\\"a proof is written and has not run yet\\\"* are different states, and today they render identically. Fix shapes, none chosen: (a) a third reported state, *planned verification exists, not yet run*, which is honest and costs no new vocabulary; (b) a ROLLUP \\u2014 *\\\"23 capabilities await their first verification run\\\"* \\u2014 with the same aggregate keying dec:aggregate-gap-keyed-on-rule already built for unvalidated_capability, which is the nearest working sibling and was built for precisely this churn; (c) severity scaled by whether a check exists at all. The rollup route has a known trap: an aggregate acknowledgement covers capabilities added later without a fresh look, which is what *standing* means and was accepted deliberately once \\u2014 accept it again knowingly or not at all. Size S\\u2013M\", \"origin\": \"Migrated from docs/backlog.md BL-115 on 2026-08-07 (epoch:backlog-retired). Size estimate carried from the row: S\\u2013M.\"}"
+  }
+}

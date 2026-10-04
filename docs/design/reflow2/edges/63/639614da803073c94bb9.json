@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:4c6b23226510ad23263a718f124629fdb9fa5b2b2fed8ad662458a0146868e2b",
+  "edge_type": "REALIZES",
+  "from_id": "art:surface-usage-instrument",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cmp:docs"
+}

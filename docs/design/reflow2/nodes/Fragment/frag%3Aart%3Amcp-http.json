@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:86d1086d767ba7df38505b7d2916c492bdcce7f3523fde041efff82b4a0976c2",
+  "node_id": "frag:art:mcp-http",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered mcp_http.rs"
+  }
+}

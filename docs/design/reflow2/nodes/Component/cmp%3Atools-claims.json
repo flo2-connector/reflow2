@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:c5fccd71d02ab0f671e4b5204e4d02c3ade6ff05e178fca2c75badced7ddf7d2",
+  "node_id": "cmp:tools-claims",
+  "node_type": "Component",
+  "properties": {
+    "kind": "module",
+    "level": "component",
+    "name": "claims_tools",
+    "provenance": "authored",
+    "purpose": "The CLAIMS slice of the served surface (5 tools): who holds which region of the design right now, advisory and session-scoped — claim_region, mint_seat, release_claim, claim_report.",
+    "status": "planned",
+    "tier": "operational"
+  }
+}

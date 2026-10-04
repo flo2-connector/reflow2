@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:521b36bb9d4900aa8145111451c5b431a298cb5716471b7ca2fa6b98f6c42ea3",
+  "node_id": "chg:accept-7bd49cad8e8337ba",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "test_failure_fix",
+    "detected_at": "2026-08-01",
+    "name": "BL-106: the ledger gains last_verified_at and verification_freshness, delivering cap:verification-freshness, which the design already specified as planned and allocated here."
+  }
+}

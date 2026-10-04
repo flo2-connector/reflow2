@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:3d95327832a785875b35251e6e3c3b84c0607acc9692524cacfb4c9968518a4a",
+  "node_id": "chg:accept-9812364d92115544",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "test_failure_fix",
+    "detected_at": "2026-07-28",
+    "name": "First registration — the file was written for cap:latent-surface in the same session that recorded it."
+  }
+}

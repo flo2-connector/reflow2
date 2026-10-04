@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:302e0394a6f548238dcdf1d8cf17240cfb774d0c7dedcffa1442b89852a2c3a6",
+  "edge_type": "INVALIDATES",
+  "from_id": "chg:an-unknown-field-refusal-names-the-nearest-served-parameter-first",
+  "properties": {
+    "at": "2026-09-19",
+    "note": "The fix this change records answers the finding; the finding stays as the measurement that led to it."
+  },
+  "to_id": "fact:field-report-flo2-2026-09-18-eight-rejected-calls-were-guessed-names-not-a-stale-client-and-the-refusal-said-stale"
+}

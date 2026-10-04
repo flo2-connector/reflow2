@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:3a650368f316535d7b61ed5a25a576518da5ad769c0f411d8d3fa8520ee4341d",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0321",
+  "properties": {
+    "as_checksum": "sha256:21673699d9d326c9db310fcb24068fa38074634b1949d2708c56f9f77a6c2e5f"
+  },
+  "to_id": "art:test-shared-sessions"
+}

@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:c2cd78bc59d43c1973158eaffe00439239abfb21ef42f1c735f052a8168331f0",
+  "node_id": "fact:claude-code-measured-it-drops-the-text-block-when-structured-content-is-present-so-nothing-is-injected-twice",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "confidence": 0.85,
+    "fact_type": "finding",
+    "name": "MEASURED (Claude Code, this box, 2026-09-20): handed BOTH a text block and structuredContent, it injects only the structured payload and drops the text — so no client yet measured injects both, and the doubling flo2 feared is not observed",
+    "statement": "flo2 named one unmeasured thing as the fact that decides the reply-shape question: does any MCP client inject BOTH the text block and structuredContent into the model's context, so that duplicating costs the model twice rather than only the wire? MEASURED 2026-09-20 on Claude Code, this box. design_identity was called through this session's own MCP connection and what reached the model was a single compact representation, {\"graph_id\":\"reflow2\",\"label\":\"reflow2\",\"minted_by\":\"0.13.0\",\"origin\":\"adopted\"} — the structured payload. The measurement is stronger than it first read, because design_identity is one of the six tools that duplicate (see fact:six-tools-still-send-the-payload-twice-because-the-reply-shape-is-pinned-by-instance-and-not-by-enumeration): the server sent a pretty-printed text block AND structuredContent, and Claude Code injected only the structured one. So the client was handed the doubling and discarded half of it. THE STANDING OF THE THREE MEASURED CLIENTS IS NOW SYMMETRIC AND OPPOSITE: OpenCode and Grok Build hand the model only the TEXT block and drop structuredContent; Claude Code hands the model only the STRUCTURED payload and drops the text. No client measured so far reads both, so duplicating has never yet cost a model twice — only the wire. BOUNDS. Three clients out of an unknown population, one version each, on one box. It does not establish that no client reads both; it establishes that none of the three that reflow2 has actually met does, which is what the open question asked for. It also says nothing about how a client BEHAVES when the text block is a signpost rather than a payload, which is a different measurement and is the one that would decide the default.",
+    "subject_id": "dec:idea-what-should-the-reply-shape-be-for-a-client-nobody-has-measured",
+    "valid_from": "2026-09-20"
+  }
+}

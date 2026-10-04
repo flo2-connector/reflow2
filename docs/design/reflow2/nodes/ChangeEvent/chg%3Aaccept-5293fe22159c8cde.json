@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:6f3d99ed333e3f03cfc3eea71d9ecf55f414b4ba13d3962c0cd65d1d7c2182ef",
+  "node_id": "chg:accept-5293fe22159c8cde",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "test_failure_fix",
+    "name": "The v0.53.0 version bump. Accepted before the manifest is applied, so the release records the file it actually ships.",
+    "subject": "system"
+  }
+}

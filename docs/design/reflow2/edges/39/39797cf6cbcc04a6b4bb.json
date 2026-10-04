@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:80d8ec0fd736cf81d1a3bfdc91860bc5a8551377b7730f0575438b066b34e72c",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:edge-prose",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:edge-prose"
+}

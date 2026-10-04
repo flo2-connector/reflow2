@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:4c91457dd8f1735aea43c7f1fa8aa1b3dc24627dc08881c7675435405a854958",
+  "node_id": "chg:a-check-records-what-it-found-separately-from-what-it-is",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "name": "Verification gains `findings`, `description` becomes reachable from the constructor after 164 nodes could not write it, and the loop_status rollup shortens a long name while saying that it did"
+  }
+}

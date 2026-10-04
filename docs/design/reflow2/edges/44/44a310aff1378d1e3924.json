@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:1da8e752342141adb70327105e280ec9a855a89b55af4ef71780d65417c11f20",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:detect-and-ask-skill",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:detect-and-ask-skill"
+}

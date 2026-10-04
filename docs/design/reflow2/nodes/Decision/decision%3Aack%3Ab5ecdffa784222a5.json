@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:9add64aac4c45a1329f2497e802e0c4b192111febbaf07372a898cb67050b28e",
+  "node_id": "decision:ack:b5ecdffa784222a5",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Accepted the gap gap:b5ecdffa784222a5.",
+    "name": "Reviewed: gap:b5ecdffa784222a5",
+    "rationale": "Standing disposition for planned-but-unbuilt capabilities: cap:kpp-proposal is a skill, captured minutes ago when Anthony asked how a user actually says something is a KPP, and nothing is written for it yet. Worth naming what it is NOT, because the temptation will be real once someone starts: it must not become a rule that auto-promotes requirements whose statements contain \"must\" or a number. Criticality is a claim about consequence — what happens to the effort if the threshold is missed — and that is not recoverable from wording. The signals justify ASKING; they never justify setting.",
+    "status": "accepted"
+  }
+}

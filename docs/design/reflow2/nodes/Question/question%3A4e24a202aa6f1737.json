@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:cab5cf62cc743daa80805fb2dc1b04454b52f1e6ea6331c40ec7e6512a491121",
+  "node_id": "question:4e24a202aa6f1737",
+  "node_type": "Question",
+  "properties": {
+    "answer": "Anthony, 2026-08-20: make it a subsystem. Agreed with the recommendation that packaging is not scaffolding — the graph shows four capabilities, three of them realized, with the release workflow behind them, serving req:frictionless-update, which is accepted intent. Something that shipped and works is a subsystem that was never promoted, not a build concern living outside the product. Its level is now `subsystem` and the project contains it directly, like the other nine. The `cmp:` id prefix is left alone and is cosmetic: reflow2 has no rename operation, and fabricating a migration to a new id would destroy the node's snapshot history for the sake of a prefix.",
+    "context_setter": "Declared level disagrees with spine position",
+    "gap_id": "gap:4e24a202aa6f1737",
+    "question": "Packaging is declared a leaf component, but nothing contains it — it sits at the top of the decomposition alongside the nine subsystems. So \"what are the top-level parts of reflow2?\" gives two different answers depending on whether you ask by declared level or by position in the spine. Which is right: does packaging belong inside a subsystem (the agent surface, or documentation), should it be raised to a subsystem in its own right, or is it correctly outside the product decomposition altogether — a build concern rather than a part of the delivered system?",
+    "rephrase_degraded": false,
+    "status": "answered"
+  }
+}

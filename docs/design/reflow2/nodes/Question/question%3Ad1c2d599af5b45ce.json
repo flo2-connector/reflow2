@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:35b2e7c8d04cc4cb3709857b2bd13b751161603004b3a8d5f03e594f4d673f6c",
+  "node_id": "question:d1c2d599af5b45ce",
+  "node_type": "Question",
+  "properties": {
+    "answer": "Anthony, 2026-07-28: acknowledge — validation is tracked outside the graph. The real validation is the trials (brownfield ophyd-service, greenfield aidrone) recorded in docs/trials-private/, plus the StoryFlow fleet usage, none of which are modelled as Verification nodes.",
+    "context_setter": "67 verified capabilities not validated",
+    "gap_id": "gap:d1c2d599af5b45ce",
+    "question": "Your tests prove these 67 features do what you specified — but nothing on record shows anyone actually used them for real and confirmed they solve the problem you built them for. Do you want to start recording that real-world confirmation, or is that something you're tracking outside this system?",
+    "rephrase_degraded": false,
+    "status": "answered"
+  }
+}

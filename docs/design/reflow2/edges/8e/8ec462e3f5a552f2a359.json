@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:982f764ee3f71ce675db259ceb980fc10c1a7b9f2c01debd6e1aebb4df6b5f24",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:a-session-that-reads-and-never-writes-is-seen",
+  "properties": {
+    "approved_at": "2026-09-18",
+    "roles": [
+      "approver",
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

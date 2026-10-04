@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:42aab07d22345b047c878c0345a56b668e552448511ed9412b4c272ec3c6bf0b",
+  "edge_type": "CHANGED",
+  "from_id": "chg:an-acknowledgement-says-whose-judgement-it-was",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cmp:tools-coherence"
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:9507d07aaa95ddbb8b1bb4d2295d6c19db98c7fe142e1f572d584aa637dc70a8",
+  "edge_type": "CAUSES",
+  "from_id": "cap:a-build-can-call-one-tool-from-the-shell-and-read-the-reply-as-json",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "call_one_tool (main.rs:750, origin/main 66620f7) builds the full served list with every input schema, uses it only to check the tool exists and read its read_only_hint, then drops it; no --call reply and no served tool returns an input schema.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:root-cause-argument-shapes-are-learned-by-refusal-because-the-door-holds-the-full-schema-and-prints-none-of-it-2026-10-02"
+}

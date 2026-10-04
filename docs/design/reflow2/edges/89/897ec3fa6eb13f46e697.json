@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:890e4ae3a24958e85c3a35ff8ceea0d6f3230f4f2722fb34fe950f57e593bfba",
+  "edge_type": "CHANGED",
+  "from_id": "chg:absorb-core-storage-text",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:drift"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:f482a08ba230c93053873d4ec5151043cda811890b1faa7cbf78f25de4d3be00",
+  "node_id": "chg:accept-5926becab7a70367",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "test_failure_fix",
+    "detected_at": "2026-08-10",
+    "name": "Two WhatNext FIELD names added to NON_TOOL_TERMS. The lint refused the skill until they were declared — correctly, since `not_shown` and `unranked_pool` are backticked snake_case and read exactly like tool names. No design meaning: the allowlist is how the lint tells a field from a tool."
+  }
+}

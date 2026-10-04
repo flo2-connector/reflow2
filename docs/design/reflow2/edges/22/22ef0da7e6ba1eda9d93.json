@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:724d8a242a5e097685b896cbd74929cd69fa882955ab885e3c37d9cccac909ab",
+  "edge_type": "CONTRADICTS",
+  "from_id": "dec:idea-dynograph-crates-independent-in-code-coupled-in-release",
+  "properties": {
+    "alignment": "opposing",
+    "evidence": "Opposite answers on one axis, raised in the same breath. Absorbing DISSOLVES the boundary by pulling the code in; making the crates independently releasable SHARPENS the boundary and keeps it. Taken far enough, each makes the other pointless — there is nothing to release independently once it is vendored, and little reason to vendor once you can pin exactly what you want. ⚠️ NOT STRICTLY EXCLUSIVE, and the overlap is worth naming: option E here (reflow2 absorbs the three loose functions) IS option C there. So the design will have to pick a DIRECTION rather than a disjoint branch."
+  },
+  "to_id": "dec:idea-cannibalize-dynograph-foundation-into-reflow2"
+}

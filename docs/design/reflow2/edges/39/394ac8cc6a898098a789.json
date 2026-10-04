@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:dc60c27b7790d2370da6abc68dd3f6931aef3d39c7f06f9cf746ab87b280a365",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:client-setup",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:client-setup"
+}

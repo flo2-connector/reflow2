@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:69e2074515a1ebe6021e55a11c725b24b0b0e729590c10474f395ca412f26120",
+  "edge_type": "OBSOLETES",
+  "from_id": "dec:field-reports-are-untracked-because-the-repository-is-public",
+  "properties": {
+    "confidence": 1.0
+  },
+  "to_id": "art:ophyd-service-feedback-2026-08-19"
+}

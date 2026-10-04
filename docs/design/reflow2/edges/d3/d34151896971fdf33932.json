@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:d2c7a81e886ad25200ad462eb5705bd08a5343bed4c95b78c07960a883bd71f9",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "art:grok-shell-feedback-2026-08-29",
+  "properties": {
+    "authored_at": "2026-08-29",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:alex"
+}

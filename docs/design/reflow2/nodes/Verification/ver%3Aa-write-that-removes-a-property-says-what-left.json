@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:ce35849ceb3eb6aa87943151e695804cbaa8d495f04dd65ae10f5401d4f5946d",
+  "node_id": "ver:a-write-that-removes-a-property-says-what-left",
+  "node_type": "Verification",
+  "properties": {
+    "findings": "Passing on the item 8 branch; on main create_node with a null said changed: false, nothing moved.",
+    "kind": "verification",
+    "last_run_at": "2026-10-03",
+    "level": "integration",
+    "location": "crates/reflow2-mcp/tests/a_revising_write_says_what_it_removed.rs",
+    "method": "test",
+    "name": "A write that removes a property reports it in revision.replaced and revision.removed, counts it in shortened, and preserves it in a snapshot",
+    "status": "passing"
+  }
+}

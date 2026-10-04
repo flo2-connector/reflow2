@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:8a44c036be5b2b4568d4a6c83f5a80e5329d4545a398561609a03a467ca868ba",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:settles",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:settles"
+}

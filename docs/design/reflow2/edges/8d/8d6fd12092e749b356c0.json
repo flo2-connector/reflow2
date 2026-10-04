@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:20702f42927a1d7b8dba697998cf0b0ffc27bd0ab3fdde99bdd50a61e948ed8c",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0611",
+  "properties": {
+    "as_checksum": "sha256:0079a81b693f5848de54f458d5ff143a4f6c3f438735515fc7261beb88650fe5"
+  },
+  "to_id": "art:loop-status-lens-test"
+}

@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:e7cb99cccc45bcee1b80ad099c82399ee85954b3975a99b99eb97ea41ff8bf68",
+  "node_id": "req:accreted-intent-becomes-a-design",
+  "node_type": "Requirement",
+  "properties": {
+    "concern": "core",
+    "designation": "internal",
+    "kind": "functional",
+    "lineage": "original",
+    "name": "A body of intent accreted over years, contradicting itself and never built, can still become a design",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "Where a person has written down what they want to build over a long period — documents, drawings, proposals, notes — and has built NOTHING, reflow2 must be able to turn that corpus into a real design. Anthony, 2026-08-04: \"a daydreamer may just document thoughts (maybe over years about some dream project) - then one day, they say, I want to actually build it… it must create a reflow2 project from multiple fragments (and potentially contradicting or imperfect requirements/ideas/proposals) and turn them into an actual reflow2 project.\"\n\nTHREE THINGS DISTINGUISH THIS FROM req:corpus-ingest, which is about CONVERGENCE (the same component named in forty specs resolving to one node). (1) CONTRADICTION IS THE EXPECTED STATE, NOT A DEFECT. A 2019 idea disagreeing with a 2024 one is not an error to heal — both were genuinely held, and the disagreement is the most informative thing in the corpus. The design must be able to say \"you changed your mind here, forty times\" as a READING rather than as forty defects. (2) THERE IS NOTHING BUILT TO RECONCILE AGAINST. Every capability is `planned`, every requirement `proposed`, and the as-built half of the loop has no subject — which is honest and must not read as catastrophic. (3) THE CORPUS IS THE ONLY ARTIFACT. For a codebase the documents are one source among several and the code arbitrates; here the documents are the whole of what exists, so nothing outside them can settle a disagreement between them and the user is the only arbiter.\n\nIT ALSO SITS UNDER BOTH SIBLING SKILLS RATHER THAN BESIDE THEM, which is the structural half of the same observation. `adopt` is described for a system with \"little or no requirements documentation\" and recovers intent by reverse-engineering code — but a corpus this size falsifies that premise, and adopt's Phase 0 only REGISTERS documents as Fragments while Phase 3 is told to recover requirements ONLY from them. Measured on dev_storyflow: 17 Fragments and 9 Requirements recovered from 1,124 documents, after which a separate multi-session campaign had to read them by hand. `genesis` assumes an opening BRIEF — one statement — and has no shape for an opening FOLDER. So mass ingest is a primitive both skills should consume, not a third skill beside them.\n\nStatus deliberately `proposed`: this is Anthony's framing captured in his own words and awaiting his confirmation of the wording, not a settled requirement.",
+    "status": "accepted"
+  }
+}

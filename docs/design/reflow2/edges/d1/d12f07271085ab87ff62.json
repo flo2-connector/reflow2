@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:7c6572ad881eb9cb88c77ad94c83f16b2511433ffc4963bc230bc9706824c500",
+  "edge_type": "REALIZES",
+  "from_id": "art:upstream-read-test",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "verified"
+  },
+  "to_id": "cap:a-declared-dependency-is-watched-not-imported"
+}

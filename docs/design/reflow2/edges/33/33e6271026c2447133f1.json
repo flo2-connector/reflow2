@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:8aab9cdab76658f91902cd6b201f9d55acd307f0536f62ea6a70e55603e0eb12",
+  "edge_type": "RISKS",
+  "from_id": "cap:parallel-work",
+  "properties": {
+    "evidence": "Parallel work is what turns this from an annoyance into the cost Anthony actually named. Isolation and claims stop two people COLLIDING while they work; neither tells user B that user A already FINISHED. So the more successfully two people work in parallel, the more exposed they are to duplicating a completed task — and the result is two independent implementations, which the design-record merge driver cannot reconcile because the divergence is in code, not in the graph. Drawn from the capability TO the requirement: the hazard rides on the capability succeeding."
+  },
+  "to_id": "req:the-graph-can-say-what-has-already-been-done"
+}

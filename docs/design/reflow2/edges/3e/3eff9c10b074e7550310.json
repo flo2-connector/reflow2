@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:d62db26cbb96bf1bf83143460075396237abe885f139b55d1edcb3bb107ee860",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:reflow2-has-a-public-page-anyone-can-read",
+  "properties": {
+    "approved_at": "2026-09-28",
+    "authored_at": "2026-08-14",
+    "roles": [
+      "author",
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

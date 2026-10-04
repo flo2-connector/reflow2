@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:123e84043ccf85c5ae8673842e2fe8f378c5f28c2b92a91d837af73e27e0c6a0",
+  "edge_type": "ABOUT_ENTITY",
+  "from_id": "fact:defect-claim-region-describes-an-architecture-it-is-not-running",
+  "properties": {},
+  "to_id": "cap:cluster-claims"
+}

@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:6228663054a02b5deaa11e21e08497771d3d55b90bc75add4d495ea6b7b8fb60",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-design-is-saved-one-file-per-item-2026-10-03",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:090758fc73bf91df26986abcd5ce7bd7395ffad972f04b7166539df605fb9a7f",
+    "checksum_basis": "measured"
+  },
+  "to_id": "art:measure-open-design-memory"
+}

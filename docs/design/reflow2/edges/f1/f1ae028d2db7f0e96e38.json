@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:f85025e6152f5ce02c6ad40972e982a34feb2f94721c1ff040883a68ef604781",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:a-design-holds-who-contributed-never-a-readers-persona",
+  "properties": {
+    "approved_at": "2026-09-28",
+    "authored_at": "2026-09-28",
+    "roles": [
+      "author",
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

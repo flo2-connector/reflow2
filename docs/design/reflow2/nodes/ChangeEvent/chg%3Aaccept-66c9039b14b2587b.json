@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:4ce88b54eaf6ef2b9ebfbdc5f54618a94e6ae5aa82c7d57a24a16f45d6b3ec53",
+  "node_id": "chg:accept-66c9039b14b2587b",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "refactor",
+    "detected_at": "2026-09-16",
+    "name": "rmcp 3.4: ServerInfo -> ServerConfig, same type (chg:dependencies-to-current-2026-09-15).",
+    "subject": "system"
+  }
+}

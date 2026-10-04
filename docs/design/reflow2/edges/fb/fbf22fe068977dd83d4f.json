@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:837902df2456b55dce70bbeea9e1419636fd1bacde117ad51a9a604fb31219b6",
+  "edge_type": "TRIGGERS",
+  "from_id": "cap:derived-release-manifest",
+  "properties": {
+    "role": "feeds — the manifest exists and now needs a moment on the time axis. PASS apply: true; the default is a dry run and reports what it WOULD add"
+  },
+  "to_id": "cap:release-pinned-to-time"
+}

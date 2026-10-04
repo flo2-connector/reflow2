@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:a9f69722baba525ecf8bc71bc63966dbfd221795ac8a27f6a8f7189078c2c635",
+  "node_id": "cmp:identity",
+  "node_type": "Component",
+  "properties": {
+    "kind": "module",
+    "level": "component",
+    "name": "identity",
+    "provenance": "authored",
+    "purpose": "Which design this store holds: minting, adoption, refusal, and the label on top.",
+    "status": "planned",
+    "tier": "operational"
+  }
+}

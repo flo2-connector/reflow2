@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:49fb62fe899df9f88cc1c41c97348e093711f95d36cbc57a657d63875627f064",
+  "node_id": "cmp:shared",
+  "node_type": "Component",
+  "properties": {
+    "kind": "module",
+    "level": "component",
+    "name": "shared",
+    "provenance": "authored",
+    "purpose": "The management half of shared mode: one server per design, discovered or started automatically, with the rendezvous record and liveness that make 'attach to the existing one' work.",
+    "status": "planned",
+    "tier": "operational"
+  }
+}

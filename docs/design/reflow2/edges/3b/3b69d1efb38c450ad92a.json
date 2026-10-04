@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:1a4114541e35630ad1a69cd3e6acfdef72c7d78d53243b85d60c4091bf0d0cc5",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:a-jot-carries-the-tag-its-word-gave-it",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:report"
+}

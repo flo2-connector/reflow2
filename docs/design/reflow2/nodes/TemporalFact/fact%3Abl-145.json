@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:14903c76bd8b42d3aca8150ff606a830cca9eb27e9f59a730fe33e6dd1507809",
+  "node_id": "fact:bl-145",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "defect",
+    "statement": "[BL-145] One detector produced 27 of 49 gaps saying the same thing, and buried every distinct finding below the fold",
+    "subject_id": "cmp:detect",
+    "value": "{\"evidence\": \"*Found 2026-08-01 by an /adopt pass over music_graph, a ~11k-LOC Python research repo taken from an empty graph to 134 nodes / 379 edges. Reported in that project's own reflow2_feedback.txt.* Of 49 initial gaps, 27 were unverified_capability \\u2014 one per capability, every one meaning \\\"this repo has no test suite\\\". They outnumbered every other finding combined. Compounded on the read side: after the owner answered, graph_report reported gaps_truncated at 32 of 37, so the rollup showed five items while hiding most of the list. The first adopt report is the one that decides whether somebody trusts the tool, and this is the shape [BL-23] and [BL-42] keep naming \\u2014 a detector that is right every time and therefore worth skimming. reflow2 already knows how to do this: component_granularity_verification rolls exactly this class up, and dec:aggregate-gap-keyed-on-rule ([BL-*], 2026-07-30) established that an aggregate gap keys on its RULE rather than its affected set, which is the machinery a rollup needs to stay acknowledgeable. Fix shape: when a project has zero Verifications at all, raise ONE aggregate gap about that rather than one per capability \\u2014 the same call is_aggregate() already makes for unvalidated_capability. The counterweight: once *some* checks exist, per-capability is the right granularity again, so this must key on the zero case rather than on a count threshold. Size S\", \"origin\": \"Migrated from docs/backlog.md BL-145 on 2026-08-07 (epoch:backlog-retired). Size estimate carried from the row: S.\"}"
+  }
+}

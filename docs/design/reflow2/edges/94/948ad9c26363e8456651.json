@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:cc3966a6ebbd46ac7b4ed5d3d8eab82a661b173d82279e0e0c209c791989e479",
+  "edge_type": "CHANGED",
+  "from_id": "chg:record-to-record-relations-are-modelled",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:schema-verify"
+}

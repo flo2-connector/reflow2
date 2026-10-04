@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:5ecfc9790c5cb9506f3404b2550c8594a25df065077ee712a5fdbc266469fa25",
+  "node_id": "cap:evidence-fidelity",
+  "node_type": "Capability",
+  "properties": {
+    "description": "A check now records WHERE it was carried out (PERFORMED_IN → Environment), and Environment.env_type gains `simulation`. evidence_report then answers, per capability, which environments its PASSING checks were performed in and whether every one of them was a simulation. THE REASON THIS IS THE FIRST RUNG of req:design-the-simulator: the argument for simulating first is that issues are cheap to fix there and expensive in the field, and that argument only holds if somebody can still tell the two apart afterwards — until 2026-07-27 reflow2 could not, because a rig run and a production run were both simply `passing`. REPORTS, NEVER RANKS (Anthony's call, dec:report-dont-judge): it says `proven only in simulation`, which env_type alone can defend, and refuses to assert that lab beats staging beats field — which of those counts as more real is domain-specific, and an ordering that is wrong somewhere gets worked around rather than corrected (BL-42's lesson). SILENCE IS NOT EVIDENCE OF THE FIELD: a passing check naming no environment is counted as UNPLACED, never assumed real, because the flattering reading is the dangerous one. A capability with nothing passing is absent from the report entirely — that is unverified_capability's question, not this one's. THE SIMULATOR AS A DESIGNED THING is deliberately NOT built here: the requirement's other half wants the simulator to have its own requirements and fidelity claims, and nothing yet expresses what a given rig stands in for. Recorded rather than half-built, and no vocabulary was added for it, because a declared edge no computation reads is the trap this project has now hit five times.",
+    "name": "Tell proof against a model from proof against reality",
+    "provenance": "authored",
+    "status": "realized",
+    "tier": "operational"
+  }
+}

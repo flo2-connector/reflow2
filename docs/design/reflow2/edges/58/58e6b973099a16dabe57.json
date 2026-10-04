@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:d290192a2df0f5b73250865cd71f6debd520799040f7fe2d663907d43b4fa771",
+  "edge_type": "MITIGATES",
+  "from_id": "req:detecting-is-not-asking",
+  "properties": {
+    "confidence": 0.85,
+    "evidence": "This idea carries a real hazard: the brainstorm skill's step 2 forbids running detect-and-ask over brainstormed nodes, because asking a user to firm up what they deliberately left soft teaches them that thinking out loud has a cost. A naive detector IS that. req:detecting-is-not-asking (2026-08-19) answers it by splitting the two acts — detection unconditional, invitation held for a boundary — so the leg can be built without taxing the thinking. Neither node mentioned the other before this edge."
+  },
+  "to_id": "dec:idea-what-notices-an-idea-that-connects-to-nothing"
+}

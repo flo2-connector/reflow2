@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:6586a95b5346b0b4b6f4d6135d45d5b116ed08c26af9e5da53253d0fa12b565f",
+  "node_id": "art:relation-coverage",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "location": "crates/reflow2-core/src/relation_coverage.rs",
+    "name": "relation_coverage.rs — of my N things of kind X, how many carry relation R",
+    "status": "realized"
+  }
+}

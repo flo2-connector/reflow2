@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:1edb5598c89ff070fae66f8e14104b9d79477294d40c34fad94eb7cc9b30be60",
+  "node_id": "art:checksum-dialect-test",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "granularity": "atomic",
+    "location": "crates/reflow2-core/tests/checksum_dialect.rs",
+    "name": "checksum_dialect.rs",
+    "status": "realized",
+    "volatility": "stable"
+  }
+}

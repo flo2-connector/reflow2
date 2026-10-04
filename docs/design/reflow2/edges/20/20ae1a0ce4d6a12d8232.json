@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:28271cba1d3730a51b54d5d5f5f7f6a097724c63bd083122800593390b4afd81",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-write-is-credited-to-who-it-was-for-2026-09-25",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "req:a-session-names-the-person-it-writes-for-and-the-server-remembers-it"
+}

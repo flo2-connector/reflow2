@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:de7453b4afd4b522969cfa267e1f0343c1ff442d147f6a30852adc9928ea0c2e",
+  "edge_type": "HAS_SNAPSHOT",
+  "from_id": "req:the-agent-learns-who-it-is-talking-to",
+  "properties": {},
+  "to_id": "snap:epoch:preserved-on-write:req:the-agent-learns-who-it-is-talking-to"
+}

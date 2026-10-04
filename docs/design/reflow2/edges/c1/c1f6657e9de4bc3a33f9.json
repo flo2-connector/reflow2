@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:c383507ebbcc3d73c35718215cc436b5a2e767f3ef42037fadd321e21cd72ace",
+  "edge_type": "VALID_FROM",
+  "from_id": "fact:defect-set-artifact-checksums-accepts-a-malformed-digest",
+  "properties": {},
+  "to_id": "epoch:dev-storyflow-2026-08-15"
+}

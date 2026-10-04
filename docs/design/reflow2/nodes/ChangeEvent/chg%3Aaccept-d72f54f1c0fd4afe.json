@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:7cfa299a4d1e4bfd50ab8a7385ac430c824652e4b6ca5f19381aa29e72ef6c4d",
+  "node_id": "chg:accept-d72f54f1c0fd4afe",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "test_failure_fix",
+    "detected_at": "2026-08-01",
+    "name": "First baseline — the v0.21.0 upgrade note, owed because CALIBRATED_AGAINST moved the stamp."
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:810bb82d74c6ad5e84f13ba79cade11ef3b7dc0297262fa382a51b9324c73b2f",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "req:a-design-can-be-asked-what-fraction-of-a-kind-carries-a-relation",
+  "properties": {
+    "evidence": "That accepted requirement asks the design to surface what was built and is used by nothing, and `consumption_report` correctly declines to answer it at 11% modelled consumption. A general instance-level coverage read is the shape that would let it answer — and would let a reader see the 11% itself, which is the number that governs whether its answer means anything.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "req:the-design-says-what-was-built-and-never-used"
+}

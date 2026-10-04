@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:95de3c9b4d229d1275db4afa6132c16458cf8001c4774d40d5eeda7443f22ee9",
+  "edge_type": "REALIZES",
+  "from_id": "art:scope",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cmp:scope"
+}

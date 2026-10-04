@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:89aa446e79b1be65d5693fb84f30b9b4b65601ada513542138600ccbfb5a991c",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-do-ideas-form-a-graph-or-only-a-list",
+  "properties": {
+    "note": "option (c) would be the first absence-shaped detector reflow2 has",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "fact:the-design-outward-blind-spot-appeared-in-three-independent-places"
+}

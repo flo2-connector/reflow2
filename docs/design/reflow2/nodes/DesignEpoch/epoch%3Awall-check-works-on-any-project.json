@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:817a55dc23c232cbf8f3bb202bf0b8481c9140f321c9d74124a296bd23cd7290",
+  "node_id": "epoch:wall-check-works-on-any-project",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "epoch_type": "revision",
+    "name": "The wall check stops guessing which file is which part, and starts reading it from the design — generalised beyond reflow2 (2026-08-21)",
+    "sequence": 370,
+    "status": "arrived"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:4e1473452e2d17d5eec96a5c7d62ee0ec1c6b78d7eca512c2649e4f2cccbb414",
+  "edge_type": "DOCUMENTS",
+  "from_id": "art:dev-storyflow-feedback-2026-08-23",
+  "properties": {
+    "doc_kind": "field_report"
+  },
+  "to_id": "req:skill-use-survives-a-long-session"
+}

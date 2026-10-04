@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:942d9d9fb54f36bbb3886ddbb3443c8c37298a4ee6269897feece21c01bd2208",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-doubt-trace-lands",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:find-tools-corpus-fixture"
+}

@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:2c539d34b2aee514f1586ea820c9575deba91d26ade0518fa874d112096108e1",
+  "node_id": "drift:2df9aeb2250d9b16",
+  "node_type": "DriftEvent",
+  "properties": {
+    "detected_at": "2026-07-20",
+    "drift_type": "checksum_change",
+    "name": "art:vocabulary drift",
+    "resolved": true,
+    "severity": "medium",
+    "summary": "'art:vocabulary' has changed since it was registered against the design"
+  }
+}

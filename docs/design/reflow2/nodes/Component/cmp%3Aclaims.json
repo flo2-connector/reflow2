@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:3aad1fa1204362357ca75848fc631bade7a502521a5b757fb9eb85adfb5d4f39",
+  "node_id": "cmp:claims",
+  "node_type": "Component",
+  "properties": {
+    "kind": "module",
+    "level": "component",
+    "name": "claims",
+    "provenance": "authored",
+    "purpose": "The coordination module: who has which region of the design in hand, and where two people are working the same ground. Advisory only — it holds no locks and refuses no writes, because the design lives as a file in each checkout with no shared server to hold one (dec:multi-writer-architecture). Regions are computed from a seed and a depth via the same traversal propagate_from uses, so they follow the design rather than freezing a membership list.",
+    "status": "planned",
+    "tier": "operational"
+  }
+}

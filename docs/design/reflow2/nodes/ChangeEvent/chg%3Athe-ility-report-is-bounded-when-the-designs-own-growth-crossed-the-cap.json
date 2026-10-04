@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:f9b512ecd62c49b1938007cccd4ff1b901d95750da9122bb306c1ce306dfbd06",
+  "node_id": "chg:the-ility-report-is-bounded-when-the-designs-own-growth-crossed-the-cap",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "defect_fix",
+    "detected_at": "2026-09-20",
+    "name": "The ility report is bounded, after the design's own growth carried it past the cap",
+    "rationale": "Caught by tools/replies_are_bounded.py during an ordinary gate run on 2026-09-20. Not planned work: the session's own records grew the design past 30,000 characters.",
+    "summary": "coherence.rs: ility_report takes the shared budget request and bounds its reply by sampling; service.rs: the empty request struct it used is removed. Plus a test pinning that the per-capability build question stays silent while nothing is built."
+  }
+}

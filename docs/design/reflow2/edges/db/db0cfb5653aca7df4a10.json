@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:0ef0668c8632fdae886e37f69b246bcebf3390dcb13561f1db9426c4e9ca7085",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-loop-can-say-what-it-does-not-know",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cap:the-record-moved-is-surfaced"
+}

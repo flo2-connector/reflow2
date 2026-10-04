@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:b3a879106aa5d3db83995faeaf9a5dbef4642274388d697bf9103d2899b08fe1",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "req:conventions-ride-the-tool-not-only-the-skill",
+  "properties": {
+    "evidence": "It is one answer to that requirement's problem: if a skill may never be loaded, the unskippable fraction has to live somewhere the agent cannot miss.",
+    "optional": false,
+    "weight_basis": "evidence"
+  },
+  "to_id": "req:skill-use-survives-a-long-session"
+}

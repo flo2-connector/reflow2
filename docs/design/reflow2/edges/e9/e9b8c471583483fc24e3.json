@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:7f5ebb83e78010d192ca1c242c7e8f4441115c068bec5f48a076316924804c06",
+  "edge_type": "AT_EPOCH",
+  "from_id": "chg:release-gates-on-a-running-image",
+  "properties": {},
+  "to_id": "epoch:the-image-must-start"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:35ed708d12ea48ded29bd37d8ee1c2a39f1a1bab28e079e3978edd8fcad5471b",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-design-reference-capability-takes-a-required-seed",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cap:the-design-reference-is-served-compact-code-shaped-and-derived-for-the-implementing-agent"
+}

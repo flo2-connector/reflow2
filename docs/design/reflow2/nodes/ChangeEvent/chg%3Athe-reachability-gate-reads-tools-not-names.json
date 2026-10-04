@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:0489ccf4b2731ab5f53ef6a4351708d73ddcd4cddcfee5fb368747198b9acf26",
+  "node_id": "chg:the-reachability-gate-reads-tools-not-names",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "defect_fix",
+    "detected_at": "2026-09-20",
+    "name": "The reachability gate reads tools not names; add_requirement takes kind and add_verification takes location",
+    "rationale": "flo2 F19 asked for an audit; the audit existed and was miscalibrated. Anthony 2026-09-20 promoted the fix and said to start with it, because it is the only item that was asserting something false.",
+    "summary": "vocabulary_reach.py: EDGE_ONLY and POLYMORPHIC categories, the Unplaceable refusal, no flat fallback in either branch, five tools placed and two mappings widened; baseline gained 8 classifications and lost 2 to real parameters; service.rs/enum_schema.rs/capture.rs/assure.rs: `kind` on add_requirement and `location` on add_verification; 26 test literals updated; test_vocabulary_reach.py gained four cases; CHANGELOG."
+  }
+}

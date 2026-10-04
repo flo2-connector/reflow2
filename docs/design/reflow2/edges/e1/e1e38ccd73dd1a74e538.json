@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:c58a63e52a7c9bc1d6bd2efbd93a5be2af2051d7e5078c3f3f0c84f4e7aabfe1",
+  "edge_type": "MITIGATES",
+  "from_id": "dec:a-read-only-server-with-no-store-serves-the-latent-surface",
+  "properties": {
+    "evidence": "The finding said the fix needed its own decision (refuse at start, or a degraded surface that changes what a read-only server serves on an empty path); this is that decision, and item 1c builds it."
+  },
+  "to_id": "fact:a-read-only-server-creates-an-empty-store-where-there-is-none-2026-10-03"
+}

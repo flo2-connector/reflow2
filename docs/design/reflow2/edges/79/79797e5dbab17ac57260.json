@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:fc98448abd762319305717df87b0d45fb32c16615508c583715a9e68500e7a40",
+  "edge_type": "CHANGED",
+  "from_id": "chg:intent-authority-check-and-planned-exemption",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "dec:the-authority-check-guards-forward-not-backward"
+}

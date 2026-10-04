@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:5e8c85ee339238bdb16b56b3b18c3193eb5291f54ead76e3f10e4aa40566f9cc",
+  "node_id": "art:compose-test",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "granularity": "atomic",
+    "location": "crates/reflow2-core/tests/compose.rs",
+    "name": "tests/compose.rs",
+    "status": "realized",
+    "volatility": "stable"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:dc5ee54c08a2ace92a73fb89f8b97cc8a1552ba2cf31e6b520df73a509481a0e",
+  "edge_type": "CAUSES",
+  "from_id": "fact:the-preserve-on-revise-guard-draws-its-membership-on-a-call-name-not-on-a-behaviour",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "Drawn from the CAUSE to the record of the SYMPTOM. The guard's membership was drawn on `add_*` call names rather than on the behaviour it polices, so link_artifact was never tested for the class and its half-fix went unnoticed from BL-166 until a caller tripped over the friction on 2026-09-07. The test evidence is the negative control: restoring the unconditional write fails exactly one case, and that case did not exist in the guard until this change.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:link-artifact-demands-a-name-and-location-for-an-artifact-that-already-exists"
+}

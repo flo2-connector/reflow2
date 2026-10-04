@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:4f08eb274cc6719f516e0ed43cc11aef673f05c1866dd8c06d57c734fec396d3",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:something-to-come-back-to-is-captured-with-one-word",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:report"
+}

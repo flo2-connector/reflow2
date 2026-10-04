@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:282a3de71f206709df13d426881c188e416a7d2bebc118ced83e0567c60d325c",
+  "edge_type": "REALIZES",
+  "from_id": "art:jot-skill",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:a-jot-carries-the-tag-its-word-gave-it"
+}

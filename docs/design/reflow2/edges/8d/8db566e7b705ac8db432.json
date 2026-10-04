@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:19f4c8c3ff06cb9b7fe83ec2e49717ed46c49b2b18801cf1d437a61f6f7a4bb0",
+  "edge_type": "INVALIDATES",
+  "from_id": "chg:alexs-four-surface-fixes-sequence-hint-get-node-by-id-auth-hint-and-bulk-check-only",
+  "properties": {
+    "at": "2026-09-05",
+    "note": "THE TRIGGER IS ADDRESSED, THE CAUSE IS NOT — and the fact says which is which. Fix shape (1) shipped: set_interface_spec refuses a non-mechanism `auth` naming AUTHENTICATION, the legal values, and the AUTHORIZATION workaround (Actor INTERACTS_WITH + describe the role), and the Req doc-comment and schema description say the same. Pinned (interface_auth_refusal_says_it_is_authentication_not_authorization). BOUNDS: (a) the create_nodes / schema-validation path still refuses with legal values only — PropertyDef carries no description, so the hint cannot ride the core enum error without a schema-loader change; (b) the CAUSE — authorization roles have no home — is untouched: req:vocabulary-covers-personnel remains deferred by Anthony's word, and until it lands the role still lives in prose and an Actor edge. The fact stays open for (b)."
+  },
+  "to_id": "fact:defect-interface-auth-names-a-mechanism-and-authorization-roles-have-no-home-so-the-role-gate-lands-on-the-wrong-field"
+}

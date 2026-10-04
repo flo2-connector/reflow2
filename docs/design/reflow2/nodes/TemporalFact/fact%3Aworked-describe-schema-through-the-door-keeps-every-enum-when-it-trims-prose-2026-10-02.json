@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:6249d2c765e5b155305da7608fc3f442dada0b88153d1c26ab6d0d832b064cbd",
+  "node_id": "fact:worked-describe-schema-through-the-door-keeps-every-enum-when-it-trims-prose-2026-10-02",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "finding",
+    "name": "WHAT WORKED (2026-10-02, 0.77.0): `--call describe_schema` with node_type serves every property's enum values. At the default budget it withholds only prose and says so, and a large budget_chars returns the full text. It is the door agent's one served source of value sets before a write. Do not regress it",
+    "source": "art:vscode-call-door-field-report-2026-10-02",
+    "statement": "From art:vscode-call-door-field-report-2026-10-02, measured table row \"`--call describe_schema` with `node_type` and a large `budget_chars` | full property list with enum values; the default budget withholds the prose\", and the working pattern \"Learn enums before writing\".\n\nRe-measured by triage agent B on 0.77.0 (scratch import of main's export), node_type TemporalFact:\n- At the default budget, budget.applied is true and full_chars is 51,165 against 30,000. \"WITHHELD TO FIT … What was withheld is PROSE: 83 text field(s)\". All 27 `values` lists stay.\n- With budget_chars 200000 the full text comes back and no budget block.\n- It served TemporalFact.basis = [measured, forecast], which answers one of the report's frictions before the call.\n\nLIMIT, recorded so nobody reads this as complete: it describes NODE and EDGE types, not a tool's arguments. Nested argument shapes and a dual-mode constructor's create-time fields are not in it. For DesignEpoch, required_only names only `name`, while add_epoch also needs sequence and epoch_type (fact:add-epoch-create-requirements-are-published-nowhere-and-describe-schema-says-only-name-is-required-2026-10-02).",
+    "subject_id": "cap:every-oversized-reply-offers-a-bound",
+    "valid_from": "2026-10-02"
+  }
+}

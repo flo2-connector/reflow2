@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:d9b10792b94880fa45b8c4c2f7d975045270d2003bcb30bd67910a378e7d6487",
+  "node_id": "chg:accept-7423524347b2853b",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "resync",
+    "detected_at": "2026-09-23",
+    "name": "The v0.67.0 version string. A cut's design meaning lives in the Release and the epoch, not in a version field. Accepted before the manifest is frozen, so the manifest records the post-bump checksum.",
+    "subject": "system"
+  }
+}

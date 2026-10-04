@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:c11567ee3d6cf1df18b25bd5e49509162ffa1af2039233cb437c881f5e69dff0",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:feedback-on-reflow2-is-computed-from-a-record-the-server-kept",
+  "properties": {
+    "approved_at": "2026-09-12",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

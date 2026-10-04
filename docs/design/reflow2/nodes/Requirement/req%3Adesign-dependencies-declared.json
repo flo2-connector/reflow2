@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:0d1d47982b9b7f3b910ee8c52abd9db857be57f7557c9732cd9185c2e2f9dd41",
+  "node_id": "req:design-dependencies-declared",
+  "node_type": "Requirement",
+  "properties": {
+    "concern": "core",
+    "designation": "internal",
+    "kind": "functional",
+    "lineage": "original",
+    "name": "Declare which version of another design you depend on, not just record what you took",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "A project that composes with another design must be able to DECLARE which version of it that dependency is on — a tag, a commit, a release — in a checked-in manifest a person edits, the way Cargo.toml, pyproject.toml, pixi.toml or uv.toml declare code dependencies. Anthony's framing, 2026-07-27: when two projects evolve separately you need to know which version yours depended upon. WHAT ALREADY EXISTS IS THE OTHER HALF, and the distinction is the whole point. cap:mirror-surface already RECORDS the coordinate after the fact — mirror_content_hash is the content hash of the surface document a mirror was made from, and mirrored_at dates it, deliberately as a dated claim rather than a live truth. That is what you GOT. A manifest is what you MEANT: human-meaningful (v0.11.0, not a 64-character hash), authored rather than derived, reviewable in a diff, and readable before any graph is opened. HAVING BOTH IS WHAT MAKES THE CHECK POSSIBLE: declared-versus-mirrored answers 'am I actually composing against the version I said', and declared-versus-upstream answers 'has what I depend on moved since'. Either question is unanswerable with only one of the two halves. THE MANIFEST MUST ALSO RECORD WHICH REFLOW2 WROTE IT (Anthony, same day) — the same discipline the export stamp already follows, and for the same reason: a manifest is read by a binary that may be older or newer than the one that produced it, and a file that cannot say which vocabulary it was written against forces the reader to guess. reflow2 already refuses rather than guesses when an export's stamp is unreadable; the manifest should be no weaker. The manifest must also survive the case where the dependency's design is not available at all, because declaring a dependency you cannot currently resolve is a normal state and silence about it would be the failure.",
+    "status": "accepted"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:ef1073252ccbf845ca5e762ae5bdc278a7e99997ee867bb7b3a5ebe16b446b23",
+  "node_id": "rel:v0600",
+  "node_type": "Release",
+  "properties": {
+    "description": "Cut 2026-09-13. Four PRs since v0.59.0 (#495, #496, #497, #498).\n\nThe increment closes all six items a consumer project (flo2) sent across. One was closed by refuting its own premise — the memory it asked us to tune was the export path, not RocksDB. Two were unblocked by finishing `cap:select-graph-by-id`, whose resolution half had shipped in August with no caller outside its own tests. One paid a debt that had stood open two and a half weeks because nothing in flo2 can write to this graph.\n\nTHE SCHEMA STAMP DOES NOT MOVE — 28 node types, 65 edge types, schema 1, verified field by field against v0.59.0's export — so no upgrade document is owed and a consumer updates without touching their design.",
+    "name": "v0.60.0 — a consumer's handoff answered end to end",
+    "status": "retired",
+    "unit_type": "binary",
+    "version": "0.60.0"
+  }
+}

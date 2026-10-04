@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:f2d5cdd51720a084188522f05853585ca3cf154c495fe764b860841d02b5664b",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:test-a-follow-up-is-owed-until-it-is-settled",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:test-a-follow-up-is-owed-until-it-is-settled"
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:5c9cd2087af902ed785bca5349a1428c9c3a4c2c7ee76e8023506d9fc14f648a",
+  "edge_type": "ANTICIPATES",
+  "from_id": "fact:three-of-eight-reported-verification-gaps-were-already-built",
+  "properties": {
+    "evidence": "The 2026-09-08 triage of the same reporter found reported verification gaps that already existed, and said a user looking at a node type cannot see what edges it carries. This is a fourth such gap: GOVERNED_BY Verification→Decision exists and is read."
+  },
+  "to_id": "fact:root-cause-a-check-on-a-ruling-is-modelled-as-governed-by-and-the-verifies-refusal-never-says-so-2026-09-28"
+}

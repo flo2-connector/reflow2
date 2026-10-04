@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:c98aab1f24d4b256d3776c281c9d7c016c3026840894fe208976bde013d6c2a1",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-brainstorm-skill-looks-for-the-answer-before-framing-a-question-as-open",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cap:brainstorm"
+}

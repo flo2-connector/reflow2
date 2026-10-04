@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:68986dfb7e8623e10aed6187c45bda42e0036128dfdc1933d2cfe3a87fb39987",
+  "edge_type": "MITIGATES",
+  "from_id": "chg:the-moment-a-cause-is-written-becomes-a-tool-call-and-the-tool-demands-the-skill",
+  "properties": {
+    "evidence": "That record is the measured cause this is built against: the skill was demanded by no tool and named by no trigger, so loading it depended on the agent remembering to want it. The demand is now declared and lint-enforced."
+  },
+  "to_id": "fact:the-root-cause-skill-is-demanded-by-no-tool-and-named-by-no-trigger-so-it-loads-only-by-luck"
+}

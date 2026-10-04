@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:6b14519a9bf5f45553de45ed53e1be04a626ddbdd55fdad912dd2e9bbe85ac5f",
+  "edge_type": "CHANGED",
+  "from_id": "chg:kpp-proposal-built",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cap:kpp-proposal"
+}

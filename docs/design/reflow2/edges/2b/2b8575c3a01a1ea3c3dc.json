@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:fe4b44519bb033381314a62a5a6f9c5cb165d7e6174607909a2c9ff8c9cafb39",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:idea-should-an-understated-status-be-detected",
+  "properties": {
+    "authored_at": "2026-08-11",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:claude-code"
+}

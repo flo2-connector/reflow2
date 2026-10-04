@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:6d22f8c78890d906b531861fcf3a1ad6d02d93a4e09b6a95f53ce12a33f10675",
+  "node_id": "chg:accept-3fac4692fb0601d6",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "refactor",
+    "detected_at": "2026-08-07",
+    "name": "Registered before `cargo fmt` ran; the only delta is rustfmt reflowing one call site. No assertion, name or comment changed."
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:1e80ea1fa5ac9cc1c36bf391847e0ab47ecfab50c2481728da5d4bcdc2fdd612",
+  "edge_type": "CHANGED",
+  "from_id": "chg:get-skill-serves-a-slash-command-2026-09-24",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:test-the-command-surface-answers-for-itself"
+}

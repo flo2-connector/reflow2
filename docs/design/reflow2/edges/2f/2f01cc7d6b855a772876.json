@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:c8b780514dc3abb6db7d70940ef193f714a6a18c8e8a12e49f4dc9dd7b1031e8",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:test-degraded-server",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:test-degraded-server"
+}

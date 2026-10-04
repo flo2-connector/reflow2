@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:123e76f76a461c525cb8ec17cd4f004a2fde8342515ec6853ee8b0e153c21352",
+  "node_id": "ver:a-held-designs-read-is-as-true-as-the-live-one",
+  "node_type": "Verification",
+  "properties": {
+    "description": "Seven tests over the built binary on a scratch project with a registered file and an export, held by a real `--serve-shared` server. (1) search_design and topic_report find a word the design holds, and report `searched` equal to the live design's. (2) A held read answers, a held write refuses, and no record beside the store changes. (3) Every read-only tool in the served list whose required arguments this design can supply (53 on main) is asked the same question free and held; the answers must match, ignoring only the seat and read_only. (4) A stamp naming a type this binary lacks is refused held, as it is free. (5) A store whose fulltext/ is deleted finds its words through the door, and loop_status reports search_index_rebuilt_on_open once. (6) A copy that fails part-way (the store's LOG made unreadable while held) is refused and leaves nothing in the temp dir. Observed failing on main d9e2a8f before the fix: (1), and (3) with 5 reads differing (search_design, topic_report, loop_status, sync_status, wall_check); (2) failed on main only through a test bug, fixed before the fix was built.\n\n(7, 2026-10-03, chg:a-held-design-test-waits-for-the-holder-not-the-store) Every case that needs a holder waits for the holder's rendezvous to name its pid, which opens nothing, and then checks once that a read answers from a copy. a_holder_that_starts_late_is_waited_for_without_being_raced starts the holder 1.5 s late and asserts no --call ran before it published; the old wait, a --call read every 100 ms, failed it 6 of 6 times, and on CI that wait made its own holder lose the store lock and exit.",
+    "findings": "6 passing on the fix; on main d9e2a8f: search empty from the copy, and 5 of 53 reads answered differently held than free.",
+    "kind": "verification",
+    "last_run_at": "2026-10-02",
+    "level": "system",
+    "location": "crates/reflow2-mcp/tests/a_held_designs_read_is_as_true_as_the_live_one.rs",
+    "method": "test",
+    "name": "A read through --call on a held design answers what the live design answers: search finds what it holds, every probe-able read-only tool answers the same held as free, nothing is written beside the held store, a newer writer's stamp is refused, and a store without its index rebuilds it and says so",
+    "status": "passing"
+  }
+}

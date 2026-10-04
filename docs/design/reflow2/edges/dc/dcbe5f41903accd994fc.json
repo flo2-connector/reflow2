@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:f66d1e852d5e5176c6e190ebf79485f5d8bedc04a34247eaf4e6dec116520b26",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-bulk-edge-write-runs-each-typed-helpers-own-checks",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:tools-assure"
+}

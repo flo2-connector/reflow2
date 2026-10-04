@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:80de2b42a462941888d5d4dedafb64d927fb1b6e3d81f0733a95707ba809643b",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:check-kit-manifest",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:check-kit-manifest"
+}

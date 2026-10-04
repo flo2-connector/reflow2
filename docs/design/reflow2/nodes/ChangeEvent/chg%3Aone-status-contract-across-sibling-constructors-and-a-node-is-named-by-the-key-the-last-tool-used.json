@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:eba7a9316f0116e069119c80c8260be96571e3a6142b1feb1343295547c04950",
+  "node_id": "chg:one-status-contract-across-sibling-constructors-and-a-node-is-named-by-the-key-the-last-tool-used",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "defect_fix",
+    "detected_at": "2026-09-19",
+    "name": "One status contract across sibling constructors; a node is named by the key the last tool used; add_project gets its own request shape",
+    "rationale": "Anthony 2026-09-19: 'prioritize most important and work your way through them one by one' over the flo2 and bhome field reports; F10 is the constructor/setter half of a defect three projects recorded and the 2026-09-06 fix left. Built under the two standing rulings (constructors accept the owner's word in one call, 2026-09-06; type optional and one way to name a node, ruling #3b) rather than a new decision; the open 'four status contracts' idea is left open because its surviving option (echo the status assigned) is not taken here.",
+    "summary": "service.rs: `status` on ComponentReq/ReleaseReq/AddEpochReq, new ProjectReq (IdName keeps add_interface only), `id`/`node_id` aliases on 25 typed keys, `properties` alias on props ×4; enum_schema.rs: four status helpers; capture.rs/operate_tools.rs/temporal_tools.rs: the four constructors store the status they are told and their descriptions name the landing; adopt skill (+mirrors); two test files; CHANGELOG."
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:9cea54c289b362eff45fae09f1c9b8876f2ece73b93c7d598ac07010f1a3354b",
+  "node_id": "art:derived-edge-readers",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "config",
+    "description": "The population half of the derived-relation check: a function that reads an edge and is on neither this list nor a declaration's reach fails the build, so a new derived relation cannot arrive unseen.",
+    "location": "schema/derived/edge_readers.yaml",
+    "name": "edge_readers.yaml — every function in reflow2-core that names an edge type and that no derived declaration answers for, with the edges it names; 132 unjudged (only shrinks), 19 judged not_derived",
+    "status": "realized"
+  }
+}

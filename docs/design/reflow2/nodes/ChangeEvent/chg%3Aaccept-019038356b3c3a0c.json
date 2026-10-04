@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:b6e22cf2bf3876679abdfdf8a9fd5c2d17710c04126497ecf462828a40e2be05",
+  "node_id": "chg:accept-019038356b3c3a0c",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "refactor",
+    "name": "Header comment only: the two types it named as having no constructor were resolved on the same day in opposite directions. No test changed.",
+    "subject": "system"
+  }
+}

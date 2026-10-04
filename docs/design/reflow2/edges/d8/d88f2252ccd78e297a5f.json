@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:b1a128e413222f0e4c9105cc49bad8254747b509ba3e78be7b438b62a93e3ece",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-stored-twin-has-one-authority",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:design-holds-says-why-test"
+}

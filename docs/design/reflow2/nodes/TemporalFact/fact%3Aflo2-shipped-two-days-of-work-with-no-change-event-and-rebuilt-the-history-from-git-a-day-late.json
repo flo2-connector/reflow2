@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:601c86b0c6acc0194271d76095270225e09b15aae3e37be845781955b6fcea05",
+  "node_id": "fact:flo2-shipped-two-days-of-work-with-no-change-event-and-rebuilt-the-history-from-git-a-day-late",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "confidence": 1.0,
+    "fact_type": "defect",
+    "name": "MEASURED (flo2, 2026-09-21): two days of work shipped with NO ChangeEvent behind it — found at a reconcile pass where eight drifted artifacts had nothing explaining them, and the history was reconstructed a day late from git log and memory",
+    "source": "who:flo2",
+    "statement": "FLO2 F31, and their own framing of why it is the biggest ask in their report: \"A history that depends on an agent remembering is exactly what git replaced — committing IS the act of recording, which is why git histories don't have holes.\"\n\nWHAT HAPPENED, in their words: on 2026-09-21 the flo2 agent shipped two days of work to flo2 with no ChangeEvent behind any of it. It was discovered at a `reconcile_artifacts` pass, where EIGHT drifted artifacts had nothing in the design explaining why they had moved. The events were then reconstructed a day late from git log and memory.\n\nTHIS IS THE SAME HOLE THIS DESIGN MEASURED ON ITSELF ON 2026-08-10 and has not closed: 0 of 360 ChangeEvents carried an author, and the fork was named then as the owner's to settle — attribution REQUIRED on a write, DEFAULTED from a seat, or left OPTIONAL. flo2's report is that measurement recurring in a consuming project, with a cost attached: not a missing field this time, but a missing record entirely.\n\n⭐ THE PART THAT IS NEW AND IS NOT ABOUT ATTRIBUTION. The 2026-08-10 finding was about ChangeEvents that EXIST carrying no author. This one is about writes that produce no ChangeEvent at all. Every mutating tool — add_requirement, set_decision_status, replace_text — changes the graph and leaves no trace that it ran; a ChangeEvent exists only when a caller deliberately writes one, and the caller is an LLM with 181 tools and a long task. So the two findings stack: the record can be missing, and when present it can be unattributed.\n\nTHEIR CONCLUSION, WHICH IS THIS DESIGN'S OWN RECURRING PRINCIPLE ARRIVING FROM OUTSIDE: \"Silent incompleteness is worse than no history: with no history you go and look, and with a holed one you believe it.\" That is cannot-tell-none-from-cannot-say, which this project has now met six or more times and states in `req:the-loop-says-what-is-owed-to-a-person`.\n\nNOT A CAUSE CLAIM. No CAUSES edge is drawn here: the mechanism is obvious from the surface (every journalling call is opt-in) but nothing has been measured that distinguishes \"the agent forgot\" from \"the agent judged the change not worth an event\", and those have different repairs.",
+    "subject_id": "cmp:temporal",
+    "valid_from": "2026-09-21"
+  }
+}

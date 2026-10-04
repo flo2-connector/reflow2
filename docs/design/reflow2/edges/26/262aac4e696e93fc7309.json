@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:c8a575b080c840fd747b117d09686f94f734e35c3d40805b9bf58f8b2c1d4823",
+  "edge_type": "GOVERNED_BY",
+  "from_id": "chg:the-environment-compliance-layer-is-built-as-a-whole-leg",
+  "properties": {
+    "evidence": "The build exists because of this ruling and would not have been started without it. Scope came from the ruling too: all three legs together, which is why the change event carries detectors and not only constructors."
+  },
+  "to_id": "dec:the-environment-compliance-parking-is-lifted-on-the-condition-it-named"
+}

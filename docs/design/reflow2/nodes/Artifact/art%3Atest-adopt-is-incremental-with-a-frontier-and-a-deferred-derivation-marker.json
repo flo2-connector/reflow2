@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:b8c41cb3046925b70abec714499f3c6a6870fbeb4ca7a452b337542460517f58",
+  "node_id": "art:test-adopt-is-incremental-with-a-frontier-and-a-deferred-derivation-marker",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "test",
+    "location": "crates/reflow2-core/tests/adopt_is_incremental_with_a_frontier_and_a_deferred_derivation_marker.rs",
+    "name": "adopt_is_incremental_with_a_frontier_and_a_deferred_derivation_marker.rs — four cases: the marker quiets and is owed, closing it brings the finding back, the frontier's three legs and resume point, no sweep reads as not known",
+    "status": "realized"
+  }
+}

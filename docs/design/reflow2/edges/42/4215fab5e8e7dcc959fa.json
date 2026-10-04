@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:bcb35cea7d33397a43ca292a4dac8ef023bedf08c5983c80f8d8569008a48fa6",
+  "edge_type": "CHANGED",
+  "from_id": "chg:qualitygate-leaves-the-schema",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:test-every-constructor-says-what-the-thing-is"
+}

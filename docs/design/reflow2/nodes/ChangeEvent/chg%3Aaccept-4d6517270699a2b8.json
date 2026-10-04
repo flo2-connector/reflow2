@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:c6b6d43aeeaab0dbc5cc9e9a495d4c319706734b5858b9f5fe782838cb6d31d2",
+  "node_id": "chg:accept-4d6517270699a2b8",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "detected_at": "2026-09-22",
+    "name": "The three reconcile stamps classified machine_written by reconcile_verification.",
+    "subject": "system"
+  }
+}

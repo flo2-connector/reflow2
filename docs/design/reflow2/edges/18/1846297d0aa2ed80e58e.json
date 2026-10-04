@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:e663cb78825ef25f26da772366c50453d05433a5b19dd28cc988c6e30e9d7952",
+  "edge_type": "CONSUMES",
+  "from_id": "cmp:detect",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "ifc:llm-backend"
+}

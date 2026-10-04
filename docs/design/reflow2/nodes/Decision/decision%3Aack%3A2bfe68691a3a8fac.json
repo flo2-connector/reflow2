@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:4e9e2fef3f50edd1a6af47101a1bc2b6b9f352ff1fbec91434acf8d9f06c2e12",
+  "node_id": "decision:ack:2bfe68691a3a8fac",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Accepted the gap gap:2bfe68691a3a8fac.",
+    "name": "Reviewed: gap:2bfe68691a3a8fac",
+    "rationale": "Anthony, 2026-10-03, in chat: \"All six: not fixed\". The change touched this defect's subject but did not fix it, and the defect stays open. Measured reason: chg:a-read-of-a-held-design-is-as-true-as-the-live-one changed how search covers the store (an index rebuilt on open, and `searched`); the age a hit reports, edge versus date, is computed by claim_age_of, which it did not touch.",
+    "status": "accepted"
+  }
+}

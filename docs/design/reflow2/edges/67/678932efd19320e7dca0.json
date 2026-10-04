@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:5bf5fe160733ead74433e10b98f0b1735acadae1910abf10a16920840cc9a886",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:schema-accepted-at-last-release",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:schema-accepted-at-last-release"
+}

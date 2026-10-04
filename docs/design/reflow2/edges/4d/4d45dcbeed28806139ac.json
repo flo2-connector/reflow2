@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:d85f4611ecbc474f98a93508acc774dfdb0c8c65653f6be5ea6b19663fc3aefb",
+  "edge_type": "HAS_SNAPSHOT",
+  "from_id": "cap:a-local-client-reaches-a-remote-server",
+  "properties": {},
+  "to_id": "snap:epoch:preserved-on-write:cap:a-local-client-reaches-a-remote-server"
+}

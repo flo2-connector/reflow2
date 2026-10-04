@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:0b00b778edb7e5815a7f3e7d4241d4371491de1c94856834063389180b77c02b",
+  "edge_type": "INVALIDATES",
+  "from_id": "chg:a-walk-does-not-recompute-the-whole-network",
+  "properties": {
+    "at": "2026-09-11",
+    "note": "#479 (merged 94f1fa68) memoised the betweenness and the adjacency per write generation; design_regions returns in 12.5 s on the debug daemon it was measured on, and in 5.5 s cold / 2.0 s warm on a release build. The >300 s observation is wholly false now and this ChangeEvent is what made it so. NOT drawn to the sibling finding (fact:design-regions-is-one-expensive-region-walk-per-seed-…) because that one is only half false — there are still 109 seeds and one walk each; what changed is that the walk is no longer rebuilt from scratch — and a partially superseded finding stays open."
+  },
+  "to_id": "fact:design-regions-exceeds-300-seconds-and-wedges-the-shared-server"
+}

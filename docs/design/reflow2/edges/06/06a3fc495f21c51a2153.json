@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:da9866eccb0ed94737aefd37a0562adf5c4b44f284076fb582acc91181732f8f",
+  "edge_type": "ANSWERS",
+  "from_id": "cap:every-tool-carries-the-users-phrasing-and-the-corpus-is-the-test",
+  "properties": {
+    "note": "The answer to this one was already on disk: the capability records what PR #476 delivered, and the acceptance test that holds it, rather than planning the measurement a second time."
+  },
+  "to_id": "question:502e1e2cfa17b79a"
+}

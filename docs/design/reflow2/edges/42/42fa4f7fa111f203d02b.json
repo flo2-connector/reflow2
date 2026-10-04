@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:1d764110acb55bb3845c1bc95b20eb6b5b2aaba68aad7ef0e04445776c461e20",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:one-open-design-costs-a-deliberate-amount-of-memory",
+  "properties": {
+    "approved_at": "2026-09-27",
+    "authored_at": "2026-09-13",
+    "roles": [
+      "author",
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

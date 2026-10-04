@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:32a74d9728ad165b4cf83eb462e6db7a621f8519c377114ddde2511616342e9d",
+  "node_id": "fact:what-worked-a-separate-owner-caught-what-self-approval-missed-2026-09-29",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "finding",
+    "name": "WHAT WORKED (dev_reflow2 hub, 2026-09-28/29): splitting proposer from decider paid for itself in the first round. A separate owner reviewing four decisions the single agent had settled for itself amended all four and caught a 2× sizing error against real exports. Evidence FOR this rule's premise, measured in the case where the owner was itself an agent",
+    "source": "art:dev-reflow2-two-agent-exercise-feedback-2026-09-29 (item W3)",
+    "statement": "OBSERVED 2026-09-28/29, flo2 design 50f966697d6c5024 (the hub's two-agent exercise). Before the split, one Claude session both recommended and settled: language (Rust), build-or-adopt (PostgreSQL under a built meaning-and-rules layer), sizing assumptions, and the delegation itself. A separate OWNER agent was then given only the brief, the primitives study and the four settlements, with no design tools. It returned AMEND on all four. Among other things:\n- facts per design corrected from ~10,000 to ~20,000, by counting flo2's and reflow2's own exports;\n- \"build the rules layer\" bounded to \"evaluate differential-dataflow, DBSP and datafrog first\";\n- partitioning by design id restated as tens to hundreds of hash partitions, not one per design;\n- failover and cold-storage budgets demanded.\nIn later rounds it overturned the designer twice on evidence it looked up itself: proto3 over Edition 2023 (prost #1031), and not storing the blast radius (the measured 54 MB scaled past 256 MiB).\n\nWHY IT IS RECORDED HERE. This rule says an agent may propose anything and settle nothing, and this is a measured instance of what the second party adds even when it is another agent. WHAT IT DOES NOT SHOW: the owner agent shares the designer's model family, and it caught errors of arithmetic, evidence and wording, not a wrong goal. It is evidence for separating the roles, not for letting an agent stand in for the owner. Do not regress: keep an owner's review separate from the drafting context. Companion idea: dec:idea-a-designer-and-an-owner-work-a-design-as-two-parties.",
+    "subject_id": "rule:design-intent-moves-only-on-the-owners-word",
+    "valid_from": "2026-09-29"
+  }
+}

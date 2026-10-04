@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:4d061a67dd12d0f45971e2a589a189d902294db60bf9fac529805314d57bed90",
+  "edge_type": "INVALIDATES",
+  "from_id": "chg:read-only-is-honoured-by-every-client-mode-2026-10-03",
+  "properties": {
+    "at": "2026-10-03",
+    "note": "Re-measured 2026-10-03 with the finding's own method on the branch binary (measure_clients.py, measure-fix.log): with --read-only, add_requirement through --remote, through --shared and through a client attached through .reflow2.toml each answer a tool error \"REFUSED BY THIS CLIENT, AND NOTHING WAS SENT … --read-only\", and get_node finds nothing in the server's store after it stops. The inferred pointer case was measured too. Pinned by read_only_is_honoured_by_every_client_mode."
+  },
+  "to_id": "fact:read-only-is-silently-ignored-by-the-remote-and-shared-clients-2026-10-02"
+}

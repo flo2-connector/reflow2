@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:c5883c9aeeb9bd93b96d44609f8c994ed8c5e18a4a1cc42169a7bda28f2b9cd5",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:every-relationship-bearing-item-carries-a-reading-in-the-shared-vocabulary",
+  "properties": {},
+  "to_id": "req:every-relationship-reflow2-holds-says-what-it-means-not-only-its-edge-types"
+}

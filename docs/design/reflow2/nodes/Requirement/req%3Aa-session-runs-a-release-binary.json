@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:75a5e4983c758da2496950b390e635c02c152893f3a390f4cc63936165e00fa6",
+  "node_id": "req:a-session-runs-a-release-binary",
+  "node_type": "Requirement",
+  "properties": {
+    "lineage": "original",
+    "name": "A session runs a release-profile binary, rebuilt deliberately rather than per launch",
+    "priority": "high",
+    "provenance": "authored",
+    "statement": "The reflow2 binary a session actually talks to is built with the release profile. Today `tools/reflow2-mcp-launch.sh:26` serves `target/debug/reflow2-mcp` and content-hash-rebuilds it on every launch, so every session on this machine — and every cost number measured in the 2026-09-11 tool sweep — runs unoptimized.\n\n**MEASURED 2026-09-11, same bytes, same path, only the profile differs:**\n\n    propagate_from, 4 consecutive calls, one process\n      debug    5851 / 5942 / 5904 / 5784 ms\n      release  1614 /   70 /   88 /   62 ms      -> 93x on the walk\n    design_regions   12.5 s (debug)  ->  5.5 s cold / 2.0 s warm (release)\n\n**THE RULING:** `dec:idea-does-reflow2-need-a-byte-store-at-all-or-only-durability`, Anthony 2026-09-11 — *\"do the release binary with rocksdb\"*. Keeping the store was decided on the ground that its cost is the builder's and its benefit is the user's; this requirement is the user's half of that. `fact:the-profile-switch-is-no-longer-occasional-so-the-rocksdb-compile-cost-is-paid-for-real` is the measurement of the builder's half; this is what must stay true for the user.\n\n**THE CONSTRAINT THAT SHAPES THE MECHANISM:** a release build took **33 min 39 s** here, dominated by librocksdb-sys compiling C++ from source, under a disk-abort guard on a 99%-full drive. A release-by-default wrapper that rebuilds on every source change would therefore make any edit a half-hour cold start. So the shape is *serve release, rebuild deliberately* — the edit-compile loop keeps debug, and consumers who install prebuilt binaries (the one-liner install) never build at all. How the wrapper decides \"deliberately\" is the increment's question.\n\n**WHAT THIS DOES NOT CLAIM:** that the profile is the whole cost. `fact:the-adjacency-memo-serves-one-caller-and-142-edge-reads-still-go-to-the-store` is a real, separate waste, unmeasured as a share of the seconds. This requirement is the lever that needs no code.",
+    "status": "accepted"
+  }
+}

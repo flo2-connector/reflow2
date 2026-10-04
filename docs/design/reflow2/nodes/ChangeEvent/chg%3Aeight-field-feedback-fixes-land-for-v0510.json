@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:c57d9838335309d8099a7cfedbe614d3e67da16d7610290e2a4df3e21548e785",
+  "node_id": "chg:eight-field-feedback-fixes-land-for-v0510",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "defect_fix",
+    "detected_at": "2026-09-07",
+    "name": "Eight field-feedback fixes: null unsets, a first baseline is read as one, the check-beside-capability pair, `test` artifacts, a stale server refuses to export, facts carry a name, get_node takes node_id, an unknown field hints at a stale client",
+    "rationale": "Every item is a field report or a rule-11 fact from the previous day, each root-caused before it was touched. Two design choices on the record. (a) The first-baseline case is READ rather than partially applied: for a checksum-less artifact only one disposition is true, so correcting the label asserts nothing on the caller's behalf, and the batch's all-or-nothing contract is kept for every real refusal; the CHANGED edge a design_updated would draw is deliberately NOT drawn because a first baseline is nothing moved. (b) A null UNSETS rather than being refused: the reporter reached for null to mean unset, and unset is the one reading the three existing readers agree on; a required property is the exception because a nameless node is broken, not unstated. The client-tool-list defect is HINTED at, not fixed: the list still freezes at connection, and the fact stays open with that bound.",
+    "subject": "system",
+    "summary": "v0.51.0 increment (planned epoch seq 398, approved 2026-09-07). (1) create_node: a null-valued prop UNSETS the key (remove_properties in core; a required property refuses by name) and the reply lists it under `unset`. (2) set_artifact_checksum(s): a design_holds / design_updated on a checksum-less artifact is READ as baseline_established with a note saying so, no CHANGED edge drawn; the old whole-batch refusal is gone; two pins moved to the new contract. (3) (Capability, Verification) joins PRESCRIBED_LAYER_PAIRS. (4) artifact_type gains `test` (schema/build.yaml). (5) export_graph refuses when the server's executable has been replaced since it started (export_stale_refusal). (6) TemporalFact declares `name` (schema/temporal.yaml). (7) GetNodeReq.id accepts `node_id`. (8) call_tool is overridden so an unknown-field refusal appends the stale-client hint naming the server version. 10 new pins; core 1599, mcp 391 (after the two moved pins); clippy clean; toolsnap goldens: add_artifact, get_node, create_node, set_artifact_checksum(s)."
+  }
+}

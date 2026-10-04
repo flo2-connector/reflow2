@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:db9683209b1087a40d5b68224c815f75eb27fa173356c2c10ab6619c65e0d048",
+  "edge_type": "PRECEDES",
+  "from_id": "epoch:a-node-with-no-edges-is-not-clean",
+  "properties": {},
+  "to_id": "epoch:a-report-describes-the-walk-that-produced-it"
+}

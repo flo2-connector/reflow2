@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:47e7a4ca2da9138c6b3ce8001bd365bbea03f2f37cb7cf40563a3c2842ca72fd",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:triage-command",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:triage-command"
+}

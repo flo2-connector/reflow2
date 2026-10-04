@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:e4504d62407ae71cbc65e4a9b6cc093a04a6677212a23d48a58bbcf377665787",
+  "edge_type": "INVALIDATES",
+  "from_id": "chg:a-read-only-server-with-no-store-serves-the-latent-surface-and-creates-nothing-2026-10-03",
+  "properties": {
+    "at": "2026-10-03",
+    "note": "Re-measured 2026-10-03 with the finding's own method on the branch binary (measure.py, measure-fix.log): stdio, --http and --serve-shared each started with --read-only on .reflow2/graph in an empty folder and in an opted-in one left the folder exactly as it was (no store, no graph.id.json/meta.json/client.json, no rendezvous), handshook with the read-only latent instructions and listed describe_designs and reflow2_start_design. Pinned by every_read_only_server_with_no_store_serves_the_latent_surface_and_creates_nothing, observed failing on main 293f957 first."
+  },
+  "to_id": "fact:a-read-only-server-creates-an-empty-store-where-there-is-none-2026-10-03"
+}

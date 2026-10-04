@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:e1b50389f86f2be278ba7fd849ac4643c6e7424376ed54b911ee7e6a02978dd8",
+  "node_id": "cap:the-owners-word-rides-the-same-call-as-the-status-it-signs",
+  "node_type": "Capability",
+  "properties": {
+    "description": "Item 3 of v0.50.0 (dec:idea-should-a-constructor-accept-the-owners-word-in-one-call, ruled 2026-09-06). add_decision and add_requirement accept optional `status` + `approver` + `acted_at`; add_design_rule accepts `approver` + `acted_at` beside `enforced`. A status past the landing default (Decision accepted, Requirement off proposed, DesignRule with enforced stated) is REFUSED unless `approver` names a Contributor — checked before any write, so a refusal leaves no half-signed node — and the approver is written as the AUTHORED_BY role=approver edge the intent-authority gate reads. set_decision_status and set_requirement_status take the same two fields; a settling status written without an approver is recorded but the reply carries `carries_nobodys_name`, the sentence the gate would say later, said now. add_verification takes `verifies` (targets, types resolved from ids), `status`, `findings` and `last_run_at`; findings or a run date without a status are refused; an unresolvable target refuses the whole create. add_epoch and plan_epoch share the sequence hint, so the planned form names the current maximum exactly as the past form does (recurrence #2 of the generic-refusal class, fixed at the shared point). Does not judge whether the named approver is the right person: it records whose word a status carries, and refuses the case where it carries nobody's.",
+    "name": "The owner's word rides the same call as the status it signs: constructors take status + approver, a settling status without a name is refused, setters report one, and a check records its targets and its run in one call",
+    "provenance": "authored",
+    "status": "realized"
+  }
+}

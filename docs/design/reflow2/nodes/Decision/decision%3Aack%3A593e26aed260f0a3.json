@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:3da32c3e4b07df34be7dbadb3ff736e5e13b9fe9425f159e0c38489369f8ab92",
+  "node_id": "decision:ack:593e26aed260f0a3",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Accepted the gap gap:593e26aed260f0a3.",
+    "name": "Reviewed: gap:593e26aed260f0a3",
+    "rationale": "User (who:ajs, standing policy from 2026-07-23): validation happens through the trials programme — docs/trials/ is where \"built the right thing\" is exercised against operational intent; formal validation-kind Verification nodes are not this project's tracking mechanism. Re-fired because cap:requirement-lineage joined the set (35 → 36). Apt here too: whether decomposition roll-up produces a number that MEANS anything is answerable only by decomposing a real design and seeing whether the result matches what a person would say is done — which is a trial, not a check.",
+    "status": "accepted"
+  }
+}

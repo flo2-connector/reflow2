@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:8ef5b3ebb251f894f3a4ef01b339d55ba407c9117d8e58977726ecefe64a4919",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:registry-http",
+  "properties": {
+    "covers": "partial"
+  },
+  "to_id": "ver:a-server-drains-before-it-stops"
+}

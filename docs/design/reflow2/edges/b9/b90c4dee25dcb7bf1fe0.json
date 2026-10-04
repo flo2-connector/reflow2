@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:4e4b239d59f35e6c073779635443a91840efa009509c704f366fb6115c6d84ea",
+  "edge_type": "MITIGATES",
+  "from_id": "dec:idea-a-claim-says-what-its-session-is-doing-and-never-reads-gone-when-it-cannot-be-verified",
+  "properties": {
+    "evidence": "Option (b), that only the holding server may say a session has stopped and every other reader shows unverifiable, answers the hazard that finding measured: active sessions' claims reading `gone`, which tells a colleague the ground is free."
+  },
+  "to_id": "fact:two-active-sessions-claims-both-read-gone-2026-09-22"
+}

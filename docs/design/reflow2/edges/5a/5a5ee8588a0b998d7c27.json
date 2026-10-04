@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:67d82c3d07d424db3538c5fd5a1d0e5e216ddde2320242431c0923e6d6e36b80",
+  "edge_type": "REALIZES",
+  "from_id": "art:graph",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:interface-spec"
+}

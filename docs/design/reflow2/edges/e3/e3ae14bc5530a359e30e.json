@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:64d5d81b576401b07dc1001bd0d55e7a1649c8948404ea717f567577762518da",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:where-content-lives",
+  "properties": {
+    "authored_at": "2026-07-31",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "ctr:claude-fable"
+}

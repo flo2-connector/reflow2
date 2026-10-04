@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:dc871110ae6ad45207a4c0b0d5b354a51bc788db38ccdfd19be1cbedb11aef9c",
+  "node_id": "act:ci-runner",
+  "node_type": "Actor",
+  "properties": {
+    "actor_type": "external_system",
+    "description": "A non-human, non-agent consumer: GitHub Actions runs tools/reflow2_check.py against the committed export on every push and pull request, and fails the build on unaccepted drift or a broken export chain. It is the only actor that can REFUSE work. It reads only what is COMMITTED, which is exactly why the kit manifest cannot be gated there (fact:defect-kit-manifest-drift-is-invisible-to-ci). Distinct from the driving agent: it never writes, never answers a question, and cannot be asked one.",
+    "name": "The CI runner"
+  }
+}

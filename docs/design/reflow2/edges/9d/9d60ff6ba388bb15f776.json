@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:2c7cbd54860c6c83d33922ec783ec9e370cf12c94fac4f77e6604e5ae98697c2",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:replace-text-moves-one-unique-sentence-or-appends-under-the-revision-guard",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:tools-capture"
+}

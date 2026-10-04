@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:a0fd6b5b630bdf5c9b8c914b9846ec9cd7c1c749fec25e90f3aecf0defa678f3",
+  "edge_type": "CHANGED",
+  "from_id": "chg:accept-96bbdd56ab16969d",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:every-declared-enum-is-wired-or-exempt-test"
+}

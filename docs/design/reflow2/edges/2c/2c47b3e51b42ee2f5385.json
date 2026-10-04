@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:691ecd63f3cc1ba54163ea06a591b74db01dda5f1ce46b17e3aa257fbb98284f",
+  "edge_type": "ANTICIPATES",
+  "from_id": "dec:idea-where-does-a-disk-space-rule-live-when-the-gate-runs-on-the-wrong-machine",
+  "properties": {
+    "evidence": "The 2026-08-31 question of where a rule lives when the build gate is the wrong enforcement point is the same shape: a rule whose violation happens somewhere other than the build."
+  },
+  "to_id": "dec:idea-an-enforced-rule-declares-the-action-it-guards-so-enforcement-matches-intent-not-words"
+}

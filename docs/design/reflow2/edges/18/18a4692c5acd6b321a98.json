@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:a86951f3422438ad0a098db8a8109520f13e062e4241be25c63958b67ad2e355",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-kernel-stops-being-bisected",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "dec:bl83a-functional-decomposition"
+}

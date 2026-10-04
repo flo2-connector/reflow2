@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:75225812f90a5f9ae7255e15f7887f35e9adf7624c03e5f96eb4759e6e4166f3",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:decomposition-coverage-is-asked",
+  "properties": {},
+  "to_id": "req:decomposition-covers-its-parent"
+}

@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:d8139611eadfca77e494316ff4ffcb5edd4d06e8e6c3624c7fb8e8957bdfda32",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:idea-open-design-items-become-jira-tasks",
+  "properties": {
+    "approved_at": "2026-09-26",
+    "roles": [
+      "author",
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

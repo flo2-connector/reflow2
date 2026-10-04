@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:c21c8fe47ad2bacbdce0cd591b1ec4cf32715aab399d9135fd6fb6bd269b09bc",
+  "node_id": "question:1148eb83214a370e",
+  "node_type": "Question",
+  "properties": {
+    "answer": "A new part of its own, under Time & History. Anthony chose a new component `cmp:manual-work` for `crates/reflow2-core/src/manual_work.rs` over crediting the function to `cmp:temporal` next door, over `cmp:tools-temporal` where the tools are declared, and over filing it by purpose under `sub:session-posture`. Recorded as an ALLOCATED_TO edge, a CONTAINS from `sys:time-history`, and a REALIZES from `art:manual-work`; `chg:the-last-two-unallocated-capabilities-get-owners` carries the reasoning.",
+    "context_setter": "Capability “A session records the work it did by hand, with the diagnosis that separates a missing tool from an unfindable one” isn't assigned to any part",
+    "gap_id": "gap:1148eb83214a370e",
+    "question": "Which part of the architecture owns the function \"a session records the work it did by hand, with the diagnosis that separates a missing tool from an unfindable one\" — the implementing module manual_work.rs has no component of its own, so does it get one, or does this function get allocated to an existing part?",
+    "rephrase_degraded": false,
+    "status": "answered"
+  }
+}

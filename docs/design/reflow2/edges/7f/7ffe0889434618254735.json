@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:3708bdb97a6cbf2a8e64f6e7bf44155cc11b859c6b899a61ed560a9baf1b400c",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "ver:plan-increments",
+  "properties": {
+    "authored_at": "2026-08-06T12:55:00Z",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:claude-code"
+}

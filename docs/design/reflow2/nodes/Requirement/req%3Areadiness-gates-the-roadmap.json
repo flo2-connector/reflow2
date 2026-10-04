@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:3bcd780f4d8c7fa0e38ca7b05b7102d90afa399915ea48850e076e89ab8e2113",
+  "node_id": "req:readiness-gates-the-roadmap",
+  "node_type": "Requirement",
+  "properties": {
+    "concern": "core",
+    "designation": "internal",
+    "kind": "functional",
+    "lineage": "original",
+    "name": "The epoch an increment can deliver on is computed from readiness, not declared",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "An increment's delivery epoch shall be DERIVED from the readiness of the technologies it is gated on: the earliest epoch by which every gating technology reaches the level stated for it, with the answer naming the technology and level that decided it. Readiness is an OBSERVATION (a TRL/MRL level 1-9 about an enabling technology) and the gating threshold is a JUDGEMENT stated by the user — reflow2 shall never supply a default threshold, and an increment with no stated threshold shall report as ungated rather than as ready. A projected level shall be distinguishable from a measured one wherever it is read.",
+    "status": "accepted"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:638dd1ac0b336c1335856f853a5012ed4c539d1a855ac0bd1aaceb685e59ec4d",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-cheap-tranche-from-bhomes-report",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cap:a-sweep-says-what-it-could-not-have-found"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:696f5ef5d429c92c6e6260af015177283dfa698055c263317bdbfa611fdf569c",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-name-is-not-a-report",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "ver:composed-analysis"
+}

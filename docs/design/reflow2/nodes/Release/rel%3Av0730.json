@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:2f03658400c9b6dda65ff3ca64917d19d25f24898c5b20f30c9a5cc2f3d1a76d",
+  "node_id": "rel:v0730",
+  "node_type": "Release",
+  "properties": {
+    "description": "Combined plan positions 1 and 3 (epoch:planned-combined-plan-reflow2-and-flo2), cut 2026-09-28 on Anthony's word (\"ok, cut 0.73.0 once they're done\", after \"yes, do the flo2 move next\", which named the release as its first step). Four built changes since v0.72.0:\n- The registry closes designs nobody is using (--registry-idle, default 15m), reuses the least recently used slot at --registry-max-open, and says busy (503 + Retry-After) instead of not found (#605, chg:the-registry-closes-idle-designs-2026-09-27).\n- Every store a process opens shares one RocksDB memory budget (--store-memory, default 128 MB), measured before and after (#606, chg:every-open-store-shares-one-memory-budget-2026-09-27).\n- An HTTP server told to stop drains: stops accepting, lets requests in progress finish within --shutdown-grace (default 5s), writes a waiting export, closes every store, exits 0; a second signal exits at once (#607, chg:an-http-server-drains-before-it-stops-2026-09-27).\n- A code folder names the design it implements in .reflow2.toml ([design] id + address, optional [[also]]), and a client started there attaches to that design through the remote client and never opens a leftover local store (#609, chg:a-code-folder-names-its-design-2026-09-28).\nWhy now: flo2.io's engine runs 0.72.0 as PID 1 in a container with none of the first three, and flo2's own design is about to move onto flo2.io, which needs the fourth so flo2's checkout names its hosted design.",
+    "name": "v0.73.0 — the hosted engine closes idle designs, shares one memory budget and drains before it stops; a code folder names its design in .reflow2.toml",
+    "status": "retired",
+    "unit_type": "binary",
+    "version": "0.73.0"
+  }
+}

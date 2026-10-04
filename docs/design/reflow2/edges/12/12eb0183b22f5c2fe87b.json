@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:c6d4e58d02c49497bf87dc38e4165432d8db5a6c82fb2b18d588a39975537438",
+  "edge_type": "REALIZES",
+  "from_id": "art:move-component-test",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "verified"
+  },
+  "to_id": "cap:a-component-can-be-moved-not-just-given-another-parent"
+}

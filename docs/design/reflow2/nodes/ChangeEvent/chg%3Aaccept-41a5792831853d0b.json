@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:17185c67a36bd754f837bd0f4175078baa3009d5a65bc5c75c276e55bbbeea50",
+  "node_id": "chg:accept-41a5792831853d0b",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "refactor",
+    "detected_at": "2026-08-19",
+    "name": "v0.36.0 cut, step 1: the version string in reflow2.toml moved 0.35.0 -> 0.36.0. No design meaning moved with it — the meaning of a cut lives in the Release node and its epoch, never in a version string. Accepted BEFORE release_includes_all so the manifest freezes the post-bump file; accepting afterwards records that the release shipped the pre-bump one. The dynograph-foundation pin is deliberately unchanged at v0.12.0.",
+    "subject": "system"
+  }
+}

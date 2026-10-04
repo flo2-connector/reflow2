@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:a752c5cc0bc71ead4b44858c93d0b2dd3358ede950c612b3b30a9ff65e98792d",
+  "edge_type": "ANTICIPATES",
+  "from_id": "fact:defect-a-schema-narrowing-orphaned-live-edges-and-no-export-is-ever-imported",
+  "properties": {
+    "evidence": "The 2026-08-15 report asked for export_graph to validate what it emits, and for a narrowing to be treated as a migration that ships its census: options (b) and (d) here."
+  },
+  "to_id": "dec:idea-stored-data-is-rechecked-against-the-current-schema"
+}

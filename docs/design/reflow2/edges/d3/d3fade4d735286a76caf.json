@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:49df333a09545d7397966464b7a509faf92d2093078aeeba4558636bafe969a1",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:idea-a-rejected-field-says-whether-it-moved-or-was-never-there",
+  "properties": {
+    "authored_at": "2026-09-07T00:00:00Z",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:alex"
+}

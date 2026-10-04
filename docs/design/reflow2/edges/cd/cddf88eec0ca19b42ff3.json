@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:ca986e38261bfa3e126f724fc7eb037cbcc46419c2452db03cb2d16d80cc0042",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-saved-design-moves-to-the-item-layout-2026-10-03",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:98a0715f222ac505af7771441535356ccbb0bc3ed621570ee9d210802841f75c",
+    "checksum_basis": "measured"
+  },
+  "to_id": "art:caller"
+}

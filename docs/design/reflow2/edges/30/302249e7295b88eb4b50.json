@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:a8dcca620d259f5a84345521b1a39e70a752f278dff9915a9e9ff26b06e72619",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-saved-design-moves-to-the-item-layout-2026-10-03",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:eb50362700e967ba24b571aa5791531966038d868ea2d93b56ba9a183cc95347",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:frontier"
+}

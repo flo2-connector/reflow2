@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:2e79c7ed074387fe88dd367cb3912640ca4acf2c590ae2b08b879eca69f2b382",
+  "edge_type": "HAS_SNAPSHOT",
+  "from_id": "art:test-the-schema-serves-the-rules-that-tell-the-types-apart",
+  "properties": {},
+  "to_id": "snap:epoch:preserved-on-write:art:test-the-schema-serves-the-rules-that-tell-the-types-apart"
+}

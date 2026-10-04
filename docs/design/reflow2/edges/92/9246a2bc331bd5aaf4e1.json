@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:a2c6ede240b70b909f09b04993ea7f2aabf8470e446221869cd669d75f807340",
+  "edge_type": "HAS_SNAPSHOT",
+  "from_id": "req:reviewed-defects",
+  "properties": {},
+  "to_id": "snap:epoch:kpp-capture:req:reviewed-defects"
+}

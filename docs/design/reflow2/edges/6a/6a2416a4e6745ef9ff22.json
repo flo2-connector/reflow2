@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:3bf068374d9b6f53b3a4dea84dfb74ea1ccf9eac07240472fc72299e18c2f000",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:a-session-chooses-its-design",
+  "properties": {
+    "authored_at": "2026-08-05",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

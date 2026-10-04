@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:280129aafd29d89a5d406670670b22b3a2f6739b6569cbfbd92798ae3bba3a65",
+  "node_id": "art:feedback-command",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "document",
+    "description": "What a person types: /feedback [since YYYY-MM-DD]. Names the feedback skill, restates the four constraints in the person's voice (computed not remembered; model self-reported and every refusal dispositioned; the design kept out; appended locally and sent nowhere).",
+    "location": "getting-started/commands/feedback.md",
+    "name": "feedback.md (command)",
+    "status": "realized"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:d0c82aec19520cc570c513d6dd9be33a0aa9c2cfa6c2020a9526799c4eb226c5",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-saved-design-moves-to-the-item-layout-2026-10-03",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:63b71b7213c85f9f485a943b14818cd7fe5ce5bc0551cc68761944a612dda8c4",
+    "checksum_basis": "measured"
+  },
+  "to_id": "art:every-skill-is-found-by-a-query-in-the-users-words-test"
+}

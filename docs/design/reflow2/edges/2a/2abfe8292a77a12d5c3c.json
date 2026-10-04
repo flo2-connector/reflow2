@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:f5d0c3fd4624170bc7e21a65d8a7ca49022929b499c858740d291c961c927eba",
+  "edge_type": "HAS_TEMPORAL_FACT",
+  "from_id": "art:dev-storyflow-feedback-2026-09-04",
+  "properties": {},
+  "to_id": "fact:defect-typed-relation-constructors-cannot-reach-the-note-their-edge-schema-declares"
+}

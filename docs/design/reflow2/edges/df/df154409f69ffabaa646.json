@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:290ea0fff6b48db4f1277da435e9c6de590416649d5f932ebd6fb985e6ae8b12",
+  "edge_type": "ANTICIPATES",
+  "from_id": "fact:defect-a-verification-cannot-record-a-partly-blocked-run",
+  "properties": {
+    "evidence": "The qs record of 2026-09-04 first put this question (a `partial` status or per-clause findings) and warned that a new status owes every reader a ruling. It is the earlier sighting of the same question."
+  },
+  "to_id": "dec:idea-a-run-can-pass-with-its-exceptions-stated"
+}

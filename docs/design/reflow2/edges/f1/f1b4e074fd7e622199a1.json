@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:52c8fd28a8d04f7965a4945a306b694da10eb53272bdcd74de9739935c4fb63a",
+  "edge_type": "CHANGED",
+  "from_id": "chg:bl183-constructors-merge",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:verify"
+}

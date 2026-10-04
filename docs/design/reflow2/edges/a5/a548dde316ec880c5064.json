@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:9270ceac949bb76f66bf65680d105ef0d5f9c7a66076f3a3f0ee52e2f281a4f1",
+  "edge_type": "CHANGED",
+  "from_id": "chg:prune-proposed",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "removed"
+  },
+  "to_id": "req:functional-vocabulary-computes"
+}

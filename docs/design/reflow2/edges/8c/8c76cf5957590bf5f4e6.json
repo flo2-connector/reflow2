@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:8d92fc8b1672bdacd7ae3b79e84a490e3629e9345dc53571c0b7c19f6c8e626b",
+  "edge_type": "ANTICIPATES",
+  "from_id": "dec:idea-who-authors-the-domain-artifact",
+  "properties": {
+    "evidence": "That idea's last section says nobody has measured whether an agent can produce a usable domain artifact; this trial is that measurement, on a real building with a real permit office and a real architect's bill."
+  },
+  "to_id": "dec:idea-seattle-houses-as-the-field-trial-for-non-software-design"
+}

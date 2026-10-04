@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:dcec6889eba1b30e24d3377c9d9d3e448840439780d753dd16c31247d17a0e3b",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:test-a-revise-keeps-what-it-was-not-passed",
+  "properties": {
+    "covers": "whole"
+  },
+  "to_id": "ver:a-revise-keeps-what-it-was-not-passed"
+}

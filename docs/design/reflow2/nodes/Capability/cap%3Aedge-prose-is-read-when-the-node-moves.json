@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:39fae5fe2b1ac44c09fde44f4e40c9984e67c79385fad38b45800f6aef4898ef",
+  "node_id": "cap:edge-prose-is-read-when-the-node-moves",
+  "node_type": "Capability",
+  "properties": {
+    "description": "`stale_edge_evidence(node_id)` reads the `evidence` and `note` on every edge touching a node and names those still using language the node has DROPPED — comparing against the node's most recent snapshot, so a term that was never about the node is not confused with one the node has since lost. Surfaced by `propagate_change`, keyed by seed, because that is the call already putting those edges in front of a reader.\n\nReports `edges_with_prose` so an empty result over zero examined edges is distinguishable from one over twenty, and a `coverage_note` when there was no prior state — silent about the edges rather than clean on them. Warning only; it never refuses a write, and it carries its own caveat that it is lexical rather than semantic.",
+    "name": "An edge whose prose outlived the node it points at is named, with the terms that moved",
+    "provenance": "authored",
+    "status": "realized"
+  }
+}

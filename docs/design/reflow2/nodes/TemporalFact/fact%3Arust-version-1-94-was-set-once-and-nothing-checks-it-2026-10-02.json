@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:ad9c354350233bb8298398f127aff3023747efc0880d18ed9d80cb85c41ebc7a",
+  "node_id": "fact:rust-version-1-94-was-set-once-and-nothing-checks-it-2026-10-02",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "finding",
+    "name": "MEASURED 2026-10-02: `rust-version = \"1.94\"` was set once (2026-07-17, when reflow2-core was added) and no CI job builds with it — CI uses stable only; the highest minimum any locked dependency declares is 1.90; reflow2-core (no default features) compiles on 1.94",
+    "source": "dev_reflow2 hub session, on Anthony's \"I'm not sure the rust-version is correct\": `git log -S'rust-version' origin/main -- Cargo.toml`; ci.yml (`dtolnay/rust-toolchain@stable` ×2, no other toolchain); `cargo metadata --locked` over origin/main 64b145a (285 packages declare rust-version); `cargo +1.94 check -p reflow2-core --no-default-features --locked` in a throwaway worktree with a private target dir",
+    "statement": "WHAT rust-version IS: the oldest Rust compiler reflow2 claims to build with. It is not reflow2's own version and is not meant to move with each release, so \"not bumped per release\" is expected. What matters is whether it is TRUE, and whether it is still the right floor.\n\nMEASURED:\n- Set in 0300320 on 2026-07-17 (\"Add reflow2-core …\") and never changed.\n- Nothing checks it. Both CI jobs install `dtolnay/rust-toolchain@stable`, now 1.99.0, and no job builds with 1.94.\n- Dependencies: the highest declared rust-version among the locked packages is 1.90 (ordered-float 5.5.0), then 1.89 (aes) and 1.88 (bon, darling). They do not force the floor above 1.94.\n- reflow2-core with no default features compiles on 1.94.0: `cargo +1.94 check` finished in 40.8 s, exit 0.\n- reflow2-mcp, which carries RocksDB and tantivy, was being checked on 1.94 at the time of writing; see the dated note below when it finishes.\n\nTHE CLASS: a declared claim maintained by hand with nothing checking it. A use of any std API stabilised after 1.94 would compile in CI (stable) and silently make the claim false.\n\nOPEN FOR ANTHONY, under req:reflow2-keeps-its-dependencies-at-or-near-their-latest-releases:\n- what the floor should be (keep 1.94, or track recent stable, e.g. stable minus two);\n- whether a CI job builds at the declared floor, so the claim is checked rather than asserted.\nrustup also self-updated 1.29.0 → 1.29.1 and added the 1.94 toolchain on this machine while this was measured.",
+    "subject_id": "cap:the-builds-toolchain-is-pinned",
+    "valid_from": "2026-10-02"
+  }
+}

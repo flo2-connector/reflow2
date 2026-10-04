@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:66a4d31c5956e95cef6538d7408c054efd0834a235ed6ad0d77fb17101199288",
+  "edge_type": "ABOUT_ENTITY",
+  "from_id": "fact:defect-ingest-corpus-answers-are-keyed-on-the-document-text",
+  "properties": {},
+  "to_id": "cap:corpus-ingest"
+}

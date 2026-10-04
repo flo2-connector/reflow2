@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:fa1b15a36cc8f1978575e7b861dfdaf662981f7d4138ee07e1f84fdf01b2108f",
+  "node_id": "frag:art:test-the-schema-serves-the-rules-that-tell-the-types-apart",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered the_schema_serves_the_rules_that_tell_the_types_apart.rs — every routed type serves its discrimination rules, and the prohibition case is asserted by content"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:11b8abda8fad5cf468529c49b5404044efa8738948b628a32e2676bba2923f3e",
+  "edge_type": "CONTRADICTS",
+  "from_id": "dec:idea-a-change-upstream-reaches-the-sibling-that-never-asked",
+  "properties": {
+    "alignment": "supporting",
+    "confidence": 0.9,
+    "evidence": "This node is the cross-graph case that node's own counter-argument anticipates: derived notification fails structurally when the dependency edge lives in the consumer's graph"
+  },
+  "to_id": "dec:who-needs-to-know"
+}

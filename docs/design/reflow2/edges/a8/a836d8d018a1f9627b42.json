@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:f1a3f440e552010c44f8bd8cdb3a66152231ac5cb17a29b9d6ac9351efff56ff",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-name-is-not-a-report",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "ver:readiness-gating"
+}

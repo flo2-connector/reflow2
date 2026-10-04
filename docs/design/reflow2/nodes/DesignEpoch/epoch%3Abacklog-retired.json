@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:d75492bc66d0c178fbaffbd4ba55365b9b91b0ff990bda959c0671b2d6332b47",
+  "node_id": "epoch:backlog-retired",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "epoch_type": "revision",
+    "name": "The backlog is retired on Anthony's word: every open row becomes the node type it already was, and docs/backlog.md is deleted (2026-08-07)",
+    "sequence": 287,
+    "status": "arrived"
+  }
+}

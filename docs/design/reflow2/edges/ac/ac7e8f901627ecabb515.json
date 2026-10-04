@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:6ceae246aad5b99c38b5de041eb3b77e9cf5d89e8188f8b51a8ebe29e3ff32e1",
+  "edge_type": "CHANGED",
+  "from_id": "chg:enforced-is-stated-not-defaulted-20260808",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:enforced-rule-detector-test"
+}

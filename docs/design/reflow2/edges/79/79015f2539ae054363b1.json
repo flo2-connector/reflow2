@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:fd92d972464377a298b35e132d0b1671cd777386d2f36a8358919ef6717eb26f",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "drift:e73e7cea40c640df",
+  "properties": {
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "art:fielded"
+}

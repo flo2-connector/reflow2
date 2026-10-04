@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:6b8d4c88b0d0ac18ada4544bc63d02b83788216b032dd307d8a327fd429da862",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:test-a-dangling-reference-is-found-whatever-its-degree",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:test-a-dangling-reference-is-found-whatever-its-degree"
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:0ad1c1b1945fc92d011ca3cfd2f2aec13146ce989658d2fc2462b2456852ac60",
+  "edge_type": "EVOLVES_INTO",
+  "from_id": "dec:idea-get-node-by-id-alone-since-the-prefix-names-the-type",
+  "properties": {
+    "evidence": "The idea's MIDDLE PATH is what shipped: node_type optional, resolved by index, refused on collision. Promotion recorded structurally per the brainstorm skill step 5 rather than by rewriting the idea's prose."
+  },
+  "to_id": "chg:alexs-four-surface-fixes-sequence-hint-get-node-by-id-auth-hint-and-bulk-check-only"
+}

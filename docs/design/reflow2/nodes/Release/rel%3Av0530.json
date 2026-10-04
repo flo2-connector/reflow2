@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:99416b56f9796431ca6d1c716094ee00fc3a5cf149343ef1d3ab5bc8c12002e0",
+  "node_id": "rel:v0530",
+  "node_type": "Release",
+  "properties": {
+    "description": "Both changes came from the design misleading the agent maintaining it, which is the failure reflow2 exists to prevent. Closure had two available answers — an INVALIDATES edge for the gap detector, valid_to for the age computation — so a finding another record had refuted was closed for one surface and current for the other. ClaimAge gains superseded_by, filled by DesignGraph::claim_age_of, one graph-aware computation that search_design and topic_report both use, kept distinct from expired because a claim that ran out is not a claim something overturned. And the unreachable-vocabulary baseline is split by intent rather than counted flat: 14 holes, 15 written by an operation, 13 unused, each with a reason a reader can disagree with, so the number can be read as a to-do list instead of overstating the work by two thirds.",
+    "name": "v0.53.0 — a refuted finding stops reading as current, and a count starts meaning something",
+    "status": "retired",
+    "unit_type": "binary",
+    "version": "0.53.0"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:bac87a8e234a340137cc2d1e16f1d4f87f63320468c58165c1515c8d4bc119e8",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0370",
+  "properties": {
+    "as_checksum": "sha256:3662c2f1bfad581c5db524453fad579fa7e27abcf91f248709d7b47afd03a187"
+  },
+  "to_id": "art:tools-capture"
+}

@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:9c57142d2604817dd6fa42802a1a620c8bd0c44692625403ee1d3597cfeeecd7",
+  "node_id": "epoch:2026-09-22-verified-splits-into-runnable-and-claimed",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "description": "THE LESSON, and it is about instruments measuring themselves. This design's coverage line read \"241/288 capability(ies) verified\" for months. Measured on 2026-09-22: 21 of those 241 had a check anything could re-run. The code was at 85% line coverage the same day. So the record was wrong in BOTH directions at once — it understated the testing that existed and overstated the testing it could prove — and neither error was visible from inside, because `has_executable_form` was already computed, already reported per check in the loop digest, and never rolled up to the number anybody read.\n\nWHAT LANDED: the count split (`capabilities_verified_by_runnable_check`, said as its own sentence and said when zero), and the ratchet (`tools/check_verification_ratchet.py`) that grandfathers the 220 by id and forbids a 221st.\n\nWHAT IT DELIBERATELY DID NOT DO: backfill. Writing 220 tests to make a number green is the behaviour the number exists to detect.\n\nAND ONE THING FOUND SIDEWAYS: `link_artifact` draws REALIZES and only REALIZES, so the discoverable way to \"register the file that is the check\" produces no executable form at all. The IMPLEMENTS edge is a separate call nothing asks for. That is a plausible cause of the 282, and it was met by hand while writing the test that pins the split.",
+    "epoch_type": "revision",
+    "name": "\"Verified\" splits into a check something re-runs and a check somebody typed, and the claim-only set ratchets",
+    "sequence": 530,
+    "status": "arrived"
+  }
+}

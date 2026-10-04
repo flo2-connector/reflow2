@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:77923e641a754f7e857f9782869ac8c572d3b079299b59e91e39a3818504f82c",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-saved-design-moves-to-the-item-layout-2026-10-03",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:a8c586ec6f150aa452db0efabd72d81c2a5e4075ba4f2f1392e623053099d7b2"
+  },
+  "to_id": "art:dev-reflow2-two-agent-exercise-feedback-2026-09-29"
+}

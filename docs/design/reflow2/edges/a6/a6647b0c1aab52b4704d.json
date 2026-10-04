@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:25382c7344e465ededfeb6e5a5189ee11abc0415229e55b3c2d5b478a33b4af8",
+  "edge_type": "CHANGED",
+  "from_id": "chg:stored-data-is-rechecked-against-the-current-schema",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:derived-relations-are-declared-and-checked-test"
+}

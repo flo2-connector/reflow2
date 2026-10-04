@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:f0ef6c06eb7a2b0f643b30e2e0118f9fdbf22fa3299d2b5e0156978bff70cde5",
+  "edge_type": "CHANGED",
+  "from_id": "chg:confirmation-vocabulary",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cap:freshness"
+}

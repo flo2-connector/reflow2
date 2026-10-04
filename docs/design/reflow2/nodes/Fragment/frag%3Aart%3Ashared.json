@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:00bf3c5ad3a4880d9e19bac8cbad697ecfe7a6eca6165a476cfc08d435220ca6",
+  "node_id": "frag:art:shared",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered shared.rs"
+  }
+}

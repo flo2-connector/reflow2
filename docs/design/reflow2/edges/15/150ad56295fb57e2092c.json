@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:ddc842e6df79c890af81de79e3ae76d53446e64500918d3b738be3aa17db6f99",
+  "edge_type": "CHANGED",
+  "from_id": "chg:export-rule-becomes-governed",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "req:the-export-is-serialised-rather-than-socially-enforced"
+}

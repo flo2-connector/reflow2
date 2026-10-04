@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:ed5b461f2d2eef65061fb011ce36ab6d2cee1744daba113d1a7c6565d08263e4",
+  "node_id": "fact:manual-work-27d7ef142430bbea",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "manual_work",
+    "statement": "Wrote ad-hoc scripts over the committed export, five separate times in one session, to answer one recurring question: \"how many of my declared X carry a Y?\" — how many Interfaces have an incoming VERIFIES, how many Capabilities carry a signature, how many Components sit at a given level and where they hang on the containment spine, how many nodes of a type have an edge of a type. Each answer took a fresh throwaway script. `find_tools` on \"count edges of one type pointing at nodes of another type\" returns a node lister and two bulk writers; the read has no served form. The counts these produced were the session's most load-bearing findings, so the shape is not incidental.",
+    "subject_id": "proj:reflow2",
+    "valid_from": "2026-08-31",
+    "value": "{\"diagnosis\":\"tool_missing\",\"reflow2_tool\":null}"
+  }
+}

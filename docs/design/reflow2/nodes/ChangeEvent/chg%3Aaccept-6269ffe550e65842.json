@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:cc8bb8b1b57ed81b0db09d82e71df791696e1ef993f9c143a48167be8ece3453",
+  "node_id": "chg:accept-6269ffe550e65842",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "refactor",
+    "detected_at": "2026-08-01",
+    "name": "FIRST baseline, not an accepted change. art:detect was registered with no checksum, so the most central file in the design — realizing cap:detect, cap:kpp, cap:aggregate-gap-keying, cap:release-pinned-to-time and cmp:detect — could never report drift, and reconcile_artifacts reported it as `no_baseline` rather than clean. Found twice on 2026-08-01 by two independent routes the same hour: an exhaustive reconcile sweep (106 of 107 unchanged, this one uncheckable) and the new derived release manifest, which named it as the sole entry in without_checksum. The file content is unchanged by this session; only the baseline is being established. `design_holds` is the honest available answer and it is an imperfect fit — the disposition vocabulary assumes there WAS a baseline, and establishing a first one is a different act from accepting a move. Filed as friction rather than worked around silently."
+  }
+}

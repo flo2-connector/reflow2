@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:8e88891e74f3166a17b8ce88eff3c65cc48ffa7cf637b53aec2cc36e068f2446",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0710",
+  "properties": {
+    "as_checksum": "sha256:eec9b728585372792e318d1891a73b8c6590accf3576a89ee277ed9fd7b0e3e8"
+  },
+  "to_id": "art:test-nudge-path"
+}

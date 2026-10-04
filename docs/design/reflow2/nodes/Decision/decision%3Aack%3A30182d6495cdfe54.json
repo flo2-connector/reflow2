@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:776c9dc935998ae4de87c5244361594b1fc40c8495b012f677e604605a9f0b5e",
+  "node_id": "decision:ack:30182d6495cdfe54",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Accepted the gap gap:30182d6495cdfe54.",
+    "name": "Reviewed: gap:30182d6495cdfe54",
+    "rationale": "Standing disposition for planned-but-unbuilt capabilities (user's 2026-07-23 call, applied again 2026-07-26): a capability captured as intent and not yet built has nothing to verify, and asking for its check now would put a planned Verification on the record that confirms nothing — which is the state dec:passing-is-verified exists to keep out. The check is owed AT BUILD TIME and is already specified in BL-106: a fixture where an artifact's accept is dated after its verification's last_run_at must report the capability as stale-checked, one where the order is reversed must not, and one where either date is missing must report `unknown` rather than passing silently. Worth naming here because this particular capability is about checks being trusted further than they reach, so shipping it on a check that proves nothing would be the defect demonstrating itself.",
+    "status": "accepted"
+  }
+}

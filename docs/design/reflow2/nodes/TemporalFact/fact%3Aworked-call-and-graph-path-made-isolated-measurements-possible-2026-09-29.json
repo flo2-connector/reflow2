@@ -1,0 +1,17 @@
+{
+  "content_hash": "sha256:a3a5cc6967512111d8a9e79bb66aca4a79210229fc7c350509e894880d705fa2",
+  "node_id": "fact:worked-call-and-graph-path-made-isolated-measurements-possible-2026-09-29",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "finding",
+    "name": "WHAT WORKED (2026-09-29, 0.74.0): `--call` with `--graph-path` and a scratch HOME made isolated measurements possible and checkable twice in one day: the designer's cold-load timing of reflow2's own design, and this triage's reply-size probes. The scratch HOME stayed untouched. Do not regress it",
+    "source": "art:dev-reflow2-two-agent-exercise-feedback-2026-09-29",
+    "statement": "From art:dev-reflow2-two-agent-exercise-feedback-2026-09-29, item W1 (friction-log entry #26).\n\nThe designer timed a cold open of reflow2's own design (a copy in a scratch directory, isolated HOME, no hub config) with the INSTALLED 0.74.0 binary through `--call` and `--graph-path`, and confirmed afterwards that the scratch HOME was still empty.\n\nThe same door then served this triage (T2) for every refuting measurement of items I4, I5, I16 and I17: reply sizes of replace_text, set_decision_status and add_decision, the describe_schema TemporalFact reply, the add_decision related_to drop, and budget_report's refusal. All ran on a throwaway store, with nothing built and no live design touched.\n\nIt works because `--call` runs through the SAME server path a session uses. So a measured reply is the reply a session gets, not a paraphrase. That is the property to keep.",
+    "steps": [
+      "root-cause"
+    ],
+    "subject_id": "cap:a-build-can-call-one-tool-from-the-shell-and-read-the-reply-as-json",
+    "valid_from": "2026-09-29"
+  }
+}

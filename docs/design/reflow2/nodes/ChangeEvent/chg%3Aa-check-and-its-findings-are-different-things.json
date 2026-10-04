@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:76435f926192537c533b84751e68225021db63d7806f8e2c30fec22f6a63f6de",
+  "node_id": "chg:a-check-and-its-findings-are-different-things",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "defect_fix",
+    "name": "The preserved Verification texts are split: what the check IS stays in `description`, what a RUN FOUND moves to `findings`",
+    "subject": "record"
+  }
+}

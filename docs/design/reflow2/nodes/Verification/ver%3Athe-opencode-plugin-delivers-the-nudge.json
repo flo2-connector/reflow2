@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:a81533e34071b354be71fd549a18c635db0ac423769d637efbfb4233bed55e23",
+  "node_id": "ver:the-opencode-plugin-delivers-the-nudge",
+  "node_type": "Verification",
+  "properties": {
+    "description": "tools/test_opencode_plugin.py imports the plugin under node with the same four hooks OpenCode calls and asserts the nudge ARRIVES, not that the code ran: session start yields the orientation; a reflow2 write (tool.execute.after with reflow2_add_decision) followed by session.idle yields the stop nudge through experimental.chat.system.transform; a session that ran a loop check gets no nudge; a directory with no .reflow2 gets nothing at all. The nudge module's own unit tests cover the server-side half: the plugin file in .opencode/plugins/ or ~/.config/opencode/plugins/ reads as installed, and an OpenCode project without it reads as absent rather than impossible. Skips where node is absent rather than failing red. Run by CI after the build.",
+    "findings": "Run locally 2026-09-14 on the review branch under node 22: all checks passed. The nudge module's 22 unit tests pass, including the three plugin-presence tests added in review.",
+    "kind": "verification",
+    "last_run_at": "2026-09-14",
+    "level": "integration",
+    "method": "test",
+    "name": "The OpenCode plugin delivers the loop nudge, driven as OpenCode drives it",
+    "status": "passing"
+  }
+}

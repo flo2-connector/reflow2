@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:111a9222b83b0298e34dafa663fcb66ace66cc679ede6f22fcd5d12603013e22",
+  "edge_type": "REALIZES",
+  "from_id": "art:every-reference-parameter-names-its-type-test",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "reviewed"
+  },
+  "to_id": "cap:tool-carries-convention"
+}

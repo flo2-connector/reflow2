@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:16e156915cdbec5ac21b2f12551362b0dbbabfd93723cbe6f99617d42c782df9",
+  "edge_type": "CONTAINS",
+  "from_id": "proj:reflow2",
+  "properties": {},
+  "to_id": "req:adopt-can-be-incremental-and-resumable-with-a-frontier-and-a-deferred-derivation-marker"
+}

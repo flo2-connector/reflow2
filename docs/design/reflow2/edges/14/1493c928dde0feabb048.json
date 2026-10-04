@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:39da1640979c0116ce1325dd26fd88c1321fe965eae01e656c63ad7b240abf18",
+  "edge_type": "CAUSES",
+  "from_id": "fact:a-moved-design-cannot-be-watched-and-its-frozen-export-reads-as-live-2026-09-27",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "That root cause already names the class: an export watch fingerprints a FILE, and a file is a copy at one moment. Its fix (design_address, 2026-09-27) watches the live design, but only where the child is served at a stable address. A local child with no server and no write-through has only the file, so the class recurs whenever the export lags.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:an-export-watch-reads-unchanged-over-unexported-work-and-an-address-watch-sees-it-2026-10-02"
+}

@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:008d2f063b0b0916ad9a632f4a4e14cb6e7e26c055b887d018630c80bb6cae47",
+  "edge_type": "HAS_SNAPSHOT",
+  "from_id": "ver:every-edge-type-declares-a-well-formed-reading",
+  "properties": {},
+  "to_id": "snap:epoch:preserved-on-write:ver:every-edge-type-declares-a-well-formed-reading"
+}

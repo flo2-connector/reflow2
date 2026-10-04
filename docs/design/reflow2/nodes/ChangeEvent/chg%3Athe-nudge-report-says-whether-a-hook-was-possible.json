@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:0e03b622168e54a5a83271490f3a8dee87d44c033db81d0526bc57f1c4a14afb",
+  "node_id": "chg:the-nudge-report-says-whether-a-hook-was-possible",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "name": "The nudge state distinguishes \"not installed here\" from \"cannot be installed here\" — a new NoHookForThisHarness variant read from the harness answer the installer now records"
+  }
+}

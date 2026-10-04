@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:622c0015e1902e1e6e398e246b50b2703bf309ee661a773d4e380285065a4570",
+  "edge_type": "INVALIDATES",
+  "from_id": "chg:the-overtaken-defect-records-were-triaged-against-the-v0510-build",
+  "properties": {
+    "evidence": "The proposal now carries scope and projects_in_scope, names the only Project rather than an alphabetically-first one, and reports merge_candidates_considered with three distinct renderings of zero (heal.rs:2546,2749,2717). Pinned in heal.rs tests."
+  },
+  "to_id": "fact:defect-propose-heal-describes-neither-what-it-swept-nor-what-it-considered"
+}

@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:4fdf8a19807d9655e63b073f5a243a6f7a15e015c69c1785eb5997c268e7b9f6",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:skill-use-survives-a-long-session",
+  "properties": {
+    "authored_at": "2026-07-31",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "ctr:claude-fable"
+}

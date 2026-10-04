@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:34d20539ff669b6b76cb1e95eab0cf113cc4ce383a767f148d229df605cc8b70",
+  "node_id": "fact:the-remote-client-drops-the-servers-sign-in-challenge-2026-10-01",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "finding",
+    "name": "MEASURED 2026-10-01 (v0.76.0): the --remote client never reads a 401's WWW-Authenticate or a 403's insufficient_scope, and holds one fixed bearer for its whole life",
+    "source": "code reading at origin/main a5be4dc (v0.76.0), dev_reflow2 hub session, planning the OAuth client role",
+    "statement": "Read at origin/main a5be4dc (v0.76.0), file:line.\n\nTHE CREDENTIAL:\n- `remote_credential` (main.rs:2861) takes --api-key-env / --api-key-file, else `client_setup::stored_credential` (client_setup.rs:192).\n- `KeySource` is None | Keychain | Env (client_setup.rs:46). Its doc comment (:25-26) already reserves \"browser sign-in\" as another KeySource.\n- keyring 4 holds the key as Entry(\"reflow2\", <origin>) (:150-186). client.json (0600) holds where the key is, never the key.\n\nTHE SENDING:\n- `struct Remote { url, bearer: Option<String>, … }` (proxy.rs:480) holds ONE bearer for the life of the process. Nothing can refresh it.\n- `exchange` (mcp_http.rs:255) sends it as Authorization: Bearer (:290).\n\nTHE ANSWERS:\n- A 401 becomes ServerAnswered{401} with a fixed \"key is missing, wrong, expired or revoked … sign in again\" (mcp_http.rs:313). THE WWW-Authenticate HEADER IS NEVER READ, so the resource_metadata and scope a server names (api.flo2.io does, 2026-10-01) are dropped.\n- A 403 becomes ServerAnswered{403} with the body text (:324). insufficient_scope is not parsed.\n\nThe pointer attach (main.rs:2727-2779) and the design watch (upstream.rs:346 credential_for) share the same credential path. A sign-in has to reach all three.",
+    "subject_id": "cap:a-local-client-reaches-a-remote-server",
+    "valid_from": "2026-10-01"
+  }
+}

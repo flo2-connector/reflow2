@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:3e2a16bc13bae90ccd700bf20f26cae757b8c1146d649376485b89676dba1984",
+  "edge_type": "CHANGED",
+  "from_id": "chg:accept-5107770eff781f1a",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:heal"
+}

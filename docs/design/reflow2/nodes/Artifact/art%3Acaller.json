@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:8d716e02bef7a2b72c3504118eb97a6633d8e5188b110c6f55e44901838b9120",
+  "node_id": "art:caller",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "description": "CallerRule: Local (stdio, --shared, loopback --http; unchanged), TrustedGateway (--http-trusted-gateway / REFLOW2_TRUSTED_GATEWAY: the caller is the name the gateway puts on each call in _meta[\"reflow2/writes_for\"]), Undeclared (served for others with nothing declared: nobody signs). It gives each call the reflow2_core::intent::Signer the store checks every signature against, the handshake note and the operator banner.",
+    "location": "crates/reflow2-mcp/src/caller.rs",
+    "name": "caller.rs: who is calling, from how the engine is served (#616 fix 4)",
+    "status": "realized"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:940f84eb97cad61b11227dc250320fbab138f841fa77a343d54f04f5c58b2c4d",
+  "node_id": "chg:iteration-budget-was-elicited",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "refactor",
+    "name": "Correct req:build-loop-is-bounded: the iteration budget was ASKED, not hardcoded — 3 is a default over range 1-10"
+  }
+}

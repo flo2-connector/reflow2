@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:c6b86487e93dbf0a097a0e3115c62dd67164bc32e3a33277e9f3bda7641eba8c",
+  "node_id": "art:skill-ingest-corpus",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "document",
+    "granularity": "atomic",
+    "location": "getting-started/skills/ingest-corpus/SKILL.md",
+    "name": "ingest-corpus SKILL.md — the folder walk, which reflow2 cannot do itself",
+    "status": "realized",
+    "volatility": "stable"
+  }
+}

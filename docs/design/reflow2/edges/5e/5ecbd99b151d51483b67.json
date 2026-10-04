@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:1cb84d7483ed089ed9b943be7aa6dfe6be42063a29c86c6e61e688ec8ba04e4d",
+  "edge_type": "CHANGED",
+  "from_id": "chg:accept-3ff9d8ca02055a16",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:parallel-work-skill"
+}

@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:64ffb91091cbab7fb3ad72902a8a98cb4d699ab273cf63c29c27269cdcd17a35",
+  "edge_type": "HAS_SNAPSHOT",
+  "from_id": "fact:revising-a-finding-resets-its-fact-type-to-finding-2026-09-26",
+  "properties": {},
+  "to_id": "snap:epoch:preserved-on-write:fact:revising-a-finding-resets-its-fact-type-to-finding-2026-09-26"
+}

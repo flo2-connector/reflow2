@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:002b3e557b387a8b169e8dc068211f484d1722c6a45da9a559a4a2d33fc10616",
+  "node_id": "cmp:init",
+  "node_type": "Component",
+  "properties": {
+    "kind": "module",
+    "level": "component",
+    "name": "reflow2_init",
+    "provenance": "authored",
+    "purpose": "The reflow2_init module.",
+    "status": "planned",
+    "tier": "operational"
+  }
+}

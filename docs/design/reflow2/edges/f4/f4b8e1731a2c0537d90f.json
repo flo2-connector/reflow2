@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:3c1d79f154c6c87ca881a8f1028b2ef9cbca88c713308671f6040f8e6818372e",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-readme-says-what-it-is-before-what-it-believes",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:readme"
+}

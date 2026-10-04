@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:01a8ed41c34e210e4f6400ce6754d63febfeb0a5cd26885c6c8f7346dbfcd115",
+  "node_id": "art:content-policy",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "description": "The per-client content policy: ContentPolicy {Signpost, Duplicate, Empty}, keyed on the handshake name (grok* → duplicate, *opencode* → empty, claude-code*/smoke_mcp* → signpost, EVERY OTHER CLIENT → duplicate) with a launch-time override — the fallback flipped from signpost on 2026-09-21 because the rule cannot learn and every connector is unmeasured by construction (chg:an-unmeasured-client-gets-the-payload-not-a-signpost); apply() rewrites only the exact signpost shape; shape() is the call_tool hook. Carries the measured history in its module doc.",
+    "location": "crates/reflow2-mcp/src/content_policy.rs",
+    "name": "content_policy.rs",
+    "status": "realized"
+  }
+}

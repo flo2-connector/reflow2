@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:1d3459cfd012b8741d02299d8d6fe8830abbdc43aa923b0766c2658219376003",
+  "edge_type": "HAS_TEMPORAL_FACT",
+  "from_id": "cap:store",
+  "properties": {},
+  "to_id": "fact:id-uniqueness-has-three-levels-and-one-is-enforced-2026-08-13"
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:84d92a211ddf24d82273c38fb1813ac046d970875b9413a7ae3dc43f44e58a71",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-how-does-an-ingesting-agent-ask-what-the-graph-already-holds-without-paying-to-read-it",
+  "properties": {
+    "evidence": "Options (b) and (c) are only worth anything if the mechanical-versus-intent split is settled first: that idea already names the narrow form — extract the ARTIFACT layer, whose identity genuinely is the file — and already carries the functional-decomposition objection that a path-keyed Component would have to answer.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "dec:idea-mechanical-code-structure-ingest"
+}

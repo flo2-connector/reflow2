@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:7c00d00e12db221f2b5c79f8c74b004fb2afaaafa757bd3f5dd61df63da07f59",
+  "node_id": "epoch:v0200-scoped",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "epoch_type": "milestone",
+    "name": "v0.20.0 scoped: the changelog view becomes the increment's one obligation",
+    "sequence": 241,
+    "status": "arrived"
+  }
+}

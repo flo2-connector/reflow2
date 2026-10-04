@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:fbc4e8e0d6def608d7e55feb9774a6673debcb98c91a53e6cd6ad1b2e52fc38c",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-orientation-call-stops-rereading-stale-records",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cap:the-record-moved-is-surfaced"
+}

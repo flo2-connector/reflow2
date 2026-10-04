@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:c146666782a735eb20fe7cffdb636e40a849f4e952dc8ecd7f6f4e1f7fb0a3ae",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:a-refusal-names-what-would-have-worked",
+  "properties": {
+    "authored_at": "2026-08-03",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:storyflow-api-boss"
+}

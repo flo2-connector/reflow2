@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:813e2daccc5cfbd3340ca288e18a059b85bd8324da63233f48ff9c6427aed836",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "req:intent-is-reinjected",
+  "properties": {
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "req:build-loop-is-bounded"
+}

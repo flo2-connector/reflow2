@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:3f457c9eb8131e65626e19794247e4f629dc8763b051e9cec6448171ed523f2c",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:a-design-can-be-served-ephemerally",
+  "properties": {},
+  "to_id": "req:platform"
+}

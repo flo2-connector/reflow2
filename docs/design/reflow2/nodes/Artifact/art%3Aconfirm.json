@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:14efcf8569e3e7af3966f908288e05a8d04503b70fa27bf112de1f6942ffb72d",
+  "node_id": "art:confirm",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "granularity": "atomic",
+    "location": "crates/reflow2-core/src/confirm.rs",
+    "name": "confirm.rs",
+    "status": "realized",
+    "volatility": "stable"
+  }
+}

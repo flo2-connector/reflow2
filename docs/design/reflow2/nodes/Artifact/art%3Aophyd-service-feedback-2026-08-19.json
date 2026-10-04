@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:0352f639041717fdfe13de128b24f9eca99bec77b873a110ce8973fec80af08f",
+  "node_id": "art:ophyd-service-feedback-2026-08-19",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "document",
+    "location": "docs/feedback/2026-08-19-ophyd-service-agent-feedback.md",
+    "name": "ophyd-service agent feedback, 2026-08-19 — two days of heavy use: brainstorm→promotion→build, a drift catch, zero defects",
+    "status": "realized"
+  }
+}

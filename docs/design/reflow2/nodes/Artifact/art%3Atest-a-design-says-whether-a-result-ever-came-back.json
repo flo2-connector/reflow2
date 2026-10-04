@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:c1690c2454a5f203c566ace970ac0e6756dda5842792ce9ffac1ead3bb0cdcbc",
+  "node_id": "art:test-a-design-says-whether-a-result-ever-came-back",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "test",
+    "description": "The seven tests behind the loop-closure reading and the reconcile stamp.",
+    "location": "crates/reflow2-core/tests/a_design_says_whether_a_result_ever_came_back.rs",
+    "name": "a_design_says_whether_a_result_ever_came_back.rs",
+    "status": "realized"
+  }
+}

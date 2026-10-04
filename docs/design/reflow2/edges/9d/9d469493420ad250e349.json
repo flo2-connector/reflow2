@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:d997194d161987f0e3afef3298c52da2510dd66da3cda14a81f81db4233df3bd",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:a-relation-stored-in-more-than-one-place-has-one-authoritative-copy-and-no-copy-drifts-unnoticed",
+  "properties": {
+    "approved_at": "2026-09-29",
+    "roles": [
+      "author",
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

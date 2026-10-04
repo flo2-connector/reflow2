@@ -1,0 +1,17 @@
+{
+  "content_hash": "sha256:299695c5045111f15b2ca673b84c9139472fbdd05a716a51d0f6ee348c30efc4",
+  "node_id": "ver:heal",
+  "node_type": "Verification",
+  "properties": {
+    "description": "heal.rs — the structural detectors, plus propose/apply atomicity. PLUS the degree-zero Decision rule (2026-08-01, crates/reflow2-core/tests/unreachable_decision.rs, 6 cases): a Decision with NO edges in either direction is reported by `orphan_node`, Warning when its status is `accepted` and Info otherwise. `disconnected_community` cannot see it: it reports clusters of ≥2, and a node joined to nothing is never a cluster. THE STAKE IS NOT TIDINESS — a zero-degree Decision is unreachable by propagation so it never enters an impact analysis, and a disposition specifically can never EXPIRE, because expiry is computed from the affected set (`ver:reviewed-defects`), so a conditional judgement silently becomes permanent. Degree-zero fires on ONE and is self-limiting: ANY edge silences it. THREE COUNTERWEIGHTS, and the first is the one measurement demanded: a Decision reached by any edge at all (a CONTRADICTS, not a GOVERNED_BY) is silent; a `decision:ack:` review record is silent, because structure.rs already excludes those from the design network as judgements ABOUT the design (`ver:acknowledgement-not-structure`) and all twelve of reflow2's own are accepted by construction; and a proposed decision point is Info, never a defect, because firing on a legitimate parking spot is firing on correct work. The pre-existing Artifact-realizing-nothing rule is pinned unchanged, so BL-42's cut-back is not reopened.",
+    "findings": "FOUND BY RUNNING THE HEALTH SKILLS ON OUR OWN DESIGN AND DISBELIEVING THEM: check-health and detect-and-ask both returned clean — detect_defects 0, hierarchy_issues 0, dimension_drifts 0, propose_heal 0 operations — and a hand count of zero-degree nodes then found `dec:sanitize-spof-accepted`, an ACCEPTED single-point-of-failure disposition with no edges at all, the only one of five such dispositions not linked to what it disposes. THE RULE IS DEGREE-ZERO, AND MEASUREMENT CHOSE IT AGAINST THE STATED RECOMMENDATION: the narrow-looking form, an accepted Decision with no incoming GOVERNED_BY, fires on SIX of reflow2's own, five with degree 1–3 — connected, merely not through that edge. That is [BL-42] exactly, where this same detector reported a well-connected Capability missing one named link, became 20 of 31 defects, and was cut back to a single rule. MUTATION-CHECKED THREE WAYS, each failing exactly the one test that names it: key on missing GOVERNED_BY → only the any-edge counterweight fails, which is BL-42 reproduced; drop the review-record exclusion → only that case; grade everything Warning → only the proposed-is-Info case. MEASURED ON THE REAL DESIGN with a freshly built binary against a throwaway import of the committed export: 3 findings across 1225 nodes — one Warning (`dec:sanitize-spof-accepted`, now fixed by wiring `cmp:ingest GOVERNED_BY` it, matching the four sibling dispositions) and two Info, both proposed decision points.",
+    "kind": "verification",
+    "last_reconciled_at": "2026-09-23",
+    "last_reconciled_outcome": "passed",
+    "last_run_at": "2026-08-01",
+    "level": "integration",
+    "method": "test",
+    "name": "The structural detectors, propose/apply atomicity, and the degree-zero Decision rule",
+    "status": "passing"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:0ca25dd3ee3a76462c47e3916c8652abb2b92bf0779ecd89fad309a93c2f692a",
+  "node_id": "art:derived-relations-declarations",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "spec",
+    "location": "schema/derived/relations.yaml",
+    "name": "schema/derived/relations.yaml — reflow2's 23 derived relations, declared",
+    "status": "realized"
+  }
+}

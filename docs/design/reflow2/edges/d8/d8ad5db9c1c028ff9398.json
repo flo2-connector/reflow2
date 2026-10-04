@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:f35b3b4fedf5ee39ef4969dda68b2ac2f1ce3ab5ccabd2e7a21dcfb1780ba0ae",
+  "edge_type": "ANTICIPATES",
+  "from_id": "dec:idea-reflow2-serves-a-design-in-operations-where-incidents-feed-the-design",
+  "properties": {
+    "evidence": "The umbrella question over the same report's operations ideas names O-19 (evidence grades such as operator-attested) as one of the questions it holds."
+  },
+  "to_id": "dec:idea-a-check-closes-at-a-stated-evidence-grade-under-an-owner-set-rule"
+}

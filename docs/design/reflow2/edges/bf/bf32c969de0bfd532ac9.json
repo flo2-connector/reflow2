@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:a34ca7d46344c93130b3ac598b0b7e93f27232cd1281f9eb3ad0ac8c45f0b029",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0680",
+  "properties": {
+    "as_checksum": "sha256:35150dd61c7b7eb34c9139056d6204f2d3117b92661dfc13feed35a01bf12ff8"
+  },
+  "to_id": "art:empty-speaks-gate"
+}

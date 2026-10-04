@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:c3eb9663620c17a6957af68948fa5fe83589732ed2fbc880f6de44113f310444",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:test-changelog-fragments",
+  "properties": {
+    "covers": "whole"
+  },
+  "to_id": "ver:changelog-fragments-merge-in-either-order-and-the-cut-assembles-them"
+}

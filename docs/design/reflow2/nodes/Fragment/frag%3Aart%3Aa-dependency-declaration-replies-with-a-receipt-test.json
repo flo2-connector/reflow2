@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:1277a5204778e16dfc3debc5b6d1f08fa2cb0ea902aed460f08be618d0b22ddc",
+  "node_id": "frag:art:a-dependency-declaration-replies-with-a-receipt-test",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered a_dependency_declaration_replies_with_a_receipt.rs — the receipt does not grow with other declarations, and a re-declare keeps what it was not passed"
+  }
+}

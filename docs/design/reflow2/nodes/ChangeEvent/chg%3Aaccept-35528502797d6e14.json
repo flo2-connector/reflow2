@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:ed3a85b6926389830fee54bda72ec369b4ddebc611f3dd3d60fbeda746aa8cba",
+  "node_id": "chg:accept-35528502797d6e14",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "detected_at": "2026-09-23",
+    "name": "road_taken_location allowlisted as the reopen_choice field revise-design names.",
+    "subject": "system"
+  }
+}

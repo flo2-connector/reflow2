@@ -1,0 +1,17 @@
+{
+  "content_hash": "sha256:5851eea667d18317df9c7480d1332d5c1076c59366515a5bd76818e52865e60f",
+  "node_id": "fact:set-artifact-checksums-reply-echoes-the-old-checksum-basis-2026-09-28",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "defect",
+    "name": "OBSERVED 2026-09-28 on flo2.io (0.72.0 engine): set_artifact_checksums with supplied checksums replied with each artifact's checksum_basis still \"measured\", beside a measurement block saying \"asserted\"; a read moments later showed \"asserted\" stored",
+    "source": "five accepts on flo2's hosted design (1a97fc1f1de4d5d2) through api.flo2.io, dev_reflow2 hub session, while moving flo2 to reflow2 v0.73.0",
+    "statement": "OBSERVED: set_artifact_checksums on five artifacts that had measured baselines, each item carrying a supplied checksum (the hosted door holds no tree). The reply's items[].artifact.properties.checksum_basis read \"measured\" for all five, while the same reply's measurements[] said basis \"asserted\". Replies from replace_text on four of those artifacts moments later showed checksum_basis \"asserted\", so the STORED value is right and only the reply's echo of the node is stale. EXPECTED: the echoed node matches what was written. NOT ESTABLISHED: whether the echo is read before the basis is updated, or rebuilt from the pre-write node; whether set_artifact_checksum (singular) does the same; whether 0.73.0 differs (no change to this path between the tags is known). Not root-caused; recorded as an observation so it is not lost. It matters because the reply is what an agent reads back to confirm a disposition, and here it says the opposite of what was stored.\n\nSECOND SIGHTING, 2026-09-28, local store, reflow2 0.74.0, the other way round. set_artifact_checksums was called with no checksum supplied on two artifacts, so both were measured by the server (the reply's `measurements` say basis `measured` for both). The reply's artifact properties show `checksum_basis: measured` for art:brainstorm-skill, but `checksum_basis: asserted` for art:skill-lint. That was art:skill-lint's basis before the call. A get_node straight after shows `checksum_basis: measured` STORED. So again the stored value is right, and the reply echoes each node as it was BEFORE the write. This is the same stale echo as the first sighting, now seen in both directions. Still not root-caused.\n\nTHIRD SIGHTING (counted, not a new record), 2026-10-03, local store, the v0.78.0 release binary through `--call`. set_artifact_checksums with no checksum supplied on ten artifacts, so every one was measured (each `measurements` entry says basis `measured`). The reply's artifact properties echoed `checksum_basis: asserted` for art:detect, art:dependency-currency-checker and art:readme, which was each one's basis before the call. get_node straight after shows `measured` stored for all three. Same stale echo, still present in 0.78.0. Met while recording chg:reflow2s-repository-moved-to-the-flo2-connector-organization-2026-10-03.",
+    "steps": [
+      "set_artifact_checksums"
+    ],
+    "subject_id": "cap:a-registered-file-is-measured-under-the-project-root-and-the-record-says-measured-or-asserted",
+    "valid_from": "2026-09-28"
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:1229edd6285fb4e39e4b50e9f10fca3009a41687271002095c193ef6cc606b1b",
+  "node_id": "ver:the-coupling-helper-exists-and-the-old-name-does-not",
+  "node_type": "Verification",
+  "properties": {
+    "description": "`crates/reflow2-mcp/tests/the_commonest_edge_has_a_typed_helper.rs`, four cases.\n\nTWO PAIRS. The helper: one typed call draws `DEPENDS_ON` and names both ends; and an endpoint that does not exist is still REFUSED, so the convenience buys no new way to point a dependency into nothing.\n\nThe rename: `external_dependency` is served, and `declare_dependency` is NOT. ⭐ THE SECOND IS THE COUNTERWEIGHT AND CARRIES THE WEIGHT — if the old name had survived alongside the new one, the collision that caused the report would remain and the first assertion would still pass.\n\nBoth rename cases are observed through `report_manual_work`, which asks the LIVE ROUTER whether reflow2 serves a tool by that name. That is deliberate: a hand-kept list of tool names is the defect class that check was built to stop.",
+    "findings": "4 passed, 0 failed, in the full workspace run of 1929 tests (0 failed) on 2026-09-01.\n\n⭐ OBSERVED FAILING IN TWO STAGES, which is what shows the four discriminate rather than merely accepting whatever the code does.\n\nStage 1 — helper absent: the file did not COMPILE (`no method named depends_on`). That is the weak form of failing-first and would not, alone, be evidence.\n\nStage 2 — helper added, rename NOT yet done: 2 passed and 2 failed, and the split was exactly the right one. `a_component_coupling_has_one_typed_call` and `a_coupling_to_a_component_that_does_not_exist_is_refused` passed on the new helper; `the_cross_design_pin_is_served_as_external_dependency` and `the_old_colliding_name_is_gone` both failed, because the old name was still the served one. Only then was the rename applied.\n\n📌 The rename half is observed through the LIVE ROUTER rather than a hand-kept name list, so it cannot pass because somebody updated a fixture.",
+    "kind": "verification",
+    "last_run_at": "2026-09-01",
+    "level": "unit",
+    "method": "test",
+    "name": "A coupling is one typed call, the freed name is served, and the colliding one is gone",
+    "status": "passing"
+  }
+}

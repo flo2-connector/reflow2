@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:cad3cc5d6787d6b72534a453296edf577680f24b622df11d3a8349b4ffe9d9f2",
+  "edge_type": "REALIZES",
+  "from_id": "art:a-parked-report-that-produced-nothing-test",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:a-report-nobody-recorded-reading-is-reported"
+}

@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:75cdef5f8a54e6e95d3fd1ae1c5ddc3d1ea293fd61d4914c8f922f2f79d562e9",
+  "edge_type": "GOVERNED_BY",
+  "from_id": "cap:readiness-gating",
+  "properties": {},
+  "to_id": "dec:readiness-forecast-is-a-temporal-fact"
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:172fa951adf748931bb50a788300da75162965ac6279f0f5a4c54e09c1b54dce",
+  "node_id": "frag:art:dependency-holds",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered dependency-holds.toml — each dated, reasoned hold that lets a dependency stay behind a new series"
+  }
+}

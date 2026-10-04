@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:b9e222ad7b8c3a1eb5081a10b5769f51fe24bfb759f13937d2809c1266e08ba4",
+  "node_id": "fact:manual-work-20d00e5dc4b572c7",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "manual_work",
+    "statement": "Read another project's committed design export by hand, with a throwaway script, to find out what MY published surface had actually delivered to it — which node types crossed, how many, and how many edges the consumer's own design drew into what it received. The answer (structure only, no intent, one edge) was the session's main finding. From the consumer's side `mirrors` answers \"what do I hold and at what pin\"; from the PUBLISHER's side there is no way to ask \"who mirrors me, and what did they get\" — so a publisher cannot tell a surface that is deliberately narrow from one that is accidentally empty without opening somebody else's repository and parsing it.",
+    "subject_id": "proj:reflow2",
+    "valid_from": "2026-09-22",
+    "value": "{\"diagnosis\":\"tool_missing\",\"reflow2_tool\":null}"
+  }
+}

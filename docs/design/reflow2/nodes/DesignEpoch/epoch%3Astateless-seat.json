@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:a27da1b2ecd7b96c57dc3a2ba26eb2859390100bafa25e73dd1090c5bfefb45d",
+  "node_id": "epoch:stateless-seat",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "epoch_type": "revision",
+    "name": "The seat becomes a handle the caller carries",
+    "sequence": 232,
+    "status": "arrived"
+  }
+}

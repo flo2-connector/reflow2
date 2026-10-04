@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:9ca81ada0123af0e548a9b35dcbaedd8d4cd00b672211121bfa8f52f8399b323",
+  "node_id": "fact:what-the-read-surface-costs-once-a-reply-is-sent-once",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "confidence": 1.0,
+    "fact_type": "measurement",
+    "statement": "THE WHOLE ORIENTATION SURFACE, MEASURED IN ONE SWEEP, with the duplicate emission removed — so these are the real sizes a client now sees. Bytes on the wire, reflow2's own design (2,932 nodes): open_questions 871 · what_next 3,157 · vocabulary_coverage 3,438 · graph_report_markdown 6,172 · loop_status 13,943 · detect_gaps 26,096 · detect_defects 46,314 · GRAPH_REPORT 165,858. || TWO FINDINGS, AND BOTH ARGUE AGAINST BUILDING FROM A LIST. (1) `loop_status` NEEDED NO WORK. It was measured at 72,886 chars and refused in-session (BL-205), and it is now 13,943 — the duplicate was most of it. Budgeting it was about to be recommended and MEASURING FIRST CANCELLED THE WORK ENTIRELY. (2) `graph_report` IS NOW THE WORST TOOL ON THE SURFACE BY SIX TIMES, and at 165,858 bytes it is LARGER THAN detect_gaps WAS BEFORE ANY OF THIS WORK. Halving it did not save it; it is the one that genuinely needs a budget of its own. It is also what the where-am-i skill reads, so 'tell me where this design stands' is STILL refused on a mature design. || THE SHARPEST CLUE ABOUT WHERE ITS BULK IS: `graph_report_markdown` renders THE SAME REPORT FOR A HUMAN in 6,172 bytes. The machine-readable form of the same content costs 27× more. That gap is very unlikely to be information; the detect_gaps precedent says look for enumeration nobody reads (there, 35% of the reply was affected_ids and almost all of it sat in three rollups). || RANKING IS NOT A WORK LIST. Everything under 15,000 bytes here is fine, and touching it would be tidying rather than fixing. The queue this justifies is graph_report, then detect_defects, and nothing else. || SOURCE: measured 2026-08-23 on reflow2 0.38.0, driving the built binary over real stdio, one process, one sweep.",
+    "subject_id": "cmp:report",
+    "valid_from": "2026-08-23"
+  }
+}

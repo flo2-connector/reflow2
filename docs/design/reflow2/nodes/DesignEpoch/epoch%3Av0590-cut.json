@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:daa6fb928826af6f9162a5a5d4afc458d90dcd96c99b6f08b7391cbdfb3a0f36",
+  "node_id": "epoch:v0590-cut",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "description": "The moment v0.59.0 was cut, 2026-09-12: after epochs 430–439 arrived (release binary, export write-through + lineage from main, enum-value guard, deferred, tool-surface accuracy, /feedback, lessons at the step, the plan_epoch fix) and the lessons-to-graph PR. Follows epoch:v0580-cut (seq 411, 2026-09-10). The release rel:v0590 is pinned here; its manifest freezes every artifact's checksum as of this cut.",
+    "epoch_type": "release_cut",
+    "name": "v0.59.0 cut",
+    "sequence": 440,
+    "status": "arrived"
+  }
+}

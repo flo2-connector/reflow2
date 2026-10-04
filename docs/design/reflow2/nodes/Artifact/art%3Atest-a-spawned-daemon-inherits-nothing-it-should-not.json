@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:865349992703341e94894bf1397700b6ca3d42e114b1af4b35cd2b89b8f8318d",
+  "node_id": "art:test-a-spawned-daemon-inherits-nothing-it-should-not",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "test",
+    "description": "Real-binary Linux tests: a launcher's descriptor and flock(1) lock do not reach the daemon a --shared client spawns, the daemon leads its own session with no terminal, and a daemon that exits while its client runs is not left a zombie.",
+    "location": "crates/reflow2-mcp/tests/a_spawned_daemon_inherits_nothing_it_should_not.rs",
+    "name": "a_spawned_daemon_inherits_nothing_it_should_not.rs — what a spawned shared daemon keeps of its launcher, read from /proc",
+    "status": "realized"
+  }
+}

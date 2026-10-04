@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:327e1953bca58491b6756d210ff263ee35b295929a3e5772cdbcea7801acf479",
+  "edge_type": "REALIZES",
+  "from_id": "art:export-to-reaches-the-daemon-gate",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:the-server-writes-the-export-through-and-chains-it-from-main"
+}

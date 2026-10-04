@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:01267757ae03839c331d82226c72bf586250e420d99292d5345981f60422a2bd",
+  "node_id": "chg:the-export-round-trip-injected-defaults",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "test_failure_fix",
+    "name": "DEFECT, found and fixed 2026-08-12: tools/export_via_binary.py MATERIALIZED 182 property values nobody chose, and shipped them in a release. It imports the source document into a FRESH temp graph, and import runs every node through schema validation, which INSERTS any declared property the node omits (dynograph schema.rs). So 91 Artifacts that honestly carried no `granularity`/`volatility` came back out asserting `atomic`/`stable`. Measured across the record: 81 of 172 artifacts carried granularity through PR #155 (exported via the live server), then 172 of 172 in v0.28.0 and PR #157, both exported through this tool. THIS IS fact:bl-198's DEFECT REINTRODUCED BY THE TOOL BUILT TO FIX THE STAMP, and its cost arrived exactly as BL-198 predicted: compare_designs against the live graph reported 91 phantom changes, the same instrument that has twice produced a false data-loss claim here. NOTHING WAS LOST — the live store was always correct; the RECORD over-asserted. AND THE TOOL CANNOT REPAIR ITS OWN DAMAGE: after the round trip nothing can tell an injected value from a chosen one, which is BL-198's whole point. So the fix is two-part. (1) The record is re-exported DIRECTLY from the real store with the new binary, which gives the correct stamp AND changes no property — the temp graph was only ever needed because the running server held the lock, so freeing the lock removes the need for the round trip entirely. (2) The tool now DIFFS what it wrote against its source and reports every (node_type, property) it materialized, refusing to be silent about it; it cannot undo the injection, so it names it and tells the caller to export directly instead."
+  }
+}

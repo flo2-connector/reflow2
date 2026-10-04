@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:4e1e1ac9e3bc71a8ad8f0663480c0fe24515ed52fef9e7ee69de9d74f8649570",
+  "edge_type": "REALIZES",
+  "from_id": "art:test-a-detector-consults-what-the-graph-already-holds",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:detect"
+}

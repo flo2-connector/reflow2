@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:686f7946261688c7a38518518402330c9b10cbdcb6f21a793c4f77a388eb005e",
+  "edge_type": "AT_EPOCH",
+  "from_id": "snap:epoch:preserved-on-write:cap:an-exposed-server-establishes-who-is-calling-before-intent-can-be-settled:r2",
+  "properties": {},
+  "to_id": "epoch:preserved-on-write"
+}

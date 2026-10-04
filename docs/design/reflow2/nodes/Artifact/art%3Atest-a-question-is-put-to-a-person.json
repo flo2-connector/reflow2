@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:0eaa7628f32e846a9e5c23d31b335b8f9f2a1ca4a6f5ae02f299a84cf4eae68a",
+  "node_id": "art:test-a-question-is-put-to-a-person",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "test",
+    "location": "crates/reflow2-mcp/tests/a_question_is_put_to_a_person_and_records_who_answered.rs",
+    "name": "a_question_is_put_to_a_person_and_records_who_answered.rs - the served surface, by tool name",
+    "status": "realized"
+  }
+}

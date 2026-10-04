@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:2b7e4592980f540fd54ed119797e9f4fe884ae635fc148771243e8f83400c098",
+  "node_id": "decision:ack:4dc755507da9ffe5",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Accepted the gap gap:4dc755507da9ffe5.",
+    "name": "Reviewed: gap:4dc755507da9ffe5",
+    "rationale": "Standing disposition for planned-but-unbuilt capabilities, with the check named because the obvious one would certify the wrong property. Asserting \"a claim was recorded and can be read back\" proves storage, not usefulness. The test must pin the HONEST LIMIT the architecture forces: a claim is advisory and NOT a lock, so the suite has to show that a second writer who ignores an existing claim is not blocked, that their work still merges correctly through the three-way merge, and that the overlap is REPORTED rather than prevented. A claims layer whose tests only demonstrate successful claiming would read as a locking mechanism to anyone skimming it, which is precisely the false promise dec:report-dont-judge and this decision's recorded weakness warn against — without a server, one person's claim is invisible to another until a pull.",
+    "status": "accepted"
+  }
+}

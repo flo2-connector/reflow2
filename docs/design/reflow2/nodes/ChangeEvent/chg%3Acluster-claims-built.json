@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:17aa1dc2037e4d12b8cc73b650deadc4a770ee4736367c9da6ac0c3afec69b42",
+  "node_id": "chg:cluster-claims-built",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "name": "Claims layer built: advisory regions, computed from seed and depth, overlaps reported not prevented"
+  }
+}

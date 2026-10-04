@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:938c6f14ca5b46dfd8803348643fb4cf77f0bbe6162d8d7f621e0ebba78e1c08",
+  "edge_type": "CHANGED",
+  "from_id": "ce:unallocated-component-detector-2026-08-25",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "req:structure-with-no-function-is-asked-about"
+}

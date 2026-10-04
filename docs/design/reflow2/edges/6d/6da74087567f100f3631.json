@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:3fef1498925365a44221c145474b7a3850b598034317127376e5c204d0e9b819",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-handshake-writes-down-who-connected",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cmp:service"
+}

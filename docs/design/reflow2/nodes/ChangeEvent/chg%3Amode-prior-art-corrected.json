@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:de42e1a83102734ed2f22511c03b7ba2eb948eee561f83f81e07a751254b213d",
+  "node_id": "chg:mode-prior-art-corrected",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "refactor",
+    "name": "Correct req:mode-is-chosen-and-changeable: reflow DID elicit the mode — in the phase definition, which the earlier grep missed"
+  }
+}

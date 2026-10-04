@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:8062b2e06c66eb8cf253fc194283c80e2394bbd18a5256b57d1ae3a7b1518996",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:optimize-skill",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:skills"
+}

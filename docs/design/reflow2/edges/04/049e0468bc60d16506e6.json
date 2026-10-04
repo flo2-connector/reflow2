@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:9ecd079b6a566d858423be88c623e9bd16ba5bdfa4cfd816ef7c963e3e15b4c5",
+  "edge_type": "ANTICIPATES",
+  "from_id": "fact:a-piped-gate-reports-the-pipes-exit-code-not-the-gates",
+  "properties": {
+    "evidence": "The earlier fact recorded mechanism 1 of the five on its own. It saw the shape coming and named it precisely — and was then hit twice more in this session AFTER being on the record, which is the part that makes the census worth taking: knowing about one instance did not prevent the same shape arriving through four other doors. Drawn from the earlier fact TO this one."
+  },
+  "to_id": "fact:five-silent-failures-in-one-session-all-one-shape"
+}

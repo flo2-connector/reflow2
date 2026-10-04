@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:92cdda3303f1da28f89d95b899a4b748f90a2167c509931d2571fc3dd1c17f92",
+  "node_id": "art:report-roll-withheld-test",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "location": "crates/reflow2-mcp/tests/a_report_is_not_a_list_of_every_check.rs",
+    "name": "a_report_is_not_a_list_of_every_check.rs",
+    "status": "realized"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:3e15d72afe288412249d00686365d0eb5b97f404422c4f58092e678dfed98f77",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-skill-is-found-by-describing-the-job-the-way-a-tool-is",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:find-tools-corpus-fixture"
+}

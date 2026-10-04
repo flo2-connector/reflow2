@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:46e8851f29c527223b59a7ab6d2d03c45762a50ddc9948acccc0f58f11eab000",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:merge-three-way",
+  "properties": {
+    "authored_at": "2026-07-22",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:claude-code"
+}

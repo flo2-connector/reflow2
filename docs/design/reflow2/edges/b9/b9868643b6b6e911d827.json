@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:5b57bca22cdd42f4f4e46a8e4c90970b595b568e706033003df9e2dd27f3e37f",
+  "edge_type": "HAS_SNAPSHOT",
+  "from_id": "req:reflow2-has-a-public-page-anyone-can-read",
+  "properties": {},
+  "to_id": "snap:epoch:preserved-on-write:req:reflow2-has-a-public-page-anyone-can-read:r2"
+}

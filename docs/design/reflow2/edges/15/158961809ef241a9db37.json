@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:0628a054c2833e210778f69c54c0148771df3e42d42afa8dbc3e769039bcaf93",
+  "edge_type": "CHANGED",
+  "from_id": "chg:ten-defaults-stop-injecting",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:schema-core"
+}

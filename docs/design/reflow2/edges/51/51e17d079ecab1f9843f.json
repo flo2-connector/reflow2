@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:a4f6a839302d86102e047fc19615316791acfddd81e95fc557602e23f3a6e4c3",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:loop-status",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:report"
+}

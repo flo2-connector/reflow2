@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:bd121d84701f1e34d25b05144e8ac0d8cdd666ead281e1f79772e7ec45c98f76",
+  "node_id": "req:a-project-names-its-domains-artifact-standard-from-the-beginning-and-its-absence-is-reported",
+  "node_type": "Requirement",
+  "properties": {
+    "lineage": "original",
+    "name": "A project names its domain's artifact standard from the beginning, and a project or artifact that does not is reported",
+    "priority": "high",
+    "provenance": "authored",
+    "statement": "From genesis or adopt onward, a project records the recognized standard its design artifacts are expected to follow (IFC for architecture, STEP for mechanical parts, Gerber or KiCad for electronics, SysML for a systems model, …), the authority that issues it, and the tool that checks a file against it — or records explicitly that no recognized standard is known for the domain, so that silence is never mistaken for an answer. The question is put at the opening interview, before any artifact exists. A project that holds design artifacts of a domain kind (drawing, model, part) and has declared no standard is reported; an artifact realizing a domain capability whose declared format lies outside the declared standard is reported. reflow2 judges by the declared format only — it opens no file; whether a file is VALID under the standard is a Verification with an executable form, run by the domain's own checker, whose result comes back as evidence. The absence is noticed and put to the person; nothing is refused, because the reviewable source of a standard artifact (a parametric script) is often not in the standard itself.",
+    "status": "accepted"
+  }
+}

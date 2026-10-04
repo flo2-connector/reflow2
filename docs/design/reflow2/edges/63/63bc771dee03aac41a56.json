@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:2ba0f1d22d1e548c7c977c06cf5f6b73198c10c003e696e58ca834a28a9b4c21",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-saved-design-moves-to-the-item-layout-2026-10-03",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:35cd9db8ffa9f88b464089f0630486ed4e686da466efcbad213bca80567880e1",
+    "checksum_basis": "measured"
+  },
+  "to_id": "art:test-a-terminal-agent-auto-approves-reads-and-confirms-each-write"
+}

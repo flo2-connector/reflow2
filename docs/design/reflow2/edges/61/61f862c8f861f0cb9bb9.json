@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:3eeaa71d59b6e43b6e308a5bd8c5cabaf72619a0ecc1c6897c5b7057181ccaeb",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-open-design-items-become-jira-tasks",
+  "properties": {
+    "evidence": "An assigned open decision is the cleanest source of a Jira task with an assignee; the loop already reports them.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "req:an-assigned-open-decision-is-reported"
+}

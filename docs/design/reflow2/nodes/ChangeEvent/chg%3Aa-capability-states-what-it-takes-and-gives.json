@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:58175d1c075ab27862d720ca0b8e092981eab58c2c19e0ee39b5b75937fe5dde",
+  "node_id": "chg:a-capability-states-what-it-takes-and-gives",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "name": "set_capability_signature: the black-box interface at the capability tier becomes writable",
+    "subject": "system"
+  }
+}

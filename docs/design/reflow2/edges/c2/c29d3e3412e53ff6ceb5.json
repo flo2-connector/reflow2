@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:5a5088b2f70819cd71e3de3660c1edfa5878f02738c5dd20a55406991db30642",
+  "edge_type": "CONTAINS",
+  "from_id": "sub:evidence",
+  "properties": {},
+  "to_id": "cmp:verify"
+}

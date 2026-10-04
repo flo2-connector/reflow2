@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:a6a0a346672f95ec33895441aae2fb3d43f9678848867fb207b98d9a2b783435",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0700",
+  "properties": {
+    "as_checksum": "sha256:eefcf4548ae3fb02bad0852795b78b3c8e239f5fd66b4908ae02cdd4ed59f517"
+  },
+  "to_id": "art:check-discrimination-rules"
+}

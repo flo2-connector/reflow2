@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:2676c125b05024cd06cfa270d836099274a1b5bd9c037b91506fd5960ce7f711",
+  "node_id": "decision:ack:7d2ea6d00cdee6c7",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Accepted the gap gap:7d2ea6d00cdee6c7.",
+    "name": "Reviewed: gap:7d2ea6d00cdee6c7",
+    "rationale": "Checked 2026-09-07: still open. The medium enum gained only json_rpc since the report; nothing procedural or contractual exists in it, and no decision in the record addresses the second push.",
+    "status": "accepted"
+  }
+}

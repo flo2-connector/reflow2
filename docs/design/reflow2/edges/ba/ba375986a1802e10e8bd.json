@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:08d5297ac8be15819738c8be4db9aa6daad97b85bcffac05c73f704816c56988",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:design-authorship-identity",
+  "properties": {
+    "approved_at": "2026-07-22",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

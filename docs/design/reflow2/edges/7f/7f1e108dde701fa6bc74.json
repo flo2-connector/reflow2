@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:e10fea052f285afdb4aecdbd6c4b53acb58da89ac387350ff50347aac3d66ed3",
+  "edge_type": "DOCUMENTS",
+  "from_id": "art:scope-corpus-ingest",
+  "properties": {
+    "doc_kind": "design_doc"
+  },
+  "to_id": "cap:corpus-ingest"
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:02d74c61f59f899059944d13ec6a28a020e321a6d5f1f2018cfe0d870f99c4df",
+  "node_id": "chg:a-measurement-says-when-it-was-taken",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "defect_fix",
+    "name": "A CONSTRAINS edge carries measured_at, and budget_report names a measurement that does not say when — fourth theme of the triage-fixes increment"
+  }
+}

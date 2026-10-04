@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:1d94671f79d18e10ac02e5e5520c9e59cb928081e2a99b0d7d4cfc3890d3a0ec",
+  "node_id": "dec:three-party-checks",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Every capability is designed as a check one party places on another; none does another's job.",
+    "name": "The LLM speaks, the graph remembers and counts, the human decides",
+    "rationale": "The parties are not interchangeable: the LLM cannot be trusted with arithmetic, memory or its own confidence; the graph cannot judge meaning; the human cannot remember everything or notice slow drift. The deterministic core computes, the graph carries claims and their audit trail, questions route judgment to the human. docs/partnership.md maps each known LLM failure mode to its mechanism. Decided 2026-07-19 (https://claude.ai/code/session_013aumVdHrRHu24cLirn6Cam).",
+    "status": "accepted"
+  }
+}

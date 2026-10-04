@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:a5190301331a5c972fcaf483da1933a282a2a1cfa84089a2c9b4d1332c2b3d50",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:closure-report",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:report"
+}

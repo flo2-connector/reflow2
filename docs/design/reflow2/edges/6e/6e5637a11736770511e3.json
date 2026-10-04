@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:0dd20984231a66b729ad7e2d387ee33ef1cdbecb128e399c8a3d693a9ff83615",
+  "edge_type": "CHANGED",
+  "from_id": "chg:skills-are-composed-of-attribute-classes",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:skill-ingest-corpus"
+}

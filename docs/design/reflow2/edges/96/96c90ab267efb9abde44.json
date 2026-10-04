@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:f81be29863c11771696115eb80c325b4b17f818bebc971c5e325a109a1141bef",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-field-report-can-cite-the-version-that-answered-it",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cap:skills-served"
+}

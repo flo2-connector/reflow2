@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:a4080c601d1ce6cd8b6b6bda9660fa88437eb4677db19923385b8dc737853b73",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-saved-design-moves-to-the-item-layout-2026-10-03",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:9410654f4f0c8cd4509738b0e0debec55f7409d71f72db20a9680abf48009f2e",
+    "checksum_basis": "measured"
+  },
+  "to_id": "art:convert-design-to-items"
+}

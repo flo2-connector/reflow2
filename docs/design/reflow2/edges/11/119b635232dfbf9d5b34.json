@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:aafac9cbf894d9903ea5fe813672afde96ac619c8e551758fd0570192eff8ebe",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "req:every-relationship-declares-its-algebra-and-no-method-runs-where-it-cannot-represent-it",
+  "properties": {
+    "evidence": "The algebra is carried in each relationship's declared reading, which that requirement establishes; until an edge type has a reading there is nothing to add its algebra to.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "req:every-edge-type-declares-what-it-means"
+}

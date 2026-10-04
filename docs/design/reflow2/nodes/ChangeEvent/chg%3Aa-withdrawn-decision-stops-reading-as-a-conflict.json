@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:7189714785d1570c155fdfc0ef83e202e5286da498d1dfddb663a73c5ab96733",
+  "node_id": "chg:a-withdrawn-decision-stops-reading-as-a-conflict",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "defect_fix",
+    "name": "The contradiction detector reads endpoint status, so recording a refutation correctly stops costing a defect"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:6ecb6779d0b2245e43b1190d92a87589bfbbb63de5fdd1dc6a851eb4eeb2eb40",
+  "edge_type": "REALIZES",
+  "from_id": "art:stateless-seat-probe",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:claim-liveness"
+}

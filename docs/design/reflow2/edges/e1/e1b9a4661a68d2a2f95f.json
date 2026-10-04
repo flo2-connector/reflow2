@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:8e8d69baa09a057fe936d68ce268a538087297379a2ef0fc6be0035e4ab7dadc",
+  "edge_type": "REALIZES",
+  "from_id": "art:every-tool-is-found-by-a-query-in-the-users-words-test",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked",
+    "note": "the two ratchet tests"
+  },
+  "to_id": "cap:the-rank-ratchet-and-the-confusability-instrument"
+}

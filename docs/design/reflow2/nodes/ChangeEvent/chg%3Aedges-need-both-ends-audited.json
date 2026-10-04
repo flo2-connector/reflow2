@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:42645e3954654d533f18ecb447c6a48056184c1b81ef6fbb7f65624108b7a0f5",
+  "node_id": "chg:edges-need-both-ends-audited",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "name": "ver:edges-need-both-ends written as an audit over all 16 typed edge helpers — the guard was already tested on create_edge, the helpers were not"
+  }
+}

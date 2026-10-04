@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:25e0c6a6e23b3236c98902dd80cd7b3c999f21f52cbd18d330f8c72660a2e4c1",
+  "node_id": "art:usage-ledger",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "description": "The usage ledger: the line shape (verb, never object), the refusal-class table over the server's own phrasings, best-effort append beside the store, the since-last-report window, and the tally. Written into by the server's call_tool; read by usage_report. Unit tests pin the classing, the window, the tally and torn-line tolerance.",
+    "location": "crates/reflow2-mcp/src/usage.rs",
+    "name": "usage.rs",
+    "status": "realized"
+  }
+}

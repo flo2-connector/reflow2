@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:5f70d1a85793aeb9c60ac5422456ad169975bdfb3840c58aada42cdf101be468",
+  "edge_type": "CHANGED",
+  "from_id": "chg:seams-detector-built",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "cap:undeclared-seam-is-named"
+}

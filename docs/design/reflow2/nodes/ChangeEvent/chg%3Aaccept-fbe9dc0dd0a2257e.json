@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:d017d4eb6f45d2ce7bf3f2315de7aaf6ce3765f07060ad4370a06d3a33464a7e",
+  "node_id": "chg:accept-fbe9dc0dd0a2257e",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "test_failure_fix",
+    "detected_at": "2026-08-01",
+    "name": "First baseline — the instrument as run against reflow2's own export."
+  }
+}

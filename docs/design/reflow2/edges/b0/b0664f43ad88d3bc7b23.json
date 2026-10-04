@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:34d94e8159bbb9073ff518da1edf631a2842dd6f0ebf75a2ce000d928f46b64e",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-capture-that-replaces-a-node-says-so",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:test-an-export-says-which-tree-it-was-taken-in"
+}

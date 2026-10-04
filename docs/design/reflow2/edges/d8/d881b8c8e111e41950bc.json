@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:d97618b4e84ea5b511ab7fb8640ab8dfb38d9882cd63da32b7905cf639365e35",
+  "edge_type": "INVALIDATES",
+  "from_id": "chg:a-declared-dependency-can-be-watched-without-being-imported",
+  "properties": {
+    "at": "2026-08-26",
+    "note": "PARTIAL SUPERSESSION, SAME DAY, AND THE NODE STAYS OPEN. Only its \"WHAT IS NOT\" section is retired: \"nothing compares a declaration against the UPSTREAM DESIGN\" was true when measured and is now false — `upstream_status` does, `loop_status` carries it, and the barred route it named (importing to watch, which absorbs the child) is bypassed rather than taken.\n\nWHICH PARTS STILL STAND, and they are the reason this is an INVALIDATES rather than a closure. (1) Its headline is UNCHANGED and is now demonstrated rather than argued: two of the hub's four wants were the unbuilt half of an accepted requirement, not new vocabulary — building it needed no third composition mode and answered no tracker objection. (2) Its second star still stands entirely: the child list was already the committed manifest, and the build used it exactly as written. (3) Its stated LIMIT is untouched and is the live question — a declaration says I DEPEND ON that, a hub says I AM ANSWERABLE FOR that; hub wants #1 and #3 and the downward-inheritance direction are all exactly where they were.\n\n⚠️ AND WANT #4 IS ONLY HALF DONE, so the fact's claim about it is still partly live: `describe_designs` still carries no last-export date. What shipped answers \"has this upstream moved since I looked\", not \"which of my children have gone dark\", which is a different question needing a different read."
+  },
+  "to_id": "fact:the-hub-wants-what-an-accepted-requirement-already-half-built"
+}

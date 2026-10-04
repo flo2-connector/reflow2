@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:7a3dcc8b1a995b45953160ce0b5182b32db7670a27e18224f1d2221753ee7a76",
+  "edge_type": "CHANGED",
+  "from_id": "chg:supporting-is-not-conflict",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "cap:supporting-is-not-conflict"
+}

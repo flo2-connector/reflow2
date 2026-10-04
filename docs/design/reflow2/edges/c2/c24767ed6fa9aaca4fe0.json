@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:14a21d8b6998744c8140f2f0beb63ba000dbdcaf9348e48dc1942bcd36b23a94",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-cheap-tranche-from-bhomes-report",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cap:a-ruling-parks-a-node-and-parked-nodes-are-counted"
+}

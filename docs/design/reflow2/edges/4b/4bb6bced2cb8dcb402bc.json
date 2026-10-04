@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:5b2e2ce54df33092b75f1176433927139bac92b3ff405d1499a97e0efd5c7f77",
+  "edge_type": "CHANGED",
+  "from_id": "chg:instructions-served",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:skills-build"
+}

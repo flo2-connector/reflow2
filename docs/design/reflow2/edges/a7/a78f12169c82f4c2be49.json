@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:fd33827ce2ddb63eaa64e1fc6b461ed985966a3e0f08885e2a092571f0189e9f",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:a-field-report-is-triaged-by-a-served-step-and-the-standing-rules-ride-it",
+  "properties": {
+    "approved_at": "2026-09-18",
+    "roles": [
+      "approver",
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

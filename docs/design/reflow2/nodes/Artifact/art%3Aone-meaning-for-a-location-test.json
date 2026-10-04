@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:08eefd7fc2d23faad88023fda840cfd05fd482045deece04c5712586dd39591a",
+  "node_id": "art:one-meaning-for-a-location-test",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "test",
+    "location": "tools/test_one_meaning_for_an_artifact_location.py",
+    "name": "test_one_meaning_for_an_artifact_location.py — the server and the CI gate give one verdict per location shape",
+    "status": "realized"
+  }
+}

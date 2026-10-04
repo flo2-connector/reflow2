@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:e59fabdf43797b6733f1164a6c30615f0a0bc53353e63dcf5232aec2dc0fe611",
+  "node_id": "chg:one-tool-declares-its-output-contract",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "detected_at": "2026-08-29",
+    "name": "search_design declares an output schema, and every other tool is the control",
+    "rationale": "THIS IS AN EXPERIMENT, NOT A POLICY, and the control arm is the point.\n\nAlex's client negotiated MCP 2025-11-25 — the same revision claude-code reads structuredContent from without difficulty — which killed option (a) of dec:idea-how-does-a-content-only-client-get-an-answer and left a candidate nobody had considered: reflow2 returns structuredContent on every JSON tool and declared outputSchema on none, while MCP pairs the two. A client that surfaces a structured payload only for tools advertising an output contract would behave exactly as he describes.\n\n⭐ ONE TOOL, SO THE RESULT IS READABLE. If his next session reads search_design's payload and still not get_node's, the cause is found and the repair is to declare schemas rather than to choose among the decision's remaining options. If it reads neither, the candidate is refuted and those options stand unchanged. An all-tools change could not distinguish \"the schema did it\" from \"something else in the release did it\".\n\n🛑 THE CANDIDATE IS BOUNDED AND THIS DOES NOT ASSERT IT IS THE CAUSE: absence of outputSchema cannot be SUFFICIENT, because claude-code reads this server fine against the same undeclared surface. The most that can be true is that it is NECESSARY for his client.\n\nSAFE BY CONSTRUCTION: rmcp 3.1.2 advertises outputSchema in tools/list and never validates an outgoing payload against it — read in the SDK source, not assumed. A wrong schema misinforms a client; it cannot fail a call.\n\nThe finding stands either way: the seam to every MCP client is declared on the input side for ~165 tools and undeclared on the output side for all of them, and that asymmetry was never decided.",
+    "subject": "system",
+    "summary": "`search_design` now advertises an `outputSchema` in `tools/list` — the first and only declared output contract on the whole surface. Exactly one toolsnap moved. It describes the three fields SearchResult always carries (hits, stale, limit), the optional per-hit age fields, and the optional loop_hint, and deliberately does NOT close the object, because ok_read may add loop_hint and a closed schema would be wrong the moment the envelope grows a field."
+  }
+}

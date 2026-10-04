@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:3255771eda4c69775d8dd66323f93cf4ef764583e5a1b567f0babd291f576c11",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:nothing-moved",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:confirm"
+}

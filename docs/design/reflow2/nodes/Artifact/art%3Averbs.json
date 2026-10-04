@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:1e996e5f51ae14d8baf157dfd05ffbfc022fd9100127ba53c1644e9816257bb2",
+  "node_id": "art:verbs",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "description": "The `read` and `write` verbs' classification. read_may_run decides from the tool's served read_only_hint (as --call read it) plus item 1's file rule (service::writes_a_file), and words the refusal that names `reflow2 write <tool>`. listing is `read --list`. The module doc says why the verbs live in the binary and why one rule is enough. main.rs fills --call's own fields from the verb and calls read_may_run before anything is opened, so the verbs are not a second door.",
+    "location": "crates/reflow2-mcp/src/verbs.rs",
+    "name": "verbs.rs",
+    "status": "realized"
+  }
+}

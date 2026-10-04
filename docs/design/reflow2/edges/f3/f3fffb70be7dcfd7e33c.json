@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:4500eff1b603135e172fdbf57b95509dfe590e245f4aca3a47aa14fcff86ece9",
+  "edge_type": "INVALIDATES",
+  "from_id": "chg:an-unmeasured-client-gets-the-payload-not-a-signpost",
+  "properties": {
+    "at": "2026-09-22",
+    "note": "That finding's whole claim was that the FALLBACK is `Signpost` — \"the one shape flo2 shows fails both populations\", and \"what every connector gets, by construction\". The fallback is now `Duplicate`; `claude-code` and `smoke_mcp` are named explicitly as measured structured-readers so they still pay nothing. Merged as #562 with both CI jobs green, and a wire test now covers three unmeasured handshake names with no flag. The measurement, the three-shape analysis and the reasoning about why version-gating was already refuted all stand and are untouched — only the claim about what the default IS has been retired."
+  },
+  "to_id": "fact:the-per-client-reply-shape-exists-and-its-DEFAULT-is-the-one-shape-that-serves-neither-population-and-every-new-connector-is-unknown"
+}

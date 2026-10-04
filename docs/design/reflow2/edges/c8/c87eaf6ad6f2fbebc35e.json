@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:b76d4113d3e34496e2f5d635cfaafe46b29e4b7b127c5ed7321174c8e169f55b",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:test-a-store-an-older-reflow2-wrote-is-rechecked",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:test-a-store-an-older-reflow2-wrote-is-rechecked"
+}

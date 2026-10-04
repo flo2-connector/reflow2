@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:f727a2a8d349b55c237dc04d0ae05cc144dc824ae908a8acf23cb101b7609a84",
+  "edge_type": "GOVERNED_BY",
+  "from_id": "req:a-decision-states-what-it-binds",
+  "properties": {
+    "note": "Captured under the decision that governance is integrated here rather than split out"
+  },
+  "to_id": "dec:governance-integrates-not-splits"
+}

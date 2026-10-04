@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:ee24aa56787e4d550f0c05f6af08d56449b11c4a77a5fa0fd52e5c7472219115",
+  "node_id": "req:requirement-lineage",
+  "node_type": "Requirement",
+  "properties": {
+    "concern": "core",
+    "designation": "internal",
+    "kind": "functional",
+    "lineage": "original",
+    "name": "A requirement knows where it came from: stated, decomposed from a parent, or derived from a decision",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "Requirements multiply in two different ways and reflow2 must tell them apart, because they behave differently. An ORIGINAL requirement is the stakeholder's own word. A DECOMPOSED requirement is a 1:1 split of a parent into smaller testable pieces, adding no new information — so satisfying every child satisfies the parent, and a parent's delivery is therefore derivable from its children rather than needing its own capability. A DERIVED requirement is new technical necessity that nobody asked for, created because of a design decision — so it traces to that DECISION, not to a parent goal, and if the decision is ever re-opened the derived requirement may cease to have any reason to exist. Three consequences follow. Delivery must roll up a decomposition tree instead of treating every requirement as an independent leaf. Re-opening a decision must be able to say which requirements existed only because of the road taken. And the distinction must survive the loss of the person who made it: an original requirement is the only kind whose loss loses intent, because decomposed and derived ones can be regenerated from what they came from, and that is precisely why the link back must be recorded rather than remembered.",
+    "status": "accepted"
+  }
+}

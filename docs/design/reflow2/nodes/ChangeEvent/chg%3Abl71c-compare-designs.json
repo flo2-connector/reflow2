@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:3ce5d52e1f7afbc955ae4cadc8d0dbcd0870f2370c5b087999bacd0dcbe5d6c4",
+  "node_id": "chg:bl71c-compare-designs",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "name": "BL-71 rung c: design-vs-design diff (compare_designs core op + MCP tool + CLI)"
+  }
+}

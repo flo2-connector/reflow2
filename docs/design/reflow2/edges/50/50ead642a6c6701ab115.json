@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:e503ee58f7ff2d851502405b0a3cd86f0793e893ccdfed421520a7beb963bfa3",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:onboarding-skill",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:onboarding-skill"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:6e1e5aec7af6efd7a44f1650c84a4e2f7fe1bc77055a9e81853964cb978c8e37",
+  "edge_type": "INVALIDATES",
+  "from_id": "chg:the-overtaken-defect-question-names-the-likeliest-fix-2026-10-03",
+  "properties": {
+    "at": "2026-10-03",
+    "note": "Verified false on this branch with the binaries, 2026-10-03: on main 73cf37b's export the question now names the real fix FIRST for 9 of the sweep's 20 fixed defects (was 1 of 20 seen at all), asks 35 questions instead of 62, reads the CAUSES / MITIGATES / CHANGED joins and same-day repairs, and #662's broad repair changes none of the 35. What stays out of reach is stated on the change event (11 of the 20: 4 joined to nothing, 4 undated and only near, 1 attributed to another finding, 2 new_feature and only near)."
+  },
+  "to_id": "fact:the-overtaken-defect-question-named-the-real-fix-once-in-77-2026-10-03"
+}

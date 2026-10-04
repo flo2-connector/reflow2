@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:3fca77ff3dc5441c14ec3459c81a43a5c2fd8674f532bcc6794f9c5234c4db4c",
+  "node_id": "question:6bce37248bacaa09",
+  "node_type": "Question",
+  "properties": {
+    "answer": "Anthony, 2026-07-30: BUILD IT NOW. The graph is to answer \"as of epoch n\" itself as a query surface, per the 2026-07-30 rewording. His own acceptance tests stand as the target: \"what capabilities are due to be released in epoch 5\" and \"what didn't we achieve that we were supposed to in increment 10?\"",
+    "context_setter": "Nothing satisfies requirement “The graph answers \"as of epoch n\" itself — a design's own time axis is not a git lookup”",
+    "gap_id": "gap:6bce37248bacaa09",
+    "question": "You want to be able to ask this project \"what did the design look like at increment 5?\" and have it answer you directly, instead of digging through old saved versions by hand. Nothing has been built to answer that yet. Should we build it now, put it off for later, or let the idea go?",
+    "rephrase_degraded": false,
+    "status": "answered"
+  }
+}

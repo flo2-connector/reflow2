@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:6a26b39a02df5733eff4e0b2ed0d81f4ea5513612218913ce93401a86c76d9aa",
+  "node_id": "chg:the-smoke-check-asks-the-container-not-the-host",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "test_failure_fix",
+    "name": "The image smoke test asks the CONTAINER whether the design was minted, so host uid and mode cannot produce a false negative",
+    "repair": "corrected_cause",
+    "subject": "system"
+  }
+}

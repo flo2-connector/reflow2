@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:10e81b2cc230a5e616889ccbe0705eec4d87893b21c7169dd99921ce67766d7f",
+  "node_id": "fact:a-forwarded-call-whose-arguments-hold-initialize-is-taken-for-a-handshake-and-breaks-the-session-2026-10-03",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "defect",
+    "name": "MEASURED 2026-10-03 on main c4e1cbd: a --shared (and --remote) call whose ARGUMENTS hold the JSON string \"initialize\" is taken for a handshake — posted with no session, it gets NO REPLY, and every later call in the session fails (422)",
+    "source": "art:test-every-client-mode-honours-read-only",
+    "statement": "Found while placing the read-only screen (item 1b). proxy.rs recognised the handshake with `line.contains(\"\\\"initialize\\\"\")` in forward_lines (--shared) and run_remote_with_notice (--remote, a pointer-attached client), while run_waiting already parsed the method (is_initialize, written for exactly this). OBSERVED: `--shared`, tools/call search_design {\"query\":\"initialize\"} → no reply within 90 s; the next call → JSON-RPC error \"the replacement shared reflow2 server did not answer either: the reflow2 server answered 422 Unprocessable Entity\". Over --remote the call was posted as a fresh handshake with no mcp-session-id and the session id was dropped for every later call (a stand-in recorded `-` where `s-1` was expected). With or without --read-only. A screen placed after that branch could have been bypassed through it. FIXED in the same change: both loops use is_initialize (the parsed method). Pinned by a_shared_call_that_mentions_initialize_is_not_taken_for_a_handshake and without_read_only_a_remote_client_forwards_every_call, both observed failing on main.",
+    "subject_id": "cap:shared-sessions",
+    "valid_from": "2026-10-03"
+  }
+}

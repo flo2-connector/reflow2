@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:e70a4fc1627b597d1b25da5695b02e984f62a6df3dd81656f57c705c160bbf43",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:merge-conflict-semantics",
+  "properties": {
+    "authored_at": "2026-07-22",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:claude-code"
+}

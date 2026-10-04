@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:41c969af117c9f42d2f9c6a361b7366ed20aad83d4c60462cfe4d248e05ce450",
+  "node_id": "chg:baseline-3ed7b0364f3ac3e6",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "baseline_established",
+    "detected_at": "2026-08-09",
+    "name": "First baseline for the detector owed by rule:per-design-state-is-never-a-process-global becoming enforced. Hashed after the file was final and after the negative control was reverted — the artifact-checksum mistake this project has made three times is hashing before the last edit."
+  }
+}

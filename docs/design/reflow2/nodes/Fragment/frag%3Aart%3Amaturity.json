@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:01c797101c3f3f0de020f902398bb8521db60000672be5938520f0eba880e290",
+  "node_id": "frag:art:maturity",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered maturity.rs"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:cc59e87c3130bb58102b826abea4e53b323a081f9ad90a07ea097d5a7c032859",
+  "node_id": "fact:bl-152",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "defect",
+    "statement": "[BL-152] A served skill instructs a call the served tool made unnecessary a week earlier — the two halves of the served surface disagree",
+    "subject_id": "cmp:skills",
+    "value": "{\"evidence\": \"*Found 2026-08-01 by FOLLOWING the brainstorm skill to record ten ideas, which is the only way this surfaces.* The skill's step 3 says: *\\\"set_decision_status to proposed. This call is not optional: add_decision defaults to accepted, which would assert a settlement that never happened.\\\"* add_decision has not defaulted to accepted since 2026-07-25 \\u2014 its own served description says so in capitals: *\\\"BEHAVIOUR CHANGED 2026-07-25: this used to default to accepted.\\\"* So an agent that follows the skill makes a redundant write on every brainstormed idea, and \\u2014 worse \\u2014 an agent that reads both is told two different things by the same server in the same session. This is the [BL-114] / [BL-135] family arriving in the skills layer: prose that describes behaviour the code no longer has. It is also precisely what req:schema-prose-is-checked names, one surface over \\u2014 there it was schema prose, in BL-114 it was finding prose, here it is SKILL prose. Why nothing caught it: skill_lint.py checks the skills' *contract* with the served surface \\u2014 that tool names resolve, that mirrors are byte-identical, frontmatter, the standing rule \\u2014 but nothing checks that a skill's CLAIM ABOUT a tool's behaviour still holds, because that is semantic and the project deliberately keeps semantic quality in trials rather than CI. Fix shapes: (1) correct the sentence \\u2014 owed regardless, and it is one line; (2) the general question, which is the interesting one: when a tool's default changes, what tells the skills? A grep for skill text quoting a tool default would be cheap and narrow, and would have caught this. Worth noting the skill is otherwise correct and its reasoning still stands \\u2014 recording an idea as accepted would be a forgery; it is only the claim about the default that has rotted. Size S\", \"origin\": \"Migrated from docs/backlog.md BL-152 on 2026-08-07 (epoch:backlog-retired). Size estimate carried from the row: S.\"}"
+  }
+}

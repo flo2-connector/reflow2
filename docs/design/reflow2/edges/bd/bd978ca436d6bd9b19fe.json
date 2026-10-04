@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:c95e3646a6bab2d3873e2eee9c51af1f3e45c31ab7e2ea1ca0fa23f7d000f685",
+  "edge_type": "GOVERNED_BY",
+  "from_id": "req:a-batch-of-calls-runs-under-one-approval-and-one-export",
+  "properties": {
+    "note": "Step 6 of making the door a supported route."
+  },
+  "to_id": "dec:idea-the-call-door-becomes-a-supported-harness-for-an-agent-that-cannot-use-mcp"
+}

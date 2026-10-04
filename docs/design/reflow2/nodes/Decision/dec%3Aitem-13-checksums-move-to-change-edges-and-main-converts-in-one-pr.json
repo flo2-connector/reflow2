@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:3be99e51148903e7ec3f14be9894f278a34b5a4a15273bdaa2e5650d1a5a275c",
+  "node_id": "dec:item-13-checksums-move-to-change-edges-and-main-converts-in-one-pr",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Anthony, 2026-10-03, dev_reflow2 hub session: \"yes, go with your recommendation for the 6\", on fix-program item 13's step-1 recommendation (hub: trials/vscode-call-door-triage-2026-10-02/fix-program/13-step1-recommendation.md). Decisions 3 to 6:\n3. CHECKSUMS: an accepted file checksum moves off the Artifact node onto the change's CHANGED edge (checksum_after). On a PR, the PR's own acceptances must match its files at the PR head. On main, every registered file a commit changed must be covered by an acceptance in that commit. Measured: all 215 acceptances in #640–#668 already came with a CHANGED edge in the same PR, so the move loses nothing; the four train records squash-landed in three orders gave zero conflicts and an identical tree. Not chosen: keeping them on the node, which leaves about a third of PR pairs conflicting.\n4. PRs are NOT required to be up to date with main before merging, for now; main's push CI catches a bad combination, as it does for code.\n5. taken_at moves to a git-ignored sidecar; the committed stamp is cut down to graph_id and schema_version.\n6. main converts in ONE PR, landed while no other design-touching PR is open; any open PR re-records once.",
+    "kind": "choice",
+    "name": "SETTLED 2026-10-03 — with the per-item layout: accepted checksums move onto each change's CHANGED edge with a coverage gate; PRs need not be up to date to merge; taken_at moves to a git-ignored sidecar; main converts in one PR while the queue is empty",
+    "rationale": "The root cause, walked and measured: a value derived from something git already merges is stored as one mutable field in a shared committed record. That happens at two grains: the whole-design header (hit every PR pair) and a code file's checksum on its Artifact node (about a third of pairs). Decisions 1 and 2 remove the first grain, and decision 3 removes the second. Rejected: a post-merge bot (contradicts req:the-saved-design-merges-correctly-under-gits-ordinary-merge, \"in the same act\"; needs write access to main; its commits go ungated); fragments applied at the release cut (main's export would disagree with its code after nearly every merge, about 38 hours between cuts).",
+    "status": "accepted"
+  }
+}

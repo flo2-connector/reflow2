@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:b0aafc703af11cc200595175d01a959ee0041bd966b3f8407e27ee2f0d80dd6c",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:a-finding-has-somewhere-to-put-its-evidence",
+  "properties": {
+    "approved_at": "2026-08-16",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

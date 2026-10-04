@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:5c0927e3b6228fb39a1bd4c67f0539642cc6c475a57f1b5152b1c9676134e4a7",
+  "node_id": "drift:e73e7cea40c640df",
+  "node_type": "DriftEvent",
+  "properties": {
+    "detected_at": "2026-07-21",
+    "drift_type": "checksum_change",
+    "name": "art:fielded drift",
+    "resolved": true,
+    "severity": "medium",
+    "summary": "'art:fielded' has changed since it was registered against the design"
+  }
+}

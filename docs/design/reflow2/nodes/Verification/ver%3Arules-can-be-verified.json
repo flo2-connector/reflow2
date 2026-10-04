@@ -1,0 +1,17 @@
+{
+  "content_hash": "sha256:2bc6831fb905b645193765dabf7f00fd61bcda302fc94bdf1122397462de61ee",
+  "node_id": "ver:rules-can-be-verified",
+  "node_type": "Verification",
+  "properties": {
+    "description": "\"Which of my rules have no detector?\" is askable, and asked: an enforced DesignRule with no PASSING verification is a 0.6 gap; an advisory one is not; a `planned` check does not silence it; a passing one closes it; `enforced` absent reads as the schema default TRUE and is still asked about. Plus the self-seeding half — a build with zero recorded conventions is asked once at 0.45, a design with no build yet is NOT (artifacts are the trigger, not components, because at genesis no convention has been chosen), and one recorded convention answers it. Eight cases in crates/reflow2-core/tests/enforced_rule_needs_a_detector.rs.",
+    "findings": "VERIFIED AGAINST REALITY, not just fixtures: run over reflow2's own committed export it returns exactly four gaps, naming rule:bl-135, rule:bl-212, rule:bl-41 and rule:fixes-are-judged-by-the-third-party — reproducing the reported four-of-four. The placement was found BY a test, not by review: the first draft sat inside detect_unverified_capabilities, which early-returns when a project has zero verifications, so it silently never fired on a young design.",
+    "kind": "verification",
+    "last_reconciled_at": "2026-09-23",
+    "last_reconciled_outcome": "passed",
+    "last_run_at": "2026-08-08",
+    "level": "integration",
+    "method": "test",
+    "name": "\"Which of my rules have no detector?\" is askable, and asked",
+    "status": "passing"
+  }
+}

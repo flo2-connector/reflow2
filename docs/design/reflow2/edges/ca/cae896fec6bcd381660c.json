@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:19178c14875473bac18ec9a3b56ad363cf820317bac8113a97dc74cadc3ca6c3",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:idea-normative-vs-descriptive-graph",
+  "properties": {
+    "authored_at": "2026-08-05",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:alex"
+}

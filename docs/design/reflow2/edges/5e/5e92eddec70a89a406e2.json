@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:e8be5b335d0def753149b63fcd4b0bdc406845d618891ab4c5be38fc85a171b7",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "cmp:artifact",
+  "properties": {
+    "dependency_type": "function_call",
+    "optional": false,
+    "weight_basis": "evidence"
+  },
+  "to_id": "cmp:temporal"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:2a0080bca6522f89e66f4247c39e1030980f1678617f445d26c6d42ec1e6a243",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-check-and-its-findings-are-different-things",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "ver:defaults-are-declared-and-injected-deliberately"
+}

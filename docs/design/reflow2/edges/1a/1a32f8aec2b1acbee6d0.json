@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:c2520e6b424b479d48f85297ebf8a4b2593111503b46e5a3b86f0f06c80cd296",
+  "edge_type": "MITIGATES",
+  "from_id": "dec:idea-stored-data-is-rechecked-against-the-current-schema",
+  "properties": {
+    "evidence": "Each option finds a stored edge the current schema refuses before the import that would otherwise be the first to refuse it, which is exactly what stranded musicjug's move."
+  },
+  "to_id": "fact:a-store-keeps-an-edge-a-newer-schema-refuses-and-its-export-cannot-be-imported-2026-10-01"
+}

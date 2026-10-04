@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:c07f438746c019f821b7240ac76da8a42421c89d360236b3c4d59087d738b72b",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-capture-that-replaces-a-node-says-so",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:test-a-node-is-named-by-its-id-and-the-type-is-optional"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:8f0082f6c4f0b18f54a2d499194ea62d528ed6bca5220f8981dd77f097c17999",
+  "edge_type": "REALIZES",
+  "from_id": "art:the-served-surface-names-no-real-person-gate",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "verified"
+  },
+  "to_id": "cap:a-reply-takes-the-shape-its-client-can-read"
+}

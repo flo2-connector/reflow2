@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:cb220cb61c0dbe0d1f68dff9b2cc6e593f6d179b830555341c466e0c926f18c3",
+  "node_id": "req:a-skill-run-in-a-session-holding-several-designs-writes-where-the-fact-belongs",
+  "node_type": "Requirement",
+  "properties": {
+    "concern": "core",
+    "kind": "functional",
+    "lineage": "original",
+    "name": "When a session holds several designs, a skill that writes goes to the design the fact belongs in, and says which, instead of defaulting to one",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "When a session is connected to more than one design (for example a hub and its children), a skill that records something (brainstorm, root-cause, capture-intent, log-issue and the like) does not default to whichever design the session happens to name first or most plainly. It writes to the lowest design that owns all of the thing being recorded: one child when it concerns one child; the hub only when it genuinely spans several. It names the chosen design before writing, and asks when the choice is unclear. Measured 2026-09-22 at the dev_reflow2 hub: the slash commands name no design, and with three designs connected the default target was the hub's own graph. That default is how a hub starts accumulating a second copy of its children's design. Anthony, 2026-09-22, promoting the skill-targeting half of shape (c) of dec:idea-a-fact-has-one-home-across-a-family-of-designs-and-reflow2-enforces-it.",
+    "status": "accepted"
+  }
+}

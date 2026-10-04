@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:e3189e0dcb0c4678f464dc5add186b536720f2c3ed05eceddb6fd046321cd056",
+  "node_id": "rel:v0612",
+  "node_type": "Release",
+  "properties": {
+    "description": "Cut 2026-09-15 on Anthony's word (\"cut v0.61.2\"). Ships #516 — import_graph and --import refuse a document stamped by a newer reflow2 unless accept_newer, the import report names every materialised Type.property, and served_by.behind_record says when a server is older than the last reflow2 that wrote its store (the 853 root cause, closed at the operation) — and #515, serde_yaml → serde_yaml_ng 0.10 with the lockfile refreshed within declared ranges (rmcp 3.3.0 and rocksdb untouched). Patch on his word; strictly, accept_newer is a new optional parameter on import_graph, which the versioning table files as minor. The schema stamp did not move (28/65/1); no upgrade note.",
+    "name": "v0.61.2 — an import knows its own age, and the YAML reader is maintained again",
+    "status": "retired",
+    "unit_type": "container",
+    "version": "0.61.2"
+  }
+}

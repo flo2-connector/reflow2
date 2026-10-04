@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:2edd615a36205233d8345598ee54db477544faf9b7623ff97db7e2fa70f02f3b",
+  "edge_type": "CHANGED",
+  "from_id": "chg:baseline-e0f130c30f9f7376",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:graphalg"
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:a916965a3dc44f681f9a121910946e26ff4eb57493b1097255d3c5f71639a66d",
+  "edge_type": "ANTICIPATES",
+  "from_id": "fact:the-black-box-tier-has-two-answers-that-disagree",
+  "properties": {
+    "evidence": "The earlier one saw this coming. That 2026-08-18 measurement found the two ways of asking for the top tier returning different sets — 8 subsystems by declared level, 2 leaves by spine position — which is precisely the symptom of storing something that could be derived. It is the evidence this question reasons from, and its 4%-populated-spine figure is the number that currently argues FOR what shipped rather than against it."
+  },
+  "to_id": "dec:idea-is-a-declared-rung-name-the-right-shape-for-decomposition-depth"
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:fc70968045273900d70fbcc7b159b33c7df077aa945a3f9be63c705a14969e4b",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "req:skill-use-survives-a-long-session",
+  "properties": {
+    "evidence": "That requirement already arms the nudge on file-edit events and already names impact-check and link-artifacts; what is missing is shape-matching on top of it, not a new trigger.",
+    "optional": false,
+    "weight_basis": "evidence"
+  },
+  "to_id": "req:nudge-covers-bypass"
+}

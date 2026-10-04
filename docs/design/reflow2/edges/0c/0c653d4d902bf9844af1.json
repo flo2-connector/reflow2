@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:23cf2798a5f08c38f9eaea97598053a41ae18a09a07dab48fe9e9d6ae058ac1d",
+  "edge_type": "CHANGED",
+  "from_id": "chg:accept-d17ade57d9c2690c",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:design-holds-says-why-test"
+}

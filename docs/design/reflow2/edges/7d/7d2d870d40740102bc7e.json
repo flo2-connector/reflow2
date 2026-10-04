@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:c335dd787a24dd8c6aeb9252ae2b56f5b8115dbd22cb022ac52cf3699184e9e2",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:fork",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:fork"
+}

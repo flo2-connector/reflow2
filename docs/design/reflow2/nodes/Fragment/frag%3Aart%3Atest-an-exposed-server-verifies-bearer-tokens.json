@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:df194709544ca92635f1508f8067ac878dcd1fed9c33cd47815aa1ba00d4f708",
+  "node_id": "frag:art:test-an-exposed-server-verifies-bearer-tokens",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered an_exposed_server_verifies_bearer_tokens.rs — the floor, item by item, against the real binary and a test issuer, failing first"
+  }
+}

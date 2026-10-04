@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:6c104fdbd3519ba7b52c4c5ad8e1d355c2be7004f55b299e1d7489d70a7c3bfa",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:a-design-that-publishes-contracts-publishes-intent-test",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:a-design-that-publishes-contracts-publishes-intent-test"
+}

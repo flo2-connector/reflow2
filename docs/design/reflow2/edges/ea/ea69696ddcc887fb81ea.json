@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:eecaeb9879dae3be80c5061420d3a0aa189f5b1b5c1045c60ef5d7f195dcab49",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:a-session-with-no-seed-can-find-one",
+  "properties": {},
+  "to_id": "req:a-session-with-no-seed-can-still-orient"
+}

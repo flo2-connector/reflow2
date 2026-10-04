@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:f2571a0c0664bd5a389c35864216ff36846b270db325efc7528cc5863b034762",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:every-served-skill-conforms-to-agent-skills-and-the-lint-checks-it",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:skills"
+}

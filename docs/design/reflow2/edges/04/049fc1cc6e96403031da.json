@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:666d297bd527b4f630879aaeee063462f16c74646ee16b0f15a82dc934ac3c0a",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:test-a-budget-says-how-it-composes-core",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:test-a-budget-says-how-it-composes-core"
+}

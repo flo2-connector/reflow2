@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:9841fdbbac17df3b8b4318a1f337817d1402e2556dfc32745976dce850bbb177",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-drawn-relation-is-read-back-as-a-sentence",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:brainstorm-skill"
+}

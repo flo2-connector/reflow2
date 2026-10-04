@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:b995c9b07ec16ede132e5f2b0d6cb4b394e856ad33bac219e2ddc555d0f0da6e",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-design-is-saved-one-file-per-item-2026-10-03",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:dc3e0e7925b9476b591e4f955154a2e25f9e4a341b3a0a2cd0a74fa4f362ad70",
+    "checksum_basis": "measured"
+  },
+  "to_id": "art:agent-instructions"
+}

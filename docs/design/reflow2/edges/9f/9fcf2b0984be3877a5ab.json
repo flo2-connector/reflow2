@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:33ee70bf2320b08e55fff451d3a8279441349c76357475ee565d73537bc7a028",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "chg:the-default-log-filter-is-quiet-for-dependencies",
+  "properties": {
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

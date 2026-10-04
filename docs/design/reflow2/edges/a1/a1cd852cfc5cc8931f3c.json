@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:5fff32f96880ce21a21fb0c2c1ea9fdf79a5e8b142609be2cb2f47eeae26020f",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:session-memory-in-graph",
+  "properties": {
+    "authored_at": "2026-07-24",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

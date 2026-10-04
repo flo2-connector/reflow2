@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:b3f509a2b05eafa078ce60e9387611b89d206c7eb59655b1a966d5148049a58e",
+  "node_id": "snap:epoch:preserved-on-write:fact:the-known-arg-traps-recurred-in-a-fourth-report-on-a-build-that-predates-their-fix",
+  "node_type": "Snapshot",
+  "properties": {
+    "edges": "[]",
+    "state": "{\"basis\":\"measured\",\"confidence\":1.0,\"fact_type\":\"observation\",\"statement\":\"Alex (v0.47.0, 2026-09-05) reports the get_node node_type+id trap and the ChangeEvent `description` mistake, and notes the tool descriptions already flag them: 'known footguns ... they're aware.' RECURRENCE COUNT: the description mistake is now FOUR projects (dev_storyflow, qs, dev_storyflow again after documentation, Alex); the get_node trap is on the record as dec:idea-get-node-by-id-alone-since-the-prefix-names-the-type (2026-09-05, open). WHAT IS ALREADY FIXED AND NOT IN HIS HANDS: #429 (merged 2026-09-05, main 14c1cba) makes add_change_event accept `description` only to refuse it naming summary/rationale — the refusal now teaches at the moment of failure. It is UNRELEASED; 0.47.1 is the latest cut and does not carry it. So this report is the fourth data point for the premise behind #429 (a description is not read mid-work; a refusal is) and is not a new cause. It is also a cost of release cadence: a fix merged the same day a user reports the defect it fixes is indistinguishable, to that user, from no fix. NOT ESTABLISHED: his exact version (Anthony believes 0.47.0).\",\"subject_id\":\"req:a-refusal-names-what-would-have-worked\",\"valid_from\":\"2026-09-05\",\"value\":\"{\\\"description_mistake_reports\\\":4,\\\"fixed_in\\\":\\\"#429, merged 2026-09-05, unreleased\\\",\\\"get_node_trap\\\":\\\"dec:idea-get-node-by-id-alone-since-the-prefix-names-the-type (open)\\\",\\\"new_cause\\\":false}\"}",
+    "target_id": "fact:the-known-arg-traps-recurred-in-a-fourth-report-on-a-build-that-predates-their-fix",
+    "target_type": "TemporalFact"
+  }
+}

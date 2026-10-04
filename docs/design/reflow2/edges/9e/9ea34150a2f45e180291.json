@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:08efe9db1da0be0399121c4483fd7950d41a7bc0a048b320d491cbb88779f0fd",
+  "edge_type": "CHANGED",
+  "from_id": "chg:prune-proposed",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "removed"
+  },
+  "to_id": "req:framework-is-chosen-not-defaulted"
+}

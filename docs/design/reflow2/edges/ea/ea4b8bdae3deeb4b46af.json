@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:a2a0c5597bbe43ed343902023048d56f827d55d01044698eb4cdb5d53a2bb85f",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:vocabulary",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:vocabulary"
+}

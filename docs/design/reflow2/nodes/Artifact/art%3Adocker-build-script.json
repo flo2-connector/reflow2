@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:4531854ff1d74e40f5e3d9061da630089e2a821d4368538ee976817197133f3f",
+  "node_id": "art:docker-build-script",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "granularity": "atomic",
+    "location": "docker/build.sh",
+    "name": "docker/build.sh",
+    "status": "realized",
+    "volatility": "stable"
+  }
+}

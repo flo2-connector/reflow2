@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:e93dd6460690a48bb12c30772a06b2e2ef3b8a0b0032087f8bfdb4a920ebab44",
+  "edge_type": "HAS_SNAPSHOT",
+  "from_id": "rule:bl-135",
+  "properties": {},
+  "to_id": "snap:epoch:reflow2-states-its-own-rules:rule:bl-135"
+}

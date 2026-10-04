@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:1e262e6a984980c9b32292755ac0768936ff5f7c1c95f7ffc7c6e31488777cfc",
+  "node_id": "epoch:search-first-fires-at-the-tool",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "epoch_type": "revision",
+    "name": "Search-before-you-add stops depending on somebody loading a skill",
+    "sequence": 320,
+    "status": "arrived"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:587134f59461bdd945b336848feaeb4f39e914df4dfc569277ae755bdba659a6",
+  "node_id": "epoch:work-declares-who-it-reaches-is-accepted",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "epoch_type": "revision",
+    "name": "Anthony accepts that work declares who it reaches — the requirement moves off `proposed` on his word, and its name stops being a paragraph (2026-08-22)",
+    "sequence": 377,
+    "status": "arrived"
+  }
+}

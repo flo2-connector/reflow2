@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:0f5947a0c565161ef8033b051d2c4ac06d5756683b8d0eb57cbc099573767428",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-check-and-its-findings-are-different-things",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "ver:skill-triggers"
+}

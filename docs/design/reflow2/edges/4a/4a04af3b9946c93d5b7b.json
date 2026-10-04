@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:dc28011f93e69d6f1a6a48a173a03ae9685a743b8a4a3a14e14fe08359185b56",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:coverage-test",
+  "properties": {
+    "covers": "whole",
+    "note": "migrated 2026-09-22 from a REALIZES link_artifact drew in error"
+  },
+  "to_id": "ver:coverage"
+}

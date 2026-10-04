@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:8a97f45401ea7a3431f6bb36c00e13e4532080bddb01bb4c8399800d91f52c15",
+  "node_id": "chg:claim-liveness",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "name": "Claims name their session, and a claim nobody is working stops reading as held"
+  }
+}

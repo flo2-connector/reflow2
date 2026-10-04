@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:26670560649afd10edd82f9158219053a58a3f2561e4ca0138a061373db9f424",
+  "node_id": "art:graph-read",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "location": "crates/reflow2-core/src/graph_read.rs",
+    "name": "graph_read.rs",
+    "status": "realized"
+  }
+}

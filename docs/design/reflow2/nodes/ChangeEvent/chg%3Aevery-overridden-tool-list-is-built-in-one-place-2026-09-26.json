@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:a752124faa9865e4a3f1ce74b64fdfb0d91675ff7eb61f9970c8db622715fa9d",
+  "node_id": "chg:every-overridden-tool-list-is-built-in-one-place-2026-09-26",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "defect_fix",
+    "detected_at": "2026-09-26",
+    "name": "Every overridden tool list is built in one place that owns the 2026-07-28 cache-hint rule — the latent surface's listing is no longer refused",
+    "rationale": "Steps ⑦ and ⑧ of fact:root-cause-the-latent-tool-list-omits-the-cache-fields-the-2026-07-28-spec-requires-2026-09-26, on Anthony's word (\"go ahead with steps 7 and 8\").\n\nWHY ONE BUILDER AND NOT A ONE-LINE FIX IN latent.rs: the class is that rmcp writes the protocol-version rule inline in its macro and exposes no helper, so every handler that overrides list_tools must reproduce it by hand — and reflow2 has two such overrides, of which one had the rule and one did not, hidden until the first client to speak 2026-07-28. A one-line fix leaves the next override (or the next field the spec makes required) to be found the same way. One builder removes the copies; the test checks the OUTPUT of every surface over the real binary, so an rmcp change that moves the rule, a new override that bypasses the builder, or a new required field fails in CI rather than in a person's client.\n\n`corrected_cause`: both overrides now share one rule, and the output of every surface is checked under both protocol versions.",
+    "rationale_basis": "contemporaneous",
+    "repair": "corrected_cause",
+    "summary": "New tool_listing.rs: tools_result(tools, context) builds a complete tools/list result — ttlMs 0 and cacheScope \"public\" for a peer on 2026-07-28 or later, neither for an older peer — mirroring the rule rmcp-macros writes inline in its generated list_tools. latent.rs (was ListToolsResult::with_all_items, which omits both fields) and service.rs (had its own hand copy of the rule) both call it. New tests/every_tool_list_carries_the_cache_hints_its_protocol_requires.rs drives the real binary over stdio on all three surfaces — full, latent (the machine-wide entry's exact arguments in an empty folder) and degraded — with Claude Code 2.1.283's captured server/discover + tools/list (2026-07-28) and with initialize + tools/list (2025-11-25). OBSERVED FAILING before the fix: latent \"ttlMs must be a number under 2026-07-28, got null\"; full and degraded passed. After: 3/3; the whole reflow2-mcp suite 105 test binaries green; clippy clean. Confirmed with the real client: `claude mcp list` (Claude Code 2.1.283) on the 0.71.0 release reported \"tools fetch failed — Invalid result for tools/list: ttlMs … cacheScope\", and on the fixed build \"✔ Connected\". rmcp 3.4.1 was read and does not touch this (its fixes are a client-side discover fallback and macro description paths), so it is not part of this change."
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:1a4a9a0c3cea0c2194a01215c21af58a6ece337ad7409b5e075ba43ab4ee372f",
+  "edge_type": "INVALIDATES",
+  "from_id": "chg:the-memory-backend-keeps-its-keys-ordered",
+  "properties": {
+    "at": "2026-08-25",
+    "note": "RE-MEASURED HOURS LATER, ON THE SAME DESIGN, AFTER THE COST IT NAMED WAS FIXED. Its SAVE column is no longer current:\n\n    build export doc   1,137.3 ms -> 236.5 ms\n    TOTAL session save 1,168.3 ms -> 265.3 ms\n\nWHICH PART MOVED, precisely — this is a PARTIAL supersession and the node is NOT closed: only the write side. Its load figures still stand within noise (1,098 ms then, 1,156 ms after; the ~8% import regression from BTreeMap inserts is inside that). Its two headline findings BOTH survive and one is strengthened: the full-text index is cheap and derived, and the byte store is not the bottleneck — the remaining save cost is not storage either.\n\n⭐ AND ITS OWN PREDICTION CAME TRUE. That fact called out `build_export_doc` at 1,137 ms as \"the dominant cost moved to a place nobody has looked... the same SHAPE as the import defect just fixed... very likely another `Vec` somewhere.\" It was a HashMap, and the shape was exactly right: a linear scan standing in for an indexed lookup. The node earned its keep by naming the next measurement, which is what a good measurement does.\n\n🛑 SECOND INSTANCE OF A KNOWN BLIND SPOT, AND IT WAS PREDICTED IN ADVANCE. `unclaimed_findings` on this ChangeEvent returned nothing with subjects_examined=1, exactly as `fact:unclaimed-findings-cannot-join-a-change-to-a-finding-hung-off-a-different-node` said it would: the change is anchored to `cmp:byte-store` (the code) and this observation to a Decision (the question it answered), so the join never happens. Closed by judgement again. A HAS_TEMPORAL_FACT edge from cmp:byte-store has now been drawn so the next change to that component reaches it."
+  },
+  "to_id": "fact:a-database-free-session-costs-11s-to-load-and-12s-to-save"
+}

@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:5c83157fbce9a86025f6b9f67ca9654148d920e9612472614b4cefaf895e7021",
+  "node_id": "art:hierarchy",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "granularity": "atomic",
+    "location": "crates/reflow2-core/src/hierarchy.rs",
+    "name": "hierarchy.rs",
+    "status": "realized",
+    "volatility": "stable"
+  }
+}

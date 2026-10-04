@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:56d73013f27b67d8ec21a673dbb83bf8be0573b8b598a22d86f4f4fa415b019e",
+  "edge_type": "SATISFIES",
+  "from_id": "art:check",
+  "properties": {
+    "coverage": "partial",
+    "evidence": "WAS `planned` UNTIL 2026-08-11, AND THE EVIDENCE FIELD SAID SO: \"nothing in the script checks the lineage chain today, so this edge records WHERE the work lands rather than claiming any of it is done.\" That was true when written and stopped being true when `chg:lineage-check` landed. The clause exists, runs in CI on every pull request, and fired TWICE on 2026-08-11 in one day's work — on a double export across a `commit --amend`, and after a rebase where the three-way merge driver merged CONTENT correctly and could not repair the chain. `ver:the-export-chain-is-unbroken` now stands for that clause specifically. PARTIAL RATHER THAN FULL, deliberately: the requirement asks the tool to \"REFUSE OR SERIALISE\" a second export, and the gate does neither — it DETECTS a severed chain after the fact, in CI, which `dec:export-serialisation-belongs-to-the-gate` chose on purpose. A contributor can still export twice locally; they simply cannot merge it. Calling that `full` would claim the refusal half that was decided against."
+  },
+  "to_id": "req:the-export-is-serialised-rather-than-socially-enforced"
+}

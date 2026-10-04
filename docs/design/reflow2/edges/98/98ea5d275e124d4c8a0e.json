@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:2702ad4c0c9a1560ed9c835e50c3f6ce743f561bf692382bdffbe3e907709e97",
+  "edge_type": "CHANGED",
+  "from_id": "chg:bl213-discriminator",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:ingest"
+}

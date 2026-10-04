@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:1ef9d54f636a89f93c7b330717e15f6a8d875eb37ae995da1ae4afd13f6c045f",
+  "edge_type": "CHANGED",
+  "from_id": "chg:governance-proposal-skill-20260808",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:skill-lint"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:a29503d9fc442357cb17f92df99f86d08e7e78435d2eef87fbec281519a22a6b",
+  "edge_type": "INVALIDATES",
+  "from_id": "chg:every-constructor-can-say-what-the-thing-it-makes-is",
+  "properties": {
+    "at": "2026-09-07",
+    "note": "Read from the code 2026-09-15: all six constructors (Artifact, Environment, Interface, Project, Release, Resource) take `description` via capture::set_description, and every_constructor_can_say_what_the_thing_is.rs sweeps the schema so the class cannot reopen silently. Merged dcee6d0 (#449) on 2026-09-07, the day the finding was written; the ChangeEvent was recorded eight days late, which is why the finding read as open."
+  },
+  "to_id": "fact:six-constructors-cannot-write-any-prose-because-the-class-was-fixed-one-report-at-a-time-and-never-swept"
+}

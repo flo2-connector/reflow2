@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:fcaa649663e16e00b9d41fc5094a4b4756baf2d86f8a4e0b017a77b628755433",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:idea-coupling-explained",
+  "properties": {
+    "authored_at": "2026-08-01",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:claude-code"
+}

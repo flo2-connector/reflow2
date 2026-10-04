@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:c6482e364e9dce35542572bfd59987ba88e27adecff6a750ca0dc5609655427a",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:budget",
+  "properties": {},
+  "to_id": "req:no-silent-fallback"
+}

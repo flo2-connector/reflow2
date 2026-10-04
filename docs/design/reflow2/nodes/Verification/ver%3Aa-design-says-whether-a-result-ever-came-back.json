@@ -1,0 +1,18 @@
+{
+  "content_hash": "sha256:73efe85dc14c72ac03384c39a8688c6e2dd43329a775c9321a86eeaa3a3baa42",
+  "node_id": "ver:a-design-says-whether-a-result-ever-came-back",
+  "node_type": "Verification",
+  "properties": {
+    "description": "Seven tests: nothing_to_close is not told it never closed; a typed pass reads never_closed and is said in next; never_closed does not affect clean; an agreeing recorded run stamps the check and leaves status alone; an unrecorded run stamps nothing; a failure fed back then fixed still reads a_failure_came_back; a check typed failing is not a failure that came back.",
+    "findings": "7/7 pass. Mutation-checked: removing the stamp call in reconcile_verification fails exactly the two tests that depend on it (agreeing-run trace; failure-then-fixed).",
+    "kind": "verification",
+    "last_reconciled_at": "2026-09-23",
+    "last_reconciled_outcome": "passed",
+    "last_run_at": "2026-09-22",
+    "level": "integration",
+    "location": "crates/reflow2-core/tests/a_design_says_whether_a_result_ever_came_back.rs",
+    "method": "test",
+    "name": "A result that came back is visible, and one that never did is said",
+    "status": "passing"
+  }
+}

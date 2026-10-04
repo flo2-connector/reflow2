@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:50b315e9c502164bd6db47946a8c47dc06eddde5f328b50d5bfee372950685f3",
+  "edge_type": "CONTRADICTS",
+  "from_id": "fact:the-stale-server-defect-recurred-to-the-people-who-wrote-it-down",
+  "properties": {
+    "alignment": "supporting",
+    "confidence": 1.0,
+    "evidence": "Third instance of the same defect, and the first to land on the maintainer rather than a reporter. Adds the remedy that fails (--stop-shared, absent from both prior records) and the cost (a full day of undogfooded work); adds nothing to the diagnosis, which was already certain."
+  },
+  "to_id": "fact:defect-a-running-server-cannot-say-it-is-stale"
+}

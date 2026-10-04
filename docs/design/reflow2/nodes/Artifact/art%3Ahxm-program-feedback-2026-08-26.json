@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:82d9ef50444b7a54fc3b008e00e52ffbac69f9dd8440a861add9140c08777e5f",
+  "node_id": "art:hxm-program-feedback-2026-08-26",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "document",
+    "intent": "Field report from hxm_program — reflow2 used as a HUB over ~10 repos rather than as one system's design. Eleven friction items (F-01..F-11) and seven opportunities (O-01..O-07), with a measurements table. VERIFIED NOT A PREFIX of art:hxm-program-feedback-2026-08-19: the two are separate reports and both stand.",
+    "location": "docs/feedback/2026-08-26-hxm-program-agent-feedback.md",
+    "name": "docs/feedback/2026-08-26-hxm-program-agent-feedback.md",
+    "status": "realized"
+  }
+}

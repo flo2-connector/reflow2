@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:7348a2b254c4248bcf2b2584d5a68331a513f12a830d4f5918327eae12db8dcd",
+  "edge_type": "ANTICIPATES",
+  "from_id": "dec:idea-the-design-lives-apart-from-the-implementation",
+  "properties": {
+    "evidence": "The accepted idea that a design lives in its server apart from its code implies a one-time move for every design that today lives in its repo; this asks how that move happens safely."
+  },
+  "to_id": "dec:idea-a-repo-that-holds-its-design-moves-it-to-a-remote-server-once"
+}

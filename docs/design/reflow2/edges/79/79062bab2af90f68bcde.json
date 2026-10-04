@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:36c2924e89a3b40922210c728871f8f3a2296d7a6a16598c9d5e515acaf4eda5",
+  "edge_type": "PROVIDES",
+  "from_id": "cmp:main",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "ifc:rendezvous-sidecar"
+}

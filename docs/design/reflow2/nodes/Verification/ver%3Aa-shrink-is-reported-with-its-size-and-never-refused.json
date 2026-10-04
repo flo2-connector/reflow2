@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:e6e151536bf37ca8b7652d8ac65eef3937393e9b3ca3f0a57491f91b3c26c95c",
+  "node_id": "ver:a-shrink-is-reported-with-its-size-and-never-refused",
+  "node_type": "Verification",
+  "properties": {
+    "description": "crates/reflow2-mcp/tests/a_revising_write_says_what_it_removed.rs: three tests. The first asserts the reported count equals the measured difference and that the prior value is still returned; the second that an addition reports nothing; the third that the write lands.",
+    "findings": "3 of 3 passing; full gate set green.",
+    "kind": "verification",
+    "last_run_at": "2026-09-20",
+    "level": "integration",
+    "method": "test",
+    "name": "A rewrite that drops a paragraph says so with the real size of the loss; an enrichment says nothing; a drastic shortening is reported and still succeeds",
+    "status": "passing"
+  }
+}

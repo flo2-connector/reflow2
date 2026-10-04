@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:af442ba030d4d7460b0a6b512e822b330ddd71ba97f6c517963a260f318e45cd",
+  "node_id": "chg:accept-7c6456e82bb32b5e",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "test_failure_fix",
+    "name": "Residue check widened to any snapshot-named sibling — it had been stripping only the one suffix it knew about, and missed the new identity sidecar."
+  }
+}

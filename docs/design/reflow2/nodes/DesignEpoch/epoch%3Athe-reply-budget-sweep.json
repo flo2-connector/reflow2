@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:4ac1f42c3b332ec36453751e859bd6c639248825fd47c96794a2830ad75b4cd6",
+  "node_id": "epoch:the-reply-budget-sweep",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "description": "2026-09-13. flo2 filed one friction — compare_designs has no budget_chars — and the sweep it prompted found 3 of 181 tools bounded and nine over the 30,000-character default. This epoch is the class answer rather than the instance: one shared helper (crates/reflow2-mcp/src/reply_budget.rs), nine tools bounded, two exempted as document-shaped and made to withhold whole instead, and a CI gate (tools/replies_are_bounded.py) that seeds a real design and fails when NOTHING overflowed.\n\nWHAT IT MUST NOT BE READ AS INCLUDING: no fix for the server memory retention measured the same day, and no bound on the 143 tools that take required arguments — only compare_designs among those was measured. Eight further tools sit under the budget on this design and would cross on a larger one; they are a named watchlist, not covered work.",
+    "epoch_type": "revision",
+    "name": "Every oversized reply offers a bound — the class swept, not the tool it was reported from (2026-09-13)",
+    "sequence": 450,
+    "status": "arrived"
+  }
+}

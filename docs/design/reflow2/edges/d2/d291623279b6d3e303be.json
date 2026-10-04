@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:fd87ba462c8ccf2bbb2f2ec9e5eeac8cb8ac04473b3da8a4db021de651ce7e37",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-write-is-credited-to-who-it-was-for-2026-09-25",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:tools-claims"
+}

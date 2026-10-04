@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:6a0983eab3928d8f11bf9a672d7eb5d18376906af658f7a9f133d48e63b79b81",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-design-no-longer-lives-in-the-code-repo-2026-09-25",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "req:persistence"
+}

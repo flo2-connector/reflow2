@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:900785869cf96658ba86e52bbed3342d124d02d979c839cfda4ca14a34a7ac1f",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:test-impact-of-diff",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:test-impact-of-diff"
+}

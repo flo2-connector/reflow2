@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:7e34df5d22db371f4b477939ef226d73fc2346e9e1a82e499da52ea76de2fe3e",
+  "edge_type": "GOVERNED_BY",
+  "from_id": "ver:toml-fallback-reader",
+  "properties": {},
+  "to_id": "rule:fixes-are-judged-by-the-third-party"
+}

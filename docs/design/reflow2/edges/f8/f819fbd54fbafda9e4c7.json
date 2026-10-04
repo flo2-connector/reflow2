@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:40b24287e7bc0e65e967ef54d01469b9b6532f7986db283cf7bfeb035b3737db",
+  "edge_type": "CONTRADICTS",
+  "from_id": "fact:the-parallel-batch-class-recurred-because-only-its-instance-was-fixed",
+  "properties": {
+    "alignment": "opposing",
+    "evidence": "alignment=supporting. That 2026-08-09 pass established the mechanism — the RwLock serialises access, not intent, so a parallel batch carries no ordering and Node not found is the correct answer. This pass confirms it holds for a different tool pair twenty-one days later, and confirms its own stated limit is still unmet: neither pass reproduced it with a concurrent client."
+  },
+  "to_id": "fact:the-decision-race-is-caller-ordering-not-read-after-write"
+}

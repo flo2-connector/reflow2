@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:af639bb947ac6f98a8fa2813c3eaff875e159d9795191872102a2331aec56068",
+  "edge_type": "CHANGED",
+  "from_id": "chg:manifest-answers-without-a-store",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cap:content-manifest"
+}

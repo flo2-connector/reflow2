@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:426b1566d9e3fe9b139e7dd439e262d0a0dcb36425175e14c7d177522942902c",
+  "edge_type": "GOVERNED_BY",
+  "from_id": "cap:a-refused-write-stores-nothing",
+  "properties": {
+    "note": "Built to the accepted choice: one atomic write per tool call, at the store's single write point."
+  },
+  "to_id": "dec:idea-a-refused-typed-write-stores-nothing"
+}

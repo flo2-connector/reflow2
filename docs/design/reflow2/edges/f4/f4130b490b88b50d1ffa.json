@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:92ee086bc4c6518c8cf3f0f96de83b9420581da42736c38ddc64fb9f8e5ab676",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:idea-authentication-is-somebody-elses-layer-and-the-line-is-the-contributor-id",
+  "properties": {
+    "approved_at": "2026-09-28",
+    "authored_at": "2026-08-26",
+    "roles": [
+      "author",
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

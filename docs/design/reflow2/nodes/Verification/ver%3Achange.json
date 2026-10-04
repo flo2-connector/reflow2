@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:660d09669664455591245d6ea21b4b86993063ae7de92c8ec9ad0d98e257f3fe",
+  "node_id": "ver:change",
+  "node_type": "Verification",
+  "properties": {
+    "kind": "verification",
+    "level": "integration",
+    "method": "test",
+    "name": "temporal.rs",
+    "status": "passing"
+  }
+}

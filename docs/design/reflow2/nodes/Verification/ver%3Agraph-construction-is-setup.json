@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:385e8e2b7a5a898fbfdd7052b2ee94c08bb6f5958ce8bbb0bc2eae89431af4f1",
+  "node_id": "ver:graph-construction-is-setup",
+  "node_type": "Verification",
+  "properties": {
+    "description": "Holds con:graph-construction-is-setup-not-work. Asserts a cold-versus-warm RATIO rather than a duration, because a duration threshold in a parallel test suite measures machine contention: the first version of this check read 266 us alone and 6 ms under `cargo test --workspace`, and failed. The ratio pins the structure that makes the code fast - the parse happening once - which is what actually broke and was actually fixed.",
+    "kind": "verification",
+    "last_reconciled_at": "2026-09-23",
+    "last_reconciled_outcome": "passed",
+    "level": "unit",
+    "method": "test",
+    "name": "Constructing a design graph is setup, and the schema is parsed once per process",
+    "status": "passing"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:fed4bb554737eaf272460ccee70160e8323fb74551c952b34ba43c41546340e0",
+  "node_id": "cap:a-coupling-has-a-typed-call-of-its-own",
+  "node_type": "Capability",
+  "properties": {
+    "description": "`depends_on(from_id, to_id)` draws `Component DEPENDS_ON Component`, joining the nine typed helpers that already fill in endpoint types. It refuses an absent endpoint like every other one, so the convenience does not buy a new way to point a dependency into nothing.\n\nThe cross-design version pin that used to hold this name is now served as `external_dependency` (core: `DesignGraph::declare_external_dependency`). The core keeps its verb because it reads as Rust; the served tool drops it because it reads as a noun beside `depends_on`, `allocate` and `satisfies`.\n\n⚠️ A BREAKING CHANGE TO A SERVED SURFACE, taken deliberately rather than deferred: `rule:fix-it-properly-while-it-is-still-cheap`'s second clause makes \"it would break consumers\" a reason to do it NOW, and the deprecation discipline begins at 1.0.",
+    "name": "Component coupling is one typed call, and the cross-design pin no longer holds its name",
+    "provenance": "authored",
+    "status": "realized"
+  }
+}

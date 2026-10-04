@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:08df4392ae7af63da49c8273daf8ae5733d0157825c752357331fbc5b89f60a5",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:test-a-refused-host-is-told-which-flag-admits-it",
+  "properties": {
+    "covers": "whole",
+    "evidence": "This test file is the check. cargo test --workspace runs it in CI, against the real binary."
+  },
+  "to_id": "ver:a-refused-host-is-told-which-flag-admits-it"
+}

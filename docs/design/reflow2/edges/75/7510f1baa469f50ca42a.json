@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:00954f605820b30f4007f9d3005e5b5c4c50ff876ed0420166ef1ef3ea4d0f10",
+  "edge_type": "PART_OF_FLOW",
+  "from_id": "cap:a-cut-ends-with-the-served-binary-matching-the-tag",
+  "properties": {
+    "step_order": 9,
+    "weight_basis": "estimated"
+  },
+  "to_id": "flow:release-cut"
+}

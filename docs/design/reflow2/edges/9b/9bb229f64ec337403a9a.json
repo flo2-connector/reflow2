@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:3ed0b88e4ec294106303301c209c27087251bd1296ef4518fe974920f45efea8",
+  "edge_type": "SCHEDULED_FOR",
+  "from_id": "cap:a-session-serves-a-release-binary",
+  "properties": {
+    "modality": "expected",
+    "recorded_at": "2026-09-11"
+  },
+  "to_id": "epoch:planned-a-session-serves-a-release-binary"
+}

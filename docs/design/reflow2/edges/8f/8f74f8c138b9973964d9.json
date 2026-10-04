@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:0cbe16add91c17fdf1b78bfaf00e4d613e06fcb6aefacedd3f27a82494debc6a",
+  "edge_type": "REALIZES",
+  "from_id": "art:launch-serves-release-gate",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:a-session-serves-a-release-binary"
+}

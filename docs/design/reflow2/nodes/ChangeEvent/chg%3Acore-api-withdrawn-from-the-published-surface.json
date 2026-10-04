@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:c5397f339ed939bab07be2e1fcda9a7bc75c4dd1508139b3f541c459bd774062",
+  "node_id": "chg:core-api-withdrawn-from-the-published-surface",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "defect_fix",
+    "name": "Snapshot of dec:core-api-spof-accepted before its stale topology sentence is corrected",
+    "subject": "record"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:1c10153d55f15990014ef93e044d3a454cea312e8d25d1a89acc1f019f45bd55",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "drift:40419b14bd5562fd",
+  "properties": {
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "art:drift"
+}

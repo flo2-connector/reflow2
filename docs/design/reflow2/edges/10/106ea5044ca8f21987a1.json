@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:8d600775f5df9e238af0fcb7c522a463db28e6f262dd623a7a22f5001516e3a3",
+  "edge_type": "TRIGGERS",
+  "from_id": "cap:a-cut-moves-every-version-claim-together",
+  "properties": {
+    "role": "feeds — the new version number is the heading the changelog entry is written under"
+  },
+  "to_id": "cap:changelog-view"
+}

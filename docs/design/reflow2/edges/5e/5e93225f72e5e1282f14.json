@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:eccf62d7c67c1da0d247d24941ef054e6223038d8a57e34e1ab51aad951c71c7",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:seam-incompatibility",
+  "properties": {},
+  "to_id": "req:seam-incompatibility"
+}

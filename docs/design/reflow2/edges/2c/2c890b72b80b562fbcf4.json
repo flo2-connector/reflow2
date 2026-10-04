@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:de1d2ea2e36e9f3eff7547d79ba04e7c3edec6623cc6c03517f155f569107054",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-local-client-reaches-a-remote-server-2026-09-26",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cap:a-local-client-reaches-a-remote-server"
+}

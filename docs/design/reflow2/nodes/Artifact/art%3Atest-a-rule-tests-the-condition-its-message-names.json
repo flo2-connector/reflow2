@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:5c3d83d31d9b9cd80af41a6ca99daadfac326854f9811cc657f9a01f3b0b9cc8",
+  "node_id": "art:test-a-rule-tests-the-condition-its-message-names",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "description": "Pins both definitions from dec:a-rule-computes-the-condition-its-message-names from both sides: a contradiction clears only under an ACCEPTED Decision governing BOTH endpoints (proposed resolves nothing, one side is not a ruling, the CONTRADICTS edge survives, the clearance is counted under suppressed_by_resolution); an anticipation clears only when its target arrived on its own terms or EVOLVES_INTO recorded work (an accepted Requirement is a need agreed, not met; a planned Capability is not built; a faced choice nobody made still fires).",
+    "location": "crates/reflow2-core/tests/a_rule_tests_the_condition_its_message_names.rs",
+    "name": "a_rule_tests_the_condition_its_message_names.rs",
+    "status": "realized"
+  }
+}

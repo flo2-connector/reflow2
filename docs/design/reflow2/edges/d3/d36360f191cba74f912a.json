@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:b208c3219a328c80d9da12545bb9bcd2105b71ba8d87b80887515ca62871684f",
+  "edge_type": "CHANGED",
+  "from_id": "chg:documentation-subsystem",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "sys:documentation"
+}

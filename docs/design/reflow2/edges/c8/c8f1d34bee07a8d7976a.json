@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:56950efd2dbd24c5af5295b5e2dcd7bc667c8bf36b132f011a2995c6366c2ee3",
+  "edge_type": "CHANGED",
+  "from_id": "chg:reflow2-owns-the-host-refusal-and-says-which-flag-2026-09-28",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cap:remote-sessions"
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:b2f1140b5f63a578ce2fd776988e11756b0f041a44707cfce7b507a10bf66b76",
+  "node_id": "chg:token-subset-pass",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "name": "The structural pass: a subset relation scoring cannot reach"
+  }
+}

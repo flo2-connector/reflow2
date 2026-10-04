@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:2c43897de748f9b142ec401b5abe6e7de992c3a8eb2ff3f8357369e01c76562f",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:test-a-recalled-reason-is-not-read-as-one-written-at-the-time",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:test-a-recalled-reason-is-not-read-as-one-written-at-the-time"
+}

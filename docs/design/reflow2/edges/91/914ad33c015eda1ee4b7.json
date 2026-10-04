@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:029edf5ad6fd58a7200fa6653bb05fe1d483cf0ae16ab64d0dbfc4284daa46d6",
+  "edge_type": "TRIGGERS",
+  "from_id": "fact:the-builder-reads-source-where-a-consumer-has-only-the-surface-and-find-tools-returned-the-negation",
+  "properties": {
+    "evidence": "That measurement is what prompted the question: a full day of work on the tool surface, every behavioural fact discovered by reading Rust, find_tools never called — then called, and returning the semantic opposite of what was asked."
+  },
+  "to_id": "dec:idea-a-tool-is-exercised-as-a-consumer-before-it-is-changed"
+}

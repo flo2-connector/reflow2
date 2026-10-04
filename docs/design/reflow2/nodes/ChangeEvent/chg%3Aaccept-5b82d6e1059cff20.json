@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:8afcbbea82b7cf2093436a32b31b35e823cbe7eae57de2edddc278d54b0e9025",
+  "node_id": "chg:accept-5b82d6e1059cff20",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "refactor",
+    "detected_at": "2026-09-14",
+    "name": "rustfmt only (CI Format gate); assertions unchanged.",
+    "subject": "system"
+  }
+}

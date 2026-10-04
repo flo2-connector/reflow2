@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:0d01a7995fb4ff52e2a2e92f3d1e4ea05df43cb0489ac798d89c6017765d5761",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:read-loop-hint",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:service"
+}

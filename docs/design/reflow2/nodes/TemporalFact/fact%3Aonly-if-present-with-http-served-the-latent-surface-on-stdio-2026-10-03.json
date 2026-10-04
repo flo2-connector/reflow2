@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:af354a209a2fe639b55daccb360c6885be9614f66ceed22f3210247300b3d908",
+  "node_id": "fact:only-if-present-with-http-served-the-latent-surface-on-stdio-2026-10-03",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "defect",
+    "name": "MEASURED 2026-10-03: --only-if-present --http ADDR where no design was started served the latent surface on STDIO, not at ADDR — a server started with stdin closed exited at once (\"failed to start the latent MCP server … connection closed: initialize request\") and nothing ever listened",
+    "source": "art:main",
+    "statement": "OBSERVED on main 293f957, scratch folder, isolated HOME: `reflow2-mcp --graph-path .reflow2/graph --only-if-present --http 127.0.0.1:0` with stdin closed exited 1 within 10 s, printing the latent banner and then \"Error: failed to start the latent MCP server / Caused by: connection closed: initialize request\"; no port was bound (measure-main.log; the_latent_surface_serves_the_transport_asked_and_prepares_the_design_it_starts failed there). EXPECTED: the latent surface at the HTTP address asked for. CAUSE, read in main.rs: the latent branch built LatentService and called .serve(stdio()) whatever transport the command line named — the BL-105 class (an explanation served on a transport nobody listens on). Found while serving the latent surface for --read-only over --http and --serve-shared (item 1c), which needed that branch to honour the transport; fixed in the same change.",
+    "subject_id": "cap:latent-surface",
+    "valid_from": "2026-10-03"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:32aa55a40606ad2ae6e276733088c3a4db484fb04ea6a258d0cbeef1361a49fb",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:idea-a-design-that-belongs-to-several-domains-at-once",
+  "properties": {
+    "authored_at": "2026-08-30T00:00:00Z",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

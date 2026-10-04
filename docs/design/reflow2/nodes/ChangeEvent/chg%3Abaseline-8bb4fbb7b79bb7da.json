@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:42f6bcad1eb3fda647f44edb2c00d28504101c0950c6dd849fde035c90596d3f",
+  "node_id": "chg:baseline-8bb4fbb7b79bb7da",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "baseline_established",
+    "detected_at": "2026-09-01",
+    "name": "First baseline, written during the v0.46.0 cut.",
+    "subject": "record"
+  }
+}

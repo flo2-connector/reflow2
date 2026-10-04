@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:1d2d11eee526ed9d17b7d03dea2bed9039e58317af3d24cd828cdc8308bfc5d2",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-sweep-says-what-it-could-not-have-found",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "art:sweep-coverage-test"
+}

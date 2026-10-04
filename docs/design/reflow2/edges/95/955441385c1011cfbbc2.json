@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:9100952a52abe6922f89ad40b9b5de8d3b58a71cfb1984707e484e479f4c2f3a",
+  "edge_type": "CAUSES",
+  "from_id": "ver:a-reply-is-sent-once",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "The check that owns this invariant asserts it on ONE tool. tests/reply_is_sent_once.rs seeds a design and calls detect_gaps, then asserts the text block is smaller than the payload and names structuredContent. It never asks the other 190 tools, so a second reply-builder living in tools/skills_tools.rs stayed green for 28 days while six tools kept the shape the change was written to remove. The crate already enumerates the served surface for a dozen other properties, which is why the scope of this one is the cause rather than an accident: fixing the helper alone would have left the class open, and a surface-enumerating check would have failed on the day PR #304 landed.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:six-tools-still-send-the-payload-twice-because-the-reply-shape-is-pinned-by-instance-and-not-by-enumeration"
+}

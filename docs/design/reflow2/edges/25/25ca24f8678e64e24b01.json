@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:cda31204699fd463145dcac9a0adae7abcaf06d5cc7c9b3f37c97a29440d1672",
+  "edge_type": "EVOLVES_INTO",
+  "from_id": "dec:idea-should-the-contract-be-readable-in-session-and-ship-with-the-artifact",
+  "properties": {
+    "evidence": "Promoted 2026-09-20 on Anthony's word ('Agree with all your recommendations'). Option chosen: Both halves, shipping first because it is a line in a workflow; the in-session half as a tool that pays only when asked, rather than widening every catalogue reply."
+  },
+  "to_id": "req:the-contract-ships-with-the-artifact-and-is-readable-from-a-session"
+}

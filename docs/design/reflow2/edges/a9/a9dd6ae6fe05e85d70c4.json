@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:32a6f153171b685183e14110ec32d8512f4929ebf3d499fd7fa11daea04d6918",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:a-design-says-which-vocabulary-it-has-never-used",
+  "properties": {},
+  "to_id": "req:declared-vocabulary-is-reachable-from-the-surface"
+}

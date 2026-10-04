@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:873c647eb21a9df37face92790c7ec8dfec016685e8c4a658a91b231262bdaab",
+  "node_id": "chg:accept-60bbb0d5189f7e2e",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "refactor",
+    "detected_at": "2026-09-22",
+    "name": "Reshaped after registration: evidence stated once in a catalogue (the first real run was 2.1 MB), multi-anchor fix, doc wording.",
+    "subject": "system"
+  }
+}

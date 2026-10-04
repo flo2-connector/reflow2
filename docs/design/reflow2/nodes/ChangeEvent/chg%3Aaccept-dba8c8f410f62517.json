@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:52dadded6cb6d5eef18463cc251ea4159a78628a7a376da7b4ff427720e134dc",
+  "node_id": "chg:accept-dba8c8f410f62517",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "refactor",
+    "detected_at": "2026-08-17",
+    "name": "A backlog row's reference to the renamed category; the plan itself is unchanged.",
+    "subject": "system"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:b2aec0a7c16e368f9befdd42e7e77e180eaa8eeffef66a1fc886e4c95a57e526",
+  "node_id": "art:test-a-project-declares-its-unit-system-and-the-sweep-reports",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "test",
+    "description": "Seven cases over unit_system_undeclared, quantity_without_unit and unit_outside_declared_system, with set_design_rule_units and set_interface_units. The enforced-rule case asserts the finding gets louder, not that it changes kind.",
+    "location": "crates/reflow2-core/tests/a_project_declares_its_unit_system_and_the_sweep_reports.rs",
+    "name": "a_project_declares_its_unit_system_and_the_sweep_reports.rs — the three sweep findings pinned, including that nothing to run on raises nothing rather than reading clean",
+    "status": "realized"
+  }
+}

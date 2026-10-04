@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:6cdd1e06882cbea0ece6ba856f0ad1d16d99e6802fd8417f3f6c9770287513f7",
+  "node_id": "req:the-loop-can-say-what-this-session-owes",
+  "node_type": "Requirement",
+  "properties": {
+    "lineage": "original",
+    "name": "The loop can say what THIS session owes, so a mature design's standing debt does not drown the debt just created",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "`loop_status` must be able to answer \"what did THIS session introduce\" as well as \"what does the design owe\", so that on a mature graph the stop nudge stays actionable instead of reporting the same large numbers every time.\n\nTHE OBSERVATION IS carried on `fact:alex-grok-0240-feedback-triaged-2026-08-16`; this is the intent behind fixing it.\n\nTRIPLE-CORROBORATED, INDEPENDENTLY, WHICH IS RARE HERE. Alex asked for it twice — his §3.3 on 0.24.0 (\"always dirty on mature graphs — agents ignore or thrash\") and again in his 2026-08-14 Opportunities as a \"loop_status session mode\". dev_storyflow reached the same place from the other direction. And it was reproduced first-hand: across an entire working session on 2026-08-16, `loop_status` reported the IDENTICAL 80 unsurfaced gaps and 16 structural defects from the first call to the last, through four merged PRs and two releases. The only way to say anything useful was to compute the delta by hand and report \"unchanged from session start\" each time.\n\n⚠️ THE FAILURE IS BEHAVIOURAL, WHICH IS WHY IT MATTERS MORE THAN IT LOOKS: a number that never moves stops being read. That is the signal-trained-to-be-ignored failure this project has named elsewhere, arriving on the tool whose whole job is to say what is owed.\n\nDISTINCT FROM THE PER-CONTRIBUTOR SCOPING THAT ALREADY EXISTS: `loop_status(contributor_id)` answers \"what needs THIS PERSON\", which is a different axis and does not help a solo session on a mature graph. This is scoping by WHEN, not by WHO.\n\nNOT DECIDED: what defines a session boundary in a design that has no clock and no session identity — the honest candidates are \"since a named epoch\", \"since the last export\", or a caller-supplied baseline, and the first two are computable from what the graph already holds while the third is not. Alex's own phrasing was \"debt introduced this session\"; he did not say how the boundary is drawn either.",
+    "status": "proposed"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:73ec9b8b99b3a368c6dfb7bed582420b5b9ccad0b3e6c7d9b1e1e9d6e65a1ec0",
+  "node_id": "req:a-projects-first-session-leaves-the-adapter-in-place-whichever-route-reached-reflow2",
+  "node_type": "Requirement",
+  "properties": {
+    "lineage": "original",
+    "name": "A project's first session with reflow2 leaves the thin adapter in place — the pointer file, registered — whichever route reached the server, and the server never writes into a repository itself",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "Anthony, 2026-09-19, on finding that flo2, SeattleArch and bhome carried no pointer file and mostly no hooks because they reached reflow2 through the user-scope registration and reflow2_init never ran: 'can get_instructions pass the text to the agent and say put this in AGENTS.md on /genesis or /adopt?' The pointer the init installs is served (get_instructions, section `pointer`), and the two first-session skills say: no instruction file → run `reflow2 init .` when the kit is present on the machine (pointer, hooks, MCP config), otherwise write the served pointer as AGENTS.md (REFLOW2.md beside an existing one) and register it as the adapter the way adopt already does. The agent does the write on that instruction; the server writes nothing into a repository unasked. Serves req:a-repos-procedural-know-how-is-delivered-at-the-step-it-bears-on-and-the-design-knows-the-adapter-exists, which expects the adapter to exist and be registered.",
+    "status": "accepted"
+  }
+}

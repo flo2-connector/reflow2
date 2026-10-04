@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:eca6b60b52eb983e669da096122bb650d4a360e5cbe8721dc19ffcb31f24576b",
+  "edge_type": "SCHEDULED_FOR",
+  "from_id": "cap:the-systems-interface-and-functionality-views-are-rendered",
+  "properties": {
+    "modality": "expected",
+    "recorded_at": "2026-08-30"
+  },
+  "to_id": "epoch:the-systems-views-are-rendered-from-the-graph"
+}

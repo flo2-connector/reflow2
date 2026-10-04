@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:3cac29e3849657a716a7e52971552a92dfa40c58baea9db7ac0cb04fde4b665b",
+  "edge_type": "CAUSES",
+  "from_id": "fact:a-revising-write-that-shrinks-a-field-reports-nothing-and-two-load-bearing-paragraphs-were-lost",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "The measured losses are what put this question on the table.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "dec:idea-should-a-revising-write-say-what-it-removed"
+}

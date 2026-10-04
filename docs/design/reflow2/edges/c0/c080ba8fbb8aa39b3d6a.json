@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:6ddae6e05b85e41841a436418d159e35f04e696fa700f03f6809c33c81d6b26b",
+  "edge_type": "CHANGED",
+  "from_id": "chg:kpp-proposal-built",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:budget"
+}

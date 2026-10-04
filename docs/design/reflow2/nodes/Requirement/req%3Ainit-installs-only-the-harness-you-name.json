@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:75d25512bdb94c8d780264fe1d8b1cd065e783d6e9e4b809d33a8ee1111c1422",
+  "node_id": "req:init-installs-only-the-harness-you-name",
+  "node_type": "Requirement",
+  "properties": {
+    "lineage": "original",
+    "name": "The install asks which agent harness this project uses, and writes harness-specific files for that one only",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "`init` asks which agent harness(es) will open this project and installs the harness-specific files for those alone, instead of writing every supported harness's configuration unconditionally. The harness-neutral half of the install is unaffected and always written: the instruction file, the committed design export, the ignore rules and the merge attributes.\n\nTHE ANSWER MUST BE SUPPLIABLE WITHOUT A PROMPT, and this is part of the requirement rather than a refinement of it. A non-interactive caller — CI, a scripted install, an `adopt` run — must be able to name the harness on the command line, and a run with no tty must never block waiting for an answer. An install that hangs in CI is a worse defect than the one being fixed.\n\nTHE PROMPT MUST NOT BE THE ONLY WAY TO CHANGE THE ANSWER. `init` is re-runnable, and a project that later adds a second harness must be able to say so and get that harness's files without reinstalling or hand-editing.\n\nWHY ASKING RATHER THAN DETECTING, since the cheaper option was available and rejected: a brand-new repository carries no evidence of which harness will open it, and that is precisely when `init` runs. Inferring from what is present therefore guesses, and a wrong guess is SILENT — the user receives a configuration their tool never reads, with nothing to indicate anything is missing.\n\nRaised by Alex (`who:alex`) 2026-08-14 as a first-run report on a real work project; settled by Anthony the same day on `dec:idea-init-asks-which-harness-and-installs-only-that`, over a recommendation to detect instead.",
+    "status": "proposed"
+  }
+}

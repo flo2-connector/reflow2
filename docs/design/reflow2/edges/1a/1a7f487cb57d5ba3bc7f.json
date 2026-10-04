@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:3dee1a82b829ef6443264a2027f59bfc7d14547a2986cca9096c9c7c57c6d491",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-dangling-reference-is-detected-on-its-own-terms",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:proposed-asserts-nothing-test"
+}

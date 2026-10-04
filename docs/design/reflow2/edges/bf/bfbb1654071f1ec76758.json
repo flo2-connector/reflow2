@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:06c2f1837b3b96c9a5a932c7127b2e1d084af0daa67355ac669a13eac24f6d33",
+  "edge_type": "REALIZES",
+  "from_id": "art:detect-and-ask-skill",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:the-loop-holds-the-invitation"
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:7a98c9020279c71773035aa837d823e336f4601ca974f2765eec55f1616cba95",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:a-revising-write-says-whether-the-state-survived",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:temporal"
+}

@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:85d407b0478594253641589f4cb04c4e177700cf41dac917146fe569656234aa",
+  "node_id": "ver:a-number-names-its-source",
+  "node_type": "Verification",
+  "properties": {
+    "description": "crates/reflow2-mcp/tests/a_number_names_its_source.rs — three cases; reach is the point, since each of these would otherwise be a property the core reads and no tool can write.",
+    "kind": "verification",
+    "last_reconciled_at": "2026-09-23",
+    "last_reconciled_outcome": "passed",
+    "last_run_at": "2026-09-17",
+    "name": "The served surface can say where a number came from: a limit's basis, source and date on add_constraint; a contribution's source on constrains; a fact's source on record_finding",
+    "status": "passing"
+  }
+}

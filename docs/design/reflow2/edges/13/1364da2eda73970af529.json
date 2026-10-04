@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:6b6836c18b4e398c2f1330ed38a8655b79674de793ec1920b088fe4543f4fedf",
+  "edge_type": "EVOLVES_INTO",
+  "from_id": "dec:idea-what-belongs-in-the-graph-and-what-belongs-in-an-agents-memory-and-why-the-rule-keeps-losing",
+  "properties": {
+    "evidence": "Promoted 2026-09-19 on his word: options (a) and (b); (c) and (e) dropped, (d) kept unbuilt and named in the requirement."
+  },
+  "to_id": "req:a-lesson-lands-in-the-cheapest-correct-place-and-the-rule-saying-so-arrives-at-the-step"
+}

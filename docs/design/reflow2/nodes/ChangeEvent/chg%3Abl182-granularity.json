@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:9ce6e1b6f01a84a73b77070b46f49abca43cba8ffb13f69280b729ea6dfcb19c",
+  "node_id": "chg:bl182-granularity",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "name": "reflow2 gains a reading that would have surfaced service.rs on its own — Anthony's constraint was that the finding be reflow2's, not his eye's, and his objection that 'avoid monoliths' is subjective is what narrowed it to a record-vs-record disagreement"
+  }
+}

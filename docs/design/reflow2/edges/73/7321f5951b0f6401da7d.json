@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:6a1b62b60042c581122d67d9622faff36d4507a3f4e8846930f0df9a0f0d0969",
+  "edge_type": "CHANGED",
+  "from_id": "chg:decision-status-gains-deferred",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:tools-exchange"
+}

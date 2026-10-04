@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:d670057ed9871a7bf10ccad2dc8e87c6f15994b29f07040697106ab20a5a5105",
+  "node_id": "cmp:budget",
+  "node_type": "Component",
+  "properties": {
+    "kind": "module",
+    "level": "component",
+    "name": "budget",
+    "provenance": "authored",
+    "purpose": "The budget module.",
+    "status": "planned",
+    "tier": "operational"
+  }
+}

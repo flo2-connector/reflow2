@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:bda8cb73fce5fed0eb0283ff0f60010a3946b343ad0d6f7f7ab8ea0ba9f407aa",
+  "edge_type": "VIOLATES",
+  "from_id": "fact:root-cause-the-opt-in-was-finished-by-a-client-command-and-the-latent-process-never-grew-the-surface",
+  "properties": {
+    "evidence": "The opt-in rested its last step on a client's slash command, which that rule puts outside the line; the rule is advisory by the owner's choice, so this is recorded as a violation found by a walk, not as a gate failure."
+  },
+  "to_id": "rule:mcp-and-the-graph-are-the-only-common-ground"
+}

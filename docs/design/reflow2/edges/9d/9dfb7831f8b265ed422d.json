@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:5a9d9ac0250f5c549debb1a9b2af2ef69bcb7012d3916879bd4e188b3cce0a6f",
+  "edge_type": "CAUSES",
+  "from_id": "cap:scoped-analysis",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "`impact_neighbors` (propagate.rs) called `self.outgoing(id, None)` and `self.incoming(id, None)` per VISITED node — two store prefix scans each — and `design_regions` runs one walk per Project and Component over regions that overlap. Counted on the wire 2026-09-11 with `full: true`: 108 walks produced 4,502 node visits over 589 DISTINCT nodes, a 7.6x redundancy factor, and the tool's own coverage block independently reports 589 of 846 covered nodes lying in more than one region. At the measured ~4 ms per visit (230–255 ms for ~60-node regions, against 5 ms for a zero-edge seed, which bounds fixed per-call overhead) that is 18.0 s of the 21.6 s spent walking. Reading every edge in ONE prefix scan of the outgoing column family — its keys are prefixed by graph id — and serving every visit from that index took `propagate_from` from 250 ms to 60 ms warm and `design_regions` from 29.6 s to 12.5 s, which matches the ~11 s the redundancy arithmetic predicted.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:a-traversal-re-read-the-same-adjacency-7-times-over-because-region-walks-overlap"
+}

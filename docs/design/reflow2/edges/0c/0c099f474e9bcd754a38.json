@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:c311802502bda2c9846ae0a8453592e1bf06b90e0ab301eaf227bfbc731427b5",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-composed-prompt-serves-its-pieces",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:tools-ask"
+}

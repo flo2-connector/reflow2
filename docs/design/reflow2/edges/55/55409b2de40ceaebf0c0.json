@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:32b68d93bfab11e885282c2e3c888b2d6a10cccef8c18d213359adc33793e6f2",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:schema-core",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:schema-core"
+}

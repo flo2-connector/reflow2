@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:540b142c6f26f6e979dcca7f2e1623d09a21a8348911eb482cf0cb5d3deb7d49",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:test-orientation-needs-nothing-to-start",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:test-orientation-needs-nothing-to-start"
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:ef4a59b2048cb302130de8a87559ce82401de647cc71f61449e1c6395082405d",
+  "edge_type": "CAUSES",
+  "from_id": "dec:idea-the-near-match-repair-can-now-be-reopened-because-the-count-exists",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "This accepted decision chose option ① — \"suppress the named pairings, keep every other cross-type check\" — so any cross-type pair not on PRESCRIBED_LAYER_PAIRS refuses by default; TemporalFact↔Capability was never listed, and measured on 0.72.0 the same finding refuses Capability/Requirement/DesignRule/Component and is only a note for the one listed Decision pair.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:root-cause-a-dated-finding-blocks-four-intent-constructors-because-an-unlisted-cross-type-pair-refuses-2026-09-28"
+}

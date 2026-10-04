@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:41d5615599db4ba55cc6ed35e629530f4c562386cf7d403e9e38b7d84200df9d",
+  "edge_type": "REALIZES",
+  "from_id": "art:closure",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:closure-report"
+}

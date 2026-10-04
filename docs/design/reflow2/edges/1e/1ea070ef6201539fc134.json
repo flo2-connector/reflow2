@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:c704e8abee298697388b19ab1322ba045ca47d665750291bf9e25f6c2761f38d",
+  "edge_type": "MITIGATES",
+  "from_id": "chg:write-buffer-gets-an-index-and-hydrate-drops-tenfold",
+  "properties": {
+    "confidence": 0.9,
+    "evidence": "The hazard this idea carried was hydrate cost: with the store gone, every session pays a rebuild, and that was 8,828 ms when the question was first recorded — enough to make the idea unusable for a design this size. The write-buffer index removed the cause (a linearly-scanned Vec, not storage), and load to fully searchable is now 1,098 ms with the full-text index built in RAM. The change did not decide the question; it removed the objection that would have decided it the other way."
+  },
+  "to_id": "dec:idea-does-reflow2-need-a-byte-store-at-all-or-only-durability"
+}

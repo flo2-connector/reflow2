@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:c3f45368625ce2d922f2baef0584bd15f9e44418c61f0a366eda9d078eb29b5f",
+  "edge_type": "REALIZES",
+  "from_id": "art:reflow2-bin",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:the-gate-list-is-run-not-only-cross-checked"
+}

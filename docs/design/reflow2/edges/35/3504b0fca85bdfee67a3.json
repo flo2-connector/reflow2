@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:dbb5771deb68cf458d6582afc939f33c902408d1ee124fc083827afb27b7c9e2",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:test-schema-parsed-once",
+  "properties": {
+    "covers": "whole",
+    "note": "migrated 2026-09-22 from a REALIZES link_artifact drew in error"
+  },
+  "to_id": "ver:graph-construction-is-setup"
+}

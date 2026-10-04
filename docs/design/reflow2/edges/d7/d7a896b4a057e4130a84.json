@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:7e47313fde981b9897c2089fd64bb121ed86ed9dc5ece4d78b3b86aaec5c1ded",
+  "edge_type": "GOVERNED_BY",
+  "from_id": "req:a-comparison-discloses-build-skew",
+  "properties": {},
+  "to_id": "dec:fix-the-comparison-before-pointing-it-earlier"
+}

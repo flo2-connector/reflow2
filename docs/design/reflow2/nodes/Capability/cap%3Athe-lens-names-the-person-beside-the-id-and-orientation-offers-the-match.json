@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:6c6a99c435e28878114d2b594d9120aab026af7a14d1320ae12099350d1bb47f",
+  "node_id": "cap:the-lens-names-the-person-beside-the-id-and-orientation-offers-the-match",
+  "node_type": "Capability",
+  "properties": {
+    "description": "Two legs, on Anthony's word 2026-09-14 (\"two legs and no more\"). LEG 1, the served reply: ReaderLens carries each person's name; lens_line renders \"who:ajs (Anthony Sligar)\" for both the recorded and the askable lists, so the sentence that already rides get_skill, list_skills and loop_status gives the agent the join it needs against the git author it can see. No email or other identity signal is recorded; names are already in the public export. LEG 2, the orientation skill's reader step: with more than one background recorded, match the git author to a recorded name, offer it in one sentence (\"assuming you are AJ — if not, tell me who you are and your background\"), do not ask again that session, and attribute what is captured to the same person. A lint contract (READER_CONTRACT) keeps the clause stated. Pinned by the_lens_names_the_person_beside_the_id.rs (four tests) and three lint checks, each observed failing first. Deliberately not built: the seat does not record the reader; a stated assumption plus a name on every lens line keeps a wrong guess visible without session state.",
+    "name": "The lens line names each recorded person beside their id, and orientation offers the git-author match as an assumption when more than one reader is recorded",
+    "provenance": "authored",
+    "status": "realized",
+    "tier": "operational"
+  }
+}

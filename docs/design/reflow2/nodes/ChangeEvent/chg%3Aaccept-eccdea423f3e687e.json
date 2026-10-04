@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:14a88e36bdb74709bacd4d5e2d4c31c0fe92d59f8baefe938abdca27caa35b7c",
+  "node_id": "chg:accept-eccdea423f3e687e",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "refactor",
+    "detected_at": "2026-07-21",
+    "name": "Freshness examination 2026-07-21: file checksum unchanged since registration (as-built == as-designed); capability carries passing verification. No drift; design holds."
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:1fa43d1cbe0ec23b89ea0d977582e8936e2c1f03b58ad7d79ca093288e710c23",
+  "node_id": "question:90a90e90df05c31a",
+  "node_type": "Question",
+  "properties": {
+    "answer": "\"Go with your recommendation on all points\" (Anthony, 2026-07-25). The recommendation had two halves. First: yes, publishing is real intent — being able to show his brother a design without handing over the repo is the strongest single argument on the hosted side. Second, on what \"contribute\" means: PROPOSE-THEN-ACCEPT, not direct write. A named collaborator can read the design and put intent to it, and the owner accepts it — reach is not authorship, and a design brain whose whole loop is ask-the-human-and-record-the-decision should not let a second person's word enter as the first person's. Also waits on dec:central-host for the mechanism.",
+    "asked_at": "2026-07-25",
+    "context_setter": "Nothing satisfies requirement “Someone without the repo can reach a design, read it, and contribute to it”",
+    "gap_id": "gap:90a90e90df05c31a",
+    "question": "You said it would be cool to publish reflow2 and storyflow somewhere your brother could reach them and comment on your ideas without cloning your code. Is that a real requirement you want reflow2 to meet — someone you name can open your design, read it, and add intent to it — or is sharing the repo good enough for the two of you? If it is real, does contributing mean writing into your design directly, or proposing something you then accept?",
+    "rephrase_degraded": false,
+    "status": "answered"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:df67aa63a47af782c5bc904b72ad99ce8e91c73a9d3578c576f506aae233a310",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:skills-catalog",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:skills-catalog"
+}

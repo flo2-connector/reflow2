@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:02ae61d5106ac59e7a183bfc88bd5bb84870e88295487aa33c23daededdd8782",
+  "edge_type": "EVOLVES_INTO",
+  "from_id": "dec:idea-is-one-toolchain-on-one-os-a-wide-enough-gate",
+  "properties": {
+    "evidence": "Anthony promoted this idea on 2026-09-21 as option (a), pin the toolchain, so the question grew into that requirement; the scheduled floating-stable run and the matrix stay unpromoted on this node."
+  },
+  "to_id": "req:the-builds-toolchain-is-pinned"
+}

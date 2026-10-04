@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:3503d1b873f0391ccc4bd62c43fcd5c243362b5d6e9f48cf9c52aa2fb67b1b18",
+  "node_id": "req:a-seat-learns-the-record-moved-before-it-writes",
+  "node_type": "Requirement",
+  "properties": {
+    "lineage": "original",
+    "name": "A seat learns the shared record moved when it ORIENTS, not when it writes",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "When another contributor's work has arrived in the shared design record and this graph has never seen it, the seat is told so at the point it orients itself — not at the point it tries to write, hours later.\n\nWHY THE MOMENT IS THE REQUIREMENT AND NOT AN ERGONOMIC PREFERENCE: the signal already existed and was already correct. `provenance::last_synced` was maintained by both the export and import paths, and `sync::assess_overwrite` already turned it into a three-way verdict. It was consulted in exactly one place — inside `export_graph`. So the design knew at the first moment of a session and spoke at the last, by which point the session had done its work against a record it did not know had moved.\n\nWHAT SATISFYING THIS MUST NOT COST: silence during ordinary work. A seat that is merely AHEAD of the record — unexported work in progress — is the normal state of every working session and must never be reported, or the signal is ignored inside a week. The distinguishing test is whether the RECORD moved, not whether the two differ.\n\nAND IT REPORTS RATHER THAN ACTS: taking the arrived work in is an upsert over live session state, so it stays the human's call.\n\n⚠️ WORDING IS AN AGENT'S DRAFT. Anthony chose the MECHANISM (option A, 2026-08-11) and directed the build; he has not ruled on this statement's text, which is why this sits at `proposed`.",
+    "status": "proposed"
+  }
+}

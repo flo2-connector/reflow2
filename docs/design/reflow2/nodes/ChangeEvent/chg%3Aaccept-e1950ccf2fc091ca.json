@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:3f23c7200dcaf682731263949efd58de7830d8fc07544da7d15d9052e15c185f",
+  "node_id": "chg:accept-e1950ccf2fc091ca",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "documentation",
+    "name": "Increment 434 follow-up from CI on PR #489: create_edge.edge_type's new description read \"`from`/`to`\", which the toolsnap enum-drift heuristic takes as a hand-listed value set with no published enum. Reworded to \"`from` and `to`\" — the description says the same thing; no behaviour moved. Caught by CI, not locally: the toolsnap re-bless (--update) does not run the drift check.",
+    "subject": "system"
+  }
+}

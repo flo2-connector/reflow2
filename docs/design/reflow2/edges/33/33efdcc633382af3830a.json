@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:ff929e98aab35e97a65644a5e0bbdbcd466314f0a129516a57b7840b9e4dacb3",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:test-every-open-store-shares-one-memory-budget",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:test-every-open-store-shares-one-memory-budget"
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:55bdeddc4ec21ec3fcdc5f8d0a59c9b250afa1f0eef4eed52a430d92545de6a4",
+  "node_id": "chg:2026-09-22-a-published-promise-carries-its-evidence",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "name": "export_surface carries the checks for what it published, and the report names which ones left",
+    "repair": "corrected_cause",
+    "subject": "system"
+  }
+}

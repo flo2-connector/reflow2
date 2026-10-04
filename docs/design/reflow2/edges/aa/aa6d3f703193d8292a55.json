@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:ef164884a8e8efb988b951a4d7785ba83539887a95e3fad48737ff7f957ca6b2",
+  "edge_type": "CONTRADICTS",
+  "from_id": "req:framework-is-chosen-not-defaulted",
+  "properties": {
+    "alignment": "supporting",
+    "confidence": 0.9,
+    "evidence": "Corroboration, not conflict. The original reflow independently reached the same rule and wrote it as LESSON-01 of 00b-framework_selection.json — 'Do NOT default to UAF!' — with the reason that framework choice GATES which analyses are available, so a silent default chooses the analyses too. reflow2's Project.domain is that decision reduced to unread free text."
+  },
+  "to_id": "req:defaults-do-not-assert"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:a3e404cbf3103a23cf219abb3c721cc5102a74734bd724fe05bc92ace7620f27",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:test-loop-nudge",
+  "properties": {
+    "covers": "whole",
+    "note": "migrated 2026-09-22 from a REALIZES link_artifact drew in error"
+  },
+  "to_id": "ver:skill-loads-are-counted"
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:eee8fb20af3ed5921aaa8583b97655f63ef731402a7846d13f06207f0e64fabe",
+  "node_id": "art:client-setup",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "location": "crates/reflow2-mcp/src/client_setup.rs",
+    "name": "client_setup.rs — `reflow2-mcp setup`: the settings file, the OS keychain, checking a key against the server, and the key `--remote` carries",
+    "status": "realized"
+  }
+}

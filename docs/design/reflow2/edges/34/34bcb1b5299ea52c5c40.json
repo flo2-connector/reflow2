@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:abf9962cebf60680f4c2d74d91fc7f1e6a02c5ea7a258320834c19ae0ff63e52",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:exploratory-staging",
+  "properties": {
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "dec:idea-does-a-capability-need-a-cancelled-state"
+}

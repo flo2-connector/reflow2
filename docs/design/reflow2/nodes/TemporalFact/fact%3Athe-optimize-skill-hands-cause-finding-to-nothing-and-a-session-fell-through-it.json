@@ -1,0 +1,17 @@
+{
+  "content_hash": "sha256:3c0298ffb8827c37dac1ab1e8dc895f1f5446f59564d4d9c33f6dd7cd8aaa7e1",
+  "node_id": "fact:the-optimize-skill-hands-cause-finding-to-nothing-and-a-session-fell-through-it",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "confidence": 0.9,
+    "fact_type": "defect",
+    "name": "The optimize skill's step 3 says \"find the cause by measuring, never by guessing\" and hands off to nothing — a session ran four ad-hoc hypotheses under it before Anthony pointed at /root-cause",
+    "statement": "ANTHONY'S CORRECTION, 2026-09-12, mid-investigation: \"Should be able to do /root-cause on any of these investigations.\" What he had watched: under /optimize, investigating why loop_status cost 12 s, the agent formed and tested four causes in a row (debug binary, shared transport, store compaction, the instrument) without opening the root-cause skill — the exact pattern that skill's own text records its author falling into \"one hour after writing it\". Every hypothesis WAS measured and falsified, so the work was not wrong; it was unstructured, and step ② (search the design for a precedent) was skipped — a prior finding that \"the store is not why\" (fact:the-orientation-reads-cost-ten-seconds-and-the-store-is-not-why) surfaced only later, from propagate_change.\n\nTHE SEAM: record_finding's description DEMANDS the root-cause skill before a cause is written, and that demand is what eventually caught the session. optimize's step 3 — \"Write the hypothesis down, then design the cheapest experiment that could falsify it\" — is root-cause's steps ③-⑤ restated, with no hand-off to the skill that holds them. So the moment the trigger fires (\"that's odd\", \"it must be X\") is inside a skill that describes the discipline without invoking it. The fix shape is the one 438 built for tools: the hand-off belongs IN the step, not in a catalogue (req:a-discipline-is-delivered-at-the-tool-not-in-a-catalogue).\n\nNOT ESTABLISHED: whether the same seam exists in other skills that contain an investigative step (check-health's \"what is wrong here\", impact-check's \"what rotted\"). Only optimize was measured, once.",
+    "steps": [
+      "optimize"
+    ],
+    "subject_id": "cap:optimize-skill",
+    "valid_from": "2026-09-12"
+  }
+}

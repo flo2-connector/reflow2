@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:9886f5a5332099b43b7de86b4d622c6304d92cac6d0dd174cd60a60ce240478c",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0780",
+  "properties": {
+    "as_checksum": "sha256:4d4c44f5af2705a7d94cf0b3d9c703e72e9ab027197ffcbf72f1483c389d7933"
+  },
+  "to_id": "art:run-ci-gates"
+}

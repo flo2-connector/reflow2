@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:e7517428c5a5b7f240cb6c59bc73fb0df006a06c9074e4ccb508bb9451e1a9b6",
+  "node_id": "question:af1c8f6df524e2dd",
+  "node_type": "Question",
+  "properties": {
+    "answer": "Yes — when reflow2 puts a question to the user, the assistant should say what it would do and why, while leaving the decision to the user. (Anthony, 2026-07-31.)",
+    "asked_at": "2026-07-31",
+    "context_setter": "Nothing satisfies requirement “A gap put to the user arrives with the agent's recommendation — recommending is not deciding”",
+    "gap_id": "gap:af1c8f6df524e2dd",
+    "question": "When reflow2 asks you a question about your design, should the assistant also tell you what it would do and why — while still leaving the decision to you — rather than just asking and waiting?",
+    "rephrase_degraded": false,
+    "status": "answered"
+  }
+}

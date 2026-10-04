@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:874c9b8f70277e1dee4184d719c7a04dac421f57fd536d7c585d648afc6d61b3",
+  "edge_type": "YIELDED",
+  "from_id": "frag:alex-2026-08-14-remainder",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "fact:defect-add-decision-hints-lands-proposed-on-a-write-that-left-it-accepted"
+}

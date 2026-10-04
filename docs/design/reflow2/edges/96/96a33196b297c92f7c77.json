@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:516a8a9f1d45e2ee80ff1753ce2ba4b024946d1cd7a5bd3e9b034486efad7592",
+  "edge_type": "HAS_SNAPSHOT",
+  "from_id": "art:registry-http",
+  "properties": {},
+  "to_id": "snap:epoch:preserved-on-write:art:registry-http"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:8bea59e4dc0534ba686d96466a3b6909b510fc5b1858e12dce8586037050b3ce",
+  "edge_type": "INVALIDATES",
+  "from_id": "chg:an-import-knows-its-own-age-and-a-server-behind-its-record-says-so",
+  "properties": {
+    "at": "2026-09-15",
+    "note": "The cause the measurement named — an older binary importing a newer record with no version comparison, and no report of what it wrote — is closed at the operation: import refuses a newer document unless accepted, reports what it materialised, and a server behind its record says so on every loop_status. The 853 edges themselves were already reverted in the record; this claim is about the class recurring."
+  },
+  "to_id": "fact:root-cause-the-853-is-an-older-binary-writing-the-old-role-default-onto-a-newer-document-not-the-export-leaving-a-default-implicit"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:b7f50a129e63b7f5f37ccf8a54bda80c270c8ed8b202e21121848963219561b0",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-stored-twin-has-one-authority",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:smoke-mcp"
+}

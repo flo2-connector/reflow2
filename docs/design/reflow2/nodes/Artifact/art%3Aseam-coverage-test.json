@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:4b8e7ee0c422cd5110f33aad69cb689ccd392d15375a3641a5b3710d77e49085",
+  "node_id": "art:seam-coverage-test",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "location": "crates/reflow2-core/tests/seam_coverage.rs",
+    "name": "seam_coverage.rs",
+    "status": "realized"
+  }
+}

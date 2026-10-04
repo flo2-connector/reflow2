@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:daeea17d2cfa6e0ae6040c90bda3faff57b99af5d9f07367b9a62d98de8a3914",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-saved-design-moves-to-the-item-layout-2026-10-03",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:f8f3397b33e62a4d96b28cc2dc7f0eca75949fcb1d290dd4036e46afb37d211f"
+  },
+  "to_id": "art:test-a-taxonomy-is-decided-once-before-bulk-capture"
+}

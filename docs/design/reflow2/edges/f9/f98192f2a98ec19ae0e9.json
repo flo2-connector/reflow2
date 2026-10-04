@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:9e9c71d15576bce3e18ffd562bd06c57316cb118717568192b03cfbc34615647",
+  "edge_type": "MITIGATES",
+  "from_id": "dec:idea-depth-is-derived-from-fan-out-not-declared-by-a-ladder",
+  "properties": {
+    "evidence": "One is a hazard, the other answers it. That measurement found declared level and spine position returning different sets, with no way to say which is right. A fan-out rule gives an INDEPENDENT third signal that is neither: 101 components under one parent is a finding whether or not anyone declared a level, and it is the same finding under either reading. It does not resolve which source is authoritative — it removes the need to pick one in order to say something useful."
+  },
+  "to_id": "fact:the-black-box-tier-has-two-answers-that-disagree"
+}

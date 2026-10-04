@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:b5ca541939ff12f06515c53ecc38ee17db86be88f925b96cf890b8987dcb043b",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-saved-design-moves-to-the-item-layout-2026-10-03",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:655672e9914e77ec51e21e9804d35ce5356351a1859591458a042945c58435fb",
+    "checksum_basis": "measured"
+  },
+  "to_id": "art:triage-feedback-skill"
+}

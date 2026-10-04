@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:2b2d59e73ee520e7d919ac24576b686cb8f85c2ce1ae523d556215bb02a1fdeb",
+  "edge_type": "INVALIDATES",
+  "from_id": "chg:get-node-with-a-node-type-says-why-an-id-is-absent-2026-10-03",
+  "properties": {
+    "at": "2026-10-03",
+    "note": "The typed absent path carries empty_because, and empty_speaks.py now probes optional parameters and passes."
+  },
+  "to_id": "fact:get-node-given-a-node-type-answers-an-absent-id-with-a-bare-null-2026-10-03"
+}

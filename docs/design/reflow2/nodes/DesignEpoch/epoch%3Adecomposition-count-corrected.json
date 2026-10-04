@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:078b1fd4b41b7a1bcd5d91deb80e57cca810e1db18208d0f3e75170c092236a1",
+  "node_id": "epoch:decomposition-count-corrected",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "epoch_type": "revision",
+    "name": "The functional-decomposition decision catches up with the eighth system it gained after it was written",
+    "sequence": 260,
+    "status": "arrived"
+  }
+}

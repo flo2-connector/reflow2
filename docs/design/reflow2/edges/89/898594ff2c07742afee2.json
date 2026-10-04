@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:76d50f5c792cceb8526f35e8b94ed5b767bdc271f4570468f9d400e1b85c9c23",
+  "edge_type": "VERIFIES",
+  "from_id": "ver:granularity-stays-within-its-read-budget",
+  "properties": {},
+  "to_id": "cap:granularity-observation"
+}

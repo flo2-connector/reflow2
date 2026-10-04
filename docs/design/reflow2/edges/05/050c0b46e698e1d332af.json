@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:479369a51f5049cf7cb4137511a545a57c82da55794cd8cdf64df2c1f0468bb9",
+  "edge_type": "CHANGED",
+  "from_id": "chg:baseline-9fadd6105aa8d3d4",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:grok-build-tui-feedback-2026-08-27"
+}

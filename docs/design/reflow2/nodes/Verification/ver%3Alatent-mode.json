@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:d4fb8bb6f96c10273986fdcab48e355578a98c3cbde32cfac58dbadff73aabec",
+  "node_id": "ver:latent-mode",
+  "node_type": "Verification",
+  "properties": {
+    "kind": "verification",
+    "last_run_at": "2026-07-28",
+    "level": "unit",
+    "method": "test",
+    "name": "latent_mode.rs — an undesigned directory is latent, and a designed one never is",
+    "status": "passing"
+  }
+}

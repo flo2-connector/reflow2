@@ -1,0 +1,29 @@
+{
+  "content_hash": "sha256:fa9397d6fa240c8be7037ee71dcace4f1baa35111211d8ef6035553d89325936",
+  "node_id": "fact:root-cause-a-typed-constructor-writes-the-node-before-its-later-checks-and-a-refusal-leaves-it-2026-10-02",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "defect",
+    "name": "ROOT CAUSE (walked, measured): a refused typed write is not atomic. 13 typed constructors store the node, then check optional enums, link items or edge types in later writes with no batch around the call, so the refusal leaves the node. On a revise, add_capability's refusal says \"nothing was written\" after the body was overwritten. The corrected retry counts as a revise, so the duplicate guard and the relatedness refusal never run",
+    "source": "art:vscode-call-door-field-report-2026-10-02",
+    "statement": "RUN AS THE SKILL (root-cause, fetched fresh), 2026-10-02, triaging art:vscode-call-door-field-report-2026-10-02, limitation 17, under rule:field-feedback-issues-are-root-caused-and-ideas-are-brainstormed. Triage agent C, dev_reflow2 hub.\n\n① OBSERVED, the reporter's words: \"a call refused on a later check (a link's arguments, a property enum) had already stored the node body; the corrected call then reported 'already held' or replaced a prior value. Import is atomic; typed writers are not.\" EXPECTED: a refused call writes nothing. NOT AFFECTED: import_graph, create_nodes/create_edges, draw_edges (they use the core's atomic batch).\n\n② PRECEDENT: searched on the raw words. No earlier finding. dec:bulk-is-all-or-nothing-with-per-item-findings (accepted) already says \"a partial bulk write leaves a design in a state nobody chose\" and names the store's atomic batch (begin_batch/commit_batch/discard_batch), but scopes it to bulk forms.\n\n③④⑤ MEASURED with reflow2-mcp 0.77.0 --call on a scratch store (log: /home/ajs7/.claude/jobs/fa666a94/tmp/triage-C/measure.log). Each case was refused (exit 1), then read back with get_node.\nNODE LEFT BEHIND, 13 constructors:\n- add_requirement (priority 'urgent-ish');\n- add_capability (tier);\n- add_component (tier);\n- add_constraint (priority);\n- add_flow (tier);\n- add_actor (actor_type);\n- add_project (status);\n- add_artifact (status);\n- add_release (status);\n- add_epoch (status);\n- add_verification (status; and a VERIFIES target of the wrong type, a Decision);\n- add_decision (kind 'exploratry'; a related_to item naming a missing id; relation RELATES_TO);\n- record_finding (caused_by naming a missing id).\nNO NODE LEFT: add_capability with a bad status, add_verification with a bad method or missing target, add_change_event, record_finding with bad steps or basis, and anything refused at deserialisation (missing evidence on a link item).\nTHE SPLIT: a value checked by the core constructor itself, or before it, is atomic. A value written by a later upsert is not: set_optional_props, the kind upsert, review_relations, g.verifies, set_verification_status, the CAUSES edge.\nNone of the refusals said the node was stored.\n\nWORSE THAN REPORTED, three ways.\n(a) A FALSE \"NOTHING WAS WRITTEN\". add_capability on an EXISTING id with a new description and satisfies naming a missing requirement: the refusal says \"the thread cannot be drawn and nothing was written\". get_node shows the description rewritten. The hand-rolled rollback is guarded by !existed, so a revise keeps the overwrite.\n(b) THE RETRY SKIPS THE DUPLICATE GUARD. search_first returns None when the id already existed (a revise). add_decision checks `kind` BEFORE the duplicate guard. Measured: a near-duplicate exploratory idea with kind 'Exploratory' was refused on kind and stored. The corrected retry landed as a \"revision\", with no duplicate refusal and no relatedness refusal. The control, the same text with a valid kind, was refused as a near-duplicate.\n(c) THE LEFTOVER BLOCKS THE NEXT WRITE. A half-stored dec:probe-link became the near-match that refused the next, different decision.\n\n⑥ THE CLASS: atomicity is a property of the bulk door only. The core's batch is pub(crate), so the MCP layer reaches it only through DesignGraph::atomically over a list of items. Each typed handler is a sequence of individually durable upserts, and the rollback is written per refusal by hand. The two rollbacks that exist cover a create and never a revise. Fixing one constructor's order would not stop the next field added through set_optional_props.\n\nUNDER MCP: identical. The door runs the same handler in-process, and nothing here depends on the transport.\n\n⑦ NOT DONE: no failing-first test written (triage only, no builds).\n\n⑨ NOT ESTABLISHED:\n- which two calls the reporter hit;\n- whether the reporter's \"already held\" was the edge echo or the revision note. The revision note was seen here.",
+    "steps": [
+      "add_requirement",
+      "add_capability",
+      "add_component",
+      "add_constraint",
+      "add_flow",
+      "add_actor",
+      "add_project",
+      "add_artifact",
+      "add_release",
+      "add_epoch",
+      "add_verification",
+      "add_decision",
+      "record_finding"
+    ],
+    "subject_id": "dec:bulk-is-all-or-nothing-with-per-item-findings",
+    "valid_from": "2026-10-02"
+  }
+}

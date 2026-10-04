@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:efc173dc105b2037ae72393b1e97859325f22ea8f9a44c659a01b6122566b4d1",
+  "edge_type": "HAS_SNAPSHOT",
+  "from_id": "req:functional-vocabulary-computes",
+  "properties": {},
+  "to_id": "snap:epoch:prune-proposed:req:functional-vocabulary-computes"
+}

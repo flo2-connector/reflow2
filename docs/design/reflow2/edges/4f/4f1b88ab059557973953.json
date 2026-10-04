@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:715da716a0182ce847c91e2302a7f2d578d27db7767e6f221ee15f7be7c80c70",
+  "edge_type": "MITIGATES",
+  "from_id": "dec:idea-adopt-can-be-an-intent-interview-that-records-the-why-and-where-and-skips-the-structure",
+  "properties": {
+    "evidence": "An intent-only interview skips the structural capture where most of that ingest cost and the duplicate components arose, spending the model only on the questions the owner answers."
+  },
+  "to_id": "fact:ingesting-a-real-workplace-corpus-costs-70-dollars-a-day-and-still-writes-duplicate-components"
+}

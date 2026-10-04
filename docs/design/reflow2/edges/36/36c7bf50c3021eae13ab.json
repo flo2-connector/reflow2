@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:1fb878a459a1c2ae68674fba7beb5af6921d903438660ab93254fdd9a310ffae",
+  "edge_type": "HAS_TEMPORAL_FACT",
+  "from_id": "cap:shared-sessions",
+  "properties": {},
+  "to_id": "fact:defect-a-running-server-cannot-say-it-is-stale"
+}

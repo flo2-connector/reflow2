@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:66a90a2a2109259e2075a05493099b630511f29e6a0e87a8619ce63ceb93c312",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "fact:the-fork-ask-is-a-deferred-branch-whose-reopening-condition-is-now-met",
+  "properties": {
+    "evidence": "Both turn on the same unbuilt primitive. Exploring an alternative decomposition — re-carving the spine — has exactly the problem ophyd reports: it would reverse settled decisions in the one live design, so it cannot be modelled without damaging what it is being compared against. A fork scope is what would make that question answerable rather than hypothetical.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "dec:idea-should-the-spine-be-re-derived-from-the-actual-structure"
+}

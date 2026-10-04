@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:234f543b39e70a41872eec43521747b7eeec2a31285651cf23b512a11e5adf21",
+  "node_id": "art:test-test-run-to-files",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "test",
+    "description": "The converter's own net: ten tests, including the refusal of a log with no test target and the check that the converter is not named like a test.",
+    "location": "tools/test_run_to_files.py",
+    "name": "test_run_to_files.py",
+    "status": "realized"
+  }
+}

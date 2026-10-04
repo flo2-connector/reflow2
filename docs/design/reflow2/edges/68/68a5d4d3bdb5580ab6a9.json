@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:ca6b395a1c9dffe098c449de606e7f81b78141cfd4c43c3a3f67eb8d11c2c6f0",
+  "edge_type": "CHANGED",
+  "from_id": "chg:nudge-path",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "cap:nudge-path-proven"
+}

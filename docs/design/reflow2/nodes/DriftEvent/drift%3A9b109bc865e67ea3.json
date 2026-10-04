@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:e8e84eaa0b69c817ba71f070b5aaa9476f967400048333408383deb42b30525e",
+  "node_id": "drift:9b109bc865e67ea3",
+  "node_type": "DriftEvent",
+  "properties": {
+    "detected_at": "2026-07-20",
+    "drift_type": "checksum_change",
+    "name": "art:propagate drift",
+    "resolved": true,
+    "severity": "medium",
+    "summary": "'art:propagate' has changed since it was registered against the design"
+  }
+}

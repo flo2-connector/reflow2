@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:61e22f4acff176a199cd0c4b384bed451d9d8f2c1b42eec284974ea4cae89746",
+  "node_id": "art:test-the-schema-serves-the-rules-that-tell-the-types-apart",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "test",
+    "description": "Two tests. The first requires every one of the NINE types the capture-intent routing table routes to (Fragment joined on 2026-09-22 with the row for an unplaceable sentence) serve a `discrimination` block with at least one cue and one confused_with — a completeness check, so a new routed type cannot be added without its rules. The second asserts the case that cost the misclassification BY ITS CONTENT rather than by the presence of a field: Constraint's cues must carry a prohibition phrasing, Constraint must name Requirement as its near-miss, AND Requirement must name Constraint back, because a discriminator that points one way leaves the reader arriving from the other side with no warning.\n\nOBSERVED FAILING before the schema carried the rules: both tests red, the first at the \"serves no discrimination rules\" assertion and the second at Constraint's cues. Written against the serialized output rather than the struct so it compiled against the old code and failed on the assertion, not on the compiler.",
+    "location": "crates/reflow2-core/tests/the_schema_serves_the_rules_that_tell_the_types_apart.rs",
+    "name": "the_schema_serves_the_rules_that_tell_the_types_apart.rs — every routed type serves its discrimination rules, and the prohibition case is asserted by content",
+    "status": "realized"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:80e24989adef9821a6a820e1997fbb592b58858c0fd00850662979107d3a20df",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:a-finding-names-the-mechanism-that-parks-a-deliberate-state",
+  "properties": {
+    "coverage": "partial",
+    "evidence": "Covers orphan_node, the BL-199 gate and link-artifacts. PARTIAL on purpose: the requirement is about findings generally, and only the one family that caused a data loss has been done."
+  },
+  "to_id": "req:a-finding-names-the-remedy-not-only-the-problem"
+}

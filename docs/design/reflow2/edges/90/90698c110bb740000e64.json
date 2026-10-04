@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:83a1d8290ff7084f313c5d5bdc38d5f42e83e81305f80322bb3859fa9befa7f7",
+  "edge_type": "CAUSES",
+  "from_id": "art:dev-storyflow-feedback-2026-09-27",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "The root-cause pass on this document's 09-25 report (fact_type defect -> finding on a revise): the handler writes fact_type and basis defaults into every call, so a revise overwrites both.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:root-cause-record-finding-writes-its-defaults-on-every-revise-2026-09-28"
+}

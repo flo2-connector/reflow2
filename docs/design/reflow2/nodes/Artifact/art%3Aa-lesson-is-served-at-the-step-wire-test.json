@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:562c1bec2ba5320aefd41d2f57c9d63b48df1f8f0b30f7eeabb060053cbb92b9",
+  "node_id": "art:a-lesson-is-served-at-the-step-wire-test",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "test",
+    "description": "The wire pin on the real binary: tools/list — the listing a harness reads before every call — carries the lesson on exactly one tool's description, keeps that description whole, leaves the other 180 byte-identical, before and after in one process; get_skill carries it for its skill only; a typo'd step is refused naming the nearest. Shown to fail on the deliver-everything mutation (2 pins). Wired into CI.",
+    "location": "tools/test_a_lesson_is_served_at_the_step.py",
+    "name": "test_a_lesson_is_served_at_the_step.py",
+    "status": "realized"
+  }
+}

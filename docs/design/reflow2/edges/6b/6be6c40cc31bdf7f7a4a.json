@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:2df4faed15c8e4c9fbc56b412dafcc6fa5ff2ca22dde7ecb8519c923c33b4bfa",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:preserve",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:preserve"
+}

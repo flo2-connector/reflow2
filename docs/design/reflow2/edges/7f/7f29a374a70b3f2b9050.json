@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:f55c06acf95ed6ec99a420218409b856aeff740f5b4f6047041db2a74a15d53c",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-saved-design-moves-to-the-item-layout-2026-10-03",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 2,
+    "action": "modified",
+    "checksum_after": "sha256:090758fc73bf91df26986abcd5ce7bd7395ffad972f04b7166539df605fb9a7f",
+    "checksum_basis": "measured"
+  },
+  "to_id": "art:measure-open-design-memory"
+}

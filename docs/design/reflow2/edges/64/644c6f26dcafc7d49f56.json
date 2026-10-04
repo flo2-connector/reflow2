@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:a486a2bf3a4d666229c4694f345ef5ba95331ea458ef29c6db06e98a3bf3c595",
+  "edge_type": "CHANGED",
+  "from_id": "chg:re-decomposition-becomes-an-operation",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "cap:a-component-can-be-moved-not-just-given-another-parent"
+}

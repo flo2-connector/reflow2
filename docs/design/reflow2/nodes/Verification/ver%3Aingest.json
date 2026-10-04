@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:67e4bbad5108f52b3e257bbfdc76112b98bc355c2fb05bb48f5a6e59fe2bdc8b",
+  "node_id": "ver:ingest",
+  "node_type": "Verification",
+  "properties": {
+    "kind": "verification",
+    "level": "integration",
+    "method": "test",
+    "name": "ingest.rs",
+    "status": "passing"
+  }
+}

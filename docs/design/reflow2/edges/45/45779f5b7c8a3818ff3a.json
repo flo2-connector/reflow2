@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:63ee89832d223ae072f95e2de494d23320074a6e4866aecc4012ecf7f3c2f373",
+  "edge_type": "REALIZES",
+  "from_id": "art:tools-coherence",
+  "properties": {
+    "completeness": "partial",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:bulk-forms"
+}

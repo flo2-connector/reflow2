@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:00cd96978c3f48545df1e8161121a6de7cffa45fdce8f4d23e926be16c550819",
+  "node_id": "chg:change-type-gains-decision-settled",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "detected_at": "2026-09-19",
+    "name": "change_type gains decision_settled",
+    "rationale": "flo2 F2, root-caused: change_type is required while subject is optional, so 49 record-axis events on this design wear code-shaped labels. Option (a) of the idea; (b) making change_type optional under subject=record rejected because absence would hide the why.",
+    "subject": "record",
+    "summary": "ChangeType::DecisionSettled (temporal.rs), schema/temporal.yaml value + description, toolsnaps regenerated; test crates/reflow2-core/tests/a_settled_decision_has_a_change_type.rs."
+  }
+}

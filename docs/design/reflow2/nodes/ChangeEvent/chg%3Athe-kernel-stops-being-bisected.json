@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:7fa3dc02e7d99845baa5b89bd4c504cafacb0428a548e5da4ca57defb28ee5f7",
+  "node_id": "chg:the-kernel-stops-being-bisected",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "scope_change",
+    "name": "The five-module kernel stops being split across sys:store and sys:vocabulary and becomes sys:foundation — the placement fix that removes a subsystem cycle without touching a line of Rust",
+    "subject": "record"
+  }
+}

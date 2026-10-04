@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:95731b78d04311257d140cfa4d54060ed43f71bd4bfa36c06c1cadf8890a4b6d",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-a-quantity-says-how-it-was-obtained-and-a-check-can-be-rerun",
+  "properties": {
+    "evidence": "A quantity with no unit cannot be checked deterministically by anything, so the provenance question only has teeth once the unit question is settled — and that accepted requirement's capability is still unallocated and unbuilt, which is the first thing to fix.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "req:a-project-declares-its-unit-system-as-a-governed-rule-and-undeclared-or-off-system-units-are-reported"
+}

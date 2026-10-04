@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:600b6a4db62ebab5b2f994f39cbbf737b9fc02eaf07b270f2ff182790a56a180",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:reflow2-installs-as-one-plugin-for-claude-code-and-grok",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:packaging"
+}

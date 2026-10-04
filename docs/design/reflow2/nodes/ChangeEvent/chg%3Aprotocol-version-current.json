@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:994dadc5c3763beb4a21ce1e3f4a8855d4ed6ee0683e1bfdb59ac3c7d61a79ab",
+  "node_id": "chg:protocol-version-current",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "refactor",
+    "name": "Advertise the SDK's current MCP protocol, and make the version checkable"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:f6b0125abd875f7443dd93f121feb9ceae4be9242bb7a970bd7cd7e7f49b3df6",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:test-a-prescribed-layer-pair-no-longer-refuses",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:test-a-prescribed-layer-pair-no-longer-refuses"
+}

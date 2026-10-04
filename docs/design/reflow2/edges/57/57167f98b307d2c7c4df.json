@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:279f7780a2bfabec2ef546ca9da8792ec89fdca4b377c59e1a587980a7bbd229",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-mcp-has-no-openapi-and-reflow2-already-speaks-that-vocabulary",
+  "properties": {
+    "evidence": "Every option here rests on that capability already existing: a published contract that says what a consumer must agree with is exactly the artefact MCP lacks a standard for. Without it this would be a proposal to build contract vocabulary from scratch; with it, the question is only whether to point existing vocabulary at a new subject.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "cap:interface-spec"
+}

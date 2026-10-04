@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:0d21478007258f0a841b0c8f1f5265b206b4a2c0a875ff5c651abe8f04b700df",
+  "edge_type": "MITIGATES",
+  "from_id": "dec:idea-a-finding-that-names-a-class-is-asked-for-its-census",
+  "properties": {
+    "evidence": "That fact measured the hazard this idea answers: a class fixed one reported member at a time and never swept (6 of 11 constructors). A census step at the moment the class is named would have enumerated them before the first fix."
+  },
+  "to_id": "fact:six-constructors-cannot-write-any-prose-because-the-class-was-fixed-one-report-at-a-time-and-never-swept"
+}

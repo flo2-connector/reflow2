@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:3ae2fbe56166a3bfbf0eeb2463713358df60ecf2f069dcc67bcdcccdf397667a",
+  "node_id": "chg:kit-manifest-check-written",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "name": "ver:kit-manifest-agrees is written and run after 13 days planned — one real finding, and the discovery that it can never be a CI gate"
+  }
+}

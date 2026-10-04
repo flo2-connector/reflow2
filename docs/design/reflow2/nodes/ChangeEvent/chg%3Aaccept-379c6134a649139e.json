@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:001a8c2cb81a5d187301fe8b7e109e85f053f0fe7e9acb6b10179bb19524c9a4",
+  "node_id": "chg:accept-379c6134a649139e",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "test_failure_fix",
+    "name": "One redundant dereference removed from the shared helper, which clippy refuses under -D warnings. No behaviour and no design meaning moved; the local runs had covered both test shapes and not the lint, which is the fourth instance of running a subset of the gate set today.",
+    "subject": "system"
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:c29fc946a1bb0a015e3eb370eef3b2a153d9fae2419316cd22240269ce80c7ab",
+  "node_id": "fact:the-tier-deferral-is-due-to-be-re-asked-2026-09-26",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "confidence": 0.85,
+    "fact_type": "status",
+    "name": "READ 2026-09-26: this deferral's re-ask trigger is met — the coverage check it waits behind (cap:decomposition-coverage-is-asked) reads realized, and trigger (iii), a second user asking for tiers, was met on 2026-09-22 when Anthony asked in the same shape as Alex",
+    "source": "get_node on cap:decomposition-coverage-is-asked (status realized) and this decision's own re-ask trigger, read 2026-09-26 in the dev_reflow2 hub session",
+    "statement": "This decision was deferred on 2026-08-14 \"as to shape\", to be re-opened \"when the coverage check is BUILT and one of — (i) a real design is split across an authority boundary and someone needs a parent's number to mean something, (ii) dec:idea-intent-crosses-designs is settled, … or (iii) a second user asks for tiers.\" Read today: cap:decomposition-coverage-is-asked has status realized (the property, not a run of its check; whether a passing verification backs it was not read). Trigger (iii) was recorded as met on dec:idea-a-graph-whose-children-are-themselves-reflow2-designs on 2026-09-22 (\"Alex asked first, on 2026-08-14. Anthony has now asked, in the same shape\"), and Anthony asked a third time on 2026-09-26, framing tiers as systems-of-systems levels with an integration design at each. Nothing re-asked it: the trigger is prose on a deferred node, and no mechanism reads it. Re-opening the shape is Anthony's word; this records only that the condition he set is met.\n\n═══ CLOSED 2026-09-26, THE SAME EVENING (valid_to set; nothing above changed) ═══\nRetired by doing, not by deciding: Anthony re-opened the deferred question on his word (\"Re-open Alex's tiers\"). Its status moved from deferred to proposed with him as approver, and it was retitled \"RE-OPENED 2026-09-26\". It now asks only how tiers LINK, since what a tier HOLDS was settled the same night (req:a-design-over-the-parts-of-one-thing-holds-what-no-part-owns). The observation that no mechanism reads a deferral's re-ask trigger is unaffected by the closing and remains true.",
+    "subject_id": "dec:idea-a-top-level-graph-holds-what-the-component-graphs-share",
+    "valid_from": "2026-09-26",
+    "valid_to": "2026-09-26"
+  }
+}

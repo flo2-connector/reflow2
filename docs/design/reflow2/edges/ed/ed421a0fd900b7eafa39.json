@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:fd7abb1a99d79152a012df33d81baa8103fdaa91be70b3ada9d4d16cd7a76aee",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:evidence-fidelity",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:verify"
+}

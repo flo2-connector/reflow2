@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:b28361108bc6586c0474d018c1b4e54ca5ab4985aaaa475122d57c0461bea7c3",
+  "node_id": "art:depends",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "granularity": "atomic",
+    "location": "crates/reflow2-core/src/depends.rs",
+    "name": "depends.rs",
+    "status": "realized",
+    "volatility": "stable"
+  }
+}

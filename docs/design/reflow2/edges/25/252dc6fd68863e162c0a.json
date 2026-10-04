@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:0d94e9229f59d46bcb526da6e799cf1aeeadbe7298fdc3d25d967c7b8710e084",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:lens-names-test",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:lens-names-test"
+}

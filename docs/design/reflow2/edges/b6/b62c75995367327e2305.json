@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:e4f0e5d532afc7fa3b6fdb0a1bdedc21c70e4a5ace1601fed39b535cc47ed9ec",
+  "edge_type": "GOVERNED_BY",
+  "from_id": "req:a-vocabulary-distinction-proves-it-is-read",
+  "properties": {
+    "note": "This requirement exists to make the accepted decision computable. dec:edge-orthogonality states the principle and was applied once by hand; this is the carry-forward Anthony agreed to on 2026-08-09."
+  },
+  "to_id": "dec:edge-orthogonality"
+}

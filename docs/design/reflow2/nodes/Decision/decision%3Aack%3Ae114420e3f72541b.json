@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:acd7c267d7aaa0fdae7c5f150aea7186c1d11aac5aeba3c9929d9c8b03f0b244",
+  "node_id": "decision:ack:e114420e3f72541b",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Accepted the gap gap:e114420e3f72541b.",
+    "name": "Reviewed: gap:e114420e3f72541b",
+    "rationale": "Accepted at component granularity for now, with the caveat carried since cap:onboarding first joined and now true of three: none of these skills has been written, so the detector reads them as covered because they are allocated to a component that carries a passing check. That is detector generosity, not evidence. Each gets its own verification when built — and for cap:kpp-proposal in particular the check is unusual enough to name: it must assert that a candidate is ASKED about and never auto-promoted, since the failure mode is a tool that quietly decides what is critical in someone else's project.",
+    "status": "accepted"
+  }
+}

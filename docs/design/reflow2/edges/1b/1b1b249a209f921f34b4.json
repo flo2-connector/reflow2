@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:4f855e01ac544b39178d04f9a3d3f6ca4af0f0822dd5a2858f24b290ecce3050",
+  "edge_type": "MITIGATES",
+  "from_id": "dec:idea-a-design-measures-under-a-configured-list-of-extra-roots",
+  "properties": {
+    "evidence": "A list of extra roots removes the single-root limit this root cause names, for the local case: a sibling file would resolve under a declared root and be measured."
+  },
+  "to_id": "fact:root-cause-one-root-derived-from-the-stores-folder-leaves-a-sibling-repo-unmeasured-2026-09-28"
+}

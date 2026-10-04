@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:d9f4fbb100becd3be6f1ac728030ba1878731a1559b72d2fbf542c60d7769099",
+  "edge_type": "CHANGED",
+  "from_id": "chg:accept-b9912779ad29fb43",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:test-the-guard-reads-the-request-before-refusing"
+}

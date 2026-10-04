@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:b0464f61327791fc6b48d8daca0e3bb7a6066a76839c2988bb08a95388a3254c",
+  "edge_type": "CHANGED",
+  "from_id": "chg:one-tool-declares-its-output-contract",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:tools-query"
+}

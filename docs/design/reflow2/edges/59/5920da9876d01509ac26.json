@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:e4dfd9a176519fc744ed8c19e7434ec5ca10a24b4380ddd01b69281b03537f2d",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-served-surface-names-no-real-person",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:schema-verify"
+}

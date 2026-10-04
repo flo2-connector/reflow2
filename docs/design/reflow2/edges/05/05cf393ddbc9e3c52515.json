@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:82d1733c351e9834d0c13e7dbfdf8e24ca34eecdec246ac1f1e9e2b03210e321",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-capture-that-replaces-a-node-says-so",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:capture-session-skill"
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:18d3828da250a0d54c6f3233290a3241c0f573d497fc776c79143fc2fee1019b",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:test-release-workflow",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:test-release-workflow"
+}

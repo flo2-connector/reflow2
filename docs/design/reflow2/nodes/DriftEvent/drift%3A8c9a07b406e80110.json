@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:8977977e4405c4fd6224bab86d15d480a61e3e08692800d02fdf3127e120da1d",
+  "node_id": "drift:8c9a07b406e80110",
+  "node_type": "DriftEvent",
+  "properties": {
+    "detected_at": "2026-07-22",
+    "drift_type": "checksum_change",
+    "name": "art:adopt-skill drift",
+    "resolved": true,
+    "severity": "medium",
+    "summary": "'art:adopt-skill' has changed since it was registered against the design"
+  }
+}

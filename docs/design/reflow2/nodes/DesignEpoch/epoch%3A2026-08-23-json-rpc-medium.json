@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:a00787e5707e8f1b13ed342b7b12da6103f5c83229483e531f52d975ba78a597",
+  "node_id": "epoch:2026-08-23-json-rpc-medium",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "epoch_type": "revision",
+    "name": "The medium vocabulary gains json_rpc, and the HTTP tool surface can finally name itself",
+    "sequence": 379,
+    "status": "arrived"
+  }
+}

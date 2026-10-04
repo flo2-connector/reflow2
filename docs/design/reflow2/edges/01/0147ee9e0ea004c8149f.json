@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:ef109970b6e7b146e6e1299542a8a588692c631a3e6f59b230021793677fd9a2",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-answered-question-line-says-only-what-it-knows",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:service"
+}

@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:d907785fe899184a2516b986dadadd26998968560bb7ee1d3b9ee8d91a6aecd3",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "ver:understated-status-tests",
+  "properties": {
+    "authored_at": "2026-09-30",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:claude-code"
+}

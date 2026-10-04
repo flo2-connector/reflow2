@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:b0f654c9d5c585bf47512bb334a7a3fe697c8463538c34f4e6458b3b480f9629",
+  "node_id": "chg:reflow2-measures-registered-files-and-never-reads-them-for-meaning",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "detected_at": "2026-09-18",
+    "name": "reflow2 measures registered files and never reads them for meaning: measure.rs, optional checksum on three tools, a sweeping reconcile, live drift in loop_status, checksum_basis",
+    "rationale": "Anthony 2026-09-18, 'Go with your recommendation on the file-measuring requirement', after the brainstorm found on the code that the server already reads and writes its own files and that the rule which actually held was no interpretation. Measured on the same day: the Seattle adopt pasted every checksum by hand.",
+    "summary": "New crates/reflow2-mcp/src/measure.rs (root-bounded measure, NotMeasured by name, memo, unit tests). ReflowService gains tree_root (derived from the graph path; with_tree_root / without_tree) and a shared measure memo; registry_http opens designs without_tree. link_artifact / set_artifact_checksum / set_artifact_checksums: checksum optional, basis recorded, reply carries a measurement block; reconcile_artifacts: observed optional, measures the registered set, reply carries measurement; loop_status: artifacts block + next line. Core: artifact::canonical_checksum and checksums_agree made pub, set_checksum_basis, drift::DriftSummary + DesignGraph::drift_summary. Schema build.yaml: checksum description rewritten, checksum_basis added, granularity's 'does no file IO' sentence corrected. sha2 returned to the mcp crate for one use site; tempfile as a dev-dependency. link-artifacts skill steps 1 and 4 rewritten (+ mirrors). Six integration tests. CHANGELOG entry."
+  }
+}

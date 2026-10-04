@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:014036cfb71af225fd277b26b35541b0afa58f1d46d1e7d5e5a3e626c13ad342",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0740",
+  "properties": {
+    "as_checksum": "sha256:13e32b6c6acda7af21385bf3b1c322ad8aa60a79e8cd647bb394660a5b02c07c"
+  },
+  "to_id": "art:measure-open-design-memory"
+}

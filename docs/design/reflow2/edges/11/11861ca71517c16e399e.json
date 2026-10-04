@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:59fc9345c8678b282042f3ab96c83884da1d3c18b41be4df26d0888bd4e2b0f9",
+  "edge_type": "HAS_SNAPSHOT",
+  "from_id": "art:schema-core",
+  "properties": {},
+  "to_id": "snap:epoch:a-dangling-reference-is-found-on-its-own-terms:art:schema-core"
+}

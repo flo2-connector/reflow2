@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:71db701cffe2f8797f197daf41793a48d1f2ea91d4c0edeb7dc648146732d528",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-is-the-embeddings-option-really-embeddings-plus-hnsw",
+  "properties": {
+    "evidence": "This is only worth anything if the parent question is live: it re-frames one leg of that decision (the index) and settles nothing on its own. If embeddings are refused on the model-dependency leg, this question never arises.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "dec:idea-embeddings-adoption"
+}

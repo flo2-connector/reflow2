@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:0711eb9265d3329aa3416696e7d30f687ef8c77d889b449b4a4d6d248b3dabb3",
+  "node_id": "chg:every-required-reference-parameter-says-its-type",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "defect_fix",
+    "name": "Every required reference parameter says what node type it points at, and a schema-derived contract test keeps it so — 66 parameters on 49 tools, and the rule_id that silently meant EnvironmentRule",
+    "repair": "corrected_cause",
+    "subject": "system"
+  }
+}

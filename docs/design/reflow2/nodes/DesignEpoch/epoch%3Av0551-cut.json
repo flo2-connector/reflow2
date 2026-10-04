@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:ee8dd055b5473b5ce22e12c46c86f8df57f1e4aceb09a093fcb302268ba824a3",
+  "node_id": "epoch:v0551-cut",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "description": "A one-fix patch increment: the default tracing filter stops letting a dependency's info-level bookkeeping dominate reflow2's log, and the image says to cap the log it writes.\n\nPinned here because a release needs a position on the time axis. Without AT_EPOCH a release resolves to a point with no sequence, so any window computed from it loses its lower bound and silently widens to the beginning of the design.",
+    "epoch_type": "release_cut",
+    "name": "v0.55.1 cut — a dependency stops dominating the log stream",
+    "sequence": 404,
+    "status": "arrived"
+  }
+}

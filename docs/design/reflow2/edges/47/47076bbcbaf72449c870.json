@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:0b6485f7076681676bff1f844431d6e23455899410d8ac4c5183e0fb4a726ee4",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:the-orientation-call-says-whether-its-own-answers-are-current",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:service"
+}

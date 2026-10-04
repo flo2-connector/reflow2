@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:b97b3ce7d294134cfdace8ddf598b6b8cc7dcaaa683f824ae43b9aa9f40b3683",
+  "node_id": "fact:field-report-bhome-2026-09-18-a-budget-accepts-a-negative-contribution-and-nothing-says-so-so-stacking-went-uncounted",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "confidence": 0.8,
+    "fact_type": "defect",
+    "name": "FIELD REPORT (bhome S3, 2026-09-18): rev A showed the design fitting by counting 45 sq ft of stacking that 'budget_report does not model and has never counted' — MEASURED on a scratch design: `constrains` accepts a negative contribution (−20 against +90 rolled up to 70, verdict within), so reclaimed space CAN be modelled today; the report's premise is false and nothing told the reporter, because no description or skill says a contribution may be negative",
+    "source": "bhome feedback.md, Session 3 (2026-09-18), triaged 2026-09-19 through the triage-feedback skill",
+    "statement": "Reporter: only 20 of the 45 sq ft have a figure anywhere in the graph; the sheet now shows stacking 'as claimed and not counted'. MEASURED 2026-09-19 with target/debug: add_constraint limit 100, constrains +90 and −20 → budget_report total 70, within, both contributors listed. So the mechanism exists; the instruction leg does not — constrains' description speaks of a part's share of the quantity and never of a reclaiming (negative) contribution, and the optimize skill does not either. CAUSE: an unstated capability — the three-legs rule (typed tool + instruction + detector) with the instruction missing.",
+    "subject_id": "cap:budget",
+    "valid_from": "2026-09-19"
+  }
+}

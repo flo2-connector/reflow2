@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:276395243131aa4c1cfc97187f554314043f2ff98345946a4fa512084dfd5818",
+  "node_id": "question:ff976610480dab90",
+  "node_type": "Question",
+  "properties": {
+    "answer": "Yes — build it next. \"Put the store on the MCP surface — content_put / content_get / content_exists. It's the smallest thing that turns working code into a usable capability, and three accepted requirements sit behind it.\" (Anthony, 2026-07-31.)",
+    "asked_at": "2026-07-31",
+    "context_setter": "Nothing satisfies requirement “A capability nothing can call is not delivered — the content store needs a surface”",
+    "gap_id": "gap:ff976610480dab90",
+    "question": "The storage for diagrams and documents is written and working, but nothing an assistant can actually call reaches it — so today nobody can put a file in or get one out. Should adding those calls be the next thing built?",
+    "rephrase_degraded": false,
+    "status": "withdrawn"
+  }
+}

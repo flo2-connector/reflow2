@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:867722b0e8d206039c3efe53edc0d64a5dd124671582575f8f5c1ed014549480",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:record-to-record-relations-test",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:record-to-record-relations-test"
+}

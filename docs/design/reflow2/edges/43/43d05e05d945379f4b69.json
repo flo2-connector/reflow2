@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:7649021b4edb9717edf541cd030d47a652288edd85c22de9f9bef402a8c6c7f0",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-saved-design-moves-to-the-item-layout-2026-10-03",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:f697452e4b8e3289d48b8a884f206c09cd60ee8e171308fb2c874800193f83ba"
+  },
+  "to_id": "art:test-a-unit-crosses-a-seam-and-the-two-sides-are-compared"
+}

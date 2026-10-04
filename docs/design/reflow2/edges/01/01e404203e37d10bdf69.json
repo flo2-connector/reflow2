@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:b41376749766c6cafc8379ae81a904487806ccf818bc591ba3f42571e775dfd0",
+  "edge_type": "GOVERNED_BY",
+  "from_id": "chg:the-moment-a-cause-is-written-becomes-a-tool-call-and-the-tool-demands-the-skill",
+  "properties": {
+    "evidence": "Writing a TemporalFact had no typed constructor and went through the generic props-bag path, which is an instance of this requirement being unmet. The constructor closes it for that type."
+  },
+  "to_id": "req:declared-vocabulary-is-reachable-from-the-surface"
+}

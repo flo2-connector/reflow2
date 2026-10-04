@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:7cb8c28bd2d7f0f73d8fd8b5f28a72c8c157df85de686e253fee61d2e42043d0",
+  "node_id": "req:released-eq-designed",
+  "node_type": "Requirement",
+  "properties": {
+    "concern": "core",
+    "designation": "internal",
+    "kind": "functional",
+    "lineage": "original",
+    "name": "Released equals designed",
+    "priority": "critical",
+    "provenance": "authored",
+    "statement": "At release the design must describe what was actually released.",
+    "status": "accepted"
+  }
+}

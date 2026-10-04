@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:d83c9334530a30a70560b3010417ab401a8b788ad64a788fd1e924b74003b32b",
+  "node_id": "chg:baseline-e28a1b8dd9b981cf",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "baseline_established",
+    "detected_at": "2026-09-19",
+    "name": "Recorded as a FIRST BASELINE (baseline_established): 'art:an-unknown-field-refusal-names-the-nearest-parameter-test' had no checksum, so the disposition passed could claim nothing about a movement nobody observed. Nothing moved and the design took no position.",
+    "subject": "record"
+  }
+}

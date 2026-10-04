@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:3153dae525f3b38f059a5a39e17b0b73cca8afe835069a548fda5682ae7f8ba7",
+  "node_id": "chg:field-feedback-triage-becomes-a-design-rule",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "detected_at": "2026-09-05",
+    "name": "Feedback triage is written down as a rule: issues get /root-cause, ideas get /brainstorm, without a reminder",
+    "rationale": "Anthony asked for it on 2026-09-05 after reminding the agent on three consecutive feedback triages: \"this should really be a design rule for reflow2 project ... then I don't have to remind this every time.\" The same day supplied the argument for why the SKILLS and not just care: a triage that read the code and wrote causes down without the root-cause skill's steps got two of four wrong, and the skipped steps overturned both. Created through generic create_node rather than the new add_design_rule constructor because this session's running server predates #429 — the exact friction the field reported, met while writing the rule the field prompted. Third leg (a detector that notices a triaged report with no CAUSES edge and no exploratory Decision) is named as owed, not built.",
+    "subject": "record",
+    "summary": "rule:field-feedback-issues-are-root-caused-and-ideas-are-brainstormed created (category methodology, enforced deliberately unstated), COMPLEMENTS rule:feedback-sources-have-a-priority-order-and-anthony-set-it, and GOVERNED_BY drawn from the two parked 2026-09-04 field-report artifacts it governs. The repository's ROOT AGENTS.md gains rule 9 pointing at it, so every agent meets the rule at session start rather than only when a search happens to surface it. A pointer only was added to machine-local memory, per Anthony's standing preference that rules live in the graph. Record axis: nothing in the system changed; the design's knowledge of how it reads feedback did.\n\nCORRECTED THE SAME HOUR: this event first claimed art:kit-instructions (getting-started/AGENTS.md, the kit copy shipped to other projects) was modified. It was NOT — the file edited is the repository's root AGENTS.md, a DIFFERENT file (56 KB vs 27 KB, carries the numbered rules list the kit copy does not), and the root file is not a registered Artifact at all. The false CHANGED edge was deleted and the kit artifact's checksum restored to its real value. Two things fall out and are recorded rather than hidden: (1) the project's own primary instruction file is unregistered, so no gate notices when it moves — worth registering; (2) the mis-accept happened because a location was read off an artifact's NAME ('AGENTS.md') instead of its `location` property, which is rule:success-is-read-from-the-authoritative-object one more time."
+  }
+}

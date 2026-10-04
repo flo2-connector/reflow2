@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:0cd48edaa421b579e2a5c4ad51f0f4877898948de602714fcebfc95276fc544a",
+  "edge_type": "SCHEDULED_FOR",
+  "from_id": "cap:distribution-debt-is-reported",
+  "properties": {
+    "modality": "expected",
+    "recorded_at": "2026-08-10"
+  },
+  "to_id": "epoch:the-loop-says-what-distribution-is-owed"
+}

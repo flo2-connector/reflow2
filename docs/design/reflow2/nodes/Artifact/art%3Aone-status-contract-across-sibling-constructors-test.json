@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:1a126a2d841317aa638891e7f40ff1a56476a538a7cf37fe408158e195722396",
+  "node_id": "art:one-status-contract-across-sibling-constructors-test",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "location": "crates/reflow2-mcp/tests/one_status_contract_across_sibling_constructors.rs",
+    "name": "one_status_contract_across_sibling_constructors.rs",
+    "status": "realized"
+  }
+}

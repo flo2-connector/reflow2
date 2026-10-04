@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:1273032aabaa2ff1046716eb18815cdd23dc2048a3048c18053604febf87c703",
+  "node_id": "epoch:reading-carries-options",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "epoch_type": "revision",
+    "name": "A reading arrives as selectable options, recommendation first, in the user's own language",
+    "sequence": 242,
+    "status": "arrived"
+  }
+}

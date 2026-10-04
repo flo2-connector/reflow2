@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:fc00bc7f6bb40c4cdfa139a4e15e3a10a711eabe133cf65ccb9dd128e6673504",
+  "edge_type": "CHANGED",
+  "from_id": "chg:baseline-08ecaafebf6b9b59",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:grok-shell-feedback-2026-08-29"
+}

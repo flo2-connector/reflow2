@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:e65044cfd1c1abe95c19d89b9d766e718670603f77c9cd9c5316de4128dcda5e",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-enum-near-synonyms-are-accepted-with-a-note",
+  "properties": {
+    "evidence": "The first synonym the reporter asked for (`test` → `code`) is the missing enum value that defect records, reported twice; whether a synonym is wanted at all turns on whether the value is added instead.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "fact:defect-link-artifact-has-no-type-for-a-test-source"
+}

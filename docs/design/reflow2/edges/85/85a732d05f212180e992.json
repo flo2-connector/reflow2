@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:a8011b412de7528dc49423635be90d8672ed5e40b0203d6d08d020afa4f4d3ce",
+  "edge_type": "GOVERNED_BY",
+  "from_id": "fact:correction-stranded-server-is-recoverable-without-a-reconnect",
+  "properties": {
+    "note": "This correction is the clause that stands, on measured evidence rather than recency."
+  },
+  "to_id": "dec:the-stranded-server-correction-stands"
+}

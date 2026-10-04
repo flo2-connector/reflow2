@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:1ad3e72ba0270ba1010e4475e4bbd7d94cd60c46d690077a74d75c0f1d177016",
+  "edge_type": "CHANGED",
+  "from_id": "chg:accept-bf7dcd75fd6be477",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:dockerfile"
+}

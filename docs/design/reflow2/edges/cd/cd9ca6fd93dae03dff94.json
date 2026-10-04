@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:93d60dd98a84062b877b34f7952897ac7dbb146a9bfc0467c1dfe59965f37ea7",
+  "edge_type": "CHANGED",
+  "from_id": "chg:drift-direction",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "req:drift-has-direction"
+}

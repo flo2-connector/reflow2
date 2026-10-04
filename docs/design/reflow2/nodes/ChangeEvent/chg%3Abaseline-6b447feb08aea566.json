@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:07aaa039121f7b4d9461d80d657d3c5b6fdf4bc2575a7f2dc87fcba1224cc579",
+  "node_id": "chg:baseline-6b447feb08aea566",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "baseline_established",
+    "detected_at": "2026-08-24",
+    "name": "First baseline. The skill was never a registered Artifact — one of the nine of twenty with no drift signal at all (fact:nine-of-twenty-skills-are-edited-without-a-drift-signal) — and it was edited in this change, so it is registered now rather than left silent.",
+    "subject": "record"
+  }
+}

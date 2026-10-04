@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:69aa08283f04e37c730f07e74c89d53a5a9eb4efead9f394aa473023b7e0a8d4",
+  "node_id": "dec:v0520-takes-the-field-feedback-triage-first-then-the-cement-measure",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Anthony ruled on 2026-09-07 (\"yes, agree with all 5\") on what v0.52.0 contains, which was empty until now. In order: (1) triage the untriaged dev_storyflow feedback, starting at line 7286 of the peer's feedback file, by the standing rule that every issue gets root-cause and every idea gets brainstorm; (2) the date boundary on the fix-without-a-cause gap, per dec:the-no-cause-fix-gap-grandfathers-fixes-recorded-before-the-rule-existed; (3) build ONE of the four parked brainstorm instruments — cement measured as the decision layers a change must unpeel (dec:idea-cement-is-measured-as-the-decision-layers-a-change-must-unpeel). The other three parked ideas stay parked at their planned epoch and are not started.",
+    "kind": "choice",
+    "name": "v0.52.0 takes the untriaged field feedback first, then builds one instrument — cement measured as the decision layers a change must unpeel",
+    "rationale": "Field feedback comes first because it is the only input from someone using reflow2 on their own design rather than on reflow2 itself, which is the standing test this project measures itself by — a tool built only against its own reflection stops meeting other people's problems. The cement measure is picked from the four parked ideas because it is the one computable directly from what the graph already holds: decisions, their dependencies, and the edges a change would have to cross. The other three lean on it. Whether a growing ruleset converges needs a notion of how deep a rule reaches; whether a design cements from the core outward needs a depth to plot; the cost-of-change curve needs a quantity to put on its vertical axis. Building the measure first makes the other three answerable rather than rhetorical, and building any of them first without it would mean guessing at the quantity they all describe.",
+    "status": "accepted"
+  }
+}

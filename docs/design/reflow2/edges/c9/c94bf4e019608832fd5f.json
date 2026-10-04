@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:ba0585728f19eacda41dc6265c19835eca6eef6be3cf880b32d87be7914a8864",
+  "edge_type": "CHANGED",
+  "from_id": "chg:wire-planning-cluster",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "req:epochs-can-be-planned"
+}

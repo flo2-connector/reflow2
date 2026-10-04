@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:1e0f5dceb9c545399d5aecc05e510635eb30da5983d2652bee3a8787280da1e2",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "req:a-project-declares-its-unit-system-as-a-governed-rule-and-undeclared-or-off-system-units-are-reported",
+  "properties": {
+    "evidence": "The rule sweep has nothing to check until units are declared somewhere in the design; the boundary axis is the first place they get declared, so this requirement follows that one rather than leading it.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "req:a-quantity-that-crosses-a-published-boundary-declares-its-unit-and-the-seam-check-compares-them"
+}

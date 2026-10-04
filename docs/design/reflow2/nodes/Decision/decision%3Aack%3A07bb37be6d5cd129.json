@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:ac0060a9688e209ba5381fe5aef82c7777f535016652981b0cbc6ee6bfb96c2d",
+  "node_id": "decision:ack:07bb37be6d5cd129",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Accepted the gap gap:07bb37be6d5cd129.",
+    "name": "Reviewed: gap:07bb37be6d5cd129",
+    "rationale": "User (who:ajs, standing policy from 2026-07-23, re-applied 2026-07-26): validation happens through the trials programme — docs/trials/ is where \"built the right thing\" is exercised against operational intent; formal validation-kind Verification nodes are not this project's tracking mechanism. Re-fired because cap:remote-sessions joined the set (55 → 56). Named here because this capability is the one whose validation is genuinely pending and knowable: the tests prove a remote Host header is accepted or refused as configured, which is the spec. What they cannot prove is the operational intent — that Anthony, on his OTHER machine, actually gets a working seat on this design over his own private network, with the DNS and the firewall and the sleeping laptop all in play. That validation is the first use, and it is about to happen.",
+    "status": "accepted"
+  }
+}

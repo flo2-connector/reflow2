@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:e2bac29df44c7fbef67073b6feee32ec5cbc3761642cddeba61b530e0c40bf02",
+  "edge_type": "REALIZES",
+  "from_id": "art:grok-shell-feedback-2026-08-30",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "sub:serving"
+}

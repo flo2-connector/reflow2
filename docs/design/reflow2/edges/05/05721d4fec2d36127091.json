@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:a5e36f2ccfc8b27439e10af9a2514f3ae079c303b703120f8de076a36226bdfc",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0660",
+  "properties": {
+    "as_checksum": "sha256:419d73ebc5b87068e523eec0ac898c918f04a544cd367fdb5a344067cb173186"
+  },
+  "to_id": "art:edge-prose"
+}

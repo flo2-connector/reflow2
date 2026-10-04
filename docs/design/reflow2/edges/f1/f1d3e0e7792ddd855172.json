@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:b0d71a21159829af5e7ffe2b4f6d6287fabe13fb14c59cfb6a705266a16bab7c",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:the-register-rule-reaches-the-words",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:skills"
+}

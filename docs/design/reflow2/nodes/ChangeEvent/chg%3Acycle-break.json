@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:8613d40d1737a16eefedc2754450928ef01e3da58445eb68a55d440693cbc617",
+  "node_id": "chg:cycle-break",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "refactor",
+    "name": "Break the detect↔verify cycle: relocate fnv1a from detect to nodes"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:b72a1231ddf61327b43be1006db9384ee0e4879111f30c24e82ffe25e856e6a9",
+  "node_id": "art:dependency-manifest",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "config",
+    "granularity": "atomic",
+    "location": "reflow2.toml",
+    "name": "reflow2.toml",
+    "status": "realized",
+    "volatility": "stable"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:d3a63f795818c7029550130759b1ae9ad02a92853738cfea35d8b43d6daf534e",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-saved-design-moves-to-the-item-layout-2026-10-03",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 2,
+    "action": "modified",
+    "checksum_after": "sha256:f5d2db2a6853786c02b917389537bb5b00d37224d6c12e617bd2474184df6e3b",
+    "checksum_basis": "measured"
+  },
+  "to_id": "art:derived-edge-readers"
+}

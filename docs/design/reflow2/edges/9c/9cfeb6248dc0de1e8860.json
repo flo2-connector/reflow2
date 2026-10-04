@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:be174c17c9e413ce627aa9bc8d0f04b58aec93fc1faa902ba063185d09ff72a7",
+  "edge_type": "REALIZES",
+  "from_id": "art:detect",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "verified"
+  },
+  "to_id": "cap:a-published-contract-says-what-two-systems-must-agree-on"
+}

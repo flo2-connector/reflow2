@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:8152f356eb606ce71f17eddf59cb2eed00e3cd19342df14e6b2760b2a4789540",
+  "node_id": "chg:accept-460e245dc042e273",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "detected_at": "2026-08-19",
+    "name": "ScanReq gains `level`. Its doc records WHY the filter exists rather than just what it does: Component.level has always been indexed and populated, and with no way to ask by it every caller derived the top tier from the CONTAINS spine instead — which returns leaves nobody wired to a parent. Measured 2026-08-18: 8 subsystems by level, 2 leaves by spine.",
+    "subject": "system"
+  }
+}

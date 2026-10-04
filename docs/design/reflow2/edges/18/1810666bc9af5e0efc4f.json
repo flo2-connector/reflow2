@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:faa70d168126964c2969d877c3e8170198fea5f71d0fe90ce0bab185a8ea41c3",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:idea-do-ideas-form-a-graph-or-only-a-list",
+  "properties": {
+    "authored_at": "2026-08-21",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

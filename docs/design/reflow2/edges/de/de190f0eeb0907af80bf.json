@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:620df48f33d29e6116aa528b1431b4803e82e064bdb0c2165499e6b7373d94cc",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-check-and-its-findings-are-different-things",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "ver:skill-lint"
+}

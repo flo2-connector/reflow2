@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:b664c0d98a0c5d47e23050e8676a5b1d20e3e2dbbc3a303934c806e6335a735b",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:the-skill-response-carries-the-lens",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:skills"
+}

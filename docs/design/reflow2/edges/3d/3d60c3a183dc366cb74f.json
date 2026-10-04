@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:e1d6038f4e8542c7bd09eee707228b4293932df506bf0df181bd9b8295d2c60c",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:a-report-can-name-what-was-talking-to-what",
+  "properties": {
+    "approved_at": "2026-08-28",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

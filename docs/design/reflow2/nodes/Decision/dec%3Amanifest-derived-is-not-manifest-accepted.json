@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:a0bd9f35c520ca48b985684db687c80303bec7209409346358a38763b2d4ecb8",
+  "node_id": "dec:manifest-derived-is-not-manifest-accepted",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "release_includes_all derives a release's whole manifest from the design and writes it in one call, with `apply` defaulting to false so the derivation is reported before anything is written. Entries already in the manifest are reported as already_present and their frozen as_checksum is never recomputed.",
+    "name": "A bulk derivation is not a bulk accept, and it writes nothing until asked",
+    "rationale": "BL-153 flagged the counterweight to state before building: dec:two-sided-accept and dec:ask-not-repair mean a bulk form must not become a silent one, and \"a batch of 144 acknowledgements with one reason is exactly the erosion those decisions exist to prevent\". Those decisions bound bulk DISPOSITIONS — a judgement taken about each item. No disposition is taken here: the graph is asked what the project contains and answers, and the one judgement a human still owns (which release ships it) is the argument the caller supplies. So the family does not apply, and a per-item disposition would be ceremony over a derivation. What DOES apply is the no-silent-write bar: hence apply defaults to false, matching reconcile_artifacts' record_events, because a call that packages a release is the one you most want to read before you run it. The frozen-checksum guard is the harder half — a derivation that recomputed every entry would rewrite the manifest of a shipped release each time the live drift baseline moved, silently and in bulk, which is the axis-Z sin the frozen copy exists to prevent.",
+    "status": "accepted"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:176d5ca9dabd3aada8fb52f7d838e3aa17b17c6f1a6a17fe775ec800b8deb300",
+  "node_id": "art:loop-status-lens-test",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "test",
+    "description": "Four handler tests pinning that the loop_status reply carries the lens: the silent case names who could be asked; the recorded case names them; the lens names `next` as the agent's to-do list; the lens never withholds `next`. Written first and observed failing (0 passed, 4 failed) before the fix in coherence.rs, from the 2026-09-14 field report where a loop_status reply was read out to a person verbatim.",
+    "location": "crates/reflow2-mcp/tests/a_loop_status_reply_says_whose_words_to_use.rs",
+    "name": "a_loop_status_reply_says_whose_words_to_use.rs",
+    "status": "realized"
+  }
+}

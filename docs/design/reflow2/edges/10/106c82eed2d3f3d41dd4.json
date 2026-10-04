@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:cf3b42a50af7bec17e4e99f344e80714c809f69bd8869a4a18acc06fdf832ca2",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:idea-should-a-large-node-be-changeable-one-field-at-a-time",
+  "properties": {
+    "authored_at": "2026-08-31",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:claude-code"
+}

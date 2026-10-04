@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:6db753d7e3a2722037b1fa781251d07e19866af9da20ef7fe85802c906a9955d",
+  "edge_type": "MITIGATES",
+  "from_id": "chg:the-two-reported-fields-get-their-parameters",
+  "properties": {
+    "evidence": "The epoch half of that record's first friction is answered: add_epoch and plan_epoch now take a checksum. The add_artifact checksum and the delete_edge shape are untouched and stay open."
+  },
+  "to_id": "fact:defect-two-more-constructor-shape-frictions-met-while-working-add-artifact-cannot-set-a-checksum-and-delete-edge-refuses-the-types-create-edge-requires"
+}

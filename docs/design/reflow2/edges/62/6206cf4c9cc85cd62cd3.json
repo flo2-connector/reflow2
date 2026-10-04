@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:3a2be3fc6b54adbdac9e3ce4068ec43406007c85e13f1a6932493ca1a7a3517e",
+  "edge_type": "HAS_SNAPSHOT",
+  "from_id": "art:skill-lint",
+  "properties": {},
+  "to_id": "snap:epoch:constraint-is-not-only-numeric:art:skill-lint"
+}

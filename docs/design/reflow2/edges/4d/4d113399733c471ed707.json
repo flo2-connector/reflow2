@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:d8cf917d2f7b2d322f20f2c477bf99c0d5ddb9a13c8f57602a2b278d608d9dde",
+  "edge_type": "INVALIDATES",
+  "from_id": "chg:the-overtaken-defect-records-were-triaged-against-the-v0510-build",
+  "properties": {
+    "evidence": "json_result sets the text content block to a short signpost instead of a second copy of the payload (service.rs:928-932), and every ok_json routes through it."
+  },
+  "to_id": "fact:every-reply-was-sent-twice"
+}

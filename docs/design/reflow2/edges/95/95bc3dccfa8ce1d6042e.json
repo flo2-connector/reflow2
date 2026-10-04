@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:94fa52ef5a4f1671d79537cad81886474112bfb2e600e63b599feb4e188c8548",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-capture-that-replaces-a-node-says-so",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:design-holds-says-why-test"
+}

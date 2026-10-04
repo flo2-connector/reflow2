@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:c47ab781aa93ccbaedd78fabfa5ed3bf5ab89bf8a9b3bbdaab8eba147c8a239b",
+  "node_id": "chg:isolation-check-scope-split",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "scope_change",
+    "name": "ver:sessions-cannot-cross-designs is narrowed to the clauses it actually proves — it was PASSING while its statement claimed two properties no test could reach"
+  }
+}

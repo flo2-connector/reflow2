@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:ca2ac51739e5e8740402bf6729320445d50084fd59c7602728090dba4cb096f5",
+  "edge_type": "CHANGED",
+  "from_id": "chg:degraded-surface",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:main"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:1a20a2d0f2c73d2ecac5d2f0e5ef937346ce976643b4384f75a1ce11754b6174",
+  "edge_type": "CHANGED",
+  "from_id": "chg:baseline-d6f06ec271e51b49",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:session-debt-test"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:fede85eb5576c04610b575c00f0c1df0a463146dcdb9ecc70fcfae619dfe2bb3",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-graph-asks-what-a-session-made-false",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "cap:the-graph-asks-what-a-session-made-false"
+}

@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:eecfeb8f1b7cfa49f4e653a17bea40e99b65b90fa165ae963b222453555e4710",
+  "node_id": "chg:two-channels-for-making-a-skill-reachable-are-under-test",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "detected_at": "2026-08-29",
+    "name": "Two channels for making a skill reachable, each with its baseline recorded",
+    "rationale": "MEASURED 2026-08-29 across 91 sessions of dev-storyflow — see `fact:agents-do-self-invoke-skills-at-scale-and-the-hook-not-the-catalogue-predicts-which`. 88% of skill loads had no slash command behind them, and what predicts a skill's load count is being named in an always-injected surface rather than in the served catalogue.\n\nWHY TWO ARMS RATHER THAN ONE FIX: the observational result is confounded. `where-am-i` is named in the hook AND is the most generally useful skill in the set, so hook-presence and intrinsic usefulness cannot be separated from data nobody intervened on. One skill added to each channel, with baselines taken first, is the discriminating experiment.\n\n    TOOL-SIDE  impact-check  from record_change   baseline 19% (16 sessions)\n    HOOK       link-artifacts in SESSION_START    baseline 22% (27 sessions)\n\n⚠️ THE FINDING THAT MAKES THIS HARD, and it is recorded rather than worked around: BOTH CHANNELS ARE A FIXED BUDGET. `add_change_event` has the worst measured compliance (24%, 29 sessions) and sits at 1494 chars against a 1500-char limit — it physically could not carry a demand. The budget gate was left alone rather than raised, the tool-side arm was scoped to `record_change`, and the collision was written down. Naming all 23 skills in the hook would likewise rebuild the catalogue that demonstrably predicts nothing. Whatever mechanism wins, it wins inside a budget.\n\n🛑 THIS RECORDS AN EXPERIMENT, NOT A RESULT. Nothing here says either channel works. Read the baselines again in a few weeks.",
+    "subject": "system",
+    "summary": "Two paired EXPERIMENTS, on different skills so neither can claim the other's result. TOOL-SIDE: `impact-check` is demanded from `record_change`'s tool description, and `skill_lint` gains a `demanded_by` check — a skill declares the tools whose descriptions must demand it, read from the committed toolsnap goldens, and the gate fails when a named tool does not. HOOK: `link-artifacts` is named in `SESSION_START_TEXT`. Baselines are written into the code beside each change rather than left in a transcript."
+  }
+}

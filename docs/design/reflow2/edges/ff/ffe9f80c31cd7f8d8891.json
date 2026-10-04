@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:f7f585fb47af5ccaf41dcb680a0b4c1baa0ce01ce1e25eef3aed00a0d0abedf2",
+  "edge_type": "CHANGED",
+  "from_id": "chg:no-fabricated-repairs",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:cycles-test"
+}

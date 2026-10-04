@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:ca68963ba7baff6b288379228d60cb597cd089c02155b33ced00785778d7673e",
+  "edge_type": "CHANGED",
+  "from_id": "chg:foundation-consumes-redrawn-from-imports-2026-08-19",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "ifc:req-dyno-resolution-api"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:c6d01bff0c465351bf319636dce04ffac0cc59f4d30fe62a8ce24cb7a0a45855",
+  "edge_type": "CHANGED",
+  "from_id": "chg:required-to-create-optional-to-revise",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:test-search-first"
+}

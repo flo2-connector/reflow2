@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:a16203ddbdc366faa6a5c8bfb7bf435991f16c31b128ebbf5a68b93d34f9c1e4",
+  "edge_type": "ANTICIPATES",
+  "from_id": "fact:the-unmaintained-premise-under-the-rocksdb-switch-has-moved",
+  "properties": {
+    "evidence": "The stale sentence is a comment in `[workspace.dependencies]`, which is exactly the surface that node is about. A dependency's REASON currently lives beside its pin as free prose that nothing checks and nothing expires, which is why this one could rot silently in the file somebody edits to act on it."
+  },
+  "to_id": "dec:idea-one-place-to-bump-a-dependency"
+}

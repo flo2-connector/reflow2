@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:a93dbde338f32816a76c05c6e6039b6caf9f3e934c33f0de2d03e76503aabc0b",
+  "edge_type": "CAUSES",
+  "from_id": "cap:init-asks-which-harness",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "The install reads its content from the kit path, and on this box that path is a symlink to the live checkout rather than a released snapshot, so the installer's input is the maintainer's uncommitted tree.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:the-kit-a-consumer-installs-from-is-a-symlink-to-the-maintainers-live-checkout"
+}

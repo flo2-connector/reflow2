@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:7dd7cecd225f7e997189338dae05b60df122cabd7b70bc8a0a355e60c4197db9",
+  "edge_type": "CHANGED",
+  "from_id": "chg:bl58-silent-failure-batch",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:ingest"
+}

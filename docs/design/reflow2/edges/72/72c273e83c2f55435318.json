@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:69b5d0e080190e49315fbacb84a4c8ae8a5c2460d9640d465fe46c9b5051dd1a",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-node-is-named-by-its-id-and-the-type-is-optional-across-the-relation-surface",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:tools-exchange"
+}

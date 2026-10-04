@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:092aaf3f8113b94b4b5e784986147484c11b6fc4bb20d9f1224e217730d9b742",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:a-dependency-declaration-replies-with-a-receipt-test",
+  "properties": {
+    "covers": "whole"
+  },
+  "to_id": "ver:a-dependency-declaration-replies-with-a-receipt"
+}

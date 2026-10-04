@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:2a7ba87423eb9eb16284e5634b5816b116ac6ee3a247ec55f46b3481b15d01e0",
+  "edge_type": "GOVERNED_BY",
+  "from_id": "req:a-release-cut-works-when-the-design-lives-on-a-server",
+  "properties": {
+    "note": "Under rules 1 and 3 a release cut cannot rely on committing a photocopy as its record, so it has to freeze into the blueprint from locally measured checksums."
+  },
+  "to_id": "dec:idea-one-blueprint-the-store-is-the-design-and-an-export-is-a-perishable-photocopy"
+}

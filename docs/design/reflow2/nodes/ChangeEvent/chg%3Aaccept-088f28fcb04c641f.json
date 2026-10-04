@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:4939ba3f380f03abec3d149c5be9c4dc41b950121c28295540d5376577b45d71",
+  "node_id": "chg:accept-088f28fcb04c641f",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "refactor",
+    "detected_at": "2026-07-31",
+    "name": "The v0.19.0 version bump: reflow2.toml's [reflow2] version moved 0.18.0 -> 0.19.0 as part of cutting the release. The file is GENERATED from the build files rather than hand-kept, and nothing else in it changed — the dynograph-foundation pin stays at v0.12.0 with its stated reason intact. No design meaning: the manifest records which version of another design this one depends on, and no dependency moved."
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:45d59e9664c93d32f07e5d2d62a6480766deea0b9d288f332476d905d9bc4a40",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:the-implementing-agent-holds-a-compact-design-reference-derived-from-the-graph",
+  "properties": {
+    "approved_at": "2026-09-13",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

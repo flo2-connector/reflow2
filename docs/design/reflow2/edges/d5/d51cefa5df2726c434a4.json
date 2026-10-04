@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:331d8180fe0b4134fc2ac0599c45871e1bf0224a4d3a127c847d3c6d62ebfc5f",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-server-writes-the-export-through-on-every-change",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:proxy"
+}

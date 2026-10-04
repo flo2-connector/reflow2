@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:9bdafb77886d6d0d29b676597e128cf0d0021afe964f358da126f70ad4f09789",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:parallel-alternatives",
+  "properties": {
+    "approved_at": "2026-07-22",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:d03e4b65c03cbeb99c9c482c25a20cd8de345e1e5c941af671d45832a6cb7fee",
+  "edge_type": "CHANGED",
+  "from_id": "chg:baseline-b0187e85efa12cca",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:client-setup"
+}

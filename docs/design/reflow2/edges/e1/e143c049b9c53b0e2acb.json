@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:5bbcc8c600fd653ae82c52d57a81e7734369b28ebae73ce26cf81c492609b562",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-ordering-hazard-is-named-where-it-bites",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:service"
+}

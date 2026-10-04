@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:ba7511d59f0aad6ed07d165468138f355a43ed6ef1e4055a2a4f2394d2bb6cbc",
+  "edge_type": "CHANGED",
+  "from_id": "chg:bulk-forms",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:service"
+}

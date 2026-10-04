@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:b5c8f38eb94a24e779ab40d70da51cbb9db1b13c47db981a5c7102d1ee895866",
+  "node_id": "ver:a-finding-names-parking-and-its-boundary",
+  "node_type": "Verification",
+  "properties": {
+    "description": "1 case in crates/reflow2-core/tests/orphan_attachment.rs. Asserts the `orphan_node` repair note names `parks`, says the ruling must be ACCEPTED, warns against deleting the node, AND names what parking does not reach (`unthreaded_cluster`).\n\nPINNED AS A TEST BECAUSE MESSAGE TEXT REGRESSES SILENTLY — nothing else in the suite would notice the sentence going away, and its absence is what cost two registered documents. The boundary assertion is not padding: a mechanism named WITHOUT its scope produced the other half of the same day's failure, where a reporter found `parks`, could not confirm it covered their case, and did nothing.",
+    "kind": "verification",
+    "level": "unit",
+    "method": "test",
+    "name": "The orphan finding names parking and its limits",
+    "status": "passing"
+  }
+}

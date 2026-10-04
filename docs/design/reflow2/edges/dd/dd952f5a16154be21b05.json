@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:fbde43ff03af74dc8b6cd96219df39ddce7b180520cc0f2a5fff1efeddc45d6f",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:incremental-adopt-with-a-frontier-and-a-deferred-derivation-marker",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:temporal"
+}

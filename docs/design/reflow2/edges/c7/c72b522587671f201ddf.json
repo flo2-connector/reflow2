@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:af813466d0437b9114b03e825f33249b9303ed41c19f146abe6a87793fc03525",
+  "edge_type": "GOVERNED_BY",
+  "from_id": "cap:content-store",
+  "properties": {},
+  "to_id": "dec:where-content-lives"
+}

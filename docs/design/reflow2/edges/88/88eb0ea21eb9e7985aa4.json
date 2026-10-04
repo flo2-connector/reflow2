@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:a1bb7fb9b44f6cff3ac7771f525594681d0d12b5fe1d373945b90f9a3e4bf5cb",
+  "edge_type": "GOVERNED_BY",
+  "from_id": "cap:a-write-can-be-conditional-on-what-was-read",
+  "properties": {},
+  "to_id": "rule:fix-it-properly-while-it-is-still-cheap"
+}

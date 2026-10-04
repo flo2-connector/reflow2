@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:6d598e6441fc163cfba4c7ad6c0e6f5732a894e9b96c267856b3185438d3421e",
+  "node_id": "chg:the-gate-checks-the-export-can-be-read-back",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "name": "`reflow2_check.py` gains a ROUND TRIP check: export → import → re-export, compared structurally, so a committed export that cannot be read back is caught. The only probe that sees this class — content_hash, the lineage chain and sync_status all compare the export to ITSELF and never run the importer. dev_storyflow's export had been unrestorable for four days with every one of those green."
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:1d1f09454e1c3169bd955884e3b0fd33f32b8587187f1505d172e9da0eb38909",
+  "edge_type": "REALIZES",
+  "from_id": "art:proxy",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cmp:proxy"
+}

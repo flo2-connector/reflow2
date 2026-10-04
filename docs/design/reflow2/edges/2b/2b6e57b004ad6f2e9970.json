@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:82185bd98c4551fd8816f11d0b7daf958744469fbd4d66cd0e3fd9701d7f3b32",
+  "edge_type": "CHANGED",
+  "from_id": "chg:root-cause-is-tiered-search-every-failure-run-the-skill-before-a-cause-is-written",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "dec:idea-root-cause-runs-at-the-moment-a-cause-is-about-to-be-written-not-on-every-failure"
+}

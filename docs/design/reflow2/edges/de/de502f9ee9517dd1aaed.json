@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:9c80ef1c03156b26339d0ee7dc30e557401bd4f3d629fd41bc4cefbdd3af80fa",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:a-ruling-parks-a-node-and-parked-nodes-are-counted",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:heal"
+}

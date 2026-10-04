@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:8b26019fff2c9f74b67e61a8cd891d05b6847541a106a5f5e412c6cb3d90b901",
+  "edge_type": "REALIZES",
+  "from_id": "art:propagate",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cmp:propagate"
+}

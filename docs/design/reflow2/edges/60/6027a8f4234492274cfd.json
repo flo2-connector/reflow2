@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:bcd8b20e569325326197195e7df737349165e606233db49e41b1d0e1480a2a13",
+  "edge_type": "CHANGED",
+  "from_id": "chg:artifact-intent-properties",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:tools-assure"
+}

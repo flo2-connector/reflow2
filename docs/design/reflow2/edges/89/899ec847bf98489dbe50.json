@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:a2e7294b7f3f23da4bd7f1e85e3baf57f498b865500a1b69289d2b4d6ab5afbc",
+  "edge_type": "HAS_SNAPSHOT",
+  "from_id": "req:supporting-is-not-conflict",
+  "properties": {},
+  "to_id": "snap:epoch:prune-proposed:req:supporting-is-not-conflict"
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:f6caa95ddd4385a3da3584f3ee13142b7c557f842bcc055419d41620d16d60c0",
+  "edge_type": "RISKS",
+  "from_id": "fact:export-import-export-is-lossless-but-not-a-fixed-point-until-one-normalising-pass",
+  "properties": {
+    "confidence": 0.9,
+    "evidence": "Document-as-truth rests on hydrate being faithful. This measures that it IS — 3,140/3,140 nodes and 13,167/13,390 edges unchanged, the 223 differences all one materialised default, converging to a fixed point on the second pass. So the risk it names is bounded and one-time rather than fatal: a single normalising migration, not compounding drift. It is filed as a risk rather than a clearance because the same measurement did NOT test whether accumulated store state outside the design survives the trip, which is the way this model would fail late.",
+    "severity": "medium"
+  },
+  "to_id": "dec:idea-does-reflow2-need-a-byte-store-at-all-or-only-durability"
+}

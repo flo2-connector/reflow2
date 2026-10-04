@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:201c09baef195d489c20af471a8bdb6b66ccff4f9564d2bb4e62456894c90ab2",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-registry-names-every-store-it-found-and-cannot-serve",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "art:test-a-registry-names-every-store-it-cannot-serve"
+}

@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:6074370bc9c7642226a88c531a6ef0bf15fbd4c108cb5d6f792050bd20b64dd5",
+  "node_id": "cap:heal",
+  "node_type": "Capability",
+  "properties": {
+    "description": "Propose content-free structural fixes, then apply atomically.",
+    "name": "Repair structure",
+    "provenance": "authored",
+    "status": "verified",
+    "tier": "operational"
+  }
+}

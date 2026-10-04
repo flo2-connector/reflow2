@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:6d43c952dcc815ce563de823ae2988ecefad66b8b6ac8aecd257b35f61b5a03a",
+  "edge_type": "CHANGED",
+  "from_id": "chg:lineage-message-names-its-decision",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "dec:export-once-per-pr"
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:cb480b82aeabaf94ac7c70b6a78e0f43b8e57dc2eb980b1a884208d3223d1186",
+  "edge_type": "CAUSES",
+  "from_id": "dec:idea-a-design-closes-and-the-design-says-when",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "Its text defines closing as the systems-engineering pre-build verdict (\"A design that closes can be built\"). It also says every leg \"already has a computation behind it\", naming the delivery line as the traceability leg. The only existing traceability computation was the build-phase one (requirement_is_delivered), so the pre-build reading had no predicate to reuse and was never given one.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:root-cause-closure-cannot-read-design-done-because-traceability-was-bound-to-the-delivery-line-2026-09-29"
+}

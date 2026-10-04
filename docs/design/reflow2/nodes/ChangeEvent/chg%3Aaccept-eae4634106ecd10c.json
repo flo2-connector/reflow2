@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:a8775d363251a55c32061cbed87575ccae9aa5157d8a598b119d090521637c35",
+  "node_id": "chg:accept-eae4634106ecd10c",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "baseline_established",
+    "detected_at": "2026-09-13",
+    "name": "v0.60.1 cut: the version string moved 0.60.0 -> 0.60.1 and nothing else. Accepted BEFORE release_includes_all runs, so the manifest freezes the post-bump file.",
+    "subject": "system"
+  }
+}

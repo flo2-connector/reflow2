@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:5351e5123168dc371e0ded2d7ff938fc8d835adab90868a08f0eca5f48b86bd0",
+  "edge_type": "REALIZES",
+  "from_id": "art:release-workflow",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cmp:packaging"
+}

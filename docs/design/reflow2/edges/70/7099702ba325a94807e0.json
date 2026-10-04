@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:8adaee94dfa7ae56157a5e484a4126aed048f1e5486e1a5c9f13602a3ec01cc8",
+  "edge_type": "INVALIDATES",
+  "from_id": "chg:a-revise-keeps-what-it-was-not-passed",
+  "properties": {
+    "at": "2026-09-29",
+    "note": "Fixed at the class: the handler now reads passed-else-stored-else-default, and a_revise_keeps_what_it_was_not_passed.rs holds every tool that promises optional-to-revise to it, membership read off the served surface. Observed failing on origin/main first, green after."
+  },
+  "to_id": "fact:revising-an-epoch-without-its-description-clears-the-description-2026-09-27"
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:1d02538ba7eefe47f7a44dd6fbf6be48958210ef75f75780665cffc806829028",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:understated-status-test",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:understated-status-test"
+}

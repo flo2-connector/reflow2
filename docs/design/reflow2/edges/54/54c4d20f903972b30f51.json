@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:311c5bccdb6761a530568085a48c80a46484c1100d9ab1fa6aaeebb978fc50dd",
+  "edge_type": "CHANGED",
+  "from_id": "chg:snapshot-per-revision-built",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "req:snapshot-per-revision-not-per-epoch"
+}

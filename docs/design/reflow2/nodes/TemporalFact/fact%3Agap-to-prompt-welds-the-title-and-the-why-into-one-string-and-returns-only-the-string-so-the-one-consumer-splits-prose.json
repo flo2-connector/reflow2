@@ -1,0 +1,18 @@
+{
+  "content_hash": "sha256:005322d7d86951ea46ac139d33b19992f5c938aed0e7ccc68a04daa2e35e47f1",
+  "node_id": "fact:gap-to-prompt-welds-the-title-and-the-why-into-one-string-and-returns-only-the-string-so-the-one-consumer-splits-prose",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "confidence": 0.95,
+    "fact_type": "defect",
+    "name": "gap_to_prompt holds the gap's title and its why as separate values, welds them into one prompt string, and returns only the string — so its one consumer splits reflow2's prose on a literal marker",
+    "source": "flo2 reflow2_feedback.md, session of 2026-09-19 (evening)",
+    "statement": "FLO2 F18, corrected and sharpened by its own author. flo2 shipped clickable findings on top of a property it calls 'the single best thing reflow2 gave flo2 this week': gap_to_prompt is DETERMINISTIC — it composes a prompt and runs no model — so flo2 folds reflow2's own account of a finding into the one model turn the person's message already costs, with no verb table of its own and routing that tracks upstream for free.\n\nTHE COST: the part worth having is welded into a string. flo2 runs `composed.split(/\\nWhy it matters:\\s*/)` in proto/packages/graph-reflow2/index.mjs. That marker is prose inside a string, in no tool schema, never promised, and rewording the template is a legitimate thing for any release to do. flo2 declares it on a capability and guards it with a test that fails loudly — a known exception, not a hidden one — and it is THE ONLY PLACE FLO2 BREACHES the black-box rule Anthony stated while cutting v0.65.0.\n\nMEASURED 2026-09-19 at crates/reflow2-core/src/detect.rs:1553: the request is built with `format!(\"… Gap: {}\\nWhy it matters: {}\", self.title, self.description)`. The server holds both halves as separate fields on the gap, joins them, and the reply carries the joined string alone. The seam is created and discarded in one statement.\n\nTHE CORRECTION THE AUTHOR MADE THEMSELVES, and it narrows the ask: gap_to_prompt is a TWO-PHASE protocol — call with empty `answers` for `{status: needs_llm, prompts}`, fill them and call again for `{status: ok, prompt}`. flo2 deliberately does only phase one, because phase two buys a nicely worded question for the price of a second model turn and clicking a finding would stop being free. So the ask is not to change the protocol: it is to return `gap: {id, title, why}` beside the prompts the server already assembled them into.",
+    "steps": [
+      "gap_to_prompt"
+    ],
+    "subject_id": "cap:gap-carries-a-reading",
+    "valid_from": "2026-09-19"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:b6ea37a5ba01bca2262c7279f75dd865fcf953a6c9fb529fbae7e4a94a4de2c9",
+  "edge_type": "ANTICIPATES",
+  "from_id": "fact:defect-loop-status-asserts-an-answer-never-reached-the-design-from-a-fact-that-cannot-say-so",
+  "properties": {
+    "evidence": "The 2026-08-16 fact saw this coming in its own text: it named option A (\"the narrow honest repair is for the message to say what it actually knows\") and stated the obstacle behind option C (\"'was this answer written into the design' has no general computation\"). It framed the choice seventeen days before the recurrence made it worth deciding."
+  },
+  "to_id": "dec:idea-how-should-the-loop-know-that-an-answer-reached-the-design"
+}

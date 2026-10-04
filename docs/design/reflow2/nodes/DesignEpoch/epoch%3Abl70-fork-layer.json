@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:ee267e643c11bc3aa2b1bdd02dc1db66167344e46d7b01b8ed7ed4db965fbb3a",
+  "node_id": "epoch:bl70-fork-layer",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "description": "The epoch the fork layer was designed in (BL-70). Cut so that today's decisions have an anchor from the moment they are made, rather than being backfilled later — the practice dec:fork-point-address depends on.",
+    "epoch_type": "revision",
+    "name": "BL-70 fork layer designed (2026-07-24)",
+    "sequence": 100,
+    "status": "arrived"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:412e7f6fbe4933c7452cc6f12ed45fa3d01a70cf8ad0ad97e95576416f2cf5f4",
+  "node_id": "chg:stub-survivor-reconciliation",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "scope_change",
+    "name": "Reconcile genesis-stub survivor nodes with the committed model (user-approved 2026-07-20): merge cap:install→cap:kit, cap:artifacts→cap:reconcile-built, req:past-preserved→req:intent-preserved; wire cap:store; satisfy req:platform via cap:kit; verify cap:adopt from the storyflow trial"
+  }
+}

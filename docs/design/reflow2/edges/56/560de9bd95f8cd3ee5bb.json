@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:0d2522aff7ee0a9868a9bc1ac53bbd3dfa6723f42029a4b696a62d6b24024531",
+  "edge_type": "CHANGED",
+  "from_id": "chg:vocabulary-coverage-names-the-properties-it-counts",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:vocabulary"
+}

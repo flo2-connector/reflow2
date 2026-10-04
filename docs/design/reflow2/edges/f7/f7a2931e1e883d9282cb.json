@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:c5e850a79486339f81a5b89051bbd350de651f93863e758e828f454980bdbc81",
+  "edge_type": "CHANGED",
+  "from_id": "chg:deep-review-tier1",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:init"
+}

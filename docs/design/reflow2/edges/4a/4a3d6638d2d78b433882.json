@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:4bb9fcb1d72356eb30b39e4f4a8731585e0fb1c55f407717d341b27b2b570f0e",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0601",
+  "properties": {
+    "as_checksum": "sha256:a61fa5294a57f780a019929ecc4268e44cc349111d7d377aeaaeb6fccda6b27b"
+  },
+  "to_id": "art:record-to-record-relations-test"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:baf1f9b21fb02914ec4905471f24d8e9c71eacb6cfd0265f0c20fcc46ec027a8",
+  "edge_type": "CONTRADICTS",
+  "from_id": "dec:reflow2-is-built-for-observability",
+  "properties": {
+    "alignment": "opposing",
+    "evidence": "Not a conflict of intent but a conflict of FACT this design now has to face: that node's four-graphs argument says the target chooses the allocation graph, and reflow2's own decomposition is functional rather than instrument-optimal. Declaring observability asserts a target the current structure only partly serves — sys:coherence-loop is correctly separated from the store, but 33 leaf components hold no function at all and two subsystems exceed span of control. Recorded so the disagreement is visible rather than resolved by assertion."
+  },
+  "to_id": "dec:idea-the-ility-chooses-the-allocation-graph"
+}

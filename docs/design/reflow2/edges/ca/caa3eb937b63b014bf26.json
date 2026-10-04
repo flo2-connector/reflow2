@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:95fd321dabab1558d160b08f5a957d3727cdc7d810012966361d3594dc5075cb",
+  "edge_type": "VERIFIES",
+  "from_id": "ver:every-edge-type-declares-a-well-formed-reading",
+  "properties": {},
+  "to_id": "cap:edges-are-selected-by-their-declared-reading"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:770fa1bc26f1960f8061e109236328a48451ab51df433e5a83720bb63a030e64",
+  "edge_type": "CHANGED",
+  "from_id": "chg:kit-manifest-check-written",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "art:check-kit-manifest"
+}

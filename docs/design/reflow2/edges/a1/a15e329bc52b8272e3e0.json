@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:58c371ecc565533bb68fe741caaa20b08d74e89356b4ec8133872df197402e0a",
+  "edge_type": "CAUSES",
+  "from_id": "cap:tool-search",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "The second cause beside the trigger wording: the catalogue's ranking is over descriptions written from the design's side, and asked in the asker's words for a progress deck it returned add_project, set_project_mode, schedule_for, set_violation_status, dimension_drifts and contains — no reading tool — so even an agent that reached for the catalogue would not have found the read.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:root-cause-the-status-claim-was-keyed-to-nothing-and-the-catalogue-spoke-the-designs-side-not-the-askers"
+}

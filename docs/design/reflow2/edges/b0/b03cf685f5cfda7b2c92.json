@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:559d4d67fb0be93395ec93ca9113fc9f1f2ba91f0cf1c1160e95853939dceb52",
+  "edge_type": "CAUSES",
+  "from_id": "art:service",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "service.rs:149 exe_replaced_since_start reads /proc/self/exe via read_link with no cfg(target_os) branch and no fallback; on Err it returns (None, UNKNOWN_NOTE). On any non-Linux platform that path does not exist, so currency is unknown on every call. The portable fingerprint (shared.rs:115) sits one module away and is not consulted.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:defect-currency-is-read-from-proc-self-exe-so-every-non-linux-run-answers-unknown-on-every-call"
+}

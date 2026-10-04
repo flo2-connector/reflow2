@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:0d269c6b141f69efad4da1457882298b9ad460c4f81406a33f164045b10c119a",
+  "node_id": "cap:a-branch-overlay-folds-into-main-when-its-code-merges",
+  "node_type": "Capability",
+  "properties": {
+    "description": "When main's committed saved design carries a branch's facts (the branch merged, including by squash, where the branch head is not an ancestor of main), the server folds that overlay into the shared store, idempotently. When the branch is deleted unmerged, the overlay is retired and kept readable as history, never folded. Detection by content, not ancestry, is required because this project squash-merges. Designed 2026-09-23.",
+    "name": "A branch's overlay folds into main when its code merges, detected by content, and is retired if the branch dies unmerged",
+    "provenance": "authored",
+    "status": "planned",
+    "tier": "operational"
+  }
+}

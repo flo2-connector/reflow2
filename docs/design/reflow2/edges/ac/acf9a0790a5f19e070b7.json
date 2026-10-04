@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:3f9309045201027c00d6df44e7ed6c3234d3182df23a6235b272c7cfe9560a0b",
+  "edge_type": "CHANGED",
+  "from_id": "chg:install-once-per-machine",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:loop-nudge"
+}

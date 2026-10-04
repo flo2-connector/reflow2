@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:ac10168a5f7b33bf552c7e6c7047783a386e598b4ef4d837f7503d1409a5186d",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-check-and-its-findings-are-different-things",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "ver:install-reaches-the-agent"
+}

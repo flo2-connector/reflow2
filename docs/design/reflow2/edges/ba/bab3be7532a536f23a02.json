@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:f8109ef4f8d2e761858e9f73103990bbba8f3df996819acd00e819159967ba60",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:test-a-write-unit-is-all-or-nothing",
+  "properties": {
+    "covers": "whole"
+  },
+  "to_id": "ver:a-write-unit-is-all-or-nothing"
+}

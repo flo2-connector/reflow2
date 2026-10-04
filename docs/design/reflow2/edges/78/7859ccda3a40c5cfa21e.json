@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:1dfc6a3ba90221c59aae1474f4cdc7a2eeb279d81ef53fd7f83162bcc5a244d6",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-capture-that-replaces-a-node-says-so",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:a-lesson-is-served-at-the-step-handler-test"
+}

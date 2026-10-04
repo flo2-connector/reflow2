@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:ab93841a026b629364bcc514c8cb7cd9649a8ae89d2a5a777131504d3b44322c",
+  "node_id": "art:fork",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "description": "fork_point (where going back to a settled decision starts from) and reopen_decision (dec:reopen-supersedes in one call).",
+    "location": "crates/reflow2-core/src/fork.rs",
+    "name": "fork.rs",
+    "status": "realized"
+  }
+}

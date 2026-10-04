@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:464d7b2d1f5c87fd1a882703ddc0bbaf758952130dac908f1ccc3f0955183eb0",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:fixture-bearer-test-rsa-key",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:fixture-bearer-test-rsa-key"
+}

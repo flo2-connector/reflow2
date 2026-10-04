@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:732c5a33a02a298d7565437880f4092d2606e8c68d1d55c4781b6539235ad309",
+  "edge_type": "CAUSES",
+  "from_id": "dec:idea-should-a-node-say-it-has-layers-and-let-a-reader-ask-for-them",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "export counts: 210/743 decisions >4 KB, 164 with ═══ sections, 92 Snapshots on decisions; the 2026-09-04 fact records the same cost from two other projects",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:field-report-flo2-2026-09-18-settling-a-prose-option-decision-costs-a-full-resend-and-the-house-style-is-measured"
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:a0c513f154c0b575454c496d78ea683dc7e2ffb1b21521c82d7ad3c6bdfc9328",
+  "node_id": "art:coherence-gate-test",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "location": "tools/test_reflow2_check.py",
+    "name": "test_reflow2_check.py",
+    "status": "realized"
+  }
+}

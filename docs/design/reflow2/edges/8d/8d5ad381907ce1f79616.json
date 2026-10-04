@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:47c2203a0725ddbaa7d2e1aadc3f98c9462beb527806728fe04d9fc8e3c50eef",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:cluster-claims",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:claims"
+}

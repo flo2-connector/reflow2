@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:abc7790aac8cff79bfba53f3a4619971448c76a2a3fcba3ac118a89e80f0e8b2",
+  "edge_type": "CONTRADICTS",
+  "from_id": "fact:the-status-field-is-the-binding-versus-visible-switch",
+  "properties": {
+    "alignment": "opposing",
+    "evidence": "Not the finding itself — a claim this session made ALONGSIDE it, on the same day, and this refutes. Arguing from the approver-loss discovery I concluded that visible-only 'needs none of this machinery' and recommended it as the cheap option. Measured: `settles_intent()` reads only `status == accepted` and never looks at GOVERNED_BY, so a mirrored ACCEPTED decision fails the gate whether it governs anything or not. Visible is only cheap if what arrives is `proposed`, which is a different design from the one I was recommending."
+  },
+  "to_id": "fact:the-instruction-surface-routes-to-hygiene-and-not-to-whether-the-thing-works"
+}

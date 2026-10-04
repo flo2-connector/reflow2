@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:f0dbfcef62a4901ee7ba92207c07c3e849cc873d27df30bb7df8e6b148a1a20b",
+  "node_id": "cap:a-contract-answers-at-the-altitude-you-asked",
+  "node_type": "Capability",
+  "properties": {
+    "description": "BUILT 2026-08-23 on Anthony's word. DISTINCT FROM `dec:idea-a-contract-is-declared-at-the-lowest-level-and-rolled-up`, which records the QUESTION and stays `proposed`: he authorised the roll-up PROJECTION, not the wider rule that would move the detector's altitude too. And DISTINCT FROM `fact:lifting-both-sets-is-what-made-the-two-vocabularies-meet`, which is the MEASUREMENT behind it — that node holds the numbers and the near-miss; this is the thing that was built. Keeping them apart is what lets the design say whether the fix happened, separately from what it found.\n\nALSO DISTINCT FROM `dec:idea-a-view-can-slice-by-altitude-not-only-by-aspect`, which stays open and is a different thing wearing the same word. That one asks which nodes are TOP LEVEL for a management reader — an ABSTRACTION filter, and its own text records why it is stuck: a filter chosen by the renderer rather than derived from the graph is the renderer fill-in the doctrine calls a defect. This is a ROLL-UP ALONG CONTAINMENT — answering a question at the level it was asked by walking down the spine. No filter, no new property, no schema change, which is exactly why it was buildable today and that one was not.\n\nWHAT IT DOES: `seam_coverage {altitude}` lifts BOTH the couplings and the contracts to the nearest container at a chosen `Component.level`, then compares them. `covered_by` names the finest-level pair where each contract actually sits, so \"yes, A and B interface\" always arrives with where to look.",
+    "name": "A boundary question is answered at the altitude it was asked, naming the leaf where the contract actually lives",
+    "provenance": "authored",
+    "status": "realized"
+  }
+}

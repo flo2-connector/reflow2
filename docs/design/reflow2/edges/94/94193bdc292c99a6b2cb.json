@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:ebbced8e2386fb25539ab6bc26d5d8829d6fe6389e25268776666b36891cda19",
+  "edge_type": "CHANGED",
+  "from_id": "chg:accept-a25fca9e064e8172",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:allocate"
+}

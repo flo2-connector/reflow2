@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:c0135687688e9ecc8ae257a99c68f01942ce54aad2c1982b4bf9bfe0eb6648c3",
+  "edge_type": "CHANGED",
+  "from_id": "chg:planning-axis-intent",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "req:graph-indexes-snapshots"
+}

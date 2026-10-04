@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:68ebb684f65974cdf43efdb6f4c7a4f5566a421e81edd86a5b8cc7fc12ce271c",
+  "node_id": "chg:accept-ae2b4cc16bf8ee58",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "documentation",
+    "detected_at": "2026-09-16",
+    "name": "loop_status's description trimmed under the 1500-char budget skill_lint enforces (1711 -> 1483); same content, shorter.",
+    "subject": "system"
+  }
+}

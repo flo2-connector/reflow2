@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:2842560d7c1a4a5d1f2e07b2ccc8451acde482a570c925a374b92b19a64db7d3",
+  "node_id": "art:allocate",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "granularity": "atomic",
+    "location": "crates/reflow2-core/src/allocate.rs",
+    "name": "allocate.rs",
+    "status": "realized",
+    "volatility": "stable"
+  }
+}

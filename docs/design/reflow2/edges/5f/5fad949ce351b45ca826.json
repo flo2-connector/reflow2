@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:30ba5c8a774b25bff9142e98cfb113eee260fd6d33e4fd098c6f85c70a212339",
+  "edge_type": "REALIZES",
+  "from_id": "art:test-a-jot-carries-the-tag-its-word-gave-it",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:a-jot-carries-the-tag-its-word-gave-it"
+}

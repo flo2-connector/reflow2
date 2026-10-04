@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:134deeea72f844a3ffea984d8913314dcd75c80d33ed54f38509285e87616b36",
+  "edge_type": "CHANGED",
+  "from_id": "chg:accept-60bbb0d5189f7e2e",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:doubt"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:4f838fa1891dedd9f1a8ebee03309820645162a3bc28641aeb6a768bb1e4fced",
+  "edge_type": "CHANGED",
+  "from_id": "chg:bl73-component-verified",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cmp:skills"
+}

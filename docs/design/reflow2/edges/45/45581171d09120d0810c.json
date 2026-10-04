@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:9aa57c04f80029abd77840472101280225dfed2ebe3b86888f9e41b56e162dd6",
+  "edge_type": "EVOLVES_INTO",
+  "from_id": "dec:idea-what-keeps-reflow2-valuable-as-agents-get-better",
+  "properties": {
+    "confidence": 1.0
+  },
+  "to_id": "rule:reflow2-is-one-of-three-parts-and-does-not-compete-with-the-others"
+}

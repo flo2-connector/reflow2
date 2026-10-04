@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:039d85b4cd1f0f192e756bbb1a82804303c657f5fac92f51ee7faff08042b4dc",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:every-edge-type-declares-what-it-means-test",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:every-edge-type-declares-what-it-means-test"
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:bd3e1e7beb536e054a16c6081d5597038ad8589b6bb65b478e35b36af82801c2",
+  "edge_type": "ANTICIPATES",
+  "from_id": "fact:defect-sibling-constructors-disagree-on-how-to-name-a-node-and-what-status-it-lands-in",
+  "properties": {
+    "evidence": "dev_storyflow's 2026-09-02 report named the constructor/setter half of the class that F10 met on 2026-09-19; the 2026-09-06 fix answered the relation half only."
+  },
+  "to_id": "fact:field-report-flo2-2026-09-19-f10-seven-more-rejections-are-the-constructor-half-of-a-defect-recorded-by-three-projects-and-half-fixed"
+}

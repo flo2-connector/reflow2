@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:245169bb56ddf62532ea3137a81601ca64b162f596b2d199d85c802e13f22a97",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-handshake-writes-down-who-connected",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:service"
+}

@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:a651980298dee54105e56f5b7fac1c9b3358eaf3abd0297f8ddfdc8eccacb6f0",
+  "node_id": "req:one-sentence-of-a-nodes-text-can-change-without-resending-the-field",
+  "node_type": "Requirement",
+  "properties": {
+    "lineage": "original",
+    "name": "One sentence of a node's text can change, or a dated note be appended, without re-sending the field — and never without the revision guard",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "Anthony, 2026-09-18, promoting flo2's F3/F4 (the third project to report it after qs and dev_storyflow, 2026-09-04): settling a decision whose options live in prose — which the brainstorm skill asks for on purpose — meant re-sending a 6 KB body to move one line, or leaving 'Options, none chosen' standing false. Measured on reflow2's own design: 210 of 743 decisions exceed 4 KB, 164 carry dated ═══ sections, 92 preserved re-sends. The edit must be bounded: the text to replace occurs exactly once or the call is refused with the count and nothing is written; omitting it appends after a blank line; the prior state is preserved and the reply names what moved, exactly as every other write. Graph text stays data: the caller supplies both strings, and the server never reads a node's prose for meaning.",
+    "status": "accepted"
+  }
+}

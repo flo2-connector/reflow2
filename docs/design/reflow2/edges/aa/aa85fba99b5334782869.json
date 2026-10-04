@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:e7a9454822de35b8e9dc171adc04fd9d6b8f0f272b7d9b0779f1441557587cfb",
+  "edge_type": "CAUSES",
+  "from_id": "chg:four-root-causes-from-two-field-reports-are-fixed-at-the-cause",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "#527's `declared_targets` counts every `related_to` id as a relation the request has already stated and exempts it from the near-match refusal, but add_decision only draws `related_to` when kind is exploratory (#394); measured on v0.67.0: a near-duplicate choice naming its near-match in related_to is written with no edge, while the same call without related_to is refused.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:related-to-on-a-choice-passes-the-duplicate-guard-and-is-then-dropped-2026-09-23"
+}

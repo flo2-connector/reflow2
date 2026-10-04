@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:340e8959985fa92eadd9610cd3cc3821c47fc6d7a3d8bf14e5a7631466a5df75",
+  "edge_type": "REALIZES",
+  "from_id": "art:test-a-rule-tests-the-condition-its-message-names",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:heal"
+}

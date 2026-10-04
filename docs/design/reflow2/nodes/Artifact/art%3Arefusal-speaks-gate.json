@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:0128d5554aac03c20708256a9696f4bf542637b794810ea2aa511a5b91d6c3e8",
+  "node_id": "art:refusal-speaks-gate",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "description": "The CI gate on the real binary: probes generated from every served schema (a wrong type at every typed location, an unknown key in every closed object, a value outside every enum, an empty item wherever an item has required fields, every required top-level field) must each be refused naming the tool and the path, quoting the field's description or saying it has none; plus the reconnect advice over a session and never through the --call door.",
+    "location": "tools/refusal_speaks.py",
+    "name": "refusal_speaks.py",
+    "status": "realized"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:759c3b44bb4a0c9cb8d4a7d13c2068e7d99ee75e45ca015cd14eed0f9a80ca8b",
+  "edge_type": "BLOCKS",
+  "from_id": "cap:graph-algorithms",
+  "properties": {
+    "evidence": "Not a veto — a raised threshold, and BLOCKS is the closest true relation the vocabulary offers. Before 2026-08-24 `max_flow_min_cut` was linked and callable, so this idea was 'use a function we already have'. This capability absorbed only what reflow2 calls and left `maxflow.rs` (248 lines) upstream, so acting on the idea now means retrieving a file from tag v0.12.0 first. The same holds for `dec:idea-other-centralities`, `dec:idea-missing-edge-prediction` and `dec:idea-relevance-ranking`; this edge is drawn on the sharpest instance rather than four times over, because relatedness is not similarity."
+  },
+  "to_id": "dec:idea-severability-cut"
+}

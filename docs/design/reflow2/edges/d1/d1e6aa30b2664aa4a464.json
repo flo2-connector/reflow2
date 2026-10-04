@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:135e9db306153bb97b101c77a6a5598601484a0ae03edbb941d4bdcc8ea0e1de",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:vocabulary",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:vocabulary"
+}

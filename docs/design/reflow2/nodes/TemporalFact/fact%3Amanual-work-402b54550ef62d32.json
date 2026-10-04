@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:59dff9878e66b8d60ae15e26b27cbc49d366073ceaa61e69b22a4b1a5052e0ba",
+  "node_id": "fact:manual-work-402b54550ef62d32",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "manual_work",
+    "statement": "Wrote a script, five times in one session, that loaded two saved design exports (the committed one on main and a freshly written one) and listed the nodes added, removed and changed, plus edges added and removed. It was used to check that a records PR held only that session's records before committing it.",
+    "subject_id": "proj:reflow2",
+    "valid_from": "2026-09-26",
+    "value": "{\"diagnosis\":\"tool_not_found\",\"reflow2_tool\":\"compare_designs\"}"
+  }
+}

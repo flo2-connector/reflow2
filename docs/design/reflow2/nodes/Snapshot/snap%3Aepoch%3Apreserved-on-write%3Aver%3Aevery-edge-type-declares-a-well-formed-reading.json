@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:3cab5bd1f1d822b95ff1dd91eb002c0a182ddade41aab5abd2428186020558d5",
+  "node_id": "snap:epoch:preserved-on-write:ver:every-edge-type-declares-a-well-formed-reading",
+  "node_type": "Snapshot",
+  "properties": {
+    "edges": "[{\"direction\":\"out\",\"edge_type\":\"VERIFIES\",\"other_type\":\"Capability\",\"other_id\":\"cap:every-edge-type-declares-and-serves-its-reading\",\"properties\":{}}]",
+    "state": "{\"description\":\"A core test over the compiled schema: every edge type has a `reading`; its primitive (or every component of its composition) is in the declared primitive set; every modifier kind is in the declared modifier-kind set; every property named as a modifier is declared on that edge; basis is `classified` or `reviewed`. It also asserts describe_schema serves the reading on the whole-vocabulary read and on an edge query. It checks that readings EXIST and are well-formed, not that any reading is right — rightness is the owner's review.\",\"kind\":\"verification\",\"level\":\"unit\",\"location\":\"crates/reflow2-core/tests/every_edge_type_declares_what_it_means.rs\",\"method\":\"test\",\"name\":\"Every edge type declares a well-formed reading\",\"status\":\"planned\"}",
+    "target_id": "ver:every-edge-type-declares-a-well-formed-reading",
+    "target_type": "Verification"
+  }
+}

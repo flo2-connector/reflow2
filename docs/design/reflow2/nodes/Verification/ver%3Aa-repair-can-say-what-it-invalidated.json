@@ -1,0 +1,17 @@
+{
+  "content_hash": "sha256:7acf3d3881e819a889496c2d6d2010f73cebd4f4036b0cef2b35954cf658b075",
+  "node_id": "ver:a-repair-can-say-what-it-invalidated",
+  "node_type": "Verification",
+  "properties": {
+    "description": "`cargo test -p reflow2-core --test a_repair_can_say_what_it_invalidated` — 10 cases.\n\nThe suite existed from PR #321 and was simply never visible to the design; this Verification is the record catching up, not new coverage.\n\nWHAT IT PINS, and all three of the capability's restraints are in here — these are the ones a later \"simplification\" would reach for first:\n  • `invalidating_a_check_never_moves_its_status` — the claim says the last RESULT is stale, never that the check now passes. The edge is not RESOLVES and must never become it.\n  • `a_finding_with_no_claim_is_not_reported` — nothing is inferred. A finding nobody claimed against is reported as having none, which is a real answer rather than a silence.\n  • `an_undated_claim_says_nobody_can_tell_rather_than_no` — `rerun_owed` is THREE-valued; null means one side is undated. Collapsing it to false would turn \"nobody can say\" into \"nothing is owed\", which is the reassuring answer and the wrong one.\n\nAlso covered: the claim is read back with whether a re-run is owed; a run postdating the repair owes nothing; the edge never enlarges a blast radius; recording a repair does not suppress unrelated gaps; a hand-written change can carry its date; and the same edge closes a stale temporal fact.",
+    "findings": "`cargo test -p reflow2-core --test a_repair_can_say_what_it_invalidated` — **10 passed, 0 failed**, 0.05s. Run unpiped, exit code captured on its own line and read from the background task's OWN output rather than from a log read mid-run (both traps this repo has been burned by).\n\nRUN BEFORE THE VERIFICATION WAS MARKED, not after. The suite was known to exist and known to have shipped green in PR #321, and neither of those is evidence about today — a check recorded as passing on the strength of its history is the forgery this field exists to prevent.\n\nAll ten green: a_hand_written_change_can_carry_its_date, a_finding_with_no_claim_is_not_reported, a_repair_can_name_the_check_it_answered, a_run_that_postdates_the_repair_owes_nothing, an_undated_claim_says_nobody_can_tell_rather_than_no, invalidating_a_check_never_moves_its_status, invalidates_never_enlarges_a_blast_radius, the_claim_is_read_back_with_whether_a_rerun_is_owed, recording_a_repair_does_not_suppress_unrelated_gaps, the_same_edge_closes_a_stale_temporal_fact.",
+    "kind": "verification",
+    "last_reconciled_at": "2026-09-23",
+    "last_reconciled_outcome": "passed",
+    "last_run_at": "2026-08-24",
+    "level": "integration",
+    "method": "test",
+    "name": "A repair's claim is read back, and it never moves what it invalidated",
+    "status": "passing"
+  }
+}

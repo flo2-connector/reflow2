@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:541e7956eb6108047adac5ae1da033b1755a9026c1f467a539fa526b92b77fd3",
+  "node_id": "decision:ack:946dd6b0bb464229",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Accepted the gap gap:946dd6b0bb464229.",
+    "name": "Reviewed: gap:946dd6b0bb464229",
+    "rationale": "Deferred on Anthony's word, 2026-07-28. Accepted and not dropped: reflow re-read the architecture anchor at phase transitions, at resync, and every 5 iterations, explicitly to \"remind yourself of design intent and constraints\"; reflow2's periodic re-injection carries loop DEBT instead, which says what you owe rather than what you were trying to build. Deferred and coupled to two open questions rather than blocked by them — the trigger depends on req:build-loop-is-bounded (parked the same day), and which node type carries the payload depends on dec:anchor-retire-or-implement (Snapshot at 14 instances versus Anchor at zero and still advertised). The recording vocabulary already exists, so when this is built it is the re-reading that is new, not the schema.",
+    "status": "accepted"
+  }
+}

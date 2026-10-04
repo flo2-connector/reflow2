@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:d8f05291d11efd6d47520f8113fd366fb5f7d858ada6252785000d511dfcb1ec",
+  "node_id": "chg:accept-af14fd0d926de4db",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "test_failure_fix",
+    "detected_at": "2026-08-01",
+    "name": "Five assertions had been inverted while satisfying a clippy lint — get(X).is_none() became contains_key(X) without the negation. The full suite caught it; the design is unchanged."
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:9c8002dff32678f9b13017eb7ee1d392ea74a716b66c15257bf2cd8a5a34724d",
+  "node_id": "chg:a-ruling-parks-a-node",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "name": "GOVERNED_BY gains `ruling: parks`, detectors read the ruling rather than seeing an edge, and parked nodes are COUNTED in swept.parked instead of silently disappearing"
+  }
+}

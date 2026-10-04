@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:cc1668633718e39b42c6a81b7dff071d4964e3dea6a03cf41f47180e1f3663a9",
+  "edge_type": "GOVERNED_BY",
+  "from_id": "fact:defect-a-schema-narrowing-orphaned-live-edges-and-no-export-is-ever-imported",
+  "properties": {},
+  "to_id": "decision:ack:e2f0841c3aa9ba23"
+}

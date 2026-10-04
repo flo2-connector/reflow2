@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:c45b449bbe96ae0495cceef137fb9f71683493016125a6281465dd03e8f24733",
+  "edge_type": "MITIGATES",
+  "from_id": "dec:idea-what-does-se-doctrine-actually-prescribe-upfront-and-what-of-it-does-reflow2-have",
+  "properties": {
+    "evidence": "One is a hazard, the other answers it. That requirement asks for nesting 'as deep as the design needs' and its own measurement flags 'DEPTH IS TWO, not as deep as the design needs' as the shortfall — with no method for deciding how deep is needed. The doctrinal sequence supplies exactly that method: functions first, allocation groups them, structure falls out, span of control checks it. It also names the machinery reflow2 already has for it, propose_allocation, which nothing currently instructs anyone to run."
+  },
+  "to_id": "req:recursive-black-box-decomposition"
+}

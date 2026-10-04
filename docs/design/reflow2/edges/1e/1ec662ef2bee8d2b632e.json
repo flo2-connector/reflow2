@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:a4d92a970dd699a2391d63969ca76fed21e824fdd6760663d7c77c70397a58c0",
+  "edge_type": "CONSUMES",
+  "from_id": "cmp:ingest",
+  "properties": {
+    "dependency_type": "function_call",
+    "weight": 0.7,
+    "weight_basis": "evidence"
+  },
+  "to_id": "ifc:req-dyno-resolution-api"
+}

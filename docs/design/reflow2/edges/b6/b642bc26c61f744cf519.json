@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:2952e46d46a31fc539b52ed9dba27ff3923055b9fbd070ed750850b941757168",
+  "edge_type": "SCHEDULED_FOR",
+  "from_id": "cap:feedback-is-a-computed-tally",
+  "properties": {
+    "modality": "expected",
+    "recorded_at": "2026-09-12"
+  },
+  "to_id": "epoch:planned-feedback-is-a-computed-tally"
+}

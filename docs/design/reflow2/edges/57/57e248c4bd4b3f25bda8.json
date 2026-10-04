@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:fa83fc9ee552eadf9cbad64ef1267adcd823fb9d39d50fbf7182ae18859d6fa5",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-saved-design-moves-to-the-item-layout-2026-10-03",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:b09d8cc4ab180d51563d8dc592afefe7cff2a7f58b3db4922bfde8c3e22617ec",
+    "checksum_basis": "measured"
+  },
+  "to_id": "art:machine-install"
+}

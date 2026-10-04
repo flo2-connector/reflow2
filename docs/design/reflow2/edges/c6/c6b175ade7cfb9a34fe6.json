@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:1ee18e1717e4dc4928dafde3992538ced8fb2e300f44a6d0a69d4d582df0569b",
+  "edge_type": "REALIZES",
+  "from_id": "art:writers",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:the-reachability-gate-reads-which-tool-writes-which-type"
+}

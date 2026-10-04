@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:03a3b0b4db0bf06940af94ef75f093f602891a55e541360355eeeceb54c5eb96",
+  "edge_type": "CHANGED",
+  "from_id": "chg:allocation-follows-the-code-not-the-neighbour",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cmp:consumption"
+}

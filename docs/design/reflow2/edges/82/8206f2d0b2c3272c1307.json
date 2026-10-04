@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:694442f7f25911e948d8902066dd0f3d425fe6a43359ae3605adb3fc58277f22",
+  "edge_type": "ANTICIPATES",
+  "from_id": "dec:parallel-alternatives",
+  "properties": {
+    "evidence": "The earlier one saw this coming and wrote the reopening condition into its own deferral list: \"world-scoping IF SIMULTANEOUS IN-GRAPH AoA PROVES NEEDED\". Its argument against world-scoping was explicitly conditional on the benefit being \"not yet needed\". This is the first field report supplying that condition, with a measured cost rather than a preference."
+  },
+  "to_id": "fact:the-fork-ask-is-a-deferred-branch-whose-reopening-condition-is-now-met"
+}

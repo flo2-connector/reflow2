@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:5d104cc9c2f692cbbc31c07b77e712c8c1cd0b5702f2c952de883d7a8457eda6",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-spawned-daemon-inherits-nothing-it-should-not",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:collaborating"
+}

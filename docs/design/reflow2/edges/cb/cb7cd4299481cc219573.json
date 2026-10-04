@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:f23661d4d2617ed931d00dc18e8feab99c805125b72371697a6de6184834acca",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-wall-check-is-served",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:tools-built"
+}

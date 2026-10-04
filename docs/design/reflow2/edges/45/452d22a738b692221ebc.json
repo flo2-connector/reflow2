@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:3037871c3f252833a91f9e42abc4eb8a34b83361361a40da10930048e593df76",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:a-boundary-quantity-carries-its-unit-and-the-seam-compares-them",
+  "properties": {},
+  "to_id": "req:a-quantity-that-crosses-a-published-boundary-declares-its-unit-and-the-seam-check-compares-them"
+}

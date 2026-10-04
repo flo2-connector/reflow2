@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:d2a3744c9e14712b4492c7585bb880932c1efbffa241c48dd91b25c6f190ec0a",
+  "node_id": "cap:a-server-drains-before-it-stops",
+  "node_type": "Capability",
+  "properties": {
+    "description": "Planned 2026-09-27. On SIGTERM or SIGINT, the --http server (a single design or a registry root):\n1. stops accepting connections;\n2. waits for in-flight requests up to a grace period (configurable, shorter than a container's stop timeout);\n3. closes every open design's store and ends its sessions;\n4. then exits.\nWithout this, a deploy that stops the process can end a write mid-way, and every open store is closed by the process dying rather than by its owner.\n\nREALIZED 2026-09-27 in crates/reflow2-mcp/src/drain.rs (chg:an-http-server-drains-before-it-stops-2026-09-27), for every --http server including the shared one. The grace is --shutdown-grace (default 5s), and work is every request that is not a GET, counted until its answer's body is written. It does two things beyond the four above: a write-through change still waiting (--export-to) is written before the stores close, and the server exits 0 with an account of what it did. A second signal exits at once. Checked by ver:a-server-drains-before-it-stops.",
+    "name": "An HTTP server told to stop drains its in-flight requests within a grace period and closes every open store before exiting",
+    "provenance": "authored",
+    "status": "realized",
+    "tier": "operational"
+  }
+}

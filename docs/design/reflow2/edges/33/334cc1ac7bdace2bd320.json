@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:2398c1e3f726265732dce4da628e0c55816f1b1e5885fd238dd40e3dd452293a",
+  "edge_type": "TRIGGERS",
+  "from_id": "fact:field-report-flo2-2026-09-18-skills-are-not-findable-by-words-find-tools-scores-tools-only",
+  "properties": {
+    "evidence": "The measured absence is what raises the question."
+  },
+  "to_id": "dec:idea-a-skill-is-found-by-describing-it-the-way-a-tool-is"
+}

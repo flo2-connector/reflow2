@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:44f173bd333a2ef69c1926ed9141ae18a4cd58368c52bb8b507c8c17c92eb4cb",
+  "node_id": "fact:manual-work-b838754c8eac2946",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "manual_work",
+    "statement": "Wrote Python over the committed export to enumerate every open field-reported defect record — counting those carrying a defect marker, subtracting the ones some record already claims to have answered, then bucketing the remainder by date, edge degree, and whether their own text declares a fix. This is the \"how big is the backlog actually?\" question, and no served tool answers it: the two that come closest ask a session-scoped question (what did MY changes make stale) or a per-finding one, not a design-wide inventory.",
+    "subject_id": "proj:reflow2",
+    "valid_from": "2026-08-28",
+    "value": "{\"diagnosis\":\"tool_missing\",\"reflow2_tool\":null}"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:87a55d210dca11e632b8df946fe355e836897b177e514d7699b3fa1af1b68af8",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:dependency-holds",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:dependency-holds"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:2b7dcf4b5023cf454b2883cd25b1cd8868fd1850bf13d0df9e7b0b668d2837ad",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:test-no-per-design-globals",
+  "properties": {
+    "covers": "whole",
+    "note": "migrated 2026-09-22 from a REALIZES link_artifact drew in error"
+  },
+  "to_id": "ver:no-per-design-process-globals"
+}

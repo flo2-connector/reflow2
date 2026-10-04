@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:91bb2fead687fb4449fc364dd6f7065f517385ee2fbc71e137ce9e44d4f0d648",
+  "edge_type": "HAS_SNAPSHOT",
+  "from_id": "cap:a-write-replies-with-a-receipt",
+  "properties": {},
+  "to_id": "snap:epoch:preserved-on-write:cap:a-write-replies-with-a-receipt"
+}

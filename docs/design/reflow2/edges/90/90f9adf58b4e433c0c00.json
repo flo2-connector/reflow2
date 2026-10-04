@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:558e36d4b10d07c17c54dea2cdc06952bcc044f56c1af541bd9409dea15ccaf3",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:verification-freshness",
+  "properties": {},
+  "to_id": "req:verification-keeps-up"
+}

@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:601c3c8e5c5195f9dc696bc76be21ed84c481e400c3eab8fff1f47a6c6e0960b",
+  "node_id": "fact:field-report-bhome-2026-09-18-a-build-script-has-no-door-to-a-report-but-an-mcp-session-so-the-budget-was-hand-transcribed",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "confidence": 0.85,
+    "fact_type": "defect",
+    "name": "FIELD REPORT (bhome S3, 2026-09-18): the plan-sheet generator reads geometry from the IFC and the budget from design-facts.json, a hand transcription of budget_report, 'because reflow2 is an MCP server and not a library the script can import' — so the half of the sheet reflow2 owns is the half with no mechanical guarantee. MEASURED: the CLI has --export, --export-snapshot, --import, --diff and --merge-driver, and no one-shot door to a report",
+    "source": "bhome feedback.md, Session 3 (2026-09-18), triaged 2026-09-19 through the triage-feedback skill",
+    "statement": "Reporter: 'If a contribution moves in the graph and nobody re-exports that file, the sheet prints the old number and looks exactly as confident as before … Opportunity: something that exports a budget as data a build can consume, so a derived document can cite the graph the way it cites the model.' MEASURED: main.rs long flags — no --call, no --report; a build script's only door to budget_report is a JSON-RPC session over stdio (tools/smoke_mcp.py is one, undocumented as a consumer door). PRECEDENT: dec:idea-outward-docs-are-rendered-from-the-graph (2026-08-11, 'already the recorded direction, and it is unbuilt') and the export write-through (the server keeps one derived file current). CAUSE: derived views leave the graph only through an agent or a hand; the one file the server keeps current is the export.",
+    "subject_id": "cap:the-server-writes-the-export-through-and-chains-it-from-main",
+    "valid_from": "2026-09-19"
+  }
+}

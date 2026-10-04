@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:b31118fe24ab13df2bdd974ad0d1a40a2094b6b94f0ff2360ae41230546f6885",
+  "node_id": "cap:drift-direction",
+  "node_type": "Capability",
+  "properties": {
+    "description": "Say which way the design and the build have diverged, not merely that they have. Anthony's founding problem, observed in the field 2026-07-24 (reflow2 on storyflow: the docs \"consistently understate what's built\") and the failure the predecessor died of. BUILT 2026-07-25, pieces 1 and 2 of 3. HOW: ObservedArtifact gains an optional `realizes` — what the caller observed the file actually implementing. Core compares that against the recorded REALIZES edges, which keeps the no-file-IO contract intact (the agent observes, the core computes) and yields both halves at once. DIRECTION: more observed than recorded is Understated, less is Overstated, each-having-what-the-other-lacks is Diverged. MEANING: the finding carries `unrecorded` and `unbuilt` — the specific design nodes involved — and the message names them, which is the answer to \"what does the design now claim wrongly?\" that a checksum could never give. Without it, accepting drift means asking someone to go find the delta themselves, and that is the labour that does not happen under load. FOUR JUDGEMENTS WORTH KNOWING. (a) Direction is assessed INDEPENDENTLY of the checksum: a design can be wrong from the day it was written, and tying this to checksum_change would miss the long-lived untouched files where understatement accumulates. (b) Overstatement outranks understatement and plain change, because a design claiming something absent is what someone will plan against — understatement is a record that is behind, overstatement is a record that is wrong. (c) `realizes: None` means not assessed and is never read as agreement, so no existing caller silently starts asserting alignment it never checked. (d) Mapped onto the EXISTING schema drift_types (understated records as undocumented_addition, which is what it is one level down; overstated as spec_mismatch) rather than adding two enum values — a schema change costs a minor bump, an upgrade doc and real pain for anyone on an older stamp (BL-94), and buys nothing here. NOT BUILT: piece 3, write-back to the source documents a design was adopted from. The graph can now be brought up to date; the markdown people actually read still cannot.",
+    "name": "Say which way the design and the build have diverged, and bring the design back up",
+    "provenance": "authored",
+    "status": "verified",
+    "tier": "operational"
+  }
+}

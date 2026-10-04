@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:58f08d59e050418c7ce2048e456ce721abd9b2edf550dae18972f3d02b1c6782",
+  "edge_type": "CONSUMES",
+  "from_id": "cmp:drift",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "ifc:llm-backend"
+}

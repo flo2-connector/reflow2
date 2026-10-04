@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:e575d52ecd0fb151c1533907cc1c9e32c6a344fa508192f502d80983de2765d6",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:a-published-contract-says-what-two-systems-must-agree-on",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:detect"
+}

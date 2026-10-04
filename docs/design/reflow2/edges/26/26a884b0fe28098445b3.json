@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:d9da11ff295db0bacea51e9e8209a0910deacb909ab5a5a117fd5e65c2cb0fb0",
+  "edge_type": "CHANGED",
+  "from_id": "chg:every-argument-refusal-names-the-tool-and-the-field-path",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:a-missing-argument-names-the-tool-and-what-it-wants-test"
+}

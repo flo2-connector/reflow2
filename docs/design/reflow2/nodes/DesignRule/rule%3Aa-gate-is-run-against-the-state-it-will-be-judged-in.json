@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:9bd397482e8a1448929c257ebcd0dc94f89ed5723bf8a310fa634c54f0f4d529",
+  "node_id": "rule:a-gate-is-run-against-the-state-it-will-be-judged-in",
+  "node_type": "DesignRule",
+  "properties": {
+    "category": "convention",
+    "enforced": false,
+    "name": "A gate is run against the state it will be judged in — for the design export, that means AFTER committing",
+    "statement": "Run a check against the state that will actually be judged, not against a working tree that is about to change. For `reflow2_check` specifically: **run it AFTER committing or amending, never before.**\n\nWHY, MEASURED 2026-08-14 (`fact:the-lineage-gate-verdict-depends-on-when-you-run-it`): the lineage check compares the new export against the export committed at HEAD. Run before an amend it answers about a commit that is about to stop existing. The same file, byte-identical, FAILED at step 3 and PASSED at step 5 of one sequence — only `HEAD` moved between them.\n\nTHE GENERAL SHAPE: this gate always reasons about a PAIR of commits, and both of its known failure modes come from that pair differing between local and CI. `fact:the-local-lineage-gate-cannot-see-a-stacked-export` is the mirror image — the gate PASSING locally on a commit CI rejects, because CI checks out the PR merge commit where `HEAD~1` is main. Neither is a bug in the gate; both are a bug in when it is trusted.\n\nENFORCEMENT: **advisory, on Anthony's word 2026-08-14.** He was asked whether somebody who ran the gate early, trusted it and pushed should have been stopped, and answered that it is advice. The reasoning that supports it: a wrong local verdict is self-correcting, because CI checks out the merge commit and gives the authoritative answer either way — so this rule saves confusion and wasted cycles rather than preventing a bad landing. It also could not honestly be enforced: the ordering happens on a developer's machine and leaves no trace in the repository, so no check could see the violation.\n\nDELIBERATELY NOT BOUND to a node with `GOVERNED_BY`. It shapes an operator's sequence rather than any design element, and `describe_schema` reports no edge type that models a DesignRule to what it governs here — the skill's instruction is to leave the edge out rather than assert one that is wrong.",
+    "steps": [
+      "ci-gate"
+    ]
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:7c994de309b204b9641a38d57dc0ffccf51f2e3b21cfebd5b9cad8932d8990dc",
+  "edge_type": "VERIFIES",
+  "from_id": "ver:a-session-names-who-it-writes-for",
+  "properties": {},
+  "to_id": "cap:a-write-is-credited-to-who-it-was-for"
+}

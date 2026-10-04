@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:7bb1f4fad72b000ee4230fba7714811931e3d2794c36667950734a6fd810e98d",
+  "edge_type": "CHANGED",
+  "from_id": "chg:accept-727b53f1aad30ff5",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:test-a-near-match-of-another-type-is-named-as-a-layer"
+}

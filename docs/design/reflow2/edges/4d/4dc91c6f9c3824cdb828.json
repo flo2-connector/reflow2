@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:14f892f5318e98f0ad2c4acd5c45dff202d6a833ebeca20e4e3e07cfefe0d648",
+  "edge_type": "CHANGED",
+  "from_id": "chg:session-capture-2026-08-17",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "fact:three-searches-that-did-not-happen-and-what-each-one-cost"
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:0ceb72f694e05150f7a86b8570a7b2074b36fbe1ffeabd6f55ce116b728312d9",
+  "edge_type": "EVOLVES_INTO",
+  "from_id": "dec:idea-a-fact-has-one-home-across-a-family-of-designs-and-reflow2-enforces-it",
+  "properties": {
+    "evidence": "Shape (a), advisory write-time warning across related designs, promoted to intent on Anthony's word, 2026-09-22."
+  },
+  "to_id": "req:a-write-is-warned-when-the-same-thing-already-lives-in-a-related-design"
+}

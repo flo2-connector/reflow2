@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:ef7a9f96df17eb4fadd982e6ccd2c9dc9507a33b7c7b8cc81882886aebd8ac53",
+  "node_id": "ver:toml-fallback-reader",
+  "node_type": "Verification",
+  "properties": {
+    "description": "The dependency check works without tomllib, and says what it cannot read (tools/reflow2_check.py, 2026-08-06, 3 cases). HONEST ABOUT ITS LIMITS: on a synthetic manifest holding a multi-line inline table and a [dependencies.X] sub-table, it read the one shape it understands and NAMED BOTH it did not — \\\"'spans' spans lines, not read\\\" and \\\"[dependencies.subtable] sub-table form not read\\\" — rather than returning a short list that would read as a complete one. No `tomli`, no pip: the kit installs into other people's projects and a runtime dependency is a cost they did not agree to.",
+    "findings": "EQUIVALENCE: with tomllib blocked, the line reader returns results BYTE-IDENTICAL to tomllib on reflow2's own three Cargo manifests — same source, same v0.12.0 pin, the same five grouped crates. WHY IT EXISTS: the check shipped reading only tomllib and its first CI run on reflow2's own repo reported \\\"could not read any build file to check them\\\", because ubuntu-22.04 carries Python 3.10. Correct locally, inert on most CI in the world.",
+    "kind": "verification",
+    "last_run_at": "2026-08-06T14:05:00Z",
+    "level": "unit",
+    "method": "test",
+    "name": "The dependency check works without tomllib, and says what it cannot read",
+    "status": "passing"
+  }
+}

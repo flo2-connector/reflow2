@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:1cb8219608602323ff2422d1edd215418ad5caf9d1dfe39bba63d776a358ddf8",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:a-parked-report-that-produced-nothing-test",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:a-parked-report-that-produced-nothing-test"
+}

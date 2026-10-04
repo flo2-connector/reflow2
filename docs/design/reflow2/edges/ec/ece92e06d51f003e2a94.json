@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:12bd783c3ef825fc107aa82ec662fd8c80f607f21cb77502ea7c2cc25aa7b046",
+  "edge_type": "CHANGED",
+  "from_id": "chg:bl87",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:compare"
+}

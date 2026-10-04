@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:14c4364a06a4ea71cef33b341d13e36969c5e5dcbe20f6ec0fce2ba11c9ac9b8",
+  "node_id": "chg:external-dependency-replies-with-a-receipt-and-a-re-declare-keeps-what-it-was-not-passed-2026-10-03",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "defect_fix",
+    "commits": "2da7e72502bf431c7f54f51aa6cd4aa89d793185,c43538875f18954bec7c6d59dc10b32ddf76df60,d9ba2ad2fb9782ad09dccfa27ce12aba397ea368,6359527049b8f695a304ffbd03298a3249182a63,24ba00b0417ea018879c988ea3ce86ed0fc148ad",
+    "detected_at": "2026-10-03",
+    "name": "external_dependency replies with a receipt, and a re-declare keeps what it was not passed",
+    "rationale": "Root cause (fact:root-cause-external-dependency-replies-with-the-whole-manifest-because-the-receipt-shapes-only-node-and-edge-records-2026-10-02), confirmed on main at 293f957: the handler ended ok_json(manifest), the receipt layer recognises node and edge records only, and nothing checked that every write's reply is one; the reply grew 444 to 969 bytes over six declarations. The re-declare (fact:re-declaring-a-dependency-drops-the-resources-description-2026-09-23, eight field occurrences) wrote through a replacing create_node. THE CLASS for the reply: a write whose reply is not a record was exempt from receipts in silence. The membership is now reviewed: a_write_replies_with_a_receipt.rs lists every served write as RECORD, ACKNOWLEDGEMENT or REPORT (with a reason), and a write that joins unclassified fails. Found on the way and fixed: a removal was invisible to revision_of (fact:a-write-that-removes-a-property-reported-nothing-moved-2026-10-03). Left open: a comma inside a feature (fact:a-dependency-feature-containing-a-comma-is-read-back-as-several-2026-10-03). Tests observed failing on main first: a_dependency_declaration_replies_with_a_receipt.rs (measured through --call on the main binary) and a_write_that_removes_a_property_says_what_left_and_keeps_it.",
+    "rationale_basis": "contemporaneous",
+    "repair": "corrected_cause",
+    "subject": "system",
+    "summary": "external_dependency replies with the declared Resource, a revision block (what changed and what was removed, the prior state preserved) and the address baseline, never the whole manifest. A re-declare keeps the components, features, watch, graph_id, declared_in and description it is not passed; [] clears a list and \"\" stops a watch. revision_of and preserve_prior now see a removed property. Every served write is classified by what its reply carries."
+  }
+}

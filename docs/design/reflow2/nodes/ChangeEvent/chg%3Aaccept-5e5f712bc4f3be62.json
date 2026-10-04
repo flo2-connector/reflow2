@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:891c75342523569dcd080b2838d458012688d17e38551ce5892f66f58e3fff46",
+  "node_id": "chg:accept-5e5f712bc4f3be62",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "refactor",
+    "name": "The census document gained a correction section recording that its own \"32 document artifacts are wrong\" claim was too broad — doing the BL-199 re-attachment showed 7 wrong, 11 arguable, the rest correct. The document became more honest; no design node moved, so nothing here is a design change."
+  }
+}

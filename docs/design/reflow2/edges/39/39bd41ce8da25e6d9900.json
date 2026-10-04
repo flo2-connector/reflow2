@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:937d0eb9d7b055dc9dab496a9849a8a4893f16bd14521adf80707ecb74653ae9",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:declared-vocabulary-is-reachable-from-the-surface",
+  "properties": {
+    "approved_at": "2026-08-17T23:59:00Z",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

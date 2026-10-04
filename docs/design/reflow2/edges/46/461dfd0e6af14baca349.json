@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:c3549a71d51bfba4956b6fcc3e213df7d4e7ea400440b27a8f047cb39bba5c9d",
+  "edge_type": "GOVERNED_BY",
+  "from_id": "cap:sanitize-ingress",
+  "properties": {},
+  "to_id": "decision:ack:07bb37be6d5cd129"
+}

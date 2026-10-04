@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:fb18156db1c6e1e2f7a63a6cc03fff760ae8e7d4b93533d9662158c651ef0855",
+  "node_id": "snap:epoch:kit-manifest-refreshed:ver:kit-manifest-agrees",
+  "node_type": "Snapshot",
+  "properties": {
+    "edges": "[{\"direction\":\"in\",\"edge_type\":\"REALIZES\",\"other_type\":\"Artifact\",\"other_id\":\"art:check-kit-manifest\",\"properties\":{\"completeness\":\"complete\"}},{\"direction\":\"in\",\"edge_type\":\"REALIZES\",\"other_type\":\"Artifact\",\"other_id\":\"art:test-check-kit-manifest\",\"properties\":{\"completeness\":\"complete\"}},{\"direction\":\"out\",\"edge_type\":\"VERIFIES\",\"other_type\":\"Capability\",\"other_id\":\"cap:kit\",\"properties\":{}}]",
+    "state": "{\"kind\":\"verification\",\"last_run_at\":\"2026-08-07\",\"level\":\"system\",\"method\":\"test\",\"name\":\"The installed kit's manifest agrees with the kit source it claims to be — version, file set and per-file hashes (friction 2026-07-25: reflow2's own manifest is four releases stale and nothing noticed; unwritten)\",\"status\":\"passing\"}",
+    "target_id": "ver:kit-manifest-agrees",
+    "target_type": "Verification"
+  }
+}

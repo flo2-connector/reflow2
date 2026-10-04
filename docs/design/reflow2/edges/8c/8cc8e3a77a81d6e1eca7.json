@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:1c0c502ad8c15684e8ea7f84e3fb405b314be56e34cb59b5daa6e7e7df28ed2a",
+  "edge_type": "REALIZES",
+  "from_id": "art:heal",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "verified"
+  },
+  "to_id": "cap:a-sweep-says-what-it-could-not-have-found"
+}

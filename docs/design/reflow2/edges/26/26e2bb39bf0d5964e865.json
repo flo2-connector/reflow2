@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:dda048ac4b96ed4800b44dadec468ff6ef5c5d60f6e0c134d448f3187236e87f",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-stored-twin-has-one-authority",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:tools-coherence"
+}

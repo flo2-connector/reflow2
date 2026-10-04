@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:df1b5d05707e5c3851b28dbb4fdfe7db322e8ab13ac04c5c93ebba58ed54b5c5",
+  "edge_type": "INVALIDATES",
+  "from_id": "chg:two-repair-rules-compute-the-condition-their-message-names",
+  "properties": {
+    "at": "2026-09-15",
+    "note": "Both rules now compute the condition named: contradiction looks for an accepted Decision governing both endpoints, unresolved_setup looks for EVOLVES_INTO or an arrival status on the target. The two design questions the finding said a fix would have to decide are settled in dec:a-rule-computes-the-condition-its-message-names."
+  },
+  "to_id": "fact:two-heal-rules-assert-a-condition-they-never-test"
+}

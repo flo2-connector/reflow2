@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:277ffa18ccf7b6c1bc8df1a4d0bbc5394a90e390710eb004c59b29b8cebffa77",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-proposal-describes-its-own-sweep",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:heal"
+}

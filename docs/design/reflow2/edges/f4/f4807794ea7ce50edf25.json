@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:1587c17084a79f0009f74ede94b3911ba081dbc91af12fd42f5b4ee56f7a9742",
+  "edge_type": "ANTICIPATES",
+  "from_id": "fact:defect-seven-temporal-facts-name-a-subject-id-that-does-not-exist",
+  "properties": {
+    "evidence": "It named the exact unswept ground on 2026-08-16: whether Snapshot.target_id and Question.gap_id carry the same rot, nobody has swept them. Thirteen days and two further countings later nobody had. That sweep is what this node reports, and it found 4 dangling Snapshot.target_id values plus the reason Question.gap_id must never be declared a node reference."
+  },
+  "to_id": "fact:which-properties-are-node-references-is-a-judgement-made-once-and-never-recorded-for-the-others"
+}

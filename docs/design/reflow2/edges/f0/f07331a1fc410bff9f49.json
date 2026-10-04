@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:2419c27d9d64231ade40c7f4b312e45da91ec6f8381d4948aa9ea3c0997ab0e0",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-saved-design-moves-to-the-item-layout-2026-10-03",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:eb4291064c391879fd8bef1e3091c708e0b213e8d90a3a04424e5a44f752aaf1",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:hub-skill"
+}

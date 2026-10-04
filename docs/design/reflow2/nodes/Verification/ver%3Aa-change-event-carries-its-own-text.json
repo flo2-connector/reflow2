@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:2c9ee620029f3335d0364d107b4ea031af2b8688ed365c2bf4c87ab4a3d23aac",
+  "node_id": "ver:a-change-event-carries-its-own-text",
+  "node_type": "Verification",
+  "properties": {
+    "description": "3 cases in crates/reflow2-core/tests/change_event_carries_its_own_text.rs. Pins the FRONT DOOR rather than the storage, which is the whole point: `upsert_node` could always hold `summary` and `rationale`, and that is exactly why nothing noticed the constructor took neither for as long as it did.\n\nThe cases are the constructor recording both fields in one call; both staying OPTIONAL, so an event with nothing to add is not forced to invent prose; and a later call that omits them NOT erasing what an earlier one wrote — the BL-183 merge promise, which is the property the two reporting projects leaned on when they worked around the gap and which therefore had to survive the gap being closed.",
+    "kind": "verification",
+    "last_reconciled_at": "2026-09-23",
+    "last_reconciled_outcome": "passed",
+    "level": "unit",
+    "method": "test",
+    "name": "A change event records why in one call",
+    "status": "passing"
+  }
+}

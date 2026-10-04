@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:1868cd9b9949579d4e05175dba491bb4ea1633cead301526a5600b846dfb2d3c",
+  "edge_type": "HAS_TEMPORAL_FACT",
+  "from_id": "cap:a-declared-dependency-is-watched-not-imported",
+  "properties": {},
+  "to_id": "fact:the-upstream-watch-is-findable-only-in-reflow2s-own-words"
+}

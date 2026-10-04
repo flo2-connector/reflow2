@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:51798be0324e5a53e62f61af6650d7c758f607f9034db2b43c13b152d74fe521",
+  "edge_type": "ANTICIPATES",
+  "from_id": "dec:bulk-is-all-or-nothing-with-per-item-findings",
+  "properties": {
+    "evidence": "That decision already said a partial write leaves a design in a state nobody chose, and named the store's atomic batch, but scoped both to bulk forms. This idea asks the same of a single typed write."
+  },
+  "to_id": "dec:idea-a-refused-typed-write-stores-nothing"
+}

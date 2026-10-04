@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:b9175902b7fc8c3bc9e2c3d240c62315c28eaee01d5c6e77e4489edfa8b3497d",
+  "node_id": "art:test-closure-reads-a-design-phase-and-a-build-phase",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "test",
+    "location": "crates/reflow2-core/tests/closure_reads_a_design_phase_and_a_build_phase.rs",
+    "name": "closure_reads_a_design_phase_and_a_build_phase.rs",
+    "status": "realized"
+  }
+}

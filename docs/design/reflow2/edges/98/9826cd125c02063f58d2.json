@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:1c956a842ff576b75b2b094890d85a9c8f8399ba2494ba17b84e79607ffa8ce9",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:nudge-path-proven",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:nudge"
+}

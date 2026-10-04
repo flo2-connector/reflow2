@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:590a6683873fb118a094c4d66b62a4e1d743c7205b52ae8665d846e6fabb4644",
+  "edge_type": "CHANGED",
+  "from_id": "chg:decision-status-gains-deferred",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:schema-structure"
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:0864c3518f3f29fb6653b76e28a9ce963344d231d296ba34c861fa48bcce5ceb",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0250",
+  "properties": {
+    "as_checksum": "sha256:b2626bc9b41065d45a47391988fb51f056c5e65c76a2347b2efd47a086547888"
+  },
+  "to_id": "art:test-served-skills"
+}

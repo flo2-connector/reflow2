@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:f16c8b0f5a26190375b6380e8d4647a50f574c6832e421384918882f97f39a93",
+  "node_id": "fact:authored-by-describes-itself-as-inert-and-is-the-assignment-primitive",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "confidence": 1.0,
+    "fact_type": "defect",
+    "statement": "MEASURED IN SOURCE 2026-09-02 (capture.rs:2000-2007). The reporter said 'nothing documents it'. The stronger and more useful statement is that THE DESCRIPTION POINTS THE OTHER WAY.\n\nSetting `role: approver` on a PROPOSED Decision puts it in `loop_status.assigned_decisions` with `unsettled_assigned_decisions` and produces '1 open decision(s) name someone who was asked to settle them'. It is the mechanism for 'this decision is parked on a named human', and `req:an-assigned-open-decision-is-reported` is the intent behind it. proj:chama set it on instinct and got the behaviour they wanted without knowing why.\n\n**THE `authored_by` DESCRIPTION SAYS THE EDGE IS INERT:** 'This is the structured author behind a node; it is deliberately not a traceability edge, so it never enlarges a blast radius.' Both halves are true about PROPAGATION and both read, at the point of writing the edge, as 'this is metadata and nothing computes on it'. Nothing in the description connects `approver` + `proposed` to tracked debt against a person. An agent reading only this tool would not know the assignment primitive exists; an agent reading it carefully would conclude it does not.\n\nTHE REPAIR IS ONE SENTENCE IN THE HINT, and it is cheap. What makes it worth recording rather than just doing: this is the same shape as the other two prose findings in the same report — a self-description out of step with the behaviour, in a project whose own field reports name the prose as its best feature.",
+    "subject_id": "cmp:tools-capture",
+    "valid_from": "2026-09-02"
+  }
+}

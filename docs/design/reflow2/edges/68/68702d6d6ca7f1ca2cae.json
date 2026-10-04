@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:2258ecbd521d69f93bdd957daa07358880dd3c409e5e949419e349c427259962",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "req:intent-is-reinjected",
+  "properties": {
+    "evidence": "The July requirement asks that design intent be re-read into a long build on a counter and on drift symptoms, and never said what gets re-read; this reference is that payload, so re-injection is only worth anything once the reference exists.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "req:the-implementing-agent-holds-a-compact-design-reference-derived-from-the-graph"
+}

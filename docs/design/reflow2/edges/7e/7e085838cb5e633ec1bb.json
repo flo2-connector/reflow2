@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:f77d11286f45e30d2d9853d30ffa3b1bd17189347faa6ca273bef4abf7322a78",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-check-and-its-findings-are-different-things",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "ver:tool-carries-convention"
+}

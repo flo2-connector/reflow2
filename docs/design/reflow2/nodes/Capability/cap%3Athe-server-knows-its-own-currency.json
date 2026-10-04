@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:1b492a52c353003ae77eb4c6f3e19e24bac491199634c397bb63774227f6efca",
+  "node_id": "cap:the-server-knows-its-own-currency",
+  "node_type": "Capability",
+  "properties": {
+    "description": "`served_by` carries `stale` and `stale_note` alongside the version. THREE-VALUED — true (the binary was replaced under this process), false (still the file it started from), null (the question could not be asked; unknown NEVER reads as current). DERIVED, NOT COMPARED, and that is the whole design: the block used to report a version LITERAL and leave the comparison to the reader, which dev_storyflow measured as four sessions reading `0.22.1` on two days and drawing opposite conclusions from the same true value — one reporting a PASS on a broken invariant. A version string also cannot answer at all when two builds share a version, which is every `cargo build` in a working session. THE MECHANISM IS ONE SYSCALL: when a running binary is replaced the kernel marks that process's `/proc/self/exe` link `(deleted)` while the inode lives on, which is exactly why the process keeps serving and nothing else notices. No second binary read, no path re-resolution, no assumption the launch path still exists. `stale_note` carries the remedy in the payload rather than in a doc, INCLUDING the part that is easy to get wrong: a bare session restart changes nothing because `--shared` re-attaches to the same daemon, and `--stop-shared` alone can fail when the client's own binary was replaced too. DOES NOT CLAIM the graph is current, the checkout matches, or the answer is right — only whether this process's own binary moved under it.",
+    "name": "The server says whether its own executable has been replaced since it started",
+    "provenance": "authored",
+    "status": "realized",
+    "tier": "operational"
+  }
+}

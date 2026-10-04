@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:788206bcc3399826bdfef06d9a996598fb0c083b7b69179b67a46d22f7a8b7bd",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:claim-liveness",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:claims"
+}

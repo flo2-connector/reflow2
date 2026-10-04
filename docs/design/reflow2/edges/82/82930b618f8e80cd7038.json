@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:254047ae7aeadd622f4efbc0045022bbe26edcc72e0accd98c6208cb7cb33d69",
+  "edge_type": "CONTRADICTS",
+  "from_id": "dec:idea-what-must-a-check-be-before-the-design-counts-it",
+  "properties": {
+    "alignment": "opposing",
+    "evidence": "That accepted non-goal says reflow2 records a passing check and never validates it; requiring an executable form before the design counts a check is a form of validating it, so the design has to say whether the non-goal binds this repository's own standard or only what the product asks of its users."
+  },
+  "to_id": "dec:non-goal-reflow2-does-not-judge-whether-a-check-is-meaningful"
+}

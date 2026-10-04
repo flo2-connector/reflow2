@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:02a4e058f6c08063fcf3bcf34275538101f3da424eba43a3869cb6a04ff7ad9e",
+  "node_id": "art:test-search-first",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "granularity": "atomic",
+    "location": "crates/reflow2-mcp/tests/search_first_fires_at_the_tool.rs",
+    "name": "search_first_fires_at_the_tool.rs — six cases: the refusal, the rollback, both deliberate routes, the no-false-refusal counterweight, and the cross-type catch",
+    "status": "realized",
+    "volatility": "stable"
+  }
+}

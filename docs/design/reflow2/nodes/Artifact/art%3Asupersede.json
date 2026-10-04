@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:8044365bbca1ec6450a93f27892ff66185d96be16dd3fedf4e53315fc63e055d",
+  "node_id": "art:supersede",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "location": "crates/reflow2-core/src/supersede.rs",
+    "name": "supersede.rs — replacing a node at capture, and the distinct_from judgement kept",
+    "status": "realized"
+  }
+}

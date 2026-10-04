@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:b04fd0fe1fd8e6618b252469cbb6cbb2325dac23374eea8d15b55c7e445203d3",
+  "node_id": "req:a-claim-says-what-its-session-is-doing",
+  "node_type": "Requirement",
+  "properties": {
+    "concern": "core",
+    "kind": "functional",
+    "lineage": "original",
+    "name": "A claim says what its session is doing (working, waiting on a person, blocked, or done), with a checkpoint note the session can revise, and the state's age",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "Anthony, 2026-09-29, in the dev_reflow2 hub session: \"Let's go with your 3 likeliest candidates\". Option (a) of dec:idea-a-claim-says-what-its-session-is-doing-and-never-reads-gone-when-it-cannot-be-verified, from the orca and paseo reviews (attention states with a reason; a checkpoint comment beside a phase status).",
+    "statement": "A claim carries what its session is doing: working, waiting on a person (naming the question it waits on), blocked, or done. It also carries a checkpoint note, which the session can revise while it holds the claim. claim_report and loop_status show both, with the state's age. A state older than the claim's liveness can vouch for reads as unverifiable rather than current, so a stale \"working\" never reads as true. This is what a dashboard (in flo2's design, req:a-dashboard-page-shows-what-is-being-worked-and-where) would read to show which sessions wait on whom.",
+    "status": "accepted"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:4635aa445204c3d87f5a21b5330f50832d6b205eb3cadf41dbce79002e4749ea",
+  "edge_type": "CHANGED",
+  "from_id": "chg:accept-e1950ccf2fc091ca",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:service"
+}

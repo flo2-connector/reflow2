@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:c447a3f6b4ff4a3327575f15848ab8b9bd35194acec3a378fec5f608c82ce1df",
+  "edge_type": "REALIZES",
+  "from_id": "art:onboarding-skill",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "reviewed"
+  },
+  "to_id": "cap:onboarding"
+}

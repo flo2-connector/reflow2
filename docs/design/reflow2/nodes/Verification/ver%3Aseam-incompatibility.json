@@ -1,0 +1,17 @@
+{
+  "content_hash": "sha256:145b027a40ca72429b9de863bb545d48a17044e88146bac12ce27b2e3dc4169f",
+  "node_id": "ver:seam-incompatibility",
+  "node_type": "Verification",
+  "properties": {
+    "description": "A stated conflict on a closed vocabulary is an incompatibility and says why it matters; BOTH SIDES SILENT reports as unstated with agreed=0 and a note refusing to be read as a clean bill; ONE side silent is also unstated, so a stated `none` against silence is not agreement on `none`; free-text differences report as DIFFERS and never as incompatible; genuine agreement counts as agreed; a medium mismatch is reported because it cannot be wired at all; an unresolvable pair names WHICH SIDE is missing; comparing nothing says NOTHING WAS COMPARED rather than looking like a pass; and even a clean seam names its blind spot (crates/reflow2-core/tests/seam.rs, 9 cases).",
+    "findings": "THE SCHEMA FAILED THREE OF THESE FIRST, correctly: Interface.medium defaulted to REST, so two silent boundaries \"agreed\" on a value neither had chosen.",
+    "kind": "verification",
+    "last_reconciled_at": "2026-09-23",
+    "last_reconciled_outcome": "passed",
+    "last_run_at": "2026-07-28",
+    "level": "integration",
+    "method": "test",
+    "name": "A stated conflict is an incompatibility, and two silences are not agreement",
+    "status": "passing"
+  }
+}

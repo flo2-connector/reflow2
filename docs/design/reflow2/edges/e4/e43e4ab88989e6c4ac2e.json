@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:138616e338e84ef731746f60b86d5edaa97083bc2e3c7174e0430968db3b73fd",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-band-carries-what-it-was-computed-over",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:maturity"
+}

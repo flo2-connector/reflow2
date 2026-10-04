@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:3d483b64f021dcd0cd9657bf9154fa32e737f93f01ee49967f7743ba58e328c1",
+  "node_id": "ver:the-hub-skill-is-served-and-found-for-its-job",
+  "node_type": "Verification",
+  "properties": {
+    "description": "This check runs crates/reflow2-mcp/tests/every_skill_is_found_by_a_query_in_the_users_words.rs, whose corpus now holds a query for hub in a person's words (\"someone dropped an idea into the space we share for all our projects, decide which one it belongs in and put it there\"). It asserts four things:\n- hub is served;\n- hub has a corpus query;\n- hub is in find_skills' top five for that query;\n- hub is ranked FIRST, not in the not_first baseline.\ntools/skill_lint.py and tools/check_command_surface.py check the rest of its contract: frontmatter, the standing rule, every backticked term served or allowlisted, the WRITES and MINTS obligations, byte-identical mirrors, and a /hub command naming it. It does not check whether an agent following the skill files facts in the right design; only a real hub session can show that.",
+    "findings": "2026-09-28 on branch hub-skill: `cargo test -p reflow2-mcp --no-fail-fast` gave 109 suites ok. In it, every_skill_ranks_first_for_its_own_job_or_is_in_the_baseline passed with hub ranked first; the first query tried ranked link-projects above it and was reworded. skill_lint and check_command_surface both passed (32 skills, 37 commands).",
+    "kind": "verification",
+    "last_run_at": "2026-09-28",
+    "level": "unit",
+    "location": "crates/reflow2-mcp/tests/every_skill_is_found_by_a_query_in_the_users_words.rs",
+    "method": "test",
+    "name": "The hub skill is served, meets the skill contract, and ranks first for its job in a person's words",
+    "status": "passing"
+  }
+}

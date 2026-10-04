@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:21a2c69f17c496af2fea74ae499477b650d92fbb41c025be87d66c475ee8116e",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:a-session-serves-a-release-binary",
+  "properties": {},
+  "to_id": "req:a-session-runs-a-release-binary"
+}

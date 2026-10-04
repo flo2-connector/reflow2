@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:cddabe78f710d291ddf0597c448b0f3ecd89a6a5b7354102c48c8c2ee96e9631",
+  "edge_type": "CHANGED",
+  "from_id": "chg:bl180-function-preservation",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "dec:maturity-restructuring-delta"
+}

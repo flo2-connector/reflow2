@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:76de0d2e8a9d5087c38dbad122554935fcc26529b4af3e7a86837cbb497af0a3",
+  "edge_type": "CHANGED",
+  "from_id": "chg:embeddings-question-findings",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "dec:idea-embeddings-adoption"
+}

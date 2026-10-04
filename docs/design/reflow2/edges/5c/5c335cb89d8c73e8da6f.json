@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:4a9afdbc648f4a6ece25b0ab3128d54a39fdfeed00514b95e82866a38e7ad1fb",
+  "edge_type": "CAUSES",
+  "from_id": "fact:five-capabilities-were-built-reachable-and-unreached-and-one-query-shape-found-them-all",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "The measurement is what produced the requirement, not a restatement of it: five findings in one session all came from the same hand-rolled question, and noticing that they shared a shape is what turned a repeated inconvenience into a stated obligation. Direction matters here — the fact caused the requirement, and a later reader asking why this was ever required should land on the evidence.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "req:a-design-can-be-asked-what-fraction-of-a-kind-carries-a-relation"
+}

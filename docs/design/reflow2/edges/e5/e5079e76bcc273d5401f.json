@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:78c27d41a855ef44d2762a96a4127c3a6dd57e4043bb351620880667eee2ba97",
+  "edge_type": "CHANGED",
+  "from_id": "chg:stored-data-is-rechecked-against-the-current-schema",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "art:test-a-stored-item-the-schema-now-refuses-is-reported"
+}

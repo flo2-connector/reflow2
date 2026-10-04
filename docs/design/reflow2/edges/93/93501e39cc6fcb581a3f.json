@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:64af53290ae0dfe4e00c10c8a8af0edc57d6289cada6bae4257d6a4541c36cf4",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "req:each-projections-cycles-are-tracked-across-design-epochs-from-birth-to-death",
+  "properties": {
+    "evidence": "Cycles are tracked per named projection; without a named edge set there is no typed cycle to track, only a mixed-edge one whose meaning the projection ruling rejects.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "dec:a-projection-is-named-and-the-battery-runs-over-it"
+}

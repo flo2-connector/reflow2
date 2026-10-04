@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:ba9a8aeac34c6e623dbd6ea78b4cf2cbaaea28fc43a55440863b451df2cde5f3",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:reply-sent-once-test",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:reply-sent-once-test"
+}

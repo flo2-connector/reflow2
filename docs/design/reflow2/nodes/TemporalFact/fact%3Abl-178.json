@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:5aa1ee27ebcfbee372a73d210961caf4257b78eb29bd54510d1fa39decca2706",
+  "node_id": "fact:bl-178",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "defect",
+    "statement": "[BL-178] The brainstorm skill instructs a call the tool made unnecessary — [BL-152]'s shape a second time",
+    "subject_id": "cmp:skills",
+    "value": "{\"evidence\": \"*Found 2026-08-02 by FOLLOWING the skill: it says step 2 is not optional, the tool disagreed, and the tool was right.* brainstorm/SKILL.md step 2 reads *\\\"set_decision_status to proposed. This call is not optional: add_decision defaults to accepted, which would assert a settlement that never happened.\\\"* add_decision's own served description says the opposite and dates it: *\\\"It lands proposed \\u2026 BEHAVIOUR CHANGED 2026-07-25: this used to default to accepted.\\\"* Confirmed empirically \\u2014 dec:maturity-restructuring-delta came back proposed with no set_decision_status call. This is [BL-152] exactly (*\\\"a served skill instructs a call the served tool made unnecessary a week earlier \\u2014 the two halves of the served surface disagree\\\"*), in a second skill, and BL-152 is still open. The wasted call is the small half; the misinformation is the large one \\u2014 the skill states a FALSE FACT about the tool's default in bold, so an agent that reads it and skips the redundant call still carries the belief that a bare add_decision asserts a settlement. Worth fixing as the CLASS rather than the instance: BL-152 should be re-read as \\\"no skill may restate a tool's default\\\", since a default is exactly the kind of fact that moves under a skill without touching it. Size S\", \"origin\": \"Migrated from docs/backlog.md BL-178 on 2026-08-07 (epoch:backlog-retired). Size estimate carried from the row: S.\"}"
+  }
+}

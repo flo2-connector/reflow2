@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:d23c862be2e96f9162264a20f1473d6bc0bc377d4b54b97f5021bebd2acb440f",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-a-verification-says-which-surface-it-was-proven-at",
+  "properties": {
+    "evidence": "That record measured the same hole one property along: Verification.level already exists and nothing reads it, so a surface property added now would be unread for the same reason. This idea is only worth building if that is answered first.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "fact:defect-realized-was-claimed-at-unit-and-nothing-in-the-loop-asked"
+}

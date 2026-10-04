@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:67af33abd1de5cd95ca23c8ceb762575ec1286bcf5e2ebba208e89551fc66948",
+  "node_id": "ver:nothing-reflow2-serves-names-a-real-person",
+  "node_type": "Verification",
+  "properties": {
+    "description": "tools/the_served_surface_names_no_real_person.py, run in CI. Scope is this design's own Contributors of kind `person`, matched by id, handle and display name with word boundaries, against 230 served texts: the committed toolsnaps, the schema files describe_schema reads, and the skill bodies get_skill returns from getting-started/skills. It fails on an empty needle set or a short read of the surface, because a check with nothing to look at reads exactly like one that ran clean.",
+    "findings": "First run 2026-09-20, against the unfixed surface, FAILED with nine hits and was observed to fail before anything changed. Four were already known: who:ajs on add_contributor's id, @ajs on its handle, who:ajs on Constraint.limit_source and again on Snapshot.target_id. FIVE WERE NOT, and a hand search had missed all of them: the display name of a second real user appeared in schema/structure.yaml, schema/verify.yaml, and the adopt and establish-taxonomy skill bodies, the last of those three times. After the fix it checks 230 served texts against 6 needles from 2 people and passes. The rank ratchet was re-run because a served tool description changed, and both rank tests hold.",
+    "kind": "verification",
+    "last_run_at": "2026-09-20",
+    "level": "system",
+    "method": "inspection",
+    "name": "No served tool schema, schema file or skill body names a real person this design records",
+    "status": "passing"
+  }
+}

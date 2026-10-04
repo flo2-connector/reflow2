@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:330c5a71906f408b6645437c688a5af6c6b8222b319f198d21c02d242e39236b",
+  "node_id": "dec:one-reflow2-serves-both-routes-mcp-and-the-call-door",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Anthony asked, 2026-10-01: \"should this be done on another branch or should we make it so that reflow2 supports both native mcp and via the command --call?\" The recommendation was one reflow2 with both routes, and he answered: \"I agree\".\n\nWHAT IT MEANS:\n- The door work lands on main like any other change, each step through its own short-lived branch and PR (as #617 does).\n- Nothing about it lives on a branch that has to be kept merged.\n- The planned door improvements are ADDITIONS to the CLI. None changes what an MCP client sees.",
+    "kind": "choice",
+    "name": "ACCEPTED 2026-10-01 — one reflow2 serves both routes, native MCP and the `--call` door; no separate long-lived branch for the door",
+    "rationale": "`--call` is not a second implementation. call_one_tool (main.rs:731) serves the design to an in-process client over an in-memory pipe and makes the call through the same call_tool path a session uses. Every tool, guard and refusal therefore exists once, and a fix reaches both routes.\n\nA long-lived branch for the door would need every release merged into it and would drift within weeks: two reflow2s that disagree. That is the failure the hub avoids by never keeping two copies of one requirement.\n\nTHE ONE REAL COST: served text says \"call X\", which means `--call X` through the door. It stays true in both readings through two things:\n- an instructions file the binary serves, so it cannot go stale;\n- a CI probe that drives the door as an agent would, so a change that breaks the terminal route fails the build.\nBoth are in req:init-installs-the-terminal-route-for-vs-code-and-update-keeps-it-current.",
+    "status": "accepted"
+  }
+}

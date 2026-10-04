@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:fe56fe2de3037e8d43f77f26a249205525dd8c27128e54929f07d2ebd7a60ad0",
+  "node_id": "req:stale-seat-knows",
+  "node_type": "Requirement",
+  "properties": {
+    "concern": "core",
+    "designation": "internal",
+    "kind": "functional",
+    "lineage": "original",
+    "name": "A seat learns the shared design moved before it writes over it",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "A session's live graph is a long-lived cache of the committed design export. Before that session writes the export back, reflow2 must tell it that the committed record has moved since it last synced — the way git refuses a non-fast-forward push rather than silently winning. A stale export is not a conflicting export, it is a complete one, so the merge driver merges it cleanly and the other seat's work disappears without a conflict marker.",
+    "status": "accepted"
+  }
+}

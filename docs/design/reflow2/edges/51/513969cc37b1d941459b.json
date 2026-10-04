@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:14c5ff7b28bcaccd3055391c6244c06f122b956c6101d79882aa3dc69a292668",
+  "edge_type": "HAS_TEMPORAL_FACT",
+  "from_id": "req:a-writing-call-keeps-the-committed-export-current",
+  "properties": {},
+  "to_id": "fact:root-cause-call-accepts-export-to-and-never-reads-it-2026-10-02"
+}

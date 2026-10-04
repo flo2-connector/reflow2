@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:3f7932f20770c3d03892d34d083306dd95e52a4951a57e11bfd204dfbddc5f8a",
+  "edge_type": "SCHEDULED_FOR",
+  "from_id": "cap:tool-carries-convention",
+  "properties": {
+    "modality": "expected",
+    "recorded_at": "2026-07-31"
+  },
+  "to_id": "rel:v0210"
+}

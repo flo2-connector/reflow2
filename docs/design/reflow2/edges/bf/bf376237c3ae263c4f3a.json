@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:5872764df22baa1c973706bbaaa3c528f4aa320b268a0e566da836ca6f45b24d",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-check-and-its-findings-are-different-things",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "ver:gate-suite"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:a3bd9129aaf01a3330bc9b3296e96b53e7a665941745ef6779ee34686a8498e8",
+  "edge_type": "CHANGED",
+  "from_id": "chg:baseline-1693384befc5429a",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:claim-age-test"
+}

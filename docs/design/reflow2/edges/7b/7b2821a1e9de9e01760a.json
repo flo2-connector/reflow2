@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:8ddd32286cc033510295721f396e4f869e62fa64d65755ee673b133eefc1f8c4",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:test-shared-sessions",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:test-shared-sessions"
+}

@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:e8454ecad4f9d64b590a73029f07bbfc0beb9c713950046d6db5ecb93b3e6d52",
+  "edge_type": "ABOUT_ENTITY",
+  "from_id": "fact:the-modules-are-acyclic-but-the-declared-subsystems-are-not",
+  "properties": {},
+  "to_id": "req:modularity-computed"
+}

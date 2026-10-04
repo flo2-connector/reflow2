@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:13c9e706c0aafaf61b9c6e5f9db795433441b5a02535eb3fcba7663a4671ff76",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:a-capability-declares-what-kind-of-thing-delivers-it",
+  "properties": {},
+  "to_id": "req:delivery-counts-work-that-is-not-code"
+}

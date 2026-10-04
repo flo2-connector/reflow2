@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:d7481ee0b6de5a221625592e7f6e727247cc52c4b64438235bee202c9b026417",
+  "edge_type": "CHANGED",
+  "from_id": "chg:shared-by-default",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cap:shared-sessions"
+}

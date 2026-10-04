@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:5c0b5509e947fb1ba60bf593f4317a1c10573bf0731844e8e498bc1584c2b3ee",
+  "edge_type": "CHANGED",
+  "from_id": "chg:change-type-gains-decision-settled",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "art:a-settled-decision-has-a-change-type-test"
+}

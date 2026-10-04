@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:c4bfe6062f53196d89ebf1063ba5efc2633c032b4087ca946bd647bdff81731f",
+  "edge_type": "HAS_SNAPSHOT",
+  "from_id": "fact:root-cause-closure-cannot-read-design-done-because-traceability-was-bound-to-the-delivery-line-2026-09-29",
+  "properties": {},
+  "to_id": "snap:epoch:preserved-on-write:fact:root-cause-closure-cannot-read-design-done-because-traceability-was-bound-to-the-delivery-line-2026-09-29"
+}

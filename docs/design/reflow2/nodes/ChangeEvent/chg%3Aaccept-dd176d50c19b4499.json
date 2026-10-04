@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:3dd920515da393400647627233e8fd7a27946d3b4dafea28d1658de79c86332f",
+  "node_id": "chg:accept-dd176d50c19b4499",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "refactor",
+    "name": "The v0.55.1 cut moved the version claim in reflow2.toml. No design meaning — the manifest says the same thing about the same dependencies. Accepted BEFORE freezing the release manifest, which is the order flow:release-cut names as load-bearing.",
+    "subject": "system"
+  }
+}

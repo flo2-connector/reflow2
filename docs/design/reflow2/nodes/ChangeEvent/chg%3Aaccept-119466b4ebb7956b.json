@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:056bd362e3961959a577b49cdcf8774158744086922df479e88771e4a40174f0",
+  "node_id": "chg:accept-119466b4ebb7956b",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "documentation",
+    "detected_at": "2026-09-06",
+    "name": "Version claims moved 0.48.0 -> 0.49.0 for the v0.49.0 cut (Cargo.toml, Cargo.lock, reflow2.toml, AGENTS.md x2); nothing reflow2.toml declares about dependencies changed. The design meaning of a cut lives in the Release and its epoch, not in a version string. Accepted BEFORE the manifest freezes, per the release flow's forces-resync trap.",
+    "subject": "system"
+  }
+}

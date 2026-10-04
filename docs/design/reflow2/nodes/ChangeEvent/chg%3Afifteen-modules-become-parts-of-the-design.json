@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:22f8e5e793cbd3f0c9751fa6303ebb804cc2b6b5edb9c5efa8aaa9ada559f863",
+  "node_id": "chg:fifteen-modules-become-parts-of-the-design",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "name": "Fifteen source modules the design knew as files become parts of it — Components, placed in the subsystem whose function they serve",
+    "subject": "record"
+  }
+}

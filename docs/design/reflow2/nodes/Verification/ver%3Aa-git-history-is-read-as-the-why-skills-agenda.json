@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:33aa20d529ea4f7b83e74015d7503cfbdd98b14281772434651af85390567856",
+  "node_id": "ver:a-git-history-is-read-as-the-why-skills-agenda",
+  "node_type": "Verification",
+  "properties": {
+    "description": "tools/test_why_history.py — nine hermetic cases over a real git repository.",
+    "findings": "10 of 10 passed on Python 3.10 and 3.13 (2026-09-23). The first CI run failed all but one on ubuntu-22.04: git printed UTC as a trailing Z and Python 3.10 fromisoformat refused it; the new parser case was observed to fail on 3.10 before the fix.",
+    "kind": "verification",
+    "last_run_at": "2026-09-23",
+    "level": "integration",
+    "location": "tools/test_why_history.py",
+    "method": "test",
+    "name": "A git history is read as the why skill's agenda",
+    "status": "passing"
+  }
+}

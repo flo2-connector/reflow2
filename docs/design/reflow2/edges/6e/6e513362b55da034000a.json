@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:d7a3a3ccb844f74c6992d2dc6e4209322927a449bf54d944576e913ef87b3282",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:work-declares-who-it-reaches",
+  "properties": {
+    "note": "The reporting half — `detect_internal_only_delivery` lives here alongside the other 16 detectors, and `art:detect` realizes it exactly as it realizes cap:undeclared-seam-is-named and cap:release-pinned-to-time.",
+    "weight_basis": "evidence"
+  },
+  "to_id": "cmp:detect"
+}

@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:070b8422e73bda86d1b0603ee65e30c462549d32654f6c177bdbfb55705fe05c",
+  "node_id": "ver:content-manifest",
+  "node_type": "Verification",
+  "properties": {
+    "description": "Manifest completeness, both directions: every content hash the graph references appears in the manifest with its original filename and what points at it; a referenced hash whose bytes are ABSENT is reported by name (the case someone holding only the export hits); a blob present but referenced by nothing is ALSO reported, because orphaned bytes are how a store silently grows; and `.gitattributes` marks the blob directory `binary`, pinned by a case that would otherwise let line-ending conversion corrupt a PNG. PLANNED.",
+    "kind": "verification",
+    "last_run_at": "2026-07-31",
+    "level": "integration",
+    "method": "test",
+    "name": "Manifest completeness, in both directions",
+    "status": "passing"
+  }
+}

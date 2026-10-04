@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:44cdaaf2ac296165806cd4ba09886cc38a5322ea794ab51e954f47d1713f9eba",
+  "node_id": "frag:art:search",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered search.rs"
+  }
+}

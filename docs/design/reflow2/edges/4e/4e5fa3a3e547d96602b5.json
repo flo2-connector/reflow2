@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:4434bf89cf50351de0c98f33143e44d1f8005babda8418774f23f4b4ed8a1238",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-smoke-check-asks-the-container-not-the-host",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:docker-smoke-script"
+}

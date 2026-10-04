@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:1052bbcf2eaf16f7e01218c8a72b584d8d05cb83aef9a3c83dcd1814ba965a5d",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-closure-has-a-design-phase-reading-and-a-build-phase-reading",
+  "properties": {
+    "evidence": "This refines HOW the accepted closure verdict is computed before build, and is only meaningful because that decision settled what closing is.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "dec:idea-a-design-closes-and-the-design-says-when"
+}

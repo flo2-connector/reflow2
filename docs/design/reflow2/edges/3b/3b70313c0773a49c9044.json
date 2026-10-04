@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:88f0e2afce27df9663d3a3afc343f89136187922206f073f318674e6c1d05b91",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-name-is-not-a-report",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "ver:skill-lint"
+}

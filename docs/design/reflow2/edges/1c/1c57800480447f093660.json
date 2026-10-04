@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:60571f3359c4bc7d050bb1198d0a6ca6c66b43b4a0c563e78cf23ec891670ac8",
+  "edge_type": "ABOUT_ENTITY",
+  "from_id": "fact:reflow2s-mechanisms-for-reaching-an-agent-are-mostly-claude-code-shaped",
+  "properties": {
+    "note": "Names which of the four layers is harness-specific. Layer 2 (recognise the moment) has only hook-based mechanisms, so every measurement of trigger effectiveness so far describes Claude Code and says nothing about grok, OpenAI or any other agent working the same design."
+  },
+  "to_id": "dec:idea-where-does-tool-use-actually-fail-four-layers"
+}

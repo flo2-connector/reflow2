@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:748673989bcb2a8ea4f4c58c9b4a214d3b2f06c5bdf157c35a5ac23d84cc3869",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-check-and-its-findings-are-different-things",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "ver:decomposition-coverage-is-asked"
+}

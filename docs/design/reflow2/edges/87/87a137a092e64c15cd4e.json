@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:35a2dd64d659861e55d3a9480dc80d8341b279cf48197e24108fa1ae53012a63",
+  "edge_type": "ANTICIPATES",
+  "from_id": "req:context-is-a-modelled-quantity",
+  "properties": {
+    "evidence": "The dropped requirement argued context cost must be measured, not estimated. It was dropped 2026-07-30 by dec:proposed-requirements-pruned because bounded reads answered its acute half and its estimation half was weak; this requirement is the measurement half, which neither reason covers."
+  },
+  "to_id": "req:time-and-tokens-are-measured-per-task-against-budgets"
+}

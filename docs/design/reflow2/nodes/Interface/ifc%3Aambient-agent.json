@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:8d239f8cdaac695b5958a75d0bf26ec146be186489189c1803c22ef2d1a07b62",
+  "node_id": "ifc:ambient-agent",
+  "node_type": "Interface",
+  "properties": {
+    "auth": "unspecified",
+    "designation": "required",
+    "medium": "library",
+    "name": "The ambient agent — the caller performs the LLM work and hands the answers back",
+    "paradigm": "synchronous",
+    "payload_format": "json",
+    "provenance": "authored",
+    "spec": "REQUIRED, declared 2026-08-09 on Anthony's word. THE CONTRACT: reflow2 never calls a model. It returns `status: needs_llm` with a list of AgentPrompts, and the CALLER runs them and calls back with AgentAnswers keyed by prompt id. gap_to_prompt, ingest_step and ingest_corpus_step all work this way (crates/reflow2-core/src/agent.rs, ingest.rs, corpus.rs).\n\nWHY IT IS A REQUIRED INTERFACE AND NOT AN IMPLEMENTATION DETAIL: it is a capability reflow2 DOES NOT HAVE and cannot supply itself. A consumer without an LLM cannot use the ask half of the loop at all. That is the definition of a contract needed from outside, and it was invisible because nothing declared it.\n\n⭐ AND IT IS PROBABLY THE PAIR THE PoC MIS-MATCHED. dec:linked-repos-poc's one true positive paired OUR `ifc:core-api` (library) against flo2's `ifc:model-provider-api` (REST) at an 80/100 NAME match — \"very likely the same contract, but they cannot be connected as either is currently built.\" The finding was right that a seam exists there; the pairing was on spelling. flo2's model-provider-api is about LLM provision, and THIS is the interface that actually needs it. Declaring it lets the seam pair on meaning.\n\nDELIBERATELY MEDIUM `library`: the handshake crosses reflow2's own tool boundary as JSON, but the party that must satisfy it is whatever harness or service is driving the session — an MCP client, an agent loop, or flo2's design pipeline. How they reach a model is theirs; that they must is ours.\n\nWHAT IT DOES NOT REQUIRE: any particular model, vendor or protocol. dec:three-party-checks holds the division — the LLM speaks, the graph remembers and counts, the human decides.",
+    "transport_security": "unspecified"
+  }
+}

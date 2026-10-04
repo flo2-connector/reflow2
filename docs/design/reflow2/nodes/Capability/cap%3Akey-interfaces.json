@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:aba3264e56feb651141eb39757ddad18ca7e3c9a7b2b0c0da875b15993013b2f",
+  "node_id": "cap:key-interfaces",
+  "node_type": "Capability",
+  "properties": {
+    "description": "BUILT 2026-07-25. `Interface.designation` (internal | published, defaulting to internal because publishing is a commitment nobody should have asserted for them) plus `set_interface_designation`, plus the computation that earns the distinction: `propagate_from` now reports `boundary_crossings` — the published Interfaces a change passes through, NAMED rather than counted, in both the full radius and the summary, with `crosses_published_boundary` on each impacted node. That makes severability computed instead of asserted, which is what MOSA's Table D-1 asks a program to demonstrate and what an architecture diagram cannot prove: a change inside a part either crosses none of the design's published boundaries, or the report says which contract carried it and therefore whom to talk to. WHY THE DISTINCTION WAS WORTH ADDING: two independent routes arrived at the same missing property — MOSA's designation of modular system interfaces (from the guidebook Anthony supplied) and BL-45's system-of-systems thread, which recorded five days earlier that nothing marks an Interface external-facing. dec:edge-orthogonality's rule is satisfied because a computation reads it. FOUND BY A TEST, and it was a real bug: the first implementation counted a boundary ONE HOP PAST the depth bound as crossed, so an internal change reported crossing a contract the walk never reached. The crossing bookkeeping now sits after the depth guard, where a boundary beyond the bound belongs to truncated_beyond_depth instead. Also pinned: seeding a change ON a published interface is not a crossing (you are changing the promise, not passing through it — conflating them would make every ICD edit look like a containment failure), and withdrawing a designation removes the crossing, because the computation follows the design rather than remembering it. 8 tests. NOT DONE, and named rather than implied: no filtered export of \"just the published surface\" (req:design-composes needs it), and no per-module modularity view — the acquisition community's words for these criteria belong in a projection, never in the schema.",
+    "name": "Designate a published boundary, and compute whether a change stays behind it",
+    "provenance": "authored",
+    "status": "verified",
+    "tier": "operational"
+  }
+}

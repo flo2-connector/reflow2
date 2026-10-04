@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:df20e7c4e54108a1b9cec619bdbe4275663d9e633102694465c796de97472ded",
+  "node_id": "epoch:v0230",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "epoch_type": "release_cut",
+    "name": "v0.23.0 cut — certify_preservation, granularity_report, maturity_report and ility_report, plus the constructor-erasure fix; no schema change",
+    "sequence": 262,
+    "status": "arrived"
+  }
+}

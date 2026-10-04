@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:55fab504b34f35e450ef3e583c417b036294c7123e8a915ca3980a29046f4e1d",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-content-block-is-chosen-per-client",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:latent"
+}

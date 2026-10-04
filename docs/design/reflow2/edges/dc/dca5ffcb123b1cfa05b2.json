@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:975bf37bfd359b87d2261dd63fe7648311167046f7e5d73ec0f1a6db366649c1",
+  "edge_type": "CAUSES",
+  "from_id": "fact:defect-a-retired-artifact-still-reports-missing-forever",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "scratch reconcile 2026-09-18: expected_absence; flo2 session timestamps; retire-from-design SKILL.md has no mention of expected_absence",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:field-report-flo2-2026-09-18-the-retired-artifact-drift-was-reasoned-from-a-stale-fact-not-measured-and-the-current-binary-answers-expected-absence"
+}

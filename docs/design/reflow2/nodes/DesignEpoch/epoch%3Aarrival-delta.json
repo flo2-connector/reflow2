@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:092e3d3f47f763f6b4c975c8884a6931191c2c27990c11335394849e8f0cef4b",
+  "node_id": "epoch:arrival-delta",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "epoch_type": "milestone",
+    "name": "The arrival delta: planned-versus-delivered becomes computable, and a snapshot stops dropping commitments",
+    "sequence": 239,
+    "status": "arrived"
+  }
+}

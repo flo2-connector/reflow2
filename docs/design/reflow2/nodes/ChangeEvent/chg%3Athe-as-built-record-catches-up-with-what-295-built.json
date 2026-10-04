@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:d8677bddc1bf8d3b43f35d281b1de3a6976a58bdbaf8679bacd7539b53116c65",
+  "node_id": "chg:the-as-built-record-catches-up-with-what-295-built",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "resync",
+    "name": "The as-built record catches up with what #295 actually built — the capability gets the components that own it, the five files that realize it, and a description that no longer claims a hole #296 closed",
+    "subject": "record"
+  }
+}

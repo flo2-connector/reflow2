@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:f28a68ec256ad3da9649de2564addb19ed17771eff3659a650dc7cfb5b0a0a70",
+  "node_id": "art:vocabulary",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "granularity": "atomic",
+    "location": "crates/reflow2-core/src/vocabulary.rs",
+    "name": "crates/reflow2-core/src/vocabulary.rs",
+    "status": "realized",
+    "volatility": "stable"
+  }
+}

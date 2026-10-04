@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:da86826ea0297bbdbd971e1d630eed0a75a3949d110842f669981fdd02d17463",
+  "node_id": "chg:every-required-parameter-and-every-thin-description-says-what-it-is",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "documentation",
+    "name": "76 required parameters and 24 thin descriptions rewritten from the measurement; a derived-membership gate stops a 77th; the tools doc is generated for real",
+    "subject": "system"
+  }
+}

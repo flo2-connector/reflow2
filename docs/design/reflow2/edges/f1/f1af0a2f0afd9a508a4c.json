@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:a07b416402dd9b601eabfbd741aabee5cb5837aaf542622e02556815d3f367e2",
+  "edge_type": "REALIZES",
+  "from_id": "art:tools-capture",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked",
+    "note": "the served set_closure_criterion tool and margin on add_constraint"
+  },
+  "to_id": "cap:closure-report"
+}

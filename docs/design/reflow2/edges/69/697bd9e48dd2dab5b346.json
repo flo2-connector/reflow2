@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:c6a25881978584d8cea3358f72e8ba8cbd30e48c0841bbfd05a36cd28d4e8e3f",
+  "edge_type": "VERIFIES",
+  "from_id": "ver:a-withdrawn-decision-is-not-a-conflict",
+  "properties": {},
+  "to_id": "req:a-detector-reads-the-properties-that-qualify-its-own-finding"
+}

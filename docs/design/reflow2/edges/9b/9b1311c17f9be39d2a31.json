@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:c2350fee182f9cd74c96d00086fa83d4af312fd09f1573959aaa12f0a9a25b98",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-can-reflow2-see-the-work-a-session-did-by-hand",
+  "properties": {
+    "evidence": "Option (a) reads transcripts, and a script's source IS design content — the exact thing that requirement forbids carrying. Any transcript-side form of this instrument is only buildable if it can report the SHAPE of hand-rolled work without its content, so that requirement governs whether the most promising option exists at all.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "req:telemetry-carries-usage-never-design-content"
+}

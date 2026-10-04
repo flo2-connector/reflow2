@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:d9993036a8a699a882ccc4fb0b40f5958122599c62da25617869fb155c73c8cc",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-name-is-not-a-report",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "ver:cycle-basis"
+}

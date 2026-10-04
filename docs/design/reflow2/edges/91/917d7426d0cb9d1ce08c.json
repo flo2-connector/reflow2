@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:127b83f05e8bc610298afd094296bc6fd6801acf47084e6d57069d34e2e9f2e4",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:a-status-advance-says-whether-its-prose-predates-it",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:temporal"
+}

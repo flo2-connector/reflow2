@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:75fa4f9a04074ed7c51025d7b609e9c7625ebede353504efc67ea353f9026cd1",
+  "node_id": "chg:record-to-record-relations-are-modelled",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "name": "Two new edge types, a widened SUPERSEDES and a superseded status — each wired to the computation that reads it",
+    "subject": "system"
+  }
+}

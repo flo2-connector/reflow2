@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:cc6ecddcafdf361c13eee3a0a854ab0f6b964693c66659ea229ca8befcbb2dae",
+  "edge_type": "CHANGED",
+  "from_id": "chg:prune-proposed",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "removed"
+  },
+  "to_id": "req:adopt-says-how-much-it-got"
+}

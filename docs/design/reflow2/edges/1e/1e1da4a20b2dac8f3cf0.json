@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:3d47ff52eb3e9825eddbd5dc7fe3f5f2b52f24fff55ebf3089cc5e872270decc",
+  "edge_type": "ANTICIPATES",
+  "from_id": "dec:idea-four-sibling-constructors-four-status-contracts",
+  "properties": {
+    "evidence": "The idea's refutation of 'make them all the same' was that it would overturn the landing defaults; this change keeps every landing default and adds the parameter, which is the contract the idea was reaching for. Its surviving option (echo the status assigned) is not taken here, so it stays open."
+  },
+  "to_id": "chg:one-status-contract-across-sibling-constructors-and-a-node-is-named-by-the-key-the-last-tool-used"
+}

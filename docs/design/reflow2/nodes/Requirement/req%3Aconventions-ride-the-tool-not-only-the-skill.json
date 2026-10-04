@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:abf05f482630d242bd4b3e0dfc6e98c769002b27d0fdd3176ae5109189b26995",
+  "node_id": "req:conventions-ride-the-tool-not-only-the-skill",
+  "node_type": "Requirement",
+  "properties": {
+    "concern": "core",
+    "designation": "published",
+    "kind": "functional",
+    "lineage": "original",
+    "name": "What an agent cannot infer must travel on the tool, not only in the skill it may never load",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "The parts of a skill that are reflow2 CONVENTION — not general good sense — must be reachable from the tool surface itself, because a capable agent reconstructs most of a skill and silently loses the rest.\n\nTHE ASYMMETRY THIS RESTS ON, observed 2026-07-31: reading `detect-and-ask` after having worked without it, roughly its first and last steps had already been done unprompted (call `detect_gaps`; re-run it to confirm). What had NOT been done was every reflow2-specific step in between — the `gap_to_prompt` handshake, `answer_question`, and the distinction between answering a gap and acknowledging one. A competent model infers the general shape and drops the local convention, and the loss is INVISIBLE: you cannot know which part of a skill you failed to load.\n\nSo the fraction worth relocating is precisely the fraction a model would never guess. A tool description that says \"answering a gap and acknowledging it are different acts, and an answered-but-unacknowledged gap stays open\" costs one sentence and cannot be skipped, because the schema arrives with the call.\n\nTHE TENSION, named rather than glossed: `dec:skills-served` chose to serve skills from the server so they always match the running version and nothing in a consumer's repo goes stale. That is right, and this does not reverse it. It says the IRREDUCIBLE MINIMUM also rides the tool, where it is unskippable, and the served skill keeps the depth, the worked examples and the reasoning. Two homes for two jobs, not a copy.\n\nTHE COST TO WATCH: tool descriptions are context an agent pays for on every session, and `cap:tool-search` exists because the surface is already too large to hold. So this must be a sentence per tool at most, chosen for what cannot be inferred — not a second copy of the skill wearing a different hat.",
+    "status": "accepted"
+  }
+}

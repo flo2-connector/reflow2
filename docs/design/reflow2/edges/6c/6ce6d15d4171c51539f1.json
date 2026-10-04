@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:514d20740f5d8e2195fe2b0ad6229d13518f3b970ca2eee3025d59cf752a2554",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-gate-checks-the-export-can-be-read-back",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:check"
+}

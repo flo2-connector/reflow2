@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:33527a494b65faa1cf6ec9b3b29b3b925d59d9d0461e250a4d0f490c7beed3e1",
+  "node_id": "frag:art:test-design-identity",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered design_identity.rs"
+  }
+}

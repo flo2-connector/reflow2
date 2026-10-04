@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:83d75b3816a3457e592943f23b34af8d8f78c46c389914afd8a444f2c9954dc8",
+  "node_id": "decision:ack:c9fd9c1708bed944",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Accepted the gap gap:c9fd9c1708bed944.",
+    "name": "Reviewed: gap:c9fd9c1708bed944",
+    "rationale": "User (who:ajs, standing policy from 2026-07-23, applied again 2026-07-25): validation happens through the trials programme — docs/trials/ is where \"built the right thing\" is exercised against operational intent; formal validation-kind Verification nodes are not this project's tracking mechanism. Re-fired because cap:key-interfaces joined the set (44 → 45). The trial it wants is unusually well defined, and it is Anthony's own domain: designate the real published boundaries on a program-sized design and see whether the crossings a change reports are the ones a systems engineer would have named in an ICD review. The tests prove the arithmetic — a crossing is named, an internal change crosses nothing, a boundary beyond the depth bound is not counted — but whether the DESIGNATIONS people actually make carve the system where its authority boundaries really fall is a judgement no fixture can hold, and getting it wrong is invisible: a design that publishes nothing reports perfect containment.",
+    "status": "accepted"
+  }
+}

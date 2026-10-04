@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:608502ac776b7bae0a5cb3fde12d480b85566da9271f0ecae567ee2a51834fc9",
+  "node_id": "chg:loop-reports-assigned-decisions",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "name": "loop_status grows unsettled_assigned_decisions — a Decision left proposed while carrying an AUTHORED_BY role=approver is now reported, and one with no approver stays deliberately quiet. The first cut of cap:owed-to-a-contributor, and the narrowest thing that closes req:an-assigned-open-decision-is-reported."
+  }
+}

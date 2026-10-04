@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:4e5f7f6859b9bb51b231b49a11ba33cad12567283acdef39233d1b0ca1b19ff5",
+  "node_id": "art:init",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "granularity": "atomic",
+    "location": "tools/reflow2_init.py",
+    "name": "reflow2_init.py",
+    "status": "realized",
+    "volatility": "stable"
+  }
+}

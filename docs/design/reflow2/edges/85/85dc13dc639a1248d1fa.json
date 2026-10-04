@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:b485e3936f41fc02a79dbc97e0a644a66bb98284cdaa87ed19262d732204aaaa",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-node-records-what-the-user-calls-it",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:capture-intent-skill"
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:3b158802ee82c0d6fb03ccc2478b4b18e26fd0093602cd82f9e798f66a6f7602",
+  "edge_type": "MITIGATES",
+  "from_id": "dec:idea-which-derived-results-are-kept-and-by-what-rule",
+  "properties": {
+    "evidence": "The requirement keeps a tension open (write-back versus compute-never-store, 'Anthony's call'). This idea offers the rules that would answer it, including the one that keeps write-back from turning into stored, driftable copies."
+  },
+  "to_id": "req:reflow2-keeps-the-knowledge-it-derives"
+}

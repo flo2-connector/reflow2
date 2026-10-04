@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:7a7bfb1ed82f3b9343e4b1c3406077db8d0b5ab5459e37e2be8d8a1697e9ecf0",
+  "node_id": "cap:a-project-migrates-to-the-item-layout",
+  "node_type": "Capability",
+  "properties": {
+    "description": "reflow2_init, on update, converts a consumer's docs/design/<project>.json into the item layout in one commit-ready change, carrying item lineage from the old file's content. For one release the server, import and the gate accept either layout; the old reader is removed a release later. flo2 and every installed project migrate this way; nothing breaks on the day of the upgrade. Designed 2026-09-23.",
+    "name": "A project using reflow2 moves to the item layout on update, with one release of overlap",
+    "provenance": "authored",
+    "status": "planned",
+    "tier": "operational"
+  }
+}

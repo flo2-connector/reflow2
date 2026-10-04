@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:47b2ce0cafa7f8d173643a6bbbdaba90684a08276f06f22b7121ae2798842863",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:idea-a-skill-carries-a-line-for-a-person-and-says-who-it-is-for",
+  "properties": {
+    "approved_at": "2026-09-19",
+    "roles": [
+      "author",
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

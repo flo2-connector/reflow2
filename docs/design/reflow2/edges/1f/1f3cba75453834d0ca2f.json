@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:b3ef276a4a9e90c05d2a3d802d14774b395b0d222b30dc1c3c06897a10dd3cb3",
+  "edge_type": "GOVERNED_BY",
+  "from_id": "dec:idea-should-a-finding-be-required-to-bound-its-own-claim",
+  "properties": {
+    "note": "The quality axis this question is asked under. If reflow2 is built so its answers never misrepresent what it knows, a finding whose name overstates its data is in scope; under any other axis it would be a style preference."
+  },
+  "to_id": "dec:reflow2-is-built-for-observability"
+}

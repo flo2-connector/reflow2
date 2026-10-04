@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:1bf8fe5daa4dda0aa440a9c0105c7cb0ede9419638770d1ae5c0141dd326d63e",
+  "node_id": "fact:design-regions-is-one-expensive-region-walk-per-seed-and-there-are-109-seeds",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "confidence": 0.8,
+    "fact_type": "defect",
+    "name": "design_regions costs ~109 × 5 s because it calls scope_region once per Project and Component — the walk is rebuilt from scratch for every seed",
+    "statement": "MEASURED 2026-09-11, closing the open half of `fact:design-regions-exceeds-300-seconds-and-wedges-the-shared-server`, which recorded the symptom and stated plainly that where the time went was NOT measured.\n\nTHE SHAPE, read from `regions.rs:170`: for every Project and Component the design has, `design_regions` calls `scope_region(seed, depth)` and then filters the gap, defect and claim lists against that region. The three rollups are hoisted correctly and paid once. **The walk is not.**\n\n    one scoped region walk            5,173 ms   (detect_gaps with scope+depth:1)\n    seeds on this design                  109   (1 Project + 108 Components)\n    implied                            ~545 s\n    observed                           >300 s twice, >150 s again today\n\n⭐ SO IT IS NOT A SLOW GRAPH, IT IS N WALKS OF ONE. The same graph answers `get_node` in 3 ms and `detect_gaps` in 3.9 s. Nothing about the question requires rebuilding the walk per seed — the graph does not change between seeds, only which node it starts from — which is the identical argument `con:a-sweep-builds-its-network-a-fixed-number-of-times` already makes for `detect_defects`: *\"the network has to be constructed once and interrogated N times; nothing about the question requires reconstructing it per candidate.\"* That Constraint exists, is accepted, and does not cover this tool.\n\n🛑 NOT ESTABLISHED, and it bounds the fix rather than the diagnosis: whether the 5,173 ms is the adjacency build, the traversal, or the per-node store reads inside it; and whether a shared structure can serve 109 different start nodes without changing what a region MEANS (`dec:the-default-scope-depth-should-be-two` records that \"a region\" already has two definitions that were once described as one — so a shared walk must not quietly merge them). A debug binary was used; `fact:every-cost-number-today-was-a-debug-build...` measures the profile alone at 2.2x, and 2.2x does not rescue 545 s.\n\nNOT FIXED HERE. Recorded so the next increment starts from the cause rather than the symptom.",
+    "subject_id": "cap:a-session-with-no-seed-can-find-one",
+    "valid_from": "2026-09-11",
+    "value": "{\"one_scoped_walk_ms\":5173,\"seeds\":109,\"implied_total_s\":545,\"observed\":\">300s twice, and >150s again on 2026-09-11\",\"paid_once\":{\"detect_gaps_ms\":3881,\"detect_defects_ms\":10711,\"claim_report_ms\":5143},\"site\":\"crates/reflow2-core/src/regions.rs:170\",\"shape\":\"scope_region called inside the per-seed loop\"}"
+  }
+}

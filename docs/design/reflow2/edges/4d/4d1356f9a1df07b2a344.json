@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:dce3ab62f6eaafe1d6182244eab7e5233b40f9e4bcaae4a0f8e4783612e856e2",
+  "edge_type": "CHANGED",
+  "from_id": "chg:baseline-8f8d2935d787075a",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:lens-core-test"
+}

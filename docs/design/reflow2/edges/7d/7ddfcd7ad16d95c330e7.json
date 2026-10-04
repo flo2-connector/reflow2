@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:6447fc449d1e796f0fbcf79d207fc16241bf6b45ecbcd0a63f4af1e43f4eb743",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-finding-describes-the-walk-that-produced-it",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:scope"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:cdb92ce2e793d0a3c94cc77948b391363f781e4062d2eec4a60733f3452b5562",
+  "edge_type": "CHANGED",
+  "from_id": "chg:adopt-is-incremental-with-a-frontier-and-a-deferred-derivation-marker",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:skill-lint"
+}

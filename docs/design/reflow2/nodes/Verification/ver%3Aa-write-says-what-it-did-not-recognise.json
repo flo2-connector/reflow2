@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:48207e02cb45fe2ce9901766818190f55ee87b8f28f22ee289e8fca6f41404e9",
+  "node_id": "ver:a-write-says-what-it-did-not-recognise",
+  "node_type": "Verification",
+  "properties": {
+    "description": "A write names the properties the schema does not declare, and still stores them (crates/reflow2-core/tests/a_write_says_what_it_did_not_recognise.rs) — 6 cases. THE CASE is the exact write that exposed this: `enforcement: \\\"advisory\\\"` on a DesignRule, where the real field is `enforced`, a bool. TWO COUNTERWEIGHTS DECIDE WHETHER THIS IS A REPORT OR NOISE: an ordinary write using only declared properties says NOTHING, because a signal that fires on correct work is one people stop reading; and the correctly-spelled `enforced` is never named, since the pair is one edit apart and reporting it would make the check actively misleading. A THIRD holds the line the other way: an unknown NODE TYPE reports nothing rather than every key, because that case is already refused loudly by the write itself and answering \\\"all of them are undeclared\\\" would bury the real error. AND THE LAST IS THE POINT OF THE WHOLE THING: the undeclared property is STILL STORED. This reports; it never refuses — the property bag is a capability, not an oversight, and a fix that started rejecting unknown keys would break the thing it was meant to make honest.",
+    "findings": "MUTATION-CHECKED BOTH WAYS: reporting nothing fails the two positive cases; reporting EVERY key fails those plus the silence counterweight, which is the case proving it does not become noise.",
+    "kind": "verification",
+    "last_run_at": "2026-08-16",
+    "level": "unit",
+    "method": "test",
+    "name": "A write names the properties the schema does not declare, and still stores them",
+    "status": "passing"
+  }
+}

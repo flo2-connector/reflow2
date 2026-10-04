@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:119922d5c139accf02d222c2eb1237193930d820e5d0c0b77152c5a53cd05ef7",
+  "edge_type": "GOVERNED_BY",
+  "from_id": "req:the-export-is-serialised-rather-than-socially-enforced",
+  "properties": {
+    "note": "The decision fixes WHERE this requirement is implemented -- reflow2_check.py rather than the server -- so the requirement is shaped by it and any later attempt to build it server-side should meet this first."
+  },
+  "to_id": "dec:export-serialisation-belongs-to-the-gate"
+}

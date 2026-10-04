@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:a8af491bf4d5f0a9f05dc61c27b2595278007b01fe9be5f068f1f25cd845a290",
+  "edge_type": "CAUSES",
+  "from_id": "fact:the-attach-path-checks-liveness-and-identity-but-never-version",
+  "properties": {
+    "basis": "causal",
+    "evidence": "Same cause, twenty-one days earlier, and that instance cost a day of dogfooding with five merged PRs never running through a live session. It reached its own conclusion — that the documented remedy (restart) is the thing that fails under `--shared` — and stopped at naming the remedy rather than asking why the client attaches to a mismatched daemon at all. Drawn to make the recurrence visible from the cause: the same fix answers both, and neither is answered by changing the installer.",
+    "validation_status": "hypothesis"
+  },
+  "to_id": "fact:the-stale-server-defect-recurred-to-the-people-who-wrote-it-down"
+}

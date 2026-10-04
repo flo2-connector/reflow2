@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:1fdd1ed7e4b0916c68892f88ea5092ab7a785178d2565f68cc8bdf4e2925e82e",
+  "edge_type": "CHANGED",
+  "from_id": "chg:merge-integrity-bl47-bl46",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cmp:graph"
+}

@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:79259519e01cd7cf14eae600ace5aaa3cfd57d2328c707b3779637ce3e2968ac",
+  "edge_type": "HAS_SNAPSHOT",
+  "from_id": "fact:root-cause-the-auth-enum-already-says-upstream-signed-over-mtls-and-what-is-missing-is-delegated-identity-2026-09-29",
+  "properties": {},
+  "to_id": "snap:epoch:preserved-on-write:fact:root-cause-the-auth-enum-already-says-upstream-signed-over-mtls-and-what-is-missing-is-delegated-identity-2026-09-29"
+}

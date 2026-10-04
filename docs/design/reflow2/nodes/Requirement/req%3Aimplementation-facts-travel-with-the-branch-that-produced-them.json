@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:e92a879923f23baedeefdb18e666c07feced2357cc2f8686f8791e807b404ddc",
+  "node_id": "req:implementation-facts-travel-with-the-branch-that-produced-them",
+  "node_type": "Requirement",
+  "properties": {
+    "concern": "core",
+    "kind": "functional",
+    "lineage": "original",
+    "name": "The server knows each session's worktree and branch; implementation facts are measured against that worktree, held with that branch, and reach main only when the branch's code merges, while intent stays live for everyone",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "A session working a design through the shared server is known by its working tree and branch, either declared by the session or derived from the client's working directory. Facts about what a BRANCH did (an artifact's accepted checksum, the ChangeEvent for that branch's code, a new file's registration, a verification run against that branch's build) are measured against that worktree's files and held with that branch. They reach main when, and only because, the branch's code merges, and they never appear in a sibling branch's export. Intent (requirements, decisions, rules, findings, ideas) stays live and shared, seen by every session at once. Which node types and edges are branch-scoped is decided once, as a classification, and it handles intent whose truth depends on a branch (a capability `realized` only where its code exists). What a session on main sees of in-flight branches is part of that decision. Anthony, 2026-09-22, promoting part ① of dec:idea-the-design-gets-a-branch-dimension-for-implementation-facts as written, after the dev_reflow2 two-session trial. Evidence: fact:the-live-graph-does-not-branch-so-two-open-prs-collide (seven-plus recurrences) and fact:a-worktree-fix-recorded-its-design-changes-in-the-live-store-and-the-branch-gate-failed-2026-09-22.",
+    "status": "accepted"
+  }
+}

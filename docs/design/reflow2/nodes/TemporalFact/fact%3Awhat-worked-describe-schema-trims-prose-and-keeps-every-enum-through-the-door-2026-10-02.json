@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:fb7a8391b6a1427f28f917aca350a0045b5cdf556dd4022c70461a42f81ac3f6",
+  "node_id": "fact:what-worked-describe-schema-trims-prose-and-keeps-every-enum-through-the-door-2026-10-02",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "finding",
+    "name": "WHAT WORKED, re-measured on 0.77.0 (2026-10-02): `--call describe_schema` with node_type returns the full property list with enum values. The default 30,000-character budget withholds prose only (91 fields cut, every property and enum kept, and the reply says so); a large budget_chars returns it all. Do not regress it. Small correction: the enums are present at the DEFAULT budget too, so a large budget is needed only for the prose",
+    "source": "art:vscode-call-door-field-report-2026-10-02",
+    "statement": "From the \"Measured\" table of art:vscode-call-door-field-report-2026-10-02 (\"--call describe_schema with node_type and a large budget_chars: full property list with enum values; the default budget withholds the prose\"), and its working pattern \"Learn enums before writing\". Re-measured by triage agent D (0.77.0, scratch store; outputs triage-D/out/describe_default.stdout and describe_big.stdout).\n\n- `describe_schema {\"node_type\":\"Requirement\"}` → exit 0, 0.11 s, 43,521 bytes. budget.applied true, budget_chars 30000, full_chars 55967, fields_trimmed 91, prose_limit 0, reply_chars 23994. The note reads \"WITHHELD TO FIT ... What was withheld is PROSE ... Every number, count and id is untouched\". All 13 properties are listed, with enums: kind [functional, nonfunctional, quality, business]; status [proposed, accepted, deferred, dropped, met]. Hints and discrimination \"why\" text come back as \"…\".\n- `describe_schema {\"node_type\":\"Requirement\",\"budget_chars\":200000}` → exit 0, 0.10 s, 74,733 bytes, no budget block, same 13 properties and enums, with the prose in full.\n\nSo the row HOLDS as worded. The enums do not depend on the budget, though: an agent learning legal values before a write can use the default call. That is the bound this capability promises: prose trimmed before length, numbers and ids untouched.",
+    "subject_id": "cap:every-oversized-reply-offers-a-bound",
+    "valid_from": "2026-10-02"
+  }
+}

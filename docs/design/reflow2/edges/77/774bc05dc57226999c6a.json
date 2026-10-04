@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:3a408c56b291d52487e6f98846d1aaa6e26cd008178bb48c7992a470f768df87",
+  "edge_type": "CHANGED",
+  "from_id": "chg:federation-decided",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "dec:nested-graphs"
+}

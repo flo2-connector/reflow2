@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:706eaab38fa1b6accdd7b6599c2dd96a22be59526fc0abd08d2f3beb8c588e40",
+  "edge_type": "REALIZES",
+  "from_id": "art:test-a-dangling-reference-is-found-whatever-its-degree",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "verified"
+  },
+  "to_id": "cap:a-dangling-reference-is-reported-whatever-the-nodes-degree"
+}

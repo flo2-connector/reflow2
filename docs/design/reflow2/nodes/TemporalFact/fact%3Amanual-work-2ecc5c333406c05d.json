@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:e9ec638b79ae13fde0628f09516400c2de062602b930fd67b2323fb44ff278ca",
+  "node_id": "fact:manual-work-2ecc5c333406c05d",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "manual_work",
+    "statement": "Wrote a Python script, five times in one day, that maps the files a branch changed (git diff --name-only against main) to registered Artifact ids by their `location` in the committed export, hashes each, and prints the observation list — the input set_artifact_checksums needs after a code change. reflow2_check.py does the hash-and-reconcile pass for the gate, but nothing served answers \"which registered artifacts did MY branch touch, with their new hashes\" for the acceptance step; reconcile_artifacts takes the observations and computes none.",
+    "subject_id": "proj:reflow2",
+    "valid_from": "2026-09-15",
+    "value": "{\"diagnosis\":\"unknown\",\"reflow2_tool\":\"reconcile_artifacts\"}"
+  }
+}

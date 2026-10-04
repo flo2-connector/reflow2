@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:1cadcc6e84f457ea0f56b34f2b92a3d8be39fc51ca7b8f7478df8b729dc1957d",
+  "edge_type": "REALIZES",
+  "from_id": "art:root-cause-skill",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:root-cause-skill"
+}

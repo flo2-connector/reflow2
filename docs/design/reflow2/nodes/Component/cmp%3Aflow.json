@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:6a31123ece609df799c868df13d4275664e8088088fdc2607468096d33a9276d",
+  "node_id": "cmp:flow",
+  "node_type": "Component",
+  "properties": {
+    "kind": "module",
+    "level": "component",
+    "name": "flow",
+    "provenance": "authored",
+    "purpose": "The flow module.",
+    "status": "planned",
+    "tier": "operational"
+  }
+}

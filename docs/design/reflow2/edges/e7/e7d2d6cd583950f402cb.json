@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:f04dab6db1bf0aac4ac88432e57be07086407f86f48271114d843873d94fd794",
+  "edge_type": "CHANGED",
+  "from_id": "chg:vocabulary-coverage-names-the-properties-it-counts",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cap:a-design-says-which-vocabulary-it-has-never-used"
+}

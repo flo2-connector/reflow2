@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:ddcd18e597cce147443db5bd856e7be88eb95fe79c803954d93ebbb6614be6f1",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-check-and-its-findings-are-different-things",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "ver:loop-status-scoped-to-a-contributor"
+}

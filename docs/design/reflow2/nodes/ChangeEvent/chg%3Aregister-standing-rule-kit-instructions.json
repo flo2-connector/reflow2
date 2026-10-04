@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:9277e2f34aaa12bebdc07671d92b453249861cd0dff513042aa0b123d6c074c6",
+  "node_id": "chg:register-standing-rule-kit-instructions",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "name": "Served instructions gain a standing \"speak the reader's domain\" rule and name the gap-to-question step as the translation point"
+  }
+}

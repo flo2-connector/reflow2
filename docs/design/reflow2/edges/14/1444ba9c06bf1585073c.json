@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:2612f838afa320b53907ce81adb4ed4eabcecc5e1daa61d1775cb30a421e072a",
+  "edge_type": "CHANGED",
+  "from_id": "chg:recover-from-tests",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "cap:recover-from-tests"
+}

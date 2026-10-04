@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:2c81ad74d83052b560c6c2c06deacb0db972f6bdb0c26565daa5fe7a2c255f33",
+  "edge_type": "CAUSES",
+  "from_id": "cap:a-build-can-call-one-tool-from-the-shell-and-read-the-reply-as-json",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "OneShotClient (main.rs:717-725) hardcodes client_info.name = \"reflow2-mcp --call\" with no env or flag override, and the door exposes no way to set request _meta or a session-scoped writes_for.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:root-cause-door-calls-carry-a-fixed-client-name-and-no-attribution-route-reaches-the-door-2026-10-02"
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:c83ec8f9a5411391333aa0d88845246beb79458e28f40023853c35d9381c4459",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:read-while-held-mechanism",
+  "properties": {
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:claude-code"
+}

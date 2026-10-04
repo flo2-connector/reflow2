@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:2e80e6c5a6b71f4349705230f5acbb669ab6485345031b1ca93e0cbcb78da797",
+  "node_id": "cap:arrival-delta",
+  "node_type": "Capability",
+  "properties": {
+    "description": "At an epoch or release, answers \"what didn't we achieve that we were supposed to?\" — every scheduled item returned as delivered, deferred (and where to), discontinued, or OUTSTANDING (still due here, not delivered, and nobody has said which of the previous two it is — the question to put to the user rather than default). Work scheduled after the baseline comes back separately, because a delta measured only against the plan cannot see the work that was not in it. `required` claims that did not land are reported as computed violations rather than slips — the scheduling face of a KPP. The baseline is the target's FIRST snapshot with every later one as the movement trail, so a total slip stays visible across repeated replans; where no snapshot exists the plan never moved and the live edges are the baseline. NOTHING IS STORED: the plan lives in the snapshots and delivery is computed from the golden thread, so writing the outcome down would create a second source of truth able to disagree with the first (`dec:arrival-delta`, `req:completion-computed`).",
+    "name": "What was planned against what arrived, computed and never stored",
+    "provenance": "authored",
+    "status": "realized",
+    "tier": "operational"
+  }
+}

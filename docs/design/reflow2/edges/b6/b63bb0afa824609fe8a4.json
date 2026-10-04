@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:482526a81a11e41c19af1c7bcc088fc242bb152165d5f4f56fa5e41d2f3a99d7",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-orientation-call-stops-rereading-stale-records",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:tools-coherence"
+}

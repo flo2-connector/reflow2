@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:18268f33cdf05d6808b2738754c0df43fc5b8a8edba0f49f22edc4a8521b0941",
+  "edge_type": "CHANGED",
+  "from_id": "chg:omitting-last-run-at-no-longer-erases-it",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:nudge-detect"
+}

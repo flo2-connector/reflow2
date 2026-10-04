@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:044ee05430dbb6cceb859f830ce559334d578331b463964a1ab159e7368dea0b",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:a-rule-computes-the-condition-its-message-names",
+  "properties": {
+    "approved_at": "2026-09-15",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

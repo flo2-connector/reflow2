@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:6ebd93588b3e85d37cd775de3cf54b953cae87e74d30e80f2da9482418d0c46d",
+  "node_id": "decision:ack:cc397662b1ff2064",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Accepted the gap gap:cc397662b1ff2064.",
+    "name": "Reviewed: gap:cc397662b1ff2064",
+    "rationale": "Checked 2026-09-07: still open. Both rules still assert a condition they never test — the anticipates rule emits on every such edge with no follow-through check, and the contradicts rule does the same with no decision lookup.",
+    "status": "accepted"
+  }
+}

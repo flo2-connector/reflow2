@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:4d73e1c8424e2fcc32ffef03930f1f0facbcf9bc8338c3d66f3130135b5c7bb9",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:a-server-drains-before-it-stops",
+  "properties": {
+    "approved_at": "2026-09-27",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

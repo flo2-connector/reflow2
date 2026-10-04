@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:0e242c9375f4b3ebd366fb5535ec050e5ec8a3a21af1bcd148d54fc0f479ab94",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0650",
+  "properties": {
+    "as_checksum": "sha256:6770214bea12c53e80f106d2aba19e08171bd4cf7d0aea7d4dc95dfc12b29337"
+  },
+  "to_id": "art:test-a-repair-can-say-what-it-invalidated"
+}

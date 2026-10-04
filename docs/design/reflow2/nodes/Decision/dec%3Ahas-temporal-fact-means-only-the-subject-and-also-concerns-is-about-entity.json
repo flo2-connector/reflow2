@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:f2d82f23e06e58c68eab277953771578d63b2f5e745186665453f2e03e6a4120",
+  "node_id": "dec:has-temporal-fact-means-only-the-subject-and-also-concerns-is-about-entity",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "A TemporalFact's `subject_id` is the AUTHORITY for its subject, and HAS_TEMPORAL_FACT is its derived copy: exactly one such edge, from the node `subject_id` names, kept by the store on every write. An edge drawn by hand from any other node to say \"this finding also concerns that node\" becomes ABOUT_ENTITY (fact → node), the edge the schema already declares for that relation. Five findings carry such a second link today, 4 besides their subject and 1 instead of it. Each moves to ABOUT_ENTITY, and the repair reports every move.",
+    "kind": "choice",
+    "name": "HAS_TEMPORAL_FACT means only \"this node is the finding's subject\"; \"the finding also concerns that node\" is ABOUT_ENTITY",
+    "rationale": "Anthony chose this on 2026-09-28 from two options put to him after the root cause (fact:root-cause-each-writer-draws-the-second-copy-by-hand-and-three-writers-never-did-2026-09-28). The rejected option was to let HAS_TEMPORAL_FACT mean \"any node that carries this finding\", with the subject required among them. That would move nothing, but the edge would keep two meanings, and ABOUT_ENTITY would remain a second way to say one of them: the twin this work exists to remove, one level up. One meaning per edge also keeps the drift check a plain equality: the edge's source equals subject_id.",
+    "status": "accepted"
+  }
+}

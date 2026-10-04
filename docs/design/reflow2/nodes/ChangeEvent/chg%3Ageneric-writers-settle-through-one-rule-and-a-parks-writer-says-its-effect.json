@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:bbd9b8896b176cb07410c24cd495285cca402b6b4b93a93ec7d9621421ec7aa8",
+  "node_id": "chg:generic-writers-settle-through-one-rule-and-a-parks-writer-says-its-effect",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "defect_fix",
+    "detected_at": "2026-09-29",
+    "name": "A settle through a generic writer is held to the owner's word, and a parks ruling's writer says whether it takes effect",
+    "rationale": "THE CAUSES, walked with the root-cause skill (fetched fresh) and recorded in the LIVE design, not in this branch's store. (1) fact:root-cause-the-settle-rule-guards-the-typed-doors-and-the-generic-writers-go-around-it-2026-09-29: the owner's-word rule was enforced at each typed door (#628's per-tool table), never at the state change, so the generic writers went round it. (2) fact:root-cause-a-parks-ruling-is-validated-only-by-its-readers-and-the-writer-reports-success-either-way-2026-09-29: only the reader (is_parked) asked whether a parks ruling takes effect. Observed failing first on a clean origin/main 6329079 build under the shared build lock: every_writer_settles_through_one_rule (create_node and create_nodes recorded unsigned settles; import_graph and apply_merge named none; add_decision refused an unsigned rejected; replace_text settled a Requirement's status unsigned) and a_parks_writer_says_whether_it_takes_effect (in_force absent on every ruling; a DesignRule recorded as success). Both pass on the fix.",
+    "rationale_basis": "contemporaneous",
+    "repair": "corrected_cause",
+    "subject": "system",
+    "summary": "ONE core predicate, reflow2_core::intent, answers 'does this stored value settle intent?' (a Requirement off proposed; a Decision accepted or deferred; a DesignRule's enforced stated). create_node and create_nodes take approver and acted_at and REFUSE an unsigned new settle before writing, as the typed constructors do. import_graph, apply_merge and mirror_surface write and NAME an unsigned settle under settled_without_approver. replace_text refuses an edit that would settle intent (a Requirement's status is text). The generic writers' rows are served as _meta[\"reflow2/settles\"] VERSION 2: when node_settles_intent, with the core table as node_rule; version-1 readers must refuse them (flo2 #106). add_decision now settles on accepted or deferred only. governed_by(ruling: parks) asks parking_ruling_effect, the predicate behind is_parked, BEFORE storing: a Decision not yet accepted is recorded and the reply's parks block says it parks nothing yet; a non-Decision is refused. CI's check_intent_authority.py is held to the core table case by case."
+  }
+}

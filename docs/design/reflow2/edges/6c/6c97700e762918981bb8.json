@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:850e2e2c733143e7c914b4405e94c0a1eacad43a274d504a3c7b5c3e5c629890",
+  "edge_type": "MITIGATES",
+  "from_id": "chg:reachability-is-asked-without-asking-adoption-and-the-instrument-runs-in-ci",
+  "properties": {
+    "evidence": "Wires the instrument into the build as a regression gate, which is the second cause that record named and the one that made the first survivable."
+  },
+  "to_id": "fact:the-reachability-instrument-is-wired-into-no-gate-so-its-filter-was-never-the-only-cause"
+}

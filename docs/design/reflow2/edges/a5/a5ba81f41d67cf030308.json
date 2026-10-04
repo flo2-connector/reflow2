@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:4f43d6d0eb32ce87f34216580e05dd3eaea9f71c9c3e733dd7d25fbdf400a4c5",
+  "edge_type": "CAUSES",
+  "from_id": "fact:the-cut-verified-the-assets-and-never-the-image-2026-09-14",
+  "properties": {
+    "basis": "causal",
+    "evidence": "The defect — publish finished and the release went live while no image was published — is what making publish need `container image` answers: a release whose image failed now stays a draft, and the notes carry the index digest. Validated by ver:each-architecture-is-smoke-tested-before-any-push-and-only-a-two-platform-index-is-tagged (publish must need container image; red when that need is removed). The defect stays open until a release carrying this is cut.",
+    "validation_status": "validated"
+  },
+  "to_id": "chg:the-release-publishes-one-amd64-and-arm64-index-and-names-its-digest"
+}

@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:e0a5bb93fd66290e9be6c713b1b305cd6db4f131f7ac98d80c0a1f24ed3d1323",
+  "node_id": "fact:defect-an-aggregate-gap-hides-partial-progress",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "confidence": 1.0,
+    "fact_type": "defect",
+    "statement": "A GAP NAMING 48 CAPABILITIES IS ONE ITEM, SO CLOSING IT FOR ONE CAPABILITY IS INVISIBLE TO EVERYONE. Reported by w-ec25cf2c (dev_storyflow, 2026-08-07). `gap:0a77650b58242054` read '48 verified capabilities not validated' and listed 48 ids in a single gap. They closed it properly for `cap:counterability_guarantee` with a passing `kind=validation` check, and `unsurfaced_gaps` stayed at 69 — because the gap is still open for the other 47. THAT IS ARITHMETICALLY CORRECT AND OPERATIONALLY USELESS: a worker cannot see their own contribution, and a boss cannot see progress against it. The cost compounds with the ownership problem reported the same day — a standing number that never moves in response to real work is the definition of wallpaper, and five consecutive seats reported the identical rollup with none of them moving it. FIX SHAPE, from the reporter: either emit per-capability items, or report a `remaining`/`closed` count on the aggregate so partial progress is legible.",
+    "subject_id": "cap:detect",
+    "valid_from": "2026-08-07",
+    "value": "{\"reported\":\"2026-08-07 dev_storyflow, w-ec25cf2c\",\"gap\":\"gap:0a77650b58242054 - '48 verified capabilities not validated', 48 ids in one item\",\"observed\":\"closed it correctly for one capability; unsurfaced_gaps stayed at 69\",\"harm\":\"a worker cannot see their own contribution; a boss cannot see progress\",\"fix_shape\":\"per-capability items, or a remaining/closed count on the aggregate\"}"
+  }
+}

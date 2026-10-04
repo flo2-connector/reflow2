@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:8bd847e15678a7ee1e8b69a9a2040dad469a6b8048ed975395078a2390ebb01d",
+  "edge_type": "REALIZES",
+  "from_id": "art:test-the-commonest-edge-has-a-typed-helper",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "verified"
+  },
+  "to_id": "cap:a-coupling-has-a-typed-call-of-its-own"
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:1bb2c75824889905e8f98ff9a5c13d66fb3321c28419dd0d30c89bd34fd7eb0b",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0250",
+  "properties": {
+    "as_checksum": "sha256:772b73a05ff491fe6dbca6adeb9697ad84e1ad9592e24b66793aae2716ae0783"
+  },
+  "to_id": "art:stateless-seat-probe"
+}

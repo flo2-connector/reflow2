@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:6517ea31969f423fa2726085e19f43e9ccb35f6f3b9e5b44bb33a941c6583171",
+  "edge_type": "REALIZES",
+  "from_id": "art:check",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:the-gate-checks-the-item-layout-and-per-item-lineage"
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:17384982d72ba47f6c30fd9e252713be2a3389a7af665ac6bed5e9437d1900c5",
+  "node_id": "epoch:v0490-cut",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "epoch_type": "release_cut",
+    "name": "v0.49.0 cut — three rulings built: no injected defaults on a Verification, a plan holds a check and a ruling, enums published from the schema, and a node is named by its id",
+    "sequence": 396,
+    "status": "arrived"
+  }
+}

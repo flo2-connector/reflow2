@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:91cc4f855e9baed4facc7a87ef413bd50856638e0fc3336df840094d8f256496",
+  "node_id": "chg:verifies-reaches-a-constraint",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "scope_change",
+    "name": "`VERIFIES` admits `Constraint` on Anthony's word — a check may now say whether a limit holds. Proven through the importer, the path that was actually broken, with the counterweight that `VERIFIES → Project` is still refused. Project stays out and dev_storyflow's export still will not import until that half is decided."
+  }
+}

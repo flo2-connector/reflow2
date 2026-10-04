@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:8918ed136d05276b2d965076eb3f77259b1c47c8cfe904ab7fd8b3511afc9ccb",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0700",
+  "properties": {
+    "as_checksum": "sha256:a54dd685a9670e87db2761cfb86c953fe0b1dfbb29e2c5027e346ec0eb421035"
+  },
+  "to_id": "art:hierarchy"
+}

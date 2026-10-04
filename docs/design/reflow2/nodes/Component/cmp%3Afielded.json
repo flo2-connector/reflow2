@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:8e4b6139d10d2be41e2b180faff93cab51dc798e6dd3c2394b430ee8dc5287fd",
+  "node_id": "cmp:fielded",
+  "node_type": "Component",
+  "properties": {
+    "kind": "module",
+    "level": "component",
+    "name": "fielded",
+    "provenance": "authored",
+    "purpose": "The fielded module.",
+    "status": "planned",
+    "tier": "operational"
+  }
+}

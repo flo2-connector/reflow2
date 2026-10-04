@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:b5b9427d0ba5e23c0606deb70ae226c856b0da0a4fce2a48b7fbdeb1384b4f35",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:the-hub-skill-writes-each-fact-where-it-belongs",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:skills"
+}

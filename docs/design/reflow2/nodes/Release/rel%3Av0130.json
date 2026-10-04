@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:78bde0641ab4624efe4339bd23860f0edfcd69e03fc44f5b53c5b60dfc72d827",
+  "node_id": "rel:v0130",
+  "node_type": "Release",
+  "properties": {
+    "name": "v0.13.0",
+    "notes": "Cut 2026-07-25. A minor bump — CLAIMS gains a `seat` property (additive) — with docs/upgrading-to-v0.13.0.md written. THE RELEASE THAT MAKES CONCURRENCY HONEST, and every piece of it came from Anthony's own StoryFlow fleet. (1) A DESIGN KNOWS ITS OWN NAME: an id established on first open in <graph>.id.json, a sibling of the store because the id namespaces every stored key; minted with zero coordination; refused rather than defaulted when unreadable; and a store that already holds a design under the old shared id ADOPTS it, which is what keeps every committed export valid since graph_id is inside the content hash. Two on-disk designs can finally mirror each other. (2) CLAIMS NAME THEIR SESSION and claim_report COMPUTES liveness from the OS: a claim whose session exited is `gone`, listed in `stale` with its note, and excluded from overlaps, because a collision with nobody is not a collision; another machine is `unknown` and still counts. (3) THE LOOP'S SAFETY NET IS PROVEN AND INSTALLED: the nudge path is tested by running the REGISTERED hook command as registered, the server reports installed | absent | broken | unknown, the absence rides the handshake instructions, and reflow2_init now registers the hook it never used to — into .claude/settings.local.json, pointing at the kit so it updates with the package. Manifest: 68 artifacts with frozen cut-time checksums plus cmp:docs, cmp:skills and cmp:claims. Four of the five fleet lessons are now built; req:read-while-held remains blocked on dynograph-storage exposing open_as_secondary.",
+    "status": "retired",
+    "unit_type": "binary",
+    "version": "0.13.0"
+  }
+}

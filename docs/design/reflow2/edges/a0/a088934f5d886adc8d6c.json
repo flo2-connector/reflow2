@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:9367be468a85553c56095207b59d337a7189afd72532effe7b381cdc6391add6",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:undeclared-seam-is-named",
+  "properties": {},
+  "to_id": "req:an-undeclared-coupling-is-named-not-just-counted"
+}

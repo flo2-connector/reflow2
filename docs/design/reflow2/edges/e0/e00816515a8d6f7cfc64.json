@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:456ae3ad454bc57835349b8d5553b8fb0d89847213d9f685ac7e15691d99ae69",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-one-command-switches-reflow2-between-local-and-remote",
+  "properties": {
+    "evidence": "A folder that already has a design must follow its pointer rather than the global switch; the settled pointer file is what lets the client tell the two apart.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "dec:idea-a-checkout-knows-which-remote-design-it-implements"
+}

@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:db09714489d4e13157348eb558eba76836c491e16b173210a9ceb20f1fc2e127",
+  "node_id": "chg:a-repair-can-say-what-it-invalidated",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "detected_at": "2026-08-24",
+    "name": "INVALIDATES lands, with its reader",
+    "rationale": "A finding survives the work that answered it and goes on proposing work already done. Measured cost, from dev_storyflow 2026-08-23: a session read a `failing` check dated that same day and reported its two defects to a user as the live state of the system; both had been repaired hours earlier on Constraint nodes, the user acted on the report, and the session's first act was to discover the work was done.\n\nTHE DESIGN TURNS ON ONE RESTRAINT: the claim says the RESULT is stale and nothing more. Not `RESOLVES`, no status change, and the check is NOT removed from `attention` — silencing it would swap one wrong reading for another. `rerun_owed` is three-valued so an undated claim reports as unanswerable rather than as \"already covered\".\n\nAND ONE MEASUREMENT DECIDED CLAIM-OVER-COMPUTATION: inferring staleness needs a change ordered against `last_run_at`, and only 8% of hand-written ChangeEvents carried a date because the constructor had no parameter for one. The cheap option was not cheap; it was unbuildable honestly. Fixing `detected_at` is what makes the computed bucket possible LATER, and it ships stamp-invisible alongside the edge that moves the stamp on purpose.\n\nTHIS EVENT IS THE FIRST HAND-WRITTEN ONE ABLE TO CARRY ITS OWN DATE.",
+    "subject": "system",
+    "summary": "A new edge type `INVALIDATES` (`* -> *`, props `note` and `at`) lets the record that did the work name the finding it answered, with `invalidates` to write it and `invalidated_findings` to read it. `loop_status.verifications` annotates each attention row with `invalidated_by`, `rerun_owed` and a sentence, plus a top-level summary; `graph_report` gets the same from shared code; `where-am-i` now gathers `Constraint` and calls `invalidated_findings` before quoting a failing verdict. `add_change_event` gains `detected_at` — declared, written 84% of the time by the reconcile paths, and unreachable from the ordinary path, which is why only 8% of hand-written events carried a date. Stamp moves 63 -> 64 edge types; `docs/upgrading-to-v0.40.0.md` updated."
+  }
+}

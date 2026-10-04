@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:d186025cf02cccbac5aaa14859d6c5d841e4f8699f60320b4745afd23a3a6507",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-design-is-saved-one-file-per-item-2026-10-03",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:19ad07d2ddfda1724b285aecb0d6cb06a6764434ae58430022625ce7ef7fb771",
+    "checksum_basis": "measured"
+  },
+  "to_id": "art:the-served-surface-names-no-real-person-gate"
+}

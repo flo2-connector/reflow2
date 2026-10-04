@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:5a6a4ee0f9c192bf5aa612cf47c96cb90b3cbe0a05db3e63b43898fd23641fe1",
+  "node_id": "chg:reflow2-check-defaults-to-the-export-the-graph-is-in-step-with",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "defect_fix",
+    "detected_at": "2026-09-19",
+    "name": "reflow2 check with no --export reads the export the graph is in step with",
+    "rationale": "flo2 F6, root-caused: a literal default matching none of three real layouts, while the sidecar already recorded the answer.",
+    "subject": "system",
+    "summary": "tools/reflow2_check.py: --export defaults to the first existing path in .reflow2/graph.sync.json last_synced under --root, else design.json; the missing-export message names the sidecar when it supplied the name. Two tests in tools/test_reflow2_check.py."
+  }
+}

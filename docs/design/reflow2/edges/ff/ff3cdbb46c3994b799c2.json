@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:a736adf67c8c97a064864a0ce7bed0bde1baf1c520e7285a4d8f4155a1d12169",
+  "edge_type": "CAUSES",
+  "from_id": "art:dev-storyflow-feedback-2026-09-27",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "The root-cause pass on this document's 09-27 evening gap (no 'what changed lately' view): the accepted requirement is marked satisfied by changelog_view, which answers a narrower question, and the core stores no write time.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:root-cause-no-served-read-answers-since-last-time-2026-09-28"
+}

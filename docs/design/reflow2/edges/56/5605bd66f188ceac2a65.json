@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:6703be4561384a85db3b810a65dd219a5538e2d371c2b34ba8ceda2e68899e3f",
+  "edge_type": "CHANGED",
+  "from_id": "chg:what-next-built",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cap:what-next"
+}

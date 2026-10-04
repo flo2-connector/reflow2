@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:9dc52613121bf2e558b561dd304838ff015aace4301b344c1c24c00b60be30b2",
+  "edge_type": "REALIZES",
+  "from_id": "art:a-vocabulary-change-is-never-silent-test",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:a-reader-that-cannot-read-the-vocabulary-is-told-what-it-lacks"
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:1d36a40756bada7e2951abae4376bd13b4ec16431830a08d8eba9f999d3ac32b",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0770",
+  "properties": {
+    "as_checksum": "sha256:9f5cc69c56145a6de36f822beca76c0aa1f439b9ad435f74d3388c9ff7c13ce0"
+  },
+  "to_id": "art:receipt"
+}

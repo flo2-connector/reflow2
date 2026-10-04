@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:569b7911dd35ce1cefa5fc10e0afd42ffcc35861b42aade7e5dcaf724bde4d13",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "cap:one-status-contract-across-sibling-constructors-and-a-node-is-named-by-the-key-the-last-tool-used",
+  "properties": {
+    "evidence": "Extends the status+approver contract that capability built for three constructors to every constructor of a status-carrying type, keeping approver on the three.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "cap:the-owners-word-rides-the-same-call-as-the-status-it-signs"
+}

@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:a901b13323188842f1e1fea5d151f361e88cc90b7482f9de6a06859d94ea4902",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-saved-design-moves-to-the-item-layout-2026-10-03",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:ac607f3cda4d31db487b97c7de54b04008777a53bfaf6c6739eb4590e9832a68",
+    "checksum_basis": "measured"
+  },
+  "to_id": "art:revise-design-skill"
+}

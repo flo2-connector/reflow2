@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:18457b8cd036993f26c65aa8801eef52c52a01e539c377c4f59c38f67d774ad0",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:portability",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:graph"
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:f0ba9d8bbdb7444b3c1cda3a3fc6d2ef89dd780ff7e2751502208eed5bce9958",
+  "node_id": "chg:baseline-9fadd6105aa8d3d4",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "baseline_established",
+    "detected_at": "2026-08-28",
+    "name": "First baseline. A dated field report is a frozen observation — it should never change, so any later drift is a real finding.",
+    "subject": "record"
+  }
+}

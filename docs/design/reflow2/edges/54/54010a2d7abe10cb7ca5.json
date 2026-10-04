@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:ea782b332ec7fe2d163bc5469dcf7f47582f9840b2debef7ed420b96790bfb6f",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0720",
+  "properties": {
+    "as_checksum": "sha256:aeb3ef763d38b9096d1f32d96bfcf4f66e26cf18b6d654fc0f4e9663e05829d9"
+  },
+  "to_id": "art:mcp-http"
+}

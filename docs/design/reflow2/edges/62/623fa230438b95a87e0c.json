@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:aa605e710e82a1715d44b2122eacdd902e7e24d0dd5b89a96951d598601e4656",
+  "edge_type": "EVOLVES_INTO",
+  "from_id": "dec:idea-a-constraint-says-how-its-quantity-composes",
+  "properties": {
+    "evidence": "Promoted on Anthony's word, 2026-09-29 (\"go with the 7 ideas you'd promote\"): the author declares sum or path, and the verdict follows the declaration."
+  },
+  "to_id": "req:a-budget-says-whether-its-parts-add-up-or-run-along-a-path"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:635fa023b39ae4c35ea7798fab3ba406c7e55c69bd02f06b0438f4eb06b9c89b",
+  "edge_type": "CHANGED",
+  "from_id": "chg:bl97-103-idea-capture",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "dec:exploratory-staging"
+}

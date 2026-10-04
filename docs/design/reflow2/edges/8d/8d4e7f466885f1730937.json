@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:2a77b9937292ade1dd4e1909117d6a72edcaa470b6d0593b4228a79b50b008e1",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-environment-compliance-layer-is-built-as-a-whole-leg",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:enum-schema"
+}

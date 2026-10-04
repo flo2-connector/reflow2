@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:738291661fcfb73cfa147ae1c4bd216546e9c7b2cf926b52370f9a3f037332f7",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-what-instrument-can-actually-see-unused-code-here",
+  "properties": {
+    "evidence": "This question's most promising branch — option ①, model consumption edges up past the 50% threshold — is worth nothing unless that capability stands, because raising the ratio only helps if something is waiting to read it. The capability is built and correctly declines at 11%; the question exists because of that decline, not in spite of it.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "cap:built-and-consumed-by-nothing"
+}

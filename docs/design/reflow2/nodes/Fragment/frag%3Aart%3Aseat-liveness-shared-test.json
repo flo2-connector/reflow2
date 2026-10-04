@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:b2ec80a677e54a4f26a3b5d9402649ed192c27cab83db25f8eed5041a17d7b21",
+  "node_id": "frag:art:seat-liveness-shared-test",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered seat_liveness_shared.rs"
+  }
+}

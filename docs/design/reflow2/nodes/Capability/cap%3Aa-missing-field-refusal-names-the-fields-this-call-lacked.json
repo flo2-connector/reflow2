@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:448abb357210435438a079d2bcf1c7555e0f04a3c3d737838bc7e80fc151e42b",
+  "node_id": "cap:a-missing-field-refusal-names-the-fields-this-call-lacked",
+  "node_type": "Capability",
+  "properties": {
+    "description": "As built 2026-10-02 (chg:every-argument-refusal-names-the-tool-and-the-field-path): the argument check in crates/reflow2-mcp/src/arguments.rs, run before anything deserialises the call, names every required field THIS call lacked at any depth, each by its path with its purpose quoted from the schema, and sets apart the required fields the call did pass ('Already passed: …', per object). Until then the listing was built by missing_fields_hint (2026-09-19) and wired only into call_tool's Err arm, which rmcp 3 never reaches, so on the wire the refusal listed the whole obligation instead (fact:the-already-passed-listing-never-reached-the-wire-because-it-was-wired-only-into-the-err-arm-2026-10-02). Tests: tests/every_argument_refusal_names_the_tool_and_the_field_path.rs::the_refusal_names_what_this_call_lacked_and_sets_apart_what_it_passed (over an MCP session) and tests/a_missing_argument_names_the_tool_and_what_it_wants.rs::with_the_arguments_in_hand_the_refusal_names_what_this_call_lacked.",
+    "name": "A missing-field refusal names the required fields THIS call lacked, with the ones already passed set apart",
+    "provenance": "authored",
+    "status": "realized"
+  }
+}

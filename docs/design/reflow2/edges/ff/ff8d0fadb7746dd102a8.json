@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:d455746c8a200d7f14940cf01391ab0fa89668994b2174bb6be4cd33feaed522",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:reflow2-measures-a-registered-file-and-never-reads-it-test",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:reflow2-measures-a-registered-file-and-never-reads-it-test"
+}

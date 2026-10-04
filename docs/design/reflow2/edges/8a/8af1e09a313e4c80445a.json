@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:025818843283b48f26869f5b2d7b7143c6de34ebcbef415f3bab8dae972d4e20",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:publish-surface",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:export"
+}

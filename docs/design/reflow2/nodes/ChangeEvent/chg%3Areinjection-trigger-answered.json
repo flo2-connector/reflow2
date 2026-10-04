@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:8d8542ce7d48ec477b0e5d59a57c4b2ff324c72c126480357ba111dbe9eba04f",
+  "node_id": "chg:reinjection-trigger-answered",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "refactor",
+    "name": "Amend req:intent-is-reinjected: the trigger question is answered by degradation signals plus an operations counter"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:9475a1da5caa4f2b2c213fa27fab9263057534073d5bc9222d0025f5719241e8",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-drawn-relation-is-read-back-as-a-sentence",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:test-review-relations"
+}

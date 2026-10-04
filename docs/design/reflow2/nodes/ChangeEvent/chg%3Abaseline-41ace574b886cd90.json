@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:7e6d2cacdc01e8e4562e0a249b1c6101e3b70de3c5476eb6f8214451da1728c4",
+  "node_id": "chg:baseline-41ace574b886cd90",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "baseline_established",
+    "detected_at": "2026-08-18",
+    "name": "First baseline. The where-am-i skill had NO Artifact node at all until 2026-08-18 — every other skill has carried one since the kit was modelled, so this was a hole in the self-model rather than a change to accept. Registered while closing the unrealized_capability gap on cap:the-agent-asks-who-it-is-talking-to.",
+    "subject": "record"
+  }
+}

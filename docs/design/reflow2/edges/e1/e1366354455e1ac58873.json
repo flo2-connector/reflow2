@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:ea25b08799c001144bbe6201593c1a4528e7e568722fa01b0539c914316b123f",
+  "edge_type": "CHANGED",
+  "from_id": "chg:every-settling-call-declares-what-settles-it",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:service"
+}

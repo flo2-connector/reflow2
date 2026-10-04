@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:5a192aa7b7a18740d644b28688e484cd6ff23fffe8ce7085fd49403d405e21fe",
+  "edge_type": "CHANGED",
+  "from_id": "chg:artifact-intent-properties",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:service"
+}

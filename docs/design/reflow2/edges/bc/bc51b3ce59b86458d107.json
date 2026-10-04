@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:cc065a4de7e780cd317d19bf91a050a4b06b2bb4a35676fe656adbaef4881bd6",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-unexported-claim-is-answered-once-for-the-seat",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:sync-debt"
+}

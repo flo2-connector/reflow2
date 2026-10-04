@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:7a826f2e75d406b466d2fd1ea5266f832acf16828be33500ec27e6ceb044006c",
+  "node_id": "chg:the-resolution-of-a-gap-becomes-schedulable",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "name": "SCHEDULED_FOR accepts a Question, so the resolution of a gap can be planned into an increment and is delivered when answered",
+    "subject": "system"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:4d1ce4c3b113e6d5316a3a9224e4295a604c1b0b00ab1878aaa245b17728b4d4",
+  "edge_type": "CHANGED",
+  "from_id": "chg:absorb-core-storage-text",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "removed"
+  },
+  "to_id": "dep:dynograph-foundation"
+}

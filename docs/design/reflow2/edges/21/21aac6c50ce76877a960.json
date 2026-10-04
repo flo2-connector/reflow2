@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:c569ffef39e29d9740e03e5572677314b9110d4fcb1bb75f00c2cd6fa89fcfa1",
+  "edge_type": "REALIZES",
+  "from_id": "art:capture-intent-skill",
+  "properties": {
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:a-capture-can-say-its-node-replaces-an-older-one-and-the-choice-at-the-near-match-check-is-kept"
+}

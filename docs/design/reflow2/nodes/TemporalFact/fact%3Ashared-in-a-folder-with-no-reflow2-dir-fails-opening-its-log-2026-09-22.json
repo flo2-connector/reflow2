@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:a82439f7272d34961a62eef85991a46ef28298a25b5c467a99374f8045b5ca28",
+  "node_id": "fact:shared-in-a-folder-with-no-reflow2-dir-fails-opening-its-log-2026-09-22",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "confidence": 0.9,
+    "fact_type": "defect",
+    "name": "MEASURED 2026-09-22: `--shared --graph-path .reflow2/graph` in a folder with no `.reflow2/` serves only reflow2_unavailable: \"could not open the server log at .reflow2/graph.server.log: No such file or directory\"",
+    "source": "dev_reflow2 hub session, debug build of main@aef0f0f plus the path fix, while writing tools/test_shared_attach_from_another_folder.py",
+    "statement": "OBSERVED while writing an end-to-end test: in a fresh temporary folder with no `.reflow2/` directory, a `--shared` client started with `--graph-path .reflow2/graph` was served only `reflow2_unavailable`, with reason, verbatim: \"Could not start a shared reflow2 server for this design: could not open the server log at .reflow2/graph.server.log: No such file or directory (os error 2)\". No `.reflow2/` was created. With `.reflow2/` pre-created (as tools/reflow2_init.py does), the same command works. NOT AFFECTED: an installed project, since the installer always creates the directory, and a graph path whose parent already exists (test_export_to_reaches_the_daemon uses `<tmp>/graph`). Consequence: `--shared` pointed at a new design location cannot bootstrap it, although plain stdio creates a store \"if absent\" per the `--graph-path` help text. The error message does name the cause, which is good. Not root-caused. The observed order suggests the daemon log beside the store is opened before any directory is created. Found incidentally; unrelated to the path-spelling fix in progress.",
+    "subject_id": "cmp:shared",
+    "valid_from": "2026-09-22"
+  }
+}

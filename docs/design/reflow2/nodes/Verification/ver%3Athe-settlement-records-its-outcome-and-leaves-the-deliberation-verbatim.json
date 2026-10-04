@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:7d26519b345a850eb5e5f67170f010cd267bde7c708a839f3a5f3cb5358b563a",
+  "node_id": "ver:the-settlement-records-its-outcome-and-leaves-the-deliberation-verbatim",
+  "node_type": "Verification",
+  "properties": {
+    "description": "crates/reflow2-mcp/tests/settling_a_decision_records_which_option_won.rs: three tests. The first asserts the decision text is byte-identical after the settlement, which is the whole point — recording the outcome must not cost a rewrite of the reasoning.",
+    "findings": "3 of 3 passing; full gate set green.",
+    "kind": "verification",
+    "last_run_at": "2026-09-20",
+    "level": "integration",
+    "method": "test",
+    "name": "The settlement records what it chose and leaves the deliberation verbatim; a settlement naming no outcome is unchanged; the owner's name is still required",
+    "status": "passing"
+  }
+}

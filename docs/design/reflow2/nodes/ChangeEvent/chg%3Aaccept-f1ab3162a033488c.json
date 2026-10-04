@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:751377f29b86a6ab2e0a01541e210f1e9e1acbb1a1011bfb5174ff854e60bccf",
+  "node_id": "chg:accept-f1ab3162a033488c",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "defect_fix",
+    "commits": "b9688c3b1d22c7206a3aee51a36c649e38302225",
+    "detected_at": "2026-10-02",
+    "name": "The design was right (the record names what was agreed) and the copy of rmcp's rule was wrong; see chg:the-handshake-record-names-the-version-rmcp-sent-2026-10-02.",
+    "subject": "system"
+  }
+}

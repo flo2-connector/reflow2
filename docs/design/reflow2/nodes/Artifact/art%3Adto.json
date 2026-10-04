@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:76dcdef3aeb8b5ba8bc899d083680e50001c4c89bc5a091cc50335e5ebefc480",
+  "node_id": "art:dto",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "granularity": "atomic",
+    "location": "crates/reflow2-mcp/src/dto.rs",
+    "name": "dto.rs",
+    "status": "realized",
+    "volatility": "stable"
+  }
+}

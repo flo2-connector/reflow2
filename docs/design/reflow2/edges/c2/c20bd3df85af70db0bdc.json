@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:e4a782fc460c264ec8f54280a13ef6d93cf2c8540eb90d98fdde3d52975fdaf1",
+  "edge_type": "CONTRADICTS",
+  "from_id": "dec:idea-the-design-gets-a-branch-dimension-for-implementation-facts",
+  "properties": {
+    "alignment": "opposing",
+    "evidence": "Part ② replaces the single-file content_hash/prev_content_hash chain that this accepted decision governs. Both cannot hold as written; overturning or adapting it is Anthony's call."
+  },
+  "to_id": "dec:export-once-per-pr"
+}

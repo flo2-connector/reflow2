@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:a6e9b0695e00de0607ca31a871961f7854c693b9a8c898d759e76bf7f14754cc",
+  "node_id": "frag:art:test-a-write-records-the-agent-it-went-through",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered Test: the core stamps the acting agent on every authorship it records"
+  }
+}

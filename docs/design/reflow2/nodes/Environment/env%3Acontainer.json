@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:97bda266ff7f38f33e611b0a45e003514eb461999d61990c99ff443064426e35",
+  "node_id": "env:container",
+  "node_type": "Environment",
+  "properties": {
+    "env_type": "production",
+    "location": "/data on a real block device or local volume — never NFS",
+    "name": "Hosted container on a mounted volume"
+  }
+}

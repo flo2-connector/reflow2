@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:ae3213686a555de1cb55de2cdce8d67dac19cd1bce0e05add5de3027f27ed2bf",
+  "node_id": "cap:a-code-folder-names-its-design",
+  "node_type": "Capability",
+  "properties": {
+    "description": "First slice of req:a-code-folder-names-the-design-it-implements-and-its-server, as settled in dec:the-pointer-file-is-dot-reflow2-toml-and-the-first-slice-attaches-one-design. src/pointer.rs reads `.reflow2.toml` beside the folder's `.reflow2/` ([design] id + address, optional [[also]]), refusing by name anything that is not a pointer (a key in particular). main.rs checks it before the latent check and before --shared, for any client start (not --http / --serve-shared servers): with a pointer, it asks the server at the address which design it holds (design_identity), attaches nothing on a different design or a refusal, and otherwise runs the remote client with a notice put in front of the handshake instructions (proxy::run_remote_with_notice): which design, that a local store in the folder was NOT opened, and any [[also]] designs listed but not opened.",
+    "name": "A client started in a folder with a .reflow2.toml attaches to the design it names — over any local store, checked against the server, and said to the agent",
+    "provenance": "authored",
+    "status": "realized",
+    "tier": "operational"
+  }
+}

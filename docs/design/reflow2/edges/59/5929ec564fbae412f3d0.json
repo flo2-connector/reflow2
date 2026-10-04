@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:e6f52f2763ceca82b29fd41aa89fdc8b8e7299fade16f13f057c124edef49ced",
+  "edge_type": "MITIGATES",
+  "from_id": "dec:idea-a-hub-on-one-machine-can-say-where-each-tracked-design-is-reached-from-the-door",
+  "properties": {
+    "evidence": "That finding measured that a hub's tracked designs carry no way for this machine to open a member; each option here is a way to supply it."
+  },
+  "to_id": "fact:root-cause-a-local-hubs-list-is-its-watch-manifest-but-the-hub-skill-names-the-mcp-config-and-no-pin-says-where-a-store-is-2026-10-02"
+}

@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:20db9e845992dcc5d9ee3f80c613c624b26eb04c77db75743e6a39950f8fd7a6",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:relation-nodes-declare-their-participants-roles",
+  "properties": {},
+  "to_id": "req:a-relationship-stored-as-a-node-names-the-role-each-participant-plays"
+}

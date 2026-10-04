@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:42d0aa2562fe6b4dc91d69da29adcd24564e9e0939a8ba22c7e6f707bbdee1c5",
+  "node_id": "cap:a-revising-write-keeps-what-it-would-have-lost",
+  "node_type": "Capability",
+  "properties": {
+    "description": "`preserve_prior_state` snapshots the prior properties of a node whose revising write is about to replace a field that no existing snapshot holds. It runs at the six typed constructors AND at `create_node`, before the revision note is computed, so the note reports preservation rather than loss.\n\nSCOPED, and the scope is the design: nothing at risk means nothing taken. A write that replaces nothing, or replaces only fields already preserved, snapshots nothing. The trigger is the condition `prior_state_coverage` was already computing and the write was already reporting afterwards.\n\nBEST-EFFORT: a preserve that cannot be taken never fails the caller's write, and the note then warns exactly as it did before. Snapshots land in a standing `epoch:preserved-on-write`, created lazily, because a preserve is not part of anybody's round of work.\n\n📌 THIS IS THE OTHER HALF OF `cap:a-revising-write-says-whether-the-state-survived`, which COMPUTES whether the replaced state survived. That capability found the answer; this one makes the answer yes.",
+    "name": "A revising write keeps a replaced value nothing else holds — and takes nothing when nothing is at risk",
+    "provenance": "authored",
+    "status": "realized"
+  }
+}

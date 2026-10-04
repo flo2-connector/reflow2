@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:14f0018a3096a52850c21f661175cf0de75fe98e22980838170fb92207c7136f",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0600",
+  "properties": {
+    "as_checksum": "sha256:06b64e606511407badac652aaf530cc2f9d012bb1bc53f95124cc32152c2e979"
+  },
+  "to_id": "art:bl124-instrument"
+}

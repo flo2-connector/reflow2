@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:120e796791d8486966b0501e0578395f4d4d89495c7e93ab08c1f844d2cb5fcb",
+  "node_id": "req:no-se-knowledge",
+  "node_type": "Requirement",
+  "properties": {
+    "concern": "core",
+    "designation": "internal",
+    "kind": "functional",
+    "lineage": "original",
+    "name": "The user never needs systems engineering",
+    "priority": "high",
+    "provenance": "authored",
+    "statement": "The graph carries the discipline; the user answers plain questions.",
+    "status": "accepted"
+  }
+}

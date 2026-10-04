@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:1d581b97dd465ae78bb3b98f1c855433939a1af9cd885b2de8f4488543dc0029",
+  "node_id": "ver:every-tool-is-found-by-a-query-in-the-users-words",
+  "node_type": "Verification",
+  "properties": {
+    "description": "Two tests over a committed corpus of one query per served tool (crates/reflow2-mcp/tests/fixtures/find_tools_corpus.json), phrased as somebody states the job rather than as the tool is named.\n\nFIRST: every tool must appear in find_tools' DEFAULT top 5 — the default because 5 is what a consumer actually sees. Tools one place outside it are listed with the measured reason they are there, and the list is refused when it goes stale.\n\nSECOND: the test walks the served surface and refuses any tool absent from the corpus, so a newly added tool cannot ship unfindable by omission.\n\nWHAT THIS TEST CANNOT SEE: a description that merely copies its corpus query passes here and still fails a user who words it differently. The guard against that is a held-out paraphrase corpus scored separately, deliberately not wired into CI so it does not become the next thing people tune to.",
+    "findings": "Re-run 2026-09-12 after increment 434's description pass. FIRST RUN FAILED: 8 of 180 tools fell out of their top 5 (delete_node, deploy_to, graph_report_markdown, manual_work_report, propagate_from, propose_allocation, provides, set_verification_kind) — six had lost their user-phrased sentence to a rewrite \"from purpose\", two were crowded to rank 6 by longer neighbours — and scan_nodes rose INTO the top 5, so the second test refused its stale exemption. After restoring the sentence on each and removing that exemption: 180 of 180 in the top 5, two exemptions remaining at rank 6 (consumption_report, governed_by), all three tests passing. Held-out paraphrases, scored separately and not gated: 34 of 42 pass, 3 near (certify_preservation 6, design_identity 8, hierarchy_issues 8), 5 miss — from 36/0/6; no query newly misses. Recorded on fact:after-the-description-pass-180-of-180-reach-the-top-five-and-the-held-out-set-reads-34-of-42, and deliberately not tuned to.",
+    "kind": "verification",
+    "last_run_at": "2026-09-12",
+    "level": "acceptance",
+    "method": "test",
+    "name": "Every served tool reaches find_tools' top 5 on one query in a user's words",
+    "status": "passing"
+  }
+}

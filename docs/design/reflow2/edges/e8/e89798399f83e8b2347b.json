@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:52855cbc6bbd7ccb668c801c0c714db29dce11734c429712275080a0a9d6d0b0",
+  "edge_type": "CAUSES",
+  "from_id": "fact:which-properties-are-node-references-is-a-judgement-made-once-and-never-recorded-for-the-others",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "The cause behind the counted symptom. The nine dangling subject_ids are ids CONSTRUCTED BY CONVENTION RATHER THAN RESOLVED BY LOOKUP - 6 prefix errors on a real slug, 3 slugs invented from the name of a served tool - and they survived because whether a property is a node reference is a hand-made judgement recorded for exactly one property. Drawn from the cause to the record of the symptom per the root-cause skill: the repair is recoverable from the diff, the cause is not.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:nine-temporalfacts-point-their-subject-at-a-node-that-does-not-exist"
+}

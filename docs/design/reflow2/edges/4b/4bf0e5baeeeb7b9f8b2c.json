@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:d228ba4b94005b3f3f6a430f06c9b9593e67eab04ee5d3056e09978d6561dfc4",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-how-does-an-artifact-say-it-belongs-to-another-repository",
+  "properties": {
+    "evidence": "The options are framed against what the measurement found — that the out-of-tree branch exists and is reached by path shape — so reading this idea without that finding starts from the report's cause, which the measurement refined.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "fact:the-out-of-tree-notion-exists-but-is-keyed-on-the-path-shape-and-only-one-instrument-honours-it"
+}

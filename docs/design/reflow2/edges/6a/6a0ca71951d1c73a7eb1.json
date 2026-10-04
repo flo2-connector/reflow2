@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:663fc28315261e28dea14afce12cfcc64476063d86847e2d806862c5772958b0",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-default-log-filter-is-quiet-for-dependencies",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:dockerfile"
+}

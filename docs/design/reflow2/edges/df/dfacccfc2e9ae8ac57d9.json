@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:5037cb8feaf86e354ec2ec899905abcfcfad746591de3db864a8f3480068bad8",
+  "edge_type": "CONTRADICTS",
+  "from_id": "fact:seam-roll-up-found-a-container-by-id-prefix-and-answered-a-false-zero",
+  "properties": {
+    "alignment": "supporting",
+    "confidence": 0.9,
+    "evidence": "Same class, one day apart, read in opposite directions. 2026-08-29 named the mechanism behind nine dangling references as 'the id was CONSTRUCTED by convention rather than resolved by lookup'. This one is the id INTERPRETED by convention rather than resolved by lookup: seam_coverage read a node's level out of its id spelling. Both skip asking the graph what the node is. Two independent instances make this a class rather than a coincidence."
+  },
+  "to_id": "fact:which-properties-are-node-references-is-a-judgement-made-once-and-never-recorded-for-the-others"
+}

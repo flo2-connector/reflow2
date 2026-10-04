@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:67d9070e46460941d5dd5e7f252ce1a089879174b722f4bc4bfe65b3aebf83e9",
+  "edge_type": "CHANGED",
+  "from_id": "chg:bl48-bl49-tool-surface",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:propagate"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:564f3761218361dad06e9b1a9ee97bca6f259861d4a54fe024ec84b0a349b18a",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-server-writes-the-export-through-on-every-change",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cap:the-server-writes-the-export-through-and-chains-it-from-main"
+}

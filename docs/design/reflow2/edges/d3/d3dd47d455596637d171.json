@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:25ea1cb7bcb97cad2670759b3ce04f0634017781cf4e6f296ed95b284fa135b7",
+  "edge_type": "DOCUMENTS",
+  "from_id": "art:updating-doc",
+  "properties": {
+    "doc_kind": "runbook"
+  },
+  "to_id": "req:hosted-state-outlives-the-image"
+}

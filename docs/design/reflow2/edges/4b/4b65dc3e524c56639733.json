@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:5f828b55b8af4aa69591b31aa6d353a977b1379a88b6dd7a39d304e69c5d13bf",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:fnv1a-foundational",
+  "properties": {
+    "authored_at": "2026-07-23",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

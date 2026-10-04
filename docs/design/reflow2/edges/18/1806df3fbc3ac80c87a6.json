@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:6fda7beadbd2b3559979e29e397a72836f5ea86a9c8475f2f75bfd9f083b20f7",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:a-bulk-edge-write-keeps-each-typed-helpers-checks",
+  "properties": {},
+  "to_id": "req:every-typed-edge-helper-has-a-bulk-form-that-keeps-its-checks"
+}

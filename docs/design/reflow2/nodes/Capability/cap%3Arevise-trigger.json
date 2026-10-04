@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:96aa01e350f2b500cb8d2f7722dc2345c77ac1f8de8f37c108531d348702b27e",
+  "node_id": "cap:revise-trigger",
+  "node_type": "Capability",
+  "properties": {
+    "description": "The credit-assignment half of the fork layer. BUILT 2026-09-22 as the tool `choices_in_doubt` over the core `DesignGraph::decisions_in_doubt` (crates/reflow2-core/src/doubt.rs; the tool was renamed from decisions_in_doubt because the finder let its name take relation_coverage's job — fact:one-tools-description-sentence-made-two-other-tools-confusable). Each piece of bad news is stated ONCE in the reply's `evidence` catalogue and referenced by id from each decision, and the reply takes `budget_chars`: the first real run on this design paired 231 open defect findings with 126 accepted decisions 1,167 times and was 2.1 MB with the text repeated, on Anthony's rulings in dec:step-4-is-built-on-real-runs-with-no-threshold-and-unscored-good-news. Bad news — a failed run fed back through reconcile_verification (`failed_run`), a check recorded failing with no run behind it (`recorded_failing`), an unresolved DriftEvent (`drift`), an open defect TemporalFact (`defect_finding`) — is walked up to two hops along VERIFIES / REALIZES / SATISFIES / ALLOCATED_TO / DEPENDS_ON, and every ACCEPTED Decision the reached nodes are GOVERNED_BY is listed with the evidence and its path: \"this road may be worth re-opening\". No threshold; decisions in id order, never ranked by evidence; `held_up` counts checks under the decision a real run found passing, computed on read and never stored; bad news reaching no decision is named. Nothing is re-opened (dec:reopen-supersedes); the human decides. DEPARTURES FROM THE ORIGINAL PLAN, stated: structural defects are NOT traced (they are about the design's shape and number in the hundreds here, and would bury runtime evidence) — revisit once this has run on real history; `accepted drift` became UNRESOLVED drift, because an accepted one has been answered; readiness is not a trigger, on his word. The root-cause skill names it as the `Choice` bone.",
+    "name": "Surface when a settled road may be worth re-opening",
+    "provenance": "authored",
+    "status": "realized",
+    "tier": "operational"
+  }
+}

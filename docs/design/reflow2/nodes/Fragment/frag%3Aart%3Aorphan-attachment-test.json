@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:b6d3af1f98689f34c446b976a08c4fbe53e41403e22814e391d9e8130a2d0f62",
+  "node_id": "frag:art:orphan-attachment-test",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered orphan_attachment.rs"
+  }
+}

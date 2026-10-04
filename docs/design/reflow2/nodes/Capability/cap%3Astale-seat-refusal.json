@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:0826ed4c8be331701931bd932f133a914e2eff1aa669d60a33b904b221c88711",
+  "node_id": "cap:stale-seat-refusal",
+  "node_type": "Capability",
+  "properties": {
+    "description": "Before replacing an export file, compare what is on disk against what is about to be written and answer one question: would this DROP nodes or edges the file holds? The file where this seat left it is the silent fast path (one hash comparison against a marker in <graph-path>.sync.json); a file that moved but loses nothing is allowed and reported; a write that would delete somebody else's work is refused, naming the ids and the three-step remedy, overridable only by an explicit accept_divergence. import_graph gained a path argument so the remedy it names is a thing the tool can actually do.",
+    "name": "Refuse to write a design over work the shared record already holds",
+    "provenance": "authored",
+    "status": "verified",
+    "tier": "operational"
+  }
+}

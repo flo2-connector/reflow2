@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:b72b6aa71cb128e482e52f9e648aae1bf5caff3f635b983781e6dc2ec9626f28",
+  "edge_type": "EVOLVES_INTO",
+  "from_id": "dec:idea-a-design-closes-and-the-design-says-when",
+  "properties": {
+    "evidence": "Promoted to intent on Anthony's word, 2026-09-16: 'accept all 3 as intent' — option A (a closure report, never a gate)."
+  },
+  "to_id": "req:a-design-closes-against-a-declared-threshold-and-the-report-names-the-first-hole"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:242bc0f03ba6b301ea73d85fdba248a8cc824ad26a532da2d69e168326f628b1",
+  "edge_type": "CHANGED",
+  "from_id": "chg:storyflow-second-field-report-20260808",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "fact:defect-four-live-counts-and-none-names-its-predicate"
+}

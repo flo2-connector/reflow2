@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:fffd43419aa9788a228f18b2271126b2cc11146acc7ca146064d27bd1eb70587",
+  "edge_type": "CHANGED",
+  "from_id": "chg:skills-are-composed-of-attribute-classes",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "cap:skills-are-composed-of-attribute-classes"
+}

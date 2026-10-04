@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:02c8eeaa9c7665855c3255ba4b22b2db0f0d03c6f2565a588a9b2fbb3eac5a12",
+  "edge_type": "ANTICIPATES",
+  "from_id": "req:the-agent-learns-who-it-is-talking-to",
+  "properties": {
+    "evidence": "The lens requirement already has the agent find out who it is talking to and speak their vocabulary. This one extends the same idea to a third reader the design is being explained to, and chooses the view by that reader's concern."
+  },
+  "to_id": "req:the-agent-renders-the-design-for-the-reader-who-needs-it"
+}

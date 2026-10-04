@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:4c71d156e7ae9c32617398f20aca3c3892c236f9829ce7acc913c1799da6988b",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:an-analysis-a-consumer-needs-is-served-named-and-gated",
+  "properties": {
+    "approved_at": "2026-09-14",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:e6a8bda6a6979c221d804f1ea71ae72eaa7786c00e8e1f42087b60c5aae8a02d",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0640",
+  "properties": {
+    "as_checksum": "sha256:1001af62ca1d5cf7b837a1b075ca2890a55aaab39d9e5b54eb9f7436e0802c36"
+  },
+  "to_id": "art:prose-currency"
+}

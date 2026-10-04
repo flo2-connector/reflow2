@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:a9bf89074d42a0f7574feeb900e91a5a5b020307ed1fdaf7195445041f8581c6",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0530",
+  "properties": {
+    "as_checksum": "sha256:d6a3a8bce014e75f1a2a524d0c76612ab8a1dc99ad32f7fbdeca286b51950652"
+  },
+  "to_id": "art:increment-plan"
+}

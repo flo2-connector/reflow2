@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:03ce74f616c6e43ca14c9f617d8a529c082f3a90703a830ea92df201fb0c620b",
+  "node_id": "art:settles",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "description": "The SETTLES table, settles::gate (the one refuse-or-note path) and declare_on (serves each row as _meta[\"reflow2/settles\"]).",
+    "location": "crates/reflow2-mcp/src/settles.rs",
+    "name": "settles.rs — which calls settle intent, declared once, served on the tool and read by every signature check",
+    "status": "realized"
+  }
+}

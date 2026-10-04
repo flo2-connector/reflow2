@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:77c1896c8280dad406418f8c254522c086f76c955fdb2d38d351de19bc41f5e2",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-cause-discipline-binds-forward-and-the-backlog-is-parked",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "req:a-fix-says-whether-it-corrected-the-cause"
+}

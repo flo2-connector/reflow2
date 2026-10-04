@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:f164d815c0cf3a0ec15692d16c9a94979f9596fbe7cefc247618733b81d51d8e",
+  "edge_type": "CHANGED",
+  "from_id": "chg:bl58-silent-failure-batch",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:graph"
+}

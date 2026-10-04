@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:b96179f9a543ead3a7e32841fd364ee07cfcd2a075f13eae08f0219169a50301",
+  "node_id": "dec:core-api-spof-accepted",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "ifc:core-api — the DesignGraph API that `cmp:graph` provides and `cmp:service` consumes — is the sole operational path between the design store and the agent surface. Accepted as a SPOF, like dec:graph-spof-accepted and dec:service-spof-accepted.\n\n📌 CORRECTED 2026-08-21, and the prior wording is in `snap:epoch:v0380:dec:core-api-spof-accepted`. This said the path ran \"between the Design Store and the Agent Surface subsystems\", which stopped being true and was not noticed. `cmp:graph` sits in `sys:foundation`, not `sys:store` — `sys:store` contains only `cmp:export` and `cmp:search`. The rationale below already recorded that BL-83a moved the provider to `cmp:graph`; what nobody updated was the sentence naming which subsystems the bridge joins, so the decision described a topology that had moved under it.\n\nTHE JUDGEMENT WAS AND REMAINS CORRECT — one store, one surface over it, and the bridge between them is inherently single. Only the description was stale, which is the more insidious of the two: a wrong decision gets argued with, while a right decision describing the wrong parts is read straight past.",
+    "name": "The DesignGraph API is an accepted single point of failure",
+    "rationale": "One store, one surface over it (req:agent-native, single-writer storage): the bridge between them is inherently single. Surfaced when BL-83a retired cmp:core and moved the API's provider to cmp:graph; the topology is honest, not a defect to engineer away.",
+    "status": "accepted"
+  }
+}

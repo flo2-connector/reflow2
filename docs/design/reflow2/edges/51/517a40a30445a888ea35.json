@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:8a18d3fdac8b962f070b61fe3a4f2e3efedbae2cc840604077880806e8fbe34a",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:idea-should-a-large-node-be-changeable-one-field-at-a-time",
+  "properties": {
+    "approved_at": "2026-09-01",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

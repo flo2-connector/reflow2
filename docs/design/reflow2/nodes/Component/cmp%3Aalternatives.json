@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:b38f6ca16495954bd049586a8d92ea88fbc016787996977eba2aea879bd33dfc",
+  "node_id": "cmp:alternatives",
+  "node_type": "Component",
+  "properties": {
+    "kind": "module",
+    "level": "component",
+    "name": "alternatives",
+    "provenance": "authored",
+    "purpose": "The fork module: analysis of alternatives across branch exports, the decision point (a proposed Decision holding forkable siblings), its collapse into a winner plus retired losers, and — planned — the fork point that resolves a past Decision to the design it was made against.",
+    "status": "realized",
+    "tier": "operational"
+  }
+}

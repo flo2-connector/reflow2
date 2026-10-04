@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:339d4dd04b6332696ed6692338ffb2ca246d6a0c6093f32f2494ca2c4faefac5",
+  "edge_type": "ANTICIPATES",
+  "from_id": "req:a-session-opens-another-design-without-restarting",
+  "properties": {
+    "evidence": "The accepted requirement for opening a second design in one session is what 'use the remote hosted design A and B' needs, now across a remote server."
+  },
+  "to_id": "dec:idea-a-checkout-knows-which-remote-design-it-implements"
+}

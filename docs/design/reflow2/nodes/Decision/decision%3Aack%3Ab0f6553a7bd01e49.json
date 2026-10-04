@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:778c532002e7a20ef6358e73df0433e67b9a032a2929a29cfd9830e8e09ff2a6",
+  "node_id": "decision:ack:b0f6553a7bd01e49",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Accepted the gap gap:b0f6553a7bd01e49.",
+    "name": "Reviewed: gap:b0f6553a7bd01e49",
+    "rationale": "Deferred on Anthony's word, 2026-07-28. Accepted and not dropped. It is the mechanism req:epochs-can-be-planned already asks for (\"an epoch or increment must pin the set of per-repo design versions it means\"), so it should be built WITH that requirement's increment rather than ahead of it — building the pin before the temporal axis exists would leave it with nothing to pin to. Both are parked together.",
+    "status": "accepted"
+  }
+}

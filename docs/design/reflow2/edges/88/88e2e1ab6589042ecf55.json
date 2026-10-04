@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:ecfda37a070897d17d2e4ead3c86929869bc7c345338f4dbb1b7369064525289",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:recover-from-tests",
+  "properties": {},
+  "to_id": "req:adopt-existing"
+}

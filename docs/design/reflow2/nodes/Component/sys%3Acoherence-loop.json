@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:5aa7ee77a53642bda88ce600b6fdc3b4b7add8a95dfe645f785fd4b859bb2d71",
+  "node_id": "sys:coherence-loop",
+  "node_type": "Component",
+  "properties": {
+    "kind": "module",
+    "level": "system",
+    "name": "Coherence Loop",
+    "provenance": "authored",
+    "purpose": "The engine: on any change, find the ripples and surface them — detect gaps, propagate impact, heal structure, reconcile against what was built, proven and deployed, and report where the design stands.",
+    "status": "planned",
+    "tier": "operational"
+  }
+}

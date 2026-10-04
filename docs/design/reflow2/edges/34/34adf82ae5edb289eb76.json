@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:1d0a881da8139b697ce612696c8804630d6301df7f14260d9a63082ab3e46613",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:release-publishes-a-container",
+  "properties": {},
+  "to_id": "req:reflow2-consumable-as-an-image"
+}

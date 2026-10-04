@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:dbae37ca5f6f3a1c1f8f364ecfb883961fd1d917f274cd4a0d655d1311dc3940",
+  "edge_type": "REALIZES",
+  "from_id": "art:report-roll-withheld-test",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "verified"
+  },
+  "to_id": "cap:bounded-reads"
+}

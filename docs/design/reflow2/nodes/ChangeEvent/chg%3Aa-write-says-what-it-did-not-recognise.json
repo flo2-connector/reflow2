@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:ae468e464068434641e22f4a86cadf9cdef92fbb146de503bd54cbcbe9ee1b22",
+  "node_id": "chg:a-write-says-what-it-did-not-recognise",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "defect_fix",
+    "name": "create_node names the properties the schema does not declare, without refusing them — third theme of the triage-fixes increment"
+  }
+}

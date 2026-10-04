@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:a50336cdb9a8b1e080a8a3fa094a5e61d527b37b6f6969d5c6309d76e5294d50",
+  "edge_type": "AT_EPOCH",
+  "from_id": "chg:reads-are-the-unscheduled-half",
+  "properties": {},
+  "to_id": "epoch:reads-are-the-failing-half"
+}

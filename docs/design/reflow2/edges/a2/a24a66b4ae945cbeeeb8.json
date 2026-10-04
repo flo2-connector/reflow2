@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:eae494a1689b3af9ade5bbd6f0f49f6d908fafedda64293e57c9f04888b1710f",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:reply-budget",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:reply-budget"
+}

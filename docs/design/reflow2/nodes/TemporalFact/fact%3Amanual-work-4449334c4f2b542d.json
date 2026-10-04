@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:42be16214bd0efe3c4082123d1acfc07c77d3f97aad1f9a84bba51bf75e97099",
+  "node_id": "fact:manual-work-4449334c4f2b542d",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "manual_work",
+    "statement": "Hand-wrote a script to measure a tool reply's wire bytes per client handshake name, spawning the server against one scratch graph per client, to find out what each client is actually sent.",
+    "subject_id": "proj:reflow2",
+    "valid_from": "2026-09-21",
+    "value": "{\"diagnosis\":\"tool_missing\",\"reflow2_tool\":null}"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:3fb92843bf79765468ec0628848d2ec8e48fdff57a7e93634b6cdb0f604d6c19",
+  "node_id": "epoch:v0101",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "checksum": "sha256:86162dde66ee75cd455c42d67a7c2d9992b410debfe6558247a3587835601939",
+    "description": "Cut at git tag v0.10.1, the current deployed release.",
+    "epoch_type": "release_cut",
+    "name": "v0.10.1 release cut (2026-07-24)",
+    "sequence": 90,
+    "status": "arrived"
+  }
+}

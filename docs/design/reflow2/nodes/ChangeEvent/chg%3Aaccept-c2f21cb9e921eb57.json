@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:cff03befb1257abcdab7aac00941321ca9b5f7955de2b148d60a30b31c41077b",
+  "node_id": "chg:accept-c2f21cb9e921eb57",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "documentation",
+    "detected_at": "2026-08-25",
+    "name": "Four result-FIELD names of `relation_candidates` added to the known-terms list so the linter does not read them as unserved tool names. The lint's own rules are unchanged — bookkeeping that keeps an existing gate accurate, carrying no design meaning.",
+    "subject": "system"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:ee933ebdb39bac2c138149658b436c0bcf092e7e67192989651fe54568445deb",
+  "edge_type": "CHANGED",
+  "from_id": "chg:required-to-create-optional-to-revise",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:tools-temporal"
+}

@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:0c7005381c7a31426e62fb75dd9939ea082bf09bac1f2f441a4b5d99c3418778",
+  "edge_type": "AT_EPOCH",
+  "from_id": "snap:epoch:preserved-on-write:req:one-setup-command-chooses-local-or-remote-once",
+  "properties": {},
+  "to_id": "epoch:preserved-on-write"
+}

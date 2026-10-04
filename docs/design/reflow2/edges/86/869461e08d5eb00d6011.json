@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:c7e33cca340841e41314afe7660da96ed2da3e6b1a2d8a77158027999f2bd36b",
+  "edge_type": "INVALIDATES",
+  "from_id": "chg:the-overtaken-defect-records-were-triaged-against-the-v0510-build",
+  "properties": {
+    "evidence": "acknowledge_gap and acknowledge_gaps take an approver, refuse an unknown Contributor, and report the absence as unattributed naming the owner's-word rule (coherence.rs:904-933, detect.rs:1553-1593)."
+  },
+  "to_id": "fact:acknowledge-gap-records-a-judgement-without-recording-whose"
+}

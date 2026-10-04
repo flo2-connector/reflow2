@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:5de3a8afd25c078aaa4b361321c943dba9812054619d9dd8fd95f87db2f530e2",
+  "node_id": "chg:a-stored-twin-has-one-authority",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "defect_fix",
+    "commits": "d2d3999,d25c666",
+    "detected_at": "2026-09-29",
+    "name": "A relation stored twice has one authority: the store keeps the derived copy on every write, repairs drift on open and import and reports it, and a Flow's entry and exit are computed",
+    "rationale": "req:a-relation-stored-in-more-than-one-place-has-one-authoritative-copy-and-no-copy-drifts-unnoticed, on Anthony's word of 2026-09-28 (\"fix the relations stored twice\"), with his two accepted decisions: dec:has-temporal-fact-means-only-the-subject-and-also-concerns-is-about-entity and dec:a-flows-order-is-its-step-order-and-entry-and-exit-are-computed. The class is fact:root-cause-each-writer-draws-the-second-copy-by-hand-and-three-writers-never-did-2026-09-28: the second copy was maintained writer by writer. So the fix goes where every writer passes, and fixing any one writer would not do.",
+    "subject": "system",
+    "summary": "BUILT. The schema declares six stored twins with `twin_of` on the authoritative property: TemporalFact.subject_id, DimensionAssessment.target_id, DimensionObservation.target_id and source_fragment_id, ReadinessAssessment.target_id, and Snapshot.target_id (outlives_target). DesignGraph::create_node keeps the derived edge on every write and moves it with a changed property (crates/reflow2-core/src/twins.rs). repair_stored_twins runs on open (kept as repaired_on_open, served by loop_status) and inside the import batch (ImportReport.twin_repairs, printed by --import together with migrated_edges). It draws missing copies, turns a finding's non-subject HAS_TEMPORAL_FACT into ABOUT_ENTITY, and removes retired stored values. The REFUSAL sits in the generic MCP edge tools (create_edge, create_edges all-or-nothing, delete_edge), not in core create_edge, so internal rewiring paths and imports are untouched. flow_report computes entry_points and exit_points from step_order. add_flow's entry_point/exit_point and add_capability's is_entry_point/is_exit_point are retired from the schema and the tools. reflow2_check.py names an out-of-step committed export as STORED TWINS. A CLI --import now records its sync with the file it read, as the import_graph tool did (d25c666). Measured on the committed design: 661 repairs (356 added, 9 moved, 296 retired values)."
+  }
+}

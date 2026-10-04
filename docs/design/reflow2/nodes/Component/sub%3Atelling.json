@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:2a92e8cc36e5fa8cd252dfd7724cab3315c22cde86ee86842d1191e8cad940b5",
+  "node_id": "sub:telling",
+  "node_type": "Component",
+  "properties": {
+    "level": "subsystem",
+    "name": "Telling",
+    "provenance": "authored",
+    "purpose": "The reports — the parts whose job is to SAY where the design stands, to a person or to a gate: the snapshot, the quality axes, the maturity trajectory, the dimension readings, the regions a newcomer can orient by, and the scoping that narrows any of it honestly.\n\nThe other half of the observability cut. These parts summarise what Finding produced, and they are separate BECAUSE summarising is where a true finding becomes a misleading answer: a count without its denominator, a page presented as the whole set, a zero that meant \"nothing to run on\". Nearly every honesty rule this project has — `omitted`, `not_shown`, `budget`, `share_of_anchored`, `modularity: null` — lives in a part that belongs here.",
+    "status": "planned"
+  }
+}

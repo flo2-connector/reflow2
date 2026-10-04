@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:e51a299d4a482e28838496deaea142d9b71e48d0ff8f7a718fd76a960cb86fc1",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "req:sources-are-kept-not-just-parsed",
+  "properties": {
+    "evidence": "Without a content store there is nowhere for the source documents to go.",
+    "optional": false,
+    "weight_basis": "evidence"
+  },
+  "to_id": "req:content-store-for-what-the-graph-points-at"
+}

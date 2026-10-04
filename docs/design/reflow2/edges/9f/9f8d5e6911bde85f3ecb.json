@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:1412cc3d7836074d5fdd28d9fcdd149f680fa9b40ff7ace9b798c0b110b3a0e5",
+  "edge_type": "CAUSES",
+  "from_id": "fact:root-cause-a-parks-ruling-is-validated-only-by-its-readers-and-the-writer-reports-success-either-way-2026-09-29",
+  "properties": {
+    "basis": "causal",
+    "evidence": "The observation (governed_by accepted a parks ruling on a proposed Decision and parked nothing, silently) is this cause's first instance. The acceptance condition lives only in is_parked, the reader, and the writer never asks it. Measured 2026-09-29 on 0.74.0, together with a second instance: a DesignRule target.",
+    "validation_status": "validated"
+  },
+  "to_id": "fact:governed-by-accepts-a-parks-ruling-on-a-proposed-decision-and-nothing-says-it-parks-nothing-2026-09-29"
+}

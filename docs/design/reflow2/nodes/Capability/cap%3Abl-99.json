@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:2df65d68ccf75e8105bf91418d2cad5391b266a6dd890d1bc19b2ca68326c255",
+  "node_id": "cap:bl-99",
+  "node_type": "Capability",
+  "properties": {
+    "description": "Real-time collaborative planning on a shared MCP\n\n*Idea file, line 5: \"If people used the same centralized MCP — could multiple people collaborate on planning almost real-time?\"* Distinct from [BL-98] (which is about detecting conflicts in work already done) — this is about several people editing one design *concurrently and seeing each other*, which is a different feature with the same blocker. Today the answer is a flat no, and visibly so: the store is single-writer by architecture and the server says as much (another process already has the design graph open). Beyond the store, real-time collaboration needs things reflow2 has no notion of — presence, per-user views of an in-flight change, and conflict resolution at interactive latency rather than at merge time. Worth recording the honest counter-argument before anyone falls in love with it: reflow2's whole loop is *ask the human, record the decision* — a design brain optimised for deliberate, attributable choices, not for simultaneous typing. Real-time may be the wrong shape for the product even if it is technically reachable; the thing teams actually seem to need (from the idea file itself) is non-colliding parallel work plus good merges, which is [BL-98] + [BL-44], not live cursors. Blocked on the architecture decision — now specifically on dec:central-host (proposed), which holds git-as-transport vs a hosted MCP vs a hybrid, and records the honest counter-argument that this tool's loop is deliberate and attributable rather than simultaneous. Size L\n\nMigrated from docs/backlog.md BL-99 on 2026-08-07 (epoch:backlog-retired). Size estimate carried from the row: L.",
+    "name": "[BL-99] Real-time collaborative planning on a shared MCP",
+    "provenance": "imported",
+    "status": "planned",
+    "tier": "operational"
+  }
+}

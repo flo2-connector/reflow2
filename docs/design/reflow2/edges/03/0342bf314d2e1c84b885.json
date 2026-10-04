@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:33e893b382c212f64fedbe71b6432ff0d65afbc4e49d5d3c81807df51fcea476",
+  "edge_type": "SCHEDULED_FOR",
+  "from_id": "req:a-deliberate-state-is-not-a-defect",
+  "properties": {
+    "modality": "expected",
+    "recorded_at": "2026-08-16"
+  },
+  "to_id": "epoch:instruments-stop-overstating"
+}

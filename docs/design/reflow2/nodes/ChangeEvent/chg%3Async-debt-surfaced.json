@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:e428c613783429d7ee6f9cb4ff7b254944068444c80fb0bc58918128d9ec32dc",
+  "node_id": "chg:sync-debt-surfaced",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "name": "cap:the-record-moved-is-surfaced built and verified, on Anthony's option A. Adds crates/reflow2-mcp/src/sync_debt.rs, served as the `sync_status` tool and carried on `loop_status` as `record_moved`. THE FINDING BEHIND IT: `provenance::last_synced` was written by two paths (export_graph, import_graph) and read by exactly one (inside export_graph) — so the design knew a shared record had moved at the first moment of a session and said nothing until the write, hours later. FIXES A REAL DEFECT FOUND WHILE BUILDING IT: `sync::assess_overwrite` computed its comparison from `effective_content_hash`, which TRUSTS the content_hash a document states about itself and computes one only when absent — so a record edited by anything but export_graph (a merge, a hand-fix) kept its old stamp, BOTH fast paths returned Clear, and the stale-seat refusal went quiet in exactly the case req:stale-seat-knows exists to catch. On the export path that is silent data loss: the write would delete the other person's work. Now computed from content, with the discrepancy itself reported as `stamp_disagrees`. Found end-to-end by appending a node to a record without restamping it — the shape a merge produces — after the first cut shipped believing the stamp."
+  }
+}

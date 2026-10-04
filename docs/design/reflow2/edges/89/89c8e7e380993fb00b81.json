@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:ff29b0afb0d12b0866d65e2110a3a96cb7a8b1c769baf4f10a6768544fe69ffd",
+  "edge_type": "CHANGED",
+  "from_id": "chg:stored-data-is-rechecked-against-the-current-schema",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:export"
+}

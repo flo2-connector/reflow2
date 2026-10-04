@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:6445aa9ec343a5d4d0ed605d044698f55f750dd30191166cf933a2c154fecae3",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:find-skills-rank-baseline",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:find-skills-rank-baseline"
+}

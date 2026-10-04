@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:8f147c553c1950cbbfeec07f35d8b73630e191ee287906381dca4a98bef301f3",
+  "edge_type": "HAS_SNAPSHOT",
+  "from_id": "req:edge-defaults-do-not-assert",
+  "properties": {},
+  "to_id": "snap:epoch:prune-proposed:req:edge-defaults-do-not-assert"
+}

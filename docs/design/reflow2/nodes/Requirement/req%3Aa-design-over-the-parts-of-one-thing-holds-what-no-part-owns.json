@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:952bee3ecc228846ee4cdad9763c66d8b87f99cebcea1f96e385065e76a2928d",
+  "node_id": "req:a-design-over-the-parts-of-one-thing-holds-what-no-part-owns",
+  "node_type": "Requirement",
+  "properties": {
+    "concern": "core",
+    "kind": "functional",
+    "lineage": "original",
+    "name": "A design over the parts of one thing holds what no part owns: the whole's requirements and their allocation, which parts' contracts connect, and the checks only the whole can pass",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "Anthony, dev_reflow2 hub session, 2026-09-26 (brainstorm on tiered systems-of-systems hubs)",
+    "statement": "When a reflow2 design sits over the designs of the parts of one thing — an engine over its component designs, a car over its sub-systems — that design shall hold what no part owns:\n- the whole's own requirements (an engine's power or mass budget) and how each is allocated to the parts;\n- which of the parts' published contracts connect to which;\n- the checks only the whole can pass.\nEach interface's specification stays with the parts that define it (dec:idea-a-contract-is-declared-at-the-lowest-level-and-rolled-up), and each part keeps its own design. A design over peer products that assemble into nothing (dev_reflow2 over reflow2 and flo2) holds none of this, and keeps no design of its own.\n\nWHY: a hub over parts has to be \"that glue to tell how all the components come together to make an engine\", and those facts belong to no part, so by the family's one-home rule (a fact lives in the lowest design that owns all of it) the whole's design is their first and only home, not a second copy.\n\nNOT IN THIS REQUIREMENT: computing anything across designs (rolling the parts' delivery and evidence up into the whole), which is dec:idea-a-top-level-graph-holds-what-the-component-graphs-share; and whether the two kinds of hub are declared or just differ in content (options (i) and (ii) on dec:idea-a-graph-whose-children-are-themselves-reflow2-designs).\n\nAnthony, 2026-09-26, keeping it as intent from that brainstorm (\"Integration hubs hold glue\").",
+    "status": "accepted"
+  }
+}

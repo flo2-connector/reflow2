@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:017561f137a0f96952fcd7d0fb4ec62f05d114dbfb586877d8462373c8e9fe6f",
+  "edge_type": "INVALIDATES",
+  "from_id": "chg:two-prescribed-pairs-every-detector-skips-withdrawn-nodes-and-shared-cause-gaps-name-each-other",
+  "properties": {
+    "at": "2026-09-06",
+    "note": "FIXED AT THE CLASS: every detector scan in detect.rs (31 sites) now reads through scan_live_nodes, which subtracts the set of ids an accepted Decision has OBSOLETED — computed once per write generation. The reporter's instance (a retired DesignRule still raising unstated_rule_enforcement) is pinned, and the fact's unmeasured blast radius is now bounded: 31 detectors were keyed on a node type and all of them consult the fact. BOUNDS: heal.rs (the structural detectors) still scans directly — a withdrawn node can still appear in a cluster or dead-end finding; that half is not touched here. The reporter's request 'skip, or say why it does not' is met on the detect side only."
+  },
+  "to_id": "fact:defect-only-the-capability-detectors-consult-discontinued"
+}

@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:2a2ab382be791a35909616b54bbab34c3046691910b8400dcdb57b9c6e01765e",
+  "node_id": "fact:bl-196",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "defect",
+    "statement": "[BL-196] genesis never asks where design artifacts will live — and after fifteen months that conversation is archaeology, not a decision",
+    "subject_id": "cmp:genesis",
+    "value": "{\"evidence\": \"*Same field report, 2026-08-04, and the user framing behind it: every large design effort accumulates a mountain of docs and test reports in a folder nobody can find again, especially on old projects where whole teams have come and gone.* The case study is measured rather than asserted, which is what makes it usable: one 15-month project, one continuous team, a named librarian, a filing map, an archive convention and a generated catalog \\u2014 and it still lost half its memory. memory/: 333 files, 169 in the index, 164 unreachable (49%), 10 index lines pointing at nothing, and MEMORY.md at 20,446 bytes against a ~17KB read limit so trailing entries drop silently while the file still looks complete. docs/, which has no central index at all and is navigated by inbound links between documents, has zero unreferenced files. The mechanism generalises and it is the argument for a graph over an index: a curated index has to be read IN FULL to be useful, so it has a hard ceiling; a queryable graph does not. Proposal: genesis already captures deployment and platform context \\u2014 it should also ask *\\\"where will design artifacts live, and what kinds will there be?\\\"* and record the answer as a Decision plus a small artifact policy. Every project reaching for adopt because its docs are unfindable is a project that never had this conversation. The caution belongs in the row, not underneath it: \\\"assign a dedicated librarian\\\" is in every best-practice list and this project DID it \\u2014 the role exists, is named in the ownership matrix, and has written doctrine. The sweep still rotted for 20 days and the index still overflowed. Judge any framework adopted here on what it makes MECHANICAL, never on what it assigns to a person. Size M\", \"origin\": \"Migrated from docs/backlog.md BL-196 on 2026-08-07 (epoch:backlog-retired). Size estimate carried from the row: M.\"}"
+  }
+}

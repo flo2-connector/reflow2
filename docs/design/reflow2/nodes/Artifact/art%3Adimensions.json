@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:894316c433f76b115089d23101dd76a45e4c6d53b9610e27899e8009221ed56e",
+  "node_id": "art:dimensions",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "granularity": "atomic",
+    "location": "crates/reflow2-core/src/dimensions.rs",
+    "name": "dimensions.rs",
+    "status": "realized",
+    "volatility": "stable"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:73ca9175abe9707961efa487cd54d6afe4efb41b2f6f6242ca78ae5ef9a34a34",
+  "node_id": "ver:a-local-client-works-against-a-remote-server",
+  "node_type": "Verification",
+  "properties": {
+    "description": "crates/reflow2-mcp/tests/a_local_client_works_against_a_remote_server.rs — 9 tests driving the real binary in --remote mode against a stand-in server that records every header and body it receives. Run: `cargo test -p reflow2-mcp --test a_local_client_works_against_a_remote_server`. Passed 9/9 on 2026-09-26 in the feat/remote-client worktree, alongside the whole reflow2-mcp suite (103 test binaries green).",
+    "kind": "verification",
+    "level": "integration",
+    "method": "test",
+    "name": "The remote client sends the named key as a Bearer header and shows it nowhere, puts each reply on one line, answers a refusal readably, and re-sends only after a forgotten session",
+    "status": "passing"
+  }
+}

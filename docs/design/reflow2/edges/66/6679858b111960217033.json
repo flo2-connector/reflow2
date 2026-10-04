@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:4415ae74d4f68267b930a7ceb80244484803a2659390603e9fbc42ea03487ed5",
+  "edge_type": "ANTICIPATES",
+  "from_id": "fact:a-typed-edge-helper-given-a-wrong-typed-node-reports-it-absent-and-blames-a-race-that-did-not-happen",
+  "properties": {
+    "evidence": "flo2 F11 (2026-09-19) recorded that the generic create_edge refuses better than the typed helper it backs up. The `verifies` refusal here is the same shape: bare, while create_edge names GOVERNED_BY as the modelled fit."
+  },
+  "to_id": "fact:root-cause-a-check-on-a-ruling-is-modelled-as-governed-by-and-the-verifies-refusal-never-says-so-2026-09-28"
+}

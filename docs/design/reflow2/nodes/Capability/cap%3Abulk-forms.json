@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:7347f09f4a953e379cf3f65164fb8f8daacd3d4f52accbc7a7e32003ca2b6f1c",
+  "node_id": "cap:bulk-forms",
+  "node_type": "Capability",
+  "properties": {
+    "description": "Bulk forms for every tool BL-153's surface measurement caught calling itself: create_nodes, create_edges, set_artifact_checksums, acknowledge_gaps, gaps_to_prompts. 52.9% of all tool-to-tool transitions across 46 sessions and 6,095 calls were self-loops; these answer set_artifact_checksum 244, create_node 112, contains 109, acknowledge_gap 90, gap_to_prompt 83, contain_component 77 and satisfies 74. create_edges is ONE tool rather than six because contains/contain_component/satisfies/allocate/realizes are thin wrappers that only fill in the endpoint types, and BL-155's 40-never-called count makes near-identical tools a cost. Every form is all-or-nothing WITH per-item findings, and every form that records a judgement keeps that judgement per item.",
+    "name": "One call where the surface measured N",
+    "provenance": "authored",
+    "status": "verified",
+    "tier": "operational"
+  }
+}

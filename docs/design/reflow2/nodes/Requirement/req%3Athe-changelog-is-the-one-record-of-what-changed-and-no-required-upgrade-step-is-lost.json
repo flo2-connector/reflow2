@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:405a970f24996bedb50872446420f2cf906eefc3b07c9874bb317ee51ff04a46",
+  "node_id": "req:the-changelog-is-the-one-record-of-what-changed-and-no-required-upgrade-step-is-lost",
+  "node_type": "Requirement",
+  "properties": {
+    "concern": "usability",
+    "kind": "functional",
+    "lineage": "original",
+    "name": "CHANGELOG.md is the one record of what changed between versions, and no upgrade step a consumer must take is lost when the per-version upgrade notes retire",
+    "priority": "low",
+    "provenance": "authored",
+    "source": "Anthony (who:ajs), dev_reflow2 hub session, 2026-09-28",
+    "statement": "The per-version upgrade notes (docs/upgrading-to-v0.x.md) retire. CHANGELOG.md is the one place a person reads what changed in each version. Where an upgrade asks a consumer to DO something (a migration, a required command, a verification before a swap, as v0.55.0's did), those steps are kept, in that version's CHANGELOG entry or on one upgrading page, and never only in git history. The CHANGELOG's versioning table stops saying a schema change \"needs an upgrade doc\" and says instead where required steps go. Upgrade notes registered as Artifacts retire on the record.\n\nAnthony, 2026-09-28: \"I don't think all the upgrading-to-v0.47.0.md type documents are needed (I believe https://github.com/sligara7/reflow2/blob/main/CHANGELOG.md captures all the fine grain changes).\" Kept as intent from dec:idea-the-per-version-upgrade-notes-retire-into-the-changelog, with the counter-argument recorded there (v0.55.0's required migration) answered by the \"no step is lost\" clause.",
+    "status": "accepted"
+  }
+}

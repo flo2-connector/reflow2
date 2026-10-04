@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:c6420a725b270c66d34c80b8bfab0e2f46a86f1d82e85cd5cd4b2debfc3b9c74",
+  "node_id": "chg:accept-6c703385810035d2",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "refactor",
+    "commits": "972f10cd7dbdd165b820dac667289d3f89abe116",
+    "name": "lessons::nearest made pub(crate) so describe_tool names the nearest served tools for an unknown name; no behaviour moved.",
+    "subject": "system"
+  }
+}

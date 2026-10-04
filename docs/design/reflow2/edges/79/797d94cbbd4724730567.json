@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:9bdf77b82643d9d9b37d2e8896167bac4be588893289db468d0b18c2d639a892",
+  "edge_type": "REALIZES",
+  "from_id": "art:evidence-quality-test",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:evidence-scope"
+}

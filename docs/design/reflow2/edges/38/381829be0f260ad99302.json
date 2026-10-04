@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:4d8efc8085859c50d2fe5ee25cffe453ea220903bf3dc0c6c343bdc94f6e70aa",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-saved-design-moves-to-the-item-layout-2026-10-03",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:c88f401d7fa5c30892cbc3801410c4977d8bcb5f83db909c46fa7016f3581364",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:export-to-reaches-the-daemon-gate"
+}

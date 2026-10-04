@@ -1,0 +1,17 @@
+{
+  "content_hash": "sha256:0ace5424024fbff4e7302549a22c35695c94b780af897c00a4f594986d76c0f2",
+  "node_id": "fact:skill-lint-read-a-stale-toolsnap-and-passed-a-description-over-budget-2026-09-24",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "finding",
+    "name": "MEASURED 2026-09-24: skill_lint passed locally and failed in CI on the same change, because its description-budget check reads tools/toolsnaps and the lint was run before the toolsnap was refreshed",
+    "source": "PR #586 core gates job 107894876711; local reruns on branch feat/jot",
+    "statement": "On PR #586 (/jot) loop_status's tool description was edited, taking it to 1521 characters against skill_lint's 1500-character budget. skill_lint was run locally AFTER the Rust edit and BEFORE `toolsnap.py --update`, and passed. CI's skill lint then failed (\"no served description exceeds 1500 chars — over budget: [('loop_status', 1521)]\"). Rerun locally after the toolsnap update, it failed the same way. The budget check reads the committed toolsnap JSON, not the built binary, so a description change is invisible to it until the snapshot is regenerated.\n\nConsequence: the order matters. After any tool-description edit, run toolsnap --update BEFORE skill_lint, or the lint judges the old text. run_ci_gates.py runs them in ci.yml's order (skill_lint before toolsnap), so it has the same blind spot within one run on a stale snapshot. Not fixed here; the description was trimmed to 1492.\n\nRECURRED 2026-09-27, the other way round (counted; appended). Building the address watch on feat/watch-a-design-at-its-address, upstream_status's description was trimmed from 1,610 to 1,387 characters and the binary rebuilt. skill_lint was then run BEFORE `toolsnap.py --update` in the same command and still FAILED at 1,610: it read the stale snapshot and reported the old length. After the update it passed. So the trap cuts both ways: a stale snapshot can pass an over-budget description, and it can fail one already fixed. The order that works is: build, `toolsnap.py --update`, then `skill_lint.py`.",
+    "steps": [
+      "loop_status"
+    ],
+    "subject_id": "art:skill-lint",
+    "valid_from": "2026-09-24"
+  }
+}

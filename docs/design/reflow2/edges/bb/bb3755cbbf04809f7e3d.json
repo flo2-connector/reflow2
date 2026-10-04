@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:9819bf20770c22e2596915dbd50c61fa8fd1883b4b52bf9242221e31b415baf8",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-do-ideas-form-a-graph-or-only-a-list",
+  "properties": {
+    "note": "accretion over years presumes the pile can later be read as a whole — unlinked ideas do not accrete",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "req:accreted-intent-becomes-a-design"
+}

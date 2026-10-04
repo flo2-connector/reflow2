@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:98b4a33df36e52a2f70cf893521be2850ce36f34e090ac9b8e5ba678c9717861",
+  "edge_type": "CHANGED",
+  "from_id": "chg:sidecar-loss-refused",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "ver:sessions-cannot-cross-designs"
+}

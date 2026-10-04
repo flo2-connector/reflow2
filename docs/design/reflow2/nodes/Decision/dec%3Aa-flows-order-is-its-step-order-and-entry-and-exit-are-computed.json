@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:362c29d0d01e34801c6ebc5c122eb03c1b9feb2e2798e91d3513af717197a59c",
+  "node_id": "dec:a-flows-order-is-its-step-order-and-entry-and-exit-are-computed",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "The PART_OF_FLOW edges and their `step_order` are the AUTHORITY for a Flow's order. Entry and exit are COMPUTED from them wherever they are served: the first and last step, or for a branching flow the steps nothing in the flow leads to. They are no longer stored. Flow.entry_point and Flow.exit_point stop being written, and a stored value is reported as a retired copy on repair. Capability.is_entry_point and is_exit_point are retired: add_capability writes them and nothing reads them, and a flag on a Capability could not say which of several flows it begins anyway. Retiring these inputs from add_flow and add_capability is a tool-surface change, so it carries an upgrade note.",
+    "kind": "choice",
+    "name": "A Flow's order is its step order; entry and exit are computed from it and no longer stored, and the unread capability entry/exit flags are retired",
+    "rationale": "Anthony chose this on 2026-09-28. flow:release-cut's stored exit named step 8 of 9 because part_of_flow never updated it, and flow_report served the stale pointer beside the step order. The rejected option kept the pointers and had part_of_flow maintain them, which leaves a second copy for the next writer to forget: the class fact:root-cause-each-writer-draws-the-second-copy-by-hand-and-three-writers-never-did-2026-09-28 names. The precedent is req:completion-computed / dec:arrival-delta: delivery is computed from the golden thread and never stored, because a stored copy is a second source of truth that can disagree with the first.",
+    "status": "accepted"
+  }
+}

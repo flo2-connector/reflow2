@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:5ceddf036cada85c36c322c9ad4d776b63f1dfda635ce759dc3161c6943b25c6",
+  "edge_type": "CHANGED",
+  "from_id": "chg:qualitygate-leaves-the-schema",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:smoke-mcp"
+}

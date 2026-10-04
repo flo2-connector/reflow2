@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:f9a74ec508ac98314ee6ed46d5d32174f0dae046b2b7df019061e362ed390cb7",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:a-repair-can-say-what-it-invalidated",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:verify"
+}

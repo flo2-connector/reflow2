@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:9aaf28ec31f58a5918660a55a892d4c83e656fb8a202bf69794faa7b343e1cb1",
+  "edge_type": "CHANGED",
+  "from_id": "chg:baseline-d0fe5db428df9556",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:root-cause-command"
+}

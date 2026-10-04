@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:99ededde54495750338370cc1d8e404c6e22f563e559f98da4e3800015289c36",
+  "node_id": "art:export-write",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "description": "The one place an export document becomes a file on disk, shared by the export_graph tool and the server's write-through. Holds the four things both callers must agree on: where the lineage anchors, whether the write would drop design the file already holds, what `wrote` reports, and recording that this seat is in step. Extracted because a second copy that drifts is the failure this project keeps meeting — the version guard, the unknown-field interception and the adjacency memo were all that shape.",
+    "location": "crates/reflow2-mcp/src/export_write.rs",
+    "name": "export_write.rs",
+    "status": "realized"
+  }
+}

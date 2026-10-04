@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:a73ae381214b872c69ae6512bedd1e38aded549e8ba74354232d7a6837d8acf1",
+  "node_id": "frag:art:test-a-terminal-agent-auto-approves-reads-and-confirms-each-write",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered a_terminal_agent_auto_approves_reads_and_confirms_each_write.rs"
+  }
+}

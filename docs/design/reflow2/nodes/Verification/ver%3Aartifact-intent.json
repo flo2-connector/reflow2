@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:79dd0251215055a02591ada179554d18ca64572f5faec68d2d317ffd32ad2a6a",
+  "node_id": "ver:artifact-intent",
+  "node_type": "Verification",
+  "properties": {
+    "description": "An artifact's declared granularity and volatility change what a report says about it, and change nothing else (crates/reflow2-core/tests/artifact_intent.rs, 9 cases). THE COUNTERWEIGHTS ARE THE POINT and are half the file: a stable artifact still reports checksum_change (the default does not move), an unchanged append_only artifact still reads as unchanged rather than as an expected change, an ordinary artifact is not named as a placeholder, and — the one that keeps this honest — a MISSING append_only artifact still fires at full severity, because declaring content volatile never says the file may vanish.",
+    "findings": "MUTATION-CHECKED against three seeded regressions: treating every artifact as volatile (caught by the stable case), recording expected_change in the drift ledger after all (caught by the ledger case), and swapping the two granularity classes (caught by BOTH granularity cases, which is the proof they are genuinely reported apart rather than together).",
+    "kind": "verification",
+    "last_run_at": "2026-08-04",
+    "level": "unit",
+    "method": "test",
+    "name": "Declared granularity and volatility change what a report says, and nothing else",
+    "status": "passing"
+  }
+}

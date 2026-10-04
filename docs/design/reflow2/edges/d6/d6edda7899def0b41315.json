@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:77f7afac68618355afe953ed62a49561948e32ddea8574c6cc07e73b13997fcc",
+  "edge_type": "ANTICIPATES",
+  "from_id": "dec:idea-a-deliberately-open-edge-can-never-be-ranked-as-a-fit",
+  "properties": {
+    "evidence": "Declaring when a wildcard endpoint is deliberate was the first step toward declaring what may stand at each end; option (e) is the next one."
+  },
+  "to_id": "dec:idea-the-schema-declares-what-each-relation-means-in-primitive-terms"
+}

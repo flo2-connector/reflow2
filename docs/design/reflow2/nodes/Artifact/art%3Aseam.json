@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:142f7968f7ef151c59c7c6b6796c589b4bd202cf2be0d9b331ac41c02848d98d",
+  "node_id": "art:seam",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "granularity": "atomic",
+    "location": "crates/reflow2-core/src/seam.rs",
+    "name": "seam.rs",
+    "status": "realized",
+    "volatility": "stable"
+  }
+}

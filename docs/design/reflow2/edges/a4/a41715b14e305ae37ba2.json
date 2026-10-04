@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:9485033391b446c5f716fdced8567acbb1b01be1493bc24e9559262cb95cc151",
+  "edge_type": "INVALIDATES",
+  "from_id": "chg:a-revising-write-says-what-it-removed",
+  "properties": {
+    "at": "2026-09-20",
+    "note": "A write that shortens a field now says so, with the size. The finding stands as the measurement, and the pressure that caused the rewrites was removed separately by replace_text in v0.65.0."
+  },
+  "to_id": "fact:a-revising-write-that-shrinks-a-field-reports-nothing-and-two-load-bearing-paragraphs-were-lost"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:1c86ae992a6451083a77abbabb0b09c4ae88752d6135bb3d9fbd456acc899baf",
+  "node_id": "chg:accept-fbd346a011b020b7",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "refactor",
+    "detected_at": "2026-07-25",
+    "name": "Examined on the day it was written, so the ledger says \"checked\" rather than \"nobody has ever looked\": the file on disk is the file the design registered, the three mirrors are byte-identical (skill_lint), and every tool it names is served (skill_lint's reference check). What that does NOT establish, and the confirmation ledger should not be read as claiming, is that the PROCEDURE works — worktree, claim, export-before-commit, driver merge, release across two people and two checkouts. That needs a field trial, which is where the standing validation disposition puts it."
+  }
+}

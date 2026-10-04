@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:b040d2dbf7f1234d8ba768ca32e4ba4fb3c02274ffb5bc8c3b9a8737af9a7e16",
+  "node_id": "frag:art:docker-image-release-notes-script",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered docker/image-release-notes.sh — writes the image section, with the index digest, into a release's notes: appended, between markers, replaced on a re-run"
+  }
+}

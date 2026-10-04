@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:491aac8fa3cc616944706d8f9f4a98f12ca37ae10ea9a3af0e7a92a39766c282",
+  "edge_type": "PROVIDES",
+  "from_id": "cmp:registry",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "ifc:session-graph-selector"
+}

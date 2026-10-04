@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:f93f23b2058243357411d3abb68744e00f3943befb8bea44916aecb3721a8983",
+  "node_id": "art:writers",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "location": "crates/reflow2-mcp/src/writers.rs",
+    "name": "writers.rs — the served reader of writers.json and the one invalid-pair renderer",
+    "status": "realized"
+  }
+}

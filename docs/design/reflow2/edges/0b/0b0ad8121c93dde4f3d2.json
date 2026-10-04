@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:6641a634a146c1c91e8c305c712742dedb20bb55cbca39aa2690c8ed566f1c26",
+  "edge_type": "GOVERNED_BY",
+  "from_id": "rule:every-failure-is-searched-and-every-cause-is-root-caused-before-it-is-written",
+  "properties": {
+    "note": "The rule is mechanism (a) of the MECHANISM ruling; mechanisms (c) the detector and (d) composition follow it, (b) the hook was skipped."
+  },
+  "to_id": "dec:idea-how-does-root-cause-become-automatic-rule-hook-detector-or-composition"
+}

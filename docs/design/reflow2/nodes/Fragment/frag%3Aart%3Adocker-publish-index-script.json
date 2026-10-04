@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:9f7ebeffbfc66fe13b8df960495c3d60f6efd638e1ffdfe23538b6aa49ad68c0",
+  "node_id": "frag:art:docker-publish-index-script",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered docker/publish-index.sh — joins the per-architecture digests into one index, tags <version> and latest, and refuses unless it lists linux/amd64 and linux/arm64"
+  }
+}

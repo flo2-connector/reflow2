@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:13cf9ebf74651ba7a64964b1ee0e8d1c70eea2b3b75668bb27bbbca2b2e0333a",
+  "edge_type": "REALIZES",
+  "from_id": "art:test-a-node-is-named-by-its-id-and-the-type-is-optional",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:mcp-surface"
+}

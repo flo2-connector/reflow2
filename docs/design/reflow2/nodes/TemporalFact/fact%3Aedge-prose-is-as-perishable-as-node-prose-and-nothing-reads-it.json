@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:6805a7c14d02c85eeb3af6b23ae8b224c2e9fafd4cf4698564af1323b2a48b60",
+  "node_id": "fact:edge-prose-is-as-perishable-as-node-prose-and-nothing-reads-it",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "confidence": 1.0,
+    "fact_type": "defect",
+    "statement": "EDGE `evidence` AND `note` ARE PROSE WRITTEN AT A MOMENT IN TIME, EXACTLY AS PERISHABLE AS NODE TEXT, AND NO DETECTOR READS THEM. Measured in bhome, 2026-08-31 (art:bhome-genesis-feedback-2026-08-31, \"Session 1, part 7\").\n\nTHE INSTANCE, and it is a clean one. Anthony narrowed a climate requirement from desert-to-arctic to lower-48 city climates. `propagate_change` returned 53 impacted nodes with an 8-node direct ring, five of them RISKS edges pointing at the changed requirement — which the report calls the best single moment of the session, because those five objections had been written across three earlier conversations, hours apart, each as a brainstorm aside, and nothing else would have recalled them.\n\nBut the five RISKS edges carried `evidence` written when the range WAS desert-to-arctic — e.g. \"in the arctic, a tank of water at fish temperature is a large continuous heat load\". After the narrowing that evidence is WRONG, and a reader following the edge is misled by prose that reads as current. The agent repaired four of five by hand, and says why it caught them at all: \"only because the propagation happened to list them and I happened to remember what they said.\"\n\n🛑 THE ASYMMETRY IS THE FINDING. The node-level story is complete: every `add_*` warns loudly on overwrite, `reconcile_artifacts` catches design-vs-file drift, `change_axis_unstated` catches an unstated axis. The edge-level story is empty. Nothing warns, nothing reconciles, nothing detects. An edge property is a claim about the world in the same way a node property is, and only one of the two is governed.\n\n⭐ THE REPAIR IS AVAILABLE WHERE THE DEFECT IS. `propagate_change` already computes the direct ring and already holds both the changed node's text and each ring edge's `evidence`. The report's own two proposals, cheapest first: ① when a direct-ring edge's `evidence` mentions terms that no longer appear in the changed node, say so — even a crude string check would have caught \"arctic\" surviving in four edges after \"arctic\" left the requirement; ② more generally a `stale_edge_evidence` detector, or a `written_at` stamp on edge prose so a reader can see the evidence predates the node it describes.\n\n📌 NOT A WRITE PROBLEM: \"Re-writing an edge with `create_edges` upserts its properties cleanly, which made the repair easy once identified — the problem is purely one of noticing.\"",
+    "subject_id": "cap:propagate",
+    "valid_from": "2026-08-31",
+    "valid_to": "2026-08-31"
+  }
+}

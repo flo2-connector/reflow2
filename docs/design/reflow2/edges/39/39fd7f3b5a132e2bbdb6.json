@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:ed0c215569c05c604b4351307cc1bf6dbb2a3843b420d9ce1c242aee912f7515",
+  "edge_type": "CHANGED",
+  "from_id": "chg:claim-liveness",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:claims"
+}

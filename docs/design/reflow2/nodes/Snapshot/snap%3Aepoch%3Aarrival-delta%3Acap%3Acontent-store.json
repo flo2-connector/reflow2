@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:42d5b8a37e214ce003a5a2e1f7710d5e3968e28a7722c2e2ccf9b6444dbd3dcf",
+  "node_id": "snap:epoch:arrival-delta:cap:content-store",
+  "node_type": "Snapshot",
+  "properties": {
+    "edges": "[{\"direction\":\"out\",\"edge_type\":\"ALLOCATED_TO\",\"other_type\":\"Component\",\"other_id\":\"cmp:artifact\",\"properties\":{\"weight_basis\":\"estimated\"}},{\"direction\":\"out\",\"edge_type\":\"GOVERNED_BY\",\"other_type\":\"Decision\",\"other_id\":\"dec:agent-navigates-content\",\"properties\":{}},{\"direction\":\"out\",\"edge_type\":\"GOVERNED_BY\",\"other_type\":\"Decision\",\"other_id\":\"dec:where-content-lives\",\"properties\":{}},{\"direction\":\"out\",\"edge_type\":\"SATISFIES\",\"other_type\":\"Requirement\",\"other_id\":\"req:content-reaches-every-seat\",\"properties\":{}},{\"direction\":\"out\",\"edge_type\":\"SATISFIES\",\"other_type\":\"Requirement\",\"other_id\":\"req:content-store-for-what-the-graph-points-at\",\"properties\":{}}]",
+    "state": "{\"description\":\"A content-addressed store for what the graph cannot hold inline — session transcripts, mermaid diagrams, HTML mockups, user-supplied drawings and photographs, and the source documents a corpus was extracted from. The graph records a CONTENT HASH; the bytes live in the store; an unresolvable pointer fails loud and names itself rather than rendering a design quietly missing its pictures. Built on `object_store` (Apache Arrow) with the local filesystem backend and cloud features OFF, so there is no service to run and cloud backends stay one configuration change away. Blobs are COMMITTED to the repo, which makes them travel exactly as the design does — clone and you have everything (`dec:where-content-lives`). The store itself lives in `reflow2-mcp` because `object_store` is async and `reflow2-core` is deliberately synchronous; the core holds only the hash, which is sync, deterministic and testable in memory. PLANNED.\",\"is_entry_point\":false,\"is_exit_point\":false,\"name\":\"Store bytes beside the design and point at them by content hash\",\"provenance\":\"authored\",\"status\":\"planned\",\"tier\":\"operational\"}",
+    "target_id": "cap:content-store",
+    "target_type": "Capability"
+  }
+}

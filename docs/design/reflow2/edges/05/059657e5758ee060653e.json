@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:b27e6574ff82a68f182f476bbc23dd3b697975b9148266ccdcd167127e7e2e28",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:read-loop-hint",
+  "properties": {},
+  "to_id": "req:a-hint-names-its-next-call"
+}

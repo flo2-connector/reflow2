@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:ab8a27a7d3095e1813b8ecd495921efea68e0d949437e73e4db14f1f4ad59338",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0550",
+  "properties": {
+    "as_checksum": "sha256:a5f290cb7ff25798036c3b73509ea0c799b90db35814464b73db7f7452684e39"
+  },
+  "to_id": "art:test-the-commonest-edge-has-a-typed-helper"
+}

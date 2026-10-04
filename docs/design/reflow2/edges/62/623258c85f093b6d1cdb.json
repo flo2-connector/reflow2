@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:19992a98cdd1346acc8a7889431c9cd52c988148803943c43430bba559346105",
+  "edge_type": "ABOUT_ENTITY",
+  "from_id": "fact:defect-write-response-describes-the-write-not-the-state",
+  "properties": {},
+  "to_id": "cap:shared-sessions"
+}

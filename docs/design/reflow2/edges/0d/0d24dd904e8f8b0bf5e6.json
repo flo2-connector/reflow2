@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:ecaab95c2f0c497815ce452f5d835b2f5aa436251f1cfe91ecaeac2637cc764d",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:derived-relations-are-declared-checked-against-the-code-and-evaluated-by-a-served-read",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:schema"
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:ba307c184fd7768caef7f8af7bb629e48d3310171af033ee4bf08a20b92c5959",
+  "edge_type": "CAUSES",
+  "from_id": "chg:realizes-is-restricted-to-three-target-types",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "#578 removed every REALIZES target but three, and shipped a migration for ONE of the removed pairs (Artifact REALIZES Verification becomes IMPLEMENTS, on open and on import). Every other removed pair was left for the import to refuse with a named fix. The census behind it ran only against the committed exports on one machine, so a live store holding Artifact REALIZES Decision (musicjug, minted under 0.45.0) was never seen.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:root-cause-a-schema-narrowing-ships-its-migration-by-hand-per-pair-and-nothing-rechecks-a-store-2026-10-02"
+}

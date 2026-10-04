@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:b52087b1b3f83c2a77cc42ab22ce515779189629a25c0bba5b7e1f0416b41d9b",
+  "node_id": "fact:a-design-the-latent-surface-opened-went-without-the-operators-export-to-2026-10-03",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "defect",
+    "name": "MEASURED 2026-10-03: a design the latent surface opened (reflow2_start_design, or one that appeared under it) was opened bare — the operator's --export-to was never started for it, so the file it names was never written",
+    "source": "art:latent",
+    "statement": "OBSERVED on main 293f957: stdio `--graph-path .reflow2/graph --only-if-present --export-to design.json`, reflow2_start_design, then add_project: after 20 s design.json did not exist (the_latent_surface_serves_the_transport_asked_and_prepares_the_design_it_starts failed there). EXPECTED: the write-through the same command line starts for a design opened at once. CAUSE, read in latent.rs: LatentService::promoted opened the store with ReflowService::new_reporting and applied only into_read_only; the preparation the server's healthy start applies (main.rs ServeAs: tree root, provenance note, --export-to, and over HTTP the caller rule) was a second door it never passed — the GitHub #616 fix-4 class (a design served after a wait served differently from one served at once). Fixed in the same change: LatentService::prepared_by takes the server's ServeAs.",
+    "subject_id": "cap:latent-surface",
+    "valid_from": "2026-10-03"
+  }
+}

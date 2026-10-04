@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:944305b784e2a6e4f4e2d9aac830c8983dbc3ff81d7cdd0310127904e41d9af9",
+  "edge_type": "INVALIDATES",
+  "from_id": "chg:the-overtaken-defect-records-were-triaged-against-the-v0510-build",
+  "properties": {
+    "evidence": "loop_status now names the read-only detect_defects as the imperative and mentions the destructive skill only as the wider workflow (report.rs:946). The fix shipped in v0.25.0; the record was held open pending a release that has long since happened."
+  },
+  "to_id": "fact:defect-loop-status-next-routes-to-the-destructive-skill"
+}

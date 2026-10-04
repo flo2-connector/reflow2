@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:02f35dd3984871d6564711ea362a31751c04d0624dce2bf7451bf69823b95929",
+  "edge_type": "HAS_SNAPSHOT",
+  "from_id": "cap:review-expires-on-content",
+  "properties": {},
+  "to_id": "snap:epoch:reading-carries-options:cap:review-expires-on-content"
+}

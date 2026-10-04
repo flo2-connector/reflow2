@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:a001837994064c643a786da828777eceda981b76355a8d305a89e1124288a827",
+  "edge_type": "INVALIDATES",
+  "from_id": "chg:every-one-shot-mode-resolves-its-design-first-and-every-flag-is-honoured-or-refused-2026-10-02",
+  "properties": {
+    "at": "2026-10-02",
+    "note": "Re-measured 2026-10-02: the pointer and --only-if-present are resolved before ANY one-shot mode opens the store. --call (find_tools, get_skill, loop_status, design_identity, a writer, import_graph), --export, --export-snapshot, --import and --diff BASE in a pointer folder each exit 1 naming the design and leave the folder unchanged; a read where there is no design refuses instead of creating one."
+  },
+  "to_id": "fact:root-cause-one-shot-modes-return-before-the-pointer-check-and-opening-a-store-creates-it-2026-10-02"
+}

@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:db513e04709a8484ed7cd2f56008e3f162d19e65db1106f6d7518524609f7b87",
+  "node_id": "question:afc66a528788b6f9",
+  "node_type": "Question",
+  "properties": {
+    "answer": "BUILD IT FIRST. Anthony, 2026-09-11: \"go with your suggested order\" — the recommended order being release binary → server-guaranteed export → version guard → deferred-decision status, with findability and description accuracy run together as one measurement-then-fix pass, and the sweep-findings requirement retired. The release-profile binary is first because it is a wrapper change with no design work behind it, it is the largest user-visible win measured (93x on a graph walk, 12.5s → 2.0s warm on the region report), and every other cost number in the sweep was measured on the debug binary and cannot be judged until this lands.",
+    "asked_at": "2026-09-11",
+    "context_setter": "Nothing satisfies requirement “A session runs a release-profile binary, rebuilt deliberately rather than per launch”",
+    "gap_id": "gap:afc66a528788b6f9",
+    "question": "You accepted that a session must run a release-profile binary, rebuilt deliberately rather than on every launch — measured at 93x on one walk — but nothing is yet allocated to change the launch wrapper. Build it in the next increment, hold it, or drop it?",
+    "rephrase_degraded": false,
+    "status": "answered"
+  }
+}

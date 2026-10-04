@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:03e2ebe1c1f00b9e15e84dd899356dad2272439287928d4f731c16e3b1797456",
+  "node_id": "chg:linked-repos-trial-run",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "name": "dec:linked-repos-poc EXECUTED 2026-08-06, parked since 2026-07-27 — with flo2 substituted for storyflow. The linking machinery works and the labelling does not exist: both compositions imported cleanly (0 skipped edges, including a 0.16.0 export into a 0.24.0 graph), and BOTH paired ZERO boundaries because reflow2 declares no `required` interface at all. The one conflict found is a true positive and is the flo2 seam this session was about."
+  }
+}

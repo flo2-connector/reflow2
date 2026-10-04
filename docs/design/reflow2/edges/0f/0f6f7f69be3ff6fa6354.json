@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:510059bb9761bd6e36a384f7852a148ee38a9b8ef41768e44f6f151eea337348",
+  "edge_type": "HAS_SNAPSHOT",
+  "from_id": "cap:a-session-serves-a-release-binary",
+  "properties": {},
+  "to_id": "snap:epoch:preserved-on-write:cap:a-session-serves-a-release-binary"
+}

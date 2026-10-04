@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:65b685cf984913c82831e73caeea8a06151a48f97f2074ad4607288a007e756e",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "cap:decision-point",
+  "properties": {
+    "authored_at": "2026-07-22",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:claude-code"
+}

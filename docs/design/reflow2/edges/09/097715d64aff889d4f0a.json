@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:a0f92d5c7c1e540ec3577d0a5d7f77e1e46d597d595674ff4019ab2272516008",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:coherence-gate-test",
+  "properties": {
+    "covers": "whole"
+  },
+  "to_id": "ver:the-gate-judges-the-item-layout-per-item-and-per-change"
+}

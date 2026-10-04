@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:7d1e1359fd9953e1a7af80a1aea2164ea4ccc3d875bc5af80de732e1585eccbd",
+  "edge_type": "REALIZES",
+  "from_id": "art:reply-budget-test",
+  "properties": {
+    "completeness": "partial",
+    "conformance": "verified"
+  },
+  "to_id": "cap:bounded-reads"
+}

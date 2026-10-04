@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:e79073c147e1e146f75fb8d882a6a994b09f948af6b3ef4b62207e38771d343a",
+  "edge_type": "INVALIDATES",
+  "from_id": "chg:the-cli-describes-a-tool-with-its-schema-and-lessons-2026-10-03",
+  "properties": {
+    "at": "2026-10-03",
+    "note": "Verified false after this change: prepare_call no longer builds a list on ReflowService::in_memory(); it reads names and read_only_hint from ReflowService::served_tools(), the static surface, which depends on no design. Every listing the door PRINTS (--describe, --list-tools, describe_schema with tool) is built from the OPENED design, and the test this finding asked for — a lesson a scratch design hangs on a tool arrives by its ID — passes through --describe, --list-tools and --call."
+  },
+  "to_id": "fact:the-call-doors-tool-list-is-built-on-an-empty-design-so-it-holds-no-lessons-2026-10-02"
+}

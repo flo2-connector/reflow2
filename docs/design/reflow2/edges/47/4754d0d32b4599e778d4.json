@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:8210cc164e7e92adbe03b62ff3a9c057b9cc6a5413e77feee002f9503da876c2",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-first-move-must-fit",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:check"
+}

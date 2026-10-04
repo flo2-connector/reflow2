@@ -1,0 +1,17 @@
+{
+  "content_hash": "sha256:29819f2f9140b1fcd909f1d3b3d33703b7c9e592abb94b93c45a66e4f20e9748",
+  "node_id": "ver:edges-need-both-ends",
+  "node_type": "Verification",
+  "properties": {
+    "description": "An edge to a node that does not exist is refused, not written — THROUGH EVERY TYPED HELPER, not only through create_edge. Found 2026-07-25: authored_by accepted contributor id \"person:anthony\", which was never created; the edge was stored, get_node returned null for its target, and a phantom AUTHORED_BY sat in the graph until noticed by eye. THE GUARD LANDED IN create_edge (graph.rs:297, 2026-07-28) AND WAS ALREADY TESTED THERE — write_side.rs holds four cases: missing target refused, missing source refused, refusal leaves nothing behind, a legitimate edge still accepted, and an unknown edge type still named FIRST (vocabulary errors before instance errors). What none of those covered is the helpers: every one of them calls create_edge directly, while the original defect was in a typed helper. So crates/reflow2-core/tests/edges_need_both_ends.rs is an AUDIT over all 16 public helpers that join two pre-existing nodes, plus a size-floor test so the table cannot quietly shrink, an atomicity case (a refused authored_by leaves no edge on its source), and a counterweight across three modules so breaking all sixteen is not the cheapest way to pass. The audit shape is deliberate: BL-183 found exactly this divergence on the node side, where 16 of 18 add_* constructors had drifted from the generic path. OUT OF SCOPE and named: constructors that create their own source node, the bulk form (covered by bulk.rs under dec:bulk-is-all-or-nothing-with-per-item-findings), and gate_on, which takes a struct and validates a rung range first.",
+    "findings": "MUTATION-CHECKED, AND THE RESULT WAS NOT THE EXPECTED ONE: disabling the guard failed 14 of 16, not 16 — `documents` and `release_includes` carry their own existence checks before delegating (artifact.rs:519/525, operate.rs:336) and still refused. That is safer rather than broken, and it is recorded because it changes what the file proves: fourteen helpers depend entirely on the shared guard and would regress together, two would hold.",
+    "kind": "verification",
+    "last_reconciled_at": "2026-09-23",
+    "last_reconciled_outcome": "passed",
+    "last_run_at": "2026-08-07",
+    "level": "unit",
+    "method": "test",
+    "name": "An edge to a node that does not exist is refused through every typed helper",
+    "status": "passing"
+  }
+}

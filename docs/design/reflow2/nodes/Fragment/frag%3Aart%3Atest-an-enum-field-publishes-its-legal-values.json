@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:dd2d53e5bbff429884c1ab3875558214462733cb2022d889198a5fb78de18384",
+  "node_id": "frag:art:test-an-enum-field-publishes-its-legal-values",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered an_enum_field_publishes_its_legal_values.rs — the published enum equals the schema's values, an Option field is nullable, a required one is not, a code-only set reuses the handler's const"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:ef4a140e4b4bd3d2d5dbab29fc22664eadb323a4447fc9385bdaa2cef715f23c",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:test-a-closure-criterion-is-declared-on-the-served-surface",
+  "properties": {
+    "covers": "whole"
+  },
+  "to_id": "ver:a-closure-criterion-is-declared-on-the-served-surface"
+}

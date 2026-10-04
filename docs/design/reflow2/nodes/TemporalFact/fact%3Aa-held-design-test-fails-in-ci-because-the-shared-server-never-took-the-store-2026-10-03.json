@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:50de09ce4311121bc80502f35053f5d10ef4a6521b503613c061d28a401efc02",
+  "node_id": "fact:a-held-design-test-fails-in-ci-because-the-shared-server-never-took-the-store-2026-10-03",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "defect",
+    "name": "MEASURED 2026-10-03: a_held_designs_read_is_as_true_as_the_live_one.rs (#657) fails ONE of its six tests in some CI runs, a different one each time, at its hold() helper ('the --serve-shared server never took the store'), main's run on 72bf252 included. Cause measured: hold()'s first --call probe can open the store before the spawned daemon does, and the daemon then exits by design",
+    "source": "art:test-a-writing-call-keeps-the-committed-export-current",
+    "statement": "Met while watching CI for fix program item 7a. OBSERVED, three GitHub Actions runs, job 'workspace + real-binary instruments':\n- main 72bf252 (#658 merged after #657), run 37110378324: a_copy_that_fails_part_way_leaves_nothing_behind FAILED, panicked at a_held_designs_read_is_as_true_as_the_live_one.rs:202 'the --serve-shared server never took the store'.\n- PR #661 merge commit, run 37110035396: a_held_design_finds_by_search_and_topic_what_it_holds, same line and message.\n- PR #661 merge commit, run 37112427296: a_held_read_answers_a_held_write_refuses_and_nothing_is_written_beside_the_store, same line and message.\nNOT AFFECTED: #657's own CI run passed; main 230008c (#657 alone) and main 293f957 passed; a rerun of the failed job on this PR passed; on this 4-core box the file passed 6/6 inside a full workspace run with two test threads, and failed 1 of 6 when run alone with four.\n\nCAUSE, MEASURED with a replica of hold() (hold_repro2.sh beside the cost script; the same seed, the daemon's stderr kept): 20 runs, five at a time; 2 never held, and in both the daemon had exited with 'not becoming the shared server … another process already has the design graph … open … the store lock picks one winner and the rest exit here'. The other process is hold()'s own first probe: it is spawned the instant the daemon is, and a door READ of a store nobody holds yet opens the real store, so when it wins the lock the daemon exits by design and no later probe can ever see a holder. The 18 that held did so on the first probe. So it is a race in the test helper, not in the code it tests; waiting for the daemon's rendezvous file (<graph>.server.json) before the first probe would remove it. The step-2 change does not touch serving or reads.",
+    "subject_id": "art:a-held-designs-read-is-as-true-as-the-live-one-test",
+    "valid_from": "2026-10-03"
+  }
+}

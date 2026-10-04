@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:b10e16733cb216bce5f8f7524a83ae448c4f0d02cbffd7650f8105b79e94aa48",
+  "node_id": "epoch:skill-use-still-needs-reminding",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "epoch_type": "revision",
+    "name": "2026-08-06 — the user is still the reminder mechanism, and says so. New evidence on req:skill-use-survives-a-long-session six days after it was accepted, in a session where cap:skill-triggers (verified) fired correctly and still did not reach the failure.",
+    "sequence": 1,
+    "status": "arrived"
+  }
+}

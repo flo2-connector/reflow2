@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:86f8bc76f26ce146936872ef816da8702cd427fb3365eaa1c34b8f0f0a6b11c2",
+  "node_id": "fact:manual-work-58c4cdd382e1ad4c",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "manual_work",
+    "statement": "Wrote queries measuring the HEALTH OF IDEA LINKING across the whole idea population: how many ideas carry at least one semantic relation, how many carry the explicit \"nothing was related\" note, how many carry neither, what node types ideas connect to, and a two-hop reachability walk to check a neighbourhood was genuinely connected rather than merely named in prose. The unreviewed count is computed internally and drives a gap, but the BREAKDOWN — linked versus deliberately noted versus silent — is what separates \"nobody looked\" from \"looked and found nothing\", and nothing serves it. find_tools over all 164 served tools returned relation_candidates and review_relations: both offer or record relations, neither measures whether the discipline is followed.",
+    "subject_id": "proj:reflow2",
+    "valid_from": "2026-08-30",
+    "value": "{\"diagnosis\":\"tool_missing\",\"reflow2_tool\":null}"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:c1c1112cab1fa4aebfb25b54df4bb52c44d71a2e2bdacfc5b8afc2970384849d",
+  "node_id": "chg:rmcp-3-1-2-20260809",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "refactor",
+    "name": "rmcp 3.0.1 to 3.1.2 — the served surface is byte-identical and one client still gets one seat on every transport"
+  }
+}

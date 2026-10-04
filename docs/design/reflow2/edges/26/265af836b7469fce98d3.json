@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:fe7be54a79fb314be2de8ce218dd5257cc247a09f17d0829eacc1e44403938f2",
+  "edge_type": "CHANGED",
+  "from_id": "chg:claim-cannot-precede-its-export",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "dec:a-graph-claim-cannot-be-published-before-its-pr"
+}

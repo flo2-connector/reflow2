@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:90ac8ab4ec39353d4eaf03ae634b313ff5ebdc76ce5de0dd38db7781c05db521",
+  "node_id": "frag:art:discover-test",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered discover.rs tests — describing changes nothing"
+  }
+}

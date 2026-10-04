@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:f4c9c129838a6972f67498f284b43ebbe9736a74c339f4666862de6487196cd4",
+  "edge_type": "OBSOLETES",
+  "from_id": "dec:field-reports-are-untracked-because-the-repository-is-public",
+  "properties": {
+    "confidence": 1.0
+  },
+  "to_id": "art:dev-storyflow-feedback-2026-08-23"
+}

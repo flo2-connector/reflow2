@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:f139a84fe08c2b32a151eeeb2987e5e5b09952cee11b1e135417d5c2090991fc",
+  "node_id": "req:a-rule-knows-where-else-it-is-written-down",
+  "node_type": "Requirement",
+  "properties": {
+    "concern": "core",
+    "designation": "internal",
+    "kind": "functional",
+    "lineage": "original",
+    "name": "A rule knows where it is authoritatively stated and where else it is repeated, so an amendment can find its own stale copies",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "A rule can name the artifact that AUTHORITATIVELY states it, and the artifacts that merely REPEAT it — and a report answers \"if I change this rule, what documents claim to state it?\"\n\nTHE GAP THIS CLOSES. A rule that lives in the graph is usually also written in a README, an onboarding doc, a code comment, a CI config. Amending the graph does not tell you where else the old wording lives, and a stale restatement does not lag quietly — it keeps issuing the superseded instruction to whoever reads it. `DesignRule` today has name, statement, category and enforced, and NOWHERE to put the source of record; the storyflow trial ended up writing \"Source of record: PROTOCOL.md\" into the free-text statement of all eight of its rules, putting the property that most needs to be queryable into prose no detector can read.\n\nWHAT THE EDGE MAKES POSSIBLE, and this is the argument for modelling it rather than adding a string property: a rule with TWO authoritative sources is a duplication risk; a rule with NONE is folklore; an artifact that changed since the rule was recorded is a rot candidate. None of those three questions can be asked today. reflow2 already has DOCUMENTS — \"this file describes that node\"; what is missing is its inverse in spirit — \"this file REPEATS that node's content and will go stale when it changes.\"\n\nEVIDENCE. One rule existed in FIVE places. A correct amendment fixed the two a MACHINE reads and missed the three that bind HUMANS — for two days, during which the stale copies were ordering work the ruling had explicitly removed. Nobody was careless: there was no way to ask \"where else is this stated?\"\n\nTHE HARD HALF IS DELIBERATELY EXCLUDED. Detecting a CONTRADICTION between a rule and its restatement defeats every keyword method, because both copies contain the same words. reflow2 should not pretend to do it. LISTING the restatements would have prevented the incident on its own — the graph supplies the list, the human eye does the comparison.\n\nADJACENT SCHEMA FINDING, recorded because it is the same neglect: `describe_schema` reports that NO edge type models DesignRule → Component either. Both GOVERNED_BY and CONSTRAINS accept the pair only through a `*` wildcard. DesignRule is the least-connected type in the schema — odd for the one whose whole job is to bind other things, and precisely the catch-up debt dec:governance-integrates-not-splits names.\n\nSOURCE: storyflow fleet governance report, api-boss (05af57c1), 2026-08-09, v0.26.1. Bound as stated by its author: one project, one month, one fleet shape — hypotheses to test, not requirements.",
+    "status": "proposed"
+  }
+}

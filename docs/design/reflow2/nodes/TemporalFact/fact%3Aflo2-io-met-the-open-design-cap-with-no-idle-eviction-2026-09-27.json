@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:36127244da76429c33d8a7c70a0ed654aebd8051e846b320ff22b7b9a8bddef7",
+  "node_id": "fact:flo2-io-met-the-open-design-cap-with-no-idle-eviction-2026-09-27",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "defect",
+    "name": "MEASURED 2026-09-27 on flo2.io: with 11 designs and the default --registry-max-open 8, the registry refused 3 designs as 404 until restart, because nothing it opens is ever closed",
+    "source": "flo2.io droplet, reflow2 0.72.0 container, during ops/flo2-reflow2-upgrade 0.72.0 (dev_reflow2 hub session)",
+    "statement": "MEASURED 2026-09-27 on flo2.io, reflow2 0.72.0, while moving the droplet from 0.71.0:\n1. flo2's upgrade script checks every design by sending each one an MCP initialize, one after another.\n2. The first 8 answered. The last 3 answered 404 with \"this server already holds 8 design(s), which is its limit\". One was a design created that afternoon; two belong to other people.\n3. They stayed refused a minute later, and would have stayed refused until the process restarted: registry_http.rs says \"No idle eviction. An open design stays open until the process ends\".\n4. Restored by recreating the container with --registry-max-open 64. All 11 then answered.\n\nWHAT THIS SHOWS ABOUT THE BUILT HALF OF THIS CAPABILITY, which stays `planned`:\n- WITHOUT IDLE EVICTION, THE CAP IS A LIFETIME BUDGET, NOT A CONCURRENCY BOUND. Any server holding more designs than --registry-max-open will refuse some of them once enough distinct designs have been touched since it started. That happens with no load at all; one sequential sweep is enough. flo2.io had 11 designs from 2026-09-26 against a default of 8. It was due to fail on the ninth distinct design used in one container lifetime, and the upgrade check made that happen at once.\n- A CAPACITY REFUSAL IS SENT AS 404 NOT_FOUND. The body is clear, but the status tells a client the design does not exist. flo2's gateway and an MCP client's reconnect logic read status codes, not bodies. 503 Service Unavailable, with the same text, would say \"try again or raise the limit\".\n\nWHAT FLO2 DID: its upgrade script now starts the engine with a limit (FLO2_REFLOW2_MAX_OPEN, default 64), recreates the container when the limit differs, and refuses to probe more designs than the limit. That contains the symptom at today's scale. The corrected cause is this capability's idle eviction.",
+    "subject_id": "cap:graph-registry",
+    "valid_from": "2026-09-27"
+  }
+}

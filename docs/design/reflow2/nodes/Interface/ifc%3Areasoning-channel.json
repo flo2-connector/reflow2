@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:1c70a794ab7404602dd6435385a4ee8d0c79ba8e071e21c4dd60fbf33c6fbf57",
+  "node_id": "ifc:reasoning-channel",
+  "node_type": "Interface",
+  "properties": {
+    "auth": "unspecified",
+    "description": "What sys:human-channel PRESENTS to the rest of reflow2: the one place the deterministic core hands a judgement out to an LLM and takes an answer back. Two modules stand behind it — `llm` (the backend contract) and `agent` (the ambient-agent handshake).\n\nDISTINCT FROM ifc:ambient-agent, which is `required` and points OUTWARD at the harness reflow2 asks to think. This is the INWARD face: what coherence-loop and intake call when they need a rephrase or a judgement. One is the need, the other is the offer, and a black box has both.",
+    "designation": "internal",
+    "medium": "unspecified",
+    "name": "Reasoning channel",
+    "paradigm": "unspecified",
+    "payload_format": "unspecified",
+    "provenance": "authored",
+    "transport_security": "unspecified"
+  }
+}

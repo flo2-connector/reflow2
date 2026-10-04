@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:7e0f3211a978f20da3ac2cebbebc68a2a1b93b252494ae087984bfa981d7a740",
+  "node_id": "snap:epoch:preserved-on-write:chg:the-doubt-trace-lands",
+  "node_type": "Snapshot",
+  "properties": {
+    "edges": "[{\"direction\":\"out\",\"edge_type\":\"CHANGED\",\"other_type\":\"Artifact\",\"other_id\":\"art:tools-assure\",\"properties\":{\"accepted_baseline\":false,\"action\":\"modified\"}},{\"direction\":\"out\",\"edge_type\":\"CHANGED\",\"other_type\":\"Capability\",\"other_id\":\"cap:revise-trigger\",\"properties\":{\"accepted_baseline\":false,\"action\":\"modified\"}}]",
+    "state": "{\"change_type\":\"new_feature\",\"detected_at\":\"2026-09-22\",\"name\":\"decisions_in_doubt: bad news is walked back to the settled decisions behind it\",\"rationale\":\"Step 4 part two on Anthony's rulings: no threshold, no ranking, good news counted never stored, readiness out, nothing re-opened. Structural defects deliberately not traced yet — stated on the capability.\",\"subject\":\"system\",\"summary\":\"New core module doubt.rs and read-only tool decisions_in_doubt (cap:revise-trigger, planned → realized). The root-cause skill gains a `Choice` bone naming it; docs/skills-and-tools.md regenerated; find_tools corpus gains its user-phrased query; skill_lint allowlists the two reconcile fields the bone names.\"}",
+    "target_id": "chg:the-doubt-trace-lands",
+    "target_type": "ChangeEvent"
+  }
+}

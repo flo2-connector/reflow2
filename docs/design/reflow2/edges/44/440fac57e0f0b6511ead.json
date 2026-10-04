@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:b68de350377ffd87a2066976acce3cc54cfcafbc0590d4c4fce653e4500a261d",
+  "edge_type": "REALIZES",
+  "from_id": "art:setup",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:explains-itself"
+}

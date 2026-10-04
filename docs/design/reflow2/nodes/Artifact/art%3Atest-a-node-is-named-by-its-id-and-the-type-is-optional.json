@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:4c2f5547232a90b20aaa99b044b0bee5f397194066793e393f430c6ce84e7a41",
+  "node_id": "art:test-a-node-is-named-by-its-id-and-the-type-is-optional",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "location": "crates/reflow2-mcp/tests/a_node_is_named_by_its_id_and_the_type_is_optional.rs",
+    "name": "a_node_is_named_by_its_id_and_the_type_is_optional.rs — verifies/governed_by resolve the type from the id; a collision is refused naming both; an unknown id says so; delete_node still requires the type",
+    "status": "realized"
+  }
+}

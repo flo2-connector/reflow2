@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:4bd1a4261a142de712f26007abf95a3fe4b8878762f8fde0842fad9690bd3bad",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-cross-type-near-match-is-named-as-a-layer",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:tools-capture"
+}

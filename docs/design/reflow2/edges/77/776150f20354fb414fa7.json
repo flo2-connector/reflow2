@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:a2bc66fd30051800bbc1fe56d909f44eded4ca49ed82b6f08bf09b83b1116921",
+  "edge_type": "CHANGED",
+  "from_id": "chg:adopt-is-incremental-with-a-frontier-and-a-deferred-derivation-marker",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:tools-coherence"
+}

@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:4a72dbe9f03b292c133b8638a078a04fd757a3b23f84504a28701e5acf1b277e",
+  "edge_type": "ABOUT_ENTITY",
+  "from_id": "fact:a-database-free-session-costs-11s-to-load-and-12s-to-save",
+  "properties": {},
+  "to_id": "cmp:byte-store"
+}

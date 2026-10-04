@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:b8aa6c591870707d240141f1eae703564b805b19c0b7c3f394c70576337e80ab",
+  "node_id": "cap:the-command-surface-answers-for-itself",
+  "node_type": "Capability",
+  "properties": {
+    "description": "`list_skills` carries a `shortcut` per skill — stated by the server, never derived by the reader — because eight skills answer to a word that is not their name. Every skill has one, including the unaliased majority, so \"no alias\" never has to be told apart from \"nothing said\".\n\n`tools/check_command_surface.py` compares the surfaces that used to drift: three skill directories against each other, the command source against its copy, every skill against a command that reaches it, every command against a skill that exists, and every renamed command against `COMMAND_ALIASES`. Wired into CI.\n\n⚠️ USER-SCOPE COMMANDS ARE A NOTE, NEVER A FAILURE. They live outside the repository, so CI cannot see them; claiming to have checked something invisible to the gate would be worse than silence. That is the half of the original defect this does not close.",
+    "name": "Every skill states the word a person types, and the copies of the surface are compared",
+    "provenance": "authored",
+    "status": "realized"
+  }
+}

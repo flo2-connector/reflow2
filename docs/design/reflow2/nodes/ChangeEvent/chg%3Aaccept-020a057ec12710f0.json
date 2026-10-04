@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:d71996f6aeb5201845f75bb2cf2640b2f2fa33e350856ee1ebb0121b4f15d51f",
+  "node_id": "chg:accept-020a057ec12710f0",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "refactor",
+    "detected_at": "2026-08-02",
+    "name": "Registered before the clippy pass; the only edit since is manual_is_multiple_of plus rustfmt. No behaviour and no design meaning moved — the 9 tests are unchanged and still passing."
+  }
+}

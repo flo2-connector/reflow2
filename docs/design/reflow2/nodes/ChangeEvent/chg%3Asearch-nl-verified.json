@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:08cf67feb12bc48969521dc6b5a919244026abc6e6bd701efac18f0640777877",
+  "node_id": "chg:search-nl-verified",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "test_failure_fix",
+    "name": "Natural-language search proven fixed by a regression-verified test; ver:search-natural-language passing"
+  }
+}

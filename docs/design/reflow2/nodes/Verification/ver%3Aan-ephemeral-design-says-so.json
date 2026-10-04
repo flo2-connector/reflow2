@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:647eb5a2d850b4e1f04f24115e8bed1e86b968ec3152126f3f69b388e0f961ec",
+  "node_id": "ver:an-ephemeral-design-says-so",
+  "node_type": "Verification",
+  "properties": {
+    "description": "Three tests in crates/reflow2-mcp/tests/an_ephemeral_design_says_so_in_its_handshake.rs, plus the four refusals exercised by hand.\n\n⭐ THE SECOND TEST IS THE ONE THAT MATTERS: every HTTP session is served by `share()` rather than by the original service, so a warning that did not propagate would be seen by nobody who could act on it.\n\n⚠️ AND THE THIRD IS THE NEGATIVE CASE. A warning that fires on ordinary designs becomes noise readers learn to skip, and then it is not there when it is true.",
+    "findings": "PASSING 2026-09-13. Three tests green: the handshake carries the ephemeral warning and it comes FIRST; the warning survives share() into a per-session service; a design on disk is NOT labelled ephemeral.\n\nThe four refusals were exercised by hand against the built binary, each exiting 1 with its own message: --ephemeral with --graph-path, with --registry-root, with --shared, and with --serve-shared. Also confirmed by hand that an --ephemeral run writes nothing to disk and creates no stray store.",
+    "kind": "verification",
+    "last_run_at": "2026-09-13",
+    "level": "integration",
+    "method": "test",
+    "name": "An ephemeral design warns in its handshake, the warning survives into a session, and a persistent design is not labelled",
+    "status": "passing"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:2ced0742528697cfff48bc65d1c5763b018f15dc48245cf551e6cefdacce5526",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:sanitize-ingress",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:sanitize"
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:646560fa38d704ce241482c94c3687458765ca68432eb91b575775f1190308e7",
+  "node_id": "chg:undefer-skill-adherence-measurement",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "scope_change",
+    "name": "req:skill-adherence-is-measured is UN-DEFERRED on Anthony's word, 2026-08-06 — \"un-defer req:skill-adherence-is-measured\". Deferring it left cap:skill-triggers (verified) with a hole nothing but a human could see: every shape that capability recognises is a shape in the graph-write stream, and \"no skill has been loaded\" is not a graph write. Twice now the decay has been found by asking an agent rather than by any mechanism, which is the state this requirement's own statement calls \"not a mechanism\"."
+  }
+}

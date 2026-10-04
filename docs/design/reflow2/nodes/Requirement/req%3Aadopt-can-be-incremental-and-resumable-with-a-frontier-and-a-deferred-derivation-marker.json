@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:0abdbd9d1b2f363031b9fc7c0369574540eb5cac84b51e24a3b3b693c9ddd9d8",
+  "node_id": "req:adopt-can-be-incremental-and-resumable-with-a-frontier-and-a-deferred-derivation-marker",
+  "node_type": "Requirement",
+  "properties": {
+    "lineage": "original",
+    "name": "Adopt can proceed one region at a time and be resumed: a frontier read says what is captured structurally and not yet recovered as intent and what is adjacent and uncaptured, and a deferred-derivation marker says a part's intent is deliberately left for later so the loop lists it as owed instead of asking about it as a gap",
+    "priority": "high",
+    "provenance": "authored",
+    "statement": "reflow2 has a native incremental, interactive, resumable capture mode for an existing system, write-through rather than accumulate-then-commit, with the graph as worklist, memory and resume-state by explicit contract. Two primitives carry it. (1) A FRONTIER read: the nodes captured structurally with no recovered intent, the nodes carrying a deferral marker, and the unmodelled neighbours adjacent to what is captured — the worklist, and the resume point (\"you were here\"). (2) A DEFERRED-DERIVATION marker: a typed, dated, findable way to say \"this part's intent is deliberately deferred\", read the way a follow-up is — listed at every boundary as owed, and suppressing the intent gaps on its subject so a regional pass does not report false gaps for what was left on purpose. Adopt gains a region mode that writes the marker on what it leaves. The breadth-first payoff must not be lost: the frontier keeps saying what has not been looked at, or the regional pass becomes the local optimum the adopt skill warns about. Depends on the scoped detectors telling the truth about a region (two measured defects). Promoted from Alex's idea (relayed by Anthony 2026-09-17) on Anthony's word the same day: \"accept/promote all of Alex's ideas\".",
+    "status": "accepted"
+  }
+}

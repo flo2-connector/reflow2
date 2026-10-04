@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:4a15428ee370e251e9bdedf73de492784d85d0b486726a2ff10e5ae996150f64",
+  "node_id": "chg:accept-8a034045b298c464",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "resync",
+    "name": "v0.71.0 cut: the version string moved to 0.71.0. The design meaning of a cut lives in rel:v0710 and its epoch, never in a version string. Accepted before the manifest is frozen.",
+    "subject": "system"
+  }
+}

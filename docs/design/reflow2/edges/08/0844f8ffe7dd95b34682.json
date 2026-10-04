@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:a66621394682a2f13fc3d999ceff37b31e2574730f880700ff7d94d9c6ec7c58",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:change-type-splits-into-two-axes",
+  "properties": {
+    "approved_at": "2026-08-15",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

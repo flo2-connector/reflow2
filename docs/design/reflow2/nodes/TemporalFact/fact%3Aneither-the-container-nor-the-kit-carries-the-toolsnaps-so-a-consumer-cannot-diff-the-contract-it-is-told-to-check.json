@@ -1,0 +1,18 @@
+{
+  "content_hash": "sha256:f4ac93bef5f0033dc534bd055e937bec734c68f8b79dabc10a1a8f65f9d8c1ea",
+  "node_id": "fact:neither-the-container-nor-the-kit-carries-the-toolsnaps-so-a-consumer-cannot-diff-the-contract-it-is-told-to-check",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "confidence": 0.95,
+    "fact_type": "defect",
+    "name": "Neither the container image nor the consumer kit carries the tool schemas, so the artifact a consumer runs does not include the contract it is told to check against",
+    "source": "flo2 reflow2_feedback.md, session of 2026-09-19 (evening)",
+    "statement": "FLO2 F23, the packaging half of F21. Answering 'did v0.65.0 break flo2?' took four commands and all four needed the reflow2 source checked out, because the tool schemas live only in the source repository. flo2's droplet consumes the published container image and has no repository, so it cannot answer the question at all.\n\nMEASURED 2026-09-19 on this tree: `tools/toolsnaps/` appears in neither the Dockerfile nor .github/workflows/release.yml. The kit tarball is staged file by file (reflow2_init.py, reflow2_install.py and the rest) and the schemas are not among them. Five release assets shipped with v0.65.0 and none carries the contract.\n\n⭐ AND THE QUESTION IT UNLOCKS is the one flo2 actually needs under the black-box rule: 'what changed, between these two versions, for THESE twelve tools?' Today that is a shell script only the maintainer can run, against a checkout only the maintainer has.",
+    "steps": [
+      "release_report"
+    ],
+    "subject_id": "cap:release-publishes-a-container",
+    "valid_from": "2026-09-19"
+  }
+}

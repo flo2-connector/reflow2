@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:739592cf10b350009e97f7814bde992098bf010391768b4e5bbb32763cea3660",
+  "edge_type": "CAUSES",
+  "from_id": "dec:idea-how-should-the-loop-know-that-an-answer-reached-the-design",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "CONDITIONAL, and stated as a hypothesis rather than asserted: IF option C is chosen — a typed edge from a design record onto a Question — it also supplies the vehicle for the wording question's amendment option, where a later record says what was meant without editing what was asked. One piece of vocabulary would answer both. It is not yet true, because C is one of four options and may not be chosen.",
+    "validation_status": "hypothesis"
+  },
+  "to_id": "dec:idea-a-recorded-questions-wording-can-be-corrected"
+}

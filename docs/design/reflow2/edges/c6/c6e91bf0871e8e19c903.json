@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:67dbb297474e4dadb1d5c7e074f003e3bfa9628a36faa819e2a7aca43fd5a570",
+  "edge_type": "CHANGED",
+  "from_id": "chg:accept-1c0ae21e22ea228a",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:test-every-finding-that-reads-parking-names-it"
+}

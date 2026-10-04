@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:37bf3ba7a6df94265bb20ff548edffe4a24d1aa8eeebdcc20c6645673e9bfff6",
+  "node_id": "ver:a-stored-item-the-schema-now-refuses-is-reported",
+  "node_type": "Verification",
+  "properties": {
+    "description": "crates/reflow2-core/tests/a_stored_item_the_schema_now_refuses_is_reported.rs. Each case writes a store under a WIDER schema (write_under_schema) and reads it under today's, narrowing one thing as a release does: REALIZES onto a Decision (the musicjug shape: finding names the endpoint_pair rule and DOCUMENTS), a removed enum value, a property made required since, a retired edge type, VERIFIES onto a Project (names what the check is evidence for, in the finding and in the import). The detector and the import refuse the same items (count and ids); an edge the import rewrites is not reported; propose_heal proposes the replacement and applies nothing (the edge survives apply_heal); two refused edges between one pair are two findings; a clean design reports none and says what it examined. Written first: 8 of the 10 original cases failed on the unfixed code (2026-10-03).",
+    "kind": "verification",
+    "last_run_at": "2026-10-03",
+    "level": "integration",
+    "location": "crates/reflow2-core/tests/a_stored_item_the_schema_now_refuses_is_reported.rs",
+    "method": "test",
+    "name": "A stored item the schema now refuses is reported, by the import's own rule",
+    "status": "passing"
+  }
+}

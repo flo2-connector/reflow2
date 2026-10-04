@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:c425c284d774c6407a74089c063121f511ba11486f57512bba77661d3767c1a8",
+  "edge_type": "GOVERNED_BY",
+  "from_id": "chg:reachability-is-asked-without-asking-adoption-and-the-instrument-runs-in-ci",
+  "properties": {
+    "evidence": "The first item of that ruling is the field feedback triage; this is the fix the triage produced, so it belongs to that increment."
+  },
+  "to_id": "dec:v0520-takes-the-field-feedback-triage-first-then-the-cement-measure"
+}

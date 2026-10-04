@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:65739aeb3ba160cc7d4d2253102edeed7fe22eb8950e4ad41cc42a8afdecd4a0",
+  "node_id": "art:test-impact-of-diff",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "test",
+    "description": "Hermetic, real binary over stdio, real git repository: a registered file reaches the requirement it serves; an unregistered file is named first and never folded in; --fail-on-unmapped is exit 1 only when asked; the design record is set aside; a deleted registered file is still a change; a range with no base is \"could not run\", never an empty radius.",
+    "location": "tools/test_impact_of_diff.py",
+    "name": "test_impact_of_diff.py",
+    "status": "realized"
+  }
+}

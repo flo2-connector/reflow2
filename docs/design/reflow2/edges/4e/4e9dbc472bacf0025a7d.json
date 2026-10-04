@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:300791e3fdfa1695be0783beeb32ea22c99c1ba4903b1ddb8191aee74d3cb596",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:test-served-skills",
+  "properties": {
+    "covers": "whole",
+    "note": "migrated 2026-09-22 from a REALIZES link_artifact drew in error"
+  },
+  "to_id": "ver:served-skills"
+}

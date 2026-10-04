@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:74243116012a7db6e77ffd17aa02697a3861a070457eb1c60c4a9ae24ec4d6af",
+  "node_id": "chg:the-design-type-list-moves-down-to-the-vocabulary",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "refactor",
+    "name": "The design-content type list moves down to the vocabulary it is made of — compare stops reaching into report, and the last subsystem cycle closes",
+    "subject": "system"
+  }
+}

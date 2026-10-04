@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:e1634cc566e08be56bb0e1c0c2d9e04a70e653cc08c904bb5b832ae52d059c41",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:atomic-requirement",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:detect"
+}

@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:3d6e36fab61fc4a91b9d8d744db89f9f5ae8ee4424b28968e3bcee716a72828c",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:a-server-offers-a-consistent-live-snapshot-of-every-store",
+  "properties": {
+    "approved_at": "2026-09-27",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

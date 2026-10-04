@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:d83edf0baf36a4aa06ddcdf42d756d9faa214154a8367f2dd37798a322a09d9a",
+  "edge_type": "INVALIDATES",
+  "from_id": "fact:the-prose-does-not-rot-it-is-born-false",
+  "properties": {
+    "at": "2026-09-02",
+    "note": "OVERTURNS ITS CONCLUSION, KEEPS ITS NUMBERS. The population counts stand and are still the best measure of how much prose makes checkable claims. What does not stand is the inference drawn from the rate — that the repair follows from prevalence. Age is uncorrelated with falsity because 4 of 6 were false before they were committed, so 'a low rot rate means auditing is low-yield' was right by accident and for the wrong reason."
+  },
+  "to_id": "fact:the-served-prose-is-mostly-true-and-nothing-checks-any-of-it"
+}

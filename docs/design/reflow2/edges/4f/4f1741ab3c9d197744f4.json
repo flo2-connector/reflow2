@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:45d8e50e291acc584bf38fd9bf982ec59535d28eb1e5e6c0eaeca39f306dcdc5",
+  "edge_type": "REALIZES",
+  "from_id": "art:tools-operate",
+  "properties": {
+    "completeness": "partial",
+    "conformance": "unchecked"
+  },
+  "to_id": "cmp:service"
+}

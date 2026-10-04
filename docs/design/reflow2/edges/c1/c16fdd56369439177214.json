@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:7313d9b032e6e2d7cda2650fe2cd79645c954ac4182f78b20b0df7084cae6502",
+  "edge_type": "CHANGED",
+  "from_id": "chg:accept-6cac066db6363b0c",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:check-health-skill"
+}

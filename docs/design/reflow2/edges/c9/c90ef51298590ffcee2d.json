@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:c5048b63261386630d959010b4f74d8ebef79556093642f2cc0dca0102e91b1b",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:test-a-bulk-edge-write-keeps-each-helpers-checks",
+  "properties": {
+    "covers": "whole"
+  },
+  "to_id": "ver:a-bulk-edge-write-keeps-each-helpers-checks"
+}

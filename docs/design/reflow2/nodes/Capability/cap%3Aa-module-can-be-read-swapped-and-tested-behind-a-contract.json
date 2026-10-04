@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:0094bb2758485a980aa4d0a55c3565c0086bdb89b20d1c53695f100a851391ad",
+  "node_id": "cap:a-module-can-be-read-swapped-and-tested-behind-a-contract",
+  "node_type": "Capability",
+  "properties": {
+    "description": "`GraphRead` (crates/reflow2-core/src/graph_read.rs) — the Rust trait realizing `ifc:graph-read`, and the second trait ever to exist in this crate. `LlmBackend` was the first and the only, since 2026-07.\n\n`impl GraphRead for DesignGraph` delegates to the inherent methods and hides nothing, so the 274-function struct is untouched and every existing caller keeps working. What it adds is the option to ask for `&dyn GraphRead` instead.\n\nTHE PILOT IS `granularity`. Its body moved out of `impl DesignGraph` into a free `granularity_report(g: &dyn GraphRead)`, with a one-line inherent method left behind so `report.rs`, `ility.rs` and the existing tests never noticed. A refactor that forced its callers to change would be paying for the boundary twice.\n\nWHAT THE MOVE BUYS, demonstrated rather than asserted, in three tests:\n  — RUNS WITH NO STORE. The same report computed over a design that is two Vec's: no RocksDB, no schema, no disk, no lock.\n  — CANNOT TELL WHICH IMPLEMENTATION IT IS READING. Population, mean and the flagged artifact ids are asserted EQUAL between a real DesignGraph and a hand-built fake sharing no code with it. Had the module reached past the contract for anything at all, this would not compile, let alone agree.\n  — LETS A REFUSAL THROUGH. An unknown node type arrives as an error, not as an empty design — with a control case proving an empty-but-valid design is `Ok`, so the assertion is not vacuous.\n\nAND THE COMPILER NOW ENFORCES WHAT THE DOCS ASSERTED: `GraphRead` has no writes, so a module behind it cannot change what it reads.\n\nNOT YET DONE, and deliberately not overstated: 15 other read-only modules are recorded as consuming this contract but still take `&self` on DesignGraph. This is one module, proven end to end, so the cost of the next is known rather than guessed.",
+    "name": "A module stands behind the read contract, so it can be swapped, tested with no store, and held still to be measured",
+    "provenance": "authored",
+    "status": "verified"
+  }
+}

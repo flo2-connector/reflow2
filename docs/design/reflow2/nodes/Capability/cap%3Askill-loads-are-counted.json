@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:dca7a87fda8e4a79690d58e26b000ce3ffbccbb5120e1981e260c3c1929bbc83",
+  "node_id": "cap:skill-loads-are-counted",
+  "node_type": "Capability",
+  "properties": {
+    "description": "The hook counts get_skill calls per session, and the Stop backstop names it when a session did real work, engaged reflow2, and loaded ZERO skills. Closes the hole chg:undefer-skill-adherence-measurement names: cap:skill-triggers recognises shapes, every shape it knows lives in the graph-write stream, and \"no skill has been loaded\" is not a graph write — so the one situation a human kept having to correct by hand was the one situation the mechanism structurally could not see.\n\nWHERE THE COUNT LIVES, and why that is the whole design: the per-session tally file the hook already keeps, which is session state and not graph state. Nothing here is written into the design, and no adoption field is read by loop_status, detect_gaps or detect_defects — the line dec:adoption-is-reported-the-loop-still-computes draws, held by a check that the loop's answer is unchanged whether or not the count exists.\n\nTHE CONJUNCTION IS THE COUNTERWEIGHT, because this ARMS a nudge rather than refining one, which ver:skill-triggers deliberately never did: the session must have TOUCHED reflow2 (a total bypass is caught upstream and needs the blunter message), must have edited at least the bypass threshold of files (so a trivial or read-only session stays silent), and must have loaded zero skills. It is placed LAST, after every other Stop branch declines, so it never adds an interruption to a session already being interrupted — it fires only on the session that did everything else right and still never opened a skill.\n\nWHAT IT DOES NOT CLAIM: it measures LOADING, not FOLLOWING. An agent can call get_skill and ignore every word, and nothing here would know. The offline half (tools/surface_usage.py) answers the same question across many sessions rather than inside one.",
+    "name": "A session that never opened a skill is visible, and says so before it ends",
+    "provenance": "authored",
+    "status": "verified",
+    "tier": "operational"
+  }
+}

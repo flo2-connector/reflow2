@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:c977f57b320be22584ce1d5770a52cafcbc9996890c553ce34b4b302768f876d",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:test-loop-nudge",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:test-loop-nudge"
+}

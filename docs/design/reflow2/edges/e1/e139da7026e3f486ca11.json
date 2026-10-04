@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:2ba9db47e8520cba12a811b7571caede2c87593934db52fae84edafd3b600576",
+  "edge_type": "HAS_SNAPSHOT",
+  "from_id": "rule:per-design-state-is-never-a-process-global",
+  "properties": {},
+  "to_id": "snap:epoch:rule-enforcement-split:rule:per-design-state-is-never-a-process-global"
+}

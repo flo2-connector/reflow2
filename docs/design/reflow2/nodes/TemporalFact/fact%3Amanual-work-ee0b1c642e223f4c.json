@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:a6aa78f9ea534552793f34924b09195591a7b0b06cef820dd595ef49cdd2f9e9",
+  "node_id": "fact:manual-work-ee0b1c642e223f4c",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "manual_work",
+    "statement": "During a release cut, wrote a script comparing the new export against the base branch's export: node ids added and removed, and per-type property counts, to prove no schema defaults were injected. Step 6 of the release flow asks for exactly this check (\"injected-value counts are unchanged against the baseline\") and no served call answers it.",
+    "subject_id": "proj:reflow2",
+    "valid_from": "2026-09-27",
+    "value": "{\"diagnosis\":\"tool_missing\",\"reflow2_tool\":null}"
+  }
+}

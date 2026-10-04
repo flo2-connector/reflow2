@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:cae00e98890a06e23328395194244c0470d23c6482c64230bd79eb4fcabe8a94",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-finding-or-refusal-names-the-route-that-works",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:tools-coherence"
+}

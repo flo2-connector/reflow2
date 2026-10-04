@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:804e58b1e2cae5453cd6f0115dcdbd8209aefe0321f77338bad3a168a7cebf65",
+  "node_id": "rel:v0750",
+  "node_type": "Release",
+  "properties": {
+    "description": "Cut 2026-09-30 on Anthony's word (\"Fix all the root causes …\", then \"go with your order of 1 through 5\"; step 2 is this cut). Ships the fix program of epoch:fix-what-the-two-agent-exercise-found-2026-09-29 and GitHub issue #616 fixes 1, 2 and 4 (fix 3 is PR #620, not merged, not in this release).\n\nMINOR, and the schema stamp MOVES: ACTS_FOR (66 edge types) and the new Constraint.composition enum; Question gains asked_of, answered_by, answered_at, batch, batch_position. A 0.74.0 binary refuses a store a 0.75.0 binary has opened. Upgrade note: docs/upgrading-to-v0.75.0.md.\n\nCHANGES A CALLER MUST ACT ON:\n- #636: an engine served for others (registry, or a non-loopback --http-allow-host) refuses every approval unless it declares --http-trusted-gateway / REFLOW2_TRUSTED_GATEWAY; an exposed --http server with no gateway is read-and-propose-only until Bearer/OIDC sign-in ships. flo2.io must set REFLOW2_TRUSTED_GATEWAY=flo2.io in the same deploy.\n- #635: _meta[\"reflow2/settles\"] has a version-2 form (create_node, create_nodes); a reader must learn it and refuse a version it does not know.\n- #630: every write replies with a receipt; echo: \"node\" returns the old reply.\n- #622: add_flow entry_point/exit_point and add_capability is_entry_point/is_exit_point are removed; flow_report returns entry_points/exit_points.\n\nNEW TOOLS: draw_edges, derived_report.\n\nALSO FIXED: manual_work_ledger takes budget_chars (#638). The design record for the fix program's live work was folded into main by #637 before the cut.",
+    "name": "v0.75.0 — the two-agent exercise's fix program: write receipts, ACTS_FOR, addressed questions, declared settles and derived relations, and a signature checked where it is written",
+    "status": "retired",
+    "unit_type": "binary",
+    "version": "0.75.0"
+  }
+}

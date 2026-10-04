@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:6d9827a52262b5e194dfca5b109ed2b8af234034e1b047cf999ea5fd7385e7f0",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:seam-test",
+  "properties": {
+    "covers": "whole",
+    "note": "migrated 2026-09-22 from a REALIZES link_artifact drew in error"
+  },
+  "to_id": "ver:seam-incompatibility"
+}

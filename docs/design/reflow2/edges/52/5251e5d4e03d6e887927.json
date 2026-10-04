@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:88da546235bb33b1eb1e1bf50a0c0dcb5a7cc2c26affd2434dbbe424b4ab68d3",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:test-a-schema-narrowing-ships-its-migration",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:test-a-schema-narrowing-ships-its-migration"
+}

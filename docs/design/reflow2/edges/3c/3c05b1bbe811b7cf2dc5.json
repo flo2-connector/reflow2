@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:f253ea54b9f9de321d5d1ce8d550ced438d76fcb19cd8f166fc7c61251eeac6b",
+  "edge_type": "CHANGED",
+  "from_id": "chg:impact-propagation-is-rendered-not-written",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "art:doc-impact-propagation"
+}

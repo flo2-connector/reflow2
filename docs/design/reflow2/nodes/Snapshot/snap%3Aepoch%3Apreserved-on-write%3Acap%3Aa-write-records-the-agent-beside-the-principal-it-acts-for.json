@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:8a680532165a38d097e335a75e8ec60cc4c9275d068af8cbd5dea4e6b78dea8e",
+  "node_id": "snap:epoch:preserved-on-write:cap:a-write-records-the-agent-beside-the-principal-it-acts-for",
+  "node_type": "Snapshot",
+  "properties": {
+    "edges": "[{\"direction\":\"out\",\"edge_type\":\"ALLOCATED_TO\",\"other_type\":\"Component\",\"other_id\":\"cmp:provenance\",\"properties\":{\"weight_basis\":\"estimated\"}},{\"direction\":\"out\",\"edge_type\":\"SATISFIES\",\"other_type\":\"Requirement\",\"other_id\":\"req:a-write-and-an-approval-record-the-agent-and-the-person-it-acts-for\",\"properties\":{}},{\"direction\":\"out\",\"edge_type\":\"SCHEDULED_FOR\",\"other_type\":\"DesignEpoch\",\"other_id\":\"epoch:fix-what-the-two-agent-exercise-found-2026-09-29\",\"properties\":{\"modality\":\"expected\",\"recorded_at\":\"2026-09-29\"}}]",
+    "state": "{\"description\":\"Builds the deferred ACTS_FOR rung. An agent Contributor ACTS_FOR a person Contributor. Every write and approval carries both: the principal stays the approver of record, and the agent is recorded as the one that acted. It serves attribution, never authority. A hosting layer (flo2) can pass the calling agent through. Planned by the 2026-09-29 fix program.\",\"name\":\"A write and an approval record the acting agent beside the principal (ACTS_FOR), and a standing delegation is a record\",\"provenance\":\"authored\",\"status\":\"planned\"}",
+    "target_id": "cap:a-write-records-the-agent-beside-the-principal-it-acts-for",
+    "target_type": "Capability"
+  }
+}

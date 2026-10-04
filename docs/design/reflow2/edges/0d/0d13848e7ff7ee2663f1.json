@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:4ebfd3dfbde6d71e8e1017d0ffd6e4507e114e631d8b7e9f5a194225c578a868",
+  "edge_type": "ANTICIPATES",
+  "from_id": "dec:idea-a-project-scoped-status-rollup-answers-what-has-this-project-achieved-in-one-call",
+  "properties": {
+    "evidence": "The same hub's 2026-09-14 idea asked for status in one call instead of a hand assembly; this asks the same for the whole orientation, prompted this time by reads being refused rather than skipped."
+  },
+  "to_id": "dec:idea-a-composite-orientation-read-so-a-refused-call-costs-one-retry"
+}

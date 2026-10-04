@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:aecaa12743392970d945275ad37a173af94bdd6bce31548f186e80e3bf453409",
+  "edge_type": "REALIZES",
+  "from_id": "art:graph",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:a-relation-stored-twice-is-kept-in-step-by-the-store"
+}

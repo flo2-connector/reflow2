@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:8db8700752e46bf9bd356d969eaacfb109aeb6917f0f9b553034660773b5a08d",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-published-contract-says-what-two-systems-must-agree-on",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "ifc:graph-export"
+}

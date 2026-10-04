@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:96758b2f2e3a1f559c2ce9f9dc4560fd6e8b03d49085abc74544414c137e7043",
+  "node_id": "fact:manual-work-1862641d9f569414",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "manual_work",
+    "statement": "Hand-wrote a script to diff the schema stamp of two exports — node type names, edge type names and every enum vocabulary — to decide whether an upgrade note was owed for this release.",
+    "subject_id": "proj:reflow2",
+    "valid_from": "2026-09-21",
+    "value": "{\"diagnosis\":\"unknown\",\"reflow2_tool\":\"compare_designs\"}"
+  }
+}

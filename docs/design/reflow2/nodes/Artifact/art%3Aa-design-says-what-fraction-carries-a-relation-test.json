@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:7147619e356113440db16d8ee4d8739721094f69d7c9d75fccfeb89fbc9da43e",
+  "node_id": "art:a-design-says-what-fraction-carries-a-relation-test",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "test",
+    "location": "crates/reflow2-core/tests/a_design_says_what_fraction_carries_a_relation.rs",
+    "name": "a_design_says_what_fraction_carries_a_relation.rs — the refusal case first",
+    "status": "realized"
+  }
+}

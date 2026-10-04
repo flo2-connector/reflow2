@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:4d2ae298c6ad2c1f4ffadc3af9893f2ece0b820eebe4719868edc68816960b81",
+  "edge_type": "CHANGED",
+  "from_id": "chg:every-edge-type-declares-what-it-means",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cmp:vocabulary"
+}

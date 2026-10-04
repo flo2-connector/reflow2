@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:fbe171a196fc38e751cad1d06ee2ad956a87050e49ff733b6e891dccb46c2d08",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-loop-nudge-reaches-opencode-through-a-plugin-adapter",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:machine-install"
+}

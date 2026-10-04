@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:f7c8cca312a3a3215937d5c310bf1da61d5dd1469d9ff234167bf2b65d5c21cc",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-saved-design-moves-to-the-item-layout-2026-10-03",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:53887f24532b612597a2c739844f98618634ebcdc0726d4ec0d5e232f99e681e",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:find-tools-corpus-fixture"
+}

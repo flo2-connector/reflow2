@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:b6ed2b4e17b2d740510f0e638ff1e1002eec5ed16835924da7acaa89b63ecdbb",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-saved-design-moves-to-the-item-layout-2026-10-03",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:c578f678ccf74bf853da502cbc20b2155b456fab9a3608d6fb6d6365264e3eb1",
+    "checksum_basis": "measured"
+  },
+  "to_id": "art:kpp-proposal-skill"
+}

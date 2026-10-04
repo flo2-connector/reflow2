@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:154f009ed4a00af2a57b0241a9fb1ccd366235072db505a38ef5e052b8ac949c",
+  "node_id": "chg:bl176-orphan-attachment",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "test_failure_fix",
+    "name": "BL-176: orphan_node counts DOCUMENTS and SPECIFIES as attachment, so a correctly-filed document stops reading as a defect"
+  }
+}

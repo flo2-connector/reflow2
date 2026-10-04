@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:94ebf2b6a072b036de9e776aa76bf5c187f22fdc1a819c4f153c4f0f1dadf073",
+  "edge_type": "CAUSES",
+  "from_id": "art:loop-nudge",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "The reclaim path in claim_probe_slot was check-then-act: `if _probe_lock_is_stale(lock, now): lock.unlink(); continue`. N hook processes all find one stale lock and all judge it stale; one reaches the O_EXCL create first and writes a FRESH lock; a straggler still between the check and the unlink then unlinks — landing on the WINNER'S new lock. That unlink SUCCEEDS, so the straggler never reaches the \"someone else cleared it first\" branch, its own create succeeds, and two processes hold the slot. Isolated by measurement rather than reasoning: 8 processes on a barrier under CPU load, 60 trials, WITH a stale lock seeded gave 10/60 bad (2 and 3 winners) and WITHOUT any lock gave 0/60 — which refutes the competing candidate that a brand-new lock is briefly readable as stale through the empty window between O_EXCL create and the payload write. Serializing the reclaim behind an O_EXCL guard, with the staleness re-checked INSIDE that section, takes the same harness to 0/60.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:the-stale-probe-lock-reclaim-lets-two-winners-through-2026-09-13"
+}

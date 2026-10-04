@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:4932613572acdf390f0166f037369238bfed1194b77dc1128b72a463edf1e40c",
+  "node_id": "req:a-served-skill-carries-a-line-a-person-reads-and-says-who-it-is-for",
+  "node_type": "Requirement",
+  "properties": {
+    "lineage": "original",
+    "name": "A served skill carries a line a person reads and says who it is for, beside the trigger an agent matches on — so no consumer writes its own summaries",
+    "priority": "high",
+    "provenance": "authored",
+    "statement": "Anthony, 2026-09-19 ('start addressing the issues identified in flo2 and bhome feedback docs'), promoting flo2 F8/F9. The served surface stated what a person TYPES (the shortcut, gate-compared since cap:the-command-surface-answers-for-itself) and nothing a person READS: all 30 descriptions open 'Use …' (250–878 chars, median 437) because their job is the agent's trigger, so a consumer building a menu stripped the opener by hand or kept 30 summaries a rename would make quietly wrong. Every skill must carry `summary` (one line addressed to a person, never trigger-shaped, at most 120 characters) and `audience` (anyone / operator / agent — expertise, not human-versus-model), required at build and by the lint, served by list_skills and get_skill. Any count the surface states about itself is computed, never written ('eight of these differ' was nine, then ten).",
+    "status": "accepted"
+  }
+}

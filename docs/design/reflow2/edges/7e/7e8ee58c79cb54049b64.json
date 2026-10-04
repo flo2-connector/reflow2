@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:c0d98a1f7ee81e9835bcf13280c5c53a27f4139732f516382c05984a4a19c76d",
+  "edge_type": "CAUSES",
+  "from_id": "chg:next-names-the-safe-tool-20260808",
+  "properties": {
+    "basis": "observed",
+    "confidence": 1.0,
+    "evidence": "That change fixed the brainstorm skill's stale citation of add_decision's pre-2026-07-25 default. Fixing the instance is what raised the class: nothing stops the next skill sentence pinned to a default from aging the same way.",
+    "validation_status": "validated"
+  },
+  "to_id": "dec:idea-a-skill-may-assert-the-defaults-it-relies-on"
+}

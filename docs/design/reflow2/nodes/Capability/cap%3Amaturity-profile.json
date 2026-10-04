@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:b424c5d59e3876ee5dde99d77f4b5be11f5661eb4b80e0d9b480ef61e9b660c5",
+  "node_id": "cap:maturity-profile",
+  "node_type": "Capability",
+  "properties": {
+    "description": "Measure seven bands — intent, function, allocation, seams, realization, assurance, operation — each as a count over a population carrying the question it answers, and name the lowest-scoring measurable band as the frontier. The frontier is relative, so the reading contains no threshold to default: it says where a design IS and refuses to say where it SHOULD be. Bands scoring above the frontier are reported as normal rather than as work out of order, because designs get function right first and structure later. A band with an empty population reads as unmeasured, never as zero, and no stage name is emitted since a label no computation reads would not earn its keep.",
+    "name": "Locate a design on the function-to-structure trajectory",
+    "provenance": "authored",
+    "status": "verified",
+    "tier": "operational"
+  }
+}

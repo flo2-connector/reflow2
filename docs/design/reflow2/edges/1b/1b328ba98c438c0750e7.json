@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:0e79d12c7525d34b6286ebbf29a4a4a902aef9944b3cefb79631eff6a7c4529f",
+  "edge_type": "YIELDED",
+  "from_id": "frag:alex-2026-08-14-remainder",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "fact:defect-the-export-was-skipped-because-the-instructions-imply-a-stop-that-is-not-needed"
+}

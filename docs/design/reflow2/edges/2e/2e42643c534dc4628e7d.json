@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:631cc2acfdad4d52fbbe84ced6881348c6a6f5bb20aded8c66a78f96a5f2dcd0",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:a-declared-wall-is-checked-against-the-coupling-it-contains",
+  "properties": {
+    "coverage": "partial",
+    "rationale": "It computes whether a declared wall holds, which is one of the requirement's claims. It does NOT compute encapsulation or cohesion, and it reads coupling rather than contracts, so the requirement is not fully met by it."
+  },
+  "to_id": "req:modularity-computed"
+}

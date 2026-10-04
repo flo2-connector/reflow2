@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:356a97274fd7a31145774d95d6fcee844b920e8bc2a48911e08f7c5d15280fe8",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-bulk-edge-write-runs-each-typed-helpers-own-checks",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:bulk"
+}

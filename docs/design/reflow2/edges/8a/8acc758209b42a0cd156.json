@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:4533b05e2cbaf0628edddf56372684f9c24e34a884b19250352d53f65a9ce6e3",
+  "edge_type": "TRIGGERS",
+  "from_id": "fact:the-27-design-rules-are-unreachable-by-the-violation-vocabulary-because-it-resolves-to-environment-rule",
+  "properties": {
+    "evidence": "The finding that `rule_id` silently resolves to EnvironmentRule, with no description saying so, is what prompted this change — and this change addresses only the SAYING half: violates_rule, complies_with and set_violation_status now state the type on the served surface. The finding stays OPEN because its other half, that no edge path reaches a DesignRule at all, is untouched and is a separate decision."
+  },
+  "to_id": "chg:every-required-reference-parameter-says-its-type"
+}

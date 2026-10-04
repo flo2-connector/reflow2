@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:8052e89c752f1230aa5d3355f28ed7e10d02afdeaf6527887cd771371d0d5770",
+  "node_id": "decision:ack:75651a693cc63b9c",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Accepted the gap gap:75651a693cc63b9c.",
+    "name": "Reviewed: gap:75651a693cc63b9c",
+    "rationale": "Standing disposition for planned-but-unbuilt capabilities. The check named now because the interesting assertions are the downstream ones, not the vocabulary itself: storing a parent link proves nothing. The tests must be that a parent with fully-satisfied decomposed children reads as DELIVERED without carrying its own capability (extending cap:derived-completion), and that re-opening a Decision can name the derived requirements that existed only because of it. If either is cut, the distinction stops earning its keep under dec:edge-orthogonality and should be reconsidered rather than kept as an uncomputed label.",
+    "status": "accepted"
+  }
+}

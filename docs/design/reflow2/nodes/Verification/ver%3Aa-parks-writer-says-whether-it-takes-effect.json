@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:5bef82297baf770d1de1a3df6f5c983e1b613a2f2fb165c523fdc0572970d176",
+  "node_id": "ver:a-parks-writer-says-whether-it-takes-effect",
+  "node_type": "Verification",
+  "properties": {
+    "findings": "Observed FAILING on a clean origin/main 6329079 build under the shared build lock (in_force absent on every ruling; a DesignRule ruling recorded as success and parked nothing). Passing on the fix.",
+    "kind": "verification",
+    "last_run_at": "2026-09-29",
+    "level": "integration",
+    "location": "crates/reflow2-mcp/tests/a_parks_writer_says_whether_it_takes_effect.rs",
+    "method": "test",
+    "name": "governed_by(ruling: parks) says whether the ruling takes effect, and what it says is what every parks reader does (swept.parked, orphan_node), for proposed, accepted, deferred and rejected Decisions, a DesignRule and a missing id",
+    "status": "passing"
+  }
+}

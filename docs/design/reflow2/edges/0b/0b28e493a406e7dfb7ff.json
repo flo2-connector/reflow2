@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:f902985b754423b4330aacd85c11dd6a41b310b6abb6de1d7ac6b4f3b8c53f3f",
+  "edge_type": "REALIZES",
+  "from_id": "art:orphan-attachment-test",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:heal"
+}

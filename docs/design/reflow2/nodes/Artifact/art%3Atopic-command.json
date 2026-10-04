@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:2c340e4f59fa8c681013acd06bed4cb759d94eef7374b3015522d2664a406590",
+  "node_id": "art:topic-command",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "document",
+    "location": "getting-started/commands/topic.md",
+    "name": "topic.md — the /topic slash command pointing at the topic skill",
+    "status": "realized"
+  }
+}

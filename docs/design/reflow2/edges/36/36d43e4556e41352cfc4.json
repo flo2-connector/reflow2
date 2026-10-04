@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:e4dc238811a1c3438e55b56e337a37586299c9c19134800a432d374833415a99",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "drift:e325adce47e0faa7",
+  "properties": {
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "art:ingest"
+}

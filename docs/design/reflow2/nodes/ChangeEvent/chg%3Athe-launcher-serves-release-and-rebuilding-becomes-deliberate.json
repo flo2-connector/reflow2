@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:991e6070bd86b3ae9b286e4e3384f686d8cb08336e99f2052a7d8056c94cf32b",
+  "node_id": "chg:the-launcher-serves-release-and-rebuilding-becomes-deliberate",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "performance_optimization",
+    "name": "The launcher serves a release binary and stops building one — a 93x walk, at the cost of making the rebuild your decision",
+    "subject": "system"
+  }
+}

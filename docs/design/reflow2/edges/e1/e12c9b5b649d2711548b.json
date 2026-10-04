@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:ca79bb83001d68d2d779b412cbec0060735c05548c05b40a6ccb15412aca4b8c",
+  "edge_type": "REALIZES",
+  "from_id": "art:loop-nudge",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:loop-status"
+}

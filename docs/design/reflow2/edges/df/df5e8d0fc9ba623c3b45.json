@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:4aa7addf0bd49b283979700d7cc34064892861ee852bd4a38d28fc5e433752b3",
+  "edge_type": "GOVERNED_BY",
+  "from_id": "req:a-rule-knows-where-else-it-is-written-down",
+  "properties": {
+    "note": "Captured under the decision that governance is integrated here rather than split out"
+  },
+  "to_id": "dec:governance-integrates-not-splits"
+}

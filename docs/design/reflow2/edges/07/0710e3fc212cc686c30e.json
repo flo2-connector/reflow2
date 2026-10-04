@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:90d81fb60178bb57dcb647211f4eaee4c60632e49ab3b463a69ad6202c7c4fa9",
+  "edge_type": "MITIGATES",
+  "from_id": "dec:idea-a-cross-type-near-match-is-a-note-and-only-a-same-type-one-refuses",
+  "properties": {
+    "evidence": "Options (a) or (b) would remove the measured refusal of a Capability/Requirement/DesignRule/Component over a TemporalFact, which is the defect that fact records."
+  },
+  "to_id": "fact:root-cause-a-dated-finding-blocks-four-intent-constructors-because-an-unlisted-cross-type-pair-refuses-2026-09-28"
+}

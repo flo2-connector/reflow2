@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:e821e75b3b8492abcd0dda1faa2851d3090107d9e854e0003a52836adba50eee",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:one-shot",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:one-shot"
+}

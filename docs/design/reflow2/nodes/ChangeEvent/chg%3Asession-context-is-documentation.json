@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:58dc19d8200c3a986403fb878ece2998551ecb0fb433410aadd5a04b4ec3465b",
+  "node_id": "chg:session-context-is-documentation",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "scope_change",
+    "name": "Session context reframed as internally-derived documentation, not agent convenience"
+  }
+}

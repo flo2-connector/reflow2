@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:a97ad2a42211c57f055eb0f2cb790e285aa68deda49b4c915c8eefa426eaa428",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-finding-or-refusal-names-the-route-that-works",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:vocabulary-reach"
+}

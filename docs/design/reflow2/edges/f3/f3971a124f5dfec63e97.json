@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:559a2f892df0a0f72e5a44d5a23054b99b6dee93be2c1801e1b2dcaa17f710bd",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-a-recorded-questions-wording-can-be-corrected",
+  "properties": {
+    "evidence": "Fixing the rehydrate guard removes the commonest way a Question's wording degrades, which changes how much this question is worth answering — but not whether it needs answering, since a badly-phrased question is equally permanent. The dependency is on how urgent this is, not on whether it is real.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "fact:the-gap-replay-warning-exists-because-rehydrate-declines-to-run-when-the-caller-sent-text"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:151d96789bc36d47f5c5fa7eb55bffee701349d687a5d93bd496d86a4b513897",
+  "edge_type": "REALIZES",
+  "from_id": "art:maturity",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:maturity-profile"
+}

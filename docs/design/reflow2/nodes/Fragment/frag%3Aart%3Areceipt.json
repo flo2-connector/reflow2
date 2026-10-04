@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:e8eb439afcfbedd4cd0221da6c7bef2463e37ef81ee03fd32589b38fd981d9b3",
+  "node_id": "frag:art:receipt",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered receipt.rs — every write replies with a receipt, cut at call_tool"
+  }
+}

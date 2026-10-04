@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:8750bef5475d011e3bc06142c5a4e237207ae186322b537764fd86707da6c063",
+  "node_id": "snap:epoch:the-discipline-arrives-at-the-tool:epoch:the-philosophy-is-in-the-product",
+  "node_type": "Snapshot",
+  "properties": {
+    "edges": "[{\"direction\":\"in\",\"edge_type\":\"SCHEDULED_FOR\",\"other_type\":\"Requirement\",\"other_id\":\"req:a-fix-says-whether-it-corrected-the-cause\",\"properties\":{\"modality\":\"expected\",\"recorded_at\":\"2026-08-17\"}}]",
+    "state": "{\"epoch_type\":\"milestone\",\"name\":\"Doing it right is something reflow2 CARRIES, not just something this project practises — a fix says whether it reached the cause, and the tool says what it will not do\",\"sequence\":360,\"status\":\"planned\"}",
+    "target_id": "epoch:the-philosophy-is-in-the-product",
+    "target_type": "DesignEpoch"
+  }
+}

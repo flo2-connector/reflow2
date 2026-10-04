@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:0caec271cb53e6b831dc6be9a88ede357a2f7b3054ececea913ad7bd76521084",
+  "edge_type": "CAUSES",
+  "from_id": "chg:the-relatedness-judgement-rides-the-refusal",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "#394 (7954829, 2026-08-30) added related_to to add_decision as `g.review_relations(...).map_err(dyno_err)?;`, dropping the returned ReviewOutcome; when #555 made that outcome the subject-first sentence and the skill promised it, add_decision's reply still discarded it — measured on 0.72.0: edges drawn, reply keys [graph_id, loop_hint, node_id, node_type, properties] only.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:root-cause-add-decision-discards-the-edge-echo-its-related-to-computed-2026-09-28"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:6c0a58a9963b094327f6896732e6deb143c883b1259811b58fe1c2a54283e1f4",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-overtaken-defect-question-names-the-likeliest-fix-2026-10-03",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "ver:a-fix-without-a-cause-and-an-overtaken-defect-raise-gaps"
+}

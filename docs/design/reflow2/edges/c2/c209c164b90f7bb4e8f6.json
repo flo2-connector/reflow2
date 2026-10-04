@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:65e3a36cbc7ee57778ae3e29a9c87bb19141748c2aa2c2f80843e24e6d721341",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "req:derived-relations-and-reports-are-maintained-incrementally",
+  "properties": {
+    "evidence": "Gated on measurement: built only where a report or derivation misses its budget by recomputing the whole graph.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "req:time-and-tokens-are-measured-per-task-against-budgets"
+}

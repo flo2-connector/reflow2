@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:4bf815350ffddbe2df420fd4c7aa1aa63ac36ceb600904c49085a8b6c196c496",
+  "node_id": "decision:ack:heal:8a6d72894136a514",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Accepted the structural defect heal:8a6d72894136a514.",
+    "name": "Reviewed: heal:8a6d72894136a514",
+    "rationale": "ACCEPTED AS ARCHITECTURE, for the same reason as `ifc:mcp-protocol` and with the same bound. The HTTP tool surface is one of the two transports the MCP surface is served over; every subsystem path crosses it because that is the design, not an accident of wiring. `add_redundancy` would mean a second, parallel transport carrying the same tools — which is what the stdio path already is, and the detector cannot see that they are alternatives rather than a chain.\n\n⭐ THAT LAST POINT IS THE HONEST CONTENT OF THIS REVIEW: stdio and HTTP ARE the redundancy, and the topology walk models them as sequential because both are modelled as interfaces on the same spine. The finding is a limitation of what the walk can express, not a property of the system.\n\n⚠️ NOT ACCEPTED: that the transport is unimportant. It is where a content-only client's whole read surface lives, which this project measured the hard way in August. What is accepted is that the shape the detector names is deliberate and its suggested repair already exists under a different name.",
+    "status": "accepted"
+  }
+}

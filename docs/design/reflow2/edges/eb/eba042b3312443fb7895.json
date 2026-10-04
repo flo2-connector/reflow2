@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:ec9064a3f1ceec23f7ab2396433f481c58c53fd698197d0c0e60c160a7a80b60",
+  "edge_type": "VERIFIES",
+  "from_id": "ver:a-test-run-becomes-per-file-outcomes",
+  "properties": {},
+  "to_id": "cap:a-real-run-is-fed-back-by-file"
+}

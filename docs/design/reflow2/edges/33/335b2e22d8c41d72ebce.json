@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:730928cf42fb159e154942267d61cfb56122b51c9ea5b9ab00ae3b4cd72a4b87",
+  "edge_type": "RISKS",
+  "from_id": "dec:idea-an-aggregate-acknowledgement-never-expires",
+  "properties": {
+    "evidence": "That capability is aggregate-keyed on the same anti-flood argument and is backlog-shaped (33 of 85 leaf components on reflow2's own design), so a single acknowledgement would silence it permanently in exactly the way `unreviewed_ideas` was silenced. The hazard is identical and was noticed only after it shipped."
+  },
+  "to_id": "cap:unallocated-component-detector"
+}

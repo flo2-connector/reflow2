@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:f1c5ee21e3e5f7e60c8430d721779377e9722c5f07e49fb6458e8ca71ed6b64f",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-a-checkout-knows-which-remote-design-it-implements",
+  "properties": {
+    "evidence": "Options (a) and (d) are read by the local client when it starts in a folder; without that client only option (b), client-specific config, is available.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "req:a-local-client-works-against-a-remote-reflow2-server-by-url"
+}

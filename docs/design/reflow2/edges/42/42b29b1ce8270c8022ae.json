@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:d64e30c47f3591c01920f125625c637e90abeeddfb483bad5bea24fe2a733c3e",
+  "edge_type": "OBSOLETES",
+  "from_id": "dec:field-reports-are-untracked-because-the-repository-is-public",
+  "properties": {
+    "confidence": 1.0
+  },
+  "to_id": "art:qs-project-feedback-2026-09-04"
+}

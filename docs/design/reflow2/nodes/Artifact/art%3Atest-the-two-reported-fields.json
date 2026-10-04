@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:b62318802d7850898609850085cc3024f8cbf2fd3156bec42890004b26fc80fe",
+  "node_id": "art:test-the-two-reported-fields",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "test",
+    "location": "crates/reflow2-mcp/tests/the_two_reported_fields_can_be_set.rs",
+    "name": "the_two_reported_fields_can_be_set.rs",
+    "status": "realized"
+  }
+}

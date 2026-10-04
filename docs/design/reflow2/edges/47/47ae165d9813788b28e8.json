@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:8c8b3f2beabe6827088b7c15dafb6bce296db6bc2a9839b3b051b5fd33026aff",
+  "edge_type": "MITIGATES",
+  "from_id": "dec:idea-a-finding-that-names-a-class-is-asked-for-its-census",
+  "properties": {
+    "evidence": "There the instance (one call pair) was fixed and the class recurred through a different pair 21 days later. Enumerating the population the class ranges over is the step that was missing."
+  },
+  "to_id": "fact:the-parallel-batch-class-recurred-because-only-its-instance-was-fixed"
+}

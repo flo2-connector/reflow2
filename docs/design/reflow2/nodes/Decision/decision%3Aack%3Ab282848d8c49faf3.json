@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:f31a9db3b4420e02418f01a40ff2096f7e644e537b5fe0eaf96b2917f0936f09",
+  "node_id": "decision:ack:b282848d8c49faf3",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Accepted the gap gap:b282848d8c49faf3.",
+    "name": "Reviewed: gap:b282848d8c49faf3",
+    "rationale": "DISTINCT, on Anthony's word 2026-08-29. The DUPLICATES edge is deliberate and the two nodes must NOT be merged.\n\nTHE HEURISTIC WAS RIGHT TO ASK — one name's words are a subset of the other's, and they do share a mechanism: both record that `orphan_node` short-circuits on degree before it looks at pointer properties, so a well-connected node hides its broken subject. The 2026-08-26 node said it first; the 2026-08-29 node re-derived it without searching, which is itself recorded on the edge.\n\nWHY THEY ARE STILL TWO THINGS:\n• `fact:nine-temporalfacts-point-their-subject-at-a-node-that-does-not-exist` is the BROADER record — the count of nine, the 5-versus-4 split across five distinct bad ids, and the cause for five of them (an agent copied a neighbour's `subject_id` convention without checking it resolved).\n• `fact:a-dangling-reference-is-only-detected-when-the-node-is-also-edgeless` is NARROWER and carries what the earlier one does not: the argument that the bias runs the wrong way (an edgeless node is the least consequential place for a broken pointer, so the detector was most reliable where it mattered least), and the rule that shipped from it as #373.\n\n⭐ AND THEIR NUMBERS DIFFER WITHOUT EITHER BEING WRONG, which is the strongest reason to keep both. 08-26 measured 8 of 9 caught with 1 invisible; 08-29 measured 7 of 9 with 2. Between those dates `fact:defect-kit-manifest-drift-is-invisible-to-ci` gained edges and crossed from visible to invisible — the finding's own mechanism demonstrating itself on a live node. A merge would have to pick one figure and would destroy that evidence, because the pair IS the observation.\n\n⇒ Merging would either lose content or produce one node asserting two measurements as if they were one. Linked, not merged, is the correct end state — the shape `DUPLICATES` exists for: the same thing said twice, for different reasons, both of which matter.",
+    "status": "accepted"
+  }
+}

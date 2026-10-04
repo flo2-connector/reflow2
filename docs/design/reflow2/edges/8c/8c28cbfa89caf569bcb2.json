@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:16819b3fefae12421450a655fe0c4a0637062f5c3fb839cc1d1965f75c0f9e51",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:bl-102",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:docs"
+}

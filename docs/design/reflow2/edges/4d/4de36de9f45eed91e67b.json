@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:1034878250cb6b1c9e5873024489808efb8f5a652358e43e263b7d71dc4a8bb9",
+  "edge_type": "HAS_SNAPSHOT",
+  "from_id": "req:snapshot-per-revision-not-per-epoch",
+  "properties": {},
+  "to_id": "snap:epoch:snapshot-per-revision:req:snapshot-per-revision-not-per-epoch"
+}

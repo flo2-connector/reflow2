@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:667882c885f5e8bb0568509ea4250d77ecfbb9332b57d1645bf3a91495f6d7e3",
+  "node_id": "req:sessions-across-machines",
+  "node_type": "Requirement",
+  "properties": {
+    "concern": "core",
+    "designation": "internal",
+    "kind": "functional",
+    "lineage": "original",
+    "name": "A session on another machine works the same design, live",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "Sessions running on a DIFFERENT machine must be able to work the same design at the same time, through the same one server, without exporting, merging or pulling. The third of the three cases: different projects on one machine has always worked; several sessions on one machine works through --http; this is the one where the seats are not on the same box. Because there is no authentication, being reachable off the machine must be a deliberate act — the server answers only for hosts that were named on the command line, and says so when a bind would otherwise fail silently.",
+    "status": "accepted"
+  }
+}

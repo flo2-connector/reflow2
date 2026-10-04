@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:16c3b51fc60d5c1d501e6530b95a09a0bdb72e48e0c6490150b6c36c34c3011b",
+  "node_id": "chg:granularity-optimised-against-a-written-budget",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "performance_optimization",
+    "name": "`CountingRead` — the second real implementation of `ifc:graph-read` — and `granularity` brought inside a budget written before the code changed. 552 store reads to 220 (N+2, N=218 artifacts), get_node 333 to 0. Wall clock did NOT move and that is the honest result: the budget bought the structural property that cost scales with artifacts rather than edges, and bought no speed. Guarded by a COUNT at three sizes plus an edges-do-not-cost-anything assertion, never by a timer.",
+    "subject": "system"
+  }
+}

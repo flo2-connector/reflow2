@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:c449f599bea353d1783c859bbcb444b3d2a521d35c41a208c6eea6601b6c9924",
+  "node_id": "decision:ack:heal:4b023a9e7da76757",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Accepted the structural defect heal:4b023a9e7da76757.",
+    "name": "Reviewed: heal:4b023a9e7da76757",
+    "rationale": "Correct as read, and correct to leave standing for now: req:complementary-pairing anticipates req:seam-incompatibility and nothing follows through because BOTH are `proposed` and waiting on Anthony's word. Manufacturing a follow-through would assert a design commitment nobody has made — the same forgery `dec:certainty-derived` forbids. Withdraw this acknowledgement when either requirement is accepted; the follow-through is then real work, not bookkeeping.",
+    "status": "accepted"
+  }
+}

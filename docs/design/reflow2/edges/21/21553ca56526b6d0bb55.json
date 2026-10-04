@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:3447617077ddadfdade52a06139f0ae4b0af5ac72bb6947be8adb1e5ab1de561",
+  "edge_type": "INVALIDATES",
+  "from_id": "chg:read-only-is-honoured-by-every-client-mode-2026-10-03",
+  "properties": {
+    "at": "2026-10-03",
+    "note": "The forwarding loops now take --read-only as a required argument and screen every line, and LatentService honours it (into_read_only); the cause no longer holds. Pinned by the 8 tests in every_client_mode_honours_read_only.rs."
+  },
+  "to_id": "fact:root-cause-a-client-forwards-every-line-and-read-only-reached-only-the-service-it-never-builds-2026-10-03"
+}

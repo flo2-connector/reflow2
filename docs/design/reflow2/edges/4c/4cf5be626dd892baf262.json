@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:12200bc4cdf0072cfcf229bfe7ccd77f0bef4cf3cd4d342317ed9b39cab8dfc7",
+  "edge_type": "REALIZES",
+  "from_id": "art:manual-work",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "verified"
+  },
+  "to_id": "cap:a-session-reports-the-work-it-did-by-hand"
+}

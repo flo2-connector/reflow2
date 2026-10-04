@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:ce24098d1f33c38f8ae4c84de93dc5509220d3eb6c1d28b42b001701e3609653",
+  "edge_type": "CONSUMES",
+  "from_id": "sys:agent-surface",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "ifc:core-api"
+}

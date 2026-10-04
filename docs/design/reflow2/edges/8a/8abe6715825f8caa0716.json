@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:10e92b85cb0dd5a0f60b66b1daef608f085810310b2aed7f4565ac5373ac31b4",
+  "edge_type": "RISKS",
+  "from_id": "fact:adopt-ran-on-reflow2-and-the-mechanical-contract-recovery-collapsed",
+  "properties": {
+    "evidence": "That measurement is the evidence against option (a): mechanically derived dependency edges were 95/95 type references, and importing them would have buried the real contracts."
+  },
+  "to_id": "dec:idea-could-a-projects-codegraph-become-part-of-its-reflow2-design"
+}

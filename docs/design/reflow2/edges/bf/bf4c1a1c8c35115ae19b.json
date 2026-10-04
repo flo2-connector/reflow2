@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:d6bfded6e683ea20aee3dc03a620820d49a4b899845d95bcf0d24c9d2d3c136d",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:brainstorm",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:skills"
+}

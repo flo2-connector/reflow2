@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:9652a15f953d43dbc5f0413f9d1721319a4a51028fa9fb8b2ac022dc924402c9",
+  "edge_type": "MITIGATES",
+  "from_id": "dec:idea-a-constraint-says-how-its-quantity-composes",
+  "properties": {
+    "evidence": "The defect is a verdict hard-wired to the sum for a path-cumulative quantity. Every option here except (d) changes which rollup the verdict reads."
+  },
+  "to_id": "fact:root-cause-a-latency-budget-with-parallel-branches-is-judged-on-the-sum-while-its-worst-path-is-computed-beside-it-2026-09-29"
+}

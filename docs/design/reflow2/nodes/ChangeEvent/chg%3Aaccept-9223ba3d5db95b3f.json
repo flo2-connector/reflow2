@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:de37cbc3dcc60572b5051f35287d1077a1dd7b8ec9ef446e91c822045b46ba0f",
+  "node_id": "chg:accept-9223ba3d5db95b3f",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "documentation",
+    "detected_at": "2026-09-25",
+    "name": "Comment only: the reader-lens doc no longer says nothing binds a session to a Contributor, since a session may now say who it writes for (on trust, for attribution). Behaviour unchanged.",
+    "subject": "system"
+  }
+}

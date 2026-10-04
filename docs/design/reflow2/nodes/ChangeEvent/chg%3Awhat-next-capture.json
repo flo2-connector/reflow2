@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:793f48f46ed40a05505d8715c2acdc151b11ae1e9857dea09c55f31fd2086003",
+  "node_id": "chg:what-next-capture",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "name": "\"What should I work on next\" captured as a projection, distinct from detect and heal"
+  }
+}

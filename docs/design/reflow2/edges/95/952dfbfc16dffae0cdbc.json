@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:79f86a34de4a8749e2866078b8dd96da2eee6f4edc13686e9ed9c435a3f2a18e",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:closure-report",
+  "properties": {},
+  "to_id": "req:a-design-closes-against-a-declared-threshold-and-the-report-names-the-first-hole"
+}

@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:3f22bcd5f71d6160779c5955b9cdfef8cf644a091354baa68e5365b79a0d5932",
+  "node_id": "fact:the-no-hook-handshake-test-read-the-developers-machine-wide-opencode-plugin",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "confidence": 0.95,
+    "fact_type": "defect",
+    "name": "MEASURED 2026-09-22: tools/test_nudge_path.py's no-hook handshake test failed on the dev box and passes in CI, because the server counts a machine-wide OpenCode plugin installed there at 11:28 the same day",
+    "statement": "test_a_project_with_no_hook_is_told_so_at_handshake builds a bare temp project and expects the \"REFLOW2 HAS NOT INSTALLED\" advisory. On this box it got none. nudge::status_with_home returns Installed when ~/.config/opencode/plugins/reflow2-loop-nudge.js exists, and that file was written 2026-09-22 11:28 — so the test read the developer's machine, not the project it built. Refuted alternatives: unsetting CLAUDE_PROJECT_DIR and TMPDIR changed nothing; giving the server HOME=<the temp project> made 9/9 pass. Fixed in the test (HOME isolated), not in the server: counting a machine-wide plugin is the documented, correct behaviour (PR #511). Unrelated to the loop-closure work; found while gating it.",
+    "subject_id": "cap:the-loop-closure-reading",
+    "valid_from": "2026-09-22"
+  }
+}

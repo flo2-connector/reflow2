@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:9b13c2a7e52dc781fc38d49936bc979dc3c4e10ff6725427602eb03b5e6a0ac6",
+  "node_id": "art:test-a-closure-criterion-is-declared-on-the-served-surface",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "test",
+    "description": "Three cases; a renamed or unreachable field fails here rather than in front of somebody. Includes the empty-design case: two counted legs with nothing to run on, and the design does not close on that account rather than closing on silence.",
+    "location": "crates/reflow2-mcp/tests/a_closure_criterion_is_declared_on_the_served_surface.rs",
+    "name": "a_closure_criterion_is_declared_on_the_served_surface.rs — set_closure_criterion, closure_report and margin on add_constraint, driven through the JSON request shapes",
+    "status": "realized"
+  }
+}

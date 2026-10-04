@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:b63eb8abb6f2ab8d2c0c7acfab9d2e7c65e3b999db6c1f0870398fba5514ef6c",
+  "edge_type": "CHANGED",
+  "from_id": "chg:add-decision-draws-related-to-for-every-kind-and-every-constructor-names-its-edges",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cap:a-drawn-relation-is-read-back-as-a-sentence-and-the-skill-names-the-direction-flag"
+}

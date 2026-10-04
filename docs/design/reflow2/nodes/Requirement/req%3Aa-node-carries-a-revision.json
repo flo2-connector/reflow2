@@ -1,0 +1,17 @@
+{
+  "content_hash": "sha256:ed2713f18e19016f80cce98727c41b16e7fee65bd34d6edce5b7aec11bf5fb9b",
+  "node_id": "req:a-node-carries-a-revision",
+  "node_type": "Requirement",
+  "properties": {
+    "concern": "core",
+    "designation": "internal",
+    "kind": "functional",
+    "lineage": "original",
+    "name": "A write can tell it lost a race",
+    "priority": "medium",
+    "provenance": "authored",
+    "rationale": "MEASURED, NOT SUPPOSED (fact:defect-write-response-describes-the-write-not-the-state): a deliberate experiment on the live 7-seat graph established that same-property concurrent writes are SILENT LAST-WRITER-WINS — no error, no warning, no version conflict, no indication a value was replaced — and, more sharply, that THE WRITE RESPONSE DESCRIBES THE WRITE RATHER THAN THE STATE: a racer received a success payload reading `statement: RACER_ONE, priority: high` when both fields were already false in the store. There is no version, rev, etag or updated_at anywhere in the payload, so a client cannot detect that it lost and has no primitive to compare-and-swap with. WHY THIS IS SHARPER THAN IT LOOKS: on a solo graph response == state, so trusting your own write-response is free, and every habit formed under the old stdio transport does exactly that. A session that writes a value and later reasons from its own return value is reasoning from something that was never durable — and nothing tells it. THE REPORTER EXPLICITLY DID NOT ASK FOR ENFORCEMENT: even an unenforced rev, merely RETURNED, lets a caller notice it was superseded, and that is most of the value. WHAT THIS MUST NOT COST, from the same experiment: per-property merge held under concurrency (a partial write EDITS and does not reset omitted fields) and concurrent writes serialize cleanly with both racers' distinct properties surviving. The reporter calls per-property merge the single most important safety property for a shared graph and lists it under what-not-to-change.",
+    "statement": "A node SHALL carry a monotonic revision returned on read and on write, and writes SHOULD accept an optional if_rev precondition — so a client can detect that its value was superseded. At minimum, a write response SHALL say when the node was also written by another seat since the caller's read. Requested as the #4 fleet ask by dev_storyflow's api-boss 5d608b85, 2026-08-07.",
+    "status": "accepted"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:e0e143f159766e6c69dceccc70e6295990c9e5d293a24152d0cadf5755e93447",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0550",
+  "properties": {
+    "as_checksum": "sha256:e06c721f5f95ad1e42a8e97c53ca55c985a4a961ef256ff57489025891adb93b"
+  },
+  "to_id": "art:test-discontinued-is-read"
+}

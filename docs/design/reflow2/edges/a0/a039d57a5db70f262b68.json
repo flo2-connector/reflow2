@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:0cd15f2f396b71651ec65aea1c6c937b46a655b1101e16dd5617635fcf9e3d32",
+  "edge_type": "REALIZES",
+  "from_id": "art:dependency-manifest",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:design-dependencies-declared"
+}

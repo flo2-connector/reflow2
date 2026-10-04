@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:39cd098d4344bf625eb65ee26267aad3514756c47276c3e1d341b17b3816381c",
+  "node_id": "frag:art:test-nudge-path",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered test_nudge_path.py"
+  }
+}

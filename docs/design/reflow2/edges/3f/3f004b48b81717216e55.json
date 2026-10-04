@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:29ad3f6904936c6f110c619320efd3f47c1e97937dac3ac5480cb07ac544ab4b",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "rule:mcp-and-the-graph-are-the-only-common-ground",
+  "properties": {
+    "approved_at": "2026-08-26",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:8d12c59d256ddf4e4658061b22e177c476de12b151339ae44bced967e3c906ab",
+  "edge_type": "CHANGED",
+  "from_id": "chg:baseline-1e5b8bbacda77284",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:test-a-budget-adds-only-numbers-in-its-own-unit"
+}

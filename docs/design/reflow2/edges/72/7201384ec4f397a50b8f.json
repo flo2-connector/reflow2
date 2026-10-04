@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:d95e75bce92b42703918103d61cca3e1cbd489e464476b79451fe8b25a06f9c1",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:evidence-quality-instrument",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:evidence-quality-instrument"
+}

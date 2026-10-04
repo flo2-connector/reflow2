@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:adcc9cc82e8cca3a9f6d51995a272b42c9cfa9309f57166f3d0a32954428d6cd",
+  "edge_type": "CHANGED",
+  "from_id": "chg:every-gate-runs-the-binary-it-is-told-2026-10-03",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:merge-driver-test"
+}

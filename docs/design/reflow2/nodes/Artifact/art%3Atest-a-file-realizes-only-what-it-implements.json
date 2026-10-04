@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:7b0b73e282e6ee14c6579d71d32ffaa98b8fb9a585c3c47f538466c879ce2f4a",
+  "node_id": "art:test-a-file-realizes-only-what-it-implements",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "test",
+    "description": "The six tests behind the REALIZES restriction and its legacy migration.",
+    "location": "crates/reflow2-core/tests/a_file_realizes_only_what_it_implements.rs",
+    "name": "a_file_realizes_only_what_it_implements.rs",
+    "status": "realized"
+  }
+}

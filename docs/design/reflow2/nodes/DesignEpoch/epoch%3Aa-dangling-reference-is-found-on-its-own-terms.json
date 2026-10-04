@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:2b5daa3abba2c1e7049dd0f2a751de0777de1c3cd331987efc980218ef50f6b9",
+  "node_id": "epoch:a-dangling-reference-is-found-on-its-own-terms",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "epoch_type": "revision",
+    "name": "A dangling reference stops being a side effect of the orphan rule and gets a rule of its own (2026-08-29)",
+    "sequence": 389,
+    "status": "arrived"
+  }
+}

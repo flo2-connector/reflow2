@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:04063d4012c96ec078d68147b9b9802a22a2143338fd178bd6028afc536312ef",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:non-goal-reflow2-does-not-judge-whether-a-check-is-meaningful",
+  "properties": {
+    "authored_at": "2026-08-17",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:claude-code"
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:ea2075a9ddf780f73d8a5147d29f1979546e3f10588a3e1c0315822cfe4d4d5a",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-the-org-ladder-and-the-assembly-ladder-are-read-against-each-other",
+  "properties": {
+    "evidence": "A Conway check across designs can only read the tiers if tiers exist as linked designs, which is that deferred question's shape.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "dec:idea-a-top-level-graph-holds-what-the-component-graphs-share"
+}

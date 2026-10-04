@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:233855532a8ed3c5767a064cce7c013b6f931a518bc5a96b0813c1dceeb75631",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-check-and-its-findings-are-different-things",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "ver:a-withdrawn-decision-is-not-a-conflict"
+}

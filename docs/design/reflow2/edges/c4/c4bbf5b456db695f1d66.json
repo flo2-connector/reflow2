@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:d921c1f4e23293c8577760a400b63d70d51f6fe2529910dd5b25c34088f940c5",
+  "edge_type": "INVALIDATES",
+  "from_id": "chg:absence-means-nobody-said-on-a-verification-and-a-plan-holds-a-check-and-a-ruling",
+  "properties": {
+    "at": "2026-09-06",
+    "note": "FIXED: SCHEDULED_FOR.from enumerates Verification and Decision, on Anthony's word, exactly the one schema line the fact predicted. Both the reporter's case (a planned check) and wish #7 (a pending ruling) now have a home in the plan; the alternative (a future-tense sibling of OCCURS_DURING) was weighed and not taken. Pinned failing-first, with the counter-pin that an Artifact is still refused. NOT CLOSED: the fact's wider observation — an endpoint list enumerated by hand will be found short by the next honest use — stands as a class statement; nothing detects the NEXT missing type before someone hits it."
+  },
+  "to_id": "fact:defect-a-planned-verification-cannot-be-scheduled-because-scheduled-for-does-not-enumerate-it"
+}

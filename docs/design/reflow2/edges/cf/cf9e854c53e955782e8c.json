@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:fbffc20398a29a9000ac4449bc76ae0805baa4b43867807a7eeebd901a695579",
+  "edge_type": "VIOLATES",
+  "from_id": "fact:the-five-project-census-2026-08-09",
+  "properties": {
+    "confidence": 0.9,
+    "evidence": "Clause (5): graph_id pinned to a constant. Measured — dev_storyflow and reflow2 both carry graph_id 'reflow2', and flo2 uses a minted hash while dynograph-foundation uses its name. Three conventions, one collision."
+  },
+  "to_id": "rule:no-foreclosure"
+}

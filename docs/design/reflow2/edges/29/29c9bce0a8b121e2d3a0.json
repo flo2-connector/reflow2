@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:5976d3cf5c111487dd2ccd2052a7fbba746c02ca0175165a98c35d7c5380ec82",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-a-writing-call-exports-afterwards",
+  "properties": {
+    "evidence": "It is an export step after a write made THROUGH the --call door, so it is worth nothing without that door. Corrects the first note, which cited the door in text instead of linking it.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "cap:a-build-can-call-one-tool-from-the-shell-and-read-the-reply-as-json"
+}

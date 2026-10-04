@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:7c38b880d26a4daa825cfd2dd3a16f75cfe0af135ec9e08fee2a7b689164078d",
+  "node_id": "chg:accept-580d509cd2ed1306",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "refactor",
+    "detected_at": "2026-07-26",
+    "name": "Two findings updated in place after reading storyflow's entity resolution (art:storyflow-resolution-study), rather than leaving a scope document that its own companion study contradicts. Finding 4 gains the part that makes it cheap: dynograph-core ALREADY parses ResolutionConfig with both thresholds onto every node type and DesignGraph::schema() is already public, so the reader exists and only the call site is missing — and reflow2's declared per-type values (80-88) are all BELOW the hardcoded 90, so ingest is stricter than its own schema asks and merges LESS than intended. Finding 5's open question narrows from what-shape to which-numbers, because storyflow's answer is the two-band model with an ask-band in the middle, which satisfies dec:ask-not-repair exactly. And the study adds a mechanism the scope missed: ratio scoring is length-sensitive, so the most common corpus case fails at any threshold and needs a structural token-subset test instead."
+  }
+}

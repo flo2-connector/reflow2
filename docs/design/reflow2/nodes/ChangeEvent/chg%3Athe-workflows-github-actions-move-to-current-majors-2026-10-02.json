@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:3f0c38405f8b1339a8a9461e78d6c20fc764bdf73016204176e4d02fe471fc67",
+  "node_id": "chg:the-workflows-github-actions-move-to-current-majors-2026-10-02",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "refactor",
+    "commits": "84d7cc075f0bb743aef24d53c422201093ad942c,f37bd4ee63bbf02dc0387b7c42e2ca7bdd68df9f,bddc3e8c84906a83ad739871f9400cd2dab9d75e",
+    "detected_at": "2026-10-02",
+    "name": "The workflows' GitHub Actions move to their current majors: checkout v7, upload-artifact v7, download-artifact v8, docker/login-action v4, docker/setup-buildx-action v4",
+    "rationale": "Approved-queue item (b) of the 2026-10-01 dependency audit (fact:dependency-audit-2026-10-01-the-full-sweep), its own PR, proved before merge by a dry_run dispatch of release.yml on the branch: run 36965158231, green. It exercised checkout v7, upload-artifact v7, download-artifact v8 by name, setup-buildx v4 and the image smoke gate on both architectures. docker/login-action v4, the digest upload and the pattern downloads in `container image` and `publish release` are gated off in a dry run and run first at the next real tag. tools/test_release_workflow.py: 8/8.",
+    "rationale_basis": "contemporaneous",
+    "subject": "system",
+    "summary": "actions/checkout v5 → v7, actions/upload-artifact v4 → v7, actions/download-artifact v4 → v8, docker/login-action v3 → v4, docker/setup-buildx-action v3 → v4 in ci.yml and release.yml. All five run on Node 24. No breaking note applies to how these workflows call them: downloads are by name or pattern (never by ID), setup-buildx takes no inputs, and no step pushes or reads git credentials. download-artifact v8 fails on a digest mismatch where v4 warned."
+  }
+}

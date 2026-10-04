@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:1e4f78d9561a09d283dabfd31302945a7386710e14dcf752bd89f6605cfa6616",
+  "edge_type": "VERIFIES",
+  "from_id": "ver:describing-changes-nothing",
+  "properties": {
+    "pinned": "filesystem,permissions,concurrent_holder,store_backend,symlinks,path_encoding",
+    "swept": "path_state,identity_present,identity_readable,store_present,sweep_size,opted_in_vs_absent"
+  },
+  "to_id": "cap:describe-design-at-path"
+}

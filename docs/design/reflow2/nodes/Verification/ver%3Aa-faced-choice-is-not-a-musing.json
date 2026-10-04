@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:93e3223abf342134d370b0929b6eba7cccd090c988b91f0a78fa76ca05fc7169",
+  "node_id": "ver:a-faced-choice-is-not-a-musing",
+  "node_type": "Verification",
+  "properties": {
+    "description": "`crates/reflow2-core/tests/a_choice_is_not_a_musing.rs`, five cases against the `contradiction` finding — the one that skips only when BOTH ends are parked, so it is what shows whether a node counts as parked.\n\n⭐ FOUR OF THE FIVE ARE COUNTERWEIGHTS, and they carry the weight: an unlabelled `proposed` Decision still parks by status (the fallback, so no design needs reclassifying); two exploratory ideas still go quiet; an ACCEPTED decision is never parked whatever kind it wears (kind must sharpen status, never override it); and one parked side against settled design STILL REPORTS.\n\n🛑 THAT LAST ONE IS PINNED DELIBERATELY AS A GUARD AGAINST THIS VERY CHANGE. It is the assertion ophyd-service asked to have reversed, and it belongs to a decision accepted on Anthony's word 2026-08-26 which `proj:bhome` independently called correct. Pinning it here means the reversal cannot arrive as a side effect of sharpening the predicate — it would need his word and a separate change.",
+    "findings": "5 passed, 0 failed, in the full workspace run of 1941 tests (0 failed) on 2026-09-01.\n\n⭐ OBSERVED FAILING IN THE RIGHT SPLIT: 4 passed and 1 failed against the unfixed code. Only the sharpening failed; every invariant passed BEFORE the change, which is what shows these constrain the change rather than describe it.\n\n⚠️ AND THE CHANGE IS INERT ON THIS DESIGN, MEASURED RATHER THAN ASSUMED: zero of reflow2's own 225 proposed Decisions carry `kind: choice` (205 unset, 20 exploratory), so the sweep count did not move. The fixture proves the behaviour; the graph proves nobody here is affected yet. Both are true and the second is the one a reader would otherwise assume away.",
+    "kind": "verification",
+    "last_run_at": "2026-09-01",
+    "level": "unit",
+    "method": "test",
+    "name": "An unsettled choice is not parked, and the four things that must not move do not move",
+    "status": "passing"
+  }
+}

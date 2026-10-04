@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:e675b8e6ba642658d27a14747f27da0d5fd90f35aa790096e34f6934d3db38f2",
+  "edge_type": "REALIZES",
+  "from_id": "art:service",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:read-loop-hint"
+}

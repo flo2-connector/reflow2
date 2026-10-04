@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:050fb3438d7b75fd1d892c6c32a3d94ca57745283b584fa85356e02745d8d0d0",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:ingest-handshake-test",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:ingest-handshake-test"
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:d8cff976b2e72125f83eb71ae02af4cb61b6a7eabb6d70e5bcd1196346a5a927",
+  "node_id": "chg:bl63-snapshot-edges",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "name": "BL-63: snapshots capture design edges — an edge move keeps its history. Snapshot.edges (optional, sorted, bookkeeping excluded) added beside state; parse_snapshot_edges/SnapshotEdge in core; CRUD skills updated to record-first-then-delete."
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:e5bbff70a2375b529b3c5d0111f0c5ccd66b48b1e6b15dcb0422a8193249ddc1",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:publish-surface",
+  "properties": {},
+  "to_id": "req:key-interfaces"
+}

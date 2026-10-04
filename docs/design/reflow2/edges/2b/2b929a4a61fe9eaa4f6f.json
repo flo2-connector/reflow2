@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:1dd6f27f5919f70a8ad12041d7e3f4fec46d1adfc57bb51a967ff57e71bc2815",
+  "edge_type": "CHANGED",
+  "from_id": "chg:nudge-state-integrity",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cap:skill-triggers"
+}

@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:8252602d67e32083afb1b0849b2f7d1885edfd0b361c07f3365c2387fa585352",
+  "edge_type": "GOVERNED_BY",
+  "from_id": "fact:a-hub-attached-to-a-child-server-started-without-export-to-and-its-writes-went-unexported-2026-09-22",
+  "properties": {},
+  "to_id": "decision:ack:55471b7ba5187b51"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:893151815fe2bb659e0a42e9c2ed0d461738c5a7d91f9b3bb12e67383b7db7dd",
+  "edge_type": "CHANGED",
+  "from_id": "chg:re-decomposition-becomes-an-operation",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:tools-capture"
+}

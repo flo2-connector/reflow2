@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:8732b8a7cc50579a8afc45384b84ee4fd35db9e33abb6ac30a7a0d48bddd83a4",
+  "edge_type": "AT_EPOCH",
+  "from_id": "snap:epoch:preserved-on-write:con:loop-status-after-a-write-answers-under-one-second",
+  "properties": {},
+  "to_id": "epoch:preserved-on-write"
+}

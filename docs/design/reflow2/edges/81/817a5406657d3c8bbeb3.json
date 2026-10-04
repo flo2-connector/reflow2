@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:1a14fcb06e1f8a057788eec5b2bf378afe10f1f1c2f0820544b4e543debb4604",
+  "edge_type": "HAS_TEMPORAL_FACT",
+  "from_id": "dec:qualitygate-is-retired-the-phase-gate-dissolved-into-the-detectors",
+  "properties": {},
+  "to_id": "fact:retiring-a-node-type-locks-every-existing-graph-out-until-it-is-migrated"
+}

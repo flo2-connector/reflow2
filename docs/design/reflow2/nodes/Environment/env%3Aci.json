@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:7611c5b3c94513b78d19771a01811b3dc7383d91c6dae1c19fd3e9eda84cf893",
+  "node_id": "env:ci",
+  "node_type": "Environment",
+  "properties": {
+    "env_type": "staging",
+    "location": "github.com/flo2-connector/reflow2 — ubuntu runner, checkout only, no .reflow2/ store",
+    "name": "GitHub Actions CI"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:ebd0afd116f9f65bd74fb96980e7ec37d209d9dec1b2e2efdb48ab8931a29cf8",
+  "edge_type": "REALIZES",
+  "from_id": "art:merge",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:merge-rerere"
+}

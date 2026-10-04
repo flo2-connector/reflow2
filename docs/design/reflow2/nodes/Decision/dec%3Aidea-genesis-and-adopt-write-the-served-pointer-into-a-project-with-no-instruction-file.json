@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:e2a7ecee71d13cd102bb6d840dd8a75144cb2464aa27ac3a64aa7c7341cd1454",
+  "node_id": "dec:idea-genesis-and-adopt-write-the-served-pointer-into-a-project-with-no-instruction-file",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "RECORDED AS BRAINSTORMING, NOT AS A PROPOSAL. Anthony, 2026-09-19, after learning that flo2, SeattleArch and bhome carry no pointer file because reflow2_init never ran in them: 'can get_instructions pass the text to the agent and say put this in AGENTS.md on /genesis or /adopt skills on a new project?' OPTIONS, none chosen: (a) get_instructions gains a `pointer` section carrying POINTER.md's text, and genesis/adopt Phase 0 say: no instruction file → write that text as AGENTS.md (REFLOW2.md if AGENTS.md exists), then register it as art:agent-instructions — the agent does the file write, which is its side of the line; (b) the skills say 'run `reflow2 init .`' instead, which also writes the hooks and the MCP config the pointer alone does not — but needs the kit on the box, which the user-scope route does not guarantee; (c) both: (b) when the kit is present, (a) as the fallback the skill can always do; (d) the user-scope registration itself installs the pointer and hooks on first contact with a directory — the server would be writing into a user's repo, which crosses the line reflow2 keeps. COUNTER to (a): a pointer without hooks leaves the loop's nudges off; the Seattle adopt ran a whole session with no Stop hook and nobody noticed. COUNTER to (d): unsolicited files in a repo the user has not opted in. The delivery: a DesignRule with steps [genesis, adopt] so the instruction rides the skills the moment they are pulled.",
+    "kind": "exploratory",
+    "name": "OPEN — should genesis and adopt, on a project with no instruction file, hand the agent the served pointer text and say 'put this in AGENTS.md' (and register it), so the user-scope route leaves the same adapter the init does?",
+    "rationale": "His idea, recorded beside the measured absence it answers; the question is the route (skill vs init vs server), not whether a new project should end up with the adapter — req:a-repos-procedural-know-how-is-delivered-at-the-step-it-bears-on-and-the-design-knows-the-adapter-exists already says it should.",
+    "status": "accepted"
+  }
+}

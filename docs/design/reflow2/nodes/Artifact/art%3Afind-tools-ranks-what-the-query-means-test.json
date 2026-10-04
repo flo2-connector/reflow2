@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:6c3effc9c0bae9240c98592d86ffc3bfe277be1ff3f8d47f3ea61bbaf86b6c56",
+  "node_id": "art:find-tools-ranks-what-the-query-means-test",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "test",
+    "description": "Served-surface regression for tool search: six queries in a user's words, each a MISS on the 2026-09-11 baseline and each found by the corrected scorer, must rank their tool in the default top 5. Its header records the two fixtures DROPPED after the real server disagreed with the Python replica that predicted them (`satisfies`, `get_skill`) — a fixture carries only what the served surface does. The scorer's two correctness invariants (whole-word matching; a term in every entry weighs zero) are unit-tested beside the functions in service.rs, since they are pub(crate).",
+    "location": "crates/reflow2-mcp/tests/find_tools_ranks_what_the_query_means.rs",
+    "name": "find_tools_ranks_what_the_query_means.rs",
+    "status": "realized"
+  }
+}

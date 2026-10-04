@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:d730a9e587278f67ab08e6dd09bf60131b21bfced0f5b02de7a50b71c5464faf",
+  "edge_type": "VERIFIES",
+  "from_id": "ver:a-change-event-carries-its-own-text",
+  "properties": {},
+  "to_id": "cap:a-change-event-is-written-complete-in-one-call"
+}

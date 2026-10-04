@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:48c70c5af92b53a38ec5d61d16a1079ac8062b0f56b638bcaac59b17a4d20c7a",
+  "edge_type": "REALIZES",
+  "from_id": "art:every-required-parameter-is-described-gate",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:a-tool-description-predicts-what-the-tool-does"
+}

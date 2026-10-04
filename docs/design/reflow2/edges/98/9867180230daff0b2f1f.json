@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:342f26da77e3b1e259e86024be88af0816ed9c8cf258abc81bdde72df7056049",
+  "edge_type": "CHANGED",
+  "from_id": "chg:every-argument-refusal-names-the-tool-and-the-field-path",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:tools-coherence"
+}

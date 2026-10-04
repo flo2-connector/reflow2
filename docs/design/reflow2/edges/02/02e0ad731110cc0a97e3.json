@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:261751ec4f0268dc103db98f3ea379932b831a4ff2b62c3fc86963650cba70eb",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:bl124-instrument",
+  "properties": {
+    "covers": "whole",
+    "note": "migrated 2026-09-22 from a REALIZES link_artifact drew in error"
+  },
+  "to_id": "ver:acknowledgement-not-structure"
+}

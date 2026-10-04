@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:2c91668aa3f4132c63b47020d0eb3d16d1d0e1a8ff3b58cdade02cf4111e6e74",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:session-artifacts",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:artifact"
+}

@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:c15fdd741f3f3f688a8bc2d0ee804d04b7cfec4795efcced7e92c9190b4573f4",
+  "edge_type": "VERIFIES",
+  "from_id": "ver:each-architecture-is-smoke-tested-before-any-push-and-only-a-two-platform-index-is-tagged",
+  "properties": {},
+  "to_id": "cap:release-publishes-a-container"
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:24da1a1fddbcad7b3d949309323e0f0f5b203b093f8d19e3aa5e2c8435f402b2",
+  "edge_type": "DOCUMENTS",
+  "from_id": "art:vision",
+  "properties": {
+    "evidence": "The vision's definition of good: someone with only an idea is guided, by questions, from concept to operations without needing to know systems engineering."
+  },
+  "to_id": "req:no-se-knowledge"
+}

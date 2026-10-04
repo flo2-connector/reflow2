@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:be26807e5c6d20620c449cb62285488230aa30e3497332a9531c4d5c936416b4",
+  "node_id": "epoch:v0380",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "epoch_type": "release_cut",
+    "name": "v0.38.0 cut — two states that looked identical stop being the same",
+    "sequence": 373,
+    "status": "arrived"
+  }
+}

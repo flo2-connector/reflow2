@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:90582e984092978f191e6e8660392f3d5ab0a68491ac71176314d740e976e042",
+  "node_id": "chg:the-server-keeps-a-usage-ledger-and-feedback-renders-it",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "name": "The server keeps a usage ledger beside the store, usage_report renders it, and /feedback carries it — feedback computed, not recalled",
+    "subject": "system"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:ce58198b1330aa1349244bf82add807f86e27ec1c85b4252acef6abee16dce95",
+  "edge_type": "CHANGED",
+  "from_id": "chg:accept-fbe9dc0dd0a2257e",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:evidence-quality-instrument"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:4b137c726f0fab4f8c9798d7f4f59859eaf75a50073d0f72cdbbf3675550e1a8",
+  "edge_type": "CONTRADICTS",
+  "from_id": "fact:tool-call-markup-bleeds-into-the-last-prose-field-and-typed-fields-catch-it",
+  "properties": {
+    "alignment": "opposing",
+    "evidence": "alignment=supporting. That idea was recorded as a suspicion and has carried NO links since — detect_defects reports it as an orphan precisely because nobody had an occurrence to attach. This is five measured instances in one session, and it also NARROWS the idea: fields do not collapse into each other, the damage lands on the LAST prose field of a malformed call."
+  },
+  "to_id": "dec:idea-a-prose-field-silently-absorbed-tool-call-markup"
+}

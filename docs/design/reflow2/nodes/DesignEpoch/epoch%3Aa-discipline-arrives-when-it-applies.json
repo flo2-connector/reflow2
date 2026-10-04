@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:2f2536045e1b6471bfb40720097322fea4de16530a088f6f8378eb0345f81cbf",
+  "node_id": "epoch:a-discipline-arrives-when-it-applies",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "epoch_type": "milestone",
+    "name": "A discipline arrives at the moment it applies — skill_hint on the tools that trigger one, and snapshot-presence so neglect is computable rather than merely discouraged",
+    "sequence": 310,
+    "status": "planned"
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:7544262a60d492b67941ce64649b391dba77adb1477e2a56cfcc546b5f39afb6",
+  "node_id": "fact:field-report-flo2-2026-09-18-the-list-skills-note-hard-codes-eight-differing-shortcuts-and-the-live-count-is-ten",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "confidence": 0.95,
+    "fact_type": "defect",
+    "name": "FIELD REPORT (flo2 F9 minor, 2026-09-18): list_skills' note says 'eight of these differ from the skill name'; the reporter counted nine on 0.64.0 and the served list now differs in ten — a number in prose nothing computes",
+    "source": "flo2 reflow2_feedback.md, session 2026-09-18 F8/F9 (triaged 2026-09-19 through the triage-feedback skill, which delivered both feedback rules)",
+    "statement": "MEASURED: skills_tools.rs:124 hard-codes 'eight'; COMMAND_ALIASES holds the pairs and shortcut_for() derives each; counted on the served list 2026-09-19: ten (triage-feedback / '/triage' added the tenth on 2026-09-18). The instruction the note carries is right; the count drifted twice because it is written where the code could compute it — the class cap:the-command-surface-answers-for-itself was built against.",
+    "subject_id": "cap:the-command-surface-answers-for-itself",
+    "valid_from": "2026-09-19"
+  }
+}

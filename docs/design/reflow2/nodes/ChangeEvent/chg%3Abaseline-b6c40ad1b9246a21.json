@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:2a5628b005b264536d95b9df69b01430cdceee44aba19e70f85c7304cbb2271e",
+  "node_id": "chg:baseline-b6c40ad1b9246a21",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "baseline_established",
+    "detected_at": "2026-09-04",
+    "name": "First baseline. New module realizing cap:a-status-advance-says-whether-its-prose-predates-it; nothing moved, this is the file arriving.",
+    "subject": "record"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:ec2d39d8804b6b3ff62ebb43cb7b914d0b2dce7653b1a8203ed6627b81272570",
+  "edge_type": "CAUSES",
+  "from_id": "art:dev-storyflow-feedback-2026-09-08",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "The root-cause pass this rule requires on the repeat-effort report this document carries: capture-session's routing table closes a retired finding and has no row for an answered Decision.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:capture-session-routes-what-a-session-produced-not-what-it-resolved"
+}

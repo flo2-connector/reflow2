@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:62bc997c328bf7c9e2567388da744bf673d8b424a59e4f3e5a75fe763828997d",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:conformance-test",
+  "properties": {
+    "covers": "whole",
+    "note": "conformance stated at registration: verified | migrated 2026-09-22 from a REALIZES link_artifact drew in error"
+  },
+  "to_id": "ver:a-realizing-link-says-whether-anyone-checked-it"
+}

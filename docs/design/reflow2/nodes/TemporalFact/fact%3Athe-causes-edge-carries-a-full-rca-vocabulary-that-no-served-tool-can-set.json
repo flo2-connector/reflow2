@@ -1,0 +1,19 @@
+{
+  "content_hash": "sha256:e0f09ffb4f2e50a691a1f3a9e2a02337d5ac04be30a4ed447997a693199bfb21",
+  "node_id": "fact:the-causes-edge-carries-a-full-rca-vocabulary-that-no-served-tool-can-set",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "confidence": 1.0,
+    "fact_type": "defect",
+    "name": "MEASURED 2026-09-22: the CAUSES edge declares validation_status (unvalidated/hypothesis/validated/refuted) and basis (observed/correlational/causal/spurious) — and no served tool can set either, so all 166 carry a default nobody chose and NOT ONE is marked refuted",
+    "statement": "FOUND while answering Anthony's question about how root-cause results are stored, 2026-09-22.\n\n⭐ THE RCA VOCABULARY IS BETTER THAN ANYONE HAS BEEN USING. The CAUSES edge declares four properties:\n\n    validation_status : unvalidated | hypothesis | validated | refuted\n    basis             : observed | correlational | causal | spurious\n    confidence        : 0.0 - 1.0\n    evidence          : prose\n\nThat is a real root-cause register. A cause can be recorded as a HYPOTHESIS and later moved to VALIDATED or REFUTED; a cause that turned out wrong can be marked SPURIOUS instead of being deleted, which is exactly what keeps a wrong diagnosis from being rediscovered.\n\n🛑 AND NO SERVED TOOL CAN SET ANY OF IT. `record_finding` — the tool the root-cause skill sends you to, and the one whose description says \"pass `caused_by` with `cause_evidence` to draw the CAUSES edge in the same call\" — accepts `caused_by`, `caused_by_type` and `cause_evidence`. Nothing else. `grep` finds `validation_status` nowhere in the MCP surface. Only `create_edge` with raw props can reach them.\n\nMEASURED ON THE 166 CAUSES EDGES IN THIS DESIGN:\n\n    validation_status : unvalidated 139, validated 21, hypothesis 6, REFUTED 0\n    basis             : correlational 137, observed 18, causal 11, spurious 0\n    confidence        : unset on 145 of 166\n\n⇒ 139 of 166 causes read UNVALIDATED and 137 read CORRELATIONAL because those are the defaults, not because anyone judged it. The distinction the schema draws most carefully — is this cause a guess, a correlation or a demonstrated mechanism — is being filled in by a default on the hot path.\n\n⭐ AND THE TWO ZEROES ARE THE LOUDEST PART. Nothing in this design's history has ever been marked `refuted` or `spurious`. The root-cause skill's central instruction is to take a measurement that could REFUTE the favourite explanation — it happened twice in this very session, where a speculation about a detector's blind spot was checked and found wrong, and where a report's own stated cause was refined by measurement. Both were written into prose. Neither could be written onto the edge, because the tool has no parameter for it.\n\n⇒ SO THE DESIGN CANNOT ANSWER \"which of our recorded causes have been tested?\" — the field exists, it is uniform, and it is uniform because nobody could move it.\n\nTHIS IS THE THREE-LEGS SHAPE AGAIN, in its purest form yet: the vocabulary exists, the instruction exists (the root-cause skill demands a refuting measurement), and the TOOL cannot record the outcome. It is also `dec:certainty-derived`'s problem in reverse — a default that makes an unasked question indistinguishable from an answered one, which this design has removed from `enforced`, from `quality_target` and from `Artifact.status` for exactly this reason and left in place here.\n\nNOT ESTABLISHED: whether the 21 `validated` edges were set deliberately through `create_edge` or arrived some other way. Worth one check before assuming the surface has never been reached.",
+    "steps": [
+      "record_finding",
+      "root-cause",
+      "create_edge"
+    ],
+    "subject_id": "cap:a-fix-with-no-recorded-cause-and-a-defect-its-subject-outran-are-noticed",
+    "valid_from": "2026-09-22"
+  }
+}

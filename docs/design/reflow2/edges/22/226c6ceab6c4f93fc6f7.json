@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:3de63e9a38cf50d4e07f158d40edb3ff1b20bec5369276571f84e5010adac49a",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:vocabulary-covers-personnel",
+  "properties": {
+    "authored_at": "2026-08-07",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

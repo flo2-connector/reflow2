@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:010c01c2fb8b338c2271a058be941f8831aa2fee8767670bfb7fb9f991c0ce54",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:idea-reflow2-serves-a-design-in-operations-where-incidents-feed-the-design",
+  "properties": {
+    "approved_at": "2026-09-28",
+    "authored_at": "2026-09-28",
+    "roles": [
+      "author",
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

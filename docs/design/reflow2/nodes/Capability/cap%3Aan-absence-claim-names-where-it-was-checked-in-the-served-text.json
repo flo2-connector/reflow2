@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:8787b0d6b959976e91fe854563ac235a01a3d2b99bfc39f39df5b24671ebeea7",
+  "node_id": "cap:an-absence-claim-names-where-it-was-checked-in-the-served-text",
+  "node_type": "Capability",
+  "properties": {
+    "description": "A standing section in the instructions every project is served (getting-started/AGENTS.md, read through get_instructions), and the hub skill's \"search before you create\" step rewritten to run search_design with tracked_designs from the hub, to open and cite any settled or brainstormed hit on the same subject in another design, and to fall back to one search per design where the hub cannot search them together (a hub on flo2.io, or an agent holding several addresses). Realizes req:a-claim-that-the-design-holds-nothing-says-where-it-was-checked and the agent-side half of req:one-search-reaches-every-design-a-hub-tracks.",
+    "name": "The served instructions and the hub skill tell the agent to search every design a hub tracks before writing, to read and cite a sibling's precedent, and to say where it looked whenever it says something is not there",
+    "provenance": "authored",
+    "status": "planned"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:c19d7a4bc7246da796d0845ff56e0fb861fa147cd19830a5246e1c7d06536653",
+  "node_id": "chg:the-skill-tools-move-out-of-the-skill-data",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "refactor",
+    "name": "The served-skill TOOLS move out of the skill DATA, breaking a module cycle adopt found in reflow2's own source",
+    "subject": "system"
+  }
+}

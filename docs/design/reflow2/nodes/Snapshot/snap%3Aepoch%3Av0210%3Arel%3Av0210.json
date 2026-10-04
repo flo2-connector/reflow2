@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:1b0da1692b1aa75aad583139d74cf0e2a148b1bd2bd14161aa7740ddd82a5e28",
+  "node_id": "snap:epoch:v0210:rel:v0210",
+  "node_type": "Snapshot",
+  "properties": {
+    "edges": "[{\"direction\":\"in\",\"edge_type\":\"CONTAINS\",\"other_type\":\"Project\",\"other_id\":\"proj:reflow2\",\"properties\":{}},{\"direction\":\"in\",\"edge_type\":\"SCHEDULED_FOR\",\"other_type\":\"Capability\",\"other_id\":\"cap:gap-carries-a-reading\",\"properties\":{\"modality\":\"expected\",\"recorded_at\":\"2026-07-31\"}},{\"direction\":\"in\",\"edge_type\":\"SCHEDULED_FOR\",\"other_type\":\"Capability\",\"other_id\":\"cap:session-artifacts\",\"properties\":{\"modality\":\"expected\",\"recorded_at\":\"2026-07-31\"}},{\"direction\":\"in\",\"edge_type\":\"SCHEDULED_FOR\",\"other_type\":\"Capability\",\"other_id\":\"cap:skill-triggers\",\"properties\":{\"modality\":\"expected\",\"recorded_at\":\"2026-07-31\"}},{\"direction\":\"in\",\"edge_type\":\"SCHEDULED_FOR\",\"other_type\":\"Capability\",\"other_id\":\"cap:tool-carries-convention\",\"properties\":{\"modality\":\"expected\",\"recorded_at\":\"2026-07-31\"}}]",
+    "state": "{\"name\":\"v0.21.0 — the four planned agent-facing capabilities: a question that carries a reading, situation-shaped skill triggers, session renderings kept when the design points at them, and convention on the tool\",\"status\":\"planned\",\"unit_type\":\"binary\",\"version\":\"0.21.0\"}",
+    "target_id": "rel:v0210",
+    "target_type": "Release"
+  }
+}

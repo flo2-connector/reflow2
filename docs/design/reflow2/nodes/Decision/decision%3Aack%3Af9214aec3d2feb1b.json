@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:00a5f116a2f9043b838920845d73847044ce30186480c1c3f486f5675c40e183",
+  "node_id": "decision:ack:f9214aec3d2feb1b",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Accepted the gap gap:f9214aec3d2feb1b.",
+    "name": "Reviewed: gap:f9214aec3d2feb1b",
+    "rationale": "RULED 2026-09-15 (Anthony): STILL TRUE, RE-MEASURED TODAY. The exact query from the record — \"record when a point in time actually happened so changes pinned to it can be ordered by date\" — was run again against the 0.61.2 surface: add_epoch is still absent from the top five (invalidated_findings, set_evidence_scope, pin_at_epoch, invalidates, relation_candidates). plan_epoch no longer ranks, but nothing correct replaced it, so the catalogue still cannot route a user to the tool that records an arrival. The one listed repair, serving the wall check, is unrelated. A lexical catalogue that cannot tell a claim from its denial is a real ranking defect and a larger piece of work than a ruling; acknowledged for this repair so it stops reading as overtaken, and stays open on its own record.",
+    "status": "accepted"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:e15123215df1eecdcb487a00da7120aaf782540a6a3fdef9dfd57e4c41f0e93a",
+  "node_id": "art:test-orientation-needs-nothing-to-start",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "location": "crates/reflow2-mcp/tests/orientation_needs_nothing_to_start.rs",
+    "name": "crates/reflow2-mcp/tests/orientation_needs_nothing_to_start.rs",
+    "status": "realized"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:a3c0df4a3bd01f3005523c96ca693bbbf472bab4b9d24306b43cceb20282a1ed",
+  "node_id": "art:fielded",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "granularity": "atomic",
+    "location": "crates/reflow2-core/src/fielded.rs",
+    "name": "fielded.rs",
+    "status": "realized",
+    "volatility": "stable"
+  }
+}

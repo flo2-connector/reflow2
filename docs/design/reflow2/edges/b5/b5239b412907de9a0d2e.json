@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:beb671952954d537cd10795d41c86ecd5586c5c2ea4ed8914efddadd53afc245",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:the-command-surface-answers-for-itself",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:skills"
+}

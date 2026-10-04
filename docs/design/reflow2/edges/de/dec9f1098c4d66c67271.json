@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:7ccbdec6f461d96236ea3f054f8b086ae34c1496f9896e116682ef9a5f16c4b4",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:budget",
+  "properties": {},
+  "to_id": "req:golden-thread"
+}

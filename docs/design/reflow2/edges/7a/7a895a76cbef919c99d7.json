@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:f28b424963e726cd46e72898d3e6b6128fa4114a9404262f7e3ad8ee1e5089f1",
+  "edge_type": "INVALIDATES",
+  "from_id": "chg:the-brainstorm-skill-looks-for-the-answer-before-framing-a-question-as-open",
+  "properties": {
+    "at": "2026-09-28",
+    "note": "Answers cause (B), the larger one: the brainstorm skill now sends the agent to search accepted intent and the project's founding statement before writing OPEN, pinned by skill_lint's answer-first contract. It does NOT answer the graph half of the class, one node stating the whole-lifecycle scope, which waits on Anthony's word on the req:coherence rewording. Nor does it answer the missing detector for an exploratory Decision whose options contradict accepted intent."
+  },
+  "to_id": "fact:root-cause-the-lifecycle-scope-lives-in-the-vision-and-the-graph-holds-one-line-so-a-brainstorm-reopened-it-2026-09-28"
+}

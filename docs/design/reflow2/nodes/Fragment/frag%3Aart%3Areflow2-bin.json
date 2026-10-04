@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:952a3c4be558fae1cd7094e86ef6c0c65101340a664bbc9c35f84e72c8b17f09",
+  "node_id": "frag:art:reflow2-bin",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered reflow2_bin.py — the one binary resolver every gate uses ($REFLOW2_BIN, debug, release said)"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:1dd7bd43d03bf06139ca2d4f30d01315010e42ea828a654b6d19645034bff4e3",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-two-reported-fields-get-their-parameters",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:tools-capture"
+}

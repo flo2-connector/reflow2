@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:2fea34e581eb11034dd3cf6090a16ed1b79c5db112cd8a518c0269713a3b9247",
+  "node_id": "ver:a-schema-narrowing-ships-its-migration",
+  "node_type": "Verification",
+  "properties": {
+    "description": "crates/reflow2-core/tests/a_schema_narrowing_ships_its_migration.rs. The gate (today's schema against schema/accepted-at-last-release.json; the version check that moves the snapshot at a cut), every NARROWINGS entry holding today, the provenance guard's retired types being the table's, and the diff on schemas narrowed on purpose: the REALIZES and VERIFIES narrowings replayed are found whole and accounted for; an unrecorded endpoint narrowing, a removed enum value, a newly required property, a type change and a tighter range are each found; a widening is not; a retired type is one narrowing, not one per edge that named it. Its first run against the table found the VERIFIES entry refusing eight targets naming nothing.",
+    "kind": "verification",
+    "last_run_at": "2026-10-03",
+    "level": "unit",
+    "location": "crates/reflow2-core/tests/a_schema_narrowing_ships_its_migration.rs",
+    "method": "test",
+    "name": "Every narrowing since the last release is named with its migration",
+    "status": "passing"
+  }
+}

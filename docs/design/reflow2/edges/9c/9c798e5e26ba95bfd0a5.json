@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:761e47531ce33cd8ff45923da7bbb93f74e00ea85717a8673c2877288b861b9e",
+  "edge_type": "CHANGED",
+  "from_id": "chg:skills-are-composed-of-attribute-classes",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:skill-lint"
+}

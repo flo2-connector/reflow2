@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:985a11e419455a3bfba570cd42aacd7109cf0eb98e6184f104f93a5e093456b4",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:the-rust-rocksdb-switch-is-parked-until-the-store-question-settles",
+  "properties": {
+    "approved_at": "2026-08-25T01:50:00Z",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:9ac6f35b379d453f376b7ac1df594c8540d7a01bc9f1fb2a2db0cfafd68c8f42",
+  "node_id": "cmp:genesis",
+  "node_type": "Component",
+  "properties": {
+    "kind": "module",
+    "level": "component",
+    "name": "genesis",
+    "provenance": "authored",
+    "purpose": "The genesis module.",
+    "status": "planned",
+    "tier": "operational"
+  }
+}

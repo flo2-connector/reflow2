@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:3947212a8891eec7ba167321e42d68094231d904c46d37f88ac88d564a771ef0",
+  "node_id": "question:4dfe80425e7f885e",
+  "node_type": "Question",
+  "properties": {
+    "answer": "Anthony, 2026-07-28: accept component granularity here. The cmp:skills bundle check is a real passing verification one hop away, and these five are skill documents whose behaviour is largely the text itself.",
+    "context_setter": "5 capability(ies) verified only at component granularity via “skills”",
+    "gap_id": "gap:4dfe80425e7f885e",
+    "question": "One test covers the whole skills bundle, and that test passes — but five specific things it contains (brainstorm, changing an existing feature, delta-reconcile, onboarding, and parallel work) have no test of their own. Is the one bundle-level test good enough for these five, or should any of them be proven on its own?",
+    "rephrase_degraded": false,
+    "status": "answered"
+  }
+}

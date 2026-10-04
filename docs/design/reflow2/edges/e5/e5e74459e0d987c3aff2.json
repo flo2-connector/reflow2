@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:856cd2636a1f6362b63febc90c4a1d5b5e2589a48ca3964ffadc1cd4872f24c0",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-does-reflow2-need-a-byte-store-at-all-or-only-durability",
+  "properties": {
+    "evidence": "Only worth anything if that one lands first. Dropping the byte store means giving up RocksDB's WAL, so durability and crash-safety have to come from somewhere else before this is answerable at all — the export-guarantee question IS that somewhere else, and its answer sets how much loss this trade actually costs.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "dec:idea-what-guarantees-the-export-if-the-export-is-the-only-durable-copy"
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:7dd062a4c3f52996ce06d93923444259ef9892fdbdd95ddd388e3aad0ce658a4",
+  "node_id": "art:triage-command",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "document",
+    "location": "getting-started/commands/triage.md",
+    "name": "triage.md — the /triage command",
+    "status": "realized"
+  }
+}

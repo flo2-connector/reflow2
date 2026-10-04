@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:65afd129eb62c776e64fb3a5ab07f83f4420a0b3b454d423fb7ee7bb60df90df",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-design-is-composable-on-two-axes-authority-and-role",
+  "properties": {
+    "evidence": "That node holds the y-axis in full — the tiered organisation, authority flowing down, a responsible person per tier, and the unanswered question of whose word settles intent inside a child. This node asks whether the y-axis is one of TWO and whether a user picks; it is only worth answering if the tier question has an answer at all, so it rests on that one rather than replacing it.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "dec:idea-a-graph-whose-children-are-themselves-reflow2-designs"
+}

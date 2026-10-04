@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:0b17d4344447254aedd98452edf4f02a00838a0e0c9a2189ca7f90723123a821",
+  "edge_type": "CAUSES",
+  "from_id": "art:root-cause-skill",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "Step ⑧ of root-cause/SKILL.md says \"Pass `caused_by` and `cause_evidence` together\" and offers create_edge only \"for a cause you are drawing between two records that already exist\". It never says a finding may be written first and its CAUSES edge drawn once the cause has a node. Measured on 0.72.0, that deferred route works (no-cause record_finding accepted, later create_edge CAUSES accepted), so the inversion comes from the instruction, not the tool.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:root-cause-a-cause-with-no-node-yet-has-a-working-deferred-route-that-no-instruction-names-2026-09-28"
+}

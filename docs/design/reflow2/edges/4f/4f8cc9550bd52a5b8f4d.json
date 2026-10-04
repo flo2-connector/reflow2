@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:49ea8032bffabaccf172b9993ccba2372a8f41c1b12679531808d50e3b5a6807",
+  "edge_type": "AT_EPOCH",
+  "from_id": "snap:epoch:preserved-on-write:fact:the-live-graph-does-not-branch-so-two-open-prs-collide",
+  "properties": {},
+  "to_id": "epoch:preserved-on-write"
+}

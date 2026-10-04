@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:0040b2161087d2ff9b8d758321b651d979c31cd3a26be43800b270220557a1fe",
+  "edge_type": "CHANGED",
+  "from_id": "chg:accept-76bd27f1bfc5ce6a",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:impact-check-skill"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:aa957abb5c67e94c28f4f914a5561546c4b1565a93965c8431fb016acc647415",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:mint-seat-liveness-test",
+  "properties": {
+    "covers": "whole",
+    "note": "migrated 2026-09-22 from a REALIZES link_artifact drew in error"
+  },
+  "to_id": "ver:handed-out-seat-liveness"
+}

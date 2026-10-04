@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:c634fb2d7f67d0a1699fe79bb6a621ad2510b30236880de83e42317d5ecc1c07",
+  "node_id": "ver:item-lineage-survives-squash-merge-and-a-mid-merge-export",
+  "node_type": "Verification",
+  "properties": {
+    "description": "A branch exports three times, merges main mid-way, exports again during the merge, then squash-merges. PASS: every changed item's prev_item_hash equals that item's hash at the merge-base; unchanged items keep main's hashes; the gate's per-item LINEAGE check exits 0; and the design's item chains reconstruct the history without git. Reproduces #571's fourth CI failure (an export mid-merge chaining from the older main).",
+    "findings": "2026-10-03 (chg:the-design-is-saved-one-file-per-item-2026-10-03): test_item_lineage_stays_one_hop_through_a_mid_merge_export_and_a_squash: a branch exports three times (each committed), main moves by a squash-merged PR, the branch merges main and exports DURING the merge, then squash-merges; every changed item's prev_item_hash equals its hash at the merge-base, every unchanged item keeps main's bytes, reflow2_check.check_item_lineage is clean on the branch and on the squash commit (trunk), and along main's first-parent history each changed item names its previous commit's hash (one hop per commit). test_a_hand_edited_prev_is_named_by_the_lineage_check: a forged prev is named.",
+    "kind": "verification",
+    "last_run_at": "2026-10-03",
+    "level": "integration",
+    "method": "test",
+    "name": "Per-item lineage stays one hop after a squash-merge and after an export taken mid-merge",
+    "status": "passing"
+  }
+}

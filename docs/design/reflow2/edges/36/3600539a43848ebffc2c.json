@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:99d7ec8f4b397e86e84dcd735664e0f8e10a3d7b2c13f39dddd706c1ed910b8b",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0520",
+  "properties": {
+    "as_checksum": "sha256:6908b059305109c76e6bc5a8648be500a65af167e4fcedf681caaf3dea16bfb7"
+  },
+  "to_id": "art:dependency-manifest"
+}

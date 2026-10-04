@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:6b2b4e30c42e39d567dd25c36bea07b60d87821e7867b450c67d386acb596e88",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "fact:the-live-graph-does-not-branch-so-two-open-prs-collide",
+  "properties": {
+    "authored_at": "2026-08-14",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:claude-code"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:adb74772744e898def5d3a1d1c57df2f993e058b2060b53fc010a52ad96f20b0",
+  "edge_type": "REALIZES",
+  "from_id": "art:tools-capture",
+  "properties": {
+    "completeness": "partial",
+    "conformance": "verified"
+  },
+  "to_id": "cap:a-component-can-be-moved-not-just-given-another-parent"
+}

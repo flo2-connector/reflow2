@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:b21b8074199feda012f48a147e51baff56b8d1f0d8619be9ab0dc735d9c271db",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:a-cut-is-read-from-the-design",
+  "properties": {},
+  "to_id": "req:a-project-records-how-it-ships"
+}

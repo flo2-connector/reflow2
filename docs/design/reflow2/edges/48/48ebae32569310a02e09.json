@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:e3f43e943adb8c06e773c0e73651c6fa1d790fd85c50555d5862eae81d698b42",
+  "edge_type": "VERIFIES",
+  "from_id": "ver:evidence-quality",
+  "properties": {},
+  "to_id": "cap:verification-freshness"
+}

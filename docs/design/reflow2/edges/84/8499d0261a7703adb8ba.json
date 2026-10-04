@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:885860d2fd2c2da8e066490f76d58d62cc112a90a10106092ae8f59a8bcce09a",
+  "edge_type": "CAUSES",
+  "from_id": "fact:the-per-client-reply-shape-exists-and-its-DEFAULT-is-the-one-shape-that-serves-neither-population-and-every-new-connector-is-unknown",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "The default serving neither population is what raises the question.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "dec:idea-what-should-the-reply-shape-be-for-a-client-nobody-has-measured"
+}

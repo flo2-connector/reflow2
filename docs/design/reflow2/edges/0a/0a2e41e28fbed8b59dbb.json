@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:058f29892fca8594a094bfeebb6f74a4a19f292a5dbd2247db4919a73a17c962",
+  "edge_type": "GOVERNED_BY",
+  "from_id": "req:skill-use-survives-a-long-session",
+  "properties": {},
+  "to_id": "rule:fixes-are-judged-by-the-third-party"
+}

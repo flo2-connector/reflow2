@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:cc0bab0ef97ed8f9bf70c7ecb8fa6e458c2b0ed0f5fc56b4e4930b7653a7f8cf",
+  "node_id": "ver:changelog-fragments-merge-in-either-order-and-the-cut-assembles-them",
+  "node_type": "Verification",
+  "properties": {
+    "description": "tools/test_changelog_fragments.py (hermetic): well-formed fragments pass; an unknown section, stray text, or an entry written straight into [Unreleased] fails; the cut writes the entries under the new version below an empty [Unreleased], grouped in Keep a Changelog order and file-name order, and removes the fragments; a malformed fragment stops the cut with nothing written; two branches adding fragments merge in either order with plain git.",
+    "findings": "2026-10-03 (chg:the-design-is-saved-one-file-per-item-2026-10-03): 6 of 6 pass.",
+    "kind": "verification",
+    "last_run_at": "2026-10-03",
+    "level": "integration",
+    "method": "test",
+    "name": "CHANGELOG fragments merge in either order, are checked, and the cut assembles and removes them",
+    "status": "passing"
+  }
+}

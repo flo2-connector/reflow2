@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:852a6baa93cc5d1df7300f584de809c15d4cab08e8a21b867b10a5156d385be7",
+  "edge_type": "INVALIDATES",
+  "from_id": "chg:a-node-is-named-by-its-id-and-the-type-is-optional-across-the-relation-surface",
+  "properties": {
+    "at": "2026-09-06",
+    "note": "THE NAMING-A-NODE HALF IS FIXED: every tool that refers to an existing node by a type+id pair now takes the type as optional, resolved from the id, refused on collision — one resolver, 34 fields, 27 shapes. So 'get_node needs both' and 'depends_on vs governed_by need different amounts of information to name the same node' no longer hold. NOT CLOSED: the argument NAMES still differ between siblings (from_id/to_id in one family, from_type/from_id/to_type/to_id in another, target_type/target_id in a third) — the type is optional in all of them now, but a caller still has to know which NAME each tool uses. That is convention (iii), which Anthony has not ruled on; the fact stays open for it."
+  },
+  "to_id": "fact:defect-typed-tool-parameter-names-are-inconsistent"
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:989eb1a0e23d5c44b06e69ee855facce58d6d0e90a81b9579e61dbe3dfa4c2d9",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:test-a-local-client-works-against-a-remote-server",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:test-a-local-client-works-against-a-remote-server"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:03854d4adb28502d12201ee5f1082f97a207ea091388af6b832baecd0990564c",
+  "edge_type": "CHANGED",
+  "from_id": "chg:an-empty-answer-says-which-empty-it-is",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:tools-exchange"
+}

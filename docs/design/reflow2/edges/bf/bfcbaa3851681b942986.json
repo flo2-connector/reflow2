@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:e57e5adbc8ec10fb300ee9ed6f11e5880e5c7a5d6c561ab385b8fd0307d3fc0c",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:reflow2-measures-a-registered-file-and-never-reads-it-test",
+  "properties": {
+    "covers": "whole"
+  },
+  "to_id": "ver:a-registered-file-is-measured-a-pasted-hash-is-compared-an-escape-is-refused-and-no-tree-says-so"
+}

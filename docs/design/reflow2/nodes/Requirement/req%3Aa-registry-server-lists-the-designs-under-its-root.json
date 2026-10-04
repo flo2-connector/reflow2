@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:c4b8378eade0297664044f8dc457a34438b5dc697209f9adf3cf9302e4fc0d65",
+  "node_id": "req:a-registry-server-lists-the-designs-under-its-root",
+  "node_type": "Requirement",
+  "properties": {
+    "concern": "core",
+    "kind": "functional",
+    "lineage": "original",
+    "name": "A server holding several designs lists the ones under its root, as data",
+    "priority": "high",
+    "provenance": "authored",
+    "statement": "A reflow2 server serving a registry root (`/g/<graph_id>/`) answers \"which designs are here?\" as structured data: each design's graph_id and label, enough for a caller to tell them apart. It lists exactly the designs under THAT root and nothing else, so the root stays the tenant boundary (dec:the-registry-root-is-the-tenant-boundary): no filtering by caller, and no identity system in reflow2.\n\nWhy: flo2's connector must answer \"what designs do I have?\" from chat (flo2 req:a-person-can-see-which-designs-they-have-from-chat, @ajs 2026-09-23), and flo2 keeps one registry root per person. Today reflow2 knows the list (Registry::graph_ids) but says it only inside the 404 text for an unaddressed request. The alternative, flo2's gateway reading the droplet's folders itself, was rejected by @ajs on 2026-09-23 because it re-implements what reflow2 already computes, which the dev_reflow2 hub trial measured drifting quietly.",
+    "status": "accepted"
+  }
+}

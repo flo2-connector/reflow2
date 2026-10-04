@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:51eea94f3ec623ee8ad20e30e3ff86eebed3705e28dcf30c7f2b7bd260a43170",
+  "edge_type": "CHANGED",
+  "from_id": "chg:adopt-is-incremental-with-a-frontier-and-a-deferred-derivation-marker",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:find-tools-corpus-fixture"
+}

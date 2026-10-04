@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:0c6aa2e20f71590194800c61d4df05fc283aaca70f69037d095ed6a7a4b3d812",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-design-type-list-moves-down-to-the-vocabulary",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:nodes"
+}

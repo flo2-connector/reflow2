@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:08e2a81fb34f243ae5da25a31c1639da736540e08bac1c251b5163c83e2caf06",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:a-claim-reads-gone-only-when-the-server-holding-its-session-saw-it-end",
+  "properties": {
+    "approved_at": "2026-09-29",
+    "roles": [
+      "author",
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

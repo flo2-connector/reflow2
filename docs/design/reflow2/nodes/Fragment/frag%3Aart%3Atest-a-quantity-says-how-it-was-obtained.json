@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:a9efdae86018d07cf8ecc77a9590dace202f09f1f51788bf188e8bb39fec7675",
+  "node_id": "frag:art:test-a-quantity-says-how-it-was-obtained",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered a_quantity_says_how_it_was_obtained.rs — a limit or contribution nobody sourced is named, the agent's own word is an answer, a source with no number is not stored, and a check on a limit with no executable form is named until the file that is the check is linked"
+  }
+}

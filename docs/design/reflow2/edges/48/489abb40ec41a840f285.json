@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:15922418e48d0c15aefb79b1d3d5028660d4c7cd825d7fc8acd35a9cde776630",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-saved-design-moves-to-the-item-layout-2026-10-03",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:82dabcba4d5d934fe9b126fe0c474a3ad07446055ae43669585a016abcc9caa3",
+    "checksum_basis": "measured"
+  },
+  "to_id": "art:find-skills-corpus"
+}

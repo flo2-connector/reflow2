@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:e80d1665b36baf02fe30ad21e3d723ddfd5ff0c682a992ba0943ca9933a83cca",
+  "node_id": "epoch:loop-owed-to-a-person",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "epoch_type": "revision",
+    "name": "The loop answers what is owed to a named person, and lists the assigned decisions (2026-08-09)",
+    "sequence": 297,
+    "status": "arrived"
+  }
+}

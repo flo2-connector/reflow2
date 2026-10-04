@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:c85311f130d9091d2f884cb8aa0e5445f5e6506820394851c890d5f6a322895c",
+  "node_id": "ver:a-settled-choice-can-be-gone-back-to",
+  "node_type": "Verification",
+  "properties": {
+    "description": "Seven core tests: a pinned decision gives its epoch, checksum and only LATER changes; an unpinned one says it cannot order changes (null, not empty) and points at earliest evidence; the fork point carries the doubt behind the decision; reopening mints a proposed decision that OBSOLETES the original, which stays accepted, and registers the road taken; only an accepted decision can be reopened; the same one is not reopened twice while open; without an address the road taken is not invented.",
+    "findings": "7/7 pass.",
+    "kind": "verification",
+    "last_run_at": "2026-09-23",
+    "level": "integration",
+    "location": "crates/reflow2-core/tests/a_settled_choice_can_be_gone_back_to.rs",
+    "method": "test",
+    "name": "A settled choice gives its fork point, and re-opening it never un-accepts the original",
+    "status": "passing"
+  }
+}

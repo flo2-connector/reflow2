@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:a9d5b52bf7f26478ff859964539effd72d21e4fbc981fbc636a38551ce3771aa",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:has-temporal-fact-means-only-the-subject-and-also-concerns-is-about-entity",
+  "properties": {
+    "approved_at": "2026-09-28",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

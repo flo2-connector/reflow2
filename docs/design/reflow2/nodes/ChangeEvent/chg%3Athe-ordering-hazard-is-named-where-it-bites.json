@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:c93fa2e6fb6f79571f26ac2dd2d5b32514d78b1412bce2be2f48ba3689954035",
+  "node_id": "chg:the-ordering-hazard-is-named-where-it-bites",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "defect_fix",
+    "detected_at": "2026-08-30",
+    "name": "A reference to an absent node names the ordering hazard, and export warns it can run early",
+    "rationale": "Alex's 2026-08-30 field report, item 3. Root-caused under the root-cause skill: TWO symptoms with different causes, and his inference on the second is probably wrong — `set_artifact_checksum` DOES verify the ChangeEvent exists and `NodeNotFound` reaches `content` (proven by his own pin refusal being visible), so his checksum call almost certainly SUCCEEDED and the export that showed the old hash ran before it. That moves the danger from write-then-write to WRITE-THEN-EXPORT, which no refusal will ever catch.\n\nWHY IT RECURRED, and this is the finding: `fact:the-decision-race-is-caller-ordering-not-read-after-write` (2026-08-09, same user's fleet) diagnosed the class correctly and named the general fix as A DESCRIPTION, NOT A FEATURE. What shipped was the INSTANCE fix — collapsing add_decision + set_decision_status into one call. That pair became safe and the class stayed open, so the same user hit it twenty-one days later through add_change_event + pin_at_epoch. Collapsing pairs cannot close an open set.\n\n⚠️ STILL NOT REPRODUCED WITH A CONCURRENT CLIENT — the limit the 08-09 note flagged and nobody closed. The new concurrent test asserts the caller can always tell a no-op from a save, but does not force the race, because asserting a scheduler outcome is flaky by construction.",
+    "subject": "system",
+    "summary": "`dyno_err` gives `NodeNotFound` its own arm: the refusal still names the missing node, then says that if the call was issued in the same parallel batch as the one creating it the two are NOT ordered, tells the caller to sequence them or use a constructor that does both — and still admits the node may simply never have been created, because the message cannot tell those apart. One funnel, so every order-dependent tool inherits it. `export_graph`'s description gains the hazard no error can catch: issued in a batch with writes it can run FIRST and serialise a state missing them, and unlike a failed write THAT FAILURE IS SILENT — the export succeeds, it is merely early, and the document then committed is the one whose artifact hashes will not match disk. Three tests; the regression one was OBSERVED FAILING against the unfixed code."
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:a1ed1a43abb7ee8d138d3f4b1ba72690ef20c67f605d86f1274f423e1c833cb6",
+  "edge_type": "GOVERNED_BY",
+  "from_id": "req:agent-authored-feedback-is-reproducible-and-never-leaves-unasked",
+  "properties": {},
+  "to_id": "dec:idea-agent-to-agent-feedback-is-a-formal-channel"
+}

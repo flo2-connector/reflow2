@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:36a3659a63c81874dba14def6af21b9ffb91174b2bba1a07bee3a47d2e8fddb3",
+  "edge_type": "INVALIDATES",
+  "from_id": "chg:the-coupling-edge-gets-its-name-back",
+  "properties": {
+    "at": "2026-09-01",
+    "note": "Both halves stopped being true on 2026-09-01. `depends_on(from_id, to_id)` exists, and the cross-design pin is served as `external_dependency` (core: `declare_external_dependency`), so the obvious name now means the obvious thing.\n\n⚠️ ONE CLAUSE OF IT SURVIVES AND IS DELIBERATELY NOT CLOSED WITH IT: \"1 of 70 components carries any modelled coupling, so modularity is not measurable\" was still true when this was retired. The helper removed the excuse, not the work — and `fact:coupling-and-contract-are-recorded-in-vocabularies-that-never-meet` still stands on its own."
+  },
+  "to_id": "fact:the-commonest-structural-edge-has-no-typed-helper-and-its-name-is-taken"
+}

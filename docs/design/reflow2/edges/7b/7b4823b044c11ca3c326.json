@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:6fc0e01d65919c4ee911b5c7e88154af752acaacde1fb5c78650525b9601de03",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0612",
+  "properties": {
+    "as_checksum": "sha256:e9d506515e805248700ad848e0431f20bb9a87bb5daf69f0b49438af47d97a69"
+  },
+  "to_id": "art:status-question-finds-the-read-test"
+}

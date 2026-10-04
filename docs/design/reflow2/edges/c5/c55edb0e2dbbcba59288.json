@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:99e1b4622980884557bafee99490b7378814813e4fb50c1509f837c0ffce3c39",
+  "edge_type": "CONSUMES",
+  "from_id": "cmp:ingest",
+  "properties": {
+    "weight": 0.8,
+    "weight_basis": "evidence"
+  },
+  "to_id": "ifc:ambient-agent"
+}

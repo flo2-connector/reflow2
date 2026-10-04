@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:3452b4e67ebb3c31fd060e17affdabd997ec93de83b22c32c9ccb8286ee1f117",
+  "node_id": "snap:epoch:planned-a-session-serves-a-release-binary:art:reflow2-mcp-launch",
+  "node_type": "Snapshot",
+  "properties": {
+    "edges": "[{\"direction\":\"out\",\"edge_type\":\"REALIZES\",\"other_type\":\"Capability\",\"other_id\":\"cap:a-session-serves-a-release-binary\",\"properties\":{\"completeness\":\"complete\",\"conformance\":\"unchecked\"}}]",
+    "state": "{\"artifact_type\":\"code\",\"checksum\":\"sha256:c36a3f4561bbf3b1983b25c21514f27ee335e04a81d0109175ea78c01179f602\",\"description\":\"The launch wrapper `.mcp.json` invokes instead of a raw binary. Since 2026-09-12 it serves target/release/reflow2-mcp and never builds it: missing binary is a refusal naming tools/reflow2-rebuild.sh, and a binary older than the source is served behind an unconditional banner. REFLOW2_PROFILE=debug restores the previous content-hash auto-rebuild for the edit-compile loop. All output goes to stderr, because stdout is the JSON-RPC channel.\",\"location\":\"tools/reflow2-mcp-launch.sh\",\"name\":\"reflow2-mcp-launch.sh\",\"status\":\"realized\"}",
+    "target_id": "art:reflow2-mcp-launch",
+    "target_type": "Artifact"
+  }
+}

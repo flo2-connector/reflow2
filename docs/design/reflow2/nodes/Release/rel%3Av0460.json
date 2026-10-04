@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:87dd8eb116a38f00d7635b581d0f4d1651ab87dccb21024253cc630669382e1c",
+  "node_id": "rel:v0460",
+  "node_type": "Release",
+  "properties": {
+    "name": "v0.46.0 — component coupling gets a typed call and the name it needed, a revising write keeps what it would have lost, and the command surface answers for itself",
+    "status": "deployed",
+    "unit_type": "binary",
+    "version": "0.46.0"
+  }
+}

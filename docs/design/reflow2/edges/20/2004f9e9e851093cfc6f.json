@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:0d1cddbc78b1979cd0b1933da786b7f11508b386d54961eb89bccb18e502f420",
+  "edge_type": "MITIGATES",
+  "from_id": "dec:idea-revise-notes-guards-and-defaults-read-the-merged-node",
+  "properties": {
+    "evidence": "The reporter's option (A) is the direct repair of that defect: compute the undated note from the event after the merge."
+  },
+  "to_id": "fact:root-cause-the-undated-note-reads-the-call-not-the-stored-node-2026-09-28"
+}

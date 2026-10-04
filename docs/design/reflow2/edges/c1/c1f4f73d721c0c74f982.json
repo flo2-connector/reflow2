@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:4260e3d2fffb4766eb53813083735ef1affa82523e91f7e4ad4ba14d855c5269",
+  "edge_type": "CHANGED",
+  "from_id": "chg:v050-as-released",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "rel:v040"
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:63f51a308a12011dee60204c7b460e70add9f522438a5c780b07ce0b0fe373e8",
+  "edge_type": "PROVIDES",
+  "from_id": "cmp:memory-backend",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "ifc:kv-backend"
+}

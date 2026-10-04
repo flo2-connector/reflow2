@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:b73a4dc13bd4364f60a1315421f2779c951e4ac88aad6c0f341d49d14e78f4ed",
+  "node_id": "frag:art:drain",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered drain.rs — a server told to stop drains its work in progress, writes a waiting export, closes every store, then exits"
+  }
+}

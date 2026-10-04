@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:7887ea8ce5db89bb170699eae89068789185429223824abbd68099e56a0a21f7",
+  "node_id": "snap:epoch:preserved-on-write:fact:revising-a-dated-change-event-warns-it-is-undated-2026-09-27",
+  "node_type": "Snapshot",
+  "properties": {
+    "edges": "[]",
+    "state": "{\"basis\":\"measured\",\"fact_type\":\"defect\",\"name\":\"MEASURED 2026-09-27 on 0.72.0: revising a DATED ChangeEvent without re-sending detected_at returns the `undated` note, although the stored node keeps its date\",\"source\":\"flo2's design, served by reflow2 0.72.0, dev_reflow2 hub session 2026-09-27\",\"statement\":\"MEASURED 2026-09-27 on reflow2 0.72.0, in flo2's design:\\n1. chg:flo2-moves-to-reflow2-v0-72-0-2026-09-27 was created with detected_at \\\"2026-09-27\\\".\\n2. It was then revised with add_change_event {id, affected: [...]} alone, to draw its CHANGED edges.\\n3. The reply's `event.properties` still showed detected_at \\\"2026-09-27\\\", and in the same reply the `undated` note said: \\\"This ChangeEvent carries no `detected_at`, so nothing can place it in time ... Re-send with `detected_at`\\\".\\n\\nThe note appears to read the CALL's arguments rather than the stored node. A revise that omits a field keeps its stored value, and the tool description says so (\\\"omitted fields keep their stored value\\\").\\n\\nWHY IT MATTERS: the note tells an agent to re-send a date that is already there. Taken at its word, that costs a redundant write. Worse, an agent that trusts it could \\\"correct\\\" a real date to a guessed one.\\n\\nNOT ESTABLISHED: whether the same call-vs-stored confusion exists in any other reply note that fires on a missing field during a revise.\",\"steps\":[\"add_change_event\"],\"subject_id\":\"chg:an-undated-change-event-says-so\",\"valid_from\":\"2026-09-27\"}",
+    "target_id": "fact:revising-a-dated-change-event-warns-it-is-undated-2026-09-27",
+    "target_type": "TemporalFact"
+  }
+}

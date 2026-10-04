@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:86ed057d48bc20013d32f115424914479de1897651a2e5c969f23dffdddb0e92",
+  "edge_type": "CHANGED",
+  "from_id": "chg:many-projects-brainstorm",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "dec:idea-one-owner-many-projects"
+}

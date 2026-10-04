@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:9436dc23d7f90224ff4e6a49ad212c770cb9e625c2e65926d09cd90744b84d7b",
+  "node_id": "chg:optimisation-is-the-fourth-return-and-the-white-box-half",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "scope_change",
+    "name": "Optimisation joins the contract argument as its fourth return",
+    "rationale": "His words 2026-08-21. Recorded as a change event so the sharpening of the idea node has a snapshot to stand against.",
+    "summary": "Anthony extends the contract brainstorm with optimisation - and rates it above substitutability."
+  }
+}

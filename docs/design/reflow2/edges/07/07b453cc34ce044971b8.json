@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:39eb4bc1e5d8b1c4f95c211d0d4e7ce88a2a06387aa8250da686822e709d989c",
+  "edge_type": "CHANGED",
+  "from_id": "chg:rmcp-v3",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "req:seat-identity-survives-stateless-mcp"
+}

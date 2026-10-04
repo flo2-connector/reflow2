@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:74a15081640e13d18bb2405238a4a82278c9633e482a3a0273fc66d6e8f155b1",
+  "node_id": "cap:freshness",
+  "node_type": "Capability",
+  "properties": {
+    "description": "Distinguish a design that matches reality from one nobody has checked.",
+    "name": "Say when a claim was last confirmed",
+    "provenance": "authored",
+    "status": "verified",
+    "tier": "operational"
+  }
+}

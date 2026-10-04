@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:fe07a5975149935def908f4db70f6857485c608995677a8f2dba4e83f4a6ce5b",
+  "edge_type": "REALIZES",
+  "from_id": "art:jot-skill",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:something-to-come-back-to-is-captured-with-one-word"
+}

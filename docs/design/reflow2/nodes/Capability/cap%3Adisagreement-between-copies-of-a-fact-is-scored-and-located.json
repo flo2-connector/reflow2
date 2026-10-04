@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:b363ddc5eb68f90d439c6c73f1f4d42959a7b2868d4361aac6978ab46dcab8a2",
+  "node_id": "cap:disagreement-between-copies-of-a-fact-is-scored-and-located",
+  "node_type": "Capability",
+  "properties": {
+    "description": "For each fact held in more than one place (edge and pointer twins, mirrored surfaces, a quantity stated twice), reports which copies disagree and, for numbers, by how much — a sheaf Laplacian with identity maps, i.e. a sum of squared differences over the links that should agree — per fact and per part, with the copies behind each score. A reading, never a repair.",
+    "name": "Disagreement between the copies of one fact is scored and located, edge by edge",
+    "provenance": "authored",
+    "status": "planned"
+  }
+}

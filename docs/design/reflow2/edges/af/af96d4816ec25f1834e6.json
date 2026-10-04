@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:dda9fac4c3a3974b08dbd2e2df5252492c1fcd5b2555350928b5b3853edf582f",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-write-is-credited-to-who-it-was-for-2026-09-25",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:find-tools-corpus-fixture"
+}

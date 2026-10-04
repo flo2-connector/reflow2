@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:f1aac30bb437266207c3248e63446dfb5e1092f868f6558a6e04adc69179f47b",
+  "node_id": "cap:mirror-surface",
+  "node_type": "Capability",
+  "properties": {
+    "description": "BUILT 2026-07-25, the first rung of dec:nested-graphs option (c). An edge cannot cross a store because the schema validates both endpoints, so designs link by MIRRORING: `mirror_surface` brings another design's published surface in as local nodes marked `provenance: imported`, and the mirrored Project carries the coordinate — `mirror_of` (whose design), `mirror_content_hash` (which version of their surface), `mirrored_at` (when). Afterwards your own components provides/consumes the mirrored Interface with ORDINARY LOCAL EDGES, so the golden thread, propagate, and every detector work unchanged: foreignness became a property of the NODE rather than of the link, which is what makes the whole approach cheap. `mirrors()` lists who you are composed with and at what version. THE GUARD THAT MATTERS: import_graph is an upsert, so mirroring a surface whose ids collide with local ones would silently overwrite your design with someone else's nodes. A collision is REPORTED AND SKIPPED — your node survives untouched, and an edge touching a collided id is dropped rather than rewired, because pointing their PROVIDES at your same-named component would fabricate a relationship neither design asserted (dec:ask-not-repair). Two designs using one id for different things is a naming conversation between owners, not a merge. Mirroring a design into itself is refused outright, naming import_graph as what you meant. WHAT THE BUILD EXPOSED, and it is the honest limit: every reflow2 graph carried the same hardcoded graph_id, so no design could tell another from itself — rule:no-foreclosure item 5 arriving as a concrete blocker rather than a hypothetical. `open_in_memory_as` lets a design name itself, which is enough for library use and for the tests, but a DURABLE design's identity has to be remembered beside the store (the id namespaces every key, so reopening under a different name would find nothing). That is req:design-identity, filed rather than half-built. 7 tests, including the seam one: after mirroring, consuming their contract reports a published-boundary crossing — which is exactly what changing your side of somebody else's interface is.",
+    "name": "Compose two designs by mirroring the other's published surface, coordinate and all",
+    "provenance": "authored",
+    "status": "verified",
+    "tier": "operational"
+  }
+}

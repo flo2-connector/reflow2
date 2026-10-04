@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:7b95c5d4acc07170e432562d1aa1224b923b92bbf002d767e928125d70106ba9",
+  "node_id": "rel:v0110",
+  "node_type": "Release",
+  "properties": {
+    "name": "v0.11.0",
+    "notes": "Cut 2026-07-25. A minor bump: Decision.status now defaults to `proposed` (was `accepted`) and Interface.designation is new (internal | published) — both behaviour changes with docs/upgrading-to-v0.11.0.md written. Contents: 45 artifacts with frozen cut-time checksums plus cmp:skills and cmp:docs, which is the first release to record documentation as a deliverable (the nine before it shipped a README and a setup guide without modelling them, and dec:intent-preserved said start from the next cut rather than backfill). Ships the KPP capture half, the github-mcp study's three imports (ingress sanitisation, bounded reads, find_tools), the git merge driver, the parallel-work and brainstorm skills, scoped detection, published boundaries with computed severability, and reviewed defects.",
+    "status": "retired",
+    "unit_type": "binary",
+    "version": "0.11.0"
+  }
+}

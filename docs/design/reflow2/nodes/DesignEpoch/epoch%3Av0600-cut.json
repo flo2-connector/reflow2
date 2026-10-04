@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:40775286de65a7074a79f78c8f8e3d2b11a152a8baf283263e48cef982dddcc0",
+  "node_id": "epoch:v0600-cut",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "description": "The v0.60.0 cut. Four PRs since v0.59.0: #495 (the loop check stops firing twice), #496 (units at the seam and the black-box design reference), #497 (the reflow spirit review, flo2's handoff captured, every oversized reply bounded, two races fixed at the cause), #498 (the registry gets its transport, the per-design cost measured, isolation proven in the image, --ephemeral).\n\nWHAT THIS INCREMENT IS ABOUT, if it has one theme: a consumer project's handoff was answered end to end. All six of flo2's items are closed — one of them by refuting its own premise, two by building the transport that had been half-finished since August, and one by paying a debt that had stood open two and a half weeks because nothing in flo2 can write to this graph.",
+    "epoch_type": "release_cut",
+    "name": "v0.60.0 release cut (2026-09-13)",
+    "sequence": 460,
+    "status": "arrived"
+  }
+}

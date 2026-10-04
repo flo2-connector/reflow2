@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:eb12e94208190ca30d715696e741450011673699f9b35589746ce7038488e482",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-taxonomy-is-decided-once-before-bulk-capture-and-every-instance-cites-it",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:test-a-near-match-of-another-type-is-named-as-a-layer"
+}

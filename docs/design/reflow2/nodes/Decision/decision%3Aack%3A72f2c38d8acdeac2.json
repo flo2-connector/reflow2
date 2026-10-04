@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:78dd6c12562459dbcae64ca07d910feac49134796b67bc4c621d4970277ee4e3",
+  "node_id": "decision:ack:72f2c38d8acdeac2",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Accepted the gap gap:72f2c38d8acdeac2.",
+    "name": "Reviewed: gap:72f2c38d8acdeac2",
+    "rationale": "User (who:ajs, 2026-07-23): tracked under BL-70/BL-80 — art:alternatives/art:merge exist on disk (reported no_baseline by reconcile) and get modelled + linked when BL-80 lands.",
+    "status": "accepted"
+  }
+}

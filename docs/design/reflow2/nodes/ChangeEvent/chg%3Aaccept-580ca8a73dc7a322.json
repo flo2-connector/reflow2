@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:120d027ecd5321ea4f7aa5c4f8c207d3f3875b76a28d9a701239e7c3ef411cee",
+  "node_id": "chg:accept-580ca8a73dc7a322",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "refactor",
+    "detected_at": "2026-07-30",
+    "name": "One term added to NON_TOOL_TERMS: `seat` is a FIELD on claim_region, not a tool, and the lint's own failure message prescribed adding it in the same diff. No design meaning — the lint's contract is unchanged. (Corrects an immediately preceding registration that carried a fabricated digest: only the 16-char prefix had been read and the remainder was invented. Registered here from the real sha256sum of the file.)"
+  }
+}

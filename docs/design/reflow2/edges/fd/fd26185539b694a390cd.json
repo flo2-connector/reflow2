@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:62a74e2abce66544da2145359f6e31e251a1c00c6a7ea91489d0dce039dab92c",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-saved-design-moves-to-the-item-layout-2026-10-03",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:2ab117ad801048f30deb59e6a49f436c90f2d92f14014214e4aef5592e56e53c",
+    "checksum_basis": "measured"
+  },
+  "to_id": "art:test-a-writing-call-keeps-the-committed-export-current"
+}

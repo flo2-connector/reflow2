@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:3ab8a115f1f57a380451721fa3f39704cc67cb2c006d753f886b4b81e9cb4759",
+  "node_id": "dep:dynograph-foundation",
+  "node_type": "Resource",
+  "properties": {
+    "components": "dynograph-core,dynograph-storage",
+    "declared_in": "Cargo.toml",
+    "dependency_graph_id": "dynograph-foundation",
+    "description": "Derived from reflow2's own Cargo.toml, not hand-written.\n\n🛑 **THREE CRATES GONE, TWO NAMED HERE, ONE REACHED TRANSITIVELY.** `dynograph-vector` and `dynograph-resolution` left 2026-08-24 (increments 1 and 2); `dynograph-graph` left the same day (increment 3, `chg:absorb-graph-algorithms`). Verified with `cargo tree` at each step rather than inferred from the manifest. What remains: `dynograph-core` and `dynograph-storage` here by name, plus `dynograph-text` pulled in by storage's `fulltext` feature and never named in any manifest — 847 lines and tantivy behind it, and no earlier costing of the absorption counted it.\n\nWHAT WAS ABSORBED, and what was deliberately left:\n  • `mean` + `linear_regression_slope` → `reflow2-core/src/stats.rs`. Left: 7 of 9 functions, `hnsw.rs`, `distance.rs`.\n  • `token_sort_ratio` + closure → `reflow2-core/src/fuzzy.rs`. Left: `PreparedName`, `resolver.rs` (911 lines).\n  • 8 graph names + closure → `reflow2-core/src/graphalg/`. 2,219 of 3,832 lines; left 1,613 in nine files.\nEach carries a header naming repo, tag, commit, files, what was taken and what was left.\n\n⭐ THE ONE CLOSURE RESULT WORTH KEEPING: `cut_structure` does NOT need `max_flow_min_cut`. Articulation points and bridges come from a DFS lowlink walk, so 248 lines stayed behind that the intuition \"cuts need flow\" would have dragged in.\n\n🛑 AND THE ONE MISTAKE WORTH KEEPING: the first closure for increment 3 was wrong because the grep that found reflow2's import sites matched only single-line `use dynograph_graph::X;` and missed the MULTILINE block in `structure.rs`, which imports `betweenness_centrality`. That put two needed files (`betweenness.rs`, `paths.rs`, 375 lines) in the not-taken list. **The same blind spot had been caught in the dependency scan minutes earlier and fixed in only one of the two greps.**\n\nREMAINING WORK: increments 4 (`dynograph-core`, 1,941 lines, 62 importing files) and 5 (`dynograph-storage` + `dynograph-text`, 3,575 lines, brings rocksdb and tantivy). **Only increment 5 ends the dependency.**\n\nHISTORY KEPT: bumped v0.11.0 → v0.12.0 on 2026-07-28 for a stated reason rather than as housekeeping — v0.12.0 closes a type leak reflow2 was structurally exposed to (`search_fulltext` returned `dynograph_text::TextHit`, from a crate reflow2 never names and reaches only through an optional feature) and makes the `rocksdb` and `fulltext` feature NAMES a committed contract upstream. Verified before the tag existed by building this consumer against the provider's unreleased tree. MIGRATION CHECKED, not assumed: `keys.rs` and `backend.rs` are untouched between the tags, so a graph written by v0.11.0 reads identically.",
+    "features": "rocksdb,fulltext",
+    "name": "dynograph-foundation",
+    "provider": "https://github.com/sligara7/dynograph-foundation.git",
+    "resource_type": "design-dependency",
+    "version": "v0.12.0"
+  }
+}

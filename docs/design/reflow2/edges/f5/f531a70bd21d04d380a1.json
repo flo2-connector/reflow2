@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:734e16bc842c38796b5d9e6cae4d748542d7d0c150d650ca721e831034a6e409",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:idea-the-hub-holds-a-copy-per-sub-repo-and-copies-go-stale",
+  "properties": {
+    "authored_at": "2026-08-26",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

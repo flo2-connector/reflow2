@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:0d23615342af4a674387984448e1af00eae69ddb825688218815b2bdaffeaa72",
+  "edge_type": "CAUSES",
+  "from_id": "fact:reflow2-has-a-vocabulary-for-the-users-word-and-none-for-the-agents",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "The measured cause raises this design question; the fact is the evidence and this is the open question about what to do with it.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "dec:idea-should-the-agents-own-word-get-a-first-class-record"
+}

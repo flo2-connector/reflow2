@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:9f7267246e36351106de08f0461ed5e2c206d95fb5433f2f4c3e31c10beaab3e",
+  "edge_type": "MITIGATES",
+  "from_id": "dec:idea-a-question-is-addressed-to-a-person-and-travels-as-a-batch-with-its-evidence",
+  "properties": {
+    "evidence": "Options (b) and (c) are the fix shape for that measured absence of an addressee and answerer on a Question, and for the two-call answer."
+  },
+  "to_id": "fact:root-cause-answering-takes-two-calls-and-records-no-answerer-because-the-answers-edge-landed-as-its-own-tool-2026-09-29"
+}

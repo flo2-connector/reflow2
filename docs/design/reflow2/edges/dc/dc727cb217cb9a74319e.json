@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:e208e26a8d781ce2e8c43157152a9a64a1d9629a20ac6f9ba19dda9844bbebeb",
+  "edge_type": "CAUSES",
+  "from_id": "art:hxm-program-feedback-2026-09-28",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "The root-cause pass on this document's 09-28 report (F-34, one decision in three places): hxm's own two checks demand the copies; reflow2's part is no served surface for a reader who never runs reflow2 and no staleness signal on a DOCUMENTS-linked file, the need recorded only as a lesson after two unrecorded asks.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:root-cause-a-reader-who-never-runs-reflow2-has-no-served-surface-so-each-decision-is-kept-by-hand-in-three-places-2026-09-28"
+}

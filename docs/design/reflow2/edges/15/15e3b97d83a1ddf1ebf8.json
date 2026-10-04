@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:cf2f458b91d1cab82c61a892e8bf924ca16ce3958381882b7a8302a32d6d0ce2",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-launcher-serves-release-and-rebuilding-becomes-deliberate",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "art:reflow2-mcp-launch"
+}

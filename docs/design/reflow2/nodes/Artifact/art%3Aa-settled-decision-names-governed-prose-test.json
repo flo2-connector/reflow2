@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:5ad94498164d6651a422f74b8d9a6f651feb393a383a234535d7fca477ef849e",
+  "node_id": "art:a-settled-decision-names-governed-prose-test",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "description": "Six probes. The CASE: a decision settles, the requirement it governs still says NOT YET DECIDED, and the reply names it, names the phrase that matched, and quotes the prose. The SECOND MOMENT: the edge drawn to an already-accepted decision, which a hook on the status setter alone would miss. And four silences, which decide whether the instrument stays switched on: a status that did not settle (rejected), a re-set that moves nothing (accepted -> accepted), governed prose carrying no marker, and a link to a merely proposed decision.\n\nOBSERVED FAILING FIRST, against the unfixed binary, on 2026-09-09 — the load-bearing step ② of `rule:an-issue-is-root-caused-then-pinned-by-a-test-then-fixed` and the one that rule says is most often skipped and invisible when it is. Three of six failed (the three positive cases); the three silence probes passed vacuously, because nothing fired at all.\n\n⭐ THE TEST'S OWN FIRST DRAFT DEMONSTRATED THE LIMIT OF THE THING IT PINS. It asserted `report-dont-judge` by blacklisting substrings — \"is wrong\", \"is stale\" — and failed against the note's own disclaimer, \"nothing here CLAIMS THE TEXT IS WRONG\". A substring blacklist cannot tell an assertion from its denial, which is exactly why the feature quotes the prose and asks rather than concluding. The assertion was rewritten as a positive property (the note must ask, and must say the judgement is not its own) and the episode kept in a comment rather than tidied away.",
+    "location": "crates/reflow2-mcp/tests/a_settled_decision_names_prose_that_still_says_open.rs",
+    "name": "a_settled_decision_names_prose_that_still_says_open.rs — the case, and the four silences",
+    "status": "realized"
+  }
+}

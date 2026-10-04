@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:1152fd56b7f9802695b1b1fb824a35b7425dc31409e99cc2c75c49a0f8981357",
+  "edge_type": "CHANGED",
+  "from_id": "chg:seam-incompatibility",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:seam-test"
+}

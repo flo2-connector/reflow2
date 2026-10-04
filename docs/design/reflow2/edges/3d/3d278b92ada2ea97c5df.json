@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:085360870a2d1162b80a810308998e9d4facaf2fb482356edb8365be7dc033bb",
+  "edge_type": "REALIZES",
+  "from_id": "art:check-discrimination-rules",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "verified"
+  },
+  "to_id": "cap:the-design-interview-precedes-the-capture"
+}

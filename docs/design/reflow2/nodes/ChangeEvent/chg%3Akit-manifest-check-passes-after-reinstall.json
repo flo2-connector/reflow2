@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:16cae2d642294ea66b693a314861adf8298b5ee64257bcb8f769ed6b74725119",
+  "node_id": "chg:kit-manifest-check-passes-after-reinstall",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "test_failure_fix",
+    "name": "ver:kit-manifest-agrees went failing → passing because the INSTALLED KIT was refreshed (0.22.0 → 0.24.0), not because the check or the design changed. Anthony chose re-running tools/reflow2_init.py over acknowledge_gap; it overwrote nothing (ten edited skill mirrors kept, all three MCP configs left alone) and check_kit_manifest.py then exited 0 with 10 notes and no findings. RECORDED AFTER THE EDIT, and that is the point of writing it down: the snapshot pinned beside this event holds the NEW (passing) state, so the prior `failing` value survives only in this text. revise-design step 2 — snapshot BEFORE editing — was skipped, because reconcile_verification was called with record_events at its default of false: it reported the divergence ('recorded as failing, the run reported passed') to the session and wrote nothing. Without this event the graph would say `passing` with no trace it ever said otherwise, and answering what-changed-when-and-why would need git archaeology — which is the test revise-design sets and the thing req:the-past-is-never-overwritten exists to prevent. The drift itself lives in gitignored local state under .reflow2/, so no commit can fix it and no CI can see it: this check can catch a stale kit, but only a person at the machine can clear one."
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:dc4bd8fc5a2605e9f1632fff822158b30d5dc14146341d876a85f9ca77d83b9b",
+  "edge_type": "INVALIDATES",
+  "from_id": "fact:build-cost-is-crate-scoped-and-neither-restructure-would-pay-for-itself-in-build-time",
+  "properties": {
+    "at": "2026-08-31",
+    "note": "PARTIAL — ITS \"NOT ESTABLISHED\" CLAUSE IS ANSWERED AND ITS CENTRAL CLAIM IS CONFIRMED, SO THE NODE STAYS OPEN. That fact closes with \"NOT ESTABLISHED: how long a full `reflow2-core` rebuild actually takes, or what a crate split would save. The compile-unit argument is READ FROM RUST'S MODEL, NOT TIMED.\" It has now been timed, hours later, on the same day.\n\nWHAT THE MEASUREMENT DID TO IT: confirmed it, and bounded it. Its reasoning — that the crate is the compilation unit so a struct split cannot help — is right, and touching a one-impl-block leaf costs the same as touching the 54-method god-struct (13.74-14.09s workspace either way). What it could not say, and now can: the whole crate rebuilds in ~4s, so a CRATE split has a ceiling of about four seconds, which is not a restructure that pays for itself either. The fact argued the struct split was the wrong remedy; the measurement adds that the remedy it pointed at is barely worth taking.\n\n⭐ AND IT SURFACED SOMETHING NEITHER NODE PREDICTED: ~10 of the 14 seconds is `reflow2-mcp` rebuilding behind core, so the dominant lever is the core→mcp dependency rather than anything inside core.\n\n🛑 EVERYTHING ELSE IN THAT FACT IS UNTOUCHED and is the reason it stays open: its confirmation of global coupling and write contention, its finding that two of the three proposed remedies (ECS, opaque handles) collide with deliberate decisions, and its observation that the zero-crate-boundary seam result is arithmetic rather than a finding. Only the timing clause moved."
+  },
+  "to_id": "fact:change-fragility-is-crate-scoped-not-struct-scoped"
+}

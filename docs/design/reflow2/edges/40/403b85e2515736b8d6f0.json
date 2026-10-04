@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:7e6d95ffce777767b18a14af07fa088243c3b9bcca80173424be9da7c42a6093",
+  "edge_type": "INVALIDATES",
+  "from_id": "chg:the-overtaken-defect-records-were-triaged-against-the-v0510-build",
+  "properties": {
+    "evidence": "HealIssue carries structured hubs (heal.rs:417,770), filled by annotate_hubs over all collected issues so every category gets it, with this report quoted in the doc comment."
+  },
+  "to_id": "fact:defect-duplicate-findings-hide-a-hub-so-five-are-two"
+}

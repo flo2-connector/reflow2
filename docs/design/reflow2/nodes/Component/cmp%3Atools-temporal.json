@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:37b14e4e344f48632284ef6316b7efe3761198441e91832b5bdad129f5c97127",
+  "node_id": "cmp:tools-temporal",
+  "node_type": "Component",
+  "properties": {
+    "kind": "module",
+    "level": "component",
+    "name": "temporal_tools",
+    "provenance": "authored",
+    "purpose": "The TEMPORAL slice of the served surface (10 tools): the time axis — epochs, schedules, snapshots and the planned-versus-delivered delta. schedule_for, arrival_delta, add_epoch, pin_at_epoch, changelog_view.",
+    "status": "planned",
+    "tier": "operational"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:a3c35b662cb15e832e601488c687bcc49f0c3e17b0a12154d43a142e337def43",
+  "edge_type": "REALIZES",
+  "from_id": "art:a-levied-requirement-is-recordable-in-one-call-test",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "verified"
+  },
+  "to_id": "cap:vocabulary"
+}

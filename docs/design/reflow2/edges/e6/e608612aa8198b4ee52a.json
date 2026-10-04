@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:44f33e704a9dec8374be52a1bb1cb809f629c9bc9bbf396d2bca350c01d1f7f7",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-registry-closes-idle-designs-2026-09-27",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:registry-http"
+}

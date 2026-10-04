@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:139da64756d1b8632efc60d623e81bdc37e29e20d6e52b4b82195a2e26a1910b",
+  "edge_type": "ANTICIPATES",
+  "from_id": "fact:changing-one-sentence-in-a-long-decision-cost-a-full-6242-character-resend",
+  "properties": {
+    "evidence": "The earlier one saw the asymmetry and named its safety half — 'the nodes most worth editing are the ones most dangerous to edit'. This is the same asymmetry producing a second and quieter consequence it did not name: not a lost edit but a misfiled one, where the field was chosen by edit cost rather than by meaning."
+  },
+  "to_id": "fact:the-resend-cost-does-not-only-cost-tokens-it-moves-content-into-the-wrong-field"
+}

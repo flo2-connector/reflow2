@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:399852da1e945ec107807b9f7071a4d72925b787939c450b5e6096d25c4f72a1",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:nothing-moved",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:drift"
+}

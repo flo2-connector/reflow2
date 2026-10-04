@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:4f52e5593d22c11bc0c8e6d935006e2879d24d371d3c5226285115cd1db1bbc2",
+  "node_id": "ver:a-write-unit-is-all-or-nothing",
+  "node_type": "Verification",
+  "properties": {
+    "description": "crates/reflow2-core/tests/a_write_unit_is_all_or_nothing.rs, on the in-memory backend and again under the workspace's rocksdb+fulltext build: nesting through the public bulk forms (an inner refusal, an inner commit, a check_only inside a batch), detect_gaps inside a batch against a control outside one, and the unit API (discard, commit, empty). The nesting and derived-scan cases were observed FAILING on main. Engine-level savepoint and write-generation tests sit in foundation/store/engine/tests.rs, and the full-text publish and re-derive tests in engine/fulltext_tests.rs.",
+    "kind": "verification",
+    "last_run_at": "2026-10-02",
+    "level": "integration",
+    "location": "crates/reflow2-core/tests/a_write_unit_is_all_or_nothing.rs",
+    "method": "test",
+    "name": "A write unit is all or nothing however it is nested: an inner batch never commits the outer one, a derived scan inside a batch sees its writes, a discarded unit leaves the store as it was",
+    "status": "passing"
+  }
+}

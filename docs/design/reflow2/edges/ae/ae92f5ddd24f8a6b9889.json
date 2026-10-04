@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:9af45a4b23847b305c710443bdfa0e6ab800789476d6d8db479a418f86162d77",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:a-drawn-relation-is-read-back-as-a-sentence",
+  "properties": {
+    "approved_at": "2026-09-20",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

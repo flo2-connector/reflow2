@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:7e0af417c46258042ea566175ef442e69773314805e3581b933ca7a51a048daa",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:a-release-cut-works-when-the-design-lives-on-a-server",
+  "properties": {
+    "approved_at": "2026-09-27",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

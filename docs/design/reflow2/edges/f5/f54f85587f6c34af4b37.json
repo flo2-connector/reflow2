@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:437877875215eadc51ba06dbf18efd267e0920a0d8ce6b75d65d3fadb9c9f31a",
+  "edge_type": "CHANGED",
+  "from_id": "chg:an-edge-says-whether-anyone-checked-it",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:test-edges-need-both-ends"
+}

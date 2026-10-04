@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:346aa5b14af76fc4ba36c96fb2578cbcef12b600dfba1be1e380d874206c3f19",
+  "node_id": "art:prose-currency",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "location": "crates/reflow2-mcp/src/prose_currency.rs",
+    "name": "prose_currency.rs",
+    "status": "realized"
+  }
+}

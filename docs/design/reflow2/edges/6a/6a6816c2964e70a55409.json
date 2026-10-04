@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:ad3e1751e99c88842bf7ce7ee56144be3728fa3aaf4fcbb0cc8de188f045bf54",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-name-is-not-a-report",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "ver:the-nudge-absence-says-why"
+}

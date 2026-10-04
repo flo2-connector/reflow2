@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:1db3a5c47a3d613ead9768fa3878e2303b49a5f8f4a637aee8f3e8e2c3598b2f",
+  "edge_type": "MITIGATES",
+  "from_id": "dec:idea-a-relation-offered-on-any-decision-is-drawn-or-said-to-be-ignored",
+  "properties": {
+    "evidence": "That idea's option (d), every constructor echoes the relations it drew, is the fix for the discarded echo measured here — the reporter's wish #52 is its add_decision instance."
+  },
+  "to_id": "fact:root-cause-add-decision-discards-the-edge-echo-its-related-to-computed-2026-09-28"
+}

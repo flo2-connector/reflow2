@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:70ac76ad17251c096fdd99d291f552ad22f7b35bbe18d828d3f71c3873f1eccb",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:test-every-finding-that-reads-parking-names-it",
+  "properties": {
+    "covers": "whole",
+    "note": "The file that runs the check."
+  },
+  "to_id": "ver:every-finding-that-reads-parking-names-it"
+}

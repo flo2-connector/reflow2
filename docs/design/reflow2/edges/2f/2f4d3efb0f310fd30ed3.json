@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:40bc182f3abd8b4478043b3cbdfeeccc9b8e54a95cb18a9ff05e2ecf1ebac3dd",
+  "edge_type": "CAUSES",
+  "from_id": "art:dev-storyflow-feedback-2026-09-07b",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "This report is where the two unreachable properties were reported; the defect record is the root-cause pass this rule requires on every issue a field report names.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:defect-a-declared-property-can-be-unreachable-and-invisible-to-the-reach-instrument-when-a-default-populates-it"
+}

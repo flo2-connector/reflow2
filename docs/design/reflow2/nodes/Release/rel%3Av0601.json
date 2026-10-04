@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:26f85a1fab42492f973b942deb8b4df8e1de245cc8d44705bed0cd1fbd5da8b4",
+  "node_id": "rel:v0601",
+  "node_type": "Release",
+  "properties": {
+    "description": "Cut 2026-09-13, a patch over v0.60.0. One CI script fix; no change to the tool surface, the schema, or any behaviour of the server.\n\nWHY IT EXISTS: v0.60.0's binaries, kit and checksums published correctly and its CONTAINER IMAGE DID NOT. The image smoke test's new two-design phase failed on the release runner, and that gate runs BEFORE anything is published — so it correctly refused to ship an unverified image rather than publishing one. This release republishes everything, image included.\n\nTHE DEFECT WAS IN THE TEST, NOT THE PRODUCT. The mint loop checked `{{.State.Running}}` and broke out when it was false, which it is for the first moment of every container's life; on a slower runner it reported \"nothing to isolate\" without ever having waited. It passed locally and failed in CI — a check-then-act found in the worst place.",
+    "name": "v0.60.1 — the image smoke test stops giving up before it has minted anything",
+    "status": "retired",
+    "unit_type": "binary",
+    "version": "0.60.1"
+  }
+}

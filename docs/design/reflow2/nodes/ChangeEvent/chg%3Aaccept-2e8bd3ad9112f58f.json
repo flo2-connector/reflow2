@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:f464f8df04571ee0ae9c657134e36f5b8cacb23a8f598c2c6c29e52f0f196397",
+  "node_id": "chg:accept-2e8bd3ad9112f58f",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "documentation",
+    "detected_at": "2026-08-28",
+    "name": "The v0.42.0 cut moved the version string. `design_holds` because the design meaning of a cut lives in the Release node and its epoch, not in a version literal — nothing about what this project IS changed here.\n\n⚠️ ACCEPTED BEFORE `release_includes_all` RUNS, deliberately. That tool freezes each artifact's CURRENT checksum, so accepting after it would record that v0.42.0 shipped the PRE-BUMP file. Doing it in this order is one step; the other order is a gate failure and a second export.",
+    "subject": "system"
+  }
+}

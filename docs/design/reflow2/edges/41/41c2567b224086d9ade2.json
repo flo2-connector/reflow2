@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:b196ddd88ac4c422ac2b3c65ef3bcd6b82b40d6aa25cdd25962387263345b7b7",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "rule:fixes-are-judged-by-the-third-party",
+  "properties": {
+    "authored_at": "2026-08-06T12:10:00Z",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

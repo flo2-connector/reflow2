@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:01108f84c1b064edd13349a1cdac96be8be0f1af7c98cef6757b5cea8fc1be57",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:a-client-elects-a-server-of-its-own-build",
+  "properties": {},
+  "to_id": "req:the-server-is-the-authority-on-its-own-currency"
+}

@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:b091142d4364984340be99932739e3299c63a483a1069263a31cb7a24866829d",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:manifest-answers-without-a-store",
+  "properties": {
+    "approved_at": "2026-08-06",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

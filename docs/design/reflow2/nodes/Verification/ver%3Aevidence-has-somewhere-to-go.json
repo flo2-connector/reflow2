@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:5141409662a306578394d5e08c0d663f195eace7af177746e4a7bb42f2d01526",
+  "node_id": "ver:evidence-has-somewhere-to-go",
+  "node_type": "Verification",
+  "properties": {
+    "description": "Eight probes across engine and tool. ENGINE (tests/evidence_has_somewhere_to_go.rs): the constructor can reach `description` at all — the half that would otherwise have been missed, since the field was declared and unwritable; a run records `findings` beside its outcome; omitting `findings` LEAVES IT ALONE while a supplied `last_run_at` still moves; a later run can replace it, so \"leaves alone\" is distinguishable from \"cannot update\"; and name/description/findings survive independently, since conflating any two is the state the requirement exists to end. TOOL (tests/the_rollup_stays_cheap_to_read.rs): a 120-word name is shortened in loop_status AND carries name_truncated plus name_words plus a top-level note; a short name is untouched and claims no truncation — the counterweight without which the code could truncate everything and still pass; and description and findings are reachable through the MCP tools end to end.",
+    "findings": "8/8 passing. Workspace 1287 tests, 0 failures. Written the new way as its own first demonstration: this check's name is 9 words against a corpus median of 76, its account is in `description`, and this sentence is in `findings` — the three fields the requirement asked to be separable, used separately.",
+    "kind": "verification",
+    "last_run_at": "2026-08-17",
+    "level": "integration",
+    "method": "test",
+    "name": "A check records what it found separately from what it is",
+    "status": "passing"
+  }
+}

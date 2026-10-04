@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:499a469afdec132781ace24e2031582808da04d95944359f986bb45e1da43423",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0490",
+  "properties": {
+    "as_checksum": "sha256:563670b446f361a6d61aa8c8518e09cf4c4c3e13bdd1254766a878836f324c6a"
+  },
+  "to_id": "art:kpp-proposal-skill"
+}

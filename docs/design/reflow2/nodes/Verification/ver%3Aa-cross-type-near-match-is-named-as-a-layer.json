@@ -1,0 +1,17 @@
+{
+  "content_hash": "sha256:6adcb1bf11cbe0f3df4873cc69dfad52a7c911267cbcc34ed8b60096c4f69686",
+  "node_id": "ver:a-cross-type-near-match-is-named-as-a-layer",
+  "node_type": "Verification",
+  "properties": {
+    "description": "Two cases in `crates/reflow2-mcp/tests/a_near_match_of_another_type_is_named_as_a_layer.rs`, pinning the CLASS rather than Alex's two instances: that the refusal's wording is a function of whether the types differ, IN BOTH DIRECTIONS.\n\n🛑 OBSERVED FAILING FIRST, against the unfixed code: cross-type FAILED, same-type PASSED. That split is the evidence — the passing case is the counterweight, and today's behaviour was already right for it, so the pair discriminates rather than merely rejecting the current message. It panicked precisely on the \"different kind of record\" assertion, with the earlier assertions (the refusal names the matched id, names `distinct_from`, and names the other type) already passing — which confirmed the refusal had always PRINTED the type and never ACTED on it.\n\nWHAT IS PINNED:\n① the reported case — add_change_event then add_requirement in the same words is refused, but described as a different KIND of record, and SHARPEN is NOT offered, because calling add_requirement with a ChangeEvent's id is not a route that exists;\n② the counterweight — a same-type near-duplicate still says SHARPEN and is still NOT described as a different kind of record.\n\nWithout ② the first test would keep passing while the same-type wording drifted into the layered phrasing, which would quietly destroy the distinction the change exists to make.\n\n⚠️ WHAT IT DOES NOT COVER: the SELECTION. The filter still has no node-type term by choice, so this cannot detect a change to which nodes are matched — only to how they are described.",
+    "findings": "2 passed after the change. **BEFORE it: 1 failed, 1 passed** — the cross-type case failed on the \"different kind of record\" assertion, and the same-type counterweight passed, because today's behaviour was already correct for it.\n\n⭐ THE SHAPE OF THE RED RUN IS THE EVIDENCE, not just its redness: the earlier assertions in the failing test — that the refusal names the matched id, names `distinct_from`, and names the other node's TYPE — all passed against the unfixed code. That is what established the cause precisely: the refusal had always PRINTED the type and never ACTED on it, so the repair was known to be a wording change rather than a selection change before a line was written.\n\nFull workspace suite green: 169 suites, 0 failures (up 2 files from 167). In-memory backend 135 suites. `cargo clippy` both crates with `-D warnings` clean; `cargo fmt --check` clean. Exactly 1 toolsnap moved and it was not this one — the guard's surface is unchanged, as a message-only repair should be.",
+    "kind": "verification",
+    "last_reconciled_at": "2026-09-23",
+    "last_reconciled_outcome": "passed",
+    "last_run_at": "2026-08-29",
+    "level": "integration",
+    "method": "test",
+    "name": "A cross-type near-match names the layering; a same-type one still offers sharpening",
+    "status": "passing"
+  }
+}

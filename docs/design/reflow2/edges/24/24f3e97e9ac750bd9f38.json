@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:7a314ebafbd32b3fd7af6c272da16b6a8ef547964238a3a4a15650087bb3de1d",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:a-published-promise-carries-its-evidence",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:export"
+}

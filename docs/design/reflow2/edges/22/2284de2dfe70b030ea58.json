@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:cddfb403d41bc2ce2b5a1fd6c09bc8f6dbe42beffcdd9fb84c11976b70f96b29",
+  "edge_type": "CONSUMES",
+  "from_id": "sys:store",
+  "properties": {
+    "weight": 0.9,
+    "weight_basis": "evidence"
+  },
+  "to_id": "ifc:exclusive-local-store"
+}

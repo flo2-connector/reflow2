@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:519a319df55e673992c9150f6ef48b071c666cb2f3ebb4243169dba18486ec43",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:the-contract-ships-with-the-artifact-and-is-readable-from-a-session",
+  "properties": {
+    "approved_at": "2026-09-20",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

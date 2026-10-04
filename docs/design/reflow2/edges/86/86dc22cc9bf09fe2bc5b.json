@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:4dcff08d277575b055d0588cf0cda88075e32872770a4c3acc146fd6ee063cbf",
+  "edge_type": "ABOUT_ENTITY",
+  "from_id": "fact:defect-stale-server-reproduced-first-hand-here",
+  "properties": {},
+  "to_id": "cap:shared-sessions"
+}

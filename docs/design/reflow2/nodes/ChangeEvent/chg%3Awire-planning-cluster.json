@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:1f45b09d7c55fcffb68c0cd55e6a9ae3eb4534cce7114ed64212d0aa0cedf93a",
+  "node_id": "chg:wire-planning-cluster",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "scope_change",
+    "name": "Anthony is warming to graph-only: no git snapshots, render on demand"
+  }
+}

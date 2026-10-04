@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:45d817e2bb801362fbf1b5cfc659dc7c1966b688fc9aa5ebbf336238b57fa789",
+  "node_id": "chg:accept-2b742a01768ff8ef",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "performance_optimization",
+    "detected_at": "2026-08-04",
+    "name": "BL-205: loop_status digests the verification roll (74,239 -> 1,123 bytes). No design node moved — cap:loop-status already promised ONE CHEAP CALL and was already `verified`; the build had stopped meeting a contract the design has stated all along, so this is conformance, not new intent."
+  }
+}

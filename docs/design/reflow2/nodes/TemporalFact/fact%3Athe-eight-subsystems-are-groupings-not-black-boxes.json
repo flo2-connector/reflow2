@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:7f6628f33f863d1a668c01804c29fc2b1742a14747c91df28a370bb825837881",
+  "node_id": "fact:the-eight-subsystems-are-groupings-not-black-boxes",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "measurement",
+    "statement": "MEASURED from the committed export: reflow2 declares EIGHT subsystems (`sys:agent-surface`, `sys:coherence-loop`, `sys:documentation`, `sys:human-channel`, `sys:intake`, `sys:store`, `sys:time-history`, `sys:vocabulary`) and NOT ONE OF THEM PROVIDES AN INTERFACE.\n\n  subsystem            contains  PROVIDES  CONSUMES\n  sys:agent-surface       5         -         -\n  sys:coherence-loop     18         -         -\n  sys:documentation       1         -         -\n  sys:human-channel       2         -         -\n  sys:intake              3         -         -\n  sys:store               4         -         2\n  sys:time-history        5         -         -\n  sys:vocabulary          4         -         -\n\nZERO of eight provide; ONE of eight consumes anything, and both of its consumed interfaces are external (`ifc:exclusive-local-store`, `ifc:req-dyno-storage-api`) rather than a seam with a sibling subsystem. EVERY interface in the design is provided by a LEAF component one level down — `cmp:service` (ifc:mcp-tools, ifc:mcp-tools-http), `cmp:graph` (ifc:core-api), `cmp:export` (ifc:graph-export), `cmp:main` (ifc:rendezvous-sidecar), `cmp:registry` (ifc:session-graph-selector).\n\nWHAT THAT MEANS, in the systems-engineering sense Anthony raised: the eight are GROUPINGS, not black boxes. A black box is defined by its boundary — you can say what it offers and what it needs without opening it. Here you cannot say either for seven of the eight, so the decomposition carries no interface contract at any level above the leaves. `granularity_report` and `seam_report` have nothing to read at the subsystem tier.\n\nRECORDED BECAUSE IT IS THE BASELINE for a future increment doing proper SE on reflow2 itself, and because the number is the argument: 0/8 is not 'some interfaces are missing', it is 'the tier has no contracts at all'.",
+    "subject_id": "proj:reflow2",
+    "valid_from": "2026-08-17"
+  }
+}

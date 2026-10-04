@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:a5b24fd05bd1320d9ee79bb1bb1135fff4416d563eff77a0e550a7f02e693501",
+  "edge_type": "VERIFIES",
+  "from_id": "ver:a-server-closes-idle-designs-and-says-busy-when-full",
+  "properties": {},
+  "to_id": "req:a-hosted-server-closes-idle-designs-and-says-busy-when-full"
+}

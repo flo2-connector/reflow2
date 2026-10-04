@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:dcb17fd17b4974b85afd66c41c4aa26cbb89be521eac86598f6af429274201d7",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-workflows-github-actions-move-to-current-majors-2026-10-02",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "art:release-workflow"
+}

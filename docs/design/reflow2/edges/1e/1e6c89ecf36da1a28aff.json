@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:4ce348db74b258f86441c6068b302cfd039da1bb987525ad6814149fe9c095c2",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:skills-build",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:skills-build"
+}

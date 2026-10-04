@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:0d4dc4abe4550b980686673a37c0f58b1cdaa99c7ee7d178a1d9e5384a2bd965",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-memory-backend-keeps-its-keys-ordered",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cmp:byte-store"
+}

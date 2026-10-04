@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:3ff228084453e8100691f7f23ab78ba7e15d0162ce5ca3ffe418e8889444867a",
+  "edge_type": "REALIZES",
+  "from_id": "art:sweep-coverage-test",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "verified"
+  },
+  "to_id": "cap:a-sweep-says-what-it-could-not-have-found"
+}

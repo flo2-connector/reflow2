@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:c1c954c6b7eed0ba6a3c4c21575a75e60c2a06b5fcf1313f9066c3d694eaaeb6",
+  "node_id": "chg:a-walk-does-not-recompute-the-whole-network",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "performance_optimization",
+    "name": "Three derived scans move behind the per-write-generation memo, and a walk reads one shared adjacency map instead of two prefix scans per node it reaches",
+    "repair": "corrected_cause",
+    "subject": "system"
+  }
+}

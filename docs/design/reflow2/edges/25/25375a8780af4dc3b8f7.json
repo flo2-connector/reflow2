@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:58f4ecd3cfb973f9d078f41c1397c13de44d8eecba64252a66648a702981350c",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:registering-the-file-that-is-a-check-test",
+  "properties": {
+    "covers": "whole",
+    "note": "Drawn by hand, and that is worth a sentence: this edge is exactly what the fix makes automatic, but the reflow2-mcp binary serving this session was built before the fix, so its link_artifact still draws REALIZES. The next session on a rebuilt binary will not need this call."
+  },
+  "to_id": "ver:registering-the-file-that-is-a-check-gives-it-an-executable-form"
+}

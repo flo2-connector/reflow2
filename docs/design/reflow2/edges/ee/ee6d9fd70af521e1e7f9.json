@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:df278b88efa36fd161138494a28c547a12b55d41bbacabebc783ac32e372557c",
+  "edge_type": "REALIZES",
+  "from_id": "art:find-skills-rank-baseline",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:a-skill-is-found-by-describing-the-job-and-the-corpus-is-the-test"
+}

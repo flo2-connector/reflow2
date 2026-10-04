@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:b63064a7d758efdb8520ece56b8ba3330316cc8b0dc41e074af40c20fb85e06b",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-enforced-rule-gets-its-detector",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "rule:a-design-is-named-by-an-id-not-a-path"
+}

@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:a573b6d67a2361398044deeb8427884caa204d069768843b5e61c08a7dcea28c",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "cap:kpp-proposal",
+  "properties": {
+    "authored_at": "2026-07-25",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

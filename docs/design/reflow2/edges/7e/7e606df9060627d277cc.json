@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:196ae7eb5d2bfc9dd340abad9f2e86f5713f2e2a5e69ebd331d55120f0760fad",
+  "edge_type": "VERIFIES",
+  "from_id": "ver:corpus-is-one-design",
+  "properties": {
+    "pinned": "corpus_size,document_language,document_format,extraction_answers,vocabulary_overlap,storage_backend",
+    "swept": "document_count,document_order,fragment_id_collision,already_ingested,epoch_shared_vs_default"
+  },
+  "to_id": "cap:corpus-ingest"
+}

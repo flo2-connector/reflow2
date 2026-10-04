@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:4f210092f14a25891dba21faddb92c1cf81b9861e2e74681544fee9b0ee39dc6",
+  "node_id": "chg:accept-815dd755caf58e7c",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "test_failure_fix",
+    "name": "Same bytes — re-registered in the sha256: dialect the gate compares in."
+  }
+}

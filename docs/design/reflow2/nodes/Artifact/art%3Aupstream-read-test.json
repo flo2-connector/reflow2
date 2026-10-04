@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:73ca40110063c609f0987ad4ad21fd458ed44c2a0850fe168acda5c97933ca31",
+  "node_id": "art:upstream-read-test",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "location": "crates/reflow2-mcp/tests/an_upstream_export_is_read_without_being_imported.rs",
+    "name": "tests/an_upstream_export_is_read_without_being_imported.rs",
+    "status": "realized"
+  }
+}

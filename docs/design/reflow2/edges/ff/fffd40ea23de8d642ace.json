@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:5bb2a406d8f7fd8d7115bdf492ca81312ac8c0623dd5f3a0bad3e3015740a28e",
+  "edge_type": "INVALIDATES",
+  "from_id": "chg:get-node-reads-a-nodes-edges-2026-10-03",
+  "properties": {
+    "at": "2026-10-03",
+    "note": "Re-measured after this change with --call find_tools on the same scratch import: get_node ranks 1st for 'read one node by id with its properties and edges' (was 8th), 1st for 'get a node and its edges' (was 2nd) and 'show a node's edges' (was 3rd), 4th for 'list the edges of a node' (was 9th) and 5th for 'which nodes link to this one' (was 142nd). Pinned by find_tools_ranks_what_the_query_means.rs."
+  },
+  "to_id": "fact:find-tools-ranks-get-node-eighth-for-a-node-with-its-edges-because-nothing-served-returns-both-2026-10-02"
+}

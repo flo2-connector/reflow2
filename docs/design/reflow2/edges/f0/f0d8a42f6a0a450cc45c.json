@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:af66d3a917bf017c575abb882d65f91dba3211147ea45f459500f33ad890dd22",
+  "edge_type": "ANTICIPATES",
+  "from_id": "dec:idea-is-there-performance-left-after-the-four-wins-and-what-is-the-budget",
+  "properties": {
+    "evidence": "That brainstorm asked what the target and budget would be before any further optimisation; this requirement names them — tokens per task and release-build latency, budgets written first."
+  },
+  "to_id": "req:time-and-tokens-are-measured-per-task-against-budgets"
+}

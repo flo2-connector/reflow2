@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:1a28b404f64452a11c3d9a98b81638355579d6d8c88aa701049f66e7a18b949f",
+  "node_id": "frag:art:test-a-node-is-named-by-its-id-and-the-type-is-optional",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered a_node_is_named_by_its_id_and_the_type_is_optional.rs — verifies/governed_by resolve the type from the id; a collision is refused naming both; an unknown id says so; delete_node still requires the type"
+  }
+}

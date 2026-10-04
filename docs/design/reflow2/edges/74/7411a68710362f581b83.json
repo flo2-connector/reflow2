@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:9c5da256572d4a49c092770aa4b719b9d9cf8e462c00aad0582cef00c45ed66d",
+  "edge_type": "CHANGED",
+  "from_id": "chg:stored-data-is-rechecked-against-the-current-schema",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cmp:heal"
+}

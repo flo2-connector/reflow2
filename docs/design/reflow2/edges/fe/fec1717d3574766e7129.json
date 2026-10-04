@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:27fb7e8563019a1cfdc30d9fb91eda14eb297396b41223bde601bf86ed9062c2",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:ownership-is-durable",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:claims"
+}

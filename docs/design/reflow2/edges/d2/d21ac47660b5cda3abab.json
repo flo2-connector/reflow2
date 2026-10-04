@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:7fd11c49d0f76735bfb5bd1d27c1e138b978594793d551ab2d5e97b186a12eae",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-saved-design-moves-to-the-item-layout-2026-10-03",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:becdb9f092cf5299a1a01567d6de9bed1c0712362e930a07ffbff297808ae732",
+    "checksum_basis": "measured"
+  },
+  "to_id": "art:test-a-fork-point-finds-its-address-in-git"
+}

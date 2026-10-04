@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:56f73c018d45683475f4f6b99ab5a835e15ce2d1711c1a974f6be265e9b80f18",
+  "node_id": "chg:a-refusal-names-what-would-have-worked",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "name": "A refused enum argument now names its legal values — fixed in the one shared helper every served enum passes through, so all of them gain it at once"
+  }
+}

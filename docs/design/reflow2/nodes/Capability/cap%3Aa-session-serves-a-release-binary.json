@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:b323dcc113273f32003672c3deeb63ed520e8187afe74e0e75029827f4c750da",
+  "node_id": "cap:a-session-serves-a-release-binary",
+  "node_type": "Capability",
+  "properties": {
+    "description": "The launch path serves a binary built with the release profile, and the rebuild is a deliberate act rather than a per-launch consequence of a source change.\n\nBUILT 2026-09-12. `tools/reflow2-mcp-launch.sh` serves target/release/reflow2-mcp and never builds it: a missing binary is refused with the command that makes one, a binary older than the source is served behind an unconditional banner naming both hashes, and REFLOW2_PROFILE=debug restores the previous content-hash auto-rebuild for the edit-compile loop. `tools/reflow2-rebuild.sh` is the deliberate half and stamps the source hash only on success, so a failed build leaves the launcher still warning. `tools/launch_serves_release.py` is the CI gate on both properties.\n\nWHY: measured 2026-09-11 on the same bytes, same path, profile the only difference — a propagate walk 5,851 ms → 62 ms warm (93x), design_regions 12.5 s → 2.0 s warm. Consumers who install a prebuilt binary through the one-liner never build at all and were already on release; this was the contributor's half.\n\nWHY IT DOES NOT REBUILD FOR YOU: a cold release build here is ~34 minutes, dominated by librocksdb-sys compiling C++ from source, so a release-by-default wrapper that rebuilt on every source change would make any edit a half-hour cold start on the next session.\n\nWHAT IT DOES NOT CLAIM: that the profile is the whole cost. The adjacency memo serving one caller while 142 edge reads still go to the store is a separate, unattributed waste, deliberately kept out of this increment so the profile's contribution stays measurable.",
+    "name": "The server a session talks to is a release-profile binary, rebuilt on the builder's word rather than on every launch",
+    "provenance": "authored",
+    "status": "verified",
+    "tier": "operational"
+  }
+}

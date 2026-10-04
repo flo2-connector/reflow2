@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:41f5b63cdbd574cb8623b51ef9aceb01ddca890cd321530081dce7e3e1f0fbb2",
+  "edge_type": "CHANGED",
+  "from_id": "chg:accept-eight-requirements",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "req:session-memory-in-graph"
+}

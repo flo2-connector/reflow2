@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:c789ae7196328cf02a50b228789338c680dc338a915007f4f3766b918d63b1fc",
+  "node_id": "cap:git-merge-driver",
+  "node_type": "Capability",
+  "properties": {
+    "description": "BUILT 2026-07-25 as `reflow2-mcp --merge-driver %O %A %B`, plus the `.gitattributes` entry and the parallel-work skill. THE PROBLEM IT ANSWERS, from Anthony's own doubt while brainstorming the isolation ideas: claiming a cluster of nodes says nothing about the REPOSITORY, so two people working entirely separate parts of one design still collide in git — the export is a single large JSON document and git merges it by lines, a unit that means nothing to a graph. The merge itself already existed (BL-80: per node, per property, against the common ancestor, conflicts minted as Questions with deterministic ids); what was missing was one adapter so git calls it. Git's contract followed exactly: exit 0 means merged with the result in %A, non-zero means conflicts remain and the path stays unmerged for a human. A clean merge is written and succeeds; a real both-sides conflict exits non-zero WITHOUT touching %A and prints each conflict id, its question and the `--merge-apply` command that finishes the job — because a driver that fails silently at a git prompt is how someone reaches for `--ours` and deletes a node the other person wrote. NOTHING IS AUTO-DECIDED: the driver applies only what one-sided changes make derivable, running the same resolve_merge the apply path uses so it can take no shortcut of its own. Tested by GIT, not by a home-grown client (tools/test_merge_driver.py, 4 cases on real branches): disjoint edits merge with no human, both-sides conflicts leave the path unmerged and name themselves, additions from both sides both survive, and an unconfigured clone degrades to git's text merge instead of failing — because .gitattributes travels with the repo and the driver definition cannot.",
+    "name": "Be git's merge driver for the design, so disjoint work merges itself",
+    "provenance": "authored",
+    "status": "verified",
+    "tier": "operational"
+  }
+}

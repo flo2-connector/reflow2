@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:a66da3cfc36740786321422e04abd367430faa28104601918830ecead67691fa",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:test-a-repair-can-say-what-it-invalidated",
+  "properties": {
+    "covers": "whole"
+  },
+  "to_id": "ver:a-repair-can-say-what-it-invalidated"
+}

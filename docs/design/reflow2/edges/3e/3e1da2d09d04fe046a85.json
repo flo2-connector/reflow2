@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:c00afd8008138ec4bc0d63c98c8a6e28a0e3a735b9cd0418e1ceaa9f823abe0c",
+  "edge_type": "CHANGED",
+  "from_id": "chg:accept-three-built-requirements",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "req:drift-has-direction"
+}

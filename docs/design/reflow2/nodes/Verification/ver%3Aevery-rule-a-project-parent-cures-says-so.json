@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:4ec890152fe9d84d1098fda73d26a0bcd5b810da453b019aae7ec0e39c8fe675",
+  "node_id": "ver:every-rule-a-project-parent-cures-says-so",
+  "node_type": "Verification",
+  "properties": {
+    "kind": "verification",
+    "last_run_at": "2026-09-29",
+    "level": "unit",
+    "location": "crates/reflow2-core/tests/every_rule_a_project_parent_cures_says_so.rs",
+    "method": "test",
+    "name": "Every hierarchy rule a Project parent satisfies names the cure in the shared sentence, and the cure clears it (walks HierarchyIssueKind::ALL)",
+    "status": "passing"
+  }
+}

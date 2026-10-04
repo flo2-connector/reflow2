@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:74f06983f6bc8b415f06a10ede78cc1af58c7220942f2e7d85c3cc612e3ff31e",
+  "edge_type": "HAS_SNAPSHOT",
+  "from_id": "cap:establish-taxonomy-before-bulk-capture",
+  "properties": {},
+  "to_id": "snap:epoch:preserved-on-write:cap:establish-taxonomy-before-bulk-capture"
+}

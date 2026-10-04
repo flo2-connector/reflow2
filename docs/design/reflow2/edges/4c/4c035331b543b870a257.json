@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:7700961193876690e9bf0b57c1cc5805745bd18d4c8cc06ecbce2d6fba13a054",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:a-file-realizes-only-what-it-implements",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:artifact"
+}

@@ -1,0 +1,17 @@
+{
+  "content_hash": "sha256:46fe799ac1513d676892308a5776662de7fdd37610c7a31e427218caaa8f37f6",
+  "node_id": "req:where-one-fact-is-held-in-several-places-how-far-the-copies-disagree-is-measured-and-located",
+  "node_type": "Requirement",
+  "properties": {
+    "concern": "core",
+    "kind": "functional",
+    "lineage": "original",
+    "name": "Where the design holds one fact in more than one place — two stored copies, a surface mirrored in another design, a quantity stated in two places — how far the copies disagree is measured and located edge by edge, and reported as a reading, not only flagged",
+    "no_relation_note": "Searched reflow2's design for disagreement, copies, mirrors, drift and budgets. Nearest: dec:idea-should-a-modelled-budget-be-a-gate-that-measures (whether a budget rollup should be re-measured on every build — about staleness of the contributions, not disagreement between two copies of one fact) and dec:idea-the-schema-declares-what-each-relation-means-in-primitive-terms (whose option list includes declared authority for stored twins; this measures disagreement whatever the authority is). Neither is a dependency, duplicate or cause; no edge drawn.",
+    "priority": "low",
+    "provenance": "imported",
+    "source": "Anthony, 2026-09-28, in a dev_reflow2 session: \"promote as intent the new ideas from vector math, Topology (sheaves), Topology (persistent homology), and Relations with 3+ participants. Add to the reflow2 and storyflow designs accordingly.\" Promoted from the graph-primitives design on flo2 (graph 85a2a1a36e7c942d): dec:idea-measure-consistency-as-disagreement-across-views, option (b).",
+    "statement": "For every fact reflow2 holds in more than one place — a relationship stored both as an edge and as a pointer property, a surface mirrored between designs, a quantity stated both on a part and as its contribution to a budget — the design reports HOW FAR the copies disagree and WHERE: for categorical copies, which copies disagree; for numeric ones, the size of each disagreement, summed per fact and per part. It is reported as a reading with the copies behind it and never silently repaired; which copy is authoritative is the declared authority's business, not this measure's.\n\nMethod: a sheaf over the graph (Gebhart, Hansen & Schrater, \"Knowledge Sheaves\", AISTATS 2023) — each place a fact is held is a local view, each link between places says how they should agree, and the Laplacian Σ‖F_u x_u − F_v x_v‖² scores total disagreement and names the edges that carry it. With identity maps it is a sum of squared differences; for categorical facts it reduces to counting disagreements, and nothing more elaborate is built for them.\n\nServes tests 2(i) and 5 of the accepted definition of a true knowledge graph (graph-primitives design: dec:what-a-true-knowledge-graph-is). Priority low: in reflow2 most duplicated facts are categorical, so the measure mostly counts; it earns more in StoryFlow, where perspectives carry numeric dimension scores.",
+    "status": "proposed"
+  }
+}

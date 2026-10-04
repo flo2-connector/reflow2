@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:8b1230ec68a33dced210b268157f420054593faf431a407cfc6f16b5aba53f85",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-version-guard-sees-enum-values",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:graph"
+}

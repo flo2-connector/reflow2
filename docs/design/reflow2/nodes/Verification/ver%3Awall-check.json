@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:b49b218af633cb8eb426f1666fabe5785ea7818ef6b447b36f1ba12ba55f9ed7",
+  "node_id": "ver:wall-check",
+  "node_type": "Verification",
+  "properties": {
+    "description": "tools/test_wall_check.py, 11 cases, run in CI on every push. The wall check reads a project's SOURCE from outside reflow2 and compares the coupling it finds against the boundaries the design declares, with no configuration — the design already says where its code lives. Distinct from the structural detectors, which reason about the graph: this one reads the tree and can therefore contradict it.",
+    "findings": "Run 2026-08-23 on this checkout: 11 cases, all passing (0.739s). Also runs in CI on every push (.github/workflows/ci.yml).",
+    "kind": "verification",
+    "last_run_at": "2026-08-23",
+    "level": "integration",
+    "method": "test",
+    "name": "A declared wall is checked against the coupling it actually contains",
+    "status": "passing"
+  }
+}

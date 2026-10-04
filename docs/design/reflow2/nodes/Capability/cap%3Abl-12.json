@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:ab0ff130a49f89a9f4eca597ef099aa4443ba15d46157f37395165582e26c8e3",
+  "node_id": "cap:bl-12",
+  "node_type": "Capability",
+  "properties": {
+    "description": "Concurrent multi-agent / team access — ⚠️ THE SINGLE-MACHINE RUNG IS DONE, 2026-07-27\n\n--shared closes concurrent read AND write for every session on one machine, as the default (see the --shared entry below, and the Unreleased CHANGELOG). This row's original framing — *\"agents take turns; that is only a real cost once a second writer actually exists, which it does not\"* — was overtaken by events twice over and should not be read as current: second writers did exist (a StoryFlow fleet of 3 leads + a worker pool), and the mechanism to serve them had already shipped in v0.14.0 as --http. What remains under BL-12 is genuinely bigger and unchanged: several machines, authentication, claims/trust at org scale, and reconciling designs that diverged. The read-only-secondary rung is no longer the cheapest next increment — a session that attaches to the shared server gets full read/write, so secondaries now only serve the case where somebody deliberately runs a private store. First design sketch below — four consensus-mechanism ideas that survived a 2026-07-19 thought exercise, still the right material for the multi-machine question.\n\nMigrated from docs/backlog.md BL-12 on 2026-08-07 (epoch:backlog-retired). Size estimate carried from the row: ~~L~~ → L (multi-machine only).",
+    "name": "[BL-12] Concurrent multi-agent / team access — ⚠️ THE SINGLE-MACHINE RUNG IS DONE, 2026-07-27",
+    "provenance": "imported",
+    "status": "planned",
+    "tier": "operational"
+  }
+}

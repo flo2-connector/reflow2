@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:633e3a44e3cff8944754a93459acdae86eedfbf932bc60ff37aae8e0dd9808d0",
+  "node_id": "decision:ack:4ac1c3ccf483b4d6",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Accepted the gap gap:4ac1c3ccf483b4d6.",
+    "name": "Reviewed: gap:4ac1c3ccf483b4d6",
+    "rationale": "Accepted at component granularity for now, but recorded with a caveat rather than a clean yes: cap:onboarding is allocated to cmp:skills, which carries a passing check, so the detector reads it as verified one hop away — while in fact the onboarding skill has not been written at all. This is the same detector generosity noted on cap:fork-alternatives (BL-70): allocation to a checked component makes an unbuilt capability read as covered. It is not evidence of anything. When BL-101 is built, give it its own verification rather than inheriting the component's.",
+    "status": "accepted"
+  }
+}

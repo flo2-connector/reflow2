@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:0bf05caedc15814baef50342dd5aa94aa4eb61f12205a8509016dc36bac2f233",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-reachability-gate-reads-tools-not-names",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:test-a-node-is-named-by-its-id-and-the-type-is-optional"
+}

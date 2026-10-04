@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:7110695604eb402a2102a41d35d733a68c14854828648af4395254858b1723cf",
+  "node_id": "chg:accept-b15edaa1e77d695c",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "refactor",
+    "detected_at": "2026-08-02",
+    "name": "The hand-kept vocabulary counts only (10 domains / 28 node / 57 edge -> 11 / 29 / 60). Several were ALREADY stale before this change, which is BL-159's two-records-of-one-contract shape in the prose layer."
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:e5d021fe901b9316237a3190f53ea9836f22ba83d324a327ac95c50ff6339fcd",
+  "edge_type": "HAS_SNAPSHOT",
+  "from_id": "fact:a-cargo-target-dir-shared-across-worktrees-linked-one-worktrees-crate-into-anothers-build-2026-09-29",
+  "properties": {},
+  "to_id": "snap:epoch:preserved-on-write:fact:a-cargo-target-dir-shared-across-worktrees-linked-one-worktrees-crate-into-anothers-build-2026-09-29"
+}

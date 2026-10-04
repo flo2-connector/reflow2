@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:9f5c669f92464c8fcaf22890bcdf871c4a626e45c92cc437b850fcb4ebb10933",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-concern-enum-publishes-its-values",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "art:service"
+}

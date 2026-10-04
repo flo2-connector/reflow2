@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:e6ec6e8d9cead74a76dade1e821905bd229d8a7f127474477c667d423951f083",
+  "node_id": "chg:a-spawned-daemon-caps-its-allocator-arenas",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "performance_optimization",
+    "name": "A spawned shared daemon inherits MALLOC_ARENA_MAX=2 — resident memory halves for no measurable write throughput, and an explicit setting is never overruled",
+    "repair": "corrected_cause",
+    "subject": "system"
+  }
+}

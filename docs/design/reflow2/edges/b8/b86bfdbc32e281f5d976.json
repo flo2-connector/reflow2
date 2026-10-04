@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:de2336ffcaad0319eff19448d415848fef572a05a661847b10f716db54d57352",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-design-closes-against-a-declared-threshold-and-the-report-names-the-first-hole",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "art:find-tools-corpus-fixture"
+}

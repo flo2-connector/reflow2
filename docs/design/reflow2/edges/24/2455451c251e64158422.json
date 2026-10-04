@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:e8f005335025d8c45bc4be27e70ccc57f80ee7c2770bef6b8206feeea2e0b457",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0601",
+  "properties": {
+    "as_checksum": "sha256:d7cd41644a25d6624d9be6381718482cfb8db6a1e8c656738a776afe9197e76c"
+  },
+  "to_id": "art:a-fix-says-whether-it-corrected-the-cause-test"
+}

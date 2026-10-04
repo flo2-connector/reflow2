@@ -1,0 +1,17 @@
+{
+  "content_hash": "sha256:8160a4830db6ca75c462a0ac66f5fc5d62a4947ffaabdf33dcbdc2928a603c8a",
+  "node_id": "ver:replace-text-replaces-a-unique-sentence-refuses-absent-or-repeated-appends-and-preserves-the-prior-state",
+  "node_type": "Verification",
+  "properties": {
+    "description": "crates/reflow2-mcp/tests/replace_text_moves_one_sentence_without_resending_the_field.rs (4 tests).",
+    "findings": "pr run: 4 tests pass; the corpus ratchet ranks replace_text first for its own query.",
+    "kind": "verification",
+    "last_reconciled_at": "2026-09-23",
+    "last_reconciled_outcome": "passed",
+    "last_run_at": "2026-09-19",
+    "level": "integration",
+    "method": "test",
+    "name": "A unique sentence is replaced and the prior state preserved; an absent or repeated old is refused with the count and nothing is written; omitting old appends; a non-text field is refused by name",
+    "status": "passing"
+  }
+}

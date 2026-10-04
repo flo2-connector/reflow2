@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:7d6aef631f020dd8fd25e26deaf6a529639f936483152cf647c7b9b4330b3e23",
+  "node_id": "decision:ack:heal:f737a5cdf35a906d",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Accepted the structural defect heal:f737a5cdf35a906d (single point of failure: cmp:ingest).",
+    "name": "Reviewed: heal:f737a5cdf35a906d",
+    "rationale": "Carries dec:sanitize-spof-accepted (2026-07-25): true and expected — cmp:sanitize is reached only through cmp:ingest, because INGEST is the only path foreign text currently enters by, so every route to the trust boundary runs through one component. `add_redundancy` is the wrong shape (a second copy of a pure text filter is duplication, not resilience). What dissolves it is the SECOND CALLER: detect-and-report on graph import. Deliberately NOT wiring cmp:export to cmp:sanitize to quiet the detector, because that edge does not exist in the code.",
+    "status": "accepted"
+  }
+}

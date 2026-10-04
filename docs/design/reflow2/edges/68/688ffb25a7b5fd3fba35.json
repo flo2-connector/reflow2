@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:53ed239187fd13f4450b611ea74344f738dd22a02e292ab975857a61b0437c2e",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:a-missing-field-refusal-names-the-fields-this-call-lacked",
+  "properties": {},
+  "to_id": "req:a-refusal-names-what-would-have-worked"
+}

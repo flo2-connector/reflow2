@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:56d8045cb9fe6e49125c996830d67bc682c32f6ac78fe06077f0af1533da7219",
+  "node_id": "ver:skill-triggers",
+  "node_type": "Verification",
+  "properties": {
+    "description": "Shape-matching fires on the situation and stays silent otherwise: a file edit with no ChangeEvent names impact-check; a change recorded but never propagated ALSO names impact-check (BL-163); a recorded change with no artifact link names link-artifacts; a capture batch with no gap pass names detect-and-ask; a rendering with nothing stored names session-artifacts. AND THE COUNTERWEIGHT, which is the case that matters most: a session that did the right thing gets NOTHING — a trigger that fires on correct work is the failure BL-23 and BL-42 both name, and this capability exists to reduce nagging rather than add it. BL-163 CHANGED WHAT \"THE RIGHT THING\" MEANS, and the counterweight fixture with it: the sequence edit → record_change → link_artifact → add_requirement → detect_gaps used to pass this test, and now correctly fires, because it never once asked what the change reached. The assertion is untouched — correct work is still met with silence — and the old fixture is pinned by its own test as the defect. THE SHAPES STILL CANNOT ARM THE HOOK (`test_shapes_never_arm_the_hook_by_themselves` passes unchanged); the one branch that arms is BL-163's and lives outside the matcher, because the session it catches has no unchecked writes and has touched reflow2, so no nudge existed for a shape to refine.",
+    "kind": "verification",
+    "last_run_at": "2026-08-01",
+    "level": "integration",
+    "method": "test",
+    "name": "Shape-matching fires on the situation and stays silent otherwise",
+    "status": "passing"
+  }
+}

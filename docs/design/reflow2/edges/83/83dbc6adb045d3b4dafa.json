@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:b83eaf85b4e9701bba0af6e41aaacb0f52f529c391dde3a33c62057e9db0e84a",
+  "edge_type": "GOVERNED_BY",
+  "from_id": "req:a-session-cannot-address-another-design",
+  "properties": {},
+  "to_id": "dec:one-process-many-stores"
+}

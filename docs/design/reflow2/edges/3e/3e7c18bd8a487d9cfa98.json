@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:124707d2a2034343541d8a1c3b98929e1d95dccdb10784854f99763c27529705",
+  "edge_type": "CHANGED",
+  "from_id": "chg:holds-the-invitation-kit-instructions",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:kit-instructions"
+}

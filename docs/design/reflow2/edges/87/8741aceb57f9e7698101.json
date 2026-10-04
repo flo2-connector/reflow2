@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:ed246c08746cd9902bc11c352702971bcc6872c1fbaa4986b99df9909291c0ed",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "req:design-and-implementation-stay-coherent-both-ways",
+  "properties": {
+    "evidence": "The implementation-to-design direction of coherence is the results flowing back.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "req:results-from-the-code-flow-back-into-a-design-that-lives-elsewhere"
+}

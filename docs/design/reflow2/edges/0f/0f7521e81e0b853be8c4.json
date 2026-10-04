@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:18f991e7e6db78562eaf10c1de23485b1e9bed6b952253c011b76494bd4749cb",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-probe-slot-is-claimed-atomically",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:loop-nudge"
+}

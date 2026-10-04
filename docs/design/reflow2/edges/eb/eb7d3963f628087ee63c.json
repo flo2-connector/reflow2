@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:f605e18caddad89d60e13a2ddf976e14ae7ec9f3c046f21df3e1f112961ccbfe",
+  "edge_type": "CONSUMES",
+  "from_id": "sys:vocabulary",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "ifc:core-api"
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:0a8fa3708abf20348911f407eedcd272df9720d384da72f36fb8c1f8f2f6dd90",
+  "node_id": "cap:a-stored-item-the-schema-now-refuses-is-reported",
+  "node_type": "Capability",
+  "properties": {
+    "description": "detect_defects reports, as `refused_by_schema` (severity critical), every STORED node and edge the current schema refuses: data written under an older reflow2 whose vocabulary accepted it, which an import of this design's export would refuse, all or nothing. ONE RULE: it asks Schema::node_refusals / Schema::edge_refusals, the functions the store's single write point refuses with (validate_node and validate_edge_write refuse with the first of them), after the import's own preparation of each item (integers widened into float properties, a legacy AUTHORED_BY normalised, an EDGE_REWRITES edge rewritten). A test holds the detector to the import: the same items, no more and no fewer. Each finding carries `refusal`: the item, every rule that refuses it (endpoint_pair, edge_type or property, worded as the import words it), the replacement the import names (narrowing::named_replacement), and the edge types the schema models for the pair. The replacement is a PROPOSAL: propose_heal drafts it for a person and nothing applies it. Bounded and counted like the other rules: one finding per item, a rule population (stored nodes and edges judged), the reply budget.",
+    "name": "A stored node or edge the current schema refuses is reported before the import that would fail",
+    "provenance": "authored",
+    "status": "realized"
+  }
+}

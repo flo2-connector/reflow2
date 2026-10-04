@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:93361f130b2f9996760ab27a74ca5f1d40126a8584d6f424a3fc3631b86b303c",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:a-module-can-be-read-swapped-and-tested-behind-a-contract",
+  "properties": {},
+  "to_id": "req:recursive-black-box-decomposition"
+}

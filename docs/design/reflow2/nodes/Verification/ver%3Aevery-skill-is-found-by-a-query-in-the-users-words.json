@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:018fab78372a2edcfcec3aab7e999e9854f83a850591b14ad6f6146d0cfb9d20",
+  "node_id": "ver:every-skill-is-found-by-a-query-in-the-users-words",
+  "node_type": "Verification",
+  "properties": {
+    "description": "crates/reflow2-mcp/tests/every_skill_is_found_by_a_query_in_the_users_words.rs: four tests over the served skills and the committed corpus.",
+    "findings": "pr run: 4 passing; 30/30 top-5, 25/30 first; full workspace suite green.",
+    "kind": "verification",
+    "last_run_at": "2026-09-19",
+    "level": "integration",
+    "method": "test",
+    "name": "Every served skill has a corpus query and is in find_skills' top 5 for it; the not-first list only shrinks; a match carries name, shortcut, summary and audience",
+    "status": "passing"
+  }
+}

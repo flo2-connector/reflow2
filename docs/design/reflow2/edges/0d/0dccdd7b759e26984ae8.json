@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:4867873fbf4e58ad2f6c4665e8dd80cd5f6252962af4b43ef19eb865d7f6a28c",
+  "edge_type": "CHANGED",
+  "from_id": "chg:bl174-false-green-for-consumers",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cap:skills-served"
+}

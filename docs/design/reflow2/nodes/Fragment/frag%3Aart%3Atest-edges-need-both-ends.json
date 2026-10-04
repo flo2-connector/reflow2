@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:89930c35b80f4c8e1f4f19ce7f26e5d290e4c8d03af1320869f72d94f432a88d",
+  "node_id": "frag:art:test-edges-need-both-ends",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered edges_need_both_ends.rs"
+  }
+}

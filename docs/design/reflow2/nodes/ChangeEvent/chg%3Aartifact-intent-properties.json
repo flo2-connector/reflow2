@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:91ad32baf8dd3f274d99b46319ebbfc0eab24f4c6840eeda3269cc0812c57161",
+  "node_id": "chg:artifact-intent-properties",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "name": "BL-188 + BL-191: an Artifact can declare what it stands for (granularity) and how its content behaves (volatility) — one schema touch, both aimed at the graph being unable to tell two opposite states apart"
+  }
+}

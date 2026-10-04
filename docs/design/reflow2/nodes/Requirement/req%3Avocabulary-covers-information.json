@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:3883b7e775aed77d387da3b8e843e29c56716fbffc1addc2c5a0f7476bf4e0df",
+  "node_id": "req:vocabulary-covers-information",
+  "node_type": "Requirement",
+  "properties": {
+    "concern": "core",
+    "designation": "internal",
+    "kind": "functional",
+    "lineage": "original",
+    "name": "What crosses an interface is modellable — data entities, their attributes and their relationships",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "Anthony, 2026-08-07, from the UAF audit: there is no data-entity or information-element type, so a logical data model has nothing to project from.\n\nWHAT EXISTS AND WHY IT IS NOT ENOUGH: `Interface` carries `operations` and `payload_format` as free text, and `SPECIFIES` exists for pointing an Interface at a machine-readable contract (an OpenAPI file, a protobuf schema) — with ZERO instances. So the graph can say a contract exists, what medium it uses and how it authenticates, but not WHAT TRAVELS OVER IT in any form a computation can read. An interface is currently a promise with no stated structure behind it.\n\nWHAT CANNOT BE SAID TODAY: the entities two components exchange; an entity's attributes; that two interfaces carry the SAME entity, which is what makes a change to it propagate to both; that one system's field maps to another's under a different name, which is the whole substance of making two organisations' designs interoperate.\n\nWHY IT MATTERS BEYOND reflow2, and this one bears directly on the stated purpose: `reflow2-real-operating-context` says the job is making partially-built, differently-motivated designs interoperate when they were never designed to. Interoperability failures are overwhelmingly SEMANTIC — the same concept under two names, two units, two precisions — and none of that is expressible. `con:pairing-stops-at-the-boundary` already records the ceiling in the graph's own words: pairing sees boundaries, not the types that cross them. That constraint is this requirement's evidence.\n\nNOT SPECIFIED HERE: whether this is a full entity-relationship layer or something much thinner, and whether reflow2 should model entities itself or only carry a locator to an external schema — `dec:agent-navigates-content` (the agent navigates content, the graph records where it landed) is an argument for the thinner answer, and the trade is not settled.",
+    "status": "deferred"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:7cea57c8d0a1a47fc8f761e479e45be166ca853acf588ebf5eac4bccae308656",
+  "edge_type": "OBSOLETES",
+  "from_id": "dec:idea-one-blueprint-the-store-is-the-design-and-an-export-is-a-perishable-photocopy",
+  "properties": {
+    "evidence": "dec:repo-file-embedded (2026-07-18) made \"exports the durable, diffable record\" and chose \"not a service\"; dec:multi-writer-architecture confirmed it on 07-25. Rule 3 (an export is a perishable photocopy nobody tracks) and rule 2 (sharing through a server) contradict both halves, so it is retired with the decision that confirmed it.",
+    "note": "Retired together with dec:multi-writer-architecture, which confirmed it."
+  },
+  "to_id": "dec:repo-file-embedded"
+}

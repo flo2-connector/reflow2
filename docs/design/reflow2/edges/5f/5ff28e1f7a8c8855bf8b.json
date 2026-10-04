@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:860ece2bbf177575508c6c301b448ea6711de7708e3ffd40186f62e1f2f4fda5",
+  "edge_type": "INVALIDATES",
+  "from_id": "chg:accept-4810f73d13acff9e",
+  "properties": {
+    "at": "2026-09-22",
+    "note": "The test now gives the server HOME=<the temp project>, so a machine-wide OpenCode plugin can no longer stand in for the bare project; 9/9 pass on the dev box."
+  },
+  "to_id": "fact:the-no-hook-handshake-test-read-the-developers-machine-wide-opencode-plugin"
+}

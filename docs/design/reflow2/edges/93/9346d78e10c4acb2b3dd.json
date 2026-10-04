@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:d0ba91334340599bd713226d8bc9d081cce058a6d782310fa6e383df3bcd7926",
+  "edge_type": "GOVERNED_BY",
+  "from_id": "cap:branch-facts-are-held-in-a-per-branch-overlay",
+  "properties": {
+    "note": "What goes into the overlay at all is the classification that decision sets."
+  },
+  "to_id": "dec:which-design-records-belong-to-a-branch"
+}

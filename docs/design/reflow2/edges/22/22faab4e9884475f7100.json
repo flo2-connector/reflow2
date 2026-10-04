@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:2731d7fd767d99a711862782e3eb46991958751096205e9a19de1b5d49a1de8d",
+  "edge_type": "REALIZES",
+  "from_id": "art:maturity",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cmp:maturity"
+}

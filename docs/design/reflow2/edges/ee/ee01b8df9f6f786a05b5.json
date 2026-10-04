@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:9e906f07333d95cf18480a9b5d006b3cfb75dbe2fcef0ea9cc0a4f6439d72956",
+  "edge_type": "EVOLVES_INTO",
+  "from_id": "dec:idea-establish-the-taxonomy-once-before-bulk-capture",
+  "properties": {
+    "evidence": "Promoted on Anthony's word, 2026-09-17: \"I'd like to accept/promote all of Alex's ideas. We can work them after the current set of tasks.\" Option A (the three legs) is the shape the requirement took."
+  },
+  "to_id": "req:a-taxonomy-is-decided-once-before-bulk-capture-and-every-instance-cites-it"
+}

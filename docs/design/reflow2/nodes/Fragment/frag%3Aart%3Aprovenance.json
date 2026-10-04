@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:5ba873f57d657c46357760359ce1583ba5d339e10445440f7364cf3d9bb2cfc1",
+  "node_id": "frag:art:provenance",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered provenance.rs"
+  }
+}

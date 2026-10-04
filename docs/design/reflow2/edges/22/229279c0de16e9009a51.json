@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:c7c2d804a3cf773d338067eafc409159c92b478e19d5c4447d598b7a3f070b4f",
+  "edge_type": "REALIZES",
+  "from_id": "art:heal",
+  "properties": {
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:a-finding-describes-the-walk-that-produced-it"
+}

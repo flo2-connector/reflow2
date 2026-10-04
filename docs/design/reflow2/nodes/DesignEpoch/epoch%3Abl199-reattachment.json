@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:7e884bfad2983bb6c758b3d89d8ba98be1b2deb6ea254c5fd5d12dff0e9fd5ae",
+  "node_id": "epoch:bl199-reattachment",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "epoch_type": "revision",
+    "name": "BL-199 — reflow2's own document artifacts are re-attached with DOCUMENTS where REALIZES was asserting implementation that never happened",
+    "sequence": 268,
+    "status": "arrived"
+  }
+}

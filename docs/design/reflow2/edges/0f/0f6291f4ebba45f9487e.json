@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:8d5cbe38d58b1c3a0d1e511eee45980fb59fbc49d5d1a8592a0589ed10a09175",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-how-reflow2-triggers-the-loop-for-a-call-door-agent-in-vs-code",
+  "properties": {
+    "evidence": "Any hook file for the door is only kept current if the door harness that requirement asks init/update to install also writes it; a hand-placed hook would repeat limitation 11.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "req:init-installs-the-terminal-route-for-vs-code-and-update-keeps-it-current"
+}

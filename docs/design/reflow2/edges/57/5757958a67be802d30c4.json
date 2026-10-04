@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:6c77cf157cfb3c00988ed3667750171c68b76d06efb7633a191d6ad0c900d34c",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:who-needs-to-know",
+  "properties": {
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "cap:propagate"
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:9a163b2c6253cc35fcf5f6b837d51f66de67f765dc073b30d32ab0e6c0afe22a",
+  "node_id": "decision:ack:e2f0841c3aa9ba23",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Accepted the gap gap:e2f0841c3aa9ba23.",
+    "name": "Reviewed: gap:e2f0841c3aa9ba23",
+    "rationale": "Checked 2026-09-07: partly open. Verifies now legally reaches a Constraint and an Interface, and the round-trip check is built, but verifies-to-Project stays deliberately unlisted and the reporting design still will not import until somebody decides. Export-side validation is not built.",
+    "status": "accepted"
+  }
+}

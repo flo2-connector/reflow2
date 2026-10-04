@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:9c2fae0dca3f09e2611caef887bed322ff6b748f36588db604f10519ae403379",
+  "node_id": "chg:content-manifest-built",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "name": "cap:content-manifest built — derived from the graph and the store, never stored twice"
+  }
+}

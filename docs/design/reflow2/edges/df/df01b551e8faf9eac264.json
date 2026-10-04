@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:7d586e423920ba6594ed29caa672fbfc85de38e275b3c49804ce04c81888cb51",
+  "edge_type": "REALIZES",
+  "from_id": "art:a-published-promise-carries-its-evidence-test",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "verified"
+  },
+  "to_id": "cap:a-published-promise-carries-its-evidence"
+}

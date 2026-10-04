@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:d64758bb025bbdeef6f7031c010db8476fde8f1d37e437f28463a728865c439d",
+  "edge_type": "REALIZES",
+  "from_id": "art:content-policy",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:a-reply-takes-the-shape-its-client-can-read"
+}

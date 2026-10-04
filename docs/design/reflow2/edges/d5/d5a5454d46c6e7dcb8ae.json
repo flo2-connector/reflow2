@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:70bbf2f35289e7c2564091cbac3c899d4253971afbb37e63816c73912226a99e",
+  "edge_type": "CHANGED",
+  "from_id": "chg:storyflow-second-field-report-20260808",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "fact:defect-the-mandated-cold-start-check-costs-the-largest-payload"
+}

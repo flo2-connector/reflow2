@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:4a603336b2db327200fca2a4213dcede57351296c663051239f1f885727ce344",
+  "edge_type": "INVALIDATES",
+  "from_id": "chg:the-overtaken-defect-records-were-triaged-against-the-v0510-build",
+  "properties": {
+    "evidence": "graph_report returns a verification digest by default and the full roll only behind include_verifications (coherence.rs:664-677), with loop_status naming the flag. Pinned by its own test."
+  },
+  "to_id": "fact:a-report-is-not-a-list-of-every-check"
+}

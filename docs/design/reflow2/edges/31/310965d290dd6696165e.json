@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:3ddea1f56678a999009e29b256c2e5b8f775bf987ee63091715dcea89332c8c5",
+  "edge_type": "DUPLICATES",
+  "from_id": "dec:idea-may-a-caller-asserted-identity-be-trusted-and-for-what",
+  "properties": {
+    "basis": "suspected",
+    "evidence": "Both ask where a contributor identity may come from and what it may authorise, and the 2026-08-26 node already draws the attribution-versus-authentication split this one re-derived; linked rather than merged because that one holds Anthony's reasoning about where authentication lives and this one holds flo2's field case and its measured cost."
+  },
+  "to_id": "dec:idea-authentication-is-somebody-elses-layer-and-the-line-is-the-contributor-id"
+}

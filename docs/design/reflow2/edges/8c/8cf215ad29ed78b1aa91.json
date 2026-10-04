@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:e5113bfedbc3bccce96155ae14cb92a9c182f0d09b828c42259d9df66aee9d33",
+  "edge_type": "HAS_TEMPORAL_FACT",
+  "from_id": "cap:heal",
+  "properties": {},
+  "to_id": "fact:defect-merge-survivor-ignores-priority-and-status"
+}

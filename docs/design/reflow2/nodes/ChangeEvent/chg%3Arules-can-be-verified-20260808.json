@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:fea603dff22d0b658eb307b7470327d85f62e5da6da609fd4c915c6e73f3b668",
+  "node_id": "chg:rules-can-be-verified-20260808",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "name": "VERIFIES enumerates its targets so a DesignRule is modelled rather than merely accepted, and two gaps ask what checks a gate-blocking rule — and what conventions a build follows at all"
+  }
+}

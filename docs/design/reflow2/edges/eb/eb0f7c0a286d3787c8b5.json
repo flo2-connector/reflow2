@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:ff30e819f26dfb37eabed5792596cf5c989cfd139f7576901fbc4ba50a66979b",
+  "edge_type": "ANTICIPATES",
+  "from_id": "fact:a-findings-name-can-claim-more-than-its-data-and-the-name-is-what-search-returns",
+  "properties": {
+    "confidence": 0.9
+  },
+  "to_id": "dec:idea-should-a-finding-be-required-to-bound-its-own-claim"
+}

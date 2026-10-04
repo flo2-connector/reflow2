@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:d762b6acacc2a43f03a84d55f8a197233ba3bba0399ad9657b5163a0bc0b0a86",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:idea-how-do-we-know-the-tests-catch-anything",
+  "properties": {
+    "authored_at": "2026-09-22",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:claude-code"
+}

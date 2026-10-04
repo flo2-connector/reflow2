@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:8e982a4e899c7dc9b3f15d7bd33ef0b1981e1fb073da4d88f332b7c256909e12",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:one-reflow2-serves-both-routes-mcp-and-the-call-door",
+  "properties": {
+    "evidence": "How the door is carried only matters because Anthony made the door a supported route the same day.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "dec:idea-the-call-door-becomes-a-supported-harness-for-an-agent-that-cannot-use-mcp"
+}

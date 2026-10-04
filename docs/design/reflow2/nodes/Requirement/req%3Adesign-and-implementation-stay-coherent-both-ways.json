@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:57216a848cfea8498d03c5bb55bcff56fe8e039cd12d8161012e1c5669c3f65e",
+  "node_id": "req:design-and-implementation-stay-coherent-both-ways",
+  "node_type": "Requirement",
+  "properties": {
+    "concern": "core",
+    "kind": "functional",
+    "lineage": "original",
+    "name": "Design and implementation stay coherent in both directions, wherever each one lives",
+    "priority": "critical",
+    "provenance": "authored",
+    "source": "Anthony, 2026-09-25 (dev_reflow2 hub session)",
+    "statement": "A core principle of reflow2: a design and its implementation never drift apart. A change to the design is reflected in the implementation, and a change the implementation forces — from testing or any other feedback — is reflected back into the design. To keep that true, reflow2 maintains a clear link between the design and wherever it is being implemented, so an agent can always see both. Physical implementations are included: a house built from a design may never report back on its own, but the person can still feed back inspection results or test findings, and those land in the design the same way.\n\nIn Anthony's words, 2026-09-25: \"reflow2 must maintain the clear linkage between design and implementation (this linkage is critical the concept of reflow2 working. If the agent is no longer able to see both design and implementation, then we'll run into situations where design and implementation drift apart. This can't occur as it is one of the core principles of reflow2 that design and implementation remains coherent...that changes to design get reflected in implementation and changes in implementation due to testing or other feedback get reflected back into design. Obviously, some designs will be physical implementations (for example, building a house from a reflow2 design) and you may never get feedback to the design...but even then, then the user can still provide inspection results or testing that provided feedback to design side.\"\n\nREPLACES req:persistence (\"the design persists in-repo alongside the code\"), retired the same day: where the design is stored stopped being the principle; coherence with its implementation is.",
+    "status": "accepted"
+  }
+}

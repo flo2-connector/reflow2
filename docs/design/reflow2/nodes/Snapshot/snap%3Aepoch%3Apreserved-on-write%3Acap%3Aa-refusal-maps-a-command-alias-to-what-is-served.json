@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:af0237eedccac8896315ff6b53d5397039084f45d79bb71d79f39d85b3bb6993",
+  "node_id": "snap:epoch:preserved-on-write:cap:a-refusal-maps-a-command-alias-to-what-is-served",
+  "node_type": "Snapshot",
+  "properties": {
+    "edges": "[{\"direction\":\"in\",\"edge_type\":\"REALIZES\",\"other_type\":\"Artifact\",\"other_id\":\"art:skills\",\"properties\":{\"completeness\":\"complete\",\"conformance\":\"verified\"}},{\"direction\":\"in\",\"edge_type\":\"REALIZES\",\"other_type\":\"Artifact\",\"other_id\":\"art:tools-skills\",\"properties\":{\"completeness\":\"partial\",\"conformance\":\"unchecked\"}},{\"direction\":\"in\",\"edge_type\":\"VERIFIES\",\"other_type\":\"Verification\",\"other_id\":\"ver:served-skills\",\"properties\":{}},{\"direction\":\"out\",\"edge_type\":\"ALLOCATED_TO\",\"other_type\":\"Component\",\"other_id\":\"cmp:skills\",\"properties\":{\"weight_basis\":\"estimated\"}},{\"direction\":\"out\",\"edge_type\":\"SATISFIES\",\"other_type\":\"Requirement\",\"other_id\":\"req:a-refusal-names-what-would-have-worked\",\"properties\":{\"coverage\":\"partial\",\"evidence\":\"One instance of an accepted requirement — get_skill's refusal. No new requirement was written for it, deliberately.\"}}]",
+    "state": "{\"description\":\"`get_skill` refusing an unknown name first says what the name IS, when it is one of the slash commands: \\\"'rules' is the slash command; it is served as 'governance-proposal'\\\". Six of the eight advertised commands map to a skill.\\n\\nTWO OF THE EIGHT MAP TO NO SKILL AT ALL and the table says so rather than inventing one — `/decisions` calls `scan_nodes` for the Decision type and `/debt` calls `loop_status`. Answering those with a plausible skill name would send the caller somewhere that cannot help them, which is the failure the refusal exists to prevent.\",\"name\":\"A refusal maps a user-facing command name to the skill actually served — or to the tool, when there is no skill\",\"provenance\":\"authored\",\"status\":\"realized\",\"tier\":\"operational\"}",
+    "target_id": "cap:a-refusal-maps-a-command-alias-to-what-is-served",
+    "target_type": "Capability"
+  }
+}

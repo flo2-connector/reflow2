@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:916f6cbe05803438158880d286af2ab729e75894db9af27b616327a46d722ab4",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-walk-does-not-recompute-the-whole-network",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:graph"
+}

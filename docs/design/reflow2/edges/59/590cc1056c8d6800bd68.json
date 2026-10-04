@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:8f4b4bc996c17de81e288e2922f178083c51abb455ae3e58ba529c33a16dba18",
+  "edge_type": "INVALIDATES",
+  "from_id": "chg:every-argument-refusal-names-the-tool-and-the-field-path",
+  "properties": {
+    "at": "2026-10-02",
+    "note": "Verified false on this branch's binary 2026-10-02: add_decision with related_to [{other_id, relation}] now names `related_to[0].evidence` and quotes 'WHY this relation is true, in a sentence…'; set_artifact_checksums names `accepts[0].disposition` with its three values on the first refusal. The description lookup follows $ref into $defs, the 13 undescribed nested fields are described, and every_required_parameter_is_described.rs walks nested schemas (35 nested required fields reached)."
+  },
+  "to_id": "fact:root-cause-a-missing-nested-field-refusal-says-the-schema-publishes-no-description-when-it-does-2026-10-02"
+}

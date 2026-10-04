@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:dd5508e9b8efd8fd890cbbc4c1d67975080d6d5c54b787caa03aa5340ed434a8",
+  "edge_type": "CHANGED",
+  "from_id": "chg:nine-tools-gain-a-reply-budget",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:tools-coherence"
+}

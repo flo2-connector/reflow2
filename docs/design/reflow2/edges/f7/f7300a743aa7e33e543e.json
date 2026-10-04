@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:a580251d53db9b2d18eb0901c90967f4226180a78eea1ae5d9646c696be86e43",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:a-session-reports-the-work-it-did-by-hand",
+  "properties": {},
+  "to_id": "req:a-session-says-what-it-did-by-hand-that-reflow2-already-serves"
+}

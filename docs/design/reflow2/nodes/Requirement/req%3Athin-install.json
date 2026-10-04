@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:276e290b83715bcc764255795fffe45ea00cba7caa9b3d8ca237f35863a60660",
+  "node_id": "req:thin-install",
+  "node_type": "Requirement",
+  "properties": {
+    "concern": "core",
+    "designation": "internal",
+    "kind": "functional",
+    "lineage": "original",
+    "name": "After setup, a project never has to change again for reflow2 to move",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "Installing reflow2 into a project should put a paragraph in the agent instructions and a server address in the MCP config, and nothing else that ever needs refreshing. Upgrades belong to the reflow2 package: today `reflow2_init.py` copies fifteen skills into two directory trees plus AGENTS.md, so upgrading means re-running init and taking thirty-odd changed files into a repo that has nothing to do with reflow2's release. Anthony's brother, 2026-07-25: \"you wouldn't need to change anything in your repo again and updates would be confined to the reflow package.\" The installer's own docstring already concedes the defect — \"the kit is copied into your project, so it otherwise freezes at install time while reflow2 keeps moving\" — and reflow2's own kit manifest sat four releases stale without anything noticing (ver:kit-manifest-agrees).",
+    "status": "accepted"
+  }
+}

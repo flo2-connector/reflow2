@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:ab5fa0dcc1c031fa7c506aca74df8576a3ca8d9929c4f44117b7a023a8241de9",
+  "node_id": "epoch:v0350",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "epoch_type": "release_cut",
+    "name": "v0.35.0 — the three legs: a design can see the vocabulary it never used, write a capability's signature, and be told whether a revision destroyed anything",
+    "sequence": 360,
+    "status": "arrived"
+  }
+}

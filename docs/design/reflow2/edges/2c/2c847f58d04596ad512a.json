@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:46a48a03c5e1d065e824965a848bd8de47a9419ddeb0c755b1ae416cf08056cb",
+  "edge_type": "MITIGATES",
+  "from_id": "dec:idea-an-operating-project-ranks-incidents-failing-checks-and-safety-above-design-completeness-gaps",
+  "properties": {
+    "evidence": "The root-cause walk of F-33 found the loop's order fixed in code and the operations signal absent from it. Each option here answers part of that: a declared phase or an urgency mark gives the loop something to rank by, and a gap-kind ruling quiets what never applies."
+  },
+  "to_id": "fact:root-cause-the-loops-order-is-fixed-for-the-design-phase-and-the-operations-signal-is-not-in-it-2026-09-28"
+}

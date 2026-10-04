@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:6699caf241ea1ec0ea32cbeda6a48b8db9e34dfab92ec6031d52311edef141b9",
+  "edge_type": "ANTICIPATES",
+  "from_id": "dec:idea-other-centralities",
+  "properties": {
+    "evidence": "Written 2026-08-01 in the dynograph-foundation review, three weeks before this requirement existed, and it is an instance of exactly what the requirement asks: read the design's shape with more than one centrality. It saw the requirement coming. ⚠️ AND THE ABSORPTION CHANGED ITS COST — increment 3 left `centrality.rs`, `closeness.rs`, `eigenvector.rs` and `clustering.rs` (590 lines) upstream, so acting on it is now a retrieval from tag v0.12.0 rather than a call to code already linked."
+  },
+  "to_id": "req:graph-theory-undergirds-the-design-brain"
+}

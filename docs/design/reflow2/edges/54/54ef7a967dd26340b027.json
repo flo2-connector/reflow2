@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:ea18970044b15af68b8f62acf16ada91d69135d252e81805550310188d284d6c",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:idea-a-name-the-agent-invented-reads-exactly-like-one-it-was-told",
+  "properties": {
+    "authored_at": "2026-09-07T23:50:00Z",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

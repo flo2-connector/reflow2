@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:2f49255630fbec9d3ea756a62fcf71e02d0b0560f7008ae6781655a662b36d87",
+  "node_id": "art:kpp-proposal-skill",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "document",
+    "granularity": "atomic",
+    "location": "getting-started/skills/kpp-proposal/SKILL.md",
+    "name": "kpp-proposal/SKILL.md",
+    "status": "realized",
+    "volatility": "stable"
+  }
+}

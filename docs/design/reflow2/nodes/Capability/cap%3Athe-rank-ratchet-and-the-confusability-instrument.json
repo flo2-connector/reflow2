@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:f925de42f5223733b1cca135ac885a6a6a51f83123bd54c87b29666b3208d9a6",
+  "node_id": "cap:the-rank-ratchet-and-the-confusability-instrument",
+  "node_type": "Capability",
+  "properties": {
+    "description": "As built 2026-09-18. Two tests beside the corpus test (every_tool_ranks_first_for_its_own_job_or_is_in_the_baseline; no_new_mutually_confusable_pair) read fixtures/find_tools_rank_baseline.json and refuse growth in either list and stale entries in either. tools/tool_confusability.py replicates find_tools' scorer over the toolsnaps (185/185 top-1 agreement with the binary, validated 2026-09-18), reports the not-first tools with who beats them, the mutual pairs, the crowders, and this project's never-called tools, and rewrites the baseline on --baseline. 61 tools gained one sentence carrying the job in a user's words; 25 remain not-first (name matches) and are the baseline. record_change is renamed snapshot_before_change and manual_work_report is renamed manual_work_ledger, each old name a served stub that refuses and points at the new one for one release. contain_component detaches an existing parent and names it, as move_component does.",
+    "name": "The rank ratchet: every tool first for its own job or listed, no new mutual pair, checked beside the corpus; the confusability instrument that measures it offline; the two renames with stubs; contain_component detaching by default",
+    "provenance": "authored",
+    "status": "realized"
+  }
+}

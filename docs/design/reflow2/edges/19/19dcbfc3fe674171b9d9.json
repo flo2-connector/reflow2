@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:f98c98bbcd9cb9ed2c178899f64ef4a81721e85c062f764a3b1e0bf9fdca8d6d",
+  "edge_type": "CHANGED",
+  "from_id": "chg:vacuous-trigger-fixed",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:temporal"
+}

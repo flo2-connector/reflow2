@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:d32a2e038381ff3f81aceda4b19b4cb600101331b500f9d271347179d15859ca",
+  "node_id": "chg:bl97-103-idea-capture",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "name": "The idea list captured as graph elements, not backlog prose (BL-97..BL-102)"
+  }
+}

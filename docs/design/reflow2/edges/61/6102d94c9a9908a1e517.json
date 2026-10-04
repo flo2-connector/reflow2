@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:4aa2b4e59a1a99e491a05c9bccb4423f6c75ef46add88238ce23ebd292f32586",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-how-does-a-capability-get-a-ci-check-that-is-genuinely-its-own",
+  "properties": {
+    "evidence": "Mapping gates to capabilities is only worth doing once 'a check' means something executable; against the present 282 unre-runnable records it would map claims to gates and report a number just as false as today's.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "dec:idea-what-must-a-check-be-before-the-design-counts-it"
+}

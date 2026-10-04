@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:77ed4e57f28ce2c9a6b004ab06e16accaf2bf7e112e7cb35f12fe67a3dfe9881",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:a-check-that-could-not-run-is-blocked-test",
+  "properties": {
+    "covers": "whole"
+  },
+  "to_id": "ver:a-check-that-could-not-run-lands-as-blocked"
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:6ac8bcc116d18207c89956529aaddd9d037ea0a506326008567c84bfc42689c0",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "cap:incremental-adopt-with-a-frontier-and-a-deferred-derivation-marker",
+  "properties": {
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:alex"
+}

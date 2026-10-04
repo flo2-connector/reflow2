@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:d07dbd14cc57274994ebd3e1924e53de81a5ba70c9b687b33ab47649bc6a43c2",
+  "node_id": "epoch:planned-cement-convergence-and-cost-of-change-instruments",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "epoch_type": "milestone",
+    "name": "PLANNED — a future version, after v0.50.0, takes on the four 2026-09-06 brainstorms together: ruleset convergence, cement and reversal cost, decision layers to unpeel, and the cost-of-change curve read from lifecycle phase (Anthony: \"we take on all these brainstorm questions in a future version\")",
+    "sequence": 400,
+    "status": "planned"
+  }
+}

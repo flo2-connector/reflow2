@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:6e87cced2e46dd3da02311a9b438d6660652e4df2bc468fb1ab18053c2343c88",
+  "node_id": "chg:the-graph-asks-what-a-session-made-false",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "detected_at": "2026-08-24",
+    "name": "The two missing legs — the edge that had never once been drawn now gets asked for",
+    "rationale": "🛑 THE MEASUREMENT THAT REFRAMED THE WORK: `INVALIDATES` shipped in #321 WITH its reader, deliberately, so the marker would not become a comment nobody consults — and a day later, tool served the whole time, **zero edges had ever been drawn.** The open question was never \"which of six mechanisms\": five were ways to make the sixth get used, and the sixth already existed.\n\n⭐⭐ THE GENERAL LESSON, bigger than this feature: a vocabulary reaches real work only with THREE LEGS — a typed TOOL, an INSTRUCTION that names it, and a COMPUTATION THAT NOTICES ITS ABSENCE. #321 built the first and wired the READ side into one skill. Nothing told anyone to WRITE one, and nothing noticed that none existed. **A vocabulary can be reachable, documented, wired to a reader, and still dead — and nothing in the loop reports a zero-use edge.**\n\n⚠️ AND A NUMBER IN THIS WORK WAS WRONG IN THE FLATTERING DIRECTION BEFORE IT WAS RIGHT. The \"median shortlist is 1, 78% silent\" figure that justified the session-scoped design was measured against an EDGE-ONLY reader — 56% of observations. Reading `subject_id` too raised reach to 97% and necessarily lengthened the lists; honest figures are 71% silent, median 1, mean 4.3, p90 13, max 40. **A measurement taken against a narrower implementation than the one that shipped is not evidence about the one that shipped**, and the first draft of the computation would have answered barely half the question while looking exactly like one that answered all of it.",
+    "subject": "system",
+    "summary": "Adds `unclaimed_findings` (core `VerifyOps::unclaimed_findings_near` + served tool): given the ChangeEvent ids a session recorded, the OPEN TemporalFacts their changed subjects carry that nothing has claimed. Names the tool in `capture-session` test 7 and `impact-check` step 4. The Stop hook's async probe asks it and RIDES ALONG on a nudge already firing, or carries it to the next SessionStart — it never arms an interruption of its own.\n\nCloses the last open gap: `req:the-graph-can-say-what-has-already-been-done` now has two capabilities satisfying it — this one for OBSERVED findings and `cap:arrival-delta` for PLANNED work, which is the asymmetry the requirement itself names."
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:a70d0037be35f9240103ee7816d9b7e457dc9115631209be2a3bb809ffea6c0c",
+  "edge_type": "CHANGED",
+  "from_id": "chg:artifact-intent-properties",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:drift"
+}

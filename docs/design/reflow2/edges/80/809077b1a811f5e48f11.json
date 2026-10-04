@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:0ddbd3f8f47f1817f0438930c4da5c8df0296cb9c3fc48be5ab4dcdc79fab300",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:no-idea-goes-quiet",
+  "properties": {
+    "authored_at": "2026-08-04",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

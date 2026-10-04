@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:1aeafef7ece653505751c293abd1d4efa3c9063f1bb0eeafd975bcd8bc11968a",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-saved-design-moves-to-the-item-layout-2026-10-03",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:a2edf5359c06b4d9670f05d8eeb9b0f06a95be770bc44796aec6f8bcc92b59a2",
+    "checksum_basis": "measured"
+  },
+  "to_id": "art:test-a-prescribed-layer-pair-no-longer-refuses"
+}

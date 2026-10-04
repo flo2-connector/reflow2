@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:22836ba5ed361c6fe2846c14d424c9b0b7821c79f62e416d1ea99d9b3895488f",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-saved-design-moves-to-the-item-layout-2026-10-03",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:d32079174c4b915946bcfda7ee03b8ac0dc236506ed277378939065d74562063",
+    "checksum_basis": "measured"
+  },
+  "to_id": "art:a-missing-argument-names-the-tool-and-what-it-wants-test"
+}

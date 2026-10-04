@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:597906922318426c3e613e4aa92c868d4f86aea12655203bada9e03cd302bfaf",
+  "edge_type": "RISKS",
+  "from_id": "fact:the-near-match-guard-shows-three-of-a-nine-way-tie-so-relevance-is-decided-by-score-noise",
+  "properties": {
+    "evidence": "The guard's self-score floor lands inside a dense near-tie, so which near-match is shown depends on score noise. Option (b), which reuses that guard as a read, would inherit the same hazard for every item in a batch."
+  },
+  "to_id": "dec:idea-a-bulk-matcher-says-which-of-a-list-of-texts-the-design-already-holds"
+}

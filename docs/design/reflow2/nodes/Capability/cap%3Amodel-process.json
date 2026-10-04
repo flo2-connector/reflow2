@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:4412fd2f8dfcb11492899fb037a42751787bf9abc764253c16a96dae3b786b22",
+  "node_id": "cap:model-process",
+  "node_type": "Capability",
+  "properties": {
+    "description": "Represent an ordered flow of activities with roles on its edges.",
+    "name": "Model a process, not only a product",
+    "provenance": "authored",
+    "status": "verified",
+    "tier": "operational"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:33c9aeae09446163c2c244160ed53bee79eb29a0a960bea791941dc6965840e5",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:empty-speaks-gate",
+  "properties": {
+    "covers": "whole"
+  },
+  "to_id": "ver:an-empty-answer-says-which-empty-with-optional-parameters-too"
+}

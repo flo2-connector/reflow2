@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:19d074f59f3880d354a3b3b4672fd966653411e2ca866b6b472e22b231738ea6",
+  "edge_type": "DUPLICATES",
+  "from_id": "fact:the-upgrade-path-leaves-the-shared-server-on-the-old-binary",
+  "properties": {
+    "basis": "suspected",
+    "evidence": "The same class from the other end, and linked rather than merged because the two halves are different and both matter. That fact measured a REPORTER who could not name the version it was talking to, and so filed a defect eighteen hours after it was fixed. This one measures the mechanism that PRODUCES that condition: replacing the binary never restarts what serves it, so the version a session reports and the version it is talking to diverge silently. Its own text already flagged this half as unaddressed — 'the same trap is live on this side, served_by.stale reporting a replaced executable' — and this is that half arriving as a field report from a real user on a second platform."
+  },
+  "to_id": "fact:an-agent-that-cannot-name-its-version-reports-fixed-bugs"
+}

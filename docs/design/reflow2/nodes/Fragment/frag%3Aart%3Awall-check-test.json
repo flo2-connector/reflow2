@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:2bb695a5e6cf8773c30e632719d25b6515168482811a2cc11746d35c31d6822d",
+  "node_id": "frag:art:wall-check-test",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered test_wall_check.py"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:ab73054c49f1c02d14e0b60e2ffc9b3a80aefe5f527a2032768d1cd1b34ba2e7",
+  "edge_type": "CONSUMES",
+  "from_id": "cmp:graph",
+  "properties": {
+    "weight": 0.9,
+    "weight_basis": "evidence"
+  },
+  "to_id": "ifc:req-dyno-core-api"
+}

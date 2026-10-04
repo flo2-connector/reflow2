@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:b9b422ad47fb88c9576caf432352c4e16e35ff0ffff26ecd80cd38e2cdbeec56",
+  "node_id": "chg:accept-8a254d0a58850fe0",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "refactor",
+    "name": "NON_TOOL_TERMS gains failing, last_run_at and rerun_owed — field and status names where-am-i must now say out loud. The gate refused the skill edit until they were declared, which is the gate working.",
+    "subject": "system"
+  }
+}

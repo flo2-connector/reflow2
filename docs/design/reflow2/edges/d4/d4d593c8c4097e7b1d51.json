@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:8649b3f8dcc10e774b67b9acad881f797741d8f61828dc033c9ecac3cf252e79",
+  "edge_type": "CAUSES",
+  "from_id": "fact:the-upgrade-path-leaves-the-shared-server-on-the-old-binary",
+  "properties": {
+    "basis": "causal",
+    "evidence": "Read both, 2026-09-09, in answer to a possible_duplicate gap. They are NOT the same finding — they are the two ends of one mechanism. B is the MECHANISM: upgrading the binary does not replace the process serving it, and every signal a user would check looks current (Alex, macOS, 2026-08-29, with the authoritative objects read). A is the CONSEQUENCE: an agent on that stale surface filed a bug that had been fixed eighteen hours earlier, because it could not name its own version. Recording CAUSES keeps both — the mechanism is what you fix, the consequence is what tells you it matters — where merging them would lose whichever half the merged text did not keep.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:an-agent-that-cannot-name-its-version-reports-fixed-bugs"
+}

@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:f79b1bf4ecfabae69b2b41abdb61c1e5a6c544cc3c7c830486317c2afa5af293",
+  "node_id": "fact:dynograph-v0130-measured-clean-and-the-pin-is-parked",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "confidence": 1.0,
+    "fact_type": "observation",
+    "statement": "**dynograph-foundation v0.13.0 DOES NOT AFFECT reflow2 — established four ways on 2026-08-19, and the pin bump is PARKED awaiting Anthony's word.**\n\nHe asked: *\"dynograph-foundation is now v0.13.0 - need to confirm that the changes don't affect reflow2\"*.\n\nFOUR INDEPENDENT GROUNDS, weakest to strongest:\n1. **reflow2 pins v0.12.0 by git tag** across all six crates, so nothing changes until somebody moves the pin.\n2. **The breaking changes are structurally unreachable.** They are in `dynograph_client::BatchValidation` / `BatchOpResult`. The release notes CLAIM reflow2 has zero references; verified independently rather than trusted — **`dynograph-client` is not in reflow2's dependency tree at all**, not in `Cargo.toml`, not in `Cargo.lock`, zero source references.\n3. **The crates reflow2 actually uses did not change.** `git diff v0.12.0 v0.13.0` over `dynograph-core`, `-storage`, `-graph`, `-resolution`, `-vector`, `-text` is **EMPTY**. The whole release touches only `dynograph-client` and `dynograph-service`.\n4. **A real build on v0.13.0 passed: `cargo test --workspace` exit 0, 126 suites, 0 failed, 0 compile errors.**\n\n🛑 **THE FIRST ATTEMPT AT (4) FAILED AND THE FAILURE WAS A LIE.** It died with `collect2: fatal error: ld terminated with signal 7 [Bus error]` — which reads exactly like a code or linker defect. **The real cause was a 100% FULL DISK** (149 MB free; `target/` had reached 285 GB). `cargo clean` reclaimed 289.1 GiB / 684,534 files and the build then passed. ⚠️ **NO GATE WATCHES FREE SPACE, and the design graph lives on the same disk** — a full disk during RocksDB writes is how a store gets damaged. The graph was checked afterwards and was intact.\n\n⚠️ A SECOND MEASUREMENT LESSON FROM THE SAME EPISODE: `grep -c` on a BINARY silently finds nothing without `-a`, and on that basis the freshly built binary was briefly and wrongly called stale. Both are instances of `rule:success-is-read-from-the-authoritative-object` — the value you read is not the value you think you are reading.\n\n⏸️ **PARKED, NOT DECLINED.** The bump is committed on the local-only branch `test-dynograph-v0130` and clearly labelled. Whether to actually move the pin is Anthony's call; the confirmation he asked for is complete either way.",
+    "subject_id": "art:dependency-manifest",
+    "valid_from": "2026-08-19"
+  }
+}

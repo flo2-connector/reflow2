@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:a0a2beec1d0c45ec445f933e8e4c7d80dea2ba31171346854eb0f848b6fccfd0",
+  "edge_type": "CONTAINS",
+  "from_id": "sys:agent-surface",
+  "properties": {},
+  "to_id": "sub:session-posture"
+}

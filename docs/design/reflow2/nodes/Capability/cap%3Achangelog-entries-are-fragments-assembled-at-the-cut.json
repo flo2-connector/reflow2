@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:3dcb04995b55c65fc69fe43bb6625c0dd24bc168b20f3d5dc88746d5b8be9fbd",
+  "node_id": "cap:changelog-entries-are-fragments-assembled-at-the-cut",
+  "node_type": "Capability",
+  "properties": {
+    "description": "A PR writes changelog.d/<slug>.md under Keep a Changelog headings instead of editing CHANGELOG.md; tools/changelog_fragments.py --check (CI) refuses a malformed fragment or an entry written straight into [Unreleased]; --cut <version> assembles the fragments into CHANGELOG.md under the new version, grouped by section, and removes them. Two PRs never edit one spot. Option (b) of dec:idea-how-changelog-md-gets-written-once-the-design-is-the-record (Anthony, 2026-10-03).",
+    "name": "Each pull request writes its CHANGELOG entry as its own fragment, and the cut assembles them",
+    "provenance": "authored",
+    "status": "verified"
+  }
+}

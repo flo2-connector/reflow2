@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:4a68ec56d7ead8dbcb360c4da3688676ca106c8d3eff6217a52199a2ca151bec",
+  "node_id": "cap:a-diff-is-read-as-a-design-change",
+  "node_type": "Capability",
+  "properties": {
+    "description": "tools/impact_of_diff.py: given a git range (default: the merge-base with main to HEAD, optionally plus uncommitted work), lists the changed files, maps each to a registered Artifact by exact location or by a parent-directory artifact, hashes the mapped ones, calls reconcile_artifacts for the propagation seeds and propagate_from for the blast radius, and prints the capabilities and requirements reached with the distance bands, risk crossings and published boundaries crossed. Unmapped files are reported first and counted; `--fail-on-unmapped` turns them into exit 1 for a gate that opts in; the export document itself is set aside as the record. Exit codes follow reflow2_check.py: 0 ran, 1 opted-in failure, 2 could not run. Wiring only — the core does no file I/O and gained nothing.",
+    "name": "A commit range is read as a design change: the requirements it reaches, and the files it touches that the design cannot see",
+    "provenance": "authored",
+    "status": "realized",
+    "tier": "operational"
+  }
+}

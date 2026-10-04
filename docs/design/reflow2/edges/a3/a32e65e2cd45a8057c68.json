@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:025924f17aa12afb74d3a05430c8fd17e2d289bab6bd6f5a9b37bc80e22272d3",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:every-tool-carries-the-users-phrasing-and-the-corpus-is-the-test",
+  "properties": {},
+  "to_id": "req:every-served-tool-is-reachable-by-find-tools-on-a-users-words"
+}

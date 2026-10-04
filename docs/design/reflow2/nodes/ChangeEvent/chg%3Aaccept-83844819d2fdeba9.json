@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:0b63712d670753fb2d05b350fce3da3b1c347b9d9ac8cbde10d5d3c331b92894",
+  "node_id": "chg:accept-83844819d2fdeba9",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "test_failure_fix",
+    "name": "canonical_checksum: a bare hex digest is stored as sha256:&lt;hex&gt;, the dialect drift compares in. Restores intended behaviour — the design already said drift is a checksum comparison; it was reading identical bytes as total drift. Found by reflow2's own gate, 2026-07-25; pinned by two cases in tests/drift.rs."
+  }
+}

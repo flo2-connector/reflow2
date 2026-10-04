@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:3949dbe9a352c709cc502c3a76696ce40d9e9f8ddd1f4f02fd97a51a4bdf17b0",
+  "node_id": "chg:the-why-skill-records-why-an-existing-system-is-the-way-it-is",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "detected_at": "2026-09-23",
+    "name": "/why: the reasons behind an existing system are recorded from its designer, and a recalled reason says so",
+    "rationale": "Built on Anthony's word, 2026-09-23 (\"let's implement the /why skill that we brainstormed\"), with the scope he chose: the skill plus the honest record it needs — a recalled marker, old fixes kept out of rules written for new work, and a script that groups the history. The payoff (showing an agent a feature's reasons before it edits a file) is deliberately NOT built and the skill says so. Parking was reused for the forward-only exemption rather than a new 'historical' field, because the design already uses it for exactly this (228 pre-rule fixes) and it needs the owner's accepted ruling. Measured while building: git log with line counts took 67 s on this repository's 1,067 commits (the design export is diffed at every commit) against 0.14 s for file names only, so the script counts lines only for typo candidates.",
+    "rationale_basis": "contemporaneous",
+    "subject": "system",
+    "summary": "New served skill `why` (/why) and kit script tools/why_history.py; ChangeEvent gains `rationale_basis` and `commits` (schema/temporal.yaml), written by add_change_event along with `repair`/`stands_in_for`; the confirmation ledger counts recalled changes apart and never as an examination; repair_report counts unstated recalled repairs apart; adopt's Phase 3 points to the skill."
+  }
+}

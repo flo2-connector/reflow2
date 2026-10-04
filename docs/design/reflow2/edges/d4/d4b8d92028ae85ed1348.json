@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:ceeee4d6bdd03cec517f48ec953082734d583cbc2f00b20acef7cdeea3b9493c",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:record-to-record-relations-are-modelled",
+  "properties": {},
+  "to_id": "req:a-record-can-say-what-runs-it-what-complements-it-and-what-replaced-it"
+}

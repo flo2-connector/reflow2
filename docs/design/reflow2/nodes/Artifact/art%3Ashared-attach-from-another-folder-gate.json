@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:33b6ba49c7006ea03230a76d586e596f2eef472565906229e654f550c72f6bf4",
+  "node_id": "art:shared-attach-from-another-folder-gate",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "test",
+    "description": "A CI gate that starts a real --shared daemon inside a temporary project with the relative path `.reflow2/graph`, then starts a second --shared client in ANOTHER folder with the absolute path to the same store, and requires it to attach to the same daemon, quickly, with the full tool surface. It also requires the recorded rendezvous path to be absolute, because on Linux the reader fix alone would hide a broken writer. Shown to fail with only the writer line reverted before it was trusted. Pins chg:a-shared-client-outside-the-project-attaches-to-the-running-server.",
+    "location": "tools/test_shared_attach_from_another_folder.py",
+    "name": "test_shared_attach_from_another_folder.py",
+    "status": "realized"
+  }
+}

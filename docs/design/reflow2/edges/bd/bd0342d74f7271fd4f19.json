@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:2f97701b1280413673150c6cf18d0849c0aa65dd36014b25a195f3f7360a13c4",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:edge-prose-is-read-when-the-node-moves",
+  "properties": {},
+  "to_id": "req:an-edges-prose-does-not-outlive-the-node-it-points-at"
+}

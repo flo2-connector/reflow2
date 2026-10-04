@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:030a6b48a18bee2283d21dc5ee3d9c6c815543586ed175eb1046273748651420",
+  "edge_type": "CONTAINS",
+  "from_id": "sub:serving",
+  "properties": {},
+  "to_id": "cmp:proxy"
+}

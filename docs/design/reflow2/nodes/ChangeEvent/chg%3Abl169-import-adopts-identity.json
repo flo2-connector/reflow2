@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:b0c6ef0dd7b1a93eacb97f7185ef6a12566778e47e7a38d0eded07641b68183e",
+  "node_id": "chg:bl169-import-adopts-identity",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "test_failure_fix",
+    "name": "import_graph adopts a restored design's identity instead of renaming it, and the gate refuses a silent rename (BL-169)"
+  }
+}

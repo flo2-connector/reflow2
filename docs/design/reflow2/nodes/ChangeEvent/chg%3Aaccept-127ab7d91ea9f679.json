@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:72f9a22bc9ec4001db84457f4d98f6422adb37bd85d2cceab0d4f997354887f4",
+  "node_id": "chg:accept-127ab7d91ea9f679",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "refactor",
+    "name": "Mechanical only: two governed_by call sites take the new trailing note argument as None.",
+    "subject": "system"
+  }
+}

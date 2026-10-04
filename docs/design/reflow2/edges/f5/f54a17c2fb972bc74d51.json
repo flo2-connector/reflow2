@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:dffe4f129d212bc8f589cf1e0104fca7a5b30c40b9100227b98f33dd1f035595",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-saved-design-moves-to-the-item-layout-2026-10-03",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:7546a5fd13e35a6af6e13227a54529b7e55baa4859bc76a72a4707d36912ebec",
+    "checksum_basis": "measured"
+  },
+  "to_id": "art:capture-intent-skill"
+}

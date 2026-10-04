@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:5cf83bdc0120df4c859a3f5c69599528bafd476a6133c3469cbaf2c87e88606f",
+  "edge_type": "MITIGATES",
+  "from_id": "dec:idea-an-enforced-rule-declares-the-action-it-guards-so-enforcement-matches-intent-not-words",
+  "properties": {
+    "evidence": "Options (a) and (c) answer the reflow2-side cause the root-cause pass found: a DesignRule cannot say what action it guards, where it is enforced, or what its check wrongly blocks."
+  },
+  "to_id": "fact:root-cause-the-conduct-rule-was-enforced-by-the-projects-own-text-matching-hook-and-reflow2-cannot-say-what-a-rule-guards-2026-09-28"
+}

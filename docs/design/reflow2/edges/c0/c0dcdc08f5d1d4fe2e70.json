@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:17ab90ddd72723570edd582bdde628f698d2a4acfb03ebf10dabf0afb64162b7",
+  "edge_type": "REALIZES",
+  "from_id": "art:wall-check-test",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "verified"
+  },
+  "to_id": "cap:a-declared-wall-is-checked-against-the-coupling-it-contains"
+}

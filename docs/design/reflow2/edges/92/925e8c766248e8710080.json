@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:7579c6fe8262487155ccf99a9e6c9368b62e167af85cdc5585d3091988cf28b6",
+  "edge_type": "ANTICIPATES",
+  "from_id": "fact:skill-mechanics-track-enforcement-exactly-and-they-split-into-three-kinds",
+  "properties": {
+    "evidence": "The skills measurement (2026-08-28) answered the factory test in the SKILL domain — 'every skill states its honest limits = 15 of 23 edits' — and stated in the same breath that the identical test 'posed for tools, was unanswered'. This census answers it for the 180-tool surface (idempotentHint 179 edits, destructiveHint 173, required-param descriptions 93), and inherits that node's three-kind split as the frame for judging which classes are worth a contract."
+  },
+  "to_id": "fact:the-tool-class-census-answers-the-open-questions-own-test-and-half-the-sweeps-findings-are-one-offs"
+}

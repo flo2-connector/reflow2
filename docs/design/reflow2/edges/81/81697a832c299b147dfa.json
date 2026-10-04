@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:f14596d0ca16476b9e651f5df1f795dbf1460962c57603a8f3c353d65e925cf3",
+  "edge_type": "CHANGED",
+  "from_id": "chg:lineage-check",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cap:coverage"
+}

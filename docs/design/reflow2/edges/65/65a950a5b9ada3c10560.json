@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:99e931026fa8933d77a585f8bcc71150f71097a72da387583ea0464965e50afd",
+  "edge_type": "CONTRADICTS",
+  "from_id": "fact:the-unmaintained-premise-under-the-rocksdb-switch-has-moved",
+  "properties": {
+    "alignment": "opposing",
+    "evidence": "That decision holds the switch to rust-rocksdb is owed, and its strongest supporting argument was that the official wrapper was abandoned while the fork was maintained. If upstream is releasing again the argument no longer carries, which makes the decision a candidate for superseded. The contradiction is with its JUSTIFICATION, not with its conclusion — there may be other grounds for the switch, and none has been measured."
+  },
+  "to_id": "dec:absorb-rocksdb-024-unchanged-then-switch-separately"
+}

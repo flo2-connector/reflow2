@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:cf9e2a3c35eba585333f26010f85e428e194adf5dd79d916d55da1cf88b9f988",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:reflow2-is-built-for-observability",
+  "properties": {
+    "approved_at": "2026-08-25",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

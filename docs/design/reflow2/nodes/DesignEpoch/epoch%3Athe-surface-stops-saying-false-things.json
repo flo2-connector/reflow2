@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:a5425897e54b6ebfe089c12b08aca31f3bbc91296fcb9378546b2946efefce2b",
+  "node_id": "epoch:the-surface-stops-saying-false-things",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "epoch_type": "revision",
+    "name": "Three consumer-reported defects where a served surface destroyed data or stated something false (2026-08-09)",
+    "sequence": 298,
+    "status": "arrived"
+  }
+}

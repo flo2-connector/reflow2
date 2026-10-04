@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:a3375d04a65fec098dc2cd3e3a708b22656e03f181bf91b683ae0f9aae88eded",
+  "node_id": "question:8ae5b0690a0d618b",
+  "node_type": "Question",
+  "properties": {
+    "answer": "\"I actually want to design and build it\" (Anthony, 2026-07-27). Not deferred and not dropped — the simulator thread is accepted work, and the design starts now.",
+    "asked_at": "2026-07-27",
+    "context_setter": "Nothing satisfies requirement “Where a design admits it, design its simulator too — and test there first”",
+    "gap_id": "gap:8ae5b0690a0d618b",
+    "question": "You said reflow2 should help people build a practice version of whatever they are designing — a simulator or digital twin — and try the design out there before building the real thing. Nothing in reflow2 does that yet. Do you want it built, do you want it kept on the list for later, or was it just a thought you would rather drop?",
+    "rephrase_degraded": false,
+    "status": "answered"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:d61e16acf2f10986c16529c38bcabdb543b549cdeec8db86a6ae98b86f514bc8",
+  "node_id": "fact:link-artifact-demands-a-name-and-location-for-an-artifact-that-already-exists",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "confidence": 1.0,
+    "fact_type": "observation",
+    "statement": "TOOL FRICTION MET WHILE WORKING, CAPTURED UNDER THE STANDING RULE THAT EVERY REFLOW2 TOOL FAILURE IS WRITTEN DOWN — AND IT TURNED OUT TO BE DATA LOSS, NOT FRICTION. Attaching an existing Artifact to a ChangeEvent with link_artifact on 2026-09-07 was refused with `missing field name`, then required the artifact's full name and location to be re-sent, roughly 300 characters the graph already held and had just returned from add_artifact.\n\nTHE ANSWER, READ FROM THE CODE RATHER THAN GUESSED. artifact.rs write_artifact_link upserts the Artifact with `.set(\"name\", opts.name)` — an unconditional set, while artifact_type, location and checksum beside it all use set_opt and therefore preserve a stored value when omitted. So name is the one field a re-link ALWAYS overwrites, and since the surface makes it mandatory, every re-link rewrites the name to whatever the caller happened to re-type. A caller who sends a short stub silently destroys a long descriptive name, with no refusal and no drift event.\n\nTHE CODE ALREADY ARGUES AGAINST ITSELF. The comment directly above that upsert explains at length why upsert_node was chosen over create_node: re-registering a file MUST NOT ERASE WHAT THE DESIGN ALREADY KNOWS ABOUT IT. It cites BL-165 and BL-46, and the measured evidence that re-linking had been silently dropping last_confirmed_at and downgrading a verified Artifact. The fix that came out of that reasoning was applied to the optional fields and not to `name`, which is the only one that cannot be omitted.\n\nTHE FIX AT THE CAUSE: make `name` optional on LinkArtifactReq, use set_opt in write_artifact_link so an omitted name preserves the stored one, and refuse with a clear message when the Artifact does not yet exist and no name was given. That also removes the friction, because the friction and the data loss have the same cause.\n\nTHE CLASS is the sibling-shape inconsistency recorded twice before: a constructor and its linking counterpart disagree about which fields they accept for the same node type. link_artifact also refuses `description` though add_artifact accepts it, so writing an artifact with prose and then linking it needs two tools with different field sets.\n\nDELIBERATELY NOT FIXED IN THE SAME CHANGE as the environment compliance layer, so that each lands reviewable on its own. Sequenced, not dropped.",
+    "subject_id": "art:tools-operate",
+    "valid_from": "2026-09-07"
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:c9f4a18909d1665535a27918468255b9c29b54b6e5d3846107190fb6185d693d",
+  "edge_type": "AT_EPOCH",
+  "from_id": "snap:epoch:preserved-on-write:req:genesis-in-an-empty-folder-creates-the-design-where-the-client-points",
+  "properties": {},
+  "to_id": "epoch:preserved-on-write"
+}

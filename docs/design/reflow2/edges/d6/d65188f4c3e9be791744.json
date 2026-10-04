@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:e8587ce4f241b0a1e7905107dfaa5486df6b1852756266597699868f64431bb8",
+  "edge_type": "REALIZES",
+  "from_id": "art:feedback-skill",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "reviewed"
+  },
+  "to_id": "cap:feedback-is-a-computed-tally"
+}

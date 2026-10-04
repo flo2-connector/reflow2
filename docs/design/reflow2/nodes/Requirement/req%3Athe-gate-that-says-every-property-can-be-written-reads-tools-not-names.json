@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:429e0fc93d161d9125107ff667483a1014bfe567b6d43528214405aa88b2b4a1",
+  "node_id": "req:the-gate-that-says-every-property-can-be-written-reads-tools-not-names",
+  "node_type": "Requirement",
+  "properties": {
+    "lineage": "original",
+    "name": "The gate that says every declared property has a typed writer reads which TOOL writes which TYPE, not which names happen to match",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "Promoted 2026-09-20 on Anthony's word, and it is the one with the strongest evidence in flo2's report. The reachability gate reported zero holes on a tree where `Requirement.kind` and `Verification.location` had no typed writer at all — and `Requirement.kind` is read by a detector that scolds flo2's users on their own page. MEASURED: the gate attaches every parameter of all 54 tools it cannot place to EVERY node type, 109 names in all, so `kind` is excused by forecast_readiness and gate_on and `location` by register_alternative. 24 of 238 declared properties rest on that pool alone. THE OBLIGATION: a tool's parameters count toward a type only when that tool writes that type, the gate refuses a tool it cannot place rather than pooling it, and the two known holes are closed with a `kind` on add_requirement and a `location` on add_verification.",
+    "status": "accepted"
+  }
+}

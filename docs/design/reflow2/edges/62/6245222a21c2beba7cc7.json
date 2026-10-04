@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:a814002890492b559e9586cae9a88de943caaae863f8215f2f6d96621ea4815e",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:adopt-can-take-a-code-graph-as-its-mechanical-structural-pass",
+  "properties": {
+    "approved_at": "2026-09-23",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:b0b4ed0750ccdf6928ed62d033f9f114243504fd8336b80ce8b951c6a82ba5a2",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:adopt-asks-sibling-designs-who-else-has-this-before-writing-a-region",
+  "properties": {
+    "approved_at": "2026-09-22",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

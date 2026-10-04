@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:2df6d8337cacf884964d7ec7daa28658fb9852c19d246286302f24c16a3904a9",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:idea-a-session-that-reads-and-never-writes-is-the-one-the-loop-cannot-see",
+  "properties": {
+    "approved_at": "2026-09-18",
+    "roles": [
+      "author",
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:2eb878d8caa2a14223853aaaeff9428b26f9ba063f796d5a89e71ecef1e7e656",
+  "edge_type": "REALIZES",
+  "from_id": "art:vocabulary",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:edges-are-selected-by-their-declared-reading"
+}

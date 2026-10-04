@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:8e5b57c62f7ca191ee9bb49bf1a6d0dbde11c30685c389676d345b29a4ef051b",
+  "node_id": "ver:every-served-report-is-reachable",
+  "node_type": "Verification",
+  "properties": {
+    "description": "The check itself in `tools/skill_lint.py` (run by CI), plus 4 cases in `tools/test_skill_lint.py` guarding the check from rotting.\n\n🛑 OBSERVED FAILING FIRST, against the unfixed tree, exit 1: `named in NO skill: ['consumption_report', 'flow_report', 'ility_report', 'maturity_report', 'readiness_report', 'release_report']` — six of fourteen. Recorded because a failing-first test and one written after the fix both end green, and the difference only shows when the class recurs.\n\nTHE FOUR UNIT CASES GUARD THE CHECK, NOT THE ROUTING, because the check is the only thing keeping the routing true and a check that quietly stopped finding anything would look exactly like a design with nothing left to route:\n① the parse actually finds reports (≥10, and `graph_report`/`maturity_report` among them) — the vacuous-pass failure `served_tools` already refuses with its own floor;\n② every exemption carries a non-trivial reason, so the register cannot become a place to put anything inconvenient;\n③ every exemption says WHICH KIND it is (`GAP:` or `needs no skill`) — a routing hole that reads as settled never gets fixed;\n④ the register names only tools that are actually served, so a stale entry cannot silently exempt nothing while looking like a decision.\n\n⚠️ WHAT IT DOES NOT CHECK: that anyone READS the report. Naming is reachability, not use.",
+    "findings": "All skill-lint checks pass; `test_skill_lint.py` 18 tests OK (was 14); full workspace suite 167 suites, 0 failures.\n\nTHE RUN THAT MATTERS IS THE ONE BEFORE THE FIX: exit 1, `named in NO skill: ['consumption_report', 'flow_report', 'ility_report', 'maturity_report', 'readiness_report', 'release_report']`. Four were then routed into the skill whose job they serve and two exempted with written reasons.\n\n⚠️ TWO OTHER CHECKS FAILED IMMEDIATELY AFTER THE ROUTING EDITS AND THAT WAS THE LINT WORKING: the `.claude/skills` and `.grok/skills` mirrors are enforced byte-identical, so editing a source skill without syncing them is caught rather than shipped. Synced, then green.",
+    "kind": "verification",
+    "last_run_at": "2026-08-29",
+    "level": "integration",
+    "method": "test",
+    "name": "Every served report is named in a skill, or exempted with a reason that says which kind it is",
+    "status": "passing"
+  }
+}

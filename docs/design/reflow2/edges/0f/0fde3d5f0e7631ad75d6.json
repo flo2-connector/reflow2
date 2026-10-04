@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:541e90509c99add91c36a9232a34f31a8fc8025b802e56f773e764522d8f5314",
+  "edge_type": "GOVERNED_BY",
+  "from_id": "rule:every-failure-is-searched-and-every-cause-is-root-caused-before-it-is-written",
+  "properties": {
+    "note": "The rule is the SCOPE ruling written as a standing convention: which failures get tier 1 (all), which reach tier 2 (the cause moment), which are exempt."
+  },
+  "to_id": "dec:idea-root-cause-runs-at-the-moment-a-cause-is-about-to-be-written-not-on-every-failure"
+}

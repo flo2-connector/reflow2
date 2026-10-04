@@ -1,0 +1,17 @@
+{
+  "content_hash": "sha256:fd82e668195add20de03bb70c4fdaa9bda7bb6fdbf2e765e7f421218afb57980",
+  "node_id": "fact:the-claude-code-harness-on-the-dev-box-kills-background-cargo-runs-and-blocks-long-sleeps",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "confidence": 1.0,
+    "fact_type": "finding",
+    "name": "Claude Code on the dev box kills background cargo runs under a \"low memory\" rule with 8 GiB free, and blocks foreground sleeps beyond a few seconds — a detached run survives",
+    "statement": "Measured repeatedly 2026-09-11/12 in the Claude Code harness on the dev box: a `cargo test` launched as a harness background task is killed with \"the system is running low on memory\" while `free` shows ~8 GiB available; a foreground `sleep` longer than a few seconds is refused. What works: launch the long run DETACHED — `setsid nohup bash -c '… > out.txt 2>&1; echo rc=$? >> out.txt' &` — and watch the output file with the harness's Monitor tool and an `until grep -q '^rc=' out.txt` loop; wrap cargo in `systemd-run --user --scope -p MemoryMax=6G` as the box's OOM note already asks. Also: `pkill -f \"<pattern>\"` where the pattern matches the shell that issued it kills that shell (exit 144). Harness-specific and box-specific, recorded on the dev environment so any agent on this box meets it; moved here from an agent's machine-local memory file (rule:a-rule-the-project-follows-lives-in-the-graph-not-in-an-agents-memory).",
+    "steps": [
+      "where-am-i"
+    ],
+    "subject_id": "env:dev",
+    "valid_from": "2026-09-11"
+  }
+}

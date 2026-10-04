@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:c29130f6ba042eb69c5e31302829e0ac8ad9384909e02bc93f29316e3043311b",
+  "node_id": "who:claude-code",
+  "node_type": "Contributor",
+  "properties": {
+    "description": "Anthropic's CLI coding agent; the driving agent that captures intent into the graph and drafts decisions for the human to decide. The LLM that speaks, in the three-party loop (dec:three-party-checks).",
+    "handle": "claude-code",
+    "kind": "automated_agent",
+    "name": "Claude Code"
+  }
+}

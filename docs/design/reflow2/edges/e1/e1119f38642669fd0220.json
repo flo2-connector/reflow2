@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:646905e3bc139036445cabe360e867813933d313161e893e53b450200d465dc5",
+  "edge_type": "CONTRADICTS",
+  "from_id": "fact:compare-designs-has-no-reply-budget-2026-09-13",
+  "properties": {
+    "alignment": "supporting",
+    "confidence": 0.9,
+    "evidence": "Corroboration: a second instance of the same class. That record measured a read tool whose reply outgrows what a client will accept; compare_designs does the same on two 9-16 MB exports. The link is drawn so the fix is scoped as a sweep rather than as one tool's missing parameter — fixing the instance alone is the failure fact:the-parallel-batch-class-recurred-because-only-its-instance-was-fixed already records on this project."
+  },
+  "to_id": "fact:defect-graph-report-outgrows-its-own-reply-linearly"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:f35c7a84febfc8d846376353da2bca1569fad94260b2cb184a179e52c9c0641c",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-registry-gets-its-transport",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:main"
+}

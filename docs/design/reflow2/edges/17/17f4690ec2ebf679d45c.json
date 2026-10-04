@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:f90d10b788b126dd2d121f228f6678e968fe6c5451832feafb2c6fa59c473a2b",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:claim-not-hidden-test",
+  "properties": {
+    "covers": "whole",
+    "note": "conformance stated at registration: verified | migrated 2026-09-22 from a REALIZES link_artifact drew in error"
+  },
+  "to_id": "ver:an-unobserved-location-means-the-sweep-missed-it"
+}

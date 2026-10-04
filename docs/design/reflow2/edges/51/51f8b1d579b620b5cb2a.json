@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:6e1db746c85b85a4c00ca0bf7bd6b4d34ab18e93d338e83a71aed29e770e1a35",
+  "edge_type": "HAS_SNAPSHOT",
+  "from_id": "cap:the-server-writes-the-export-through-and-chains-it-from-main",
+  "properties": {},
+  "to_id": "snap:epoch:the-export-chains-from-main:cap:the-server-writes-the-export-through-and-chains-it-from-main"
+}

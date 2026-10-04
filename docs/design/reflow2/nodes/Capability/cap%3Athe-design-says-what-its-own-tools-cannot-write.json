@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:2a7f0943328a035021c6c84ac47f75baedf9e35f36b21c83caa9bd05fd1fff1a",
+  "node_id": "cap:the-design-says-what-its-own-tools-cannot-write",
+  "node_type": "Capability",
+  "properties": {
+    "description": "`tools/vocabulary_reach.py` reports declared vocabulary that NOTHING in a real design has ever carried, split three ways so no bucket can be over-quoted:\n\n  CANDIDATES        the type IS used, the property NEVER is, and no typed tool accepts the name — 18 on reflow2's own design\n  UNUSED BUT OFFERED  zero uses but a tool does accept it: probably unused, not unreachable — 10\n  SAYS NOTHING      the node type has no instances at all, so a zero on its properties is VACUOUS — 46\n\nTHE PRIMARY SIGNAL IS CORPUS USAGE, NOT A NAME MATCH, and that choice is the whole design. The obvious instrument compares declared names against served tool parameters; it was tried first and reported 70 of 215 (32%), including `TemporalFact.valid_from`, which is perfectly writable. A name match cannot see a tool that sets a property under another parameter name, nor one written indirectly by `record_change` or `link_artifact`. Usage in a mature graph is evidence rather than inference — and it is how three of the four known instances were spotted.\n\nTHE GENERIC ESCAPE HATCHES ARE EXCLUDED. `create_node` / `create_edge` accept an arbitrary property bag, which is precisely why they hid all four instances; a check computed against them answers clean forever. `req:declared-vocabulary-is-reachable-from-the-surface` states this as a thing the computation MUST NOT do.\n\n⭐ THE THIRD BUCKET EXISTS BECAUSE THE FIRST RUN DID NOT HAVE IT. Six node types have no instances at all, and every property on them landed in the candidate list looking like evidence — a design that has never created an EnvironmentRule says nothing about whether EnvironmentRule.authority is writable. Reporting them together would have been this instrument committing the exact defect its own epoch is named after, and it took reading its own output to notice.",
+    "name": "The design measures which of its declared vocabulary nothing can write, from the corpus rather than from a name match",
+    "provenance": "authored",
+    "status": "realized"
+  }
+}

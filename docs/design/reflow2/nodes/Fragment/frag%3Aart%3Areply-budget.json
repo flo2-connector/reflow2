@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:87af80c5d4c2467575cfca2eb48014b49e17757053c89b57dd564cafddbfc88f",
+  "node_id": "frag:art:reply-budget",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered reply_budget.rs"
+  }
+}

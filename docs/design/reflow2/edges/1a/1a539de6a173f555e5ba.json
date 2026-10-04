@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:9727a3c13ab998038e8e48468c61ed7f3f85c174ef200b09545b8a97a25e0f5c",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:idea-outward-docs-are-rendered-from-the-graph",
+  "properties": {
+    "authored_at": "2026-08-11",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

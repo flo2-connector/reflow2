@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:c5e2d123aab19ef1c85b41aa3a6387bfb853456fde8812fd916311fc405fd60f",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-a-domain-seed-template-starts-a-design-in-the-fields-own-shape",
+  "properties": {
+    "evidence": "The sketched invocation is `/genesis + template_x`, so a template rides the existing bootstrap path rather than replacing it. @ajs was explicit that standard genesis stays and a template is optional — which makes this a dependency, not a supersession.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "cap:genesis"
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:7fcc2b7a61ffa8df43460b83c58ff2aee669202beac3c79c73c3c56cdaafb7cf",
+  "edge_type": "INVALIDATES",
+  "from_id": "chg:the-overtaken-defect-records-were-triaged-against-the-v0510-build",
+  "properties": {
+    "evidence": "change_type gained defect_fix and documentation, and the subject axis (system/record) was added citing this record's own evidence (schema/temporal.yaml:82-83). Residue: still no value meaning an open question was settled."
+  },
+  "to_id": "fact:defect-change-event-has-no-type-for-a-field-reported-defect"
+}

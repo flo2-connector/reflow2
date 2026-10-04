@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:29b5812097c5d36f92060a0e0a234290c8b82a7a5afdcc3c786cc94b4b76f10b",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-import-decisions-rationale-loses-its-rename-leg",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "dec:a-restore-reports-an-unresolvable-reference-rather-than-refusing-it"
+}

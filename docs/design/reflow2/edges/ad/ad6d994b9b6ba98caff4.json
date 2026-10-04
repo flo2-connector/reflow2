@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:b97157c469b5a080c1a2495ccc4b1c96be64909e4d96c9933d7640234fbabed1",
+  "edge_type": "CHANGED",
+  "from_id": "ce:quality-target-2026-08-25",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:tools-exchange"
+}

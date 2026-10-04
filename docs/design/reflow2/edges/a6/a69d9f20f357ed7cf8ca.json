@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:a6af1f57618bcab433bcc9d76764abded333a89b8f3a8668a3d36d38814038a8",
+  "edge_type": "REALIZES",
+  "from_id": "art:lessons",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "verified"
+  },
+  "to_id": "cap:a-lesson-is-served-at-the-step-it-concerns"
+}

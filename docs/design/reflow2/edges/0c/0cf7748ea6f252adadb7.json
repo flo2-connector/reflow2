@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:43022fe7e3f3f93b84fa810b71ee1f27790772ff0da5b9ea44e04f7eb290e74c",
+  "edge_type": "REALIZES",
+  "from_id": "art:ility",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cmp:ility"
+}

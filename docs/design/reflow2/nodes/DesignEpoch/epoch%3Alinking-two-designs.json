@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:4c91199a7a14a777b13662725ce7f3db1cb492a1d0fc5760827a0e34667215df",
+  "node_id": "epoch:linking-two-designs",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "epoch_type": "revision",
+    "name": "Linking two designs, worked out by running it: the surface stops severing containment silently, and a session can name a design by graph_id. Both found by pointing reflow2 at flo2 rather than by reading the code — the pairing computed for the first time, mirror_surface was run twice and has no refresh, and export_surface was handing over children whose parents it withheld.",
+    "sequence": 325,
+    "status": "arrived"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:d4c4b98cd53eb3b59b1dddf7e46ad55faa19aff5de3b9d80d74b926f5d24cc9e",
+  "edge_type": "INVALIDATES",
+  "from_id": "chg:a-writing-call-keeps-the-committed-export-current-2026-10-03",
+  "properties": {
+    "at": "2026-10-03",
+    "note": "Re-measured 2026-10-03 on this branch's binary with the finding's own command shape: --export-to FILE --call add_requirement exits 0, FILE is written (created; one stderr line names it), and without the flag the .mcp.json's --export-to file is rewritten and compare_designs against it reads identical:true. Item 1 made the finding false by REFUSING the flag; this makes its remedy true: the door reads the flag and exports synchronously before exit."
+  },
+  "to_id": "fact:root-cause-call-accepts-export-to-and-never-reads-it-2026-10-02"
+}

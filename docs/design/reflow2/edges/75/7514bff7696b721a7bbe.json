@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:4021f80c2eafe9a9077c6c319c49bc8ff19f926d263da88903bfd4af1c5c37b5",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-an-incremental-resumable-region-scoped-adopt-with-a-frontier-and-a-deferral-marker",
+  "properties": {
+    "evidence": "A region-scoped capture that does not trip false gaps rests on the scoped detectors saying what they did not see; that capability exists and two recorded defects (a scoped detector at default depth returning two thirds of the design; a degenerate region not flagged) are the partial-graph gap problem Alex names, measured.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "cap:scoped-analysis"
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:e2df1278e65503e9c7971c1afea3ad5d01febc5a64fafc54c0679750f2b9469f",
+  "edge_type": "CONTRADICTS",
+  "from_id": "dec:idea-field-evidence-is-a-prioritisation-input",
+  "properties": {
+    "alignment": "opposing",
+    "confidence": 0.6,
+    "evidence": "The pruning decision dropped req:friction-has-a-severity-bar and req:friction-has-a-baseline as 'backlog hygiene dressed as product requirements — the answer to unconverted friction reports is to act on them, not to model them'. This idea proposes modelling field evidence as a prioritisation input: the same move at a different altitude. Confidence 0.6 rather than 1.0 because the two are arguably about different subjects — the dropped pair measured REFLOW2'S OWN usability, this is about any user's design reading its own test reports. Recorded as opposing so the tension is visible and nobody re-litigates the prune by accident."
+  },
+  "to_id": "dec:proposed-requirements-pruned"
+}

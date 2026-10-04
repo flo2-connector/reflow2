@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:3aa0558996f7653f5675173ca48e171ebfc31a09e3c4aebe83f76fe7411159f3",
+  "edge_type": "CHANGED",
+  "from_id": "chg:orphan-decision-degree-zero",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "dec:sanitize-spof-accepted"
+}

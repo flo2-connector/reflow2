@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:4d04ce08c82c993a2c6f65aa3908124e7bc87caddfb4143205a8dd86761e4d31",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-reachability-gate-reads-tools-not-names",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:vocabulary-reach-baseline"
+}

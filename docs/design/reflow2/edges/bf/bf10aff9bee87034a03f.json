@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:aab4916252ce3fb8e5fcc4de02a74bf389a56f925f6945aecf2d21b675bb8ee5",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "req:graph-indexes-snapshots",
+  "properties": {
+    "optional": false,
+    "weight_basis": "evidence"
+  },
+  "to_id": "req:intent-preserved"
+}

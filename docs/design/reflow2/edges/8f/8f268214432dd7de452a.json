@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:1e56c225f93f024e36ac586eb68c01d57d5b6e77d0073b5fb1894754113e8619",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-build-can-call-one-tool-from-the-shell",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:agent-instructions"
+}

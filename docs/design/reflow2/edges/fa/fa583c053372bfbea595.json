@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:a1ac096b759fb8153478257246a8509eb403329218f97843fae8d4032450329c",
+  "edge_type": "CHANGED",
+  "from_id": "chg:multi-writer-decided",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "dec:multi-writer-architecture"
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:13aa8cb5e45de5a3201b6328c3faa8e4347ff746de06cd93dade58cf911e88b7",
+  "node_id": "snap:epoch:isolation-check-scope-split:ver:sessions-cannot-cross-designs",
+  "node_type": "Snapshot",
+  "properties": {
+    "edges": "[{\"direction\":\"in\",\"edge_type\":\"REALIZES\",\"other_type\":\"Artifact\",\"other_id\":\"art:test-sessions-cannot-cross-designs\",\"properties\":{\"completeness\":\"partial\"}},{\"direction\":\"out\",\"edge_type\":\"VERIFIES\",\"other_type\":\"Capability\",\"other_id\":\"cap:hosted-state-on-a-volume\",\"properties\":{}},{\"direction\":\"out\",\"edge_type\":\"VERIFIES\",\"other_type\":\"Requirement\",\"other_id\":\"req:a-session-cannot-address-another-design\",\"properties\":{}}]",
+    "state": "{\"kind\":\"verification\",\"last_run_at\":\"2026-08-07\",\"level\":\"integration\",\"method\":\"test\",\"name\":\"A session attached to design X cannot reach design Y in the same process: a graph_id it was not attached to is REFUSED rather than served; a path is not an alternative route in; a reconnect re-attaches to the same design rather than to none or to the first in the registry; and a write lands in the attached design only — proven by opening two graphs in one process, writing to each, and asserting each store contains only its own nodes. PLANNED — written before the build, because dec:one-process-many-stores was accepted 2026-08-06 conditional on this check existing first, and an isolation regression CORRUPTS silently rather than erroring.\",\"status\":\"passing\"}",
+    "target_id": "ver:sessions-cannot-cross-designs",
+    "target_type": "Verification"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:1202f77d4e56385b69cfb1214d08ea8c10de0b71cbcca7d9e06c9234c1f98076",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-surface-says-what-it-already-knew",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "req:declared-vocabulary-is-reachable-from-the-surface"
+}

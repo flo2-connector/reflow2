@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:dcf7b11dae6f86de401b96991a04849a751310718464b0f2d55aa6f5f2a2e639",
+  "edge_type": "ANTICIPATES",
+  "from_id": "fact:tool-call-markup-bleeds-into-the-last-prose-field-and-typed-fields-catch-it",
+  "properties": {
+    "evidence": "That node listed four things it could not establish, and bhome answers two of them: whether five in one session was an outlier (now seven across two projects and two graphs), and whether the bleed reaches free-text fields beyond rationale and summary (`decision` now confirmed)."
+  },
+  "to_id": "fact:bhome-confirms-two-known-causes-and-supplies-the-measurements-both-were-waiting-on"
+}

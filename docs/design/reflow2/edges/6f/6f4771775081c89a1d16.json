@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:f5f56c27adc96ee8bf54130a55782d7d56f2b8fee22bdfe4247ec2e5732c8152",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0350",
+  "properties": {
+    "as_checksum": "sha256:beaa4bd48ef2fae4b6cdb0604f5e0ff9ce644d9bb39f1a9c6a7f7f2a630aa797"
+  },
+  "to_id": "art:skills-build"
+}

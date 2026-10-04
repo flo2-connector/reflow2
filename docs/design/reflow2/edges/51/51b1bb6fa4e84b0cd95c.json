@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:b233c0e7dc6ecad80e2f95903b6c4e5fa4e97a4ae64c6d7a18da743fd5f096d5",
+  "edge_type": "EVOLVES_INTO",
+  "from_id": "dec:idea-the-design-lives-apart-from-the-implementation",
+  "properties": {
+    "evidence": "Kept as intent 2026-09-25; this is the condition that export stays automatic."
+  },
+  "to_id": "req:the-design-saves-itself-wherever-the-owner-chooses"
+}

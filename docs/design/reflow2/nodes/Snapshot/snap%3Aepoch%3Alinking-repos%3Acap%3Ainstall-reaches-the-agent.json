@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:312e51d81cc80280f48a6f5741a455bfc93d3343aca4068065aefd1622a7039a",
+  "node_id": "snap:epoch:linking-repos:cap:install-reaches-the-agent",
+  "node_type": "Snapshot",
+  "properties": {
+    "edges": "[{\"direction\":\"in\",\"edge_type\":\"REALIZES\",\"other_type\":\"Artifact\",\"other_id\":\"art:init\",\"properties\":{\"completeness\":\"complete\"}},{\"direction\":\"in\",\"edge_type\":\"VERIFIES\",\"other_type\":\"Verification\",\"other_id\":\"ver:install-reaches-the-agent\",\"properties\":{}},{\"direction\":\"out\",\"edge_type\":\"ALLOCATED_TO\",\"other_type\":\"Component\",\"other_id\":\"cmp:init\",\"properties\":{\"weight_basis\":\"estimated\"}},{\"direction\":\"out\",\"edge_type\":\"GOVERNED_BY\",\"other_type\":\"Decision\",\"other_id\":\"dec:commands-are-the-exception\",\"properties\":{}},{\"direction\":\"out\",\"edge_type\":\"SATISFIES\",\"other_type\":\"Requirement\",\"other_id\":\"req:kit-reaches-the-agent\",\"properties\":{}}]",
+    "state": "{\"description\":\"When a project owns no instruction file at all — the ordinary state of a repo that has never been agent-worked, and therefore of an adopt target — the installer CREATES the primary-harness convention carrying a pointer to the kit's own file, instead of only appending to files that already exist. Narrow on purpose: a project that already owns any instruction convention gets a line appended to it and nothing invented, and the created file stays a pointer rather than a second home for instructions.\",\"is_entry_point\":false,\"is_exit_point\":false,\"name\":\"The install lands where the agent will actually read it\",\"provenance\":\"authored\",\"status\":\"realized\",\"tier\":\"operational\"}",
+    "target_id": "cap:install-reaches-the-agent",
+    "target_type": "Capability"
+  }
+}

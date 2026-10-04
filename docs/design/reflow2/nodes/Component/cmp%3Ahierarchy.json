@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:6c585b7d54112c54599fba5c6f54453e835310574ce34eb69c7a0e702ee18a25",
+  "node_id": "cmp:hierarchy",
+  "node_type": "Component",
+  "properties": {
+    "kind": "module",
+    "level": "component",
+    "name": "hierarchy",
+    "provenance": "authored",
+    "purpose": "The hierarchy module.",
+    "status": "planned",
+    "tier": "operational"
+  }
+}

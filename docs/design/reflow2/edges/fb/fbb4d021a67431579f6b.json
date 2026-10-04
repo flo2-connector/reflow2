@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:ca11229d54dd13c343b45a15f9aee08d388467777acb9c0a5807a78bbd0b4755",
+  "edge_type": "EVOLVES_INTO",
+  "from_id": "dec:idea-should-reflow2-measure-files-itself-and-what-the-no-file-io-rule-actually-protects",
+  "properties": {
+    "evidence": "Promoted on Anthony's word 2026-09-18 ('Go with your recommendation'): option B, the narrow reading — measure, never read for meaning."
+  },
+  "to_id": "req:reflow2-measures-registered-files-and-never-reads-them-for-meaning"
+}

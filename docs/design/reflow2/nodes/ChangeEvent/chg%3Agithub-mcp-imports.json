@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:ee4f1fc0210ff305c76d16f874f9af042133744c1e40cd1d3ccf78869a658f08",
+  "node_id": "chg:github-mcp-imports",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "name": "Import three lessons from the GitHub MCP study: the ingress trust boundary, bounded reads, and a catalogue for the tool surface"
+  }
+}

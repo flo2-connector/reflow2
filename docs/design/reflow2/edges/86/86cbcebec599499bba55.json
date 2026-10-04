@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:370be915505b47f21c96b6f9aca35c99494187db1649f6ac23ccbff5c97956fb",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-lineage-anchor-moves-from-the-file-to-the-commit",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cap:the-server-writes-the-export-through-and-chains-it-from-main"
+}

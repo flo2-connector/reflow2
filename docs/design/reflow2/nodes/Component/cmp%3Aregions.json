@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:580e9a507d666c0dfdaf8fa2f677dfadf9eb431faf4636eceeb32e27edaa9a30",
+  "node_id": "cmp:regions",
+  "node_type": "Component",
+  "properties": {
+    "kind": "module",
+    "level": "component",
+    "name": "regions",
+    "provenance": "authored",
+    "purpose": "REGIONS — what parts this design has, for a session that holds nothing yet and needs somewhere to start.",
+    "status": "planned",
+    "tier": "operational"
+  }
+}

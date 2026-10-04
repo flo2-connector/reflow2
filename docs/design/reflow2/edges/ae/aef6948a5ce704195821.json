@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:d7d5addcc4ffb83d2a4b9c38713cd4e69e44f0d25ee66f71849275a4c9dfd307",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-handshake-writes-down-who-connected",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "fact:the-signpost-instructs-a-party-that-cannot-act-and-the-absent-client-was-named"
+}

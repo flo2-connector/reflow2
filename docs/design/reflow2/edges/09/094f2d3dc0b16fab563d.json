@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:af4fc907924b4680f7bd5cc5f5cf8247abae3b2a32ddd9e3425053e28ba9399d",
+  "edge_type": "CHANGED",
+  "from_id": "chg:bl63-snapshot-edges",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:temporal"
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:a6bc9cec521e22f4c1770da016fcaa341764b31b3bdc1e3cb3e468ccba03f6ce",
+  "edge_type": "CAUSES",
+  "from_id": "art:dev-storyflow-feedback-2026-09-27",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "Step 6 of the root-cause pass on this document's three root-cause-skill reports: 3 of the skill's 8 recording asks are writable on the ordinary path, and skill_lint checks tool names only.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:root-cause-instructions-route-records-to-paths-that-cannot-take-them-and-the-lint-checks-names-only-2026-09-28"
+}

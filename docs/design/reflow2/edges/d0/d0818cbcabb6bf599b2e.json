@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:65ea9f5ca3297b3bd158391db9087f5513fb14f25f5a331ffdea2016d728a20c",
+  "edge_type": "CAUSES",
+  "from_id": "art:service",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "RequiredFields (service.rs) produces the refusal for every constructor and is type-agnostic by construction; add_epoch's handler calls __rf.i64(\"sequence\") then finish() with no epoch-specific pre-check, so the refusal cannot name the current maximum though it is one scan away.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:defect-add-epoch-requires-a-sequence-the-refusal-cannot-name-because-the-required-field-helper-is-generic"
+}

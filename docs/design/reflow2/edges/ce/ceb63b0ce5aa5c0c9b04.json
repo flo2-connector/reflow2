@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:271a8d0808f996229fd84b79132cde775419852906974f9a908f202eb468aaa6",
+  "edge_type": "ANNOTATES",
+  "from_id": "frag:alex-2026-08-14-item-5",
+  "properties": {
+    "note_kind": "reviewer",
+    "resolved": false
+  },
+  "to_id": "art:alex-grok-feedback-2026-08-14"
+}

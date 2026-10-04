@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:b7b4a50ab55be4ad38911c4c462292bf9ca0834a7d18bb6805f6f0b608de80e9",
+  "node_id": "req:agent-artifacts-are-captured",
+  "node_type": "Requirement",
+  "properties": {
+    "concern": "core",
+    "designation": "internal",
+    "kind": "functional",
+    "lineage": "original",
+    "name": "What a session PRODUCES is captured too — diagrams, mockups and rendered explanations, not just the decisions distilled from them",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "Anthony, 2026-07-31: \"in many sessions, the agent will create artifacts — things like mermaid diagrams or simple html files showing how a specific feature will work or an html file showing the aesthetic layout of a webpage — having all these artifacts automatically stored in the reflow2 blob storage would be great.\"\n\nTHE GAP THIS NAMES. `Artifact` already exists and can point at a file with a checksum, but it models CODE the design produced — something that lives in the repo and gets built. The things a session generates to explain itself are different: a mermaid diagram of a flow, an HTML mock of a layout, a rendered comparison. They are produced to be LOOKED AT, they are usually thrown away when the session ends, and they are frequently the clearest statement of intent anyone ever made about that feature. A paragraph describing a layout is a poor substitute for the mock that was actually agreed to.\n\nWHY IT BELONGS BESIDE THE DECISION IT SERVED: these artifacts are the visual half of `Decision.rationale`. The reasoning is recorded in text and the picture that made the reasoning obvious is not, so a later reader gets the conclusion without the thing that made it persuasive. This is the same argument `cap:session-memory` makes for the conversation — the connective tissue is what is lost — applied to output rather than dialogue.\n\nAUTOMATICALLY is the load-bearing word, and it is the hard part. A capture that depends on the agent remembering to store its own diagram is subject to exactly the decay `req:skill-use-survives-a-long-session` measures. So this wants a trigger, not a convention — the same family, and it should be designed with it rather than beside it.\n\nWHAT MUST NOT HAPPEN: a store full of every intermediate render nobody will ever open. What is worth keeping is what a Decision or a Capability actually points at; the rest is session litter. Where that line falls is an open question this requirement deliberately does not answer.",
+    "status": "accepted"
+  }
+}

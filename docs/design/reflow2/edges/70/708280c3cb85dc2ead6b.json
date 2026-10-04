@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:4682065cd4759e1bcb8d7591954a031b24c71f323cd05672a94981383328d4d4",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:stamp",
+  "properties": {},
+  "to_id": "req:survives-upgrade"
+}

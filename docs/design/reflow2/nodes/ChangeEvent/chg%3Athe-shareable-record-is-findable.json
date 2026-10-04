@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:b75955804c62f5c8d1da3ee5c9b78270ca9f25e0f61b7be751963e19aa726d47",
+  "node_id": "chg:the-shareable-record-is-findable",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "test_failure_fix",
+    "name": "A fresh install now names the shareable design record, and the settings merge stops reformatting somebody else's file — both from Alex's first run on a real work project"
+  }
+}

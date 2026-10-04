@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:008b4b1d813aef7fbae58fb366e617770a5d6f83beab9528f59cdaf2677cc1f8",
+  "node_id": "art:coverage",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "granularity": "atomic",
+    "location": "crates/reflow2-core/src/coverage.rs",
+    "name": "coverage.rs",
+    "status": "realized",
+    "volatility": "stable"
+  }
+}

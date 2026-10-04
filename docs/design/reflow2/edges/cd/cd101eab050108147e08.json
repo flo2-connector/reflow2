@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:2897f669980314cd4f9021e919e60975b6f40c07eef27721c37a128cd570f962",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:an-import-knows-its-own-age-and-a-server-behind-its-record-says-so",
+  "properties": {},
+  "to_id": "req:stale-seat-knows"
+}

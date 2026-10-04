@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:1759433a336836395429843012a7ff4788c5c953992bc6f95d735aa4f8330024",
+  "node_id": "chg:baseline-31ba4a21ae1a9f5b",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "baseline_established",
+    "detected_at": "2026-08-26",
+    "name": "First baseline. Written 2026-08-19 and never compiled until today — the request types had moved modules and a field had become Option.",
+    "subject": "record"
+  }
+}

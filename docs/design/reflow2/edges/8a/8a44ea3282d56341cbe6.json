@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:e58fd440240c2b7bfcd387ccc5674ea5011dcb83da47c51aa77b18632e93e0c1",
+  "edge_type": "CONTRADICTS",
+  "from_id": "dec:idea-what-does-se-doctrine-actually-prescribe-upfront-and-what-of-it-does-reflow2-have",
+  "properties": {
+    "alignment": "supporting",
+    "confidence": 0.9,
+    "evidence": "Corroboration reached from the opposite direction. That audit read the claim 'reflow2 does SE' against ISO/IEC/IEEE 15288 and found broad vocabulary, real process on the guided paths, and thin enforcement. This walks the UPFRONT sequence step by step and lands in the same place from the other end: the vocabulary for steps 3-10 is nearly all present and several pieces are well-modelled, while steps 1-2 (mission analysis and ConOps) have no home at all, and the step-5 generator that already exists (propose_allocation) is a tool nobody is instructed to run. Two independent readings agreeing on 'the vocabulary is there and the reach is not' is stronger evidence than either alone."
+  },
+  "to_id": "dec:idea-audit-the-claim-that-reflow2-does-systems-engineering"
+}

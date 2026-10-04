@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:57334de946cd2f20a988d01ea6343b74b923a15fdb4900ceaaf21ad27f176064",
+  "node_id": "cmp:search",
+  "node_type": "Component",
+  "properties": {
+    "kind": "module",
+    "level": "component",
+    "name": "search",
+    "provenance": "authored",
+    "purpose": "The search module.",
+    "status": "planned",
+    "tier": "operational"
+  }
+}

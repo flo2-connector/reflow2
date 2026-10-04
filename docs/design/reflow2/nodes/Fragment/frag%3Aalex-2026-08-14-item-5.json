@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:9a7be6e144b3df4ea1a883568fe54f44761733a65db7733b9e3d19e9f0cb8bfb",
+  "node_id": "frag:alex-2026-08-14-item-5",
+  "node_type": "Fragment",
+  "properties": {
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Item 5: 'As-built semantic drift is invisible. A Requirement already said the calendar day is the person's civil date, not UTC midnight. The realizing check-in still used createdAt's ISO date (UTC). reconcile_artifacts can only see checksums. Status said realized. The user found it in the product.' Expected: not magic, but a documented hole."
+  }
+}

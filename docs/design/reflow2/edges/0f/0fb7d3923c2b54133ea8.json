@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:37de596644bf7c96754f77cd61690eedbf07a8e723daca4edefde8dacfdadeef",
+  "edge_type": "CONTRADICTS",
+  "from_id": "req:a-design-lives-in-its-server-not-in-the-code-repo",
+  "properties": {
+    "alignment": "opposing",
+    "evidence": "That accepted requirement puts the design in the code repo; this one takes it out."
+  },
+  "to_id": "req:persistence"
+}

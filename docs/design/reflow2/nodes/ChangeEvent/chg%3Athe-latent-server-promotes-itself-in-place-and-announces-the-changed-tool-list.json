@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:72b384806bb4efc3703d004597e82de031d255eac4017a2d4c831ead8237e324",
+  "node_id": "chg:the-latent-server-promotes-itself-in-place-and-announces-the-changed-tool-list",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "defect_fix",
+    "name": "LatentService re-probes on every tools/list and tools/call, opens the store once when the design directory exists and delegates to the full service in the same process, sends notifications/tools/list_changed after reflow2_start_design (capability declared at the handshake), and returns a next step that names no client command as the way — root-caused from Alex's Grok Build report, pinned by four real-binary tests that failed first, run by CI",
+    "repair": "corrected_cause",
+    "subject": "system"
+  }
+}

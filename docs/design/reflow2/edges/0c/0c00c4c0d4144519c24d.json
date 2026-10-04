@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:5d2e293ce9d8b4089f4530a1c31abb30af7f4c3bead61750f0871c2bde2883be",
+  "edge_type": "EVOLVES_INTO",
+  "from_id": "dec:idea-a-bulk-write-can-be-checked-before-it-is-written",
+  "properties": {
+    "evidence": "Option (a), check_only, became the fix on four bulk tools; option (b), apply-valid-on-request, was not built and stays open on the idea. The corrected note (the whole batch MUST be resent after any failure) is now also what the all-or-nothing refusal says."
+  },
+  "to_id": "chg:alexs-four-surface-fixes-sequence-hint-get-node-by-id-auth-hint-and-bulk-check-only"
+}

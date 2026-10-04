@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:fec3ad6e1a7ea4cd6098d5e30c864eee61020c6bd219be5abb82a1d224d50645",
+  "node_id": "req:sources-are-kept-not-just-parsed",
+  "node_type": "Requirement",
+  "properties": {
+    "concern": "core",
+    "designation": "internal",
+    "kind": "functional",
+    "lineage": "original",
+    "name": "Ingest keeps the source documents, not only what it extracted from them",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "Anthony, 2026-07-31, from his brother's colleague who keeps a markdown file on everything: when reflow2 reads a corpus and extracts nodes and edges from it, the ORIGINAL DOCUMENTS are stored in the content store with a pointer from the graph, so the corpus itself becomes part of the design rather than an input that is consumed and discarded.\n\nWHY THIS IS MORE THAN A CONVENIENCE. Extraction is lossy and it is a JUDGEMENT — an LLM decided what in a document was a Requirement and what was context. Today `ingest` keeps a provenance `Fragment` pointing back at its source text, which is right and is already built, but the source itself lives wherever the user happened to have it. So the extraction can be audited only for as long as that folder survives on that machine, and \"why did reflow2 think this was a requirement?\" becomes unanswerable the moment someone reorganises a drive. Keeping the bytes makes the extraction RE-CHECKABLE and RE-RUNNABLE against a better pass later, which matters because `dec:corpus-ingest-mechanism` already records that two of the three passes the original ask needed — Decision and Verification — do not exist yet. A corpus ingested today will be worth re-reading when they do.\n\nIT ALSO PROTECTS THE THING THE CORPUS IS FOR. The reason to ingest a colleague's years of markdown is that the knowledge leaves when the person does. Extracting a graph and leaving the documents on their laptop preserves the parts reflow2 understood and loses everything it did not — which is precisely the fraction nobody can predict in advance.\n\nSCOPE: applies to whatever `cap:corpus-ingest` reads. It does not require reflow2 to scan a filesystem — the agent supplies the documents, the same contract `coverage_report` and `reconcile_artifacts` already use.\n\nDEPENDS ON `req:content-store-for-what-the-graph-points-at`; without a content store there is nowhere for the bytes to go.",
+    "status": "accepted"
+  }
+}

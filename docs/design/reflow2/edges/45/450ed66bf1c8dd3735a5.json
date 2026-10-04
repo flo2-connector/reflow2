@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:ce369e7a89797e7a64bf2fa9f7962f6fc8c208db8d2a55fb410e2c8417d32ffe",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:snapshot-read",
+  "properties": {},
+  "to_id": "req:never-silently-absent"
+}

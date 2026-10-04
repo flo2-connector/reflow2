@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:6cf987b18de2eeab93a4e8342e164360ea7272bfefdeee2d7e017cefe10501b3",
+  "node_id": "chg:accept-bd7907f2d9949364",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "test_failure_fix",
+    "name": "cargo fmt only."
+  }
+}

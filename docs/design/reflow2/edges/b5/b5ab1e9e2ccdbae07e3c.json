@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:effb2e81661f7faed0c93f14e764a3eed2f471f8d994154ab60aa4db6edb93b5",
+  "edge_type": "REALIZES",
+  "from_id": "art:identity",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cmp:identity"
+}

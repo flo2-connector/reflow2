@@ -1,0 +1,18 @@
+{
+  "content_hash": "sha256:195f6264cdc05ad4fd297cabfdd3f113d6427db892a54a5bc8d419f9321b8072",
+  "node_id": "fact:lesson-edge-identity-excludes-properties-so-any-single-valued-relationship-property-that-can-take-two-values-for-one-pair-is-a-displacement-bug",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "confidence": 0.9,
+    "fact_type": "finding",
+    "name": "LESSON, generalised from AUTHORED_BY: an edge's identity is (graph, type, from, to) and no property — so ANY edge type whose property can legitimately hold two values for one pair displaces silently on the second write; and unlike nodes, an edge upsert keeps no snapshot and reports nothing it replaced",
+    "statement": "TWO FACTS ABOUT THE STORE, both confirmed in code 2026-09-14 while fixing the displaced-author defect:\n\n(1) `edge_key(graph_id, edge_type, from_id, to_id)` — properties are not part of an edge's identity. A second write to the same triple REPLACES the first's properties wholesale (`create_edge`), and the graph layer's own comment on the acknowledgement path calls that \"harmless\" — which it is for an idempotent re-draw and is NOT for a property that carries a second, different fact.\n\n(2) Node upserts preserve the prior state (`snap:epoch:preserved-on-write:<id>`) and the reply carries a `revision` block naming every property replaced. EDGE upserts do neither. The AUTHORED_BY displacement left no trace precisely because of this asymmetry; flo2 only saw it because a compare_designs diff happened to straddle the write.\n\nTHE GENERAL RISK: every edge type with a property that could honestly take two values for one (from, to) pair has the same bug latent. Candidates worth a sweep, not yet done: GOVERNED_BY `ruling` (can one decision both park and permit?), CHANGED `action`, CONSTRAINS `basis`, INCLUDES `as_checksum` across two releases (different to_ids, so probably fine), REALIZES `completeness`/`conformance` as they move over time (a CHANGE, not two facts — replace is right there). The question for each is the one that decided AUTHORED_BY: are these two facts, or one fact that changed?\n\nWHAT WOULD ADDRESS IT IN THE DESIGN, as options rather than a ruling: (a) edge upserts get the same preserved-on-write snapshot and `revision` report nodes have — the setter then reports what it displaced, which is what flo2 asked for and which would have surfaced this in August; (b) a sweep of the schema's edge properties classifying each as \"changes\" or \"accumulates\", with the accumulating ones made set-valued the way `roles` now is; (c) the store growing a real multi-edge notion, which AGENTS.md's storage-migration warning argues against doing lightly.",
+    "steps": [
+      "create_edge",
+      "create_edges"
+    ],
+    "subject_id": "dec:design-authorship-identity",
+    "valid_from": "2026-09-14"
+  }
+}

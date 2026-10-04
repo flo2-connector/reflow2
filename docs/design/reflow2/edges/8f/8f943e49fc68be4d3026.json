@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:39d510027f1bc7bfbf5d6e7d75839da55e1501f7b1eca05da399be3535339e2d",
+  "edge_type": "CHANGED",
+  "from_id": "chg:resolution-bands",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:scope-corpus-ingest"
+}

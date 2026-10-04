@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:5597992cd957e3e7d0194fc09e0f796b58215eb8f56e4c8c6003bd5303161141",
+  "edge_type": "MITIGATES",
+  "from_id": "cap:fork-alternatives",
+  "properties": {
+    "evidence": "Going back down the ladder needs a settled decision to be returnable-to without erasing that it was settled. BUILT 2026-09-23: fork_point gives where going back starts from (epoch and export hash, or the earliest committed export in git), and reopen_choice re-asks the question as a new proposed decision while the original stays accepted. It mitigates, not closes, the finding: the chain has still never been walked on reflow2 itself until a real failure is fed back."
+  },
+  "to_id": "fact:every-link-of-the-founding-chain-exists-as-a-tool-and-the-chain-has-never-been-walked-on-reflow2-itself"
+}

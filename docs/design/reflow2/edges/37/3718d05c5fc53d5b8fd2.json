@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:8d4d6538483ef745896dee6bd8a97003e233c3a56859da7a8ba78ba09d3441cc",
+  "edge_type": "ANTICIPATES",
+  "from_id": "req:the-mcp-surface-is-sized-for-tokens-per-task",
+  "properties": {
+    "evidence": "The broad tokens-per-task requirement (still proposed) named receipts as its part (a). This requirement accepts that part alone, on Anthony's 2026-09-29 word. It is not drawn as DECOMPOSES because that would roll delivery of (a) up into the whole, and (b)–(e) are not accepted."
+  },
+  "to_id": "req:a-write-replies-with-a-receipt-not-the-whole-node"
+}

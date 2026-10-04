@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:8c8d0946af2f46ae48bdc569d77c7706cf1c65342b43406a227cc50875bab03c",
+  "node_id": "fact:shared-attach-by-absolute-path-missed-the-running-server-and-spawned-a-rival-2026-09-22",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "confidence": 0.9,
+    "fact_type": "defect",
+    "name": "MEASURED 2026-09-22: `--shared` with an ABSOLUTE graph path did not find the child's running shared server; it started a rival that failed the store lock, and the session got only `reflow2_unavailable`. The same design attached fine from inside its own folder with the relative path it was started with",
+    "source": "dev_reflow2 hub trial session, 2026-09-22, reflow2 v0.66.0 (docs/TRIAL-LOG.md in sligara7/dev_reflow2)",
+    "statement": "OBSERVED, from the dev_reflow2 hub, a design sitting ABOVE flo2 and reflow2 that connects to each child's running shared server as one more seat. flo2's shared server (pid 242157) was running, started as `--graph-path .reflow2/graph --serve-shared` from flo2's own folder, with `.reflow2/graph.server.json` recording `graph_path: \".reflow2/graph\"`. From the hub's folder, `reflow2-mcp --shared --graph-path /home/ajs7/project/flo2/.reflow2/graph --export-to /home/ajs7/project/flo2/docs/design/flo2.json` did NOT attach to it. It started a new server (pid 732436), which logged \"not becoming the shared server … another process already has the design graph … open\" and exited. After 30 s the client served only `reflow2_unavailable` (\"no shared reflow2 server came up … within 30s\"). The same happened for reflow2's own design. THE SAME COMMAND RUN FROM INSIDE THE CHILD'S FOLDER, with the child's own relative strings (`.reflow2/graph`, `./.reflow2/graph`), attached to the existing server and served all 189 tools. No damage: the rival exited, the child's rendezvous file was untouched, and the only trace was failure lines appended to the CHILD's `graph.server.log`. WORKAROUND IN USE: the hub's `.mcp.json` launches each child entry via `bash -c \"cd <child> && exec reflow2-mcp --graph-path <child's own string> …\"`. NOT ROOT-CAUSED: the untested reading is that discovery compares the graph path as typed rather than canonicalised. Rhymes with fact:an-orphaned-serve-shared-daemon-holds-the-store-and-475mb-2026-09-13 (a relative-path substring match), but that link is also unverified. WHY IT MATTERS: any client outside the project folder (a hub, a tool, a script) spawns a rival instead of attaching, which is the normal case for a hub over several designs.",
+    "subject_id": "cmp:shared",
+    "valid_from": "2026-09-22"
+  }
+}

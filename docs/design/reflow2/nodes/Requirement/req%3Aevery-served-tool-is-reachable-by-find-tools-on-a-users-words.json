@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:fa614b3377e3e3d067801cefbf0344eeaffa4f72fb57538da1c35ce56b2ce145",
+  "node_id": "req:every-served-tool-is-reachable-by-find-tools-on-a-users-words",
+  "node_type": "Requirement",
+  "properties": {
+    "concern": "core",
+    "lineage": "original",
+    "name": "Every served tool is reachable through find_tools from a description of the job in the user's own words",
+    "priority": "high",
+    "provenance": "authored",
+    "statement": "Anthony, 2026-09-11, stating the success criteria for the tool-sweep effort: \"keep going until all 180 tools are actually available to the agent (I believe using find_tool)\". For every served tool there shall be a query phrased as a user would phrase the job — not as the tool is named — for which find_tools ranks that tool in its top results. The evidence that prompted it: asked \"which of my declared limits is being exceeded\", find_tools ranked add_actor second and never returned budget_report, the tool whose reply is literally `verdict: \"exceeded\"`, while reporting 166 of 180 tools as matched. Not yet measured for the other 179 tools; that measurement is the acceptance test.",
+    "status": "proposed"
+  }
+}

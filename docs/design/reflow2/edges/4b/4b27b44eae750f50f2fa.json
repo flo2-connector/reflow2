@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:f298d082d585a9d5df4b6157f09cea5ed93b93a6c9936f8e3fa30edaf1abe694",
+  "edge_type": "TRIGGERS",
+  "from_id": "fact:a-defect-fixed-but-never-closed-on-the-record-was-re-fixed-wrongly-a-day-later",
+  "properties": {
+    "evidence": "The same-day case: a fix built without step ② silenced a designed behaviour and was caught only by existing pins. It is the measurement behind Anthony's 'I don't want to fix a symptom or the wrong thing', and behind the tiered option here — step ② alone would have prevented it."
+  },
+  "to_id": "dec:idea-root-cause-runs-at-the-moment-a-cause-is-about-to-be-written-not-on-every-failure"
+}

@@ -1,0 +1,17 @@
+{
+  "content_hash": "sha256:b34623e7db60a405c541bb8d779a18c9e16c1c1e12b84423da8aafe29a1aba57",
+  "node_id": "req:a-session-can-tell-it-is-not-alone",
+  "node_type": "Requirement",
+  "properties": {
+    "concern": "core",
+    "designation": "internal",
+    "kind": "functional",
+    "lineage": "original",
+    "name": "A payload says whether the session reading it is alone on the graph",
+    "priority": "high",
+    "provenance": "authored",
+    "rationale": "THE ROOT CAUSE BEHIND EVERY SHARED-GRAPH FAILURE THEY REPORTED, in their words: A SESSION CANNOT TELL THAT IT IS NOT ALONE. Nothing in any payload reports concurrency, so every seat reasons as if solo and the output actively encourages it. MEASURED CONSEQUENCE (fact:defect-rollups-became-fleet-numbers-without-saying-so): defects 42->6->5->12 and gaps 48->55->69 on one graph in one day by non-coordinating sessions, including a 5->12 jump delivered to a session that had done nothing; TWO BOSSES, one of them the reporter, attributed a global movement to their own change — in the flattering direction, which is the one nobody catches unaided. The reporter told the user '42 -> 6' twice as their own result. It was not. Their argument for this specific field: a seat seeing `attached: 7` CANNOT HONESTLY CLAIM A ROLLUP AS ITS OWN, so one number prevents the whole class. The alternative in force today is a hand-maintained fleet convention requiring every citation to be labelled FLEET or SCOPED — a discipline layered on a tool that could just say it, and by their own standard a defect routed around rather than fixed. NOTE THE MIGRATION HAZARD THIS ALSO NAMES: loop_status and graph_report read IDENTICALLY before and after `--shared`; only the MEANING changed, so every citation of those counts written before the migration is now subtly wrong and nothing says so.",
+    "statement": "Tool responses that report graph-wide state SHALL make concurrency visible — at minimum the number of currently-attached sessions, and ideally last_write_at and last_write_by — and rollups SHALL label themselves as graph-wide rather than leaving scope to the reader. Requested as the #2 fleet ask and as the single 'if only one thing changes' item by dev_storyflow's api-boss 5d608b85, 2026-08-07.",
+    "status": "accepted"
+  }
+}

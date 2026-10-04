@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:b077b87117ba24affda0f5e9d6aec45426cb9da5bb558f6d0d358e9590420dc2",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:bulk-edges",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:bulk-edges"
+}

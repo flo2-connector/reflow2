@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:173860ac80a22ac631744e64c453c93a789ac458159574db3d1fe1df8eb44266",
+  "edge_type": "GOVERNED_BY",
+  "from_id": "chg:re-linking-an-artifact-no-longer-renames-it",
+  "properties": {
+    "evidence": "Followed in order and the order mattered: the search for precedent found three prior fixes of the same class, which is what turned a one-line repair into a question about why the guard missed it. The pin was observed to fail by negative control before the fix was trusted."
+  },
+  "to_id": "rule:an-issue-is-root-caused-then-pinned-by-a-test-then-fixed"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:681b4762440d2bf5cd2bc2e18ad887eb79f85e9709b74d86ef898b39aa5b0381",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-read-only-surface-refuses-at-the-write-guard",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:tools-assure"
+}

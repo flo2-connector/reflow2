@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:e34a534cce9a6d6123da19575ec75681884850366952f6b254eaf8e434639c44",
+  "edge_type": "CHANGED",
+  "from_id": "chg:mode-prior-art-corrected",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "req:mode-is-chosen-and-changeable"
+}

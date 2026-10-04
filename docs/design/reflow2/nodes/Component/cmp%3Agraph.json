@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:4f377977129dd574ef11d08939948e254c3d7ab08a7bddfddf162c65e95aa599",
+  "node_id": "cmp:graph",
+  "node_type": "Component",
+  "properties": {
+    "kind": "module",
+    "level": "component",
+    "name": "graph",
+    "provenance": "authored",
+    "purpose": "The graph module.",
+    "status": "planned",
+    "tier": "operational"
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:5d656fc2ba6dfb33d5563e7478235a49dfc7450d3eeb78170ee3469ed6799413",
+  "node_id": "req:a-server-drains-before-it-stops",
+  "node_type": "Requirement",
+  "properties": {
+    "concern": "core",
+    "kind": "nonfunctional",
+    "lineage": "original",
+    "name": "A reflow2 HTTP server told to stop finishes the requests it has, closes every open design cleanly, and only then exits",
+    "priority": "high",
+    "provenance": "authored",
+    "source": "@ajs, dev_reflow2 hub session, 2026-09-27",
+    "statement": "On SIGTERM or SIGINT, a reflow2 server serving over HTTP (a single design, or a registry root):\n- SHALL stop accepting new connections;\n- SHALL let requests already in flight finish, within a bounded grace period that is configurable and shorter than a container's own stop timeout;\n- SHALL close every open design store cleanly before exiting.\nA deploy (docker stop, systemd stop, a Kubernetes rollout) therefore never cuts a write in half, and the next start opens stores that were shut down cleanly.\n\nWHY, in @ajs's words (2026-09-27): \"Yes, let's build the now items in reflow2\". It was one of the research's \"now\" items: Meta's Shard Manager measured planned events about 1,000× more frequent than failures, so a clean handoff at deploy time matters more than crash recovery. flo2.io's engine upgrade on 2026-09-27 stopped and recreated the container twice in six minutes. Cloudflare's Durable Objects give in-flight requests up to 30 s on deploy.\n\nNOT IN IT: moving a design to another machine, which is the placement-table step at scale.",
+    "status": "accepted"
+  }
+}

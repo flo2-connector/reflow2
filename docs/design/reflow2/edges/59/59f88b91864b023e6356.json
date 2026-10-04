@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:279f1d0f926fa1663a112e0d6a3107e8cdcfce10c5733f67e9b8deb0460d873f",
+  "edge_type": "CHANGED",
+  "from_id": "chg:granularity-optimised-against-a-written-budget",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:graph-read"
+}

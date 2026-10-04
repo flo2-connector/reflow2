@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:341969e78ff0ff5d3163558cdb1645ca7dd8f6a294e52ef45fbc742bbd53fffb",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-check-and-its-findings-are-different-things",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "ver:every-skill-has-a-command"
+}

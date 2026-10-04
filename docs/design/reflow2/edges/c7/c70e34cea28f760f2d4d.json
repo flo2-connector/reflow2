@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:04d5f62d9f1e107d17efb68ff05b85a83bd6caf33c07c6cc10fce26176855e3b",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-saved-design-moves-to-the-item-layout-2026-10-03",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:1a56aff917cd90cefc32df68d3e90c00d67297242987186ec3eb90f70e5d530d"
+  },
+  "to_id": "art:chama-genesis-feedback-2026-09-02"
+}

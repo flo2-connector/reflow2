@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:1621d0c642fc58a10d2de4aa3d03559db524281d83af578adc54ae514796f89f",
+  "node_id": "art:no-served-text-writes-a-readers-persona-test",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "test",
+    "location": "crates/reflow2-mcp/tests/no_served_text_writes_a_readers_persona_into_the_design.rs",
+    "name": "no_served_text_writes_a_readers_persona_into_the_design.rs (every served surface, three stated shapes, and the lens's positive half)",
+    "status": "realized"
+  }
+}

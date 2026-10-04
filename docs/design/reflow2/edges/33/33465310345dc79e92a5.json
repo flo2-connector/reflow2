@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:1b3eb0afe951f3521f3ae27e9aec038da570d7ba73aca8cb9e4b74ff24387d44",
+  "edge_type": "CONTRADICTS",
+  "from_id": "dec:idea-detect-vocabulary-that-nothing-reaches",
+  "properties": {
+    "alignment": "supporting",
+    "evidence": "dec:one-retire-edge is the instance that surfaced the class: SUPERSEDES and OBSOLETES both declared, neither read. This node asks whether the class should be detected rather than which of the two survives."
+  },
+  "to_id": "dec:one-retire-edge"
+}

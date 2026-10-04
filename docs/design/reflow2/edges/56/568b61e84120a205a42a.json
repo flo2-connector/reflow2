@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:b4208431aaa7c592074f395d7096ebb8f527dbc3f8f0e0a761754e1c3da67ff1",
+  "edge_type": "CHANGED",
+  "from_id": "chg:allocation-follows-the-code-not-the-neighbour",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cmp:nodes"
+}

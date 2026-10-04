@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:00a2645bd9cdf8193b82d836c5c884516ed9261334ee86bcee67a4e3e4c1d16f",
+  "node_id": "epoch:v0550-cut",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "description": "The increment that first REMOVED a node type rather than adding one, so it is also the first whose upgrade action is required of every consumer rather than of nobody. Three merged pull requests: #456 the environment compliance layer built as a whole leg after its parking's own stated reversal condition was met; #457 link_artifact no longer rewriting an artifact's name on every re-link; #458 retiring QualityGate.\n\nPinned here because the cut needs a position on the time axis. Without AT_EPOCH a release resolves to a point with no sequence, so any window computed from it loses its lower bound and silently widens to the beginning of the design. That failed twice before anything detected it, which is why release_without_epoch now raises it per release.",
+    "epoch_type": "release_cut",
+    "name": "v0.55.0 cut — the compliance layer lands whole, a re-link stops renaming, and QualityGate leaves the schema",
+    "sequence": 403,
+    "status": "arrived"
+  }
+}

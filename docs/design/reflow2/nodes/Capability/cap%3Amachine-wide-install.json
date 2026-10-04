@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:86e7b9f83ba2876d286b68c92b641aa739e2525bbf251af023a95288e98c7135",
+  "node_id": "cap:machine-wide-install",
+  "node_type": "Capability",
+  "properties": {
+    "description": "Registers reflow2 with the user's agent at USER scope, so no project ever needs setting up: the MCP server (Claude Code via `claude mcp add -s user`, OpenCode via its user config), the ten slash commands into `~/.claude/commands/`, the coherence-loop hooks into `~/.claude/settings.json`, and a `reflow2` command on PATH whose subcommands are `install`, `init` and `check`. Idempotent and merge-only — it never overwrites a config it did not write, reports every file it left alone and why, has `--check` and `--uninstall`, and refuses to report success when a step failed. Run by `install.sh` automatically, so the release one-liner is the whole install for any user.",
+    "name": "Install reflow2 once for every project on a machine",
+    "provenance": "authored",
+    "status": "realized",
+    "tier": "operational"
+  }
+}

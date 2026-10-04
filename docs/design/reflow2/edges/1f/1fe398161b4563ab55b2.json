@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:6b0fc586d1845fb6eb98bc2f4c68e142b092d43617185db080d81c9efc4fdbc6",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:the-gate-list-is-run-not-only-cross-checked",
+  "properties": {
+    "approved_at": "2026-09-20",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

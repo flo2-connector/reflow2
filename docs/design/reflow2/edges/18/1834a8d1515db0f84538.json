@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:c72ac560e89b33fbc19a7d7773f9eaf9c4d3da1e225ceb78aa26cb3fd6d03810",
+  "edge_type": "GOVERNED_BY",
+  "from_id": "req:every-edge-type-declares-what-it-means",
+  "properties": {
+    "note": "The proposed build order ranks finishing this (branch feat/every-edge-type-declares-what-it-means), pinned to the shared vocabulary and carrying algebra, as the most important item."
+  },
+  "to_id": "dec:priority-order-for-the-knowledge-graph-requirements-2026-09-28"
+}

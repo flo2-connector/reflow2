@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:3e046cf3aef9dc9359ecce70153a9c861679312489aed6f77ee0743ed4bb253b",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:test-design-identity",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:test-design-identity"
+}

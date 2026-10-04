@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:c11001cb617f9189bfc480c358df12b83362c824c35223e20e4c7f006eeb7693",
+  "node_id": "chg:accept-12d3937c934e12ab",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "defect_fix",
+    "detected_at": "2026-09-12",
+    "name": "PR #495 commit 5396db3 added 95 lines of tests to tools/test_loop_nudge.py covering the atomic guard (the loop check firing once per hook, not twice). The design already records that fix; the test file's hash moved with it and this accepts the new baseline.",
+    "subject": "system"
+  }
+}

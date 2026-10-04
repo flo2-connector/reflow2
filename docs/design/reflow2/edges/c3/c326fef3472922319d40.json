@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:9ab311607bf0eb6a84c578dd2a7f9b3b181cfb379ceedcefca771c78df1d21c6",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0270",
+  "properties": {
+    "as_checksum": "sha256:0f66b31cfaca4944"
+  },
+  "to_id": "art:evidence-quality-test"
+}

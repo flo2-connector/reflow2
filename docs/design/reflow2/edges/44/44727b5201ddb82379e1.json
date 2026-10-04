@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:25412dcf4130c576fa7f150a2d6d06b7771487bb6a233bf3ead0e025fd6096e6",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:detect",
+  "properties": {},
+  "to_id": "req:human-decides"
+}

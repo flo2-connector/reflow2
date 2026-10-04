@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:d5b621b3df133fa67506f85938c9248bd11b4900d13be723c6d4525d99334bd4",
+  "edge_type": "REALIZES",
+  "from_id": "art:capture-session-skill",
+  "properties": {
+    "completeness": "partial",
+    "conformance": "reviewed"
+  },
+  "to_id": "cap:the-graph-asks-what-a-session-made-false"
+}

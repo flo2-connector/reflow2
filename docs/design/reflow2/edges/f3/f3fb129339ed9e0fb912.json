@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:a30c60c03f3a65648d2979d2738b659a6036f7057859e8fb38b360aeb2b1a826",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:a-loop-hint-says-where-the-node-landed-test",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:a-loop-hint-says-where-the-node-landed-test"
+}

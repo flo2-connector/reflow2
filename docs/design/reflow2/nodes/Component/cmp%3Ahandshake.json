@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:0920fe0664f4a40f4ec464a94ab04765756e21c7b46fc0c6c748a574001a83c6",
+  "node_id": "cmp:handshake",
+  "node_type": "Component",
+  "properties": {
+    "kind": "module",
+    "level": "component",
+    "name": "handshake",
+    "provenance": "authored",
+    "purpose": "Records who connected and what the two sides agreed to speak, to `<graph>.client.json` beside the store. Implemented in `crates/reflow2-mcp/src/handshake.rs`; written from `ReflowService::initialize`.\n\n📌 The near-match offered was `cap:the-handshake-is-written-down-beside-the-graph` — the FUNCTION. This is the PART that holds it.\n\n⭐ IT IS A FILE BECAUSE THE PROTOCOL MAY BE THE BROKEN THING. It exists for a client whose every structured tool reply is an unreadable stub, so the question it answers — *which client am I, and what did we agree on?* — cannot be answered through a tool reply. It reaches disk, where a person opens it and pastes it into a report.\n\n⚠️ IT MIRRORS A RULE IT CANNOT CALL. rmcp's `negotiate_protocol_version` is `pub(crate)`, so this reproduces four lines: echo the client's requested version if `supported_protocol_versions()` contains it, else the server's fallback. A test pins that so an rmcp change is loud rather than a silent divergence in what this server answers `initialize` with.\n\nPlaced under `sub:serving` beside `cmp:service` and `cmp:shared`, because what it does is the connection handshake. Given a part of its own under the ruling recorded as `chg:allocation-follows-the-code-not-the-neighbour` (2026-08-25): it is a real, checksummed module, so crediting its function to `cmp:service` next door would be the neighbour-misfiling that ruling corrects.",
+    "status": "planned",
+    "tier": "operational"
+  }
+}

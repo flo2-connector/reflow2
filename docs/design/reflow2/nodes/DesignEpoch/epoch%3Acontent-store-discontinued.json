@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:7b69950403b4cdf452be599bc39e9f3489714029db3d10865473b6c102a21700",
+  "node_id": "epoch:content-store-discontinued",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "epoch_type": "revision",
+    "name": "The content store is discontinued — built, shipped, never used, and withdrawn (2026-08-09)",
+    "sequence": 302,
+    "status": "arrived"
+  }
+}

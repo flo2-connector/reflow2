@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:d79d03a9d8458506909217112eb3f6c0b4e691c5655a0c6bc35dcf7637d2ac74",
+  "node_id": "fact:five-lists-decoded-inside-their-handlers-were-refused-naming-neither-the-tool-nor-the-item-2026-10-02",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "defect",
+    "name": "MEASURED 2026-10-02: five list parameters were published as 'any object' and decoded inside their handlers, so a bad item was refused as 'invalid observation: …' naming neither the tool nor which item, out of reach of any schema check",
+    "source": "art:tools-built",
+    "statement": "Found while building dec:idea-every-argument-refusal-names-the-tool-and-the-field-path. OBSERVED on 0.77.0 through --call: reconcile_artifacts with observed:[{artifact_id, present: \"yes\"}] exited 1 with \"invalid observation: invalid type: string 'yes', expected a boolean\". The five: reconcile_artifacts.observed, coverage_report.observed, frontier.observed (Vec<JsonObject> decoded to core ObservedArtifact / ObservedPath) and ingest_step.answers, ingest_corpus_step.answers (decoded to AgentAnswer, while gap_to_prompt already took the typed AgentAnswerReq). Their item shapes lived only in prose, and unknown item keys were silently dropped because the core types do not deny unknown fields. FIXED in the same change: typed request structs (ObservedPathReq, ObservedArtifactReq, AgentAnswerReq) with deny_unknown_fields publish the item shapes, converted to the core types by struct literal so a new core field is a compile error rather than a silent drop.",
+    "subject_id": "cap:every-argument-refusal-names-the-tool-and-the-field-path",
+    "valid_from": "2026-10-02"
+  }
+}

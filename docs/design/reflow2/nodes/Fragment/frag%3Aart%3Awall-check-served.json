@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:ed7ac2309a4078e0c5d160a8c74e280b5bb4cfc14d329716e06e1f94355d82af",
+  "node_id": "frag:art:wall-check-served",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered wall_check.rs — the wall check compiled into the binary and served as a tool"
+  }
+}

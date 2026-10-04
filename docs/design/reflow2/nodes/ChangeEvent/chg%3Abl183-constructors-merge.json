@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:fe961a5e80f7138df6617fb4bda75a46c3b067913fad53e46a72777d15eaa59e",
+  "node_id": "chg:bl183-constructors-merge",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "test_failure_fix",
+    "name": "Every public add_* constructor now MERGES on an existing id instead of replacing, so re-calling one to revise a node stops resetting every property it does not name — 16 of 18 constructors were silently erasing the user's word. import_graph deliberately still replaces, because an import document is a complete statement of a node"
+  }
+}

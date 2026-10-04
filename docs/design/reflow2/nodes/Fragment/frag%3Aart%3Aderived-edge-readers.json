@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:9e6897875f050da579a4bd714de502f2ceffe97699045c2cb6b8a126f0d2e815",
+  "node_id": "frag:art:derived-edge-readers",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered edge_readers.yaml — every function in reflow2-core that names an edge type and that no derived declaration answers for, with the edges it names; 132 unjudged (only shrinks), 8 judged not_derived"
+  }
+}

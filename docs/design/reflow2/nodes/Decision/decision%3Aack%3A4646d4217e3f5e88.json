@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:e7ca68e2d3ce67b492b11070008df3292df050e5056300d211d41c4efd871ebf",
+  "node_id": "decision:ack:4646d4217e3f5e88",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Accepted the gap gap:4646d4217e3f5e88.",
+    "name": "Reviewed: gap:4646d4217e3f5e88",
+    "rationale": "Checked 2026-09-07: still open. get_skill's success payload is name, description and body, with no version, hash or digest anywhere in the skill tools. The only later change on that path touched the refusal's alias mapping.",
+    "status": "accepted"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:43eead7e2032a83e115524a9cbb7860528d218f37701912e22d2e36bf797b435",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:scenarios-are-modelled",
+  "properties": {
+    "approved_at": "2026-09-28",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

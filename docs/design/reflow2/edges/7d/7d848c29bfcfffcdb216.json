@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:bfa719b9fabf57250415f8e4c3bda9156c704f8598327d6eb21049a9a78272dd",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "req:plans-move-honestly",
+  "properties": {
+    "optional": false,
+    "weight_basis": "evidence"
+  },
+  "to_id": "req:epochs-can-be-planned"
+}

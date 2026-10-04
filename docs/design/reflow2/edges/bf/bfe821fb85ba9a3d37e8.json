@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:520e28c579849e3d733fac9a29cdbb3c5109b41d03623f11a4a16146e204b5e3",
+  "edge_type": "HAS_SNAPSHOT",
+  "from_id": "rel:v0500",
+  "properties": {},
+  "to_id": "snap:epoch:preserved-on-write:rel:v0500"
+}

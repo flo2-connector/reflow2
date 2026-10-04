@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:ed5cda711678423e11f426f4e36c4f621dce8e63df536b4930364ad3cccc1c76",
+  "edge_type": "ANTICIPATES",
+  "from_id": "dec:idea-may-a-caller-asserted-identity-be-trusted-and-for-what",
+  "properties": {
+    "evidence": "Its option (b), 'accept it for both … approver authority delegated to the client's own sign-in', is what flo2 then did at its own door on 2026-09-25. The mismatch this idea addresses is the consequence of doing it at the door rather than in reflow2."
+  },
+  "to_id": "dec:idea-tool-descriptions-match-the-hosted-door"
+}

@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:cf5085efd1a6e0153bc129a0cc7d89d6b9f11a8ec6197ac686b363c1a0b93e41",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:an-assigned-open-decision-is-reported",
+  "properties": {
+    "authored_at": "2026-08-05T23:10:00Z",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

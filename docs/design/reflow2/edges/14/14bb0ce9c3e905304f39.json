@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:2c2fd49cc8b7aa868c45367d377cb647c6d477222b40c44fad52fd19f3dd1e7d",
+  "edge_type": "CHANGED",
+  "from_id": "chg:an-edge-says-whether-anyone-checked-it",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:test-discontinued-is-read"
+}

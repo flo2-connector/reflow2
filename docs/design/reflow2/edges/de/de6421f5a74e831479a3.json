@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:2cda39f06bb1b5a9fe804e556361480b817eb26827a604bc5000c61c1b3aec5f",
+  "edge_type": "CHANGED",
+  "from_id": "chg:record-to-record-relations-are-modelled",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:capture-session-skill"
+}

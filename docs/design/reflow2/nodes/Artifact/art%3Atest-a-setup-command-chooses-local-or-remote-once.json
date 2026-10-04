@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:1f3d215c1467c8156142372a703b5f3ab6e7a2f2017154822264712f413e38d4",
+  "node_id": "art:test-a-setup-command-chooses-local-or-remote-once",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "test",
+    "location": "crates/reflow2-mcp/tests/a_setup_command_chooses_local_or_remote_once.rs",
+    "name": "a_setup_command_chooses_local_or_remote_once.rs — local by default; a remote saved only after the server answers the key; the file names the key's source, never the key; the key goes to its own server only",
+    "status": "realized"
+  }
+}

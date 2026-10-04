@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:16c338c55b9083b79e956a8dc2481d84b8a0174934e0c749b82daa0032c4d884",
+  "node_id": "fact:manual-work-e86b93a8f4d76ea0",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "manual_work",
+    "statement": "Wrote a script over the usage ledger to get per-tool COST — median and max ms per tool, total time share, the slowest single calls, a per-call timeline across the day, and which calls overlapped in time (which is how the duplicate same-second pairs were found). The ledger already stores `ms` on every call; usage_report renders counts, refusals and never-called, but none of the durations it holds. The whole prioritisation of the optimisation campaign came from that hand-rolled read.",
+    "subject_id": "proj:reflow2",
+    "valid_from": "2026-09-12",
+    "value": "{\"diagnosis\":\"tool_missing\",\"reflow2_tool\":\"usage_report\"}"
+  }
+}

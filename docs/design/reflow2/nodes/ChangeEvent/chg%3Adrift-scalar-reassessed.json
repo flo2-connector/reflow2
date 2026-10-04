@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:69e6a160eb56c3deb56e2a65a7720bcd07db766dd60d50f7a49bb03e4372a0b9",
+  "node_id": "chg:drift-scalar-reassessed",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "scope_change",
+    "name": "Reassess req:drift-rolls-up-to-a-score: the scalar is the WEAK part; reflow2's per-event disposition is already better"
+  }
+}

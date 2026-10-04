@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:5255bff169629d53d4bfdc3033970bb6ad008f8ef575630dba73981ef8191265",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-read-of-a-held-design-is-as-true-as-the-live-one",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cap:the-design-holds-about-one-subject-is-read-back-in-one-call"
+}

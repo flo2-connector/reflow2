@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:4cffa5de524e468ce23ecfe24984b7cc6f41fcb4924b327847d01eb9c2291946",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-saved-design-moves-to-the-item-layout-2026-10-03",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 2,
+    "action": "modified",
+    "checksum_after": "sha256:80a4006b69165d761a8cf600ea22f81e9123ba54236a6f647adba4b6d54b9395",
+    "checksum_basis": "measured"
+  },
+  "to_id": "art:coherence-gate-test"
+}

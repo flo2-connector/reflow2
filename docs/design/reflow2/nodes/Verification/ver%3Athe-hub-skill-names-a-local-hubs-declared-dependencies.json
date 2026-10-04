@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:d7f50f3ef8d3f8907a8422015fd54dbedbaa3b03648cb95eb15c1becb3b93c7d",
+  "node_id": "ver:the-hub-skill-names-a-local-hubs-declared-dependencies",
+  "node_type": "Verification",
+  "properties": {
+    "findings": "Passing on the item 8 branch; main's served body carried \"That configuration is the list.\"",
+    "kind": "verification",
+    "last_run_at": "2026-10-03",
+    "level": "integration",
+    "location": "crates/reflow2-mcp/tests/served_skills.rs",
+    "method": "test",
+    "name": "The served hub skill names a local hub's declared dependencies (external_dependency, upstream_status) as its list, the same through --call, and no longer says the MCP configuration is the list",
+    "status": "passing"
+  }
+}

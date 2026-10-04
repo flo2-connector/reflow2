@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:17f1795cacf963c54ded7c58ff2e5882c80b8d5773f83f69a40ab3941828f8e0",
+  "edge_type": "CAUSES",
+  "from_id": "fact:root-cause-record-finding-writes-its-defaults-on-every-revise-2026-09-28",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "Reproduced on the installed 0.74.0 in an isolated store with exactly that walk's discriminating measurement: defect+forecast revised with name only returns finding+measured, while confidence/source/valid_from/value/statement survive, so a replacing write is refuted and the handler default holds. temporal_tools.rs:706-707 (HEAD) and :692-693 (origin/main) still write `unwrap_or(\"finding\")` / `unwrap_or(\"measured\")` into the merge; no commit since 2026-09-27 touches it.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:sighting-3-record-finding-revise-demotes-a-defect-on-0-74-0-and-the-class-is-still-live-2026-09-29"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:2598b1dd9a16a5d5625e79a5db5141ed646ae9513d8b0fd6b37ffff09069f327",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-git-exchange-path-is-defended",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:test-init"
+}

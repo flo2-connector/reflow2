@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:a552f7d58d3ce9354b19ff288117daa80af239eacd9fba618e90e1f57955b6dc",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-project-is-asked-what-standard-its-artifacts-must-be-in-from-the-beginning",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:genesis-skill"
+}

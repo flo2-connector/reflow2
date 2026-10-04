@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:4d2241a323cd07fef31f0e2cd290e016abd524c3cb0cc9dd4603d2fe1e09807c",
+  "node_id": "fact:what-worked-create-edges-check-only-validates-and-writes-nothing-through-the-door-2026-10-02",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "finding",
+    "name": "WHAT WORKED, re-measured on 0.77.0 (2026-10-02): `--call create_edges` with \"check_only\": true validates the batch and writes nothing. The export content_hash was unchanged afterwards, and a bad item is listed with its index. Do not regress it. Note for door agents: a failing check exits 0, so the verdict is would_apply, not the exit code",
+    "source": "art:vscode-call-door-field-report-2026-10-02",
+    "statement": "From the \"Measured\" table of art:vscode-call-door-field-report-2026-10-02 (\"--call create_edges with check_only: true validates the batch and writes nothing\"), and the pattern \"check_only for an edge batch\". Re-measured by triage agent D (0.77.0, scratch store g110; outputs triage-D/out/create_edges_check*.stdout).\n\n- A valid one-edge batch (SATISFIES cap:c0 → req:r5) with check_only: exit 0, {applied:false, check_only:true, checked:1, failures:[], would_apply:true, note:\"every item validated; send the same batch without check_only to write it\"}.\n- A two-edge batch, one with edge_type NOT_A_RELATION: exit 0, {applied:false, checked:2, failures:[{index:1, id:\"NOT_A_RELATION cap:c1 -> req:r5\", error:\"Unknown edge type: NOT_A_RELATION\"}], would_apply:false}, with a note that a bulk write is all or nothing.\n- Nothing written: export_graph afterwards still had 140 edges, and its content_hash equals the export taken before the checks (sha256:99a78218…85f0).\n\nHOLDS. For a door agent, would_apply is the verdict, because a failed check still exits 0.",
+    "subject_id": "cap:bulk-forms",
+    "valid_from": "2026-10-02"
+  }
+}

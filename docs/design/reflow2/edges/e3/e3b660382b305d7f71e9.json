@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:d1ff5c91cb3ce53eaa3b243c3bc3f18e256ee96d5a956aef02210bf0cfec5d8e",
+  "edge_type": "CHANGED",
+  "from_id": "chg:absorb-core-storage-text",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:seam-test"
+}

@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:9eedf9e11d8674f4e8163819344e45a4579690f91df849f639efb6255bcadb71",
+  "node_id": "req:pr-is-a-delta",
+  "node_type": "Requirement",
+  "properties": {
+    "concern": "core",
+    "designation": "internal",
+    "kind": "functional",
+    "lineage": "original",
+    "name": "A proposed change can be read as a delta before it lands",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "A pull request is a delta that has not happened yet. For a project under design control, the design must be able to read a candidate change (a PR branch, a patch) the same way delta reads a landed one — which artifacts would drift, and which capabilities, interfaces and requirements those artifacts realize (propagate from the touched set) — but STRICTLY READ-ONLY: a review reports what the change would mean to the design and never writes an accept, because accepts record what IS, and a PR is not yet. When the PR touches a published or consumed interface, the report must say so by name, because that is the part of the diff a reviewer cannot see from the code alone. Anthony's scenario, 2026-07-28: at his job (a founding site of the Bluesky project, blueskyproject.io), 'just today I got a request to review a PR on bluesky-httpserver — delta would see the difference between the current version and what the PR adds/changes.' The cross-repo half of his scenario — bluesky-httpserver is tightly coupled with bluesky-queueserver; does the PR affect the other repo? — is deliberately NOT this requirement: it is the standing composition thread (req:seam-incompatibility, req:composed-analysis, dec:linked-repos-poc), where the delta review's touched-interface list becomes the input to a seam check against the coupled design's mirrored surface.",
+    "status": "proposed"
+  }
+}

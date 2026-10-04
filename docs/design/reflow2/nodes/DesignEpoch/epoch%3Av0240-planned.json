@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:e659c80b8d24baaf0f6c045265b5acdcf8281f8c825dc4f698d89abb07dc9c31",
+  "node_id": "epoch:v0240-planned",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "epoch_type": "release_cut",
+    "name": "PLANNED v0.24.0 — the document corpus can actually be ingested. Unblocks a user who stopped work at 26 of ~756 documents. BL-176 (done, #68) then BL-199 re-attach, BL-188 granularity intent + BL-191 volatility (both Artifact properties, so ONE schema touch), BL-186 build cap:corpus-ingest, BL-196 genesis asks about custody. Order is forced: ingest at all, then know where you stopped.",
+    "sequence": 263,
+    "status": "arrived"
+  }
+}

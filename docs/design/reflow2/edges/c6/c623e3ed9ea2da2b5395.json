@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:cafa3161f8c03bc823df519c5de4d63cdc551c9b51385762cdd1ab9501221da4",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:content-store-implementation",
+  "properties": {
+    "authored_at": "2026-07-31",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

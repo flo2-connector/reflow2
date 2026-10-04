@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:55dbf6a24b842fd8d2960552b068ed6b49bdb9077365c329001e965436cc74af",
+  "edge_type": "CHANGED",
+  "from_id": "chg:accept-89e9cd63d4757b98",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:drain"
+}

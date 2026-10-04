@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:3719ffab4f32ec692e4bae36ecf062f10c0a06897d07ff884cd4413d95f0f43d",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "cap:claim-a-region-by-query",
+  "properties": {
+    "approved_at": "2026-08-08",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:ade12bdba7945b71fbcb9af9d082abbf138ccf0145c6fee5f5f0607555d0eecb",
+  "node_id": "chg:a-projects-first-session-leaves-the-adapter-in-place",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "detected_at": "2026-09-19",
+    "name": "A project's first session leaves the adapter in place: the pointer is served as a section; genesis and adopt say to leave it",
+    "rationale": "Anthony 2026-09-19 (his idea, my recommended route: served text + skill instruction + init when present; the server never writes into a repo).",
+    "summary": "build.rs embeds POINTER.md; skills.rs serves it as the `pointer` section; genesis step 0 and adopt Phase 0 branch (+ mirrors); served_skills.rs test; CHANGELOG. Graph: requirement, capability, rule delivered on genesis/adopt, idea accepted."
+  }
+}

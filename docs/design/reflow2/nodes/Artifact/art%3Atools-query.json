@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:3165c8a4ab9334d02d15eaba7b409b64e90b2809e4125e184a7e1ad49cfef9cc",
+  "node_id": "art:tools-query",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "granularity": "atomic",
+    "location": "crates/reflow2-mcp/src/tools/query.rs",
+    "name": "tools/query.rs",
+    "status": "realized",
+    "volatility": "stable"
+  }
+}

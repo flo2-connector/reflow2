@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:2c7bb64a66f73dad820a6088250194f702d3d1750bc3ea94c06119a853ad7c04",
+  "edge_type": "ANTICIPATES",
+  "from_id": "dec:concurrent-work-isolation",
+  "properties": {
+    "evidence": "Its option 3 (a worktree with its own copy of the graph, reconciled by reflow2's merge) is what the hub trial did by hand to get #571 through CI; this idea makes that isolation automatic for the facts that need it, while keeping intent live."
+  },
+  "to_id": "dec:idea-the-design-gets-a-branch-dimension-for-implementation-facts"
+}

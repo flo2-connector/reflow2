@@ -1,0 +1,17 @@
+{
+  "content_hash": "sha256:5435b378cab943fb3d5728a7b82e67db4bd5074f71067d5c81aea7862f522ce0",
+  "node_id": "fact:two-served-heal-messages-carry-runs-of-26-spaces-mid-sentence-2026-10-03",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "defect",
+    "name": "MEASURED 2026-10-03 on main c4e1cbd: the dangling_reference finding's message and its propose_heal skip reason carry runs of 26 spaces mid-sentence — a string literal continued across lines without a trailing backslash",
+    "statement": "OBSERVED in crates/reflow2-core/src/heal.rs on origin/main c4e1cbd: the dangling_reference HealIssue message (\"... names                          no node in this design ...\", four such runs) and the DanglingReference arm of propose_heal's skipped_operations reason (\"... which node the                          record was about ...\", two runs) are string literals whose line continuations lost their trailing backslash, so the served text carries the source indentation. EXPECTED: one space, as every other heal message has. Found while adding refused_by_schema beside them; NOT fixed in that change, which is about stored data, and recorded here as a to-do. NOT ESTABLISHED: whether lift_repair_notes or any client collapses the runs.",
+    "steps": [
+      "detect_defects",
+      "propose_heal"
+    ],
+    "subject_id": "cap:a-dangling-reference-is-reported-whatever-the-nodes-degree",
+    "valid_from": "2026-10-03"
+  }
+}

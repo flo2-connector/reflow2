@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:815dcb72f59686bd57ae7e73328dc307fb9ec08fb7311db20cf0c17dee8d8b9f",
+  "edge_type": "GOVERNED_BY",
+  "from_id": "epoch:v0280-planned",
+  "properties": {
+    "note": "Slipped v0.28.0 -> v0.29.0 by the cascade."
+  },
+  "to_id": "dec:an-unplanned-cut-slips-every-later-increment-by-one"
+}

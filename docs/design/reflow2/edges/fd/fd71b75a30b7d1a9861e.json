@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:2bf4f8a87e1ec8c591038192a5311341e7aeef611bfce9f236fffe5a71979e24",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:a-quantity-carries-how-it-was-obtained-and-an-unsourced-one-is-reported",
+  "properties": {
+    "approved_at": "2026-09-16",
+    "roles": [
+      "author",
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

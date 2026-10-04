@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:0bdef51f2cc09e4011e7725cec380448ca3597fd32545a331f1dded0fcb46c6e",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-ruling-parks-a-node",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:schema-structure"
+}

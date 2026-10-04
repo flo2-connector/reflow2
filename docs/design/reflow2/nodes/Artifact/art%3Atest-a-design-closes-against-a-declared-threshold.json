@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:fa08ecd6daeb777edce9fb18c99eed428bb0c80f7a2ecd3312038180f7a9b093",
+  "node_id": "art:test-a-design-closes-against-a-declared-threshold",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "test",
+    "description": "The tests that carry the weight are the refusals: no criterion reads as \"no closure criterion stated\" rather than as any default, and a counted leg with nothing to run on cannot read as closed. Fixture is delivery.rs's threaded design.",
+    "location": "crates/reflow2-core/tests/a_design_closes_against_a_declared_threshold.rs",
+    "name": "a_design_closes_against_a_declared_threshold.rs — nine cases: no criterion is never a default, an unknown leg is refused by name, a delivered thread closes and a failing check reopens it, a counted leg with nothing to run on cannot read as closed, 50% is legal, margin, declared order, the decisions hole, the release report carries the verdict",
+    "status": "realized"
+  }
+}

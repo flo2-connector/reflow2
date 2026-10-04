@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:b123234eefd88356b36d70207de7883d77d283216143bca93c92b2fcc1929531",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:idea-a-critical-path-through-the-undecided",
+  "properties": {
+    "authored_at": "2026-08-10",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

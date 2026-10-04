@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:8446f06c5ed6e3dcf9a09a2145009ba492ec7ff68d7844d980443e8bc6e571a1",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-dangling-reference-is-detected-on-its-own-terms",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:ility"
+}

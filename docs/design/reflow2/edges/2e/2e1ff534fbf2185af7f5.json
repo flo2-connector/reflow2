@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:ca002e2dcbf82b4efc6600e837574ca9aa800d9a55f89751c790397a59334339",
+  "edge_type": "GOVERNED_BY",
+  "from_id": "cap:intent-authority-is-checked",
+  "properties": {},
+  "to_id": "dec:the-authority-check-guards-forward-not-backward"
+}

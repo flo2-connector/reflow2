@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:52fe3011d1d2ec1b14fd77caba3257857ad2b45c16f18f6f0a5098b18d373378",
+  "edge_type": "REALIZES",
+  "from_id": "art:schema-functional",
+  "properties": {
+    "completeness": "partial",
+    "conformance": "verified"
+  },
+  "to_id": "cap:a-capability-declares-what-kind-of-thing-delivers-it"
+}

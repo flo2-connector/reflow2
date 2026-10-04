@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:da57ad31a20a885e1e6f62693fe8d4df0b3127f236bbffa8042ae054af87b68a",
+  "edge_type": "GOVERNED_BY",
+  "from_id": "fact:two-heal-rules-assert-a-condition-they-never-test",
+  "properties": {},
+  "to_id": "decision:ack:cc397662b1ff2064"
+}

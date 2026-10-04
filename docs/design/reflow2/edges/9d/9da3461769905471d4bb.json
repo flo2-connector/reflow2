@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:74b06806b9abd807621c8589b13fe687947fc85f050a9859ea98a9f669a6c20a",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "drift:7037fcfa6ea72e8a",
+  "properties": {
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "art:graph"
+}

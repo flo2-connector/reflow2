@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:112b6cc11dd7fab16c9ae2112b3f6ef40890228e41654310cbc17ab829e193f2",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-a-session-that-reads-and-never-writes-is-the-one-the-loop-cannot-see",
+  "properties": {
+    "evidence": "Every option is a way of building the capability that requirement already asks for.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "req:session-memory-in-graph"
+}

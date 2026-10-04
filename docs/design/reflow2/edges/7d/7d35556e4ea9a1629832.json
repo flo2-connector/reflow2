@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:395f0008c82d35d3df8d6c30b40684f31e0beee19816bde0066eb3bbd674f986",
+  "edge_type": "CHANGED",
+  "from_id": "chg:bl104-derived-completion",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "cap:derived-completion"
+}

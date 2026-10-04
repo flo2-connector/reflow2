@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:64f679d5e9d4996a11442dc9f80a32b665f76a174ba33cc288c692fb2593e9f7",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:degraded",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:degraded"
+}

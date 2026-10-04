@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:84ddf4f17746c104cc69b8cc686a474dab91d73a6f7b25090379e269aa5dfeec",
+  "node_id": "req:a-generated-code-map-is-linked-from-the-design-never-merged-into-it",
+  "node_type": "Requirement",
+  "properties": {
+    "concern": "core",
+    "kind": "functional",
+    "lineage": "original",
+    "name": "A generated code map is registered in the design as an artifact and linked to what it documents; it is never imported as design content",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "A project that keeps a generated code-structure graph beside its design (graphify's codegraphs, or any tool's) registers each graph file as an Artifact with a measured checksum, so a regenerated graph reads as a changed file on reconcile. It links each to the design Component for the code it maps (DOCUMENTS), and a design node may name a code-graph node id when it needs to point at specific code. The code map's contents stay in its own file: code structure's home is the code, and a copy inside the design goes stale on every upstream commit (the one-home rule, dec:idea-a-fact-has-one-home-across-a-family-of-designs-and-reflow2-enforces-it). Anthony, 2026-09-23, promoting option (c) of dec:idea-could-a-projects-codegraph-become-part-of-its-reflow2-design. It was applied first in hxm_program as D-0019 (its design node dec:codegraphs-are-linked-to-the-design-not-merged-into-it, commit 5d6f623 on sligara7/hxm_program main): nine graph.json files registered as art:codegraph-<repo>.",
+    "status": "accepted"
+  }
+}

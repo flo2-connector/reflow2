@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:495e0d83cda548a94ec3c3908889617264f82a2160fdcff23259391579338bc8",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:idea-a-derived-document-cites-the-graph-the-way-it-cites-the-model-through-a-door-a-build-can-use",
+  "properties": {
+    "approved_at": "2026-09-20",
+    "roles": [
+      "author",
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

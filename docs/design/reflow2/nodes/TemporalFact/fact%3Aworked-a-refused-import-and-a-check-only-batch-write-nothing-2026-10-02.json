@@ -1,0 +1,18 @@
+{
+  "content_hash": "sha256:660234cbff8780af73fe5d4046fdfa917133b3fb3654d316e399d91b6430b1d7",
+  "node_id": "fact:worked-a-refused-import-and-a-check-only-batch-write-nothing-2026-10-02",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "finding",
+    "name": "WHAT WORKED (2026-10-02, 0.77.0, through the --call door): a refused import_graph writes nothing and lists every bad item at once, and create_edges with check_only validates a whole batch and writes nothing. Both ride the core's atomic batch, the property the typed constructors lack. Do not regress it",
+    "source": "art:vscode-call-door-field-report-2026-10-02",
+    "statement": "From art:vscode-call-door-field-report-2026-10-02, two \"Measured\" rows:\n- \"import_graph of a hand-built document (about 110 nodes, 140 edges) — written in one call, nothing skipped; a refused import writes nothing\";\n- \"create_edges with check_only: true — validates the batch and writes nothing\".\n\nRE-MEASURED by triage agent C on reflow2-mcp 0.77.0, scratch stores. Log: /home/ajs7/.claude/jobs/fa666a94/tmp/triage-C/measure.log.\n(1) main's committed export, 6,309 nodes and 41,546 edges, imported in one call, exit 0, in 4.4 s.\n(2) A document holding two edges the schema refuses (REALIZES Artifact→Decision, VERIFIES Verification→Decision) was refused by import_graph and by CLI --import. Both were listed with their index, the REALIZES one naming the edge that fits (DOCUMENTS), and a node from the same document was absent afterwards (get_node null). One blemish: the CLI --import left an empty store directory behind.\n(3) create_edges check_only with one valid and one invalid edge: applied false, would_apply false, checked 2, and the one failure named with its index.\n\nWHY IT MATTERS: both go through the store's atomic batch (bulk.rs atomic(), begin_batch/commit_batch/discard_batch), per dec:bulk-is-all-or-nothing-with-per-item-findings. The typed single-node constructors do not, and a refusal there leaves the node behind (fact:root-cause-a-typed-constructor-writes-the-node-before-its-later-checks-and-a-refusal-leaves-it-2026-10-02). A fix for that should reuse this path, not weaken it.",
+    "steps": [
+      "import_graph",
+      "create_edges"
+    ],
+    "subject_id": "cap:bulk-forms",
+    "valid_from": "2026-10-02"
+  }
+}

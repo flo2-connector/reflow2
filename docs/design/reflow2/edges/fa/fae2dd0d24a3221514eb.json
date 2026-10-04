@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:2ef6bdb73d8c094dafa02caf1d2c22a1069cbf9eac448464e6ec125f0ae99877",
+  "edge_type": "SCHEDULED_FOR",
+  "from_id": "cap:nudge-absence-says-why",
+  "properties": {
+    "modality": "expected",
+    "recorded_at": "2026-08-14"
+  },
+  "to_id": "epoch:a-project-is-set-up-right-on-the-first-run"
+}

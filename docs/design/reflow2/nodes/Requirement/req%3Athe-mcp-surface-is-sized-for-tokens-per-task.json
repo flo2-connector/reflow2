@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:2251bc8bff878792c8a0cdf045ff3fa313f7d5e3cfdafad86b44adc61016bbe6",
+  "node_id": "req:the-mcp-surface-is-sized-for-tokens-per-task",
+  "node_type": "Requirement",
+  "properties": {
+    "concern": "usability",
+    "kind": "functional",
+    "lineage": "original",
+    "name": "reflow2's MCP surface is sized for tokens per task — a write returns a receipt instead of the whole node, standing guidance is sent once per session, one call captures a requirement with its thread, lists come back compact, and tool descriptions are short with the long guidance on request",
+    "priority": "high",
+    "provenance": "imported",
+    "source": "Anthony, 2026-09-28, in a dev_reflow2 session: \"let's go with idea 4, the 1, 2, and 3\" — promoting dec:idea-cut-the-tokens-each-tool-call-costs from the graph-primitives design on flo2 (graph 85a2a1a36e7c942d), from his brainstorm on the performance of the Rust graph code \"and/or improve how the LLM's use them (more efficient use of tokens primarily)\".",
+    "statement": "FIRST of four performance requirements Anthony promoted on 2026-09-28, in his order: this one (tokens per call), then measurement, then a compact index per primitive, then incremental maintenance.\n\n(a) RECEIPTS. A write replies with the node id, which fields changed and by how many characters, every edge the call drew as a subject-first sentence, and any warning — not the whole node. It still honours req:a-revising-write-says-what-it-removed: a shortened field is reported (what was removed, by size, with the prior text available on request from the preserved snapshot), never silently. Measured 2026-09-28: a replace_text append of 1,182 characters returned about 17 KB — the whole new field and the whole prior field — roughly 14× the change; settling one decision echoed its ~7 KB body.\n(b) SAY IT ONCE. Standing prose that repeats in every reply or tool description — the reader lens, loop hints, per-tool lessons — is sent once per session and then referred to by a short tag, re-sent in full when asked.\n(c) BUNDLES. One all-or-nothing call writes a requirement with its capability, its links and its author; today that is 5–6 calls, plus one to learn which edges a constructor drew.\n(d) COMPACT READS. Lists return columns (id, name, status) by default, with a field projection for more.\n(e) A TIERED SURFACE. Each tool's description is short; long guidance and lessons sit behind a help call or a skill.\nOrder within: (a) and (d) first (cheap), then (c), (b), and (e) last (large — skills name tools).\n\nCounter-arguments carried from the brainstorm: replies were made loud on purpose (a silently dropped paragraph was caught only because the reply showed it), and lessons live in tool descriptions because a lesson filed elsewhere was measured not to change the next call — so a receipt must keep every warning, and a lesson moved behind a help call must still reach the call it concerns (req:a-discipline-is-delivered-at-the-tool-not-in-a-catalogue).",
+    "status": "proposed"
+  }
+}

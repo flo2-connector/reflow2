@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:8c5bc35d6f610f7c3329fbaa8ed7249b6287ebb729fc6a9a1f7112273449fd3e",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "drift:5cbf1fd9f7054db7",
+  "properties": {
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "art:budget"
+}

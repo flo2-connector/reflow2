@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:90a940781ff3c118e05e64ac5a6762b191f5466a99e443fcd7e528d1232f6d60",
+  "edge_type": "CHANGED",
+  "from_id": "chg:consumption-detector-built",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cap:built-and-consumed-by-nothing"
+}

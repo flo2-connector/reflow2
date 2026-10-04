@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:5e2855c2720b2d0e25b8e97686b6ddf4048b7b1541c9ddb41f2094915dfcaa3e",
+  "edge_type": "COMPLEMENTS",
+  "from_id": "rule:every-failure-is-searched-and-every-cause-is-root-caused-before-it-is-written",
+  "properties": {
+    "evidence": "Anthony coupled them on 2026-09-07: \"as well as determining root cause, I like things to be fixed properly\". Finding the cause and correcting at the cause are one sequence; a reader meeting either rule alone gets half the doctrine, and the halves fail differently — a cause found and worked around, or a proper fix aimed at the wrong thing."
+  },
+  "to_id": "rule:fix-it-properly-while-it-is-still-cheap"
+}

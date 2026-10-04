@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:470c23dcbd97b8c743cd0935e0c434633ddfd58568f61322a187cadd2c2aa21f",
+  "node_id": "cmp:ingest",
+  "node_type": "Component",
+  "properties": {
+    "kind": "module",
+    "level": "component",
+    "name": "ingest",
+    "provenance": "authored",
+    "purpose": "The ingest module.",
+    "status": "planned",
+    "tier": "operational"
+  }
+}

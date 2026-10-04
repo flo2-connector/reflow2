@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:1aa333ec359aeaf81c1a485f0640ebfc30f2ab07d0eaf11f6bccb4da45ff7151",
+  "edge_type": "CHANGED",
+  "from_id": "chg:prune-proposed",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "removed"
+  },
+  "to_id": "req:blocking-is-partial"
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:af92c2de769a261465ae8f30dc84bc85795f5bec0f8a0857534e93840468a3b3",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:mcp-http",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:mcp-http"
+}

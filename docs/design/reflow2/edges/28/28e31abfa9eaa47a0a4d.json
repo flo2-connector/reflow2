@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:59495bd95ba22aee33149838ca1dca8a88e9541d4cf12a959e26e3d97a37c575",
+  "edge_type": "CHANGED",
+  "from_id": "chg:wire-planning-cluster",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "req:plans-move-honestly"
+}

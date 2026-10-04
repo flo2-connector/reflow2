@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:ddee1de50f37d05dc210528359236c33f637dfa95c51811fba0adcf67debaf96",
+  "edge_type": "CAUSES",
+  "from_id": "cap:the-reachability-gate-reads-which-tool-writes-which-type",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "The gate measures which tool can write which TYPE and property. It never asks whether a typed edge helper accepts every endpoint type the schema declares. So `consumes` stayed Component-only while CONSUMES is declared `from: \"*\"` with the hint \"a Component or Actor\". That is a hole of the same family the fourteen closed holes were, and it is invisible to the only check that looks for holes.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:root-cause-a-published-interface-with-outside-consumers-raises-unconsumed-interface-2026-09-29"
+}

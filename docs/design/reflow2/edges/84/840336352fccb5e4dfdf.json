@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:364675599166aa43ff3568e0e72cd4c1b6f6cf835599ba0d4008f371f218026b",
+  "edge_type": "INVALIDATES",
+  "from_id": "chg:a-cross-type-near-match-is-named-as-a-layer",
+  "properties": {
+    "at": "2026-08-29",
+    "note": "The guard now tells a layer from a copy IN WHAT IT SAYS, which is what Alex actually hit: a cross-type match is described as a different KIND of record and does not offer sharpening, while a same-type match reads exactly as before. Pinned by two tests observed failing first, in the discriminating split (cross-type red, same-type green).\n\n🛑 READ THIS AS A BOUNDED CLAIM, NOT A CLEAN CLOSE. `fact:the-near-match-filter-has-no-node-type-term` — the CAUSE — is deliberately left OPEN, because it is still literally true: the selection is unchanged and remains `not-itself AND score-above-floor`. Cross-type matches are still SELECTED; they are now correctly DESCRIBED. That is the conservative repair (② of the two recorded), chosen because excluding those pairs would trade a false alarm for a silent miss in the one guard built to prevent silent duplication.\n\n⚠️ AND THE MEASUREMENT THAT WOULD JUSTIFY THE OTHER REPAIR STILL HAS NOT BEEN TAKEN: nobody has counted how often a cross-type hit is a REAL duplicate rather than the prescribed layered capture. Until somebody does, ① stays unbuilt on purpose rather than unbuilt by neglect.\n\n📌 The friction this closes was one refused round-trip per honest capture. The invisible half named in the finding — a Requirement never written because the tool made it awkward — cannot be measured either way, before or after."
+  },
+  "to_id": "fact:the-duplicate-guard-cannot-tell-a-second-layer-from-a-second-copy"
+}

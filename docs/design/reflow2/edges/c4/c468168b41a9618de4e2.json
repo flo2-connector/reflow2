@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:9a642778e77e825a31de83ac3042284c9aa8ab9c56df031ee911cd9b487ec980",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-loop-nudge-reaches-opencode-through-a-plugin-adapter",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:check-kit-manifest"
+}

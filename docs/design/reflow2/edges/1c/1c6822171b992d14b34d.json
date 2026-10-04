@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:b525cf1557faa41269857131e7d43f7cd6375f14975c0dec5ed89a67d3506e4e",
+  "edge_type": "CHANGED",
+  "from_id": "chg:write-buffer-gets-an-index-and-hydrate-drops-tenfold",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cmp:byte-store"
+}

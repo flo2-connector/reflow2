@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:9588302cfabb1b8937cabe52aa94414889d28d83d6269ea36f50751c45b73dd7",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-saved-design-moves-to-the-item-layout-2026-10-03",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:b2403e009acdeda5e59431b86e81ecc7a591677b9fee1e3840cf3f4de3aaf05c",
+    "checksum_basis": "measured"
+  },
+  "to_id": "art:test-a-settled-choice-can-be-gone-back-to"
+}

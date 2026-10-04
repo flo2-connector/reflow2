@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:0520aea18fb7ca88c01be109b61a6598e2f8da115ac36c8c5fac26aef19cfa61",
+  "edge_type": "YIELDED",
+  "from_id": "frag:alex-2026-08-14-remainder",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "dec:idea-should-propagate-change-separate-crossing-an-interface-from-a-component-dump"
+}

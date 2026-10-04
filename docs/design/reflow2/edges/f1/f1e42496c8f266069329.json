@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:e03590546587ec6f7bbe6ffe632fdf5eb114e2a9c379e1b91ea8417e8d90d02f",
+  "edge_type": "CAUSES",
+  "from_id": "art:tools-coherence",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "coherence.rs:278-300 attaches served_by to every loop_status and, when stale != Some(false), pushes stale_note into `next` each call. This is the amplifier: an unknown that would be one sentence per session becomes one per call. Not the cause of the unknown, but the reason it reads as noise.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:defect-currency-is-read-from-proc-self-exe-so-every-non-linux-run-answers-unknown-on-every-call"
+}

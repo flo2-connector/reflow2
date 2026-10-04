@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:e07d7325190bcf586cfa42eadf1a53afcfc4209b8ccf9bd63dab1ac0f8ef3eb6",
+  "node_id": "decision:ack:785c79650b436ed3",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Accepted the gap gap:785c79650b436ed3.",
+    "name": "Reviewed: gap:785c79650b436ed3",
+    "rationale": "Standing disposition: validation evidence lives in docs/trials/ and in field reports from real use, not as validation-kind Verifications, so the detector correctly reports what the graph cannot see. Re-acknowledged at 55 — the id derives from the affected SET, so each new capability mints a new gap. Note for this one specifically: its validation is genuinely pending, because the operational question (\"does six concurrent sessions on one design actually work in practice?\") is answered by Anthony running it, not by a test.",
+    "status": "accepted"
+  }
+}

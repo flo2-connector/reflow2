@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:973b7d453b3351c11da95bd4733fb2d30a846b9c0778f7b6043c896196a160a8",
+  "node_id": "decision:ack:dfe1b2a6caace1f4",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Accepted the gap gap:dfe1b2a6caace1f4.",
+    "name": "Reviewed: gap:dfe1b2a6caace1f4",
+    "rationale": "Standing disposition for planned-but-unbuilt capabilities (user's 2026-07-23 call, applied again 2026-07-24): cap:corpus-ingest was captured today from the idea list and nothing is built, so a Verification would have nothing to run against. It arrives with the build (BL-97).",
+    "status": "accepted"
+  }
+}

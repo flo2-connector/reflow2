@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:687c78eb16fee2daf5b2f3db011ed978d0bbf9f835c25b410a0c633d30f160d6",
+  "node_id": "dec:verification-freshness-not-a-gap",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "DECIDED on Anthony's word, 2026-07-26: \"go with freshness fact on the confirmation ledger (always visible, never nagging)\". The alternative was a gap source — asked once through gap_to_prompt, acknowledgeable, and appearing in detect_gaps until answered. Rejected for the reason the ledger's own module doc already gives about signals: a stale-looking check is a STANDING PROPERTY of a claim rather than an event, it would fire on every legitimate refactor as readily as on a real hole, and an open list that can never reach zero gets skimmed — which is precisely the failure the gap workflow exists to prevent (the BL-23 lesson: when a detector punishes correct work, the answer is a different question, not a tuned threshold). As a ledger fact it is visible every time somebody asks how a claim stands, and it nags nobody.",
+    "name": "A check older than its code is a freshness FACT, not a gap",
+    "rationale": "Prompted by a real miss the same day. cap:degraded-surface was `verified` with a passing check, and that check drove stdio only; adding the HTTP transport widened what \"the server explains its own absence\" had to mean, without widening anything that tested it. reflow2 reported zero gaps throughout, and it was right to — nothing it knew was false. But it HAD the evidence: art:main drifted twice (chg:shared-sessions, chg:remote-sessions) while art:test-degraded-server never moved, and Verification.last_run_at is written by verify.rs and read by nothing anywhere in the core. Same shape this project keeps finding — a field declared, written, and consulted by no computation (the temporal axis before BL-70, the whole inviolable-intent vocabulary before BL-96): the higher-yield question is what the core already does that nothing can reach. Deliberately NOT the wider question of measuring what a check actually covers, which is unknowable from the graph and belongs to BL-95.",
+    "status": "accepted"
+  }
+}

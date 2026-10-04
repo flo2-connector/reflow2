@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:20ee7c2e5f6e0acc988520ff737de134aeb2bd0da6efdfd2c82593c71cb38b3b",
+  "edge_type": "CHANGED",
+  "from_id": "chg:install-once-per-machine",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "art:latent"
+}

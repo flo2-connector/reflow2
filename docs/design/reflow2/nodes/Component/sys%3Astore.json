@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:f7d665252cddbe228844acdb4fae7477cad5970c8a2700e1fdc060eeedf33a50",
+  "node_id": "sys:store",
+  "node_type": "Component",
+  "properties": {
+    "kind": "module",
+    "level": "subsystem",
+    "name": "Design Store",
+    "provenance": "authored",
+    "purpose": "Durable, deterministic memory: the schema-validated graph that persists in the project, exports and imports byte-identically, is searchable, and stamps which reflow2 wrote it.",
+    "status": "planned",
+    "tier": "operational"
+  }
+}

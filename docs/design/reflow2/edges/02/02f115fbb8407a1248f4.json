@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:9380425c0490fa0824e6e738f8696cd8e9259a4b76bb5d04aeeeb01a0501628b",
+  "edge_type": "TRIGGERS",
+  "from_id": "fact:link-artifact-draws-realizes-only-so-the-discoverable-way-to-register-a-check-gives-it-no-executable-form",
+  "properties": {
+    "evidence": "That finding is what raised this question: it measured 40 checks carrying a REALIZES onto a Verification, which only passed schema validation because REALIZES is declared `to: \"*\"`. The finding is now closed at the call site; the wildcard it travelled through is not, so the finding TRIGGERS this open question rather than the other way round."
+  },
+  "to_id": "dec:idea-should-realizes-stop-being-a-wildcard"
+}

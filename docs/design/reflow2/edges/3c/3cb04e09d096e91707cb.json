@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:03ab7f18bb99f97301d613087fe6820e7dde5edfabeecf34dd770602d1f4f499",
+  "edge_type": "CHANGED",
+  "from_id": "chg:bl95-coverage-capture",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "req:coverage-visible"
+}

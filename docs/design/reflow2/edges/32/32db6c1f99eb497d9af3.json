@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:f7bfb55450f5c0b643122e619f1433dd6f4b4bf34584d22fbecbccc2d8242f69",
+  "edge_type": "GOVERNED_BY",
+  "from_id": "dec:idea-where-does-tool-use-actually-fail-four-layers",
+  "properties": {
+    "note": "Constrains what a fix at each layer may rest on. Layer 2 (recognise the moment) is the one currently served only by hooks, so under this rule its measured effectiveness describes one harness and any durable answer has to move onto the MCP surface."
+  },
+  "to_id": "rule:mcp-and-the-graph-are-the-only-common-ground"
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:85bc5c5a3fce6e9d61236cfd5efa8ae95de31bc8e3aa8f3ba4e683fee34f47e2",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:install-leaves-a-committable-record",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:init"
+}

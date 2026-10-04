@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:c6e7667661962203b9aae7535830eb75792cdd0269df0507c59b520711c7886c",
+  "node_id": "cmp:tools-ask",
+  "node_type": "Component",
+  "properties": {
+    "kind": "module",
+    "level": "component",
+    "name": "ask",
+    "provenance": "authored",
+    "purpose": "The ASK slice of the served surface (5 tools): turning a detected gap into a question a person can answer, and recording the reply — gap_to_prompt, gaps_to_prompts, open_questions, answer_question, withdraw_question.",
+    "status": "planned",
+    "tier": "operational"
+  }
+}

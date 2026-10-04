@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:fb21f6c06cd7f854e2a083cb644d96ce041231bbf3fb4ccf9a58e4e884b2727c",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:a-prohibition-living-in-prose-is-noticed-once-as-a-practice",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:detect"
+}

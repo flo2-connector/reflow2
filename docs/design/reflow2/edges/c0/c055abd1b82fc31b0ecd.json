@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:df9f4c5b9ed3ca7c23dfbc9a66df5365f997f3a4bdce6d42b5144f4de7f83cca",
+  "edge_type": "INVALIDATES",
+  "from_id": "chg:a-spawned-daemon-inherits-nothing-it-should-not",
+  "properties": {
+    "at": "2026-10-03",
+    "note": "Cause established and verified fixed: the zombies were daemons spawn_daemon started and never waited for, left behind whenever one exited while its client ran. On main 293f957 a daemon stopped with --stop-shared stayed in state Z under its live client; after this change it leaves the process table (a_daemon_that_exits_is_not_left_a_zombie_of_the_client_that_started_it). Every other process reflow2 spawns is waited for."
+  },
+  "to_id": "fact:a-long-lived-shared-proxy-leaks-zombie-children-42-in-seven-days"
+}

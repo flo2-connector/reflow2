@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:e288039b3367985d06fd1e4045fcd01673d8175ca9781581134c9774538bf737",
+  "node_id": "art:check-kit-manifest",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "granularity": "atomic",
+    "location": "tools/check_kit_manifest.py",
+    "name": "check_kit_manifest.py",
+    "status": "realized",
+    "volatility": "stable"
+  }
+}

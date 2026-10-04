@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:f69cd433edccac6111682b5f7bf20ca92975b2acc7fbf9f700167b20fae65b8d",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:content-store",
+  "properties": {},
+  "to_id": "req:content-reaches-every-seat"
+}

@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:e1ed13c27f40452ede977aaa76f5e3b2e34cb951b0b120d76f6279cd5b6afc7a",
+  "node_id": "req:design-composes",
+  "node_type": "Requirement",
+  "properties": {
+    "concern": "core",
+    "designation": "internal",
+    "kind": "functional",
+    "lineage": "original",
+    "name": "A system's design can be a unit of its own that composes with the designs around it",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "Anthony, 2026-07-25, promoting the idea he had been thinking out loud about: \"being able to have multiple repos that are linked by interface specifications (reflow2 could take both graphs and figure out how to resolve differences between those two repos to ensure they work together)... the idea would allow teams to focus in their most immediate concern and let the interface take care of how it works with all the other systems/components.\" The intent is that a design need not be one document for one program: a team owning a system can hold ITS design as a unit — its own store, its own lifecycle, its own published surface — and that unit composes with the systems around it through the interfaces between them, so the day-to-day view is genuinely local and the cross-system agreement is carried by the contract rather than by everyone reading everything. Four things follow, each a real obligation rather than a detail. The link between two designs cannot be an edge, because the schema validates both endpoints of every edge and they live in different stores; it must be a COORDINATE that names the other design, the node in it, and the version of it being built against. A parent's view of a composed child must ROLL UP the child's evidence — what it delivers and what it has proven — or a requirement satisfied inside the child fires as unsatisfied in the parent forever. That view is a dated claim about a VERSION of the child, never a live truth, so staleness is part of the model and not an afterthought. And the seam becomes the place where two teams genuinely collide, which is precisely where the merge machinery does not yet reach. This restates in the design what BL-45 recorded on 2026-07-20 from the same author, and it is deliberately silent on federation-versus-one-graph, which is dec:nested-graphs.",
+    "status": "accepted"
+  }
+}

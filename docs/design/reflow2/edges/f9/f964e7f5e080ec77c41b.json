@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:301e7112e150c657e474ceb1a889e1b2302158b7335134e3113e823bb7ba56b1",
+  "edge_type": "CHANGED",
+  "from_id": "chg:bl184-ility-signals",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "req:computed-evidence-reaches-its-axis"
+}

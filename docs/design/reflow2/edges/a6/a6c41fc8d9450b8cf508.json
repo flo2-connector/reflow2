@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:c4c3406af357e83d582537e1bc4eb9289c43bb313ec33400cb3597c3dfbbe633",
+  "edge_type": "SCHEDULED_FOR",
+  "from_id": "cap:init-asks-which-harness",
+  "properties": {
+    "modality": "expected",
+    "recorded_at": "2026-08-14"
+  },
+  "to_id": "epoch:a-project-is-set-up-right-on-the-first-run"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:21f577ce0dd66e3912722ffbd59eecfe6c0b6752874de9dba1a5494a76f018eb",
+  "node_id": "chg:accept-d17a2d99810f2ba6",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "test_failure_fix",
+    "detected_at": "2026-08-10",
+    "name": "`repair_is_a_judgement` declared in NON_TOOL_TERMS - a HealIssue field the skill now names, not a tool."
+  }
+}

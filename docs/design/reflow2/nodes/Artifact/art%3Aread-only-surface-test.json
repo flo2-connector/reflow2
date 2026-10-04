@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:9b5a1e37aadc28b445f2cdc044e58915f445fab3c51c542af79d8698229eecf5",
+  "node_id": "art:read-only-surface-test",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "location": "crates/reflow2-mcp/tests/a_read_only_surface_refuses_every_write.rs",
+    "name": "tests/a_read_only_surface_refuses_every_write.rs",
+    "status": "realized"
+  }
+}

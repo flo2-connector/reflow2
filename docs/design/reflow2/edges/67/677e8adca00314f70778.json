@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:eda529b212ad0b129b5dee75f3dd966d6ef3e83ec7412ac7692e42705f758531",
+  "edge_type": "HAS_SNAPSHOT",
+  "from_id": "cap:install-reaches-the-agent",
+  "properties": {},
+  "to_id": "snap:epoch:linking-repos:cap:install-reaches-the-agent"
+}

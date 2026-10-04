@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:01eab8539dba24bbe9a54ef212cfdab4088365e65cc93784302314a22f0cf746",
+  "node_id": "fact:the-preserve-on-revise-guard-draws-its-membership-on-a-call-name-not-on-a-behaviour",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "confidence": 1.0,
+    "fact_type": "defect",
+    "statement": "THE CAUSE OF A RECURRENCE, NOT OF AN INSTANCE. reflow2 has one behavioural class it has fixed four times: a write path that builds a node from a PARTIAL property set and, in doing so, resets or overwrites what the caller did not name. BL-46, BL-166, BL-183, and set_verification_status erasing last_run_at on 2026-08-09. Three sibling setters state the intended convention outright: omitting one leaves it alone.\n\nTHE CLASS HAS A GUARD, AND THE GUARD'S MEMBERSHIP IS THE DEFECT. constructors_preserve.rs holds a case per member. Every case was an `add_*` constructor. Membership was therefore decided by HOW A CALL IS SPELLED rather than by WHAT IT DOES, so link_artifact — which builds an Artifact from a partial property set, exactly the behaviour the file exists to police — sat outside it. Worse, the file's own header asserted that link_artifact \"was fixed for this in BL-166\", so the guard vouched for a call it did not test.\n\nWHAT THAT COST, MEASURED. link_artifact's `name` was written unconditionally while every field beside it preserved on omission, and because the surface made `name` mandatory the preservation could not even be requested. Every re-link rewrote the name. The half-fix stood from BL-166 until 2026-09-07 and was found by a caller tripping over the friction, not by any check.\n\nWHY THIS IS THE CAUSE AND NOT THE REPAIR. Making `name` optional stops today's instance. It would not have stopped BL-183 and it will not stop the next write path added under a name that is not `add_*`. The class is 'builds a node from a partial property set', and nothing computes that set — it is a list maintained by hand, which is the shape this project's own root-cause skill names as the usual cause.\n\nWHAT WOULD ACTUALLY CLOSE IT, unbuilt and deliberately not proposed here: derive the membership rather than curate it. Every core method calling upsert_node or create_node with a Props literal naming fewer than the type's declared properties is a member, and that is computable from the source. Until something computes it, the next member will be found the way this one was.\n\nA SECOND SILENCE WORTH NAMING: the guard file was not registered as an Artifact until today, so no report connected it to the four defects it exists to catch.",
+    "subject_id": "art:test-constructors-preserve",
+    "valid_from": "2026-09-07"
+  }
+}

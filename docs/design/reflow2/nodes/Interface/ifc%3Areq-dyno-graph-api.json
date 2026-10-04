@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:c69e80af98972dadd785f7326803796bd06d37157c70548c813675da690677ef",
+  "node_id": "ifc:req-dyno-graph-api",
+  "node_type": "Interface",
+  "properties": {
+    "auth": "unspecified",
+    "designation": "required",
+    "medium": "library",
+    "name": "Graph algorithms API",
+    "paradigm": "synchronous",
+    "payload_format": "unspecified",
+    "provenance": "authored",
+    "spec": "REQUIRED FROM dynograph-foundation. reflow2 links `dynograph-graph`, pinned at v0.12.0. Traversal and the community/centrality work that propagate_change, disconnected_community and the modularity score rest on — so a change here reaches HEAL and the allocation report, not just the store.",
+    "transport_security": "unspecified"
+  }
+}

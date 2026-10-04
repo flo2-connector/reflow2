@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:a36748fb04bd8c91ad8fd7cee22cf2b9c1e9f0d75c9d1f1a81129978c1777965",
+  "edge_type": "CONSTRAINS",
+  "from_id": "con:a-read-after-a-write-costs-at-most-twice-the-same-read-warm",
+  "properties": {
+    "basis": "measured",
+    "contribution": 397.0,
+    "measured_at": "2026-09-12",
+    "note": "AFTER both halves (epoch:a-record-that-moved-once-is-read-once): first store read after a write, moved-record state, 16 MB target — get_node 388/410/394 ms against 1 ms warm, ratio ~397, from ~1,100 in the morning and 646 after the parse cache alone. A tiny moved record is 50-57 ms, so the ~350 ms left on the large one is the membership diff itself (4.3k node lookups and a few thousand outgoing scans per write generation). STOPPED HERE ON PURPOSE: under Anthony's 1,000 ms objective; a further cut would need an incremental diff across generations, its own hypothesis and measurement. STILL `exceeded` against THIS budget, whose shape (2x of a 1 ms read) no per-generation work can meet — restating it as an absolute is the honest next move and is Anthony's to make. Ordinary in-step reads are unchanged at ~40 ms."
+  },
+  "to_id": "cap:store"
+}

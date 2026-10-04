@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:2ca6585cfe930ea63c5fa28050ac80e4af55a35c32b0c3995bca627b38715a44",
+  "edge_type": "REALIZES",
+  "from_id": "art:feedback-is-a-computed-tally-wire-test",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "verified"
+  },
+  "to_id": "cap:feedback-is-a-computed-tally"
+}

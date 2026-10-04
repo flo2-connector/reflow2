@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:c0551859eaebe722b949e0b9459fcd728769b39e6c2625133a99e1b1b82e57e4",
+  "edge_type": "REALIZES",
+  "from_id": "art:doubt",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:revise-trigger"
+}

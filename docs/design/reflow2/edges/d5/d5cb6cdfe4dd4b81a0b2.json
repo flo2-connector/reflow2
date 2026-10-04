@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:03dda0ed892156673df274f492b9fe5ed9421c0db73dd5d887d00f3ee8013530",
+  "edge_type": "REALIZES",
+  "from_id": "art:link-artifacts-skill",
+  "properties": {
+    "completeness": "partial",
+    "conformance": "unchecked",
+    "note": "names doc_kind agent_instructions for the file an agent reads first"
+  },
+  "to_id": "cap:a-repos-conventions-are-delivered-by-step-and-its-adapter-is-registered"
+}

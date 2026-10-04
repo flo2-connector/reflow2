@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:64a7583bf787b1639f6b70ce9215c7c7ff77360ee4357a7f0e0cfb2665383dbb",
+  "edge_type": "CHANGED",
+  "from_id": "chg:cluster-claims-built",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cap:cluster-claims"
+}

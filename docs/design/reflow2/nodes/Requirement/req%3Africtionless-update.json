@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:6866d59218050b7fc61f9f7695474a45eaa3f08430c9998f7ab389f752bf8fbb",
+  "node_id": "req:frictionless-update",
+  "node_type": "Requirement",
+  "properties": {
+    "concern": "core",
+    "designation": "internal",
+    "kind": "functional",
+    "lineage": "original",
+    "name": "Install is one command, update is one word",
+    "priority": "low",
+    "provenance": "authored",
+    "statement": "A consumer installs reflow2 with a single command from a stable public URL (curl | bash or the platform equivalent) and updates with a single short command; releases are frequent and very minor, so updating is routine and cheap rather than an event. Modeled on the Claude Code installer/update experience the user named as the target (2026-07-20).",
+    "status": "accepted"
+  }
+}

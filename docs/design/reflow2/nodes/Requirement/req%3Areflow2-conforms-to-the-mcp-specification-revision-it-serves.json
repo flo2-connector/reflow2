@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:2cdb0609d9cfa1ca5b8a988e922d034c41ba0237c55717271b0e8eb45c38f5a5",
+  "node_id": "req:reflow2-conforms-to-the-mcp-specification-revision-it-serves",
+  "node_type": "Requirement",
+  "properties": {
+    "concern": "core",
+    "kind": "nonfunctional",
+    "lineage": "original",
+    "name": "reflow2 conforms to the MCP specification revision it serves (2026-07-28 today), including everything reflow2 builds by hand rather than through the MCP library",
+    "priority": "high",
+    "provenance": "authored",
+    "source": "Anthony (who:ajs), dev_reflow2 hub session, 2026-09-28",
+    "statement": "Anthony, 2026-09-28: \"some other standards that we should consider: https://modelcontextprotocol.io/specification/2026-07-28 (though I believe rust-sdk v3 package does automatically adhere to this standard).\" Kept as intent the same day.\n\nreflow2 conforms to the MCP specification revision it declares, currently 2026-07-28, on every surface it serves: stdio, --shared, --http, the registry server, the degraded and latent surfaces, and the --remote client.\n\nWHY \"AUTOMATICALLY\" IS ONLY PART OF IT: rmcp (3.4.0 in the lock file) builds most messages, and what it builds follows the spec it implements. Whatever reflow2 builds by hand does not. MEASURED 2026-09-26 (fact:root-cause-the-latent-tool-list-omits-the-cache-fields-the-2026-07-28-spec-requires-2026-09-26): the latent surface's hand-built tool list omitted two fields the 2026-07-28 revision requires, and Claude Code rejected it. So conformance is checked on what reflow2 serves, not assumed from the library. Hand-built replies, the stateless-session rules (req:seat-identity-survives-stateless-mcp), and the authorization profile (req:every-oauth-role-reflow2-plays-meets-oauth-2-1-at-a-minimum) are all included.\n\nA NEW REVISION is adopted deliberately: read it, list what changed, check what reflow2 serves against it, and record the result. It is never inherited silently by a dependency bump. How revisions are watched is req:the-hub-tracks-the-standards-reflow2-and-flo2-follow-and-reviews-each-new-revision in the hub's design.",
+    "status": "accepted"
+  }
+}

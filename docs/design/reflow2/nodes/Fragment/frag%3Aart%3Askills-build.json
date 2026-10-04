@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:5b33e6139553fcbeaff01d79adb6afa7ee9a7ae664938bb815ae138873577f08",
+  "node_id": "frag:art:skills-build",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered build.rs"
+  }
+}

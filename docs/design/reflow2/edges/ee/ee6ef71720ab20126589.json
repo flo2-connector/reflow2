@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:1983ca84747e2e9989dd4ae491a435bb5124dc697942bc799f8de2cae2f2a03e",
+  "edge_type": "CHANGED",
+  "from_id": "chg:stale-seat",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "cap:stale-seat-refusal"
+}

@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:0164c714987f0e14e2481cef5fd9037c9e357a291a1c5266a8a100596a910e2d",
+  "node_id": "ver:a-store-an-older-reflow2-wrote-is-rechecked",
+  "node_type": "Verification",
+  "properties": {
+    "description": "crates/reflow2-mcp/tests/a_store_an_older_reflow2_wrote_is_rechecked.rs, over the built binary. A RocksDB store written under the pre-narrowing endpoints holds REALIZES Artifact -> Decision and VERIFIES Verification -> Decision (triage C's two shapes). `--call detect_defects` reports both as critical refused_by_schema findings naming DOCUMENTS and GOVERNED_BY; `--export` still succeeds; `--import` of that export into a fresh store refuses exactly those two items, naming the same replacements.",
+    "kind": "verification",
+    "last_run_at": "2026-10-03",
+    "level": "system",
+    "location": "crates/reflow2-mcp/tests/a_store_an_older_reflow2_wrote_is_rechecked.rs",
+    "method": "test",
+    "name": "The binary names what its import would refuse, on a store an older reflow2 wrote",
+    "status": "passing"
+  }
+}

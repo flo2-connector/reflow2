@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:78c49bd94f4514443b58f9ff6dfc0da9ff1fe02c4dfd119c5dc7a071f15df6be",
+  "node_id": "ver:budget",
+  "node_type": "Verification",
+  "properties": {
+    "kind": "verification",
+    "level": "integration",
+    "method": "test",
+    "name": "budget.rs",
+    "status": "passing"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:d226285d1a8da240c05f0b6d9b9d7aecf9266837bf5769dd713e60f4b035f9d2",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-taxonomy-is-decided-once-before-bulk-capture-and-every-instance-cites-it",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:test-the-commonest-edge-has-a-typed-helper"
+}

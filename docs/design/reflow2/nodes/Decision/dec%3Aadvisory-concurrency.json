@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:64c1a6933325e18826a8779c056c3d322cb48a492b67924e0079dd4813065783",
+  "node_id": "dec:advisory-concurrency",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Take a claim when you need one and start — but publish it by pushing it, every time, not only when contested; a claim nobody can see is not a claim. When two claims cross, the winner is whichever landed first in git history, and both parties can verify that independently. Rejected: a coordination service or lock manager (contradicts dec:multi-writer-architecture, and single-writer exclusion is the observed failure), and asking before every claim (the fleet measured that timidity starves the pool).",
+    "name": "Seats coordinate by announcement and provable order, never by exclusion",
+    "rationale": "The StoryFlow fleet runs 15+ concurrent seats on exactly this rule — grab-and-go, announce always, crossings settled \"first-on-disk, both provable\". reflow2 has better material for the provable half than a markdown timestamp: a content-hash chain and git order. The alternative people reach for by reflex is a lock, and a lock is exactly what took five of six sessions offline on 2026-07-25.",
+    "status": "accepted"
+  }
+}

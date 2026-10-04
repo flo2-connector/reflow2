@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:99ae22be10a7b26790cb956e16c2d6915946697101c2236f5186d0b03948b075",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-design-is-saved-one-file-per-item-2026-10-03",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cap:lineage-is-kept-per-item"
+}

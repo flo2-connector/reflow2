@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:adf60fb4bd0f7f51ba63267ee921557af028b15fefebf0b21f19f10756ffbf0a",
+  "edge_type": "CHANGED",
+  "from_id": "chg:every-required-parameter-and-every-thin-description-says-what-it-is",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:service"
+}

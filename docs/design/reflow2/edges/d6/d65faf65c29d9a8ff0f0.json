@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:e53c9d59c3362fc1a708777739a5d04077cb875cd3ae68c81e1fc62a9ebd4570",
+  "edge_type": "YIELDED",
+  "from_id": "frag:alex-2026-08-14-remainder",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "fact:defect-the-loop-has-no-mode-for-work-a-user-is-waiting-on"
+}

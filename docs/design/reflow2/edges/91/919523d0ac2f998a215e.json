@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:d525602a4bb690e85027f4c6a91594a5fa94b9b0d0db90d0852289b90846a000",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-a-team-runs-one-reflow2-on-its-own-cloud-server-and-nobody-installs-it",
+  "properties": {
+    "evidence": "Exposing reflow2 on a cloud instance is only safe with a layer in front deciding who may reach it; that decision holds where that layer belongs and what it cannot do (name the contributor).",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "dec:idea-authentication-is-somebody-elses-layer-and-the-line-is-the-contributor-id"
+}

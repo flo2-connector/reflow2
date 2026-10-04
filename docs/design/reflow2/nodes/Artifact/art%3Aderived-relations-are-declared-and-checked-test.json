@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:be8a7d876d630b3882cb3aec67ecda6aa1283d78b9c557b5bb62cd788470a7d0",
+  "node_id": "art:derived-relations-are-declared-and-checked-test",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "test",
+    "location": "crates/reflow2-core/tests/derived_relations_are_declared_and_checked.rs",
+    "name": "derived_relations_are_declared_and_checked.rs",
+    "status": "realized"
+  }
+}

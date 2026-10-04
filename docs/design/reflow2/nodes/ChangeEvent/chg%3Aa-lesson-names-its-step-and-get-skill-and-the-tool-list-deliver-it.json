@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:e7e462204a6f8be3b6e1feec1b1a610c89d6cb58568c75bb71cb008759f7903c",
+  "node_id": "chg:a-lesson-names-its-step-and-get-skill-and-the-tool-list-deliver-it",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "name": "Rules and facts name the skill or tool they concern in `steps`; get_skill and the served tool list deliver them at that step",
+    "subject": "system"
+  }
+}

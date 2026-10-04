@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:0a376c20ba699d24cb13af307d86b45b616c7fcc4b4b8e8574874d3503b5d5d0",
+  "node_id": "chg:accept-8d52c7f62d13e2a1",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "test_failure_fix",
+    "name": "v0.29.0 cut, 2026-08-12. The design HOLDS: reflow2.toml's version string moved 0.28.0 -> 0.29.0 because a release was cut. The design meaning of a cut lives in rel:v0290 and epoch:v0290, never in a version string, so nothing in the design changed. This drift is expected on EVERY cut — reflow2.toml is the only registered artifact a version bump touches."
+  }
+}

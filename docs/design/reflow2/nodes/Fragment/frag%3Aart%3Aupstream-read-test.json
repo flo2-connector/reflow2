@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:02896256037605f71d5b0ca46ee310fc497da3a048b252e66afe3424d2e40567",
+  "node_id": "frag:art:upstream-read-test",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered tests/an_upstream_export_is_read_without_being_imported.rs"
+  }
+}

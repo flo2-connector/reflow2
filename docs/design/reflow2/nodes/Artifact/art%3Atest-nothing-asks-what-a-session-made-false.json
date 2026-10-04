@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:1102e5ea1bb0a706937376c32f61dba6ffdd942de88ef103336940ef6ddd15c4",
+  "node_id": "art:test-nothing-asks-what-a-session-made-false",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "location": "crates/reflow2-core/tests/nothing_asks_what_a_session_made_false.rs",
+    "name": "nothing_asks_what_a_session_made_false.rs",
+    "status": "realized"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:998cd9e1eeb4558f63505651b2378d8b3bfcf68d78add270faacbc1bedce9be6",
+  "edge_type": "INVALIDATES",
+  "from_id": "chg:alexs-four-surface-fixes-sequence-hint-get-node-by-id-auth-hint-and-bulk-check-only",
+  "properties": {
+    "at": "2026-09-05",
+    "note": "THE get_node HALF IS NOW FIXED: node_type is optional and resolved from the id, with a collision refused rather than guessed (dec:idea-get-node-by-id-alone-since-the-prefix-names-the-type, built). The `description` half was fixed in #429 the same day. BOTH ARE UNRELEASED as of this note (0.47.1 is the latest cut), so Alex's report remains true of the binary he runs until the next release — which is the fact's own point about cadence, and is unchanged by this event."
+  },
+  "to_id": "fact:the-known-arg-traps-recurred-in-a-fourth-report-on-a-build-that-predates-their-fix"
+}

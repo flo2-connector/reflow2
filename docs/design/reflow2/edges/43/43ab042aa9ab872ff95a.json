@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:3b655210de406e3fb820531ff672131f3b657642e9ea44937db9d696735377a1",
+  "edge_type": "REALIZES",
+  "from_id": "art:receipt",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:a-write-replies-with-a-receipt"
+}

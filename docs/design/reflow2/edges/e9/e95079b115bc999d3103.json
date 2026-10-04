@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:3ed2a7c0cc7217f4d0ef643f8053c5a0845753c84ad9d0b8b4b23f3d26fe0d18",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:an-id-property-is-one-of-four-kinds-and-only-one-is-a-node-reference",
+  "properties": {
+    "approved_at": "2026-08-29",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

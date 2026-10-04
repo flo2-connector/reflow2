@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:5ef2d06283739d661a881ac42e6c404aace94c7ffc89d9c89e4547d43863bf31",
+  "node_id": "cmp:tools-built",
+  "node_type": "Component",
+  "properties": {
+    "kind": "module",
+    "level": "component",
+    "name": "built",
+    "provenance": "authored",
+    "purpose": "The AS-BUILT slice of the served surface (10 tools): reconciling the design against what is actually on disk — declare_dependency, reconcile_dependencies, reconcile_artifacts, set_artifact_checksum, set_artifact_intent.",
+    "status": "planned",
+    "tier": "operational"
+  }
+}

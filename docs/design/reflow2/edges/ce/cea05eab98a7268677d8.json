@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:ab206b4687379ec7a3a54aaba71ec3b3697d489dfbd7a8bade0cbd483f04bb87",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-launch-wrapper-sees-everything-compiled-in",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cmp:skills"
+}

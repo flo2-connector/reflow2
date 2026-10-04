@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:5a8eafe2b0f527e53376cbf64238508a484becc7fd477782d1d1deac1e525e2f",
+  "node_id": "epoch:planned-a-code-folder-names-its-design",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "description": "COMBINED PLAN POSITION 3 (epoch:planned-combined-plan-reflow2-and-flo2, agreed 2026-09-27; it was 2 of 10 until two flo2.io increments were added the same night). Finishes Alex's item 3 (\"run reflow2 remotely and connect to it via MCP\") on reflow2's side.\n\nStep 3 of the tracked-export retirement plan (2026-09-27). Delivers req:a-code-folder-names-the-design-it-implements-and-its-server (settled 09-25 as dec:idea-a-checkout-knows-which-remote-design-it-implements). Replaces the stopgap in cure's folder (a Claude Code local-scope entry) and closes fact:an-agent-opened-in-a-moved-designs-folder-is-served-the-frozen-store-2026-09-27. Must precede step 4: the client has to know which design a folder implements before it can measure that folder's files for it.\n\nARRIVED 2026-09-28: the first slice was built in #609 (0beb693, chg:a-code-folder-names-its-design-2026-09-28), following dec:the-pointer-file-is-dot-reflow2-toml-and-the-first-slice-attaches-one-design, and shipped in v0.73.0 (rel:v0730, pinned here). `.reflow2.toml` at a repo root names one design by id and address; a client started there attaches to it through the remote client, checks the server holds that design, and never opens a leftover local store. `[[also]]` designs are listed to the agent, not opened; opening several in one session waits on dec:idea-a-session-holds-several-graphs, which is not part of this epoch's statement. The cure stopgap it names is moot while cure is set aside; its first real use is flo2's checkout, when flo2's design moves to flo2.io.",
+    "epoch_type": "milestone",
+    "name": "[Combined 3] Retiring the tracked export, step 3 — a code folder names the design it implements and its server; the client attaches there and never opens a stale store",
+    "sequence": 652,
+    "status": "arrived"
+  }
+}

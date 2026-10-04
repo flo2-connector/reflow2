@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:eda37661b159c8ba00bc12e246bfe4f6a090412787d32a09f2d71f641641a976",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:the-export-becomes-the-durable-copy-and-rocksdb-goes-later",
+  "properties": {
+    "approved_at": "2026-08-25",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

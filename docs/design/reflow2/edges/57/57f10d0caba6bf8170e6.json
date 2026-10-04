@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:d860830aa3642c444dded44d0bbe3fc5911ffbf49678ea993ea4aca6bfca580b",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-design-says-which-vocabulary-it-has-never-used",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:service"
+}

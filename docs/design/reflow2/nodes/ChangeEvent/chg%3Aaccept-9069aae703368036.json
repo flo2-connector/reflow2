@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:44dbd901406e9016efbc90992416109c3b4e3198f8e95e161aa885c7b141dace",
+  "node_id": "chg:accept-9069aae703368036",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "documentation",
+    "detected_at": "2026-09-15",
+    "name": "Re-rendered from the served surface after add_artifact gained checksum and the medium enum gained procedural; the document tracks the surface, it does not decide it.",
+    "subject": "system"
+  }
+}

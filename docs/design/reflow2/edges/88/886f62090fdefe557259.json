@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:6657cd55a3a862bd64f6fa6255d0c3e6c76266e9fa1424ee5fa637ab9c51edeb",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:capture-intent-skill",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:capture-intent-skill"
+}

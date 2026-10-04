@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:d2af7f98f8b44056e78c8f1f05fab08f9173d75fbe806bf9fddfe2470cd517da",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:bl-150",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:budget"
+}

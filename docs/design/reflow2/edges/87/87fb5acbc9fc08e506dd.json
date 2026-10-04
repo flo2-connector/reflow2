@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:8d330130cf31736dc3c74b2be56045d82c23647319faedb8325a99f10a6c8c8b",
+  "edge_type": "CHANGED",
+  "from_id": "chg:an-understated-status-is-reported",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "dec:idea-should-an-understated-status-be-detected"
+}

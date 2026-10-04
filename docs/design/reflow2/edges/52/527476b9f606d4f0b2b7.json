@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:3321b9294b6410a33e6356e67f417c800f1f74f40517f831b45fdf4abe5bd853",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:non-goal-reflow2-does-not-know-what-is-deprecated",
+  "properties": {
+    "approved_at": "2026-08-17",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

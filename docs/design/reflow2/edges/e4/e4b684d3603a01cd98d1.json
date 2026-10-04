@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:402a441038750effe578384408125cb6f1b632f034944a495fd1a395f0f747a7",
+  "edge_type": "CHANGED",
+  "from_id": "chg:bl75-certainty-derived",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:service"
+}

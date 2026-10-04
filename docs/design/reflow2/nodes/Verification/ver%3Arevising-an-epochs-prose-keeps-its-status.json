@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:442c848f98bd7da9d4704227aeb375b99b0e158e09ac8626f846233c91fb5bb1",
+  "node_id": "ver:revising-an-epochs-prose-keeps-its-status",
+  "node_type": "Verification",
+  "properties": {
+    "description": "Handler-level: plan an epoch, arrive it, revise its description through plan_epoch, read the status back — must still be arrived (read `planned` before the fix). And the other direction: a new epoch lands planned; a revise of a still-planned epoch leaves it planned — which failed on the first draft of the fix (omitting status), because the core write replaces the property set; the fix carries the stored status forward. The epoch-touching suites (tools.rs, every_constructor_can_say_what_the_thing_is.rs, a_set_aside_decision_is_not_debt.rs) re-run green; clippy clean on both crates.",
+    "findings": "2026-09-12: both pins green after the fix; the first was shown red before it; the second caught the first draft. Workspace suite run detached: 226 test binaries, 0 failures, rc=0. The 438 handler suite re-run with its sixth pin (a closed finding leaves its step): 6 of 6.",
+    "kind": "verification",
+    "last_run_at": "2026-09-12",
+    "level": "integration",
+    "method": "test",
+    "name": "Revising an epoch's prose keeps its status",
+    "status": "passing"
+  }
+}

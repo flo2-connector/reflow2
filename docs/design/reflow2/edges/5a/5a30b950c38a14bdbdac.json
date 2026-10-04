@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:7ba70846de05df9f3331310e2244034d627b4177a40805bb6db8cc33c1d6bc4b",
+  "edge_type": "SCHEDULED_FOR",
+  "from_id": "dec:where-reflow2s-oauth-client-identity-lives",
+  "properties": {
+    "modality": "expected",
+    "recorded_at": "2026-10-01"
+  },
+  "to_id": "epoch:planned-reflow2-signs-in-as-an-oauth-client"
+}

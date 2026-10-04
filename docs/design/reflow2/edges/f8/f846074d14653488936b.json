@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:f9a0897ef9583c8f49958aee542c44bda709c026c134ca00ed6b83e975f48339",
+  "edge_type": "REALIZES",
+  "from_id": "art:call-export",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:a-build-can-call-one-tool-from-the-shell-and-read-the-reply-as-json"
+}

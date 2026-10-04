@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:c95d340b9fa8d5bb861edd3cc5481d3251bd8ba9169dbea3541bf3e734f72fc7",
+  "node_id": "question:058f1891de605d77",
+  "node_type": "Question",
+  "properties": {
+    "answer": "Anthony, 2026-07-27: \"go with your recommendation: the interface.\" Recorded as `dec:pairing-role-placement` (accepted) and `req:complementary-pairing` moved to accepted. The role extends `Interface.designation` rather than becoming a per-node attribute — a Component both publishes and subscribes, so a per-node role collapses to `both` and pairs with everything. AMENDED 2026-07-28 after the dynograph-foundation trial refuted the first draft of the matching key: base-compatibility is `medium` PLUS `transport_security` PLUS `auth`, because role-plus-medium alone would pair a consumer requiring REST against a public unauthenticated liveness probe. The gap stays open because the requirement is accepted but NOT YET BUILT — that is the honest state, not an unanswered question.",
+    "asked_at": "2026-07-27",
+    "context_setter": "Nothing satisfies requirement “Pair two designs by complementary role, so the seam is computed rather than hand-wired”",
+    "gap_id": "gap:058f1891de605d77",
+    "question": "Does the publish/subscribe role belong on the interface itself — extending the `published` flag with a third value meaning \"I need one of these from outside\" — or on every node, as you described it? Recommendation: the interface. A component both publishes and subscribes, so a single role on a component collapses to `both` and pairs with everything, which is the only reason `both` is needed at all. On an interface, `both` stays rare and means something real.",
+    "rephrase_degraded": false,
+    "status": "answered"
+  }
+}

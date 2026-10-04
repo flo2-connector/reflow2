@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:63c833fee287bbc3a88c2b39e3550259cdea253707265014cca3c119ec32ce18",
+  "node_id": "chg:accept-07fafb94ffb1262c",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "name": "The count moved from 31 to 32 skills (render_skills_and_tools.py --write), and the hub row and its 'reach for' line were added for cap:the-hub-skill-writes-each-fact-where-it-belongs.",
+    "subject": "system"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:d3c0cc87cb5bd8ae4b7f7f42fd63993cf05af62c72394d642b005a2b9841bc5f",
+  "edge_type": "CHANGED",
+  "from_id": "chg:baseline-cb75f99caf3e0a6a",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:tool-listing"
+}

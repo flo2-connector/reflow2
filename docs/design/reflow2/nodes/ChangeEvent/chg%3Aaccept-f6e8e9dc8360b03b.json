@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:11da879ebaee0cf06f3091c75737664bb27208f734cb99ccae73a1fc38acf256",
+  "node_id": "chg:accept-f6e8e9dc8360b03b",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "documentation",
+    "detected_at": "2026-08-23",
+    "name": "`valid_to` added to NON_TOOL_TERMS. It is a TemporalFact PROPERTY that capture-session now names deliberately — telling a session WHERE to close a finding — and the lint was correctly reading it as an unknown tool. No lint behaviour changed; the term list learned one field name.",
+    "subject": "system"
+  }
+}

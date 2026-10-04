@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:daf32e55805e9ce0bb550cd85cc7075bbfe5ec4ecb8fbba383dae6b6c3494627",
+  "edge_type": "CHANGED",
+  "from_id": "chg:scheduled-for",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:nodes"
+}

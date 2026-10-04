@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:f922f2a03cac550db128b358fe6b2a23ef820c9b2efec011ce741d1cd66d57f4",
+  "node_id": "epoch:rmcp-v3",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "epoch_type": "revision",
+    "name": "rmcp v2 → v3.0.1: protocol sessions removed",
+    "sequence": 231,
+    "status": "arrived"
+  }
+}

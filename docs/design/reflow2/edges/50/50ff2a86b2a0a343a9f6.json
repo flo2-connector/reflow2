@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:caf029759169f80373bbeb27c7ea1b8b3d66746a714b4f0bac2960267ef1b0c6",
+  "edge_type": "CAUSES",
+  "from_id": "art:root-cause-skill",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "Step ② and the Precedent bone of the served root-cause skill name only search_design on the raw error; nothing in the skill tells the agent to search the project's own registered files, which the accepted division of labour makes the agent's job. Measured 2026-09-28 on a scratch design: the text of a registered archive file never reaches search_design.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:root-cause-precedent-is-searched-only-where-the-design-was-written-and-the-skill-never-sends-the-agent-to-the-files-2026-09-28"
+}

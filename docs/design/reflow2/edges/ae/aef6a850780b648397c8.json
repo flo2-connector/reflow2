@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:c65fe3a6a1e34c9b4502dd812d56fab0e46d7c0fc402d96d6131c1a5bd28e9ee",
+  "edge_type": "CHANGED",
+  "from_id": "chg:composed-analysis",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "cap:composed-analysis"
+}

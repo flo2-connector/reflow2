@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:769d334a9e2340929f1580cebf7a62c88a2cc2dc460a92f042ce54686e6656be",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0750",
+  "properties": {
+    "as_checksum": "sha256:3d9747b54bf878655d1f84909f884da267fb9f70033a139698d15ebee6e113ea"
+  },
+  "to_id": "art:impact-check-skill"
+}

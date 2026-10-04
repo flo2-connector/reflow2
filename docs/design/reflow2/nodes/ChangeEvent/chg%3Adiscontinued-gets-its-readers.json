@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:98290ddc50a4e4e0ad62a00bf0b990be64d5a8ce15aa8396e2ac0235bcae23f2",
+  "node_id": "chg:discontinued-gets-its-readers",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "deprecation",
+    "name": "A Decision OBSOLETES what it withdrew, and four computations now read it: the three capability detectors fall silent and delivery stops counting a discontinued capability as a satisfier. NO SCHEMA CHANGE — OBSOLETES is already `* -> *` and putting the DECISION at the source dissolves the successor problem that made this look like it needed new vocabulary. Only an ACCEPTED decision discontinues anything. The cascade is deliberate: the requirement a withdrawn capability served drops back to unsatisfied and is asked about again. DeliveryCoverage gains `satisfied_only_by_discontinued` so the numbers say why they moved rather than shrinking silently. Applied to the content store, whose capability had read `realized` with a `passing` check for two days after its code was deleted. Gives OBSOLETES its first reader, which is what dec:one-retire-edge has been asking for since July."
+  }
+}

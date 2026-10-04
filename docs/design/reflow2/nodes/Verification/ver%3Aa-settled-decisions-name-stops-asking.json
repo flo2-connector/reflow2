@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:2be9c99338f97874f9a8ed617f619084a680ad332ef99c1d807f7979c76ff4b1",
+  "node_id": "ver:a-settled-decisions-name-stops-asking",
+  "node_type": "Verification",
+  "properties": {
+    "description": "set_decision_status takes name and retitles in the settling call; an empty name is refused before anything is written; the settle reply carries name_still_reads_open; the settled_decision_named_open sweep names exactly the accepted decisions still named open; settled_question_prose reads a governed node's name; silent on proposed, deferred and a decision about opening something.",
+    "findings": "RED on a clean origin/main build, 2026-09-29: 4 of 6 failed (name unknown to set_decision_status; no name_still_reads_open block; no settled_decision_named_open gap; the governed node's name not read); the two counterweights pass on both. GREEN on the fix: 6 of 6.",
+    "kind": "verification",
+    "last_run_at": "2026-09-29",
+    "level": "integration",
+    "location": "crates/reflow2-mcp/tests/a_settled_decisions_name_stops_asking.rs",
+    "method": "test",
+    "name": "A settled decision's name stops asking, or the design says it has not",
+    "status": "passing"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:138540a994be59ea51db8aff7df3c0a0e65e56065ff3c18a2015a08b8f3456a4",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0680",
+  "properties": {
+    "as_checksum": "sha256:075c416a5863bab2afe8895248033115898984892df70778b9d95be462a8d25c"
+  },
+  "to_id": "art:a-drawn-relation-is-read-back-as-a-sentence-test"
+}

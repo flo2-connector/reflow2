@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:576259ab82259bea36199a82105c8207fa431b3bbffd553cb1b82ce255684f2f",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "rule:a-reflow2-tool-failure-met-while-working-is-captured-as-a-to-do",
+  "properties": {
+    "approved_at": "2026-09-07T13:00:00Z",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

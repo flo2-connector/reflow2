@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:c66010ac18357ea4d8bf13a963e9b79b9205edcade8ff4f81101fe480e720aed",
+  "node_id": "art:jot-skill",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "document",
+    "description": "The door, generalised from log-issue/SKILL.md: take the sentence as given, find the subject from the user's noun (Project when nothing matches), record_finding with fact_type set by the WORD typed (follow_up, follow_up:idea, follow_up:issue — never asked, never guessed), say one line back. Settling later starts where the tag points. Mirrored byte-identical at .claude/skills/jot and .grok/skills/jot.",
+    "location": "getting-started/skills/jot/SKILL.md",
+    "name": "jot/SKILL.md",
+    "status": "realized"
+  }
+}

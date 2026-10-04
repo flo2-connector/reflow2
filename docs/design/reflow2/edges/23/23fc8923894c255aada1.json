@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:5ce504ad8ab71824995532f7c4e6c69163a3a35194da012dd471832e54157e6b",
+  "edge_type": "CONTRADICTS",
+  "from_id": "dec:idea-a-published-decision-loses-its-approver-and-the-childs-gate-fails-on-it",
+  "properties": {
+    "alignment": "opposing",
+    "evidence": "That node's mutable/immutable framing concludes the ownership rule becomes 'enforced by construction rather than by discipline', because you cannot move intent in a design you are structurally unable to write. This node holds that the claim is true for EDITING and false for the GATE: a mirrored accepted Decision loses its AUTHORED_BY approver edge (the Contributor is never in a published surface, and mirror_surface carries only edges wholly inside the mirrored set), and check_intent_authority.py has no notion of provenance/imported/mirror/graph_id, so it fails the child's build on a node the child is forbidden to fix. Both statements cannot stand as written; one of them has to be narrowed."
+  },
+  "to_id": "dec:idea-a-session-holds-several-graphs"
+}

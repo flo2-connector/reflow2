@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:1eb069d99f0920e10ec190e0f505d74a465d6bfa90b05db4d775124b5cf25e92",
+  "node_id": "frag:art:test-a-change-says-how-its-reason-is-known",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered a_change_says_how_its_reason_is_known.rs"
+  }
+}

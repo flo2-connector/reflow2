@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:e36be66e007ac863e578c8dcf07e73720832708016921c368dfba60fd0daf13c",
+  "edge_type": "CHANGED",
+  "from_id": "chg:merge-driver-built",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:readme"
+}

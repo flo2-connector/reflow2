@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:dfe7e30d2ba5f251a829c98749afa576f18962372af5c545b569f09fdde04b00",
+  "edge_type": "CHANGED",
+  "from_id": "chg:accept-49a66e7c8fce0429",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:root-cause-skill"
+}

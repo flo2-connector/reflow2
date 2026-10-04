@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:bf5a0df4590891c3e8d1cbc03437a3f8ddad43a28d44801c1f8d1ba88ee01b9a",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:one-setup-command-chooses-local-or-remote-once",
+  "properties": {
+    "approved_at": "2026-09-26",
+    "roles": [
+      "author",
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

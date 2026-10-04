@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:3f3e5df3fcb11fa7f13e7020e2980059c59d39743946fddc85255c1560d5f265",
+  "edge_type": "TRIGGERS",
+  "from_id": "cap:stamp",
+  "properties": {
+    "role": "feeds — documentation is settled, so the graph's record of what ships is next. An upgrade note is owed if and only if the stamp MOVED, and a new property does not move it: the stamp carries node and edge TYPE names"
+  },
+  "to_id": "cap:derived-release-manifest"
+}

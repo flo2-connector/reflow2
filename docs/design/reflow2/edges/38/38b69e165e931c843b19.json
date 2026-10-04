@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:8a3bffc9d2491fb507f82c2fa6a224e59de78d2b5276f792cc50be585efa7d94",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "cmp:allocate",
+  "properties": {
+    "dependency_type": "function_call",
+    "optional": false,
+    "weight_basis": "evidence"
+  },
+  "to_id": "cmp:graph"
+}

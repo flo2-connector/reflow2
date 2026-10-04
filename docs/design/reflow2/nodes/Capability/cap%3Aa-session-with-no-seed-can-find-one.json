@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:5c8f13da13fc5e62e9ea091c00c2cb2ef2a35e95f049a3500ddba884f86efe29",
+  "node_id": "cap:a-session-with-no-seed-can-find-one",
+  "node_type": "Capability",
+  "properties": {
+    "capability_type": "query",
+    "description": "`design_regions` — a SEEDLESS read that answers 'what parts does this design have, how big is each, and what is owed in each', so a session with no lane, no scope and no topic can find a seed rather than needing one to start.\n\nTHE BASIS IS THE DESIGN'S OWN CARVE-UP, NEVER AN INFERRED ONE. Regions are the nodes the design already declares as parts — its Project and its Components/systems — not clusters a community-detection pass invented. A clustering answer would be reflow2 telling a reader 'these are the parts of your design' on the strength of a heuristic, which is the exact failure the epoch it belongs to exists to remove.\n\nWHAT EACH REGION CARRIES: its seed id and name, `region_size` at the stated depth, how many open gaps and structural defects fall inside it, and who (if anyone) currently claims it. So the reply is directly actionable: pick a row, then scope to that seed.\n\nIT REPORTS WHAT IT DOES NOT COVER. Named parts do not reach the whole graph — most of a mature design is bookkeeping (ChangeEvent, Snapshot, TemporalFact, Fragment) that no component contains. The reply states how many nodes lie in NO region, broken down by type, and how many lie in MORE THAN ONE, because a list of overlapping regions read as a partition would be a false map. This is `cap:a-finding-describes-the-walk-that-produced-it` applied to a region list.\n\nDEPTH IS A PARAMETER AND ITS EFFECT IS VISIBLE. The caller sets it; the reply echoes it and the sizes move with it, so the cost of a wide radius is something a reader sees rather than something they must be told.",
+    "inputs": "[\"depth\"]",
+    "name": "A design says what parts it has, so a session holding nothing can pick where to stand",
+    "outputs": "[\"regions\",\"coverage\",\"order\"]",
+    "provenance": "authored",
+    "status": "verified"
+  }
+}

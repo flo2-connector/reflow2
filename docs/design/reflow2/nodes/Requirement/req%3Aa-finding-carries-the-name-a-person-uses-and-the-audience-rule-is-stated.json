@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:5afd4cc6404311b8bbf203b282a929aab5ba2d8e82915ead62590ff96f79bdc8",
+  "node_id": "req:a-finding-carries-the-name-a-person-uses-and-the-audience-rule-is-stated",
+  "node_type": "Requirement",
+  "properties": {
+    "lineage": "original",
+    "name": "A finding carries the name a person uses, not only the internal id, and the rule for telling design findings from record findings is stated rather than re-derived",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "Promoted 2026-09-20 on Anthony's word, in two unequal halves. THE NAMES HALF IS THE CERTAIN ONE: findings quote a node's id where a human name exists, so every consumer writes the same de-slugging transform and each writes it slightly differently. A finding carries the subject's name beside its id. THE AUDIENCE HALF IS ANSWERED BY STATING A RULE, NOT BY ADDING A FIELD: flo2 measured that the split between findings about the design and findings about the record already tracks the existing source and category fields cleanly, so what is owed is to STATE that rule where a consumer reads it, rather than add a marker that duplicates data already present.",
+    "status": "accepted"
+  }
+}

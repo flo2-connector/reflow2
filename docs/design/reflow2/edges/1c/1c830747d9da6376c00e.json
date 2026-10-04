@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:bc30aea1313666255e2daf7c9e4bcdb66d3e64653dcad8cd347087da7e78cb54",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:the-server-writes-the-export-through-and-chains-it-from-main",
+  "properties": {},
+  "to_id": "req:the-server-keeps-the-working-tree-export-current"
+}

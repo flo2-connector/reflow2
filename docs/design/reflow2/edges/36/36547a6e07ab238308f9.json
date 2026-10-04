@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:57b9c4c10c4856123288e6b7509269a94a6b46e9ceae1f8e0304d586fbe9d98d",
+  "edge_type": "AT_EPOCH",
+  "from_id": "fact:twelve-records-that-still-read-confident",
+  "properties": {},
+  "to_id": "epoch:a-record-that-still-reads-confident"
+}

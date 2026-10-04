@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:287fff14f1c66914a09a7158dae14a338f6af8675db0d81fa8689112c153b366",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-claim-may-be-a-query-20260808",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "dec:a-claim-may-need-a-list-rather-than-a-radius"
+}

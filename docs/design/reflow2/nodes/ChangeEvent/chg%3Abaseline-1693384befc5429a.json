@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:7a8baf1e828cc3fa17a398ce8a9e61116be721a6c4e6a0e1a8e35097b826a2e5",
+  "node_id": "chg:baseline-1693384befc5429a",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "baseline_established",
+    "detected_at": "2026-08-16",
+    "name": "First baseline. 15 cases, four of them mutation-checked.",
+    "subject": "record"
+  }
+}

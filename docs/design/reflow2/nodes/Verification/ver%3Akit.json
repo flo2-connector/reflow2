@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:1befba95aa621e038adb47cfe6d18332059ee50937bd7a4a3fa1349480ba0f65",
+  "node_id": "ver:kit",
+  "node_type": "Verification",
+  "properties": {
+    "kind": "verification",
+    "level": "integration",
+    "method": "test",
+    "name": "test_init.py",
+    "status": "passing"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:e5a440aa1bcc731f3d78e6115cc53c316c043275f4fd18d3ddfcfa3180b95044",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-record-can-say-which-question-it-answered",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cmp:foundation-vocabulary"
+}

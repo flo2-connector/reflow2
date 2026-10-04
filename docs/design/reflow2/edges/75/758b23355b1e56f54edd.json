@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:485f2c9514bb7e1b380c54e68236c05ad40845718e5f04c57e71c35f60709536",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:contradiction-alignment-test",
+  "properties": {
+    "covers": "whole",
+    "note": "migrated 2026-09-22 from a REALIZES link_artifact drew in error"
+  },
+  "to_id": "ver:supporting-is-not-conflict"
+}

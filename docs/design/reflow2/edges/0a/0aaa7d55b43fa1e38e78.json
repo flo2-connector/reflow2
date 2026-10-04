@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:822d90ebaca4bb6a43ca9b41415722dc0da67b25743988445828b60b28d9138f",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-what-must-a-check-be-before-the-design-counts-it",
+  "properties": {
+    "evidence": "The options are sized against that measurement — 282 of 312 unre-runnable and 311 reading passing — and without it the question reads as bookkeeping rather than as the thing that makes the headline number false.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "fact:the-verification-record-is-mostly-unfalsifiable-and-the-ai-coding-project-critique-lands-on-that-half"
+}

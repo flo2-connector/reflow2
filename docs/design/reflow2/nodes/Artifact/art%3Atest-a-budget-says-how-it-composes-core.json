@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:5747d85af01107ede9a20d60c9e0e6ca9cf31c9c0350f596164ad56db5bf7120",
+  "node_id": "art:test-a-budget-says-how-it-composes-core",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "test",
+    "location": "crates/reflow2-core/tests/a_budget_says_how_it_composes.rs",
+    "name": "A budget says how it composes (core test)",
+    "status": "realized"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:b00f6dd89fa4d38e241a25b79851b23b517e737d27b23f373042d3650db37f98",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:a-capability-declares-what-kind-of-thing-delivers-it",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:graph"
+}

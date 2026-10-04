@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:118f7efd993e3bcc479e8957262c1cf10770704f452c2c206b1eaddac28a2e94",
+  "edge_type": "CHANGED",
+  "from_id": "chg:every-edge-type-declares-what-it-means",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "cap:edges-are-selected-by-their-declared-reading"
+}

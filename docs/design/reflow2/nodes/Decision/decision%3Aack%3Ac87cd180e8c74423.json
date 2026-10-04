@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:c88e18d5235e00a1cb61fa35d477a700cdba3c5416d7e5753f72ba7f339375fd",
+  "node_id": "decision:ack:c87cd180e8c74423",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Accepted the gap gap:c87cd180e8c74423.",
+    "name": "Reviewed: gap:c87cd180e8c74423",
+    "rationale": "RULED 2026-09-15 (Anthony): STILL TRUE. answer_question takes a gap, a question and an answer and nothing about WHO answered, so an agent with a correct substantive reading still has no honest verb — writing it there records its reasoning as the user's, and acknowledging is the owner's judgement by definition. The one listed repair, authorship surviving approval (chg:authorship-survives-approval), fixed a different loss on the same capability: an approver's own authorship being erased. The vocabulary for the AGENT'S word is the open question already carried by fact:reflow2-has-a-vocabulary-for-the-users-word-and-none-for-the-agents, and this is an instance of it, not a separate fix. Acknowledged for that repair; it closes when the agent-word vocabulary does.",
+    "status": "accepted"
+  }
+}

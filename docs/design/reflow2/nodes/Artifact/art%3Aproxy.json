@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:e853a2fd2e4687645f298a7ed87471565d12105dc2731dd2bec64d82e0815cd0",
+  "node_id": "art:proxy",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "location": "crates/reflow2-mcp/src/proxy.rs",
+    "name": "proxy.rs",
+    "status": "realized"
+  }
+}

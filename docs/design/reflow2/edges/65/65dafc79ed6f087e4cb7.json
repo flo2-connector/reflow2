@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:8b19011ed61e9fb259443858a25a52843a2d17d4ac2ce75d1f18d27b3a052023",
+  "edge_type": "REALIZES",
+  "from_id": "art:heal",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "verified"
+  },
+  "to_id": "cap:a-dangling-reference-is-reported-whatever-the-nodes-degree"
+}

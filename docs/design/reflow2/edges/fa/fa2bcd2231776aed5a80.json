@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:1efce641d86621e6f9ac8d41b63d615e9878e3d4d0087c0e35d8fba80eb5c24e",
+  "edge_type": "CONTRADICTS",
+  "from_id": "dec:idea-what-else-should-cast-doubt-on-a-settled-decision-and-what-should-strengthen-one",
+  "properties": {
+    "alignment": "opposing",
+    "evidence": "That decision settled that alternatives are unranked and the human judges in hindsight rather than a stored score; 'positive feedback strengthens a design choice' is a stored score unless it is computed on read, so the design has to say which it means."
+  },
+  "to_id": "dec:alternatives-unranked-forkable"
+}

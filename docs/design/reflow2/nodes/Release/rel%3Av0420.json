@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:d3ecc2ff4ea919656ac19266a992529eaca91dd2eea0fe285ce35623a6560765",
+  "node_id": "rel:v0420",
+  "node_type": "Release",
+  "properties": {
+    "name": "v0.42.0 — root-cause analysis is served, skills are composed of attribute classes, and a capped client can read the instructions in parts",
+    "status": "retired",
+    "unit_type": "package",
+    "version": "0.42.0"
+  }
+}

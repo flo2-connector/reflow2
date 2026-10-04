@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:fcc971e43c21aa5dcb995949dc3839a37e7afa5e0e80a733efb58a77ed2c9e68",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "cap:a-skill-is-found-by-describing-the-job-and-the-corpus-is-the-test",
+  "properties": {
+    "evidence": "Same scorer, same corpus discipline, same ratchet shape.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "cap:every-tool-carries-the-users-phrasing-and-the-corpus-is-the-test"
+}

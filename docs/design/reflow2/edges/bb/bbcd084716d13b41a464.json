@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:bfe12cd3fbf63d5d06100fbc58f932c5ad61cfda7b55f7c6d20639ad8eab2260",
+  "edge_type": "ANTICIPATES",
+  "from_id": "dec:idea-mechanical-code-structure-ingest",
+  "properties": {
+    "evidence": "That idea argued for extracting structure mechanically and spending the model only on intent; this is the field user saying intent is the only half he wants the model spent on."
+  },
+  "to_id": "dec:idea-adopt-can-be-an-intent-interview-that-records-the-why-and-where-and-skips-the-structure"
+}

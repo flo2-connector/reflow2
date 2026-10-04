@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:fc473e9e1fb6b8b014eb56fa3e12cea4d2792576b8290223b185ddb8f42481d7",
+  "edge_type": "CHANGED",
+  "from_id": "chg:stored-data-is-rechecked-against-the-current-schema",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "art:narrowing"
+}

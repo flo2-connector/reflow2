@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:ad3e44be337253a0f62504a909385df3f84064a5af41679fe1f6fdfb590ac65c",
+  "edge_type": "ANTICIPATES",
+  "from_id": "fact:the-root-cause-skill-is-demanded-by-no-tool-and-named-by-no-trigger-so-it-loads-only-by-luck",
+  "properties": {
+    "evidence": "That record's step 6 names the class: a skill whose trigger is the agent's internal state, with no observable act to key on, loads only by luck; it said root-cause was the only member, and the hxm field report shows a second, the moment of asserting status."
+  },
+  "to_id": "dec:idea-the-audience-is-not-the-trigger-orientation-fires-when-the-agent-is-about-to-assert-status"
+}

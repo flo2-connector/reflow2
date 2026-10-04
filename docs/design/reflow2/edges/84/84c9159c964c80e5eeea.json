@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:cfead1f754e1a27120cd5d10a01a3a5d089d828a3816ef0a5c1fa789c74a778c",
+  "edge_type": "REALIZES",
+  "from_id": "art:artifact",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:an-accepted-checksum-rides-the-change-that-accepted-it"
+}

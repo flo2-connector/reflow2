@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:2e839a12583790b2d3043aefab8759710dac1d0c675a699f65b85c4e397d2d2d",
+  "node_id": "ver:a-consumer-migrates-to-the-item-layout-and-its-gate-passes",
+  "node_type": "Verification",
+  "properties": {
+    "description": "Run reflow2_init's update on a copy of a real consumer (flo2's committed design). PASS: the item layout is written, and importing it reproduces the same design as the old file (same nodes, edges and properties). The gate result is unchanged from before migration. During the overlap release, both the old file and the new layout import.",
+    "kind": "verification",
+    "level": "acceptance",
+    "method": "test",
+    "name": "A consumer project migrates from the single file to the item layout and its gate still passes",
+    "status": "planned"
+  }
+}

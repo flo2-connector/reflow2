@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:c21b2cf3d21336533e164ff25c91e9aa78f6e8e97e3047fa3be782c536372edb",
+  "node_id": "ver:search-first-forces-a-choice",
+  "node_type": "Verification",
+  "properties": {
+    "description": "Search-before-you-add fires from the TOOL and forces a choice, and the check cannot quietly stop working. SIX CASES in crates/reflow2-mcp/tests/search_first_fires_at_the_tool.rs. THE DEFECT CASE: two requirements stating one idea in different words — the second is REFUSED, and the refusal NAMES the match and BOTH routes, so it is a choice rather than a wall. THE ROLLBACK CASE is what makes the design sound: the node must be written before it can be searched (it needs to rank for its own text to give an in-query baseline), so a refusal that left it behind would create the very duplicate it refused — asserted by reading the node back and requiring null. BOTH DELIBERATE ROUTES are tested because the refusal recommends them: SHARPEN (call with the existing id — a revision, never refused, and its neighbour is seeded so the guard is the only reason it passes) and CREATE ANYWAY (`distinct_from` naming what was read and rejected). THE COUNTERWEIGHT decides whether this is usable at all: an unrelated requirement is created with no friction and no advisory — a check that refused often would be routed around, and a rule people route around is worse than no rule. CROSS-TYPE: a Capability restating a Requirement is caught, the pair most worth catching because a capability backed out of a requirement's own words is unmotivated_capability waiting to happen.",
+    "findings": "MUTATION-CHECKED THREE WAYS, each verified applied before running rather than assumed: disabling the refusal fails 3 cases; removing the rollback fails the rollback case alone; ignoring `distinct_from` fails both deliberate routes. ⚠️ A FOURTH MUTATION EXPOSED A VACUOUS TEST OF MY OWN and is why the neighbour seeding exists: the first revision test passed whether or not the guard was there, because a revision with no near neighbour has nothing to report either way — the same vacuous-branch failure ver:the-server-says-when-it-is-stale was written about, reproduced here and caught by mutating rather than by reading.",
+    "kind": "verification",
+    "last_run_at": "2026-08-11",
+    "level": "unit",
+    "method": "test",
+    "name": "Search-before-you-add fires from the tool and forces a choice",
+    "status": "passing"
+  }
+}

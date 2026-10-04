@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:acdd5e30394bed6302970fc8bb27038e250ab818f6bdcbbb3745a3c2a6c4a75e",
+  "node_id": "ver:no-fabricated-repairs",
+  "node_type": "Verification",
+  "properties": {
+    "description": "A repair suggestion never proposes fabricating a relationship (crates/reflow2-core/tests/no_fabricated_repairs.rs, 4 cases). THE CASE THAT WAS FILED: a disconnected cluster is reported with NO suggested_fix_type and WITH repair_is_a_judgement naming it a judgement — `generate_bridge` used to sit there, and where the separation is correct, following it fabricates relationships nobody stated to silence a warning about a separation that is right. Same for a dead-end component, and for an orphan, which used to be offered `generate_owner` — a link nobody drew. THE COUNTERWEIGHT CARRIES AS MUCH WEIGHT AS THE THREE ABOVE, and is why this is not a general refusal: honest_repairs_keep_their_suggestions pins that `break_cycle` still suggests (removing an edge that EXISTS is not invention), that `generate_decision` still suggests (writing a node recording a judgement somebody must make asserts nothing about what already relates to what), and that a finding WITH an honest operation does NOT also claim to need a judgement. If a rule against invention ever became a refusal to help, that test fails first. WHAT IS NOT COVERED: nothing here proves the three chosen findings are the only inventions in HEAL. `add_redundancy` on a single point of failure was considered and LEFT — adding a redundant path is a design change somebody makes, not an assertion about what already exists — and that judgement is recorded rather than tested.",
+    "findings": "MUTATION-CHECKED: restoring generate_bridge on the island fails EXACTLY the filed case and no other.",
+    "kind": "verification",
+    "last_run_at": "2026-08-10",
+    "level": "unit",
+    "method": "test",
+    "name": "A repair suggestion never proposes fabricating a relationship",
+    "status": "passing"
+  }
+}

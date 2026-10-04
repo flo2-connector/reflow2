@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:adc00c786c3db7fa96a6628346401bc5e8409e0af94b707ca0ce672a074b7752",
+  "node_id": "epoch:constructors-say-what-they-replaced",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "epoch_type": "revision",
+    "name": "A typed constructor that lands on an existing node says what it replaced",
+    "sequence": 335,
+    "status": "arrived"
+  }
+}

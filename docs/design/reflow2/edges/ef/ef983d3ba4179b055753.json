@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:d12cf022cbba6aa482206ff17164d464e15df705c2c8d18c9a130acaa149d8a5",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:docker-publish-index-script",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:docker-publish-index-script"
+}

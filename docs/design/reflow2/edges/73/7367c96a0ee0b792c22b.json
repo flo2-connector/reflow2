@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:0f2e50a3d89678bbd8ecaca747789e1795024eccb93aac349c6f1f5c58d8c1a3",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:a-settled-decision-has-a-change-type-test",
+  "properties": {
+    "covers": "whole"
+  },
+  "to_id": "ver:decision-settled-round-trips"
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:c4cdcc854fdb68af580f73e27fb37bdc503b885538bae8270dd0239c6180f861",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "cap:a-build-can-call-one-tool-from-the-shell-and-read-the-reply-as-json",
+  "properties": {
+    "evidence": "Reuses the export path's lock explanation and the --export-snapshot copy for a read while the graph is held.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "cap:the-server-writes-the-export-through-and-chains-it-from-main"
+}

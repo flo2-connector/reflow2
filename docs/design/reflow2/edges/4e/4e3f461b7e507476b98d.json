@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:8e12c8f1640d6822740a13fbe18fe1ddcaebd4e36a4233e274fb02ad54655686",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:test-a-fork-point-finds-its-address-in-git",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:test-a-fork-point-finds-its-address-in-git"
+}

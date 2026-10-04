@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:39e260fd990ea4949288171fa4cf5e500e67ce50437304f7e8f2a0ac978d4422",
+  "edge_type": "CHANGED",
+  "from_id": "chg:stop-hook-asks-the-graph",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "dec:the-stop-hook-asks-the-graph-asynchronously"
+}

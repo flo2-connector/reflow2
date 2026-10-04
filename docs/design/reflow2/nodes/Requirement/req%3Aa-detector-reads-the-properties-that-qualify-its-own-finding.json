@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:24cce0ebec2ccb374c11f26a67b005de0f8c34e39d23880067453e95eeabb08e",
+  "node_id": "req:a-detector-reads-the-properties-that-qualify-its-own-finding",
+  "node_type": "Requirement",
+  "properties": {
+    "lineage": "original",
+    "name": "A detector reads the properties that qualify its own finding, so recording something correctly never manufactures a defect",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "A structural detector must consult the properties that change whether its finding IS a finding — on the edge and on both endpoints — so that modelling something the way the design prescribes never adds a defect.\n\nTHE OBSERVATION IS `fact:defect-recording-a-refutation-correctly-adds-a-structural-defect`; this is the intent behind fixing it.\n\nTHE ARGUMENT IS THE PROJECT'S OWN, ALREADY WRITTEN DOWN. `heal.rs` was fixed once for exactly this shape: reading the CONTRADICTS edge TYPE and never its `alignment` property meant \"every correctly-modelled corroboration came back as a structural defect\", and the comment ends \"A PROPERTY THE DETECTOR IGNORES IS A PROPERTY THAT LIES.\" The same sentence applies one property across — the detector still never reads either endpoint's `status`, so a `rejected` Decision contradicting its successor is reported as a conflict when it is the healthy case.\n\n⚠️ WHY THIS IS AN INCENTIVE PROBLEM AND NOT A NUISANCE: recording a refutation correctly ADDS a warning-severity defect, and burying it in prose adds none. The tool mildly penalises the discipline `rejected` exists to support, at the moment a seat is least likely to push back. The cheap wrong response is to delete the rejected node or the edge — the erasure the record exists to prevent.\n\nMEASURED HERE: our four reported contradictions have no rejected or superseded endpoint today, so it does not fire — but the design holds 10 superseded and 1 rejected Decision and ZERO such edges, which is itself weak evidence that the relation is not being recorded.\n\nWHAT MUST NOT BREAK: `acknowledge_defect` already handles this well — it stores the REASON rather than the suppression, and the review expires if the defect's shape changes because the id hashes the category with the affected set. Any fix must leave that intact.\n\nNOT DECIDED: whether `superseded` and `rejected` are treated identically, and whether such pairs vanish or move to a separate band.",
+    "status": "proposed"
+  }
+}

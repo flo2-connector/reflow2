@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:a322fbe9f450558628a8e61317d370fb6a8849ec6bcbfee96f9adb52448cca69",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-check-and-its-findings-are-different-things",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "ver:an-unobserved-location-means-the-sweep-missed-it"
+}

@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:bf27ad5fdae8f87422d7d8ffce10f2dcb212b35bdc9cf5204f8416847c2e671b",
+  "node_id": "ver:self-host-uses-documents",
+  "node_type": "Verification",
+  "properties": {
+    "description": "reflow2's own design record still exercises DOCUMENTS, so it can still catch a BL-176 regression on itself (tools/self_host_uses_documents.py, run in CI). Three assertions: at least 5 document/spec artifacts carry a describing edge; at least one is attached ONLY by DOCUMENTS/SPECIFIES (the canary — without it, reverting BL-176 produces no finding here); and no artifact is attached solely by bookkeeping. Guards the RECORD rather than the code, which is the BL-199 lesson: tests/orphan_attachment.rs proves the detector behaves, this proves the repo still contains the shape that would notice it regressing.",
+    "findings": "MUTATION-CHECKED against three seeded regressions — restore REALIZES to every canary, strip all DOCUMENTS/SPECIFIES, and add a genuinely unattached artifact — all three caught, exit 1.",
+    "kind": "verification",
+    "last_run_at": "2026-08-04",
+    "level": "system",
+    "method": "test",
+    "name": "This design still exercises DOCUMENTS, so it can catch that regression on itself",
+    "status": "passing"
+  }
+}

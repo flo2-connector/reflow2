@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:a085ede9f650d2c64fe60000e5e08b6775da65545ca1d11bebcefac0c297b462",
+  "edge_type": "CAUSES",
+  "from_id": "fact:field-report-bhome-2026-09-18-a-budget-accepts-a-negative-contribution-and-nothing-says-so-so-stacking-went-uncounted",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "The finding measured that a negative contribution rolled up correctly and nothing said so; this is the sentence, in the three places a caller reads.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "chg:a-contribution-may-be-negative-and-a-refusal-says-which-fields-are-missing"
+}

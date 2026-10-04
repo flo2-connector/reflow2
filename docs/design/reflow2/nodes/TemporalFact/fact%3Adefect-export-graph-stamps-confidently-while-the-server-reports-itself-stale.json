@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:29026cd89577f435dea0b49b09296837b391a9ce8b938bec3167f333227feb77",
+  "node_id": "fact:defect-export-graph-stamps-confidently-while-the-server-reports-itself-stale",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "confidence": 1.0,
+    "fact_type": "defect",
+    "name": "export_graph stamped a record with a replaced binary's version and said nothing, while the same server's loop_status was reporting served_by.stale: true",
+    "statement": "OBSERVED 2026-09-06 at the start of a reflow2 session. The shared daemon had been started from a 0.48.0 build; the tree and the binary on disk were 0.49.0; the session-start hook said so (\"the server reports its own binary as STALE\") and the session discounted it because the process start time looked fresh. The first export_graph of the session wrote docs/design/reflow2.json with `stamp.reflow2_version: 0.48.0` and returned `wrote: changed` with no warning. The very next loop_status carried `served_by: {stale: true, reflow2_version: 0.48.0}` and the full STALE note. The record was restored from main and re-exported after `--stop-shared`; nothing was committed with the wrong stamp, but only because the stamp was read off the reply.\n\nWHAT THIS IS: the mirror of fact:a-fresh-server-on-an-old-build-is-not-stale-and-stamps-confidently (2026-08-13). That one is the case the currency capability CANNOT see (a fresh server on an old build). This is the case it CAN see and DOES report — in loop_status — while the one tool whose output the staleness corrupts, export_graph, does not consult it. The information existed on the same server and did not reach the reply that mattered.\n\nCHEAP FIX, not taken here: export_graph's reply carries the served_by block (or a one-line `stale_warning`) whenever the server's executable has been replaced since it started, so a caller reading the export result sees the stamp is from replaced code. Refusing outright is the stronger option and a design question (a stale server can still export a correct DOCUMENT; only the stamp is wrong).\n\nBOUNDS: one instance; the export's content was correct, only its version stamp was old; the release-cut flow's own step already reads the stamp back, so a CUT would have caught it — an ordinary PR export has no such step.",
+    "subject_id": "cap:the-server-knows-its-own-currency",
+    "valid_from": "2026-09-06",
+    "value": "{\"served_version\":\"0.48.0\",\"disk_version\":\"0.49.0\",\"tool\":\"export_graph\",\"warned\":false,\"loop_status_reported_stale\":true,\"committed_wrong\":false}"
+  }
+}

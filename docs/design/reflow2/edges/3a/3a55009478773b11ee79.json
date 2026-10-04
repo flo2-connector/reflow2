@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:5ec254630ed7dcc0ec028773c1cea3ef1a6fd79f173a689eabfff87de5bfa5a2",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-saved-design-moves-to-the-item-layout-2026-10-03",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:b9b43d0cb4b05848262d50d95a0c9c555bc76b0504984ca51a7ca3291b9933a9",
+    "checksum_basis": "measured"
+  },
+  "to_id": "art:a-session-that-reads-and-never-writes-is-seen-test"
+}

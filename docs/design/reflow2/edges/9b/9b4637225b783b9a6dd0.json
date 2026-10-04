@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:db288de97615569f59d3aae9773096a2e8bdaa4d283cebd6ff42647cc67b40ce",
+  "edge_type": "EVOLVES_INTO",
+  "from_id": "dec:change-type-splits-into-two-axes",
+  "properties": {
+    "evidence": "The two-axes ruling answered the as-built-defect instance; this is the next instance on the record axis it left required."
+  },
+  "to_id": "dec:idea-a-record-only-change-event-needs-a-record-shaped-why"
+}

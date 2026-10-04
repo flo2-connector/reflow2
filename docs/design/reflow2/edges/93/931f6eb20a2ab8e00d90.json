@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:1301e5962964ef1e9e9e195ca085e6448f6f9fecad3bb57c0e02f34f9f441c93",
+  "edge_type": "MITIGATES",
+  "from_id": "cap:fork-alternatives",
+  "properties": {
+    "evidence": "The hazard Anthony describes — having to unwind accepted decisions to explore a different direction — is what a fork at a decision point exists to avoid; the ophyd-service triage recorded that the in-graph form of it was deferred and its reopening condition has now been met."
+  },
+  "to_id": "dec:idea-a-design-cements-from-the-core-outward-and-past-a-point-starting-over-is-cheaper-than-unwinding"
+}

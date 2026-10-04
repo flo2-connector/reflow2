@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:da6bb2774f9e855fbc565fa5bea8992689ee1f4ec17f4c8a459105df02cef208",
+  "node_id": "ver:a-published-contract-says-what-two-systems-must-agree-on",
+  "node_type": "Verification",
+  "properties": {
+    "description": "crates/reflow2-core/tests/unverified_published_contract.rs, second half.\n\nSIX PROBES: an incomplete published contract names WHICH axes are unset and never names one that is set; a fully specified contract is not asked; an internal boundary is never asked to describe itself; the two published findings are INDEPENDENT in both directions (described-but-unchecked, and checked-but-undescribed); the finding admits the sixth characteristic it cannot ask about; and `unspecified` is unset while `none` is an answer.\n\n⭐ THE FOURTH PROBE IS THE ONE THAT MATTERED, AND IT WAS WRITTEN BECAUSE THE DETECTOR WAS ALREADY WRONG. Five of the nine axes default to `unspecified` and the store materialises defaults on write, so the first cut's presence test counted the word as an answer — a check that was guaranteed to pass on every node in every design. Caught by a schema read, not by a failing test, because no test existed that could fail. `ifc:mcp-tools-http` had read 9 of 9 complete with `medium: unspecified`.\n\nSIX MUTATIONS, ALL KILLED: treat `unspecified` as an answer (the bug itself, now caught by two probes); treat `none` as unset, which would nag a design that answered honestly; bill internal boundaries; drop the sixth-characteristic limit from the evidence; report only the COUNT of unset axes rather than which; drop the plain-English gloss so the finding speaks in column names.\n\n🛑 THE LAST TWO WERE ADDED AFTER A SURVIVOR. Dropping the gloss initially killed nothing — the assertions only read the evidence string, and the gloss lives in the description. That is the same inert-assertion shape found twice already today: an assertion that reads the wrong field cannot see a change to the right one. Both halves are now pinned.\n\nRUN AGAINST REFLOW2'S OWN DESIGN: `ifc:graph-export` fires with 6 unset axes, `ifc:mcp-tools-http` on `medium` alone, `ifc:mcp-tools` silent at a genuine 9 of 9.",
+    "findings": "12 probes in the file pass (6 for this capability, 6 for its sibling). Whole workspace green: 80 suites, exit 0. Six mutations run against this detector, all killed — including the two added after a survivor showed the gloss assertion was reading the wrong field. Against reflow2's own design: `ifc:graph-export` fires with 6 unset axes, `ifc:mcp-tools-http` on `medium` alone, `ifc:mcp-tools` silent at a genuine 9 of 9.",
+    "kind": "verification",
+    "last_run_at": "2026-08-22T22:05:00Z",
+    "level": "integration",
+    "method": "test",
+    "name": "Six probes, six mutations, and the one that caught a detector which could not have failed",
+    "status": "passing"
+  }
+}

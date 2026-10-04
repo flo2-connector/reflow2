@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:3a20e0b0065f7391d3339c91eae49148c22559f1123b91e8ecbec312f83faf91",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-does-the-build-prove-each-gate-can-go-red",
+  "properties": {
+    "evidence": "A negative-control run has nowhere to record the red observation it manufactures until a Verification can hold 'ever observed failing'; that idea says of its own form (b) that it 'will stay empty without the third leg', and this is the third leg.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "dec:idea-a-check-records-that-it-was-once-observed-failing"
+}

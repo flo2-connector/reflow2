@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:1b308a7b0f4399a6989606181b4b011dee3be2ba6c93f186ab29524f8b1546b5",
+  "edge_type": "REALIZES",
+  "from_id": "art:detect-and-ask-skill",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:the-served-text-applies-the-readers-lens-without-writing-it-into-the-design"
+}

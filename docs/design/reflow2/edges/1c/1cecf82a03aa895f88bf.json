@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:b78aa52c35a5483f1a4ae9cf7c6992301588616a2dc94f592faded81d806934b",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:the-patch-record-binds-forward-not-backward",
+  "properties": {
+    "approved_at": "2026-08-17",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

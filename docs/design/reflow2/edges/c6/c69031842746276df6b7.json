@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:70fb55dd965e8dcc57dce7c634b11f9c9d4956a7413272ea40028baf2ba1247a",
+  "edge_type": "REALIZES",
+  "from_id": "art:skills",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:skills-served"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:d9936f7d618af135034e25b9d7e560f3755e3e1d630ad9e23e5f8d8c90b58588",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-check-and-its-findings-are-different-things",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "ver:the-nudge-absence-says-why"
+}

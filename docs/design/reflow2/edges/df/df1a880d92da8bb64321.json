@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:8e9cbdcb2d93428e1db483ec4e0092bb83ce61e673094187278b7954e4619fb6",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-saved-design-moves-to-the-item-layout-2026-10-03",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:ef92e09977d0182d98a9000796e2fe4194801a9368d9a239007e6e96630fe618",
+    "checksum_basis": "measured"
+  },
+  "to_id": "art:a-levied-requirement-is-recordable-in-one-call-test"
+}

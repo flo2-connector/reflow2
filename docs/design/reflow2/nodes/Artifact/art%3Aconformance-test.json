@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:b60e987a06f4248c0b586d786ce517f68a4a5788a99979b6e44b3ebe58e27923",
+  "node_id": "art:conformance-test",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "location": "crates/reflow2-core/tests/an_edge_says_whether_anyone_checked.rs",
+    "name": "an_edge_says_whether_anyone_checked.rs",
+    "status": "realized"
+  }
+}

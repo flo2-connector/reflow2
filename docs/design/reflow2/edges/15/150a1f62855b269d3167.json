@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:813045e83be926702d9673e59a414949b1a33b633a71b190b7ad877db3c17606",
+  "edge_type": "SCHEDULED_FOR",
+  "from_id": "req:the-ledger-can-say-the-record-was-wrong",
+  "properties": {
+    "modality": "expected",
+    "recorded_at": "2026-08-09"
+  },
+  "to_id": "epoch:governance-becomes-expressible"
+}

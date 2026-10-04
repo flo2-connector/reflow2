@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:f813a0250fd7b5abec01242bf31fa59d8b686330b306a3a2c5cbf901bf4ae216",
+  "node_id": "cmp:merge",
+  "node_type": "Component",
+  "properties": {
+    "kind": "module",
+    "level": "component",
+    "name": "merge",
+    "provenance": "authored",
+    "purpose": "The three-way merge module: the typed-node case table against a common ancestor, conflict minting as Questions, resolution into a merged design, atomic apply, and rerere resolution memory. Compare's sibling — compare says how two records differ, merge says what to do about it.",
+    "status": "realized",
+    "tier": "operational"
+  }
+}

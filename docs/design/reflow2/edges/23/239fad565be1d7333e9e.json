@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:23f8171597ec97dfba1ae21bcf205258b41ad91daa31fc53274fb91fc2f4d98c",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "ver:dependency-names-its-design",
+  "properties": {
+    "authored_at": "2026-08-06T14:40:00Z",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:claude-code"
+}

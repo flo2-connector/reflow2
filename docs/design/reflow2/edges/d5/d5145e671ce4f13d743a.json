@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:a6e1fd752e4de5a4b0f0d7597ab5fc1eabc82c0ead71b60f3171054c484f368e",
+  "edge_type": "CHANGED",
+  "from_id": "chg:skills-are-composed-of-attribute-classes",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:detect-and-ask-skill"
+}

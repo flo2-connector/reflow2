@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:40844df01e9c38d3025aec8a3d089d473f76824c1f5539791032aab53e4fffa1",
+  "edge_type": "REALIZES",
+  "from_id": "art:detect",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:decomposition-coverage-is-asked"
+}

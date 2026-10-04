@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:e4acf5b81002f9d4776c8e761483ee850488f3d6968b9406af4968bb079afbf2",
+  "node_id": "dec:the-hub-is-built-because-users-have-asked-for-it",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "DECIDED 2026-09-23, on Anthony's word: \"Yes, the hub has triggered.\" The hub / project-brain thread moves from deferred to buildable. The requirements accepted from the dev_reflow2 trial that sat behind the deferral may now be scheduled and built: req:a-write-is-warned-when-the-same-thing-already-lives-in-a-related-design, req:a-skill-run-in-a-session-holding-several-designs-writes-where-the-fact-belongs, req:adopt-asks-sibling-designs-who-else-has-this-before-writing-a-region and req:a-hub-flags-an-identical-file-in-two-projects-when-a-project-changes.",
+    "kind": "choice",
+    "name": "The hub is built: the trigger dec:the-hub-waits-for-somebody-to-ask-for-it named has fired",
+    "rationale": "dec:the-hub-waits-for-somebody-to-ask-for-it (accepted 2026-08-29) deferred the whole hub thread, and named its own trigger as a person, not a date: \"Alex, or another real user, saying they need it.\" Both have now happened. Alex runs a project brain over many repositories at work: fact:ingesting-a-real-workplace-corpus-costs-70-dollars-a-day-and-still-writes-duplicate-components; hxm_program (dec:idea-a-hub-owns-designs-it-does-not-absorb-and-that-is-a-third-relation). And Anthony ran dev_reflow2 as a live hub over reflow2 and flo2 on 2026-09-22 and 2026-09-23, with a written trial log (sligara7/dev_reflow2 docs/TRIAL-LOG.md): the hub read both designs, synthesised across them, wrote decisions down into each, and shipped a reflow2 fix (#571) found from the hub. The prerequisite the deferral named (siblings must export) holds for this pair: both children commit their design exports. Recorded as a new Decision that OBSOLETES the deferral, per dec:reopen-supersedes, rather than by un-accepting it. The deferral's reasoning (restraint until demand is real) stays on the record and was right at the time.",
+    "status": "accepted"
+  }
+}

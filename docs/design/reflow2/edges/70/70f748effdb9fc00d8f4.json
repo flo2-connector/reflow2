@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:e91988583f883b3c6b92e87fb0e8d9dc8d2d65084afd038eba57a365dfdd24db",
+  "edge_type": "CHANGED",
+  "from_id": "chg:skills-served",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:skills-catalog"
+}

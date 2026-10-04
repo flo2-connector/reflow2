@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:d23929216572cced7de638c0cbea6764ef91361d7274edc7a7b0f465a3941340",
+  "node_id": "dec:idea-a-constraint-carries-a-structural-condition-beside-its-scalar-limit",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Recorded as BRAINSTORMING, not as a proposal — from the dev_storyflow agent's field report (2026-09-05, wish #21), in its words. The budget it wrote was '≤ 50 ms p50, AND ≤ 2 edge fetches per story node, AND zero foreign entities.' Only the first fits `limit`. The other two are what the guard actually asserts (the optimize skill's step 7 says assert STRUCTURE, not duration), so 'the field that gets rolled up by budget_report is the least durable of the three.' OPTIONS as the reporter put them: (a) a second field for the structural condition; (b) document that `limit` is the reportable scalar and `statement` carries the rest — cheap, no schema change, and arguably already true.",
+    "kind": "exploratory",
+    "name": "OPEN — a Constraint's `limit` is one f64, but a real budget is often a number AND a structure. Should it carry a structural condition too, or is the scalar declared the reportable half?",
+    "rationale": "COUNTER-ARGUMENT to (a): a structural condition is not machine-comparable the way a scalar is, so a field for it would be prose under another name, and budget_report could not roll it up either. (b) makes the existing split honest without inventing a field nobody can compute over; the optimize skill could say it in step 4 where the budget is written. A ranking here is a finding, not a decision.",
+    "status": "proposed"
+  }
+}

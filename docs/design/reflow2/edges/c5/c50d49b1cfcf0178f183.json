@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:b73d942ba2b49d0b0d9ff8e8758d189ff87b515d0d7f4091ba26455f6ee9ab04",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-refused-write-stores-nothing",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:store-engine"
+}

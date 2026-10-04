@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:b9f244fcc6c06c61e094803a0ce6043069472469634bacf29c502a6c7664c1c4",
+  "edge_type": "CHANGED",
+  "from_id": "chg:absorb-graph-algorithms",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:structure"
+}

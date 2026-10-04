@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:3f77721e5fa7aeab827581342e28e15e3ba3ea8b2bc81a48e524ba2a365395f3",
+  "node_id": "chg:bl213-discriminator",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "test_failure_fix",
+    "name": "Anthony chose option (c): a discriminator beyond the score. Siblings are held apart by whole-word difference, the refusal names the word, and the corpus report carries every merge with its document"
+  }
+}

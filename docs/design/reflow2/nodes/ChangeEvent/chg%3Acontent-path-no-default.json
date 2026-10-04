@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:d50d406d4393efad8625500a99cce636ee233ff798d88113b0902014e975f830",
+  "node_id": "chg:content-path-no-default",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "test_failure_fix",
+    "name": "--content-path loses its default so the content store stops inventing a directory nobody chose"
+  }
+}

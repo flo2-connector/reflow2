@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:91bc8c2368da06c9e2164abb85a6f9e69a902f9f14278928b4ee44f4a9166da2",
+  "edge_type": "CHANGED",
+  "from_id": "chg:artifact-intent-properties",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:coverage"
+}

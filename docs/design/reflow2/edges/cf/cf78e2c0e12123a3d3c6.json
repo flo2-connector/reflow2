@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:69bf5850e530c7148bef718a4922fcb8e79f833ef59b6b2d374cc76bf1e89fa1",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:idea-should-detect-gaps-say-how-long-the-road-is",
+  "properties": {
+    "authored_at": "2026-08-31",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:claude-code"
+}

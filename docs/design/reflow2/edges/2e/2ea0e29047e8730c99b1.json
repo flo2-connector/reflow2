@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:fa79d5a2f17acfcfe690886d13ddbd4931a2a28d93c77e5a583bb6141ca37636",
+  "edge_type": "ANTICIPATES",
+  "from_id": "fact:a-fresh-server-on-an-old-build-is-not-stale-and-stamps-confidently",
+  "properties": {
+    "evidence": "That 2026-08-13 finding said a server on an old build does not read as stale and acts confidently; here the same old build imports a newer document confidently and rewrites it, on the maintainer's own box."
+  },
+  "to_id": "fact:root-cause-the-853-is-an-older-binary-writing-the-old-role-default-onto-a-newer-document-not-the-export-leaving-a-default-implicit"
+}

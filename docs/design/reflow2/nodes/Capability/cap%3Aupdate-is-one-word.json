@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:561ea0c28d5799346e546f30ffaaa2dc305045ac2e69664c9e35073947738da5",
+  "node_id": "cap:update-is-one-word",
+  "node_type": "Capability",
+  "properties": {
+    "description": "`reflow2 update` brings THIS project's installed reflow2 files — instruction file, slash commands, MCP config, hooks, ignore and merge rules — up to the version already installed on the machine. `--check` previews and writes nothing. It reuses the harness recorded at first install, keeps files the user edited, and never touches the design graph.\n\nTHE MECHANISM PRE-EXISTED THE WORD, which is why this is small: `reflow2 init <dir>` already did the refresh. What was missing was a name anybody would type at an initialised project, and `req:frictionless-update`'s update half went unbuilt for that reason alone.\n\nREFUSES RATHER THAN PERFORMING A FIRST INSTALL. The install receipt is the test. A directory holding a design but no kit is the ordinary shape of `dec:install-once-per-machine` — registered machine-wide, in-repo half never run — and updating there would be a first install under a word that promises otherwise. It exits non-zero and names `reflow2 init`.\n\nOWNS ONE OF TWO UPDATE SURFACES AND SAYS SO. Purely local; never downloads. Updating the binary remains the installer's job, and this command reports when it is behind rather than doing it.",
+    "name": "A project already set up is brought forward by one word, and a project that was never set up is told so instead",
+    "provenance": "authored",
+    "status": "realized"
+  }
+}

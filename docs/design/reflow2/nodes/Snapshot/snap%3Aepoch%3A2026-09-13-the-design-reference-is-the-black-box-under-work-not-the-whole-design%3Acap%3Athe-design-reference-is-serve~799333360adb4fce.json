@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:28a1c827e0ee4951ccbb1fda4d177c91af5cad7e76c35e2197fbac9dc1ff202f",
+  "node_id": "snap:epoch:2026-09-13-the-design-reference-is-the-black-box-under-work-not-the-whole-design:cap:the-design-reference-is-served-compact-code-shaped-and-derived-for-the-implementing-agent",
+  "node_type": "Snapshot",
+  "properties": {
+    "edges": "[{\"direction\":\"out\",\"edge_type\":\"SATISFIES\",\"other_type\":\"Requirement\",\"other_id\":\"req:the-implementing-agent-holds-a-compact-design-reference-derived-from-the-graph\",\"properties\":{}}]",
+    "state": "{\"description\":\"One served read (a tool, and the same payload where intent is re-injected into a long build) that renders the concept layer of a design in a code-like form: requirements as the rules that must hold; each capability as a function header with its signature (name, inputs, outputs, kind) or an explicit \\\"unsigned\\\" marker; Constraints and enforced DesignRules as continuously-obeyed constraints with their units and consequence; every Interface the work crosses as a port, `unspecified` shown as such; components only where they exist. Every line traces to a node id, so a fill-in is detectable; the reply reports its own size and the fraction of capabilities unsigned; a scope (Component, Capability, Project) narrows it the way detect_gaps narrows. Not a persisted document and not a grammar: a projection over the schema that already exists, in the structured natural language language models already read. Planned 2026-09-13.\",\"name\":\"The pseudo-design layer is served as one compact, code-shaped reference for the implementing agent, derived from the graph on every read and sized for context\",\"provenance\":\"authored\",\"status\":\"planned\",\"tier\":\"operational\"}",
+    "target_id": "cap:the-design-reference-is-served-compact-code-shaped-and-derived-for-the-implementing-agent",
+    "target_type": "Capability"
+  }
+}

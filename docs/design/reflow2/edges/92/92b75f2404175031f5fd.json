@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:5c3a58e3bbfc8f093f42689e0d31f01d89b76440fda33109ee36854d18b60b24",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:check",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:check"
+}

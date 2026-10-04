@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:8da3606f6d6938b36d6f102c2a32fb7811b9a6e71d2d6a7ee7e2554f49edcd01",
+  "edge_type": "REALIZES",
+  "from_id": "art:derived-relations-declarations",
+  "properties": {
+    "conformance": "unchecked"
+  },
+  "to_id": "cmp:schema"
+}

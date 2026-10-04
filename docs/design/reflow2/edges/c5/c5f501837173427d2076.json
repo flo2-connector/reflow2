@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:ed079f8b62c9a804acac95f1e5cbde73bccee94eb6889ef841f0c50c5ce4bdaa",
+  "edge_type": "HAS_SNAPSHOT",
+  "from_id": "cap:derived-relations-are-declared-checked-against-the-code-and-evaluated-by-a-served-read",
+  "properties": {},
+  "to_id": "snap:epoch:preserved-on-write:cap:derived-relations-are-declared-checked-against-the-code-and-evaluated-by-a-served-read"
+}

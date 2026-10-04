@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:707d77ed8dc5cb296b98220d8c65a6a47488fd5072129676ef75cb5b94af60b9",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "cap:a-cut-ends-with-the-served-binary-matching-the-tag",
+  "properties": {
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

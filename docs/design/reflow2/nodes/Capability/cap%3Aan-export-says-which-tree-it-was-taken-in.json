@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:8ad669dad743dc970c7ccacd7e3fac62a08547cce49f30dc12dbf927c6db3d2f",
+  "node_id": "cap:an-export-says-which-tree-it-was-taken-in",
+  "node_type": "Capability",
+  "properties": {
+    "description": "Three parts. THE DOCUMENT: GraphExport gains an optional `taken_at` (export.rs: TakenAt { branch: Option, commit, dirty }), serde-default so an older document reads with None, excluded from the content hash so the same design taken on two branches is the same design. THE WRITER: crate::git::taken_at (reflow2-mcp git.rs) reads branch (None on a detached HEAD), HEAD, and `status --porcelain` minus the export file itself; export_write::chain_and_write stamps it on every write, keeping the predecessor's coordinate when the design content is unchanged so the bytes stay identical and `wrote: unchanged` stays true; the export_graph receipt carries it. THE GATE: reflow2_check.py's check_taken_on_this_branch refuses (exit 1, PHANTOM) a MODIFIED export whose recorded branch is not the branch checked out, skips a committed one (squash merges make the name meaningless once landed), a detached HEAD, an export with no coordinate, and a tree outside git. Options ② and ⑤ of the brainstorm, together; no per-node field.",
+    "name": "An export carries the branch, commit and dirtiness of the tree it was taken in, and the gate refuses one about to be committed on a branch it was not taken on",
+    "provenance": "authored",
+    "status": "realized",
+    "tier": "operational"
+  }
+}

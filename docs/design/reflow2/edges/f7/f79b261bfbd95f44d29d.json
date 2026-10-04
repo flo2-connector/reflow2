@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:e14ab3de4ebbf546202e6a7879b70b4705e9407196a60fe993bea5a3e483740b",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-saved-design-moves-to-the-item-layout-2026-10-03",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:40e11439739f8513d47c98fd0ce290ad4b127ea191defb159a352b1881082bb3"
+  },
+  "to_id": "art:musicjug-genesis-feedback-2026-08-31"
+}

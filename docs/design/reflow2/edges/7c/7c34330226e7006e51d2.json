@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:da0586978a20675998f7660d2f1664b60781491007cf2fdda871159b1cfafa70",
+  "edge_type": "REALIZES",
+  "from_id": "art:latent-promotion-test",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "verified"
+  },
+  "to_id": "cap:latent-surface"
+}

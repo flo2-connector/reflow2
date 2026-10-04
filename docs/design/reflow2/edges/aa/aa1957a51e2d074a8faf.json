@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:3ae28c7f294913d90784f3f08142803e5e91bb87f9b6ae4053802488470b923c",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:idea-a-shell-driven-agent-approves-reads-once-and-confirms-each-write",
+  "properties": {
+    "approved_at": "2026-10-01",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

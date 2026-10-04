@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:bcc82edb9045e82ebbed0b0b5fcf141872dafc8a3130ce6589c66bd51cb30be3",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:test-vocabulary-reach",
+  "properties": {
+    "covers": "whole"
+  },
+  "to_id": "ver:vocabulary-reach-is-validated-against-known-cases"
+}

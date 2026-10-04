@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:8e1f4ad73454cf3d4ae98ab16f16d73831aa548c74f25f22189afa0bd0958fc7",
+  "node_id": "ver:genesis",
+  "node_type": "Verification",
+  "properties": {
+    "kind": "verification",
+    "level": "integration",
+    "method": "test",
+    "name": "genesis.rs",
+    "status": "passing"
+  }
+}

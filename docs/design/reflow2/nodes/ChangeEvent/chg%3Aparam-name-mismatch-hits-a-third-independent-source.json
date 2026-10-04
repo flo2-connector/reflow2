@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:da5c1d988e7d41da0821c0f7d91cb11f0157726725e3c1d5354d1f307d53ff42",
+  "node_id": "chg:param-name-mismatch-hits-a-third-independent-source",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "resync",
+    "name": "A tenth parameter-name mismatch (add_component.description → Component.purpose) arrives from a third independent source in one day, and is linked to its expensive sibling: the same helper-vs-schema disagreement about a node type's SCOPE rather than a field name. Filed under `resync` because nothing about the system changed — only the design's knowledge of an existing defect — which the enum still has no word for (fact:defect-change-event-has-no-type-for-a-field-reported-defect)."
+  }
+}

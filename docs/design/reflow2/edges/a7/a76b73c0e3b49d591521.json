@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:f01300a21e086a652b9df5c920795b67ad68f6ac2c4315d4e4f60f39f9dcf094",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-lineage-gate-moves-to-the-merge-base-too",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:coherence-gate-test"
+}

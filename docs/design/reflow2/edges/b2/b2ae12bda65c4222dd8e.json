@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:dc1172af5252189404fcb6270f9da6d59dfe77454967fd25db5992e077b6648a",
+  "edge_type": "CHANGED",
+  "from_id": "chg:accept-eight-requirements",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "req:concurrent-planning"
+}

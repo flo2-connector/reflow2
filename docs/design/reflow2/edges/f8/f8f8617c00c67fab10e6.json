@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:b58bafafa1640f79785822a452d5a2646a85b6174f597162ba68c28a807266b6",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:content-manifest",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:export"
+}

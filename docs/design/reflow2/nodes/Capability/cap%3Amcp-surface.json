@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:05d9842b35a6f43fd487d9631b9fe9519e9aa6e73c7ee0da77365c148ff90ee3",
+  "node_id": "cap:mcp-surface",
+  "node_type": "Capability",
+  "properties": {
+    "description": "Every capability as a typed tool for an agent.",
+    "name": "Serve the loop over MCP",
+    "provenance": "authored",
+    "status": "verified",
+    "tier": "operational"
+  }
+}

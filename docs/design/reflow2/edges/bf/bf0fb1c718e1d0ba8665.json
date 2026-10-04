@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:76813799dfd00d21ba8f483d80135819ebf5e49d91fbe16a3e52681c2425582e",
+  "edge_type": "CAUSES",
+  "from_id": "fact:a-skill-is-loaded-only-when-something-already-in-hand-demands-it",
+  "properties": {
+    "basis": "observed",
+    "evidence": "CORRECTED 2026-09-10, having first been drawn `validated` against this node's STRONG form. `fact:agents-do-self-invoke-skills-at-scale-and-the-hook-not-the-catalogue-predicts-which` refutes that form at n=93 sessions: 88% of skill loads had no slash command behind them, so agents DO self-invoke. The WEAK form survives and is what explains today — loading is driven by AN INSTRUCTION ALREADY IN CONTEXT, and the always-injected SessionStart hook is that instruction. Today fits it cleanly: everything the hook named was used (open_questions, loop_status, where-am-i, unclaimed_findings, link_artifact, detect_gaps) and find_tools, which the hook does not name, was not called once across a full day of changing the tool surface. Downgraded to `hypothesis` because one session is one data point and the session is also the instrument.",
+    "validation_status": "hypothesis"
+  },
+  "to_id": "fact:the-builder-reads-source-where-a-consumer-has-only-the-surface-and-find-tools-returned-the-negation"
+}

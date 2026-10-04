@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:4df50eac2ab17a959a16a80006960bb2391a1c4cc52428d1b72c5f164fd2899c",
+  "node_id": "chg:every-leaf-component-points-at-its-file",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "name": "Every leaf component points at the file that realizes it — the mapping wall_check reads is completed",
+    "subject": "record"
+  }
+}

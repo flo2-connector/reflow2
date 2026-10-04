@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:8c91b2cc280466df47cadb1b6b92760104af68e4fd31f95f8749801a55651038",
+  "edge_type": "GOVERNED_BY",
+  "from_id": "cmp:tools-claims",
+  "properties": {
+    "note": "A tool-surface slice exposes functions its core modules implement; holding none of its own is correct.",
+    "ruling": "parks"
+  },
+  "to_id": "dec:the-tool-surface-slices-hold-no-function-of-their-own"
+}

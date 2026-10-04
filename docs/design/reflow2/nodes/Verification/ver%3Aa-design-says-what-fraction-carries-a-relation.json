@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:0c5628c0bbb66a7547f12bd0ed6e4d9a1eb9b8c8aebc3a011f91ed52888eaf20",
+  "node_id": "ver:a-design-says-what-fraction-carries-a-relation",
+  "node_type": "Verification",
+  "properties": {
+    "findings": "6 passed, and confirmed against the LIVE reflow2 graph: 11 of 208 Requirements carry an incoming VERIFIES (5.3%), and `Requirment` is refused with 'Did you mean one of: Requirement?' rather than answering 0 of 0.",
+    "kind": "verification",
+    "last_run_at": "2026-09-09",
+    "level": "integration",
+    "method": "test",
+    "name": "A misspelled node type and an undeclared edge type are both REFUSED with near-misses, direction is part of the question, an empty population reports no fraction at all (6 cases)",
+    "status": "passing"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:94777fd774a63f316cac093d76401b97db40d03211e2e2526e3a432b0b927015",
+  "edge_type": "INVALIDATES",
+  "from_id": "chg:the-gate-survives-a-directory-and-honours-its-exit-codes",
+  "properties": {
+    "at": "2026-08-19",
+    "note": "Reported by dev_storyflow's api-boss sidekick: reflow2_check.py crashed on a directory Artifact and reported the crash as \"GATE FAILED\". The fact says \"FIXED THE SAME DAY, both halves\" — a directory is now reported present-and-unhashable (no_baseline) rather than a fault, and faults stop being misfiled as gate failures. This ChangeEvent is that work. Edge drawn 2026-08-28 during the field-defect sweep."
+  },
+  "to_id": "fact:defect-the-gate-crashed-on-a-directory-artifact-and-misfiled-it-as-gate-failed"
+}

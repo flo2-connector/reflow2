@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:4e84b7ee75115da88dc42a44bdb284ca0b0d5f7abb97e2b35195e4a4cd5adad4",
+  "edge_type": "REALIZES",
+  "from_id": "art:hxm-program-feedback-2026-09-10",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:report"
+}

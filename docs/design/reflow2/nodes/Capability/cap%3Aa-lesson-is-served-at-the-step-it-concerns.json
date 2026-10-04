@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:9a88b4b81634502a3f6901c9817d7c69faa36d67ba6876af4a174292a360763d",
+  "node_id": "cap:a-lesson-is-served-at-the-step-it-concerns",
+  "node_type": "Capability",
+  "properties": {
+    "description": "BUILT AND VERIFIED, 2026-09-12 (increment 438; one correction the same day). DesignRule and TemporalFact carry an optional `steps` list naming served skills and/or served tools; record_finding and add_design_rule accept it and REFUSE a name that is neither (with the nearest served names), so a lesson cannot be filed where nothing will serve it. `get_skill` answers with the skill's body plus `lessons`: every rule or fact this design holds whose steps name that skill, newest first, each with id, name, one paragraph of statement and the node it hangs on. The tool list this server serves (`list_tools`, overridden to mirror rmcp's generated body) appends, to each tool's description, the lessons this design holds for that tool — read in the moment before the call. An empty design serves the surface unchanged. A finding whose `valid_to` is set has stopped being true and is NOT served — a closed defect is history, not a lesson (found the day the plan_epoch defect was fixed and closed and its fact went on being delivered). Modelled after the reader lens that already rides get_skill: best effort, a read lock, never able to withhold the skill or the listing. Module: crates/reflow2-mcp/src/lessons.rs. Live on reflow2's own graph: where-am-i carries the dev-box harness lesson; export_graph carries the format-first fact and the export-once rule.",
+    "name": "A design's lessons name the skill or tool they concern, and get_skill and the tool list deliver them there",
+    "provenance": "authored",
+    "status": "verified",
+    "tier": "operational"
+  }
+}

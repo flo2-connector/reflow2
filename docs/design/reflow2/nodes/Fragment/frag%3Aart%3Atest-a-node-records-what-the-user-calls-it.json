@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:1ea7d1e7224b5d4b9ca40932e3750f96dc658d85e814435798003d821fdcb2f8",
+  "node_id": "frag:art:test-a-node-records-what-the-user-calls-it",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "note_kind": "author",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered a_node_records_what_the_user_calls_it.rs — the user's own word reaches the node, a second word never costs the first, and passing none is refused rather than treated as a clear"
+  }
+}

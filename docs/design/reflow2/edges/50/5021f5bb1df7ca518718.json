@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:5a3c87c078eb47960dfa4e180859e911af8e2da442afc9c1abd8eb1d88059084",
+  "edge_type": "CHANGED",
+  "from_id": "chg:reflow2s-repository-moved-to-the-flo2-connector-organization-2026-10-03",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cap:reflow2-installs-as-one-plugin-for-claude-code-and-grok"
+}

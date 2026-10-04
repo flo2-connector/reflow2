@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:78b59479c042301732852862bbb77530dd13fc26bcb60937f396cc2c0ad8329a",
+  "node_id": "chg:accept-efb387c577078517",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "defect_fix",
+    "commits": "b2a524d7d9745ea65079833fdd27b0710a57b205",
+    "name": "the fixture sent outcome 'passing' (a status), which the handler silently dropped, so reconcile_verification was never really driven; now 'passed'",
+    "subject": "system"
+  }
+}

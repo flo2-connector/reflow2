@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:7fb2f73eab55b083b63d33817c2a03c9a5f052b4ad84f18618558bb8967027a6",
+  "edge_type": "SCHEDULED_FOR",
+  "from_id": "cap:arrival-delta",
+  "properties": {
+    "modality": "required",
+    "recorded_at": "2026-07-31"
+  },
+  "to_id": "rel:v0190"
+}

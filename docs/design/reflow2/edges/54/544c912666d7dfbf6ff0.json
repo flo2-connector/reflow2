@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:a584e812466d05a1b1803e922d93808738bfa82e84b3a948e67a3ccd7b903e4b",
+  "edge_type": "REALIZES",
+  "from_id": "art:test-every-one-shot-mode-resolves-its-design-first",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:a-code-folder-names-its-design"
+}

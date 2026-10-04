@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:bb1bda5e4c80e672b435a587b52f81a90ac4352719d3f49942975d3d0a00b015",
+  "node_id": "frag:art:test-a-signature-is-the-callers-own-through-every-writer",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered a_signature_is_the_callers_own_through_every_writer.rs (the class test over every served writer)"
+  }
+}

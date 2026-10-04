@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:cccc87ef73659be753c2bfebe20812f30d82593690de54a42721b1455a39d97d",
+  "edge_type": "CHANGED",
+  "from_id": "chg:record-change-can-state-its-axis",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cmp:temporal"
+}

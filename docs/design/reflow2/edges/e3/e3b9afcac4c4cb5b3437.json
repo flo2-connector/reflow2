@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:4d8bfbea93882a3c8f63a26f3dc4cc1afb7773a5713e12a49d99ea5c1d37039e",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:exploratory-staging",
+  "properties": {
+    "confidence": 0.8,
+    "evidence": "exploratory-staging left the 'should an idea be its own KIND' question turning explicitly on whether any computation would read the distinction. Cluster-search over an idea's neighbourhood is a candidate for exactly that computation, so the older question cannot be settled until this one is answered. Drawn 2026-08-21 by the brainstorm skill's own linking step.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "dec:idea-do-ideas-form-a-graph-or-only-a-list"
+}

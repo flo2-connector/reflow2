@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:fb48e9ba8d73dbf2d33e5de77296121f857c5dfc0dc34277b2a4cf9caaf203cb",
+  "node_id": "art:topic-skill",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "document",
+    "location": "getting-started/skills/topic/SKILL.md",
+    "name": "topic/SKILL.md — the thin instruction leg of the /topic view: one call, render in the reader's domain, always read out not_found, write nothing",
+    "status": "realized"
+  }
+}

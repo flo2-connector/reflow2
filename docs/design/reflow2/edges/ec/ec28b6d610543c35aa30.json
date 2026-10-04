@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:e3c25b42d4c754a451ad2297e7b7fdeb3b9e8e7cc22da50e05ac394ccec9629c",
+  "edge_type": "CHANGED",
+  "from_id": "chg:requirement-lineage-capture",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "cap:change-an-existing-feature"
+}

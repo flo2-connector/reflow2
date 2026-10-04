@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:d189c95f2d53c7f54b52c9fc775c2b087875f0e3815add007e692d1ff756b892",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:agent-navigates-content",
+  "properties": {
+    "evidence": "It applies that decision's division of labour to the blob: navigating content is 'the LLM speaks', recording where it landed is 'the graph remembers'.",
+    "optional": false,
+    "weight_basis": "evidence"
+  },
+  "to_id": "dec:three-party-checks"
+}

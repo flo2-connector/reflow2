@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:8707d7fab3bc576043eedc8df15971d9b469cb806fac0b13dd56ca1f43b9fce1",
+  "node_id": "req:a-report-can-name-what-was-talking-to-what",
+  "node_type": "Requirement",
+  "properties": {
+    "lineage": "original",
+    "name": "A person reporting a problem can name what was talking to what, without going through the channel that may be broken",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "When someone reports a problem with reflow2, they SHALL be able to state which client connected, which server answered, and which protocol revision the two agreed to speak — read from a record the server itself wrote at connection time, rather than assembled by hand from whatever files happen to be nearby.\n\nThat record SHALL be reachable without a working structured tool reply, because the channel being reported on may itself be the fault.\n\nIt SHALL record what the negotiated revision CONTAINS, and SHALL NOT assert what the client actually reads: a negotiated version is what a client claims to speak, never evidence of what it implemented.\n\nDriven by the 2026-08-27 field report, which had to hand-assemble a four-row table of sources to answer this question, one of which was stale and misleading.",
+    "status": "accepted"
+  }
+}

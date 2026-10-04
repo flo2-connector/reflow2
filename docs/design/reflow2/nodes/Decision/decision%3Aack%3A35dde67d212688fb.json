@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:2a61a219a93ccedcd5a2f7466796dea8e4eaed0741da6f7e27d7c82aa4f32fc2",
+  "node_id": "decision:ack:35dde67d212688fb",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Accepted the gap gap:35dde67d212688fb.",
+    "name": "Reviewed: gap:35dde67d212688fb",
+    "rationale": "Built after v0.12.0 was cut, so it ships in the next release — dec:intent-preserved settled that a post-cut component is answered by the next manifest rather than backfilled into a shipped one. Same disposition as cmp:degraded, cmp:skills and cmp:sync before it.",
+    "status": "accepted"
+  }
+}

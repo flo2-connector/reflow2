@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:42d02061d68ee7073c8886f682a8797b026a288748def402a32f0713a034c020",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:the-gate-runs-every-test-binary-before-reporting",
+  "properties": {
+    "approved_at": "2026-08-25",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

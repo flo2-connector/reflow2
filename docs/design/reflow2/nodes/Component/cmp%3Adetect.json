@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:bcf92a991bc2a6a5d2620b720074b6fad2baf9bcd5426dbb79e79b3c378202d3",
+  "node_id": "cmp:detect",
+  "node_type": "Component",
+  "properties": {
+    "kind": "module",
+    "level": "component",
+    "name": "detect",
+    "provenance": "authored",
+    "purpose": "The detect module.",
+    "status": "planned",
+    "tier": "operational"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:cd112936b0441edcb22f3e54d987f9c2dcd0cf17759f1d9839f02676835bd251",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:should-a-design-be-able-to-say-it-describes-something-that-already-exists",
+  "properties": {
+    "approved_at": "2026-08-15",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

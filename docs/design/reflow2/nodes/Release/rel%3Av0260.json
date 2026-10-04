@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:de8f1a69f760ee9b9de0d3064be78a621b87f03e0e2672108aa24e81c91dd7bf",
+  "node_id": "rel:v0260",
+  "node_type": "Release",
+  "properties": {
+    "name": "v0.26.0 — governance becomes askable, and the server says whether it is stale",
+    "status": "retired",
+    "unit_type": "binary",
+    "version": "0.26.0"
+  }
+}

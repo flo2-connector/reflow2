@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:c9afc587016280dfa8e5e97da1f3b69c9d9d682c4245d07db766e40183ed81ec",
+  "edge_type": "REALIZES",
+  "from_id": "art:artifact-intent-test",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:artifact-declares-its-own-shape"
+}

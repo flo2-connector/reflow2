@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:b23505b555bb180308f8380046428fdfa68f1009da4af0f70e7bdea1a9b941cb",
+  "edge_type": "VERIFIES",
+  "from_id": "ver:a-read-only-server-with-no-store-serves-the-latent-surface",
+  "properties": {},
+  "to_id": "cap:a-surface-can-refuse-every-write"
+}

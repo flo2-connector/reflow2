@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:dbb8ae7bd57b8c79042f94584fa0283ff624434e2a9780c3a82040a3a406bda3",
+  "node_id": "epoch:kit-manifest-refreshed",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "epoch_type": "revision",
+    "name": "The installed kit was refreshed rather than the gap acknowledged, so ver:kit-manifest-agrees went failing → passing (2026-08-07)",
+    "sequence": 286,
+    "status": "arrived"
+  }
+}

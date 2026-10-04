@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:f0c280deb29bcd35f313ea8191dcf1c63852bd08c15e60996157671242aab9f2",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-name-is-not-a-report",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "ver:loop-nudge"
+}

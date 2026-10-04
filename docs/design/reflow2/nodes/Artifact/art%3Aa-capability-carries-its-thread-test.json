@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:94a21828b5d4b61ad5898f9612a68f7dc4074a5c14ff446894eaf79c723a0732",
+  "node_id": "art:a-capability-carries-its-thread-test",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "description": "Three probes on `add_capability(satisfies=, allocated_to=)`. THE CASE: one call creates the node and draws both edges, read back through `propagate_from` rather than from the reply that claims to have drawn them — an echo that lies and an edge that exists must not be the same assertion. OMITTED: the parameters are additive and a capability with no thread yet is a normal thing to write. REFUSED: an id naming nothing is rejected and NOTHING PERSISTS, checked by reading the node back as null.\n\nThat third probe is the one that matters. `dec:idea-should-a-creation-call-carry-its-own-golden-thread` warned in its counter-argument (4) that \"inline links move failures earlier but make them coarser — a typo in one `satisfies` id refuses the capability itself\". This test makes that a pinned, deliberate trade rather than a hypothetical, and chooses it over the alternative (write the node, skip the edge, warn) because half a thread to a nonexistent id is worse than the retry the parameter removes.\n\nOBSERVED FAILING FIRST against the unfixed binary, 2026-09-10: `unknown field 'satisfies'` / `unknown field 'allocated_to'` on two probes, the third passing vacuously.",
+    "location": "crates/reflow2-mcp/tests/a_capability_carries_its_thread_in_one_call.rs",
+    "name": "a_capability_carries_its_thread_in_one_call.rs — the thread drawn, omitted, and refused",
+    "status": "realized"
+  }
+}

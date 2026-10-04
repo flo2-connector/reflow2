@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:b21e59b0e6d6a37458cbc45c26e7a94109088e74583a4b01e69485c35724a457",
+  "edge_type": "COMPLEMENTS",
+  "from_id": "rule:field-feedback-issues-are-root-caused-and-ideas-are-brainstormed",
+  "properties": {
+    "evidence": "Two rules about the same input, on different axes: the priority rule says WHICH feedback is read first; this one says HOW each piece is read once it is (issues -> root-cause, ideas -> brainstorm). Neither subsumes the other; together they are the whole feedback-triage practice. Both set by Anthony."
+  },
+  "to_id": "rule:feedback-sources-have-a-priority-order-and-anthony-set-it"
+}

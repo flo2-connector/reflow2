@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:4aec1221f681b0b674151cd363a3691020586b46b464b1ae430ed62d47b57852",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:idea-a-design-apart-from-its-code-knows-where-its-implementation-is",
+  "properties": {
+    "approved_at": "2026-09-25",
+    "authored_at": "2026-09-25",
+    "roles": [
+      "author",
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:7e0d9d7e37c9d04699015283bc99c33ad09211322a6e7d29dd988fd3397a1e62",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:every-served-report-is-reachable-from-an-instruction",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:skills"
+}

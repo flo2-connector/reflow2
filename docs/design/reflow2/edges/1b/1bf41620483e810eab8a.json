@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:6305e39af1673a3e9daed9e8d9f61ce7b00c2227e8d2ebda55bd9f93a8410f81",
+  "edge_type": "CHANGED",
+  "from_id": "chg:get-skill-serves-a-slash-command-2026-09-24",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cap:a-refusal-maps-a-command-alias-to-what-is-served"
+}

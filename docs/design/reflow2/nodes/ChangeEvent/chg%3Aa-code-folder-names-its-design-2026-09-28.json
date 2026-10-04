@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:2686f1414bcb0c9ee7dbccaa26992c108ef01b1d100fa0a70820a970ab7e8140",
+  "node_id": "chg:a-code-folder-names-its-design-2026-09-28",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "detected_at": "2026-09-28",
+    "name": "A code folder names the design it implements in .reflow2.toml, and a client started there attaches to it — over any local store, checked, and said to the agent",
+    "rationale": "Combined plan position 3, first slice, on @ajs's word (\"start on step 3\") and dec:the-pointer-file-is-dot-reflow2-toml-and-the-first-slice-attaches-one-design.\n\nOBSERVED BEFORE THE CHANGE on the released 0.72.0 binary: a folder holding a local store and a .reflow2.toml naming another design, started with the machine-wide entry's flags (--graph-path .reflow2/graph --shared --only-if-present), attached to the LOCAL store (design_identity returned its id) and spawned a shared server for it. That is fact:an-agent-opened-in-a-moved-designs-folder-is-served-the-frozen-store-2026-09-27, for any folder that now carries a pointer. A folder WITHOUT a pointer still opens whatever store it holds; the pointer is how a moved design's folder is told.\n\nThe start-up check costs one design_identity call, recorded as a write on flo2.io (fact:checking-which-design-a-server-holds-takes-a-write-marked-call-2026-09-28).",
+    "rationale_basis": "contemporaneous",
+    "subject": "system",
+    "summary": "New module src/pointer.rs: `.reflow2.toml` beside a folder's `.reflow2/` ([design] id + address; optional [[also]] id, address, role), parsed with the toml crate under deny_unknown_fields, refusing by name anything that is not a pointer (a key in particular). main.rs reads it for every client start (not --http or --serve-shared servers) BEFORE the latent check and --shared: with a pointer it asks the server at the address which design it holds (design_identity), attaches NOTHING on a different design or a refusal (the degraded surface says why), and otherwise runs the remote client with a notice put in front of the handshake instructions (proxy::run_remote_with_notice): which design, that a local store in the folder was not opened, and any [[also]] designs listed but not opened. A server that cannot be asked at start is attached to anyway, with that said."
+  }
+}

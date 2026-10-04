@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:e81c02622aee4fe60295599924176d2f5ed23a7aa7a2b204f707985278a4aada",
+  "node_id": "req:a-hub-flags-an-identical-file-in-two-projects-when-a-project-changes",
+  "node_type": "Requirement",
+  "properties": {
+    "concern": "core",
+    "kind": "functional",
+    "lineage": "original",
+    "name": "When a project's design changes, the hub flags any of its newly registered or changed files whose checksum matches a file in a sibling project",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "When the hub sees that a child's committed design has moved, it compares the checksums of the artifacts that are new or changed since its last look against the artifacts registered in every sibling design. An identical checksum in two projects is flagged as a possible duplicate implementation, naming both projects, both artifacts and both locations. The flag goes to the hub's list of what is owed and to both owners, and is raised at a boundary rather than on every read. It carries a disposition (\"intentional\", \"one should reference the other\", \"to merge\") so a deliberate duplicate is not raised again. Purely mechanical: checksums reflow2 already records, no model, no reading of file contents. Proportional to change: only what moved is compared, and only when it moves. Anthony, 2026-09-22, promoting signal 1 at trigger (c) of dec:idea-how-does-a-hub-learn-two-of-its-projects-duplicate-or-contradict-each-other.",
+    "status": "accepted"
+  }
+}

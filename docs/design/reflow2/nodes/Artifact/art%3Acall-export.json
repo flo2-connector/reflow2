@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:273161fcaa6cab2d4427ff8b7356b964a31880988fff7bbd527e546224739b6f",
+  "node_id": "art:call-export",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "description": "Step 2 of the --call door plan (req:a-writing-call-keeps-the-committed-export-current). `find` answers, before anything is opened, which file a WRITING call keeps current: `--export-to FILE` when given; otherwise the --export-to of the project's MCP configuration (.mcp.json, opencode.json, .vscode/mcp.json, .grok/config.toml — the files tools/reflow2_init.py writes, held in step by a unit test) from an entry whose --graph-path is this call's store, resolved against the project the store sits in, with ${workspaceFolder} and ~/ expanded; otherwise nothing, never a guess (the 2026-09-12 ruling that the write-through path is explicit). Configurations naming different files are refused with nothing opened. `report` turns the write-through's Flushed outcome into ONE stderr line and the exit code: 0 when written, 3 (EXPORT_NOT_WRITTEN) when the write landed and the export was declined or could not be written. It exports nothing itself: the export is ReflowService::keep_export_current_at_exit + export_now, i.e. the server's own AutoExport run synchronously.",
+    "location": "crates/reflow2-mcp/src/call_export.rs",
+    "name": "crates/reflow2-mcp/src/call_export.rs — which export a writing --call keeps current, and the line it prints",
+    "status": "realized"
+  }
+}

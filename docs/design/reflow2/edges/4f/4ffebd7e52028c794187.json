@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:183a85977d315091cd48c6307d7f1264bf2e203305347a5f85830677f594ec7a",
+  "edge_type": "CAUSES",
+  "from_id": "req:a-finding-says-when-the-state-it-reports-is-normal-for-the-phase",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "The requirement was accepted from a report's framing without the artifact count that decides whether the case it describes can arise, and the detector's own guard makes that case impossible.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:the-per-capability-build-question-is-already-silent-while-nothing-is-built-so-the-promoted-sentence-was-unreachable"
+}

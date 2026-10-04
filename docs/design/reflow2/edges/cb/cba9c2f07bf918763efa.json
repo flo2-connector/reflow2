@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:748b5d17943f6005bb6ac04de5140900f79e92c61211ae00ae201bf2b5fd5b7b",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:change-an-existing-feature",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:skills"
+}

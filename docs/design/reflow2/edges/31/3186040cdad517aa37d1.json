@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:96473b05c70500eccfe2b1997477e8dd47c9c7dda95ad8443b68b6ec78a8ff80",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:test-an-export-says-where-it-was-taken",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:test-an-export-says-where-it-was-taken"
+}

@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:a33f415f5a1159616f087e5522b3079b1ec3f10de451babb2d8ef7d88e308e02",
+  "edge_type": "AT_EPOCH",
+  "from_id": "snap:epoch:preserved-on-write:fact:a-local-feature-error-was-worked-around-instead-of-read-as-the-ci-contract",
+  "properties": {},
+  "to_id": "epoch:preserved-on-write"
+}

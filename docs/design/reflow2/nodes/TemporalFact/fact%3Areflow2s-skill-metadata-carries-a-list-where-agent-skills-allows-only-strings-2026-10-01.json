@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:79a61a27be5ce38a3d030c1d96101ee9bbf180d31807b58b019d5fcd0ef54b4a",
+  "node_id": "fact:reflow2s-skill-metadata-carries-a-list-where-agent-skills-allows-only-strings-2026-10-01",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "defect",
+    "name": "DEFECT (measured 2026-10-01): every served skill's frontmatter carries `metadata: {composes: [..]}`, a LIST, where the Agent Skills spec allows `metadata` only as a string-to-string map — a strict client may skip all 32 skills, and skill_lint has no Agent Skills check",
+    "source": "served skill text (e.g. get_skill where-am-i, brainstorm, plan-increments return `metadata: {composes: [STANDING, REPORTS], audience: anyone, summary: …}`); agentskills.io specification (metadata: string→string map), re-read in the 2026-10-01 standards look; Agent Plugins spec §7.1 (a non-conforming skill is skipped)",
+    "statement": "MEASURED 2026-10-01. The served skills open with frontmatter such as `metadata: {composes: [STANDING, REPORTS], audience: anyone, summary: \"…\"}`. The Agent Skills specification (agentskills.io/specification, unchanged since 2026-08-04) defines `metadata` as a map from string keys to STRING values. `composes` is a YAML list, so every skill carrying it is outside the spec.\n\nWHY IT MATTERS:\n- req:reflow2s-skills-conform-to-the-agent-skills-specification (accepted 2026-09-28) says reflow2's own additions are carried \"in the way the specification allows for extensions, never in a way that breaks a conforming reader\".\n- The Agent Plugins spec §7.1 says a skill that does not conform to Agent Skills is SKIPPED. So once reflow2 is packaged as a plugin, a strict client could load none of the 32 skills.\n- tools/skill_lint.py enforces reflow2's own contracts but has no Agent Skills conformance check yet, which that requirement asks for.\n\nNOT ROOT-CAUSED AND NOT FIXED. One obvious repair is to encode composes as a string (e.g. \"STANDING,REPORTS\"). Whether the build's skill composer (build.rs) reads that field, and how, has to be checked before choosing one.",
+    "subject_id": "req:reflow2s-skills-conform-to-the-agent-skills-specification",
+    "valid_from": "2026-10-01"
+  }
+}

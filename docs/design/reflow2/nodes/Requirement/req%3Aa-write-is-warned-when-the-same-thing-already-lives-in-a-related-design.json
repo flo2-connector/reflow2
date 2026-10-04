@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:921e94e25a61142d04f1eab0406d300dd701dbd7e7ba9543c8623e3e8957d6b1",
+  "node_id": "req:a-write-is-warned-when-the-same-thing-already-lives-in-a-related-design",
+  "node_type": "Requirement",
+  "properties": {
+    "concern": "core",
+    "kind": "functional",
+    "lineage": "original",
+    "name": "A write is warned, not refused, when the same thing already lives in a related design, and is told where to reference it",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "When a design knows which other designs it is related to (a hub and its children, siblings under one hub, or a declared parent), writing a new requirement, decision, capability or finding also checks those related designs for the same thing. If a close match exists elsewhere, the write still succeeds, and the reply names the design and node where it already lives, so the writer can reference it there instead of keeping a second copy. ADVISORY ONLY: it never refuses, because matching across designs that use different words is not reliable enough to block on. Its false-alarm rate should be measured before anything stricter is considered. Anthony, 2026-09-22, promoting shape (a) of dec:idea-a-fact-has-one-home-across-a-family-of-designs-and-reflow2-enforces-it: the invariant has to ship in reflow2, so a hub owner (Alex at work included) never has to remember a rule.",
+    "status": "accepted"
+  }
+}

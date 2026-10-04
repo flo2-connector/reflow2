@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:b7d93a136d4fb66adc20a1e6cec966652dc68febd0711e2d1dc8483f1e75da96",
+  "node_id": "cap:a-reply-takes-the-shape-its-client-can-read",
+  "node_type": "Capability",
+  "properties": {
+    "description": "In the server's call_tool, after the handler answers and before the reply leaves, the shape of the `content` block of a JSON result is chosen by the name the client gave at handshake (clientInfo.name, replayed verbatim through the shared proxy so the daemon keys on the real client): a name starting `grok` gets the payload pretty-printed in the text block as well as structuredContent (`duplicate` — the shape two skill tools already used and the same Grok Build session that showed the outage shows reaching the model in full); a name containing `opencode` gets an EMPTY text block (`empty` — measured in its source: it fills the text from structuredContent only when the text block is empty); every other client keeps the one-sentence signpost and pays nothing. `--content-policy signpost|duplicate|empty` (env REFLOW2_CONTENT_POLICY) overrides for every client, for one nobody has named; a `--shared` client forwards it to the daemon it starts. Only the exact signpost shape is rewritten — prose tools, refusals and already-duplicated results are untouched. The signpost itself now names the flag, so the person stuck reading it learns the way out where they are stuck. Bounded by reply_budget: at most twice a 30,000-character reply, never twice the 157 KB that ruled out always-duplicate on 2026-08-23. Module crates/reflow2-mcp/src/content_policy.rs; wire proof tools/test_content_policy.py.",
+    "name": "A reply takes the shape its client can read — the content block is chosen per client",
+    "provenance": "authored",
+    "status": "realized",
+    "tier": "operational"
+  }
+}

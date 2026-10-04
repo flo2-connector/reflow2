@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:0da1195a943cd768aed5f7959da08395d2c085217d7f692e729972aa1eb24e27",
+  "node_id": "dec:the-loop-speaks-on-loop-status-not-inside-every-read",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Anthony, 2026-09-05: yes. This REVERSES dec:read-hint-shape option C for the loop-DEBT half of the read-side hint. service.rs:3731 read_loop_hint computed g.loop_status() on the first read after every write (cache keyed on write_gen, bumped on every write-lock). Measured: 7.7 s per write-to-read boundary on a scratch store, ~12 s on the live daemon, 9.5 boundaries per session across 61 real sessions - 1.2 to 1.9 minutes of unrequested rollup per session, decorating reads that cost 1-4 ms. The loop already speaks in two places - the loop_status tool every session is instructed to run, and the Stop hook. WHAT IS KEPT, and why this is not a full reversal: the same function also carries record_moved - the notice that a colleague's export landed - which Anthony chose on 2026-08-13 to ride on ordinary reads precisely so a session learns it without thinking to ask (cap:the-record-moved-reaches-an-ordinary-read). That half stays, gated on generation as today; its cost is the sync read, which dec:an-unchanged-sync-target-is-not-re-parsed makes near zero. cap:read-loop-hint narrows to record_moved only. The write-side static loop_hint sentence is untouched.",
+    "kind": "choice",
+    "name": "DECIDED - reads no longer recompute loop_status for a hint; the loop speaks when loop_status is called. record_moved stays on reads.",
+    "rationale": "Chosen over computing the debt hint asynchronously or from incremental counters because it is the smallest change that meets con:a-read-after-a-write-costs-at-most-twice-the-same-read-warm outright and removes work rather than doing it faster. The record_moved half is kept because it is a different feature with its own capability and its own ruling, and removing it would silently undo a choice the measurement gave no reason to revisit.",
+    "status": "accepted"
+  }
+}

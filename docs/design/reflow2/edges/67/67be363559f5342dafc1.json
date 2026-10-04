@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:c07bd0bf944afd945648d2cc04c2b66be68da5c7c1a6c72f5eef56cbfc8a7939",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:idea-an-acknowledgement-cannot-state-its-own-expiry-condition",
+  "properties": {
+    "authored_at": "2026-08-11",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:claude-code"
+}

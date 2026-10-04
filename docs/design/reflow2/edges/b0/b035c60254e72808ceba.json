@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:736747041248a409293fbcad830fc710863e0a9a8df607e0232a0ea6b910e89a",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:a-question-is-addressed-to-a-person-and-records-who-answered",
+  "properties": {
+    "approved_at": "2026-09-29",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

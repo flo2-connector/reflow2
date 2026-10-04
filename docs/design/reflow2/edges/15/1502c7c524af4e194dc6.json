@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:52a9e0a09cae35a15434782392de436573d17b03964139b16b92c356bc10a1b0",
+  "edge_type": "REALIZES",
+  "from_id": "art:service",
+  "properties": {
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:a-write-is-credited-to-who-it-was-for"
+}

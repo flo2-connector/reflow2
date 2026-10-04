@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:b6f4e8921b2dcd72ef69d97ea5d3e2d82499e714423de408e34c194e66f1dff1",
+  "node_id": "req:as-built-honest",
+  "node_type": "Requirement",
+  "properties": {
+    "concern": "core",
+    "designation": "internal",
+    "kind": "functional",
+    "lineage": "original",
+    "name": "As-designed vs as-built divergence is detectable",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "Real files on disk are registered as checksummed Artifacts realizing capabilities, so drift between the design and the build is visible rather than assumed.",
+    "status": "accepted"
+  }
+}

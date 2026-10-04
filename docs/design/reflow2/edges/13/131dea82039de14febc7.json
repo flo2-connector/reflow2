@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:94c324c592f31ce8b7a559556f01cc634ebaa8c160f4b547379e0eae4335b8a9",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-same-paragraph-fifty-times",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cmp:tools-coherence"
+}

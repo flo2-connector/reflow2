@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:bcd8f0281347e6ca24a1eb87b214aaabdf63d7b35f6ee472edeeb74ba6836eb8",
+  "node_id": "dec:a-windows-build-waits-for-a-windows-user",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "The release matrix builds linux-x86_64 (ELF) and macos arm64/x86_64 (Mach-O); on Windows the installer refuses with \"build from source\". Adding a windows-x86_64 target is mostly CI configuration, but RocksDB's C++ build on Windows is the unknown that can cost a day, and a target in the matrix is a promise that has to be kept green on every release. No user has asked. Anthony, 2026-09-12: go with the recommendation — not until someone on Windows asks. The trigger is a request from a Windows user, at which point this decision is superseded and the target is added.",
+    "kind": "choice",
+    "name": "A Windows (PE) build of reflow2-mcp waits until someone on Windows asks for it",
+    "rationale": "Raised by Anthony's question about executable formats (PE / ELF / Mach-O) on 2026-09-12 while the local profile moved to a release binary (increment 430). Recorded so the absence of a Windows target reads as a choice with a trigger rather than an oversight.",
+    "status": "accepted"
+  }
+}

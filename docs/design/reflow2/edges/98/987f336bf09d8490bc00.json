@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:7afde160e645cd983b858fc0ffc73ba4e52a09397b8fec6ef59a4aa727244ed6",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-should-reflow2-ship-a-companion-for-the-file-side-work-it-refuses-to-do",
+  "properties": {
+    "evidence": "The companion idea asks WHO does the file-side work and takes the no-I/O boundary as given; whether a companion is needed at all is decided by where this question puts the boundary. Its own unresolved note (\"the useful verb needs the graph AND the disk in one process\") is this question stated from the other side.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "dec:idea-should-reflow2-measure-files-itself-and-what-the-no-file-io-rule-actually-protects"
+}

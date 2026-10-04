@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:f684cf134a4035bd7fbecbfde3e7c8a10147845c89fe0462f3525a26f108d5c1",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:step-4-is-built-on-real-runs-with-no-threshold-and-unscored-good-news",
+  "properties": {
+    "approved_at": "2026-09-22",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

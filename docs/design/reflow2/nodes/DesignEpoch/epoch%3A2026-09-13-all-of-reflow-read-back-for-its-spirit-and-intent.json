@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:6de53efa02b6b30af474bb021347ca3b7dd07935d3bd945109b5e7da00c4ff0f",
+  "node_id": "epoch:2026-09-13-all-of-reflow-read-back-for-its-spirit-and-intent",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "description": "Anthony, 2026-09-13: \"relook at the original reflow, particularly workflows and tools, but I'd like to review all of reflow. Many times a project can drift over time away from its initial purpose. I'm not saying to adopt or reimplement, but I want to see if we've maybe got away from the 'spirit' and 'intent' of the original reflow.\" The July read (epoch:reflow-workflow-review, seq 220; docs/reflow-audit.md) asked \"does reflow2 have this?\" per workflow and tool. This one asked what reflow was FOR, what it warned against, where reflow itself drifted, and whether reflow2 has drifted the same way. Method: the three founding documents read directly, five independent readers over the rest of the repo (workflows+steps, tools+schemas+specs, definitions+templates+CLAUDE.md+changelog, docs, scientific-reflow+test_systems+tests), each returning quoted evidence; reflow2's side read from its own graph. Output: docs/reflow-spirit-review-2026-09-13.md (registered, parked) and fact:reflow2-keeps-reflows-spirit-and-inherits-its-one-real-drift. Nothing adopted, nothing reimplemented, on his word.",
+    "epoch_type": "revision",
+    "name": "All of the original reflow is read back against reflow2 for its spirit and intent, not item by item — and reflow2 is found faithful except in the one way reflow failed",
+    "sequence": 444,
+    "status": "arrived"
+  }
+}

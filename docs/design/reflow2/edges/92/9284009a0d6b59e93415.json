@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:e2a82e7e1d6d780ea1cbf6ae5d91e0b62cd844412a1a4ef43ddcaaa6b0894a4f",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-degraded-server-recovers-when-its-cause-clears-and-readiness-tells-the-truth",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cap:release-publishes-a-container"
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:b94de151f77e0e0e8702a6c397fdf0ab69dd1580fb958753a7e4c455b47a373e",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:a-diff-is-read-as-a-design-change",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:propagate"
+}

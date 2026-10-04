@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:c444bbb0a4a185c7aa7ea6e80b71af8612e71b0ab241b6d9545029fd07403e54",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:central-host",
+  "properties": {
+    "approved_at": "2026-08-26",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

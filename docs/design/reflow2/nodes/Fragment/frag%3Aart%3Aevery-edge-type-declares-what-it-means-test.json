@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:f23566bdd1d3778100e0e3689436e8a5ef2c98d0facb97db63052042d099fda9",
+  "node_id": "frag:art:every-edge-type-declares-what-it-means-test",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered crates/reflow2-core/tests/every_edge_type_declares_what_it_means.rs"
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:9ec917e9d1d146edd25b2c35dbe9d6fa18ba3cd63c98e85279f9bfce613a5896",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:idea-should-a-node-carry-its-git-coordinate",
+  "properties": {
+    "approved_at": "2026-09-16",
+    "authored_at": "2026-08-31",
+    "roles": [
+      "author",
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

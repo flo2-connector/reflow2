@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:0495c4ce20090be5a3993d4a21366182b56f37420e55b32607d7df28aee4c0ef",
+  "node_id": "chg:the-same-paragraph-fifty-times",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "defect_fix",
+    "name": "detect_defects sends each repair explanation once instead of once per row — 52% of the reply was three paragraphs repeated",
+    "subject": "system"
+  }
+}

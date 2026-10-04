@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:9cc7e72f14c71a334c1e55c15a530b8fc8abd74c616d370bf833937a6225749b",
+  "node_id": "ver:the-v0510-field-feedback-fixes-are-pinned",
+  "node_type": "Verification",
+  "properties": {
+    "description": "crates/reflow2-mcp/tests/the_v0510_field_feedback_fixes_land.rs (7 tests) and crates/reflow2-core/tests/a_first_baseline_is_read_as_one.rs (3 tests), plus the two moved pins in tools.rs (the_surface_can_say_that_nothing_moved) and confirmation_vocabulary.rs (an_accept_against_no_baseline_is_read_as_the_first_baseline_and_says_so). Pins: a null unsets and the reply says so, a required property refuses by name, unset survives a re-read; a capability beside the check that found the need is not refused; a test file registers as `test`; a replaced executable's export is refused naming the stamp and the refresh, a current or unknowable one is not; a fact with a name does not warn; get_node takes node_id; the unknown-field hint names the stale-client case and the version; design_updated on a checksum-less artifact records a first baseline with no CHANGED edge, an ordinary accept afterwards works, and a baseline that would move an existing one is still refused.",
+    "findings": "10 new pins passed (7 mcp + 3 core); the two existing pins on the OLD first-baseline refusal were observed failing first (the_surface_can_say_that_nothing_moved; an_accept_against_no_baseline_is_refused_and_names_the_disposition) and moved to the new contract, which is the fail-first evidence for the behaviour change; full runs before the move: core 1598 / 1 failed, mcp 390 / 1 failed — both the moved pins; after the move the tools suite 80 / 0 and confirmation_vocabulary 13 / 0; clippy clean on both crates; toolsnap goldens changed for add_artifact, create_node, get_node and set_artifact_checksum only.",
+    "kind": "verification",
+    "last_run_at": "2026-09-07",
+    "level": "integration",
+    "method": "test",
+    "name": "The eight v0.51.0 field-feedback fixes are pinned: null unsets, first baseline read as one, the check-beside-capability pair, `test` artifacts, stale export refused, facts carry a name, get_node takes node_id, unknown-field hint",
+    "status": "passing"
+  }
+}

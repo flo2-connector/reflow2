@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:3a2b82e4c6304ab3c63ae82b537ce376efe85edc740e8598ebeab2764b5a1866",
+  "node_id": "ver:portability",
+  "node_type": "Verification",
+  "properties": {
+    "kind": "verification",
+    "level": "integration",
+    "method": "test",
+    "name": "export.rs",
+    "status": "passing"
+  }
+}

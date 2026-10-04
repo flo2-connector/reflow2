@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:deb9be178a6a5a826439d57563b59f3e249e98d0c34f332a09dd7a9c8d3a9c49",
+  "node_id": "art:replace-text-test",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "test",
+    "location": "crates/reflow2-mcp/tests/replace_text_moves_one_sentence_without_resending_the_field.rs",
+    "name": "replace_text_moves_one_sentence_without_resending_the_field.rs",
+    "status": "realized"
+  }
+}

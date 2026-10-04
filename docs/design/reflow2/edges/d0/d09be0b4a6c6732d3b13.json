@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:68eaa84a86b18449f963fee7039f704c4976117d60f4d98300edc306b7918513",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "req:version-combination-is-an-object",
+  "properties": {
+    "optional": false,
+    "weight_basis": "evidence"
+  },
+  "to_id": "req:design-dependencies-declared"
+}

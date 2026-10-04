@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:9401675794a57646a1ec3da595a757303bd2aa00d65bf9aff10a0d67a3943cf6",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:idea-other-centralities",
+  "properties": {
+    "authored_at": "2026-08-01",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:claude-code"
+}

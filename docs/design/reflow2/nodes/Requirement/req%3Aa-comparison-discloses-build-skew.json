@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:dffdc19e5ddcbdd1974e72ff04729c41faeeb7c96d3e2d56f7ab98eb96f017ee",
+  "node_id": "req:a-comparison-discloses-build-skew",
+  "node_type": "Requirement",
+  "properties": {
+    "concern": "core",
+    "designation": "internal",
+    "kind": "functional",
+    "lineage": "original",
+    "name": "A comparison says when its two sides were written by different builds",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "When two design records being compared were written by different reflow2 builds, the comparison discloses that and says that property-only differences may be attributable to the build change rather than to anything anybody decided. Every export already carries `reflow2_version` in its stamp, so the input exists and is not read. THIS IS DISCLOSURE, NOT A THRESHOLD, and the distinction is the requirement: nothing is suppressed, reweighted or hidden — the reader is told what could confound their reading, the way `propose_heal` discloses that the alphabet chose a merge survivor. Tuning severity until phantom findings fall below a cut-off is explicitly NOT this, because it silences true and false findings at the same rate. THE EVIDENCE IS TWO INCIDENTS, NOT AN ARGUMENT: 2026-08-08 and 2026-08-10 were both cross-build comparisons, both produced a confident false data-loss claim written into a PR body, and neither reader could see the confound (`fact:bl-198-cost-measured-twice-in-both-directions`). It is also what step 1 does not fix — suppressing defaults cleans the steady state and moves the disagreement to the version transition, which every upgrading consumer meets once.",
+    "status": "proposed"
+  }
+}

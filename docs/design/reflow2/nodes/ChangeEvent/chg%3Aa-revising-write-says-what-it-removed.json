@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:36e4b7f77045ac0e5cb86e88bd2afbf5b50ce01164591490ca9608171c63d0a9",
+  "node_id": "chg:a-revising-write-says-what-it-removed",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "detected_at": "2026-09-20",
+    "name": "A revising write says what it removed",
+    "rationale": "flo2 measured two load-bearing paragraphs lost in thirteen rewrites in one session, caught only by the author re-reading their own call. Promoted 2026-09-20 on Anthony's word and built third in the order he agreed; the notice-only option was chosen and the shrink-refusal rejected.",
+    "summary": "capture.rs: ShortenedField, the `shortened` list on Revision computed beside `replaced`, the note leading with the loss; one test file; CHANGELOG."
+  }
+}

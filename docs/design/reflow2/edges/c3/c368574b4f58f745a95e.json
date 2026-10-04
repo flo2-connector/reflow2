@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:9caa2724ec93df2a2d86a5f6a461b518168ff62c9ccaceec67fe959dea2d0949",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-field-report-can-cite-the-version-that-answered-it",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "ver:kit-manifest-agrees"
+}

@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:cff96288ace815c00c72ed8484fc0d8d618684281584d786dd75ff4d40d1a53f",
+  "node_id": "art:the-argument-check-agrees-with-the-deserialiser-test",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "description": "Holds the argument check to the deserialiser: every schema keyword, format and $ref on the served surface is one the validator understands, the listing carries no alias declaration, and serde's own field list (aliases included) equals the schema's names plus declared aliases at every object of every tool.",
+    "location": "crates/reflow2-mcp/tests/the_argument_check_agrees_with_the_deserialiser.rs",
+    "name": "the_argument_check_agrees_with_the_deserialiser.rs",
+    "status": "realized"
+  }
+}

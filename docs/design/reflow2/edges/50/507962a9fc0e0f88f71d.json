@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:f8070add1a52f21a5e3c9dd045d0b60c55db7626a70dcc2b456d94d9d5d9e9ce",
+  "edge_type": "ANTICIPATES",
+  "from_id": "fact:the-out-of-tree-notion-exists-but-is-keyed-on-the-path-shape-and-only-one-instrument-honours-it",
+  "properties": {
+    "evidence": "The same class, recorded 2026-09-21 from flo2's twelve relative schema paths: out-of-tree is inferred from the path, never declared. The storyflow reports of 2026-09-23 and 2026-09-24 (three, via art:dev-storyflow-feedback-2026-09-27) are occurrences four to six. This edge records the recurrence instead of a second finding for the same class."
+  },
+  "to_id": "fact:root-cause-one-root-derived-from-the-stores-folder-leaves-a-sibling-repo-unmeasured-2026-09-28"
+}

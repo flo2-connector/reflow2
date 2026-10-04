@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:0300b93079292549d642b56311376074e4ede6ae46ddbf80fbc287e4875bb709",
+  "edge_type": "HAS_TEMPORAL_FACT",
+  "from_id": "cap:a-drawn-relation-is-read-back-as-a-sentence-and-the-skill-names-the-direction-flag",
+  "properties": {},
+  "to_id": "fact:related-to-on-a-choice-passes-the-duplicate-guard-and-is-then-dropped-2026-09-23"
+}

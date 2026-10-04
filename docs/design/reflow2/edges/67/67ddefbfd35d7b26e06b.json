@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:f2622f0d01d21e50d4be92e9b0f16d7cdd6472f68f9df3bbcaaf36ab5f82c915",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0710",
+  "properties": {
+    "as_checksum": "sha256:b7ee13e30d28ff008fad2616ea75701de073aca11cdd9b60655018fc23122784"
+  },
+  "to_id": "art:every-declared-enum-is-wired-or-exempt-test"
+}

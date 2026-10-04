@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:48d9139d224b3438bb893041f18bd88d6ef33e4015c87243cc8d9af2c98b8472",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:a-restore-reports-an-unresolvable-reference-rather-than-refusing-it",
+  "properties": {
+    "approved_at": "2026-08-29",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:879050430c748c879f70b47d01bac1d26c80f20dcdbd24190a64238c178aa8ba",
+  "edge_type": "DOCUMENTS",
+  "from_id": "art:fleet-lessons",
+  "properties": {
+    "doc_kind": "design_doc"
+  },
+  "to_id": "dec:advisory-concurrency"
+}

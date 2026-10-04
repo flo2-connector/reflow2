@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:c3db081570ba5b77593d995041e9fdedafc014e4becab59004d6b0868073342f",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:a-tool-is-never-deleted-without-usage-evidence-across-projects-and-never-without-a-refusing-stub-first",
+  "properties": {
+    "approved_at": "2026-09-18",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

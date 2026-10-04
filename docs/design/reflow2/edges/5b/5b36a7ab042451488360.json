@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:d098771a2cb882af13b899a225a621b6f7dfe7b4f0095e0b875bd028dce72de8",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:a-finding-describes-the-walk-that-produced-it",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:heal"
+}

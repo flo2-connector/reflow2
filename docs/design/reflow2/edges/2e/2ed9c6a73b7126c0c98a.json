@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:a008a41d558f50db6547532cce0a155cbb322fe8e38d7683e58c5dc9620810ed",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:a-question-arrives-with-a-reading",
+  "properties": {
+    "authored_at": "2026-07-31",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

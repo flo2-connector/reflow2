@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:d3a9eff59979086ec687fdc663bfc8b475687c412be17b343e69eae1214bf227",
+  "node_id": "req:a-quantity-that-crosses-a-published-boundary-declares-its-unit-and-the-seam-check-compares-them",
+  "node_type": "Requirement",
+  "properties": {
+    "concern": "core",
+    "lineage": "original",
+    "name": "A quantity that crosses a published boundary declares its unit, and the seam check compares the two sides",
+    "priority": "high",
+    "provenance": "authored",
+    "statement": "A published interface contract carries, as a structured agreement axis alongside the nine that exist (medium, paradigm, payload format, payload schema, endpoint, operations, auth, transport security, designation), the UNIT of each quantity it carries — the provider's side saying what it emits, the consumer's required side saying what it expects. The seam-incompatibility check that already compares paradigm, payload format, auth and transport security across a published/required pair compares units too, and reports a disagreement as a finding put to both sides. An unstated unit reads as UNKNOWN and is itself reported on a published boundary that carries quantities; it never reads as agreement. Distinct from req:interface-spec-complete, whose six characteristics never name units: this is the tenth axis, chosen by Anthony on 2026-09-13 after the Mars Climate Orbiter account — thruster impulse crossed the Lockheed Martin/JPL seam in pound-force seconds and was read as newton seconds while the interface specification said SI, and no review compared the two sides. HONEST LIMIT, part of the requirement: reflow2 compares DECLARATIONS. It cannot read the unit a program actually computes in; what it adds is the two sides' declarations put side by side mechanically, every time.",
+    "status": "accepted"
+  }
+}

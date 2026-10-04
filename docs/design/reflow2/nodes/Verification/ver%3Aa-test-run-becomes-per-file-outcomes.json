@@ -1,0 +1,18 @@
+{
+  "content_hash": "sha256:1f25cbe425c6bf3c00bbca5b937068aa41991a295b8163c7036b8815333d755d",
+  "node_id": "ver:a-test-run-becomes-per-file-outcomes",
+  "node_type": "Verification",
+  "properties": {
+    "description": "Eight converter tests: each cargo target placed in its own crate; CI colour codes do not hide a target; a failed target is failed; a target that never printed a result is failed not dropped; build output never matched; JUnit worst-per-file with file-less cases counted; python exit code is the result; a later pass never hides an earlier failure.",
+    "findings": "10/10 pass after the rename (converter → tools/run_to_files.py, its tests → tools/test_run_to_files.py) and the new refusal of a log holding no test target.",
+    "kind": "verification",
+    "last_reconciled_at": "2026-09-23",
+    "last_reconciled_outcome": "passed",
+    "last_run_at": "2026-09-23",
+    "level": "unit",
+    "location": "tools/test_run_to_files.py",
+    "method": "test",
+    "name": "cargo output, JUnit XML and script exit codes become per-file outcomes, and nothing unplaced reads as a pass",
+    "status": "passing"
+  }
+}

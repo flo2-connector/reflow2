@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:a1109fcb2b17a7712a6beace4a498ba196e429f250962c27a35e37e59ddaf4bc",
+  "edge_type": "CHANGED",
+  "from_id": "chg:bl50-tool-boundary",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:graph"
+}

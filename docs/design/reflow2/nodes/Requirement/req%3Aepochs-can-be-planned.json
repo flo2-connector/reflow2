@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:fb8debe71012e0c5b17216b9f5ffabd7f96278a54e75efe25e06f281f5f073de",
+  "node_id": "req:epochs-can-be-planned",
+  "node_type": "Requirement",
+  "properties": {
+    "concern": "core",
+    "designation": "internal",
+    "kind": "functional",
+    "lineage": "original",
+    "name": "An epoch can be planned, not only recorded",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "The temporal axis must run forward as well as back, in TWO PAIRED VIEWS of the same architecture (Anthony, 2026-07-28: 'in systems engineering, I think this would be 2 views of the same system'): increments in TIME — epochs, what the architecture is expected to be at epoch_1..n — and increments in CAPABILITY — what each small, frequent release adds, the release-fast-in-small-increments practice now common in industry (his brother's project ships ~2 minor releases a week). Both views must exist, each comparable as a delta: any two epochs, any two increments, or either against the present. With many moving parts — an ecosystem of coupled repos, each with its own graph — an epoch or increment must pin the set of per-repo design versions it means, or the question 'which epoch are we talking about?' has no answer, which is the failure this exists to prevent. Original idea 2026-07-28 ('epoch branches: project_x:epoch_1 captures what we expect the graph to look like at epoch_1'), amended the same day with the two-views framing. THE ATOM, Anthony's distillation 2026-07-28: the roadmap is a SATISFACTION SCHEDULE — a mapping of requirements to the epoch or increment where they are satisfied: 'in epoch 1, requirements A and B are satisfied; in increment 3, requirements C, D and E are expected to be satisfied; in epoch 27, KPP 1 is required to be satisfied.' His own verbs carry the three modalities the mapping must distinguish: ARE satisfied (recorded history — the backward direction the graph already does), EXPECTED to be satisfied (a plan, carrying confidence that decays with horizon per req:plans-move-honestly), and REQUIRED to be satisfied by (an obligation whose miss at arrival is a computed violation, the scheduling face of a KPP — content inviolability from req:inviolable-intent gains a deadline dimension).\n\nWHY THE TEMPORAL AXIS EXISTS, in Anthony's words, 2026-09-28: \"one of the very reasons that I created epochs/increments into reflow2 was because many designs continue development and operations simultaneously in sort of an iterative or incremental deployment of capabilities.\" An increment is fielded and operating while the next is designed and built, so a design is in operations and in development at the same time, for as long as the system lives (dec:idea-reflow2-serves-a-design-in-operations-where-incidents-feed-the-design, settled the same day).",
+    "status": "accepted"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:31e1f99af4f198f9b53ebae68a2b5a98db81c95ccbcb462fc5c2878dadfccf46",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-design-is-saved-one-file-per-item-2026-10-03",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:ce78a3ac249ff186885ee958e9af9f1a19d7394627e83b2f4eb21752e01eee7f",
+    "checksum_basis": "measured"
+  },
+  "to_id": "art:git-anchor"
+}

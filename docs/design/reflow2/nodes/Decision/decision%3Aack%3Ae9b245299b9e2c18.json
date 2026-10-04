@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:01c14fd99634b27f821bdbc8e54bf74384529bdc39a920d812d7278f159fe2e5",
+  "node_id": "decision:ack:e9b245299b9e2c18",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Accepted the gap gap:e9b245299b9e2c18.",
+    "name": "Reviewed: gap:e9b245299b9e2c18",
+    "rationale": "Checked 2026-09-07: still open. The checksum accept still parses exactly three dispositions and its refusal names only those three; the proposed as-built-aligned disposition is still an unaccepted idea.",
+    "status": "accepted"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:ec00b0e20962b84d950f7d3595b310997c7340bed38bc4aceeb3e2fc130cf5d5",
+  "node_id": "frag:art:launch-serves-release-gate",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered launch_serves_release.py"
+  }
+}

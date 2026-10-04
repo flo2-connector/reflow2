@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:e2c9383f383ce73b33c9c197332ef3fc7d9731c2daf538c0dced72cead98c345",
+  "node_id": "frag:art:test-a-registry-names-every-store-it-cannot-serve",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered a_registry_names_every_store_it_cannot_serve.rs — a registry names every store it found and cannot serve, at startup, in its listing and in its refusal, and never says \"no designs\" while one is there"
+  }
+}

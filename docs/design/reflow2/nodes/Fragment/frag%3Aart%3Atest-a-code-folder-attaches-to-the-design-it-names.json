@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:d18f11e47f02ba3ad2c25a609cc84236d8e84916cc4c95c5f1cedd714cbe99b2",
+  "node_id": "frag:art:test-a-code-folder-attaches-to-the-design-it-names",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered a_code_folder_attaches_to_the_design_it_names.rs — with the machine-wide entry's flags, a folder's pointer wins over a leftover store; a wrong design or a bad file attaches nothing"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:0dfe952d10be45908512230236123d3a81532b84ef77f36df635610a7e8b251d",
+  "node_id": "decision:ack:heal:554698fdd93307a7",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Accepted the structural defect heal:554698fdd93307a7 (single point of failure: cmp:graph).",
+    "name": "Reviewed: heal:554698fdd93307a7",
+    "rationale": "Carries dec:graph-spof-accepted (2026-07-24) onto the new reviewed-defects mechanism: the architecture is explicit in AGENTS.md — DesignGraph is 'the single handle everything else hangs off', one schema-validated CRUD surface every module goes through by design. `add_redundancy` is incoherent for it: a second store handle would be two sources of truth, which IS the defect rather than the fix. Expires by construction if the shape changes.",
+    "status": "accepted"
+  }
+}

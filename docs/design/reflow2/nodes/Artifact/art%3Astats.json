@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:670ce6e8a1a5ab813186fbdc2a530a1778d079822ca4560a63fbdde8d96c3b63",
+  "node_id": "art:stats",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "location": "crates/reflow2-core/src/stats.rs",
+    "name": "stats.rs",
+    "status": "realized"
+  }
+}

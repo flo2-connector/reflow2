@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:485019c068c1d3f968dcc983ee641d08d3ebd11efea8b884d701bbc279a5a12b",
+  "edge_type": "REALIZES",
+  "from_id": "art:tools-capture",
+  "properties": {
+    "completeness": "partial",
+    "conformance": "verified"
+  },
+  "to_id": "cap:a-capability-declares-what-kind-of-thing-delivers-it"
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:73721e582e06620c8fd0e9304fec41fd63714b24c7a14d783d46b2917f92bae3",
+  "edge_type": "ANTICIPATES",
+  "from_id": "dec:reflow2-serves-source-reading-analyses-that-report-and-never-write",
+  "properties": {
+    "evidence": "The 2026-09-14 ruling already has reflow2 reading source trees for analyses that report and never write; it crossed the 'no file I/O' line for READING and left the question of MEASURING a registered artifact (hash, existence) unasked. This idea is that remainder, and its option C is that ruling's delivery half."
+  },
+  "to_id": "dec:idea-should-reflow2-measure-files-itself-and-what-the-no-file-io-rule-actually-protects"
+}

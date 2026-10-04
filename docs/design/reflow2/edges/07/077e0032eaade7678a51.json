@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:d10d19310f2c2b500277bb36880583037cbbd9c50a8dc9ee29218d13600f0cdd",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:drift-has-direction",
+  "properties": {
+    "authored_at": "2026-07-24",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

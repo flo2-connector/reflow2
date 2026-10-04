@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:57ddb8d1ecc37fcb867539bc462329e2dffeb3c720a7ccaffeff3f7cbd3f83ea",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-field-report-is-triaged-by-a-served-step-and-a-finding-is-written-before-the-answer",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:skills-and-tools"
+}

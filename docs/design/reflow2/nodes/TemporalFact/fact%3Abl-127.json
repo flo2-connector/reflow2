@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:50c0d330b584d666e1fdd03a8d6a812cb23d184f25e35d602d9fb1fbddde1e22",
+  "node_id": "fact:bl-127",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "defect",
+    "statement": "[BL-127] A record whose applicability ENDED has nowhere to say so — Constraint has no lifecycle, and neither does an abandoned ChangeEvent",
+    "subject_id": "cmp:vocabulary",
+    "value": "{\"evidence\": \"*Two instances of one shape, found 2026-07-31; split them if they want different fixes.* (a) Requirement has proposed/accepted/deferred/dropped/met and dropped preserves it as history \\u2014 the retraction model this project gets right. Constraint has no status property at all. When a submission-window constraint stopped applying, the only options were to DELETE the node, destroying the record that it ever bound, or leave it in place implying it still binds. It was deleted; the history survived only because a ChangeEvent happened to record the removal \\u2014 by luck, not by design. Regulatory and schedule constraints lapse constantly. (b) The prescribed loop order is add_change_event then propagate_change then edit. Followed correctly, and then the blast radius (or a collision, as here) says do not make the change \\u2014 and there is no way to mark the ChangeEvent as recorded-then-abandoned. The only choices are to leave a record asserting nodes were modified when they were not, or delete it. Deleting was right in that instance (never true, so a mistake rather than history) but *the loop's own prescribed sequence routinely produces a state the vocabulary cannot express* \\u2014 and talking yourself out of a change via the blast radius is the tool WORKING. Fix: give Constraint the Requirement lifecycle; give ChangeEvent a way to say the change was not made. Both are schema changes and move the stamp. Size S\", \"origin\": \"Migrated from docs/backlog.md BL-127 on 2026-08-07 (epoch:backlog-retired). Size estimate carried from the row: S.\"}"
+  }
+}

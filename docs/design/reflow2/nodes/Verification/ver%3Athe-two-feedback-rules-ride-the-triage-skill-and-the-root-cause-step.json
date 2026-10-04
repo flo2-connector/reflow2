@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:2d237755a5553620e44ccc32d678f5d6380429b00e5d7fdf88029d905ed16c6b",
+  "node_id": "ver:the-two-feedback-rules-ride-the-triage-skill-and-the-root-cause-step",
+  "node_type": "Verification",
+  "properties": {
+    "description": "Against the real store after the rules gained steps: get_skill triage-feedback → lessons include rule:field-feedback-issues-are-root-caused-and-ideas-are-brainstormed; get_skill root-cause → lessons include the every-failure rule and the finding rule.",
+    "findings": "Real store 2026-09-18: get_skill triage-feedback lessons = [rule:a-finding-is-written-before-the-answer-and-needs-no-permission, rule:field-feedback-issues-are-root-caused-and-ideas-are-brainstormed]; get_skill root-cause lessons = [the finding rule, rule:every-failure-is-searched-and-every-cause-is-root-caused-before-it-is-written].",
+    "kind": "verification",
+    "last_run_at": "2026-09-18",
+    "level": "integration",
+    "method": "demonstration",
+    "name": "get_skill triage-feedback carries the feedback rule among its lessons, and get_skill root-cause carries the every-failure rule",
+    "status": "passing"
+  }
+}

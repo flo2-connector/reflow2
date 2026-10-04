@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:61e37bf94804b5dc0a9130d08f4b4578115f7ef31f80f98a8f47a28766ae23e3",
+  "node_id": "art:every-required-parameter-is-described-gate",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "test",
+    "description": "The class gate for NEW-02: every required parameter on the served surface carries a non-empty description, with membership DERIVED from the served schema (sibling of every_reference_parameter_names_its_type) so a 181st tool joins it the moment it is served. Measured 76 of 230 bare on 2026-09-11; zero after increment 434. EXEMPT is empty and kept as a list, with a second test that refuses an entry naming a parameter no longer bare. Shown to fail — naming exactly `verifies.verification_id` — when one description was stripped, before it was trusted.",
+    "location": "crates/reflow2-mcp/tests/every_required_parameter_is_described.rs",
+    "name": "every_required_parameter_is_described.rs",
+    "status": "realized"
+  }
+}

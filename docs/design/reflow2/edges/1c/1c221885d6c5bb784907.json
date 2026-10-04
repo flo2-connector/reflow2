@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:ced993e7183790293dc12c51f3b642fb7e2efc6c53986c312296884f243e6975",
+  "edge_type": "HAS_SNAPSHOT",
+  "from_id": "req:a-write-carries-who-made-it-and-the-server-records-that-it-happened",
+  "properties": {},
+  "to_id": "snap:epoch:preserved-on-write:req:a-write-carries-who-made-it-and-the-server-records-that-it-happened"
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:b22c1802c2a012e2490941fb090e7ba8d2739d65baf2898e315bd4fc6f16d4dc",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-a-design-that-belongs-to-several-domains-at-once",
+  "properties": {
+    "evidence": "This question is moot while `Project.domain` is written and never read — which is exactly what that requirement records. A scalar domain field only breaks on a multi-discipline project once some computation READS it, so this matters if and only if that one is acted on first.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "req:framework-is-chosen-not-defaulted"
+}

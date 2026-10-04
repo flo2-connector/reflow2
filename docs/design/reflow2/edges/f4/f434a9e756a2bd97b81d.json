@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:31dfafd1c30fcff9d9d6f27e2a85dbe4fbbc9b691b99ed888c73d2ba18f9376e",
+  "edge_type": "EVOLVES_INTO",
+  "from_id": "dec:idea-how-does-a-test-result-get-back-in-when-the-tester-may-not-be-an-agent",
+  "properties": {
+    "evidence": "Anthony answered that question's person-as-tester half on 2026-09-25; this requirement is that answer."
+  },
+  "to_id": "req:a-person-feeds-results-back-by-upload-chat-or-folder"
+}

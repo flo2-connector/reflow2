@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:cf18a8484b1fede5e2385e9b0f83f76fd1ea451eadebc789f0fedf64172e84af",
+  "node_id": "ver:a-flows-entry-and-exit-follow-its-step-order",
+  "node_type": "Verification",
+  "properties": {
+    "description": "Three tests in the flow suite:\n- entry and exit are the lowest and highest steps, and a step added last becomes the exit (the copy that went stale on flow:release-cut was a stored one);\n- steps sharing an end position are all entries or exits;\n- a flow with no stated order names neither and confesses the missing order.\nThe retired add_capability flag being refused by name is pinned in crates/reflow2-mcp/tests/the_fourteen_holes_are_writable.rs.",
+    "findings": "12 flow tests pass, including the three for computed entry and exit, and the retired add_capability flag is refused by name (the_fourteen_holes_are_writable).",
+    "kind": "verification",
+    "last_run_at": "2026-09-29",
+    "level": "unit",
+    "location": "crates/reflow2-core/tests/flow.rs",
+    "method": "test",
+    "name": "A flow's entry and exit follow its step order",
+    "status": "passing"
+  }
+}

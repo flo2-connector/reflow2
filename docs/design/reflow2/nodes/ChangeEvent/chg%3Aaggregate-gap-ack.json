@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:7c03cd69e0722309e5a135a8be59e5260ed1ab3c884a43c2ef48a213bd2edd63",
+  "node_id": "chg:aggregate-gap-ack",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "refactor",
+    "name": "detect.rs: gap_id gained the aggregate branch"
+  }
+}

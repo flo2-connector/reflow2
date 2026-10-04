@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:b4d3253f5c671d9de0519c6a010c1e279e8bc3e6d7e5440c431ff1b0c314e7d6",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:a-diff-is-read-as-a-design-change",
+  "properties": {},
+  "to_id": "req:a-diff-is-read-as-a-design-change"
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:4709eea708f611f62ccc604bb7f30576d1f6eefc065f7fdb4c64b668b6252964",
+  "node_id": "snap:epoch:the-owners-identity-is-one-node-again:ctr:anthony",
+  "node_type": "Snapshot",
+  "properties": {
+    "edges": "[{\"direction\":\"in\",\"edge_type\":\"AUTHORED_BY\",\"other_type\":\"Capability\",\"other_id\":\"cap:changelog-view\",\"properties\":{\"acted_at\":\"2026-07-28\",\"role\":\"author\"}},{\"direction\":\"in\",\"edge_type\":\"AUTHORED_BY\",\"other_type\":\"Decision\",\"other_id\":\"dec:epoch-roadmap-storage\",\"properties\":{\"acted_at\":\"2026-07-28\",\"role\":\"author\"}},{\"direction\":\"in\",\"edge_type\":\"AUTHORED_BY\",\"other_type\":\"Requirement\",\"other_id\":\"req:a-project-records-how-it-ships\",\"properties\":{\"acted_at\":\"2026-07-31\",\"role\":\"author\"}},{\"direction\":\"in\",\"edge_type\":\"AUTHORED_BY\",\"other_type\":\"Requirement\",\"other_id\":\"req:epochs-can-be-planned\",\"properties\":{\"acted_at\":\"2026-07-28\",\"role\":\"author\"}},{\"direction\":\"in\",\"edge_type\":\"AUTHORED_BY\",\"other_type\":\"Requirement\",\"other_id\":\"req:graph-catches-up\",\"properties\":{\"acted_at\":\"2026-07-28\",\"role\":\"author\"}},{\"direction\":\"in\",\"edge_type\":\"AUTHORED_BY\",\"other_type\":\"Requirement\",\"other_id\":\"req:graph-indexes-snapshots\",\"properties\":{\"acted_at\":\"2026-07-28\",\"role\":\"author\"}},{\"direction\":\"in\",\"edge_type\":\"AUTHORED_BY\",\"other_type\":\"Requirement\",\"other_id\":\"req:plans-move-honestly\",\"properties\":{\"acted_at\":\"2026-07-28\",\"role\":\"author\"}},{\"direction\":\"in\",\"edge_type\":\"AUTHORED_BY\",\"other_type\":\"Requirement\",\"other_id\":\"req:pr-is-a-delta\",\"properties\":{\"acted_at\":\"2026-07-28\",\"role\":\"author\"}},{\"direction\":\"out\",\"edge_type\":\"DUPLICATES\",\"other_type\":\"Contributor\",\"other_id\":\"who:ajs\",\"properties\":{\"basis\":\"asserted\",\"confidence\":1.0}}]",
+    "state": "{\"handle\":\"@ajs\",\"kind\":\"person\",\"name\":\"Anthony Sligar\"}",
+    "target_id": "ctr:anthony",
+    "target_type": "Contributor"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:4b1299df60219ba0b8f0a22e4dd682dd63a8493e4394242e2cbe67f783f365ab",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:a-verified-capability-names-something-that-can-re-run-its-check",
+  "properties": {
+    "coverage": "full"
+  },
+  "to_id": "req:a-verified-capability-names-something-that-can-re-run-its-check"
+}

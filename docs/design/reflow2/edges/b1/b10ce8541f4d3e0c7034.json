@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:dfe64435738516a6f324123acc6113d71e321e81127049be2c64d4d245f23d11",
+  "edge_type": "GOVERNED_BY",
+  "from_id": "req:a-one-shot-call-never-creates-a-design-where-a-folder-names-one-on-a-server",
+  "properties": {
+    "note": "Step 1 of making the door a supported route."
+  },
+  "to_id": "dec:idea-the-call-door-becomes-a-supported-harness-for-an-agent-that-cannot-use-mcp"
+}

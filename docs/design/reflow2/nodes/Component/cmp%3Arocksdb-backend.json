@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:b62057918cdcbb8e9105e861556bf17da8a2cdba4be3314d08ad42cddda98748",
+  "node_id": "cmp:rocksdb-backend",
+  "node_type": "Component",
+  "properties": {
+    "level": "part",
+    "name": "rocksdb-backend",
+    "provenance": "authored",
+    "purpose": "The durable `KvBackend` implementation: RocksDB over six named column families, one column family per key space, with the engine's exclusive write lock coming from RocksDB's own directory lock.\n\n`crates/reflow2-core/src/foundation/store/backend.rs` (`RocksBackend`). Reached only through `DesignGraph::open_rocksdb`.\n\n🛑 IT IS OPT-IN AND ALWAYS HAS BEEN. `reflow2-core` declares `default = []`; only `reflow2-mcp` enables `features = [\"rocksdb\", \"fulltext\"]`. Measured 2026-08-25: 1,452 of the core's tests pass with this component absent entirely. Without the feature `open_rocksdb` fails loud rather than falling back, which is `req:no-silent-fallback` applied to a missing backend.\n\n⚠️ EXTERNAL DEPENDENCY, DELIBERATELY PINNED WHERE IT IS: `rocksdb` 0.24 — the historically-unmaintained wrapper. `rust-rocksdb` 0.52 is the maintained one; the numbers are NOT comparable (different crates, independent numbering). `dec:absorb-rocksdb-024-unchanged-then-switch-separately` keeps that 86-file migration to one variable.\n\n⚖️ WHAT IT COSTS, measured: a ~19-minute `librocksdb-sys` C++ compile on a clean build, and the bulk of a target directory that reached 263 GiB. What it buys: durability across a process restart and larger-than-RAM working sets. `dec:idea-does-reflow2-need-a-byte-store-at-all-or-only-durability` is the open question about whether that trade is worth it.\n\nMODELLED 2026-08-25, and it did not exist as a node until then — which is why \"can we retire RocksDB?\" had no answer: the design had nothing to point at.",
+    "status": "planned"
+  }
+}

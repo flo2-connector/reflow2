@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:e91ec89581f7d700d6be29ab1325fda0656966864903690a650781e0ae86df7e",
+  "edge_type": "CONTRADICTS",
+  "from_id": "fact:defect-the-mandated-cold-start-check-costs-the-largest-payload",
+  "properties": {
+    "alignment": "supporting",
+    "confidence": 1.0,
+    "evidence": "That fact is the server being unable to answer the staleness question; this is the answer being priced out of reach. req:the-server-is-the-authority-on-its-own-currency subsumes both."
+  },
+  "to_id": "fact:defect-a-running-server-cannot-say-it-is-stale"
+}

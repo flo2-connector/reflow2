@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:4f8d935e47912c4614901597431a9602536527bc9320858a83e3e3f8c01ca909",
+  "edge_type": "EVOLVES_INTO",
+  "from_id": "dec:idea-add-epoch-assigns-the-next-sequence-or-names-it",
+  "properties": {
+    "evidence": "Option (b) — name the current maximum in the refusal — became the fix. Option (a), auto-assign, was NOT taken for the reason the idea's own rationale gives (sequences are spaced on purpose) and remains open on the idea."
+  },
+  "to_id": "chg:alexs-four-surface-fixes-sequence-hint-get-node-by-id-auth-hint-and-bulk-check-only"
+}

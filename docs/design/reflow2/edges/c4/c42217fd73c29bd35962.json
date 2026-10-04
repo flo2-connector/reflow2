@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:4fc618dc2718181e8e79e1f54cc355a54752ad4d9a9ce96f40d6c6ca8f968b00",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-handshake-record-names-the-version-rmcp-sent-2026-10-02",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "art:service"
+}

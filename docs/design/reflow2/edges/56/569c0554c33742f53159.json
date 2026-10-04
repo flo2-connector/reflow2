@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:894fdba2bcb141f450b7d96651038825cc97c14441846647cec23618ece88b0f",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-name-is-not-a-report",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "ver:a-measurement-says-when-it-was-taken"
+}

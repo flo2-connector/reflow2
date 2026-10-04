@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:d4ed4d3fdaf092ec3780a3fb895ad3d8cef7e0fda43f996319b701f9712188fc",
+  "node_id": "ver:the-setup-command-saves-only-what-the-server-accepted",
+  "node_type": "Verification",
+  "properties": {
+    "description": "crates/reflow2-mcp/tests/a_setup_command_chooses_local_or_remote_once.rs (8 tests driving the binary with its settings in a temporary folder and the key in a named variable, so no test touches a real keychain) and client_setup's 8 unit tests (the keychain path against an in-memory store, a refused key saving nothing, a server with no account address, going local keeping the key, forget removing it, plain-http refused). Run: `cargo test -p reflow2-mcp --test a_setup_command_chooses_local_or_remote_once` and `cargo test -p reflow2-mcp --lib client_setup`. Passed 2026-09-26. Also round-tripped by hand through the REAL Linux desktop keyring the same day: a piped key checked against a stand-in and stored, read back by a separate `--remote` process and sent, then removed by `setup forget`, with no reflow2 entry left in the keyring.",
+    "kind": "verification",
+    "level": "integration",
+    "method": "test",
+    "name": "`reflow2-mcp setup` is local by default, saves a remote only after the server answers the key, keeps the key out of the settings file and the output, and `--remote` carries it to its own server only",
+    "status": "passing"
+  }
+}

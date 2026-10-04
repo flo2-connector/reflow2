@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:4034dc019a87a383c683b4158a07c44fb99e30c645dac1c004ad6f9f57ed06ec",
+  "node_id": "chg:accept-a9de8d85e68af580",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "refactor",
+    "detected_at": "2026-09-17",
+    "name": "Two clippy lints (get().is_none() → !contains_key) that CI's --all-targets run caught; no behaviour moved.",
+    "subject": "system"
+  }
+}

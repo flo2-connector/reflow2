@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:80b24950dc7a6bd51cbe35320663b9969673bd6944a0f1fa01aeed61e9e1c7ab",
+  "edge_type": "CHANGED",
+  "from_id": "chg:re-linking-an-artifact-no-longer-renames-it",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:tools-built"
+}

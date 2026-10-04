@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:2f8019467719db9f93087e5e7f80f59bdcc28644827ef435212c5e31266da9d9",
+  "edge_type": "EVOLVES_INTO",
+  "from_id": "dec:the-export-becomes-the-durable-copy-and-rocksdb-goes-later",
+  "properties": {
+    "evidence": "Direction is deliberate and reads FROM the older thought TO this one: Anthony's 2026-08-24 musing — \"maybe we stand up a db just for a session and the reflow.json file becomes the enduring thing\" — grown up into a settled staged decision once its blockers were measured. That node stays proposed and keeps the reasoning; this is what it became."
+  },
+  "to_id": "dec:idea-the-store-becomes-a-session-cache-and-the-export-becomes-the-truth"
+}

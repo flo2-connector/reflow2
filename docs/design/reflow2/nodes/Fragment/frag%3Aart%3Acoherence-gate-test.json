@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:ad81a8cf6e1858baa362fc0094496cf1c00ed37c955e4b1bf3e70e22e324b47b",
+  "node_id": "frag:art:coherence-gate-test",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered test_reflow2_check.py"
+  }
+}

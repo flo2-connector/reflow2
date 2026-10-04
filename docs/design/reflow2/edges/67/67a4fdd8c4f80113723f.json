@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:255143ce16ce535bb85f867333b8c45236c49c50b7dfdcaeec095158266c754c",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0480",
+  "properties": {
+    "as_checksum": "sha256:55f3106fcec89bacc5d0a5d0df957346e524da6a73f847047875f2c014c596b6"
+  },
+  "to_id": "art:the-export-can-be-ordered-before-its-writes"
+}

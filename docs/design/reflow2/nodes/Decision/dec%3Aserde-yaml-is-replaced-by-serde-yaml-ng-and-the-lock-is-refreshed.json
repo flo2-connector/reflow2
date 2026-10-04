@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:d9c21350e9417a2a1f1c81c78c2beaa5b410cbc204dc217b7253260a4c988380",
+  "node_id": "dec:serde-yaml-is-replaced-by-serde-yaml-ng-and-the-lock-is-refreshed",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Replace `serde_yaml` (0.9.34+deprecated, archived by its author) with `serde_yaml_ng` 0.10 — the maintained fork with the same API — in the workspace manifest and the two `use` sites in reflow2-core (foundation/core/schema.rs, foundation/mod.rs); and run `cargo update` so the lockfile moves every crate to the newest version its declared range already allows (82 crates on 2026-09-15). rmcp stays 3.3.0; rocksdb and librocksdb-sys are deliberately left alone per dec:absorb-rocksdb-024-unchanged-then-switch-separately.",
+    "kind": "choice",
+    "name": "serde_yaml → serde_yaml_ng 0.10, and Cargo.lock is refreshed within declared ranges (rocksdb untouched)",
+    "rationale": "Anthony's dependency note (2026-09-14) assumed each build pulls the latest; it does not — Cargo.lock pins every crate and a build never upgrades. The one crate in the tree that had actually stopped being maintained was the YAML reader that parses reflow2's own schema, which is the wrong place for an unmaintained dependency. A rename-not-rewrite fork keeps the change to three lines of source. The lock refresh is bundled because the same misreading (\"we get the latest\") is what it corrects, and it is bounded by the ranges already declared — nothing crosses a major version. Verified on the new lock: core suite (in-memory), the server suite, clippy on both crates, format, and the wire instruments. His word: \"yes on the dependency pull request and the serde_yaml replacement\".",
+    "status": "accepted"
+  }
+}

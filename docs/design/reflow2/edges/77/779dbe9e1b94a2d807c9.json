@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:56d7ae104b4cab7ce65f30c06aeec856dc4673b7db269a9f13a0aee2b53bcf0d",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-a-quantity-says-how-it-was-obtained-and-a-check-can-be-rerun",
+  "properties": {
+    "evidence": "The seam-unit idea is where a quantity first became a thing the design reasons about rather than a string in prose; provenance on a quantity presupposes that the quantity is a modelled value at all.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "dec:idea-a-quantity-that-crosses-a-seam-carries-its-unit-and-the-seam-check-compares-them"
+}

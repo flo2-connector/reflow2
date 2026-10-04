@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:089d37681156fe34fc925393ff7332e910384f304109f321d15b6e280e0245fd",
+  "edge_type": "EVOLVES_INTO",
+  "from_id": "dec:idea-does-the-agent-keep-a-notepad-in-the-graph-for-the-next-agent",
+  "properties": {
+    "evidence": "Anthony promoted the idea's option C on 2026-09-12; the requirement states delivery-at-the-step as what is owed, and the idea's B+D halves (a view; checks for what bit twice) stay on the idea as the roads beside it."
+  },
+  "to_id": "req:a-lesson-is-served-at-the-step-it-concerns"
+}

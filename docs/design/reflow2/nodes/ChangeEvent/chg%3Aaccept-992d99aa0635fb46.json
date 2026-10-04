@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:b233bbdc6b40933dee872b7721784a2a61a6d5d3cc834f8990217ea4a82a0cb5",
+  "node_id": "chg:accept-992d99aa0635fb46",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "resync",
+    "detected_at": "2026-09-24",
+    "name": "v0.70.0 cut: version string 0.69.0 -> 0.70.0 only. The design meaning of a cut lives in the Release and its epoch. Accepted BEFORE the manifest is frozen (flow:release-cut step 1).",
+    "subject": "system"
+  }
+}

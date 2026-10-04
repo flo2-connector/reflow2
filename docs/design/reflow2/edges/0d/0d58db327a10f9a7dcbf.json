@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:25b98b31abbd97c6b8d0328c62d8f47f2de0af65a3e726bb410cb23d0a998389",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-name-is-not-a-report",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "ver:skill-loads-are-counted"
+}

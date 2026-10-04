@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:02baac7e1c8550ed807b2e12336940840d2ca4e21f06b2bf553531f640a3a8a1",
+  "edge_type": "CONTRADICTS",
+  "from_id": "dec:the-two-oversized-subsystems-are-split-functionally",
+  "properties": {
+    "alignment": "opposing",
+    "evidence": "PARTIAL, and drawn so the staleness is reachable FROM that fact rather than only from here. Its headline claims the hand-built functional design 'violates span of control in 4 places' (coherence-loop 28, agent-surface 25, reflow2 13, foundation 10) — true when measured that morning, and now 2, of which one is deliberate (tool-surface 12) and one out of scope (foundation 10). Everything else in that fact still stands, including its central finding that adopt cannot recover the functional carving, which is precisely why this split was made by hand. Not closed with valid_to, because valid_to asserts the WHOLE thing stopped being true."
+  },
+  "to_id": "fact:adopt-recovers-depth-cleanly-and-cannot-recover-the-functional-carving"
+}

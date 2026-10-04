@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:3656048e46b54954fa90719fecb194e786d5fa6131732308ffb898a8f4ed7a96",
+  "edge_type": "ANTICIPATES",
+  "from_id": "dec:edge-orthogonality",
+  "properties": {
+    "evidence": "The standing rule's test — does a computation read the distinction? — is what a declared reading per edge type would let a computation do; that rule saw this coming."
+  },
+  "to_id": "dec:idea-the-schema-declares-what-each-relation-means-in-primitive-terms"
+}

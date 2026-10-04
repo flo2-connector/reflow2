@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:0631e3056655bc59ad4599d6b30380a645d1590824cfc9973cc8f5468cb3fd9d",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-wall-check-is-served",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:find-tools-corpus-fixture"
+}

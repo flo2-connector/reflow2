@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:8f878238df8c950a761ad67cb53ae20c9604704ffde1995409c3f1263a350824",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:shared-sessions",
+  "properties": {},
+  "to_id": "req:sessions-share-a-graph"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:c0eb8fc2b135160562667efe345ec7e902fc05abece244e7eb12598e3737e2dc",
+  "edge_type": "CHANGED",
+  "from_id": "chg:delivery-can-be-a-model-change",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "cap:a-capability-declares-what-kind-of-thing-delivers-it"
+}

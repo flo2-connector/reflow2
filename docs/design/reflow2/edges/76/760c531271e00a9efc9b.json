@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:c34767eb965457f5cda79e7f614ff7bca7a418ff5dd29431e928d0287940a745",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-a-byte-backend-that-compiles-in-seconds",
+  "properties": {
+    "evidence": "`KvBackend` lives in dynograph-foundation, not reflow2, so until the absorption's increment 5 brings dynograph-storage in-tree, swapping the byte store means changing another repository — which dec:idea-dynograph-crates-independent-in-code-coupled-in-release says reflow2's design has no standing to decide. Absorb first, then swap. The dependency also runs the other way in scope: if SQLite (option F) were taken it would subsume tantivy too, so increment 5 would absorb less than currently planned.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "dec:absorb-the-foundation-subset-and-end-the-dependency"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:93fbb491711b01b00e32be3f3224854bed841694757a5b9a71b9feb5bb173164",
+  "edge_type": "PART_OF_FLOW",
+  "from_id": "cap:derived-release-manifest",
+  "properties": {
+    "step_order": 4,
+    "weight_basis": "estimated"
+  },
+  "to_id": "flow:release-cut"
+}

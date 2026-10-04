@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:a1b75c141f512d36fa94170463a87a46a42d24587e81d9e380381606b2003a01",
+  "node_id": "chg:every-served-skill-carries-a-line-for-a-person-and-says-who-it-is-for",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "detected_at": "2026-09-19",
+    "name": "Every served skill carries a line for a person and says who it is for; the shortcut count is computed; the served-surface seam rule",
+    "rationale": "Anthony 2026-09-19: address the flo2/bhome findings in priority order; this is the first — the third instance of the seam shape and what flo2's palette is blocked on.",
+    "summary": "30 SKILL.md frontmatters gain summary + audience (+ mirrors); build.rs parses and checks them; skills.rs EmbeddedSkill fields; skills_tools.rs list_skills/get_skill serve them and compute the differing-shortcut count; skill_lint two checks; served_skills.rs test; CHANGELOG. Graph: requirement, capability, rule, two ideas accepted."
+  }
+}

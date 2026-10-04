@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:1ec328a6a395252ca4a1bb0ac125825a82a62f0232d435e7426f92c5d74710b1",
+  "edge_type": "YIELDED",
+  "from_id": "frag:alex-2026-08-14-remainder",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "fact:a-second-project-answered-what-is-left-to-build-from-decision-prose"
+}

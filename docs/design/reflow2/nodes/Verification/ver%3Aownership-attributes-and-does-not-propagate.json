@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:56aac97ec608800cb4689a05f626ef3e02f55fe8714cf457a5b458d417098914",
+  "node_id": "ver:ownership-attributes-and-does-not-propagate",
+  "node_type": "Verification",
+  "properties": {
+    "description": "OWNED_BY attributes gaps to a person and never drags them into a blast radius (crates/reflow2-core/tests/report.rs, 2 tests). CASE 1, gaps_standing_on_ground_you_own_are_attributed_to_you: owning nothing attributes nothing (an unowned design is the ordinary state, not a finding); after taking ownership, the gap on that node appears in gaps_on_owned_ground naming WHICH owned node it stands on and never a node owned by someone else; scoped `clean` goes false, because a gap on your own ground is owed by you as surely as a decision you were asked to settle; and the `next` line says it in words. POSITIVE CONTROL: a second contributor who owns nothing gets an empty list from the identical call — without it, an implementation that attributed every gap to everybody would pass every other assertion. AND A CONSERVATION CHECK: the design-wide gap count is unchanged by scoping, so narrowing never makes the design look smaller. CASE 2, owning_something_does_not_drag_a_person_into_a_blast_radius: propagate_from over an owned node at depth 5 must not reach the Contributor — the exclusion AUTHORED_BY and CLAIMS already carry, asserted rather than assumed for the third of the kind. WHAT IS NOT COVERED, stated rather than left to be found: nothing verifies that ownership is the RIGHT attribution for any given node, because that is a judgement; and no check exists for unowned ground, because none was built.",
+    "kind": "verification",
+    "last_run_at": "2026-08-09",
+    "level": "unit",
+    "method": "test",
+    "name": "OWNED_BY attributes gaps to a person and never drags them into a blast radius",
+    "status": "passing"
+  }
+}

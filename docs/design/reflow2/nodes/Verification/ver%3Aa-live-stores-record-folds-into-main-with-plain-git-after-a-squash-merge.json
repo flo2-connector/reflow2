@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:66ada237f17642416497b863aecb1e7abf82947b0f76c41d1808291d2f2b9add",
+  "node_id": "ver:a-live-stores-record-folds-into-main-with-plain-git-after-a-squash-merge",
+  "node_type": "Verification",
+  "properties": {
+    "description": "A long-lived branch carries a live store's record (a new decision and an edit); meanwhile a PR squash-merges into main. A fold branch from the live record merges main with plain git: no conflict; squashed into main, the design equals a sequential replay of both; folding the same record again changes nothing. The fold the item layout makes possible without --merge/--merge-apply; the branch overlay of ver:an-overlay-folds-after-a-squash-merge is a separate, unbuilt capability.",
+    "findings": "2026-10-03 (chg:the-design-is-saved-one-file-per-item-2026-10-03): test_a_live_stores_record_folds_into_main_after_a_squash_merge_exactly_once passes on the real binary.",
+    "kind": "verification",
+    "last_run_at": "2026-10-03",
+    "level": "integration",
+    "method": "test",
+    "name": "A live store's record, committed on a long-lived branch, folds into main with plain git after another PR squash-merged, exactly once",
+    "status": "passing"
+  }
+}

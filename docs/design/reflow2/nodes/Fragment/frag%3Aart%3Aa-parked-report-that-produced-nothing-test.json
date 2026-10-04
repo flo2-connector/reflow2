@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:76467d8afc500a26e38c1055300347ae2711c9727800b1ed16552bde1afb592f",
+  "node_id": "frag:art:a-parked-report-that-produced-nothing-test",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered a_parked_report_that_produced_nothing_is_reported.rs — the untriaged_report detector, its true negative, and the parking counterweight"
+  }
+}

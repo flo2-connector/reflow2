@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:f45b76a7216ed3f0978ade0aecd5bab43d20af1bbcc44eb52db487a33330c85c",
+  "edge_type": "GOVERNED_BY",
+  "from_id": "req:a-recorded-risk-reaches-someone",
+  "properties": {
+    "note": "RISKS is an instance of that accepted rule going unmet: a distinction earns its keep only if a computation reads it"
+  },
+  "to_id": "dec:edge-orthogonality"
+}

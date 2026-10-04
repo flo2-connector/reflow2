@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:e9cf4c54d3a720f79e25314c24457b34b67a60525ea0efb29e3a7c3ad5684dc7",
+  "node_id": "dec:step-4-fork-point-finds-its-address-in-git-and-reopen-is-one-call",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Anthony, 2026-09-23, three rulings to finish step 4:\n(1) FORK POINT WITHOUT AN ANCHOR — measured first: only 37 of 454 accepted decisions carry AT_EPOCH and only 4 of 268 epochs a checksum. When a decision has no epoch, the fork point is found in git: the first commit whose committed design export contains the decision, with that export's content_hash, labelled EARLIEST EVIDENCE IN GIT and never presented as when it was decided. Nothing is written on the read. Same rule as dec:temporal-backfill-from-releases: evidence from the repo, not reconstruction.\n(2) REOPEN IS ONE CALL — a tool that applies dec:reopen-supersedes correctly: a new PROPOSED decision that OBSOLETES the original, which stays accepted and untouched, carrying the fork point and any doubt evidence as its reason. Run only on the owner's word.\n(3) PERSON-AS-TESTER is NOT step 4 — who observed a result and how is about how results come in, and gets its own design.",
+    "kind": "choice",
+    "name": "Finishing step 4: a decision with no recorded epoch finds its fork point in git as earliest evidence; reopening is one call; the person-as-tester path is a separate step",
+    "rationale": "Each offered with alternatives and a recommendation; he took all three. Rejected for (1): refusing (useless for 92% of decisions) and writing the anchor on read (a read that writes). Rejected for (2): leaving it as hand steps, which is how a reopen ends up flipping the original back to proposed — the failure dec:reopen-supersedes exists to prevent.",
+    "status": "accepted"
+  }
+}

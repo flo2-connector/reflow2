@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:1f42b6940e186738f86ed57ca1900998def0b954c51af9e8de01f531d2bb3bf1",
+  "node_id": "question:ba21fb8550a81e07",
+  "node_type": "Question",
+  "properties": {
+    "answer": "Split it: clause 1 enforced, clause 2 advice. Anthony, 2026-08-09, choosing from three options after being shown that the two clauses sit in opposite positions against the code. The no-per-design-process-globals half becomes gate-blocking with a real allowlist check that passes today (three runtime process-globals exist, all in crates/reflow2-core/src/identity.rs, and two of them the rule itself already calls legitimately process-wide). The identity-is-an-id-never-a-path half stays advisory until the registry exists, because the whole surface is path-based today and an honest detector would fire immediately with nothing able to make it pass.",
+    "context_setter": "“Per-design state never lives in a process-global, and identity is an id that resolves to a location — never a path” does not say whether breaking it stops the build",
+    "gap_id": "gap:ba21fb8550a81e07",
+    "question": "You've said this project should never stash one design's details somewhere the whole program can see, and should identify a design by its name rather than by where its files happen to sit. If somebody broke that — their change worked, the tests passed — should the build have stopped them, or is that advice?",
+    "rephrase_degraded": false,
+    "status": "answered"
+  }
+}

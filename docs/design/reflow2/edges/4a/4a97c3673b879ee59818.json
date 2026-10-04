@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:f723529387d734c4887bc185135110c93fd9ddc922e3873a2aa2d957f116698f",
+  "edge_type": "INVALIDATES",
+  "from_id": "chg:a-moved-record-is-diffed-against-the-store-not-an-export",
+  "properties": {
+    "at": "2026-09-12",
+    "note": "Together with chg:a-moved-record-that-sat-still-is-parsed-once-per-design this retires the finding's headline: the fixed ~1.1 s is now ~0.4 s on a 16 MB moved record and ~50 ms on a small one (measured the same day, same copy, same method: 388/410/394 and 50/57/51 ms). The MECHANISM the finding describes — first store read after any write, once per generation, not the text index — was correct and located the cause; its numbers are what moved. The finding's own `value` carries the after figures beside the before."
+  },
+  "to_id": "fact:the-first-store-read-after-any-write-pays-a-fixed-1-1s-tax-whichever-tool-it-is"
+}

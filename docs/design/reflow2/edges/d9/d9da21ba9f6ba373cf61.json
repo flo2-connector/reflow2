@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:0f9b3005d86badf0cdfaee11aa2043a84adc16e33275feda4d2c81ab23cab7e2",
+  "edge_type": "MITIGATES",
+  "from_id": "dec:idea-should-a-creation-call-carry-its-own-golden-thread",
+  "properties": {
+    "evidence": "Idea ② is a third repair for the defect that fact records, and a better-shaped one than either it names: passing `satisfies` in the same call supplies the discriminating fact BEFORE the guard runs, so the guard keeps full strength against genuine same-type duplication while the canonical genesis pattern stops tripping it. Neither weakened nor merely reworded."
+  },
+  "to_id": "fact:the-near-match-filter-has-no-node-type-term"
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:d254d81f77d845fa34799716570fbc7face0a85b907b42f18213eedd57273065",
+  "edge_type": "CAUSES",
+  "from_id": "ver:skill-lint",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "skill_lint, the one CI gate over skill-to-surface agreement, checks only that a backticked name in a SKILL.md is a #[tool] method. A refusing stub counts as served, tool descriptions and refusal texts are never read, and no tool/parameter pairing is checked. So repair_report's description has named the stub record_change since the 2026-09-18 rename, and the gate is green today (measured).",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:root-cause-instructions-route-records-to-paths-that-cannot-take-them-and-the-lint-checks-names-only-2026-09-28"
+}

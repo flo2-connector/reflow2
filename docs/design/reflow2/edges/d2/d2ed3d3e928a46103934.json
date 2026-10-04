@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:c3e5fa06edec5d1cd04839abd756bd429b55fe6aa1ace6551539e00ea6d1d463",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:test-check-verification-ratchet",
+  "properties": {
+    "covers": "whole",
+    "note": "The Python half of the same check: twelve hermetic tests on the ratchet, run as its own CI step."
+  },
+  "to_id": "ver:a-claimed-check-is-counted-apart-from-a-runnable-one"
+}

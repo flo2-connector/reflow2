@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:4bf843f4d546d8010b55616a85f6f3e20343b42ac3bd86e41557cdc54203155b",
+  "node_id": "art:test-absence-means-nobody-said-and-a-plan-holds-a-check",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "location": "crates/reflow2-core/tests/absence_means_nobody_said_and_a_plan_holds_a_check.rs",
+    "name": "absence_means_nobody_said_and_a_plan_holds_a_check.rs — a Verification without method/level stores neither; a check and a ruling can be scheduled into an epoch; an Artifact still cannot",
+    "status": "realized"
+  }
+}

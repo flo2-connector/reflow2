@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:ffb08996b2b967888825a47fa29d8fa30e3971812b336fffc3f971e4057f1d5f",
+  "edge_type": "CHANGED",
+  "from_id": "chg:bl71c-compare-designs",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:service"
+}

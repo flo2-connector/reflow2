@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:5199d2bd369443c930615d62430608bffba814400dd5c364f1ad61a66500f64a",
+  "edge_type": "CONTRADICTS",
+  "from_id": "dec:idea-discontinued-is-a-first-class-state",
+  "properties": {
+    "alignment": "supporting",
+    "evidence": "Two independent arrivals at one gap on the same day: Alex from outside (agents write DROPPED into prose because Capability.status has no such value) and Anthony from inside (a real built thing to withdraw). Neither node knew about the other."
+  },
+  "to_id": "dec:idea-does-a-capability-need-a-cancelled-state"
+}

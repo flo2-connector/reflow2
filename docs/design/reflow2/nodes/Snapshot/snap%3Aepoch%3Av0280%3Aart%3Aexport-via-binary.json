@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:efd34d084d40cac880153f8a6c1c834c25cbaf2dc930ee18ef629eb89a923bd2",
+  "node_id": "snap:epoch:v0280:art:export-via-binary",
+  "node_type": "Snapshot",
+  "properties": {
+    "edges": "[{\"direction\":\"in\",\"edge_type\":\"INCLUDES\",\"other_type\":\"Release\",\"other_id\":\"rel:v0240\",\"properties\":{\"as_checksum\":\"sha256:3dc8f44f7add68ae0f56d7da184e667fd8860ededaa57262e8bd800de87be691\"}},{\"direction\":\"in\",\"edge_type\":\"INCLUDES\",\"other_type\":\"Release\",\"other_id\":\"rel:v0250\",\"properties\":{\"as_checksum\":\"sha256:3dc8f44f7add68ae0f56d7da184e667fd8860ededaa57262e8bd800de87be691\"}},{\"direction\":\"in\",\"edge_type\":\"INCLUDES\",\"other_type\":\"Release\",\"other_id\":\"rel:v0260\",\"properties\":{\"as_checksum\":\"sha256:3dc8f44f7add68ae0f56d7da184e667fd8860ededaa57262e8bd800de87be691\"}},{\"direction\":\"in\",\"edge_type\":\"INCLUDES\",\"other_type\":\"Release\",\"other_id\":\"rel:v0261\",\"properties\":{\"as_checksum\":\"sha256:3dc8f44f7add68ae0f56d7da184e667fd8860ededaa57262e8bd800de87be691\"}},{\"direction\":\"in\",\"edge_type\":\"INCLUDES\",\"other_type\":\"Release\",\"other_id\":\"rel:v0270\",\"properties\":{\"as_checksum\":\"sha256:3dc8f44f7add68ae0f56d7da184e667fd8860ededaa57262e8bd800de87be691\"}},{\"direction\":\"in\",\"edge_type\":\"INCLUDES\",\"other_type\":\"Release\",\"other_id\":\"rel:v0280\",\"properties\":{\"as_checksum\":\"sha256:3dc8f44f7add68ae0f56d7da184e667fd8860ededaa57262e8bd800de87be691\"}},{\"direction\":\"out\",\"edge_type\":\"REALIZES\",\"other_type\":\"Component\",\"other_id\":\"cmp:export\",\"properties\":{\"completeness\":\"complete\"}}]",
+    "state": "{\"artifact_type\":\"code\",\"checksum\":\"sha256:3dc8f44f7add68ae0f56d7da184e667fd8860ededaa57262e8bd800de87be691\",\"granularity\":\"atomic\",\"location\":\"tools/export_via_binary.py\",\"name\":\"export_via_binary.py — export through a chosen binary, so the stamp says what shipped\",\"status\":\"realized\",\"volatility\":\"stable\"}",
+    "target_id": "art:export-via-binary",
+    "target_type": "Artifact"
+  }
+}

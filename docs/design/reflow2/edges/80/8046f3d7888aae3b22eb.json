@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:ae114ead77c54693fa92169f82f63cb7720ee287c1805e0fd32e12b3db55cb47",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:the-agent-says-which-recorded-reader-it-assumes-and-the-lens-names-them",
+  "properties": {
+    "approved_at": "2026-09-14",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

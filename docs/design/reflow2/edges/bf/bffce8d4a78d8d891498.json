@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:be104b68dfc1ad2a1448f0c0c3c607a439b3c2f97cfb49d29d4e6bce7f057b40",
+  "edge_type": "GOVERNED_BY",
+  "from_id": "req:the-server-keeps-the-working-tree-export-current",
+  "properties": {
+    "evidence": "The write-through-and-debounce half of this requirement is that decision's road 1+3, ruled 2026-09-11."
+  },
+  "to_id": "dec:idea-what-guarantees-the-export-if-the-export-is-the-only-durable-copy"
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:b21d5b430f7195faf3945e457fa33a582702bf53914cccdf7c3f7e0df1027212",
+  "edge_type": "DOCUMENTS",
+  "from_id": "art:storyflow-engineering-principles",
+  "properties": {
+    "doc_kind": "design_doc"
+  },
+  "to_id": "dec:idea-a-rule-with-no-check-is-reported-even-when-unenforced"
+}

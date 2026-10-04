@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:aa13e42310e7b393df87e456a24a24b7cec2b18fd041702d9592a2b0fcf34914",
+  "node_id": "art:test-review-relations",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "location": "crates/reflow2-core/tests/review_relations.rs",
+    "name": "review_relations.rs",
+    "status": "realized"
+  }
+}

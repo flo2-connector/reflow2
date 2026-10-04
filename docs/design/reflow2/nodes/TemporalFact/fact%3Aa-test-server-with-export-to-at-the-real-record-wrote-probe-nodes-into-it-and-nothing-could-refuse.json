@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:6426e68bedf7022204341e91bedc8ced46955f359da076199c4f259cc2b6a135",
+  "node_id": "fact:a-test-server-with-export-to-at-the-real-record-wrote-probe-nodes-into-it-and-nothing-could-refuse",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "confidence": 1.0,
+    "fact_type": "finding",
+    "name": "A throwaway server on a COPY of the design, launched with --export-to pointed at the real committed record, wrote 8 probe nodes into it — and nothing could have refused, because the copy carries the live design's identity",
+    "statement": "HAPPENED 2026-09-12, caught by the loop hint (\"the shared record holds 8 node(s) this graph does not: rul:perf-probe-…\"), restored from HEAD. An A/B harness measuring the live server's configuration launched a server on a copy of the store with the live flags, including `--export-to ./docs/design/reflow2.json`; the copy's own throwaway writes were auto-exported into the real record.\n\nWHY NO GUARD FIRED, and why one may not be able to: the copy was built by importing the committed export, so it ADOPTED the live design's identity (adopted_identity: reflow2). To the export path the target was legitimately \"its\" record — same graph id, a lineage it could chain from. A stale-seat refusal compares hashes and the copy was ahead, not behind. The only thing that noticed was the node-count comparison on the NEXT live read.\n\nA LIMIT TO STATE, NOT A DEFECT TO FIX BLINDLY: two stores sharing one identity are by design (that is what an import is for). What might be cheap and honest is for `--export-to` to say at startup, once, which graph directory it will write FROM — so a person reading a harness log sees the mismatch. Recorded as the shape of the trap; no change proposed here.",
+    "subject_id": "art:auto-export",
+    "valid_from": "2026-09-12"
+  }
+}

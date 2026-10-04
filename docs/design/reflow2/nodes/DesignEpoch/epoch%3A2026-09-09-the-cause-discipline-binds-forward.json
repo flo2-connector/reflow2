@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:bb98daa2bdd3d0e3389df7dbe72dc5d6d95f8253cd94e562897cf6c853fcd37f",
+  "node_id": "epoch:2026-09-09-the-cause-discipline-binds-forward",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "description": "The moment the CAUSE-EDGE boundary for `req:a-fix-says-whether-it-corrected-the-cause` was fixed at 2026-09-06 and the 228 pre-detector fixes were parked out of the detector's scope.\n\n⚠️ IT IS NOT THE MOMENT THE RETRO QUESTION WAS ANSWERED — that was 2026-08-17, in `dec:the-patch-record-binds-forward-not-backward`, and this epoch's own first draft got that wrong for the same reason the session did: the requirement's statement still ended \"NOT YET DECIDED … that is his call to make explicitly rather than mine to infer\" three weeks after the call had been made. The statement was corrected in this epoch.\n\nWhat this epoch actually carries: the subordinate ruling `dec:the-cause-discipline-binds-forward-not-backward`, which narrows the cause-edge limb to its own instrument's landing because that detector did not exist until 2026-09-06; the 228 GOVERNED_BY ruling=parks edges under it; and the correction to the requirement's stale paragraph. The discipline itself began 2026-09-06 — this is the moment the design stopped asking about what came before it.",
+    "epoch_type": "revision",
+    "name": "The cause-recording discipline is fixed as forward-only and the pre-detector backlog is parked",
+    "sequence": 409,
+    "status": "arrived"
+  }
+}

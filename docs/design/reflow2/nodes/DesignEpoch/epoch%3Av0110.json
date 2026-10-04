@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:a0724f369a06f96ffebff45c4d1e0fc4f2eaf22a2f4b41912722518b86ee45a1",
+  "node_id": "epoch:v0110",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "checksum": "sha256:a2c3477809c4076ba43d8a98c3178edf6b1d677e947ec36d8c8fbad37119c657",
+    "description": "Cut at git tag v0.11.0, the current deployed release. The checksum anchors the export taken at cut time, immediately before this anchor was written — the same practice as epoch:v0101, and the reason dec:fork-point-address treats a fork point as a coordinate resolved against git rather than a self-referential hash.",
+    "epoch_type": "release_cut",
+    "name": "v0.11.0 release cut (2026-07-25)",
+    "sequence": 130,
+    "status": "arrived"
+  }
+}

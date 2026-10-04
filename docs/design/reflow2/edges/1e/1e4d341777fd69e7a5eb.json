@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:e5b29bfcf0a2663720b23cbf67214b571c8b24087ebaa338666ba893f9938367",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:design-identity",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:identity"
+}

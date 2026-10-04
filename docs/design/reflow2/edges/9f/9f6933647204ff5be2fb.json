@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:bbd277db835a2440cebbba1808622418a77962d08a2f27d48b587caf68307244",
+  "edge_type": "INVALIDATES",
+  "from_id": "chg:a-finding-or-refusal-names-the-route-that-works",
+  "properties": {
+    "at": "2026-09-29",
+    "note": "The verifies refusal for a Decision now names GOVERNED_BY and `governed_by`, and every typed helper renders an invalid pair through the one renderer create_edge uses; pinned over every rejected (edge, from, to) the schema has."
+  },
+  "to_id": "fact:root-cause-a-check-on-a-ruling-is-modelled-as-governed-by-and-the-verifies-refusal-never-says-so-2026-09-28"
+}

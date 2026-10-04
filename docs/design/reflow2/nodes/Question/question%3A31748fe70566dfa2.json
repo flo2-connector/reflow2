@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:6add2343596fa2d62ffc524537d506437c953aa4cadab2a28e78e5c9a114f071",
+  "node_id": "question:31748fe70566dfa2",
+  "node_type": "Question",
+  "properties": {
+    "answer": "Yes — a committed manifest mapping content hash to original filename to what references it. It answers both questions at once: whether someone holding only the JSON can tell what is missing, and making blob changes legible in `git log` as readable names rather than hex. Plus mark the blob directory `binary` in `.gitattributes` so git never attempts to diff a PNG or mangle it with line-ending conversion. (Anthony, 2026-07-31.)",
+    "asked_at": "2026-07-31",
+    "context_setter": "Nothing satisfies requirement “Once the design points at content, the export must say what it does NOT carry — a pointer with no bytes fails loud, not quietly”",
+    "gap_id": "gap:31748fe70566dfa2",
+    "question": "Once diagrams and documents are stored alongside the design, sending someone just the design file no longer gives them everything — their diagrams would quietly fail to open. Should the design file list what it depends on, so a person can tell at a glance whether they have it all?",
+    "rephrase_degraded": false,
+    "status": "withdrawn"
+  }
+}

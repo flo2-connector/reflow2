@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:0def8eda4de086def85a94af31a1c4b7d7d5d045ac65d433fb075385abbcb36f",
+  "node_id": "req:a-writing-call-keeps-the-committed-export-current",
+  "node_type": "Requirement",
+  "properties": {
+    "lineage": "original",
+    "name": "A `--call` that writes keeps the project's committed design export current, without the agent having to remember a separate export",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "Step 2 of the plan to make the `--call` door work for an agent that cannot use MCP (Anthony, 2026-10-01; his idea 3 in using_call.md).\n\nToday the write-through export (req:the-server-keeps-the-working-tree-export-current) starts only in a long-lived server. After a write through the door the export lags until the agent remembers export_graph with overwrite and the right path. \"Forgetting is the exact loss class the write-through was built to end.\"\n\nMUST:\n- After a successful call to a tool that writes (by its served annotation), the door updates the export with the same lineage chaining and tamper guard as the write-through.\n- The path comes from the project's own configuration, never from the agent's memory.\n- A read-only call never touches the export.\n- A failed export is reported, not swallowed.",
+    "status": "proposed"
+  }
+}

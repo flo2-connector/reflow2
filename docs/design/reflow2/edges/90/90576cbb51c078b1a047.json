@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:9891d00ffdff5e5362162283b6c8a9eedf731805e2d9dad8e5554d36e463a81c",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:a-report-nobody-recorded-reading-is-reported",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:heal"
+}

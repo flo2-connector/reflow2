@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:a326dc31bb81beeb7a14371c2cf4d3c192c59fb5c5dffdf296e9d2e001db8021",
+  "node_id": "drift:ba279469aaf17948",
+  "node_type": "DriftEvent",
+  "properties": {
+    "detected_at": "2026-07-22",
+    "drift_type": "checksum_change",
+    "name": "art:verify drift",
+    "resolved": true,
+    "severity": "medium",
+    "summary": "'art:verify' has changed since it was registered against the design"
+  }
+}

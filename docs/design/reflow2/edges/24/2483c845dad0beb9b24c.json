@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:1b8cdb8c8f99e19e77222f1ebaf6e28a33c1dfbae680967eadf1f81e2cf1d118",
+  "edge_type": "REALIZES",
+  "from_id": "art:preserve",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:certify-restructuring"
+}

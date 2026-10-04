@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:1e8a2fe9b910a6c8c24e810ae033633b546687cf68368f2218d8d30116e1ec90",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "cap:brainstorm",
+  "properties": {
+    "authored_at": "2026-07-24",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:alex"
+}

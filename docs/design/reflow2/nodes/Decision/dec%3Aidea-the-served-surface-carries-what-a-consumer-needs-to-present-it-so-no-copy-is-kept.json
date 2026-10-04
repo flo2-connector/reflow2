@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:19511ba17b6b8c08905be155f505c5215aa903e4732782b8f72f26389f68f7ac",
+  "node_id": "dec:idea-the-served-surface-carries-what-a-consumer-needs-to-present-it-so-no-copy-is-kept",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "RECORDED AS BRAINSTORMING, NOT AS A PROPOSAL (the field-feedback rule: every idea gets the brainstorm skill). From flo2 F8's closing paragraph: the cheap local answer is a hand-maintained copy, the durable answer is a field upstream; a property of the SEAM, not of any feature. OPTIONS, none chosen: (a) a DesignRule on reflow2 — a consumer-facing fact about the served surface (what a person types, reads, or may use) is served by reflow2, never copied — delivered on the skills that add tools or skills; (b) a requirement, since it names what reflow2 owes every consumer, with the three instances as evidence; (c) leave it as the pattern the three instances already show. COUNTER: some consumer facts are the consumer's — which subset it exposes to whom is flo2's policy; the rule would have to say the FIELD is upstream and the CHOICE stays downstream.",
+    "kind": "exploratory",
+    "name": "OPEN — is 'every time a consumer presents reflow2's surface to a person, the durable answer is a small upstream field' a rule of the seam, and should it be recorded as one — the restricted tool subset, the MCP roster and the skill menu being three instances in one day?",
+    "rationale": "Recorded from the field report as the general shape behind F8 and F9.",
+    "status": "accepted"
+  }
+}

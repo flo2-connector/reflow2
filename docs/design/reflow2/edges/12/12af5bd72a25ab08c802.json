@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:b2fb99cb43871747ef2763e3937dd3bd52c8b3cff634636712094210f3f61328",
+  "edge_type": "VERIFIES",
+  "from_id": "ver:stateless-seat",
+  "properties": {},
+  "to_id": "req:seat-per-client"
+}

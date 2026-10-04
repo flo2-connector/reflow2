@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:7aa46078a37d6c1f67b4b431b942d4ababadb9530e3e815e0269f618cfd5b8c9",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-hub-skill-files-each-fact-where-it-belongs-2026-09-28",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "art:hub-command"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:0d9a386ca001ba068e12e98df1fb78851cc1f95620a2e3f5d527239b2ce5291c",
+  "edge_type": "CHANGED",
+  "from_id": "chg:2026-09-22-add-requirement-takes-source-and-provenance",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:tools-capture"
+}

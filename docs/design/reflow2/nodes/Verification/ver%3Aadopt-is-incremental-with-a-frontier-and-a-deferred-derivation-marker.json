@@ -1,0 +1,17 @@
+{
+  "content_hash": "sha256:203045cf2b9417b8dcf75fdd62cae6cb37634202858231f497432df5ebce1912",
+  "node_id": "ver:adopt-is-incremental-with-a-frontier-and-a-deferred-derivation-marker",
+  "node_type": "Verification",
+  "properties": {
+    "description": "crates/reflow2-core/tests/adopt_is_incremental_with_a_frontier_and_a_deferred_derivation_marker.rs — four cases.",
+    "findings": "fr run: 4 passed, 0 failed.",
+    "kind": "verification",
+    "last_reconciled_at": "2026-09-23",
+    "last_reconciled_outcome": "passed",
+    "last_run_at": "2026-09-17",
+    "level": "unit",
+    "method": "test",
+    "name": "A deferral quiets the intent finding on its subject and the boundary lists it as owed; closing the marker brings the finding back; the frontier lists structure without intent, the deferred and the resume point; a frontier with no sweep says it does not know what is uncaptured",
+    "status": "passing"
+  }
+}

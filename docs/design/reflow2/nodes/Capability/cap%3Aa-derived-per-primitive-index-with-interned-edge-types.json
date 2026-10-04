@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:0c21cfe5ac57248ab840faf396a45a82ed48a34ca79b38f25c6441060757db24",
+  "node_id": "cap:a-derived-per-primitive-index-with-interned-edge-types",
+  "node_type": "Capability",
+  "properties": {
+    "description": "Builds a CSR adjacency per primitive from the declared readings, interns edge types and property keys, stores symmetric relations once and computes inverses and declared compositions from the algebra — always derived from the stored graph and rebuilt from it, never written independently.",
+    "name": "A derived per-primitive compact index with interned edge types and algebra-aware storage, rebuilt from the stored graph",
+    "provenance": "authored",
+    "status": "planned"
+  }
+}

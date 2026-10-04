@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:174a57ca5a5ae5db2009375b1651a4b36c2f370eb2eb4300a8d01025a2b24845",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-check-and-its-findings-are-different-things",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "ver:granularity"
+}

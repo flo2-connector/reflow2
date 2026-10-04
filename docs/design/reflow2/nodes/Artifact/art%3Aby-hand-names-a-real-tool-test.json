@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:edb75aa636d0a06ef5c6b1e205ebd10d26dea05eb88e0ddad43ead692fee8b68",
+  "node_id": "art:by-hand-names-a-real-tool-test",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "location": "crates/reflow2-mcp/tests/a_by_hand_report_names_a_real_tool.rs",
+    "name": "tests/a_by_hand_report_names_a_real_tool.rs",
+    "status": "realized"
+  }
+}

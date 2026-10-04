@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:4b45df68582ad08cd3c2062b290c134edafe7197d04033e247b5b6df0dce883a",
+  "edge_type": "CONTRADICTS",
+  "from_id": "dec:idea-depth-is-derived-from-fan-out-not-declared-by-a-ladder",
+  "properties": {
+    "alignment": "opposing",
+    "evidence": "Opposing at the premise, not at the answer. That node compares five CARRIERS for depth and every one of them has the user declaring it — a rung name, a derived spine position, a rung node, a relative rule, or both reconciled. This says the NUMBER of layers need not be chosen at all: span of control makes it a consequence of how many parts exist. If that holds, the carrier question shrinks from a design decision to a rendering detail, so the two cannot both be the right frame."
+  },
+  "to_id": "dec:idea-is-a-declared-rung-name-the-right-shape-for-decomposition-depth"
+}

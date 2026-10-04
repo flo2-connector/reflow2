@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:e305eb08fc43553dd7b785e57641ada1a9a226d832aec42416fb7d8f3fd85e83",
+  "node_id": "req:time-and-tokens-are-measured-per-task-against-budgets",
+  "node_type": "Requirement",
+  "properties": {
+    "concern": "usability",
+    "kind": "nonfunctional",
+    "lineage": "original",
+    "name": "reflow2 measures tokens per completed task on its MCP surface and time per tool on release builds, against budgets written before any optimisation — so \"high performance\" has a target and a later regression shows",
+    "priority": "high",
+    "provenance": "imported",
+    "source": "Anthony, 2026-09-28, in a dev_reflow2 session: \"let's go with idea 4, the 1, 2, and 3\" — promoting dec:idea-measure-where-time-and-tokens-go-before-optimizing from the graph-primitives design on flo2 (graph 85a2a1a36e7c942d).",
+    "statement": "SECOND of the four performance requirements Anthony promoted on 2026-09-28 (order: tokens per call, then this, then a compact index per primitive, then incremental maintenance). The index and incremental requirements are gated on what this measures.\n\n(a) A TOKEN LEDGER: for named tasks — capture one requirement with its thread; orient on a design; judge one levied requirement — the calls made and the characters returned per call, summed per task. Characters are the recorded proxy for tokens, stated as such.\n(b) LATENCY per tool on RELEASE builds against real designs (reflow2's own, ~5,900 nodes, and a small one), continuing the discipline of its four recorded wins and con:loop-status-after-a-write-answers-under-one-second.\n(c) BUDGETS for both, written before any optimisation, recorded as Constraints, and re-measured each release so a regression is caught.\n\nPrecedent, and why it does not block this: req:context-is-a-modelled-quantity (\"context cost is MEASURED and budgeted, not estimated at design time\") was DROPPED on 2026-07-30 by dec:proposed-requirements-pruned, on Anthony's word (\"if some of them are not value added and just cause confusion, then we don't have to do them\"), under the test \"would it change what anyone BUILDS?\" — with the reason \"answered in its acute half by cap:bounded-reads, and its own text calls the remaining half weak\" (the remaining half being design-time estimation of context cost). This requirement passes that test and is not answered by bounded reads: bounded reads keep one reply inside what a client accepts, but measure nothing per task and do not reduce what a write echoes back (a 1.2 KB append still returns ~17 KB); and what it builds — a ledger per task and budgets against it — is measurement, not the estimation the drop called weak. First written 2026-09-28 saying the drop's reason was unrecorded; it was recorded on that decision, and was found the same day.",
+    "status": "proposed"
+  }
+}

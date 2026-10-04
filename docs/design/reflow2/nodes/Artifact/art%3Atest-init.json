@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:869f11704651863ac0bcac235519c9b16184a15521c3293368c08471d3cf85d3",
+  "node_id": "art:test-init",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "granularity": "atomic",
+    "location": "tools/test_init.py",
+    "name": "test_init.py",
+    "status": "realized",
+    "volatility": "stable"
+  }
+}

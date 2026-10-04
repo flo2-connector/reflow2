@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:69983c045db613cafcfd06fcb7b052b30a62ebe0dd58b44740f9dd01a9504ce0",
+  "edge_type": "SCHEDULED_FOR",
+  "from_id": "req:a-report-says-what-it-swept-and-whether-its-checks-ran",
+  "properties": {
+    "modality": "expected",
+    "recorded_at": "2026-08-16"
+  },
+  "to_id": "epoch:triage-fixes"
+}

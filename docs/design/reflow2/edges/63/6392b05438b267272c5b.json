@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:db0f5a2b8ba30e854f5e92c9929aeee8997a33b4bee27184b274b75eb9cadca0",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:the-record-moved-is-surfaced",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:sync-debt"
+}

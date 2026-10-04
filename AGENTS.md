@@ -16,9 +16,8 @@
 >
 > **Before you start:** run **`git pull --rebase`**, then run **`claim_report`** and claim what you
 > take with **`claim_region`** — the board moved into the graph on 2026-08-04
-> (`dec:coord-board-in-graph`), so claims travel in the committed design (`docs/design/reflow2/`,
-> or `docs/design/reflow2.json` until the conversion lands) and a graph you haven't pulled is out
-> of date. **[COORD.md](COORD.md)** keeps the handles, the conventions, and
+> (`dec:coord-board-in-graph`), so claims travel in the committed design (`docs/design/reflow2/`) and a graph
+> you haven't pulled is out of date. **[COORD.md](COORD.md)** keeps the handles, the conventions, and
 > resolving merge conflicts without discarding anyone's work.
 > **The graph** has what is open and why: the graph — `loop_status` for what the loop owes, `detect_gaps` for the open questions, `search_design` to find a past finding by its words. `docs/backlog.md` was retired 2026-08-07 (`dec:backlog-is-retired`); its open rows are nodes now.
 
@@ -120,8 +119,7 @@ EOF
 # item layout's directory, or a single-file export such as docs/design/reflow2.json.)
 
 # reflow2's own functional design, as a reflow2 graph. The committed design at
-# docs/design/reflow2/ (one file per node and per edge; docs/design/reflow2.json
-# until the conversion lands) is the durable record — .reflow2/ is gitignored, so
+# docs/design/reflow2/ (one file per node and per edge) is the durable record — .reflow2/ is gitignored, so
 # the committed files are what gets reviewed and diffed. Rebuild it after a design
 # change; --analyse-only re-imports the committed design and re-runs the analysis.
 python3 tools/build_design_graph.py
@@ -375,10 +373,10 @@ python3 tools/test_run_to_files.py                      # a real test run become
 python3 tools/test_latent_promotion.py                  # the latent server promotes itself in place, on any client (real binary)
 python3 tools/test_content_policy.py                    # a reply takes the shape its client can read (per-client content policy, on the wire)
 python3 tools/test_opencode_plugin.py                   # the OpenCode loop-nudge plugin, driven as OpenCode drives it (node)
-python3 tools/reflow2_check.py --export docs/design/reflow2.json   # design vs build, and the export chain
-python3 tools/check_intent_authority.py docs/design/reflow2.json    # settled intent carries the owner's name
-python3 tools/check_consumer_reach.py docs/design/reflow2.json     # a capability claiming reach beyond this repo is realized by something a consumer gets
-python3 tools/check_verification_ratchet.py docs/design/reflow2.json # a capability does not NEWLY claim a passing check nothing can re-run
+python3 tools/reflow2_check.py --export docs/design/reflow2/   # design vs build per change, and per-item integrity and lineage
+python3 tools/check_intent_authority.py docs/design/reflow2/    # settled intent carries the owner's name
+python3 tools/check_consumer_reach.py docs/design/reflow2/     # a capability claiming reach beyond this repo is realized by something a consumer gets
+python3 tools/check_verification_ratchet.py docs/design/reflow2/ # a capability does not NEWLY claim a passing check nothing can re-run
 python3 tools/vocabulary_reach.py --check                # a NEW declared property the surface cannot write
 python3 tools/check_command_surface.py                   # the skill/command copies still agree
 python3 tools/the_served_surface_names_no_real_person.py   # no served text names a real person from this design
@@ -452,11 +450,6 @@ What that means for a pull request:
 `--diff`/`compare_designs`, `--merge`, the upstream watch, `fork_point`, and every Python gate
 and tool through the one loader, `tools/design_io.py`. A `.json` path is still written as the
 single file, whose chain anchors at the same merge-base and whose gate checks are unchanged.
-
-> ⚠️ **UNTIL THE CONVERSION PR LANDS, reflow2's own record is still `docs/design/reflow2.json`**,
-> and the single file's rule still binds it: export ONCE, as the last commit, and after merging
-> main replay your record onto main's export. The conversion is one PR, landed while no other
-> design-touching PR is open (decision 6).
 
 > ⚠️ **The claim board's old tension is gone with the layout.** A claim is graph state, and the
 > single file could only be written once per PR, last — so a claim made before the work was

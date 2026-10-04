@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:6103adb149a52b525268b19e673b7b55d346fff4991c6ef3c550cd7b44379310",
+  "edge_type": "EVOLVES_INTO",
+  "from_id": "dec:idea-a-byte-backend-that-compiles-in-seconds",
+  "properties": {
+    "evidence": "The older thought, grown up. That node asks which embedded engine to pick on compile-speed grounds, and its own premise note says 'faster to compile' is true for a cold build and false for the iteration loop. This one changes what the question IS: if the store is a derived per-session cache, compile speed and durability stop being traded against each other, and picking wrong costs a re-hydrate rather than a migration."
+  },
+  "to_id": "dec:idea-the-store-becomes-a-session-cache-and-the-export-becomes-the-truth"
+}

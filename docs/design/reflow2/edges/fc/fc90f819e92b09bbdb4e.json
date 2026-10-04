@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:e36e4ebb825a97c5ddc784d36093b575a026c06b8706593c051fa564dca6f8d6",
+  "edge_type": "ANTICIPATES",
+  "from_id": "dec:idea-relevance-ranking",
+  "properties": {
+    "evidence": "Same 2026-08-01 review. It observes that `propagate.rs` ranks a blast radius by GLOBAL betweenness — 'is this node important in general' — rather than by relevance to the change, which is the requirement's distinction between reading the shape and reading it for a purpose. Betweenness WAS absorbed; the alternative ranking it argues for would want `pagerank.rs` (291 lines), left upstream."
+  },
+  "to_id": "req:graph-theory-undergirds-the-design-brain"
+}

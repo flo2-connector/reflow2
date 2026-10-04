@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:65203a3538dfeb3f0f129664e552022a54e2de76755de86359b16dd400a89eb7",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-a-repo-that-holds-its-design-moves-it-to-a-remote-server-once",
+  "properties": {
+    "evidence": "After the move, the folder finds its remote design through the pointer file settled there; without it, the switch has nothing to point at.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "dec:idea-a-checkout-knows-which-remote-design-it-implements"
+}

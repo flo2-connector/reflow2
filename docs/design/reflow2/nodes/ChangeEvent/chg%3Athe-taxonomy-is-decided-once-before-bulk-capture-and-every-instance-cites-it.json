@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:252df432e3431450ad0a10e87a8ba0b542bb98bcd7ee850cbc143f1baddd9332",
+  "node_id": "chg:the-taxonomy-is-decided-once-before-bulk-capture-and-every-instance-cites-it",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "detected_at": "2026-09-17",
+    "name": "The taxonomy is decided once, before bulk capture, and every instance cites it",
+    "rationale": "First of Alex's three ideas promoted on Anthony's word 2026-09-17 (\"accept/promote all of Alex's ideas. We can work them after the current set of tasks\"), built after #529. The three-legs rule applied once more: an instruction alone was the state Alex measured (his repos did it by hand), so the skill is joined by a detector that notices absence and by a typed field so the discriminator the skill names can actually be written. Artifact.artifact_type and Flow.flow_type are deliberately not swept: they default to a real value, so a presence test would read every node as encoded — the same trap Interface.medium's unspecified default set for the seam check.",
+    "summary": "Three legs. A served establish-taxonomy skill (command /taxonomy, alias in skills.rs): list the categories the design will hold many of; decide ONCE per category how an instance is encoded (node type, discriminator, edges, name pattern) as an accepted Decision on the owner's word; govern every instance by it with governed_by; the honest limit stated first (reflow2 cannot know a repository's categories). adopt points at it after the breadth pass, genesis after seeding, and the genesis next_steps checklist names it. Detector encoding_undecided (detect.rs): per (type, discriminator) over Component.kind, Interface.medium, Requirement.kind, Verification.method — the properties with no materialised default, or whose default is unspecified — fires when live nodes of one type are encoded differently (some carry the discriminator, some nothing) and the silent ones are governed by no accepted Decision; silent under three instances; a type where nobody has said fires only at five and at lower severity; keyed on the pair so an acknowledgement sticks. add_component gains kind (typed reach; before this no tool could write Component.kind). detect-and-ask row, gap-surfacing row, CHANGELOG entry. Tests: a_taxonomy_is_decided_once_before_bulk_capture.rs (core, six cases) and the_taxonomy_skill_is_served_and_the_finding_reaches_the_surface.rs (served, three)."
+  }
+}

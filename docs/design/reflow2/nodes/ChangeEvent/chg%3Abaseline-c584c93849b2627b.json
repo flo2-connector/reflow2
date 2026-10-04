@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:6c6400c1ddc866b57a3cbc0184b0cb9d65aec904cc7101ff520bbada9051e513",
+  "node_id": "chg:baseline-c584c93849b2627b",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "baseline_established",
+    "detected_at": "2026-09-15",
+    "name": "First baseline for the acceptance test registered in the third walk; it was linked without a checksum.",
+    "subject": "record"
+  }
+}

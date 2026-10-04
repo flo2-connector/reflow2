@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:01c8dd38496c78555159427e6dc19e2aedc16d85444593994323a03e5e505288",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-stored-twin-has-one-authority",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:tools-capture"
+}

@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:5b8fee3755996c31d00e770a3645062729c7bcc06aff714f37d157c2fdad136e",
+  "node_id": "ver:a-repair-says-which-kind-it-was",
+  "node_type": "Verification",
+  "properties": {
+    "findings": "8 passed. The load-bearing case is a_silent_ledger_says_nobody_said_and_not_nothing_rests_on_a_patch: on reflow2's own graph every one of ~220 repairs is unstated, so a report that listed the zero standing patches and stopped would have answered 'nothing rests on a patch' confidently and falsely.",
+    "kind": "verification",
+    "last_run_at": "2026-09-09",
+    "level": "integration",
+    "method": "test",
+    "name": "The disposition is recorded and silence stays silence, a containment carries what it stands in for, and the report cannot read as clean when it is merely silent (8 cases)",
+    "status": "passing"
+  }
+}

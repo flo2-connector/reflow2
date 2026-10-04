@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:3435c675b9eb5b97d72b04d3df87e4a9b7af62f210842c15e4201afeff539b9c",
+  "node_id": "ver:bounded-reads",
+  "node_type": "Verification",
+  "properties": {
+    "kind": "verification",
+    "last_run_at": "2026-07-25",
+    "level": "integration",
+    "method": "test",
+    "name": "A capped read names its cap, its total and where to resume; an oversized single node still returns (tools.rs, 4 cases)",
+    "status": "passing"
+  }
+}

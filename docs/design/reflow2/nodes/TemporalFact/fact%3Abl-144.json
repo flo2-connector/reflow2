@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:99b0ea161d034ec48235529515ba2a4c5def05abd0ede960ce2050828e4e74e7",
+  "node_id": "fact:bl-144",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "defect",
+    "statement": "[BL-144] export_graph will not create its own parent directory, and the path it rejects is the one AGENTS.md tells you to use",
+    "subject_id": "cmp:export",
+    "value": "{\"evidence\": \"*Found 2026-08-01 by an /adopt pass over music_graph, a ~11k-LOC Python research repo taken from an empty graph to 134 nodes / 379 edges. Reported in that project's own reflow2_feedback.txt.* AGENTS.md documents restoring with reflow2-mcp --import .reflow2/backups/design-<utc>.json, but .reflow2/backups/ does not exist in a fresh design, and exporting to that documented path fails with a bare No such file or directory (os error 2). One mkdir fixes it; the error does not say so. A papercut, and it is on the documented recovery path \\u2014 the one somebody reads when something has already gone wrong. Adjacent to [BL-132] (error-message quality) and an instance of [BL-135] (state the failure mode): the message names the symptom and neither the path it tried nor the remedy. Fix shapes: create the parent directory, or name the missing directory and the mkdir in the error. Creating it is defensible here because the caller has already named the path explicitly \\u2014 this is not a directory reflow2 invented (dec:where-content-lives's concern), it is one the caller asked for. Size S\", \"origin\": \"Migrated from docs/backlog.md BL-144 on 2026-08-07 (epoch:backlog-retired). Size estimate carried from the row: S.\"}"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:6a5d76c85e59b5c381a9de2ca2734ea78bdee071f4471cfb40df659f87c13435",
+  "node_id": "frag:art:test-a-server-closes-designs-nobody-is-using",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered a_server_closes_designs_nobody_is_using.rs — three designs behind a limit of two all answer; what was written survives a close; a closed design's session is 404 and starting again works; the idle sweep closes a design on its own; an unknown id is still 404"
+  }
+}

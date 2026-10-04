@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:1cbbd0f397293a51555cb1038fc3505a3790c1760ab89b588b8c4e1b9706e168",
+  "edge_type": "HAS_TEMPORAL_FACT",
+  "from_id": "req:a-finding-says-when-the-state-it-reports-is-normal-for-the-phase",
+  "properties": {},
+  "to_id": "fact:the-per-capability-build-question-is-already-silent-while-nothing-is-built-so-the-promoted-sentence-was-unreachable"
+}

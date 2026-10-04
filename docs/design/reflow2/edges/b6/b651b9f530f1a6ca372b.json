@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:43e2f056a1965f55a2dfad83f0015d266d9756c56b1e082d1e594059b5c480d0",
+  "edge_type": "REALIZES",
+  "from_id": "art:a-lesson-is-served-at-the-step-wire-test",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "verified"
+  },
+  "to_id": "cap:a-lesson-is-served-at-the-step-it-concerns"
+}

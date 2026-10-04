@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:49e42107f970d23bfe24b4a578e74c7a8d906d57eaf24b22bf5f22f885575268",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:a-claimed-check-is-counted-apart-from-a-runnable-one-test",
+  "properties": {
+    "covers": "whole",
+    "note": "The file that RUNS the check. link_artifact draws REALIZES and only REALIZES, so the executable form is this second, separate edge — the step nothing in the tool's reply says is owed, and a plausible cause of the 282 checks that had no form."
+  },
+  "to_id": "ver:a-claimed-check-is-counted-apart-from-a-runnable-one"
+}

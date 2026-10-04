@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:c0022265513246b6e378239a88c6bcf851ea5a995c180a6617000328781477b4",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:seat-handle",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:claims"
+}

@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:1e62af2e8504fbcd8df613c1fe288cb356f2d5d2b59aaf0a5edf655153dc1add",
+  "node_id": "rel:v0602",
+  "node_type": "Release",
+  "properties": {
+    "description": "Cut 2026-09-14, the second patch over v0.60.0 for the same CI script and a different cause.\n\nv0.60.0 and v0.60.1 both published binaries, kit and checksums and NEITHER published a container image. The gate that refused runs before publication, so nothing unverified shipped — it behaved correctly both times and the test behind it did not.\n\nThe second cause existed only because of how the first was fixed: `mktemp -d` is mode 700 owned by the caller, and chowning it to the container's uid takes it away from that caller wherever they are not also uid 1000. Both fixes passed locally because the author IS uid 1000, so the chown was a no-op — the test was verified in the one environment where its defect cannot appear.\n\nEvery check in that phase now runs INSIDE the container, so host uid and mode cannot produce a false negative at all.",
+    "name": "v0.60.2 — the smoke check asks the container, not the host",
+    "status": "retired",
+    "unit_type": "binary",
+    "version": "0.60.2"
+  }
+}

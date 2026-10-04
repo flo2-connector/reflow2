@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:0afd4c3c7719c705019ab2f5c9ca8c92d913b47e1f3972461f3699793d6ff18a",
+  "node_id": "fact:after-the-scorer-fix-120-of-180-tools-reach-the-top-five-and-42-still-miss",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "confidence": 0.9,
+    "fact_type": "measurement",
+    "name": "After the scorer fix: 120 of 180 pass (was 114), 42 miss (was 53), zero regressions — and the replica that guided the fix overstated the stopword half, which the real server corrected",
+    "statement": "MEASURED 2026-09-11 on the real server over stdio, same 180-query corpus as the baseline, after `chg:find-tools-matches-whole-words-zero-weights-universal-terms-and-normalises-for-length`.\n\n    baseline                pass 114   near 13   MISS 53\n    whole-word + zero-IDF   pass 115   near 13   MISS 52\n    + length normalisation  pass 120   near 18   MISS 42     regressions: 0\n\n⭐ THE MEASUREMENT OVERRULED THE REPLICA, AND THAT IS THE POINT OF TAKING IT. The Python replica used to locate the cause predicted whole-word + stopwords alone would reach 42 misses; the real server reached 52. The gap: the replica dropped a HAND-WRITTEN stopword list, while the implemented fix — the only principled one — zero-weights a term present in EVERY entry, and few words are in all 180. So the stopword half was overstated and length normalisation, recorded as \"a heuristic, not an invariant\", carried most of the recovery: seven tools (`allocate`, `contains`, `create_nodes`, `deploy_to`, `manual_work_report`, `part_of_flow`, `set_verification_kind`) found by it alone, none lost. It is kept BECAUSE the corpus measured it, and the test file says so.\n\nTwo predicted fixtures (`satisfies`, `get_skill`) did not flip on the real server and were dropped from the regression test with the reason in its header, rather than kept as a claim the surface does not honour.\n\nWHAT REMAINS: 42 misses. Twelve are the zero-overlap vocabulary gap this fix was never going to reach; the other thirty have some overlap but lose to tools that genuinely name more of the query (e.g. `satisfies` at rank 9 behind `add_capability`, whose description names satisfying). Those thirty are the honest boundary of what scoring can do without the user's register carried on each tool — option (b) of the open decision, still awaiting a ruling.",
+    "subject_id": "req:every-served-tool-is-reachable-by-find-tools-on-a-users-words",
+    "valid_from": "2026-09-11",
+    "value": "{\"before\":{\"pass5\":114,\"near\":13,\"miss\":53},\"word_and_stop_only\":{\"pass5\":115,\"near\":13,\"miss\":52},\"with_length_norm\":{\"pass5\":120,\"near\":18,\"miss\":42},\"regressions\":0,\"recovered_by_norm\":[\"allocate\",\"contains\",\"create_nodes\",\"deploy_to\",\"manual_work_report\",\"part_of_flow\",\"set_verification_kind\"],\"replica_predicted_word_and_stop_misses\":42,\"real_server_word_and_stop_misses\":52}"
+  }
+}

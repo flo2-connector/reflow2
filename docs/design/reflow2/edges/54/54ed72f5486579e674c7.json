@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:9f3b5c16c5533d40076286b0610f13425027a791b77f658ea45ca82209e0e0e2",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:the-design-knows-where-each-implementation-is",
+  "properties": {
+    "authored_at": "2026-09-25",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

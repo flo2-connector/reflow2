@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:f14a35f8977191ecb2724239e356450027ec32ae46ab18abcc29332cfeebd8f1",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "req:the-store-is-reachable-from-a-session",
+  "properties": {
+    "evidence": "The store exists and is tested; this is the half that makes it usable by the agent and user that requirement is written for.",
+    "optional": false,
+    "weight_basis": "evidence"
+  },
+  "to_id": "req:content-store-for-what-the-graph-points-at"
+}

@@ -1,0 +1,19 @@
+{
+  "content_hash": "sha256:fe6b5afbb6ab3e53d0c8e2429c539e25803936c2cb25b706f61c95348d85ad06",
+  "node_id": "fact:sighting-3-a-check-with-three-of-four-evidence-parts-measured-reads-blocked-2026-09-29",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "confidence": 0.9,
+    "fact_type": "defect",
+    "name": "THIRD SIGHTING, third project (the flo2 design \"ideal knowledge graph\", reflow2 0.74.0): a check with 4 evidence parts, 3 measured and 1 blocked on an identity the agent could not hold, had to read `blocked` as a whole. It is the qs shape (blocked elsewhere), not the expected-change shape. The option of splitting the run (dec:idea-a-run-can-pass-with-its-exceptions-stated, option d) was unknown to the agent",
+    "source": "art:dev-reflow2-two-agent-exercise-feedback-2026-09-29 (item I19, friction #24)",
+    "statement": "RUN AS THE SKILL (root-cause, fetched fresh), 2026-09-29, triaging art:dev-reflow2-two-agent-exercise-feedback-2026-09-29, item I19.\n\n① OBSERVED (designer's friction log #24): \"No partial verification status. 3 of the 4 evidence parts were measured and 1 was blocked, so the whole check reads `blocked`.\" The parts: flo2 sessions (measured), the derived-to-asserted ratio (measured), reflow2's cold load (measured), and StoryFlow per-story counts (blocked: the stats routes need a real user's identity). NOT affected: wholly passing or wholly failing runs.\n\n② PRECEDENT, searched in reflow2 and flo2: fact:defect-a-verification-cannot-record-a-partly-blocked-run (qs, 2026-09-04, the same shape); fact:root-cause-a-run-has-one-status-and-its-qualification-reaches-no-rollup-2026-09-28 (dev_storyflow, the expected-change shape, which walked this class); dec:idea-a-run-can-pass-with-its-exceptions-stated (the options, proposed). Nothing in flo2's design.\n\n③ CANDIDATES: (a) the class already walked, with the status enum unchanged; (b) discoverability — option (d), split the run, needs no schema and was not reached; (c) the observation is wrong — the blocked part should never have been in the same check.\n\n⑤ MEASURED on 0.74.0 (schema/verify.yaml): status enum [planned, passing, failing, skipped, blocked, superseded], unchanged. Nothing per part: VERIFIES.coverage and set_evidence_scope are SCOPE, not outcome, as measured on 09-28. The designer's log shows it never considered splitting. ⇒ (a) holds, (b) holds as a contributing path, and (c) is consistent with (b): four independently obtainable pieces of evidence were one check because they answered one owner request.\n\n⑥ CLASS: unchanged, one machine-read outcome per run. What this sighting adds to the idea: a THIRD project and the SECOND \"blocked elsewhere\" case, so qs's n=1 is now n=2. And the blocking here was a permission boundary (an identity the agent must not assume), not a missing simulator.\n\n⑦/⑧ OWED: nothing new beyond the 09-28 record. The idea stays the owner's call.\n\n⑨ NOT ESTABLISHED: whether the owner agent would have accepted four separate checks. It asked for the evidence as one list.",
+    "steps": [
+      "set_verification_status",
+      "add_verification"
+    ],
+    "subject_id": "cap:a-check-records-what-it-found-separately-from-what-it-is",
+    "valid_from": "2026-09-29"
+  }
+}

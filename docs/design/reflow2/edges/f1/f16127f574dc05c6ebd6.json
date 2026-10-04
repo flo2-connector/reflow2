@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:5f6c3c212c9e5cd0c79839baad0c7f1ec839c35752b4ea04a3cff04965553e87",
+  "edge_type": "MITIGATES",
+  "from_id": "dec:idea-a-component-says-how-many-copies-run-and-where",
+  "properties": {
+    "evidence": "Options (a) to (c) give the single-point-of-failure rule something to read that says a role is replicated."
+  },
+  "to_id": "fact:root-cause-a-replicated-role-is-reported-as-a-single-point-of-failure-because-nothing-can-say-how-many-copies-run-2026-09-29"
+}

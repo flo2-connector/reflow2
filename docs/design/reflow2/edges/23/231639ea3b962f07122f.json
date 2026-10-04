@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:19095ea7fb07bcbeae6d5ae2686ef4f0f9ea336145b497cb64a8f19ba70ebf39",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:test-a-detector-consults-what-the-graph-already-holds",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:test-a-detector-consults-what-the-graph-already-holds"
+}

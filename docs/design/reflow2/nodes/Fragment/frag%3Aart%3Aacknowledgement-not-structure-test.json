@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:ec7af940846e4e96226274871fd7f91eb0f57bc4a9c59ab7636e41fc3c87fce3",
+  "node_id": "frag:art:acknowledgement-not-structure-test",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered acknowledgement_not_structure.rs"
+  }
+}

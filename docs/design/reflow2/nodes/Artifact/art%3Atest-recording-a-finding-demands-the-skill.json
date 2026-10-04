@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:444520e6c7a6b5cbf2b04d933765c1a6091b3e54e09cfe32da3b69266d05730a",
+  "node_id": "art:test-recording-a-finding-demands-the-skill",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "test",
+    "location": "crates/reflow2-mcp/tests/recording_a_finding_is_a_tool_call_that_demands_the_skill.rs",
+    "name": "recording_a_finding_is_a_tool_call_that_demands_the_skill.rs",
+    "status": "realized"
+  }
+}

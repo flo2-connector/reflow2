@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:7be30f409640ec1cc6a1887666cae35abb8e6c2e4e4b2a0280c5d0fc51cad7b5",
+  "node_id": "cmp:latent",
+  "node_type": "Component",
+  "properties": {
+    "kind": "module",
+    "level": "component",
+    "name": "latent",
+    "provenance": "authored",
+    "purpose": "The server that starts in a directory which has NOT opted into a design: it costs nothing, serves a reduced surface, and says how to begin rather than failing.",
+    "status": "planned",
+    "tier": "operational"
+  }
+}

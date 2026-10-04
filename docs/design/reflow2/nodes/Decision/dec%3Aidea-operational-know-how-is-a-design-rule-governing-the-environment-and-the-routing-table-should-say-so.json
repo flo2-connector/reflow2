@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:5d439d56ece27fc09ee88fea648794001915b76e3455e7e7a7709c0ac93f8bcc",
+  "node_id": "dec:idea-operational-know-how-is-a-design-rule-governing-the-environment-and-the-routing-table-should-say-so",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "RECORDED AS BRAINSTORMING, NOT AS A PROPOSAL (the field-feedback rule: every idea gets the brainstorm skill). From flo2 F5 and reflow2's own open disk-rule question. OPTIONS, none chosen: (a) rewrite the routing row: DesignRule, category runbook, GOVERNED_BY from the Environment — no vocabulary change; (b) a typed `add_runbook`/`Runbook` node — new vocabulary for a distinction nothing would compute over; (c) leave the row, since the reporter still found a place. COUNTER to (a): a runbook rule about a moment outside reflow2 (a container flag) has no step to be delivered at, the same limit dec:idea-how-does-a-standing-rule-reach-a-moment-that-is-not-a-reflow2-step names.",
+    "kind": "exploratory",
+    "name": "OPEN — should capture-intent's 'this is how we do X here' row route to a DesignRule (category `runbook`) governing the Environment or Component it concerns, and should such a rule be delivered at the step it bears on when one exists?",
+    "rationale": "Recorded from the field report.",
+    "status": "accepted"
+  }
+}

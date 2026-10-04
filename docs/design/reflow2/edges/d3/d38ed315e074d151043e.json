@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:e895897d36566c6863215b45400dcf53ef3adad792e3796479164e8b77636220",
+  "edge_type": "MITIGATES",
+  "from_id": "dec:idea-how-does-an-artifact-say-it-belongs-to-another-repository",
+  "properties": {
+    "evidence": "That incident is this class met from the other direction on reflow2's own build, and every option here would have prevented it by making the two instruments agree."
+  },
+  "to_id": "fact:an-out-of-tree-artifact-registration-passed-locally-as-unmeasurable-and-failed-ci-as-missing"
+}

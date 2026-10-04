@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:4a10db5389302cd051e1d53f4b64c2dbd43a02896f1429a790f8295431d766c2",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "cap:a-repos-conventions-are-delivered-by-step-and-its-adapter-is-registered",
+  "properties": {
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:alex"
+}

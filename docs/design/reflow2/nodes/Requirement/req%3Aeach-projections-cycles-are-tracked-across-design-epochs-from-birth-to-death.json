@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:959d7773db74190b1068db80dceecc9a1b81ca811bfce9e8e839bf9464f68af8",
+  "node_id": "req:each-projections-cycles-are-tracked-across-design-epochs-from-birth-to-death",
+  "node_type": "Requirement",
+  "properties": {
+    "concern": "core",
+    "kind": "functional",
+    "lineage": "original",
+    "name": "Across design epochs, each named projection's cycles are tracked from the epoch they form to the epoch they are broken or filled in, so the design can say when a cycle appeared and how long it has stood",
+    "priority": "low",
+    "provenance": "imported",
+    "source": "Anthony, 2026-09-28, in a dev_reflow2 session: \"promote as intent the new ideas from vector math, Topology (sheaves), Topology (persistent homology), and Relations with 3+ participants. Add to the reflow2 and storyflow designs accordingly.\" Promoted from the graph-primitives design on flo2 (graph 85a2a1a36e7c942d): option (d) of dec:idea-analyse-time-as-a-sequence-of-graphs.",
+    "statement": "For each named projection (dec:a-projection-is-named-and-the-battery-runs-over-it), the independent cycles of the projection are computed at every design epoch and matched across epochs — persistent homology over the epoch sequence (zigzag persistence where relationships end) — so each cycle carries the epoch it formed and, if any, the epoch it was broken (a relationship in it ended or was withdrawn) or filled in (chords split it into smaller cycles). The design can then say which cycles appeared when, which have stood longest, and at which epochs many formed or broke at once.\n\nA cycle that is a defect in its projection (a DEPENDS_ON cycle) is already reported as one; this adds its history — when it formed and how long it has stood. In projections where a cycle is not a defect (reasoning, risk) the history is reported as a reading, never as a fault.\n\nAt the scale of a design slice (10^2–10^3 nodes) the number of independent cycles is edges − nodes + components and is computed directly; persistence over a weighted filtration is used only if that proves too coarse. Sources: Yan et al., \"Link Prediction with Persistent Homology\", ICML 2021; Bastos et al., \"Knowledge Persistence\", WWW 2023 (a persistent-homology measure on knowledge graphs). Serves test 4 of the accepted definition of a true knowledge graph (graph-primitives design: dec:what-a-true-knowledge-graph-is): knowledge no stored edge holds.",
+    "status": "proposed"
+  }
+}

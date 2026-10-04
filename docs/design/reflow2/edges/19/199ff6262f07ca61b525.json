@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:ee94e5218740d2ce065307436f6894945f512fd9f08803729e3b44a0fb298412",
+  "edge_type": "ANTICIPATES",
+  "from_id": "req:a-session-names-the-person-it-writes-for-and-the-server-remembers-it",
+  "properties": {
+    "evidence": "writes_for already records the PRINCIPAL a session writes for, on trust and for attribution only. This requirement adds the AGENT beside the principal, and carries the delegation into approvals."
+  },
+  "to_id": "req:a-write-and-an-approval-record-the-agent-and-the-person-it-acts-for"
+}

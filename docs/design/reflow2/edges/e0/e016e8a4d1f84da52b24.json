@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:e00b95e6cab8c08a83bf115aea70a0d1a8847a9d62b8a31182ac0c9beb1d079b",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:intent-authority-is-checked",
+  "properties": {},
+  "to_id": "req:settled-intent-carries-the-owners-name"
+}

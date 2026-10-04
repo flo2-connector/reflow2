@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:f2abaa39baf914f7d1f56ded0a70fef22a5d273675b75a850a7da8388d7c7daa",
+  "edge_type": "CHANGED",
+  "from_id": "chg:anthony-rules-on-five",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "req:an-artifact-declares-what-only-its-author-knows"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:3636317a6abdd80c08dc3650f92e1627a911b4aa0738692dd90c4879aa99270a",
+  "edge_type": "CHANGED",
+  "from_id": "chg:merge-integrity-bl47-bl46",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:service"
+}

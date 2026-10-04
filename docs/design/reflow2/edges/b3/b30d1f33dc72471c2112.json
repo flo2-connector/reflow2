@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:3c910f30e1e57d750a7ab4f4ba9983867f6c9bd438600aa8aed580360fc97405",
+  "edge_type": "CHANGED",
+  "from_id": "chg:accept-f499d8ed8cbf3d1e",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:alternatives"
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:e952c996ccc308fd916a210797f85dc31ad9810d1c6ad8c419f3a1442d9683e8",
+  "node_id": "chg:an-empty-answer-says-which-empty-it-is",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "defect_fix",
+    "name": "Nine read-only tools stop answering a bare zero: each empty reply now carries empty_because, the sentence saying what was swept and why nothing came back, and a wire-level CI gate refuses a bare zero from any no-argument read-only tool",
+    "repair": "corrected_cause",
+    "subject": "system"
+  }
+}

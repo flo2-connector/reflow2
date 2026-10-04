@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:46e5e40fd4336e962f816f4517f4576fe174fd2de8acb696e39759957218dd1b",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:settling-a-decision-records-which-option-won-without-rewriting-the-deliberation",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:tools-exchange"
+}

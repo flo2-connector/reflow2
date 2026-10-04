@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:0be69dcda255a26ee8f9400b50213401f3fc7da3b49ad24b50f644b0dd8647c8",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-saved-design-moves-to-the-item-layout-2026-10-03",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:790249210cc1cc783abf568c18c593d99e6f9d76833b4ecb4d5c41d44c8e3771",
+    "checksum_basis": "measured"
+  },
+  "to_id": "art:test-a-question-is-put-to-a-person"
+}

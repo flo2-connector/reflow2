@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:dcabe5c662e8d9198a30d325d67466d3a7ef0737fd2febcb55c81744e8bbf870",
+  "node_id": "question:59b48f3aced25835",
+  "node_type": "Question",
+  "properties": {
+    "answer": "Serving → service. Anthony chose the write guard over the entry point: the refusal is enforced in `ReflowService::write_lock`, not in the `--read-only` flag that main.rs parses. Recorded as an ALLOCATED_TO edge; `chg:the-last-two-unallocated-capabilities-get-owners` carries the reasoning.",
+    "context_setter": "Capability “A server can refuse every write, at the one point a write cannot avoid” isn't assigned to any part",
+    "gap_id": "gap:59b48f3aced25835",
+    "question": "Which part of the architecture owns the function \"a server can refuse every write, at the one point a write cannot avoid\" — the refusal is enforced in the service's write guard, so does that part own it, or is the owner the process entry point that carries the --read-only flag?",
+    "rephrase_degraded": false,
+    "status": "answered"
+  }
+}

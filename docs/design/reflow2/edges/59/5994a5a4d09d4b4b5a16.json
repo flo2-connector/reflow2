@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:16bf95703dced35977f873890e8c8439b18a47a437789406e7a0caf529d543b1",
+  "edge_type": "TRIGGERS",
+  "from_id": "dec:idea-how-does-a-test-result-get-back-in-when-the-tester-may-not-be-an-agent",
+  "properties": {
+    "evidence": "A result arriving back in the design is the evidence revise-trigger consumes: a run fed back by file (observed_by_file) with record_events stamps a failed check, and choices_in_doubt then reads it as `failed_run`. Feeding results back is possible as of 2026-09-22; a person-as-tester's inspection still has no path that records who observed it."
+  },
+  "to_id": "cap:revise-trigger"
+}

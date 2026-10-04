@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:5e100146765ab5208fa069a88289faee2b40d18d965c24918ac00886e5736d7e",
+  "node_id": "epoch:a-node-with-no-edges-is-not-clean",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "epoch_type": "revision",
+    "name": "A node attached to nothing is reported whatever its type — the degree-zero rule stops being a Decision rule, and a pointer property counts as attachment",
+    "sequence": 347,
+    "status": "arrived"
+  }
+}

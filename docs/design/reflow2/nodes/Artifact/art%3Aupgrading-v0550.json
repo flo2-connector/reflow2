@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:eacbce3b8ed19d19f195d300781d7c0859f2df2fb18e4226cce4c300c5326f95",
+  "node_id": "art:upgrading-v0550",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "document",
+    "description": "Every previous upgrade note in this project could say some version of \"nothing is removed, an existing graph keeps working untouched\". This one cannot, and that is the whole reason it exists.\n\nWHAT IT HAS TO GET ACROSS, and the ordering is deliberate: the action is required of EVERYONE, not only of anyone holding a QualityGate. The guard reads a graph's STAMP rather than its contents, and a stamp records the schema the writing binary had, so every graph in existence names the retired type whether or not it ever held one. A reader who skims and concludes \"we never used that type, so this does not apply to us\" has drawn exactly the wrong conclusion, which is why the blast radius leads and the type's history follows.\n\nIt carries the migration as runnable commands with a verification step BEFORE the swap, and it renames rather than deletes the old graph, because a migration that destroys the only copy on the way to being verified is not a migration.\n\nTWO THINGS IN IT WERE LEARNED BY FALLING INTO THEM rather than reasoned out: the stamp lives in a sidecar beside the store, so moving a graph by hand without the sidecar reproduces the refusal on an already-migrated graph; and the retirement itself is two edits, since removing the type without registering it as retired makes the guard tell the operator their reflow2 is behind and to rebuild.\n\nThe migration was run end to end on this project's own graph before the release shipped: 3,989 nodes and 21,555 edges in, the same out, nothing lost.",
+    "location": "docs/upgrading-to-v0.55.0.md",
+    "name": "docs/upgrading-to-v0.55.0.md — the first upgrade note whose action is REQUIRED of every consumer, because the first type removal locks every existing graph out until it is migrated",
+    "status": "realized"
+  }
+}

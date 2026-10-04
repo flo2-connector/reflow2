@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:ace987713849af01db0411b6ae57327263ee19314fbbd4616f34ed115a85f225",
+  "node_id": "chg:an-in-memory-design-is-reachable-as-ephemeral",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "name": "The in-memory engine becomes reachable at launch as --ephemeral — a labelled scratch mode, not a storage choice",
+    "subject": "system"
+  }
+}

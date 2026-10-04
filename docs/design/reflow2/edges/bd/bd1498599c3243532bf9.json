@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:c60013dc1659d9513c0ce8165f609cdca693c461fc18184a83330a4fc48aef39",
+  "edge_type": "CHANGED",
+  "from_id": "chg:accept-810483679909e413",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:feedback-is-a-computed-tally-report-test"
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:4044f5c3b17b57b0a5ad8bb7811cc48346ec0a8444c064117027c8ebbce4ac66",
+  "edge_type": "EVOLVES_INTO",
+  "from_id": "dec:idea-the-schema-declares-what-each-relation-means-in-primitive-terms",
+  "properties": {
+    "evidence": "The idea's rationale measured the stored twins (HAS_TEMPORAL_FACT + ABOUT_ENTITY + subject_id; ASSESSED_ON + target_id; Verification.location restating IMPLEMENTS) as part of what a schema that declares meaning must answer; Anthony promoted that part to this requirement on 2026-09-28 with \"fix the relations stored twice\"."
+  },
+  "to_id": "req:a-relation-stored-in-more-than-one-place-has-one-authoritative-copy-and-no-copy-drifts-unnoticed"
+}

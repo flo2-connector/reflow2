@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:4d2ec456687dccdc3345d799f0c297b56efee809c82d9e2484471cab4deabeb0",
+  "node_id": "decision:ack:896e6b1107e0b6b4",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Accepted the gap gap:896e6b1107e0b6b4.",
+    "name": "Reviewed: gap:896e6b1107e0b6b4",
+    "rationale": "Deferred on Anthony's word, 2026-07-28. Ownership is deliberately unassigned: the capability was captured the same day and is intent awaiting a later increment, so naming a component now would assert an allocation nobody chose. Revisit together with the other two changelog-view gaps (unrealized, unverified) when the increment is scheduled.",
+    "status": "accepted"
+  }
+}

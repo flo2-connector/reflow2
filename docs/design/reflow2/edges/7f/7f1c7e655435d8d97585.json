@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:06efde1502329ed4c6cbca663312351acc64939f85d3920466ec81d59f7a708d",
+  "edge_type": "CHANGED",
+  "from_id": "chg:absorb-core-storage-text",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:ingest"
+}

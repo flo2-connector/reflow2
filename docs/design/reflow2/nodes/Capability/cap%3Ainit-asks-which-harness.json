@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:80471cc89009863ebc741a30b337e164aefdd44fdc350b9a8d45b304423f6943",
+  "node_id": "cap:init-asks-which-harness",
+  "node_type": "Capability",
+  "properties": {
+    "description": "`init` puts the harness question to the person running it and generates MCP configuration for the harnesses they name, rather than for every harness reflow2 supports. `--harness=…` carries the same answer for non-interactive callers, and a run with no tty resolves without blocking rather than waiting on a prompt nobody can see.\n\nDistinct from `cap:install-reaches-the-agent`, which is about the install reaching a harness that WILL read it — too little. This is the opposite failure: writing for harnesses nobody asked for. The two constrain the same generator from opposite sides, and neither subsumes the other.",
+    "name": "The install asks which harness, and writes only that one's files",
+    "provenance": "authored",
+    "status": "realized"
+  }
+}

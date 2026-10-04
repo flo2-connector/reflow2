@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:229b7b8989987db99024bbe130b3f7c21220327b6dabad6d65bddacb567b9010",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:idea-a-byte-backend-that-compiles-in-seconds",
+  "properties": {
+    "approved_at": "2026-09-11",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

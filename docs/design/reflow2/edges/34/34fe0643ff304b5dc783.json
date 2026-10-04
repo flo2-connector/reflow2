@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:46fd06ef8697c0de9a7732513781023ca86114de6ab987b478e6b9a5bc2960b5",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-session-names-its-design",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cap:select-graph-by-id"
+}

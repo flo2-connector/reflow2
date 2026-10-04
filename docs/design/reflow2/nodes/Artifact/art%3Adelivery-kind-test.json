@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:c4b699d95e4c52b6ee8604fdcab5bffa47280b3c63b36576ed44b5bbfa5ff089",
+  "node_id": "art:delivery-kind-test",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "location": "crates/reflow2-core/tests/delivery_kind.rs",
+    "name": "delivery_kind.rs",
+    "status": "realized"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:3f9ecae22c06820c5258df0994e6ce3c4bbcbc473dc95658c0b90b87058e2217",
+  "edge_type": "REALIZES",
+  "from_id": "art:tools-built",
+  "properties": {
+    "completeness": "partial",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:bulk-forms"
+}

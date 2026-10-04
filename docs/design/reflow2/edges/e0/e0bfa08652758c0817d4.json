@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:349eda726bc8ddabb72f2fdbb0bd49292454bfe5d340cd3fbf05724981dc7ede",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-saved-design-moves-to-the-item-layout-2026-10-03",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 2,
+    "action": "modified",
+    "checksum_after": "sha256:5787f85958dd8a9a1ce94b6004eafd808f739d208e35ee6036f458f023a6f40b",
+    "checksum_basis": "measured"
+  },
+  "to_id": "art:bl124-instrument"
+}

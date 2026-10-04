@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:c3361f6febada6d2408f3e786a4e8ee9c85170d8f60f27ede6b2a8ea8f4d0ca7",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:snapshot-read",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:main"
+}

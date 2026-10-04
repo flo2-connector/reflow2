@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:3acb7203e0a2b3a6f54fcefe37eace4f1e9e6c39385178cff2ed3d7d4ee402bf",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:hosted-state-on-a-volume",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:packaging"
+}

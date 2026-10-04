@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:cf3b259a1a67b26a49d3a3f0685ed762846ffa9dd1787d418e1417e2614f999b",
+  "edge_type": "GOVERNED_BY",
+  "from_id": "req:the-store-is-reachable-from-a-session",
+  "properties": {},
+  "to_id": "decision:ack:ff976610480dab90"
+}

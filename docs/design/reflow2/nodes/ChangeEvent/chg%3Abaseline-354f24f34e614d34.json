@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:75dc979e9b3570759cb248d3cfb81fa868f1cc12e0895990b01644cf3ea285ec",
+  "node_id": "chg:baseline-354f24f34e614d34",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "baseline_established",
+    "detected_at": "2026-09-04",
+    "name": "First baseline for a dated field report. Frozen observation: it records what the qs project's agent saw on 2026-09-04 and must never be edited to match a later understanding.",
+    "subject": "record"
+  }
+}

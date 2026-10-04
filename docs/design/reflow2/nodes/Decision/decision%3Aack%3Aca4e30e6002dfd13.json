@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:7dba42a79f578b22d22dd6ec0b2fbd5695d81f1c1c917d2c2a9a41aa8968cbe8",
+  "node_id": "decision:ack:ca4e30e6002dfd13",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Accepted the gap gap:ca4e30e6002dfd13.",
+    "name": "Reviewed: gap:ca4e30e6002dfd13",
+    "rationale": "Standing disposition for planned-but-unbuilt capabilities: nothing is built for claims yet. The decision that shapes it landed minutes ago (dec:multi-writer-architecture), so this is the newest work on the board rather than neglected work.",
+    "status": "accepted"
+  }
+}

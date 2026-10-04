@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:5eb1f5b96da65dc69dd56761cdfd728f6a23507cee294c225d29928b66e3f788",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:a-module-that-supplies-an-observation-holds-no-function-of-its-own",
+  "properties": {
+    "approved_at": "2026-08-28",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

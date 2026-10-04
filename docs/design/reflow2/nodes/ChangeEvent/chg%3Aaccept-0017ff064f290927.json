@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:7571bc47dac0c5502f6102753cd8553fbf13cb01931313faef8f6843464a727f",
+  "node_id": "chg:accept-0017ff064f290927",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "refactor",
+    "detected_at": "2026-08-17",
+    "name": "Comment reference to the renamed category; behaviour unchanged.",
+    "subject": "system"
+  }
+}

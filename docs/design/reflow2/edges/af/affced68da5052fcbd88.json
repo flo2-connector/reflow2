@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:b57e3ef4f9f5fe3f055473c59236ca3b6013ee9b6071cfba97debd1d3b0aef0b",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:the-graph-read-contract-stays-internal",
+  "properties": {
+    "approved_at": "2026-08-21",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

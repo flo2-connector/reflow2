@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:2c1fb881d397e0118d0b83aad31bf2988fca1620d90278f59974cc120adc9495",
+  "node_id": "epoch:bl186-corpus-ingest-lexical",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "epoch_type": "revision",
+    "name": "BL-186: corpus ingest stops letting arrival order name things, and a near-match becomes a standing question (2026-08-04)",
+    "sequence": 270,
+    "status": "arrived"
+  }
+}

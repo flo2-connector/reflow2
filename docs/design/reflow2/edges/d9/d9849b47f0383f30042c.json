@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:1d03da9aad4eacf335aad7d0c5db6e1a6f4dbd65a6d6841abf759a1eedb38778",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-axis-has-a-detector",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:detect-and-ask-skill"
+}

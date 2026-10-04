@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:3e204911a0b0bc36af345f62d09a0327b233d2f6409c3c4a6993f3d0ce6f25ce",
+  "node_id": "ver:corpus-is-one-design",
+  "node_type": "Verification",
+  "properties": {
+    "description": "A folder becomes ONE design, in the rounds a single document costs (crates/reflow2-core/tests/corpus.rs, 8 cases). The load-bearing four: two specs naming the same component converge on ONE node while each keeps its own provenance Fragment; three documents pin to ONE epoch, not three; a re-run reports the already-ingested document as SKIPPED and not failed, so resume is derived from the graph rather than bookmarked; and a document that cannot be taken is NAMED with why while its siblings still ingest. Plus the cost property — three documents cost the same ROUNDS as one, which is what makes a corpus affordable.",
+    "findings": "MUTATION-CHECKED: breaking the batching (gather one document per round instead of all) takes rounds 3 to 7 and documents_pending 3 to 1, and exactly the two tests that name those properties fail.",
+    "kind": "verification",
+    "last_run_at": "2026-08-05",
+    "level": "integration",
+    "method": "test",
+    "name": "A folder becomes one design, in the rounds a single document costs",
+    "status": "passing"
+  }
+}

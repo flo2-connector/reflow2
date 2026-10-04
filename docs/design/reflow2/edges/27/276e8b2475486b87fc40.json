@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:b6e6804ecbef0ecfc132455fd31c01e3ce2e44bab2fc7b41713fc96f1f6b8769",
+  "edge_type": "REALIZES",
+  "from_id": "art:main",
+  "properties": {
+    "completeness": "partial",
+    "conformance": "verified"
+  },
+  "to_id": "cap:a-client-elects-a-server-of-its-own-build"
+}

@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:c2131d1f1f6df34e675f139ddce69c03c58cde81d60e16a5fab36d2f25733f10",
+  "node_id": "cmp:compose",
+  "node_type": "Component",
+  "properties": {
+    "kind": "module",
+    "level": "component",
+    "name": "compose",
+    "provenance": "authored",
+    "purpose": "COMPOSE — analyse two designs together without merging them, so a system-of-systems question can be asked of parts that stay separately owned.",
+    "status": "planned",
+    "tier": "operational"
+  }
+}

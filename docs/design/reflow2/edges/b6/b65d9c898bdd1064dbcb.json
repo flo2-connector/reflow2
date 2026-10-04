@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:201273eb6071122e3a9233111e0f97705a72736897d61c5c2659f00af15080f1",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-an-org-template-carries-the-approved-references-a-design-must-use",
+  "properties": {
+    "evidence": "Both are the same delivery vehicle — a seed applied at genesis — so whatever mechanism carries a domain template would carry an organisation's one. If templates are not built at all, this has nowhere to live; if they are, this is a second kind of content rather than a second mechanism.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "dec:idea-a-domain-seed-template-starts-a-design-in-the-fields-own-shape"
+}

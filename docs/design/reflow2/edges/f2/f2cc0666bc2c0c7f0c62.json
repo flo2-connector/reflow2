@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:c958485ac6ccf04319702dbe35152de770274ce739610580324b15fc64ea7484",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:an-export-says-which-tree-it-was-taken-in",
+  "properties": {
+    "approved_at": "2026-09-16",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

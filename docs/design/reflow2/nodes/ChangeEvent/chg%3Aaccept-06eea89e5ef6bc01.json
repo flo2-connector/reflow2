@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:8e55573c8857e3285a88db5fec861f17e797b6ae9731f3367ec5cf223b809308",
+  "node_id": "chg:accept-06eea89e5ef6bc01",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "documentation",
+    "detected_at": "2026-10-01",
+    "name": "The v0.76.0 cut: AGENTS.md's two shipping-version claims 0.75.0 → 0.76.0. Accepted before the manifest is frozen, as flow:release-cut step 1 orders.",
+    "subject": "system"
+  }
+}

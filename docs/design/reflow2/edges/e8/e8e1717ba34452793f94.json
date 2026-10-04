@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:ced2fd65ff409d485136b3ab7cce976df8a95e649f4fb22f95c26691de12796b",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-capture-that-replaces-a-node-says-so",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:the-export-can-be-ordered-before-its-writes"
+}

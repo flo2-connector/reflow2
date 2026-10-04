@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:17c748b9b69e6440a557d7785ca9dfd0559d2d66898b1a0a9722c3bc37c3047a",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:tools-ask",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:tools-ask"
+}

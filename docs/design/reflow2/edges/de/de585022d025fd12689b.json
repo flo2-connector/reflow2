@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:85e7d989c6bc0749660d396f25dce02dcc3d33d21b7a3acacefdbbdf2c911ea6",
+  "edge_type": "AT_EPOCH",
+  "from_id": "snap:epoch:wall-check-works-on-any-project:cap:a-declared-wall-is-checked-against-the-coupling-it-contains",
+  "properties": {},
+  "to_id": "epoch:wall-check-works-on-any-project"
+}

@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:2915e1f1d08d885e90ebb7032c3064590747ed2e96c4ce1beb8ae6893cf5c328",
+  "node_id": "fact:gh-pr-checks-json-is-unsupported-here-and-a-poll-on-it-reads-as-a-false-all-clear",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "confidence": 1.0,
+    "fact_type": "finding",
+    "name": "gh pr checks --json is unsupported by the gh on the dev box; a poll loop on it exits at once and reads as \"CI finished\"",
+    "statement": "Measured 2026-09-11 while watching a PR: `gh pr checks <n> --json ...` is not supported by the apt-installed gh on the dev box, so a wait loop built on it terminated immediately and was read as \"all checks finished\" — a false all-clear, the exact shape this rule names. What works: read the workflow runs for the HEAD SHA from the REST API (`gh api \"repos/<o>/<r>/actions/runs?head_sha=<sha>\"`) and wait until none is queued or in progress; or grep the plain-text `gh pr checks` output for `pending`. Matching on the head SHA also survives a force-push, where the old run is cancelled and the new one not yet queued — a window in which \"nothing pending\" is true and meaningless. Moved here from an agent's machine-local memory file on 2026-09-12 (rule:a-rule-the-project-follows-lives-in-the-graph-not-in-an-agents-memory).",
+    "subject_id": "rule:success-is-read-from-the-authoritative-object",
+    "valid_from": "2026-09-11"
+  }
+}

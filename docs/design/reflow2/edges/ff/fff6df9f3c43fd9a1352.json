@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:fe7cbf13e8c4a3339016b1b357db99f39708e4676fd5884240a79b3c9ee56bca",
+  "edge_type": "REALIZES",
+  "from_id": "art:a-drawn-relation-is-read-back-as-a-sentence-test",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:a-drawn-relation-is-read-back-as-a-sentence-and-the-skill-names-the-direction-flag"
+}

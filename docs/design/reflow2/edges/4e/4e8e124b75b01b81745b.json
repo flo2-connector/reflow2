@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:48a4d8b22630c70c1b63481476a87b929cc580a8f68b86a054a611d5774c4962",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "cmp:report",
+  "properties": {
+    "dependency_type": "function_call",
+    "optional": false,
+    "weight_basis": "evidence"
+  },
+  "to_id": "cmp:dimensions"
+}

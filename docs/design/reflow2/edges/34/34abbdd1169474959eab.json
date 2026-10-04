@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:a34b73f9b8f4e7edb9ec9ab6cc5b6b119847b72759a28609d5a8a2291ebd652d",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0220",
+  "properties": {
+    "as_checksum": "sha256:99fc5da421a04f5e"
+  },
+  "to_id": "art:render-views"
+}

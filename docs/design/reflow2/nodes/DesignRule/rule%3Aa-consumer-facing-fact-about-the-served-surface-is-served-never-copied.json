@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:a68ad5c83ae03264b4b7a166ca6e88b5c582ac22404280002946c017e7067ad5",
+  "node_id": "rule:a-consumer-facing-fact-about-the-served-surface-is-served-never-copied",
+  "node_type": "DesignRule",
+  "properties": {
+    "category": "convention",
+    "name": "A consumer-facing fact about the served surface — what a person types, reads, or may use — is served by reflow2, never copied by a consumer; the choice of what to show stays the consumer's",
+    "statement": "flo2, 2026-09-18, three instances in one day: the restricted tool subset for an external endpoint, the roster of third-party MCPs, the skill menu — each time the cheap local answer was a hand-maintained copy of a moving upstream surface and the durable answer a small field served upstream. The rule: the FIELD is upstream (shortcut, summary, audience, read-only marking, the differing count) and the CHOICE stays downstream (which subset, to whom). A count the surface states about itself is computed, never written. Delivered where a consumer reads the surface to present it.",
+    "steps": [
+      "list_skills",
+      "find_tools"
+    ]
+  }
+}

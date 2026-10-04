@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:0d74754c96400ec6ab33583d40a0d261d4edd3ef1a2c829b8510686ef0c65830",
+  "edge_type": "MITIGATES",
+  "from_id": "dec:idea-an-org-template-carries-the-approved-references-a-design-must-use",
+  "properties": {
+    "evidence": "It does not solve the warrant problem but it weakens it, and that is worth recording: an industry standard moves on its own schedule with nobody obliged to tell you, whereas an organisation's approved deployment repo has a reachable owner who already knows its state. The same question, asked where somebody can answer it."
+  },
+  "to_id": "dec:idea-who-warrants-a-domain-template-and-how-does-it-stay-current"
+}

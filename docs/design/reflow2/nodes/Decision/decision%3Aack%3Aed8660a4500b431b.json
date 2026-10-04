@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:7244e0e3de52924696b1c6b9a44561c6f821379f642d4e9dd3c345aba7a87947",
+  "node_id": "decision:ack:ed8660a4500b431b",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Accepted the gap gap:ed8660a4500b431b.",
+    "name": "Reviewed: gap:ed8660a4500b431b",
+    "rationale": "Anthony's word, 2026-08-24, after being walked through the six open gaps: the work is DONE and the gap is the detector applying a code-shaped rule to a model-only change.\n\nVERIFIED BEFORE ACKNOWLEDGING, not taken on the status field: the committed export was read directly, and all five kernel components — cmp:nodes, cmp:schema, cmp:identity, cmp:graph, cmp:provenance — are now contained by ONE subsystem. The bisection that produced the sys:store ↔ sys:vocabulary cycle is gone.\n\nWHY NO ARTIFACT WILL EVER REALIZE THIS. The capability's own text says it: \"PURE MODEL BOOKKEEPING — not one line of Rust changes.\" Its `delivery` is `model`. The deliverable WAS the decomposition, and the decomposition is what changed. `unrealized_capability` asks \"what actually gets built for it?\" and the honest answer is \"nothing is built; the model is the product.\" Pointing some Rust file at it to close the gap would be worse than leaving it open — it would assert that a file implements a containment decision.\n\n⭐ THE GENERAL FORM, worth more than this one acknowledgement: a capability whose delivery is `model` cannot satisfy an artifact-shaped check. If this recurs often enough to be noise, the detector should read `delivery` rather than every model change needing a hand-written acknowledgement.\n\nALSO SETTLED IN PASSING: the capability's text carried an open sub-question — whether sys:store still deserved that name once it meant \"the foundation everything is built on\". The subsystem is now named `sys:foundation`, so the naming call was made in the direction the note anticipated.",
+    "status": "accepted"
+  }
+}

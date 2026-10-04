@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:c0cd70f518fe249fbae14bc1c7e46a6a5c5d4b3016d3434e4e203aec89137ee2",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:in-flight-branches-are-visible-but-not-merged-into-reads",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:branch-overlay"
+}

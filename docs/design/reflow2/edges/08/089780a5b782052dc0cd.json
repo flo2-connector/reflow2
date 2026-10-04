@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:6c0c7c29ea8c32fec6ff1f0a52b0763dad59b2a6e9fdac841d47ef8db3b36c9a",
+  "edge_type": "REALIZES",
+  "from_id": "art:store-engine",
+  "properties": {
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:a-refused-write-stores-nothing"
+}

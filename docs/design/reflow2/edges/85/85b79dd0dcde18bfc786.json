@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:53727652de2ab2e13032931604caeb65991308d534cf356fbb2352c0454e5a07",
+  "edge_type": "REALIZES",
+  "from_id": "art:opening",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:a-surface-can-refuse-every-write"
+}

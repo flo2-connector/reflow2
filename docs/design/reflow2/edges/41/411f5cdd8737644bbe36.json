@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:99598955b711e40cad2cdfd82962b1a61c776d1627ea98a557805e8f4637f033",
+  "edge_type": "CHANGED",
+  "from_id": "chg:hosted-collaboration-raised",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "dec:coord-board-in-graph"
+}

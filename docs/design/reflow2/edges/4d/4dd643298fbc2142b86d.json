@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:2f5b856f58b2b7ec858dec9ca71860f9e80644a79d64554df20d081f1eeb1c0e",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:heal",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:heal"
+}

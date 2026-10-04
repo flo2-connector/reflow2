@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:5e7c969f70606fc7927b169815746c2434efd3902cdb1d51abc7818b42a8d5a1",
+  "edge_type": "DOCUMENTS",
+  "from_id": "art:skills-catalog",
+  "properties": {
+    "doc_kind": "readme"
+  },
+  "to_id": "cap:skills-served"
+}

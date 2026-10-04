@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:745d4288b98ab2df03ff2ebbb843247af35344ea359b790d7fda06d562df5375",
+  "node_id": "epoch:v0610-cut",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "description": "The release cut for v0.61.0, 2026-09-15, on Anthony's word and priority: Alex on Grok Build is blocked at opt-in until the latent server's in-place promotion (#510) ships. Also carries #504 (a prohibition in prose is noticed), #505 (AUTHORED_BY roles as a set; the wall check served), #506, #507, #508. The schema stamp did not move (28 node types, 65 edge types, unchanged since v0.60.2), so no upgrade note is owed. Minor bucket: a design_holds acceptance of a baselined artifact now requires change_type. Sequence 497 places it after the plugin review's revision (496); #511 lands in the next cut.",
+    "epoch_type": "release_cut",
+    "name": "v0.61.0 cut — the opt-in finishes inside MCP on any client, the three field-report walks, the reader-identity legs, authorship as a set of roles",
+    "sequence": 497,
+    "status": "arrived"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:af9ced8524487de333518dbe48d1beceb10f733752ed6a2b7f08f8892ae732c8",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-published-contract-with-no-check-is-reported",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "ifc:mcp-tools-http"
+}

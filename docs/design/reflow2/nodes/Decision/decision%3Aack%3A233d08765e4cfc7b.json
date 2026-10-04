@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:d263db7f138bb0e8255b574a90b74f5b2c29e426f2215c264a0312c4151f42dc",
+  "node_id": "decision:ack:233d08765e4cfc7b",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Accepted the gap gap:233d08765e4cfc7b.",
+    "name": "Reviewed: gap:233d08765e4cfc7b",
+    "rationale": "User (who:ajs, standing policy from 2026-07-23, re-affirmed 2026-07-24 for the 33rd cap): validation happens through the trials program — docs/trials/ (self-host, adopt dogfood, erosion, phase-coverage, fleet feedback) is where \"built the right thing\" is exercised against operational intent; formal validation-kind Verification nodes are not this project's tracking mechanism. cap:read-loop-hint (BL-91) joins the same disposition unchanged — the read-side loop_hint is dogfooded in every reflow2 session, this one included. The gap re-fired only because its affected-set grew by one; the decision is unchanged.",
+    "status": "accepted"
+  }
+}

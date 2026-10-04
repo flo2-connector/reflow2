@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:8dc543c70100d38fc43a1dadaa3bdab1c77ecebe05b6c56668ae423282aa6a21",
+  "node_id": "chg:a-published-contract-says-what-two-systems-must-agree-on",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "name": "A published contract is asked which agreement axes it never filled in — and `unspecified` is read as unset, which the first cut got wrong",
+    "subject": "system"
+  }
+}

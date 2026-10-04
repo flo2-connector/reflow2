@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:e632557d5326086f23a4b66dd11a70196b90344cb174a4a2fb79507ec34b625c",
+  "node_id": "snap:epoch:a-default-is-not-a-difference:cap:defaults-are-not-serialized",
+  "node_type": "Snapshot",
+  "properties": {
+    "edges": "[{\"direction\":\"out\",\"edge_type\":\"ALLOCATED_TO\",\"other_type\":\"Component\",\"other_id\":\"cmp:export\",\"properties\":{\"weight_basis\":\"estimated\"}},{\"direction\":\"out\",\"edge_type\":\"SATISFIES\",\"other_type\":\"Requirement\",\"other_id\":\"req:an-absent-property-means-nobody-said-it\",\"properties\":{}},{\"direction\":\"out\",\"edge_type\":\"SCHEDULED_FOR\",\"other_type\":\"DesignEpoch\",\"other_id\":\"epoch:a-default-is-not-a-difference\",\"properties\":{\"modality\":\"expected\",\"recorded_at\":\"2026-08-10\"}}]",
+    "state": "{\"description\":\"The export and every other design record omit a property whose value equals the schema default, so absence carries the meaning \\\"nobody said\\\" and presence carries \\\"somebody chose\\\". Partly realized already — the exporter stopped writing Artifact granularity/volatility defaults between 0.25.0 and 0.27.0 — and left at `planned` deliberately, because nothing has verified the behaviour across the whole property surface and `fact:bl-198` counts 28 single-valued properties, 22 of them the schema's own default. Status is a claim about the design, not about one observation.\",\"is_entry_point\":false,\"is_exit_point\":false,\"name\":\"A property equal to the schema default is omitted from the record\",\"provenance\":\"authored\",\"status\":\"planned\",\"tier\":\"operational\"}",
+    "target_id": "cap:defaults-are-not-serialized",
+    "target_type": "Capability"
+  }
+}

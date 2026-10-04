@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:550702d6a3a356d48114dc8401e21365d19fad26faeb1328171c5f4542297baa",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "chg:qualitygate-leaves-the-schema",
+  "properties": {
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

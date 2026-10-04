@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:7380335cd4161165ed783a53f8d7d81290bd48929c7c4743f607f9b16dd89085",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:shared-sessions",
+  "properties": {},
+  "to_id": "req:seat-per-client"
+}

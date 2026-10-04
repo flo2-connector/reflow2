@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:861c147be80c41879b3244272a05a90fd17f93ec91f893b7bbd73a55aa8e7e51",
+  "edge_type": "CHANGED",
+  "from_id": "chg:absorb-core-storage-text",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:granularity"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:8b27b7f05a7e6d80ae027684ed56e19a3b279ed19438426b3fce0489ab5410da",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-axis-has-a-detector",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:skill-lint"
+}

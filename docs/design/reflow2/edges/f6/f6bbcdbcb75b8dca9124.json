@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:12aeb60c6669593e1df1c27f94ac4bdbba17c7b8e323a79da3008901d281e370",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-reachability-gate-reads-tools-not-names",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:the-export-chains-from-main-test"
+}

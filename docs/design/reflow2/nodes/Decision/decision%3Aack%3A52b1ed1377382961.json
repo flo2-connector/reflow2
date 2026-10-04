@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:a9b18e2398d2b13070d764e87b556214268f55572983f1f7d8352b05e399bcf0",
+  "node_id": "decision:ack:52b1ed1377382961",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Accepted the gap gap:52b1ed1377382961.",
+    "name": "Reviewed: gap:52b1ed1377382961",
+    "rationale": "Deferred on Anthony's word, 2026-07-28. Captured the same day as part of the roadmap/epoch intent and accepted as a requirement; scheduled for a later increment rather than built now. Not dropped — the plan-volatility discipline (dated confidence, recorded replanning, KPPs inviolable in content but able to slip in time) stands as intent. Revisit when the epoch/increment axis is actually built.",
+    "status": "superseded"
+  }
+}

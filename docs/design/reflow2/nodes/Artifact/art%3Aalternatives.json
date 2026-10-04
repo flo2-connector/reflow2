@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:10e44c8f888e198628194ad110c8a6dd82a35b1029c345a5098de008fda06a88",
+  "node_id": "art:alternatives",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "granularity": "atomic",
+    "location": "crates/reflow2-core/src/alternatives.rs",
+    "name": "alternatives.rs",
+    "status": "realized",
+    "volatility": "stable"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:d7a7e45f3e4923e20ba8fffbff2907b9a3d5af92b913355cb38469424b86e631",
+  "edge_type": "CAUSES",
+  "from_id": "dec:change-type-splits-into-two-axes",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "schema/temporal.yaml change_type required: true; export count of subject=record events by change_type",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:field-report-flo2-2026-09-18-change-type-is-required-while-subject-is-optional-so-a-record-only-event-picks-a-system-shaped-why"
+}

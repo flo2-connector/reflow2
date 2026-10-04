@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:91af3c1e9d0efa1fa7fb1fbbbe564bc7848b1c5b0569356c37457fcfe9d9aee8",
+  "node_id": "cap:as-of-epoch",
+  "node_type": "Capability",
+  "properties": {
+    "description": "A query surface on the graph's own time axis: what the design said at a given epoch, answered by the graph rather than by checking out an old export and reading it by hand. Anthony's acceptance tests, in his words (2026-07-30), are the target and the measure: which capabilities are due to be released in epoch 5, and what did we not achieve that we were supposed to in increment 10. The second is the harder half — it is a PLANNED-VERSUS-DELIVERED DELTA, computable only once an epoch has arrived, which is why this sits downstream of cap:planned-epochs. Reworded on Anthony's word 2026-07-30: the requirement previously described indexing git refs (the graph tracking where each snapshot lives), and that framing was retired when dec:where-plans-live settled that forward-looking plans describe graph content and stay in the graph — git keeps only the narrower job of pinning a version combination at an ARRIVED epoch. The original text is preserved at snap:epoch:planning-axis-intent:req:graph-indexes-snapshots. Approved for build by Anthony 2026-07-30.",
+    "name": "The graph answers as-of-epoch-n itself, without a git lookup",
+    "provenance": "authored",
+    "status": "planned",
+    "tier": "operational"
+  }
+}

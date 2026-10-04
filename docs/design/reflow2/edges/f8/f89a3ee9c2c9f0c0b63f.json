@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:d7f1e2fa538cae22b0620641458283ab917429e678e288f28c712962986c1da9",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:test-the-cli-describes-a-tool-with-its-schema-and-lessons",
+  "properties": {
+    "covers": "whole",
+    "note": "The test file IS the check: cargo test -p reflow2-mcp --test the_cli_describes_a_tool_with_its_schema_and_lessons re-runs it."
+  },
+  "to_id": "ver:the-cli-describes-a-tool-with-its-schema-and-lessons"
+}

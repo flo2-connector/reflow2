@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:856e38426cf4a0ec28d7a1e922d69929b674789b978de538b85a899bebeb2076",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:feedback-is-a-computed-tally-wire-test",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:feedback-is-a-computed-tally-wire-test"
+}

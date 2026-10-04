@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:f678e5d0dd556da7060beb182921ce7fedbb3da9551b04f87be14c944f7f5895",
+  "node_id": "chg:interface-medium-reachable",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "name": "BL-129: `medium` is settable through `set_interface_spec`. The property and its honest `unspecified` default already existed and the foundation exemption already worked — only the door was missing, so a user following add_interface then set_interface_spec left every boundary unspecified and collected false single-point-of-failure warnings for shared libraries, having done exactly what the tools invited. Put on set_interface_spec rather than add_interface because it is part of what a consumer must AGREE with, which is that tool's subject, and the seam checker already compares it."
+  }
+}

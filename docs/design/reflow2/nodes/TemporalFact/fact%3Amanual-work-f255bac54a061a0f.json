@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:9d1e9a0be2a1e6694d3ee2a8aa70fa6e625ac2b7c3816ecb17db966df009ed89",
+  "node_id": "fact:manual-work-f255bac54a061a0f",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "manual_work",
+    "statement": "Parsed the committed export with a throwaway python script to count what VALUES a property carries across every edge of one kind — for CAUSES: validation_status (unvalidated 139 / validated 21 / hypothesis 6 / refuted 0) and basis (correlational 137 / observed 18 / causal 11 / spurious 0), and separately the fact_type spread across 639 TemporalFacts. `relation_coverage` answers how many nodes of a kind CARRY a relation; nothing answers what values the property on it holds. The distribution was the whole finding — it showed a declared four-value vocabulary sitting at one default because no served tool can set it, which a count could never have revealed. Checked with find_tools before concluding: 187 tools searched, best matches were set_verification_kind, scan_nodes and create_edges, none of which does this.",
+    "subject_id": "proj:reflow2",
+    "valid_from": "2026-09-22",
+    "value": "{\"diagnosis\":\"tool_missing\",\"reflow2_tool\":null}"
+  }
+}

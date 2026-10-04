@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:71fa4cb32e3635effea6bf77dd7093d42f34fb32630d80b95688ab0736d357a5",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-saved-design-moves-to-the-item-layout-2026-10-03",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:8734c54f2e6dc844966c7b3baf9c6edf945c596568f5943baa510a9c54526d77",
+    "checksum_basis": "measured"
+  },
+  "to_id": "art:test-a-registered-artifact-asserts-nothing-it-was-not-told"
+}

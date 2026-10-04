@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:f34d84fc98928f80101b904110646e73daf85c22efefebbcab927b38ecefd853",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:relation-candidates-are-offered-never-drawn",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:relate"
+}

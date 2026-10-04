@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:f4d8b7ebb92e87e75ab73abafd657a1d18b841cb1b1e968380555901209bd3c6",
+  "node_id": "chg:accept-d98d4bdc9939d8fb",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "test_failure_fix",
+    "detected_at": "2026-08-01",
+    "name": "BL-141(b): four new cases of 19 — the file-format round trip is a Warning, the same shape over REST stays Critical, one real DEPENDS_ON edge keeps it Critical, and an unspecified medium never earns the downgrade."
+  }
+}

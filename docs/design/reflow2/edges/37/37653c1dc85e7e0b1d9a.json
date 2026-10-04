@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:807cb892b038df891d3acacdf590d241b5e1fc474ccee1e784c00d2e81f1130e",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-a-contract-is-declared-at-the-lowest-level-and-rolled-up",
+  "properties": {
+    "evidence": "The roll-up half of this proposal IS an altitude view. Declaring a contract at the lowest level is only usable if a higher altitude can answer 'is there an interface between A and B', and that projection does not exist — so this idea is worth nothing unless that one lands first.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "dec:idea-a-view-can-slice-by-altitude-not-only-by-aspect"
+}

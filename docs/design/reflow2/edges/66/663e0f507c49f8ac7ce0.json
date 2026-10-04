@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:b9074ecf388a6dc8ffd41546048a70bc454debf317e1cafa74d7d6953e98579a",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:a-scoped-answer-says-whether-it-narrowed",
+  "properties": {},
+  "to_id": "req:a-scoped-answer-actually-narrows"
+}

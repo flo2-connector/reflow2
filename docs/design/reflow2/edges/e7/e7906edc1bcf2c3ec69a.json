@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:e46d048dac4f523526179eaf25b0fdd8261ea538b010e865a48dd477efb7cb8e",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-what-is-the-minimum-path-to-fork-ophyd-service-today",
+  "properties": {
+    "evidence": "Option ② — classify only the blast radius before forking — is that node's `lineage: derived` + GOVERNED_BY applied to a bounded set instead of all 205. Whether it is worth doing here turns on whether the tier is worth populating at all, which is the question that node holds.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "dec:idea-the-requirement-tiers-exist-and-nothing-reads-them"
+}

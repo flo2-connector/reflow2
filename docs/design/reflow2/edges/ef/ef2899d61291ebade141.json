@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:7837f889534b3093ea54b53a566385a442035f0d2389886b27bdedfdf2447752",
+  "edge_type": "CAUSES",
+  "from_id": "cap:the-owners-word-rides-the-same-call-as-the-status-it-signs",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "Its own description scopes the owner's-word rule to the typed doors: \"add_decision and add_requirement accept optional status + approver\", \"set_decision_status and set_requirement_status take the same two fields\", \"add_design_rule accepts approver beside enforced\". Neither it, nor #628's settles table (one row per TOOL), ever reached a writer whose status arrives inside a generic property bag or a whole document. So create_node, create_nodes, import_graph and apply_merge have no approver parameter and no gate.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:root-cause-the-settle-rule-guards-the-typed-doors-and-the-generic-writers-go-around-it-2026-09-29"
+}

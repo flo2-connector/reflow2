@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:dc9703ebca592151d1d809794cf5a05c4b52772e53a58a2be29b730d9a82ac03",
+  "node_id": "art:propagate",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "granularity": "atomic",
+    "location": "crates/reflow2-core/src/propagate.rs",
+    "name": "propagate.rs",
+    "status": "realized",
+    "volatility": "stable"
+  }
+}

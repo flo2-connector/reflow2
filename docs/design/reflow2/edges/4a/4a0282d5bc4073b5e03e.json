@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:f149869bdc571724cf2aa6056dedb7bc4fef50af50389f4ff8efb76a4de39344",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:test-a-settled-choice-can-be-gone-back-to",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:test-a-settled-choice-can-be-gone-back-to"
+}

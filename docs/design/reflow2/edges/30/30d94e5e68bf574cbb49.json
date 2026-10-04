@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:311bbe61dbe632b39f284f8bcd1233b6e94df4c5de0c01f9f1987c49a56911c0",
+  "edge_type": "EVOLVES_INTO",
+  "from_id": "rule:an-issue-is-root-caused-then-pinned-by-a-test-then-fixed",
+  "properties": {
+    "evidence": "The advisory rule is the older form: it states the intention once, at session start, and its own text records that the fix which prompted it skipped the load-bearing step. This idea is that thought grown up — the rule made to fire at the moment of the work rather than be remembered from the start of it."
+  },
+  "to_id": "dec:idea-root-cause-runs-at-the-moment-a-cause-is-about-to-be-written-not-on-every-failure"
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:ddd2836d89892797fee29dad909f100587807045dbe5cdb792b60adb11d9e691",
+  "node_id": "snap:epoch:preserved-on-write:cap:the-domain-standard-is-asked-recorded-and-its-absence-noticed",
+  "node_type": "Snapshot",
+  "properties": {
+    "edges": "[{\"direction\":\"in\",\"edge_type\":\"REALIZES\",\"other_type\":\"Artifact\",\"other_id\":\"art:adopt-skill\",\"properties\":{\"conformance\":\"unchecked\"}},{\"direction\":\"in\",\"edge_type\":\"REALIZES\",\"other_type\":\"Artifact\",\"other_id\":\"art:detect\",\"properties\":{\"conformance\":\"unchecked\"}},{\"direction\":\"in\",\"edge_type\":\"REALIZES\",\"other_type\":\"Artifact\",\"other_id\":\"art:genesis-skill\",\"properties\":{\"conformance\":\"unchecked\"}},{\"direction\":\"in\",\"edge_type\":\"REALIZES\",\"other_type\":\"Artifact\",\"other_id\":\"art:schema-environment\",\"properties\":{\"conformance\":\"unchecked\"}},{\"direction\":\"in\",\"edge_type\":\"VERIFIES\",\"other_type\":\"Verification\",\"other_id\":\"ver:a-project-is-asked-what-its-artifacts-must-be-in\",\"properties\":{}},{\"direction\":\"out\",\"edge_type\":\"SATISFIES\",\"other_type\":\"Requirement\",\"other_id\":\"req:a-project-names-its-domains-artifact-standard-from-the-beginning-and-its-absence-is-reported\",\"properties\":{}}]",
+    "state": "{\"description\":\"Three legs. A typed home: an EnvironmentRule of rule_type `standard` the Project COMPLIES_WITH, carrying authority and the checking tool, or an explicit `none known` record; an Artifact property naming the format a file is in. An instruction: genesis and adopt ask the question before any artifact exists. A detector: a project holding domain-kind artifacts with no declared standard, and an artifact whose declared format is outside the declared standard, are reported as gaps and put to the person.\",\"name\":\"The domain's artifact standard is asked at the opening interview, recorded as a rule, and its absence is noticed\",\"provenance\":\"authored\",\"status\":\"realized\"}",
+    "target_id": "cap:the-domain-standard-is-asked-recorded-and-its-absence-noticed",
+    "target_type": "Capability"
+  }
+}

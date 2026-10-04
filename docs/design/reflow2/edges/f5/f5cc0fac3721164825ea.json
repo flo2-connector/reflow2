@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:544eece0d5a60e272375884c3924c75aeb9cec509def2ea8718c1ff7a9c55bcd",
+  "edge_type": "INVALIDATES",
+  "from_id": "chg:four-root-causes-from-two-field-reports-are-fixed-at-the-cause",
+  "properties": {
+    "evidence": "satisfies takes coverage and delivery reads it; CONSTRAINS.basis undefaulted and stored only beside a contribution. The two instances are closed; the dropped requirement is the open half. Pinned by an_edge_says_only_what_it_was_told.rs."
+  },
+  "to_id": "fact:root-cause-two-field-holes-a-rejected-coverage-and-a-basis-asserted-for-a-number-that-is-not-there-share-one-cause-the-edge-sweep-was-dropped"
+}

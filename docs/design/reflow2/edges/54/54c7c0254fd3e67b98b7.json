@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:e4dd8a5b609b6aae29b47ccc93c89a8e5d32ee600a0625997622e50ce2359b49",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:test-bad-news-reaches-the-decision-behind-it",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:test-bad-news-reaches-the-decision-behind-it"
+}

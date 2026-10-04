@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:75819bb2c13184477e5d1b31f939f4bb930de1c91117e0fe964c5ee4c3e4c286",
+  "node_id": "cmp:allocate",
+  "node_type": "Component",
+  "properties": {
+    "kind": "module",
+    "level": "component",
+    "name": "allocate",
+    "provenance": "authored",
+    "purpose": "The allocate module.",
+    "status": "planned",
+    "tier": "operational"
+  }
+}

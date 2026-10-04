@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:21b6b46382c2828adca3c1222f6b4f078b2d8e55b2f08dec8cb3c1711b7c206a",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-philosophy-is-separated-from-its-pre-1-0-corollary",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "rule:fix-it-properly-while-it-is-still-cheap"
+}

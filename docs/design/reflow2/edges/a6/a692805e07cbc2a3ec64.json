@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:da80d678188c07f3366635f61120148225406650526888d784f2a33e948a1b69",
+  "edge_type": "CHANGED",
+  "from_id": "chg:prune-proposed",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "removed"
+  },
+  "to_id": "req:friction-has-a-baseline"
+}

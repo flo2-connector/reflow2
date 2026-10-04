@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:bb6ce1180bbb6fc9cf8a7de5602c6632bb8dbf18430696b115022dfcd1c7fd06",
+  "edge_type": "CHANGED",
+  "from_id": "chg:bl74-loop-status",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:service"
+}

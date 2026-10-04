@@ -1,0 +1,17 @@
+{
+  "content_hash": "sha256:8ebc576a8e2c6f3cc5ecff6c3ed946993d2534e891cbb57f9b04450f3fa5b2d3",
+  "node_id": "ver:one-tool-declares-its-output-contract",
+  "node_type": "Verification",
+  "properties": {
+    "description": "Two cases in `crates/reflow2-mcp/tests/one_tool_declares_its_output_contract.rs`, guarding an EXPERIMENT rather than a feature.\n\n🛑 OBSERVED FAILING FIRST: both cases failed against the undeclared surface — the subject because `search_design` carried no `output_schema`, and the control because the declared set was empty rather than exactly `[search_design]`.\n\nWHAT IS PINNED:\n① `search_design` declares an object schema naming the three fields SearchResult always returns (hits, stale, limit) — so the subject arm exists and describes the reply reflow2 actually sends;\n② EXACTLY ONE tool on the query router declares a schema, and at least one undeclared tool remains — so the CONTROL arm exists.\n\n⭐ ② IS THE LOAD-BEARING ONE AND IT WILL LOOK LIKE AN OBSTACLE. If somebody declares schemas on more tools before Alex's result is read, this fails — and that is the test doing its job. An all-tools change cannot distinguish \"the schema did it\" from \"something else in that release did it\", so broadening the declaration early does not merely weaken the experiment, it destroys the only question it was built to answer.\n\nWHAT HAPPENS AFTER THE RESULT IS READ: delete the file. It guards a measurement, not a property, and a test that outlives its question becomes a rule nobody chose.\n\n⚠️ WHAT IT CANNOT COVER: whether the schema changes what Alex's client does. Only his session can measure that, and no test on this machine can stand in for it.",
+    "findings": "2 passed after the change; **both failed before it** — the subject because `search_design` carried no `output_schema` at all, the control because the declared set was empty rather than exactly `[search_design]`.\n\nSurface change confirmed minimal by the toolsnaps, which is the check that matters for an experiment needing a control: `python3 tools/toolsnap.py` reported **1 changed, 0 added, 0 removed**, and the diff on `tools/toolsnaps/search_design.json` is the `outputSchema` object and nothing else. So every other tool on the surface is untouched and remains a valid control arm.\n\nFull workspace suite green: 169 suites, 0 failures. In-memory backend 135 suites. clippy both crates with `-D warnings` clean; `cargo fmt --check` clean.\n\n🛑 WHAT IS STILL UNMEASURED, AND IT IS THE ENTIRE POINT: whether declaring the schema changes what Alex's client shows his agent. These tests prove the experiment is SET UP correctly; they cannot prove anything about the question. That measurement needs his session against a released binary.",
+    "kind": "verification",
+    "last_reconciled_at": "2026-09-23",
+    "last_reconciled_outcome": "passed",
+    "last_run_at": "2026-08-29",
+    "level": "integration",
+    "method": "test",
+    "name": "Exactly one tool declares an output schema, and a control arm survives",
+    "status": "passing"
+  }
+}

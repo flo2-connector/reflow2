@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:fa82c76c98bba5031e343d79968ad5369add3b38c5b85b0eca799ae281f45335",
+  "node_id": "chg:accept-b19ef5acb2aa9ec9",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "resync",
+    "detected_at": "2026-09-22",
+    "name": "The (answer_question, answers) pair came apart and was removed, as the ratchet requires.",
+    "subject": "system"
+  }
+}

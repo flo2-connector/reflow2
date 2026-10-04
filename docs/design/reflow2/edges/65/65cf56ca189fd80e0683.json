@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:e4de233e75049b8fdf1421a03942af479c81191d45a850e7daf854fc6c394c74",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "req:export-says-what-it-cannot-carry",
+  "properties": {
+    "evidence": "It is that requirement applied to the export door: a pointer that cannot resolve must be nameable by the person holding the document.",
+    "optional": false,
+    "weight_basis": "evidence"
+  },
+  "to_id": "req:content-reaches-every-seat"
+}

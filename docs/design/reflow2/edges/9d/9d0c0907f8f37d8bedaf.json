@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:cd7657b52de0e0f0d666f138e015b028a2e552e8215f43631bc4b0088ec69b63",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:a-project-migrates-to-the-item-layout",
+  "properties": {},
+  "to_id": "req:the-saved-design-merges-correctly-under-gits-ordinary-merge"
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:0c21891ced455a0ff9f0de9c5e7ec0bc1315412f9dae901f23bfae06022fe9ef",
+  "node_id": "art:a-session-that-reads-and-never-writes-is-seen-test",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "test",
+    "location": "crates/reflow2-mcp/tests/a_session_that_reads_and_never_writes_is_seen.rs",
+    "name": "a_session_that_reads_and_never_writes_is_seen.rs",
+    "status": "realized"
+  }
+}

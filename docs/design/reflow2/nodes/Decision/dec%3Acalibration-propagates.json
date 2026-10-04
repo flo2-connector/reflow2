@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:58cba896a81b0272009342a17f5269035bc19418fbbc2e99878c03fcd183f274",
+  "node_id": "dec:calibration-propagates",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "CALIBRATED_AGAINST is entered in the structural direction table (nodes.rs structural_rule) as (forward: Upstream, backward: Downstream), the same shape as REALIZES and VERIFIES. From the fitted node you reach the evidence its authority rests on; from the evidence you reach every value that would be wrong if it were superseded.",
+    "name": "CALIBRATED_AGAINST is a traceability edge — when the anchor moves, every value fitted to it is in the blast radius",
+    "rationale": "Asked deliberately because the table's own comment says it is the question nobody asks: 'Twice now a new edge type has reached a Release without anyone asking whether the impact table should know about it, and nothing checks that question is asked' — INCLUDES and then SCHEDULED_FOR, each found only when disconnected_community fired on an island the new edge had failed to join. This is the third such edge and the question was put before the code was written rather than after a detector complained. The answer is yes on the merits: a calibration is a genuine dependency of a value on a piece of evidence, so when the anchor is corrected or superseded, every value fitted to it is exactly the blast radius propagate_change exists to compute — which is the payoff BL-136 asks for, since a wrong functional form absorbed into a fitted coefficient is only findable when the outside source arrives and someone can see what rested on the old one. Direction matches REALIZES because the evidence is the source of truth and the fitted value is downstream of it. Consequence accepted and stated rather than discovered: this puts CALIBRATED_AGAINST into design_network(), so it counts toward centrality, communities and single-point-of-failure — the surface BL-124 has just shown is sensitive to edge-set changes. On reflow2's own graph the effect is nil today because the design carries no fitted values, and that is a measurement, not an assumption.",
+    "status": "accepted"
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:978221f62a1b880f1fe286997d688a81a010a6bbad47ff764d16979fc090f1dc",
+  "node_id": "req:an-export-says-which-tree-it-was-taken-in",
+  "node_type": "Requirement",
+  "properties": {
+    "concern": "core",
+    "lineage": "original",
+    "name": "An export says which working tree it was taken in, and one taken on another branch is not committed here unnoticed",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "Every export written inside a git repository records the branch and commit the working tree was at when the design content was taken, and whether that tree held uncommitted work besides the export itself. The coordinate is on the export, never on a node: a node cannot carry the commit that contains it, and a hand-maintained per-node field would go stale on the first merge with nothing recomputing it. It is kept, not bumped, while the design content is unchanged, so an unchanged export stays byte-identical across commits. An export outside git, or on a detached HEAD, says nothing rather than something made up. The coherence gate refuses a modified export whose recorded branch is not the branch it is about to be committed on — the phantom-drift shape — and does not re-judge a committed one, because squash merges make the name it carries meaningless once it lands.",
+    "status": "accepted"
+  }
+}

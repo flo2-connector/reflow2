@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:efb197ea7e1d5e08fd45ba6f8f171b91d2d7740bf6896337813cebe81578ba17",
+  "edge_type": "CHANGED",
+  "from_id": "chg:detector-spec-forked-attribution",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified",
+    "field": "statement"
+  },
+  "to_id": "rule:design-intent-moves-only-on-the-owners-word"
+}

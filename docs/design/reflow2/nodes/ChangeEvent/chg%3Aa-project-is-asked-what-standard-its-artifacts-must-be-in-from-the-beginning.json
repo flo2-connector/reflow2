@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:383a720b6b4fd69fb581b23b6d0e0e95011d56b2796053515070ffd1f821e02a",
+  "node_id": "chg:a-project-is-asked-what-standard-its-artifacts-must-be-in-from-the-beginning",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "detected_at": "2026-09-16",
+    "name": "A project is asked, from genesis, what standard its design artifacts must be in; a drawing that does not say is named; the checking tool is part of the declaration",
+    "rationale": "reflow2 opens no file: it judges by declared format, and validity is the checker's run, whose output is the evidence on the compliance edge. Measured cause: bhome 2026-08-31, an HTML plan sheet for a house because nothing in the design asked what a plan sheet must be, and the person who would have caught it was the city planner. \"None known\" is recorded with the existing acknowledge_gap rather than a new property, so the \"none\" case adds no vocabulary; the cost is the two-state key, which exists because an acknowledgement is permanent for its id.",
+    "summary": "Built on Anthony's word 2026-09-16 (\"accept all 3 as intent ... build them in that order\"), the first of three. THREE LEGS: (1) typed home — EnvironmentRule gains `checker` (the tool that validates a file against the standard) and COMPLIES_WITH now accepts a Project as its source, so \"this design's artifacts follow IFC\" is one existing edge from the Project to a rule of rule_type `standard`; (2) instruction — the genesis and adopt skills ask what standard the handed-over artifacts must be in, who issues it and what checks it, before any artifact exists, and the genesis tool's next_steps say the same; (3) detectors — `artifact_standard_undeclared` fires on a Project with nothing else in it (0.35) and harder once drawings or models exist unasked (0.65), keyed twice so \"none known\" acknowledged at genesis does not also swallow the first drawing that arrives; `artifact_not_under_declared_standard` names each drawing/model with neither COMPLIES_WITH nor VIOLATES_RULE to the declared standard, one rollup keyed on the set. Test: crates/reflow2-core/tests/a_project_is_asked_what_its_artifacts_must_be_in.rs (7 cases)."
+  }
+}

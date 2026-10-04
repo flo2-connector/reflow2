@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:b3889ef02299fe4ff9d5ca43a225d4899523c960fccbbafba330b46a7d8b081c",
+  "edge_type": "OBSOLETES",
+  "from_id": "dec:log-issue-folds-into-jot",
+  "properties": {
+    "note": "getting-started/skills/log-issue/SKILL.md is removed with its two mirrors; its text lives on, generalised, in getting-started/skills/jot/SKILL.md (art:jot-skill), and /log-issue still reaches it."
+  },
+  "to_id": "art:log-issue-skill"
+}

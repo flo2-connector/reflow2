@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:1876e8b20d9ba5949c22d827b8f133172b566e220a019479891b5008998f3d75",
+  "node_id": "decision:ack:36f996750fe0a1bc",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Accepted the gap gap:36f996750fe0a1bc.",
+    "name": "Reviewed: gap:36f996750fe0a1bc",
+    "rationale": "RULED 2026-09-15 (Anthony, on the session's read of the code): STILL TRUE, and none of the seven later repairs to the schema touched it. schema/functional.yaml still declares `tier: default operational`, core.yaml still declares `lineage: default original`, `concern: default core` and `Contributor.kind: default person`, and dynograph still injects a declared default at write time — so the descriptive enums nobody chooses go on being stored as if somebody had. This is a per-property design question (which defaults mean \"nobody said\" and which are a meaningful initial state), not a code defect, and it is the owner's to answer property by property; the record already names the candidates. Acknowledged once for these seven repairs; the next repair on the schema will ask again, which is right.",
+    "status": "accepted"
+  }
+}

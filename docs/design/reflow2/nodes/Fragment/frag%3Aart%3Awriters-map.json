@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:371f32e8aa7a45f2ad0a40622a4b136be9eb2fcd3cfbd3116f72e44f59960c59",
+  "node_id": "frag:art:writers-map",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered writers.json — which served tool writes which node type and draws which edge type"
+  }
+}

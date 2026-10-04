@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:6508df6e9c5423dfd6073f6907da32476259471cd0ce6087548b965381648c91",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:a-scoped-answer-actually-narrows",
+  "properties": {
+    "approved_at": "2026-08-17T23:59:00Z",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

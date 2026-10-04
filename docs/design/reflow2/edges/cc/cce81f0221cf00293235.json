@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:d444253c9c0237039eb2a79c20fc112ac8250ef16a5839ae5519233afd9b7142",
+  "edge_type": "HAS_SNAPSHOT",
+  "from_id": "cap:plan-movement-recorded",
+  "properties": {},
+  "to_id": "snap:epoch:arrival-delta:cap:plan-movement-recorded"
+}

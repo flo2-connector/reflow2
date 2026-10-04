@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:d74cc59b73fa77b6f0ba133daeb3eef2808258ec2dc9b4f24f305d28fc46a78d",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:a-revising-write-keeps-what-it-would-have-lost",
+  "properties": {},
+  "to_id": "req:intent-preserved"
+}

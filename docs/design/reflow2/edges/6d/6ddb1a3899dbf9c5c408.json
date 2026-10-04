@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:85920eb8944a3f25ae51a6e9f4efe20bbba12a9edee04f3445579f5c7410b65d",
+  "edge_type": "HAS_SNAPSHOT",
+  "from_id": "ver:sessions-cannot-cross-designs",
+  "properties": {},
+  "to_id": "snap:epoch:isolation-check-scope-split:ver:sessions-cannot-cross-designs"
+}

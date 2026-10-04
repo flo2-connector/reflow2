@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:d5751e0997cf39e670b80d4db51d38341e5c18832ec977ffb060f2aeeb975911",
+  "node_id": "epoch:a-tool-says-when-you-would-ask-for-it",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "description": "2026-09-11, after PR #475. The vocabulary half of criterion 1, ruled as option (b) in dec:a-tool-carries-the-users-phrasing-and-the-corpus-is-the-test: every served tool whose description lacked the words a user states its job in gained one sentence carrying them, written from purpose; five over-budget descriptions were trimmed to make room; and the 180-query corpus became a committed acceptance test with three measured exemptions. Measured: 120 → 177 of 180 in find_tools' top 5; held-out paraphrases 16 → 36 of 42 after a rewrite the held-out check itself forced. Must NOT include a scorer change — two were tried, measured neutral and worse, and reverted. Sequence 416 follows epoch:find-tools-scores-what-a-query-means (415).",
+    "epoch_type": "revision",
+    "name": "A tool says when you would ask for it",
+    "sequence": 416,
+    "status": "arrived"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:47c4d080bf187ee42c6aa67d410ec58de55e665f16f9d7a0d075f730d4b8b3bb",
+  "edge_type": "INVALIDATES",
+  "from_id": "chg:a-read-only-server-with-no-store-serves-the-latent-surface-and-creates-nothing-2026-10-03",
+  "properties": {
+    "at": "2026-10-03",
+    "note": "Re-measured on the branch binary (measure-fix.log): --only-if-present --http 127.0.0.1:0 with stdin closed is still listening after 10 s; the test drives it over HTTP (handshake, /readyz 503 then 200, start_design, a write). serve_latent serves the transport asked for."
+  },
+  "to_id": "fact:only-if-present-with-http-served-the-latent-surface-on-stdio-2026-10-03"
+}

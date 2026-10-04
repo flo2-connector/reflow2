@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:06cef2a4a6390df8af3b22b197378a2a393c059d708a6bd0368cf1212753f020",
+  "edge_type": "CHANGED",
+  "from_id": "chg:design-identity",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:graph"
+}

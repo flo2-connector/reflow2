@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:ebf45c98f9fb42dea395858fa4613cd70975c20c646415c7b61549919c846434",
+  "edge_type": "RISKS",
+  "from_id": "dec:idea-should-the-server-journal-every-write-itself",
+  "properties": {
+    "evidence": "An automatic journal produces what and who and never a reason, so admitting those rows into the same ledger would make a requirement that every change record carries its why unenforceable by construction."
+  },
+  "to_id": "req:a-change-record-carries-why-in-the-same-act"
+}

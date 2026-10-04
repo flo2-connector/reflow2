@@ -1,0 +1,17 @@
+{
+  "content_hash": "sha256:b03a1b4b9fe6020d319d1dc14b23056f0a7a138f2e594cc4cfd535df68790be5",
+  "node_id": "fact:root-cause-export-graph-with-no-path-is-a-documented-default-exempt-from-the-reply-bound-and-the-door-prints-27-mb-2026-10-02",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "finding",
+    "name": "MEASURED 2026-10-02 (0.77.0), tool friction \"export_graph --args '{}' exits 0 and prints the whole design\": CONFIRMED, and it is a DOCUMENTED DEFAULT, not an accident. On a copy of main's design it prints 27,636,445 bytes in ~5 s, exit 0. It is not comparable to a missing argument, because export_graph has none required. Path mode prints a 12.6 KB receipt, still over the 10 KB terminal cut the report names",
+    "source": "art:vscode-call-door-field-report-2026-10-02",
+    "statement": "RUN AS THE SKILL (root-cause, fetched fresh), triage agent A, on the tool-friction row of art:vscode-call-door-field-report-2026-10-02: \"`export_graph --args '{}'` exits 0 and prints the whole design to stdout, unlike tools that name a missing argument.\"\n\n① OBSERVED (log: /home/ajs7/.claude/jobs/fa666a94/tmp/triage-A/measure.log, EG-*):\n- Small scratch store (2 nodes): `--call export_graph --args '{}'` → exit 0, 13,142 bytes, 0.11 s.\n- main's export (origin/main docs/design/reflow2.json, 27,636,686 bytes; 6,312 nodes and 41,550 edges imported by `--call import_graph`): `--call export_graph --args '{}'` → exit 0, 27,636,445 bytes on stdout, 5.2 s. The same with no --args at all, because the door defaults it to `{}`.\n- For contrast, `--call graph_report` on that design → 28,917 bytes, and `--call add_requirement --args '{}'` → exit 2 naming the missing fields.\n- With a path, on a 1-node child: the receipt was 12,588 bytes, almost all of it the echoed stamp.\n\n② PRECEDENT: fact:the-reply-budget-sweep-is-built-2026-09-13 (\"two tools are exempt as documents\"); fact:root-cause-the-export-receipt-echoes-a-stamp-that-grew-for-the-import-guard-2026-09-28 (the path-mode receipt is ~8 KB of stamp). My 12,588-byte receipt says that defect is still live on 0.77.0.\n\n③/④ CANDIDATES: (a) an accident, a missing required-argument check; (b) a designed default; (c) the door adds something that MCP does not.\n(a) refuted: `path` is Option in ExportGraphToReq, and the no-path branch returns the document (`let Some(path) = req.path else { return ok_json(export) }`). (b) confirmed by the served description and the budget exemption. The no-path mode is also LOAD-BEARING: upstream.rs's address watch asks a server for \"export_graph with no path\" and hashes the reply. Making `path` required would break every design_address watch. (c) partly: the door adds no bound of its own, and `--args` defaults to `{}`, so a bare `--call export_graph` is the 27 MB form.\n\nWHAT THE REPORT SHOULD READ INSTEAD: not \"unlike tools that name a missing argument\", but that the document mode is the default and has no bound, and on a terminal agent it floods the tool output. The report says the agent's terminal tool cuts replies at about 10 KB. Remedies are not chosen here:\n- the door warns or refuses a no-path export above a size unless asked;\n- the served description leads with `path` for shell callers;\n- the receipt fix already open in the 2026-09-28 root cause.\nA required `path` is ruled out by the address watch.",
+    "steps": [
+      "export_graph"
+    ],
+    "subject_id": "cap:a-build-can-call-one-tool-from-the-shell-and-read-the-reply-as-json",
+    "valid_from": "2026-10-02"
+  }
+}

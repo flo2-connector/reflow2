@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:af729103f93cbc7b18b7c1e393f369c6477c7bf6ecada9eea576f057bf9cf0e3",
+  "edge_type": "VERIFIES",
+  "from_id": "ver:an-exposed-server-verifies-bearer-tokens-to-the-oauth-2-1-floor",
+  "properties": {},
+  "to_id": "req:every-oauth-role-reflow2-plays-meets-oauth-2-1-at-a-minimum"
+}

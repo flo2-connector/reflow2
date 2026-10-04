@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:d2b02a9964028ae51f7fedbff1470dab21a260d9fad62d37deb29233e5da403e",
+  "node_id": "art:bhome-cad-demo-feedback-2026-09-16",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "document",
+    "description": "Copied verbatim from /home/ajs7/project/bhome/feedback.md (994 lines) on 2026-09-16. Lines 1–709 are Session 1 (2026-08-31, already triaged as art:bhome-genesis-feedback-2026-08-31); lines 710–994 are Session 2 and 2 part 2, the CAD partnership and the first closed loop. Inbound field reports are kept out of git and registered here so the findings point back at them.",
+    "location": "docs/feedback/2026-09-16-bhome-cad-demo-feedback.md",
+    "name": "bhome feedback.md through Session 2 part 2 (2026-09-16) — the reflow2↔IfcMCP loop closed; the 2026-08-31 copy is a strict prefix",
+    "status": "realized"
+  }
+}

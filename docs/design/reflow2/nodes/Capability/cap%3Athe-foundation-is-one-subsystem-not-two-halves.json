@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:185730fa6f70e7c086b74caf4810d51231c550029a9e71871159891b133d0acc",
+  "node_id": "cap:the-foundation-is-one-subsystem-not-two-halves",
+  "node_type": "Capability",
+  "properties": {
+    "delivery": "model",
+    "description": "CHANGE 1 of epoch:the-declared-walls-hold. Anthony's word, 2026-08-20. DISTINCT FROM the fact that measured the problem: that node is the MEASUREMENT, this is the REMEDY, and conflating them would leave the design unable to say whether the fix happened.\n\nWHAT IT DOES: moves cmp:nodes and cmp:schema so they sit with cmp:graph and cmp:provenance, and places cmp:identity, which today is in NO subsystem at all. PURE MODEL BOOKKEEPING — not one line of Rust changes.\n\nWHY: the code has a kernel of five modules everything sits on — nodes (46 of 52 modules transitively depend on it), provenance (44), identity (44), schema (43), graph (42). The declared decomposition CUTS IT IN HALF: nodes/schema in sys:vocabulary, graph/provenance in sys:store. graph reads nodes and schema; vocabulary and flow read graph. Traffic therefore crosses that boundary BOTH WAYS, and that is the entire sys:store <-> sys:vocabulary cycle. Any bisection of a mutually-dependent kernel produces a cycle one level up whatever the code does.\n\nA boundary only earns its keep if a change can be handed TO it and stop there. Two-way traffic leaves nothing for a blast radius to stop at, so \"a change inside the store stays in the store\" is false today.\n\nSIMULATED BEFORE PROPOSING, against the real import graph: the cycle disappears, NO new cycle appears anywhere, and the eight subsystems come one step closer to a DAG.\n\nOPEN SUB-QUESTION FOR ANTHONY: sys:store currently means \"where the data lives\". After this it means \"the foundation everything is built on\", which is a bigger idea and may want a different name. A naming call, not a technical constraint — the move is correct either way.\n\nIT IS A CORRECTION, NOT ONLY A FIX: those five modules ARE one layer, and the model currently says they are two.",
+    "name": "The foundation is one subsystem, not two halves — the kernel stops being bisected by the decomposition",
+    "provenance": "authored",
+    "status": "realized"
+  }
+}

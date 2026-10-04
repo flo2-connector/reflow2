@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:eec86cf876a4f35cade1c6ccb8d9bf5a73cfbc3571f663af8ddc52e1ef3455f2",
+  "edge_type": "CHANGED",
+  "from_id": "chg:register-seventh-obligation-detect-and-ask",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:detect-and-ask-skill"
+}

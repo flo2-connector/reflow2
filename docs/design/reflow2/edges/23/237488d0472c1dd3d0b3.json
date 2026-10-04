@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:89a9ca459226efdca7d3df0479e131b9d2a252f47c14986dbf7f2df2832a5bd1",
+  "edge_type": "AT_EPOCH",
+  "from_id": "chg:content-location-settled",
+  "properties": {},
+  "to_id": "epoch:arrival-delta"
+}

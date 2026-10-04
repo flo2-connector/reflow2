@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:505d1d3f0c8908cea0ab6fa77e28c9b868b797ca01f6eb14101729dd2e09068b",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:idea-does-the-build-prove-each-gate-can-go-red",
+  "properties": {
+    "authored_at": "2026-09-21",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:claude-code"
+}

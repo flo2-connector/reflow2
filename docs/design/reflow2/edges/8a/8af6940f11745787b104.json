@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:7449905ad56f8f641065ada00c7b80751f4151487afd3882597927d21f3407bd",
+  "edge_type": "AT_EPOCH",
+  "from_id": "snap:epoch:preserved-on-write:cap:a-reader-that-cannot-read-the-vocabulary-is-told-what-it-lacks",
+  "properties": {},
+  "to_id": "epoch:preserved-on-write"
+}

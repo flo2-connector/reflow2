@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:f46d0d6b25dac6ebf834d248482cf8dc6824288745009bb9d7e3a4daf200cc27",
+  "edge_type": "CHANGED",
+  "from_id": "chg:promotion-overtakes-the-question",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:detect-and-ask-skill"
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:f0a9d34e857130264def05f5f6e7d88cf51290a7b61044312a7300476da4f1e6",
+  "node_id": "epoch:export-rule-enters-the-governance-layer",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "epoch_type": "revision",
+    "name": "reflow2's export convention becomes a governed rule rather than only a software requirement",
+    "sequence": 321,
+    "status": "arrived"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:0d6f83b00fcaf20b194ce1038650301c4fc83e40923bfc6c323e0f2a97f82463",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:skills-served",
+  "properties": {
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "cap:kit"
+}

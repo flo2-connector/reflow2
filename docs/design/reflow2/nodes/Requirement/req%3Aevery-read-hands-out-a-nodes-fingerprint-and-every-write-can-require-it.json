@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:3c1cbbcedeb6ca056744751a96c07aeedea5b44d2b517dd2f8ccfbeae72302fe",
+  "node_id": "req:every-read-hands-out-a-nodes-fingerprint-and-every-write-can-require-it",
+  "node_type": "Requirement",
+  "properties": {
+    "concern": "core",
+    "kind": "functional",
+    "lineage": "original",
+    "name": "Every read hands out a node's fingerprint, every write that changes an existing node can require it, and a write over a node that changed since it was read is refused, naming what changed and who changed it",
+    "priority": "high",
+    "provenance": "authored",
+    "source": "Anthony, 2026-09-29, dev_reflow2 hub session: \"Let's do 2, 3, and 4 as intent.\" Item 2 of the recommendation that closed the islands brainstorm (dec:idea-a-claimed-blast-radius-is-an-island-no-other-session-writes-in), after the concurrency study.",
+    "statement": "Every read that returns a node (get_node, scan_nodes, search_design hits, and every write's reply) carries that node's current content fingerprint. Every write that changes an existing node can carry the fingerprint the caller read, whatever tool makes it: the typed constructors, the setters and status moves, replace_text, create_nodes and delete_node, not only create_node. It is checked once, in the shared write path, rather than as a parameter bolted onto each tool. When the node has changed since that fingerprint was taken, the write is refused and the refusal names what changed and, where the design records it, who changed it. The caller can then re-read and decide. An agent should never have to do extra work to obtain the fingerprint.\n\nWHY (measured 2026-09-29, fact:measured-concurrency-across-all-designs-shows-no-lost-work-and-islands-would-mostly-block-a-sessions-own-subagents-2026-09-29):\n- The only collision class on record is silent last-writer-wins on one node.\n- The compare-and-swap exists on 1 of 118 write tools, and no read hands out its token.\n- It was used 0 times on flo2.io.\n- In the same window, 167 writes re-wrote an existing node with no precondition, and 123 of 224 replace_text calls replaced a whole field.\n\nThis is how req:a-write-cannot-silently-lose-someone-elses-work (accepted) reaches every write path. It settles the question cap:a-write-can-be-conditional-on-what-was-read left open: whether the typed constructors carry the guard too. It needs no claim, seat or liveness, so it protects two sessions, two subagents or two people alike.",
+    "status": "accepted"
+  }
+}

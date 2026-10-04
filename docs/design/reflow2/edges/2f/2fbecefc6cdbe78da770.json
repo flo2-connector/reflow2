@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:db744176ee4494bf61ce86879e753f5d4dc1e9bc65d008708ff585ac8ec7494b",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:release-trigger-needs-a-required-item",
+  "properties": {
+    "authored_at": "2026-07-31",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "ctr:claude-fable"
+}

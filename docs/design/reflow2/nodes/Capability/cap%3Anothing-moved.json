@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:3409a038bcc9320030359672ac7cd5de24362a607a030efa68a05201072b08e3",
+  "node_id": "cap:nothing-moved",
+  "node_type": "Capability",
+  "properties": {
+    "description": "A first baseline and a clean check are recorded as what they are, rather than as changes that never happened. `set_artifact_checksum` gains a third disposition, `baseline_established`, for an artifact registered with no checksum getting its first one — the record moves and the code does not — and which disposition is available is a fact about the artifact rather than a preference: an accept against no baseline is refused, and a baseline_established that would MOVE an existing one is refused, so the new word cannot launder real drift past the two-sided accept. A recording reconcile stamps `Artifact.last_confirmed_at` on every artifact observed to still match, so a pass that found everything correct is distinguishable from a pass nobody ran; the confirmation ledger counts those toward examined, and reports first baselines apart from accepts because a first baseline is not a judgement anyone made.",
+    "name": "The ledger can say that nothing moved",
+    "provenance": "authored",
+    "status": "verified",
+    "tier": "operational"
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:e4c7cb752b5cf00939c4eb953ecabe3a2f4c206e0a6fa3fa9dafddaf0dd03366",
+  "node_id": "ver:the-settle-predicate-has-one-answer",
+  "node_type": "Verification",
+  "properties": {
+    "findings": "New with the core table it checks (reflow2_core::intent did not exist on main, so it could not run there); passing on the fix.",
+    "kind": "verification",
+    "last_run_at": "2026-09-29",
+    "level": "unit",
+    "location": "crates/reflow2-core/tests/the_settle_predicate_has_one_answer.rs",
+    "method": "test",
+    "name": "CI's check_intent_authority.py settles_intent and the core intent table agree on every case",
+    "status": "passing"
+  }
+}

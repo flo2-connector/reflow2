@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:0c883b4d03135bbc600e7f05b1bf40998d0527ebd9c08cd879a677a96349a3af",
+  "edge_type": "REALIZES",
+  "from_id": "art:schema-temporal",
+  "properties": {
+    "completeness": "partial",
+    "conformance": "verified"
+  },
+  "to_id": "cap:the-resolution-of-a-gap-can-be-scheduled-into-an-increment"
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:dfe4097c2846b48fae5d9223ba68bb22e4be9e26f012c52741a6c7a771f72b7b",
+  "edge_type": "TRIGGERS",
+  "from_id": "fact:field-feedback-was-triaged-by-reading-a-fourth-time-after-the-rule-and-the-rule-is-delivered-at-no-step",
+  "properties": {
+    "evidence": "The finding is the measured fourth lapse; this decision is the design question it raises. The observation triggers the question; neither restates the other."
+  },
+  "to_id": "dec:idea-how-does-a-standing-rule-reach-a-moment-that-is-not-a-reflow2-step"
+}

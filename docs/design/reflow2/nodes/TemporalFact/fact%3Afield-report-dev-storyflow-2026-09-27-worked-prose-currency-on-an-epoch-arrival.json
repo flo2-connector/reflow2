@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:3abbfcf3e91874229c280d9c30c75704290ed9915612118e178b748a8163d801",
+  "node_id": "fact:field-report-dev-storyflow-2026-09-27-worked-prose-currency-on-an-epoch-arrival",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "observation",
+    "name": "WHAT WORKED (dev_storyflow on flo2.io, 2026-09-27 evening): `set_epoch_status` → `prose_currency` quoted a description written under `planned` and caught prose that would have been left false",
+    "source": "art:dev-storyflow-feedback-2026-09-27",
+    "statement": "Recorded so a regression is checkable. Reporter: \"Marking a milestone arrived quoted a description written under `planned` ('whether to mark this ARRIVED is the user's call, still unasked'; defects listed as open). Three `replace_text` edits fixed it, each prior state preserved.\" What must not regress: prose_currency on the status-advance reply quotes the stale phrases themselves, so the reader can fix them without re-reading the whole node.",
+    "subject_id": "cap:a-status-advance-says-whether-its-prose-predates-it",
+    "valid_from": "2026-09-27"
+  }
+}

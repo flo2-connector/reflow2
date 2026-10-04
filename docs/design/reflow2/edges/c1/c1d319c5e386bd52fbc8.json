@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:db40350aacae5db4b28296d59b14705418484c5152855d8d54d74e60d0973cf8",
+  "edge_type": "ABOUT_ENTITY",
+  "from_id": "fact:defect-satisfies-helper-silently-flattens-coverage",
+  "properties": {},
+  "to_id": "cmp:graph"
+}

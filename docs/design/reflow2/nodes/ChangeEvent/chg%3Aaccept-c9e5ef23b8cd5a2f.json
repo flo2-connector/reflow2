@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:259c4add504cb5101bbf7ee355890e4cc0d0dc3fbecd6b7ec819cbbc760c0a02",
+  "node_id": "chg:accept-c9e5ef23b8cd5a2f",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "documentation",
+    "detected_at": "2026-08-26",
+    "name": "Version bumped 0.40.0 -> 0.41.0 for the v0.41.0 cut. THE DESIGN HOLDS: the design meaning of a cut lives in the Release and its epoch, not in a version string, and nothing this file declares about dependencies changed — only the number naming which reflow2 declares them.\n\n📌 ACCEPTED BEFORE THE MANIFEST IS FROZEN, DELIBERATELY. `release_includes_all` freezes each artifact's CURRENT checksum, so accepting this drift afterwards would make the release record that it shipped the PRE-BUMP file. The recorded procedure learned that on the v0.20.0 cut and it has recurred on every cut since; accepting first is one step instead of two.",
+    "subject": "system"
+  }
+}

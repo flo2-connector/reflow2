@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:aafff161c276cac258bf07b10b37dc26338dab6a6ccac2af84b4743789941c72",
+  "node_id": "ver:adopt-storyflow",
+  "node_type": "Verification",
+  "properties": {
+    "kind": "verification",
+    "last_run_at": "2026-07-20",
+    "level": "acceptance",
+    "method": "test",
+    "name": "Brownfield adopt trial on storyflow (2643 files): full RE lifecycle through the adopt skill, 5 true findings about storyflow, 4 about reflow2",
+    "status": "passing"
+  }
+}

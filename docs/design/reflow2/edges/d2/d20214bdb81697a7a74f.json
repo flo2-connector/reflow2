@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:247371d7728b56af0f5d459bf703d96448d658d8e6ad1d16163474eb54fd8edc",
+  "edge_type": "CHANGED",
+  "from_id": "chg:work-declares-who-it-reaches-is-accepted",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "req:work-says-whether-it-reaches-a-consumer"
+}

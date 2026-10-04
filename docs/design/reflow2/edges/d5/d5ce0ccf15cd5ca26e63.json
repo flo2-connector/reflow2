@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:9a48a2371b2acc682a667359b204b540bbb53baf86fc3d4d2670631dab653ce5",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:upstream-read-test",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:upstream-read-test"
+}

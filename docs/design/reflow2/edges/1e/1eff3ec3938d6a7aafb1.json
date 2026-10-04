@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:c0c23fe0898b352d201dac9dbca1d7344d1d7cfcb33536e88504c4aeb8c4d4a1",
+  "edge_type": "CHANGED",
+  "from_id": "chg:stored-data-is-rechecked-against-the-current-schema",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "art:schema-accepted-at-last-release"
+}

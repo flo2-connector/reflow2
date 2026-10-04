@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:66138b7cf8e06f2a93d2b307517572632de7715d922b18c59728f4ef9415c14e",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-does-serving-flo2-cost-the-local-case",
+  "properties": {
+    "evidence": "This question exists only if that shape is actually built. `dec:one-process-many-stores` decides that a hosted reflow2 holds N single-writer stores in one process; this asks what that costs the local single-project case and whether the shape survives 10,000 tenants. Drop the hosting work and this idea evaporates with it — which is what makes the dependency real rather than merely topical.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "dec:one-process-many-stores"
+}

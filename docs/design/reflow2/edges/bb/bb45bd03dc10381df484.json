@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:fa5cc13176baf7cf413ebee33fb28f9e3168d80a26bf78a1837ad358349cdbec",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:epoch-roadmap-storage",
+  "properties": {
+    "reviewed_at": "2026-07-28",
+    "roles": [
+      "reviewer"
+    ]
+  },
+  "to_id": "ctr:claude-fable"
+}

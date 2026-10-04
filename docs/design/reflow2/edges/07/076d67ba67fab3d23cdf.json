@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:da5175126a008755617d08d29a561d0377f3a75d07450afb0ab0e46c9ac22248",
+  "edge_type": "CHANGED",
+  "from_id": "chg:release-without-manifest-detector",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "cap:a-cut-moves-every-version-claim-together"
+}

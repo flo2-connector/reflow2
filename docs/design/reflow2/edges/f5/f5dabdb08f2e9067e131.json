@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:d34494377b0b5f1ea433a1635c265cff022201cde4a23f41748075377c0b3cb0",
+  "edge_type": "RISKS",
+  "from_id": "dec:idea-should-a-cycle-be-refused-at-edge-creation-the-way-a-duplicate-is",
+  "properties": {
+    "evidence": "This idea proposes a second inline refuse-or-warn guard modelled on the duplicate guard, which that measurement shows firing 15 times with zero true positives; building the second without diagnosing the first would repeat the failure."
+  },
+  "to_id": "fact:twelve-near-match-refusals-across-two-designs-and-not-one-was-a-duplicate"
+}

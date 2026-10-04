@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:38ee34bdddb321742c08045cf59bc9dc62a63ab60b35fc73959bcf5a025d359f",
+  "node_id": "epoch:dev-storyflow-2026-08-15",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "epoch_type": "incident_response",
+    "name": "dev_storyflow reports a day of use on 0.31.0 — eight defects found by building with it",
+    "sequence": 337,
+    "status": "arrived"
+  }
+}

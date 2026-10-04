@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:c5f2f62288b8de7c0791a4926f84a037b65ed272a8d2b081e138d0589ccf062e",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:supersede",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:supersede"
+}

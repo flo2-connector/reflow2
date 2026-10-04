@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:d3bae774da77cc9cc39f579723c688ad524b006a49683b1f06c39cdc0aa8deb9",
+  "edge_type": "CHANGED",
+  "from_id": "chg:storyflow-second-field-report-20260808",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "fact:defect-rollups-became-fleet-numbers-without-saying-so"
+}

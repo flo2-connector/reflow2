@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:521c9800093163714f855420358bb756509c9c1656d35d404f5f9ee8ee68eb44",
+  "node_id": "frag:art:test-provenance",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "note_kind": "author",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered tests/provenance.rs — which reflow2 wrote this graph, and the four controls that keep the retired-type refusal honest"
+  }
+}

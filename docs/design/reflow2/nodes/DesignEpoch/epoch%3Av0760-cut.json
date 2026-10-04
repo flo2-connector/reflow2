@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:5b3a55b3e1303e41cbddb3303e786eaf8295e12ede6a3ae8bfb79514922032fa",
+  "node_id": "epoch:v0760-cut",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "description": "The cut that completes GitHub issue #616. Cut overnight on Anthony's word in the dev_reflow2 hub session, 2026-10-01: \"merge the PRs as needed. when ready, deploy to flo2.io … you have my approval to act autonomously throughout the night to finish up the oauth 2.1 tasks\". Contents, by PR: #641 a capture that replaces a node says so, and distinct_from is kept; #642 the served text keeps the reader's lens out of the design; #620 a server whose design is held by another process serves it in place when that process lets go, and /readyz says whether the design is served (#616 fix 3); #640 understated_status; #643 an exposed server verifies OAuth bearer tokens itself (#616 fix 4, the resource-server half); and #644, the design record that folded the 2026-09-30/10-01 live records into main before this cut. The schema stamp does not move (28 node types, 66 edge types; distinct_from is an additive property), so no upgrade note is owed. Sequence 655 places it after epoch:v0750-cut (654) and before the planned milestones from 656.",
+    "epoch_type": "release_cut",
+    "name": "v0.76.0 release cut (2026-10-01)",
+    "sequence": 655,
+    "status": "arrived"
+  }
+}

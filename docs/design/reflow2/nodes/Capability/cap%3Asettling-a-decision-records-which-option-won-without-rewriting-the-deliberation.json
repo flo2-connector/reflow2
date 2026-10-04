@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:3289c9d951d6a2d880158fc77a6d18eac6075d0886e77d22172957dee35b8a4e",
+  "node_id": "cap:settling-a-decision-records-which-option-won-without-rewriting-the-deliberation",
+  "node_type": "Capability",
+  "properties": {
+    "description": "As built 2026-09-20. `Decision.chose` is declared in the schema and written by `set_decision_status` from an optional `chose` parameter: which option won and why the others did not, in the settler's own words. WHY IT IS NOT `alternatives`: that holds REGISTERED forks and their reasons, which is what collapse_decision reads; this holds the settler's sentence for a decision whose options live in its own prose, which is what the brainstorm skill asks for and what collapse_decision cannot reach. A PROPERTY ADDITION, so the schema stamp does not move and no upgrade note is owed. Optional, and absent still means nobody said. It records an OUTCOME and never substitutes for AUTHORITY: a settlement with no approver still comes back carrying nobody's name, which one of the three tests asserts. Test: crates/reflow2-mcp/tests/settling_a_decision_records_which_option_won.rs; the load-bearing case is that the deliberation survives the settlement verbatim.",
+    "name": "Settling a decision records which option won, without rewriting the deliberation that produced it",
+    "provenance": "authored",
+    "status": "realized"
+  }
+}

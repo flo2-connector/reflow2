@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:d942f9c5739c4b0531a93168d3a406a0588eaaaa215e0a8313de27324ba96db3",
+  "node_id": "snap:epoch:v0250:epoch:v0280-planned",
+  "node_type": "Snapshot",
+  "properties": {
+    "edges": "[]",
+    "state": "{\"epoch_type\":\"release_cut\",\"name\":\"PLANNED v0.28.0 — one honest write surface. Largest and least urgent; nothing here blocks anyone. BL-202 (L) collapses the two write surfaces the typed constructors created — they reach 44% of declared properties and are the single cause behind BL-129 and BL-183. BL-198 stop serializing defaults, but measure the cost to compare_designs and the merge driver FIRST. BL-197 + BL-204: the words we ship stopped matching the code we ship.\",\"sequence\":267,\"status\":\"planned\"}",
+    "target_id": "epoch:v0280-planned",
+    "target_type": "DesignEpoch"
+  }
+}

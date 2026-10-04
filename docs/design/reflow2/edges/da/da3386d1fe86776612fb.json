@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:a981e586354533c7d8c23db3e3605a1f9f0369849ab5d44cf2d74703286949fa",
+  "edge_type": "CONSUMES",
+  "from_id": "cmp:service",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "ifc:session-graph-selector"
+}

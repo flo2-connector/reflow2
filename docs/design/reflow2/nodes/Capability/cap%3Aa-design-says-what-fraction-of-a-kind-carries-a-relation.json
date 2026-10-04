@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:1f6c605bd1eb289a6d435e20a629ac9c14fe015c122b5894ddd3f0c25ab4970a",
+  "node_id": "cap:a-design-says-what-fraction-of-a-kind-carries-a-relation",
+  "node_type": "Capability",
+  "properties": {
+    "description": "relation_coverage(node_type, edge_type, direction) answers the core traceability question in the user's own words: how many of my requirements are actually verified, how many of my components declare an interface, how many of my capabilities have anything consuming them. Returns the population, the count, the fraction and the ids that are MISSING it, so the answer is actionable rather than a number.\n\n⭐ AN UNDECLARED TYPE IS REFUSED AND NEVER COUNTED AS ZERO. `Requirment` against 208 Requirements would answer '0 of 0' and read exactly like good news; the refusal names the near-misses instead. Same rule loop_status already applies to an unknown contributor_id.\n\nAN EMPTY POPULATION RETURNS NO FRACTION AT ALL — not 0.0, not 1.0. A fraction of nothing is not a fact, and either number would sit in a report looking like one.\n\n⚠️ NOT A SCORE, and there is no threshold: 12% may be perfectly healthy at a project's stage and reflow2 has no way to know.",
+    "name": "Of my N things of kind X, how many carry relation R — asked of any kind and any relation the schema declares",
+    "provenance": "authored",
+    "status": "realized"
+  }
+}

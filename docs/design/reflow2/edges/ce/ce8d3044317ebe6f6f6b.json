@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:dddbbda5d21d3e5f5a09b9903cc140a8936f9340399bc94efad4a718e025d697",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-repair-says-which-kind-it-was",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "cap:a-repair-says-which-kind-it-was"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:c41bddfbba284378b90aab940e6756ec066f1ca78ef5a43c27c85c5ea0b13103",
+  "edge_type": "GOVERNED_BY",
+  "from_id": "cmp:rocksdb-backend",
+  "properties": {
+    "note": "An interchangeable implementation behind ifc:kv-backend; what it is for is the contract it PROVIDES, not a function of its own. Distinct from the ruling that parks the SWITCH between backends.",
+    "ruling": "parks"
+  },
+  "to_id": "dec:an-interchangeable-backend-is-named-by-its-contract-not-by-a-function"
+}

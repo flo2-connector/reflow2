@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:e8dffb0b4ece50885643f375fe13e9a322b6fb938bca9a02e23d0dded43828d9",
+  "node_id": "fact:manual-work-65fa2882260205ff",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "manual_work",
+    "statement": "Wrote an ad-hoc script comparing two design exports (a release tag's committed export against the working one) to list the nodes and edges added, changed and removed, and separately the ChangeEvent ids added since the tag, to find a release's increment and to summarise each design-records PR. compare_designs does the design-vs-design comparison and was not reached for.",
+    "subject_id": "proj:reflow2",
+    "valid_from": "2026-09-24",
+    "value": "{\"diagnosis\":\"tool_not_found\",\"reflow2_tool\":\"compare_designs\"}"
+  }
+}

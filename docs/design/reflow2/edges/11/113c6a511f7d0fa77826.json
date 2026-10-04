@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:57d5015b316c3bee67ed06750d459e3606cd04d9bc64f9f22ac1e474770912ef",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-concern-enum-publishes-its-values",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:enum-schema"
+}

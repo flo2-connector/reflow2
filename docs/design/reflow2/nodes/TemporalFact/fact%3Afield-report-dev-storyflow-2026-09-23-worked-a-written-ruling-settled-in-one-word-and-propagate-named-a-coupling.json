@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:3dbd4e96d353f766e1caba5baa5f8fc6ab13c4d232dcf5cdf5d025bbcb641a57",
+  "node_id": "fact:field-report-dev-storyflow-2026-09-23-worked-a-written-ruling-settled-in-one-word-and-propagate-named-a-coupling",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "observation",
+    "name": "WHAT WORKED (dev_storyflow, 2026-09-23): a ruling left with its options and trade-offs written down was settled by the user in one word, and `propagate_change` flagged a coupling worth telling the user (a chapter's \"Session N\" comes from counting, not the title)",
+    "source": "art:dev-storyflow-feedback-2026-09-27",
+    "statement": "Recorded so a regression is checkable. Reporter (session 0c19a800): \"the where-am-i → ruling → build path held. The 09-14 ruling had left its three options written down with their trade-offs, so the user settled it in one word ('(a)'). And `propagate_change` flagged something worth telling the user: a chapter's 'Session N' name comes from counting chapters, not from the number typed in the title. That ties straight into three open session-number questions.\" Source is the 2026-09-27 report file (art:dev-storyflow-feedback-2026-09-27), which carries this 09-23 entry.",
+    "subject_id": "cap:propagate",
+    "valid_from": "2026-09-23"
+  }
+}

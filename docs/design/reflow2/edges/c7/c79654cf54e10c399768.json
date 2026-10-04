@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:564eb8e9ff2ed1f2c6549308826f12b575222382c84ce5c7fa661587973bfbda",
+  "edge_type": "CHANGED",
+  "from_id": "chg:bl183-constructors-merge",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:budget"
+}

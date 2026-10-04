@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:daeadcc9001a17c5f14b0b7cfba90dcef3dfdcd88421fb5eda34d11dcbed8134",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "req:complementary-pairing",
+  "properties": {
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "req:composed-analysis"
+}

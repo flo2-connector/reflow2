@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:31198e75133b42b9a02cc1e44d000b9f816e22c47f9ab5db2a923581edebff82",
+  "edge_type": "CHANGED",
+  "from_id": "chg:release-without-manifest-detector",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "cap:a-cut-exports-the-record-once-from-the-new-binary"
+}

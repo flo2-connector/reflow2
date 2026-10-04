@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:36abc368800132b821ebf74dc66f9c4e8ad9c8841bfaabe8c53160a20205e9ef",
+  "edge_type": "INVALIDATES",
+  "from_id": "chg:a-refused-write-stores-nothing",
+  "properties": {
+    "at": "2026-10-02",
+    "note": "Verified false after this change: every one of the measured classes (a bad enum after the node write, a bad link item, a bad edge), the refused revise that overwrote the description, and the retry that skipped the duplicate guard are each a test in a_refused_write_stores_nothing.rs that failed on main and passes here, and the walk over every served write tool finds no refusal that changes the store."
+  },
+  "to_id": "fact:root-cause-a-typed-constructor-writes-the-node-before-its-later-checks-and-a-refusal-leaves-it-2026-10-02"
+}

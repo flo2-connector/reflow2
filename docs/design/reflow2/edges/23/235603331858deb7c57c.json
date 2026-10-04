@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:9022da293b22f3231024b9bd08a5a3bc203de016480de25ae3dfe43fb4225922",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:feedback-command",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:feedback-command"
+}

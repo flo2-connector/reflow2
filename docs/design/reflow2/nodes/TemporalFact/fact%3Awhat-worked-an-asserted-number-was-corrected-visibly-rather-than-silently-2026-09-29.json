@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:77761d6617412be9ecf053d36671e5f6825d10b7893095927b3a84f4e19e1b13",
+  "node_id": "fact:what-worked-an-asserted-number-was-corrected-visibly-rather-than-silently-2026-09-29",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "finding",
+    "name": "WHAT WORKED (dev_reflow2 hub, 2026-09-28/29): because the sizing numbers were written down as ASSERTED, with a basis for each, the owner could name exactly which one its measurement contradicted (facts per design, 10,000 → ~20,000). The correction landed as evidence beside the assertion instead of a quiet overwrite. The gap it exposed: no check compares an asserted number with data already within reach",
+    "source": "art:dev-reflow2-two-agent-exercise-feedback-2026-09-29 (item W4)",
+    "statement": "OBSERVED 2026-09-28/29, flo2 design 50f966697d6c5024. The sizing decision recorded each number as ASSERTED, with its basis: 5 designs per user, 2,000 nodes and 10,000 facts per design, 1 op/s per active user. It said they would be \"replaced the moment the migration of real reflow2 and StoryFlow content, or the first load test, measures them\". The owner agent counted flo2's export (1,206 nodes, ~10,200–12,900 facts) and reflow2's (5,927 nodes, ~108,000 facts) and named the facts-per-design figure as contradicted: 9–11 facts per node, so ~20,000 per design. The designer re-counted and recorded the correction as evidence (basis: evidence, source the file paths), and later round-3 measurements rebased memory and reload budgets on measured bytes per fact. Do not regress: keep a stated basis on every supplied number, so a later measurement visibly overrides it.\n\nTHE LIMIT IT EXPOSED. The contradiction was found by an agent reading exports by hand. Nothing in reflow2 compares an asserted quantity with data the design or its registered files already hold, even when the data is one export away. That is idea D14 of the same report, left to its own triage.",
+    "subject_id": "cap:a-quantity-carries-its-provenance-and-an-unsourced-one-is-named",
+    "valid_from": "2026-09-29"
+  }
+}

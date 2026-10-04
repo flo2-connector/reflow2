@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:41d382a87e947cf489c37894d06d7944d8013a19dc33493ce0a61c53db5927f8",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0500",
+  "properties": {
+    "as_checksum": "sha256:ef7dbb708e027df2"
+  },
+  "to_id": "art:upgrade-v0110"
+}

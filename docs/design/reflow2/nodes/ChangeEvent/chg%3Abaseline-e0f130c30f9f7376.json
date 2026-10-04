@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:5e488c0a996beff7d7363de4dbff90fb03f3d1205a22c5803f6447e72a35602c",
+  "node_id": "chg:baseline-e0f130c30f9f7376",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "baseline_established",
+    "detected_at": "2026-08-24",
+    "name": "First baseline. The module ROOT only — it carries the provenance header and the re-exports. ⚠️ ITS NINE SIBLINGS ARE NOT INDIVIDUALLY REGISTERED, so they carry no drift signal of their own; the gate's `unmodelled source` note is what reports them. That is a deliberate trade against nine more artifact nodes, and it is stated rather than left to be discovered.",
+    "subject": "record"
+  }
+}

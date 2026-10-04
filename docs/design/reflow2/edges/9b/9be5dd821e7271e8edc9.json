@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:67521060dc4bb56f50c3517883493693b58d3af44ba19b5dda8532f657c0c0d8",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-measurement-says-when-it-was-taken",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:budget"
+}

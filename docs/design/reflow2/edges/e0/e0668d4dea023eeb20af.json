@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:82a52af8bc39c4cd1fc262dcb756b1bc68637d04087d74bd569f77ef6490c702",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:acknowledgement-not-structure-test",
+  "properties": {
+    "covers": "whole",
+    "note": "migrated 2026-09-22 from a REALIZES link_artifact drew in error"
+  },
+  "to_id": "ver:acknowledgement-not-structure"
+}

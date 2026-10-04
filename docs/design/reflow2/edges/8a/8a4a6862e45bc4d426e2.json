@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:c18c2fdb9f5fdf9883882354431ae2483a78f4e0c757cf2a10cd6e71e03ff9ba",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-should-the-served-instructions-tell-a-reader-to-ask-whether-it-exists-first",
+  "properties": {
+    "evidence": "The line is only worth writing because the catalogue it points at is measured to work.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "cap:every-tool-carries-the-users-phrasing-and-the-corpus-is-the-test"
+}

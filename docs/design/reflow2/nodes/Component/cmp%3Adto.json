@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:ce65327495ed593d98f48edb1df3c32ce44753e525382d12e5ac05c8db96a753",
+  "node_id": "cmp:dto",
+  "node_type": "Component",
+  "properties": {
+    "kind": "module",
+    "level": "component",
+    "name": "dto",
+    "provenance": "authored",
+    "purpose": "The dto module.",
+    "status": "planned",
+    "tier": "operational"
+  }
+}

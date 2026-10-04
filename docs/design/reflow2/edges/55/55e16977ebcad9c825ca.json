@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:83af540ec1436485b2e149b47a42cdf249cf1cc778670652f1c2af040594a3dd",
+  "edge_type": "ANTICIPATES",
+  "from_id": "dec:idea-missing-edge-prediction",
+  "properties": {
+    "evidence": "Same 2026-08-01 review. Proposing MISSING edges from neighbourhood overlap is the design's shape being read for what is ABSENT rather than present — the requirement's claim taken one step further than any detector goes today. ⚠️ Needs `link_prediction.rs` (218 lines), left upstream by increment 3."
+  },
+  "to_id": "req:graph-theory-undergirds-the-design-brain"
+}

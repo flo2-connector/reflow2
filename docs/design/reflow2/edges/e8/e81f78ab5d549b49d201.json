@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:0498f3c5ba46fc734b87363482c92264d61c09e525d9e838be9aeb0e1547b512",
+  "edge_type": "CHANGED",
+  "from_id": "chg:accept-6bf23f6f04f775a1",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:surprises"
+}

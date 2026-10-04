@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:2cff41462624c3bb011db4de5909dfec5405991d8b295aa687722fcc855233aa",
+  "node_id": "fact:the-fifteenth-and-sixteenth-near-match-refusals-were-cross-type-and-distinct-too",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "confidence": 1.0,
+    "fact_type": "finding",
+    "name": "Near-match refusals 15 and 16, both 2026-09-12, both cross-type, both judged distinct — the count is now 16 of 16",
+    "statement": "Two more search-first refusals on 2026-09-12, recorded the moment they happened because Anthony was watching the tool tally (\"7 tools used (1 failed)\") and asked that a mid-task failure not be lost to the task. Both were `add_decision` writing a brainstormed idea: (15) refused against a Decision and a DesignRule — the prior lessons-learned idea and his rule that project rules live in the graph; (16) not refused (distinct_from was given) but the guard named a third near-match, the existing refusal-ledger idea, which turned out to be the new idea's own option A. Both judged distinct; the first re-sent with `distinct_from`, the second linked DEPENDS_ON. Cross-type pairings again (Decision ↔ DesignRule, Decision ↔ Decision of the same kind), so the running count since the 2026-08-31 measurement is 16 refusals / 16 distinct / 0 duplicates. What the guard is actually doing well: it found the earlier idea the agent had not searched for, and the link is the better outcome than the write going through clean.",
+    "subject_id": "fact:twelve-near-match-refusals-across-two-designs-and-not-one-was-a-duplicate",
+    "valid_from": "2026-09-12",
+    "value": "{\"date\":\"2026-09-12\",\"refusals_running_total\":16,\"judged_distinct\":16,\"real_duplicates\":0,\"pairings\":[\"Decision<->DesignRule\",\"Decision<->Decision(exploratory)\"]}"
+  }
+}

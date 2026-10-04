@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:4c3071e35f00dd25de01f4261cf68da4a0dbdc002ea3849eadc3afffa73cf7d3",
+  "node_id": "frag:art:test-a-signature-is-the-callers-own-where-it-is-written",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered a_signature_is_the_callers_own_where_it_is_written.rs (the store's write points)"
+  }
+}

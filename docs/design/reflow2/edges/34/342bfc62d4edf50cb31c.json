@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:a89b53b4b23834a766bb8005a2f03a5118083626a4bca96c04c97c76653fe9d5",
+  "edge_type": "AT_EPOCH",
+  "from_id": "chg:a-moved-record-is-diffed-against-the-store-not-an-export",
+  "properties": {},
+  "to_id": "epoch:a-record-that-moved-once-is-read-once"
+}

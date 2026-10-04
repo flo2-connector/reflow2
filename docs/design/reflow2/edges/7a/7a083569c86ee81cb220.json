@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:b6ea318bbb81ab9e0b3c5d79025d2ab4b0f8c466ee2d6f8512a6a2601c676548",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-node-attached-to-nothing-is-reported-whatever-its-type",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:heal"
+}

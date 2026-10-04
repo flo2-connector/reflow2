@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:0d6433a3bace32ec983fb3f4da7225ddad9a58a19bb7f8b27f882e90a33c4dfa",
+  "edge_type": "CAUSES",
+  "from_id": "dec:idea-the-loop-nudge-exists-for-one-harness-only",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "That decision settled on announcing the absence and deferred a per-harness hook \"where an event model is confirmed to exist\". VS Code was never added as a trigger harness (HOOK_HARNESS = claude; TRIGGER_HARNESSES = claude, opencode), and the nudge it would carry counts writes by MCP tool name, which a --call write never has.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:root-cause-no-loop-nudge-reaches-a-call-door-agent-in-vs-code-2026-10-02"
+}

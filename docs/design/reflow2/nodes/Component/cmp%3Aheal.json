@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:6abc69290078be7d49e9017b39e8e10d4e8c1ff2e554f9cc346ef8eba95dfbec",
+  "node_id": "cmp:heal",
+  "node_type": "Component",
+  "properties": {
+    "kind": "module",
+    "level": "component",
+    "name": "heal",
+    "provenance": "authored",
+    "purpose": "The heal module.",
+    "status": "planned",
+    "tier": "operational"
+  }
+}

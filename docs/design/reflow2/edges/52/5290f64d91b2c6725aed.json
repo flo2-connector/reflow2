@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:5649655e47b0d953915867aaa8259d8fa33800cb50ea2616d0a168437d7b216d",
+  "edge_type": "GOVERNED_BY",
+  "from_id": "rule:the-export-is-written-once-per-branch",
+  "properties": {},
+  "to_id": "dec:export-once-per-pr"
+}

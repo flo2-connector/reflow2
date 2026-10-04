@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:a50539aaec23f03d76725ab9c77a6e6cfbb819a440149044d94ddaae32807932",
+  "node_id": "chg:the-design-reference-is-scoped-to-the-black-box-under-work",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "scope_change",
+    "name": "The design-reference requirement is revised from \"sized to hold the design\" to \"the black box under work, its constraints, its ports and the far side of each port\" — the whole design is never the unit",
+    "subject": "record"
+  }
+}

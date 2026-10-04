@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:29a1d98f62186def7d2b6b35945f4529cdfb7a07c2c07be5ce4e3024465d61ad",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:report",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:report"
+}

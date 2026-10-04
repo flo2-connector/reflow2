@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:e1542f2bcb7d22c221a1352ba300fe84547a09dcb9ce97593153df5c4d4cfc28",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:test-a-store-an-older-reflow2-wrote-is-rechecked",
+  "properties": {
+    "covers": "whole"
+  },
+  "to_id": "ver:a-store-an-older-reflow2-wrote-is-rechecked"
+}

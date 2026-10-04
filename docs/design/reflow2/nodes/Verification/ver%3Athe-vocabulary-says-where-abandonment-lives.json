@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:020c69d9abe34ae5c2f0cd5c9a2270ee937dafe642b74bc89cd18ff491e5688d",
+  "node_id": "ver:the-vocabulary-says-where-abandonment-lives",
+  "node_type": "Verification",
+  "properties": {
+    "description": "The served vocabulary connects the two halves of retirement: Capability.status's description names OBSOLETES, names `discontinued`, and says `cancelled`/`dropped` is absent ON PURPOSE rather than merely missing; and OBSOLETES's hint names the Decision as the source end, names what it computes, says only an ACCEPTED decision discontinues anything, and says the target's own status does NOT move (crates/reflow2-core/tests/discontinued_is_read.rs, 2 cases, 8 in the file). Pinned rather than trusted for the reason the standing rule is pinned in every skill — a description nothing reads back is one edit from silently disappearing.",
+    "findings": "MUTATION-CHECKED BOTH WAYS: reverting Capability.status to the bare enum kills the first and nothing else; reverting OBSOLETES to its old one-line hint kills the second and nothing else.",
+    "kind": "verification",
+    "last_run_at": "2026-08-14",
+    "level": "unit",
+    "method": "test",
+    "name": "The served vocabulary connects the two halves of retirement",
+    "status": "passing"
+  }
+}

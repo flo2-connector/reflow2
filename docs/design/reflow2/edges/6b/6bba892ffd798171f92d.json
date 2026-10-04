@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:b402046ae3521f78756af48ad92bc45d80867d378497662144e41fc81e9fa647",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:stale-seat-refusal",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:sync"
+}

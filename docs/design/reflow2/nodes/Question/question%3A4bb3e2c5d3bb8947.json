@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:ba8ff9bc3959ec2fdb845eaadb0c06d7b190d3bee39dfff6574a80944de9fa0a",
+  "node_id": "question:4bb3e2c5d3bb8947",
+  "node_type": "Question",
+  "properties": {
+    "answer": "RETIRE IT AS A REQUIREMENT. Anthony, 2026-09-11: \"go with your suggested order\", which included retiring this one. The reasoning put to him and accepted: this is not a property of the product, it is a to-do list with a completion condition, and the graph has machinery for that (scheduled work in increments) that it does not have for a requirement nothing can ever satisfy. The DISCIPLINE it states — a finding is closed by a merged change or a recorded decision, never by a belief — survives; it is already carried by dec:a-fix-says-whether-it-corrected-the-cause and by the remediation tracker, which stays the row-level record.",
+    "asked_at": "2026-09-11",
+    "context_setter": "Nothing satisfies requirement “Every finding from the 2026-09-10/11 tool sweep is either fixed by a merged change or closed by a recorded decision not to — never by a belief”",
+    "gap_id": "gap:4bb3e2c5d3bb8947",
+    "question": "You set the success criterion that every finding from the tool sweep ends in a merged fix or a written decision not to fix it — but nothing is yet allocated to deliver that, and the remediation list currently lives only in a markdown file. Should the remaining sweep findings become tracked work now, be held, or be dropped?",
+    "rephrase_degraded": false,
+    "status": "answered"
+  }
+}

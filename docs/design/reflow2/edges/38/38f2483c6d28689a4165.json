@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:a81d6c7d9d0f66b2772ab8bb4af854292fdc8524602e9ac4725e25f6dcd360c1",
+  "edge_type": "REALIZES",
+  "from_id": "art:design-holds-says-why-test",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "verified"
+  },
+  "to_id": "cap:nothing-moved"
+}

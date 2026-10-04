@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:eb1724f8f2b17f345e26b4af8f3bc118465beb66ff7c0ed20a6b58323f9e4e90",
+  "edge_type": "CHANGED",
+  "from_id": "chg:every-edge-type-declares-what-it-means",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:schema-environment"
+}

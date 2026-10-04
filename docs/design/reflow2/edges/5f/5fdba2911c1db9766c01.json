@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:749573f2423cc84ced2e2d9746a9748bf2cd7266a5707489e43064fb7b0f4290",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-name-is-not-a-report",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "ver:a-claim-reads-back-with-its-age"
+}

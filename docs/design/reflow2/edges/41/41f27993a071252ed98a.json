@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:4490102c55b952c52f0eb69fd545bcb5601dcd55a25e556a93a0d3a964a73db6",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-saved-design-moves-to-the-item-layout-2026-10-03",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:c300e70dd318b21d03f110a2676491af57021d37566f33977fb9b22717b42e57",
+    "checksum_basis": "measured"
+  },
+  "to_id": "art:budget"
+}

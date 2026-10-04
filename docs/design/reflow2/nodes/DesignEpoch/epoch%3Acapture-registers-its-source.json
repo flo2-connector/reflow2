@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:32716efebeb46dc222f438dd484c8643c3dc722512e49d789a72a64df78a4ab5",
+  "node_id": "epoch:capture-registers-its-source",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "epoch_type": "revision",
+    "name": "The conversational capture path learns to register the document it captured from",
+    "sequence": 317,
+    "status": "arrived"
+  }
+}

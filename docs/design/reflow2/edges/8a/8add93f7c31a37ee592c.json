@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:04c3d892d73daf2c5c3df4e274d930e1aa59ed61ae6f846a256c52a16c2b5aaf",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:test-every-tool-list-carries-the-cache-hints",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:test-every-tool-list-carries-the-cache-hints"
+}

@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:1324a66b9079fcc5cc07facebe595a979de67e85aba349b1eacef0d467152d21",
+  "node_id": "epoch:v0650-cut",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "description": "The v0.65.0 release cut. Follows the v0.64.0 cut; carries the eleven PRs merged between them.",
+    "epoch_type": "release_cut",
+    "name": "v0.65.0 cut",
+    "sequence": 505,
+    "status": "arrived"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:8121dd4dbf20f6ed0e1c177e3b84eeb91ae1e34e66d93d3b18589f8a90ce8696",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0250",
+  "properties": {
+    "as_checksum": "sha256:d282035a162e3e56"
+  },
+  "to_id": "art:allocate"
+}

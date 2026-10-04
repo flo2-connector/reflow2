@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:ae18fb535ba16c960192792bf9d01d730fa95b5fdd12928a1ae31896aba0f2f0",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-owner-rules-on-the-depth-defect",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "dec:the-default-scope-depth-should-be-two"
+}

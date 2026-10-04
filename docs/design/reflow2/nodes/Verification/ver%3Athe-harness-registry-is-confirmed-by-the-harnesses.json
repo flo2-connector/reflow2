@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:58d6533b9b9a2c2c5c721c6c72403eba0cb1d4dedeee42c756833801148ecc78",
+  "node_id": "ver:the-harness-registry-is-confirmed-by-the-harnesses",
+  "node_type": "Verification",
+  "properties": {
+    "description": "Three of four harnesses were made to LOAD reflow2 from the file the installer writes — OpenCode reports it CONNECTED, Copilot CLI lists it as a workspace server, Claude Code is daily use. VS Code remains unconfirmed and is named as such. THIS IS THE CHECK THE 96-CASE SUITE CANNOT MAKE: those cases assert which FILES are written, and assert nothing about whether any harness reads them.",
+    "findings": "Run 2026-08-14 on Ubuntu 24 by installing the harnesses (npm, no sudo) into a project set up by tools/reflow2_init.py, then asking each tool what it sees: `opencode mcp list` -> \"✓ reflow2 connected\", `copilot mcp list` -> \"Workspace servers: reflow2 (local)\". It also CORRECTED the registry rather than confirming it — `copilot mcp --help` names its sources as ~/.copilot/mcp-config.json and workspace .mcp.json / .github/mcp.json, so Copilot CLI does NOT read .vscode/mcp.json and the entry labelled \"Copilot / VS Code\" was promising a harness that file does not serve.",
+    "kind": "verification",
+    "last_run_at": "2026-08-14",
+    "level": "acceptance",
+    "method": "demonstration",
+    "name": "Three of four harnesses were made to load reflow2 from the file the installer writes",
+    "status": "passing"
+  }
+}

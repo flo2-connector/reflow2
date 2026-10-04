@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:8020379bf47cf91b78028ff158abf2f014b3d72827f5dd23d0ab58c6d5b57f29",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-saved-design-moves-to-the-item-layout-2026-10-03",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:4ab1eb52f82d4c69aecfd80c96cb3dd579709cfb44c6e496f529135624c3fe28",
+    "checksum_basis": "measured"
+  },
+  "to_id": "art:drift"
+}

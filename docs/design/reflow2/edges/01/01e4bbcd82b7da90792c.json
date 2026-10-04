@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:caf2dac0de9193e6d5f6b1d4050f27c82ba1db7e58e4b0c10b3412e09245b15a",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-read-only-surface-refuses-at-the-write-guard",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "req:the-hosted-surface-is-read-only-so-it-can-ship-before-authentication-exists"
+}

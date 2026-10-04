@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:6c9b69c998b505f8c4b18b01e7232b55ba1516e89631fba2ac4490259f406826",
+  "node_id": "art:wall-check-test",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "location": "tools/test_wall_check.py",
+    "name": "test_wall_check.py",
+    "status": "realized"
+  }
+}

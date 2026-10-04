@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:995fb6a6ee6dde16e0b414071d786e4e178581c700eb0685c87cd12641db6d30",
+  "edge_type": "CHANGED",
+  "from_id": "chg:every-required-parameter-and-every-thin-description-says-what-it-is",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cap:a-tool-description-predicts-what-the-tool-does"
+}

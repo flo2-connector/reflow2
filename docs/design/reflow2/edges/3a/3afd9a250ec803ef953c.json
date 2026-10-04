@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:a8908ecc277349054c01631a68be39da0b7b4818bea76725b74d75c0b0cb1ef0",
+  "edge_type": "VERIFIES",
+  "from_id": "ver:intent-authority-is-checked",
+  "properties": {},
+  "to_id": "rule:design-intent-moves-only-on-the-owners-word"
+}

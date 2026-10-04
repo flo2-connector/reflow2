@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:6481e4cddc3cbc86ec518f114d91124462d77522637b7edc8f817085f8660505",
+  "node_id": "ver:search",
+  "node_type": "Verification",
+  "properties": {
+    "kind": "verification",
+    "level": "integration",
+    "method": "test",
+    "name": "search.rs",
+    "status": "passing"
+  }
+}

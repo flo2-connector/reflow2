@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:7eabc7291bf0f945beef2b218badfe03a45f8657734ddea468979a91d1f16396",
+  "node_id": "chg:accept-43e98037d73c66cf",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "refactor",
+    "detected_at": "2026-08-13",
+    "name": "The v0.30.0 version bump. The design meaning of a cut lives in the Release and its epoch, not in a version string — so the file moved and the design did not. Accepted BEFORE applying the release manifest, deliberately: release_includes_all freezes each artifact's CURRENT checksum, and accepting afterwards would leave rel:v0300 claiming it shipped the pre-bump reflow2.toml."
+  }
+}

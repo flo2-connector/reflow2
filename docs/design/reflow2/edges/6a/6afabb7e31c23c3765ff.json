@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:3c9b6cf09bce705055870543bc24954020bfdc6526edbd8e08ddff0a78c26c13",
+  "edge_type": "CHANGED",
+  "from_id": "chg:storyflow-feedback-review-20260808",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "dec:a-claim-may-need-a-list-rather-than-a-radius"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:588b439ce6dd651e75506a3ebd8f82fcaccbd14ff4a8204627ffff0b3ea79595",
+  "edge_type": "REALIZES",
+  "from_id": "art:parallel-work-skill",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:parallel-work"
+}

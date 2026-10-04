@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:f224750c36100958d3036801f08d8ea922093e64dfe4526ca0af2eeeefd6de5b",
+  "node_id": "chg:a-design-closes-against-a-declared-threshold-and-the-report-names-the-first-hole",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "detected_at": "2026-09-17",
+    "name": "A design closes against a threshold the owner declares, and the closure report names the first hole",
+    "rationale": "Requirement 3 of the three intents Anthony accepted on 2026-09-16 (\"need to ensure that designs close and are verified\"), built 2026-09-17 after #528 on his word (\"After merging 528, then let's start on requirement 3\"). The lesson carried from the two increments before it: a leg with nothing to run on must say so rather than read clean, and the threshold is the owner's word, never a default — 100% and \"traceability and budgets only\" are both declarations. Closure is a report and never a gate, so a release cut while the design does not close is recorded as exactly that.",
+    "summary": "closure_report (core closure.rs, served in the coherence router) sums five computations that already exist — requirement_is_delivered per live requirement, budget_report per Constraint with a limit (now against a declared margin too), seam_coverage, the GOVERNED_BY / SCHEDULED_FOR read what_next scores, and the provenance sweep the detector uses — into one read: each leg says what it swept, its share and its worst offender; a counted leg that swept nothing does not close and says so; first_hole is the first leg in the DECLARED order that fails. Project.closure_legs and Project.closure_threshold are declared with set_closure_criterion (validated against the five legs; no default); no declaration reads no_closure_criterion_stated. closure_criterion_undeclared asks once on a design with live requirements. Constraint.margin added; add_constraint accepts it; set_constraint_margin sets it. release_report carries a ClosureSummary beside its own answer. detect_quantity_provenance refactored onto the shared quantity_provenance_sweep so the detector and the leg cannot disagree. Skills: genesis asks what done means; where-am-i gathers and tells the closure line; detect-and-ask has the row. Tests: a_design_closes_against_a_declared_threshold.rs (core, nine cases) and a_closure_criterion_is_declared_on_the_served_surface.rs (served, three)."
+  }
+}

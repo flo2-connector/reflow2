@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:988b37c25905f88686f68c0537896dc4b353167e7ce90ec1cdd238422c3995a1",
+  "node_id": "cap:compare-designs",
+  "node_type": "Capability",
+  "properties": {
+    "description": "Diff two export documents (or the live graph against one) into added / removed / changed relative to a named base, banded into design content vs bookkeeping, property-level on changes.",
+    "name": "Compare two as-designed records",
+    "provenance": "authored",
+    "status": "verified",
+    "tier": "operational"
+  }
+}

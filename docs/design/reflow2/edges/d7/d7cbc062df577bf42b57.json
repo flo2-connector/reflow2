@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:a0b64eb642ee873507f9ef6450cbe8889241faaa5a60f2e18b83a8b936ea01f3",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:heal",
+  "properties": {
+    "coverage": "partial",
+    "evidence": "COVERED as of 2026-08-08 (chg:duplicate-merge-needs-a-human-20260808): HEAL proposes a merge only for a DUPLICATES edge explicitly carrying basis=asserted, so a heuristic can no longer drive an irreversible deletion, and the check-health skill no longer describes node deletion as the safe mechanical half to apply unread. NOT COVERED, and deliberately not claimed: the requirement's second clause -- that on a shared graph the acting seat must acknowledge other sessions are attached -- is unbuilt, because nothing in any payload yet reports concurrency at all. That is req:a-session-can-tell-it-is-not-alone, which this clause is blocked on; building the acknowledgement first would mean asking a seat to confirm a fact reflow2 cannot currently tell it."
+  },
+  "to_id": "req:an-irreversible-operation-is-concurrency-aware"
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:f637ad55f94b4568eac53dd4ecbf5166991a22bae8051297981cd5c0e5acd26f",
+  "node_id": "frag:art:test-ephemeral-says-so",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered an_ephemeral_design_says_so_in_its_handshake.rs"
+  }
+}

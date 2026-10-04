@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:47e002200c700def20552e96b941d8e71dead73f50c6df70334ecb49db06f42a",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-measurement-says-when-it-was-taken",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:schema-core"
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:5f745247d6ca3d6bb90e8c01a3a06673774e5b3e96ea23df76a443e46c64582a",
+  "node_id": "chg:content-store-files-removed",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "deprecation",
+    "name": "The content store's three artifacts are removed from the build — content.rs, content_tools.rs and the core content test"
+  }
+}

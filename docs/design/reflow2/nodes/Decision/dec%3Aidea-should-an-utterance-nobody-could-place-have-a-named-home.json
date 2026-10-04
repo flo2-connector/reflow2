@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:b325ff6eb42a23ea4b14f068e4a91f720114f756b035fcee153758123c0efe9c",
+  "node_id": "dec:idea-should-an-utterance-nobody-could-place-have-a-named-home",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Recorded as brainstorming on 2026-09-20 from flo2 F25, not as a proposal.\n\nTHE OBSERVATION: what a model could NOT turn into a design entry is, literally, the part of what the person said that the design does not yet understand — which makes it the best material for the next question to put to them. It is rendered once and lost.\n\nOPTIONS, in the reporter's own preference order.\n(a) A SENTENCE IN capture-intent saying unplaced utterances belong as Fragments with `fragment_type: note`. Costs a sentence, uses vocabulary that already exists, and is the cheapest thing that could work. COUNTER: a skill sentence reaches an agent following the skill and no consumer building against the surface — the same gap F24 reports, so this fix inherits that limitation.\n(b) A NAMED TOOL, so it is findable by find_tools from a job sentence like 'keep the things they said that I could not place'. Larger, and it is the leg the three-legs rule says is missing whenever a vocabulary exists and nothing points at it.\n(c) BOTH, which is what the three-legs rule actually asks for: a typed tool, an instruction, and a detector that notices absence. The detector half is undefined here and should not be invented to complete a pattern.\n\n⭐ THE PRECEDENT THE REPORTER CITES IS EXACT: `EVOLVES_INTO` on promotion. The edge existed, was correct, and no instruction pointed at it until bhome found it by accident on 2026-08-31. This is the same shape with `Fragment`.",
+    "kind": "exploratory",
+    "name": "OPEN — should a sentence the capture could not place have a named home, so the best material for the next question is not lost?",
+    "status": "proposed"
+  }
+}

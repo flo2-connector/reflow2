@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:c524d7a5d7eab1d98a001db3ca93e01c8842839de3328345e02c21407ee53cf7",
+  "edge_type": "MITIGATES",
+  "from_id": "dec:idea-a-one-shot-call-reaches-the-design-where-it-is-served",
+  "properties": {
+    "evidence": "Options (b) to (d) each stop a one-shot call in a pointer folder from minting a stray empty store, which is the hazard that fact measured."
+  },
+  "to_id": "fact:a-cli-call-in-a-pointer-folder-mints-a-fresh-local-store-2026-10-01"
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:7d0cce29081e7c7ff4973e73e0b8c93cf365d1332275b510b4d1216b0a0374e9",
+  "node_id": "art:graphalg",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "location": "crates/reflow2-core/src/graphalg/mod.rs",
+    "name": "graphalg/mod.rs",
+    "status": "realized"
+  }
+}

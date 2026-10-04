@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:b120b7df164f5714993775d6ce31a533340d1d2a0715f89bc55caa9e60a0e740",
+  "edge_type": "SCHEDULED_FOR",
+  "from_id": "cap:session-artifacts",
+  "properties": {
+    "modality": "expected",
+    "recorded_at": "2026-07-31"
+  },
+  "to_id": "rel:v0210"
+}

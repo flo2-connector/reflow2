@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:edaf9b8f224ce00defe87159a91b13bf0ee4b3299a1cd27207da169e73d1d26c",
+  "edge_type": "REALIZES",
+  "from_id": "art:tools-query",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:ask-for-one-rung-of-the-decomposition"
+}

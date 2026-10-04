@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:b0c1810284c2d636aaf7cae1b3b2df6264b3df47b089440e32c09f0f97ea6d33",
+  "node_id": "cap:a-change-event-is-written-complete-in-one-call",
+  "node_type": "Capability",
+  "properties": {
+    "description": "`add_change_event` takes `summary` (what changed — indexed for full text and used as the embedding field) and `rationale` (why, and the lesson), alongside the id, name, change type, subject axis and the affected list. The reasoning therefore lands in the same act as the record, and no second write is needed to make the event complete.\n\nSATISFIED BY MAKING DECLARED FIELDS REACHABLE, not by adding vocabulary: both fields were already on the schema and only the constructor omitted them. The tool prose also states that there is no `description` field and names the two that exist, because reaching for one is the mistake both reporting projects made.",
+    "name": "A change event is written complete in one call — what changed, why, and what it touched",
+    "provenance": "authored",
+    "status": "realized",
+    "tier": "operational"
+  }
+}

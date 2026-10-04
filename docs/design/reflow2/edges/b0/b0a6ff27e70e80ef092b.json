@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:39dc32abe11ffec620a7fa2e76fc6946f3193ffc21411c67c998977c715404e1",
+  "edge_type": "EVOLVES_INTO",
+  "from_id": "dec:idea-a-name-the-agent-invented-reads-exactly-like-one-it-was-told",
+  "properties": {
+    "evidence": "Drawn FROM the incident node INTO this one: that recorded WHAT happened when an invented name propagated through eight nodes; this is the reporter's own proposal for what would have caught it. The incident is the earlier form and this is what it became once the reporter had thought about mechanism rather than about blame."
+  },
+  "to_id": "dec:idea-a-measurements-subject-should-be-a-node-so-the-recalled-half-has-nowhere-to-hide"
+}

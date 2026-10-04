@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:57ad012371cca9ee56c2d133b29d44b429fa86a8337b6557ac1909e34eeb26a3",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:a-misnaming-is-fixed-in-the-message-not-the-key",
+  "properties": {
+    "authored_at": "2026-08-17",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:claude-code"
+}

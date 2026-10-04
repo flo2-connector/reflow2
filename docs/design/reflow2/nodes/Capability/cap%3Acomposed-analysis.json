@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:abd7d8d875c65684ea3eff9ead4319247ddc8a82a3583bd2c1baadc906c88286",
+  "node_id": "cap:composed-analysis",
+  "node_type": "Capability",
+  "properties": {
+    "description": "compose_and_analyse imports another design alongside this one and runs reflow2's ORDINARY checks — detect_gaps and detect_defects — over the combined whole, so seam problems arrive as the gaps they already are rather than needing a bespoke comparator. Anthony's mechanism, and better than the comparison the requirement first implied: make the existing computation SEE more rather than write a new one. WHY IT IS NOT import_graph: that writes every node under its ORIGINAL id with upsert semantics, because it exists to layer an export onto the design it came from — point it at a DIFFERENT design and the dependency's cmp:store silently overwrites the consumer's, which is corruption with no error. Ids are therefore namespaced to {namespace}::{id}, edges rewritten with them, and an empty namespace is REFUSED rather than allowed to collide by omission. NOTHING IS WRITTEN TO EITHER DESIGN: the combined graph is built in memory and thrown away, following the ingest handshake's prepare-round precedent. That disposes of both hazards the requirement named — an export of yours can never start carrying theirs, and there is no residue to clean up — and it is pinned by a test asserting your export's content_hash is byte-identical afterwards. FINDINGS ARE ATTRIBUTED ours / theirs / seam, because a consumer shown its dependency's internal gaps as if they were its own will switch the feature off, and rightly. The seam bucket is the point: findings neither design could have produced alone. Sits alongside the two composition mechanisms that already existed without replacing either — mirror_surface takes the published surface only and keeps it foreign, merge_designs reconciles two versions of the SAME design — and it does not overturn dec:nested-graphs, since ownership and release stay separate; this is a third, analysis-only composition.",
+    "name": "Analyse two designs together without merging them",
+    "provenance": "authored",
+    "status": "realized",
+    "tier": "operational"
+  }
+}

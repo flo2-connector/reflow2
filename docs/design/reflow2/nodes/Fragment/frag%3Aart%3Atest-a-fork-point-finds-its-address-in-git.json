@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:813271d394bdc89511e3cd6953808fe8826ff01bc9fb8dc49ee077c6fbbef528",
+  "node_id": "frag:art:test-a-fork-point-finds-its-address-in-git",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered a_fork_point_finds_its_address_in_git.rs"
+  }
+}

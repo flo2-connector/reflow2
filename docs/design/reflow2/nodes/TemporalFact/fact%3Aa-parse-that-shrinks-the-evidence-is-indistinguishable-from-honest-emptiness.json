@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:ab28600566752c3677d75820a77c2d9d681a94af31514fe7fa0829bff821e408",
+  "node_id": "fact:a-parse-that-shrinks-the-evidence-is-indistinguishable-from-honest-emptiness",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "property",
+    "name": "A parsing bug that silently shrinks the evidence reads exactly like an honest 'no evidence found' — the vacuous zero, one layer down in the input stage",
+    "statement": "MEASURED 2026-08-21, in a tool written the same hour. Kept because the SHAPE recurs, not the bug.\n\n`link_tests.py` attributes a test to a component only if the test calls a function that component's source defines. It reported that `crates/reflow2-core/tests/heal.rs` calls NOTHING `heal.rs` defines — a clean, plausible, honest-looking negative.\n\nTHE CAUSE WAS IN THE READER, NOT THE CODE READ. Before scanning, the tool strips string literals so prose can never become structure. It did so across the WHOLE FILE with one regex. Regex quote-pairing is greedy and positional: one unbalanced quote — a Rust raw string, an escaped quote, an apostrophe the comment pass missed — pairs with the next quote far below, and everything between is deleted. heal.rs went from dozens of visible `pub fn` definitions to ONE.\n\n⭐⭐ THE GENERAL FORM: **A PARSING BUG THAT SILENTLY SHRINKS THE EVIDENCE IS INDISTINGUISHABLE FROM AN HONEST \"NO EVIDENCE FOUND\".** Both print zero. Both look like the tool working. No error, no warning, no partial result to be suspicious of — the tool is MORE confident, not less, because it found a smaller world and searched all of it.\n\n📌 THIS IS THE VACUOUS ZERO ONE LAYER DOWN. The known form is \"a detector reporting zero because it had nothing to run on reads exactly like one that ran clean\" (req:the-tool-finds-its-own-blind-spots; loop_status already refuses an unknown contributor_id for this reason). The NEW form is that the emptiness can be manufactured by the tool's own INPUT STAGE, after which every downstream count is honest arithmetic over a corrupted set.\n\n🛠️ WHAT CAUGHT IT: not a test — a human-scale sanity check. \"heal.rs defines one function\" is absurd to anyone who has seen the file. Nothing mechanical was going to flag it, because the number was internally consistent everywhere it was used.\n\n⇒ THE PRACTICE THIS ARGUES FOR: a stage that REDUCES its input should report what it REMOVED, not only what survived. The fix was to strip line by line, which cannot span lines; the durable part is the named regression test, so the next person who simplifies it back to one regex meets the case.",
+    "subject_id": "req:the-tool-finds-its-own-blind-spots",
+    "valid_from": "2026-08-21"
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:0c9725d73e9cf18143d488f127e033a2beceaae9770b36080173e2ff4d43b4fa",
+  "node_id": "fact:every-one-of-88-invalidated-findings-answers-rerun-owed-null",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "confidence": 1.0,
+    "fact_type": "finding",
+    "name": "On 2026-09-12 invalidated_findings returned 88 rows and every one of them had rerun_owed = null — a date is missing on one side of every claim, so the three-valued answer has never once been able to say true or false on this design",
+    "statement": "Read during the where-am-i pass, 2026-09-12: `invalidated_findings` — 88 findings carrying an INVALIDATES claim; rerun_owed true: 0, false: 0, null: 88. The tool's own contract says null means one side carries no date and nobody can say, and warns never to read it as \"no\". On this design that is the ONLY value it has ever produced, so the reader that was built to distinguish \"re-run owed\" from \"already reflects the fix\" distinguishes nothing.\n\nNOT ESTABLISHED which side is undated — the INVALIDATES edges (callers omitting `at`) or the findings (TemporalFacts with no last_run_at equivalent, or Verifications never run). Either is fixable at the constructor: `invalidates` could refuse an undated claim, or default `at` from the ChangeEvent's `detected_at` when it names one. Recorded as a sideways measurement; no change made.",
+    "subject_id": "cap:a-repair-can-say-what-it-invalidated",
+    "valid_from": "2026-09-12",
+    "value": "{\"rows\":88,\"rerun_owed_true\":0,\"rerun_owed_false\":0,\"rerun_owed_null\":88}"
+  }
+}

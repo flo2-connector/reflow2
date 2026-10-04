@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:e9619576fc2a8c51b2f89a30761acd84234a25f6499c897722251077a9b50355",
+  "node_id": "cap:a-capability-states-what-it-takes-and-gives",
+  "node_type": "Capability",
+  "properties": {
+    "description": "`set_capability_signature` writes `capability_type`, `inputs` and `outputs`, which were declared in schema/functional.yaml, indexed, documented \\u2014 and set on 0 OF 170 CAPABILITIES. Not unwanted: UNWRITABLE. `add_capability` writes name, description and status, and nothing anywhere else in either crate touched them, so no project using reflow2 could record a capability's functional signature by any route the product offered.\\n\\n`req:recursive-black-box-decomposition` says every element of a design is a black box with inner function AND INTERFACES. At the capability tier these two lists ARE that interface.\\n\\nA SETTER, NOT THREE MORE CONSTRUCTOR PARAMETERS, for the reason `set_interface_spec` is one: a contract is enriched onto a node that already exists, usually long after it was created. `add_capability` also has 276 CALL SITES, so widening it would churn the codebase to reach three optional fields \\u2014 and backfilling far outnumbers declaring at birth.\\n\\nOMITTING A FIELD LEAVES IT ALONE, so two people describing the same capability from opposite ends cannot overwrite each other. AN EMPTY LIST IS A STATEMENT: 'this takes nothing in' is a real design claim about a source or a generator, and it is distinguishable from nobody having said. AN UNKNOWN CAPABILITY IS REFUSED rather than created \\u2014 a typo must not mint a capability whose only content is a signature.\\n\\n\\u26a0\\ufe0f NO DETECTOR FIRES WHEN A SIGNATURE IS MISSING, deliberately. 170 capabilities lack one today, so a gap apiece would put 170 findings in front of a reader overnight \\u2014 the wall-of-red failure the vocabulary-coverage trial was run to avoid. This is the TOOL leg; the INSTRUCTION leg is `epoch:the-discipline-arrives-at-the-tool`.",
+    "name": "A capability can state what it takes in and puts out — the black-box interface at the capability tier",
+    "provenance": "authored",
+    "status": "verified"
+  }
+}

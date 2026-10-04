@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:c91f9fd31b4facdfca363c0fbd8fb3fa2476fbcb4a855cfc79bfae5e2e0a3482",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:a-projects-first-session-leaves-the-adapter-in-place-whichever-route-reached-reflow2",
+  "properties": {
+    "approved_at": "2026-09-19",
+    "roles": [
+      "approver",
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

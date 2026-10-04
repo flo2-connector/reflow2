@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:1e49f227d338dcd1609f538d476cf08714caaed1a3a1ccca3cca4b3c9bc00a5c",
+  "edge_type": "CHANGED",
+  "from_id": "chg:accept-7c6456e82bb32b5e",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:test-degraded-server"
+}

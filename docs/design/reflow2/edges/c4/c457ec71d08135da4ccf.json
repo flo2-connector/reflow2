@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:a54cf01137315b7afc65441abee0b00881d29a3196365aba1496edc84f406ded",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:idea-a-published-decision-loses-its-approver-and-the-childs-gate-fails-on-it",
+  "properties": {
+    "authored_at": "2026-08-29",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:c837ba6c57663d465e3938586d047a326b758ccc9add53b21778f70cfab7bac0",
+  "node_id": "frag:art:replies-are-bounded-gate",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered replies_are_bounded.py"
+  }
+}

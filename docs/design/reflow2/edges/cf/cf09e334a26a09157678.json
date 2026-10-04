@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:86502d59db53839b2043daa77f70ea6608472c005cf221531c3c2b2f5490b288",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:test-a-change-says-how-its-reason-is-known",
+  "properties": {
+    "covers": "whole"
+  },
+  "to_id": "ver:a-recalled-reason-is-not-read-as-one-written-at-the-time"
+}

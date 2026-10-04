@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:e8299c97621f20c20625407687815936ba5c34dcdf659e3b8bb57f278cfc4651",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:link-artifacts-skill",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:link-artifacts-skill"
+}

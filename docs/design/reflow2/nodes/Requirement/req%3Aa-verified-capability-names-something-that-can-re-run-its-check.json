@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:65fc3dd3f1707085183f19cb3cf19001446ebadb2901e2c2b037103d76963d2b",
+  "node_id": "req:a-verified-capability-names-something-that-can-re-run-its-check",
+  "node_type": "Requirement",
+  "properties": {
+    "concern": "core",
+    "kind": "quality",
+    "lineage": "original",
+    "name": "The design's account of its own testing is falsifiable: a capability counted as verified names something that can re-run the check",
+    "priority": "high",
+    "provenance": "authored",
+    "statement": "The design must distinguish a check somebody can RE-RUN from a check somebody TYPED, and must report the two apart wherever it reports verification. A capability whose only passing Verification has no executable form is a claim, and the design must say so rather than counting it beside a check that runs.\n\nWHAT PROMPTED IT, measured 2026-09-22: 291 capabilities, 241 counted verified, 21 of those with a check anything IMPLEMENTS. 312 Verifications, 311 reading `passing`, 30 with an executable form. The code was at 85% line coverage at the same moment — the tests were real, the record of them was not, and a reader of the record would conclude the opposite of the truth in both directions.\n\nThis is the falsifiability half of `rule:every-change-to-the-built-design-carries-a-test-and-regression-cover`: the rule says a change carries a test; this says the design must be able to tell whether it did.\n\nNOT the same record as the measurement it came from. `fact:the-verification-record-is-mostly-unfalsifiable-and-the-ai-coding-project-critique-lands-on-that-half` is dated and will stop being true as the number moves; this is what must stay true afterwards.",
+    "status": "proposed"
+  }
+}

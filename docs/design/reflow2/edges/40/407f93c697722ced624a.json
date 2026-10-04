@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:41af3b696be64f6495e3b8c8316cbc267e41a78234296fdb80e07f4dfc594d7c",
+  "edge_type": "VERIFIES",
+  "from_id": "ver:a-claimed-check-is-counted-apart-from-a-runnable-one",
+  "properties": {},
+  "to_id": "cap:a-verified-capability-names-something-that-can-re-run-its-check"
+}

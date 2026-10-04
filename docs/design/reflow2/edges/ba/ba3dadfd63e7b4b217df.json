@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:67363cbaae7730dca9fb06c43c4cc763ca2c2acf970d5974ac118d58424c83ec",
+  "edge_type": "CHANGED",
+  "from_id": "chg:external-store-argument-sharpened",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "dec:external-blob-store-pressure"
+}

@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:507fcafd921b5154c7cf8c801beae88629205ba3127dc3e627c87d549a8be88e",
+  "node_id": "fact:defect-four-live-counts-and-none-names-its-predicate",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "confidence": 1.0,
+    "fact_type": "defect",
+    "statement": "FOUR DIFFERENT NUMBERS DESCRIBING WHAT READS AS ONE SET WERE ALL LIVE AND ALL CORRECT, AND NOTHING IN THE SURFACE SAYS WHICH QUESTION EACH ANSWERED. Reported 2026-08-08 by dragon Boss f96eccd3, who credits the find to their worker w-4d05e937 for refusing to inherit a number from the brief. The boss had quoted '53 capabilities claim built' from scan_nodes. The worker produced four, all live at the same moment: status in {realized, verified} = 53, a STATUS-FIELD question; capabilities_verified = 56, has ANY Verification attached; realization.realized = 37, has an ARTIFACT that REALIZES it; and the population of gap:0a77650b58242054 = 48, the gap's own set. FOUR DIFFERENT PREDICATES OVER THE SAME NODE TYPE, EVERY ONE LEGITIMATE, AND NEITHER graph_report NOR loop_status LABELS WHICH IS WHICH — so a fleet quotes one of them for weeks believing it is THE number. THIS IS FIELD EVIDENCE FOR AN ACCEPTED REQUIREMENT NOTHING SATISFIES: req:a-surface-states-its-own-scope ('an output says which question it answered, and what it could not see') is accepted and currently sits in gap:45e43cc49581b991 with no capability delivering it. The half usually argued is 'what it could not see'; this report is the OTHER half — WHICH QUESTION IT ANSWERED — and it is the half that produced the error here, because all four numbers were complete and none was ambiguous about coverage. FIX SHAPE, theirs: name the predicate inline next to each count (`capabilities_verified: 56 (have >=1 VERIFIES edge)`), and/or let a rollup return the SET behind it so a denominator is auditable without re-deriving it by hand. Their formulation is worth keeping verbatim: A COUNT WHOSE DEFINITION TRAVELS WITH IT CANNOT BE QUOTED AS A DIFFERENT COUNT.",
+    "subject_id": "req:a-surface-states-its-own-scope",
+    "valid_from": "2026-08-08",
+    "value": "{\"reported\":\"2026-08-08 dev_storyflow, dragon Boss f96eccd3, credited to w-4d05e937\",\"numbers\":\"53 status in {realized,verified}; 56 has any Verification; 37 realization.realized (has an Artifact); 48 the gap's own set\",\"defect\":\"four predicates over one node type, no output labels which is which\",\"consequence\":\"a fleet quotes one for weeks believing it is THE number\",\"evidence_for\":\"req:a-surface-states-its-own-scope (accepted, unsatisfied, gap:45e43cc49581b991)\",\"which_half\":\"which question it ANSWERED - not the coverage half usually argued\",\"fix_shape\":\"name the predicate inline beside each count; let a rollup return the set behind it\"}"
+  }
+}

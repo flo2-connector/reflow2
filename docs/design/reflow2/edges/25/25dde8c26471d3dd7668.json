@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:b472d4553a3de0e2b5c5166c06336d2b3e142b586e83fa46627edc513f619604",
+  "edge_type": "CAUSES",
+  "from_id": "fact:find-tools-misses-split-into-a-vocabulary-gap-no-ranking-can-close-and-a-scorer-that-lets-long-descriptions-crowd",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "That finding's first half — 12 tools whose query shared not one content word with anything on the tool, so no scoring change could reach them — is the cause this change repairs: the words are now carried on the tool. Its second half (the scorer) was repaired by #475. Drawn as CAUSES so fix_without_recorded_cause does not count this fix as unexplained.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "chg:every-tool-carries-the-job-in-the-users-words-and-the-corpus-is-the-acceptance-test"
+}

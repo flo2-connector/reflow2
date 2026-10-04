@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:f638064297d0eadbf7347eed12892ace95f4530c8fd4d4960ea3170616c4a871",
+  "edge_type": "AT_EPOCH",
+  "from_id": "snap:epoch:preserved-on-write:fact:root-cause-a-settled-decisions-name-still-reads-open-because-the-09-19-fix-reached-the-body-and-no-check-reads-names-2026-09-29",
+  "properties": {},
+  "to_id": "epoch:preserved-on-write"
+}

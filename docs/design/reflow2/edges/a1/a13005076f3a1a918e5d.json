@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:54c7d68afe2f1c79ab6fd5c8abd3d63b57d4eda01af22569e9dd2fd2d34481b4",
+  "edge_type": "CHANGED",
+  "from_id": "chg:skill-loads-are-counted",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "req:skill-adherence-is-measured"
+}

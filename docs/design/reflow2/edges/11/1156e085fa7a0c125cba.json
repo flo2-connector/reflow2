@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:143715fc717dc0c1a0b0ac4f078949b6f1f5d128fda737979e11f4a9bddabea7",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-a-quantity-that-crosses-a-seam-carries-its-unit-and-the-seam-check-compares-them",
+  "properties": {
+    "evidence": "Option A, the recommended one, is a tenth property compared by the seam check that already compares paradigm, payload_format, auth and transport_security across a published/required pair; without that check a unit declaration on an interface is inert.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "cap:seam-incompatibility"
+}

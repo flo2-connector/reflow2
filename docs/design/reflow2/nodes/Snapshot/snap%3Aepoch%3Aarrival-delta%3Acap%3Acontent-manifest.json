@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:d390c103aa68d69993acffcba809c91be3900dd8a8f9310ba99e04265bcfed9a",
+  "node_id": "snap:epoch:arrival-delta:cap:content-manifest",
+  "node_type": "Snapshot",
+  "properties": {
+    "edges": "[{\"direction\":\"in\",\"edge_type\":\"VERIFIES\",\"other_type\":\"Verification\",\"other_id\":\"ver:content-manifest\",\"properties\":{}},{\"direction\":\"out\",\"edge_type\":\"ALLOCATED_TO\",\"other_type\":\"Component\",\"other_id\":\"cmp:export\",\"properties\":{\"weight_basis\":\"estimated\"}},{\"direction\":\"out\",\"edge_type\":\"GOVERNED_BY\",\"other_type\":\"Decision\",\"other_id\":\"dec:content-manifest\",\"properties\":{}},{\"direction\":\"out\",\"edge_type\":\"SATISFIES\",\"other_type\":\"Requirement\",\"other_id\":\"req:export-says-what-it-cannot-carry\",\"properties\":{}}]",
+    "state": "{\"description\":\"A committed plain-text manifest mapping content hash → original filename → what references it, so a design that points at stored content can say what it does NOT itself carry. Makes \\\"do I have everything?\\\" a set comparison for someone holding only the export, and makes a blob change legible in `git log` as a readable name rather than a hex path. Paired with `.gitattributes` marking the blob directory `binary`, which stops git attempting diffs it cannot produce and — the part that matters — stops line-ending conversion silently corrupting a PNG on a CRLF checkout. Governed by `dec:content-manifest`; delivers `req:export-says-what-it-cannot-carry` and makes `req:content-reaches-every-seat`'s fail-loud promise checkable by a person rather than only by the tool. PLANNED.\",\"is_entry_point\":false,\"is_exit_point\":false,\"name\":\"Say what content the design depends on, in names a person can read\",\"provenance\":\"authored\",\"status\":\"planned\",\"tier\":\"operational\"}",
+    "target_id": "cap:content-manifest",
+    "target_type": "Capability"
+  }
+}

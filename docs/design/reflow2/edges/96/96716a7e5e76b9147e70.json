@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:343f74cc64a9c664105a3269f334393a7b29c0b1274b97ca7b99579b81bbd65e",
+  "edge_type": "REALIZES",
+  "from_id": "art:registry",
+  "properties": {
+    "completeness": "partial",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:select-graph-by-id"
+}

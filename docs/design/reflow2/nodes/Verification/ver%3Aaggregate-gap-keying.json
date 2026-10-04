@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:38018afecf25d15197a6088a4c675e90ae7e1ec06a27bf527530ca9ab23d290d",
+  "node_id": "ver:aggregate-gap-keying",
+  "node_type": "Verification",
+  "properties": {
+    "kind": "verification",
+    "last_run_at": "2026-07-30",
+    "level": "unit",
+    "method": "test",
+    "name": "An aggregate gap's id survives population growth, and a per-node gap still keys on its subject",
+    "status": "passing"
+  }
+}

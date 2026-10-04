@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:544734aa39527b49b9a3a659af74c184252cc0053e814ac0bb41b38f1a91f6cc",
+  "node_id": "cap:tool-carries-convention",
+  "node_type": "Capability",
+  "properties": {
+    "description": "Each served tool's description carries at most one sentence of reflow2 CONVENTION — the fraction a capable agent reconstructs incorrectly or not at all, such as the distinction between answering a gap and acknowledging one, or that a check left at `planned` is not confirmation. It arrives with the call, so it cannot be skipped by an agent that never loads the skill. Deliberately bounded at a sentence per tool: descriptions are context paid for on every session, and `cap:tool-search` exists because the surface is already large. Does not reverse `dec:skills-served` — the served skill keeps the depth, the worked examples and the reasoning; the tool carries only the irreducible minimum. PLANNED.",
+    "name": "The tool carries what an agent would never guess",
+    "provenance": "authored",
+    "status": "verified",
+    "tier": "operational"
+  }
+}

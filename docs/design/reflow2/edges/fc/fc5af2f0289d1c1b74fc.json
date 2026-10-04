@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:72cbc9130b80323ea9ce0aa643925e3f37063b1152a1855a0ace68b5b96a83af",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "rule:an-issue-is-root-caused-then-pinned-by-a-test-then-fixed",
+  "properties": {
+    "approved_at": "2026-08-26",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

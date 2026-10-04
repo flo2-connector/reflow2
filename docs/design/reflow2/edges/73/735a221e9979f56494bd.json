@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:1caa6a727e2baca61e9720cbb4d170df3ba98e096568deb813ece9d21cd47dd0",
+  "edge_type": "DOCUMENTS",
+  "from_id": "art:planning-at-scale",
+  "properties": {
+    "doc_kind": "design_doc"
+  },
+  "to_id": "dec:live-tier"
+}

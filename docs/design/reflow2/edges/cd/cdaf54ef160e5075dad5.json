@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:3f1cf0c80939f4dfd865f5e1d488d5d2117736e7251b59539549d1859bd629d1",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:tool-carries-convention",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:service"
+}

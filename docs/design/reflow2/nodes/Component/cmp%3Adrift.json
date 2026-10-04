@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:e82bf94457e1d67108bf7950abf45e0ed267a5f20b7473be8d25b633c0d37208",
+  "node_id": "cmp:drift",
+  "node_type": "Component",
+  "properties": {
+    "kind": "module",
+    "level": "component",
+    "name": "drift",
+    "provenance": "authored",
+    "purpose": "The drift module.",
+    "status": "planned",
+    "tier": "operational"
+  }
+}

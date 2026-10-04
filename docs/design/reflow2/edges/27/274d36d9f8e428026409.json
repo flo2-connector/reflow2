@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:abbde7a15784b136a71191621175d8e200eb2a745ee78f3dbc4468a5b097a11c",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:loop-status",
+  "properties": {},
+  "to_id": "req:the-loop-can-say-what-this-session-owes"
+}

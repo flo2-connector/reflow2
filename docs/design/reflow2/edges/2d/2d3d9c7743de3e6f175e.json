@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:f6f01b5349d7265f634123098c8959e9cf4713d736a3bb60186a6c46b101f659",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:test-a-capture-that-replaces-a-node-says-so",
+  "properties": {
+    "covers": "whole"
+  },
+  "to_id": "ver:a-capture-that-replaces-a-node-says-so"
+}

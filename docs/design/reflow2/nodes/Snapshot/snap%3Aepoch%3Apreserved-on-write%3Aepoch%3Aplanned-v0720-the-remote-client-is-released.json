@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:c1c88d82da527179e4796cb3f30a551f3d5473ba60f7e0299b84824148330ec1",
+  "node_id": "snap:epoch:preserved-on-write:epoch:planned-v0720-the-remote-client-is-released",
+  "node_type": "Snapshot",
+  "properties": {
+    "edges": "[{\"direction\":\"in\",\"edge_type\":\"AT_EPOCH\",\"other_type\":\"Release\",\"other_id\":\"rel:v0720\",\"properties\":{}},{\"direction\":\"in\",\"edge_type\":\"SCHEDULED_FOR\",\"other_type\":\"Capability\",\"other_id\":\"cap:a-local-client-reaches-a-remote-server\",\"properties\":{\"modality\":\"expected\",\"recorded_at\":\"2026-09-27\"}},{\"direction\":\"in\",\"edge_type\":\"SCHEDULED_FOR\",\"other_type\":\"Capability\",\"other_id\":\"cap:one-setup-command-chooses-local-or-remote\",\"properties\":{\"modality\":\"expected\",\"recorded_at\":\"2026-09-27\"}}]",
+    "state": "{\"description\":\"Step 1 of the tracked-export retirement plan Anthony confirmed on 2026-09-27 (dec:idea-one-blueprint-the-store-is-the-design-and-an-export-is-a-perishable-photocopy). Already built on main, unreleased: `reflow2-mcp --remote` (#592), `reflow2-mcp setup` with the key in the OS keychain (#593), and the tool-list cache hints Claude Code 2.1.283 requires (#595; without it the machine-wide entry fails in any folder with no store, e.g. cure's). Everything remote on a person's machine needs this binary. NOT IN IT: anything new; this is a cut of what is merged.\",\"epoch_type\":\"release_cut\",\"name\":\"Retiring the tracked export, step 1 — cut v0.72.0: the remote client, its setup command and the tool-list fix reach a release\",\"sequence\":640,\"status\":\"arrived\"}",
+    "target_id": "epoch:planned-v0720-the-remote-client-is-released",
+    "target_type": "DesignEpoch"
+  }
+}

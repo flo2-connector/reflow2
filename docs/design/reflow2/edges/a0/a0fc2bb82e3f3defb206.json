@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:9ea609175a06ec895b746b5bd444a6f35174baccce926809d88022a0f37f0290",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-a-tool-is-exercised-as-a-consumer-before-it-is-changed",
+  "properties": {
+    "evidence": "Sibling question, deliberately separate. That one asks HOW a problem in a user's words finds its tool; this asks HOW A FAILURE TO FIND IT WOULD EVER BE NOTICED, given the builder has a second channel the consumer does not. Better retrieval reduces what this must catch, and a discipline for noticing is worth little if retrieval never improves — so this is only worth anything alongside that.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "dec:idea-a-problem-in-the-users-words-should-retrieve-the-tool-that-answers-it"
+}

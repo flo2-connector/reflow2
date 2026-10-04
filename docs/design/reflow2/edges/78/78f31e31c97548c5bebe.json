@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:666c4341752f3f4687ffa9d8cef7825cd2a059006a68d30ec57513e4668f98cd",
+  "edge_type": "CHANGED",
+  "from_id": "chg:cmp-skills-gets-one-parent",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cmp:skills"
+}

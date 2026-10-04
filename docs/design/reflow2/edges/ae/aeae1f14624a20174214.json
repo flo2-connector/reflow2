@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:db7ed00e91ebafd04d9cc85eee7d14d5b339a999ce37e51fa9f0e2615f34243b",
+  "edge_type": "CHANGED",
+  "from_id": "chg:bl180-function-preservation",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "req:restructuring-is-certified"
+}

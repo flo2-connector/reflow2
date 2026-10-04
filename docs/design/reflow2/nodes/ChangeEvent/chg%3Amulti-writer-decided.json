@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:04f53b53bf6de44f4d2e9edc9411ccbb5f2123cd22c426e6400e6eb07a38ce34",
+  "node_id": "chg:multi-writer-decided",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "scope_change",
+    "name": "Multi-writer architecture decided: repo file + merge on pull, confirming rather than superseding dec:repo-file-embedded"
+  }
+}

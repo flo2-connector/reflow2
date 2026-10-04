@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:82dbfec66a49e90c1585aa9079f9ec87a0c7f0f36fbae9d2b7f3eae792fdbab1",
+  "edge_type": "CHANGED",
+  "from_id": "chg:acknowledgement-not-structure",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cap:heal"
+}

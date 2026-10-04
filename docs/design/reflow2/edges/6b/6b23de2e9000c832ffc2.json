@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:379c00e5a3f5fc6339a9c6fab12a3728a9feb1e2052b12bf9f4564d50e9636ae",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-a-failure-met-mid-task-is-parked-where-a-boundary-revisits-it",
+  "properties": {
+    "evidence": "Option A of this idea — the server tallies its own refusals and surfaces them at a boundary — IS that earlier idea; the lean here (A first, then a disposition on top) only stands if that ledger lands. Surfaced by the near-match guard on capture, which is itself the kind of failure this idea is about.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "dec:idea-the-server-counts-its-own-refusals-so-no-session-has-to-remember-to"
+}

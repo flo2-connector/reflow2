@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:a603b678077cfcb9b30293a579ee4c35d2081ff789671ec0976f315f93aae2d0",
+  "node_id": "sub:surface-shaping",
+  "node_type": "Component",
+  "properties": {
+    "level": "subsystem",
+    "name": "Surface shaping",
+    "provenance": "authored",
+    "purpose": "How the surface presents itself rather than what it does: the DTOs a reply is built from, the batched forms that collapse N calls into one, and the served skill catalogue with its embedded bodies.\n\nAll three shape what an agent MEETS — the shape of a reply, the shape of a call, and the instructions served alongside. None of them decides anything about a design.",
+    "status": "planned"
+  }
+}

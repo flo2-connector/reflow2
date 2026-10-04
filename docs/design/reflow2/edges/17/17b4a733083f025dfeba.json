@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:448ebfea3107f508faad539b09edd4f6b2c12b14452d9382e27613d4bf2c2b59",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:test-the-cli-describes-a-tool-with-its-schema-and-lessons",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:test-the-cli-describes-a-tool-with-its-schema-and-lessons"
+}

@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:e915d1811200ac4cf652a81eb66f7b642cd431603357f4d66d0d2a0704b4f1e9",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:a-report-says-what-it-swept-and-whether-its-checks-ran",
+  "properties": {
+    "approved_at": "2026-08-16",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

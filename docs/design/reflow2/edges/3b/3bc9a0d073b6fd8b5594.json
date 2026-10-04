@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:e164ecf7ae430ac2ddd1212acf961d8a198ae3947e190fde00947d8099989f99",
+  "edge_type": "CHANGED",
+  "from_id": "ce:unallocated-component-detector-2026-08-25",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:detect-and-ask-skill"
+}

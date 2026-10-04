@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:afd3208c4b84660522a6f36f2d28b621fac2c26146bde2844afc90f418ce3c4e",
+  "edge_type": "EVOLVES_INTO",
+  "from_id": "dec:idea-how-should-the-loop-know-that-an-answer-reached-the-design",
+  "properties": {
+    "confidence": 1.0
+  },
+  "to_id": "chg:a-record-can-say-which-question-it-answered"
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:b1f485dea0ce5b89bb5620e7e23f582d10856a9f58332fa7116985cdb631006e",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-which-derived-results-are-kept-and-by-what-rule",
+  "properties": {
+    "evidence": "Any keep rule other than 'keep nothing' is only honest if a write invalidates every kept result that depends on it before the next read, which is what that planned capability promises.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "cap:declared-rules-run-by-an-embedded-datalog-engine-and-updated-by-delta"
+}

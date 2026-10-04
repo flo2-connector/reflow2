@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:9397f7e1561f85f438afc3df7f04ad3c2dfde54da0197a650072d627e14b8bf8",
+  "node_id": "fact:manual-work-76c1f87ece4e7d11",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "manual_work",
+    "statement": "Wrote a throwaway Python script over the committed export to list every edge among a named SET of nodes — the hub idea cluster — with each edge's type, direction and `evidence` note, so I could tell whether last session's brainstorm actually linked the ideas or left them as orphans. Ran the same shape twice more: once to find the CONTAINS parents and children of a set of components, and once to list every edge touching two nodes I was judging.",
+    "subject_id": "proj:reflow2",
+    "valid_from": "2026-08-26",
+    "value": "{\"diagnosis\":\"tool_missing\",\"reflow2_tool\":null}"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:109906c5aae718d938ae8cbd4ce1eb20322b9a0f86388437b36ef88ab0eddf30",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0780",
+  "properties": {
+    "as_checksum": "sha256:76cf3b0ea75b8d6bb018fe6eb6d6d7b0a0610f1e55b2aa541ab9b8ca2e058a6c"
+  },
+  "to_id": "art:no-served-text-writes-a-readers-persona-test"
+}

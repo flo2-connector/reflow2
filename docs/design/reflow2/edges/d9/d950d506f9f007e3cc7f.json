@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:61ab3bc72093094b7a04b842672dd19a5c4daa750798f267b962a2789f78501a",
+  "edge_type": "GOVERNED_BY",
+  "from_id": "cap:a-relation-stored-twice-is-kept-in-step-by-the-store",
+  "properties": {
+    "note": "Sets what a finding's second HAS_TEMPORAL_FACT becomes in the repair (ABOUT_ENTITY) and what the refusal names."
+  },
+  "to_id": "dec:has-temporal-fact-means-only-the-subject-and-also-concerns-is-about-entity"
+}

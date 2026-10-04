@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:188ba372b706507f3163f28ec70c776033b7dc78099dc8e46d315cff5156bff9",
+  "edge_type": "HAS_TEMPORAL_FACT",
+  "from_id": "rule:design-intent-moves-only-on-the-owners-word",
+  "properties": {},
+  "to_id": "fact:what-worked-a-separate-owner-caught-what-self-approval-missed-2026-09-29"
+}

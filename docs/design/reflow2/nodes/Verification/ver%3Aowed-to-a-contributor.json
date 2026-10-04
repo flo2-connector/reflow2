@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:54a15d9ad9b225d97ff733ab477a31a0f9af671c0e521ba8793b6b16cb11fd69",
+  "node_id": "ver:owed-to-a-contributor",
+  "node_type": "Verification",
+  "properties": {
+    "description": "An open decision is owed only once somebody has been ASKED to settle it (crates/reflow2-core/tests/report.rs, 5 cases): a proposed Decision alone is silent; adding AUTHORED_BY role=author is still silent, because recording whose idea it is says nothing about who owes an answer; role=approver makes it owed and names it in `next`; settling it clears the debt. The author-is-not-an-approver case is the one that matters — without it every attributed brainstorm becomes a nag, which is the deliberate quiet this was built not to break.",
+    "kind": "verification",
+    "last_run_at": "2026-08-06T08:55:00Z",
+    "level": "unit",
+    "method": "test",
+    "name": "An open decision is owed only once somebody has been asked to settle it",
+    "status": "passing"
+  }
+}

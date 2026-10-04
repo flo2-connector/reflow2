@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:2daf9272bf7d88ca623bafd583593aa0486f7b79c9a5f089d8172584260d9e3b",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0620",
+  "properties": {
+    "as_checksum": "sha256:58e67fc980828f7fd4355d3da009a93e138e5a520c9c1b4917dc74bc5e1904ce"
+  },
+  "to_id": "art:design-holds-says-why-test"
+}

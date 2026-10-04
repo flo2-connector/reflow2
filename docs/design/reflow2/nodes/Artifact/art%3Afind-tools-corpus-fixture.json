@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:eb5aac826a91fdfec0fb5289359d99e420df1523c81454f2cfc2dd4d023a8c06",
+  "node_id": "art:find-tools-corpus-fixture",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "test",
+    "description": "The 180-query criterion-1 corpus: one query per served tool, phrased as a user states the job — never the tool's name, never a phrase lifted from its description. Authored 2026-09-11 by an agent that had read every description, so informed rather than blind; a query from a field report supersedes the one here. Read by every_tool_is_found_by_a_query_in_the_users_words.rs via include_str!, so adding a tool without a query fails the build.",
+    "location": "crates/reflow2-mcp/tests/fixtures/find_tools_corpus.json",
+    "name": "find_tools_corpus.json",
+    "status": "realized"
+  }
+}

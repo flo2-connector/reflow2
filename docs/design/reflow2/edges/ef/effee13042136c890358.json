@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:5d9d6160097b206834c992fb920f4cc4b6b2eddc51150a8dd541c8383e34798f",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-graph-asks-what-a-session-made-false",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:service"
+}

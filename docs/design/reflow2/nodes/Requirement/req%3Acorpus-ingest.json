@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:95ff55d1481c6a903ecedb953b46ad8f22a5115b2a273b657c6e530dc899f102",
+  "node_id": "req:corpus-ingest",
+  "node_type": "Requirement",
+  "properties": {
+    "concern": "core",
+    "designation": "internal",
+    "kind": "functional",
+    "lineage": "original",
+    "name": "A whole corpus of existing specifications can be brought into the design in one pass",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "Where a system's intent already exists as a large body of written specifications, reflow2 must be able to take the whole corpus — a folder, not a file — and produce one coherent design from it, with every claim still pointing back at the document it came from. The load-bearing requirement is identity ACROSS documents: the same component named in forty specifications must converge on one node rather than forty near-duplicates, and where convergence is uncertain the user is asked rather than the nodes being silently merged. Ordering must not decide meaning — which file happened to be read first must not determine the canonical name of anything.",
+    "status": "accepted"
+  }
+}

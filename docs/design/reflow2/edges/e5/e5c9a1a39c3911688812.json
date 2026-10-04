@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:85868ba15ff2ebd380027c534d62bcc51585f3c4113c151eb7a7ff283ec8285d",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-what-did-the-agent-infer-provenance-per-field-per-type-and-as-a-report",
+  "properties": {
+    "evidence": "A per-field 'the agent supplied this' record is only meaningful once a stored value can be told from a materialised default; the July sweep is what makes 'nobody said' a readable state, and this idea extends it from defaults to agent-chosen values.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "req:defaults-do-not-assert"
+}

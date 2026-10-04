@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:87efe44faff01d15361663c71c4d28f2a19557177bdb9beaf1e0b4a4fb7c7bc5",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:test-edges-need-both-ends",
+  "properties": {
+    "covers": "whole",
+    "note": "migrated 2026-09-22 from a REALIZES link_artifact drew in error"
+  },
+  "to_id": "ver:edges-need-both-ends"
+}

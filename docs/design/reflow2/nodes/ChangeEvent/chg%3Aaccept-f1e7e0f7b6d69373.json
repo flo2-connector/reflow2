@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:4e5c889347d05475578c0a6c73ef62e8ad0aec80be6c6196c0b33762c4841743",
+  "node_id": "chg:accept-f1e7e0f7b6d69373",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "defect_fix",
+    "detected_at": "2026-08-19",
+    "name": "The BL-199 gate's FAIL text now spells out both ways on and why DOCUMENTS is NOT the answer for a dated observation — it claims the file should stay in step with the design, and a frozen field report is correct precisely by not tracking it. Failure text only; the three assertions are unchanged.",
+    "subject": "system"
+  }
+}

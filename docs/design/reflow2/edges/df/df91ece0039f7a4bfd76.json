@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:9980affd5d605cb76441ce1e3c3142ce46d228e2967a51ae06a31898bb17c8fa",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-saved-design-moves-to-the-item-layout-2026-10-03",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:b77ca1e1f019bbd42a7151708297330a8b8c50f85b685e60112f3237c68c5db5"
+  },
+  "to_id": "art:test-the-taxonomy-skill-is-served-and-the-finding-reaches-the-surface"
+}

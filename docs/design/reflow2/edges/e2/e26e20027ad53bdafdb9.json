@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:c281b60fc7773c27350cbdf1547aca52b1e9dc7781885a8c8f45551767987f4c",
+  "edge_type": "CHANGED",
+  "from_id": "chg:accept-4810f73d13acff9e",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:test-nudge-path"
+}

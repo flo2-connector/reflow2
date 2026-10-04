@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:025ff72f0a434ce9fc18c903e3f79f27f66fce4e32e9b4b8a2253156b86925b4",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:comparing-two-designs-does-not-reach-into-the-reporting-layer",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:compare"
+}

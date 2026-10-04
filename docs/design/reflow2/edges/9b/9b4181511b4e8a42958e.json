@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:437943a7794ccfa75408ee6a1d25cdf1f02243d086c787677cf59e2a2a9b70d2",
+  "edge_type": "CHANGED",
+  "from_id": "chg:bl199-reattachment",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "art:upgrading-v0210"
+}

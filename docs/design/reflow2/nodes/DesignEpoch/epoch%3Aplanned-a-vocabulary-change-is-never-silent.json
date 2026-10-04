@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:b5e5d441cdc1f69e3903f2643b9d38c9c62d0686db64a2f14648aa3349f5e5ea",
+  "node_id": "epoch:planned-a-vocabulary-change-is-never-silent",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "description": "ARRIVED 2026-09-12. Third of the four Anthony ordered on 2026-09-11. A reader whose binary does not know a design's vocabulary is told what it lacks or refused, and never opens the graph to show less of the design than it holds.\n\nTHE HOLE IT CLOSED: the stamp named TYPES only. A new enum value on an existing field passed it without moving anything — an older binary opened the graph silently, compared status == \"proposed\", and a `deferred` decision vanished from loop_status and what_next rather than erroring.\n\nTHE QUESTION THIS INCREMENT SETTLED — wider stamp, per-change identities, or severity per change — WAS ANSWERED: a wider stamp, SCOPED TO ENUM VALUES ONLY (dec:the-stamp-records-enum-values-and-nothing-finer, proposed for Anthony's word). The stamp now records every declared enum vocabulary keyed Type.property; the guard refuses only when the graph actually STORES a value this binary lacks, and names the value. Property additions are not recorded (frequent, low harm, would make every release a migration). Semantic changes are not claimed (beyond any structural fingerprint; the per-change-identity road stays open for them).\n\nTHE TENSION WITH THE STAMP'S OWN REASON FOR BEING SMALL was answered, not routed around: types are already vocabulary and the stamp names them; enum values are the same fact one level finer; the field is serde-default so every older stamp parses; the values do not enter content_hash, so lineage is untouched.\n\nONE HONEST LIMIT, carried in the code: no registry of REMOVED enum values exists, so the guard cannot say whether a binary is behind or a value was removed. It names both and hands the reader the two stamps' versions as the discriminator, rather than asserting the commoner case.\n\nWHY IT PRECEDED THE SET-ASIDE STATUS: that increment adds an enum value, which is exactly the change this guard could not see. Shipping it first would have demonstrated the bug on reflow2's own graph.\n\nNO VERSION NUMBER BY DESIGN.",
+    "epoch_type": "revision",
+    "name": "A vocabulary change is never silent",
+    "sequence": 432,
+    "status": "arrived"
+  }
+}

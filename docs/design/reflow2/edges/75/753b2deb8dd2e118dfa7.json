@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:0ecc8635848e47faf45b555635695c456ea9b2ef9d8bf80b3ffd82706db31e01",
+  "edge_type": "EVOLVES_INTO",
+  "from_id": "fact:note-was-instances-five-and-six-of-unreachable-declared-vocabulary",
+  "properties": {
+    "evidence": "The same running count, grown up. That record holds instances five and six of declared vocabulary unreachable from the surface; this one holds seven and eight and adds what the earlier record could not say — the earlier instances were found BY the instrument, these two were found by a user IN SPITE of it, which located the cause in the instrument's own filter rather than in another constructor."
+  },
+  "to_id": "fact:defect-a-declared-property-can-be-unreachable-and-invisible-to-the-reach-instrument-when-a-default-populates-it"
+}

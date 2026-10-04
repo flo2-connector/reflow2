@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:6be31eb20a088d594e513dbb46e5548f1cacb15aeb97811c0314b70b556a772a",
+  "node_id": "snap:epoch:preserved-on-write:cap:a-quantity-carries-its-provenance-and-an-unsourced-one-is-named",
+  "node_type": "Snapshot",
+  "properties": {
+    "edges": "[{\"direction\":\"in\",\"edge_type\":\"REALIZES\",\"other_type\":\"Artifact\",\"other_id\":\"art:budget\",\"properties\":{\"conformance\":\"unchecked\"}},{\"direction\":\"in\",\"edge_type\":\"REALIZES\",\"other_type\":\"Artifact\",\"other_id\":\"art:detect\",\"properties\":{\"conformance\":\"unchecked\"}},{\"direction\":\"in\",\"edge_type\":\"REALIZES\",\"other_type\":\"Artifact\",\"other_id\":\"art:kpp-proposal-skill\",\"properties\":{\"conformance\":\"unchecked\"}},{\"direction\":\"in\",\"edge_type\":\"REALIZES\",\"other_type\":\"Artifact\",\"other_id\":\"art:schema-core\",\"properties\":{\"conformance\":\"unchecked\"}},{\"direction\":\"in\",\"edge_type\":\"VERIFIES\",\"other_type\":\"Verification\",\"other_id\":\"ver:a-number-names-its-source\",\"properties\":{}},{\"direction\":\"in\",\"edge_type\":\"VERIFIES\",\"other_type\":\"Verification\",\"other_id\":\"ver:a-quantity-says-how-it-was-obtained\",\"properties\":{}},{\"direction\":\"out\",\"edge_type\":\"SATISFIES\",\"other_type\":\"Requirement\",\"other_id\":\"req:a-quantity-carries-how-it-was-obtained-and-an-unsourced-one-is-reported\",\"properties\":{}}]",
+    "state": "{\"description\":\"A provenance record on every stored quantity: measured (instrument or artifact, when), computed (from which quantities, by which executable check), or asserted (by whom, or by nobody). A detector reports asserted quantities with no name and verifications that bear on a quantity without an executable form; both are counted at the boundary. Built after the unit-system capability, which it depends on.\",\"name\":\"A quantity carries its provenance (measured, computed, asserted-by) and an unsourced one is named\",\"provenance\":\"authored\",\"status\":\"realized\"}",
+    "target_id": "cap:a-quantity-carries-its-provenance-and-an-unsourced-one-is-named",
+    "target_type": "Capability"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:7a87e48740af1a44f4f1194ac4ed29fb6120431395d52647653a443337ac2de7",
+  "node_id": "sub:session-posture",
+  "node_type": "Component",
+  "properties": {
+    "level": "subsystem",
+    "name": "Session posture",
+    "provenance": "authored",
+    "purpose": "What a session knows about WHERE IT IS and WHETHER IT IS CURRENT: the latent server in a directory that has not opted in, the staleness of the shared record since this seat last looked, and saying what design lives at a path without binding to it.\n\nGrouped because all three answer a question asked BEFORE any design work — am I somewhere with a design, is what I hold current, and what is here. Each is also a place where an honest \"I cannot tell\" matters more than an answer, which is why they sit together under an observability target.",
+    "status": "planned"
+  }
+}

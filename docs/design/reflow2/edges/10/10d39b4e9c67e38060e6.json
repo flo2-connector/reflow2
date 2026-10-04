@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:c441c8b78f2ac008d2c2d2139fe3aeb9033be1eb8ac12d74ac35af2ac3824f22",
+  "edge_type": "CHANGED",
+  "from_id": "chg:arrival-delta-built",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:graph"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:2842409465643f005f3f9145835d8aa83458116aae71073ee8be7cf84304b158",
+  "node_id": "art:a-settled-decision-has-a-change-type-test",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "test",
+    "location": "crates/reflow2-core/tests/a_settled_decision_has_a_change_type.rs",
+    "name": "a_settled_decision_has_a_change_type.rs"
+  }
+}

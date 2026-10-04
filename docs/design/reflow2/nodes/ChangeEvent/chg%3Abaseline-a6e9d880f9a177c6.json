@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:9310ae7258bfbf6d532e5b5f5f7861579c3c117c89b14d40b485af658e1cbdae",
+  "node_id": "chg:baseline-a6e9d880f9a177c6",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "baseline_established",
+    "name": "First baseline: the guard file was never registered as an Artifact, which is part of why its scope error went unseen. Three linker cases added and the header corrected to say why membership drawn on a call name was wrong.",
+    "subject": "record"
+  }
+}

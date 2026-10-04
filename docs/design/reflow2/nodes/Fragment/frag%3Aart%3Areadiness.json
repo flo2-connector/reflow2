@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:0fe0d04462958c21759084ff1296f1d49de38372bff96890670b64908171af2c",
+  "node_id": "frag:art:readiness",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered readiness.rs"
+  }
+}

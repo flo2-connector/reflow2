@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:6813179b4f02b7d1b5277d46b7dc827b4b4b878de173d8b5fd7c5f1c3267c7e0",
+  "edge_type": "CHANGED",
+  "from_id": "chg:an-empty-answer-says-which-empty-it-is",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cap:a-sweep-says-what-it-could-not-have-found"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:639185cb564118c4bc58320dc09507cad8caa6609c736231f979eb3b032cf741",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:live-tier",
+  "properties": {
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "dec:nested-graphs"
+}

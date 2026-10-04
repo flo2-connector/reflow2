@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:53cc1ef65902644377427e2a0b67ec7bdffe83ef7c784bd63c516da7b645b4c9",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-content-block-is-chosen-per-client",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "cap:a-reply-takes-the-shape-its-client-can-read"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:7ba80c218de5ed883e9d1ed40d464821502c27804dc6d1566a8fa55688ae62b1",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-check-and-its-findings-are-different-things",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "ver:handed-out-seat-liveness"
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:de5def9fa36749074afd6371bf7102d52b5ac4b65339631593826a851ec67eec",
+  "node_id": "snap:epoch:preserved-on-write:cap:a-budget-declares-sum-or-path-and-its-verdict-follows",
+  "node_type": "Snapshot",
+  "properties": {
+    "edges": "[{\"direction\":\"out\",\"edge_type\":\"ALLOCATED_TO\",\"other_type\":\"Component\",\"other_id\":\"cmp:budget\",\"properties\":{\"weight_basis\":\"estimated\"}},{\"direction\":\"out\",\"edge_type\":\"SATISFIES\",\"other_type\":\"Requirement\",\"other_id\":\"req:a-budget-says-whether-its-parts-add-up-or-run-along-a-path\",\"properties\":{}},{\"direction\":\"out\",\"edge_type\":\"SCHEDULED_FOR\",\"other_type\":\"DesignEpoch\",\"other_id\":\"epoch:fix-what-the-two-agent-exercise-found-2026-09-29\",\"properties\":{\"modality\":\"expected\",\"recorded_at\":\"2026-09-29\"}}]",
+    "state": "{\"description\":\"A composition property on Constraint: sum (the default, today's behaviour) or path. The verdict reads the declared total. An all-budgets form of budget_report is added, and constrains says that drawing DEPENDS_ON is what enables the path total. Planned by the 2026-09-29 fix program.\",\"name\":\"A Constraint declares sum or path composition; budget_report's verdict follows it; one read reports every budget\",\"provenance\":\"authored\",\"status\":\"planned\"}",
+    "target_id": "cap:a-budget-declares-sum-or-path-and-its-verdict-follows",
+    "target_type": "Capability"
+  }
+}

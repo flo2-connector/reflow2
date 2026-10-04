@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:e5b358530eeb683b0a6581d55de27cc7a55bc6046711f590c3455080546cf733",
+  "edge_type": "CHANGED",
+  "from_id": "chg:enforced-is-stated-not-defaulted-20260808",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cap:governance-proposal"
+}

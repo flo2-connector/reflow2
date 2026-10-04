@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:2277b12792ca0d15fb950b3120e7434cee1e7ff9ff789e05acd46a0434c15623",
+  "node_id": "fact:bl-130",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "defect",
+    "statement": "[BL-130] A Component cannot be placed in an Environment until a Release exists, so no_deploy_operate asks a question the vocabulary cannot answer at the phase it fires",
+    "subject_id": "cmp:operate",
+    "value": "{\"evidence\": \"*Found 2026-07-31 at exactly the phase the gap is designed for.* The gap asks where this will run. add_environment models precisely that. But deploy_to links a Release to an Environment and there is no Component\\u2192Environment edge \\u2014 and at concept phase there is no Release, so inventing one to answer the question would be fiction. The honest move was to leave the gap open. \\\"This runs on one local workstation\\\" is a real and useful early design fact with nowhere to live except prose in a Requirement. Related to [BL-115] (unverified_capability / unrealized_capability unusable on a pre-construction design): same family \\u2014 a detector that is right about the question and arrives before the vocabulary can hold the answer. Fix shapes: a Component\\u2192Environment edge for the pre-release case, or let the gap name the Release it would need so the user can see WHY it cannot be answered yet rather than reading it as unanswered work. Size S\", \"origin\": \"Migrated from docs/backlog.md BL-130 on 2026-08-07 (epoch:backlog-retired). Size estimate carried from the row: S.\"}"
+  }
+}

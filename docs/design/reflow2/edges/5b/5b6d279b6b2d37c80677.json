@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:c7e71917ec51e805a15a1610ddf90c8d00c0213730d0bfa14f66bea745f1f981",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:the-telemetry-kpp-question-waits-for-flo2",
+  "properties": {
+    "approved_at": "2026-08-09",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

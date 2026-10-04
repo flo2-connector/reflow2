@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:30e90b0ad3201519decbb729dd1256d3ee5c61c7727652737c959085d8da6de3",
+  "node_id": "ver:gap-carries-a-reading",
+  "node_type": "Verification",
+  "properties": {
+    "description": "The CONTRACT is checked, not the judgement. skill_lint asserts detect-and-ask states all of it: offer a reading; carry what would change it; present the options as a SELECTABLE list; put the RECOMMENDATION FIRST and mark it; give every option its consequence including the ones not recommended; and answer in the USER'S language, stated language-independently. Plus two negative checks that are the load-bearing half: NO served text hardcodes English as the answer language (so the rule cannot be implemented as English-only — the trap Anthony named), and NO requirement status, decision status or gap acknowledgement is written in the same act as a recommendation. Whether a recommendation is GOOD, and whether the language was correctly matched, are semantic and stay evidenced by trials — deliberately no LLM evals in CI. PLANNED.",
+    "kind": "verification",
+    "last_run_at": "2026-08-01",
+    "level": "unit",
+    "method": "test",
+    "name": "The contract of how a choice is put to the user is checked; the judgement is not",
+    "status": "passing"
+  }
+}

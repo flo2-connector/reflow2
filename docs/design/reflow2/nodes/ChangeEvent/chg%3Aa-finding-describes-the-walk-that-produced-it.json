@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:d9dbd18f94d43ae2e45520445a313bab02ed975df22e6e3265a4d8f8c22a0642",
+  "node_id": "chg:a-finding-describes-the-walk-that-produced-it",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "name": "A structural finding names the walk it made, an empty orientation read says which zero it is, and a scoped answer stops claiming nothing could be found when it found something"
+  }
+}

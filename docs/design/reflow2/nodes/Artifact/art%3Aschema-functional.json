@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:1b082f48ddac77d88620aa827277892156cdc2d4a0cf3af3f8382809d872f84c",
+  "node_id": "art:schema-functional",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "spec",
+    "granularity": "atomic",
+    "last_confirmed_at": "2026-08-02",
+    "location": "schema/functional.yaml",
+    "name": "functional.yaml",
+    "status": "realized",
+    "volatility": "stable"
+  }
+}

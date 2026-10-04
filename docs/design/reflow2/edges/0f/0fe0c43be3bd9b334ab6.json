@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:628280e74484762df858e2ddc72da87c543a7717ba542e50fce751834eb93574",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:test-a-design-says-whether-a-result-ever-came-back",
+  "properties": {
+    "covers": "whole"
+  },
+  "to_id": "ver:a-design-says-whether-a-result-ever-came-back"
+}

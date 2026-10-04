@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:788922faec77af694eeb7acbd227fa07b262534a793584596c4743ecd8f7c945",
+  "node_id": "cap:a-repos-conventions-are-delivered-by-step-and-its-adapter-is-registered",
+  "node_type": "Capability",
+  "properties": {
+    "description": "As built (2026-09-17). Delivery (pre-existing, now pinned by a test): a DesignRule of category convention with steps naming served skills or tools rides get_skill and the tool list (lessons.rs); add_design_rule takes steps and refuses an unserved one with the nearest name. Noticing (new): convention_delivered_nowhere names a convention with no steps, keyed on the set, silent with no conventions; agent_instructions_unregistered names a design with five or more artifacts and no Artifact DOCUMENTS a Project with doc_kind agent_instructions, one per design. Instruction: adopt Phase 0 records the repo's conventions where they are delivered and registers the instruction file as the adapter; link-artifacts names the doc_kind. reflow2 will not navigate a repository; the adapter stays a text a person maintains, and the design now knows it exists, delivers it at the right step, and notices when it goes stale. Not built: a project-local skill file is any Artifact of type document; nothing distinguishes a skill from an AGENTS.md beyond the doc_kind, deliberately.",
+    "name": "A repository's conventions are delivered at the served step they bear on, and its project-local adapter is registered as agent instructions the design can see drift on",
+    "provenance": "authored",
+    "status": "realized"
+  }
+}

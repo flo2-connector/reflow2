@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:f52d7e687dfb2ad666ea2de210b09123c82f121d08fb1e670d37799277894568",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-name-is-not-a-report",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "ver:session-artifacts"
+}

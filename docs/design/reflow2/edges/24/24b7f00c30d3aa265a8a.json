@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:bd5a7028356a66f1fef05639b1585a2ef3ee13bd6d6cc5f45ac863315efb88a9",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:delta-reconcile",
+  "properties": {},
+  "to_id": "req:pr-is-a-delta"
+}

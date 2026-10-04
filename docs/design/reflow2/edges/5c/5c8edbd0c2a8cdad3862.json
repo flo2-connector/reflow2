@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:6497a8781267670256768c225cdddd717084b502dc64575a8970bb044e433876",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:the-handshake-is-written-down-beside-the-graph",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:handshake"
+}

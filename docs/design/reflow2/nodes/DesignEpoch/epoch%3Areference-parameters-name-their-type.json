@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:53006e99b9f78d202e41a893d9b7493bc4d37021b5212286582669983a6c59e6",
+  "node_id": "epoch:reference-parameters-name-their-type",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "description": "2026-09-11, after v0.58.0 and PR #473. The first CLASS fix taken from the tool sweep of 2026-09-10/11: every REQUIRED parameter that references another node now says what type it references — in its name, in its description, or by naming the sibling `*_type` parameter — and a contract test derived from the schema keeps a new tool from joining the surface without doing so. Ordered after the enum guard (#473), whose hand-listed WIRED/EXEMPT shape this generalises with derived membership. Must NOT include the missing DesignRule edge path (W-01's second half), the reply-bound class, the inline-payload class or the bare-zero class — each is its own increment. Sequence 414 follows the last recorded epoch (413). No calendar date field exists on this build's `add_epoch`; the date is stated here.",
+    "epoch_type": "revision",
+    "name": "Reference parameters name their type",
+    "sequence": 414,
+    "status": "arrived"
+  }
+}

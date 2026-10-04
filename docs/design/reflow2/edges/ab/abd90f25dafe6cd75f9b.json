@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:4cb09ca74f661471b2263251c42a2bfe65e6ea888cda52c26e093a48b31580fe",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:graph-registry",
+  "properties": {},
+  "to_id": "req:many-people-and-many-projects-compose"
+}

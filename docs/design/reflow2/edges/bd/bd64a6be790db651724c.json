@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:81ce6b55e7a1065dcde00663fbb9a79cbba228adc8010ec97ffa1d3fe5aa076b",
+  "edge_type": "HAS_SNAPSHOT",
+  "from_id": "dec:derived-scans-are-memoised-per-write-generation",
+  "properties": {},
+  "to_id": "snap:epoch:preserved-on-write:dec:derived-scans-are-memoised-per-write-generation"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:0c96a0e978ef80c5a1298e34ead9465d9e42082d2cb9fe4b4cc96985ec5c260a",
+  "edge_type": "SCHEDULED_FOR",
+  "from_id": "cap:a-tool-description-predicts-what-the-tool-does",
+  "properties": {
+    "modality": "expected",
+    "recorded_at": "2026-09-11"
+  },
+  "to_id": "epoch:planned-the-tool-surface-predicts-itself"
+}

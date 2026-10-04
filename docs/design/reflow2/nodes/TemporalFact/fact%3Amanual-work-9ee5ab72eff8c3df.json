@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:430fa1af778fe7cb97cf0e16e41ad894977fb8812eb0ab4cf2d984d6ee88897f",
+  "node_id": "fact:manual-work-9ee5ab72eff8c3df",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "manual_work",
+    "statement": "Scanned the committed export with a Python script to answer \"which ACCEPTED Requirements, Decisions, DesignRules or Projects say X\", where X was a set of scope phrases (full lifecycle, concept to operations, fielding, sustainment). The answer had to be exhaustive and unranked over settled intent only, to prove an absence. The absence was the evidence in a root-cause walk: nothing in the graph stated the lifecycle scope plainly. search_design ranks by BM25 and cannot say \"no accepted node says this\". Done three times in one session, for different phrases.",
+    "subject_id": "proj:reflow2",
+    "valid_from": "2026-09-28",
+    "value": "{\"diagnosis\":\"tool_missing\",\"reflow2_tool\":null}"
+  }
+}

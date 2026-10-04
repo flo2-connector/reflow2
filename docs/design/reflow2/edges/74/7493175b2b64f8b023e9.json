@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:60815b55d9209696bf431f6f39bf787a837ee8f9d15f22c8b376f71863754054",
+  "edge_type": "REALIZES",
+  "from_id": "art:test-an-enum-field-publishes-its-legal-values",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:mcp-surface"
+}

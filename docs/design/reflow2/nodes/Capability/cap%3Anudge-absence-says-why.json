@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:3bb069d35902fcf8c62d8b80b0c2829192a018bde6fa9ded10013a84dccac38b",
+  "node_id": "cap:nudge-absence-says-why",
+  "node_type": "Capability",
+  "properties": {
+    "description": "The loop-nudge state carried on the handshake instructions and on `loop_status` distinguishes a harness that has no hook reflow2 can register from one that supports the hook and lacks it, so only the actionable case reads as something to fix. Consumes the harness answer collected at install time, since the state cannot be derived from the filesystem alone.\n\nExtends `cap:nudge-path-proven` (verified) rather than duplicating it: that capability proves the hook path end to end and reports `installed | absent | broken | unknown`. This narrows `absent`, which today means both \"not registered\" and \"not registerable here\".",
+    "name": "The nudge report says whether the trigger is missing or impossible",
+    "provenance": "authored",
+    "status": "realized"
+  }
+}

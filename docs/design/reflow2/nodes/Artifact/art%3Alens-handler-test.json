@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:3b86e38b2af04e8e3653893743bfbd66fcb70f9077a6870fb652cd5dc44fb01d",
+  "node_id": "art:lens-handler-test",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "location": "crates/reflow2-mcp/tests/a_skill_response_says_who_it_is_for.rs",
+    "name": "tests/a_skill_response_says_who_it_is_for.rs",
+    "status": "realized"
+  }
+}

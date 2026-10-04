@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:800d48aeea984f1540b2c73625217984dd6cbdb3cf4a76046c45d8bec1cc4433",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:hierarchy",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:hierarchy"
+}

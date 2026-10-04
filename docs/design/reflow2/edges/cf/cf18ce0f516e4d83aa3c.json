@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:e95af14883cffb6b15fae5700cd888eec6d5d92534c2fb86e2161f2e31ae6a13",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:owned-by-is-the-third-who-axis",
+  "properties": {
+    "authored_at": "2026-08-09",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

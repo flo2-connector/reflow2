@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:903a7b8cd70f302b40a1ac69b2139735ddfe6f7a596e8886e30ddc825138724e",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "ifc:req-dyno-graph-api",
+  "properties": {
+    "authored_at": "2026-08-09",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

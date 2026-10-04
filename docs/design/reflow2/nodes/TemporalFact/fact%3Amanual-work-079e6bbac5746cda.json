@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:ea9b635f348f7f26780c3080dd279d13e03c1e95c1266994bc86ac31281eff76",
+  "node_id": "fact:manual-work-079e6bbac5746cda",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "manual_work",
+    "statement": "Wrote a throwaway Python script that speaks JSON-RPC over stdio to a client of the shared server, purely to make four ordinary tool calls that this session's own MCP connection could not make: setting a list-valued parameter added to two constructors earlier in the same session. The harness caches the tool schema from its handshake, so a parameter that did not exist when the session started is serialised as a string and the deserialiser refuses it. The tool was right, the design was right, and the only route to it was a second client.",
+    "subject_id": "proj:reflow2",
+    "valid_from": "2026-09-12",
+    "value": "{\"diagnosis\":\"tool_refused\",\"reflow2_tool\":\"record_finding\"}"
+  }
+}

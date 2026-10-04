@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:db79bb7e801727c0c69e945fc783b38be9c20d8ec3e9b754e11fe4efd878d259",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:log-issue-skill",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:log-issue-skill"
+}

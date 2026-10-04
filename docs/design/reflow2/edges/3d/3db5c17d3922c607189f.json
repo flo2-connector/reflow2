@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:75738333edee96e9c492d61b56b901808e6fd118550d2638710d282e27740e8f",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "req:read-while-held",
+  "properties": {
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "cap:store"
+}

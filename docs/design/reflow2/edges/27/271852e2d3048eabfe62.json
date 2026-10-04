@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:553c5daa7c2ee3fdc80fefc52ef2f3fa79cfe18a9bd7f7d3c218d98374c61f98",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-should-the-export-be-compressed-or-committed-less-often",
+  "properties": {
+    "evidence": "This asks about the ARCHIVAL copy while that one decides whether the export becomes the DURABLE copy, and the two answers are coupled. If durability moves to a gitignored autosave path, how often the committed copy is written becomes a free variable and option D stops fighting export-once-per-PR; if it does not, the committed copy is the only copy and committing it LESS often is unsafe. Option D is unjudgeable until that settles.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "dec:idea-the-store-becomes-a-session-cache-and-the-export-becomes-the-truth"
+}

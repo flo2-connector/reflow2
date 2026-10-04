@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:ad310b61125e7b3359b76dcef36d763bf674741b16b247ac376f9b97c7563831",
+  "edge_type": "ANTICIPATES",
+  "from_id": "fact:defect-export-graph-stamps-confidently-while-the-server-reports-itself-stale",
+  "properties": {
+    "evidence": "The 2026-09-06 defect was the export side of version skew and was closed by a refusal; this is the import side, which still has none."
+  },
+  "to_id": "fact:root-cause-the-853-is-an-older-binary-writing-the-old-role-default-onto-a-newer-document-not-the-export-leaving-a-default-implicit"
+}

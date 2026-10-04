@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:3b5f694dd9dd2540610be94e121249bada7dd20f774a9b9ff13794f44c38c547",
+  "node_id": "chg:the-spof-sweep-stops-rebuilding-its-graph",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "performance_optimization",
+    "name": "The single-point-of-failure sweep stops rebuilding the operational network once per candidate. `is_single_point_of_failure(&self, id)` — which built TWO full networks per call, one of them the invariant baseline — becomes `is_single_point_of_failure_in(&DesignNetwork, baseline, id)`, which is handed the network and cannot rebuild. Measured on reflow2's own design: 56 candidates at 878ms each became 5.08ms for all 56; detect_structural_defects 44.5s → 4.43s; and on RELEASE + RocksDB the first call of every session, `open_questions`, went 11.7s → 2.95s. The answer is unchanged: 54 defects, 13 structural issues, before and after.",
+    "subject": "system"
+  }
+}

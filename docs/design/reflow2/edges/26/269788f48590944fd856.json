@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:a1c8c45162ea53b3d45bafca71255f3442b00fa0f4f84550c3f366116a532750",
+  "edge_type": "CHANGED",
+  "from_id": "chg:reflow2-check-defaults-to-the-export-the-graph-is-in-step-with",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "art:coherence-gate-test"
+}

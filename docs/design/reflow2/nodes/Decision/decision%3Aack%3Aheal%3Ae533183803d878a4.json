@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:0a5f415995619210a2384b5c0fdee710408cb27e531f8958738b4df7598d8dbe",
+  "node_id": "decision:ack:heal:e533183803d878a4",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Accepted the structural defect heal:e533183803d878a4 (single point of failure: cmp:service).",
+    "name": "Reviewed: heal:e533183803d878a4",
+    "rationale": "Carries dec:service-spof-accepted (2026-07-24): req:invocation mandates one reflow2-mcp binary spoken to over stdio as the entire user-facing surface, so a redundant second service would contradict the requirement it would be protecting.",
+    "status": "accepted"
+  }
+}

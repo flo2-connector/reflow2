@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:cf531e284db2ed7c365fb13bb92270e0a6a83ee3045c425f649ea0ee1d26f612",
+  "node_id": "chg:root-cause-is-tiered-search-every-failure-run-the-skill-before-a-cause-is-written",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "scope_change",
+    "detected_at": "2026-09-06",
+    "name": "The root-cause trigger is tiered: search every failure, run the skill before a cause is written",
+    "rationale": "A rule is read once and states an intention; that is exactly why it is only the first leg. It travels in the graph to every harness and machine, which the hook could not, and it makes the detector (item 2) enforceable by stating what compliance leaves behind: a CAUSES edge on a fix. Enforcement deliberately unstated — a gate is a later ruling once the detector has reported for a while. AGENTS.md is not a registered Artifact, so no checksum accept is owed for its edit.",
+    "subject": "system",
+    "summary": "Anthony ruled both root-cause automation brainstorms (scope: tiered — step ② on every failure, the full skill at the cause moment, exemptions bounded by construction; mechanism: rule + detector + composition, hook skipped). Both Decisions moved to accepted with the ruling written above the options they preserve. A new DesignRule carries the tiers, GOVERNED_BY both rulings, and AGENTS.md rule 10 mirrors it. Item 1 of v0.50.0."
+  }
+}

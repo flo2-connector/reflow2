@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:65e587c01a8f28043039e875b90526db663b2416495f3f84d9d97874ba405185",
+  "node_id": "chg:accept-9a8f6ad0f6490c32",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "defect_fix",
+    "detected_at": "2026-08-24",
+    "name": "`UnclaimedFindingsReq` gains `#[serde(deny_unknown_fields)]`, which every other request struct already carries — without it the served schema said `additionalProperties: true` and the tool would have silently accepted a mistyped parameter. The design did not move; the new tool simply had to obey the rule the surface already has (BL-57). CAUGHT BY CI, NOT LOCALLY: `tools/smoke_mcp.py` asserts it across the whole surface and I had not run it before pushing.",
+    "subject": "system"
+  }
+}

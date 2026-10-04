@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:c43dfe6728497c54b0f9c384d96da5c11dd2f118e2cf379828f8816d0cc9cd1e",
+  "edge_type": "GOVERNED_BY",
+  "from_id": "req:a-fix-says-whether-it-corrected-the-cause",
+  "properties": {},
+  "to_id": "rule:fix-it-properly-while-it-is-still-cheap"
+}

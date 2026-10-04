@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:4202900bb2ab2e57e3f75ccea1db86f05d74d6a9b7ad56d7ca976e75d5d5aef1",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-is-the-byte-backend-selectable-at-runtime",
+  "properties": {
+    "evidence": "That decision ruled RocksDB stays as THE engine, rejecting a replacement on migration cost. This question — whether both backends are reachable from one running binary — only makes sense given that ruling, and its reopening trigger (a hosted tier making per-tenant hydrate the shape) is the same ground.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "dec:idea-a-byte-backend-that-compiles-in-seconds"
+}

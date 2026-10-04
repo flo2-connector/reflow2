@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:55076cc33adf4feb835bdaea134b21a4e359e2e88d80a98acc183fcd97dfcd42",
+  "edge_type": "REALIZES",
+  "from_id": "art:derived",
+  "properties": {
+    "conformance": "unchecked"
+  },
+  "to_id": "cmp:vocabulary"
+}

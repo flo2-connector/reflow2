@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:432ed31240f230f3333d87a036c825a11d0dc861c531431f40e0cd159eb94b85",
+  "node_id": "frag:art:changelog-test",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered tests/changelog.rs"
+  }
+}

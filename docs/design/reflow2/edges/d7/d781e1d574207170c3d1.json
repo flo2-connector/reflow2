@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:d714647179a672b8053990794b6014f31d23ae28750ee47cfa666d8dba368dcb",
+  "edge_type": "REALIZES",
+  "from_id": "art:changelog-fragments-readme",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:changelog-entries-are-fragments-assembled-at-the-cut"
+}

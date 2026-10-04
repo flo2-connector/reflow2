@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:ddf6c01bb411cf2293eb589df9a660871c990d436ce7191775490e29ec923df2",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-seattle-houses-as-the-field-trial-for-non-software-design",
+  "properties": {
+    "evidence": "The trial's division of labour follows from it: multifamily drawings in Washington carry a licensed architect's stamp, so the trial can only ever produce the source, the requirements and the checks, never the stamped set. Without that requirement standing, the trial would be measuring the wrong thing.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "req:the-agent-never-authors-what-requires-accountable-sign-off"
+}

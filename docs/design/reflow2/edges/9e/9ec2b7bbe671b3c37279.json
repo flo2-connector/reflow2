@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:baf245b3126519304d67fd0c6066543ff6557addebbb9f709bfed44d6be18ef5",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-saved-design-moves-to-the-item-layout-2026-10-03",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:4f3ce1ca9ee00ff17079b8925e6dccaf8161b82857cb6746f2f756edd59772ac"
+  },
+  "to_id": "art:usgov-genesis-feedback-2026-08-15"
+}

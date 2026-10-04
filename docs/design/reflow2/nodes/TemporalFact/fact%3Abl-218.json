@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:833915962daf8dd8c728cf2ec1656f568b46dec66e215a4d03bd742ac13e8234",
+  "node_id": "fact:bl-218",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "defect",
+    "statement": "[BL-218] The content store has never stored a byte, and ver:content-surface PASSES against a state the shipped binary cannot reach",
+    "subject_id": "sys:store",
+    "value": "{\"evidence\": \"content_manifest \\u2192 entries: [], total_bytes: 0, store_root: \\\"./reflow2-content\\\" for a directory that exists nowhere; 136 Fragments, ZERO with a content_ref; ver:content-store and ver:content-manifest both still PLANNED. ver:content-surface claims a server with no --content-path *\\\"REFUSES BY NAME instead of inventing a directory\\\"*, but main.rs:30 has default_value = \\\"./reflow2-content\\\", so the refusal at service.rs:2464 is unreachable from the real binary and the test proving it uses ReflowService::in_memory() (content_path: None) \\u2014 a state that does not ship. service.rs:2458's own doc comment already states the correct rule, citing req:no-silent-fallback. FIX AUTHORISED (Anthony, 2026-08-06): content_path becomes Option<String> with no default_value, plus one case driving the shipped binary. NOW IN THE GRAPH \\u2014 this row is a POINTER, not the record: fact:defect-content-store-invents-its-directory (TemporalFact, fact_type: defect, basis: measured, confidence: 1.0, VALID_FROM epoch:defects-in-the-graph, HAS_TEMPORAL_FACT from cap:content-store). Set VALID_TO when fixed rather than editing this row.\", \"origin\": \"Migrated from docs/backlog.md BL-218 on 2026-08-07 (epoch:backlog-retired). Size estimate carried from the row: M.\"}"
+  }
+}

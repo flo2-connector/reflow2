@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:59b4e89fe92bb98d2f6f7e99762e4cb56c25873b19114811937939f544f741f0",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:reflow2-keeps-the-knowledge-it-derives",
+  "properties": {
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

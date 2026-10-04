@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:afd66aa03af7f498989b16117f6d529b66884f2d1622f6c6315f183b3c4c7ec8",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:opening",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:opening"
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:8ae509786ab52f9c7ece128d7a376365de018d9cc49da5c24a35c000a6b7eee8",
+  "edge_type": "CAUSES",
+  "from_id": "art:tools-coherence",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "loop_status's verification digest (coherence.rs) builds `attention` from every check whose status is not passing or superseded, and attaches rerun_owed from INVALIDATES.at against that check's own last_run_at. No input lets other evidence, of any grade, or an owner's ruling answer a stale check. Measured 2026-09-28 on a scratch design.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:root-cause-a-stale-check-leaves-attention-only-by-its-own-run-and-other-evidence-cannot-answer-it-2026-09-28"
+}

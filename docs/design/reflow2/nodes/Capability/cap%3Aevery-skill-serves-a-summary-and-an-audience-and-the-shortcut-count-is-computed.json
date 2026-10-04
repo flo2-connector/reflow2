@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:509713d1456e20958ae3ba258ce9acc884374f1ce8521a2abd08c5cac4a2eb44",
+  "node_id": "cap:every-skill-serves-a-summary-and-an-audience-and-the-shortcut-count-is-computed",
+  "node_type": "Capability",
+  "properties": {
+    "description": "As built 2026-09-19: `summary:` and `audience:` on all 30 skills (mirrored to .claude and .grok); build.rs frontmatter() parses both and panics on a missing field, an unknown audience, or a trigger-shaped/over-long summary; EmbeddedSkill carries them; list_skills adds both per skill and its note counts the shortcuts that differ from the name; get_skill adds both; skill_lint checks both; tests/served_skills.rs pins them. Audience as first assigned: 19 anyone, 10 operator, 1 agent (link-artifacts) — the owner's call to revise per skill.",
+    "name": "Every served skill carries summary and audience in its frontmatter, build.rs and the lint refuse a skill without them, list_skills and get_skill serve both, and the differing-shortcut count is computed",
+    "provenance": "authored",
+    "status": "realized"
+  }
+}

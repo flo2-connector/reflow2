@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:28366354f22cf19a1ff7063f77ebff43b0ef378b7e92e3963bcdf47173d57566",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:merge-rerere",
+  "properties": {
+    "authored_at": "2026-07-22",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:claude-code"
+}

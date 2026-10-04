@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:21f4a8ed7677224ea034ac8ea40d9e5e1a5b7d1f3fb3eed1ab4a27cc5e0a6aa9",
+  "edge_type": "CONTRADICTS",
+  "from_id": "dec:idea-detect-vocabulary-that-nothing-reaches",
+  "properties": {
+    "alignment": "supporting",
+    "evidence": "The same shape one level out: 40 of 132 served tools never called, and reflow2 cannot tell unused from unreachable. Both come from reflow2 measuring how well the design covers the system and never how well anything covers the surface reflow2 ships."
+  },
+  "to_id": "dec:bl-155"
+}

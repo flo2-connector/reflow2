@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:b22ee1fbf50fa0b892bb6f70387fee8b4e57257a13cfd55185aeb484c18c6069",
+  "edge_type": "SPECIFIES",
+  "from_id": "art:schema-temporal",
+  "properties": {
+    "format": "json_schema"
+  },
+  "to_id": "ifc:graph-export"
+}

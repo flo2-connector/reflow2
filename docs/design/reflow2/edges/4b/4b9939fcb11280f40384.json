@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:4e2595a7e1149a70fa8d661e96663ded94a04b3ad3394424ac32d3d36797964c",
+  "edge_type": "HAS_SNAPSHOT",
+  "from_id": "fact:defect-a-verifications-level-and-method-can-be-set-only-at-birth-so-a-wrong-default-is-on-the-record-forever",
+  "properties": {},
+  "to_id": "snap:epoch:preserved-on-write:fact:defect-a-verifications-level-and-method-can-be-set-only-at-birth-so-a-wrong-default-is-on-the-record-forever"
+}

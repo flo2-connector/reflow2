@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:3aa1b6fe2ed5365a6109e13d237c72fec3ef29d3c775bcc0ef1e68e1b8a6d19e",
+  "node_id": "req:finding-a-cause-is-a-served-process-not-an-improvisation",
+  "node_type": "Requirement",
+  "properties": {
+    "lineage": "original",
+    "name": "Finding the cause of a failure is a process reflow2 serves, not one an agent improvises while under pressure to ship a fix",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "When something has failed and somebody is about to fix it, the steps of root cause analysis SHALL be delivered as a procedure the agent executes, not as advice it may recall — and the procedure SHALL be reachable at the moment of the work rather than read once at the start of a session.\n\nIt SHALL require candidate causes to be GENERATED FROM THE DESIGN rather than recalled, because \"think of three causes\" yields two real ones and a filler that exists to satisfy the instruction. Where the project has an implementation, the artifact layer SHALL be the path from a symptom to the source files that could have produced it.\n\nIt SHALL require, before any fix is proposed, a measurement that could REFUTE the leading candidate. A measurement that merely confirms it is not evidence: almost any observation is consistent with a plausible cause, which is what makes it plausible.\n\nWhere the design cannot answer, it SHALL say so rather than fall silent — an unmodelled file, an undeclared seam and an unwritten requirement all look identical to a graph that has never been told about them, and that silence must not read as the absence of a cause.\n\nDriven by Anthony, 2026-08-28: \"quite a few cases now where in using reflow2 on a project, the agent proposes a solution to an issue, then goes off and implements some solution, but it turns out that the solution only treated a symptom or superficial issue and not the root cause.\"",
+    "status": "accepted"
+  }
+}

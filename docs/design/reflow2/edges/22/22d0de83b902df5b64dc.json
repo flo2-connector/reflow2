@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:d7809322f28cbe4df27481d7704e737d432d6d0c43be72910a1035e03dabcb7a",
+  "edge_type": "ABOUT_ENTITY",
+  "from_id": "fact:defect-a-realized-capability-can-be-dead-for-want-of-an-input-path",
+  "properties": {},
+  "to_id": "req:the-tool-finds-its-own-blind-spots"
+}

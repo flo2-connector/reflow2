@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:4efb8fadf0ab830515da1e45bd587d5f7a3852209120472c4db8c57fa66ed6cf",
+  "node_id": "con:graph-construction-is-setup-not-work",
+  "node_type": "Constraint",
+  "properties": {
+    "category": "technical",
+    "concern": "core",
+    "direction": "maximum",
+    "limit": 1.0,
+    "name": "Constructing a design graph costs under 1 ms",
+    "priority": "medium",
+    "quantity": "milliseconds to construct one DesignGraph",
+    "statement": "CONSTRUCTING A DESIGN GRAPH MUST COST NO MORE THAN 1 MILLISECOND.\n\nMEASURED BEFORE THE BUDGET WAS SET, 2026-08-21: 41.3 ms per `DesignGraph::open_in_memory()`, against 54.7 microseconds for an `add_capability` write. **Construction costs 750x a write.**\n\nWHY THIS NUMBER AND NOT A ROUND ONE. The budget is derived rather than picked: construction is SETUP, not work, so a caller that builds a graph and then does twenty writes should spend most of its time on the writes. Twenty writes is about 1.1 ms, so 1 ms is the point at which setup stops dominating the thing it is setting up. Anything tighter would be arbitrary; anything looser leaves the same defect with a smaller number on it.\n\nWHAT IT IS PROTECTING. `open_in_memory` calls `schema::load_schema()`, which parses ELEVEN embedded YAML documents and merges them, every single time. 103 test files construct graphs, several dozen times each; the suite's slowest file by cost-per-test (`edges_need_both_ends.rs`, 2.44 s per test against a 0.92 s median for an entire binary) builds roughly sixteen graphs per test and does almost nothing else.\n\n⭐ THE POINT OF WRITING THIS DOWN BEFORE OPTIMISING, which is the whole experiment: **a budget is what makes optimisation STOP.** Without one there is no condition under which the work is finished, so it ends when attention runs out — which is gold-plating with a performance label on it. With one, the question \"should I also cache X?\" has an answer that is not a matter of taste.\n\n📌 HONEST LIMITS. (1) This is a DEBUG-BUILD number on one machine; it is a budget for a ratio that happens to be expressed in milliseconds, not a portable performance guarantee. (2) It says nothing about the RocksDB path, which pays a real filesystem cost no caching removes. (3) reflow2 held no other performance budget — this is the first one the project has ever stated, and the design carried exactly ONE Constraint before it, which was a semantic limit rather than a budget."
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:507744c922d83bef38b897968a1c2f750f78461cfeacf1b4d2816c999f52fbed",
+  "node_id": "ver:gate-suite",
+  "node_type": "Verification",
+  "properties": {
+    "description": "test_reflow2_check.py — 13 cases, 2 new for BL-160: an untouched file whose baseline was registered at 16 hex chars gates GREEN with the gate hashing the whole file (the workaround it used to carry is gone, so green now means the CORE agreed rather than that the caller pre-truncated), and the counterweight beside it — the same short baseline on a genuinely edited file still gates RED.",
+    "kind": "verification",
+    "last_run_at": "2026-08-01",
+    "level": "integration",
+    "method": "test",
+    "name": "The shipped CI gate, including a short baseline on an edited file",
+    "status": "passing"
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:952144082174b4854c360bdacf469ccc2eda918d45054f0b5340af893eff7a99",
+  "node_id": "question:7cc0431d2698f1a1",
+  "node_type": "Question",
+  "properties": {
+    "answer": "Keep the originals. The decision and test-evidence extraction passes do not exist yet, so a corpus ingested today is worth re-reading when they land; not keeping the sources loses that permanently. (Anthony, 2026-07-31.)",
+    "asked_at": "2026-07-31",
+    "context_setter": "Nothing satisfies requirement “Ingest keeps the source documents, not only what it extracted from them”",
+    "gap_id": "gap:7cc0431d2698f1a1",
+    "question": "When reflow2 reads a folder of someone's notes and pulls the design out of them, should it also keep copies of the original documents — so you can still check what it understood, and re-read them better later — or is pointing at wherever they happen to live good enough?",
+    "rephrase_degraded": false,
+    "status": "answered"
+  }
+}

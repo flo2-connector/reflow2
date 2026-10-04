@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:0fea88f1271c2e3ca11a23cab027e078646526ad10e3ed97fe92e2e6b54963ea",
+  "node_id": "epoch:planned-revising-an-epoch-keeps-its-status",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "description": "Anthony's word, 2026-09-12 (\"go with your recommendation for 1 and 2\" — item 2). A root-cause fix of the defect recorded the same day as fact:plan-epoch-on-an-existing-epoch-resets-its-status-to-planned: the core `plan_epoch` sets `status: planned` on every call, so the constructor's own revise path (same id, new prose) put an ARRIVED epoch back to planned, and every arrival of increments 430–434 needed a second set_epoch_status. IN: the core constructor sets `planned` only when the epoch does not yet exist; a revise leaves status alone (BL-183's discipline on a second type); a handler test shown to fail first; the defect fact closed with a valid_to and the change event recorded as a corrected cause. NOT IN: anything else about epochs.",
+    "epoch_type": "revision",
+    "name": "Increment 439 — revising an epoch's prose keeps its status",
+    "sequence": 439,
+    "status": "arrived"
+  }
+}

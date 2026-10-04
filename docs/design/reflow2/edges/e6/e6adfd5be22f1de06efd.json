@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:c93117b393a2025ef1ecd489de73745ae4ef9a7329db0904bef46522ca46a0b1",
+  "edge_type": "INVALIDATES",
+  "from_id": "chg:a-build-can-call-one-tool-from-the-shell",
+  "properties": {
+    "at": "2026-09-19",
+    "note": "bhome's plan-sheet generator can now read budget_report at build time with one shell call instead of a hand transcription; the finding stands as the measurement."
+  },
+  "to_id": "fact:field-report-bhome-2026-09-18-a-build-script-has-no-door-to-a-report-but-an-mcp-session-so-the-budget-was-hand-transcribed"
+}

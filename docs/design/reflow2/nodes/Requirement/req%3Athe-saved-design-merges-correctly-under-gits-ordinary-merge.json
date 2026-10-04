@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:e3d5fbda8a72b5a379ac867b3561dfe3227334529d9d09606991a03e6684c2f5",
+  "node_id": "req:the-saved-design-merges-correctly-under-gits-ordinary-merge",
+  "node_type": "Requirement",
+  "properties": {
+    "concern": "core",
+    "kind": "functional",
+    "lineage": "original",
+    "name": "The saved design merges correctly under git's ordinary merge, so design and code merge in one act anywhere (GitHub included) and disjoint design changes never conflict, with a lineage that keeps the design's history independent of git",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "The design as committed to a repository is stored so that git's ordinary merge, the one GitHub and every other host runs, merges it correctly. Two branches that change disjoint parts of the design do not conflict. A genuine conflict (the same item changed differently on both sides) appears as a conflict on that item, not as a whole-file rewrite. Design and code therefore merge in the same act, with no custom merge driver required. Today's single file carries a whole-file content_hash and prev_content_hash that every export rewrites, which makes any two design-touching PRs conflict; that shape is replaced (by splitting the saved design, moving the chain out of the shared file, or both; the form is a design decision still to take). The design's lineage is redesigned to fit and KEEPS its purpose: a history of the design independent of git. This is a migration for reflow2 and for every consuming project (flo2 and every installed project commit docs/design/<project>.json), not a flag. The CI gate, reflow2_init, import/export and the merge driver all move with it. Anthony, 2026-09-22, promoting part ② of dec:idea-the-design-gets-a-branch-dimension-for-implementation-facts as written. It contradicts dec:export-once-per-pr as that decision is currently written, and that decision must be revisited as part of the design work, not quietly broken.",
+    "status": "accepted"
+  }
+}

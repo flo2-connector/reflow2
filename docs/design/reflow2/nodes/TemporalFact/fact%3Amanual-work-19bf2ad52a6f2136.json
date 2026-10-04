@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:61666d232e9c260f3a6c999aabced6c64ae51413f2861847ef522eff2406701b",
+  "node_id": "fact:manual-work-19bf2ad52a6f2136",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "manual_work",
+    "statement": "Hashed files on disk by script and compared them with registered artifacts' recorded checksums, to find which registered files a change or a version bump had drifted, before accepting baselines. reconcile_artifacts compares artifacts to disk, but the server measures its own project root, and the work was on a branch in a separate worktree, so the drift had to be computed where the files were.",
+    "subject_id": "proj:reflow2",
+    "valid_from": "2026-09-24",
+    "value": "{\"diagnosis\":\"unknown\",\"reflow2_tool\":\"reconcile_artifacts\"}"
+  }
+}

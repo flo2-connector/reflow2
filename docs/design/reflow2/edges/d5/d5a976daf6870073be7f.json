@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:22bf9a98b9c947bcdad1895624b55ccebdf3f9f54bd5992207e6bf0c1e4dd0fd",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-documentation-change-has-a-name",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:schema-temporal"
+}

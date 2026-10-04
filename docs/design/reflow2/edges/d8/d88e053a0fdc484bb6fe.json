@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:97f5924ede841b9db2fbddb6718166b129e810fb8fe35045b6528eb93bea91e0",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:a-relation-tool-accepts-the-other-familys-names",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:service"
+}

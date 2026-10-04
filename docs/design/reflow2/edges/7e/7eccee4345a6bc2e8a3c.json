@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:07c054f582b6154f70a6514e9988c80596b5fa3c8db9cdb032d506cd88e0ac16",
+  "edge_type": "GOVERNED_BY",
+  "from_id": "fact:feedback-triage-status-across-three-sources-2026-08-16",
+  "properties": {
+    "note": "The sweep this fact records was ordered by that rule — dev_storyflow first, Alex level with it, music_graph after — which is why music_graph has thirteen items unassessed and dev_storyflow's newest block does not."
+  },
+  "to_id": "rule:feedback-sources-have-a-priority-order-and-anthony-set-it"
+}

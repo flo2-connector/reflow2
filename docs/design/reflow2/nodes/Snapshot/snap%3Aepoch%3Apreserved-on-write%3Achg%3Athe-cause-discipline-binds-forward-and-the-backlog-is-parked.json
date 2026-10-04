@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:d6b8054663bbca0abcd44505bfcacf6c29181e6546241dc7c75d8f311ed5fcf5",
+  "node_id": "snap:epoch:preserved-on-write:chg:the-cause-discipline-binds-forward-and-the-backlog-is-parked",
+  "node_type": "Snapshot",
+  "properties": {
+    "edges": "[{\"direction\":\"out\",\"edge_type\":\"CHANGED\",\"other_type\":\"Requirement\",\"other_id\":\"req:a-fix-says-whether-it-corrected-the-cause\",\"properties\":{\"accepted_baseline\":false,\"action\":\"modified\"}}]",
+    "state": "{\"change_type\":\"scope_change\",\"name\":\"The retro question is answered forward-only, 228 pre-detector fixes are parked, and the requirement stops saying the fork is open\",\"subject\":\"system\"}",
+    "target_id": "chg:the-cause-discipline-binds-forward-and-the-backlog-is-parked",
+    "target_type": "ChangeEvent"
+  }
+}

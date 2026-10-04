@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:becee8932d407a8bf56d48f39dbd00381dd2148287064fdecc00aa644408594b",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "req:adopt-asks-sibling-designs-who-else-has-this-before-writing-a-region",
+  "properties": {
+    "evidence": "The check runs per region before that region is written, so it needs adopt to proceed region by region, which is what that requirement (from Alex's field report) establishes.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "req:adopt-can-be-incremental-and-resumable-with-a-frontier-and-a-deferred-derivation-marker"
+}

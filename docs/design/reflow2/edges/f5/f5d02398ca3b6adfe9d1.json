@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:ed0f86347e426e76a713200930ddce353753105f3af444459ad55ae8477b20c0",
+  "edge_type": "REALIZES",
+  "from_id": "art:log-issue-skill",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:something-to-come-back-to-is-captured-with-one-word"
+}

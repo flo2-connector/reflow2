@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:391f926d22840f7b1233245767227ebba9889ca2875ba9602dbcca40ce2d716b",
+  "edge_type": "CHANGED",
+  "from_id": "chg:instructions-served",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cap:skills-served"
+}

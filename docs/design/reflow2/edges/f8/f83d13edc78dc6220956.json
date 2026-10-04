@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:eae029edb6f94b3bfe508dbe817cf2c5641c339eb44db379c878a312e4b2b099",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:idea-a-deliberately-open-edge-can-never-be-ranked-as-a-fit",
+  "properties": {
+    "approved_at": "2026-09-02",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

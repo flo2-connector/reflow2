@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:e96a572a0c976061cfc74d3f444508612ec49fa6d2ab94013b62ade073927e84",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0700",
+  "properties": {
+    "as_checksum": "sha256:905e4535af645174ab7128e14600db0a925f44f13f50d0596fdb5606817f9f5a"
+  },
+  "to_id": "art:artifact"
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:7cc4c13189c5cdba9c6bfe6ebc23369227b3dee226ed5d77a1615de6d6bd2bd5",
+  "edge_type": "CAUSES",
+  "from_id": "fact:root-cause-a-deployment-topology-has-no-structured-home-in-the-operate-layer-2026-09-29",
+  "properties": {
+    "basis": "causal",
+    "evidence": "The operate layer can hold no count or placement (schema/operate.yaml, measured 2026-09-29). So the single-point-of-failure rule has nothing to read that could say a role runs 8 copies across 2 zones. The false flag is the absence showing up in a detector.",
+    "validation_status": "validated"
+  },
+  "to_id": "fact:root-cause-a-replicated-role-is-reported-as-a-single-point-of-failure-because-nothing-can-say-how-many-copies-run-2026-09-29"
+}

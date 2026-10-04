@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:65fa5fc05a74fa4b398e57bdd8bf30b9ca6a9fbd0fc422ec6404629f93deed6f",
+  "edge_type": "REALIZES",
+  "from_id": "art:degraded",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:every-argument-refusal-names-the-tool-and-the-field-path"
+}

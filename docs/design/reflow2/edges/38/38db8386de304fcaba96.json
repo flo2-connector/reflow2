@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:c72d0261e81f44d52936c82dcf250246703f621af89b9f2db266247982335dc2",
+  "edge_type": "CONTAINS",
+  "from_id": "sub:finding",
+  "properties": {},
+  "to_id": "cmp:detect"
+}

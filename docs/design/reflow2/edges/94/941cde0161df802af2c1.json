@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:89659409e774789fdd78ba69b7b92bfdc8fc13e1a708da056ccfae64bd590963",
+  "edge_type": "GOVERNED_BY",
+  "from_id": "cap:a-remote-client-signs-in-to-its-server-with-oauth-2-1",
+  "properties": {
+    "note": "It decides which library carries discovery, registration, PKCE and the token calls, and so which three gaps reflow2 must pin with its own tests."
+  },
+  "to_id": "dec:build-reflow2s-oauth-client-on-rmcps-auth-feature"
+}

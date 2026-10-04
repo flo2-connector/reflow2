@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:488dbd24175a21b1dac8fd7e41ddce15f82511439b5032c096888725f158693a",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-name-is-not-a-report",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "ver:tool-carries-convention"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:75be96e3dcfb254a15ae03e52076fa99b3ef9197cd9ce1456ae636e2aa9f8fb6",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-bulk-edge-write-runs-each-typed-helpers-own-checks",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:tools-temporal"
+}

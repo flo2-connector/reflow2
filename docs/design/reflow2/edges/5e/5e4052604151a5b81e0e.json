@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:1785505f0ae399318d6101b1f12ce4fdba063f6eb97b5037926fb04d72231e49",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0200",
+  "properties": {
+    "as_checksum": "sha256:196fa38802309fd377a360769264f4916825fa2fcfaf7e5cc35ed3b1b87f60d2"
+  },
+  "to_id": "art:fleet-lessons"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:ece864349793f0a241a51c80824fc6bf30e007e37044387940e7de1d3f52b6b3",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:checksum-dialect-test",
+  "properties": {
+    "covers": "whole",
+    "note": "migrated 2026-09-22 from a REALIZES link_artifact drew in error"
+  },
+  "to_id": "ver:checksum-dialect"
+}

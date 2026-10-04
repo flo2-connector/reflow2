@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:d576ad5ca520ed8e8a3f71d392f63df332e625198d6cd720f3d55daadd9fe43e",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:test-a-budget-says-how-it-composes-core",
+  "properties": {
+    "covers": "whole"
+  },
+  "to_id": "ver:a-budget-says-how-it-composes"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:784895abe09fd1ac20b17d8b6c1e822e8a3619353dfe9d7276facacbdfbefeff",
+  "edge_type": "CHANGED",
+  "from_id": "chg:federation-decided",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:graph"
+}

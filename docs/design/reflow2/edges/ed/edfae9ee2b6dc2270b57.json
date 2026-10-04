@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:34bfe2e8d3b9821c6745573fec7696cedb2615e3fa0b9a6d76c2e852a7368440",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "cap:hosted-state-on-a-volume",
+  "properties": {
+    "authored_at": "2026-08-05T23:30:00Z",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

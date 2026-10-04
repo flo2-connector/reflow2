@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:351c2f966adbff350c46feb332627c35d5a19ee20b87eea481bec9e059286f16",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-brainstorm-skill-connects-the-dots",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:skill-lint"
+}

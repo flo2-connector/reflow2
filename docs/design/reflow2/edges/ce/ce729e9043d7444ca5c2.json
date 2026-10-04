@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:cb61f8710e1d744b46e471951b42d1c38f8e1ced2ca3b4b8b0c6c1fc74da0a32",
+  "edge_type": "REALIZES",
+  "from_id": "art:saved-design",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:the-design-is-saved-one-file-per-item"
+}

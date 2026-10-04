@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:1f97930d37e7a103711fd3f7330fa7801b6e195e1c9dd991a13cfadf8b0511e7",
+  "node_id": "art:optimize-command",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "location": "getting-started/commands/optimize.md",
+    "name": "optimize.md",
+    "status": "realized"
+  }
+}

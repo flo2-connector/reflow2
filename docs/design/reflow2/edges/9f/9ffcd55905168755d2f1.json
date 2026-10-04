@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:5839301e4725282bd5b3d888b00033ae5513c5db10d89f05def57ae50904bcbc",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-the-thin-project-adapter-is-where-a-repos-procedural-know-how-lives",
+  "properties": {
+    "evidence": "Served skills are what made the project-side skills thin; the question of what the residue IS only arises once that decision has landed, and Alex's report is the measurement that it has.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "dec:skills-served"
+}

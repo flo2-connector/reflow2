@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:5c17c9fb44fd91db83dfe67ac8a9d96694d0430de3664fba18b7906ee1eec3a5",
+  "node_id": "ver:kpp",
+  "node_type": "Verification",
+  "properties": {
+    "kind": "verification",
+    "last_run_at": "2026-07-25",
+    "level": "integration",
+    "method": "test",
+    "name": "A KPP breach is computed, an unbound KPP is caught, and an incomplete rollup is not a breach",
+    "status": "passing"
+  }
+}

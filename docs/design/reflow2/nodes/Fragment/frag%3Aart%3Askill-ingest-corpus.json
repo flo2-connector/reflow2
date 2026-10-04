@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:5337b0005fa6bff06e77e36c6f158cbffbc885eeb10c29a7eab1167a2be24cf2",
+  "node_id": "frag:art:skill-ingest-corpus",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered ingest-corpus SKILL.md — the folder walk, which reflow2 cannot do itself"
+  }
+}

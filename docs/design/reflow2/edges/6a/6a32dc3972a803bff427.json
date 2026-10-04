@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:97c86bf01e51a0aa54cca5f288f3abd4acbcf4c838c9a99db7073f752ed37d14",
+  "edge_type": "ANTICIPATES",
+  "from_id": "rule:success-is-read-from-the-authoritative-object",
+  "properties": {
+    "evidence": "That rule was written for gh pr merge, whose local half fails while the merge lands - read the PR object, not the CLI. This is the same shape on a new surface: the authoritative object is the Release, release_report returns artifacts: [] when the manifest is empty, and I read the CALL's return value instead. The rule predicted the failure mode and did not reach the surface it happened on."
+  },
+  "to_id": "fact:the-v0380-manifest-shipped-empty-because-a-dry-run-reads-like-a-write"
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:2178ac126eacf4f057cdb6e1b76553f437241bfa538572e341eab3ba5069ee69",
+  "edge_type": "REALIZES",
+  "from_id": "art:check",
+  "properties": {
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:reconcile-built"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:594d544bca23b393f687afb500d7c7f45af58f325448e3264824c099dee4dcb6",
+  "edge_type": "CHANGED",
+  "from_id": "chg:change-type-gains-decision-settled",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "art:schema-temporal"
+}

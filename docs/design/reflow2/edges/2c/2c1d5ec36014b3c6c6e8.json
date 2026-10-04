@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:c876be43bc2d4f049a184b744367a50da2f6826c6d4820033453ca64c3b119c0",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:a-published-contract-is-asked-for-its-evidence",
+  "properties": {},
+  "to_id": "req:key-interfaces"
+}

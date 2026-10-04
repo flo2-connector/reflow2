@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:df464485959058c08b5d34f03f93519623ad8c85c085ceca1fbd0f03752b2a56",
+  "edge_type": "REALIZES",
+  "from_id": "art:a-check-that-could-not-run-is-blocked-test",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:reconcile-verified"
+}

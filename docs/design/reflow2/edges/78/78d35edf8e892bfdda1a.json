@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:a327716475f9c7929e37786489a93feaf2e8e0c25cb59a4a9c9607d9d1dcdfd1",
+  "edge_type": "REALIZES",
+  "from_id": "art:revise-design-skill",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:a-capture-can-say-its-node-replaces-an-older-one-and-the-choice-at-the-near-match-check-is-kept"
+}

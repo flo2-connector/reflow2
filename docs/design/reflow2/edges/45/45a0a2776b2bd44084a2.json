@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:79a5cfc34bbd21eb048d6b47227b0ea9021d9813e387104f5291fc04d7b284bd",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:every-served-tool-is-reachable-by-find-tools-on-a-users-words",
+  "properties": {
+    "authored_at": "2026-09-11",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:8309ea298d2bec1ef34d54ab871e42344160f9b3563dcac34f3e63415ab4fa08",
+  "node_id": "chg:the-handoff-hook-is-retired-and-the-contradiction-closed",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "defect_fix",
+    "detected_at": "2026-08-26",
+    "name": "The handoff hook is retired — a committed hook stopped enforcing what an accepted decision forbids",
+    "rationale": "FOUND BY A BRAINSTORM, NOT BY A DETECTOR, AND THAT IS THE LESSON. Anthony asked whether markdown handoffs could be replaced by the graph, reaching the conclusion from TRANSPORTABILITY — the note lives on one laptop and he has two machines. Looking for prior art surfaced his own accepted decision saying the same thing from STALENESS, and the hook contradicting both.\n\nNothing in reflow2 could have caught this: the design has no way to notice that a repository file enforces a practice a Decision forbids. `dec:idea-should-reflow2-carry-its-own-git-discipline` already records the general shape — the enforcement is automated while the TRACKING of enforcement is manual, so a check and the rule it serves are joined by nothing.\n\nWHAT MAKES THE RETIREMENT SAFE RATHER THAN LOSSY: the durable half of every handoff note is already a `TemporalFact` and the design already carries dozens of them. The transient half was always a retelling of what `loop_status` and the forge compute.\n\n⚠️ THE REGRESSION, STATED: this trades an enforced-but-wrong mechanism for a correct-but-unenforced one. Nothing now blocks a session from ending without recording what it learned, and tonight showed enforcement works where reading does not — four DesignRules broken by an agent holding all nineteen, and the only one that held was the one that stopped the build.",
+    "subject": "system",
+    "summary": "Deleted `.claude/handoff_nudge.py` and removed its SessionStart and Stop registrations from `.claude/settings.json`. It blocked a working session from ending until the agent wrote a markdown handoff into machine-local, uncommitted memory — which `dec:orientation-is-computed-not-written` (accepted 2026-07-31) forbids and `rule:design-information-lives-in-the-graph-not-in-documents` rules against. The hook shipped 2026-07-23, eight days before the decision, and the two stood unreconciled for five weeks. `tools/loop_nudge.py` is untouched."
+  }
+}

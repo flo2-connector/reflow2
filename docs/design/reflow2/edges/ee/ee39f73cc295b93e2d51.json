@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:97fc3d9c49bff3ae1e0082923f37812187f6a8cb0720571e9f39051e848fb0a7",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:edges-are-selected-by-their-declared-reading",
+  "properties": {},
+  "to_id": "req:every-edge-type-declares-what-it-means"
+}

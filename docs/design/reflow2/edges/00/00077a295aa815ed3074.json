@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:8609ac20e001131a692889cae7bb95904cde56c29c366a838999cf3c77e18799",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:test-review-relations",
+  "properties": {
+    "covers": "whole",
+    "note": "migrated 2026-09-22 from a REALIZES link_artifact drew in error"
+  },
+  "to_id": "ver:review-relations"
+}

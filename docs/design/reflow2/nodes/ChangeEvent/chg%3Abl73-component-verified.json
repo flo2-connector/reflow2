@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:96face3153371215faa1f24a8ca660cfb2478885dcedaf6031845cedd88796d5",
+  "node_id": "chg:bl73-component-verified",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "name": "BL-73: component-granularity verification — the computed third state"
+  }
+}

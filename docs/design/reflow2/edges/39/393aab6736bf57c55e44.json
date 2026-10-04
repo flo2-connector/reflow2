@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:048bbd3da618387438c241c6c611e1c8aab305ef5086acebeec41db3ab670fac",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "rule:every-change-to-the-built-design-carries-a-test-and-regression-cover",
+  "properties": {
+    "approved_at": "2026-09-22",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

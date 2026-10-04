@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:4ace2a6bf8436a0dc882c34d05b813ce39fd4e03d67160fb15ba6947a612806e",
+  "node_id": "fact:bl-134",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "defect",
+    "statement": "[BL-134] A clean reconcile_artifacts cannot clear its own loop debt, so the diligent operator and the negligent one see identical output",
+    "subject_id": "cmp:artifact",
+    "value": "{\"evidence\": \"*Found 2026-07-31 after reconciling every artifact with unchanged: 9, findings: [].* loop_status went on reporting *\\\"N built capability(ies) never checked against reality (reconcile_artifacts)\\\"*. Both underlying principles are right and neither should be given up: reconcile records nothing unless it finds divergence (*\\\"looking is not writing\\\"*), and loop_status computes from graph state rather than run history (dec:loop-status-state-not-history, straight out of the BL-74 fleet trial). The consequence is that this debt item can only be cleared by FINDING drift \\u2014 do the right thing, find nothing wrong, and the to-do list is unchanged. Same disease as [BL-124]: a list that cannot reach zero is a list people stop reading, which is exactly what the acknowledge tools exist to prevent. Fix shape: record a lightweight *\\\"checked, clean at <timestamp>\\\"* observation. That is still a fact ABOUT the design rather than run history, so it does not breach dec:loop-status-state-not-history, and it is the fact loop_status actually needs. Distinct from the confirmation-ledger item (the second BL-108, in Bigger threads \\u2014 note that id is used twice and wants resolving) which is about a planned capability inheriting its component's artifact; this one is about a clean check leaving no trace. Size S\", \"origin\": \"Migrated from docs/backlog.md BL-134 on 2026-08-07 (epoch:backlog-retired). Size estimate carried from the row: S.\"}"
+  }
+}

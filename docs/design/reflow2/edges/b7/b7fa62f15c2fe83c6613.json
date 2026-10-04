@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:b0c1036068dba1d6748e3226e8c9e210f17f7bfb198c15fc7e1807fc77fc888e",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:test-every-tool-list-carries-the-cache-hints",
+  "properties": {
+    "covers": "whole"
+  },
+  "to_id": "ver:every-tool-list-carries-the-cache-hints-its-protocol-requires"
+}

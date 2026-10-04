@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:164cdda8e5a14e9f86f3f6b1bc6020800f2a32e2c8e966ccd0392379e4d37e4e",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:test-every-constructor-says-what-the-thing-is",
+  "properties": {
+    "covers": "whole"
+  },
+  "to_id": "ver:every-constructor-can-say-what-the-thing-is"
+}

@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:9d43d345129808722d9a570cda57143f76a820c218c2dd1fcd66920b2e4a4c6c",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:a-real-run-is-fed-back-by-file",
+  "properties": {},
+  "to_id": "req:a-real-test-run-is-fed-back-in-the-unit-a-runner-reports"
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:f293dbc2aa56ffb0ad1a43f89647b966da7d41cf3307e683bca9b37a24462da5",
+  "edge_type": "CONTRADICTS",
+  "from_id": "fact:defect-stale-server-reproduced-first-hand-here",
+  "properties": {
+    "alignment": "supporting",
+    "confidence": 1.0,
+    "evidence": "Independent first-hand reproduction on a second machine and a second project, including the /proc/self/exe '(deleted)' marker being present and correct at the moment it was needed. Raises the proposed fix from plausible to validated."
+  },
+  "to_id": "fact:defect-a-running-server-cannot-say-it-is-stale"
+}

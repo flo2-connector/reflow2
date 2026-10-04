@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:8b03931a0a5155edba3665308990b9926b015f4e35f529058806483ad25f047a",
+  "edge_type": "REALIZES",
+  "from_id": "art:convert-design-to-items",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:the-design-is-saved-one-file-per-item"
+}

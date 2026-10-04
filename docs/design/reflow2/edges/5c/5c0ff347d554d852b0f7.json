@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:ae0da3045237e4fe5a0932dd2e9f8ed0a4c5e12e037a1e10b6b4477ed98c1d31",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:idea-a-checkout-knows-which-remote-design-it-implements",
+  "properties": {
+    "approved_at": "2026-09-25",
+    "roles": [
+      "author",
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

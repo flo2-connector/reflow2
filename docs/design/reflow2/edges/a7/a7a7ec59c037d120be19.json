@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:a262cde2d4a1566783587f8a67e1828b974a13f440d6c9179be4ffad43a72379",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-saved-design-moves-to-the-item-layout-2026-10-03",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:c146130d2a5ba35b5c56bd9f1b412ccd8c488e70801082d5e0d6160be7c0eccf",
+    "checksum_basis": "measured"
+  },
+  "to_id": "art:ility"
+}

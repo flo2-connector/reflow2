@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:9b03371135433467cab60ecde3c4dcc5c39e62191e28bbf166af5c77602afd20",
+  "node_id": "art:test-why-history",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "test",
+    "description": "Hermetic: a real git repository with a known history and a hand-written export; pins grouping, noise by rule, reverts, coverage from the design and refusals.",
+    "location": "tools/test_why_history.py",
+    "name": "test_why_history.py",
+    "status": "realized"
+  }
+}

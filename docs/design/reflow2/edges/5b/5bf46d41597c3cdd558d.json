@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:ac10e396ad6685416a91f5be42d82008d16b1db2fcaba62af1da24d0b14d0530",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-capture-that-replaces-a-node-says-so",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:a-levied-requirement-is-recordable-in-one-call-test"
+}

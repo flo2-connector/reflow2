@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:0551cc462f69d5fa57ea4b3011b1597e0ae2b77f965b36e708350f22961c261b",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-graph-asks-what-a-session-made-false",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:test-loop-nudge"
+}

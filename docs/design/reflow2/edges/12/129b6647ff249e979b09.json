@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:0edb93b69054d716decebc951cb378f5706b2e230c17d585f37db49b826787dd",
+  "edge_type": "CHANGED",
+  "from_id": "chg:every-tool-carries-the-job-in-the-users-words-and-the-corpus-is-the-acceptance-test",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:tools-operate"
+}

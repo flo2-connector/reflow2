@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:f6e940f044b4a141f33dae64db17248896fc6b4e1792043324884e00f1359ee8",
+  "node_id": "chg:bl50-tool-boundary",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "name": "BL-50: three tool-boundary paper cuts closed — integer literals widen losslessly to schema floats at the core write seam (confidence: 1 accepted, range check kept), add_change_event takes an affected list and draws its CHANGED edges atomically (delete results named {deleted}), describe_schema counts half-exact edges so CHANGED reads as the modelled fit; kit documents a SessionStart hook making the where-am-i ritual mechanical"
+  }
+}

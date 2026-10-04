@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:7705d81ec33c79220c186ca91ded783cfe5a317f2c39a7e3da035dc9393549c8",
+  "edge_type": "REALIZES",
+  "from_id": "art:tools-capture",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "verified"
+  },
+  "to_id": "cap:a-revising-write-says-whether-the-state-survived"
+}

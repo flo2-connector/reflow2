@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:1fc9ae03671f3f920e3fa095691310486b41c1d591faddd1fbc6afa1342e2577",
+  "node_id": "fact:add-artifact-on-an-existing-id-moves-that-artifact-to-another-file-and-says-nothing-2026-09-30",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "defect",
+    "name": "add_artifact on an id that already names an artifact elsewhere moves it to the new file and says nothing",
+    "statement": "add_artifact given an id that already names an Artifact at a DIFFERENT location revises that artifact in place: its location moves to the new file, its name and description are replaced, its checksum stays the OLD file's, every edge it had (releases that INCLUDE it, what it REALIZES) now describes the new file, and the reply is the revised node with no word that an existing record was moved.\n\nMEASURED 2026-09-30 with a debug build of main (dd9626d) merged into #620, on a store imported from main's export: add_artifact {id: art:readiness, location: crates/reflow2-mcp/src/readiness.rs, name, status: realized, description} on the existing art:readiness (crates/reflow2-core/src/readiness.rs) exited 0 and replied with the node, location moved, checksum still sha256:0fb8d5a0… (the core file's), and nothing else.\n\nSEEN IN USE: #620's design records did exactly this on 2026-09-28 when registering the /readyz module, and nothing caught it: not the reply, not reflow2_check (the moved record's checksum was then re-measured on the new file), not the merge driver. Corrected in the record by chg:the-http-readiness-module-gets-its-own-artifact-and-the-core-readiness-record-is-restored.\n\nCANDIDATE FIX, not built: an add_artifact whose id exists with a different location refuses, or names the move in its reply and asks for a flag that says it is meant, the way the capture guard (#641) answers a near-match with sharpen / distinct_from / replaces.",
+    "subject_id": "cmp:tools-built"
+  }
+}

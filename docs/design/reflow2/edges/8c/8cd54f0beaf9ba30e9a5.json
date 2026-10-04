@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:6e5594257d4125ef0a79788dea5c0d0d94e2c03794d7c1137558f0c69bf5a82c",
+  "edge_type": "CONSTRAINS",
+  "from_id": "con:pairing-stops-at-the-boundary",
+  "properties": {
+    "basis": "evidence"
+  },
+  "to_id": "req:seam-incompatibility"
+}

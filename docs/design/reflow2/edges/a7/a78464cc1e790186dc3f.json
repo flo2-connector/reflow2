@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:4e5afaba1f035bea1613530e4e7ef9109b51425fc731e7edd67bd99fa61e58fb",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:shared-sessions",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:shared"
+}

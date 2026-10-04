@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:43a697015e3906f380687d2351d6dfce0f78a9f277890221d47ee4884624f7c4",
+  "node_id": "ver:a-constructor-names-every-edge-it-drew",
+  "node_type": "Verification",
+  "properties": {
+    "description": "Diffs the design export before and after add_decision (choice, no kind, exploratory, with an incoming link), add_capability (and a resend), add_verification, add_change_event and record_finding, and asserts each reply's edges_drawn is exactly the new edges as subject-first sentences, with a resend's edges named as already present.",
+    "findings": "RED on a clean origin/main build, 2026-09-29: 3 of 3 failed — add_decision kind=choice drew no edge at all (the silent drop), add_capability and add_verification named none of the edges they drew. GREEN on the fix (branch fix/decision-tools-draw-echo-and-name, db84580): 3 of 3 pass.",
+    "kind": "verification",
+    "last_run_at": "2026-09-29",
+    "level": "integration",
+    "location": "crates/reflow2-mcp/tests/a_constructor_names_every_edge_it_drew.rs",
+    "method": "test",
+    "name": "Every edge-drawing constructor names exactly the edges it drew",
+    "status": "passing"
+  }
+}

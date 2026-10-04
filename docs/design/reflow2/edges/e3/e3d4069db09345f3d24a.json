@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:1d990423265f36c64b494fc8d2f861c351745ebfafdd5ecb5e09d8def205907f",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:a-rule-knows-where-else-it-is-written-down",
+  "properties": {
+    "authored_at": "2026-08-09",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:storyflow-api-boss"
+}

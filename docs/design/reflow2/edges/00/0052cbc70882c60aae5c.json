@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:cef6fbf2e3dcde2fc14fd3bf98f0db4eb78093956afbb71e0484647963656ef7",
+  "edge_type": "INVALIDATES",
+  "from_id": "chg:a-held-design-test-waits-for-the-holder-not-the-store",
+  "properties": {
+    "at": "2026-10-03",
+    "note": "Verified fixed: hold() no longer opens the store while the holder starts, so its probe cannot take the lock first and make the holder exit. The pin (a_holder_that_starts_late_is_waited_for_without_being_raced) failed 6 of 6 on the old loop and passes; the fixed file passed 10 of 10 repeated runs with 4 test threads on a loaded box; the rendezvous-first replica failed 0 of 40 against 1 of 40 for the old loop in the same interleaved round (3 of 70 for the old loop over both rounds)."
+  },
+  "to_id": "fact:a-held-design-test-fails-in-ci-because-the-shared-server-never-took-the-store-2026-10-03"
+}

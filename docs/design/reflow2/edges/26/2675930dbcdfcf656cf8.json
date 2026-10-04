@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:7446370f136d4e11f58c3740f0237e61c46ab1f74670ca7f2c7b63146d9265c9",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-should-the-served-instructions-tell-a-reader-to-ask-whether-it-exists-first",
+  "properties": {
+    "evidence": "The earlier idea asks the same question about the graph catalogue and already refuted the obvious answer: the rule is written in five skills and still does not fire.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "dec:idea-search-first-fires-without-being-remembered"
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:1f3934d286677630b527ec41c5d2d5dfde3f62e2dde02de64abb332729e6aeaa",
+  "node_id": "decision:ack:4dfe80425e7f885e",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Accepted the gap gap:4dfe80425e7f885e.",
+    "name": "Reviewed: gap:4dfe80425e7f885e",
+    "rationale": "Component granularity accepted on Anthony's word, 2026-07-28. The cmp:skills bundle verification is a real passing check exactly one hop from each of these five capabilities, and the capabilities are skill documents whose behaviour is largely the text the agent reads — so a per-capability check would largely re-assert what the bundle check already exercises. Judgement made once, deliberately, rather than left to accumulate. Revisit if any of the five grows machinery of its own beyond its text (parallel-work and delta-reconcile are the likeliest to).",
+    "status": "accepted"
+  }
+}

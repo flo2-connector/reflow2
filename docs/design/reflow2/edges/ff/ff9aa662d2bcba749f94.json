@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:cf00c97171c4bee425eb026b051e240a7b053a4244a94693f77f671ca39026c8",
+  "edge_type": "CHANGED",
+  "from_id": "chg:atomic-requirement",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "cap:atomic-requirement"
+}

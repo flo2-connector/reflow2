@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:e4c56376f38186e87d1029fa0548be744040e621aba27939001f10cbba9b4b6b",
+  "node_id": "rel:v0660",
+  "node_type": "Release",
+  "properties": {
+    "description": "Four increments. (1) `set_decision_status` takes `chose`: a settlement records which option won without rewriting the deliberation that produced it. (2) A reply carries its payload once on EVERY tool: six tools were still sending it twice to every client, and the per-client reply shape was inert on exactly those six, so get_instructions cost 64,120 bytes on the wire for 31,374 of payload. (3) The build's gate list becomes runnable rather than only cross-checked, with a runner that reads the workflow instead of restating it. (4) THE ONE THAT SETS THE DATE: reflow2 no longer names a real person anywhere it serves. The only worked example on the field that creates contributors was a real private individual's id, which is what an agent copies at the moment it invents one; a gate now reads this design's own people and refuses any of them in a served tool schema, schema file or skill body. Also: Grok is its own harness writing the TOML config Grok actually reads, after `grok mcp list` was measured answering \"No MCP servers configured\" inside a project holding a valid .mcp.json.",
+    "name": "v0.66.0 — nothing reflow2 serves names a real person",
+    "status": "retired",
+    "unit_type": "binary",
+    "version": "0.66.0"
+  }
+}

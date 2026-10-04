@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:cfdc65e657cdf068f60927cd581915b010be24fda2484342c4e301df3edbe5ba",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-http-readiness-module-gets-its-own-artifact-and-the-core-readiness-record-is-restored",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "frag:art:readiness"
+}

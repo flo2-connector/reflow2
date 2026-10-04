@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:e037c1e82079a0984d15090d066ae7f6d09451e5b1c18f353fe2d91eda693a1f",
+  "edge_type": "REALIZES",
+  "from_id": "art:read-cache",
+  "properties": {
+    "completeness": "partial",
+    "conformance": "unchecked"
+  },
+  "to_id": "cmp:byte-store"
+}

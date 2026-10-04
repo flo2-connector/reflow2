@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:eb488a5f96d77dea320e3e206b25f446369d1f8700bc90b0e19199c9fedf87ad",
+  "edge_type": "REALIZES",
+  "from_id": "art:a-design-says-what-fraction-carries-a-relation-test",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:a-design-says-what-fraction-of-a-kind-carries-a-relation"
+}

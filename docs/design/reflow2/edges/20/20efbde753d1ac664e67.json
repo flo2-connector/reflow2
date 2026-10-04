@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:3036ab911cc2d0a85949967ebd63c852d219b88c48a94932822455bf4fd4c0ab",
+  "edge_type": "CHANGED",
+  "from_id": "chg:every-argument-refusal-names-the-tool-and-the-field-path",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:every-required-parameter-is-described-gate"
+}

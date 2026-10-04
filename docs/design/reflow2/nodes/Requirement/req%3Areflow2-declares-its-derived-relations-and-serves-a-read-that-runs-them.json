@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:840fc85da0e5521b42ba33f086e9f2585e210ea5dd816db88025f28ece9c1adb",
+  "node_id": "req:reflow2-declares-its-derived-relations-and-serves-a-read-that-runs-them",
+  "node_type": "Requirement",
+  "properties": {
+    "kind": "functional",
+    "lineage": "original",
+    "name": "reflow2 declares every relation it derives as data, a check holds the declarations to the code, and a served read evaluates them over a design",
+    "priority": "high",
+    "provenance": "authored",
+    "source": "Anthony, 2026-09-29, in the dev_reflow2 hub session, relayed by the hub agent: \"Fix all the root causes and go with the 7 ideas you'd promote\". This is idea 6, dec:idea-a-served-read-evaluates-every-derived-relation-reflow2-computes.",
+    "statement": "Every relation reflow2 derives is DECLARED as data: its rule, the primitive it reads as, whether it is deduced or induced, and the code that computes it. This covers the 23 identified by the graph-primitives study, today hand-written across about 15 source files, including the blast-radius closure. A check fails when the code derives a relation nothing declares, or a declaration names code that does not compute it. A served read evaluates the declared relations over a design and reports each one's count, and the derived-to-asserted ratio, without a hand-written script.\n\nThis is the \"every relationship it derives is a declared rule\" half of req:reflow2s-code-reasons-from-the-declared-meanings-and-every-derived-relationship-is-a-declared-rule (test 3). That broader requirement stays proposed. This part is accepted.\n\nCounter-argument kept: declarations kept beside hand-written code are a second copy, honest only while a test checks them against the code. So the check is part of the requirement, not a follow-up.\n\nFound by the two-agent exercise (I20): the derived-to-asserted ratio took a ~150-line script over the export.",
+    "status": "accepted"
+  }
+}

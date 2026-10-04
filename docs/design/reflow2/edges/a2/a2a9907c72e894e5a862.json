@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:c9a43b692c2f7ea16855a542db6e7e647e4ea3cd3d65a5b89d241561b9651809",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:the-argument-check-agrees-with-the-deserialiser-test",
+  "properties": {
+    "covers": "whole"
+  },
+  "to_id": "ver:the-argument-check-agrees-with-the-deserialiser"
+}

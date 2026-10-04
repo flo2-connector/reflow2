@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:bf253727e8ba3ecad5b0cb5399154d14bef1bd636a10a882962fb62f08f5a2fb",
+  "node_id": "ver:cluster-claims",
+  "node_type": "Verification",
+  "properties": {
+    "kind": "verification",
+    "last_run_at": "2026-07-25",
+    "level": "integration",
+    "method": "test",
+    "name": "A claim never blocks anyone, and overlaps are reported rather than prevented",
+    "status": "passing"
+  }
+}

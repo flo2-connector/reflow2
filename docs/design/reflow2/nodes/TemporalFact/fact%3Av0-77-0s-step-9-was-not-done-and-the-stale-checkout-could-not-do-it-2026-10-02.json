@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:016ce91300986d2830db28e05b79ac992660189c2c3840714f8d8116cb85a765",
+  "node_id": "fact:v0-77-0s-step-9-was-not-done-and-the-stale-checkout-could-not-do-it-2026-10-02",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "finding",
+    "name": "MEASURED 2026-10-02: the v0.77.0 cut never did step 9, and this box went on serving 0.76.0 built with rustc 1.98.0, a compiler 1.98.1 patched for a miscompilation. tools/reflow2-rebuild.sh could not fix it, because it builds whatever the main checkout holds, and that was 24 commits behind on another session's branch. Done instead by installing the checksum-verified release binary",
+    "source": "dev_reflow2 hub session 2026-10-02: target/release/reflow2-mcp --version; git status of /home/ajs7/project/reflow2; rust-lang/rust RELEASES.md; the swap script's output",
+    "statement": "A RECURRENCE of fact:the-live-shared-server-predates-the-twins-and-readings-merges-so-its-store-is-unrepaired-2026-09-29, on a new cut. That fact already noted the rebuild \"would not bring the fix\" from a checkout on another branch.\n\nOBSERVED on 2026-10-02:\n- target/release/reflow2-mcp reported 0.76.0 (built 2026-10-01 04:33) after v0.77.0 was tagged and published.\n- The box's stable compiler was rustc 1.98.0. Rust 1.98.1 (2026-09-03) fixed a miscompilation that emits a null vtable entry for async traits behind boxed dyn services and segfaults (rust-lang/rust#161441). Whether reflow2 ever hit it is unknown.\n- tools/reflow2-rebuild.sh builds from the repo it sits in, /home/ajs7/project/reflow2, which was on #620's merged branch, 24 commits behind main, with a stray edit to temporal_tools.rs. A rebuild there would have produced older code, not v0.77.0.\n\nDONE INSTEAD, on @ajs's go-ahead (the swap itself was refused to the agent as \"Interfere With Workloads\", so he ran a script it wrote):\n- installed the RELEASE asset reflow2-mcp-linux-x86_64 v0.77.0, checked against the release's checksums.txt. It was built by CI on rustc 1.99.0; the binary embeds /rustc/b940084d7;\n- kept the old one as reflow2-mcp.0.76.0, beside reflow2-mcp.0.75.0 from an earlier cut;\n- stopped the shared daemons. graph_report's served_by then read 0.77.0.\n\nTHE CLASS: step 9 assumes the main checkout IS main. When another session parks it on a branch, the documented way to refresh the served binary builds the wrong code, and nothing warns. Installing the release asset avoids the checkout entirely, and for a cut it is exactly the tagged code.\n\nNOT DONE: resyncing the main checkout, which is still Anthony's call because it must be done together with the live store.",
+    "subject_id": "cap:a-cut-ends-with-the-served-binary-matching-the-tag",
+    "valid_from": "2026-10-01"
+  }
+}

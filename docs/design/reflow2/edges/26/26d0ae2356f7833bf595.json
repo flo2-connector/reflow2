@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:8f70c89759a9f255a8830bc482feaee19cc23f92bdfdacf0023e5420e40893b8",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:a-declared-upstream-is-read-where-it-lies",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:upstream"
+}

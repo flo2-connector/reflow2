@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:6b8f24fb509a26676fdb1b07c6d280fd5c39abd9baab4df3390162c196b1768c",
+  "edge_type": "CHANGED",
+  "from_id": "chg:stored-data-is-rechecked-against-the-current-schema",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:provenance"
+}

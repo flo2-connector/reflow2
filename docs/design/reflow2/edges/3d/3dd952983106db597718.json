@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:26213140d813b386aed145fa7e6df0d87ffb2c2681e734c29008e4f30271e703",
+  "edge_type": "PART_OF_FLOW",
+  "from_id": "cap:changelog-entries-are-fragments-assembled-at-the-cut",
+  "properties": {
+    "step_order": 2,
+    "weight_basis": "estimated"
+  },
+  "to_id": "flow:release-cut"
+}

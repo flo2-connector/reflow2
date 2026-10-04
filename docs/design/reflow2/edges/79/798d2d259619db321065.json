@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:055443685a646046c5d05a7eb788751b0db98e9aae664d3909e05facad34d1ec",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:every-relationship-reflow2-holds-says-what-it-means-not-only-its-edge-types",
+  "properties": {
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

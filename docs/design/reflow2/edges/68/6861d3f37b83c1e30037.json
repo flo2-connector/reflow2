@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:fc37b619e5ef1b18a6afe44a62eae14ecf301ec312369dfcc7fa04494599ae6a",
+  "edge_type": "CONTRADICTS",
+  "from_id": "dec:idea-detect-ownership-orphans",
+  "properties": {
+    "alignment": "supporting",
+    "evidence": "Strictly dependent: there is nothing to detect the absence of until ownership is expressible. The edge can exist without the detector; the detector cannot exist without the edge."
+  },
+  "to_id": "dec:idea-ownership-is-the-third-who-axis"
+}

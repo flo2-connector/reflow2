@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:8689149fbafc8b92ca3aea9ddb47ba5b1d00963924de8aa105e8a6b3bed646b5",
+  "edge_type": "REALIZES",
+  "from_id": "art:delivery-kind-test",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "verified"
+  },
+  "to_id": "cap:a-capability-declares-what-kind-of-thing-delivers-it"
+}

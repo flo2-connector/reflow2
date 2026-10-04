@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:e5721c023cd35303d064ff5cc40ef4b29cef958a320f818bdbe5b3b99c6b72a5",
+  "node_id": "req:the-user-can-trigger-capture-of-what-only-the-session-holds",
+  "node_type": "Requirement",
+  "properties": {
+    "lineage": "original",
+    "name": "The user can trigger capture of what only the session holds, rather than relying on an agent remembering to",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "Reasoning that exists only in a conversation must be capturable ON THE USER'S WORD, at any point, not only when an agent chooses to offer it. A discipline that depends on being remembered decays under load.\n\nTHE NEED, and it is the same argument the loop nudge rests on: measured over 46 sessions, skills are read once per 380 tool calls and four are never read at all. A capture that happens only when the agent thinks of it is a capture that stops happening exactly when a session gets busy — which is when the most is worth keeping.\n\nIt can fail independently: any design where capture is agent-initiated only breaks it, whatever skill exists.",
+    "status": "accepted"
+  }
+}

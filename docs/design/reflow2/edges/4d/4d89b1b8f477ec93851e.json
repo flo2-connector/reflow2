@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:6ba234f348016ba03331c88136cea64a23c9ef817f760fe5e20c8a805dc164d2",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0610",
+  "properties": {
+    "as_checksum": "sha256:6f0b8be258b9fb487d57e3e0b44465516278e7f0e9c326a7a0eb43c9ad460f5a"
+  },
+  "to_id": "art:every-required-parameter-is-described-gate"
+}

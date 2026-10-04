@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:5e4dc89b7a8ccc33055ac4e7b519524e569030d4d8c90b80ec6fd9331264cc72",
+  "node_id": "fact:note-was-instances-five-and-six-of-unreachable-declared-vocabulary",
+  "node_type": "TemporalFact",
+  "properties": {
+    "as_of": null,
+    "basis": "measured",
+    "fact_type": "property",
+    "statement": "`CONSTRAINS.note` and `GOVERNED_BY.note` were INSTANCES 5 AND 6 of the pattern this requirement names, and the requirement's own statement still says \"four times in two days\". Both were declared in schema/*.yaml, neither was reachable from its typed constructor, and both request structs carry `deny_unknown_fields` so the refusal named a shorter allowlist with no hint that a longer one existed. Fixed 2026-08-23.\n\nWHY IT MATTERS MORE THAN THE TWO FIELDS: this requirement asks for a COMPUTATION over the schema and the served surface that answers which declared properties no typed tool can set, and clause (b) says the computation must not count raw `create_node`/`create_edge` as reachability. That computation is still not built. Instances 5 and 6 were found the way the first four were — BY HAND, and this time not even by us: a consumer hit them, fell back to raw `create_edge` twice in one session, and reported it. Every instance so far has been found by a person noticing, which is precisely the evidence that the detector is owed rather than optional.\n\nA CHEAP TEST NOW EXISTS FOR WHOEVER BUILDS IT: `describe_schema(from, to)` already reports each edge type's declared properties, and the toolsnaps in tools/toolsnaps/ already pin every served tool's accepted parameters. The two sources needed to compute the answer are both committed and machine-readable, so the detector needs no new plumbing.",
+    "subject_id": "req:declared-vocabulary-is-reachable-from-the-surface",
+    "valid_from": "2026-08-23"
+  }
+}

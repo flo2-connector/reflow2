@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:dc1e991121cdee58ea5a8ceac9ed3c56aa901b2080fe523e729d74a6008face2",
+  "node_id": "art:orphan-attachment-test",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "granularity": "atomic",
+    "location": "crates/reflow2-core/tests/orphan_attachment.rs",
+    "name": "orphan_attachment.rs",
+    "status": "realized",
+    "volatility": "stable"
+  }
+}

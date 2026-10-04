@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:40b70516339d219d8eae9525398cd59cff86b9c610674de8e934d01fcba22eb1",
+  "edge_type": "TRIGGERS",
+  "from_id": "fact:the-tool-class-census-answers-the-open-questions-own-test-and-half-the-sweeps-findings-are-one-offs",
+  "properties": {
+    "evidence": "The census named the required-reference-with-no-stated-type class (40 tools by hand estimate; 49 once the derived test ran) as the one class worth a contract first, because presence is correctness for it and it had two confirmed casualties. This change is that contract."
+  },
+  "to_id": "chg:every-required-reference-parameter-says-its-type"
+}

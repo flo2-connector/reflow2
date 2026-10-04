@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:057ce85a5b0fe3830ac9667445476526b8954a17790af4dce9e15dc3dbd3e98a",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:adopt-can-be-incremental-and-resumable-with-a-frontier-and-a-deferred-derivation-marker",
+  "properties": {
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:alex"
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:3e40380638512e6bfe7301087ce20485a0d5c4b0ba430ca51eb5d5d9d072d6e6",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-can-reflow2-say-whether-a-design-has-ever-closed-its-own-loop",
+  "properties": {
+    "evidence": "That measurement is the existence proof for this question: a complete toolkit left undriven produced 311 passing and 0 ever failing, and nothing reported the absence — which is exactly what a consumer would also get.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "fact:every-link-of-the-founding-chain-exists-as-a-tool-and-the-chain-has-never-been-walked-on-reflow2-itself"
+}

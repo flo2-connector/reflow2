@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:55367878cc5e2f91a61bdae69d323dba5693d3b42692007ccedafd97dfbaae63",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "req:a-write-carries-who-made-it-and-the-server-records-that-it-happened",
+  "properties": {
+    "evidence": "Clause 1 of the ask is exactly that node's subject — whether a caller-asserted identity may be trusted, and for what. The ask cannot be met until it is settled, and the node's own framing (\"the question is not whether to accept it but WHAT IT MAY BE USED FOR: attribution, or authority?\") is answered by flo2's own words here: attribution, never authority, because they authenticate at their gateway.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "dec:idea-may-a-caller-asserted-identity-be-trusted-and-for-what"
+}

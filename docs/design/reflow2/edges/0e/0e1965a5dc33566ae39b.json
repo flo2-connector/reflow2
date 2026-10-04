@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:147eaaa70325ec52f28f86b18df77a705222362dcf1024634fd2aac96f3dea89",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0471",
+  "properties": {
+    "as_checksum": "sha256:a2881baa471d910a8a6fadfa92a526c487d567488b1fbcf61551916dafac241a"
+  },
+  "to_id": "art:adopt-skill"
+}

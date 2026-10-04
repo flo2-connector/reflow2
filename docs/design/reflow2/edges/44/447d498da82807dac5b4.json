@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:f3b1102a8b656dc0926a4e217637f6f8a498ec1fb2dad11ee034dfc7ce694d53",
+  "edge_type": "BLOCKS",
+  "from_id": "dec:idea-is-the-restructure-target-the-shared-struct-rather-than-the-subsystem-contracts",
+  "properties": {
+    "evidence": "Modularity is currently NOT MEASURABLE on this design — graph_report reports 1 of 70 components carrying any coupling, so there is no partition to score. While the shared struct means module boundaries are not where the coupling runs, a computed modularity score cannot mean what that requirement wants it to mean."
+  },
+  "to_id": "req:modularity-computed"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:86dea3dc322b62af9c2e65d6453f94beaf0a196407039ac947a0374548732198",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-refused-write-stores-nothing",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "art:service-unit"
+}

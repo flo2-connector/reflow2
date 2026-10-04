@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:5a4a77eaecbc7ca76cc6f8e8076a3a20e7d8a67271ad502f33a56d9322d46f51",
+  "node_id": "epoch:the-record-moved-is-noticed",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "epoch_type": "revision",
+    "name": "A seat is told the shared record moved when it ORIENTS rather than when it writes — Anthony's option A. The signal existed and was read in exactly one place; this reads it at the first moment instead of the last. Carries a real defect fix found while building it: the stale-seat guard trusted the content hash a file states about ITSELF, so a merged or hand-edited record read as untouched and its work could be silently overwritten on the next export.",
+    "sequence": 323,
+    "status": "arrived"
+  }
+}

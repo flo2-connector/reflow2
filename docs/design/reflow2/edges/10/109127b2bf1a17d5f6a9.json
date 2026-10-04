@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:0915d8cab0937751d0086afaa4240f9e83e10fb8cfaad604c726a1092b03e7e8",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:a-fix-with-no-recorded-cause-and-a-defect-its-subject-outran-are-noticed",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:detect"
+}

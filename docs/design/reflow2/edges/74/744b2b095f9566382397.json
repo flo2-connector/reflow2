@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:98ff45e2f97ebd67375f7289b3c01766f74d57eb96e00219b0afa9fbb1bd0a7d",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-cut-ends-by-rebuilding-the-served-release-binary",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:agent-instructions"
+}

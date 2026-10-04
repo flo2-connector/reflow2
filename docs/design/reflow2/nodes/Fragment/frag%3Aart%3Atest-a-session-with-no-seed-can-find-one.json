@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:9327a8c8c13aab541ca9155157a421bde9979656f4a182b3ca71ef215a73a4f8",
+  "node_id": "frag:art:test-a-session-with-no-seed-can-find-one",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered crates/reflow2-core/tests/a_session_with_no_seed_can_find_one.rs"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:874c49243074931d6a460d7b74a569e5e2aab935a52fdd9b42ee803a04446727",
+  "edge_type": "CHANGED",
+  "from_id": "chg:decision-status-gains-deferred",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:check-intent-authority"
+}

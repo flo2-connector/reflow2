@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:e6828f5ef1e6ad9a5ee94a263d2f17edcea665799ed5b4a5336c3e90d395fabf",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-cli-describes-a-tool-with-its-schema-and-lessons-2026-10-03",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "ver:every-one-shot-mode-resolves-its-design-first"
+}

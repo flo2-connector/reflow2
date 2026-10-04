@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:d49aa8c8effd8f3442bd97d07998d78e3ea1c74600105cb67768883d6a2e24ce",
+  "node_id": "cmp:granularity",
+  "node_type": "Component",
+  "properties": {
+    "kind": "module",
+    "level": "component",
+    "name": "granularity",
+    "provenance": "authored",
+    "purpose": "Granularity — does the build separate what the design separates? The as-designed/as-built shape question, distinct from whether either is correct.",
+    "status": "planned",
+    "tier": "operational"
+  }
+}

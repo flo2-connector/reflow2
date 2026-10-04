@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:f4db94a52d81ae0fc406594b9778d3eb93544606029a41a76a227048b861ced1",
+  "node_id": "chg:owned-by-the-third-who-axis",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "name": "OWNED_BY added — the 61st edge type, plus the owned_by tool and gaps_on_owned_ground on the contributor-scoped loop report"
+  }
+}

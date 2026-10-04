@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:b7a0b3e6bbad36897e7200cdd01775a6b406e3147cc7f59a43a876a303a1369d",
+  "node_id": "req:a-design-says-what-crosses-each-boundary-between-its-parts",
+  "node_type": "Requirement",
+  "properties": {
+    "lineage": "original",
+    "name": "A design can say what crosses each boundary between its parts, at the level the boundary is actually defined",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "Where two parts of a design depend on each other, the design must be able to record WHAT PASSES BETWEEN THEM — what crosses, in which direction, over what — and a coupling with no such record must be reachable as a question rather than left silent.\n\nTHE CONTRACT IS RECORDED AT THE LOWEST LEVEL THAT ACTUALLY DEFINES IT, and higher levels answer by projection. Asking \"is there an interface between A and B?\" at any altitude must be answerable, and the answer must name where the contract really lives rather than asserting one between the boxes that were asked about.\n\nANTHONY, 2026-08-23, IN HIS WORDS: \"defining contracts for the components is a key part of my vision for reflow2\" — said of the product, and confirmed as product intent when asked directly rather than inferred from the remark.\n\nDISTINCT FROM `dec:idea-a-contract-is-declared-at-the-lowest-level-and-rolled-up`, which stays `proposed` and is the QUESTION about reflow2's own model: which level should carry its contracts, and whether DEPENDS_ON between two impl blocks of one struct is a dependency worth recording. This is the PRODUCT requirement — what reflow2 must let any project do. The two can be answered independently, and the design one may yet be answered \"leave it at module level\" without touching this at all.\n\nWHY IT IS ABOUT THE PRODUCT AND NOT HOUSEKEEPING ON THIS DESIGN: reflow2 is a tool for other projects, and the test of any vocabulary is whether it reaches a user's design, where real crate, service and organisational boundaries exist. reflow2's own 64 uncontracted module pairs were the first exercise of it and a poor one — measured 2026-08-23, all 64 sit inside a single crate and most are impl blocks of one struct, so they were never the seams this is about.\n\nIT CAN FAIL INDEPENDENTLY of anything built for it: a design that records couplings and contracts in vocabularies that never meet violates it however either is implemented — exactly the state `fact:coupling-and-contract-are-recorded-in-vocabularies-that-never-meet` measured, and what `cap:a-contract-answers-at-the-altitude-you-asked` began to answer.",
+    "status": "accepted"
+  }
+}

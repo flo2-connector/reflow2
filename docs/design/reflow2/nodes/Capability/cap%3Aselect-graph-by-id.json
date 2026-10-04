@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:04e08008d4fd8b7c7e20498acd9ca889b62297d6c9eeb628586f61ebeae439a5",
+  "node_id": "cap:select-graph-by-id",
+  "node_type": "Capability",
+  "properties": {
+    "description": "Per-session selection of which design a session is attached to, replacing --graph-path fixed for the process lifetime.\n\nBUILT 2026-09-13 as the HTTP path prefix `/g/<graph_id>/` — the carrier this capability named as preferred, \"because the selection is then visible in logs and routable by ordinary proxies\". The other two candidates were NOT built and remain as recorded: an MCP initialize parameter was second, and a tool call that attaches the session was worst, because it makes every session stateful in a way a reconnect silently loses.\n\nSELECTION IS BY graph_id, NOT BY PATH. A path is a property of the server's filesystem and leaks it to clients; graph_id is the durable name the design already answers to, and the registry maps id to path. A path handed to the transport is refused exactly as an unknown id is. This matches how identity already works — graph_id, the version stamp and the sync marker live in sidecar files designed to be read BEFORE the design is opened.\n\nWHERE IT LIVES: crates/reflow2-mcp/src/registry_http.rs (the router), `--registry-root` and `--registry-max-open` on the CLI, and REFLOW2_REGISTRY_ROOT in the published image. Designs open ON DEMAND; concurrent first requests for one design collapse into a single open; each design gets its own session manager, so a session minted under one prefix is unknown under another.\n\n⚠️ WHAT IS DELIBERATELY NOT BUILT, so `realized` is not read as \"the hosted shape is finished\": no idle eviction (the cap REFUSES past its limit rather than closing somebody's design), no per-graph rendezvous sidecar (so a local `--shared` session will not find a multi-graph server and starts its own), and --import/--export still open the store directly. dec:one-process-many-stores lists five changes; this is two of them.",
+    "name": "A session names the design it wants by graph_id, and the server maps id to path",
+    "provenance": "authored",
+    "status": "realized",
+    "tier": "operational"
+  }
+}

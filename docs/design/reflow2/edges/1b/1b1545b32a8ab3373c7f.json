@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:cd6661331f637ecff102b626c456ab2c494fe88422e81609126a2ff1453b1488",
+  "edge_type": "GOVERNED_BY",
+  "from_id": "cap:cluster-claims",
+  "properties": {},
+  "to_id": "dec:advisory-concurrency"
+}

@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:349d9f925938869e12a78e34840f6799512a9cec6d0b776a6e8a0aaf16269269",
+  "edge_type": "HAS_SNAPSHOT",
+  "from_id": "cap:a-reader-that-cannot-read-the-vocabulary-is-told-what-it-lacks",
+  "properties": {},
+  "to_id": "snap:epoch:planned-a-vocabulary-change-is-never-silent:cap:a-reader-that-cannot-read-the-vocabulary-is-told-what-it-lacks"
+}

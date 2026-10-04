@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:d360e34666442a0989a16e23d375e23c84df13d12f8388814aac1d271f81d67d",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:a-newcomer-can-ask-the-agent-what-this-is",
+  "properties": {
+    "coverage": "partial",
+    "evidence": "PARTIAL ON PURPOSE, and the missing half is named rather than left to be discovered. The requirement is about \"someone arriving at reflow2 cold\", and that person arrives by one of two doors. This capability serves the one who HAS AN AGENT and asks it — the help skill answers what reflow2 physically is, what it can answer that nothing else can, the one first move for where they actually are, and what it deliberately will not do. It cannot serve the other door at all: a stranger who lands on the repository without an agent never sees a served skill, and for them the README is the entry surface. `cap:explains-itself` (BL-102) still owns that half and stays PLANNED. ⭐ The skill also settles a clause the requirement got slightly stale on: it says a newcomer must \"find where the agent instructions go\", and since the user-scope installer there is nowhere to put them — one install per machine registers every project, with no per-project setup and no file to place. The skill answers by saying there is nothing to do."
+  },
+  "to_id": "req:explains-itself"
+}

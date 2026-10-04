@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:444fad90eb1be7c7f17981fabca6cc87105a23dec22b6d5b0471e0075c00b103",
+  "edge_type": "HAS_SNAPSHOT",
+  "from_id": "req:skill-adherence-is-measured",
+  "properties": {},
+  "to_id": "snap:epoch:skill-use-still-needs-reminding:req:skill-adherence-is-measured"
+}

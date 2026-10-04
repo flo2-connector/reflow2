@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:91afbcdc04bdf4a1e362fabed0c32ff6c8a44cae2323b34fc81aae719f3e7277",
+  "edge_type": "CHANGED",
+  "from_id": "chg:bl169-import-adopts-identity",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:test-design-identity"
+}

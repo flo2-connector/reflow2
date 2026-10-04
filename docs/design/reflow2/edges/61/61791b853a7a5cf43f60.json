@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:59db9c60311ca3af41490ba915a2dcd88d991ff8bd4c35b54c629705f81566d6",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "art:merge",
+  "properties": {
+    "authored_at": "2026-07-22",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:claude-code"
+}
