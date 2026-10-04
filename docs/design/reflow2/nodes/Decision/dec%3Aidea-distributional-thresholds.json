@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:41b5df3a71e61b212a8f40c123399bc0fe83a3f60df1b646111e1fc84c055c60",
+  "node_id": "dec:idea-distributional-thresholds",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "RECORDED AS BRAINSTORMING, NOT AS A PROPOSAL — from the 2026-08-01 dynograph-foundation review. Nothing here is settled; recorded as a minor idea with a real objection.\n\nTHE IDEA: percentile and median (unused, in dynograph-vector::stats) would let surprising_connections report \"the top 5% most surprising couplings in THIS design\" rather than everything over a fixed score. A distributional cut self-calibrates to the graph it is run on; an absolute one does not, and a design with 100 nodes and one with 10,000 do not have the same natural scale.\n\nTHE HONEST COUNTER-ARGUMENT, and it is the projects own lesson: BL-23 established that when a detector punishes correct work, the answer is A DIFFERENT QUESTION, not a tuned threshold. A percentile is still a threshold — it just moves rather than sits still. Worse, a top-N-percent rule ALWAYS returns something, so a design with no surprising couplings at all would still be handed a list, which is exactly the false-signal failure the noise-floor work (BL-42) was about.\n\nWHERE IT MIGHT STILL HELP: not as a cut, but as CONTEXT on a finding already made — \"surprise 2.56, which is the highest in this design\" is more useful to a reader than a bare number, and asserts nothing extra.",
+    "name": "OPEN — should surprise and severity be reported as distributional positions rather than absolute scores?",
+    "rationale": "Kept deliberately small and recorded with the objection first, because the naive form of this idea contradicts an established lesson and a later session should meet the objection at the same moment as the idea.",
+    "status": "proposed"
+  }
+}

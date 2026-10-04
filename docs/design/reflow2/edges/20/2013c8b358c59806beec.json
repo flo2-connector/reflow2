@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:818520e5ba1c87ef6b0c6ae03cc5a430c35247a6a7a3c2400dc9cc371bb9a6e9",
+  "edge_type": "YIELDED",
+  "from_id": "frag:alex-2026-08-14-env-kit-stamp",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "fact:defect-a-stale-kit-receipt-silently-decides-whether-the-loop-nudge-is-owed"
+}

@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:14eb3a85b90472b295bf76a85f35f7e1903f2bf8807c170df803cf29ca56b4d1",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-saved-design-moves-to-the-item-layout-2026-10-03",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:bc2c77f761e7a7142338dde8baf3a486527f4b982ce1165b120651bd4d471c0d",
+    "checksum_basis": "measured"
+  },
+  "to_id": "art:the-build-question-is-silent-while-nothing-is-built-test"
+}

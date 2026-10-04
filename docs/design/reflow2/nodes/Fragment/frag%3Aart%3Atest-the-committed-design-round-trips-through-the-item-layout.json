@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:d16445445d1b41dd34a170b3c0f5ea475d81614fb2cee37157891ff8568346b3",
+  "node_id": "frag:art:test-the-committed-design-round-trips-through-the-item-layout",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered crates/reflow2-core/tests/the_committed_design_round_trips_through_the_item_layout.rs — reflow2's own design through the item layout"
+  }
+}

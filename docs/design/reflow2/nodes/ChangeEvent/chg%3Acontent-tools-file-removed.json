@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:0987f64e42e9f3474084b4071a4566b5425a406634aa6d3673cbf59ace215300",
+  "node_id": "chg:content-tools-file-removed",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "deprecation",
+    "name": "content_tools.rs removed — its four content tools deleted, and its TWO ingest tools moved to ingest_tools.rs rather than lost"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:7b385bfdce5a3fe38bf5e5e431e329632122e9911beb6e81f0cd8a6ac2741416",
+  "edge_type": "CHANGED",
+  "from_id": "chg:omitting-last-run-at-no-longer-erases-it",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:tools-assure"
+}

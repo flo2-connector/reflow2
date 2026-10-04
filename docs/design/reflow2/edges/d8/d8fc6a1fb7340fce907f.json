@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:4a7e59c29babc007667c41bf1afaabc9d5cd722295695ce1ea4cdddbec5c17dd",
+  "edge_type": "CHANGED",
+  "from_id": "chg:machine-state-not-shared",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cap:kit"
+}

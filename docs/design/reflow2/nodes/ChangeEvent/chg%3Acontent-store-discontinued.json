@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:9c6ad3dbe7603f1e2f15884863718bd4829e4e56e3499bc4008510604baeb601",
+  "node_id": "chg:content-store-discontinued",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "deprecation",
+    "name": "The content store is discontinued: four tools, the core module, the --content-path flag and both test files removed. Built, shipped, correct — and used zero times in every project that has it."
+  }
+}

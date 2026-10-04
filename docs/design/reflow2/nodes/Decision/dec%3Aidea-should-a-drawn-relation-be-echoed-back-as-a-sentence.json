@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:04509e98c6b99ef5f58f9a415e16c7831da69a4f30ed6340fef5029db718acc9",
+  "node_id": "dec:idea-should-a-drawn-relation-be-echoed-back-as-a-sentence",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Recorded as brainstorming on 2026-09-19 from what remains of flo2's F16 after the reporter corrected it themselves, not as a proposal.\n\nThe direction flag exists, so the workaround half of F16 is void. This half is not: `incoming` lets you draw the edge you meant and does nothing to confirm you got it right. The reporter landed two BLOCKS edges asserting the reverse of what their own evidence prose said and caught both only by re-reading their own call.\n\nTHE ASK: echo the drawn edge as a sentence. 'drawn: req:X BLOCKS cmp:Y' reads wrong immediately, where the current shape — \"drawn\": [\"BLOCKS -> cmp:artifact-store\"] — does not, because it omits the subject and leaves the reader to supply it from memory.\n\nSCOPE, and it is the reporter's: the relations that go wrong are the ASYMMETRIC ones (BLOCKS, CAUSES, DEPENDS_ON, EVOLVES_INTO, OBSOLETES). A symmetric relation cannot be drawn backwards, so echoing every edge would add noise to the cases that cannot fail.\n\n⚠️ COUNTER: the generic create_edge has no such problem, because from_id and to_id are explicit at the call site — which is the second time in one report that the generic tool is safer than the typed helper it is a fallback for. That suggests the question may really be about what typed helpers owe their callers, not about an echo string.",
+    "kind": "exploratory",
+    "name": "OPEN — should a drawn relation be echoed back as a readable sentence, so a reversed edge reads wrong immediately?",
+    "status": "accepted"
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:8cdefa9c1a6f0aec13e30027637e0783df6f730d995510e42268dcd8a6c2153e",
+  "edge_type": "HAS_TEMPORAL_FACT",
+  "from_id": "cap:publish-surface",
+  "properties": {},
+  "to_id": "fact:reflow2-publishes-none-of-its-262-requirements-so-every-consumers-mirror-is-structure-with-no-intent"
+}

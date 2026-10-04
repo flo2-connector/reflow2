@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:664c2721857a01ff2952f5438b9487bbac2838080bd4fdb416364dced079d420",
+  "edge_type": "CHANGED",
+  "from_id": "chg:decision-status-gains-deferred",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cap:a-set-aside-decision-is-recorded-where-the-loop-can-read-it"
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:ae5f6ef6b41e2c59e5e77acae4acb29464aa934f08cf5840fc7b176e174dc0cb",
+  "node_id": "decision:ack:3f600ff329ecb31a",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Accepted the gap gap:3f600ff329ecb31a.",
+    "name": "Reviewed: gap:3f600ff329ecb31a",
+    "rationale": "Deferred on Anthony's word, 2026-07-28, with the rest of the reflow workflow review — and explicitly WITH \"what rigid should mean\" left parked, which he confirmed the same day. Accepted and not dropped. It is the sharpest instance of the defaults family: unlike the ten properties in the original sweep, which are asserted and UNREAD, Project.mode is asserted AND ACTED UPON (heal.rs:431 changes HEAL's behaviour on it), and reflow2's own Project carries the unchosen default flexible — the mode meaning \"the implementation drives the architecture\", in a project whose thesis is that the design is the memory. Deferred rather than built because the three parts are separable and only one is mechanical: making the value CHANGEABLE is a setter and is small; making it CHOSEN means deciding whether genesis asks (which risks re-adding the setup step req:no-setup-per-project deliberately removed) or whether mode reads as unspecified until someone says, per the rule ver:interface-spec already set for Interface.medium; and making it VISIBLE means deciding which reports surface it. The second is a design decision, not a patch, and it is coupled to the parked question of what rigid should mean beyond heal.rs:431 — that question cannot be answered usefully while the mode is unchoosable, so this is its prerequisite and should be settled first.",
+    "status": "accepted"
+  }
+}

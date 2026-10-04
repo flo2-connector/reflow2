@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:1c6a954f219f514512d87a83af360fb5dad0455f1d1322cdca1da94719faccca",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0670",
+  "properties": {
+    "as_checksum": "sha256:e322352e25d0f6347e2f87d70074984f31e8a6b7452e86e296895cf81229a628"
+  },
+  "to_id": "art:topic-command"
+}

@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:51240f99de8a0930afca72708264a3ebf377556fc05ade0a027db7126bbc6e59",
+  "node_id": "dec:idea-how-does-a-standing-rule-reach-a-moment-that-is-not-a-reflow2-step",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "RECORDED AS BRAINSTORMING, NOT AS A PROPOSAL (the field-feedback rule: every idea gets the brainstorm skill). Anthony, 2026-09-18, after the fourth reminder: 'we also need to run /root-cause on why you didn't obey a design rule'. The question the lapse leaves: the delivery mechanism built for Alex's third requirement reaches only steps that go through reflow2 (get_skill, a tool call); reading a file is not one. OPTIONS, none chosen: (a) a served maintainer-side skill `triage-feedback` (a `/triage` command), with the two rules' `steps` naming it, so the rule rides the skill the moment it is pulled — cheap, but the agent still has to pull it, which is the trigger problem in a smaller box; (b) a session-start hook that notices a feedback file newer than its last triage (the hook runs client-side and may read the tree) and says 'a field report is waiting; get_skill triage-feedback' — makes the file the trigger instead of the user, which is what req:skill-use-survives-a-long-session asks; (c) the report is captured INTO the graph by the reporting project (report-friction already writes record_finding), so the maintainer's step is a graph read (`open follow-ups`, `unclaimed findings`) that IS a reflow2 step and can carry the rule — the strongest, and it is the F0 shape from the other side; (d) treat 'delivered at no step' as a gate on reflow2's own design so a rule cannot be accepted without a step — honest, but a rule about a non-step moment would then be un-recordable, which is worse than undelivered. COUNTER to all: four lapses is also evidence that reading a report is a long, absorbing act; a delivery that fires once at its start may not survive to the moment a cause is written; the root-cause skill's own author skipped it an hour after writing it.",
+    "kind": "exploratory",
+    "name": "OPEN — how does a standing rule reach a moment that is not a reflow2 step? Triaging a field report has no served step, so the rule that issues get /root-cause and ideas get /brainstorm can only be remembered — and was forgotten 4 of 4 times",
+    "rationale": "Recorded on the day of the fourth lapse, as the design question behind it rather than a fifth reminder.",
+    "status": "accepted"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:e3ad7de9c82e8ed2a58e469c3e45f2b640b859c9a1d63af99890be2d4c09a0da",
+  "edge_type": "SCHEDULED_FOR",
+  "from_id": "req:a-fix-says-whether-it-corrected-the-cause",
+  "properties": {
+    "modality": "expected",
+    "recorded_at": "2026-09-14"
+  },
+  "to_id": "epoch:planned-the-mechanism-reaches-the-moment"
+}

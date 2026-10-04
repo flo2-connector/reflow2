@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:efe9de720ce20e6d1fbe0604b51a3495ee7e24e264dce0af19dfc82d8de1aead",
+  "edge_type": "HAS_SNAPSHOT",
+  "from_id": "fact:defect-link-artifact-has-no-type-for-a-test-source",
+  "properties": {},
+  "to_id": "snap:epoch:preserved-on-write:fact:defect-link-artifact-has-no-type-for-a-test-source"
+}

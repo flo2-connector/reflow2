@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:bbb4ad2a8ae88cd9c0bbcfc61e7892e4af0a960a58bb537bf29d137443f18771",
+  "edge_type": "OBSOLETES",
+  "from_id": "dec:field-reports-are-untracked-because-the-repository-is-public",
+  "properties": {
+    "confidence": 1.0
+  },
+  "to_id": "art:grok-shell-feedback-2026-08-29"
+}

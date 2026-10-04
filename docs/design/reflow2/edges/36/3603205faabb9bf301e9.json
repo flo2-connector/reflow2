@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:7d0501f629e3687e827f353723834b1a08c8a14fe9d3b8f412dbd20accf927d9",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:defaults-are-not-serialized",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:export"
+}

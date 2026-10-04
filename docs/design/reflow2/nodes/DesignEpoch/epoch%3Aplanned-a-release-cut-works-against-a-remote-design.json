@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:6b562b55bd4f1cc79d94640c84b1942bfab9ebee02118c6e9ba1d4a3aa471b21",
+  "node_id": "epoch:planned-a-release-cut-works-against-a-remote-design",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "description": "COMBINED PLAN POSITION 10 (epoch:planned-combined-plan-reflow2-and-flo2, agreed 2026-09-27; it was 9 of 10 until two flo2.io increments were added the same night). After position 7.\n\nStep 7 of the tracked-export retirement plan (2026-09-27). Delivers req:a-release-cut-works-when-the-design-lives-on-a-server. The manifest already lives in the design (release_includes_all freezes checksums on INCLUDES edges). What changes is that the checksums are measured on the build machine and sent to the design, and the cut stops committing an export as its record. Needs step 4. Precedes step 8, because reflow2 cannot move while its release cut depends on a local store.",
+    "epoch_type": "milestone",
+    "name": "[Combined 10] Retiring the tracked export, step 7 — a release cut works when the design lives on a server",
+    "sequence": 659,
+    "status": "planned"
+  }
+}

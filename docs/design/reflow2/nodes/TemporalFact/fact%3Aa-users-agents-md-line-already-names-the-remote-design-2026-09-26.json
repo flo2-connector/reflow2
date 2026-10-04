@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:3b062fe2350ad3712a5486697e91ac1f0187862717341c1adeeeaef90b1b909f",
+  "node_id": "fact:a-users-agents-md-line-already-names-the-remote-design-2026-09-26",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "field report",
+    "name": "FIELD EVIDENCE 2026-09-26 — a user named his repo's remote design with one line in AGENTS.md, and it works: the pointer file, hand-made in prose, with no reflow2 installed",
+    "source": "Alex (who:alex), relayed by Anthony in the dev_reflow2 hub session, 2026-09-26. Recorded on Anthony's word (\"record both\").",
+    "statement": "IN ALEX'S WORDS: \"This repo does not configure an MCP server. The design Wrestling season planning (349bbd480f3cce6e) lives on flo2. Grok Build reaches it through the Flo2 connector that ships with the Grok.com account. That connector is already signed in. Every call passes design 349bbd480f3cce6e. Agents.md is the only project instruction, and it tells the agent to do that.\"\n\nWHAT IT SAYS ABOUT THIS DECISION: the settled answer — a code folder names its remote design in a committed file — was reached independently by a user, without being told, in the cheapest form there is: a sentence in AGENTS.md that the agent obeys. It confirms the need and the shape (the folder, not a machine-wide setting, names the design; the id, not the name, is what is passed).\n\nWHAT PROSE CANNOT DO, which is what the planned pointer file adds: no tool reads it, so nothing checks that the id still exists or is reachable; a second design, or a role (implements / consumes), is whatever the prose says; the agent must remember to pass it on every call, rather than the client attaching to it once; and a client cannot offer it to a new clone or to /genesis. The prose form is a floor the file should not fall below — it works with NO install, through a chat connector, which the file-based form must not start requiring.\n\nALSO SHOWN: Grok Build can use the connectors of the grok.com account it is signed in with, so a design on flo2 is reachable from a code folder with nothing installed at all (flo2's fact:grok-build-works-a-flo2-design-through-the-grok-com-connector-with-nothing-installed-2026-09-26).",
+    "subject_id": "dec:idea-a-checkout-knows-which-remote-design-it-implements",
+    "valid_from": "2026-09-26"
+  }
+}

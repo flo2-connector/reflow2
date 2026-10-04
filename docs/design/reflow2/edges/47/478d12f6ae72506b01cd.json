@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:1ec0d840452b0a7c0ededef8b4fddb1086ad8477a852776f778c6a612ac1ca46",
+  "edge_type": "REALIZES",
+  "from_id": "art:temporal",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:plan-movement-recorded"
+}

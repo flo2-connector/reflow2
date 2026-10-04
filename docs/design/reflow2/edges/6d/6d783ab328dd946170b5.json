@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:66013ffa72d9dfd8643d280a5c462dd977599055b06105916455637f1f7b0d97",
+  "edge_type": "MITIGATES",
+  "from_id": "cap:revise-trigger",
+  "properties": {
+    "evidence": "revise-trigger is the credit-assignment answer to the founding chain: BUILT 2026-09-22 as the tool choices_in_doubt, it walks bad news (a failed run, a recorded failure, unresolved drift, an open defect finding) back to the accepted Decisions governing what it reaches. It mitigates, not closes, the finding: the chain has still never been walked on reflow2 itself until a real run is fed back."
+  },
+  "to_id": "fact:every-link-of-the-founding-chain-exists-as-a-tool-and-the-chain-has-never-been-walked-on-reflow2-itself"
+}

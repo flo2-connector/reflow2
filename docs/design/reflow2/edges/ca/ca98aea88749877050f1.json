@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:11d842fe11a02fb0fc54a6e36e22e418e4dfd286e03835373d0699324b81c3c8",
+  "edge_type": "CONTAINS",
+  "from_id": "proj:reflow2",
+  "properties": {},
+  "to_id": "req:deterministic-core"
+}

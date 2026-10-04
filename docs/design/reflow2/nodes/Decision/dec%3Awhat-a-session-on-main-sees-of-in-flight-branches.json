@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:83e38caca73e0eb4200b7a103b0a1500c8b2fbece14a955334eb3f75b61a7e25",
+  "node_id": "dec:what-a-session-on-main-sees-of-in-flight-branches",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "OPTIONS\n(a) NOTHING. Strict isolation; a second branch can unknowingly redo the first's work.\n(b) EVERYTHING, MERGED INTO READS. This recreates today's leak.\n(c) NOT IN ORDINARY READS, BUT IN AN EXPLICIT \"IN FLIGHT\" VIEW. ⭐ RECOMMENDED. A report lists each open overlay: branch, worktree, which records it touches, age, and the seat and claim that made it. It is surfaced in loop_status when another branch touches ground this session is working on.\nRECOMMENDED (c): isolation for correctness, visibility for coordination. It pairs with claims, and it depends on claim liveness being true (fact:two-active-sessions-claims-both-read-gone-2026-09-22), or the in-flight view will report active branches as abandoned.",
+    "kind": "choice",
+    "name": "DESIGN — what does a session see of other branches' in-flight implementation facts?",
+    "rationale": "Designed 2026-09-23 on Anthony's instruction. PROPOSED for his word. This answers the counter-argument recorded in dec:idea-the-design-gets-a-branch-dimension-for-implementation-facts: invisible means duplicated work, merged means leaks. The two-session trial showed both halves: the owner's session could not see the hub's branch work, and the hub's live writes landed in the owner's branch.",
+    "status": "proposed"
+  }
+}

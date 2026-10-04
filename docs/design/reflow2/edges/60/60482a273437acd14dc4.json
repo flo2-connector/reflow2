@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:1d929cc03a37b49fe6df647e3080eb82159a50edff5bf0eb6a784a561e89f3c6",
+  "edge_type": "INVALIDATES",
+  "from_id": "chg:the-snapshot-warning-is-field-aware-and-the-export-note-reaches-the-caller",
+  "properties": {
+    "at": "2026-08-23",
+    "note": "RETIRES ITS CENTRAL CLAUSE — \"AND NOTHING ELSE IN THE LOOP REPORTS THEM EITHER\". That stopped being true on 2026-08-23: this change surfaced the unexported-work sentence in `loop_status.next`, where it had already existed on the in-step line and was filtered out because `in_step` is not `is_actionable()`. The fact's own \"cheapest honest fix\" — report the live node count beside the export's — is exactly what shipped, so the node named its own repair and got it.\n\n📌 EDGE DRAWN 2026-09-03, BY A LATER SESSION, NOT BY THE WORK THAT DID IT. The closure sat in this ChangeEvent's summary where no computation could read it, and the fact was still returned as an open candidate seventeen days later. That is the same shape the field-defect sweep of 2026-08-28 was drawing edges for, and it is the second time this particular finding has been re-read as live.\n\n🛑 WHAT IS NOT CLOSED AND MUST NOT BE READ AS CLOSED. (1) Its reading of `sync` is UNCHANGED and still correct: `in_step` answers whether the RECORD moved ahead of this seat, `ver:the-record-moved-is-surfaced` pins \"ordinary unexported work is NEVER reported\" as the property the design rests on, and making that verdict go red was never the fix. (2) Its first NOT ESTABLISHED clause stands verbatim — whether a count comparison alone is sufficient, since equal counts with different ids still pass. (3) Its whole account of the mechanism, its reproduction, and its point that the word `sync` was doing damage the code was not — all untouched, and all still the best explanation of why the counts exist."
+  },
+  "to_id": "fact:defect-nothing-in-the-loop-reports-unexported-work-and-in-step-is-read-as-if-it-did"
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:c804c26f2cff07bcdd21c8467c58e5c7988d80cbe57e14a0978a2119465ed306",
+  "node_id": "chg:baseline-6e18694e930b3491",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "baseline_established",
+    "detected_at": "2026-08-16",
+    "name": "First baseline. The whole of reflow2's calendar arithmetic: civil-date conversion in a closed form, no dependency, and `today` a parameter on everything that decides.",
+    "subject": "record"
+  }
+}

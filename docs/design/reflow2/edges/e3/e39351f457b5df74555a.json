@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:d6b898c08a332e9a4e2d3173d9096b3047eebbd22bf86d29b167e607c37d607e",
+  "edge_type": "CAUSES",
+  "from_id": "fact:the-reachability-gate-pools-54-tools-parameter-names-into-every-type-so-it-reported-zero-holes-while-two-properties-had-no-writer",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "The measured miscalibration is what this change removes.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "chg:the-reachability-gate-reads-tools-not-names"
+}

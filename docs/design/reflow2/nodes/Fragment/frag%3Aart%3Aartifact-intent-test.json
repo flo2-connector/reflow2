@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:d66685fecda6d68aae6e0b86f105601df16212e88971c696ae24dd5fb2bc7503",
+  "node_id": "frag:art:artifact-intent-test",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered artifact_intent.rs"
+  }
+}

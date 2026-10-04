@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:73a83da811ab1dbe6f58f003239debbaea89588fd4f09f78409e92bcaa5f1687",
+  "node_id": "chg:baseline-f890e3c1f1325279",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "baseline_established",
+    "detected_at": "2026-08-24",
+    "name": "First baseline — a new file, so nothing moved. The detached graph probe for cap:stop-nudge-asks-the-graph.",
+    "subject": "record"
+  }
+}

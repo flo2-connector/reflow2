@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:4b84f07fae5792e41696424ae9a8388caaa1c457008194fec52d1407a17dd130",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0480",
+  "properties": {
+    "as_checksum": "sha256:5c0ddb093e3e9f370151b37bcd48a5c8b83fe26287eed014479fb7c01235ffa5"
+  },
+  "to_id": "art:root-cause-skill"
+}

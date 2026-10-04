@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:278fcd6749f9ae70c164f1b175555ffcd75b7b8c3f2427bc290209bb01d5420f",
+  "edge_type": "REALIZES",
+  "from_id": "art:kpp-proposal-skill",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:kpp-proposal"
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:2907863cc1c7b02ce921b0751636f9733b3979817ac8fcb49b8bdc224e5d7587",
+  "edge_type": "CONSUMES",
+  "from_id": "cmp:compare",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "ifc:graph-read"
+}

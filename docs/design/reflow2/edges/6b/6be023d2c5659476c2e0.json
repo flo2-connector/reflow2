@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:a326a4311ec1943b2a83c2be1e4150d5805b77b480c026dcfad28f7e81d5e11d",
+  "edge_type": "CONSUMES",
+  "from_id": "sys:coherence-loop",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "ifc:reasoning-channel"
+}

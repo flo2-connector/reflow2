@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:f59ed8b4a3a9622d1eb5470814756a6fe668f37d6141627e6051e9e9ad09c2ae",
+  "node_id": "dec:procedural-is-the-medium-for-a-boundary-between-institutions",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "One value, `procedural`: a legal, contractual or constitutional procedure between institutions or roles — a presentment-and-veto cycle, an approval chain, a contractual obligation — where the contract is a procedure rather than a protocol or a human-factors touchpoint. Not two values (procedural and contractual), and not an open string with a controlled subset: one word answers the reported case, the enum stays closed so seam checking and boundary pairing keep comparing like with like, and a second governance domain can ask for a second word with its own evidence. Enum values do not move the schema stamp, so this is additive. The ingest mirror (MEDIUM_VALUES) and the tool descriptions carry the same word.",
+    "kind": "choice",
+    "name": "DECIDED — Interface.medium gains ONE value, `procedural`, for a rule-governed exchange between institutions or roles",
+    "rationale": "Reported by the US-government genesis session 2026-08-15: `medium: process` refused, seventeen check-and-balance boundaries filed under `human` and judged defensible by the reporter. Recorded despite being graded LOW because `medium` is READ — library/data earn the single-point-of-failure exemption and seam_report compares it across paired designs — so a procedural boundary labelled `human` is reasoned about as a touchpoint by every computation that reads the field. The first push on this enum (json_rpc) was settled by SPLITTING an Interface rather than adding a value; that reasoning does not transfer here, since seventeen procedures are not one node describing two boundaries. The counter-argument — that the enum reads as software-plus-hardware and a governance domain might want several kinds — is real and is why this adds one word rather than a family: over-designing the vocabulary before a second domain asks is the failure Anthony watches for. Closes fact:the-medium-enum-has-no-word-for-an-institutional-or-legal-contract.",
+    "status": "accepted"
+  }
+}

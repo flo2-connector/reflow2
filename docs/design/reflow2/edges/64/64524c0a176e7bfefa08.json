@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:a7d95d235043a269098209d85e78c07c9843c6530c9a226d90e3976cc24ca9a0",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:test-the-commonest-edge-has-a-typed-helper",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:test-the-commonest-edge-has-a-typed-helper"
+}

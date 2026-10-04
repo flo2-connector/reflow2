@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:7d9ca7e848173d963fa0c7dc68c4f90db50db54bc1d8d13e58868db13c553e52",
+  "edge_type": "REALIZES",
+  "from_id": "art:detect",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:release-pinned-to-time"
+}

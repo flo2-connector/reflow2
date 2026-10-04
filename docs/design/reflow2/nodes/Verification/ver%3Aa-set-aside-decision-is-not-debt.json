@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:a191ce9164ca7b30b7aa3ca13375f4bbc9f4ce44ec83088fa7f1b815a60bd92d",
+  "node_id": "ver:a-set-aside-decision-is-not-debt",
+  "node_type": "Verification",
+  "properties": {
+    "description": "`crates/reflow2-mcp/tests/a_set_aside_decision_is_not_debt.rs`, four tests through the served tools.\n\n1. ONE decision, measured before and after in the two readers the requirement names: while `proposed` with an approver edge it appears in loop_status' assigned decisions and what_next counts it open; after the owner sets it to `deferred` it appears in neither and unsettled_assigned_decisions reads zero. Measured on one node so the test cannot pass by the lists being empty for some other reason.\n2. Neither undecided_decision_point nor unreviewed_ideas raises a deferred decision — asserted after first proving at least one of them DID raise it while proposed, or the test would prove nothing.\n3. Deferring is the owner's act: landing a decision straight at `deferred` with no approver is REFUSED and the refusal names `approver`; with a name it lands `deferred`; moving one there through the setter without a name carries the NOBODY'S NAME note in the reply.\n4. A deferred decision cannot have alternatives registered — register_alternative refuses and names `proposed`.\n\nSHOWN TO FAIL BEFORE IT WAS TRUSTED: mutating the two readers to count `deferred` alongside `proposed` makes exactly test 1 fail, on the assertion that names the point; the other three stay green.\n\nWHAT IT DOES NOT COVER: the migration of existing decisions that say DEFERRED in prose — none were moved, because moving them is the owner's word. And whether `withdrawn` should exist, which the requirement scoped out on the ground that nothing would read it.",
+    "findings": "All four pass. Mutation: with loop_status' assigned-decision filter and what_next's open pool widened to accept `deferred`, the_same_decision_is_debt_while_proposed_and_not_while_deferred fails on \"THE POINT: once deferred it is no longer work somebody owes\"; the other three pass. Alongside: core suite 157 binaries green, mcp suite 65 binaries green, clippy -D warnings clean on both crates, schema validates, toolsnap reports exactly the two intended changes (add_decision, set_decision_status) re-blessed, every_declared_enum_is_wired_or_exempt passes, smoke/empty/refusal/command-surface/doc-versions/intent-authority gates green. The previous increment's guard tests failed on this change the moment `deferred` became known — the guard working — and were generalised.",
+    "kind": "verification",
+    "last_run_at": "2026-09-12",
+    "level": "integration",
+    "method": "test",
+    "name": "The same decision is debt while proposed and not while deferred, and deferring wants the owner's name",
+    "status": "passing"
+  }
+}

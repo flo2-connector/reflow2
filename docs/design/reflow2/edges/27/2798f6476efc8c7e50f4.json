@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:6be37d6bc9788294df1344e23d89956795a944a8edb8471356db02b21cf4d43d",
+  "edge_type": "ANTICIPATES",
+  "from_id": "dec:idea-where-does-the-10k-work-actually-land",
+  "properties": {
+    "evidence": "That node already recorded, while asking a scaling question, that \"the byte store is already swappable\" and that what is welded is one design = one directory = one engine. It observed the property this question depends on before anyone asked to use it — so the earlier idea saw this one coming, and its finding is why this is a cheap experiment rather than a rewrite."
+  },
+  "to_id": "dec:idea-a-byte-backend-that-compiles-in-seconds"
+}

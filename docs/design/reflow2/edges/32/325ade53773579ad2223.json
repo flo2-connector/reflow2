@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:7137aadcf40873b5a048352f66ab24f54e08ca28181dac74bf1ca250cceb0dd8",
+  "edge_type": "GOVERNED_BY",
+  "from_id": "rel:v0250",
+  "properties": {
+    "note": "The cut that triggered the rule: v0.25.0 took a number the plan had assigned elsewhere."
+  },
+  "to_id": "dec:an-unplanned-cut-slips-every-later-increment-by-one"
+}

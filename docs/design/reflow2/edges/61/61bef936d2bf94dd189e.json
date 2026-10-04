@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:6cab9ae2163ced8f0b923e8f1124f40c6c54fbea1305e8bd192a3e2e8d2b617d",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-field-report-is-triaged-by-a-served-step-and-a-finding-is-written-before-the-answer",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:tools-coherence"
+}

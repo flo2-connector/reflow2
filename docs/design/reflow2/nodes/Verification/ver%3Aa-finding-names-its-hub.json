@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:da842227e759ad425cccc3589f46f10ef2c944799b923c8802e581d73719521d",
+  "node_id": "ver:a-finding-names-its-hub",
+  "node_type": "Verification",
+  "properties": {
+    "kind": "verification",
+    "last_run_at": "2026-08-08",
+    "level": "unit",
+    "method": "test",
+    "name": "A node appearing in several findings of one category is named as a hub with its count, and an ordinary pair reports none",
+    "status": "passing"
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:2ed6081b2b6b2cd3f61e5f63e9ee19e1b2380ca351b72882b9e44bcd9c049d6c",
+  "node_id": "ver:a-session-with-no-seed-can-find-one",
+  "node_type": "Verification",
+  "properties": {
+    "description": "Five core probes in crates/reflow2-core/tests/a_session_with_no_seed_can_find_one.rs and three surface probes in crates/reflow2-mcp/tests/orientation_needs_nothing_to_start.rs.\n\nTHE CENTRAL PROBE CHECKS A ROUND TRIP, NOT A SHAPE. `the_seed_a_region_hands_back_is_one_the_scoped_reads_accept` takes every row the listing returns, scopes `detect_gaps` to it, and asserts the region it lands in is the region the row measured — size and gap count both. A directory of addresses nobody can walk to is the failure mode a shape assertion would miss entirely.\n\nTHE OTHER FOUR CORE PROBES ARE THE HONESTY PROPERTIES, one per way this reply could overstate: an empty listing that reads as a clean map, a coverage figure that ignores what it never reached, overlapping rows presented as a partition, and a \"nobody is here\" that is really \"nobody told me\".\n\nTHE THREE SURFACE PROBES EXIST BECAUSE OF THIS EPOCH'S RECURRING DEFECT — four times in two days a capability was reachable in the engine and not from a client (Verification.description, SUPERSEDES, create_node's CAS precondition, governed_by's ruling). A tool that takes no arguments is where that family hides, because there is nothing in the signature for a typed test to catch. So one probe does nothing but call it with `{}`.",
+    "kind": "verification",
+    "last_reconciled_at": "2026-09-23",
+    "last_reconciled_outcome": "passed",
+    "last_run_at": "2026-08-17T23:55:00Z",
+    "level": "integration",
+    "method": "test",
+    "name": "Eight probes: a listed seed works as a scope, an empty design says which empty, uncovered nodes are named by type, overlap is counted, a claim reaches the chooser, and the surface takes an empty argument object",
+    "status": "passing"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:1cb3e731b2108c45efb15349565b7f1c5e9196431e571c525efc58f407bfaed0",
+  "node_id": "req:every-served-tool-ranks-first-for-its-own-job-and-the-surface-does-not-grow-more-confusable",
+  "node_type": "Requirement",
+  "properties": {
+    "lineage": "original",
+    "name": "Every served tool ranks first for its own job sentence, no new pair of tools becomes mutually confusable, and a tool is never deleted without usage evidence across projects nor without a refusing stub for a release",
+    "priority": "high",
+    "provenance": "authored",
+    "statement": "The failure Anthony named (2026-09-17): a tool that is not orthogonal to the rest leaves the agent debating which of two to call, and the result differs by the door taken. The remedy he chose over deletion (2026-09-18, 'Go with your recommendation'): words before pruning. Every served tool must rank FIRST in find_tools for its own job sentence in the corpus, or be listed in a baseline that only shrinks with the measured reason (beaten on a name match, which words cannot overturn); no new pair of tools may land in each other's top 5 for their own jobs; both are checked in the same test file as the corpus. The two measured confusions are renamed with refusing stubs kept for one release. A tool is deleted only on usage evidence from more than one project, and then only after shipping as a stub that refuses and names its replacement — a removed door must never be a silent absence. Measured at acceptance: 73 of 185 not first, 61 mutual pairs; after the description pass 25 and 72, the baseline.",
+    "status": "accepted"
+  }
+}

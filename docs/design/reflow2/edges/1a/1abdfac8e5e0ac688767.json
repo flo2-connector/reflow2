@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:628e266d6266a8f12853dce53098ade76aa311fd818a329a0176e318d27749bd",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:a-cut-ends-with-the-served-binary-matching-the-tag",
+  "properties": {},
+  "to_id": "req:a-session-runs-a-release-binary"
+}

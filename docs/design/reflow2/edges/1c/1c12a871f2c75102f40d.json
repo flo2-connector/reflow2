@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:690986e090071b9859a10f9a6f65a1516f1f8abf15725e29848518faaa9e0437",
+  "edge_type": "CAUSES",
+  "from_id": "art:vocabulary-reach",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "tool_parameters() unions the parameters of all 54 tools absent from the tool-to-type map into every type's offered set, so a name offered by any tool reads as offered for every type; Requirement.kind is excused by forecast_readiness and gate_on, Verification.location by register_alternative.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:the-reachability-gate-pools-54-tools-parameter-names-into-every-type-so-it-reported-zero-holes-while-two-properties-had-no-writer"
+}

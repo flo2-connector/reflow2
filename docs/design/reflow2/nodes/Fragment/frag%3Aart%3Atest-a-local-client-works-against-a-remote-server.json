@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:7b008d25c3d2a3ad6a52334942e83de195ebee71957d62948eb0c27f5065def5",
+  "node_id": "frag:art:test-a-local-client-works-against-a-remote-server",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered a_local_client_works_against_a_remote_server.rs — the key goes out as a Bearer header from a named variable or file and is shown nowhere; replies arrive one per line; a 401 is a readable error; only a forgotten session is re-joined"
+  }
+}

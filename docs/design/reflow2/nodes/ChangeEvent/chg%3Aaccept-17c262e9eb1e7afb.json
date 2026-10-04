@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:31e72e371a665d0546e4af607849520d74558e433d574e3113109350c56639c3",
+  "node_id": "chg:accept-17c262e9eb1e7afb",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "defect_fix",
+    "detected_at": "2026-08-19",
+    "name": "STALE_NEXT and UNKNOWN_NEXT added as public constants beside STALE_NOTE, for the reason that one is public: the branch cannot run in a test process, so wording that could only be checked by hand would be no check at all.",
+    "subject": "system"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:121cc53aec1a1b7294938461c877a434269887ebd258b25509a74f1bd187cbe6",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:the-reminder-rides-the-response",
+  "properties": {
+    "authored_at": "2026-08-19",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

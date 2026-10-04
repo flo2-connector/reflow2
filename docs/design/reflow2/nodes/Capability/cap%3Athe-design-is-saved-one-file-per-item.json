@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:3647ed73e18c6cadc3a9f96a62b370429fb596c6bc231afb7673a049f08a6f11",
+  "node_id": "cap:the-design-is-saved-one-file-per-item",
+  "node_type": "Capability",
+  "properties": {
+    "description": "export_graph writes docs/design/<project>/: nodes/<Type>/<escaped-id>.json, edges/<fan-out>/<stable hash>.json, and a stamp file that changes only on a schema bump. Every file is canonical sorted JSON, so bytes differ only when content does. import_graph reads this layout and, during one release window, the old single file. Disjoint changes on two branches touch disjoint files and merge with no custom driver, on GitHub or anywhere. Designed 2026-09-23 (dec:how-the-saved-design-is-laid-out-so-git-merges-it).",
+    "name": "The committed design is saved one canonical file per node and per edge, so git's ordinary merge merges it",
+    "provenance": "authored",
+    "status": "verified",
+    "tier": "operational"
+  }
+}

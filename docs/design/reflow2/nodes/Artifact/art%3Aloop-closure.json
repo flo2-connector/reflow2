@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:8fca32d0548e8cacb091b6b25630b41a3f3fabd344ae7d8c6bd3493737b65700",
+  "node_id": "art:loop-closure",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "description": "The loop-closure reading: has a real result ever come back into this design.",
+    "location": "crates/reflow2-core/src/loop_closure.rs",
+    "name": "loop_closure.rs",
+    "status": "realized"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:c9c2ea205b6a26000235ade6c6ff8e5cb93935a3b3d5023924bfddd1fb455206",
+  "node_id": "chg:a-revise-of-an-epoch-keeps-its-status",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "defect_fix",
+    "name": "plan_epoch carries an existing epoch's status forward on a revise instead of resetting it to planned",
+    "repair": "corrected_cause",
+    "subject": "system"
+  }
+}

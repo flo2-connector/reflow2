@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:10019d5c36c11dc052c136b49fc7f515394d487e1da6684e375a071b7c965675",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-authentication-is-somebody-elses-layer-and-the-line-is-the-contributor-id",
+  "properties": {
+    "evidence": "Option (a) here — a proxy-injected identity header — runs into that decision's recorded rejection of deriving identity from request headers. The objection was about the MCP client's OWN headers, which are caller-supplied, and a trusted proxy's injected header is a different object; but this option cannot be taken without that distinction being made deliberately, and option (b) is that decision's mint-and-carry shape applied to contributors instead of seats.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "dec:stateless-seat-handle"
+}

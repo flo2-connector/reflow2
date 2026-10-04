@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:2cc60972903503aa9ba821d3b22863bd1e6836a2b06905715425b0f7f2b1036c",
+  "node_id": "art:measure",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "location": "crates/reflow2-mcp/src/measure.rs",
+    "name": "measure.rs — a registered location measured under the project root: sha256 streamed, size, presence; refused by name outside the root; never content",
+    "status": "realized"
+  }
+}

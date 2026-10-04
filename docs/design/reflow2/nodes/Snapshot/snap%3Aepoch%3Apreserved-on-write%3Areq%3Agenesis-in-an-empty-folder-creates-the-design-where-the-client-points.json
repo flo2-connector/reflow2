@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:1a899d21ecea325e6f6b6bc457398fc57003e60cc992eeb713b342a1abd3d1c0",
+  "node_id": "snap:epoch:preserved-on-write:req:genesis-in-an-empty-folder-creates-the-design-where-the-client-points",
+  "node_type": "Snapshot",
+  "properties": {
+    "edges": "[{\"direction\":\"in\",\"edge_type\":\"EVOLVES_INTO\",\"other_type\":\"Decision\",\"other_id\":\"dec:idea-one-command-switches-reflow2-between-local-and-remote\",\"properties\":{\"evidence\":\"Option (c), settled the same day with the setup command: the client creates the design where it points, attaches and writes the pointer.\"}},{\"direction\":\"out\",\"edge_type\":\"AUTHORED_BY\",\"other_type\":\"Contributor\",\"other_id\":\"who:ajs\",\"properties\":{\"approved_at\":\"2026-09-26\",\"roles\":[\"author\",\"approver\"]}}]",
+    "state": "{\"concern\":\"usability\",\"kind\":\"functional\",\"lineage\":\"original\",\"name\":\"/genesis in a folder with no design creates the design wherever the client is set to, attaches to it and writes the pointer, in the same session\",\"priority\":\"high\",\"provenance\":\"authored\",\"source\":\"Anthony (who:ajs), dev_reflow2 hub session, 2026-09-26\",\"statement\":\"When a person runs /genesis (or /adopt on code that has no design yet) in a folder that holds no design, reflow2's local client shall create the design where its setup says: locally, as today, or on the remote server through that server's account address (for flo2.io, https://api.flo2.io/mcp). On a remote server it then writes the committed pointer file into the folder and attaches the session to the new design at once, so genesis carries on with no restart and every later session in that folder attaches through the pointer.\\n\\nNOT THIS: a folder that already holds a design (a committed export or a local store) is never \\\"created\\\" again; the empty-design nudge offers the one-time move instead (dec:idea-a-repo-that-holds-its-design-moves-it-to-a-remote-server-once).\\n\\nIN ANTHONY'S WORDS: \\\"When I cd to new_project and then type claude, how does it create the design in the remote reflow2 mcp via api.flo2.io? ... I'm saying to do this from Claude code\\\".\",\"status\":\"proposed\"}",
+    "target_id": "req:genesis-in-an-empty-folder-creates-the-design-where-the-client-points",
+    "target_type": "Requirement"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:fce9ac9d8c7f8c29a9c52133429fd04ef6bf2a67c3580ceaa2b212677e09a3da",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:test-a-bulk-edge-write-keeps-each-helpers-checks",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:test-a-bulk-edge-write-keeps-each-helpers-checks"
+}

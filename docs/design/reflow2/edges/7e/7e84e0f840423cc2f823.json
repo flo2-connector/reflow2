@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:b46c6120b895406aa128b591076cd7f2d77efbc937bb45b4b5fcb5a384133a34",
+  "edge_type": "GOVERNED_BY",
+  "from_id": "cap:claim-liveness",
+  "properties": {},
+  "to_id": "dec:identity-out-of-band"
+}

@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:2c69a6f908b3f609de21a26f7963befb4b5b2c898781dc664f8f3713cb061d15",
+  "node_id": "ver:changelog-view",
+  "node_type": "Verification",
+  "properties": {
+    "description": "The changelog draft is DERIVED and says so: buckets are mapped from graph vocabulary rather than guessed, the [Unreleased] window is everything after the last DEPLOYED release, an empty delta renders as an empty draft rather than an invented entry, and the output is a DRAFT — no entry claims what a consumer should do, because the graph cannot know it. PLANNED, written before the build so the shape of the proof is settled first.",
+    "kind": "verification",
+    "last_reconciled_at": "2026-09-23",
+    "last_reconciled_outcome": "passed",
+    "last_run_at": "2026-07-31",
+    "level": "integration",
+    "method": "test",
+    "name": "The changelog draft is derived from the graph, and says it is a draft",
+    "status": "passing"
+  }
+}

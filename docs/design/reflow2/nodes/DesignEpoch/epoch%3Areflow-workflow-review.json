@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:bf18b87c56d54667a56cc38b2edbdfb27edf96d7e60ec871b97c3dffe9096fa7",
+  "node_id": "epoch:reflow-workflow-review",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "epoch_type": "revision",
+    "name": "Reading the original reflow's workflows back against reflow2 (2026-07-28)",
+    "sequence": 220,
+    "status": "arrived"
+  }
+}

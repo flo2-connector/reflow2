@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:8577dc740091dc438d6120fef6bc618304667a2d54cc208a2b01dd79cd23357a",
+  "node_id": "epoch:bl95-coverage",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "epoch_type": "revision",
+    "name": "BL-95 coverage detector captured (2026-07-24)",
+    "sequence": 110,
+    "status": "arrived"
+  }
+}

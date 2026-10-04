@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:5ad17ccec8e485597aa8bdd1aa25fd0d4a8cafa836340ced82f4e5cd1cf6ef26",
+  "edge_type": "CAUSES",
+  "from_id": "fact:the-tool-class-census-answers-the-open-questions-own-test-and-half-the-sweeps-findings-are-one-offs",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "The census split the sweep's findings into six class-level and seven one-off. This change takes both halves for criterion 2: the bare-zero class extended to arg-taking reads (a class fix, with the gate widened so it cannot regrow), and four of the named one-offs — describe_designs, reconcile_dependencies, propose_allocation and the reviewed_gaps overflow — each fixed on its own terms.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "chg:an-absent-referent-gets-an-answer-and-three-replies-stop-overclaiming"
+}

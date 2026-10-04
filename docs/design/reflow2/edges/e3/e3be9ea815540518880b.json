@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:a5014f878a15142407f796f6d56dbe3683ade1087414e511501956694f53e877",
+  "edge_type": "SCHEDULED_FOR",
+  "from_id": "req:a-discipline-is-delivered-at-the-tool-not-in-a-catalogue",
+  "properties": {
+    "modality": "expected",
+    "recorded_at": "2026-08-18T07:30:00Z"
+  },
+  "to_id": "epoch:the-discipline-arrives-at-the-tool"
+}

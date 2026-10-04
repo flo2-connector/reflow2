@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:9423b69bfc4572495b08845594c6c8d01e76f015b9556fe330c4586700a11345",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-capture-that-replaces-a-node-says-so",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cap:a-capture-can-say-its-node-replaces-an-older-one-and-the-choice-at-the-near-match-check-is-kept"
+}

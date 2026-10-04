@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:89c4535857cc32efeba5350dc9ac2143a9e1de37668d09d64c188b0487b103cf",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-a-quantity-that-crosses-a-seam-carries-its-unit-and-the-seam-check-compares-them",
+  "properties": {
+    "evidence": "Option B is a change inside the budget roll-up, which today sums CONSTRAINS.contribution floats and trusts the Constraint.quantity suffix for the unit — the one place reflow2 already adds numbers blind.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "cap:budget"
+}

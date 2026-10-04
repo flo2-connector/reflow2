@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:c41c8ede73183400862d709e8f8a6e81a7ad14b7e7b5ac5d3f766b5ab5393fb6",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "cmp:hierarchy",
+  "properties": {
+    "dependency_type": "function_call",
+    "optional": false,
+    "weight_basis": "evidence"
+  },
+  "to_id": "cmp:nodes"
+}

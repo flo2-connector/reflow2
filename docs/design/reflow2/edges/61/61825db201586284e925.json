@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:00a22ee97852d8633c2afb95bd2a994deb1886e3b29dd0cc0746a45d4b37f0c8",
+  "edge_type": "REALIZES",
+  "from_id": "art:usage-ledger",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "verified"
+  },
+  "to_id": "cap:feedback-is-a-computed-tally"
+}

@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:d87d6f27de0dfac919324477849f5a894c4bdc3b4ebb23b580131b17f68eaccd",
+  "node_id": "art:change-event-text-test",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "granularity": "atomic",
+    "location": "crates/reflow2-core/tests/change_event_carries_its_own_text.rs",
+    "name": "tests/change_event_carries_its_own_text.rs",
+    "status": "realized",
+    "volatility": "stable"
+  }
+}

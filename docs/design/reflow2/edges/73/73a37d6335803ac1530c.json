@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:7f74cc1f05b0af912e94bff2793e1457f2c5036e19ea6688ff9b3d25e19d4ac2",
+  "edge_type": "CHANGED",
+  "from_id": "chg:accept-5bc5cc883edf7682",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:flow"
+}

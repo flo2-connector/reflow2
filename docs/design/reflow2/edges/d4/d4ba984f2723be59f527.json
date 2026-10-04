@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:9ee1cbd5fceadeb93497f46801b0227be5e48a985794000a60f9b96e6f07b739",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-saved-design-moves-to-the-item-layout-2026-10-03",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:8cdc372ddc44c72d95493f1543124561c088010abf70f59e0631849026762faf",
+    "checksum_basis": "measured"
+  },
+  "to_id": "art:test-a-write-unit-is-all-or-nothing"
+}

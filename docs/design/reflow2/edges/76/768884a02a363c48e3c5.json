@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:bba74138a54c553e30be818065aec4f810ea74d65ef9f1916305e665193ec965",
+  "edge_type": "VERIFIES",
+  "from_id": "ver:a-signature-is-the-callers-own-through-every-writer",
+  "properties": {},
+  "to_id": "cap:intent-authority-is-checked"
+}

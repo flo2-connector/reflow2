@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:ad9413c7a32a9f55001e6c0262e5942d0c3604cbe89039c673d62c26a491bcc1",
+  "node_id": "cap:establish-taxonomy-before-bulk-capture",
+  "node_type": "Capability",
+  "properties": {
+    "description": "As built (2026-09-17). (1) The served establish-taxonomy skill (/taxonomy, aliased in skills.rs): list the categories the design will hold many of in the user's words; decide once per category how an instance is encoded (node type, discriminator, edges, name pattern); put it to the owner and record it as an accepted Decision on their word, one per category; govern every instance with governed_by now and at every later capture; the honest limit stated first. (2) adopt points at it after the breadth pass, genesis after seeding, and genesis's next_steps checklist names it. (3) encoding_undecided: per (type, discriminator) over Component.kind, Interface.medium, Requirement.kind and Verification.method — the discriminators with no materialised default, or whose default is unspecified — fires when live nodes of one type are encoded differently and the silent ones cite no accepted Decision; silent under three; a type where nobody has said fires only at five at lower severity; keyed on the pair. Artifact.artifact_type and Flow.flow_type are not swept because they default to a real value. Plus the typed reach: add_component accepts kind, which no tool could write before.",
+    "name": "Establish the taxonomy once: a served skill, an instruction at the moment between structure and bulk capture, and a detector that names siblings encoded differently with no governing Decision",
+    "provenance": "authored",
+    "status": "realized"
+  }
+}

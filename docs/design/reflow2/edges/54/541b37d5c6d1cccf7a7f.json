@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:d8bfc3f9529017faf2e26dbb7741427dfcdcd6321a76310f58bc46cbd3d58455",
+  "edge_type": "HAS_TEMPORAL_FACT",
+  "from_id": "cmp:detect",
+  "properties": {},
+  "to_id": "fact:defect-a-question-not-created-by-gap-to-prompt-can-never-be-answered"
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:64a8ec878b379eba3b02ccdb40948e6b57030032edfe007c3001cdfd7b98cb76",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0340",
+  "properties": {
+    "as_checksum": "sha256:9a86b59dc94de982a97460fbaa8e22a85d4929f2bbc0db0d6a62338bf0fbdede"
+  },
+  "to_id": "art:test-surface-orphaned"
+}

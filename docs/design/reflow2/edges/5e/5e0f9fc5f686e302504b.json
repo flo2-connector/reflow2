@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:ecaeb75e3115176d9f117b7918bcd73c91cfeb6113ef84c9658b712c302e2fc7",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:decision-point",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:alternatives"
+}

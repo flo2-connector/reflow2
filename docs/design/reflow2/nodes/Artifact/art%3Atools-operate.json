@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:63b5baad30da52929cac1014e041dc9e21518459fef01cfc2313bbb91f3b141d",
+  "node_id": "art:tools-operate",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "granularity": "atomic",
+    "location": "crates/reflow2-mcp/src/tools/operate_tools.rs",
+    "name": "tools/operate_tools.rs",
+    "status": "realized",
+    "volatility": "stable"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:25cb805046d127959445d369b68e56de6199ab2a18bcb8f3b359c9a073fc94fc",
+  "edge_type": "CHANGED",
+  "from_id": "chg:artifact-intent-stops-being-injected",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:schema-build"
+}

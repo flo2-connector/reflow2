@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:af90e86abe247c379e55e1d03c729a62505819e69cd3eab273aa66e29b20eea8",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-finding-or-refusal-names-the-route-that-works",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:test-the-commonest-edge-has-a-typed-helper"
+}

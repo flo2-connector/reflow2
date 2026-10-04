@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:d25af884cd9fa2a9d682926130c685063118c21573d10c6a33e00742261ce449",
+  "node_id": "fact:what-worked-find-tools-ranks-tools-with-parameter-names-through-the-door-2026-10-02",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "finding",
+    "name": "WHAT WORKED, re-measured on 0.77.0 (2026-10-02): `--call find_tools` returns ranked tools with parameter names and a one-sentence summary, and says how many it matched, omitted and searched, in ~0.13–0.22 s. It is a --call agent's only catalogue. Do not regress it. Its items carry no read-only/write marker, which is one reason limitation 2 has no served answer",
+    "source": "art:vscode-call-door-field-report-2026-10-02",
+    "statement": "From the \"Measured\" table of art:vscode-call-door-field-report-2026-10-02 (\"--call find_tools: ranked tools with parameter names and summaries\"), re-measured by triage agent D (0.77.0, scratch store; log /home/ajs7/.claude/jobs/fa666a94/tmp/triage-D/measure.log).\n\nHOLDS. `--call find_tools --args '{\"query\":\"import a whole design document from a file\",\"limit\":3}'` → exit 0, 0.22 s. It ranked import_graph first (parameters accept_newer, document, path; summary \"Load an exported design into this graph.\"), then documents and ingest_corpus_step, with matched 193, omitted 190, searched 193. Each item has exactly four keys: tool, summary, parameters, score.\n\nWHAT IT DOES NOT CARRY, measured, for the door's readers:\n- no read-only/write marker. A --call agent therefore cannot learn the read set (78 of 195 tools on main) from anything served, which bears on limitation 2 (fact:root-cause-one-regex-cannot-separate-door-reads-because-the-read-set-is-not-in-the-command-and-not-served-2026-10-02);\n- no types or required-ness (limitation 5, another agent's slice).\n\nTwo side observations, one line each:\n- the served surface searched is 193 tools, while main's toolsnaps hold 195 files. dimension_drifts, manual_work_report and record_change have snaps but were not among the 192 a broad query returned. Whether that is deliberate (stub, alias) is NOT ESTABLISHED here;\n- the reporter's friction row \"find_tools for 'read one node by id with its properties and edges' does not return get_node\" reproduces (top 5: create_edges, draw_edges, scan_nodes, add_actor, describe_schema). That row belongs to another triage slice.",
+    "subject_id": "cap:tool-search",
+    "valid_from": "2026-10-02"
+  }
+}

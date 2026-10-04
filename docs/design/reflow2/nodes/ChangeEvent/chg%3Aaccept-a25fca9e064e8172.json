@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:2a93abc70407af7e620e4e74c064e4320a6ef33cb927b23ad3ddb2c1eeb390fe",
+  "node_id": "chg:accept-a25fca9e064e8172",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "defect_fix",
+    "detected_at": "2026-08-20",
+    "name": "modularity becomes Option<f64> and is None when fewer than two components carry any coupling — there is no partition to score, so the 1.0 that used to fall out of `total == 0.0` was arithmetic rather than health. THE DESIGN WAS RIGHT AND THE CODE WAS WRONG: `fact:defect-allocation-health-is-green-over-an-empty-structure` recorded this on 2026-08-07 and asked for exactly this and nothing more — not a formula change, not a judgement. Adds `components_with_coupling` so a reader sees the denominator.",
+    "subject": "system"
+  }
+}

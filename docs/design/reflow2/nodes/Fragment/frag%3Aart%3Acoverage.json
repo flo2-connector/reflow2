@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:ec5b6fa1d3c3d334f6a5b21a28886aa05db8184c3e53ab8fdd7e3b3b8697d6a6",
+  "node_id": "frag:art:coverage",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered coverage.rs"
+  }
+}

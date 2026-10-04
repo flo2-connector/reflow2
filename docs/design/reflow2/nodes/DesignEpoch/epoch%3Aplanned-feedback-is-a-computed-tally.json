@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:79111d8c0bdfa775b5a8b322c05e0f8f7799828cd038903fb4c16a73becf218b",
+  "node_id": "epoch:planned-feedback-is-a-computed-tally",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "description": "Anthony's word, 2026-09-12: \"I want to continue with implementing /feedback.\" The first increment after the five ordered on 2026-09-11 (430–434, all arrived).\n\nIN: (1) the server appends one line per tool call to a usage ledger beside the design's store — tool, outcome class, refusal class where refused, duration, timestamp, harness name/version, seat — never an argument, a node id or a message; nothing is written for an in-memory design; a write that fails never fails the call. (2) A read tool that renders the ledger since the previous report (or a named date): calls by tool, never-called served tools, refusals by class and tool, skills fetched, harnesses seen, plus the metadata the server knows — reflow2 version, OS and architecture, protocol revision, design size — and writes a report marker so the next report starts after it. (3) A served skill `feedback` with the `/feedback` shortcut and its command file in the kit for every harness: it calls the tool, adds the agent's self-reported model labelled as self-reported, invites one line of disposition per refusal row, appends the whole to the project's own feedback file and shows it to the person — never sends it anywhere. (4) Tests shown to fail first: the ledger holds the verbs and never the objects; a refused call is classed, not quoted; an in-memory service writes nothing; the report covers exactly the window since the marker; the skill and command pass skill_lint and the kit manifest check; the new tool is found by a query in the user's words.\n\nNOT IN: telemetry of any kind (nothing leaves the machine); a per-session unit in shared mode (the unit is the project, since the last report — decided, see the requirement); the refusal ledger as graph NODES (never in the design); capturing failures outside reflow2's sight (shell, git, CI — report-friction stays the form); the notepad and serve-the-lesson-at-the-step ideas from the same day's thread, which remain open.",
+    "epoch_type": "revision",
+    "name": "Increment 437 — feedback is a computed tally",
+    "sequence": 437,
+    "status": "arrived"
+  }
+}

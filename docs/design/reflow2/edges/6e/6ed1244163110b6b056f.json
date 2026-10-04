@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:a6d32fee85fb839524030aeb174ca969397f9585c68d6b52eab24d0f41f60cf8",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:derived-completion",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:report"
+}

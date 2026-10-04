@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:e79d3c2142c9e0b1744e29d58a64a1464da53db60bceec76f14942fe6fb80753",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-the-user-declares-an-se-unit-on-purpose-with-a-skill-per-unit",
+  "properties": {
+    "evidence": "The agent-facing half of this idea IS that question's subject matter: it measured the translate-to-the-user lens on 2 of 177 tools and the black-box frame in no served instruction. If the answer there is 'state the principle and keep a term table', the agent-facing half of this is already built and this reduces to the user-facing half alone.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "dec:idea-does-the-black-box-frame-reach-the-agent-at-call-time"
+}

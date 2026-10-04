@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:085c79f5c619cce9a2d35bc7b0183b1bb70d3f644c2bbceae1d0d4f45d9469f1",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-surface-gate-says-which-binary-it-read",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cmp:packaging"
+}

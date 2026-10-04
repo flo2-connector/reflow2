@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:10d7874afbe35a2d3c150484cf5827b2e9fd6acb25fe31896aa5df21ee19c1f5",
+  "edge_type": "CHANGED",
+  "from_id": "chg:reflow2-measures-registered-files-and-never-reads-them-for-meaning",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:tools-coherence"
+}

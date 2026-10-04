@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:dbc8d8be9f25c5564e4c85a78a8e53df8a6c4f78be2c61382f0fda23cec0ade5",
+  "node_id": "req:a-lesson-lands-in-the-cheapest-correct-place-and-the-rule-saying-so-arrives-at-the-step",
+  "node_type": "Requirement",
+  "properties": {
+    "lineage": "original",
+    "name": "A lesson lands in the cheapest correct place of three, and the rule that says so arrives at the step where a lesson is recorded",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "Anthony, 2026-09-19, promoting the recommended fix: a lesson a session learns is ENCODED where it can be automated (a gate step, a test, a CI job), recorded in the GRAPH where a person or an agent must read and judge it or where it is true on another machine, and left in an agent's MEMORY only where it is true of one box alone. The rule stating this carries `steps`, so it is served at the moments a lesson is recorded rather than waiting to be looked up. Basis: of 32 DesignRules, 10 carried steps; this one carried none and kept being broken, while its sibling from the same advisory ruling was given a step and held. The unbuilt remainder, deliberately named rather than assumed: a check that every memory file points at a node and holds no content of its own — which must run locally, because the memory directory is outside every tree reflow2 reads.",
+    "status": "accepted"
+  }
+}

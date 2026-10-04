@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:f393cc88b15eef3f78ed57d86d417fd59822bba72773849f94d11333383d206a",
+  "node_id": "chg:backlog-question-settled",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "scope_change",
+    "name": "dec:idea-backlog-belongs-in-the-graph goes proposed → superseded: the open question is answered, not withdrawn. It held five options and no choice from 2026-08-04; Anthony settled it on 2026-08-07 with \"the backlog needs to be retired once and for all - I approve whatever decisions need to be made to make this action occur.\" Option (a) — route each row to the type it already is — won, and it only became available when dec:defects-are-temporal-facts gave the fourth category a home. Recorded BEFORE the status edit, so the snapshot pinned beside this event holds the node as it was while still open, with all five options and the measurements that argued between them. The question keeps its full text on the record because the taxonomy in it is what makes the migration checkable — including the failure mode it names, which is the standard the migration must be judged against."
+  }
+}

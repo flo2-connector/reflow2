@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:82b3054f2b0c6d04f8a426f19d44303016c6dd386cd8c610f5cc7caf8f23a80e",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-node-records-what-the-user-calls-it",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:schema-functional"
+}

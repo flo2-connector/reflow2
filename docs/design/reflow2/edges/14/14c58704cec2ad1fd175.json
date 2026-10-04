@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:04e6b10112d11b6dda3d2da0035cca0554e70efaa28cf95b5f5db31f8bfd4ed7",
+  "edge_type": "CHANGED",
+  "from_id": "chg:eight-field-feedback-fixes-land-for-v0510",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:schema-build"
+}

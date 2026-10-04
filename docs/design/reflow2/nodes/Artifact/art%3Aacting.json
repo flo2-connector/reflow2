@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:09b32c35cf85e9962eac92e6046cdd0d42cdfd16144a1c18ca74556b39d8e6be",
+  "node_id": "art:acting",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "description": "The ACTS_FOR rung: Acting (agent, route), begin_acting / end_acting, require_acting_agent (an existing automated_agent Contributor), agent_for_client (matched by handle, never minted), stamp_through_acting_agent (the *_via stamp on an AUTHORED_BY write) and record_acts_for.",
+    "location": "crates/reflow2-core/src/acting.rs",
+    "name": "acting.rs: which agent a write went through (ACTS_FOR)",
+    "status": "realized"
+  }
+}

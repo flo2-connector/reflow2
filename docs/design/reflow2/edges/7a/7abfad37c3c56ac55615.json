@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:8572aa59531cbca135c971569b4c496ce4995ee4e5da2503960079259c57aae7",
+  "edge_type": "REALIZES",
+  "from_id": "art:loop-nudge",
+  "properties": {
+    "completeness": "partial",
+    "conformance": "verified"
+  },
+  "to_id": "cap:the-graph-asks-what-a-session-made-false"
+}

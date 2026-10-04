@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:fd21c8787a3202aa6d1ebbb6029004c810c116c408f49d932209e23778287300",
+  "edge_type": "GOVERNED_BY",
+  "from_id": "cap:the-cli-describes-a-tool-with-its-schema-and-lessons",
+  "properties": {
+    "note": "Built as settled: the CLI describes a tool with its full schema and its lessons (step 4 of the door plan), with the empty-probe correction applied — the listing is built from the OPENED design."
+  },
+  "to_id": "dec:idea-the-cli-describes-a-tool-with-its-schema-and-lessons"
+}

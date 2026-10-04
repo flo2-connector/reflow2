@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:d3bd261ef114b6739ed764b71196d2b3f03d3709208cf21771f47fbb8b08dd71",
+  "edge_type": "ANTICIPATES",
+  "from_id": "dec:idea-have-the-three-legs-been-applied-uniformly-and-are-three-legs-enough",
+  "properties": {
+    "evidence": "The earlier one saw this coming and asked the exact question this pass answers with evidence: whether three legs are enough, and whether a fourth is needed to make a practice HAPPEN rather than merely be possible and observable. It had two measured cases; this adds eight, and one of them is a sub-shape it could not have predicted — an instruction that is present, correct, and addressed to the wrong reader."
+  },
+  "to_id": "fact:eight-more-instances-and-one-is-misrouting-rather-than-a-missing-leg"
+}

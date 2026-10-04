@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:9bcea0eb267c09de170a6217cdf15091d2643af49cab94bbefc7bb1d5930af13",
+  "node_id": "req:invocation",
+  "node_type": "Requirement",
+  "properties": {
+    "concern": "core",
+    "designation": "internal",
+    "kind": "functional",
+    "lineage": "original",
+    "name": "Invoked as an MCP server over stdio",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "The user-facing surface is the reflow2-mcp binary spoken to over stdio, installed into a consumer project by tools/reflow2_init.py, which merges rather than overwrites existing agent configuration.",
+    "status": "accepted"
+  }
+}

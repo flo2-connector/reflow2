@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:f4f5c9b9c361259fb873cec673459017444773f02a7bb2e1e2a4924aab2a6b70",
+  "edge_type": "CONTRADICTS",
+  "from_id": "dec:idea-the-loop-reports-a-standing-backlog-when-a-session-can-only-act-on-what-it-touched",
+  "properties": {
+    "alignment": "opposing",
+    "evidence": "That decision settled that loop debt is computed entirely from current graph state and that reflow2 does not track when tools were run. The wish's `since_change_event` option asks loop_status to scope its report by run history, which that decision rules out — so the design has to pick. Recorded as CONTRADICTS rather than left implicit because the collision bounds the option set: the wish's other option, a caller-supplied `touching: [node_ids]` filter, is still state-computed and survives the decision intact."
+  },
+  "to_id": "dec:loop-status-state-not-history"
+}

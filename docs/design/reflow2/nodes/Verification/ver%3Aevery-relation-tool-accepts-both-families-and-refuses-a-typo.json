@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:03411537c07e1e12886e1ad64dd9de9802fe5fdabdce09b8eab1d652924b7cab",
+  "node_id": "ver:every-relation-tool-accepts-both-families-and-refuses-a-typo",
+  "node_type": "Verification",
+  "properties": {
+    "description": "crates/reflow2-mcp/tests/a_relation_tool_accepts_the_other_familys_names.rs (5 tests), table-shaped over every relation request struct: the from/to family with role names and node_id (7 pair structs + governed_by); the role-named family with from_*/to_* (16 structs); the who-family with node_* and to_id (6 structs); a misspelling refused as unknown field and both spellings of one end refused as duplicate; and the fleet's handoff end to end on the served surface — allocate by capability_id/component_id, satisfies by search_design's node_id, verifies by from_id/to_id.",
+    "findings": "5 of 5 passed inside a reflow2-mcp run of 381 passed / 0 failed; clippy clean; skill lint green; toolsnap check green with ZERO goldens changed — the aliases are not advertised, which is the point. Observed failing first three times, each a fixture fault (gate_on needs kind and min_level, link_artifact needs name, register_alternative needs location): the table test found required fields the alias fixtures had omitted, which is the table doing its job.",
+    "kind": "verification",
+    "last_run_at": "2026-09-06",
+    "level": "integration",
+    "method": "test",
+    "name": "Every relation request struct deserializes from both families; a typo and a duplicate end are still refused; the reported handoff lands end to end",
+    "status": "passing"
+  }
+}

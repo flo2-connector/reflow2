@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:15a8bbf87cf1c4f174c2a04cba3d5db4b4c9e0339506502bd739e3bf47406855",
+  "edge_type": "ANTICIPATES",
+  "from_id": "dec:idea-can-reflow2-see-the-work-a-session-did-by-hand",
+  "properties": {
+    "evidence": "That question proposed four ways to see hand-rolled work and this is the road taken: the CHEAPEST, asking the agent at session end. It is recorded here rather than by closing that node, because the question deliberately keeps the roads NOT taken — the transcript-side detector remains unexplored, and its larger build and unusual privacy posture are why asking was tried first. Building this does not answer it."
+  },
+  "to_id": "cap:a-session-reports-the-work-it-did-by-hand"
+}

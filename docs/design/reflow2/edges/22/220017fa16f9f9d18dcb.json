@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:a1531dacfc6ebee55a465be937f6df1735ffabd2efe9c0f4429aa8300fc436eb",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:no-fabricated-repair",
+  "properties": {},
+  "to_id": "req:a-repair-suggestion-never-proposes-fabrication"
+}

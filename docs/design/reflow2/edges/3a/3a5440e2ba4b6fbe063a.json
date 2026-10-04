@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:c9a929036e163ab81ed88fa013088f127b84e5c063478cbade5b7a8053e98155",
+  "edge_type": "INVALIDATES",
+  "from_id": "con:loop-status-after-a-write-answers-under-one-second",
+  "properties": {
+    "at": "2026-09-12",
+    "note": "Both edges this defect named are corrected on 2026-09-12 with dated measurements: con:loop-status-warm-latency-ms → cap:loop-status now carries 1,291 ms (was the pre-fix 12,502; the budget HOLDS), and con:a-full-orientation-pass-costs-at-most-8-seconds → cap:loop-status carries 4,192 ms warm (was 31,000; holds warm — cold not re-measured). The judgement the previous session parked — which figure a budget named \"warm\" should carry, 1,912 or 6,354 — was dissolved rather than decided: this second constraint carries the after-write case, so the warm budget takes the warm number and nothing else. The CLASS (a superseded measurement on a CONSTRAINS edge makes budget_report lie, and nothing reconciles the edge with a later fact) is NOT fixed; it recurred a third time the same day (con:a-read-after-a-write…, 1.41 → ~1,100) and stays open on the constraint notes and the handoff."
+  },
+  "to_id": "fact:the-budget-edges-still-carry-the-pre-fix-numbers-so-budget-report-says-exceeded-for-a-budget-that-holds"
+}

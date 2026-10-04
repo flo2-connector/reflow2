@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:ee92499161b0787cf0b96d9e635a4867cf474add5a2b4fcabb4ed0ba44439998",
+  "node_id": "fact:bl-148",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "defect",
+    "statement": "[BL-148] A session's tool surface changed under it mid-conversation and nothing said so — the BL-32 hazard running in reverse",
+    "subject_id": "cmp:service",
+    "value": "{\"evidence\": \"*Found 2026-08-01 by an /adopt pass over music_graph, a ~11k-LOC Python research repo taken from an empty graph to 134 nodes / 379 edges. Reported in that project's own reflow2_feedback.txt.* When the shared server restarted it came back on a newer binary: two tools that had not existed appeared (calibrated_against, set_evidence_scope \\u2014 the [BL-106]/[BL-126]/[BL-136] family, merged that morning) and served_by.binary_mtime_unix jumped from 1785556181 to 1785561997. This is the [BL-32] hazard inverted \\u2014 not a stale server serving an old surface, but a live session whose surface changed underneath it. Nothing broke, and the version string stayed 0.20.0, so version alone would not have revealed it. served_by.binary_mtime_unix is what made it visible, which is an argument for keeping that field. Fix shape, and the reporter's own: a one-line note in the tool result when the surface changes mid-session \\u2014 *\\\"server restarted on a newer build; N tools added\\\"* \\u2014 turning something noticed by accident into something a session is told. Related to [BL-113] and the launch-wrapper trap from the other direction: that one is a session talking to the wrong design for hours, this is a session talking to a different *surface* than the one it started with. Both are silent, and both are only findable by inspecting the process rather than the protocol. Size S\", \"origin\": \"Migrated from docs/backlog.md BL-148 on 2026-08-07 (epoch:backlog-retired). Size estimate carried from the row: S.\"}"
+  }
+}

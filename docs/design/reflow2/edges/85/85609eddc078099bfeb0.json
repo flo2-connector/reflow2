@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:1bb92b63472fc432ba0c9bb25b6481e45bbbde7f2814903977411b1e85f187f4",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:capture-registers-its-source",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:skills"
+}

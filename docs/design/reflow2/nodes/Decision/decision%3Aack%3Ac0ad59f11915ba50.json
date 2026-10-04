@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:240d50d0e659048a4c52c9591799dcd198b4eca24d4b1413ca411f5fea007898",
+  "node_id": "decision:ack:c0ad59f11915ba50",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Accepted the gap gap:c0ad59f11915ba50.",
+    "name": "Reviewed: gap:c0ad59f11915ba50",
+    "rationale": "Deferred on Anthony's word, 2026-07-28, with the other captures from the reflow workflow review. Accepted and not dropped: reflow2 measures erosion under repeated build rounds (the erosion trial is a regression gate) and never bounds it, where reflow halted after three P3/P4 loops and forced a resync up to architecture, escalating to functional analysis above a drift score of 0.5. Deferred because the trigger is genuinely undecided — a loop COUNT needs a loop counter reflow2 does not have, so the honest trigger may be measured drift, elapsed writes, or both, and choosing wrong would produce a detector that fires on correct work (the BL-23 lesson: when a detector punishes correct work the answer is a different question, not a tuned threshold). Deliberately NOT treated as phase-model legacy: the mechanism is for work that does not terminate, which is the continual-evolution case.",
+    "status": "accepted"
+  }
+}

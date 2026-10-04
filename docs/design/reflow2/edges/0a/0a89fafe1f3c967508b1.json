@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:fef8886b80a1fd0529f3c23f41f25af2e8e165c4883fa15772619d450ec92d09",
+  "edge_type": "CHANGED",
+  "from_id": "chg:cycle-break",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:drift"
+}

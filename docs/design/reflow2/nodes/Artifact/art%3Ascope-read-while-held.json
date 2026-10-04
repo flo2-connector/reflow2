@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:302daf8315153cfd17dfa993afe14aa0d39d1a66404f92bab09b21359ecf764a",
+  "node_id": "art:scope-read-while-held",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "document",
+    "granularity": "atomic",
+    "location": "docs/scope-read-while-held.md",
+    "name": "scope-read-while-held.md",
+    "status": "realized",
+    "volatility": "stable"
+  }
+}

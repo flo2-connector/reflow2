@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:ace3dd308689e35146b6fa9641e9a22a3cbd9008325a2b2e255f33639fd48e30",
+  "node_id": "art:dockerfile",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "granularity": "atomic",
+    "location": "Dockerfile",
+    "name": "Dockerfile",
+    "status": "realized",
+    "volatility": "stable"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:be3a5f2d507f530b978d5ff4a40dd48871c939db38ed0c876c11914e7acc3a9d",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "req:telemetry-carries-usage-never-design-content",
+  "properties": {
+    "dependency_type": "data_flow",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "req:reflow2-can-say-which-of-its-own-skills-a-session-reached-for"
+}

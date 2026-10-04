@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:61b5baf8aa98ce4d8e8df176d6cdf3c607199acb49816685bfa87f3039ce5ccb",
+  "edge_type": "CHANGED",
+  "from_id": "ce:quality-target-2026-08-25",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:genesis-skill"
+}

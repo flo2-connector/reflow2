@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:2e31a66836cca347415e09ab47417de8477e72af3e76de6fc24a04832a7f7f80",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "rule:design-information-lives-in-the-graph-not-in-documents",
+  "properties": {
+    "authored_at": "2026-08-15",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

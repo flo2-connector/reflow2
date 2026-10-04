@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:fae252f1245044b5a3ac69af2f15801b3a41d13e8a67779576449c92a2dc9d55",
+  "edge_type": "REALIZES",
+  "from_id": "art:smoke-mcp",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "verified"
+  },
+  "to_id": "cap:the-handshake-is-written-down-beside-the-graph"
+}

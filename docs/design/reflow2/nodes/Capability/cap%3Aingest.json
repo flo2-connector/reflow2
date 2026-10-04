@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:7933f78260fab9f04ac0ae7ea5f38e2225895c731cbe359b1b0de5c2a563802d",
+  "node_id": "cap:ingest",
+  "node_type": "Capability",
+  "properties": {
+    "description": "Multi-pass LLM extraction with provenance.",
+    "name": "Extract a design from freeform text",
+    "provenance": "authored",
+    "status": "verified",
+    "tier": "operational"
+  }
+}

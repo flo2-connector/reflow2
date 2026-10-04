@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:71039a5680a04580047370d1596102a93d4dff51bed4e59e6fb4b954a4a847f4",
+  "node_id": "fact:seam-report-is-named-for-something-it-does-not-do",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "confidence": 1.0,
+    "fact_type": "defect",
+    "statement": "`seam_report` DOES NOT REPORT ON THIS DESIGN'S SEAMS. It compares PAIRED BOUNDARIES ACROSS TWO LINKED DESIGNS (`req:seam-incompatibility`): it takes `other: &GraphExport` and a list of `(our interface id, their interface id)` pairs, and answers whether the two sides agree on medium, paradigm, auth and the rest. It has nothing to do with the couplings inside one design. || THE THING THAT DOES OWN THAT DEFINITION IS `seam_sets`, in `maturity.rs` — `pub(crate)`, deliberately extracted so the maturity `seams` band and `detect_undeclared_seams` cannot disagree about what a contract is, and reachable from no tool at all. || MEASURED CONSEQUENCE, 2026-08-23: asked where a within-design seam roll-up should live, an agent read the NAME and recommended `seam_report`; the user chose that option on the recommendation. The mistake surfaced only on opening the source. The reason he gave for choosing it — one definition of a contract, no second place that could drift — was correct and was preserved by extending `seam_sets` instead, so the outcome was right and the route to it was luck. || ⭐ THE GENERAL SHAPE, and it is what makes this worth recording rather than filing as a personal slip: A NAME IS A CONTRACT WITH THE READER, AND ON A 156-TOOL SURFACE IT IS THE ONLY PART MOST CALLERS READ. `find_tools` ranks over name, description and parameter names, so a tool whose name describes a different job than it does is mis-discoverable by construction — and `cap:tool-search` exists precisely because the surface is too large to hold in context, which means nobody is going to read the body first. || NOT ESTABLISHED, and deliberately not fixed here: whether the right answer is renaming `seam_report` (a published-surface change with toolsnaps and existing callers behind it), renaming the internal `seam_sets`, or leaving both and letting the new `seam_coverage` carry the within-design meaning. Recorded so the next reader meets the ambiguity before it costs them the same detour.",
+    "subject_id": "cmp:seam",
+    "valid_from": "2026-08-23"
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:db9c3368d069a0463cb69585a448391ab5144d487d7566e22f88c03dc6b46260",
+  "node_id": "ver:the-declared-subsystems-are-acyclic",
+  "node_type": "Verification",
+  "properties": {
+    "description": "Runs tools/wall_check.py, which builds the module import graph from crates/*/src/**.rs with comments and string literals stripped, lifts those edges to the declared subsystems through each Component's CONTAINS placement, and runs Tarjan over the induced subsystem graph.\n\nPASSES when that graph has no cycle: every declared wall is crossed one way only, so a change can be handed to a boundary and stop there.\n\nWHY THE CHECK IS NEEDED AT ALL, and this is the part worth keeping: reflow2's own circular-dependency detector cannot answer this and is not broken. It reasons over DEPENDS_ON edges in the design, and the subsystem layer held exactly two coupling edges, both CONSUMES to an external interface. Zero subsystem-to-subsystem edges means the detector has nothing to run on, and its green reads as 'your subsystems are acyclic' while meaning 'your subsystems have no modelled coupling'. This check reads the SOURCE instead, so it cannot be fooled by an unmodelled edge.\n\nSTATED LIMIT: an import graph is coupling, not a contract. This says a boundary is severable in principle; it does not say the dependency across it is contracted, which maturity_report reports separately and which stood at 0 of 73 when this check was written.",
+    "findings": "RUN 2026-08-20 on the compare-stops-reaching-into-report branch, after both changes of epoch:the-declared-walls-hold: \"NO SUBSYSTEM CYCLES — every declared wall is crossed one way only.\" 9 subsystems, 43 components placed, 25 code edges inside a subsystem and 72 crossing one, all one-directional.\n\nTHE TRAIL, because the number moved twice and both moves were earned:\n  before either change   2 cycles — sys:store <-> sys:vocabulary, sys:coherence-loop <-> sys:time-history\n  after change 1 (#264)  1 cycle  — the kernel was reunited as sys:foundation, no Rust touched\n  after change 2         0 cycles — the design-type list moved down to `nodes`, one import removed\n\nWHAT THIS RUN DOES NOT SAY: 10 Components still report no coupling in the design while their same-named module is coupled in the source (cmp:dto at code degree 11 the worst), and 0 of 73 dependency pairs are mediated by a contract. A boundary being severable in principle is not the same as the dependency across it being declared, and neither of those numbers moved.",
+    "kind": "verification",
+    "last_run_at": "2026-08-20",
+    "level": "system",
+    "method": "analysis",
+    "name": "Every declared subsystem boundary is crossed in one direction only",
+    "status": "passing"
+  }
+}

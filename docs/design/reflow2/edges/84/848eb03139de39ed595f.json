@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:23ca0692e7d283cc74ee80a93eff82b92fc38c6b5d51560dfefeed64c503ff16",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0551",
+  "properties": {
+    "as_checksum": "sha256:05ce690aea2d48f10e96d4e6d6463578bd9c223ae8e38a48eadf0c97a5872371"
+  },
+  "to_id": "art:skills"
+}

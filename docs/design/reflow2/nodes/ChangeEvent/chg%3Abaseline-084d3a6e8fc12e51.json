@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:a0054825aa14243c527258ff95645b16abf3026ddd178af98ed0afbac8cb2114",
+  "node_id": "chg:baseline-084d3a6e8fc12e51",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "baseline_established",
+    "detected_at": "2026-08-31",
+    "name": "First baseline. Copied byte-identical from /home/ajs7/project/musicjug/feedback.md and verified with diff before registering.",
+    "subject": "record"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:08e1b1e3e166627da2d8db6d30ad7e9e4ed5056d47e91d715fd82ab530fb4f5a",
+  "node_id": "chg:a-documentation-change-has-a-name",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "name": "ChangeType gains `documentation` — 13 doc-only ChangeEvents were recorded under three labels that cannot all be right, and a fourth project reached for a word that is still not there"
+  }
+}

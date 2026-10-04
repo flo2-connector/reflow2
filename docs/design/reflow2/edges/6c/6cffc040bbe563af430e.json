@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:15c406d4d60a4543d50e687447d80f9e686dbf2ef78eda01e92e9d5abcb2ac83",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-saved-design-moves-to-the-item-layout-2026-10-03",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:3c5b06035cd61138f6c5b92d05bb88854652e0286d7a3274a1a204c82e70b801",
+    "checksum_basis": "measured"
+  },
+  "to_id": "art:test-a-recalled-reason-is-not-read-as-one-written-at-the-time"
+}

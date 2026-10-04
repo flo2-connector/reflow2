@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:99c10d3fcc0b8ccd8a7127e467769f013de29eb8136a68700540e7b74ea78121",
+  "edge_type": "CHANGED",
+  "from_id": "chg:requirement-lineage-built",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cap:requirement-lineage"
+}

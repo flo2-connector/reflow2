@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:f1e48f25dbab57b96007c5d3b5dd1f6599122419c6317826647631a7e8c55f0d",
+  "node_id": "question:246c896ba603244d",
+  "node_type": "Question",
+  "properties": {
+    "answer": "Split them. The imported backlog rows and the planned ones are ideas, not capabilities anyone asked for — accept them as imported intent. The five that are already BUILT are the real finding; bring those to me individually.",
+    "asked_at": "2026-08-23",
+    "context_setter": "Nothing asked for capability “A project can optimise a module against a budget written down first”",
+    "gap_id": "gap:246c896ba603244d",
+    "question": "Twenty-four capabilities trace to no requirement. Fourteen are backlog rows imported when docs/backlog.md was retired; five are already BUILT. What need do the built ones serve? A requirement written from a capability's own description is satisfied by construction and can never contradict anything, so it has to come from you rather than from me.",
+    "rephrase_degraded": false,
+    "status": "answered"
+  }
+}

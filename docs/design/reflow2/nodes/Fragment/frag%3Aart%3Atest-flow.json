@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:10c6bc3d51695a03f75212edbec2124e6239517f3bdcd594494c0d78d8bca310",
+  "node_id": "frag:art:test-flow",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered crates/reflow2-core/tests/flow.rs"
+  }
+}

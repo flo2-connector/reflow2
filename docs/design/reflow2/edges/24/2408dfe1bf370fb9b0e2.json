@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:178a8ca3692c0179e2f934b761e42d5cf4cfe6e5be37b761a06bb207513b0bd5",
+  "edge_type": "INVALIDATES",
+  "from_id": "chg:a-contribution-may-be-negative-and-a-refusal-says-which-fields-are-missing",
+  "properties": {
+    "at": "2026-09-19",
+    "note": "Every tool's missing-field refusal now names the fields this call lacked, all at once; the constructors keep RequiredFields for their content fields. The finding stands as the measurement."
+  },
+  "to_id": "fact:field-report-bhome-2026-09-18-every-constructor-lists-its-missing-fields-at-once-and-the-other-tools-refuse-one-at-a-time"
+}

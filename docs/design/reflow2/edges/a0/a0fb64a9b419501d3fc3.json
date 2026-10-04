@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:f914674212dfb6536a8fd21c42a600f8354ec212c312cca58c0e11053518dd83",
+  "edge_type": "AT_EPOCH",
+  "from_id": "chg:the-stale-lock-reclaim-is-serialized",
+  "properties": {},
+  "to_id": "epoch:the-reply-budget-sweep"
+}

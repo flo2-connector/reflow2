@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:d6e07ae9605405918b3e61c5392f576288d6aa71a35035619933b4d414b4b67d",
+  "node_id": "art:find-tools-rank-baseline",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "test",
+    "location": "crates/reflow2-mcp/tests/fixtures/find_tools_rank_baseline.json",
+    "name": "find_tools_rank_baseline.json — the rank ratchet: tools not first for their own job (name matches) and the mutual pairs; both lists only shrink",
+    "status": "realized"
+  }
+}

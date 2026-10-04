@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:68a5569d890397b4439d4472937b34fecb0321b6b751029e61f503032accac5e",
+  "edge_type": "CAUSES",
+  "from_id": "fact:defect-causes-validation-status-hint-names-the-wrong-enum",
+  "properties": {
+    "basis": "observed",
+    "confidence": 0.8,
+    "evidence": "A second instance of the same class found the same day, one layer lower: a property's own description disagreeing with its validator, with no build step or file boundary between them. Whatever guard is settled for skills should be weighed against this case too.",
+    "validation_status": "validated"
+  },
+  "to_id": "dec:idea-a-skill-may-assert-the-defaults-it-relies-on"
+}

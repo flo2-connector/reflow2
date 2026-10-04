@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:b04e96d3c82ff4fcd6fe356b9de17698d15e953039a32ae98349e2b3633b781a",
+  "edge_type": "REALIZES",
+  "from_id": "art:governance-proposal-skill",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:governance-proposal"
+}

@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:d95d0fcf15a38f70a19229780e63c0fb5f72daf2a4ce018a862ffd93ab4148b5",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "cmp:ingest",
+  "properties": {
+    "dependency_type": "function_call",
+    "note": "ingest.rs calls the sanitizer at its single integration choke point — every extracted node's text passes through the trust boundary on its way into the graph. A real code dependency, not a bridge drawn to satisfy a detector.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:sanitize"
+}

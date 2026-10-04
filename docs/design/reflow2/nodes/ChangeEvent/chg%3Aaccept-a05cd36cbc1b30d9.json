@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:e43db2ddf0a295997a8e45608f2357cb792cfcba7adac5ef9de8886c8eb87fb6",
+  "node_id": "chg:accept-a05cd36cbc1b30d9",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "test_failure_fix",
+    "detected_at": "2026-07-28",
+    "name": "`claude mcp get` takes a NAME and no `--scope` (only `add` and `remove` do), so the registration check passed an unknown option, fell through its exception path and answered \"not registered\" regardless of truth. Found by running --check on a machine that had genuinely never been installed: the answer looked right for the wrong reason. The check now asks the question the CLI can actually answer — is a server of this name visible at ANY scope — and says so in its own output rather than guessing \"create\" vs \"update\". Behaviour of the install itself is unchanged: registration was always unconditional, because it is idempotent."
+  }
+}

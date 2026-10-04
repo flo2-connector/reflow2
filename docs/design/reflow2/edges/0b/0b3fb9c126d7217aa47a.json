@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:456271bdc4de855d6615fd4817ded9cbe2cb8e02c264152dd3b95ebd140eefe5",
+  "edge_type": "REALIZES",
+  "from_id": "art:tools-skills",
+  "properties": {
+    "completeness": "partial",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:a-refusal-maps-a-command-alias-to-what-is-served"
+}

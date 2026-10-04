@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:5ef28fbad1526f62a5931eddb3ffec47260c74ec9fa0613dc7aabca03d92a289",
+  "edge_type": "CHANGED",
+  "from_id": "chg:scaling-to-many-tenants-20260809",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "dec:idea-a-hosted-tier-of-many-single-writer-tenants"
+}

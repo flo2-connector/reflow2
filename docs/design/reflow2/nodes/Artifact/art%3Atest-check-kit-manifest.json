@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:978bdfeb448a17bc70b63c4ad769621e273dc08c15ba1027c2c40d2c5c17ee01",
+  "node_id": "art:test-check-kit-manifest",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "granularity": "atomic",
+    "location": "tools/test_check_kit_manifest.py",
+    "name": "test_check_kit_manifest.py",
+    "status": "realized",
+    "volatility": "stable"
+  }
+}

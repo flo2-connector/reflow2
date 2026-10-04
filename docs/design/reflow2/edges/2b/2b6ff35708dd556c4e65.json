@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:221d7f0e8477a05267befe968a52a060754a878d15eca09b118ca83b5a7e2208",
+  "edge_type": "CHANGED",
+  "from_id": "chg:no-fabricated-repairs",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:check-health-skill"
+}

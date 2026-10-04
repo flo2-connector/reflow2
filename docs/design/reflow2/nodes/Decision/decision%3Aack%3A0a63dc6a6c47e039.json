@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:74e074e429b2e958775ad4668e1e539e003810465bbb7de69bc17d50a71cd93f",
+  "node_id": "decision:ack:0a63dc6a6c47e039",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Accepted the gap gap:0a63dc6a6c47e039.",
+    "name": "Reviewed: gap:0a63dc6a6c47e039",
+    "rationale": "Deferred on Anthony's word, 2026-07-28. Accepted and not dropped. Measured, not asserted: 19 edge properties carry a schema default, four are single-valued wherever they appear, and 225 edges carry weight_basis while ZERO carry a weight — so those state the provenance of a coupling strength nobody recorded. Deferred because the fix is a schema change and the open question underneath it is not settled: should weight_basis default at all, or be absent until a weight exists (the answer ver:interface-spec already gave for Interface.medium)? That is a vocabulary call and Anthony's to make. Also non-retroactive by design — existing edges keep what they were given, so sweeping them is a separate deliberate act. Carries a method lesson worth keeping regardless of when it is built: the node sweep's test (\"a property that never varies is not carrying information\") is necessary but NOT sufficient on edges, because DEPENDS_ON.weight_basis genuinely varies and still refers to nothing.",
+    "status": "accepted"
+  }
+}

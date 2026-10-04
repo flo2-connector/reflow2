@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:d7e11402321a1632615aeb92974110e6cbef25844897865eb87ad461ce0a0cdb",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-name-is-not-a-report",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "ver:a-write-says-what-it-did-not-recognise"
+}

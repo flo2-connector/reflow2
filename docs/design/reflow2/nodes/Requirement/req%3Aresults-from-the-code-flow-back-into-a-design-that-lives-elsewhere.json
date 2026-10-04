@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:c5c2ef8e259829ba27fd37e9968685c6efc089a0d3ee81570774c86fd8e33b6e",
+  "node_id": "req:results-from-the-code-flow-back-into-a-design-that-lives-elsewhere",
+  "node_type": "Requirement",
+  "properties": {
+    "concern": "core",
+    "kind": "functional",
+    "lineage": "original",
+    "name": "Test results from wherever the code runs flow back into the design, wherever the design lives",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "Anthony, 2026-09-25 (dev_reflow2 hub session)",
+    "statement": "When an implementation is tested — on the owner's machine or in its repository's CI — the results reach the design and are compared against its checks, even when the design is hosted elsewhere (flo2.io), through an authenticated path. From Anthony, 2026-09-25: \"when implemented design is being tested, feedback needs to be put back in the reflow2 design object.\"",
+    "status": "accepted"
+  }
+}

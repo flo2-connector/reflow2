@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:ca42d377aa59a1fe2472d1d200cf2c30b7920192a89a64c05419050a643ab133",
+  "node_id": "ver:the-argument-check-agrees-with-the-deserialiser",
+  "node_type": "Verification",
+  "properties": {
+    "description": "crates/reflow2-mcp/tests/the_argument_check_agrees_with_the_deserialiser.rs: a keyword, format or $ref outside the validator's subset fails by name; the published listing carries no alias declaration; serde's unknown-field list is compared with the schema's names plus x-reflow2-aliases at every object of every tool, through the router with the check bypassed.",
+    "findings": "3 passed; at least 200 objects compared with serde, no disagreement.",
+    "kind": "verification",
+    "last_run_at": "2026-10-02",
+    "level": "integration",
+    "location": "crates/reflow2-mcp/tests/the_argument_check_agrees_with_the_deserialiser.rs",
+    "method": "test",
+    "name": "The argument check understands every served schema keyword and accepts exactly the names serde accepts",
+    "status": "passing"
+  }
+}

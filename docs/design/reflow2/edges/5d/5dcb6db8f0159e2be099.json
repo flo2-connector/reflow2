@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:99661fa353aeacb7c5f54ecaff7791a3354c924543cbb15355f1526087cfd1f7",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "rule:a-finding-is-written-before-the-answer-and-needs-no-permission",
+  "properties": {
+    "approved_at": "2026-09-18",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

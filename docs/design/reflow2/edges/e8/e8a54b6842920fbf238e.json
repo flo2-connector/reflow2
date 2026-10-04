@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:ff68d8a0114ef654ed02ad1e685e4f5be58e7c4e12066a25593062321c9cbe36",
+  "edge_type": "REALIZES",
+  "from_id": "art:one-status-contract-across-sibling-constructors-test",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:one-status-contract-across-sibling-constructors-and-a-node-is-named-by-the-key-the-last-tool-used"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:1c1bb7b0d6192c9498e97215e4627904861f5ab500b738ce6cd582c9fbe99a59",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-fourteen-holes-are-closed-and-actor-gets-a-constructor",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:enum-schema"
+}

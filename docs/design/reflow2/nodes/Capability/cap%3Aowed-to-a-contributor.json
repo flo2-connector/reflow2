@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:28837a2d273043e72767e08b686f260e5a501f01450c9e6f04ac8c20cb604304",
+  "node_id": "cap:owed-to-a-contributor",
+  "node_type": "Capability",
+  "properties": {
+    "description": "A contributor scope on the loop's own reporting: today loop_status answers \"what does this design owe?\" and takes no arguments at all, while detect_gaps already accepts a scope for one part of the design — so this follows an established pattern rather than inventing one.\n\nThe input already exists and is already structured: AUTHORED_BY with role=approver is the graph SAYING that a named contributor owes an answer here. Nothing computes on it today. The narrowest useful first cut is a loop_status field counting Decisions that are proposed AND carry an approver edge, which closes the concrete instance without disturbing the deliberate quiet around brainstormed decisions.\n\nLarger shapes recorded but not chosen: a distinct gap source for a Decision proposed-and-assigned-but-not-settled (separate from undecided_decision_point, which reasonably wants real forks); and letting a Question be raised against a node directly, decoupling the Question machinery from gap derivation — the largest change, and the one that would let a specific question be put to a specific person and the answer tracked.\n\nNOTIFICATION IS DELIBERATELY NOT PART OF THIS. proxy.rs holds that the server never initiates a message, verified against the service rather than assumed; that property is worth keeping and a consumer can poll. What must live here is the ANSWER to \"what is owed to this person\", because only the graph knows.",
+    "name": "The loop answers what is owed to a named person, computed from edges the graph already carries",
+    "provenance": "authored",
+    "status": "in_progress",
+    "tier": "operational"
+  }
+}

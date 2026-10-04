@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:1f48b95678399240fdd32627a46ace3d97afe6445a78894bd4ee229f59ebb868",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "req:one-design-or-several-is-asked",
+  "properties": {
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "req:design-identity"
+}

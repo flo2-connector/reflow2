@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:8ca371e2e0cf4c60b06da93c9e0d7ab257a21b25bedc61aef1e1f76ba7dfacb1",
+  "node_id": "chg:register-seventh-obligation-detect-and-ask",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "name": "The ask contract gains a seventh obligation — say what it means in the reader's own domain, a different axis from the language rule"
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:14eff8e8e17e4729cb29fb237b5deb0397860768f398adcd26ae08db530df230",
+  "node_id": "ver:update-is-its-own-word",
+  "node_type": "Verification",
+  "properties": {
+    "description": "`reflow2 update` keeps its word distinct from `init`: a project carrying an install receipt may be updated; a project that was never set up is REFUSED and told to run `reflow2 init`; a project holding a DESIGN but no kit is refused too and told WHY (machine-wide install, in-repo half never run) rather than silently receiving a first install; and the shipped wrapper both dispatches `--update` and states that it never downloads, so nobody expects a new binary from it (tools/test_init.py, 4 cases, 100 in the file). Pins the DISTINCTION, not the refresh — the refresh is `install` and every other case in the file covers it.",
+    "findings": "MUTATION-CHECKED THREE WAYS: accepting any directory kills two cases, dropping the design-without-kit branch kills exactly the one that names it, and dispatching `update` as a plain `init` kills the wrapper case. All refusals exit 1, verified by running them.",
+    "kind": "verification",
+    "last_run_at": "2026-08-14",
+    "level": "integration",
+    "method": "test",
+    "name": "reflow2 update keeps its word distinct from init",
+    "status": "passing"
+  }
+}

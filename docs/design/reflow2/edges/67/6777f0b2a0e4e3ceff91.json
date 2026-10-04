@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:c6d9fb0aa0ea6d518b581467b63e7caea0428e49412d03bf53a0c504b750fa67",
+  "edge_type": "CAUSES",
+  "from_id": "cap:a-finding-names-the-mechanism-that-parks-a-deliberate-state",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "It put the parking sentence into orphan_node's repair_is_a_judgement only (heal.rs, orphan builder). That text says \"PARKING IS READ BY THIS RULE AND BY THE UNSATISFIED-REQUIREMENT GAP\", yet the gap's own title and description (detect.rs, detect_unsatisfied_requirements) never mention it. The person stuck on that gap reads the gap, not orphan_node. This is the exact miss dec:idea-parks-shipped-and-was-still-not-reached-the-instruction-is-missing-where-the-person-is-stuck described, fixed for one reader.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:root-cause-parking-is-still-not-named-where-an-unsatisfied-requirement-is-read-2026-09-29"
+}

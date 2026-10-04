@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:1ef693487540533eb958e45e27bf77734722fceff0504fb9e129f76a73887d42",
+  "edge_type": "ANTICIPATES",
+  "from_id": "fact:ingesting-a-real-workplace-corpus-costs-70-dollars-a-day-and-still-writes-duplicate-components",
+  "properties": {
+    "evidence": "Alex's work hub already shows duplicates being written during ingest WITHIN one design, and names the cause (no efficient way to query what is already there). Across several adopted designs the same failure is more likely, not less."
+  },
+  "to_id": "dec:idea-how-does-a-hub-learn-two-of-its-projects-duplicate-or-contradict-each-other"
+}

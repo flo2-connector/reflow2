@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:0dfdd4d752562f6243383878c5c1e358a536a9c0646e3f00daaf7b7373e71787",
+  "node_id": "req:golden-thread",
+  "node_type": "Requirement",
+  "properties": {
+    "concern": "core",
+    "designation": "internal",
+    "kind": "functional",
+    "lineage": "original",
+    "name": "Every artifact traces to the intent it serves",
+    "priority": "high",
+    "provenance": "authored",
+    "statement": "Traceability runs from concept through operations without a break.",
+    "status": "accepted"
+  }
+}

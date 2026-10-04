@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:371ea5c77ec00750cfe64bc93a4ae443ff6b35fb3506b49a0cb513881c933a86",
+  "node_id": "chg:accept-f7480f38c36dcef5",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "refactor",
+    "detected_at": "2026-07-27",
+    "name": "One number corrected at cut time: the layout section said 55 edge types, which PERFORMED_IN made false. Same class the doc-version gate exists for — a claim about the build that the build no longer supports. The dated record in docs/backlog.md saying rung 1 shipped \"28 node / 55 edge types\" was deliberately LEFT ALONE: that is history, and rewriting it would falsify what happened rather than correct a current claim."
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:53b462db01650986f52cfeae2ce9f09979bf48c4229bd6070d2773694065f080",
+  "edge_type": "ANTICIPATES",
+  "from_id": "dec:idea-severability-cut",
+  "properties": {
+    "evidence": "Same 2026-08-01 review, and the sharpest instance: it observes that `cut_structure` (absorbed, in use) answers 'what is a single point of failure' and NOT 'how separable are these two parts', which needs a minimum edge cut. That gap is precisely what this requirement says the design should be able to see. ⚠️ Needs `maxflow.rs` (248 lines) — left upstream by increment 3, on the verified ground that `cut_structure` does not depend on it."
+  },
+  "to_id": "req:graph-theory-undergirds-the-design-brain"
+}

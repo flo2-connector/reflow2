@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:d582cdaa998c8a34fd174913a11bfee799d35667ed0e99841bac8e5fc336b26b",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:governance-proposal",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:skills"
+}

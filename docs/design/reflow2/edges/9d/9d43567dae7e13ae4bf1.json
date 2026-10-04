@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:c3de40906253359c2088bc62815923753bf21be3731397115b5a24097aef13a2",
+  "edge_type": "TRIGGERS",
+  "from_id": "fact:genesis-phase-is-a-third-instance-of-a-deliberate-state-read-as-a-defect",
+  "properties": {
+    "evidence": "That measurement is what raised this question: it establishes the genesis islands are correct-by-construction AND that parks cannot reach them, which is precisely the pair of facts that makes 'should a detector read a declared phase' worth asking. Drawn from the fact to the idea — the measurement initiated the question, not the reverse."
+  },
+  "to_id": "dec:idea-a-detector-can-read-the-phase-the-design-already-declares"
+}

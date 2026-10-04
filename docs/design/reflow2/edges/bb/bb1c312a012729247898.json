@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:aafcd16551c30f9de8fce29db3a38a84342a400edcc0ffeca948cf7ac6d64531",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:one-nodes-edges-are-read-back-as-edges",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:service"
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:b92b36ffe5f4a97e758abbe07925cd11d1fd0e41168dcd87998b3de43035751c",
+  "node_id": "epoch:v0630-cut",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "epoch_type": "release_cut",
+    "name": "v0.63.0 cut — the three intents of 2026-09-16 (artifact standard, quantity provenance, closure), units, four root causes, and Alex's taxonomy",
+    "sequence": 503,
+    "status": "arrived"
+  }
+}

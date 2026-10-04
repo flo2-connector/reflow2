@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:19d82c3dff34bc08b704db0c2d5d84cd8f57fb0f87dfb860d274835b437df216",
+  "node_id": "frag:art:test-a-write-unit-is-all-or-nothing",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered a_write_unit_is_all_or_nothing.rs — a write unit nests, sees its own writes and discards whole"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:e329d97de931c6bf53310fe4b496f81ebf32c5a1c51dae9824181abad03d9c77",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:idea-a-project-says-what-it-is-doing-now-so-the-loop-stops-pushing",
+  "properties": {
+    "authored_at": "2026-08-18",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:alex"
+}

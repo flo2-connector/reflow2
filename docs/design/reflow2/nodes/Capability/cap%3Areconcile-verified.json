@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:77a87896c8c45928da93ba3229e9b2990b4c8ddedce993a7f0eba7b942cecb0a",
+  "node_id": "cap:reconcile-verified",
+  "node_type": "Capability",
+  "properties": {
+    "description": "Compare recorded verification status against a real test run.",
+    "name": "Reconcile against what was proven",
+    "provenance": "authored",
+    "status": "verified",
+    "tier": "operational"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:f810a8da0fab889961531d091c33511fb0c71bd8299e879b6d63f548e96887ed",
+  "node_id": "chg:dependencies-to-current-2026-09-15",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "refactor",
+    "detected_at": "2026-09-16",
+    "name": "Dependencies to current: rmcp 3.4, sha2 0.11, and two declarations nothing called are removed",
+    "rationale": "A dependency that reads behind the newest is a decaying claim the same way hand-copied prose is, and the standing preference is one small dependency PR per release so the gap never grows past one line. Two of the session's advance claims were wrong and are recorded as such: the sha2 API had changed (LowerHex gone), and the base64 bump was not the collapse of a duplicate but a no-op, which is how the unused declarations were found — per dec:design-dependencies-declared a declared reliance must be a real one. No behaviour moved, so every artifact baseline under this event is accepted as design_holds.",
+    "subject": "system",
+    "summary": "On Anthony's word 2026-09-15, after the 2026-09-14 lock refresh (#515) left four crates behind crates.io: rmcp 3.3.0 -> 3.4.0 (lock only, inside the declared range), which deprecates the `ServerInfo` alias for `ServerConfig` — both alias InitializeResult — so all 21 uses across service.rs, latent.rs, degraded.rs and the eleven tool-surface slices are renamed rather than the deprecation allowed; sha2 0.10 -> 0.11 (manifest), whose digest output no longer implements LowerHex, so node_content_hash (graph.rs) spells the hex byte by byte the way export.rs already did and the two hashes keep one shape; `base64` and `sha2` REMOVED from reflow2-mcp's manifest because neither had a single call site — the reason is left in the manifest, and the core crate's sha2 is the real reliance. rocksdb stays 0.24 by dec:absorb-rocksdb-024-unchanged-then-switch-separately. Both base64 copies remain in the lock, pulled transitively. Workspace tests and both clippy gates green locally before the PR (#520)."
+  }
+}

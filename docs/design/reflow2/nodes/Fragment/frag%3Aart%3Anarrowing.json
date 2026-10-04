@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:25fa39d67212a06a68139451d1c3ea493429ad0c6cd79dec9955b2f073d61efe",
+  "node_id": "frag:art:narrowing",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered narrowing.rs — what a schema change took away, the migration each shipped, and the recheck of stored data"
+  }
+}

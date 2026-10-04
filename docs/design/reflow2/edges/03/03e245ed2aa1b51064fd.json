@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:126ec416f5d4a97a8351443b1a5b05b6c750e4d64ce31c2d74a9c25cea4077d8",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:idea-should-a-cycle-be-refused-at-edge-creation-the-way-a-duplicate-is",
+  "properties": {
+    "authored_at": "2026-08-31",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:claude-code"
+}

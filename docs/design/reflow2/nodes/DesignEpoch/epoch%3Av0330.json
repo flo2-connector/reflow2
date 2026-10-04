@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:547147c975a5daf97c2d6e6ec8c37aabb9d687a52306888cf0f2f24068bf0e38",
+  "node_id": "epoch:v0330",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "epoch_type": "release_cut",
+    "name": "v0.33.0 — three numbers that were being ignored, and one that cried wolf",
+    "sequence": 345,
+    "status": "arrived"
+  }
+}

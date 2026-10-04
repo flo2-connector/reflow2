@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:aaca1cb95837b34ad4deaad6d387d56ae140b30f8fa5cd59223f2dcbd3e74d44",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:a-revising-write-says-what-it-removed-test",
+  "properties": {
+    "covers": "whole"
+  },
+  "to_id": "ver:a-write-that-removes-a-property-says-what-left"
+}

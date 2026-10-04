@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:a5909d79d1f5ada85f68c8d4d4757fe0abcbc219c3422242e593126cd91be17f",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0601",
+  "properties": {
+    "as_checksum": "sha256:cab8605c9f5a37bf88e04583ba0610474a0a9316628516292b61de49186458c0"
+  },
+  "to_id": "art:graph-probe"
+}

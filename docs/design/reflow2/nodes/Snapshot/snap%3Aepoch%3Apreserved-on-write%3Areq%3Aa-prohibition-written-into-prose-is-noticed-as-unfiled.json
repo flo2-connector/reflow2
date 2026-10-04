@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:74e7b48786ae644e7f6c0afcc8a02912815329b4e26df507114766f8a632d017",
+  "node_id": "snap:epoch:preserved-on-write:req:a-prohibition-written-into-prose-is-noticed-as-unfiled",
+  "node_type": "Snapshot",
+  "properties": {
+    "edges": "[{\"direction\":\"in\",\"edge_type\":\"SATISFIES\",\"other_type\":\"Capability\",\"other_id\":\"cap:a-prohibition-living-in-prose-is-noticed-once-as-a-practice\",\"properties\":{}},{\"direction\":\"out\",\"edge_type\":\"AUTHORED_BY\",\"other_type\":\"Contributor\",\"other_id\":\"who:ajs\",\"properties\":{\"acted_at\":\"2026-09-14\",\"role\":\"approver\"}}]",
+    "state": "{\"lineage\":\"original\",\"name\":\"A prohibition written into a design node's prose is noticed as having no home a check can read\",\"priority\":\"medium\",\"provenance\":\"authored\",\"statement\":\"When a Requirement, Capability, Component, Interface or accepted Decision carries a prohibition in its own text — \\\"must never\\\", \\\"is not allowed to\\\" — and no Constraint binds that node, the loop says so, once, as a finding about the practice. The routing table already sends such a sentence to a Constraint rather than a Requirement, because a Constraint can `constrains` what it binds and be read by the checks; an instruction with nothing noticing its absence is one leg of three.\\n\\nMeasured before it was asked for: reflow2's own design held ≈61 such sentences in prose (9 of 10 sampled genuine) against 8 Constraint nodes, on a routing row that had been added precisely because eleven prohibitions were left as Requirements (fact:capture-is-blind-to-three-families-and-the-routing-table-has-a-row-for-two-of-them).\\n\\nAnthony's word, 2026-09-14: \\\"Build the detector for prohibitions living in prose.\\\"\\n\\nWhat it must NOT do: nudge a brainstormed idea (a proposed Decision's \\\"must never\\\" is a musing), flag a DesignRule or a Constraint (both are homes), read records and checks as intent, match \\\"shall not\\\" (the requirement idiom), or judge whether the sentence should become a Constraint — filing or acknowledging stays the reader's call.\",\"status\":\"accepted\"}",
+    "target_id": "req:a-prohibition-written-into-prose-is-noticed-as-unfiled",
+    "target_type": "Requirement"
+  }
+}

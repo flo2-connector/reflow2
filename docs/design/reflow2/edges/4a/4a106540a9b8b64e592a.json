@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:cfca5418646791ea590c159d00f5730fdc4ecc8722ea29362844ee5942a29ed8",
+  "edge_type": "INVALIDATES",
+  "from_id": "chg:seam-lift-finds-a-container-by-level-not-by-id-prefix",
+  "properties": {
+    "at": "2026-08-30",
+    "note": "PARTIAL — one of this acknowledgement's two legs, and it is the load-bearing one. The ack accepts 64 undeclared module couplings as correct, and cites as measured evidence: 'lifted to subsystem it reads 11 couplings, 11 covered, 0 uncovered.' That subsystem roll-up came from lift_to_level choosing a containment parent by id prefix, which silently dropped every module contained by a `sub:*` subsystem. THE ZERO WAS AN ARTEFACT. Corrected 2026-08-30: 19 couplings, 13 covered, SIX uncovered — sub:change-and-structure<->sub:finding, <->sub:telling, sub:evidence<->sub:finding, <->sub:telling, sub:evidence<->sys:time-history, sub:finding<->sub:telling.\n\nTHE OTHER LEG STILL STANDS and is why this is not a withdrawal: 'all 64 pairs sit inside ONE crate with zero crossing a crate boundary, and 44 of the 55 files in reflow2-core carry impl DesignGraph' — measured independently of the roll-up, unaffected by this defect, and still the right reason not to write 64 module-level contracts.\n\nWHAT IS OWED: a re-reading, not an automatic reversal. The rule the ack invokes (a contract is declared at the lowest level and higher levels answer by roll-up) is unchanged; what changed is that the roll-up now says six subsystem boundaries do NOT answer. Whether those six are real contracts or another correct absence is the owner's judgement, and nothing here decides it."
+  },
+  "to_id": "decision:ack:f384097e7d8b01b0"
+}

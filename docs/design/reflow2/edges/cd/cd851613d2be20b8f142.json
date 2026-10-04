@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:b794b7f697bc762bf095d5bc8f874d4ee81037f62b753882591759c5f7235af4",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:vocabulary",
+  "properties": {},
+  "to_id": "req:no-silent-fallback"
+}

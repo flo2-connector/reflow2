@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:7db140125cb50e0d6ec1d673d7f28c0a76d7f81866b633f129c09dae3a96d53e",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:check-discrimination-rules",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:check-discrimination-rules"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:2aff88eb46c3956b8404657f7b2f37689150908034c320150b076ed1e16d568e",
+  "edge_type": "CHANGED",
+  "from_id": "chg:an-understated-status-is-reported",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:detect-and-ask-skill"
+}

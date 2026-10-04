@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:7fc534774d5ea9b700edfed16a89c97a030c1af4ccbdf43861bcc5f93a3fbaa4",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:gap-carries-a-reading",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:agent"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:02ce57b0c1fc87cfaa32ca8fa9c4f275295ed6c0de366f93b3d60219bb6c798d",
+  "edge_type": "CHANGED",
+  "from_id": "chg:bl160-checksum-length-dialect",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:artifact"
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:27da4bac75c931fede008d1de9d613b148ec5957e59f6f13f44ff2aeb663e505",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0750",
+  "properties": {
+    "as_checksum": "sha256:4a5259a44e27c9d23ac65d9350bd8429843cde80ee46a3a54849dae514d6a564"
+  },
+  "to_id": "art:test-a-project-declares-its-unit-system-and-the-sweep-reports"
+}

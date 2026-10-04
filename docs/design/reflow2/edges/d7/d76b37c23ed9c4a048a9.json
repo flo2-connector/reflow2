@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:8f72ac12ec06395271a5a8f7ba09ab05b4ab8f3e093fd5216fff865c542baf8e",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:a-surface-can-refuse-every-write",
+  "properties": {},
+  "to_id": "req:the-hosted-surface-is-read-only-so-it-can-ship-before-authentication-exists"
+}

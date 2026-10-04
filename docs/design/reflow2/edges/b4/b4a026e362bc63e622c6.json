@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:c477059295b2223cdfddcbcebd4b9d35b2002bffca319fbd103419d618fa604d",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-the-hub-holds-a-copy-per-sub-repo-and-copies-go-stale",
+  "properties": {
+    "evidence": "Where a sub-project's design lives and what keeps it current is only worth answering once there is a hub relation to hold it. Settle what a hub IS first; custody of the children's records is the second question, not the first.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "dec:idea-a-hub-owns-designs-it-does-not-absorb-and-that-is-a-third-relation"
+}

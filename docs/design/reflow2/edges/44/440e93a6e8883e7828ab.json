@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:40ec7c5389c0b04fef40c201fb41689d6c50ae26a5f3f582221b4bfa90006350",
+  "edge_type": "REALIZES",
+  "from_id": "art:corpus",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cmp:corpus"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:54e56ee1cb4cbbe87f0dc10e5404f0bae6e1148d25f0c1edc6fa4d0751839cb0",
+  "edge_type": "CHANGED",
+  "from_id": "chg:baseline-62ddc2fbb54cb1ba",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:test-a-project-is-asked-what-its-artifacts-must-be-in"
+}

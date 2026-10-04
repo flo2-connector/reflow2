@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:e3d3f8c13aca03a41130a42127ebf32848a4caba8a50d2b7170a31c6ebcc7cf9",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:mosa-conformance",
+  "properties": {
+    "authored_at": "2026-07-25",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:4d0228121bfa1dd8fbf0fdf4a2d0b9b55b0872f6203c7e777a277cc931030e17",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-saved-design-moves-to-the-item-layout-2026-10-03",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:eede092d24e61b5ab8c57355c2c089d3b24fff54e5592ba43f7c1871ce4caea2",
+    "checksum_basis": "measured"
+  },
+  "to_id": "art:test-check-verification-ratchet"
+}

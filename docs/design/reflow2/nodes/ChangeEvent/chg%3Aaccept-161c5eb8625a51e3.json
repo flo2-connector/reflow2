@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:eadb39434cbb2971f3eb0acb64a4c356942b5939b0af110983157bb3e1aa9282",
+  "node_id": "chg:accept-161c5eb8625a51e3",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "test_failure_fix",
+    "name": "Struct literals gain None for the new optional parameters; the assertion is unchanged.",
+    "subject": "system"
+  }
+}

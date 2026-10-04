@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:ef30227a653adf729ad6ea7663521fefd7ddae89f2ef8e4968bb943856096f3d",
+  "node_id": "chg:a-repair-says-which-kind-it-was",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "name": "A repair records whether it corrected the cause or contained a symptom, a containment names the fix it stands in for, and repair_report says what still rests on a patch — with UNSTATED as a first-class count, because on day one it is 248 of 248",
+    "subject": "system"
+  }
+}

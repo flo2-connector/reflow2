@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:853d6efc5d95887ae591381007aba39831023c62bf0302b8c284290047fabd07",
+  "node_id": "fact:through-the-shared-proxy-a-2026-07-28-server-discover-is-answered-as-an-unreachable-server-2026-09-26",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "finding",
+    "name": "OBSERVED, NOT YET ROOT-CAUSED 2026-09-26: through `--shared`, a 2026-07-28 `server/discover` (and a stateless tools/list after it) came back as −32000 \"could not reach the shared design server: the replacement shared reflow2 server did not answer either\" — Claude Code still works only because it falls back to initialize 2025-11-25",
+    "source": "dev_reflow2 hub session, 2026-09-26, found while root-causing fact:root-cause-the-latent-tool-list-omits-the-cache-fields-the-2026-07-28-spec-requires-2026-09-26; one stdio replay of Claude Code 2.1.283's exact server/discover against reflow2-mcp 0.71.0 `--graph-path .reflow2/graph --shared --only-if-present` in a temporary folder whose store had been created a moment before with `--call graph_report`",
+    "statement": "WHAT CAME BACK: server/discover → JSON-RPC −32000 \"reflow2 could not reach the shared design server: the replac…\" and the following tools/list (stateless, _meta protocolVersion 2026-07-28, no initialize) → the same, \"the replacement shared reflow2 server did not answer either\". The same binary answered both correctly over direct stdio (full surface: server/discover result; tools/list 193 tools with ttlMs 0, cacheScope \"public\").\n\nWHY IT MATTERS: every `--shared` entry — the hub's child-flo2 and child-reflow2, and the machine-wide entry in any folder with a design — meets Claude Code 2.1.283's first message this way. It works today only because the client falls back to `initialize` on 2025-11-25; the 2026-07-28 spec is stateless, and a client that stops falling back would find every shared session \"unreachable\". The proxy also REPLACES the daemon on this answer (the retry-after-any-failure path noted when reflow2#592 was built), so each new client may be restarting a healthy shared server.\n\nNOT ESTABLISHED, deliberately: whether this is the proxy forwarding a stateless request the daemon's streamable-HTTP transport rejects without a session, the proxy misreading a legitimate refusal as a dead server, or an artefact of a daemon started seconds earlier in a fresh temporary folder. One run, not repeated; not yet root-caused.",
+    "subject_id": "cap:shared-sessions",
+    "valid_from": "2026-09-26"
+  }
+}

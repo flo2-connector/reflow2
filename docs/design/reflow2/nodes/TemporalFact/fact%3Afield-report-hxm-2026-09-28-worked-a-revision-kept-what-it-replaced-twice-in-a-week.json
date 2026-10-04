@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:681ebc8c20b50a65b0db465f98b548c00ff77f68395723b4f05deaca11592a5b",
+  "node_id": "fact:field-report-hxm-2026-09-28-worked-a-revision-kept-what-it-replaced-twice-in-a-week",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "observation",
+    "name": "WHAT WORKED (hxm_program, 2026-09-25 and 2026-09-28): revising a finding and a decision kept what each used to say, and it mattered both times. One mapping recorded as \"confirmed\" was corrected twice in a day, and one decision was reversed three hours after it was made",
+    "source": "art:hxm-program-feedback-2026-09-28",
+    "statement": "Recorded so a regression is checkable. Two sightings from the hxm_program hub.\n· 2026-09-25 (reflow2 0.69.0 → 0.70.0): \"`record_finding` revisions kept prior text in snapshots, which mattered: a camera mapping recorded as 'confirmed' was wrong by physical position and had to be corrected twice in one day.\"\n· 2026-09-28 (0.73.0): \"Revising a decision preserved what it used to say. [A pull request]'s scope was reversed three hours after it was decided ('device-only' became 'also the plan fixes CI needed'). `add_decision` on the same id replaced the text and reported `prior_state_preserved_in: snap:epoch:preserved-on-write:…`. The history is right, and nobody had to remember to snapshot.\"\nWhat must not regress:\n· a revise through the ordinary constructor keeps the replaced value when nothing else holds it;\n· the reply names where it went (cap:a-revising-write-says-whether-the-state-survived).\nThe same week's report counts the cost beside it: the reversal was also re-written by hand in two file-side copies (F-34, triaged separately).",
+    "subject_id": "cap:a-revising-write-keeps-what-it-would-have-lost",
+    "valid_from": "2026-09-28"
+  }
+}

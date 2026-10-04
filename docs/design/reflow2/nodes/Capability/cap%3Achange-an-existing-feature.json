@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:9783f893135772e8ba43cb186c17280e4f83d584e293d77c8b12cba2aab48620",
+  "node_id": "cap:change-an-existing-feature",
+  "node_type": "Capability",
+  "properties": {
+    "description": "Anthony's B+K / B-K case, 2026-07-25: the project does A, B, C and D, and the ask is to make B do something more (or less). Distinct from cap:onboarding (BL-101), which answers where a NEW thing belongs — this answers where an EXISTING thing gets extended or narrowed, and the difference matters because the answer is shaped by what B already touches rather than by where a gap is. Mostly composition of machinery that exists and has never been aimed at this question: search_design maps the user's words onto B; propagate_from gives the blast radius of touching it; the Decision layer says what already governs B and must not be casually contradicted; cap:requirement-lineage would say whether B is a decomposed child (so the parent's other children are siblings that may need the same change) or carries derived requirements that the extension might invalidate. THE SIMPLIFICATION DIRECTION IS THE INTERESTING HALF and is not symmetric with extension: removing capability from B means asking what still depends on it, which is propagate run the other way, and then whether any requirement is left unsatisfied by the removal — a question retire-from-design already forces for a whole node but nobody asks for a partial reduction. Removing is where designs are damaged quietly, because the thing that breaks is usually not the thing being edited. PLANNED.",
+    "name": "Show where to extend or simplify a feature that already exists",
+    "provenance": "authored",
+    "status": "planned",
+    "tier": "operational"
+  }
+}

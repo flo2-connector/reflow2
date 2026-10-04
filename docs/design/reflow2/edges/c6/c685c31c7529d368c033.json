@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:19e6f12d9fe15bd3924ab72b65c0c59ea26ac86a5c8a99b42454aec148e80211",
+  "edge_type": "CHANGED",
+  "from_id": "chg:increments-4-and-5-are-one-increment",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "dec:absorb-the-foundation-subset-and-end-the-dependency"
+}

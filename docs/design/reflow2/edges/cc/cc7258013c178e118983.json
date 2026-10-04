@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:18c3fdf8cf8efe72d2aca113501c3544ea6997de36e136b406ae62b8179a2bed",
+  "edge_type": "EVOLVES_INTO",
+  "from_id": "dec:idea-what-guarantees-the-export-if-the-export-is-the-only-durable-copy",
+  "properties": {
+    "evidence": "The older thought, grown up. That node listed 'export on every write' as road 1 and recorded it as dead, on the ground that a whole-document write is fatal on a per-change path. A full export measured 1,168 ms when that was written and 265 ms after #330 and the BTreeMap backend change, so the road reopens on a number rather than on an argument — and it reopens with a new distinction the original road did not have: write to the working tree, not to git history."
+  },
+  "to_id": "dec:idea-does-the-graph-write-itself-through-to-the-repo-on-every-change"
+}

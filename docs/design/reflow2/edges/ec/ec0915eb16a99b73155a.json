@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:50a3c33556fb93f59f75bbe4094cdc76c1bde1f82292a61d8b8e3f93e61ff79f",
+  "edge_type": "OBSOLETES",
+  "from_id": "dec:absorb-the-foundation-subset-and-end-the-dependency",
+  "properties": {
+    "note": "The absorption ended the supplier relationship this required interface described. RETIRED, NOT DELETED: it was true for the whole life of the dependency, and half the surviving design is shaped by having consumed it across a boundary. Final state preserved at snap:epoch:the-absorption:ifc:req-dyno-graph-api."
+  },
+  "to_id": "ifc:req-dyno-graph-api"
+}

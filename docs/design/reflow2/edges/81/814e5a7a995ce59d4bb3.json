@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:1e28beb0d1f3b991f7fdef6ed940f9fd307b69bdd353abacbf5deb1c7356f2b3",
+  "edge_type": "CHANGED",
+  "from_id": "chg:release-without-manifest-detector",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "cap:a-release-that-shipped-nothing-is-reported"
+}

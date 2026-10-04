@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:fc6efae81caa22b042a229a8f2c41f6bfa39c4cabf2e733029ee47fba8f6fc59",
+  "node_id": "chg:accept-02f735709d987075",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "defect_fix",
+    "detected_at": "2026-08-19",
+    "name": "add_change_event now takes summary and rationale. THE DESIGN WAS RIGHT AND THE CODE WAS WRONG, which is defect_fix's own definition: ChangeEvent has declared summary (indexed, embedding field) and rationale since the schema was written, and the constructor took neither — so the only way to record why a change happened was a second write. Two projects reported the same workaround on 2026-08-19.",
+    "subject": "system"
+  }
+}

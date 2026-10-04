@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:171f5ab890a63d272532915dea5b83a41ae93f006b95e0e84be3a333116cd460",
+  "edge_type": "CHANGED",
+  "from_id": "chg:check-reconciles-dependencies",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "req:design-dependencies-declared"
+}

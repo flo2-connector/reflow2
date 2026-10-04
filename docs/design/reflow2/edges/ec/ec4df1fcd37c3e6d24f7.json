@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:b3309a17844ff7674f364c67caf1bec4d51c354ae2050ba72f670b6ef521cb2c",
+  "edge_type": "CHANGED",
+  "from_id": "chg:absorb-core-storage-text",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:graph"
+}

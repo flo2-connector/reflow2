@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:2eca60c9edaf908a640d3c3e2c7b720fe3aa1b674318d2550258878924269820",
+  "edge_type": "REALIZES",
+  "from_id": "art:corpus",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:corpus-ingest"
+}

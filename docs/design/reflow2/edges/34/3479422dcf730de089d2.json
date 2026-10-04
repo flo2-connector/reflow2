@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:3967b91f5a7a8a0735276a8a555494f5d9aaa65efd5308905c3ff9595a87a3cf",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-record-can-say-which-question-it-answered",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:detect-and-ask-skill"
+}

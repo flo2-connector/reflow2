@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:bb562f1d1a11fef655b6d8832b4f166b0d80d4c72a4a0a74b278a55f0fdceaf4",
+  "edge_type": "CAUSES",
+  "from_id": "art:release-workflow",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "The release workflow stages the kit by naming each file it copies, and the schemas were never added to that list, so the published artifacts carry the product and not the contract the product is judged against.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:neither-the-container-nor-the-kit-carries-the-toolsnaps-so-a-consumer-cannot-diff-the-contract-it-is-told-to-check"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:c266f511ad747605737a7227b63fe3e304e83c0f868a6ce5d8e4c872212a7b3d",
+  "edge_type": "CHANGED",
+  "from_id": "chg:vocabulary-coverage-names-the-properties-it-counts",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cap:work-declares-who-it-reaches"
+}

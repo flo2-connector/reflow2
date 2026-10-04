@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:f7153974a58f5b41bfd5adc62a5f3e5919c4ac32aaf9ac55b6fed6b767cc3482",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-saved-design-moves-to-the-item-layout-2026-10-03",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:7b4d73ccd8af3545010b91849b0ba4882d6d89074754bb28f7addeede24c7d34",
+    "checksum_basis": "measured"
+  },
+  "to_id": "art:lens-names-test"
+}

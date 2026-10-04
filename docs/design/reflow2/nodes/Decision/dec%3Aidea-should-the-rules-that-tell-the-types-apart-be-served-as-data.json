@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:5855b8c1f6e2d1cecba672705d8381fc3030625747ce0ad049f9ec64254a8387",
+  "node_id": "dec:idea-should-the-rules-that-tell-the-types-apart-be-served-as-data",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Recorded as brainstorming on 2026-09-20 from flo2 F24, not as a proposal.\n\nWHAT WOULD BE SERVED, per node type: the cue phrases in a user's own words, the type it is most often confused with, and a counter-example. All of it is already written, in the capture-intent skill's eleven-row routing table, and all of it is invisible to a consumer generating an extraction prompt from the schema.\n\nOPTIONS.\n(a) EXTEND `describe_schema` with the discrimination rules per type. The consumer already calls it for exactly this purpose, so nothing new has to be found. COUNTER: it widens a reply everyone gets for a use only some have, and that tool's reply is already large.\n(b) A SEPARATE SERVED READ, so it is paid for when wanted and findable by its own job sentence. COUNTER: one more tool on a surface the owner has been pruning.\n(c) SERVE THE SKILL'S TABLE AS-IS, as structured rows lifted from the markdown, so there is one source and no second copy to drift. ⭐ This is the option that keeps the three legs together: the agent reads the prose, the consumer reads the rows, and both come from the same table.\n(d) DO NOTHING; the routing lives in the skill and a consumer should fetch the skill. COUNTER, and it is decisive against: a consumer building an extraction prompt is not an agent following a skill, and telling it to parse skill markdown is the prose-parsing the black-box rule exists to end.\n\n⚠️ THE MEASURED COST OF NOT DOING IT is one misclassification on a live site: a numeric prohibition filed as a requirement, which the design's own skill says will report unsatisfied forever.",
+    "kind": "exploratory",
+    "name": "OPEN — should the rules that tell one node type from another be served as DATA, the way the types themselves are?",
+    "status": "proposed"
+  }
+}

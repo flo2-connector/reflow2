@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:0bdb1006af1229379870695f5010d6f3ee3d48ea248baaf86d86c79e1597594c",
+  "node_id": "dec:idea-a-project-scoped-status-rollup-answers-what-has-this-project-achieved-in-one-call",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Recorded as brainstorming, not as a proposal. The hxm_program session's second-ranked fix, relayed by Anthony on 2026-09-14. In its words: \"The scoping machinery already exists for gap detection. The same scope on a status read, returning capabilities with statuses, the latest dated change on each, open findings and external gates, is exactly the assembly I did by hand after you challenged me.\" The setting matters: hxm_program is a hub design over many inter-related projects, so \"the project\" is one region of a larger graph, and a keyword topic view finds the project node but does not walk out from it. Options as they stand: (a) a scope parameter on the topic view that expands from a project node by edges rather than by words; (b) a separate rollup keyed on a project node, in the shape where-am-i already reads back; (c) leave it to the where-am-i skill, which assembles this by hand today.",
+    "kind": "exploratory",
+    "name": "OPEN — should a status read take the same scope detect_gaps already takes, returning the project's capabilities with statuses, the latest dated change on each, open findings and external gates, so \"what has this project achieved\" is one call instead of a hand assembly?",
+    "rationale": "Cheap: the scope machinery and the per-node status, connection and latest-dated-change reads all exist (detect_gaps scope, topic.rs). Expensive: a rollup is a management-facing view, and whether management views belong inside reflow2 at all is an open question already on the record. Honest counter-argument: a rollup that reads well is the kind of thing that gets pasted into a deck unread, which is the original failure in a nicer font. Produced by fact:field-report-hxm-a-progress-deck-was-written-from-a-checklist-and-recency-and-the-design-was-read-only-after-a-challenge and fact:topic-report-is-keyword-only-and-finds-the-project-node-without-offering-to-expand-it.",
+    "status": "proposed"
+  }
+}

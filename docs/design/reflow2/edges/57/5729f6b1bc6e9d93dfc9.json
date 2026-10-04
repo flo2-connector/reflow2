@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:c9cd1468c4e6adfbd49e8b46f276a5578a1611c4e5c8b1508a0a3666f3f05e0f",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:check-verification-ratchet",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:check-verification-ratchet"
+}

@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:01d18717d9d58c2dbae16039c154f02747b01befaca1f46f9dd6421a53aa6f89",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:a-session-is-known-by-its-worktree-and-branch",
+  "properties": {},
+  "to_id": "req:implementation-facts-travel-with-the-branch-that-produced-them"
+}

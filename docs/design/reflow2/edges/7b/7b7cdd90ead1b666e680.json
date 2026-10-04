@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:b250536f4787065550ea1ff4954e888dc4e8fdb457f8225734311e5da75ad0dd",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0650",
+  "properties": {
+    "as_checksum": "sha256:b1deebf563c6f8e8e66d7885cc7d007262fd2cee33ac3f69cb166eebde07bd85"
+  },
+  "to_id": "art:tools-coherence"
+}

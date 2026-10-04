@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:50873f53dd45148f7509ed9e89322c141fbb6c612793adf23634009056df8996",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:a-sweep-names-its-own-scope-and-the-category-names-what-it-computes",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:heal"
+}

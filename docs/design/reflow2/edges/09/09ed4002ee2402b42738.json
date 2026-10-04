@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:c00c0f7152e3b7ec5af2148380dae13a26d41dbd7770c6982761803db62b3aa1",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-extraction-is-two-pass-against-an-se-schema-stated-up-front",
+  "properties": {
+    "evidence": "Both this question's option (d) and that question's follow-on question set fire on the SAME trigger — the agent noticing its own reading is ambiguous. Neither is buildable in that form unless an agent can reliably tell ambiguous from clear, so the ambiguity-detection question is upstream of both.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "dec:idea-the-interviews-answers-become-the-projects-own-se-reference"
+}

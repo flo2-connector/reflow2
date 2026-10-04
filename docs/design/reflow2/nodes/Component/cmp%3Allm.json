@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:2db0ff46e81e0127f36cdfe56b3de4689cb9c37bfd7dac8a861236de4d656ae4",
+  "node_id": "cmp:llm",
+  "node_type": "Component",
+  "properties": {
+    "kind": "module",
+    "level": "component",
+    "name": "llm",
+    "provenance": "authored",
+    "purpose": "The llm module.",
+    "status": "planned",
+    "tier": "operational"
+  }
+}

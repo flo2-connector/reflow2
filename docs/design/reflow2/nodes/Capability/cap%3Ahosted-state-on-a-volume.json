@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:c3421cb66da42f8e0507ce087429a018bb61534e37fb0df7ef4809349586457f",
+  "node_id": "cap:hosted-state-on-a-volume",
+  "node_type": "Capability",
+  "properties": {
+    "description": "Two halves, kept in one capability because the requirement is only met when both hold.\n\nHALF ONE — WHERE THE FILES LIVE (packaging). Every design's RocksDB directory, the sidecars that describe it (graph.id.json, graph.meta.json, the sync marker, the rendezvous file) and the content store live on mounted storage, never inside the image. The sidecars sit on the SAME volume as the store they describe, because they are read before the design is opened. Under multi-graph hosting the volume carries a graphs root with one directory per design beneath it, and cap:graph-registry maps graph_id to a path under that root. The volume must be a real block device or local volume: RocksDB's exclusive lock is a filesystem lock and network filesystems — NFS especially — honour those unreliably, so a lock that silently fails to exclude is how two processes end up writing one store.\n\nHALF TWO — WHAT HAPPENS WHEN IT IS WRONG (core code), and this is the sharp end. Today a design opened under an id it was not created with finds nothing and PRESENTS AS AN EMPTY DESIGN, reporting nothing wrong (identity.rs). On a laptop that is confusing. On a hosted server, where a path is easy to get subtly wrong and the operator is not the design's owner, it silently shows somebody an empty project that still exists on disk beside it. The capability is that this case is REFUSED WITH A STATED REASON rather than served as an empty design.\n\nWHY HALF TWO EARNS ITS PLACE INDEPENDENTLY: the guard is worth having whether or not reflow2 is ever containerised. An empty design that should not be empty is the one failure the coherence loop cannot detect, because every detector reasons about what the graph says and a graph that says nothing has nothing to catch.\n\nThe acceptance test is a container replacement: stop the container, start the new image against the same volume, and every design is still there and still itself — graph_id unchanged, and no design opens empty.",
+    "name": "Designs live on mounted storage, and a store without its identity sidecar is refused rather than opened empty",
+    "provenance": "authored",
+    "status": "in_progress",
+    "tier": "operational"
+  }
+}

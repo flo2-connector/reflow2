@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:a24ae46c659e98a58e7ea9af1d9175c928f52e57a1da2bfea43a59258c8c381f",
+  "node_id": "cap:a-finding-names-the-mechanism-that-parks-a-deliberate-state",
+  "node_type": "Capability",
+  "properties": {
+    "description": "`orphan_node`'s repair note and the BL-199 self-host gate's failure text both name `governed_by(..., ruling: \"parks\")` as the second honest way on when a node's unattached state is deliberate, say plainly that deleting the node is the repair that looks clean and loses the most, and state the boundary: parking is read by `orphan_node` and the unsatisfied-requirement gap and by nothing else — it does not quiet `unthreaded_cluster` and does not cover the unproven-capability loop debt. The `link-artifacts` skill carries the same case for documents that correctly describe and implement nothing.\n\nTHE LIMIT IS PART OF THE CAPABILITY, not a caveat on it: a mechanism named without its scope produced the failure where a reporter found it, could not confirm it applied, and backed off.",
+    "name": "A structural finding names parking as the honest alternative, and names its limits",
+    "provenance": "authored",
+    "status": "realized",
+    "tier": "operational"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:a6622fab1b57050c6a4d72985c71b0b2a0a62ba780cd1c8821d08b53e71f0999",
+  "node_id": "art:every-skill-is-found-by-a-query-in-the-users-words-test",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "location": "crates/reflow2-mcp/tests/every_skill_is_found_by_a_query_in_the_users_words.rs",
+    "name": "every_skill_is_found_by_a_query_in_the_users_words.rs",
+    "status": "realized"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:a39d571c7b6cffc67d65abc351283f47a310193ebb9b75b157db05e6f3bae198",
+  "node_id": "chg:accept-86120115ec83ae15",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "defect_fix",
+    "detected_at": "2026-08-23",
+    "name": "Call-site only: graph_report now takes a parameter, so this test passes GraphReportReq::default(). What the check asserts — that the server says when it is stale — is unchanged.",
+    "subject": "system"
+  }
+}

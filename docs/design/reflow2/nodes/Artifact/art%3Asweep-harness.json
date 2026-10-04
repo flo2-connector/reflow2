@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:f3895eaf461e7ec5dfd8883fc2367b9a8114821172b4aeb039de11e488262d53",
+  "node_id": "art:sweep-harness",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "test",
+    "description": "Exercises reflow2's served tools against an ISOLATED COPY of the design graph, over stdio JSON-RPC, from a JSON plan of {tool, args, label, expect} steps. The copy is built by importing the committed export into a fresh store, so the live graph at .reflow2/graph is never opened and a running server cannot be disturbed. It is the instrument behind fact:179-of-180-tools-have-a-machine-record-of-a-real-call-and-zero-crashed, which answered Anthony's question of 2026-09-11 — how many of the 180 tools have actually been exercised — with 479 calls over 179 tools and nothing crashing. REGISTERED 2026-09-20 ON HIS WORD, correcting an earlier recommendation to delete it: it was committed by accident in PR #551 through a `git add -A tools` glob, and a session that had not opened the file advised removing it as scratch. It is not scratch. Deleting it would make a cited measurement unreproducible. HONEST LIMITS: it arrived by accident rather than by decision and has never been reviewed as a permanent instrument, and it has no regression net of its own, unlike run_ci_gates.py and the other tools in this directory.",
+    "location": "tools/sweep_harness.py",
+    "name": "sweep_harness.py",
+    "status": "realized"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:f559d768af7ab9f19bb1a11f92bc5e58eacb71efb0435fdb026239b2796027f8",
+  "node_id": "art:test-design-identity",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "granularity": "atomic",
+    "location": "crates/reflow2-mcp/tests/design_identity.rs",
+    "name": "design_identity.rs",
+    "status": "realized",
+    "volatility": "stable"
+  }
+}

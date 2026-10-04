@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:0983eba0791189a1d95094ab71200940c5263ac1f8e0d9bcb7ec5a3ce0219263",
+  "node_id": "req:something-to-come-back-to-is-captured-with-one-word",
+  "node_type": "Requirement",
+  "properties": {
+    "concern": "usability",
+    "lineage": "original",
+    "name": "Something noticed that must be come back to is captured with one word, on the thing it is about, and the loop shows it until it is settled",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "A person who notices something away from the task — a deployed service misbehaving at a beamline, a colleague's remark, a failure with no cause yet — can capture it in the design with one word and their own sentence, demanding nothing else: no node type, no cause, no root-cause, no id. It lands as a dated observation on the thing it is about (found from their noun; the Project only when nothing matches). It is not sorted at capture. The loop lists every open follow-up at each boundary, oldest first, until it is settled — closed by the record that answered it, or lapsed with a date — so a capture that asks nothing never becomes a drawer.",
+    "status": "accepted"
+  }
+}

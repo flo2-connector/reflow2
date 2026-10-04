@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:521d6b9d1d1a914889909e7af214f853958261495a481be1973899bb4ad4b839",
+  "edge_type": "CHANGED",
+  "from_id": "chg:bl184-ility-signals",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:service"
+}

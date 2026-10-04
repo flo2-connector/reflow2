@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:724373909ecd0c8c992daf3c542a7704759cc1147c29360af6735d363d4d8772",
+  "node_id": "chg:coord-board-settled",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "scope_change",
+    "name": "Anthony settles the claim board: the in-progress table moves into the graph, the stated blocker dissolves because his brother has only given feedback, and claim_region's first real use returns a liveness the markdown could never carry"
+  }
+}

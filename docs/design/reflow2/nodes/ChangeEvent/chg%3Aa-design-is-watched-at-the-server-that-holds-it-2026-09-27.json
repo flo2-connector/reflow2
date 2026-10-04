@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:67aa0a883d0b270342a1f618c2c6849a34d53d4c39a6ae88df6686c93305df9a",
+  "node_id": "chg:a-design-is-watched-at-the-server-that-holds-it-2026-09-27",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "commits": "7a326ca,f35d4a4",
+    "detected_at": "2026-09-27",
+    "name": "A design is watched at the server that holds it: external_dependency takes design_address, and upstream_status asks that server for the design's fingerprint",
+    "rationale": "A design that moved to a server could not be watched: the watch read a local export, and the export left behind reads as live (fact:a-moved-design-cannot-be-watched-and-its-frozen-export-reads-as-live-2026-09-27). Under the design-and-export rules the server holding the design is where it is asked; this is that finding's fix option (b), accepted by Anthony. The read reuses the remote client's HTTPS path, and the key `reflow2-mcp setup` stored for the server's origin. The fetch is export_graph with no path, so flo2.io's gateway needs nothing new; the cost is a whole document per read, stated on the capability. Tests: core judgement (+10); the real path against a real reflow2 serving a design over HTTP, where a real upstream write reads as moved, nothing is imported, and a stopped server reads as unreachable; and stand-ins for refused, unreadable, a key never sent in the clear, a hosted server never reaching out, and loop_status never calling out. The full workspace run on 7a326ca: 297 suites, 2,582 passed, 1 failed (no_new_mutually_confusable_pair). That failure was attributed to added description text and fixed in f35d4a4 with a length-neutral edit, counted on fact:one-tools-description-sentence-made-two-other-tools-confusable.",
+    "subject": "system",
+    "summary": "Delivers req:a-design-watches-another-design-at-the-server-that-holds-it (step 2 of the tracked-export retirement plan).\n- `external_dependency` takes `design_address` and takes the baseline from that server at declaration.\n- `upstream_status` asks again on each read, and reports `unreachable` or `refused` rather than `unchanged` when the server does not answer or refuses.\n- `loop_status` never goes over the network.\n- A `--registry-root` server never reaches out on a caller's behalf.\n- A declaration naming both an address and an export is refused.\nAlso fixes the watch taking any JSON object for a design (fact:the-upstream-watch-read-any-json-object-as-a-design-2026-09-27)."
+  }
+}

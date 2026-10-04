@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:18c823cb106976652924a715e0449f5e3bb3880237f59bdf5890ba4ab474aa6d",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-lineage-anchor-moves-from-the-file-to-the-commit",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:skill-lint"
+}

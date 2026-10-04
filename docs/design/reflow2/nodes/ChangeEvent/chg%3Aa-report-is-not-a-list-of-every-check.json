@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:cbdce9d7af4589121ed90e029a3f13b6d064ccabb32c0baab3417bb8c7f39e60",
+  "node_id": "chg:a-report-is-not-a-list-of-every-check",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "defect_fix",
+    "name": "graph_report withholds the full verification roll by default — 91.5% of the orientation read was one list",
+    "subject": "system"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:d93e51ab9e7c68fd6ae89120b6df9ca0cde2251d7bd54ed4014d8b352656602d",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:a-dated-observation-does-not-read-as-standing-doctrine",
+  "properties": {
+    "authored_at": "2026-08-08",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:claude-code"
+}

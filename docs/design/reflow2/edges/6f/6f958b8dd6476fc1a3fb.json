@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:67b7a0fe418a5efd1db0c2c3b449f3428e0db6f77708bb98d99a0e486b83875c",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-refusal-names-its-own-fix-20260808",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cap:vocabulary"
+}

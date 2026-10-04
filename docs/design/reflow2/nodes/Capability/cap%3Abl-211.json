@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:7a3f89da1bf293ee1c6bfeadad6ad31bc9604384b0ab2bca2eaa8feccea1594c",
+  "node_id": "cap:bl-211",
+  "node_type": "Capability",
+  "properties": {
+    "description": "genesis assumes an opening BRIEF — one statement — and has no shape for an opening FOLDER\n\n*Anthony, 2026-08-04: \"mass-ingest could be used on the genesis skill also because maybe somebody has laid out hundreds of documents about what they'd like to design and build, but never actually did anything further than layout in documents/drawings/other artifacts what it is they wanted to build.\"* The served skill's own words are *\"bootstrap it from the user's opening brief\"*, and every step downstream assumes one short statement to seed Requirements and Capabilities from. A person arriving with 300 documents and no code is not a genesis case as written and not an adopt case either — adopt is for a system that ALREADY EXISTS and recovers intent by reverse-engineering it, and here there is nothing built to reverse-engineer. That gap is now recorded as [req:accreted-intent-becomes-a-design] (proposed), which also names why it is not simply [req:corpus-ingest] in another hat: contradiction is the EXPECTED state rather than a defect, there is nothing built to reconcile against, and the corpus is the only artifact so nothing outside it can settle a disagreement between its parts. DISTINCT FROM [BL-196] and they should not be merged: BL-196 is genesis asking where artifacts WILL live, forward-looking and preventative; this is genesis accepting a corpus that ALREADY exists. Same skill, opposite time direction — and doing BL-196 first is what stops this case recurring. Size M\n\nMigrated from docs/backlog.md BL-211 on 2026-08-07 (epoch:backlog-retired). Size estimate carried from the row: M.",
+    "name": "[BL-211] genesis assumes an opening BRIEF — one statement — and has no shape for an opening FOLDER",
+    "provenance": "imported",
+    "status": "planned",
+    "tier": "operational"
+  }
+}

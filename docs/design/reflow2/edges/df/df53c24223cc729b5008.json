@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:afc9c9ac03f2c15856d0c2c36fd0a0cc582d810604d52a0bf75a3ddb198f2fac",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:why-command",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:why-command"
+}

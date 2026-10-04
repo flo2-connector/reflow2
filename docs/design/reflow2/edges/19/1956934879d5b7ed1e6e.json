@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:c777d5cd2f2be886dd16b517837bcc0d5bac3ea899e096e4ac666056feb7ccd3",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:requirement-lineage",
+  "properties": {
+    "authored_at": "2026-07-25",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

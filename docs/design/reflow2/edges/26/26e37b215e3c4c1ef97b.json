@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:b54755fef3c9ec6d9c04f63aefd72afeb03b4183fe53a14e3356a0e5573a940a",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0470",
+  "properties": {
+    "as_checksum": "sha256:e192c58480dafaddf26abc1577a6317c1cc71fbded5a9aa5ac305bdf87a23aea"
+  },
+  "to_id": "art:scope-read-while-held"
+}

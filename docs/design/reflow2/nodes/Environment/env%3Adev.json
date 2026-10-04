@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:c84bf97a84a1e756fb519d908c2a565595814975dea5982cc52aedb511ad1e95",
+  "node_id": "env:dev",
+  "node_type": "Environment",
+  "properties": {
+    "env_type": "development",
+    "name": "Developer machine"
+  }
+}

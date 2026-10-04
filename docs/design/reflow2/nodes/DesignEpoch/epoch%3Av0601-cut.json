@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:e6a611245cf16f819806a821b8f34592315f7081b477060aa183786028b8eda2",
+  "node_id": "epoch:v0601-cut",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "description": "A patch cut for one CI script fix. v0.60.0's binaries, kit and checksums published correctly; its container image did not, because the image smoke test's new two-design phase failed on the release runner — and that gate runs BEFORE anything is published, so it correctly refused rather than shipping an unverified image.\n\nTHE DEFECT WAS IN THE TEST, NOT THE PRODUCT: the mint loop checked `{{.State.Running}}` and broke out when it was false, which it is for the first moment of every container's life. It passed locally and failed on a slower runner — a check-then-act found in the worst place.",
+    "epoch_type": "release_cut",
+    "name": "v0.60.1 release cut (2026-09-13)",
+    "sequence": 470,
+    "status": "arrived"
+  }
+}

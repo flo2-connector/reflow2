@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:8fa08078d52d3ba3b6e1b174e818638b47ca7a18ce5eb575009f8fcc9279d3b0",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-suppressed-finding-is-counted-rather-than-silenced",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:heal"
+}

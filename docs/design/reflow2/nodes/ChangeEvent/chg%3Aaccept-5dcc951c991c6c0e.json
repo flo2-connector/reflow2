@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:ad0afae754c94e2beb257902b19f9e5b5b4d7d742329e856dc64ac501f2f706d",
+  "node_id": "chg:accept-5dcc951c991c6c0e",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "documentation",
+    "detected_at": "2026-09-24",
+    "name": "loop_status's description trimmed back under skill_lint's 1500-character budget (1521 → 1492): \"each with its tag and where it settles\" became \"and tagged\". Nothing loop_status does changed. The local lint had passed before the toolsnap was refreshed; CI caught it on PR #586.",
+    "subject": "system"
+  }
+}

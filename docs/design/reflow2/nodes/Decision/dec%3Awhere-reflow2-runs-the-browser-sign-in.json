@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:d3c6d83a8286ca274ce96e7607eaa3b827c66eeedeb69ca728b2e429f51f6ef7",
+  "node_id": "dec:where-reflow2-runs-the-browser-sign-in",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Raised 2026-10-01 while planning cap:a-remote-client-signs-in-to-its-server-with-oauth-2-1.\n\nWHERE THE BROWSER OPENS:\n(a) Only in `reflow2-mcp setup remote`. This is what the settled dec:idea-one-command-switches-reflow2-between-local-and-remote already says: one sign-in at setup, \"and the agent never knows which\". When a refresh fails mid-session, `--remote` answers with a message saying to run setup again.\n(b) Also from `--remote` mid-session. But `--remote` runs as the agent's stdio child, so the person may never see the prompt or the browser tab, and a call hangs on a sign-in nobody is looking at.\n\nWHAT A HEADLESS MACHINE DOES (a server, a container, an SSH session with no browser):\n(1) Keys only, as today. This already works.\n(2) The device authorization grant (RFC 8628). Clerk advertises it, but it is in neither OAuth 2.1 core nor the MCP profile. UNVERIFIED whether Clerk allows it for a CIMD client.\n(3) Paste-back: print the authorization URL, and the person pastes the redirected URL back in.\n(4) An SSH port forward to the loopback listener.\n\nWHAT HAPPENS BY DEFAULT when a server offers both a key and a sign-in: setup offers the sign-in when the server's 401 names resource metadata, and keeps the key prompt as the other choice. Personal keys stay supported either way (req:a-local-client-works-against-a-remote-reflow2-server-by-url, point 1: \"no one way … hardcoded\").\n\nLEAN: (a), and (1) for headless now. (2) is revisited once increment 0 measures whether Clerk issues device codes to a CIMD client.",
+    "kind": "choice",
+    "name": "OPEN — where reflow2 runs the browser sign-in (setup only, or also mid-session), and what a headless machine does",
+    "status": "proposed"
+  }
+}

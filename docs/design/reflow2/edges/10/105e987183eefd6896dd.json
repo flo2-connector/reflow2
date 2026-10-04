@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:8b2093aa99694485073503b536e4da3cb34206a018956d6b79b0711db8afb565",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:idea-the-loop-nudge-exists-for-one-harness-only",
+  "properties": {
+    "approved_at": "2026-08-14",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

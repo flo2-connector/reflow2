@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:7b536636c49a12d3f61adc7b716d3a5497a2588f7652fd03616a2b3e11229273",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:a-branch-overlay-folds-into-main-when-its-code-merges",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:branch-overlay"
+}

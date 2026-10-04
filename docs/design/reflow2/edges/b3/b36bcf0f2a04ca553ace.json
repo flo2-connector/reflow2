@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:4a29fad9bd753d7c66127d9acff63bc409bbd0ed0db135658f76ed7720aef7ef",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:test-closure-reads-a-design-phase-and-a-build-phase",
+  "properties": {
+    "covers": "whole"
+  },
+  "to_id": "ver:closure-reads-a-design-phase-and-a-build-phase"
+}

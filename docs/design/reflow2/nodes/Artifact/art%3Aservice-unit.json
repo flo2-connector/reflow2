@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:3b1a0666e8041ab4121be8b3f29ba594a578c98222bb950f5a50b9520072be7b",
+  "node_id": "art:service-unit",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "description": "The served half of dec:idea-a-refused-typed-write-stores-nothing. call_tool opens a CallUnit for a write tool; SharedGraph::hold_for_write (visible to service.rs alone) takes the graph's write lock at the call's first write and opens the store's batch; SharedGraph::read serves reads inside the call from that hold; CallUnit::settle commits or discards once. An unsettled hold discards on drop.",
+    "location": "crates/reflow2-mcp/src/service/unit.rs",
+    "name": "service/unit.rs — one write unit per served tool call: CallUnit, CallScope and SharedGraph, the only doors to the design",
+    "status": "realized"
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:65f0b64ab3080a3d4d4b6372a5e45f894d15686a4695ec581bd361c83569e274",
+  "edge_type": "VERIFIES",
+  "from_id": "ver:claim-liveness",
+  "properties": {},
+  "to_id": "cap:claim-liveness"
+}

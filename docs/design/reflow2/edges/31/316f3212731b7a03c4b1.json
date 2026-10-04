@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:2fbd9c98cf0e1b1486ec6d9f54cad04e59e74ef2961e7ea954b03ddf6d55d26a",
+  "edge_type": "CHANGED",
+  "from_id": "chg:prohibitions-in-prose-are-noticed",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:detect-and-ask-skill"
+}

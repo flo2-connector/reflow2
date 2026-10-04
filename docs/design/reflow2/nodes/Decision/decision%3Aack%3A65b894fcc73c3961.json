@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:697fbda5f461218470bfd25e13775425080938d5a643ae28b908c01880a508bb",
+  "node_id": "decision:ack:65b894fcc73c3961",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Accepted the gap gap:65b894fcc73c3961.",
+    "name": "Reviewed: gap:65b894fcc73c3961",
+    "rationale": "User (who:ajs, 2026-07-25): concurrent planning WAITS on the multi-writer decision. Accepted intent, blocked rather than shelved — deliberately left `accepted` rather than moved to `deferred`, because deferred reads as \"parked, nobody act\", whereas this is real intent with exactly one thing standing in front of it. The blocker is dec:multi-writer-architecture, a proposed decision point holding repo-file vs hosted-service vs hybrid; it is recorded as req:concurrent-planning GOVERNED_BY that decision, so the link is queryable and not just written here. Nothing should be built toward this requirement until the decision collapses, because each answer implies different machinery — and per cap:what-next's ranking rule, the decision therefore outranks the requirement it blocks. This acknowledgement expires if the affected node changes, which is correct: when the decision is made, this should come back for a fresh look rather than stay quietly accepted.",
+    "status": "accepted"
+  }
+}

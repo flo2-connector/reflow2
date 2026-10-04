@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:479314104014d5cadfbe1c972208e0e33240e5c33389793ad9ef3a349284e910",
+  "edge_type": "HAS_SNAPSHOT",
+  "from_id": "env:ci",
+  "properties": {},
+  "to_id": "snap:epoch:preserved-on-write:env:ci"
+}

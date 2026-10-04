@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:a5b042a18495b740249e20e1beb15236139cd1eee6957cac9ed404ca6a9427c7",
+  "node_id": "chg:accept-16e876f2b2eee105",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "refactor",
+    "detected_at": "2026-08-19",
+    "name": "The served description reverted to its prior wording after `skill_lint` refused it: the cap is 1500 chars and loop_status was already at 1494, so documenting `served_by` there would have cost 380 chars of every session's context for a field that announces itself in `next` when it matters — the payload weight ophyd-service filed as friction #8. The BEHAVIOUR is unchanged; only the prose came out, and the code now says why so nobody adds it back.",
+    "subject": "system"
+  }
+}

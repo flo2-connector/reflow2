@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:bc4bbb2b6fdfec8b079aa9e1bda99a21e9139af7a321f374ba7cebbf1825fdb8",
+  "edge_type": "GOVERNED_BY",
+  "from_id": "sys:coherence-loop",
+  "properties": {
+    "note": "This subsystem exists as a SEPARATE instrument from the store it reads, which is what observability-driven allocation wants: a part that reports on another part must not be able to quietly flatter it. Its detectors carry the same obligation the target imposes — each must be able to say it could not tell, rather than reporting clean over ground it never covered."
+  },
+  "to_id": "dec:reflow2-is-built-for-observability"
+}

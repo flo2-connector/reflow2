@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:953e6715b172342d8848a80de28207b8a53f802b9d473a2c5fc69f38d6d22e07",
+  "edge_type": "DOCUMENTS",
+  "from_id": "art:doc-impact-propagation",
+  "properties": {
+    "doc_kind": "design_doc"
+  },
+  "to_id": "cap:propagate"
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:e2a7ae8e2f2cb4ba1fdc04700317171e6a04072658cd112df11d42bb58453874",
+  "edge_type": "ANTICIPATES",
+  "from_id": "req:design-dependencies-declared",
+  "properties": {
+    "confidence": 0.9
+  },
+  "to_id": "dec:idea-a-hub-owns-designs-it-does-not-absorb-and-that-is-a-third-relation"
+}

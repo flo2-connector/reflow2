@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:d8e873b94befad9117868cc2fb77bc32efb9c1f7602ce60d83406d2bf5389fc8",
+  "edge_type": "REALIZES",
+  "from_id": "art:caller",
+  "properties": {
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:an-exposed-server-establishes-who-is-calling-before-intent-can-be-settled"
+}

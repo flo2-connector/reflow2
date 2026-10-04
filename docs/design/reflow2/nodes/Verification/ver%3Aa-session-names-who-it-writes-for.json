@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:816358ed60f221c560d4630499514ef5868b7215d9439d3a7df3690a47030ee9",
+  "node_id": "ver:a-session-names-who-it-writes-for",
+  "node_type": "Verification",
+  "properties": {
+    "description": "Driven through the two steps call_tool takes around every handler (effective_writes_for, writes_for_precheck, serving_for): a declared session's writes are credited as author; a request's _meta name wins for that request only; nothing declared credits nothing; the declaration never adds an approver role; a name the design does not hold is refused before anything is written and a refused declaration does not stick; a declaration belongs to one session (share() starts with nobody); declaring nobody stops the crediting; the sessionless transport refuses a declaration. Plus the real binary driven over stdio on 2026-09-25 with a tools/call carrying _meta: credited to the _meta name, then to the declared session, and an unknown _meta name refused with the node not created.",
+    "findings": "8 of 8 pass on branch feat/a-session-names-who-it-writes-for. With the crediting disabled on the write guard's release, the two crediting tests fail, so the check can fail.",
+    "kind": "verification",
+    "last_run_at": "2026-09-25",
+    "level": "integration",
+    "location": "crates/reflow2-mcp/tests/a_session_names_who_it_writes_for.rs",
+    "method": "test",
+    "name": "A session's or a request's named contributor is credited with every write, and never approves",
+    "status": "passing"
+  }
+}

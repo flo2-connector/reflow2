@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:67cbed6872d4da878ab878e770bacc96b5594f6dba5850b67ebfac3c63907248",
+  "edge_type": "CHANGED",
+  "from_id": "chg:key-interfaces-built",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:graph"
+}

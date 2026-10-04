@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:0fe34e80217af3b620c960e9ca50dea41e82ddd4a319a14d4441c2b6db4c8b1a",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-replay-contract-is-pinned-by-a-round-trip-not-by-a-field",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:reply-budget-test"
+}

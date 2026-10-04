@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:836e2ec0e877f46173bb0ed93f5b924acb1fb3144c653d611c7be6bcf0fc7313",
+  "edge_type": "CAUSES",
+  "from_id": "art:dates",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "claim_age takes a property bag and structurally cannot see an edge, so it answered closure from valid_to alone while the detector answered it from the INVALIDATES edge. Neither was wrong about its own question; the two questions were never reconciled.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:closure-was-one-question-with-two-answers-so-a-refuted-finding-read-as-current-on-the-surface-a-person-meets-first"
+}

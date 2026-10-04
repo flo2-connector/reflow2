@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:9250c4088d57f8644468fb883a9863bf1c14051f6ea945a06b5ef8f672782cea",
+  "node_id": "snap:epoch:reference-parameters-name-their-type:cap:tool-carries-convention",
+  "node_type": "Snapshot",
+  "properties": {
+    "edges": "[{\"direction\":\"in\",\"edge_type\":\"REALIZES\",\"other_type\":\"Artifact\",\"other_id\":\"art:every-reference-parameter-names-its-type-test\",\"properties\":{\"completeness\":\"complete\",\"conformance\":\"reviewed\"}},{\"direction\":\"in\",\"edge_type\":\"VERIFIES\",\"other_type\":\"Verification\",\"other_id\":\"ver:tool-carries-convention\",\"properties\":{}},{\"direction\":\"out\",\"edge_type\":\"ALLOCATED_TO\",\"other_type\":\"Component\",\"other_id\":\"cmp:service\",\"properties\":{\"weight_basis\":\"estimated\"}},{\"direction\":\"out\",\"edge_type\":\"GOVERNED_BY\",\"other_type\":\"Decision\",\"other_id\":\"decision:ack:a3a499e09447e1e3\",\"properties\":{}},{\"direction\":\"out\",\"edge_type\":\"SATISFIES\",\"other_type\":\"Requirement\",\"other_id\":\"req:conventions-ride-the-tool-not-only-the-skill\",\"properties\":{}},{\"direction\":\"out\",\"edge_type\":\"SCHEDULED_FOR\",\"other_type\":\"Release\",\"other_id\":\"rel:v0210\",\"properties\":{\"modality\":\"expected\",\"recorded_at\":\"2026-07-31\"}}]",
+    "state": "{\"description\":\"Each served tool's description carries at most one sentence of reflow2 CONVENTION — the fraction a capable agent reconstructs incorrectly or not at all, such as the distinction between answering a gap and acknowledging one, or that a check left at `planned` is not confirmation. It arrives with the call, so it cannot be skipped by an agent that never loads the skill. Deliberately bounded at a sentence per tool: descriptions are context paid for on every session, and `cap:tool-search` exists because the surface is already large. Does not reverse `dec:skills-served` — the served skill keeps the depth, the worked examples and the reasoning; the tool carries only the irreducible minimum. PLANNED.\",\"is_entry_point\":false,\"is_exit_point\":false,\"name\":\"The tool carries what an agent would never guess\",\"provenance\":\"authored\",\"status\":\"verified\",\"tier\":\"operational\"}",
+    "target_id": "cap:tool-carries-convention",
+    "target_type": "Capability"
+  }
+}

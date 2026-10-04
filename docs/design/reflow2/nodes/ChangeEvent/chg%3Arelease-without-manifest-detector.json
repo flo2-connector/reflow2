@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:9800fb303687013a8199933ca03a47f96bf5303974abd947aa0d632c0e2d46b4",
+  "node_id": "chg:release-without-manifest-detector",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "name": "A release that is out and records shipping nothing is now reported, and the cut procedure it belongs to is in the graph instead of in one agent's notes. `release_without_manifest` fires on a Release with an epoch, a deployment and zero INCLUDES — the v0.38.0 shape, which every check that ran passed over. It never consults `Release.status`, because rel:v0380 was published while its status read `planned`, and the sibling `release_without_epoch` was hardened the same way after this rule's own tests caught it trusting that field. `flow:release-cut` records the eight steps and their two backward resync edges; it is this design's FIRST Flow node, dogfooding a capability shipped long ago and never used on itself.",
+    "subject": "system"
+  }
+}

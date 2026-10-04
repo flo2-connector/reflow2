@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:66f3ba5635e11c5c308fe65d8aada18c56e59d5d03ebe291f64a9e5d611a82bb",
+  "node_id": "decision:ack:f58dc09a846a8783",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Accepted the gap gap:f58dc09a846a8783.",
+    "name": "Reviewed: gap:f58dc09a846a8783",
+    "rationale": "Accepted at component granularity for now, with the same caveat recorded when cap:onboarding first joined this: neither skill has been written, so the detector reads them as covered because they are allocated to a component that carries a passing check. That is detector generosity, not evidence. When either is built it should get its own verification rather than inheriting the skills suite's.",
+    "status": "accepted"
+  }
+}

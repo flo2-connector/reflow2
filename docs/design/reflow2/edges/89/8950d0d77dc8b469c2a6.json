@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:ed743d9eb44773b3e70f1d370900be93fe8afec4641dbe09a93f456219b1fba7",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-restore-judges-a-reference-against-the-document-not-the-walk",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:export"
+}

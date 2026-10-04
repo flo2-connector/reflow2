@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:6b93f8e633a531e98caf05ef058611b05c3892acda5c81902c08d4a857950381",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0750",
+  "properties": {
+    "as_checksum": "sha256:54f85eb29be81e74b8d6d3b0934017f4f64c3e8a98f8ee2cf220103a3d300409"
+  },
+  "to_id": "art:test-a-signature-is-the-callers-own-where-it-is-written"
+}

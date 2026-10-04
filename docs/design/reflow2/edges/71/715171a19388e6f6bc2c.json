@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:610bb3a86b6bf2947ecc00cc32ad2dc684d7c94613eb4c34998b4081253f6d11",
+  "edge_type": "CAUSES",
+  "from_id": "art:tools-temporal",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "add_change_event in temporal_tools.rs sets the `undated` note on `req.detected_at.is_none()`, so it tests the call and not the stored node. Measured on 0.72.0: the revise reply carried the note beside a stored detected_at of 2026-09-25.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:root-cause-the-undated-note-reads-the-call-not-the-stored-node-2026-09-28"
+}

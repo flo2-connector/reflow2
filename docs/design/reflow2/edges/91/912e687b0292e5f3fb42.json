@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:8de0881b401a3f90d9438ce9665c238454f08ab162e01af6a36d14512ef8d1c7",
+  "edge_type": "REALIZES",
+  "from_id": "art:vocabulary-reach",
+  "properties": {
+    "completeness": "partial",
+    "conformance": "verified"
+  },
+  "to_id": "cap:the-design-says-what-its-own-tools-cannot-write"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:ffa507d7a16f7860d42b1c2495df55b5b845bf35a31edb5ffd4073d40f6ace1b",
+  "edge_type": "CHANGED",
+  "from_id": "chg:every-open-store-shares-one-memory-budget-2026-09-27",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cmp:rocksdb-backend"
+}

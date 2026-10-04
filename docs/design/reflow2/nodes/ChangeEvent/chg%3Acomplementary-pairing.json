@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:79e54a3e8f4bd710ff85e7bd43d692ed47a7479f344246b48724d359b0f4c659",
+  "node_id": "chg:complementary-pairing",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "name": "Interface.designation gains required/both; pair_designs computes the seam"
+  }
+}

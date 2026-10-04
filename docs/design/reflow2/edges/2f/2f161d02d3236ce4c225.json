@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:e69982e4dc768d76880efd16075244f50ce6ba5b01c76f27bb30c37780c3b488",
+  "edge_type": "CHANGED",
+  "from_id": "chg:bl179-maturity-profile",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:service"
+}

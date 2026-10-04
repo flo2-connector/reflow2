@@ -1,0 +1,17 @@
+{
+  "content_hash": "sha256:7c2f7b16777dbdb4617dd84901cc791e0caff28e873ff1a8965a15d658617378",
+  "node_id": "ver:decision-settled-round-trips",
+  "node_type": "Verification",
+  "properties": {
+    "description": "crates/reflow2-core/tests/a_settled_decision_has_a_change_type.rs",
+    "findings": "pr run: passing.",
+    "kind": "verification",
+    "last_reconciled_at": "2026-09-23",
+    "last_reconciled_outcome": "passed",
+    "last_run_at": "2026-09-19",
+    "level": "integration",
+    "method": "test",
+    "name": "decision_settled round-trips through its string form",
+    "status": "passing"
+  }
+}

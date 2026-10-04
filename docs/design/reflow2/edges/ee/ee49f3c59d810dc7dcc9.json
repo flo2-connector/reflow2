@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:16bfd4cd167f1ead5e26a145f101ef8be10cfe794525c148ab6b4344e5e2f97d",
+  "edge_type": "GOVERNED_BY",
+  "from_id": "req:a-cluster-can-be-declared-deliberately-separate",
+  "properties": {
+    "note": "This requirement states the need; that decision holds the unmade choice about its shape"
+  },
+  "to_id": "dec:legitimate-islands-need-the-detector-fix"
+}

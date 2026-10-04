@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:06f9eae86aca5d26b48009cfb74b5d0f82a49364bd483a425ea3c46169abbbaa",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-handoff-hook-is-retired-and-the-contradiction-closed",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "dec:idea-the-handoff-file-contradicts-an-accepted-decision-and-nobody-reconciled-them"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:ed0c335ecbd1d9326cf7b219cbf0b5d20f55f06b2d1570289f0f7876a7a224d2",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-design-closes-against-a-declared-threshold-and-the-report-names-the-first-hole",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "art:skills-and-tools"
+}

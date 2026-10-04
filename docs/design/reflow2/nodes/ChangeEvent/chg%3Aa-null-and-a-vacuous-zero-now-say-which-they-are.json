@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:423ad5021d09a7ef913d0ea6a53183b4c45a2556c011ddbeddd2a30c812f4a9a",
+  "node_id": "chg:a-null-and-a-vacuous-zero-now-say-which-they-are",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "test_failure_fix",
+    "name": "get_node refuses an unknown node_type instead of answering null, and a one-node scope says its answer is vacuous"
+  }
+}

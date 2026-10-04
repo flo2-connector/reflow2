@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:075aa6d46ca580224a17133835ff689b93d2147a6cdfae1fccd9d3561088b439",
+  "edge_type": "REALIZES",
+  "from_id": "art:replies-are-bounded-gate",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "verified"
+  },
+  "to_id": "cap:every-oversized-reply-offers-a-bound"
+}

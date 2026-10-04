@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:1dec7a9624c36038cacb553394d4a21913e6f4ee5f8cc7f3415c473e38f9503b",
+  "node_id": "frag:art:test-every-writer-signs-as-the-caller-fixture",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered every_writer_signs_as_the_caller.json (one call per served write tool, naming the caller)"
+  }
+}

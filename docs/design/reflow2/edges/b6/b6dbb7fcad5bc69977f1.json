@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:80a53cd37fd66e0f566adf010362565321bce363a63fc34a0cc43832abb02b0b",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:idea-the-design-lives-apart-from-the-implementation",
+  "properties": {
+    "approved_at": "2026-09-25",
+    "authored_at": "2026-09-25",
+    "roles": [
+      "author",
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

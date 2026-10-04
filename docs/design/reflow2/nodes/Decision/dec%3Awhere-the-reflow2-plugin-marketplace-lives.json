@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:cd97d100e796bd61c84dc9d1b9b03224fb1e36cd85d82a567c2bf880e2a0b5f5",
+  "node_id": "dec:where-the-reflow2-plugin-marketplace-lives",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Raised 2026-10-01 while planning cap:reflow2-installs-as-one-plugin-for-claude-code-and-grok. Both Claude Code and Grok Build install plugins from a marketplace: a git repository holding `.claude-plugin/marketplace.json` (Grok also reads that path), which lists each plugin and where its folder is.\n\nOPTIONS:\n(a) reflow2's OWN REPOSITORY: marketplace.json at the root and the plugin under a folder such as plugin/reflow2/. Then `claude plugin marketplace add sligara7/reflow2` and `grok plugin marketplace add sligara7/reflow2`. The plugin's version moves with each release, and `claude plugin tag` can stamp it.\n(b) A SEPARATE REPOSITORY (e.g. sligara7/reflow2-plugins), with reflow2's release pushing the plugin there. That keeps the main repo's root clean, but adds a second repository to keep in step.\n(c) ANTHROPIC'S OFFICIAL MARKETPLACE (claude-plugins-official, 315 plugins on this machine). That gives the widest reach, but it is a submission, it covers Claude Code only, and it can follow (a) later.\n\nLEAN: (a) now, with (c) considered once the plugin has shipped and been used.",
+    "kind": "choice",
+    "name": "OPEN — where the reflow2 plugin is listed: a marketplace in reflow2's own repository, a separate plugins repository, or Anthropic's official marketplace",
+    "status": "proposed"
+  }
+}

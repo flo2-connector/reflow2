@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:4db484f0844d9b6b4234d1af64c7c4e300465d3b59fe074021ef018289dcaecf",
+  "edge_type": "ANNOTATES",
+  "from_id": "frag:alex-2026-08-14-env-kit-stamp",
+  "properties": {
+    "note_kind": "reviewer",
+    "resolved": false
+  },
+  "to_id": "art:alex-grok-feedback-2026-08-14"
+}

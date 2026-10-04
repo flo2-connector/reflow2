@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:c55e29b4ebebb83bb80910799d4ad88919c6d150c2967c41f91cd3236ddb27f0",
+  "node_id": "cmp:tools-ingest",
+  "node_type": "Component",
+  "properties": {
+    "kind": "module",
+    "level": "component",
+    "name": "ingest_tools",
+    "provenance": "authored",
+    "purpose": "The INGEST slice of the served surface (2 tools): the batched handshake that turns a document, or a folder of them, into one design — ingest_step, ingest_corpus_step.",
+    "status": "planned",
+    "tier": "operational"
+  }
+}

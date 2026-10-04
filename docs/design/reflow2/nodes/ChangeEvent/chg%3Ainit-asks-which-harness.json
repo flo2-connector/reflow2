@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:59325be2fe7ce97adeddb9a27454ebb64fa3f89cdf03f550874e63abd53f819c",
+  "node_id": "chg:init-asks-which-harness",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "name": "init asks which agent harness opens this project and writes files for that one only — MCP configs, the loop-nudge hook, the slash commands and the CLAUDE.md pointer all narrow, and grok/copilot resolve to the config they actually read"
+  }
+}

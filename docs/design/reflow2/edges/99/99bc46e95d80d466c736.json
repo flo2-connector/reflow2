@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:ba3226a63dc2b72ee6f431b9cf20a269169977ead77713c6f6e5af628122ae78",
+  "edge_type": "CAUSES",
+  "from_id": "req:kit-reaches-the-agent",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "Its accepted exception to dec:skills-served ships discovery shims only as Claude Code slash commands (reflow2_init.py TREES: KIT/commands -> .claude/commands), a directory VS Code does not read; the vscode harness entry writes only .vscode/mcp.json.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:root-cause-vs-code-reads-project-skills-and-slash-prompts-and-init-installs-neither-for-it-2026-10-02"
+}

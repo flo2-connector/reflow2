@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:f7116652c58f6fc296218a59d821ae4b9d3edd911e1674642e340bb32204eb91",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0611",
+  "properties": {
+    "as_checksum": "sha256:eae6bdcae1c60f8a8501049abfe43ffcfe193d735e8e71ff24101925c8780919"
+  },
+  "to_id": "art:lens-names-test"
+}

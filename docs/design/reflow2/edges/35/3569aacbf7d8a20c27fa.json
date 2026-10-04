@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:155e920c518b13152bc3458b12a116534a760110f0e6b9f45c4112f262c0615b",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-refusal-no-peer-can-resolve-stops-the-wait-instead-of-timing-out",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cmp:shared"
+}

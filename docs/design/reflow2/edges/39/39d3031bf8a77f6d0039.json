@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:f6d337ef2573ccc5855b065cc8b2780878aa816f51000ec6ea29912bdfac0865",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:a-build-reads-a-report-from-the-design-without-an-agent-in-the-loop",
+  "properties": {
+    "approved_at": "2026-09-20",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

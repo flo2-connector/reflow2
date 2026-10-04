@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:a7ecf27cc920f1043a758309f1d1f11b054ea1d72ebb53c9395e3a85b3ff7123",
+  "edge_type": "REALIZES",
+  "from_id": "art:heal",
+  "properties": {
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:a-ruling-parks-a-node-and-parked-nodes-are-counted"
+}

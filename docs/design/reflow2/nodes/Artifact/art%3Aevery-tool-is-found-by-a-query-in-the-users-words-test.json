@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:fd52e90f40cf7f7bb01a6c1fbe5781d8a47cbef7b5b8b7e57b27c74cffcf3713",
+  "node_id": "art:every-tool-is-found-by-a-query-in-the-users-words-test",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "test",
+    "description": "The criterion-1 acceptance test, on Anthony's condition that the corpus is the test: every served tool must reach find_tools' default top 5 for its query in tests/fixtures/find_tools_corpus.json. TWO tools are EXEMPT at rank 6 with the measured reason (consumption_report, governed_by — scan_nodes rose into the top 5 during increment 434 and its exemption came out), and a second test fails if an exemption goes stale in either direction. A third test refuses any served tool absent from the corpus, so a new tool cannot ship unfindable by omission. Its header names the trap it cannot see — a sentence tuned to its query — and points at the held-out paraphrase corpus that guards it, kept deliberately out of CI. It earned its place a second time on 2026-09-12: a description pass that rewrote tools \"from purpose\" dropped eight from their top 5, and this test refused the branch until the user-phrased sentence was back on each.",
+    "location": "crates/reflow2-mcp/tests/every_tool_is_found_by_a_query_in_the_users_words.rs",
+    "name": "every_tool_is_found_by_a_query_in_the_users_words.rs",
+    "status": "realized"
+  }
+}

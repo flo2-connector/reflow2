@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:ef7faa191c65a8a46fcf8898498b26c9a70bb546915fa44f7b58a162ff3e0bf1",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-what-belongs-in-the-graph-and-what-belongs-in-an-agents-memory-and-why-the-rule-keeps-losing",
+  "properties": {
+    "evidence": "Option (a) is entirely the lesson-at-the-step mechanism that requirement built, applied to this rule.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "req:a-lesson-is-served-at-the-step-it-concerns"
+}

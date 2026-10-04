@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:52034b76dbd0e6d7c34e20e5a35e96075124b3ed743203a7537d3ed6468d8747",
+  "edge_type": "PROVIDES",
+  "from_id": "cmp:graph",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "ifc:core-api"
+}

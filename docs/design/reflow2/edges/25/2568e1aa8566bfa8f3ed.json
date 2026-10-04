@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:1704716508f952fcca4f7dfa311cd15f90c7aff916c7c6373b37f4bd112e2e26",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-check-and-its-findings-are-different-things",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "ver:the-capture-skills-do-not-hand-the-vocabulary-back"
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:fa5464428c696c9816ed3f21651432add93136649e916f1d89a04b8381694e22",
+  "edge_type": "RISKS",
+  "from_id": "dec:idea-sharing-is-a-grant-on-the-design-not-access-to-a-server",
+  "properties": {
+    "evidence": "If a design moves between servers, as Alex expects, a watch keyed on a server address goes stale the way the export-path watch did when cure moved; the durable key is the design's id."
+  },
+  "to_id": "req:a-design-watches-another-design-at-the-server-that-holds-it"
+}

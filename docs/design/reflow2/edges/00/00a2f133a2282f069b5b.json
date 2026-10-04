@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:0fb08c6f3fab2fb809d8d6c2ae7f3a46c265f663c768f0dfb866ec3d07c18b82",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-saved-design-moves-to-the-item-layout-2026-10-03",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:30dc1d47ef57ea8a78ec10c6cd76a4d2127f3d5f53f3655c1bf413fecf2a566d",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:test-a-jot-carries-the-tag-its-word-gave-it"
+}

@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:5c021078d92160b2a9e8d2903af710aac6be8a4dd899ad705769a536bc7b9178",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "rule:feedback-sources-have-a-priority-order-and-anthony-set-it",
+  "properties": {
+    "authored_at": "2026-08-16",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

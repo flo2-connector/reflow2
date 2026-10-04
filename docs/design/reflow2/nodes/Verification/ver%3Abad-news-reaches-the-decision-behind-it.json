@@ -1,0 +1,18 @@
+{
+  "content_hash": "sha256:5b63269409c38afb71ab0f22ba536ecb9d51d0c349c341bbaefead6f227b4fe6",
+  "node_id": "ver:bad-news-reaches-the-decision-behind-it",
+  "node_type": "Verification",
+  "properties": {
+    "description": "Eight tests: no bad news names nothing and says an untested design looks the same; a failed run reaches the accepted decision with its path; a proposed decision is not listed; good news is counted and nothing is written onto the decision; a recorded failure is kept apart from a failed run; an open defect finding reaches its decision and a closed one does not; bad news under no decision is named; decisions come back in id order, not by evidence count.",
+    "findings": "8/8 pass.",
+    "kind": "verification",
+    "last_reconciled_at": "2026-09-23",
+    "last_reconciled_outcome": "passed",
+    "last_run_at": "2026-09-22",
+    "level": "integration",
+    "location": "crates/reflow2-core/tests/bad_news_reaches_the_decision_behind_it.rs",
+    "method": "test",
+    "name": "Bad news reaches the settled decision behind it — unranked, no threshold, good news counted not stored",
+    "status": "passing"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:aa7cba66c84007f0b7031138d8ad222003a3b5af5fdbcc33ca5307bcd3c2836b",
+  "edge_type": "REALIZES",
+  "from_id": "art:kit-instructions",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:skills-served"
+}

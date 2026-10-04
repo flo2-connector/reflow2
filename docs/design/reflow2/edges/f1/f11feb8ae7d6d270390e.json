@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:fd153fc707c9de53a8e25b216574fc321dab3f108516ac86386b0f58ad76f0f1",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-spawned-daemon-caps-its-allocator-arenas",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:dockerfile"
+}

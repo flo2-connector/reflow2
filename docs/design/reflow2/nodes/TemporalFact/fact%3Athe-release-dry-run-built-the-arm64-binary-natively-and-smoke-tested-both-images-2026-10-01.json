@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:1972e5957564882074200d22e62290ba04cbf033689ed0268424b575539361b4",
+  "node_id": "fact:the-release-dry-run-built-the-arm64-binary-natively-and-smoke-tested-both-images-2026-10-01",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "finding",
+    "name": "MEASURED 2026-10-01: the first release dry run (run 36956513495, #646's workflow on its branch) passed every job — the linux-arm64 binary built natively on ubuntu-22.04-arm, both architectures' images passed docker/smoke.sh on their own runners, and nothing was pushed or published",
+    "source": "gh run view 36956513495 (sligara7/reflow2, release.yml dispatched with dry_run=true on feat/617-multi-arch-image-with-its-digest, 2026-10-02T02:37Z); the binary-linux-arm64 artifact read with file(1) and readelf -V",
+    "statement": "These results reached only PR #646's body. #646's design records were exported before the run.\n\nRESULTS:\n- consumer kit, binary (linux-x86_64, linux-arm64, macos-arm64, macos-x86_64), image (linux/amd64) and image (linux/arm64): all success.\n- container image and publish release: SKIPPED, as the dry_run gate intends.\n- In both image jobs, \"The image must start\" passed. Registry login, push by digest and digest upload were skipped.\n- binary (linux-arm64): RocksDB built natively on ubuntu-22.04-arm. The conditional libclang step found it already present and installed nothing.\n\nTHE ARM64 BINARY: `ELF 64-bit LSB pie executable, ARM aarch64`. Its highest versioned glibc symbol is GLIBC_2.34 (readelf -V), so it runs on Raspberry Pi OS Bookworm (2.36) and Ubuntu 22.04+, but NOT Bullseye (2.31). The tarball is ~18 MB, sha256 prefix 65285f1f.\n\nSTILL UNPROVEN until a tagged release (v0.77.0) runs:\n- the GHCR push by digest, the two-platform index tagged as :version and :latest, and the digest in the release notes;\n- a real-hardware run. An attempt on a Raspberry Pi 4 failed for reasons unrelated to reflow2 (its microSD card is failing), and a check script for it was written and proven on x86.\n\nUse the dry run before merging any change to release.yml: `gh workflow run release.yml --ref <branch> -f dry_run=true`.",
+    "subject_id": "cap:release-publishes-a-container",
+    "valid_from": "2026-10-01"
+  }
+}

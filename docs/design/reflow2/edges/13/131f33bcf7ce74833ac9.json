@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:99d87dd5c9eff3e3a9e880a54afe9c9791f7b50eae87326044ea77813497592e",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-name-is-not-a-report",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "ver:install-reaches-the-agent"
+}

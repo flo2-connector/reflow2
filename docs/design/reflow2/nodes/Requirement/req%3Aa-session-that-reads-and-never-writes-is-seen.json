@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:80c912a7948dd11c93865e54d0dbde3f0fbc6cd379dfa5cc4634fa90646d68d3",
+  "node_id": "req:a-session-that-reads-and-never-writes-is-seen",
+  "node_type": "Requirement",
+  "properties": {
+    "lineage": "original",
+    "name": "A finding is written the moment it is made and needs nobody's permission, and a session that reads the design at length and writes nothing is seen by the loop",
+    "priority": "high",
+    "provenance": "authored",
+    "statement": "Anthony, 2026-09-18, promoting flo2's F0 (2026-09-18) and this session's own lapse the same day. The distinction: intent (a requirement, a decision, a status) waits for the owner's word; a finding (a contradiction noticed, a measurement, a cause established) is the agent's own observation and is written before the answer, no permission owed. Two legs were missing and both are required: the INSTRUCTION — the capture skills say it, and a design rule carrying it is delivered on capture-intent, where-am-i, brainstorm, root-cause and triage-feedback; the DETECTOR — every loop signal counts nodes that exist, so loop_status must count THIS SESSION's reads and writes and say, in `next`, when a session that could write has read past a threshold and written nothing; the stop hook nudges once on the same inverse. Never for a read-only surface, and never as a question mid-thought (req:detecting-is-not-asking). The accepted req:session-memory-in-graph asked for this in July; its capability was still planned.",
+    "status": "accepted"
+  }
+}

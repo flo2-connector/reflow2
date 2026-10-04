@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:6a7f79d156e8faeec3e5c195fb4c13fba483e9e43a7647b6a18a3b299d1c2632",
+  "edge_type": "CHANGED",
+  "from_id": "chg:accept-03a23acf45b3fec0",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:collaborating"
+}

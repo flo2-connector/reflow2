@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:1a8ee281f3c57d4ec14943270af1faa2c43d9577f09133dc7c82cc8d6552bd43",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-a-hub-owns-designs-it-does-not-absorb-and-that-is-a-third-relation",
+  "properties": {
+    "evidence": "That requirement establishes a design as a unit that composes with the designs around it, which is the ground the hub relation stands on. The hub case asks for a THIRD composition mode beside peer linking and merging — ownership and roll-up without absorption — so it extends that requirement rather than contradicting it, and is unbuildable without it.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "req:design-composes"
+}

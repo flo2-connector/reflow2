@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:5ed688f1302a1e878749e500cfb706fc27c94ba32254eb7a72fa96f16fde7ec4",
+  "node_id": "chg:build-loop-shape-reassessed",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "scope_change",
+    "name": "Reassess req:build-loop-is-bounded: a hard stop is phase-shaped and may be wrong for continual evolution"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:b24c01287b7e9056a969caeef43d09d416d2c7361e6c3c3fed0b326eea5a82d2",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-graph-asks-what-a-session-made-false",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:tools-assure"
+}

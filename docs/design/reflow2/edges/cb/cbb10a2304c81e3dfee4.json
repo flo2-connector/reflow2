@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:03c757c84ce15bd4d9a1b97283f1072610577ec05c25116433945d6c4fac4183",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:a-declared-dependency-is-watched-not-imported",
+  "properties": {
+    "coverage": "full"
+  },
+  "to_id": "req:a-design-watches-another-design-at-the-server-that-holds-it"
+}

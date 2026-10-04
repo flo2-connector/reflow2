@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:b5a87119c644e36b6437f23687eba177b6a3b26d6ea64fde8204f4c8613233da",
+  "node_id": "fact:manual-work-8cdef98c7d98f3d1",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "manual_work",
+    "statement": "Answered \"has this project drifted away from its original purpose over time?\" by hand: read the predecessor project's founding documents directly, fanned five independent readers over the rest of its repository to extract stated purpose, principles, warnings and self-admitted drift with quotes, then compared that against this design's own graph (which requirements from the predecessor were accepted, dropped, or left proposed; usage share, tool counts, verification execution, status fields). No served tool compares a design's stated intent over time or against a predecessor's; find_tools for the question returned set_project_mode, compare_designs and coverage_report, none of which asks it.",
+    "subject_id": "proj:reflow2",
+    "valid_from": "2026-09-13",
+    "value": "{\"diagnosis\":\"tool_missing\",\"reflow2_tool\":null}"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:09630abd400cd0f58e53131ca4dfebe318d4ebd359f33960e2be45c30e9b00e7",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-saved-design-moves-to-the-item-layout-2026-10-03",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:0318c29079069fab4d59770f29f5b9ec9895208d658b9b829f8cb46f019bc387"
+  },
+  "to_id": "art:alex-grok-feedback-2026-08-14"
+}

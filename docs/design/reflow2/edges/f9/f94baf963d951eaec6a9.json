@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:0848e364d2d0fcefbd40e42e45011b060b8c42962096ac39fe8bb65eb130ec2a",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-saved-design-moves-to-the-item-layout-2026-10-03",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:4b04b8ac175fa6a9f73bc1e8d03cd2ed9e9227a9c49302d8cc63086bb09b9310",
+    "checksum_basis": "measured"
+  },
+  "to_id": "art:skill-ingest-corpus"
+}

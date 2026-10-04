@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:2c3ecfdb708bd473bc48ccb7b1f1b42e1bf1911f9ad4dbe51e874b6bb9993ee5",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0720",
+  "properties": {
+    "as_checksum": "sha256:16f6b408b2f7d13b43f24a49f1af611190d0a8ffaacd039c0812ca96b862e7b2"
+  },
+  "to_id": "art:one-meaning-for-a-location-test"
+}

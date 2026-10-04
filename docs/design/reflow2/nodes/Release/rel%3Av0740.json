@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:e3555424efcdbb61771f3f98be0917628e4c949d933c2ef3392a2904403943a1",
+  "node_id": "rel:v0740",
+  "node_type": "Release",
+  "properties": {
+    "description": "Cut 2026-09-28 on Anthony's word (\"Yes, cut 0.74.0\"), for combined-plan position 6. One built change since v0.73.0:\n- The `hub` skill (/hub, #612, chg:a-hub-skill-files-each-fact-where-it-belongs-2026-09-28). For a session that reaches a hub and the designs it coordinates (a flo2.io hub design, a local hub like dev_reflow2, or an agent holding several design addresses), it:\n  - reads a child design only when a request needs it;\n  - writes each fact to the lowest design that owns all of it, naming that design first;\n  - keeps a collaborator's idea in the hub until someone who can write to the right design routes it, leaving a ROUTED pointer in the hub.\nWhy now: flo2's shared hubs (flo2 #98, epoch:shared-hubs) point every hub at this skill, at both of flo2's doors. flo2.io upgrades to this release before #98 deploys. MINOR, as a new skill; the schema stamp is unmoved.",
+    "name": "v0.74.0 — a hub skill: in a session reaching several designs, each fact goes to the design it belongs in",
+    "status": "retired",
+    "unit_type": "binary",
+    "version": "0.74.0"
+  }
+}

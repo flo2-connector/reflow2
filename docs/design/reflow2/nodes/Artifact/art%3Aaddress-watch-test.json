@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:55e96936cf68468fd5520fb1e8f2a16a97568cfe6cec3723635ccafda127de96",
+  "node_id": "art:address-watch-test",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "test",
+    "description": "The address watch's network half. A real reflow2 serves a design over HTTP (the /g/<id>/mcp shape flo2.io serves); a watch declared at its address sees it unchanged, sees a real upstream write as moved, imports nothing, and reads a stopped server as unreachable. Stand-ins cover a 401 refusal (in the server's words, key never in the reply), no key set up (the reply says how to set one up), a reply that is not a design (unreadable), a key never sent in the clear, a hosted server never reaching out, loop_status never calling out, and a two-place watch refused before any call.",
+    "location": "crates/reflow2-mcp/tests/a_design_is_watched_at_the_server_that_holds_it.rs",
+    "name": "tests/a_design_is_watched_at_the_server_that_holds_it.rs",
+    "status": "realized"
+  }
+}

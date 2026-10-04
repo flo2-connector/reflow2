@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:b8ddd1ec00bff63fd18a58ea2bfeab9070549bf3c9cb9cb3348515d205118a1c",
+  "edge_type": "CHANGED",
+  "from_id": "chg:baseline-358237fef0051a45",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:test-one-tool-declares-its-output-contract"
+}

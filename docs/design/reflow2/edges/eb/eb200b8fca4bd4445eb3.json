@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:0de787ae9e22b6f9e739a653447a89687f5df856d1448934dc35246f15c591bc",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:the-unexported-work-check-keeps-its-node-count-and-says-so",
+  "properties": {
+    "approved_at": "2026-08-31",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:3addd23b806ec22ab89c53655bd57132e47811335a729b474e08dda93f6af0ee",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:a-cluster-can-be-declared-deliberately-separate",
+  "properties": {
+    "authored_at": "2026-08-09",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:storyflow-storybug-boss"
+}

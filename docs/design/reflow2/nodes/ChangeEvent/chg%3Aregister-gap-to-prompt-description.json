@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:009c8d203b3a7a40ed77a4bfa8ef0ec4c08c53567c42e357d447a103aaf29276",
+  "node_id": "chg:register-gap-to-prompt-description",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "name": "gap_to_prompt's served description names itself as the translation point, where the detector's vocabulary would otherwise reach a person"
+  }
+}

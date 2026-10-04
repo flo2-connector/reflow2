@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:e02b8861ecdbc828aca81c869cf9580d3fb81b53d1220be8b1a57d6b6a90c286",
+  "node_id": "snap:epoch:preserved-on-write:cap:a-bulk-edge-write-keeps-each-typed-helpers-checks",
+  "node_type": "Snapshot",
+  "properties": {
+    "edges": "[{\"direction\":\"out\",\"edge_type\":\"ALLOCATED_TO\",\"other_type\":\"Component\",\"other_id\":\"cmp:bulk\",\"properties\":{\"weight_basis\":\"estimated\"}},{\"direction\":\"out\",\"edge_type\":\"SATISFIES\",\"other_type\":\"Requirement\",\"other_id\":\"req:every-typed-edge-helper-has-a-bulk-form-that-keeps-its-checks\",\"properties\":{}},{\"direction\":\"out\",\"edge_type\":\"SCHEDULED_FOR\",\"other_type\":\"DesignEpoch\",\"other_id\":\"epoch:fix-what-the-two-agent-exercise-found-2026-09-29\",\"properties\":{\"modality\":\"expected\",\"recorded_at\":\"2026-09-29\"}}]",
+    "state": "{\"description\":\"Bulk edge writes keep the semantics of the typed helpers: constrains' contribution, unit and source; governed_by's ruling; authored_by's roles; provides, consumes, allocate and satisfies. The reply names every edge drawn, and each helper's description names the bulk route. Planned by the 2026-09-29 fix program.\",\"name\":\"A bulk edge write runs each typed helper's own checks on every edge, replies with the edges it drew, and every typed helper names it\",\"provenance\":\"authored\",\"status\":\"planned\"}",
+    "target_id": "cap:a-bulk-edge-write-keeps-each-typed-helpers-checks",
+    "target_type": "Capability"
+  }
+}

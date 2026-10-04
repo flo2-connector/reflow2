@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:6c26baaeeccc482df3fba1e8ac7cbd1c7f634ae666754a2e03b5938e5515cb11",
+  "node_id": "epoch:isolation-check-scope-split",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "epoch_type": "revision",
+    "name": "The isolation check is split so the half that cannot be tested yet is a node rather than a comment in a test",
+    "sequence": 285,
+    "status": "arrived"
+  }
+}

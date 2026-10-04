@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:f51241e60331512049400fd6113897bcdb8979af8e3f03e813ca909813422c3c",
+  "edge_type": "CHANGED",
+  "from_id": "chg:every-required-parameter-and-every-thin-description-says-what-it-is",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:tools-operate"
+}

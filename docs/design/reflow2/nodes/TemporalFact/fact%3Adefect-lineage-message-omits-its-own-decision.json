@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:a1ea0b681495be0c1b14bac539fcd335f94845239599cf020038d96e57d6d776",
+  "node_id": "fact:defect-lineage-message-omits-its-own-decision",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "confidence": 0.95,
+    "fact_type": "defect",
+    "statement": "The export-lineage gate enforces dec:export-once-per-pr correctly but never NAMES it, so whoever trips it re-derives the rule instead of being told it — and its failure message lists two causes that exclude the actual one. Observed 2026-08-06 on PR #87: a second exporting commit on a branch that already had one produced FAIL LINEAGE 'records sha256:8b5471e9 where sha256:486ecbac is expected'. The chain was internally sound (main 85b17257, base 486ecbac, first export 8b5471e9, second 2b536b9a, every prev matching its predecessor), so the agent's first diagnosis was that the GUARD was defective, and a backlog row was filed saying so. The guard was right. dec:export-once-per-pr has been accepted since 2026-08-01 and says exactly: a branch may hold as many commits as it likes, exactly ONE may write docs/design/reflow2.json. THIS IS THE THIRD RECORDED REDISCOVERY of that decision, which dec:idea-backlog-belongs-in-the-graph already characterised as 'accepted, invisible, violated and then re-announced as new'. The message's two stated causes (exported elsewhere and copied in; exported twice since the last commit) both invite 'restore the file and export once', which had already been done and cannot help. The real remedy is fold-to-one-exporting-commit, and the message does not say it.",
+    "subject_id": "dec:export-once-per-pr",
+    "value": "{\"observed_on\":\"PR #87 feat/updating-doc\",\"gate\":\"tools/reflow2_check.py check_export_lineage\",\"recorded_prev\":\"sha256:8b5471e9\",\"expected_prev\":\"sha256:486ecbac\",\"chain_internally_sound\":true,\"decision_violated\":\"dec:export-once-per-pr\",\"decision_status_at_time\":\"accepted\",\"rediscovery_count\":3,\"message_names_the_decision\":false,\"open_half_already_filed\":\"BL-156 — enforce on the pull_request trigger via git log --name-only origin/main..HEAD, where it is free, instead of after merge on main\",\"agent_first_misdiagnosis\":\"blamed the guard; filed BL-217 asserting a blind spot\"}"
+  }
+}

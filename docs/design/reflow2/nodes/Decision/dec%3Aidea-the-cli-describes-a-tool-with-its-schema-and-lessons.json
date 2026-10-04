@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:e7bd89790896dba127ac5a644af3ef1b65204605e3295c2b6b8e57648fb0e835",
+  "node_id": "dec:idea-the-cli-describes-a-tool-with-its-schema-and-lessons",
+  "node_type": "Decision",
+  "properties": {
+    "chose": "Taken as step 4 of the door plan Anthony agreed on 2026-10-01 (\"I agree\"): req:the-cli-describes-any-tool-with-its-full-schema-and-lessons.",
+    "decision": "RECORDED AS BRAINSTORMING, NOT AS A PROPOSAL. Anthony's idea 5 in using_call.md (2026-10-01), for limitations 5 and 6:\n- find_tools gives parameter NAMES only (query.rs ~853 collects the schema's property keys), so an agent learns types and required-ness from exit-2 refusals, \"one round trip per mistake\";\n- the lessons a DesignRule or TemporalFact hangs on a tool (`steps`) ride that tool's description in tools/list (lessons.rs:230), which a `--call` agent never reads.\n\nTHE IDEA, in his words: \"`--describe <tool>` (or `--call describe_tool`) would print the full input schema *and* the lessons `tools/list` would have appended. A `--list-tools` that dumps the whole served list as JSON would let an instructions generator pre-render a schema cheat-sheet.\"\n\nWHY IT MATTERS BEYOND VS CODE: req:a-discipline-is-delivered-at-the-tool-not-in-a-catalogue and req:conventions-ride-the-tool-not-only-the-skill put disciplines on the tool. Any door that skips tools/list loses them silently. As a served TOOL (describe_tool), it would also reach MCP clients that truncate long tool lists.\n\nCHEAP: --call already builds the served list with lessons (tools_with_lessons, main.rs ~750), so printing one entry is small.",
+    "kind": "exploratory",
+    "name": "SETTLED 2026-10-01 — the CLI describes a tool in full, with its schema and lessons (step 4 of the door plan)",
+    "no_relation_note": "Searched \"describe tool schema CLI lessons\". The nearest are the two requirements named in the text, which this would serve rather than relate to as ideas. No existing idea proposes a describe door.",
+    "status": "accepted"
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:ae7aa0f0879257f56e5a7cd2ee064609c1d28b56224c0e7965699c1c483ed141",
+  "node_id": "question:95ddc1083445d73d",
+  "node_type": "Question",
+  "properties": {
+    "answer": "Approved (Anthony, 2026-07-25). A claim carries the session that made it — the harness session id, assigned out of band so it cannot race — and claim_report distinguishes a live claim from one left by a session that closed. Liveness computed, not asserted.",
+    "asked_at": "2026-07-25",
+    "context_setter": "Nothing satisfies requirement “A claim names its owner, and a claim with no live owner is reported stale”",
+    "gap_id": "gap:95ddc1083445d73d",
+    "question": "When somebody says “I have got this part”, should reflow2 record WHO said it and then tell you when that person is no longer around — so the list shows what is actually being worked on rather than what somebody claimed days ago and walked away from? Today a claim carries only a label, so an abandoned claim looks exactly like a live one.",
+    "rephrase_degraded": false,
+    "status": "answered"
+  }
+}

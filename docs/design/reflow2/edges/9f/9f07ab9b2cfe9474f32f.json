@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:cde6b987bb7df8f3a81bfe29339d10ddb101fd02b3126c2aa6bb8864afad9828",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "req:adopt-says-how-much-it-got",
+  "properties": {
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "req:adopt-existing"
+}

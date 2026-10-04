@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:ffea958ff70c86994a302a8a39011b4c9818b0c248dd3e3827bc02a3ebfe8644",
+  "node_id": "art:feedback-is-a-computed-tally-wire-test",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "test",
+    "description": "The wire-level pin, against the real binary over stdio: one classed line per call, the harness named from the handshake, get_skill's name kept and no other argument, the requirement's id and statement absent from the ledger and the report, the window closing behind a report and not behind a peek. Shown to fail on an argument-leak mutation (4 pins) before it was trusted; a reply-text leak did NOT trip it, because reflow2's reply text does not carry the id — a limit worth knowing.",
+    "location": "tools/test_feedback_is_a_computed_tally.py",
+    "name": "test_feedback_is_a_computed_tally.py",
+    "status": "realized"
+  }
+}

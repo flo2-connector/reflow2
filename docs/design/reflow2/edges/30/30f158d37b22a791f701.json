@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:ed8f0b9db5292d097b5a5621f3b9c9561ccf5e244e97a42c220df906a80e9af0",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:mint-seat-liveness-test",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:mint-seat-liveness-test"
+}

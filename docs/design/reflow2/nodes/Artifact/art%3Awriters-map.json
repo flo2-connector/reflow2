@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:c70e901ff068d6726f0e0a8e710ee145960ffebaf90c258654261b3e369e89c5",
+  "node_id": "art:writers-map",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "data",
+    "description": "The ONE map read by describe_schema (written_by, drawn_by), every invalid-edge refusal, and tools/vocabulary_reach.py.",
+    "location": "crates/reflow2-mcp/writers.json",
+    "name": "writers.json — which served tool writes which node type and draws which edge type",
+    "status": "realized"
+  }
+}

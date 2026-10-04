@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:1a897a6b4df71f93a9b0af907b4e0656fb95c07eb501696fd5ac53fd8f54fae9",
+  "node_id": "art:a-loop-hint-says-where-the-node-landed-test",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "description": "add_decision settled in one call or merged over an accepted node is not told it lands proposed; add_design_rule and add_capability hints are conditioned on what the call did; regression cover for the true cases.",
+    "location": "crates/reflow2-mcp/tests/a_loop_hint_says_where_the_node_landed.rs",
+    "name": "Test: a loop hint says where the node landed",
+    "status": "realized"
+  }
+}

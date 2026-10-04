@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:e6a81a09bb46890b708f081630d8e6d502d9c6ee3741e8a5840100cda45db495",
+  "edge_type": "PART_OF_FLOW",
+  "from_id": "cap:stamp",
+  "properties": {
+    "step_order": 3,
+    "weight_basis": "estimated"
+  },
+  "to_id": "flow:release-cut"
+}

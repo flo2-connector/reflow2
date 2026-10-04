@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:84ad5491d24aef67a3dd9cbddfb1c627e699263555008b1c21563c4c0bd576f6",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:a-capability-states-what-it-takes-and-gives",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:graph"
+}

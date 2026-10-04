@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:3625773d666e877b57de03c9d5eecab7835a35ec693c710bb0251b1ba67d8608",
+  "node_id": "chg:a-band-carries-what-it-was-computed-over",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "detected_at": "2026-08-30",
+    "name": "A maturity band carries what it was computed over, and the report prints it",
+    "rationale": "`seam_coverage` emits a scope_note warning that a design declaring contracts above module level reads as having none. `maturity_report` asks the same question with none of that warning, and `graph_report_markdown` printed `seams 18% (13/72)` barer still — so an agent reading the trajectory band had nothing to be suspicious of and reported 18% as a finding. THE CAVEAT EXISTED AND WAS STRIPPED BY THE TOOL THAT QUOTED THE NUMBER, which is not an agent-behaviour problem and cannot be fixed by instruction.\n\nAnthony chose option (a) of dec:idea-a-derived-number-carries-what-it-was-computed-over-wherever-it-is-quoted on 2026-08-30, with the where-am-i re-derivation as a follow-on. Deliberately does NOT change any band's value: moving a ratio would break comparison with every earlier reading, so the caveat is added and the number stays.\n\n⚠️ ONLY THE SEAMS CAVEAT IS MEASURED. The other three are reasoned from the band definitions and are not yet verified against a real design exhibiting them.",
+    "subject": "system",
+    "summary": "`MaturityBand` gains a `caveat`, carried in the same table as each band's `question` so a band cannot gain one without a home for it. Populated for the four bands where a CORRECT design reads low — seams (answered at module level), realization (an unregistered file is invisible), assurance (a capability checked only at component granularity is not counted), operation (a design that never modelled an Environment reads as undeployed) — and deliberately absent on intent, function and allocation, which measure what they claim. `to_markdown` renders it under the number as `_reads low when:_`. Two tests: one that the seams caveat names the altitude and points at `seam_coverage`, one that it survives into the RENDERED report, because a caveat living only in the struct would have prevented nothing."
+  }
+}

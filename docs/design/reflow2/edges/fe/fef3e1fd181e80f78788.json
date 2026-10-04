@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:f9038c53982092e0ec67af6b213fd4513745dd177b38cff74f69ee7d56c8bd22",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-capture-that-replaces-a-node-says-so",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:test-the-near-match-report-is-not-cut-at-three"
+}

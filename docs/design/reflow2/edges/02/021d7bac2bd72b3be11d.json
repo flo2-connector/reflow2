@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:711d77ee5b264b99e4d083059275681feb98929597327c7dfb0d68b583856fe0",
+  "edge_type": "CONTRADICTS",
+  "from_id": "dec:idea-an-unplanned-cut-takes-an-in-between-number",
+  "properties": {
+    "alignment": "supporting",
+    "confidence": 0.9,
+    "evidence": "Both attack the same root: a planned increment holding a number it can lose. Content-naming DISSOLVES the question; in-between numbering ANSWERS it. They compose — content-named plans plus semver-honest numbering at cut time is arguably the same destination from two directions."
+  },
+  "to_id": "dec:idea-a-planned-increment-is-named-by-content-not-by-number"
+}

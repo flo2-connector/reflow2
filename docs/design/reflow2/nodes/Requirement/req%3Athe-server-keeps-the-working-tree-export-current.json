@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:3d87d19f7c503df9b7d15a9400f511e36e6e05ff77828a607f7e11ecb95bdad8",
+  "node_id": "req:the-server-keeps-the-working-tree-export-current",
+  "node_type": "Requirement",
+  "properties": {
+    "lineage": "original",
+    "name": "The server keeps the working-tree export current, and its lineage chains from what is committed",
+    "priority": "high",
+    "provenance": "authored",
+    "statement": "The shared server writes the design export to the working tree after every graph change, debounced to coalesce bursts — so a forgotten export is no longer a class of loss — and, when a git repository is present, the export's `prev_content_hash` is the content hash of the export as committed on the default branch, not of whatever was last written to disk.\n\n**THE TWO RULINGS THIS IMPLEMENTS, both Anthony's, 2026-09-11:**\n· `dec:idea-what-guarantees-the-export-if-the-export-is-the-only-durable-copy` (ACCEPTED) — the guarantee lives in the server, because the session is the thing that might not come back. The Stop hook fires once and exists in one harness; flo2's users would never see it.\n· `dec:idea-does-the-graph-write-itself-through-to-the-repo-on-every-change` (ACCEPTED, road a) — continuous writing collides with `dec:export-once-per-pr` only if lineage chains from disk. Chain it from main and any number of commits on a branch each chain from main; squash-and-merge lands one hop per PR, which is what that rule always wanted. Its \"must be LAST\" clause becomes automatic.\n\n**THE MEASUREMENT IT RESTS ON:** `fact:auto-export-really-does-sever-the-lineage-and-a-separate-path-dissolves-it` reproduced the collision and FALSIFIED the hope that \"no commit, no push\" avoids it — *\"because the chain is built from the FILE, not from git.\"* That is exactly why this requirement moves the chain's anchor to git. The fact is what was observed; this is what must now stay true.\n\n**WHY IT IS AFFORDABLE:** a full export of the largest design in existence is 265 ms (measured 2026-08-25, down from 1,168 ms); the debounce means a burst of ten changes costs one export.\n\n**WHAT THE INCREMENT MUST STILL DECIDE**, named on the rulings and not settled: the debounce interval; the git query that finds main's version (merge-base survives a long-lived branch where HEAD-of-default does not); the behaviour when the working tree holds a hand edit of the export; and the no-git fallback, which is today's on-disk chaining so reflow2 assumes nothing about git.\n\n**WHAT IT DOES NOT CHANGE:** the store stays durable (RocksDB, `dec:idea-does-reflow2-need-a-byte-store-at-all-or-only-durability`). This makes the git RECORD reliable; it does not make the export the only copy.",
+    "status": "accepted"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:dc84ad384683ef121969c758fb10795a5eb7347bf944c846098c7388d105f2cf",
+  "node_id": "chg:v0250-ships-the-heal-fixes-not-the-read-half",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "scope_change",
+    "name": "v0.25.0 ships the HEAL disclosure fixes a stood-down fleet is waiting on, NOT the READ half epoch:v0250-planned was scoped for — the planned work is not withdrawn and needs re-pointing, which is Anthony's call"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:273f858787e0ddb58dea4193d7f9fc3a3e9181f7e1a1e9752394a980f7084023",
+  "edge_type": "CHANGED",
+  "from_id": "chg:key-interfaces-built",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:upgrade-v0110"
+}

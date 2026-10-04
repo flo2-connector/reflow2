@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:e11bb5a1b08fb2184fe74c6914f16ea6e67e4b23c1bec98b5a95ff7ce6b2dc3d",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:a-real-run-is-fed-back-by-file",
+  "properties": {
+    "coverage": "partial"
+  },
+  "to_id": "req:design-and-implementation-stay-coherent-both-ways"
+}

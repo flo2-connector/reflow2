@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:65a44ac4ecaa68def59723798e404af2d586c8f0d8fe9eaebb07005cd02ed5a6",
+  "node_id": "ver:the-export-chain-is-unbroken",
+  "node_type": "Verification",
+  "properties": {
+    "description": "The LINEAGE clause of tools/reflow2_check.py, run in CI on every pull request: the committed export must record `prev_content_hash` equal to the content hash of the export it replaced, and a severed chain FAILS the build. Deliberately narrower than `ver:gate-suite`, which verifies `art:check` as one artifact — the gate makes several distinct guarantees (drift, orphan attachment, dependency reconcile, lineage) and one Verification standing for all of them cannot say which clause is still working. This one stands for the lineage clause and nothing else, so `rule:the-export-is-written-once-per-branch` has a check that is ABOUT IT. WHAT IT DOES NOT COVER, stated so the green is not read wider than it is: it checks the CHAIN, not whether the export is CURRENT with the live graph (that is the drift clause), and it cannot see a second export that was never committed. It also cannot distinguish a deliberate re-baseline from an accident — the message names three causes and asks the reader to pick, which is a refusal to guess rather than a hole.",
+    "findings": "FIELD-EVIDENCED RATHER THAN ASSERTED: it fired twice on 2026-08-11 in one day's work — once on a double export across a `commit --amend`, chaining through a content hash no commit would ever hold, and once after a rebase where the three-way merge driver had merged CONTENT correctly and could not repair the chain. Both were real, both were caught before merge, and both are recorded in the rule's own how-to-follow-it text.",
+    "kind": "verification",
+    "last_run_at": "2026-08-11",
+    "level": "unit",
+    "method": "test",
+    "name": "The committed export records the hash of the export it replaced",
+    "status": "passing"
+  }
+}

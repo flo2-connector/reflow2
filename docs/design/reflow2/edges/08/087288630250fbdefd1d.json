@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:5235181b5b0474b13c7dfdbf003a0d765c125c1cf2348a305656d8099a6ba4d4",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-saved-design-moves-to-the-item-layout-2026-10-03",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:bb9cab534f6637fddf3e6fa08268d9f15eeb14b82f75a57bf57c89069d71e32d",
+    "checksum_basis": "measured"
+  },
+  "to_id": "art:a-stored-twin-has-one-authority-test"
+}

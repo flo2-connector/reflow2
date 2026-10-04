@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:0382aaa874a2f95b9fb10055afe344144e1b0f01be891b2eba7fe7cdd81977c4",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:test-sessions-cannot-cross-designs",
+  "properties": {
+    "covers": "partial",
+    "note": "migrated 2026-09-22 from a REALIZES link_artifact drew in error"
+  },
+  "to_id": "ver:sessions-cannot-cross-designs"
+}

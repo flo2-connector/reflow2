@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:26719e0308a314a73b7b1341a1d430cd6250d6b5673bfaf54adc749bd0427eb1",
+  "node_id": "frag:art:test-adopt-is-incremental-with-a-frontier-and-a-deferred-derivation-marker",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered adopt_is_incremental_with_a_frontier_and_a_deferred_derivation_marker.rs — four cases: the marker quiets and is owed, closing it brings the finding back, the frontier's three legs and resume point, no sweep reads as not known"
+  }
+}

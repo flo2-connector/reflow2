@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:7fdbcac1c716b5c227824130c70b3c910c399c286733803a43eb5e377bcf7918",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:changelog-view",
+  "properties": {},
+  "to_id": "req:epochs-can-be-planned"
+}

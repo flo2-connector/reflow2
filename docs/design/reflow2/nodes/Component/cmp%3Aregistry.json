@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:ae97451c803c3c7debb97ebc008e8c63874dc83844bfa10ac9fcd02749c35f1f",
+  "node_id": "cmp:registry",
+  "node_type": "Component",
+  "properties": {
+    "kind": "module",
+    "level": "component",
+    "name": "registry",
+    "provenance": "authored",
+    "purpose": "The graph registry: a process-level map from graph_id to an open design, owning the per-graph metadata that today rides on ReflowService as per-process state — graph_path, content_path, identity, and the write_gen counter the loop nudge reads (service.rs:94-99).\n\nNew module, does not exist today. What binds the process to one graph is the CLI contract and the startup path in main.rs, not the core: DesignGraph::open_rocksdb (graph.rs:113) is already a plain function call with no process-global state, and ReflowService.graph is already Arc<RwLock<DesignGraph>> (service.rs:74) because several sessions already share one server. So this component is a map of things already shaped to be shared, plus a lifecycle — on-demand bounded opening, single-flight so concurrent first requests for one graph collapse into one open, an idle timeout per graph, and a cap on simultaneously open graphs with a stated error at the cap.\n\nHolds N single-writer stores with one RocksDB lock each. It does not make any store multi-writer.",
+    "status": "planned",
+    "tier": "operational"
+  }
+}

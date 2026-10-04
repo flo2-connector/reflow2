@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:10eaeed8ff914fdeaec323377d0015b1a76df2395d9fef9f3f5c5b8fefeccebe",
+  "node_id": "cap:the-pointer-is-served-as-a-section-and-genesis-and-adopt-leave-the-adapter-in-place",
+  "node_type": "Capability",
+  "properties": {
+    "description": "As built 2026-09-19: build.rs embeds getting-started/POINTER.md as POINTER; skills::instruction_sections() serves it as section `pointer` (in the manifest, fetchable by name); genesis gains step 0 and adopt's Phase 0 bullet gains the no-instruction-file branch (init when the kit is present, else write the served pointer, then register). Test in tests/served_skills.rs.",
+    "name": "The pointer is served as a get_instructions section and genesis and adopt say when and how to leave the adapter in place",
+    "provenance": "authored",
+    "status": "realized"
+  }
+}

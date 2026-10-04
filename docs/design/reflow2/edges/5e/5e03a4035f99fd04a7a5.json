@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:4a685fe251ffd6bce279b7ec7d889b43da2e465b631bcd5dd687751f6e134086",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:dependencies-workflow",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:dependencies-workflow"
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:cfbad2f56024965ea3d04579742335ef2c48ca6a4554094d2604c3db0340d55b",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:the-loop-closure-reading",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:report"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:f647d485ad1760a2dc59f9639b457a96e4c4faa9210b392bf1a2968150234c96",
+  "edge_type": "CHANGED",
+  "from_id": "chg:surface-export",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cap:portability"
+}

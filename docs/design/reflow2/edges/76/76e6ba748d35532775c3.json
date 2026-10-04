@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:5af7f691b30ea2a85bf9f2852f695a3b4be77fe6c5c845a30d4285302601c625",
+  "edge_type": "INVALIDATES",
+  "from_id": "chg:every-one-shot-mode-resolves-its-design-first-and-every-flag-is-honoured-or-refused-2026-10-02",
+  "properties": {
+    "at": "2026-10-02",
+    "note": "Re-measured 2026-10-02: --read-only --call add_requirement exits 1 naming --read-only and get_node afterwards returns null; export_graph/export_surface with a path are refused too."
+  },
+  "to_id": "fact:call-ignores-read-only-and-the-write-lands-2026-10-02"
+}

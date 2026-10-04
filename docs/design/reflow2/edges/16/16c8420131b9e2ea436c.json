@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:eae595c2f0a6ebafd8ac0e36af0454d8a5ad03e30832dfd9db665eadf42c96a2",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "cap:compare-alternatives",
+  "properties": {
+    "authored_at": "2026-07-22",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:claude-code"
+}

@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:3003e7934bfd0fb4c58b723e84033337ffb0c9a6e0cf3ad1c50b943294c092b4",
+  "edge_type": "ABOUT_ENTITY",
+  "from_id": "fact:defect-lineage-message-omits-its-own-decision",
+  "properties": {},
+  "to_id": "dec:export-once-per-pr"
+}

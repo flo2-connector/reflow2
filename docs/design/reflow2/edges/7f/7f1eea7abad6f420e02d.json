@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:5ee73d0464e40249f53eac42aade714cb54f221d57ec5d8886fc24390ef2c9d6",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:test-the-design-is-saved-one-file-per-item",
+  "properties": {
+    "covers": "whole"
+  },
+  "to_id": "ver:an-accepted-checksum-rides-the-accepting-change-and-derives-back"
+}

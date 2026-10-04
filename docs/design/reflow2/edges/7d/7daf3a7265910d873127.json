@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:06a5aaaee99f33df0ff18918d281da78107c736212faa5925ecdbf3457bd79ba",
+  "edge_type": "CHANGED",
+  "from_id": "chg:accept-db133f766c820683",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:test-an-export-says-which-tree-it-was-taken-in"
+}

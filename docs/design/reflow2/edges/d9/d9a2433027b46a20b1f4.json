@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:99c13af1ca2e42595758dbc6b3c96a10e86f7a15a57982b857ca510336a846f6",
+  "edge_type": "REALIZES",
+  "from_id": "art:test-a-follow-up-is-owed-until-it-is-settled",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:something-to-come-back-to-is-captured-with-one-word"
+}

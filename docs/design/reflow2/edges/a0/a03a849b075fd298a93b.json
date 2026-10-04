@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:1602e567e865c7dd45c5b0b64d6b74a6982c69d7de4c4e0cd0c7a3108bc9f9c6",
+  "edge_type": "CHANGED",
+  "from_id": "ce:half-idea-linking-closed-2026-08-25",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "req:an-unlinked-idea-can-be-offered-its-likely-neighbours"
+}

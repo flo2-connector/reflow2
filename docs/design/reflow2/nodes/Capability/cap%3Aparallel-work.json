@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:569bb99e2e35fcd4c6fb4794bd5ca840a465119f41883485c0b2910b27a4edd5",
+  "node_id": "cap:parallel-work",
+  "node_type": "Capability",
+  "properties": {
+    "description": "BUILT 2026-07-25 as the parallel-work skill — the procedure that ties the pieces together, chosen over the three alternatives in dec:concurrent-work-isolation because it needed no new architecture: a git worktree already gives each person a separate checkout, the graph store is single-writer PER DIRECTORY so each worktree can run its own server, and cap:git-merge-driver now merges the design semantically on the way back. Claim the region (advisory, never a lock), work isolated, export before every commit that touched the design, let the driver merge, release the claim, reconcile. WHAT THE SKILL IS REQUIRED TO SAY OUT LOUD, because these are the things people assume are handled: a claim is invisible to the other person until they pull, and nothing refuses a write; the design merges semantically but the CODE beside it merges exactly as before, so two people can hold disjoint design regions and still collide in the same module; and `--ours`/`--theirs` on a design conflict discards a node someone wrote, with nothing to tell you afterwards. This is parallel work with good merges, not simultaneous editing — the live-collaboration road stays open in dec:central-host with its counter-argument recorded.",
+    "name": "Two people work one design at once through isolation, not through a lock",
+    "provenance": "authored",
+    "status": "realized",
+    "tier": "operational"
+  }
+}

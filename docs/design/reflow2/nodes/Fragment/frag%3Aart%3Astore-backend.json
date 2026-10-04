@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:4a366e7365c44c33a1d5426fadf2ce766a181aa470f1e1e148884c3df9ac8678",
+  "node_id": "frag:art:store-backend",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered backend.rs — the KvBackend seam, the RocksDB backend's column families and options, and (since 2026-09-27) the one memory budget every store in the process shares"
+  }
+}

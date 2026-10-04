@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:cd6a05449b5e6ac8829a57341a302e9604f27527573103a5e523312e21aa1324",
+  "edge_type": "CHANGED",
+  "from_id": "chg:cycle-break",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:verify"
+}

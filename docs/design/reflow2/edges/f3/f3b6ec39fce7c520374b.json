@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:8af97098e2f6c5f0f31685013ed25fb5e77b32a9588b09a661599f54828cd335",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-repair-can-say-what-it-invalidated",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "dec:a-stale-finding-is-closed-by-a-claim-not-a-computation"
+}

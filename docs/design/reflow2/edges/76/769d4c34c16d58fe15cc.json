@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:d0bddaef1bc1d14114962eb6aa55396e89218129a1dcc76b8e993440d3dfe7c1",
+  "edge_type": "CHANGED",
+  "from_id": "chg:accept-2fdde1e6aee6a254",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:release-workflow"
+}

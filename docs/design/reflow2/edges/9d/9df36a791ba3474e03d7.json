@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:a2e98ba0d41ae3fecbc9eacfedc9c4dc5ad1ea61c61b2c780f70c9b568ccb4ef",
+  "edge_type": "CAUSES",
+  "from_id": "art:tools-assure",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "add_verification in assure.rs refuses on `req.status.is_none() && (req.findings.is_some() || req.last_run_at.is_some())` and never reads the stored status. Measured on local 0.72.0: a findings-only revise of a check stored as `passing` was refused.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:root-cause-add-verification-guard-reads-the-call-not-the-stored-run-2026-09-28"
+}

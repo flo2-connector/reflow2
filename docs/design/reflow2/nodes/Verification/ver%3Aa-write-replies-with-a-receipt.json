@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:b53937fcc6f531f7d8b3005b7226594ce9b5c94f045a13612f112b9531bac504",
+  "node_id": "ver:a-write-replies-with-a-receipt",
+  "node_type": "Verification",
+  "properties": {
+    "kind": "verification",
+    "last_run_at": "2026-09-29",
+    "level": "integration",
+    "location": "crates/reflow2-mcp/tests/a_write_replies_with_a_receipt.rs",
+    "method": "test",
+    "name": "Every served write tool declares echo and refuses a bad one before running; the designer write mix replies under 3,000 characters whatever the node holds; echo: node returns the node and every prior value",
+    "status": "passing"
+  }
+}

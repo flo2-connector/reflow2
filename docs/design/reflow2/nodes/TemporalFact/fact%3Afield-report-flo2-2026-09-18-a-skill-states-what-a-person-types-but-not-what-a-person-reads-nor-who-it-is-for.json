@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:6454e12f419023155423bb7128e132e1af04f684a2c67e9b2f3bc3c8daedffad",
+  "node_id": "fact:field-report-flo2-2026-09-18-a-skill-states-what-a-person-types-but-not-what-a-person-reads-nor-who-it-is-for",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "confidence": 0.85,
+    "fact_type": "defect",
+    "name": "FIELD REPORT (flo2 F8+F9, 2026-09-18): a served skill carries the word a person TYPES (shortcut) but no line a person READS and no marker of who it is for — MEASURED: 30 skills, every description opens 'Use …' (23 'Use when'), 250–878 chars, median 437; the frontmatter is parsed for exactly `name` and `description`; a consumer building a skill menu strips the opener as a workaround or keeps a hand-written copy",
+    "source": "flo2 reflow2_feedback.md, session 2026-09-18 F8/F9 (triaged 2026-09-19 through the triage-feedback skill, which delivered both feedback rules)",
+    "statement": "F8/F9 observations: list_skills returns name, description, shortcut and nothing else; flo2's palette shows '/adopt -> \"reflow2 is pointed at a system that ALREADY EXISTS…\"' by stripping 'Use when'. Reporter's conclusion: one optional frontmatter field each (summary, audience), together one schema change and one list_skills change. MEASURED on the served list 2026-09-19: 30 skills, openers all 'Use …', lengths 250/437/878 (report said 29 and 250/434/878 — one skill newer). build.rs frontmatter() reads only name and description and asserts the description non-empty 'because agents match on it'. PRECEDENT: cap:the-command-surface-answers-for-itself settled the TYPED half (every skill states its shortcut and the copies are compared); the READ half was never asked for. Artifact.audience (consumer/internal) is the vocabulary precedent for 'who is this for'; the skills' `composes` classes are obligations, not audiences. The reporter's three-valued split (anyone / operator / agent) is a judgement the owner makes; the measurement says only that the field is absent.",
+    "subject_id": "cap:the-command-surface-answers-for-itself",
+    "valid_from": "2026-09-19"
+  }
+}

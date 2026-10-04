@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:560f16431ea543f96a93a7b965ba93d868bf697c665893ea1166e7bc79f074e2",
+  "edge_type": "GOVERNED_BY",
+  "from_id": "req:reflow2-can-say-which-of-its-own-skills-a-session-reached-for",
+  "properties": {
+    "note": "That decision holds the unsettled half: where the log lives, whether it records refusals, and how far telemetry may go"
+  },
+  "to_id": "dec:how-should-reflow2-log-its-own-usage"
+}

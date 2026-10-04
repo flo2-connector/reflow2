@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:d2cbfdeaa1a2344f93015912593e45dc1f34f9e57fcd58dff8b1e9c8e2daa9b0",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-saved-design-moves-to-the-item-layout-2026-10-03",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:181c309ee9fea3f6c24b85d50dcf1639b3b94472ee8af5842850adf35e0b9ff1",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:a-dependency-declaration-replies-with-a-receipt-test"
+}

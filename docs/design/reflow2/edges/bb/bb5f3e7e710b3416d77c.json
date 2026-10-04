@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:12163835fb122836411103319b703917cb56cf8290e9c68aa6ee9b9993259345",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-loop-hint-says-where-the-node-landed",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cap:decision-point"
+}

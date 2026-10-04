@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:a53115f6248808d112e75ba1252ce174c6f515ee7d065399ea5188fe9942289d",
+  "node_id": "art:test-mirror-refresh",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "granularity": "atomic",
+    "location": "crates/reflow2-core/tests/a_mirror_can_be_refreshed.rs",
+    "name": "a_mirror_can_be_refreshed.rs",
+    "status": "realized",
+    "volatility": "stable"
+  }
+}

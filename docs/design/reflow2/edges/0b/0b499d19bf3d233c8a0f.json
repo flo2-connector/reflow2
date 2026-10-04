@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:f4d478584f2da0c1032c6a589e3fda759cbe70a1f49a397a6a59480def03ff4d",
+  "edge_type": "CHANGED",
+  "from_id": "chg:replace-text-moves-one-sentence-without-resending-the-field",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:tools-capture"
+}

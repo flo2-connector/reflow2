@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:921f90c28d0f6971c244ab7e8a3ed366fad9391839ea06c27430d7c14d101ef8",
+  "edge_type": "REALIZES",
+  "from_id": "art:test-a-change-says-how-its-reason-is-known",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:a-change-says-how-its-reason-is-known"
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:82a893bce3fd19002cdd3dbdca4a5cb23d71a86e88d494d361b18df1b1fa51bf",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "cmp:heal",
+  "properties": {
+    "dependency_type": "function_call",
+    "optional": false,
+    "weight_basis": "evidence"
+  },
+  "to_id": "cmp:nodes"
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:dedf033b20eb928dee289741731215b81905f3ff6f28f7ac5d1aa52349ea966c",
+  "edge_type": "PROVIDES",
+  "from_id": "sys:time-history",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "ifc:temporal-api"
+}

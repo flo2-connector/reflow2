@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:28c91ba7d12a9da679e09d313fba94e154064b5724dc1054cca5686d02e01ddd",
+  "node_id": "art:test-an-enum-field-publishes-its-legal-values",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "location": "crates/reflow2-mcp/tests/an_enum_field_publishes_its_legal_values.rs",
+    "name": "an_enum_field_publishes_its_legal_values.rs — the published enum equals the schema's values, an Option field is nullable, a required one is not, a code-only set reuses the handler's const",
+    "status": "realized"
+  }
+}

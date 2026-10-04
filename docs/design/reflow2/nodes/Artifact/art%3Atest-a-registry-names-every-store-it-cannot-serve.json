@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:1878b998cbb378ffcc5805ded0fd6d08edba0c868ff721213a53976ea7771587",
+  "node_id": "art:test-a-registry-names-every-store-it-cannot-serve",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "test",
+    "description": "Real-binary test (GitHub issue #616). Starts `--registry-root … --http 127.0.0.1:0` over roots holding real designs beside three unservable cases: a store whose identity sidecars were removed (the volume-mounted-at-the-store case), a store whose graph.id.json is unreadable, and an identity file whose store was removed. It asserts that startup stderr names each one with the remedy; that the listing on a bare GET / names it and, when nothing else is there, does not say \"holds no designs\"; that an unknown /g/<id>/ refusal says a store was found and not served; that a good design beside them is served; that an identity with no store is refused by name and NOT opened (no empty store is created under the old id); and that nothing mints an identity.",
+    "location": "crates/reflow2-mcp/tests/a_registry_names_every_store_it_cannot_serve.rs",
+    "name": "a_registry_names_every_store_it_cannot_serve.rs — a registry names every store it found and cannot serve, at startup, in its listing and in its refusal, and never says \"no designs\" while one is there",
+    "status": "realized"
+  }
+}

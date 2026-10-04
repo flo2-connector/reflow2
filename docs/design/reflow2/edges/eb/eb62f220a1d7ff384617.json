@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:868ce558710cb0a04be3cfa7137f5aa09d20f03ba3bead8b9ebfaff1197a76be",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-saved-design-moves-to-the-item-layout-2026-10-03",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:aee79fb81ac9431a41d6fea62e333cfffea2605ef1b66b388bcfc1a86b4a94c3",
+    "checksum_basis": "measured"
+  },
+  "to_id": "art:an-unknown-field-refusal-names-the-nearest-parameter-test"
+}

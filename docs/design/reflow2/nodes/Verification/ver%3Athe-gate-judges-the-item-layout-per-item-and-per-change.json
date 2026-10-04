@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:da90d3fbd8d8c318e96a5916dff0bb3a03564ca568bd88f834882fae5bd08a9d",
+  "node_id": "ver:the-gate-judges-the-item-layout-per-item-and-per-change",
+  "node_type": "Verification",
+  "properties": {
+    "description": "tools/test_reflow2_check.py ItemLayoutGate on the real binary in a real git repo: a committed layout passes and says its hash is computed on read; a tampered item fails INTEGRITY by name; a registered file changed on a branch with no acceptance fails DRIFT; an acceptance matching the file passes (and the Artifact node in the layout carries no checksum), one that no longer matches fails; on the default branch a squashed change is judged by coverage and an unaccepted commit fails.",
+    "findings": "2026-10-03 (chg:the-design-is-saved-one-file-per-item-2026-10-03): 5 of 5 ItemLayoutGate tests pass; the whole suite 53 of 53.",
+    "kind": "verification",
+    "last_run_at": "2026-10-03",
+    "level": "integration",
+    "method": "test",
+    "name": "The coherence gate judges the item layout per item and design-vs-build per change",
+    "status": "passing"
+  }
+}

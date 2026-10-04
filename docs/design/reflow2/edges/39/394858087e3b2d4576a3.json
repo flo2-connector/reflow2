@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:afa00656c654f21ca3576d3feca59801a8528348610f7a51d1ab74ca989cb6ce",
+  "edge_type": "EVOLVES_INTO",
+  "from_id": "dec:idea-a-claimed-blast-radius-is-an-island-no-other-session-writes-in",
+  "properties": {
+    "evidence": "Option (d) of this idea, promoted by Anthony on 2026-09-29 (\"Let's do 2, 3, and 4 as intent\") after the concurrency study."
+  },
+  "to_id": "req:every-read-hands-out-a-nodes-fingerprint-and-every-write-can-require-it"
+}

@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:abef9c41f2693378abf821a33ac6f2969318784f09381702869ce2b5ea1c62af",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "ifc:req-dyno-vector-api",
+  "properties": {
+    "authored_at": "2026-08-09",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

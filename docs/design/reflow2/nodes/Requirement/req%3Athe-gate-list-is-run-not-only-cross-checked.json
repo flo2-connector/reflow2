@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:55391486e179096f328fa7d44bc4f685feeeca1fef43ce0df7cc8da97c6d7792",
+  "node_id": "req:the-gate-list-is-run-not-only-cross-checked",
+  "node_type": "Requirement",
+  "properties": {
+    "concern": "core",
+    "lineage": "original",
+    "name": "The build's gate list is executable, not only cross-checked",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "A contributor must be able to run every gate CI runs, locally, in one command, without writing one. The list has exactly one authority — the CI workflow — and anything that runs it must READ that authority rather than keep a copy of it. Three records of the gate contract already existed and none of them executed: the workflow runs the gates, AGENTS.md lists them for a person, and skill_lint fails the build if those two disagree on coverage or on flags. So every session wanting a local pass reconstructed the list from memory, and three sessions produced three different subsets, the worst running 17 of 48 with cargo test piped through head. A local runner that reports green having run a subset is worse than no runner, because a subset and the whole set report identically. Therefore: running zero gates is a failure rather than a pass, a failing gate must fail the run in the exit code rather than only in the printed summary, and nothing may be piped through a command that closes the pipe early.",
+    "status": "accepted"
+  }
+}

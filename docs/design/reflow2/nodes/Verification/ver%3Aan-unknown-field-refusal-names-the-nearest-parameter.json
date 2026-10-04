@@ -1,0 +1,17 @@
+{
+  "content_hash": "sha256:44fd09b3c24c1958d17d61774286f1c0ebef8a42147850592bc760b65df4f262",
+  "node_id": "ver:an-unknown-field-refusal-names-the-nearest-parameter",
+  "node_type": "Verification",
+  "properties": {
+    "description": "crates/reflow2-mcp/tests/an_unknown_field_refusal_names_the_nearest_parameter.rs (3 tests)",
+    "findings": "pr run: passing.",
+    "kind": "verification",
+    "last_reconciled_at": "2026-09-23",
+    "last_reconciled_outcome": "passed",
+    "last_run_at": "2026-09-19",
+    "level": "integration",
+    "method": "test",
+    "name": "node_id reaches id, parent_id reaches project_id, authored_at reaches acted_at; the stale-client line comes after and is a possibility; a message with no legal list still reads sensibly",
+    "status": "passing"
+  }
+}

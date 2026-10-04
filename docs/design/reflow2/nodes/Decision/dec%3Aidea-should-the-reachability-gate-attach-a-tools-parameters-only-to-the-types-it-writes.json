@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:48211b1cbac83939c7d3ff5a2bec6b1a169d83073cabcf644f093a787be03a7c",
+  "node_id": "dec:idea-should-the-reachability-gate-attach-a-tools-parameters-only-to-the-types-it-writes",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Recorded as brainstorming on 2026-09-19 from flo2 F19 GENERALISED, not as a proposal.\n\nTHE OPTIONS.\n(a) NARROW THE POOL by extending the tool-to-type map until no tool is pooled into every type. Direct, and it turns 24 excused properties into a list somebody reads once. COUNTER: the map is hand-maintained, so this trades a silent false all-clear for a file that goes stale — unless the gate refuses a tool it cannot place, which is the real version of the option.\n(b) RANK BY WHETHER ANYTHING READS THE PROPERTY. `Requirement.kind` is urgent because `encoding_undecided` scolds a user about it on flo2's page; `Verification.location` is documented and read by nothing. A property a DETECTOR reads and no tool can write is a promise the product breaks in front of a user, and deserves a louder bucket than an unused declaration.\n(c) FIX THE TWO KNOWN CASES AND LEAVE THE GATE. Cheapest, and it is what the reporter says is worth doing regardless. COUNTER, theirs: two found by accident is weak evidence that two is the total, and this leaves the instrument still blind.\n(d) DROP THE PER-TYPE VIEW and report the flat name match with its known over-reporting, on the grounds that a noisy true signal beats a quiet false one. COUNTER: that is the naive match this instrument was explicitly built to replace, and it was replaced because the noise made it unread.\n\n⚠️ WHATEVER IS CHOSEN, THE TWO KNOWN CASES ARE SEPARABLE AND SMALL: a `kind` parameter on add_requirement, and a `location` on add_verification. The gate question is the one that decides whether a third case is found by a consumer or by the build.",
+    "kind": "exploratory",
+    "name": "OPEN — should the reachability gate attach each tool's parameters only to the types that tool actually writes, and should a property a detector READS be held to a stricter bar than one nothing reads?",
+    "status": "accepted"
+  }
+}

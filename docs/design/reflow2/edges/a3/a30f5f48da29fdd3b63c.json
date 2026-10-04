@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:b10265bfb9305e73be5236414254e3e8e72b48a9b8b74085d8ffc25496e22fbf",
+  "edge_type": "REALIZES",
+  "from_id": "art:docker-image-release-notes-script",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:release-publishes-a-container"
+}

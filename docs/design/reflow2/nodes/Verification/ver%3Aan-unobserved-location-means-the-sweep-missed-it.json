@@ -1,0 +1,17 @@
+{
+  "content_hash": "sha256:39420a331d7cacecef2d8d31f3800c7e9ff8d6bf1d2a036326a3cac5ef4d7512",
+  "node_id": "ver:an-unobserved-location-means-the-sweep-missed-it",
+  "node_type": "Verification",
+  "properties": {
+    "description": "A swept file is not called unobserved because a parent also claims it (crates/reflow2-core/tests/a_claim_is_not_hidden_by_its_parent.rs) — 6 cases, all passing 2026-08-16. music_graph F10, REPRODUCED BEFORE IT WAS FIXED on their exact shape: one directory artifact plus two file artifacts beneath it, both files swept, both returned in `unobserved_locations`. The cause was `.find()` — the first claim covering a path absorbed the observation and every other claim covering it was left unmatched. WHY IT IS WORTH SIX CASES rather than one: the field answers \"did you forget to sweep something\", so a false entry is an alarm on CORRECT modelling, and the reporter's own grading is the argument — \"harmless here, but it makes the field untrustworthy as a 'you forgot to sweep this' signal, which is what it is for.\" THE COUNTERWEIGHTS ARE THE POINT, because the cheapest wrong fix is to make the field SILENT, which is strictly worse than the bug — silence reads as \"nothing was missed\". Three cases block it: a genuinely unswept claim is still named; a sibling that merely shares a prefix (`src/foo` vs `src/foobar`) does not count as swept; and an EXCLUDED path does not mark its claim swept, so an exclusion rule cannot launder an unswept claim into a clean report. A fourth pins that the COUNT stays one per observed path — two claims covering one file is one file, and counting per claim would trade this bug for an inflated `claimed`. NOT COVERED: nothing here exercises a real sweep of a real tree — every case supplies its observations directly, so this is about the matching rule, not about what a filesystem would hand it.",
+    "findings": "MUTATION-CHECKED THREE WAYS, each killed by the right tests: reverting to `find()` fails both defect cases; counting per claim fails the count case; reporting nothing fails three, including both counterweights.",
+    "kind": "verification",
+    "last_reconciled_at": "2026-09-23",
+    "last_reconciled_outcome": "passed",
+    "last_run_at": "2026-08-16",
+    "level": "unit",
+    "method": "test",
+    "name": "A swept file is not called unobserved because a parent also claims it",
+    "status": "passing"
+  }
+}

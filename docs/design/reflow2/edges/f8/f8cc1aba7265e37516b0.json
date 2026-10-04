@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:392077a58828c7700c2125beda887d81f7bef94edd86b63f961392aa768ed401",
+  "edge_type": "AT_EPOCH",
+  "from_id": "chg:claim-cannot-precede-its-export",
+  "properties": {},
+  "to_id": "epoch:coord-moves-into-the-graph"
+}

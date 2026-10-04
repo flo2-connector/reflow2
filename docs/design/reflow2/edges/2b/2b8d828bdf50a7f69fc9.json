@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:6f981dd1f5ad72049627b3dff4128d71582ae9e49a11f8990f9b46f83e4106a8",
+  "edge_type": "REALIZES",
+  "from_id": "art:test-check-verification-ratchet",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "verified"
+  },
+  "to_id": "cap:a-verified-capability-names-something-that-can-re-run-its-check"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:b87734ff0d77c0a63d5fa981ed7510610de861d1cdde33870a1a51331b333c12",
+  "edge_type": "REALIZES",
+  "from_id": "art:budget",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cmp:budget"
+}

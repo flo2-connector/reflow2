@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:499ce620a51bbaa4e3a5d9ab1bee49afccafc954fe37bf0def47047792b87aec",
+  "node_id": "fact:bl-142",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "defect",
+    "statement": "[BL-142] describe_schema on one node type returns ~30 KB, and the compact escape hatch drops exactly what the caller needed",
+    "subject_id": "cmp:schema",
+    "value": "{\"evidence\": \"*Found 2026-08-01 by an /adopt pass over music_graph, a ~11k-LOC Python research repo taken from an empty graph to 134 nodes / 379 edges. Reported in that project's own reflow2_feedback.txt.* describe_schema {node_type: \\\"Fragment\\\"} inlines every wildcard edge (from: [\\\"*\\\"]) in both directions \\u2014 about 25 edge types repeated with full property lists \\u2014 for a node type with 9 properties of its own. required_only: true is the compact form and drops the edges entirely, so there is no *\\\"properties plus the edges that specifically model this type\\\"*. The no-argument schema is 67 KB and overflowed into a persisted file. This is the cost side of the answer to [BL-1]: discovery was the right thing to build and the bill is now paid on every adopt session, in a context window that has other work to do. Fix shape: a middle setting that returns the type's own properties plus edges whose endpoints NAME it \\u2014 the exact/half_exact distinction vocabulary.rs already computes for describe_schema {from, to}. The wildcard edges are the bulk and are the least informative, which is precisely the judgement that module was written to make. Size S\", \"origin\": \"Migrated from docs/backlog.md BL-142 on 2026-08-07 (epoch:backlog-retired). Size estimate carried from the row: S.\"}"
+  }
+}

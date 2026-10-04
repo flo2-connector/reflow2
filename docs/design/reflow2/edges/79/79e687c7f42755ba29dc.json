@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:f9d2033a3171c0ff1cbe8aa0cdc92388a982b039f0ad9f29751c31b8a1d3acb0",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-reachability-gate-reads-tools-not-names",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:the-export-can-be-ordered-before-its-writes"
+}

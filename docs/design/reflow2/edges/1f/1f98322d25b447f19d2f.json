@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:6e639eedf7cb4dc45ed2df8899b67edfa03b1eb37579160f66411c971dfb00ad",
+  "edge_type": "SCHEDULED_FOR",
+  "from_id": "cap:skill-triggers",
+  "properties": {
+    "modality": "expected",
+    "recorded_at": "2026-07-31"
+  },
+  "to_id": "rel:v0210"
+}

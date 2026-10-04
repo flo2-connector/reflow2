@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:fb0b80fe32b2a52e192e8df50319aea3fe52b51156de4179f2446eb799859baf",
+  "edge_type": "SPECIFIES",
+  "from_id": "art:schema-temporal",
+  "properties": {
+    "format": "json_schema"
+  },
+  "to_id": "ifc:mcp-tools-http"
+}

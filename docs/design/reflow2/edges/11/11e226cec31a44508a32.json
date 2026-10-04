@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:c6a9992ba6dc21e0ceb79e08e135d9101233a59d69b43d1ed792f599ef355e74",
+  "edge_type": "VIOLATES",
+  "from_id": "fact:the-diamond-meets-at-dynographs-internals-not-its-interface",
+  "properties": {
+    "confidence": 0.8,
+    "evidence": "Clause (5) observed in the field: two distinct designs both carry graph_id 'reflow2', so composition cannot tell their nodes apart by the field intended for it"
+  },
+  "to_id": "rule:no-foreclosure"
+}

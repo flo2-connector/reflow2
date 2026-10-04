@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:885d78d613d05fdd70db8211896eeb533860417d1775a54c3287cbe0fd73f6a9",
+  "node_id": "art:test-a-procedural-boundary-has-a-word",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "description": "Interface.medium accepts `procedural`, and the word the government reporter reached for (`process`) is still refused with a message that lists the value that would have worked.",
+    "location": "crates/reflow2-core/tests/a_procedural_boundary_has_a_word.rs",
+    "name": "a_procedural_boundary_has_a_word.rs",
+    "status": "realized"
+  }
+}

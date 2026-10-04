@@ -1,0 +1,17 @@
+{
+  "content_hash": "sha256:bd041014db4c801ca71c18ef2e4fc3a9b8dd429880f0b1f5bc3970b33d01f73d",
+  "node_id": "req:reflow2-keeps-the-knowledge-it-derives",
+  "node_type": "Requirement",
+  "properties": {
+    "concern": "core",
+    "kind": "functional",
+    "lineage": "original",
+    "name": "reflow2 keeps the knowledge it derives — chosen results are written back as facts marked as computed (by which analysis, from which inputs, deduced or induced), recomputed when their inputs change, never edited as if asserted, and built on by a later analysis",
+    "no_relation_note": "Searched reflow2's design for stored, computed, derived and written-back results. Nearest: cap:arrival-delta (\"computed and never stored\") and chg:content-manifest-built (\"derived … never stored twice\") — a deliberate practice this requirement is in tension with but does not contradict, since a result recomputed on every input change and never editable keeps its reason; the tension is written into the statement for Anthony to rule on rather than drawn as CONTRADICTS. No edge drawn.",
+    "priority": "medium",
+    "provenance": "imported",
+    "source": "Anthony, 2026-09-28, in a dev_reflow2 session: \"what is applicable to reflow2 and storyflow from the 5 tests? If we need to apply things to reflow2 and storyflow, then please add them to their respective design graphs also.\" Test 4 of dec:what-a-true-knowledge-graph-is (graph-primitives design on flo2, graph 85a2a1a36e7c942d), accepted on his word the same day.",
+    "statement": "Test 4 of the accepted definition of a true knowledge graph (graph-primitives design on flo2: dec:what-a-true-knowledge-graph-is), applied to reflow2. Baseline: 0 of 23 derived results are kept.\n\nSome derived results are written back as facts, each marked as computed — by which analysis, from which inputs, and whether it was DEDUCED (follows with certainty from declared rules) or INDUCED (a pattern or prediction, carrying a confidence) — recomputed whenever an input changes, never editable as if asserted, and consumed by at least one later analysis.\n\n⚠️ A TENSION KEPT VISIBLE, NOT RESOLVED HERE: reflow2 deliberately computes and never stores delivery, the arrival delta (cap:arrival-delta) and the content manifest, so none can drift or be inflated by hand. This requirement does not reverse that. A written-back result that is recomputed on every input change and cannot be edited keeps the reason intact; which results are written back is chosen where a later analysis needs to build on them, and delivery need not be one of them. Whether that is enough is Anthony's call.\n\nMet when Anthony judges at least one written-back result useful on a real design — his bar, not a check. Candidate first results: the part every path from a requirement to its delivery passes through (dominators on the golden thread), the cycle histories of req:each-projections-cycles-are-tracked-across-design-epochs-from-birth-to-death, and the copy-disagreement scores of req:where-one-fact-is-held-in-several-places-how-far-the-copies-disagree-is-measured-and-located.",
+    "status": "proposed"
+  }
+}

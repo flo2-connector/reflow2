@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:43e11348ea46feb7d4aab0303d536a263a45a1c9f9ef56ef92759d6da0ccbdbb",
+  "edge_type": "CHANGED",
+  "from_id": "chg:rmcp-v3",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "dec:stateless-seat-handle"
+}

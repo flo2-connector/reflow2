@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:77f2d8f3723f9a35ef99c57fb96de4ffd421ed6d3cd1bb9d14f05e88b0ef4b86",
+  "node_id": "art:schema-dimensions",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "spec",
+    "granularity": "atomic",
+    "last_confirmed_at": "2026-08-02",
+    "location": "schema/dimensions.yaml",
+    "name": "dimensions.yaml",
+    "status": "realized",
+    "volatility": "stable"
+  }
+}

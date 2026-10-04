@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:f4466bb44edffd17238cfffbce3681bfbaf893b5e2cbf04aabb51d6298e6ac57",
+  "node_id": "art:planning-at-scale",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "document",
+    "granularity": "atomic",
+    "location": "docs/planning-at-scale.md",
+    "name": "planning-at-scale.md",
+    "status": "realized",
+    "volatility": "stable"
+  }
+}

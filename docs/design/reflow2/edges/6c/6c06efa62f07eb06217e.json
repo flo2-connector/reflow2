@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:1e3ce2c20f12332895b11e868ca870a47ec877becb02042f7258588e90446fc8",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:test-a-question-names-whom-it-was-put-to",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:test-a-question-names-whom-it-was-put-to"
+}

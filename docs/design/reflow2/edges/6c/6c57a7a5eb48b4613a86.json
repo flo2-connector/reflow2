@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:b65032e2748f73ddb9ee6492c61f00de20525041fd64b36f4c514dfd35dcadab",
+  "edge_type": "CHANGED",
+  "from_id": "chg:stop-hook-asks-the-graph",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:release-workflow"
+}

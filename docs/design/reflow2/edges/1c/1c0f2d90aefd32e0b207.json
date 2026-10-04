@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:f524f505b651eef63559152a93eeaf9d62b48f5eef6ef466ead8a8a3d93565d4",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:non-goal-reflow2-does-not-know-what-is-deprecated",
+  "properties": {
+    "authored_at": "2026-08-17",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:claude-code"
+}

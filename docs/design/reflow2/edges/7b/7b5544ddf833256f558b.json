@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:d3ffd18141a041daef03ac9c2b822c9cd0de375dc4fb063d47ac0926583f5461",
+  "edge_type": "HAS_TEMPORAL_FACT",
+  "from_id": "req:a-report-says-what-it-swept-and-whether-its-checks-ran",
+  "properties": {},
+  "to_id": "fact:defect-agents-md-said-an-mcp-reconnect-picks-up-a-rebuild-and-a-shared-server-makes-that-false"
+}

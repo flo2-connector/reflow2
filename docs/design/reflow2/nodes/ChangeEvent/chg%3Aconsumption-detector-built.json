@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:4bb332aceb0310c9cf79ab5154e8870b5795d4e81c8f93060a2305f385a51039",
+  "node_id": "chg:consumption-detector-built",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "name": "cap:built-and-consumed-by-nothing goes planned → verified. Built TEST-FIRST — the tests in crates/reflow2-core/tests/consumed_by_nothing.rs were written from this capability's own description before crates/reflow2-core/src/consumption.rs existed, and they earned it immediately: measuring the spec's three signals (incoming DEPENDS_ON, outgoing PART_OF_FLOW, incoming INTERACTS_WITH) against reflow2's own design named 100 of 110 built capabilities, because this design holds twelve consumption edges in total and zero Flow nodes. That measurement, taken BEFORE any code was written, produced MIN_MODELLED_RATIO: absence of a recorded consumer is only informative where recording one is the design's habit, so below half the list is WITHHELD and the ratio itself is the finding. Implementation-first, this would have shipped naming 91% of the codebase and been switched off the same day. Also adds edge::INTERACTS_WITH, which was in the schema since the functional layer and had no constant — the preservation invariant names it as a bare string."
+  }
+}

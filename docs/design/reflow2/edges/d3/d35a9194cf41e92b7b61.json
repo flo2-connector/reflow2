@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:8e8af4dd068b99d52a1f5a0c6d8c07eb1500bb1215f686ae075775ea2f274578",
+  "edge_type": "CHANGED",
+  "from_id": "chg:baseline-58da0e0bbbee2602",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:test-review-relations"
+}

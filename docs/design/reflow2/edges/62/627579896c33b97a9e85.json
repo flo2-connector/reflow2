@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:1be3ce4622c7ab1e7af2d366a9b76781d1ff7db7328ac7b41130a04e1d93d81d",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-saved-design-moves-to-the-item-layout-2026-10-03",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:34017b367ffd7ed6db687d0ccf1fa758c30b01b579585972be70fb7d9c22756a",
+    "checksum_basis": "measured"
+  },
+  "to_id": "art:adopt-skill"
+}

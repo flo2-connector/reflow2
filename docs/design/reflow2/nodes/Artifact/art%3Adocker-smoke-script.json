@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:bc0844aa62ed7ee791ebea54ed1a2d9c400c5185f33546febcf6036b0a862bbe",
+  "node_id": "art:docker-smoke-script",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "granularity": "atomic",
+    "location": "docker/smoke.sh",
+    "name": "docker/smoke.sh",
+    "status": "realized",
+    "volatility": "stable"
+  }
+}

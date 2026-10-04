@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:d4d73bd6dfdaf3519f10609af367087d4778c738c28cc36b7d65641bf6f498ea",
+  "edge_type": "CHANGED",
+  "from_id": "chg:baseline-dc5be23c700ad7ed",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:test-a-repair-can-say-what-it-invalidated"
+}

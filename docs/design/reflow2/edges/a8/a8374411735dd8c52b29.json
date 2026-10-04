@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:b7e4075ec22ee9ba00916ed4d732817f3fd6048735ee3d568ffc27a739dc933c",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:test-a-server-closes-designs-nobody-is-using",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:test-a-server-closes-designs-nobody-is-using"
+}

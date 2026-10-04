@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:00ce5b856266fa27d9730365e9d110380fcf804039441abe1c1d338955ab7da8",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:content-policy",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:content-policy"
+}

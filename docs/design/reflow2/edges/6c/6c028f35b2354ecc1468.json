@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:ba3af1afa7ce5087af9e4d0f074c4792e60b9024f82aa2d1810fcef2c4cbff53",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-answered-question-line-says-only-what-it-knows",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:test-loop-nudge"
+}

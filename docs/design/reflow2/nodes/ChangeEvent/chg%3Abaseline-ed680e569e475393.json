@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:259b21b3e1b7f4feb1ed40f859b316646d3a9c92f68b9e0c6e1d508190b67879",
+  "node_id": "chg:baseline-ed680e569e475393",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "baseline_established",
+    "detected_at": "2026-08-28",
+    "name": "First baseline. The kit source; build.rs compiles it into the binary, and .claude/skills and .grok/skills carry byte-identical mirrors that skill_lint holds to the same file set.",
+    "subject": "record"
+  }
+}

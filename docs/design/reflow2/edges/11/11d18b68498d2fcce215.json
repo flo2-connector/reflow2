@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:810bf3c99949842203fae42f08a9edd55042fb3b88339f5fb9e1c919ad7e191e",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-write-says-what-it-did-not-recognise",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:tools-query"
+}

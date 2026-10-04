@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:3ffd4cdbd42e7c0e5d7db91c4c437e500c53e1957e59bbee12b46715d29e431d",
+  "edge_type": "CHANGED",
+  "from_id": "chg:bl70-fork-layer",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cap:fork-alternatives"
+}

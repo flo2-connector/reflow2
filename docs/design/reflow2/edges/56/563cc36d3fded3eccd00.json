@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:08c9f1214f442dac8c3c7dac7dcf1a562b8b7500605cf9493df296cb7b784a37",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-release-publishes-one-amd64-and-arm64-index-and-names-its-digest",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "art:setup"
+}

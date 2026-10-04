@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:3481d5f495a063aaaafa2fdfc860f11f11984dac3ff7e06fd1e05d8ab553b69d",
+  "node_id": "art:temporal",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "granularity": "atomic",
+    "location": "crates/reflow2-core/src/temporal.rs",
+    "name": "crates/reflow2-core/src/temporal.rs",
+    "status": "realized",
+    "volatility": "stable"
+  }
+}

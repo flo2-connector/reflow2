@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:4e65013cf9716756d0c08c31c03750c5aeea9ce6e37113ade067a92c6c7d442c",
+  "edge_type": "RISKS",
+  "from_id": "dec:idea-a-standing-delegation-to-an-agent-is-a-record-with-an-escalation-boundary",
+  "properties": {
+    "evidence": "A standing delegation lets an agent move intent the owner never saw. Recording it could legitimise exactly what the enforced rule forbids, unless the rule says whether a delegation counts as the owner's word."
+  },
+  "to_id": "rule:design-intent-moves-only-on-the-owners-word"
+}

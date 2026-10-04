@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:c0e3c2065fe68c1dfdc2175b4f4b501487bc0d38ceabfd154204a1728bbf290f",
+  "node_id": "ver:the-ledger-holds-the-verb-and-never-the-object",
+  "node_type": "Verification",
+  "properties": {
+    "description": "Three layers, each pinning what the one below cannot reach. (1) Unit tests in usage.rs: refusals are classed from the server's own phrasings (six cases incl. the nobody's-name settlement), the window starts after the last marker unless a date is named, the tally counts by tool / by class / by tool×class / skills / clients / seats and measures never_called against the served surface, a torn line is skipped. (2) Direct handler tests (feedback_is_a_computed_tally.rs): an in-memory design reports no ledger in words, a report closes its window and a peek does not, a named date reaches back and a bad one is refused with its shape, never_called is against the live surface. (3) The wire test against the real binary (tools/test_feedback_is_a_computed_tally.py), because the ledger is written in call_tool, which only a wire call passes: one classed line per call (ok / refused:missing_argument / refused:refused), the harness named from the handshake on every line, get_skill's name kept and no other argument, the requirement's unmistakable id and statement absent from the ledger AND the report, the second report starting after the first's marker. MUTATION: leaking the call's arguments into the ledger broke 4 pins; leaking the reply's first text block broke none — reflow2's reply text does not carry the id, so that path is not what the pin watches. Surface gates: toolsnap 181/181, every_tool_is_found_by_a_query 181/181 (usage_report in the top five for its user-phrased query), every_required_parameter_is_described, skill_lint (27 skills, feedback composes STANDING/REPORTS/MEASURES), check_command_surface 27 skills / 30 commands, render --check, smoke_mcp, refusal_speaks, empty_speaks, test_init, check_doc_versions.",
+    "findings": "2026-09-12, increment 437: 4 unit + 4 handler + 1 wire test (22 pins) green; the argument-leak mutation broke 4 pins and the restore re-proved green; every surface gate listed in the description green; the full mcp suite ran to completion detached from the harness (the harness killed the first run under its low-memory rule) — 67 test binaries, 0 failures, rc=0.",
+    "kind": "verification",
+    "last_run_at": "2026-09-12",
+    "level": "integration",
+    "method": "test",
+    "name": "The usage ledger holds the verb and never the object, and /feedback renders it",
+    "status": "passing"
+  }
+}

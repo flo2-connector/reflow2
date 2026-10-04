@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:036b4480075f98daee61fe96e6d3e5cf7a234c493ce0e92ce44bd021b4d2d693",
+  "node_id": "req:one-design-or-several-is-asked",
+  "node_type": "Requirement",
+  "properties": {
+    "concern": "core",
+    "designation": "internal",
+    "kind": "functional",
+    "lineage": "original",
+    "name": "Whether this is one design or several is a question asked once, not a consequence of where init was run",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "reflow2 decides the boundary of a design by FILESYSTEM LAYOUT: a design is whatever lives under one directory's .reflow2/graph, fixed by wherever someone ran init, and nothing ever asks whether that is the right boundary. Genesis creates one Project and proceeds. THE PRIOR ART, from reflow's 00-setup.json: S-04-decision is a first-class decision point named \"System-of-Systems Decision\" — determine, before anything is built, whether this is a system-of-systems integration project. If yes, S-04 decomposes the concept into multiple independent systems: analyse the SoS requirements, DEFINE SYSTEM BOUNDARIES (\"clarify which capabilities belong to which system\"), IDENTIFY INTEGRATION POINTS (\"understand how systems will interact\"), and create a separate directory per identified system so each gets its own design. The question was asked once, at the start, and answered on the record. reflow2 HAS THE MACHINERY AND NOT THE QUESTION, which is the whole of this requirement. compare_designs, cap:composed-analysis (analyse two designs together without merging them), cap:mirror-surface (compose by mirroring the other's published surface), cap:seam-incompatibility (say when two linked designs disagree at a boundary), cap:merge-designs, cap:design-dependencies-declared, req:complementary-pairing and req:version-combination-is-an-object all assume the split already happened and someone else decided where. Nothing helps make that decision, records it, or revisits it. WHY IT IS NOT ACADEMIC: the operating context this project is built for is several organisations with competing, partially-built, differently-motivated designs, and an ecosystem of coupled repositories each carrying its own graph. In that world \"is this one design or three, and where are the seams?\" is the first real design decision, it is made implicitly today by where a directory happens to sit, and it is the one decision that determines whether all the composition machinery above ever gets used. NOTE THE TENSION TO RESOLVE, recorded rather than glossed: reflow2 deliberately installs once per machine and makes a directory with no design cost nothing (req:no-setup-per-project, cap:latent-surface). Asking a question at genesis must not become a setup step, which is exactly what that work removed. The likely shape is therefore not a prompt but a detector — notice when one graph is carrying what looks like several systems, or when several graphs are describing one, and ask THEN, which is the report-and-ask pattern the project already uses. Found 2026-07-28 reviewing 00-setup.json. Anthony's word: capture it.",
+    "status": "proposed"
+  }
+}

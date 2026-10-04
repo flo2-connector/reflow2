@@ -1,0 +1,17 @@
+{
+  "content_hash": "sha256:13b527057e6cd2a43a1429e6f82a4c25df2f10f62f96f83bf67ae5091b9413db",
+  "node_id": "ver:skill-loads-are-counted",
+  "node_type": "Verification",
+  "properties": {
+    "description": "A session that did design work, moved files, and never opened a skill is told so before it ends — and the correct sessions around it are not (tools/test_loop_nudge.py, class SkillLoadsAreCounted, 9 cases). MOST OF THE CASES ARE COUNTERWEIGHTS, because this branch ARMS a nudge where cap:skill-triggers only ever refined one: loading a single skill silences it; listing skills does NOT count as loading one (knowing the menu is not reading the recipe, and counting it would let a session tick the box); a session below the edit floor is left alone; a session that never touched reflow2 gets the blunter bypass message and NOT this one; and where another branch already fired, exactly one message is printed. Plus the two invariants every blocking branch here owes: it fires once per session, and a tally rebuilt after an unreadable one never makes the negative claim, because the get_skill calls that would refute it are exactly what was lost. THE LINE dec:adoption-is-reported-the-loop-still-computes DRAWS IS HELD AS A PROPERTY: the hook leaves the designed project byte-identical (no export, no store, no stray file), and a grep with a positive control asserts no skill counter is readable by anything in reflow2-core that computes debt.",
+    "findings": "FOUND BY RUNNING IT: the first implementation incremented both new counters in memory and threw them away on every write, because the state key set is duplicated in three places and only two were updated — the same defect BL-163 hit, in the same file, under a comment that warns about it by name.",
+    "kind": "verification",
+    "last_reconciled_at": "2026-09-23",
+    "last_reconciled_outcome": "passed",
+    "last_run_at": "2026-08-07",
+    "level": "integration",
+    "method": "test",
+    "name": "A session that did design work and never opened a skill is told so",
+    "status": "passing"
+  }
+}

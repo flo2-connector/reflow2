@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:2960acd81b298c8cb35fec3987b91812e5ec99d29a6be6bfc92d0bf7e0b5c005",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:schema-dimensions",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:schema-dimensions"
+}

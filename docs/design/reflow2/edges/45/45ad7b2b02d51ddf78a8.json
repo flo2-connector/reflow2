@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:dfa8a86b87e1ba8e7053117703c294d52a0dcce2b67ed156e20426567cd39c41",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "fact:precedes-is-unused-in-storyflow-and-flowless-here",
+  "properties": {
+    "authored_at": "2026-08-09",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:storyflow-storybug-boss"
+}

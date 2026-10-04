@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:1cc5ceb9c39b93760f42307a4f4ad81c3e829c70bafb8c6512d23451bd796ac3",
+  "edge_type": "CAUSES",
+  "from_id": "art:init",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "This file decides which config files a project gets. Its HARNESS_ALIASES maps \"grok\" to \"claude\" so that answering \"grok\" writes .mcp.json and nothing else, and its config-writer comment states the premise outright: \"Grok CLI also loads it as a compatibility source, so this one file covers both\". Measured false for Grok Build 1.0.30 on 2026-09-20: `grok mcp list` inside a project holding that exact file reports no servers configured, and grok's own help names ~/.grok/config.toml and ./.grok/config.toml as its only sources. The self-cause is deliberate rather than a placeholder — the defect is the claim this file makes about another product, and the same file demonstrates the correct standard twelve lines away, where the Copilot claim is recorded as measured end to end.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:grok-build-does-not-read-mcp-json-so-the-installer-writes-a-config-that-client-never-opens"
+}

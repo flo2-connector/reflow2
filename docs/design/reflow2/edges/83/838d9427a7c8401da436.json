@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:c6536d4d31345a60423d1073c837d54757d3787feaf5e12d58a842f16b1f157f",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:the-server-knows-its-own-currency",
+  "properties": {},
+  "to_id": "req:the-server-is-the-authority-on-its-own-currency"
+}

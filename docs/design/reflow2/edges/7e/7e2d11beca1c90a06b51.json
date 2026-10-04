@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:f5ff1dc515818ea06002d1d9c0b4864d620eba94ac8bcc57cc5c8eb975a5a913",
+  "edge_type": "INVALIDATES",
+  "from_id": "chg:the-overtaken-defect-records-were-triaged-against-the-v0510-build",
+  "properties": {
+    "evidence": "An empty open_questions routes through ok_read_empty_speaks, which recomputes loop_status and says either nothing-here-but-not-an-all-clear with the debt, or an explicit all-clear (service.rs:4424-4453). Pinned by its own test."
+  },
+  "to_id": "fact:defect-open-questions-zero-reads-as-an-all-clear"
+}

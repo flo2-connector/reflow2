@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:209a004f890aeefa56de66a86f22d1a134e7733bc893b9fca20f492d77791599",
+  "edge_type": "CHANGED",
+  "from_id": "chg:multi-writer-decided",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "req:concurrent-planning"
+}

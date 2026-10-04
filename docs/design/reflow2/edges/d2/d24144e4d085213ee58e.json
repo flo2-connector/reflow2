@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:f8a1fbb5d22e0536635b1fa1a3670ade52576fab8d4d081647ee53f5f1d46c4f",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-a-decision-has-no-state-for-having-been-implemented",
+  "properties": {
+    "evidence": "Option (a) is that decision's own move applied to a second node type — certainty derived from status and provenance rather than asserted. Whether deriving a Decision's realisation is coherent depends on whether that principle extends to a type that can govern a non-goal, so this idea rests on how that decision is read.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "dec:certainty-derived"
+}

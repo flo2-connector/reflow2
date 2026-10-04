@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:caaa47ff92b0d5b13f29d5ce30383354c9b6e8c0c78ac7351378cc565bdb3736",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:test-every-writer-signs-as-the-caller-fixture",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:test-every-writer-signs-as-the-caller-fixture"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:6011e9ace54ed08f3e2400db9e85c1e69e7e4380060b2c6ad7a8b6d8e87bc770",
+  "node_id": "chg:accept-ff1b467149d48def",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "baseline_established",
+    "detected_at": "2026-08-12",
+    "name": "The v0.28.0 version bump. reflow2.toml is a registered artifact, so step 1 of a release cut always drifts it. NO DESIGN MEANING MOVES: what a cut means lives in the Release node and its epoch, not in a version string. Accepted BEFORE release_includes_all is applied, so the manifest freezes the shipped value rather than the pre-bump one — the recorded order does this after and pays a gate failure plus a second export for it."
+  }
+}

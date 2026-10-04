@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:51bd839bb01d365102e057d57f52f3a775ba3826c0bfb4b93842beb4c3786e61",
+  "edge_type": "CHANGED",
+  "from_id": "chg:bl213-discriminator",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:corpus"
+}

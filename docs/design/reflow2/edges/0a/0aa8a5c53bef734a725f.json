@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:c032d6e1e7aa6fe6cb8a7cc0455af0954df532a6cf4d99912442deaec9387d5a",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-write-records-the-agent-beside-the-person-it-acts-for",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:smoke-mcp"
+}

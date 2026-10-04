@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:1feeb3999e8a2c53578a73296482164d6f9ad75dcd711459006b1467ba2da359",
+  "node_id": "ver:the-python-reader-reads-every-odd-id-where-the-server-wrote-it",
+  "node_type": "Verification",
+  "properties": {
+    "description": "tools/design_io.py re-implements the layout's naming and hashing for every gate. Against the real writer, on ids with an upper-case letter, a slash, a percent sign, a space, a character past ASCII and one long enough to be shortened: load_design(verify=True) finds nothing tampered or misplaced, its computed content hash equals the export receipt's, each node is at design_io.node_rel_path, and the gate's change set (read with -z) holds the item git would otherwise quote.",
+    "findings": "2026-10-04 (chg:item-layout-lineage-holds-through-a-conflict-resolved-mid-merge-2026-10-04): passes; with reflow2_check.py's -z reverted the non-ASCII item is missing from the change set (git returned it quoted), so the -z assertion was seen failing first.",
+    "kind": "verification",
+    "last_run_at": "2026-10-04",
+    "level": "integration",
+    "location": "tools/test_item_layout_merges.py",
+    "method": "test",
+    "name": "The gates' Python reader reads every odd id where the server wrote it, with the server's hash",
+    "status": "passing"
+  }
+}

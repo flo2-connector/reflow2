@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:43ce0f7e5855aa5eca5dcd0e565b7ef667932f4daba427f102617ab83cfc54b4",
+  "node_id": "chg:baseline-37a05cf8a371ae42",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "baseline_established",
+    "detected_at": "2026-08-26",
+    "name": "First baseline — the file is new in this change, so nothing moved.",
+    "subject": "record"
+  }
+}

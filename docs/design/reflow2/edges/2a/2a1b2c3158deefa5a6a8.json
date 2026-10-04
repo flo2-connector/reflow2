@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:991a3cb4b42fa886c314968844256fbd8cc5ca86e284c11bfc060bc03ecc6983",
+  "edge_type": "REALIZES",
+  "from_id": "art:a-design-that-publishes-contracts-publishes-intent-test",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "verified"
+  },
+  "to_id": "cap:a-published-surface-with-no-promise-is-asked-about"
+}

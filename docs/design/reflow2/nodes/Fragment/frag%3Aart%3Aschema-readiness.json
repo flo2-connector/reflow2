@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:d533a66c7b01a03ee6ef0a824ec67eef3c740c605956bf615aabf235c7f66ff7",
+  "node_id": "frag:art:schema-readiness",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered readiness.yaml"
+  }
+}

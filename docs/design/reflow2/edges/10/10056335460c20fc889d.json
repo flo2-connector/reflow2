@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:d06cc0883b4701cf9ac0cf92290876cdafbe658e37794c6d5bdc9e0881cc1d7c",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:sources-are-kept-not-just-parsed",
+  "properties": {
+    "authored_at": "2026-07-31",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

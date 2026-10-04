@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:f9492233cbbe3b371d57010c7773a44981f594fc05067033be2dc5d122c4d06f",
+  "edge_type": "CAUSES",
+  "from_id": "dec:idea-where-does-a-disk-space-rule-live-when-the-gate-runs-on-the-wrong-machine",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "toolsnap add_design_rule.category description; schema GOVERNED_BY endpoints; getting-started/skills/capture-intent/SKILL.md:57",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:field-report-flo2-2026-09-18-operational-know-how-has-a-home-and-the-routing-table-says-it-has-none"
+}

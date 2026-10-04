@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:d5e5e34937f5ee0d80e5ff768e6ed3f10ff2236666c9baa7dff3b9cb4ed18a10",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:feedback-is-a-computed-tally",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:service"
+}

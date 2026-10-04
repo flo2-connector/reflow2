@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:ee7892eb5490037676044d0f85daee4e9eea19d78d2f74934f2571073563c3c8",
+  "node_id": "req:settled-intent-carries-the-owners-name",
+  "node_type": "Requirement",
+  "properties": {
+    "lineage": "original",
+    "name": "A node that asserts settled intent carries the owner's recorded approval, and one that does not is reported",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "A Requirement moved off `proposed`, a Decision marked `accepted`, or a DesignRule whose `enforced` has been recorded shall carry an `AUTHORED_BY role=approver` edge naming the person whose word it was. A settled node without one shall be reported, and — since `rule:design-intent-moves-only-on-the-owners-word` is ENFORCED — shall fail the build.\n\nWHY STRUCTURE AND NOT PROSE. \"He approved it\" written in a description is a claim an agent can make about anybody. An edge to a named Contributor is the design saying it in a form a query can read and a review can audit. A `reviewer` edge is not a signature; only `approver` is.\n\nFROM A RECORDED BOUNDARY FORWARD, never backward. `dec:the-authority-check-guards-forward-not-backward` carries Anthony's ruling and the materialised set. The threat this guards is prospective — an agent writing in the owner's voice — and nodes settled before the convention existed are bookkeeping, not violations. A check scoped to them would measure conformance to a rule that did not exist when they were written.\n\n⚠️ THIS REQUIREMENT IS AT `proposed` AND MUST STAY THERE UNTIL ANTHONY SAYS OTHERWISE. That is not caution for its own sake: settling it would be the exact act it describes, performed by an agent, on a requirement about agents not doing that. The check built for it would go red on this node — which is the strongest test available that the rule is real.\n\nDISTINCT FROM the DesignRule it derives from: the rule is the standing instruction in Anthony's words and carries the enforcement decision; this states the checkable property, and is what a capability can satisfy. DISTINCT FROM the capability that delivers it: that describes one script, its boundary and its refusal modes, and could be replaced by a Rust detector without this obligation changing.",
+    "status": "proposed"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:b8dc374eaf2f254b1d9d80a3fd401f14fb66406418211d80221caf473eb4b07b",
+  "edge_type": "CHANGED",
+  "from_id": "chg:flo2-proposal-multi-graph-hosting",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "dec:multi-writer-architecture"
+}

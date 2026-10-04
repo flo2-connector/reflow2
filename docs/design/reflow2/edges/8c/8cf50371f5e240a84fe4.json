@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:91da37dae6ca1af3c7961915f96a9490a21e1df422548fbb151490e0fc9e0a39",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-restore-judges-a-reference-against-the-document-not-the-walk",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:repair-notes-lifted-test"
+}

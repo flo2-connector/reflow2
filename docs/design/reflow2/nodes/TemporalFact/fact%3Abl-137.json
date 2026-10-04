@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:4299e8440e933312e5fe13a9a804bf961efff1c2da5f5e707597a6092c28fb84",
+  "node_id": "fact:bl-137",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "defect",
+    "statement": "[BL-137] changelog_view silently DROPS a ChangeEvent that is not pinned to an epoch, breaking its own no-silent-drop promise",
+    "subject_id": "cmp:temporal",
+    "value": "{\"evidence\": \"*Found 2026-08-01 while preparing the v0.20.0 cut \\u2014 by the release the tool exists to serve.* The tool's own description promises that *\\\"anything no rule covers comes back in unmapped rather than being guessed or dropped.\\\"* Run on the rel:v0190 \\u2192 now window it returned 6 entries, unmapped: [], and none of the three fixes about to ship (BL-124, BL-125, BL-129). The cause is exact and was confirmed against the export: the four ChangeEvents it surfaced all carry AT_EPOCH; the three it dropped carry none. A ChangeEvent with no epoch has no moment, so it cannot be placed in a window \\u2014 that half is defensible. Vanishing is not. Those three belonged in unmapped with the reason, and instead the draft read as complete. Had the cut been taken from that draft, three fixes would have been absent from the changelog \\u2014 which is precisely the failure cap:changelog-view was built to end, arriving through its own door. (The same shape is already on the record twice: PR #7 shipped four tools with no [Unreleased] entry, and #9 and #11 are *still* unlogged, which is what prompted running the tool in the first place.) Compounding cause, and the more useful half: add_change_event never creates the AT_EPOCH edge, and nothing asks for one \\u2014 so the default path produces exactly the unpinnable event this drops. [The release procedure names AT_EPOCH as the step that was already got wrong on the v0.19.0 cut and is still missing on v0.17.0]; [BL-122] built a detector for a *Release* with no epoch, and this is the same hole one node type over. Fix shapes: (1) report unpinned ChangeEvents in unmapped with the reason \\u2014 cheapest, and it restores the stated contract; (2) let add_change_event take an epoch, or default it to the current one, so the honest path is the easy one; (3) a detector for a ChangeEvent with no epoch, mirroring release_without_epoch. (1) is owed regardless \\u2014 the promise is already written down. Size S\", \"origin\": \"Migrated from docs/backlog.md BL-137 on 2026-08-07 (epoch:backlog-retired). Size estimate carried from the row: S.\"}"
+  }
+}

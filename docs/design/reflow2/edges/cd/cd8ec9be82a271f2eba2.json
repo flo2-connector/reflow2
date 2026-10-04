@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:f48975c40c1290ac19e9617c1493b5cd597ba45f8aeabb978568444e6c7d8391",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:thin-install",
+  "properties": {
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:alex"
+}

@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:bb049f8b639414468e4acd2106b9cc39187833939591d01184d9196f7323e63f",
+  "edge_type": "VALID_FROM",
+  "from_id": "fact:bl-128",
+  "properties": {},
+  "to_id": "epoch:backlog-retired"
+}

@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:369301e26a90f0c1d621bee0d5f791c81dcf07c346600d71d18bdeb2e7cc0b62",
+  "node_id": "cmp:memory-backend",
+  "node_type": "Component",
+  "properties": {
+    "level": "part",
+    "name": "memory-backend",
+    "provenance": "authored",
+    "purpose": "The volatile `KvBackend` implementation: six `BTreeMap`s, one per column family. No durability, no cross-key atomicity beyond the single-threaded `commit_batch` loop.\n\n`crates/reflow2-core/src/foundation/store/backend.rs` (`MemoryBackend`). Reached through `DesignGraph::open_in_memory`, and it needs no cargo feature — `reflow2-core`'s `default = []` means this is the backend you get unless somebody asks for the other one.\n\n⭐ IT IS NOT A TEST DOUBLE, WHICH IS THE THING MOST LIKELY TO BE ASSUMED ABOUT IT. Measured 2026-08-25: **1,452 core tests pass on it with no RocksDB and no full-text index** — schema validation, the golden thread, adjacency traversal, every detector, HEAL, propagation, the graph algorithms. It serves the same `KvBackend` trait through the same code path, so what passes here is not a weaker claim than what passes on RocksDB; it is the same claim minus durability.\n\n⭐ `BTreeMap` AND NOT `HashMap`, AND THAT IS A CONTRACT NOT A TASTE (`chg:the-memory-backend-keeps-its-keys-ordered`, #331). The trait requires ORDERED prefix iteration. A hash map meant iterating the whole column family, filtering, and sorting — O(n log n) per scan. Measured: `export_graph` calls `outgoing()` once per node, so exporting reflow2's own design was ~42M key comparisons and 1,137 ms; as a range query it is 236 ms. The trade is real — inserts went O(1) to O(log n), import ~8% slower — and the round trip is 37% better.\n\n⇒ THIS IS THE COMPONENT THE NO-DATABASE QUESTION TURNS ON. If `dec:idea-does-reflow2-need-a-byte-store-at-all-or-only-durability` resolves toward the document as the enduring artifact, this becomes the only backend and `cmp:rocksdb-backend` is what gets retired.\n\nMODELLED 2026-08-25 alongside its sibling; neither had a node before. Kept distinct from `chg:the-memory-backend-keeps-its-keys-ordered`, which is the CHANGE that altered this component, not the component itself.",
+    "status": "planned"
+  }
+}

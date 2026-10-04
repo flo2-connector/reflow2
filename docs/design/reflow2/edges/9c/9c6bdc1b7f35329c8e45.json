@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:039fb1e523fdb06720b3a5df8b0d1062119fc4e61da7fd606996e8abd71a720d",
+  "edge_type": "REALIZES",
+  "from_id": "art:graph-read",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "verified"
+  },
+  "to_id": "ifc:graph-read"
+}

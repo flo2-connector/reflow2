@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:013f8b3625d4786e148aa9f07b5be4d641c4f159093d7676af5636545be4c73c",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:every-tool-description-is-accurate-about-what-the-tool-does",
+  "properties": {
+    "authored_at": "2026-09-11",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

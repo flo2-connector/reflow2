@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:494ae7640bf6425341d540e79fcc54962e7157b0169d6b62f518884faaa56002",
+  "edge_type": "PROVIDES",
+  "from_id": "sys:human-channel",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "ifc:reasoning-channel"
+}

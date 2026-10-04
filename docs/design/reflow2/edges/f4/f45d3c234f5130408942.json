@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:dcf96e89c920f8d36f2337fe39ffef10e0ddc385da898421750fcc17725a02b0",
+  "edge_type": "HAS_TEMPORAL_FACT",
+  "from_id": "req:a-writing-call-keeps-the-committed-export-current",
+  "properties": {},
+  "to_id": "fact:a-writing-call-on-reflow2s-own-design-costs-1-6-s-alone-and-6-0-s-with-its-export-2026-10-03"
+}

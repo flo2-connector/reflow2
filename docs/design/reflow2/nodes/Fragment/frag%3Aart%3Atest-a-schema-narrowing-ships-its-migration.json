@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:7b329fd02e113086794ef434c4bfbf5562d14a60116e3afa78da9fccce0d7779",
+  "node_id": "frag:art:test-a-schema-narrowing-ships-its-migration",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered a_schema_narrowing_ships_its_migration.rs — the narrowing gate and its diff"
+  }
+}

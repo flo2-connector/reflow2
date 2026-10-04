@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:ede962ecac138ee20e6b0c2c7d969a48d2db9f04d2ca6bc83ae8bc5e75ac22a2",
+  "node_id": "fact:field-report-bhome-2026-09-18-every-constructor-lists-its-missing-fields-at-once-and-the-other-tools-refuse-one-at-a-time",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "confidence": 0.85,
+    "fact_type": "defect",
+    "name": "FIELD REPORT (bhome S3, 2026-09-18): 'snapshot_before_change listed EVERY required argument at once … it is not yet the default on other tools' — MEASURED: every constructor (21 add_* plus genesis and record_finding) already lists all missing fields at once through one helper; the tools that still refuse one field per round trip are the ones whose required fields are enforced by deserialization — link_artifact and every edge/setter tool",
+    "source": "bhome feedback.md, Session 3 (2026-09-18), triaged 2026-09-19 through the triage-feedback skill",
+    "statement": "Reporter praised snapshot_before_change for naming every missing argument and said the behaviour is not the default elsewhere. MEASURED in the tool modules: RequiredFields::new appears in 22 handlers — all constructors — so the report is right only for the non-constructor surface, where a missing required field is serde's 'missing field `x`' and stops at the first. dec:idea-should-a-refusal-teach-every-rule-it-knows-in-one-reply (OPEN) already holds this question; epoch:a-missing-argument-names-the-tool-and-what-it-wants arrived for the constructors. CAUSE: the helper is applied where Option fields are checked in code; fields required by the request struct itself are refused by the deserializer, one at a time, and nothing lists them together.",
+    "subject_id": "req:a-refusal-names-what-would-have-worked",
+    "valid_from": "2026-09-19"
+  }
+}

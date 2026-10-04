@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:105380256f9e9d8c54916fde21e726a1db3ecb89379e8ff209b30dad90d6265b",
+  "node_id": "art:a-revising-write-says-what-it-removed-test",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "location": "crates/reflow2-mcp/tests/a_revising_write_says_what_it_removed.rs",
+    "name": "a_revising_write_says_what_it_removed.rs",
+    "status": "realized"
+  }
+}

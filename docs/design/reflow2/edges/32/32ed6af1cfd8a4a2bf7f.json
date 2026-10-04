@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:12bc3c8d4accb8f77b4bdeb3083d2f4c4f263a30ff58d0cfa8427ae1eeaf8a83",
+  "edge_type": "CAUSES",
+  "from_id": "cap:latent-surface",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "The latent surface was built as a separate two-tool service that \"creates the directory and nothing else\", leaving the full surface to a different process the client had to start — so completing opt-in rested on a client reconnect, and the instruction carrying it named one client's command; measured in latent.rs (no re-probe on list_tools/call_tool, no store opened, two next_step strings naming /mcp).",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:root-cause-the-opt-in-was-finished-by-a-client-command-and-the-latent-process-never-grew-the-surface"
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:cc6b6ae51a3f41b207b84e4aabc9a9ab8fa8b0e978ba4701236e3a076e9e2c01",
+  "node_id": "ver:prohibition-in-prose-tests",
+  "node_type": "Verification",
+  "properties": {
+    "description": "crates/reflow2-core/tests/prohibition_in_prose.rs — 11 tests.\n\nPOSITIVES (all 5 fail when the sweep call is disabled): a \"must never\" inside a requirement raises one finding with numerator, denominator and the matched phrase in its evidence; three prohibitions are ONE finding; a Constraint that binds the node clears it; a proposed Decision's musing is not scanned but the same sentence IS once the decision is accepted; matching is case-insensitive.\n\nEXCLUSIONS (all 5 fail when every exclusion is widened at once): \"shall not\" is the requirement idiom and is not matched; a DesignRule and a Constraint are the homes and are not flagged; records and checks (Verification, TemporalFact) are not intent; a prohibition quoted in a rationale is reasoning; a Constraint binding the node clears it.\n\nSILENCE TESTS that cannot fail by construction, and say so: a parked node is skipped; nothing to scan is silence, not \"0 of 0\".",
+    "kind": "verification",
+    "name": "The prohibition detector's eleven tests, falsified in both directions",
+    "status": "passing"
+  }
+}

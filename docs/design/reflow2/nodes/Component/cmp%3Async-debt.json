@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:f0f24ce7197187c4a1b946549e69da72f0d67272a2504cda2ff96374d72d35ac",
+  "node_id": "cmp:sync-debt",
+  "node_type": "Component",
+  "properties": {
+    "kind": "module",
+    "level": "component",
+    "name": "sync_debt",
+    "provenance": "authored",
+    "purpose": "Whether the shared record has moved since this seat last looked — the staleness a session needs at the moment it ORIENTS rather than at the moment it writes.",
+    "status": "planned",
+    "tier": "operational"
+  }
+}

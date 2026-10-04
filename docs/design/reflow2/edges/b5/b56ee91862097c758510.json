@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:e382415c2bf7d30a4367788b3ce72b584228e39d033d3e0bf9b9a3212b04d6b4",
+  "edge_type": "CONTAINS",
+  "from_id": "sys:time-history",
+  "properties": {},
+  "to_id": "cmp:manual-work"
+}

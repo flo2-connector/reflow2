@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:a9796cc3e87f58e6b51d7864511031e7da7733635b9aeb58a63b591703ba22ea",
+  "node_id": "frag:alex-2026-08-14-item-1",
+  "node_type": "Fragment",
+  "properties": {
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Item 1: 'add_change_event has no change_type for an as-built product bug. I sent bugfix. Refused. A client cache that leaves a derived flag stale is not a test failure and not scope change. I used test_failure_fix. The enum forces a lie.' Expected: a type for implementation defect against existing intent."
+  }
+}

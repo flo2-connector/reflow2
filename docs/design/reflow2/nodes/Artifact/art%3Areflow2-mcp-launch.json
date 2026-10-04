@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:a9e19d01f1afe4d527c4e9dc34bc65e1ae68eb23e548f33dda216b58d0f1e4a3",
+  "node_id": "art:reflow2-mcp-launch",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "description": "The launch wrapper `.mcp.json` invokes instead of a raw binary. Since 2026-09-12 it serves target/release/reflow2-mcp and never builds it: missing binary is a refusal naming tools/reflow2-rebuild.sh, and a binary older than the source is served behind an unconditional banner. REFLOW2_PROFILE=debug restores the previous content-hash auto-rebuild for the edit-compile loop. All output goes to stderr, because stdout is the JSON-RPC channel.",
+    "location": "tools/reflow2-mcp-launch.sh",
+    "name": "reflow2-mcp-launch.sh",
+    "status": "realized"
+  }
+}

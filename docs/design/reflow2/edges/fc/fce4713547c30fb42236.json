@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:aa62349923b5ccd5dc7ed1a4660ef7d9cd3d3f206d99db551e4895f2a3510796",
+  "edge_type": "CHANGED",
+  "from_id": "chg:alex-fleet-review-20260809",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "dec:idea-does-a-capability-need-a-cancelled-state"
+}

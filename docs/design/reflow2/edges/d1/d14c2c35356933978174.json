@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:8447b6ee5babf0755df1060c31f07ad2541cac34e4f04d2edad39f3d43787831",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-image-requirement-takes-arm64-and-the-digest-and-its-no-authentication-expectation-is-overtaken",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "req:reflow2-consumable-as-an-image"
+}

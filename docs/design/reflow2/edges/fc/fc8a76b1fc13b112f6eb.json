@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:ed3097ede7d13ae9ebbd9f1e7f7846322516019e2a597afa05a7ec756170515a",
+  "edge_type": "EVOLVES_INTO",
+  "from_id": "dec:idea-the-server-counts-its-own-refusals-so-no-session-has-to-remember-to",
+  "properties": {
+    "evidence": "The usage ledger of increment 437 (#490) is this idea's option (b) widened to every call and given a delivery channel (/feedback); superseded on Anthony's word 2026-09-12 because the question it asked is answered by that requirement."
+  },
+  "to_id": "req:feedback-on-reflow2-is-computed-from-a-record-the-server-kept"
+}

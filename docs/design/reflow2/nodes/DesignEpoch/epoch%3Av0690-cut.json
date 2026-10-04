@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:656a8f9ca8edb9a35127462b8d19bf0ceac32bba52226919bbdb199e6ede7ead",
+  "node_id": "epoch:v0690-cut",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "description": "The cut that makes get_skill serve the skill a slash command names (\"gaps\", \"/gaps\", \"/where\"), with `requested_as` in the reply, instead of refusing and naming the mapping. One change pinned. Follows epoch:v0680-cut.",
+    "epoch_type": "release_cut",
+    "name": "v0.69.0 release cut (2026-09-24)",
+    "sequence": 610,
+    "status": "arrived"
+  }
+}

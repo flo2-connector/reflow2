@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:4ac295bc4ac4e494adf321208c242c3a5ec4741fe1b46dcf517d2beebdf447f9",
+  "edge_type": "CHANGED",
+  "from_id": "chg:storyflow-second-field-report-20260808",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "fact:defect-the-read-surface-cannot-answer-a-set-question"
+}

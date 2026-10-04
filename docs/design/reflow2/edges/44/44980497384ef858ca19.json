@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:5c65f9f90988c8d51f53b4d4812ee5113a4c0b1e7935360f751dc29e6af6c728",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:schema-inference",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:schema-inference"
+}

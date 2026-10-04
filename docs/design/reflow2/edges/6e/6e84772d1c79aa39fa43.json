@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:4b72e76cb59bee8c086c4135f86f6617ccc265811da749beae39090bfb4f6d59",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-setup-command-chooses-local-or-remote-2026-09-26",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "req:one-setup-command-chooses-local-or-remote-once"
+}

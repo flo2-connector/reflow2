@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:fd0db2d7631a9a35fe9d68d469aa645fbedcb33711406374f16bf887ed2c93e0",
+  "edge_type": "CHANGED",
+  "from_id": "chg:enforced-is-stated-not-defaulted-20260808",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "dec:does-enforced-default-to-gate-blocking"
+}

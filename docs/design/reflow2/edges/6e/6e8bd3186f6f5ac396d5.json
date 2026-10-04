@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:d829afd89b04cafd0ac023d24c4eea6db33e2b5b6579b2c7424fd4db07fda7f9",
+  "edge_type": "CHANGED",
+  "from_id": "chg:an-unmeasured-client-gets-the-payload-not-a-signpost",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cap:a-reply-takes-the-shape-its-client-can-read"
+}

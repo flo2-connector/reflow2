@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:d66f5d5f593c04d37033c34bc5dce669c3dc637c4af9e6587c4ae7373a92a17b",
+  "node_id": "cap:a-projects-unit-system-is-a-governed-rule-and-a-sweep-reports-unitless-and-off-system-quantities",
+  "node_type": "Capability",
+  "properties": {
+    "description": "A DesignRule of a declared kind carries the unit system per quantity kind (e.g. mass: kg, energy: eV, length: mm); it is captured through governance-proposal, so the owner says whether a violation stops the build and the answer is recorded either way. A detector walks the unit-bearing fields the design holds — Constraint.quantity and CONSTRAINS.contribution, the unit axis on published boundaries, and any field added later that carries a unit — and reports (i) a quantity with no unit, (ii) a unit outside the declared system. It reports its own population (how many unit-bearing fields it examined) and says plainly when that was zero, per the rule that a detector with nothing to run on must not read like one that ran clean. Planned 2026-09-13; depends on the boundary unit axis existing, since Constraint.quantity is today the only unit-bearing field and it carries its unit as a name suffix.",
+    "name": "A project's unit system is a governed rule, and a sweep reports every quantity with no unit or a unit outside the system, saying when it had nothing to run on",
+    "provenance": "authored",
+    "status": "realized",
+    "tier": "operational"
+  }
+}

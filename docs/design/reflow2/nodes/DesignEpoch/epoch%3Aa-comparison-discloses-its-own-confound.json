@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:cf0f1f36ff733782930fd9fc0fecd14a87937871d924b26ea74a5e3c8f297b74",
+  "node_id": "epoch:a-comparison-discloses-its-own-confound",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "epoch_type": "milestone",
+    "name": "A comparison discloses its own confound — cross-build comparisons say so, because step 1 moves the disagreement to the version transition rather than removing it (dec:fix-the-comparison-before-pointing-it-earlier step 2)",
+    "sequence": 312,
+    "status": "planned"
+  }
+}

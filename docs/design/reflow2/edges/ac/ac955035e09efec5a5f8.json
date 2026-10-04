@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:2ad8670e2b1d60594608510a72c30282218daf7726e76922f4a5e6266a85be99",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-capture-that-replaces-a-node-says-so",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:test-a-registered-artifact-asserts-nothing-it-was-not-told"
+}

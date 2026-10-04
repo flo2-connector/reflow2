@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:f7ab3886949e7647e3a65ded61e20a543d47cc08f10ecc342a9d119b23bb9d00",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:stateless-seat-probe",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:stateless-seat-probe"
+}

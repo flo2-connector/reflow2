@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:4c3065fd8c9b71d2ee8570d4ead694f262e8ded79bd5a3f68b155c71630deb1f",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:graph-catches-up",
+  "properties": {
+    "authored_at": "2026-07-28",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

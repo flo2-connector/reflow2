@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:44427eca24c46e1974e34cf82b568b9c3ff7fff9a8c095119909a7d2380ba07a",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:a-build-can-call-one-tool-from-the-shell-and-read-the-reply-as-json",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:service"
+}

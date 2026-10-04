@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:948aeb1c9ed87d663df1f1eac712db780b84865363d3a7c2b05a30243a1b6ac4",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:an-edges-prose-does-not-outlive-the-node-it-points-at",
+  "properties": {
+    "approved_at": "2026-08-31",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

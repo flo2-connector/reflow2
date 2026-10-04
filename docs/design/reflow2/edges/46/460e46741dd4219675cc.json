@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:8bf74c77fca1c285e2189c81eb274b5bcc02d22d019f609a5ad00b313235320c",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0610",
+  "properties": {
+    "as_checksum": "sha256:8dcf9b904913850e97a505a478d4a479e31a40d09fda94580fa98a3adcf1626a"
+  },
+  "to_id": "art:git-anchor"
+}

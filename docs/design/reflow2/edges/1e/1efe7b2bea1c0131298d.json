@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:0550495e290e582b47619dd9769146765214c292d394ecbca1416c8529e78bce",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:a-design-that-publishes-contracts-publishes-intent-test",
+  "properties": {
+    "covers": "whole",
+    "note": "Drawn by hand: the running reflow2-mcp binary predates today's fix that makes link_artifact draw this itself for a Verification target."
+  },
+  "to_id": "ver:a-published-surface-with-no-promise-is-asked-about"
+}

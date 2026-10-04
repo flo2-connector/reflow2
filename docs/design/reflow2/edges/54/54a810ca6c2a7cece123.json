@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:de0c8024da15dc544494a5c2b43f330d5c26458f35b114dc569f603248aceceb",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:reflow2-keeps-working-entirely-on-one-machine",
+  "properties": {
+    "approved_at": "2026-09-25",
+    "roles": [
+      "author",
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

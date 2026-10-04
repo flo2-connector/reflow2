@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:e6a5b104d47aee5f60ead174e3c34d06b458b87c26b002034e4f7258de9051b9",
+  "edge_type": "HAS_TEMPORAL_FACT",
+  "from_id": "req:a-deliberate-state-is-not-a-defect",
+  "properties": {},
+  "to_id": "fact:defect-loop-status-asserts-an-answer-never-reached-the-design-from-a-fact-that-cannot-say-so"
+}

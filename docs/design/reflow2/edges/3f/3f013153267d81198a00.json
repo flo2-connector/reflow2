@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:dc68cff89fd1498191170409459dce63e09d1caa4a3228f811273745d8341990",
+  "edge_type": "MITIGATES",
+  "from_id": "dec:idea-a-served-read-evaluates-every-derived-relation-reflow2-computes",
+  "properties": {
+    "evidence": "The root cause is that no declaration exists for anything to evaluate. Options (a) to (c) each give reflow2 a served answer that no export script has to re-derive."
+  },
+  "to_id": "fact:root-cause-no-tool-can-evaluate-reflow2s-derived-relations-because-reflow2-declares-none-of-them-2026-09-29"
+}

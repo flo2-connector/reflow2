@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:854ff1aca132d4735a4edb5f49f04c513080318e909f19d1a1a44cc79e8594f2",
+  "node_id": "cap:compare-alternatives",
+  "node_type": "Capability",
+  "properties": {
+    "description": "Load N alternative design exports (branch-by-file) and report each branch on the same measures — graph_report snapshot (nodes, open gaps, allocation health, verification coverage) side by side — plus each branch's structural divergence from a named baseline (compare_designs). Alternatives comparable on measures, not advocacy. BL-70 v1; the collapse (merge winner + retire losers) reuses BL-80. Rung 2 wires the decision point.",
+    "name": "Compare parallel alternatives on the same measures (AoA)",
+    "provenance": "authored",
+    "status": "verified",
+    "tier": "operational"
+  }
+}

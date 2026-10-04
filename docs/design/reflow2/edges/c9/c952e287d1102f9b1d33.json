@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:6ab98ced0b67fd1fce4058fdd994ac2427516ddb76441ee12c5c11c2535e88a3",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-question-is-put-to-a-person-and-records-who-answered",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:vocabulary-reach-baseline"
+}

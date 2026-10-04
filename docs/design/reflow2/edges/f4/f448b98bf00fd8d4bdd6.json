@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:003988340a26f554770b188d3798293a4e92a3f4325059a671e7c19548e14eb7",
+  "edge_type": "CHANGED",
+  "from_id": "chg:bl183-constructors-merge",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "ifc:mcp-tools"
+}

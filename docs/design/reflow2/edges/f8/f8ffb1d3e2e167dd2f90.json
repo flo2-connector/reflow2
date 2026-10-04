@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:33ffc830fe539a41ff91193ea710f2bdb3b6e2661e721adbba403ecebab11f4a",
+  "edge_type": "CAUSES",
+  "from_id": "art:hxm-program-feedback-2026-09-28",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "The root-cause pass on this document's 09-28 report (F-30, an operations incident has nowhere cheap to live): recording paths are design-first. An unmodelled asset cannot be a subject, the one-call fallback (the Project) is named only at the /jot door, and a defect finding is read by nothing in the loop.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:root-cause-an-incident-on-an-unmodelled-asset-has-one-legal-home-and-no-loop-read-surfaces-it-2026-09-28"
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:416920372edc06b9c103576a358f08255da271dd29b1de132b2a08f6db707de0",
+  "edge_type": "ANTICIPATES",
+  "from_id": "dec:idea-outward-docs-are-rendered-from-the-graph",
+  "properties": {
+    "evidence": "The 2026-08-11 idea to render reflow2's OWN docs from the graph (and its 2026-09-16 link-ripple-rewrite option) saw coming the same need for a consumer project's decision log; its options (c) and (e) are options (c) and (b) here."
+  },
+  "to_id": "dec:idea-a-projects-decision-log-for-readers-who-never-run-reflow2-is-rendered-or-checked-from-the-design"
+}

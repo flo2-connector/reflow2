@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:e4f7ad31557b434c27d972809ee94421f2e7dcbd92dc71145fe8b43b90ab1647",
+  "edge_type": "CHANGED",
+  "from_id": "chg:alex-fleet-review-20260809",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "cap:a-decision-can-be-created-already-settled"
+}

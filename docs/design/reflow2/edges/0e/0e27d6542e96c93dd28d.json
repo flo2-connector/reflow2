@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:4c475ec97e2efd6020836146a6b266ae71ae5aa4179491610aff54fe01188b4e",
+  "edge_type": "CAUSES",
+  "from_id": "cap:the-record-moved-is-surfaced",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "The capability answers ONE question correctly — has the shared record moved ahead of this seat — and it answers it PER TARGET, which is the right scope for that question. The unexported-work reading aid was later hung on the same per-target row and inherited that scope, but its question ('are these nodes exported') is about the SEAT and is answered by the union of the records the seat keeps. One computation, two questions, only one of which the scope fits. Measured 2026-09-03: 5 lines each claiming 185-825 unexported nodes while a set difference put all 825 of the worst line's nodes inside the committed export. Fixed by chg:the-unexported-claim-is-answered-once-for-the-seat.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:defect-the-unexported-claim-was-computed-per-file-and-stated-per-seat"
+}

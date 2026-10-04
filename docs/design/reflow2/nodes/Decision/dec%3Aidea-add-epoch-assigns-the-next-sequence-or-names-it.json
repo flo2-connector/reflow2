@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:978e7e3a6963a0ec5e1aa634868425ee59177cab1d47fd9e1b521fb32f4444cb",
+  "node_id": "dec:idea-add-epoch-assigns-the-next-sequence-or-names-it",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Recorded as BRAINSTORMING, not as a proposal — Alex's idea (v0.47.0, 2026-09-05), in his words: 'Could auto assign next-in-sequence or say so in the error.' Two options he named: (a) AUTO-ASSIGN — `sequence` becomes optional and, when omitted, the tool writes max(existing)+1; one call, no scan. (b) NAME IT IN THE ERROR — `sequence` stays required, but the refusal says 'the highest existing sequence is N' so the second call can be right. WHAT IS CHEAP: (b) is a handler pre-check before the generic required-field helper, the same shape as the add_change_event description redirect (#429); no schema change, no semantics change. (a) is also cheap to code.",
+    "kind": "exploratory",
+    "name": "OPEN — add_epoch requires `sequence` but the refusal cannot say what value would work. Should the tool auto-assign next-in-sequence, or should the refusal name the current maximum?",
+    "rationale": "THE COUNTER-ARGUMENT TO (a), from the record: sequences are not just order — they are deliberately SPACED and re-ordered. chg:the-philosophy-epoch-makes-room-for-a-cut moved a planned epoch 360 -> 365 so a release cut could take the sequence at which it actually happened. An auto-assigned max+1 would pack every new epoch against the last one and leave no room for exactly that move, and it would silently choose a position the user may not mean (a planned epoch usually belongs AFTER a gap, not immediately next). So (a) trades a round-trip for a quiet positional claim — the defaults-do-not-assert concern in a new coat. (b) removes the scan without making a choice for anyone. A middle path: (b) now, and auto-assign only when the caller passes an explicit `sequence: \"next\"` — a stated request, not a default. A ranking is a finding, not a decision; Anthony rules.",
+    "status": "proposed"
+  }
+}

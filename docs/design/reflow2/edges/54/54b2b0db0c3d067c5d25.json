@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:874d5754466862430b285c5f2d450ce0fea996fbac2e40d189d0cceaf0f16339",
+  "edge_type": "REALIZES",
+  "from_id": "art:kpp-proposal-skill",
+  "properties": {
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:a-quantity-carries-its-provenance-and-an-unsourced-one-is-named"
+}

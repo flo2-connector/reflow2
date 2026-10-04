@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:673f679957f28cf2e990cb393e5cff9203f7e63813ba2606593a004c2fd0b735",
+  "node_id": "art:test-degraded-server",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "granularity": "atomic",
+    "location": "tools/test_degraded_server.py",
+    "name": "test_degraded_server.py",
+    "status": "realized",
+    "volatility": "stable"
+  }
+}

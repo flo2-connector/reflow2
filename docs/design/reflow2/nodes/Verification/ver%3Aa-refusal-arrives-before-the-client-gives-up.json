@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:e313e529f45a968bf32dd262583020a0002d8a6cd8102f6d972904a886fabad0",
+  "node_id": "ver:a-refusal-arrives-before-the-client-gives-up",
+  "node_type": "Verification",
+  "properties": {
+    "findings": "4 passed against the fixed binary. MUTATION-CHECKED: against the unfixed binary 3 FAIL — the timing case at 30.024s, the message case because the old text said 'within 30s' and blamed the write lock, and the record case because nothing was written — and the fourth, a_lost_lock_race_still_waits_for_the_winner, PASSES IN BOTH STATES. That is the counterweight, and it fails if the fix is ever widened into a blanket give-up.",
+    "kind": "verification",
+    "last_run_at": "2026-09-09",
+    "level": "integration",
+    "method": "test",
+    "name": "A refusal no peer can resolve reaches the session in 0.3s instead of 30.0s, names the actual cause, writes a pid-stamped record — and a lost lock race still waits for the winner (4 cases)",
+    "status": "passing"
+  }
+}

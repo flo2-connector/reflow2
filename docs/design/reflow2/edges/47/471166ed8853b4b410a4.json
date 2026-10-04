@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:8812240c8743c00137bb4c9b9e3ae6a7c7d886df229c851aa0c6d2182cfb7efe",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-should-every-finding-say-who-it-is-for-and-should-ids-be-de-slugged-where-they-surface",
+  "properties": {
+    "evidence": "Both rows are instances of that rule: a fact reflow2 knows at emission time and makes every consumer re-derive.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "rule:a-consumer-facing-fact-about-the-served-surface-is-served-never-copied"
+}

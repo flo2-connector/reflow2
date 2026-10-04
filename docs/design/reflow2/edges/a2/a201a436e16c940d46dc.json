@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:7426f8871bbb0db880df9dc6260fe9cb8ba78b0f7f4b210c97b248070a13d5af",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0640",
+  "properties": {
+    "as_checksum": "sha256:546cdc7102fadeb1ad60485d4b4f0d1bb3a49a308e1914fe86346d7ea13d6cf0"
+  },
+  "to_id": "art:test-a-number-names-its-source"
+}

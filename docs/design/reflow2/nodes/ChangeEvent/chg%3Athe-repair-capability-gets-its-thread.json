@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:f478b15741c5b6b61a14efd7529294739507c52ff47c62ff92f126f176d96608",
+  "node_id": "chg:the-repair-capability-gets-its-thread",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "resync",
+    "name": "The repair-tracking capability finally gets the thread it shipped without — three gaps, one missed step",
+    "rationale": "Anthony's word 2026-08-24, after being walked through the six open gaps: these three need no decision because nothing is being decided — existing things are being pointed at each other.\n\n⭐ THE LESSON IS ABOUT WHERE THE WORK STOPPED, and it is not \"somebody forgot\". PR #321 did the harder half well: it shipped the reader alongside the edge precisely so the marker would not become a comment nobody consults. Then the design's own record of that work was left half-drawn, so `loop_status` reported for weeks that a built, tested capability had no check — while a dedicated 10-case suite sat green on disk. **The design was more pessimistic than reality, and that erodes trust in the report exactly as fast as false optimism does.**\n\nWHAT GUARDS AGAINST A REPEAT: the Stop hook shipped in PR #324 the same day is the mechanism — it asks the graph what a session RAISED and speaks at the stop. A session that adds a capability and leaves it unwired now raises `unverified_capability` / `unallocated_capability` counts against its own session-start baseline and gets told before it finishes, rather than leaving it for a walkthrough weeks later.",
+    "subject": "record",
+    "summary": "`cap:a-repair-can-say-what-it-invalidated` shipped in PR #321 as `realized` and was never wired into the golden thread: no VERIFIES, no ALLOCATED_TO, no REALIZES. That produced three of the six open gaps and the standing \"1 capability claiming built with no check\". This connects what already existed — the capability is allocated to `cmp:verify` (where `invalidated_findings` lives), the five artifacts that implement it are linked, and `crates/reflow2-core/tests/a_repair_can_say_what_it_invalidated.rs` is registered and pointed at a new Verification.\n\nSUBJECT IS `record`, NOT `system`: not one line of behaviour changed. Ten tests that already existed and already passed were simply never visible to the design."
+  }
+}

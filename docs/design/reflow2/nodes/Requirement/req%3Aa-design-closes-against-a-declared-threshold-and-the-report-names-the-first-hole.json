@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:da8db9511fc3f447d60df39bbca5b3b47ef926eab6e33ed57941a5287db3ac25",
+  "node_id": "req:a-design-closes-against-a-declared-threshold-and-the-report-names-the-first-hole",
+  "node_type": "Requirement",
+  "properties": {
+    "lineage": "original",
+    "name": "A design closes against a threshold the owner declares, and the closure report names the first hole",
+    "priority": "high",
+    "provenance": "authored",
+    "statement": "One read answers whether the design closes: every live requirement traced to a capability with a passing verification; every budget inside its limit with the declared margin; every boundary between coupled parts specified on both sides; no open decision that the scheduled increment depends on; no quantity without a source. Each leg reports its count, what it swept (\"budgets: 1 modelled; seams: 13 of 72 declared\"), and its worst offender, so a leg with nothing to run on cannot read as clean. The verdict is computed against a closure threshold the project declared — 100% is a legal declaration, and so is \"traceability and budgets only\" — and a project with no declared threshold reads \"no closure criterion stated\", never a default. Closure is a report, not a gate: a release may be cut while the design does not close, and the report says so.",
+    "status": "accepted"
+  }
+}

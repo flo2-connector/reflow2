@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:4b3585a8a4142a2796f232678c190a61893bb5da69e13350d00354b49c80af12",
+  "node_id": "epoch:governance-becomes-expressible",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "epoch_type": "milestone",
+    "name": "Governance becomes expressible — the four missing primitives and a ledger that can say a record was wrong, grouped so one stamp move pays for all five",
+    "sequence": 307,
+    "status": "planned"
+  }
+}

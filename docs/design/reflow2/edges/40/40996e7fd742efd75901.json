@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:10034890061e30bd20cd539d92d8b93864adc8388889d4367505c06aa851021c",
+  "edge_type": "REALIZES",
+  "from_id": "art:test-session-names-its-design",
+  "properties": {
+    "completeness": "partial",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:select-graph-by-id"
+}

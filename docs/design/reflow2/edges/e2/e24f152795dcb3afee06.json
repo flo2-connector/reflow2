@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:79e3a17fa0733612dbe97ddd77ff435d7b57e95b83455bf464807913f4f53125",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:one-setup-command-chooses-local-or-remote",
+  "properties": {
+    "coverage": "partial"
+  },
+  "to_id": "req:one-setup-command-chooses-local-or-remote-once"
+}

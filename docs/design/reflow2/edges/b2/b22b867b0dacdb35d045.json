@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:f002173b5c67f9bb5bb0436feec6d37d3cf17ed9f8332d1ce8b509b3fe2d03e0",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-release-publishes-one-amd64-and-arm64-index-and-names-its-digest",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cap:release-publishes-a-container"
+}

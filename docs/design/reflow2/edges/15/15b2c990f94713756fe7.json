@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:378f44a48686a9774072c1e2ade4d4ddfad54228a3009e03ac69e61c257de9ab",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:github-mcp-tandem",
+  "properties": {
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

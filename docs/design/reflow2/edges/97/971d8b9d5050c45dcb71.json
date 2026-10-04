@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:3720547fe2cdfcc9bb7a8229af335a7cefc6221b1c4d3b947a55d559891459b7",
+  "edge_type": "CHANGED",
+  "from_id": "chg:session-capture-2026-08-17",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "fact:a-third-of-declared-properties-name-nothing-any-tool-accepts"
+}

@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:8a1c74620d64d251d41b653e36ccccb01c7ba94ee77d401520fe84424f4ca3cf",
+  "node_id": "ver:a-project-is-asked-what-its-artifacts-must-be-in",
+  "node_type": "Verification",
+  "properties": {
+    "description": "crates/reflow2-core/tests/a_project_is_asked_what_its_artifacts_must_be_in.rs — seven cases over the two detectors and the checker property. The one that carries the weight: an acknowledged \"none known\" on a code-only project stays acknowledged through more code and is re-asked, under a new gap id at higher severity, the day a drawing appears.",
+    "kind": "verification",
+    "last_reconciled_at": "2026-09-23",
+    "last_reconciled_outcome": "passed",
+    "last_run_at": "2026-09-16",
+    "name": "A project with nothing in it is asked what standard its artifacts must be in; declaring ends it; \"none known\" holds until a drawing appears and is then asked once more; a drawing that does not say is named and a source that generates it is not; a mirror is not asked",
+    "status": "passing"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:5ec059254e5ff84bf637e31f16e83739f8ce2f910ce4e8cd24ef237b0b02c297",
+  "node_id": "fact:bl-193",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "defect",
+    "statement": "[BL-193] An Interface CONSUMED across a component boundary with NO recorded spec makes the seam uncheckable — and no gap fires",
+    "subject_id": "cmp:detect",
+    "value": "{\"evidence\": \"*Same field report, 2026-08-03, run on the dynograph \\u2192 foundation seam before an engine bump. detect_gaps returned silence.* The graph held cmp:dynograph \\u2014CONSUMES\\u2192 ifc:foundation_api with a name, a description and nothing else \\u2014 no operations, no payload surface, no error model \\u2014 so a release could change every signature behind that edge and the loop stays green. The seam had to be captured by hand (set_interface_spec) plus an external shell script written to make it checkable at all. This lands squarely on reflow2's own frontier and that is the strongest argument for it: maturity_report puts seams at 0% \\u2014 0 of 73 component couplings declared through a contract \\u2014 and 23 releases have shipped over that reading. Candidate: a gap for *\\\"an interface is CONSUMED across a component boundary but carries no spec.\\\"* The reporter's framing is the part to keep: *\\\"a check reduced to 'an edge exists' can only ever detect the edge disappearing.\\\"* Size M\", \"origin\": \"Migrated from docs/backlog.md BL-193 on 2026-08-07 (epoch:backlog-retired). Size estimate carried from the row: M.\"}"
+  }
+}

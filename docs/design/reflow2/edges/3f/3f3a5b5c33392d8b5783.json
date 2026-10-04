@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:49b925d54a277ecfb5331539a6546f197b9d064c3c0280f359b9e38e106e1c46",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:changelog-view",
+  "properties": {
+    "coverage": "partial",
+    "evidence": "PARTIAL, AND THE MISSING HALF IS NAMED. changelog_view answers WHAT changed between two moments (a Release or DesignEpoch at each end), bucketed by rules the graph records, returning `unmapped` rather than guesses. It does NOT answer BY WHOM, which the requirement asks for in the same sentence. Measured 2026-08-10 (fact:the-change-ledger-records-what-moved-never-who): 0 of 360 ChangeEvents carry AUTHORED_BY, only 79 of 378 changed subjects do, and no edge type but CLAIMS carries a seat - so neither 'which contributor' nor 'which seat' is derivable, and the requirement asks for the seat. Wired at `partial` rather than left unsatisfied, so accepted intent stops reading as untouched; and NOT at `full`, because a by-whom column over this data would be empty for 79% of subjects and an empty cell reads as NOBODY rather than NOT RECORDED."
+  },
+  "to_id": "req:what-changed-since-i-looked-and-by-whom"
+}

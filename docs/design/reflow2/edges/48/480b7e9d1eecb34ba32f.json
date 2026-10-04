@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:45f7b4e51c081535fc201fe792a2e96bb316492c217c072c286ec490b89ff103",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:a-photocopy-says-it-is-one",
+  "properties": {
+    "approved_at": "2026-09-27",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

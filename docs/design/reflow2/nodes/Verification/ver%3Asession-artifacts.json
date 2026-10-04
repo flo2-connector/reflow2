@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:f432e850d3b852e2c87820fa47989983900a68bf29c5583d922ca8aaca9b66c1",
+  "node_id": "ver:session-artifacts",
+  "node_type": "Verification",
+  "properties": {
+    "description": "The link is the filter: a rendering a Decision or Capability points at is captured into the store; one nothing points at is NOT, so the store does not fill with session litter; and the capture happens without the agent choosing to invoke it, which is the load-bearing half — a capture that depends on remembering decays exactly as req:skill-use-survives-a-long-session measures. PLANNED.",
+    "kind": "verification",
+    "last_run_at": "2026-08-01",
+    "level": "integration",
+    "method": "test",
+    "name": "The link is the filter: a rendering something points at is captured, litter is not",
+    "status": "passing"
+  }
+}

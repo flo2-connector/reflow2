@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:40f0788a206459c7684664df99248e4f651f16efd9995ea41cd86a6babb68359",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-should-an-idea-be-linked-to-the-intent-that-scopes-it",
+  "properties": {
+    "evidence": "That node asks whether ideas link to each OTHER; this asks whether they link to the INTENT that bounds them. If ideas turn out to be only a list, an idea-to-requirement edge is the only linking that would exist and this question becomes the whole of it — so what is worth building here is decided by what that one settles first.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "dec:idea-do-ideas-form-a-graph-or-only-a-list"
+}

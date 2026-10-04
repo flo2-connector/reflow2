@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:fc3a0516cda63984284d7b0d016aa0aa51f02666867d1f1cafc9ba84212efda9",
+  "edge_type": "HAS_SNAPSHOT",
+  "from_id": "art:release-workflow",
+  "properties": {},
+  "to_id": "snap:epoch:the-image-must-start:art:release-workflow"
+}

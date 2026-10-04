@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:3f0bced6783a799f087004f9032face21e6266a7545fca6a68374656909ce972",
+  "edge_type": "INVALIDATES",
+  "from_id": "chg:the-overtaken-defect-records-were-triaged-against-the-v0510-build",
+  "properties": {
+    "evidence": "Both agent-facing surfaces now say an existing id MERGES (revise-design SKILL.md:47-64, query.rs:151). Residue: the Verification node and the upsert test still say replaces, which remains true of the Rust method rather than the tool."
+  },
+  "to_id": "fact:defect-create-node-documented-as-replacing-but-merges"
+}

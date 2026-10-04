@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:c5af4c9865ca08209a977c5f41cf9388aa5514d6b9b59eb8dd496ce92b195400",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:test-a-revise-keeps-what-it-was-not-passed",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:test-a-revise-keeps-what-it-was-not-passed"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:33593c06d01c323629837ea7bc0b9f38e37b4c9d90b5fb1dd7177b07319e9c2f",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:enforced-rule-detector-test",
+  "properties": {
+    "covers": "whole",
+    "note": "migrated 2026-09-22 from a REALIZES link_artifact drew in error"
+  },
+  "to_id": "ver:rules-can-be-verified"
+}

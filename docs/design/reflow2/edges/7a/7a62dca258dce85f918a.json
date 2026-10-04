@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:2cf32d469aa51557aacb86abae5582a026a1e876c535ba449a9aa63f2939b755",
+  "edge_type": "SCHEDULED_FOR",
+  "from_id": "req:a-detector-reads-the-properties-that-qualify-its-own-finding",
+  "properties": {
+    "modality": "expected",
+    "recorded_at": "2026-08-16"
+  },
+  "to_id": "epoch:triage-fixes"
+}

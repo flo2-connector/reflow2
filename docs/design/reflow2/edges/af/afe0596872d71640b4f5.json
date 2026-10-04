@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:e619502c808f160dbfd1d2ce83ef7c5c74c57b9fa5a483df9e78611b6c921eaa",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-saved-design-moves-to-the-item-layout-2026-10-03",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:3ed55c409e7596de83b3fd09543d78756b675509dd99e7245b907feaefe79791",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:settling-a-decision-records-which-option-won-test"
+}

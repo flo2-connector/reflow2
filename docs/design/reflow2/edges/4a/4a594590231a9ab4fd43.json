@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:66203503f424662f4101086aad2560b56dc9b47933e3f6dc2d8210f0e66f88e9",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:the-local-client-opens-the-persons-files-for-the-tools-that-name-one",
+  "properties": {
+    "approved_at": "2026-09-27",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:0c821b00d0aff35c250c951f45d9f8758cddd775fa6e9f26b68bb30ea7d5846c",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:satisfaction-schedule-shape",
+  "properties": {
+    "authored_at": "2026-07-30",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

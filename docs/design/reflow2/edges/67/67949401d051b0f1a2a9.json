@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:d4110f99959d12e2ba16f15f70331e950d7013643b2b90bab497c17f3b119583",
+  "edge_type": "INVALIDATES",
+  "from_id": "chg:the-overtaken-defect-records-were-triaged-against-the-v0510-build",
+  "properties": {
+    "evidence": "add_constraint's description now opens with the non-numeric case and says only name and statement are required (capture.rs:1775-1783); the served instructions and capture-intent carry the same correction."
+  },
+  "to_id": "fact:defect-the-constraint-vocabulary-is-documented-as-numeric-so-the-right-node-is-ruled-out"
+}

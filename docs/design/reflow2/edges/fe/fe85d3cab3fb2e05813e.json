@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:f40df3d885345404fc09b0250d29fecd894485ad648e1315974a64876bfb507e",
+  "edge_type": "VERIFIES",
+  "from_id": "ver:scan-nodes-filters-by-level",
+  "properties": {},
+  "to_id": "cap:ask-for-one-rung-of-the-decomposition"
+}

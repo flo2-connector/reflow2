@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:0dc16e61ad2f0bc8eebc4fc2d96c077a223e402199135741f75b15b44d612019",
+  "edge_type": "CONTAINS",
+  "from_id": "sub:finding",
+  "properties": {},
+  "to_id": "cmp:heal"
+}

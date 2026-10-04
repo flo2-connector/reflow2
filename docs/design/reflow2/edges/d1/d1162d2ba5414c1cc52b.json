@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:9f4aa6aa5ba25cb8af4786d2b1a62de9291833792370da1c2d90eb6ef0d5d13f",
+  "edge_type": "ANTICIPATES",
+  "from_id": "fact:five-silent-failures-in-one-session-all-one-shape",
+  "properties": {
+    "evidence": "The 2026-08-23 fact counted five silent failures, said 'whether five is a normal rate is unknown', and listed the cheap habits that would have caught them - including 'read a background task's OWN output rather than the log it is still writing' and 'read back anything you wrote through an API before believing it landed'. Twelve days later a second session produced five more, two of them the exact instances the earlier fact named. It saw this coming and wrote down the countermeasure; the countermeasure was on the record and was not consulted at the moment it applied."
+  },
+  "to_id": "fact:the-authoritative-object-rule-recurred-twelve-days-later-including-two-instances-it-already-listed"
+}

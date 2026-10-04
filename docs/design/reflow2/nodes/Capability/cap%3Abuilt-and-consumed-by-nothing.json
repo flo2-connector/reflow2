@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:40463f4d872f1bdfec591bd55de2fcf750e3fffdd9984893f6533fd1a443d7dc",
+  "node_id": "cap:built-and-consumed-by-nothing",
+  "node_type": "Capability",
+  "properties": {
+    "description": "The surplus half of DETECT. Every existing gap asks what is MISSING; this asks what is SURPLUS — realized or verified, and downstream of nothing.\n\nTHE SIGNAL, computable from the graph as it stands: a Capability at `realized`/`verified` with no incoming DEPENDS_ON, no PART_OF_FLOW into any Flow, and no Actor INTERACTS_WITH. The same shape generalises to a Component whose Interfaces nothing CONSUMES, and to an Artifact realizing only capabilities that are themselves unconsumed.\n\n⚠️ THE WORDING IS THE FEATURE, not a caveat on it. The graph knows DESIGN-LEVEL demand and nothing about runtime usage, so the honest finding is \\\"NOTHING IN THIS DESIGN CONSUMES X\\\" — never \\\"X is unused\\\". A feature real users call daily whose consumer was never modelled produces exactly the same graph shape as a dead one, and a detector that did not say so would confidently recommend deleting working code. Reported as a FACT rather than a gap for the same reason granularity_report and surprising_connections are: which side is wrong is the user's to say.\n\nWHY IT IS NOT unmotivated_capability: that fires on a capability satisfying no REQUIREMENT — a question about intent, gated on requirements existing at all. A capability can satisfy a requirement perfectly and still be consumed by nothing, and that is the expensive case, because the paperwork is complete and the code is dead.\n\nDELIBERATELY NOT COVERED HERE: runtime usage. dec:bl-155 and dec:idea-measure-the-surface hold that question, and answering it needs telemetry rather than the graph.",
+    "name": "A built thing that nothing in the design consumes is surfaced, and says so as a design-completeness finding rather than a verdict on the system",
+    "provenance": "authored",
+    "status": "verified",
+    "tier": "operational"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:50868ee03a4b37878535057be46c4b1cd60267800f14e7ce59e3da99ba91fbb5",
+  "edge_type": "CHANGED",
+  "from_id": "chg:storyflow-second-field-report-20260808",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "dec:idea-a-capability-can-be-marked-contested"
+}

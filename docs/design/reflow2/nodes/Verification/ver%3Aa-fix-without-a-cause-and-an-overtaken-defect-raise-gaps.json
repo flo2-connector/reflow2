@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:ab763a91d267fd5f4eabba80b8af3226a0ebec2f41d10cced15d9822cbeaedf2",
+  "node_id": "ver:a-fix-without-a-cause-and-an-overtaken-defect-raise-gaps",
+  "node_type": "Verification",
+  "properties": {
+    "description": "crates/reflow2-core/tests/fix_without_recorded_cause.rs (6 tests) and crates/reflow2-core/tests/defect_overtaken_by_change.rs (16 tests). Pins: two uncaused fixes raise one aggregate \"2 of 2\" and a refactor is not counted; an INVALIDATES from the fix or a CAUSES onto the fix clears it; a CAUSES edge on a touched artifact does NOT clear it; a parked fix is skipped and counted in the evidence; the aggregate id survives a new fix; no fixes means silence. Mirror: a dated later repair on the subject raises a gap anchored to the fact and the repair, and the title names it; INVALIDATES clears it, whatever else joins it; an earlier repair is not offered and a SAME-DAY one is; an undated near change is named in the evidence, never assumed later; a later feature or refactor is counted and never offered; a repair on an artifact realizing the subject alone counts, and one on a SHARED file counts only where it CHANGED the subject; a change the defect CAUSES is named first whatever its type or date; MITIGATES and a repair whose CHANGED set names the defect are offered, and the question names INVALIDATES as the only close; a change that CAUSES the defect is never offered; a repair recorded as fixing another finding is not offered by nearness and is named in the evidence; an undated defect is asked about a change joined to it; a repair already judged by an acknowledgement is not asked about again when the set moves, and a new one is; closed facts are skipped; a further repair moves the gap id.",
+    "findings": "2026-10-03 (chg:the-overtaken-defect-question-names-the-likeliest-fix-2026-10-03): defect_overtaken_by_change.rs grew from 8 to 16 tests. Observed failing first on main 73cf37b: 11 of 16 failed (the 8 new class tests, plus the three whose expectation changed: the title, same-day, and the undated evidence); after the fix 16 of 16 pass, inside a full reflow2-core run (209 test binaries, 0 failures) and clippy -D warnings clean. 2026-09-06: 14 of 14 passed (6 + 8) after the repairs-only tightening; one pin was observed failing first when the title wording moved.",
+    "kind": "verification",
+    "last_run_at": "2026-10-03",
+    "level": "unit",
+    "method": "test",
+    "name": "A fix joined to no cause, and an open defect whose subject moved, each raise a gap; the recorded shapes clear them",
+    "status": "passing"
+  }
+}

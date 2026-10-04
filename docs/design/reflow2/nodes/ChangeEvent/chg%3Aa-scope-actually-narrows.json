@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:021a3c20ad54aaf64b42fb028e38bc55c7814fc59bc20e6f5bf4ec9efd0448fd",
+  "node_id": "chg:a-scope-actually-narrows",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "scope_change",
+    "name": "The default scope depth drops 3->2 and a scoped answer reports whether it narrowed at all",
+    "subject": "system"
+  }
+}

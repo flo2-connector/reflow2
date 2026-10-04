@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:144a592dbd3f6b9e7d4ed07649d8e48a51d2efddd8a41a3025a0bf82718c1755",
+  "node_id": "req:ci-checks-the-code-against-its-design-on-the-server",
+  "node_type": "Requirement",
+  "properties": {
+    "concern": "core",
+    "kind": "functional",
+    "lineage": "original",
+    "name": "CI checks a repository's code against its design on the server that holds the design, not against a committed export",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "Anthony (who:ajs), dev_reflow2 hub session, 2026-09-27",
+    "statement": "A repository's CI shall check its code against the design that governs it by asking the server that holds the design: the registered files and their fingerprints, drift, and the open gaps at or above the project's threshold. It uses a credential CI holds (never one the agent sees), and fails the build on the same findings the gate fails on today. The committed export is not read. It replaces the gate that reads docs/design/<project>.json (reflow2_check.py), which rule 3 of dec:idea-one-blueprint-the-store-is-the-design-and-an-export-is-a-perishable-photocopy retires in purpose. A repository whose design is local keeps a working gate: its server is the local one. Test results travelling the other way are req:results-from-the-code-flow-back-into-a-design-that-lives-elsewhere. Anthony, 2026-09-27, accepting \"CI asks the design\" in the tracked-export retirement plan.",
+    "status": "accepted"
+  }
+}

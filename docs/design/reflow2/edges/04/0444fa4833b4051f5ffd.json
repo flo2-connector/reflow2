@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:8e933ffbf6f5ea6e64ad0404f1734f851a39c12051464736a2c7ee38e4c2ea09",
+  "edge_type": "GOVERNED_BY",
+  "from_id": "rule:a-new-refusal-claim-is-asserted-before-it-ships",
+  "properties": {
+    "note": "The rule exists because of this decision and carries its two measurements. Drawn so the rule is never read without the evidence that makes its never-retroactive half defensible — without the birth-date finding, backfilling looks like diligence rather than the wrong target."
+  },
+  "to_id": "dec:idea-the-load-bearing-prose-is-unchecked-against-the-code-it-describes"
+}

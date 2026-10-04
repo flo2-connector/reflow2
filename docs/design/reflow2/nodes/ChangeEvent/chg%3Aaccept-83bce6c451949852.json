@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:7ba9634d1616cdd18ced50c4f192fb4c2f735239edaabc7346c24209d9864186",
+  "node_id": "chg:accept-83bce6c451949852",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "documentation",
+    "detected_at": "2026-08-25",
+    "name": "One line: `unallocated_component` added to the known-terms list so the linter does not read the new gap kind as an unserved tool name. The lint's own rules are unchanged, so the design carries no new meaning here — this is bookkeeping that keeps an existing gate accurate.",
+    "subject": "system"
+  }
+}

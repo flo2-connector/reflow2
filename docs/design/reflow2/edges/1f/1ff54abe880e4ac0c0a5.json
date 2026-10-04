@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:66dcd1e8976c1054edda583879fcf81ff4d4678112acc3011dd9d966a96f3b74",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0650",
+  "properties": {
+    "as_checksum": "sha256:24102ada053e17fa1f1f1519627b9cd3e6222b1cae6405c82270f45632473b75"
+  },
+  "to_id": "art:seam-coverage-test"
+}

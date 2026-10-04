@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:cb76577a43c8ae0b0cf0c36fb9ff5aeadca57071a5dc6990c98acc089bb14d90",
+  "edge_type": "GOVERNED_BY",
+  "from_id": "art:dev-reflow2-two-agent-exercise-feedback-2026-09-29",
+  "properties": {
+    "note": "A dated field report is a source document: it realizes nothing and is registered so findings can name it as their source.",
+    "ruling": "parks"
+  },
+  "to_id": "dec:a-dated-field-report-is-registered-and-parked"
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:f7e8db65caec0db406a94ac3266284d384ade1f6336189a45d9384e046a26a90",
+  "edge_type": "GOVERNED_BY",
+  "from_id": "art:github-issue-616-oauth-resource-server",
+  "properties": {
+    "note": "Triaged 2026-09-28 under the rule, on Anthony's request to review the issue, measured on 0.74.0 scratch stores.\n\nFOUR ISSUES → 4 root-cause findings:\n· an exposed server accepts an approval signed as anyone (the boundary was named in 2026-08 and no rule was chosen);\n· a registry server silently drops a store with no identity, while single-design mode refuses it loudly;\n· the Host refusal is the library's opaque 403, and the flag is named only once, at startup;\n· a server degraded by a held lock never retries and passes a TCP health check.\n\nIDEAS:\n· Native OAuth contradicts the accepted ruling that reflow2 authenticates nothing (dec:the-registry-root-is-the-tenant-boundary), so it is recorded there as a request to reopen, awaiting Anthony's word, not as a new idea.\n· Verifying a token for attribution is appended as option (e) to the open auth-layer decision, beside what the issue does to options (a) and (d).\n· The reference deployment is appended to Alex's own team-server idea.\n\nALSO FOUND: points 1 (sign-in flow) and 2 (writes_for) of req:a-local-client-works-against-a-remote-reflow2-server-by-url are unbuilt and in no planned step.\n\nThe CAUSES and DOCUMENTS back-edges from this artifact name each record. No reply has been posted on GitHub."
+  },
+  "to_id": "rule:field-feedback-issues-are-root-caused-and-ideas-are-brainstormed"
+}

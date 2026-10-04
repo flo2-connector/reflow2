@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:ad3f39658b3f2fca06acce353bad61bcb7efe9c4a764b981016d110bdc790bf8",
+  "node_id": "ver:a-moved-record-is-diffed-against-the-live-store",
+  "node_type": "Verification",
+  "properties": {
+    "description": "`a_moved_record_is_diffed_against_the_live_store_without_an_export` in crates/reflow2-mcp/tests/the_record_moved_and_the_session_is_told.rs.\n\nWHAT IT PINS. A record that moved is checked through `StoreMembership` — an oracle over the store itself, with no export closure anywhere in the path, which the type system holds. What the test asserts is the behaviour that must survive: the diff is LIVE and per generation. The store lacks one of the record's nodes → `behind`, naming exactly that id, edges 0. The store then takes that node in by hand; the file is unchanged, so through the same `ParsedRecords` nothing is re-read — and the next check says `moved_but_current` anyway, because the question was put to the store.\n\nTHE OTHER HALF OF THE SAME TAX (ver:a-record-that-moved-once-is-read-once pins the first). With the parse cached, the moved state still cost ~490 ms per write generation: the whole live graph was exported so `assess_overwrite` could compare two documents, to answer \"which of the file's ids are absent here?\" — a set-membership question. The three server paths (the read-path hint, loop_status, sync_status) now ask by lookup; `sync_debt` keeps its closure signature over an export-backed oracle built lazily and at most once, so every prior caller and `the_expensive_export_is_not_built_on_the_ordinary_path` behave exactly as before.\n\nWHAT IT DOES NOT COVER: the cost of the membership diff itself (~350 ms over in-step for a 16 MB record against RocksDB), and the ~40 ms base cost of any first read after a write. Neither has a check; both are recorded as deliberately left where they are.",
+    "findings": "Written against an API that did not exist, so its first run failed to compile rather than to assert — stated plainly: this half has no behavioural red-then-green, because the property it pins (no export in the path) is structural and held by the signature. 26/26 in the file after the change; no_per_design_process_globals 3/3; clippy clean. Measured on a copy of the live store, release binary, first get_node after a write, 2026-09-12: tiny moved record 497-586 ms -> 50-57 ms (the export gone); 16 MB moved record 623-718 -> 388-410 ms; in-step unchanged at ~40 ms. From the morning's 1,114-1,189 ms, ~2.9x overall.",
+    "kind": "verification",
+    "last_run_at": "2026-09-12",
+    "level": "integration",
+    "method": "test",
+    "name": "A moved record is diffed against the live store, per generation, without building an export",
+    "status": "passing"
+  }
+}

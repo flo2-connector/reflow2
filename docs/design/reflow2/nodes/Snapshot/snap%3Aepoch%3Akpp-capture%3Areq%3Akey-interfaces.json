@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:bcfeee673284845210ed42885455bf762062c2113eb6f041ff33bc592e986663",
+  "node_id": "snap:epoch:kpp-capture:req:key-interfaces",
+  "node_type": "Snapshot",
+  "properties": {
+    "edges": "[{\"direction\":\"in\",\"edge_type\":\"CONTAINS\",\"other_type\":\"Project\",\"other_id\":\"proj:reflow2\",\"properties\":{}},{\"direction\":\"out\",\"edge_type\":\"AUTHORED_BY\",\"other_type\":\"Contributor\",\"other_id\":\"who:ajs\",\"properties\":{\"acted_at\":\"2026-07-25\",\"role\":\"author\"}},{\"direction\":\"out\",\"edge_type\":\"GOVERNED_BY\",\"other_type\":\"Decision\",\"other_id\":\"dec:mosa-conformance\",\"properties\":{}}]",
+    "state": "{\"concern\":\"core\",\"kind\":\"functional\",\"lineage\":\"original\",\"name\":\"The design says which interfaces are the published boundaries, and computations read that distinction\",\"priority\":\"medium\",\"provenance\":\"authored\",\"statement\":\"Some interfaces are the boundary a system is known by; most are internal plumbing. The design must be able to say which — and the distinction must earn its keep by being read, not merely stored (dec:edge-orthogonality). From the MOSA guidebook Anthony supplied (OUSD(R&E), February 2025), whose entire discipline turns on designating modular system interfaces and then holding them stable and open, and independently from BL-45's system-of-systems thread, which found the same hole from the other side: nothing marks an Interface external-facing, so \\\"visible to others\\\" versus \\\"mine to change\\\" is undeclarable. Two independent routes to one missing property. What must read it, or the designation is decoration: a change that crosses a published boundary is a different risk from one that stays behind it, and impact analysis should say which it is BEFORE the edit; a design that publishes a surface should be able to export exactly that surface and nothing internal; and a composed design (req:design-composes) links through published boundaries, never through another system's internals. What this must NOT become: an assertion that a boundary is stable. Whether a published interface has in fact held is a matter of evidence — its drift history — not a property anyone sets.\",\"status\":\"accepted\"}",
+    "target_id": "req:key-interfaces",
+    "target_type": "Requirement"
+  }
+}

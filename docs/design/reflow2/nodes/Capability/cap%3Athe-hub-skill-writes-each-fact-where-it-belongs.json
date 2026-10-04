@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:837b72defe0034ec3544508faa2e298ce959955eed51e5d6c3f8df60de07863d",
+  "node_id": "cap:the-hub-skill-writes-each-fact-where-it-belongs",
+  "node_type": "Capability",
+  "properties": {
+    "description": "The served `hub` skill (getting-started/skills/hub/SKILL.md, command /hub) is the skill-targeting half of req:a-skill-run-in-a-session-holding-several-designs-writes-where-the-fact-belongs.\n\nWhen a session reaches several designs and one of them coordinates the others, the skill:\n- finds the designs the hub names, reads each one only on demand, and repeats in one line whatever the host says about what moved since the person last looked (locally, upstream_status);\n- names the destination before every write, choosing the lowest design that owns all of the fact, and runs the fitting skill (brainstorm, capture-intent, root-cause, jot) against that design;\n- keeps in the hub only what spans its designs: unrouted ideas, cross-design decisions and alignment notes, and never a copy of a child's content;\n- records a collaborator's idea in the hub as brainstorming, credited to them;\n- routes that idea only on the person's confirmation, writing it into the child in its author's words, then appending \"ROUTED <date> to <design> as <id>\" in the hub and retiring the hub's copy as superseded. A refused write into the child leaves the idea in the hub;\n- in a local hub, states (it cannot enforce) that a child some readers cannot open appears in the hub only as pointers;\n- closes by listing design → what was written, then loop_status.\n\nIt covers three kinds of hub: one hosted on a server (flo2.io), a local hub (its own small design plus one connection per child), and an agent holding several design addresses.\n\nCONSUMED BY flo2's combined-plan position 6 (flo2's epoch:shared-hubs; its cap:the-hub-skill-is-served-at-every-door). flo2 serves reflow2's skills through get_skill at both of its doors, so the skill reaches a flo2 hub once the droplet runs a release carrying it.\n\nBuilt 2026-09-28, following dec:the-hub-is-built-because-users-have-asked-for-it.",
+    "name": "hub is a served skill (/hub): in a session reaching several designs, it writes each fact to the lowest design that owns all of it, keeps a collaborator's idea in the hub until a member of the right design routes it, and leaves a pointer rather than a copy",
+    "provenance": "authored",
+    "status": "realized",
+    "tier": "operational"
+  }
+}

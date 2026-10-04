@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:002ee2ef68b5a03f37b6611f40c4f354639247abd15a0916f342103088cf4711",
+  "edge_type": "REALIZES",
+  "from_id": "art:every-skill-is-found-by-a-query-in-the-users-words-test",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:a-skill-is-found-by-describing-the-job-and-the-corpus-is-the-test"
+}

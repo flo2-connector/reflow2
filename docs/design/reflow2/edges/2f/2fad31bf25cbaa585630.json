@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:25047d4482c21f463fb4b7cea2d591de039f7d85bd2ca21759d408c2469d69d4",
+  "edge_type": "GOVERNED_BY",
+  "from_id": "cap:a-remote-client-signs-in-to-its-server-with-oauth-2-1",
+  "properties": {
+    "note": "The client identity URL and its redirect URIs are what the authorization request names. Nothing can sign in until it exists."
+  },
+  "to_id": "dec:where-reflow2s-oauth-client-identity-lives"
+}

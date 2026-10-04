@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:e51eee097ae690675672fdfc373ae35c254b654c01059732ccbec526719a35b6",
+  "node_id": "fact:the-sentence-reflow2-does-no-network-io-by-principle-is-not-an-accepted-rule-and-has-been-untrue-since-the-remote-client-2026-10-01",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "finding",
+    "name": "\"reflow2 DOES NO NETWORK I/O, by principle\" is a sentence in a deferred idea's pushback, not an accepted rule, and it has been untrue since the remote client",
+    "source": "art:bearer",
+    "statement": "Checked while building chg:an-exposed-server-verifies-bearer-tokens-itself (#616 fix 4, bearer half), which fetches an issuer's key set over the network. The only statement in the design that forbids network I/O is the pushback in dec:idea-open-design-items-become-jira-tasks (status deferred): \"reflow2 DOES NO NETWORK I/O, by principle. The Jira call belongs to the agent, a script or flo2, never inside reflow2 itself.\" No accepted Requirement, Decision or DesignRule says so. req:reflow2-keeps-working-entirely-on-one-machine (accepted) asks that LOCAL use needs no network, which still holds: nothing is fetched unless an operator names an issuer. And reflow2 already reaches the network on a person's or operator's word: the --remote client (req:a-local-client-works-against-a-remote-reflow2-server-by-url) and a watched design's fingerprint (ReflowService::reaches_out). The line the code actually draws is that a server never reaches an address a CALLER supplied (a registry sets without_reaching_out); the bearer verifier keeps it — the issuer, key set URL or file come only from the operator, and a token's jku/x5u/jwk headers are never followed. FOR ANTHONY: the sentence reads like a principle and is not one. Either retire it, or state the real rule (no network I/O on a caller's say-so; local use needs none) as a DesignRule.",
+    "subject_id": "dec:idea-open-design-items-become-jira-tasks"
+  }
+}

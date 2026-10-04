@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:8f380ef77bbcede0c8b1c9ec6885e46d0538c6f116ed8fb1529ee42c0f049b0e",
+  "edge_type": "CHANGED",
+  "from_id": "chg:interface-spec",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "cap:interface-spec"
+}

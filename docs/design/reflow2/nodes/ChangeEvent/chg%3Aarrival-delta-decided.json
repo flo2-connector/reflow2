@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:e9b6f7c9b10d17220024695fa0916461990d4724c6bf6d11b9689e52c1bf0815",
+  "node_id": "chg:arrival-delta-decided",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "scope_change",
+    "name": "The arrival delta moves from brainstorming to a decision, on Anthony's three calls (change_type scope_change used as least-wrong: nothing in the enum means 'an open question was settled')"
+  }
+}

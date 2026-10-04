@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:71c3b427dc5af64bac6f3ae2a8077f394a7be6791ca8783d6c2e9e1785fbb381",
+  "edge_type": "CHANGED",
+  "from_id": "chg:owned-by-the-third-who-axis",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:schema"
+}

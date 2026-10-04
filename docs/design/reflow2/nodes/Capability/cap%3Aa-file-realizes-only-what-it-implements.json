@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:e91d7aa0edb37faa088517a39b4f1a11bbec1cfd98ec3efb6c73674b38813501",
+  "node_id": "cap:a-file-realizes-only-what-it-implements",
+  "node_type": "Capability",
+  "properties": {
+    "description": "schema/build.yaml REALIZES `to: [Capability, Component, Interface]` (was \"*\"). link_artifact refuses any other non-Verification target BEFORE writing the artifact, naming the fitting edge (artifact::realizes_target_hint: CHANGED for a change, SATISFIES/VERIFIES for a requirement, DOCUMENTS for anything descriptive). Legacy data: `Artifact REALIZES Verification` is rewritten to IMPLEMENTS on every open (graph::migrate_realizes_onto_checks) and on import (reported in ImportReport.migrated_edges); any other legacy target makes an import refuse by name with the same hint. Proved against every other committed design on the maintainer's machine: qbench imports with 5 conversions; flo2, nymath, wordplay, dev_reflow2 unchanged; dynograph-foundation is refused only by a pre-existing, unrelated VERIFIES→Project case.",
+    "name": "A file REALIZES only a Capability, a Component or an Interface; anything else is refused naming the edge that fits, and a legacy REALIZES onto a check becomes IMPLEMENTS",
+    "provenance": "authored",
+    "status": "realized"
+  }
+}

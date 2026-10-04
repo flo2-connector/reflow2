@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:3d41a7d83d32077988832e04fa42ccecb8c146850189b5a76ba1d9247581d3a4",
+  "edge_type": "CONTRADICTS",
+  "from_id": "req:the-saved-design-merges-correctly-under-gits-ordinary-merge",
+  "properties": {
+    "alignment": "opposing",
+    "evidence": "This accepted requirement replaces the single-file content_hash/prev_content_hash chain that decision governs; the decision must be revisited as part of the design work, and the contradiction is recorded so it is ruled on rather than broken quietly."
+  },
+  "to_id": "dec:export-once-per-pr"
+}

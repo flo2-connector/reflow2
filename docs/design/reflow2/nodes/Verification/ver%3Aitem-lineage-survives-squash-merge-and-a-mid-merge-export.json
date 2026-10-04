@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:5c9f971acce4d791b2db32fcd5a85a0701d15189f07f07bbb52d67e80194a334",
+  "node_id": "ver:item-lineage-survives-squash-merge-and-a-mid-merge-export",
+  "node_type": "Verification",
+  "properties": {
+    "description": "A branch exports three times, merges main mid-way, exports again during the merge, then squash-merges. PASS: every changed item's prev_item_hash equals that item's hash at the merge-base; unchanged items keep main's hashes; the gate's per-item LINEAGE check exits 0; and the design's item chains reconstruct the history without git. Reproduces #571's fourth CI failure (an export mid-merge chaining from the older main).",
+    "findings": "2026-10-03 (chg:the-design-is-saved-one-file-per-item-2026-10-03): test_item_lineage_stays_one_hop_through_a_mid_merge_export_and_a_squash: a branch exports three times (each committed), main moves by a squash-merged PR, the branch merges main and exports DURING the merge, then squash-merges; every changed item's prev_item_hash equals its hash at the merge-base, every unchanged item keeps main's bytes, reflow2_check.check_item_lineage is clean on the branch and on the squash commit (trunk), and along main's first-parent history each changed item names its previous commit's hash (one hop per commit). test_a_hand_edited_prev_is_named_by_the_lineage_check: a forged prev is named.\n\n2026-10-04 (chg:item-layout-lineage-holds-through-a-conflict-resolved-mid-merge-2026-10-04): REVIEW FOUND THE CHECK DID NOT EXERCISE ITS OWN CASE. Its mid-merge export wrote only a NEW item, which has no predecessor, so the anchor it used never mattered, and #571's fourth CI failure was not reproduced. test_a_conflict_resolved_during_a_merge_of_main_chains_from_mains_version now resolves a both-sides conflict during a merge of main, as AGENTS.md tells a contributor to: on the pre-fix binary the resolved item named the version main had replaced and the gate failed LINEAGE on the merge commit; after the fix it chains from main's version and the gate is clean on the merge and on the squash. test_a_hand_edited_prev_is_named_by_the_lineage_check now also shows a re-export repairs a stale prev (items.relinked = 1). Both pass.",
+    "kind": "verification",
+    "last_run_at": "2026-10-03",
+    "level": "integration",
+    "method": "test",
+    "name": "Per-item lineage stays one hop after a squash-merge and after an export taken mid-merge",
+    "status": "passing"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:4512db09cfff95fa4a77212eabd6b2965f91eef8f0ac3e99b800a707d6c317fe",
+  "node_id": "art:test-a-run-is-fed-back-by-file",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "test",
+    "description": "The five core tests behind resolving a run by file to its checks.",
+    "location": "crates/reflow2-core/tests/a_run_is_fed_back_by_file.rs",
+    "name": "a_run_is_fed_back_by_file.rs",
+    "status": "realized"
+  }
+}

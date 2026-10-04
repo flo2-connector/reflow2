@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:9d723863153e32a954357fd0afbd3272884f856129fd884be498e95587e5e1f3",
+  "edge_type": "SATISFIES",
+  "from_id": "art:service",
+  "properties": {
+    "coverage": "full",
+    "evidence": "parse_enum in crates/reflow2-mcp/src/service.rs is the single helper every served enum argument passes through; the test a_rejected_enum_lists_the_legal_values fails against the prior map_err(|_| ...) implementation"
+  },
+  "to_id": "req:a-refusal-names-what-would-have-worked"
+}

@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:e3be08862d1fca3608c5c84903e707602548623982f8a4429d9942d29ffa7071",
+  "edge_type": "HAS_SNAPSHOT",
+  "from_id": "fact:root-cause-a-published-interface-with-outside-consumers-raises-unconsumed-interface-2026-09-29",
+  "properties": {},
+  "to_id": "snap:epoch:preserved-on-write:fact:root-cause-a-published-interface-with-outside-consumers-raises-unconsumed-interface-2026-09-29"
+}

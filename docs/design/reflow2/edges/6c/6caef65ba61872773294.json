@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:f75a003803e09019a08b06a5bb9e68a1f395c28c410303d60851e9f0b92f08d2",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:the-rust-floor-is-stable-minus-one-and-a-ci-build-checks-it",
+  "properties": {
+    "approved_at": "2026-10-02",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

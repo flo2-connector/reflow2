@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:2d3558d651b222be4b79ee289b871a0fdf7b569b8666e595934f3f6725447324",
+  "edge_type": "CHANGED",
+  "from_id": "chg:describe-designs-built",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cap:describe-design-at-path"
+}

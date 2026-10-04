@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:9e26866e6c1910526d4478d5f23033d6a37c75e8511c5094df6a2b265f14814f",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-saved-design-moves-to-the-item-layout-2026-10-03",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:9c0a71755dc245ef99271bfbc9d5fe33204e54e2d16c7d5128ea0c028f981304",
+    "checksum_basis": "measured"
+  },
+  "to_id": "art:test-bad-news-reaches-the-decision-behind-it"
+}

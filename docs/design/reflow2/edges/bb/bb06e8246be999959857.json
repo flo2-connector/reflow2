@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:a82707ff53f7c5ec945948f43ed690fccf17e74506141e9400b8c69f68a869fb",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:the-server-knows-its-own-currency",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:service"
+}

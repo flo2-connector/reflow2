@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:6bdbf597a5c9ef8181f628d6b60f1d593ff81ce3f72691dfa41a4a1988243073",
+  "node_id": "art:lens-core-test",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "location": "crates/reflow2-core/tests/the_design_says_whose_words_to_use.rs",
+    "name": "tests/the_design_says_whose_words_to_use.rs",
+    "status": "realized"
+  }
+}

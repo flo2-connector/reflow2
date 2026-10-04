@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:ac577a80bcd27979b613c868f4aa5e4e3e81c7043d0a4db8b199352f42bdf97a",
+  "edge_type": "REALIZES",
+  "from_id": "art:test-a-revise-keeps-what-it-was-not-passed",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:store"
+}

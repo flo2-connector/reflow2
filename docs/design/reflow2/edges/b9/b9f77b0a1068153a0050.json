@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:7e3af01ae0ca900969af70a8b1c24d43aa21016df3e90d4cf59525cce6dff29e",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-first-move-must-fit",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:coherence-gate-test"
+}

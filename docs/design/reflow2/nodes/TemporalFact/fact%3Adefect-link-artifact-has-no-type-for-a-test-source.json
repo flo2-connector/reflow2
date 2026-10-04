@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:e5fe6e580a4d7aef93d460f78e5c026bdb7066e06b73b6f70296459429ca7657",
+  "node_id": "fact:defect-link-artifact-has-no-type-for-a-test-source",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "confidence": 1.0,
+    "fact_type": "defect",
+    "statement": "`link_artifact`'s `artifact_type` ENUM HAS `test_result` BUT NOTHING FOR THE TEST ITSELF, SO A TEST FILE MUST BE FILED AS GENERIC `code`. Reported by w-deac0a1e (dev_storyflow, 2026-08-07) registering a new vitest contract test. They reached for the obvious value and got: `invalid enum value 'test', expected one of [\"code\",\"config\",\"document\",\"spec\",\"diagram\",\"model\",\"drawing\",\"test_result\",\"binary\",\"data\",\"asset\"]`. The enum carries `test_result` — the OUTPUT of a run — but nothing for the source that produces it. So the one artifact class whose entire purpose is to BE a check cannot be told apart from the implementation it guards, and a query like 'what checks guard this decision?' cannot be answered from artifact_type at all. FIX SHAPE: add `test` (or `test_source`). THE ERROR MESSAGE ITSELF WAS EXPLICITLY PRAISED and should be preserved as the pattern: it printed the full list of valid values, so they fixed it in one retry instead of guessing. The reporter's framing — that is the failure mode done right; the gap is only that the right value does not exist.\n\n═══ RECURRENCE #2, dev_storyflow 2026-09-06 on 0.48.0 (triaged 2026-09-07) ═══ The same agent, a month later, registering a test file for a different item: \"`link_artifact` has no `artifact_type: test` (a test file is `code`; `test_result` is a run)\" — learned by error again, one round-trip, and filed under wish #34 (accept the obvious near-synonym `test` → `code` with a note, or list the enum). Since 0.49.0 the enum IS published in the tool schema (#435), which answers the listing half on a current build; the missing VALUE is unchanged. Counted under rule:every-failure-is-searched-and-every-cause-is-root-caused-before-it-is-written; the fix shape above still stands and is a schema change (minor).",
+    "subject_id": "cap:artifact-declares-its-own-shape",
+    "valid_from": "2026-08-07",
+    "value": "{\"reported\":\"2026-08-07 dev_storyflow, w-deac0a1e\",\"defect\":\"artifact_type has test_result (the output) but no value for the test source itself\",\"consequence\":\"a test file is filed as generic code; 'what checks guard this decision' is unanswerable from artifact_type\",\"fix_shape\":\"add test or test_source to the enum\",\"praised\":\"the validation error printed every valid value, so it was fixed in one retry - keep this pattern\",\"recurrences\":[{\"at\":\"2026-09-06\",\"by\":\"dev_storyflow on 0.48.0\",\"note\":\"enum now published in the schema since 0.49.0; the value is still missing\"}]}"
+  }
+}

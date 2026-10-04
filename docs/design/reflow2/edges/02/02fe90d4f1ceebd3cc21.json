@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:34d2ff221e6454856fc84e7b1f8e004cc800b602165a1c4026e197f085c5d526",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-follow-up-is-captured-with-one-word-and-listed-until-settled",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:capture-session-skill"
+}

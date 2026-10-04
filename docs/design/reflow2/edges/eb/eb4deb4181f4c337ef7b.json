@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:50eaa65ef223be4018c154a8f34a2bacb8c58692059c0b1bd217b9c5e9ba3609",
+  "edge_type": "CHANGED",
+  "from_id": "chg:what-next-built",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:service"
+}

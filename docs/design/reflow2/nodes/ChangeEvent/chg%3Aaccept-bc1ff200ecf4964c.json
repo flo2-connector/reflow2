@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:c8c83a0b633021e09b936637e77b2577bf955bf48d2203a51719ff221dd4e4af",
+  "node_id": "chg:accept-bc1ff200ecf4964c",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "refactor",
+    "detected_at": "2026-09-20",
+    "name": "A struct literal gained the new optional field. Mechanical; what the test asserts is unchanged.",
+    "subject": "system"
+  }
+}

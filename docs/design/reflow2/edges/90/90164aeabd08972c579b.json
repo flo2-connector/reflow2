@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:cf38707293f0e79cd3c337864f6541cdb7ff16e358f5d4c98ea7f2371cdded41",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:one-process-many-stores",
+  "properties": {
+    "approved_at": "2026-08-05T23:10:00Z",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

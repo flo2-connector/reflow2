@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:31ebdf3561e2cbc5e4fd5ee7eed719729ceb41312cdd889664581a4db85e5092",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:install-reaches-the-agent",
+  "properties": {},
+  "to_id": "req:kit-reaches-the-agent"
+}

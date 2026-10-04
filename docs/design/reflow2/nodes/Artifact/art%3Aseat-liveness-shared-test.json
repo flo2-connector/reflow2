@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:30b062f0a3c11d730c07ea6ce331929e3de40ae50817f9f3c69f02f454e1bef4",
+  "node_id": "art:seat-liveness-shared-test",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "granularity": "atomic",
+    "location": "crates/reflow2-core/tests/seat_liveness_shared.rs",
+    "name": "seat_liveness_shared.rs",
+    "status": "realized",
+    "volatility": "stable"
+  }
+}

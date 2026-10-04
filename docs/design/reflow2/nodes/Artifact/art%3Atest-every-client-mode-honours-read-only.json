@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:147e775d12567ec438054a273517e1c1065f07d7eefcccaee8f1010173f53c11",
+  "node_id": "art:test-every-client-mode-honours-read-only",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "test",
+    "description": "Eight real-binary tests, isolated HOME: the walk of every client mode (--remote over a real --http server, --shared over its daemon, a pointer-attached client over a registry) — write refused by the client, read answered, store unchanged; the refusal's shape and the file rule; the latent surface starting no design and serving a later one read-only; --shared --read-only with no store starting nothing; a call holding \"initialize\" not taken for a handshake; and a recording stand-in proving nothing refused reaches the server, an unreadable tool list refuses even a read, and a plain client forwards everything.",
+    "location": "crates/reflow2-mcp/tests/every_client_mode_honours_read_only.rs",
+    "name": "every_client_mode_honours_read_only.rs — --read-only against every client mode, over real servers and a recording stand-in",
+    "status": "realized"
+  }
+}

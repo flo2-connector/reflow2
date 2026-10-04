@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:8f0ae1e27f22f4af6c66515808bffe61154f21b92391cbbe9f50fb59d1c8cab7",
+  "node_id": "ver:derived-release-manifest",
+  "node_type": "Verification",
+  "properties": {
+    "description": "The manifest is derived and the derivation never rewrites history (crates/reflow2-core/tests/write_side.rs) — 8 cases. Every Artifact and Component enters the manifest with its checksum frozen; looking writes nothing (the release_report is still empty after a non-applying call); a re-run adds nothing and, after the live baseline has MOVED, still reports what shipped; an artifact with no checksum still ships and is named in without_checksum; an exclusion that names nothing is refused with the whole call written back out; an exclusion that names something comes back by name rather than by omission; an unknown release is refused; and the end-to-end payoff — one call clears the unreleased_component gap that a partial hand-typed manifest leaves open.",
+    "findings": "MUTATION-CHECKED THREE WAYS, each failing exactly the one test that names it and nothing else: force apply always-true and only the looking-is-not-writing case fails; drop the exclude validation and only the typo'd-exclusion case fails; drop the already-present guard and only the frozen-checksum case fails — which is what proves the guard is doing work rather than the test passing for free. PROVEN ON THE REAL SURFACE: driven over stdio JSON-RPC against the built binary on a copy of reflow2's own 1200-node design, one call produced 160 INCLUDES edges covering all 104 capabilities, the re-run added 0, and the typo'd exclusion came back as \"Node not found: Artifact or Component art:nope\". It also independently surfaced art:detect as the one artifact with no baseline — the same hole a full reconcile_artifacts sweep found the same hour by a different route.",
+    "kind": "verification",
+    "last_run_at": "2026-08-01",
+    "level": "integration",
+    "method": "test",
+    "name": "The manifest is derived, and the derivation never rewrites history",
+    "status": "passing"
+  }
+}

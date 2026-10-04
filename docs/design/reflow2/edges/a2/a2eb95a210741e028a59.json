@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:8eb699be15a70434e396ca1767586e933d5763aec8349f49f49982be1b97b701",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:the-export-becomes-the-durable-copy-and-rocksdb-goes-later",
+  "properties": {
+    "evidence": "That node asks what makes the enduring artifact reliable and lists five roads. This decision takes road 3 (the server owns it) plus road 2 (a debounce) and is only sound because road 3's observing half was measured to already exist. If that mechanism turns out not to fire in practice, this decision loses its foundation rather than merely its convenience.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "dec:idea-what-guarantees-the-export-if-the-export-is-the-only-durable-copy"
+}

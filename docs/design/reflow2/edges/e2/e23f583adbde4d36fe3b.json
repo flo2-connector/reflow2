@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:cc1efa46f0c101f32083c86f164af4d330353354f352d61ac11a01b0474171ea",
+  "edge_type": "REALIZES",
+  "from_id": "art:detect",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked",
+    "note": "the two intent detectors skip a deferred subject"
+  },
+  "to_id": "cap:incremental-adopt-with-a-frontier-and-a-deferred-derivation-marker"
+}

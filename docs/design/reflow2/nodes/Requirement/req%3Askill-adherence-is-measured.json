@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:4bfbb071752f7e843227b2da23f28cad78095d0b3da1c00aaae150713211ea4b",
+  "node_id": "req:skill-adherence-is-measured",
+  "node_type": "Requirement",
+  "properties": {
+    "concern": "core",
+    "designation": "internal",
+    "kind": "functional",
+    "lineage": "original",
+    "name": "Whether the kit is actually used is measured, not inferred from whether the design looks tidy",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "Nothing in reflow2 records whether its skills were used, so the only reason this whole family of findings exists is that a user asked an agent directly and the agent answered honestly. That is not a mechanism.\n\nWHAT MAKES IT ACUTE: a design can look healthy while the kit is barely being used. This session ended with 0 gaps, 0 defects, a clean loop and a green gate — and two skills loaded out of eight. `detect_gaps` measures whether the DESIGN is coherent; nothing measures whether the PRACTICE is. The report-friction skill already concedes the wider version of this in its own words — ordinary use produces better evidence and currently loses all of it — and `req:friction-has-a-baseline` was dropped, so there is no standing measurement at all.\n\nTHE HARD CONSTRAINT, which is why this is a requirement and not a fix: `dec:loop-status-state-not-history` says loop debt is computed from graph state and NEVER from run history, straight out of the BL-74 fleet trial. Any naive answer here — log which skills were called — is exactly the run-history reasoning that decision rejects, and a study that comes back recommending it has not read the decision.\n\nTHE DISTINCTION THAT MAY RESOLVE IT, offered as the open question rather than the answer: that decision governs what the LOOP may reason from when it computes debt. It does not obviously govern what the KIT may report about ITSELF as a product — the difference between \"this design owes you three gaps\" (must be state-derived, must be true of the graph as it stands) and \"reflow2 was installed here and its skills were loaded twice in nine hours\" (a fact about the tool's adoption, not about the user's design). Whether that distinction is real, or a rationalisation for the thing the decision forbids, is the question — and it must be settled before anything is built, not discovered afterwards.\n\nBOUNDARIES THAT HOLD EITHER WAY: whatever is measured must respect report-friction's redaction discipline, which has no counterpart in the prior art — tool names and argument SHAPES, node TYPES not ids, counts not contents — because reflow2 installs into other people's projects, and the thing being measured is the user, not the design.",
+    "status": "accepted"
+  }
+}

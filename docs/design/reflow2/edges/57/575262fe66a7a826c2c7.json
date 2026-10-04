@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:56887a7afd88edb001b3317c8ed0aea04bb01ef2ccf8b5d56012ad63717faad1",
+  "edge_type": "CHANGED",
+  "from_id": "chg:planned-epochs",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:service"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:c006f3df5176644b3ab2a69aec13ad838ce41ab918fdd62e661b8c27acbb65f7",
+  "edge_type": "INVALIDATES",
+  "from_id": "chg:add-decision-draws-related-to-for-every-kind-and-every-constructor-names-its-edges",
+  "properties": {
+    "at": "2026-09-29",
+    "note": "The fix draws related_to for every kind and names every drawn edge through one shared path; the class test over every edge-drawing constructor was observed red on origin/main and passes on the fix."
+  },
+  "to_id": "fact:root-cause-add-decision-discards-the-edge-echo-its-related-to-computed-2026-09-28"
+}

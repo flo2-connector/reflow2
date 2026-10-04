@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:44ddfcac8229a7ca9ca83f1584de9af08a97d2c592b27ae0bcb33a31f61d933d",
+  "node_id": "cap:evidence-scope",
+  "node_type": "Capability",
+  "properties": {
+    "description": "The INPUT axis of the evidence-quality family (BL-126). Records on each VERIFIES edge the parameters a check SWEPT and the ones it PINNED, and reports per capability which parameters every passing check pinned and none swept — the state BL-126 names as '31 checks, all at one value'. Reported as a FACT on the evidence report beside WHERE the evidence came from, never as a gap: a pinned parameter is a standing property of the evidence, and a detector that fired on every check with a fixed seed would punish correct work, which is the BL-23 failure the gap workflow exists to prevent. Checks stating no scope at all are counted as unscoped and reported, never read as full coverage. Deliberately does NOT execute, fuzz or vary anything (dec:loop-status-state-not-history, 'looking is not writing'): it makes the narrowness of the evidence visible and leaves the varying to whoever runs the tests.",
+    "name": "Say what a check held fixed and what it varied, per claim",
+    "provenance": "authored",
+    "status": "verified",
+    "tier": "operational"
+  }
+}

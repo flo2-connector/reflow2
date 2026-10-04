@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:46dc42fe3e553d3c6576c0c68ee00b1ae01c93c61c0bae7e5b5aceb8a71dacd6",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:a-server-drains-before-it-stops",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:mcp-http"
+}

@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:c74cecb8209680362b9b4f0d5b55855be877af4af74af2ef2cd4d38cb06c3f08",
+  "edge_type": "CONTAINS",
+  "from_id": "sys:intake",
+  "properties": {},
+  "to_id": "cmp:sanitize"
+}

@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:aaa4a51f4318b925016f6bb2464e19393b4ef080b0482f380b6e9b6f170bc0f2",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:the-gate-checks-the-item-layout-and-per-item-lineage",
+  "properties": {},
+  "to_id": "req:the-saved-design-merges-correctly-under-gits-ordinary-merge"
+}

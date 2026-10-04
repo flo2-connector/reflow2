@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:ac17f6715bb0dd77f3e1abd80e014a4aa2abc2e94be39b03cdd97d105e7d0f82",
+  "edge_type": "CAUSES",
+  "from_id": "fact:field-report-flo2-2026-09-18-settling-a-prose-option-decision-costs-a-full-resend-and-the-house-style-is-measured",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "The full resend that settling a prose-option decision cost is what this removes.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "chg:settling-a-decision-records-which-option-won"
+}

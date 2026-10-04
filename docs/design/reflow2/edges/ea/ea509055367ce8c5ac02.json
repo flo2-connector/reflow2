@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:ddc614d7a2da23723955f7b8075d8341bd643332a8dddff8d33964a4d068f445",
+  "edge_type": "CAUSES",
+  "from_id": "fact:seam-roll-up-found-a-container-by-id-prefix-and-answered-a-false-zero",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "The false-zero investigation is what put the pattern in front of the user: the session announced 'seams 18%, 59 undeclared boundaries' from the trajectory band, then measured and found both the 18% and the 100% wrong. He named the ordering as the thing to fix. Without that sequence in the same session the question would not have been asked.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "dec:idea-a-derived-number-carries-what-it-was-computed-over-wherever-it-is-quoted"
+}

@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:e94ad40d7273d19d869fa03e2e06c07968bae1650acb43d0fc0b03ea866bd594",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:idea-heals-catalog-is-8-of-13-and-one-blocker-has-expired",
+  "properties": {
+    "authored_at": "2026-08-11",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:claude-code"
+}

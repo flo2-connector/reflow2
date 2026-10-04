@@ -1,0 +1,17 @@
+{
+  "content_hash": "sha256:46b8a57e65bf538f439cbd1090806a654f1d703ce6f02d25c38e2cc0b5e2422b",
+  "node_id": "fact:the-verifies-narrowing-refused-eight-targets-naming-nothing-2026-10-03",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "defect",
+    "name": "MEASURED 2026-10-03 by the narrowing gate's first run: the VERIFIES narrowing of 2026-08-08 refused eight dropped targets on import naming NOTHING — Project, ChangeEvent, Actor, DriftEvent, EnvironmentRule, Flow, Anchor, DimensionAssessment — with no named replacement and no edge the schema models for the pair",
+    "statement": "OBSERVED: entry_problems on NARROWINGS' VERIFIES entry (to: '*' enumerated to Capability, Requirement, Artifact, Component, DesignRule, Constraint, Interface) reported eight pairs Verification -> T for which named_replacement was None and modelled_fits was empty: T = Project, ChangeEvent, Actor, DriftEvent, EnvironmentRule, Flow, Anchor, DimensionAssessment. So an import of an export holding any of them refused it with the bare 'Invalid edge' sentence. The Project case is live: dynograph-foundation's committed export holds five such checks (fact:dynograph-foundations-export-will-not-import-because-five-checks-verify-its-project). EXPECTED: a refusal that names what fits, as REALIZES's does. Repaired in the same change: narrowing::verifies_target_hint names GOVERNED_BY for a Decision, the Requirement or Capability for a Project, and for any other dropped target the list a check may verify (read from the schema), on import and in refused_by_schema findings.",
+    "steps": [
+      "import_graph",
+      "detect_defects"
+    ],
+    "subject_id": "cap:a-schema-narrowing-ships-its-migration",
+    "valid_from": "2026-10-03"
+  }
+}

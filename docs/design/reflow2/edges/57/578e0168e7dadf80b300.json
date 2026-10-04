@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:e94e2204f7c05efad2731e8f6deb00074809f37b187d6fe33b8d1686d4e205b9",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-saved-design-moves-to-the-item-layout-2026-10-03",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:d7ad0005715563e4089ca5a4f2ff2a4a2cb2b07c8feafd611610cb278c9cf468"
+  },
+  "to_id": "art:test-a-session-with-no-seed-can-find-one"
+}

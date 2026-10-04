@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:e2c9289326b099655d258d80a3fcb0901a4e30629c87f101ec32f58645e0cb53",
+  "node_id": "chg:accept-7cad4c0b8177a583",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "documentation",
+    "detected_at": "2026-09-05",
+    "name": "CORRECTION, not a change. getting-started/AGENTS.md did not move; this restores its real hash after a mis-accept minutes earlier stamped the ROOT AGENTS.md's hash onto it (the two are different files; the root one is unregistered). The wrong value was on the record for one export cycle and never committed. Cause: the artifact's location was read off its name, not its `location` property.",
+    "subject": "system"
+  }
+}

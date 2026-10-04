@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:d66b3c685702240ff686bacdfd82750e5a8e48548bda946ad7f86ec40a92a9ba",
+  "edge_type": "CHANGED",
+  "from_id": "chg:federation-decided",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:export"
+}

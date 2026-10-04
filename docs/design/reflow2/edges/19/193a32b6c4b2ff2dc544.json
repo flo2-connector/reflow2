@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:54bd31d1f1d4e9aed7ea1237945da0ce31d61995991b104bde37993c88ce8dcb",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-can-the-vocabulary-be-swapped-and-the-rest-reused",
+  "properties": {
+    "evidence": "A substrate/vocabulary/doctrine split is a claim about where reflow2's real boundaries are, and that question asks whether boundaries should be re-derived from actual structure rather than the declared functional spine. Three measurements already say the declared decomposition disagrees with the coupling; a layering invented on paper before that is settled would be the fourth carving to disagree. This idea is only worth acting on if that one lands first.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "dec:idea-should-the-spine-be-re-derived-from-the-actual-structure"
+}

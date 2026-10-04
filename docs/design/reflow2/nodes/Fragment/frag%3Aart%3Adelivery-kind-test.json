@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:21fb4aa98ee9ddddfb903535b236ad7e1a60d8c7cb9de68b3ea4b5384b5b6290",
+  "node_id": "frag:art:delivery-kind-test",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered delivery_kind.rs"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:2a484683815d9708d7a3d18f423d8921bbed2f0021605f1ca8c14c2b3d3c5a42",
+  "node_id": "cap:a-refusal-maps-a-command-alias-to-what-is-served",
+  "node_type": "Capability",
+  "properties": {
+    "description": "`get_skill` refusing an unknown name first says what the name IS, when it is one of the slash commands: \"'rules' is the slash command; it is served as 'governance-proposal'\". Six of the eight advertised commands map to a skill.\n\nTWO OF THE EIGHT MAP TO NO SKILL AT ALL and the table says so rather than inventing one — `/decisions` calls `scan_nodes` for the Decision type and `/debt` calls `loop_status`. Answering those with a plausible skill name would send the caller somewhere that cannot help them, which is the failure the refusal exists to prevent.\n\nSINCE 2026-09-24, A COMMAND THAT NAMES A SKILL IS SERVED, NOT REFUSED (chg:get-skill-serves-a-slash-command-2026-09-24).\n- `get_skill(\"rules\")`, \"/rules\", \"gaps\" and \"/gaps\" each return that skill, with `requested_as` saying what was asked for.\n- The refusal described above now fires only for the commands that are TOOLS (/decisions, /debt, /next) and for names that are neither. It still names the tool to call.\n- The refusal had been measured costing a chat model a round trip with only one possible answer (flo2, 2026-09-24).",
+    "name": "A refusal maps a user-facing command name to the skill actually served — or to the tool, when there is no skill",
+    "provenance": "authored",
+    "status": "realized",
+    "tier": "operational"
+  }
+}

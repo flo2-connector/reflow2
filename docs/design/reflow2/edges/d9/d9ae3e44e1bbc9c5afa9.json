@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:54f40b29b321dd2ef9d1902b5fd21c2d469fec2a69b8c9ec73a48909397c470a",
+  "edge_type": "REALIZES",
+  "from_id": "art:operate",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:derived-release-manifest"
+}

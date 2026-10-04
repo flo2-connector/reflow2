@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:735e696208fa4cc871506e4c4b17ca62403b617d1e690101034949f773cc6575",
+  "node_id": "ver:a-missing-field-refusal-names-the-fields-this-call-lacked",
+  "node_type": "Verification",
+  "properties": {
+    "description": "crates/reflow2-mcp/tests/a_missing_argument_names_the_tool_and_what_it_wants.rs: the new case beside the three the capability's predecessor had (names the tool and the field's purpose; the whole obligation from one refusal; an unrelated refusal left alone).",
+    "findings": "pr run: 4 passing; full workspace suite green; refusal_speaks.py on the wire PASS.",
+    "kind": "verification",
+    "last_run_at": "2026-09-19",
+    "level": "unit",
+    "method": "test",
+    "name": "With the arguments in hand the refusal names what this call lacked and sets the passed fields apart",
+    "status": "passing"
+  }
+}

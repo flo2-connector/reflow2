@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:ca393fc06d7f1fedbadc05ec3637382fb31cb4a478d37d3eb904f67822116394",
+  "node_id": "decision:ack:dd3647889c878492",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Accepted the gap gap:dd3647889c878492.",
+    "name": "Reviewed: gap:dd3647889c878492",
+    "rationale": "Not a defect: cmp:sanitize was built after the last release cut on 2026-07-25, so \"ships in nothing\" is simply true and expected of anything newly built. It resolves at the next release, which must list it — the same disposition as cmp:claims earlier the same day, and the AGENTS.md release checklist already says the cut lists everything it actually ships rather than a hand-maintained roll-call. Distinct from the cmp:docs case, which needed a decision because it was a pre-existing deliverable the design had never modelled; this one needs only a release.",
+    "status": "accepted"
+  }
+}

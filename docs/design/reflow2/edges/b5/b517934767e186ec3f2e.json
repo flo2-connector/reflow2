@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:d65d9c386c9ce2fc0819ddc266158971e5a53d558275f8b466df0d9d44d195c6",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:test-stale-seat",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:test-stale-seat"
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:12f8bd4f2f9dcb878d0c636be8cc5e6a98c8118d865ae11046ae80551bbf0341",
+  "node_id": "art:test-the-frontier-is-served-and-a-deferral-is-a-recorded-finding",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "test",
+    "location": "crates/reflow2-mcp/tests/the_frontier_is_served_and_a_deferral_is_a_recorded_finding.rs",
+    "name": "the_frontier_is_served_and_a_deferral_is_a_recorded_finding.rs — the frontier tool and the deferral marker through the served surface",
+    "status": "realized"
+  }
+}

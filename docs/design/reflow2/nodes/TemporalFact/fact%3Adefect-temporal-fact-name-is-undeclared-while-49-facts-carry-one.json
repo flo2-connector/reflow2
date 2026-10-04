@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:fe2196a2c9fa2cd3bfa693e8d43940c2dfbe91c8278e7b1ce1bbb1a2b29eaab9",
+  "node_id": "fact:defect-temporal-fact-name-is-undeclared-while-49-facts-carry-one",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "confidence": 1.0,
+    "fact_type": "defect",
+    "name": "TemporalFact has no declared `name`, and 49 of 429 facts carry one anyway — create_node reports it as `undeclared` on every write",
+    "statement": "MEASURED 2026-09-06 on the export: 429 TemporalFacts, 49 carrying a non-empty `name` (11%), and schema/temporal.yaml declares no `name` on the type — so every create_node that writes one gets `undeclared: [\"name\"]` in its reply, four times in one session here. The property is READ: search_design renders a fact's name in every hit, and the gap and ledger surfaces name facts by it when present and fall back to the id when not. The shape is the one fact:defect-half-the-temporal-facts-date-themselves-where-nothing-reads named for valid_from — a MISSING WORD, evidenced by consistent undeclared use — at a smaller scale. Not established: whether the 380 nameless facts are nameless because the constructor path (there is no add_temporal_fact tool; facts are written with create_node) never offered one. Cheap fix: declare `name` on TemporalFact (indexed, fulltext), as valid_from was declared on 2026-08-16 for the same reason. Recorded under rule:a-reflow2-tool-failure-met-while-working-is-captured-as-a-to-do.",
+    "subject_id": "art:schema-temporal",
+    "valid_from": "2026-09-06",
+    "value": "{\"facts\":429,\"with_name\":49,\"share\":0.11,\"declared\":false,\"undeclared_warnings_this_session\":4}"
+  }
+}

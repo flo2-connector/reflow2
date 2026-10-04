@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:bd6403c1066ea69450d04f3d16773ab6026241a52c67eec5776f9682b146636e",
+  "edge_type": "INVALIDATES",
+  "from_id": "chg:the-overtaken-defect-records-were-triaged-against-the-v0510-build",
+  "properties": {
+    "evidence": "loop_status now carries served_by with the version, binary mtime and staleness (coherence.rs:282-301), so the cold-start version check no longer requires the largest report."
+  },
+  "to_id": "fact:defect-the-mandated-cold-start-check-costs-the-largest-payload"
+}

@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:7b59bcacf6f6a9386e9cf076853e81c08db2851e4098617e05533b3ea2bad83d",
+  "node_id": "cap:reconcile-deployed",
+  "node_type": "Capability",
+  "properties": {
+    "description": "Compare the design against what is actually deployed.",
+    "name": "Reconcile against what is running",
+    "provenance": "authored",
+    "status": "verified",
+    "tier": "operational"
+  }
+}

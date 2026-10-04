@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:e232e22293eff83749f5e4cc86b8ef8ed91d9a9d777fde72b3d91df46422fbdc",
+  "node_id": "cmp:dates",
+  "node_type": "Component",
+  "properties": {
+    "kind": "module",
+    "level": "component",
+    "name": "dates",
+    "provenance": "authored",
+    "purpose": "DATES — the small amount of calendar arithmetic a design brain needs. The core takes no clock, so every date is one the caller supplied.",
+    "status": "planned",
+    "tier": "operational"
+  }
+}

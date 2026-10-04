@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:558760e0ef52707c43e6b6c3bccc3ce4972c6c5a7af03f9f607070305ce3c93e",
+  "node_id": "chg:a-hub-skill-files-each-fact-where-it-belongs-2026-09-28",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "commits": "2e901f2",
+    "detected_at": "2026-09-28",
+    "name": "A hub skill (/hub): in a session reaching several designs, each fact goes to the design it belongs in",
+    "rationale": "Satisfies req:a-skill-run-in-a-session-holding-several-designs-writes-where-the-fact-belongs, accepted 2026-09-22 after the dev_reflow2 hub was measured writing to its own graph by default. It was built now because flo2's combined-plan position 6 (flo2's epoch:shared-hubs, cap:the-hub-skill-is-served-at-every-door) points every hub at this skill, at both of flo2's doors. reflow2 #612.",
+    "subject": "system",
+    "summary": "reflow2 serves a new skill, `hub` (/hub), for a session that reaches several designs, one of which coordinates the others. The hub can be a flo2.io hub design, a local hub like dev_reflow2, or an agent holding several design addresses. The skill:\n- reads child designs on demand;\n- writes each fact to the lowest design that owns all of it, naming that design first;\n- keeps a collaborator's idea in the hub as brainstorming until the person confirms a destination and someone who can write to that design routes it;\n- leaves a ROUTED pointer in the hub instead of a copy;\n- ends by saying where everything went."
+  }
+}

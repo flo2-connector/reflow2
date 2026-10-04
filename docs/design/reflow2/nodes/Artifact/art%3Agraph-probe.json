@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:f346f2ef79eb493b6474ca01c0911c9845be52f950450ca5ce313bab4a732c3c",
+  "node_id": "art:graph-probe",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "location": "tools/graph_probe.py",
+    "name": "graph_probe.py",
+    "status": "realized"
+  }
+}

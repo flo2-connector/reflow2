@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:13938fbcc2f8d0692016f9cd5ff5cdecfb567c7b6811e2834484a06c944a856d",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:agent-navigates-content",
+  "properties": {
+    "authored_at": "2026-07-31",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

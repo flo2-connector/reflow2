@@ -1,0 +1,17 @@
+{
+  "content_hash": "sha256:34b64c5a9395dfbade3afa7d2ba5e687778885e5536bc62a21533007721f92c7",
+  "node_id": "rule:a-finding-is-written-before-the-answer-and-needs-no-permission",
+  "node_type": "DesignRule",
+  "properties": {
+    "category": "convention",
+    "name": "A finding is written before the answer and needs nobody's permission — intent waits for the owner's word, an observation does not",
+    "statement": "A contradiction you noticed, a number that does not add up, a measurement you took, a cause you established: these are the agent's own observations. Write each with record_finding the moment you have it, before the next answer, and never offer to fold it into a document. Only INTENT waits for the owner's word — a requirement, a decision, a status. Measured 2026-09-18 on flo2: six design findings from a document review stayed in chat because the agent had generalised 'intent waits' into 'everything waits'; the same day the maintainer's own triage repeated the class. A session that reads for an hour and writes nothing looks clean to every signal that counts nodes; loop_status now counts this session's reads and writes and says so.",
+    "steps": [
+      "capture-intent",
+      "where-am-i",
+      "brainstorm",
+      "root-cause",
+      "triage-feedback"
+    ]
+  }
+}

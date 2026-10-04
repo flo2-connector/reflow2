@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:bd976ed28b79c11f9427f474c13267e6f244912c7ff5725d3114392ed88ddca3",
+  "node_id": "question:df7741cad6b4f533",
+  "node_type": "Question",
+  "properties": {
+    "answer": "Yes — build it. (Anthony, 2026-07-28: \"go with req:publishable-promise next\".) Built as the recommended option: a `designation` on Requirement mirroring the one on Interface, so a promise travels with the surface and every existing check applies to it unchanged, rather than a prose companion sitting outside all of them.",
+    "asked_at": "2026-07-28",
+    "context_setter": "Nothing satisfies requirement “A published surface must be able to carry a behavioural promise, not only structure”",
+    "gap_id": "gap:df7741cad6b4f533",
+    "question": "When one project publishes what another may rely on, it can currently list the connection points but cannot state what any of them PROMISES to do. So dynograph's real commitment — that a missing database fails loudly rather than silently losing your data — has no way to reach the people depending on it, and today survives only as a comment in our own build file. Should I make a promise markable as publishable, so it travels with the surface and gets checked like everything else? This is my recommended next build: small, reuses machinery that already works, and until it exists every published surface reflow2 produces is missing half of what one is for.",
+    "rephrase_degraded": false,
+    "status": "answered"
+  }
+}

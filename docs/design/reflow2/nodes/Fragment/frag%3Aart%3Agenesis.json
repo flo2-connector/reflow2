@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:7573c9b5e2e95ffca70be79a921c9178150e2cc516307931a3c3d283d326ad86",
+  "node_id": "frag:art:genesis",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered genesis.rs"
+  }
+}

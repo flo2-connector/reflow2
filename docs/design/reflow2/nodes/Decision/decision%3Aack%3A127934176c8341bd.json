@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:2450a3b6fb841aa6aa046495f011aa550b724dfd57b092944db92b7edf06b86c",
+  "node_id": "decision:ack:127934176c8341bd",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Accepted the gap gap:127934176c8341bd.",
+    "name": "Reviewed: gap:127934176c8341bd",
+    "rationale": "Deferred on Anthony's word, 2026-07-28. The capability is captured intent at status=planned with nothing built against it, so there is nothing yet to verify; adding a Verification now would leave a check at 'planned' that confirms nothing. Revisit when the increment is scheduled, together with the unallocated and unrealized gaps on the same node.",
+    "status": "accepted"
+  }
+}

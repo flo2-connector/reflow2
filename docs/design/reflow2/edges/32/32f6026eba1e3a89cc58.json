@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:a10e50e9872d24b367126d769391bcdaafe871d326d6c4faf0daa91402681176",
+  "edge_type": "CONTAINS",
+  "from_id": "sub:finding",
+  "properties": {},
+  "to_id": "cmp:granularity"
+}

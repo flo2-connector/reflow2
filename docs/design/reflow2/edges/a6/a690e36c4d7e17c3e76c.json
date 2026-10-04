@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:efc4cfff0113f087ad9a1fcf021742c77baa66b3faa5c526dfdf0972170af586",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0720",
+  "properties": {
+    "as_checksum": "sha256:8509a63c12530134efe5ad2c6d6a222e7d2665f80c9ecbfaff7d3d1cb325ae28"
+  },
+  "to_id": "art:test-every-tool-list-carries-the-cache-hints"
+}

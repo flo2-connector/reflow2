@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:37321f52b7258f61dfdf7052862cd65a5f07ebdedbe9f789d349da6a18a6123a",
+  "edge_type": "EVOLVES_INTO",
+  "from_id": "req:persistence",
+  "properties": {
+    "evidence": "Retired 2026-09-25 on Anthony's word: keeping the design in the repo was a means to coherence, and the principle itself replaces it."
+  },
+  "to_id": "req:design-and-implementation-stay-coherent-both-ways"
+}

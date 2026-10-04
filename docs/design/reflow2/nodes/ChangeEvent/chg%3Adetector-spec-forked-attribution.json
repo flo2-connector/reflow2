@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:5078ad836cfd5fa60311d25e1b02e3055ba9f343caf90840f2d14b1c0d5cf5ef",
+  "node_id": "chg:detector-spec-forked-attribution",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "resync",
+    "name": "CORRECTION (recorded as `resync` only because no change_type means \"the record was wrong from the start\"): the enforced authority rule's detector spec named `who:ajs` alone, and the owner also exists as `ctr:anthony` carrying 8 edges — a check written from that spec would have been queryable and wrong"
+  }
+}

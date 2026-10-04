@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:86e0a118002088f0fd6c47143954d342717bf506793532a79f7b552319e08e21",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:test-every-rule-a-project-parent-cures-says-so",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:test-every-rule-a-project-parent-cures-says-so"
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:f41d9f0be8d9ff731219b29dea94b7afae1435f8b0e7782ccdaf7fadf3c22224",
+  "node_id": "decision:ack:75d815c93cad4c86",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Accepted the gap gap:75d815c93cad4c86.",
+    "name": "Reviewed: gap:75d815c93cad4c86",
+    "rationale": "User (who:ajs, standing policy from 2026-07-23): validation happens through the trials programme — docs/trials/ is where \"built the right thing\" is exercised against operational intent; formal validation-kind Verification nodes are not this project's tracking mechanism. Re-fired because cap:kpp joined the set (37 → 38). Pointed here: the tests prove a breach is computed from stated contributions, but whether the THRESHOLDS people set are the right ones, and whether a 0.95-severity finding actually stops someone trading away what it protects, cannot be established by any test. Those are answered by a real programme with real stakes — which is precisely the acquisition context the vocabulary came from.",
+    "status": "accepted"
+  }
+}

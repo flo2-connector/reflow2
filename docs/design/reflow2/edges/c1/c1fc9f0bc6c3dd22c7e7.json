@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:3f0cc5e0060700b7c6e9155d07b5a6884ead884600d4ce85778c1d460ba3b495",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-degraded-server-recovers-when-its-cause-clears-and-readiness-tells-the-truth",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:dockerfile"
+}

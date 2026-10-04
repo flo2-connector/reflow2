@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:1db58f09a6983b64366bd80bd47d7dd9388dd57493a4296b031ccdaea93ec250",
+  "edge_type": "CHANGED",
+  "from_id": "chg:accept-e57e8c42f6f3e884",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:unreachable-decision-test"
+}

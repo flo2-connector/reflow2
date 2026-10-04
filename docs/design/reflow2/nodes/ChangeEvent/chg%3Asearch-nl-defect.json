@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:a54fc9611c493e6b41e4d4660eaeed0efba08f37ef7092bee84bb5c6343dafc8",
+  "node_id": "chg:search-nl-defect",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "test_failure_fix",
+    "name": "Natural-language search found broken: conjunctive query semantics behind a ranked-BM25 description"
+  }
+}

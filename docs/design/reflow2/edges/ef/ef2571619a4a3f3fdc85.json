@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:32f2253a66203f7081aa929f975ed60fd070eee51877f1978b83734dd7e1b72a",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:should-a-verification-be-able-to-verify-a-constraint",
+  "properties": {
+    "approved_at": "2026-08-15",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

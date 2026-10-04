@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:351717e1b38e61f775b6182f2ed1dacb028089e4ab682e775ceb0143dae1a6eb",
+  "node_id": "epoch:planned-the-three-source-reading-analyses",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "description": "PLANNED on Anthony's word, 2026-09-14, from the session plan he confirmed. Follows epoch:planned-the-mechanism-reaches-the-moment. NO VERSION NUMBER BY DESIGN (dec:idea-a-planned-increment-is-named-by-content-not-by-number).\n\nTHE THEME. dec:reflow2-serves-source-reading-analyses-that-report-and-never-write is ACCEPTED on his word with three conditions: no configuration; never quietly guesses; reports and never writes. The wall check is served (chg:the-wall-check-is-served), with the gate that fails this repo's build when a capability promises reach it does not have. Three analyses remain from his \"fix this for all 4\": clone detection, protocol enumeration, and the profile survey.\n\nTHE ORDER OF WORK, and why it is blocked on him and not on code: each analysis needs its question DEFINED IN HIS TERMS before anything is built — what counts as a clone, what counts as a protocol, what a profile is — which is exactly the guess the consumer's agent refused to make. ASK, then build one at a time. Each ships only with the three consumer legs: served as a tool, named in a skill at the moment of use, and seen by the consumer-reach gate (req:an-analysis-a-consumer-needs-is-served-named-and-gated).\n\nWHAT IS NOT IN IT. No analysis built on a definition reflow2 guessed. No analysis that writes design back. No fourth analysis nobody asked for. The field-report root-causes are the previous increment, not this one.",
+    "epoch_type": "milestone",
+    "name": "PLANNED — the three remaining source-reading analyses, each defined in Anthony's terms before it is built, each shipped with all three consumer legs",
+    "sequence": 500,
+    "status": "planned"
+  }
+}

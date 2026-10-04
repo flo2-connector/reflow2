@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:b2afd8baa3a8c0625ce8fa77e16b8ae7021a521ebc0660840b57141aab64841a",
+  "edge_type": "CAUSES",
+  "from_id": "cap:a-build-can-call-one-tool-from-the-shell-and-read-the-reply-as-json",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "Tool lessons are appended only in tools_with_lessons, which only list_tools serves; the door never sends tools/list, its find_tools ranks the raw router, and its own probe list is built on an empty in-memory design.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:root-cause-tool-lessons-reach-only-tools-list-and-no-door-reply-carries-one-2026-10-02"
+}

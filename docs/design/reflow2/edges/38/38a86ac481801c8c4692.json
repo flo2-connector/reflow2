@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:8a9eb39f1b3faae6b1328f242c27e5379a0f0f3b61cf32446ce17ae823ab5193",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-a-graph-whose-children-are-themselves-reflow2-designs",
+  "properties": {
+    "evidence": "This question only exists while reflow2 and flo2 remain separate graphs. That node asks where the boundary goes for one owner with many interrelated projects, and its option (a) — one graph for the family, levels inside it — would dissolve this one entirely: with a single graph there is no pair for a parent to sit above. So the boundary question has to settle first, or settle this by removing it.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "dec:idea-one-owner-many-projects"
+}

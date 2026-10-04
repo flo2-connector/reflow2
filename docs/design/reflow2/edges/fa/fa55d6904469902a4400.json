@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:b59d23eea92281d48dff78628da06cd6eddebd29359f91813393cd8496aa955d",
+  "edge_type": "REALIZES",
+  "from_id": "art:handshake",
+  "properties": {
+    "conformance": "unchecked"
+  },
+  "to_id": "cmp:handshake"
+}

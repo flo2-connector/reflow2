@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:d1706f262d952588d7de180c9c4b5d711f2e03f98840fd42e270ebe69bfd6f89",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-check-and-its-findings-are-different-things",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "ver:a-proposal-describes-its-own-sweep"
+}

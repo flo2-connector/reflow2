@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:16ffebe6816cf981fc68ebb029c211461043f855d6a3cd9c644704ec007df1c8",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:pr-is-a-delta",
+  "properties": {
+    "authored_at": "2026-07-28",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

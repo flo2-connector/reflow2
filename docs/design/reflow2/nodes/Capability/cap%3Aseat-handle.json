@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:a595a8cf6047f79818c58344f7a5ca4c2e94232edeb10417b907defa544d70f9",
+  "node_id": "cap:seat-handle",
+  "node_type": "Capability",
+  "properties": {
+    "description": "`mint_seat` returns a durable name for a session; `claim_region` takes it as `seat` and records it as the claim's owner. Where the transport gives the server a session of its own (stdio, Streamable HTTP below MCP 2026-07-28) the seat may be omitted and this session's own seat is used, exactly as before. Where it does not — from 2026-07-28 on, where rmcp builds a handler per REQUEST — omitting it is REFUSED with a message naming `mint_seat`, rather than answered by minting a seat that would differ on the caller's next call. Identity therefore stops being inherited from whatever the transport happened to do and becomes something the caller holds, which works the same on every transport.",
+    "name": "A seat is minted on request and carried by the caller, and a claim that cannot name one is refused",
+    "provenance": "authored",
+    "status": "realized",
+    "tier": "operational"
+  }
+}

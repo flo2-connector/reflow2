@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:ad3b692c566c2e7effaa77af8565190cb4b829b0b1705d2761ca586f6359c6cc",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-saved-design-moves-to-the-item-layout-2026-10-03",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:e4b334fbb0a4444ee935a656f9bae4dfd3599653f8563b631761f75cc8035a3b",
+    "checksum_basis": "measured"
+  },
+  "to_id": "art:test-a-refused-host-is-told-which-flag-admits-it"
+}

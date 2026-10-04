@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:f7a70a9ae02cf0b56e0b5a3899bef5b0de2994d02635e5abc0dc1a16a71d99f3",
+  "edge_type": "MITIGATES",
+  "from_id": "dec:idea-an-edge-reader-returns-one-nodes-edges-and-find-tools-finds-it",
+  "properties": {
+    "evidence": "That false absence claim came from reading only get_node's properties while the retiring decision sat one edge away; a per-node edge reader is the read that would have shown it."
+  },
+  "to_id": "fact:an-absence-claim-about-why-a-node-changed-read-only-the-node-and-missed-its-retiring-decision-2026-09-28"
+}

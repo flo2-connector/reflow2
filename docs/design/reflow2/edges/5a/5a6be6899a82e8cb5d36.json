@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:76e04f6669f84c0bba0bcbeb49a3b5669583f39377bfa9b299cad91d674969d1",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "req:content-reaches-every-seat",
+  "properties": {
+    "evidence": "It is the distribution half of that requirement: a store nobody else can read delivers none of what it promised.",
+    "optional": false,
+    "weight_basis": "evidence"
+  },
+  "to_id": "req:content-store-for-what-the-graph-points-at"
+}

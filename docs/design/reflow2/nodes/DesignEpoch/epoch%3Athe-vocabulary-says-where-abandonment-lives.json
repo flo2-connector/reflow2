@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:74a497ffbb9f2c37230cac68218faf768f680c3bfc48f53b458a60b36001eb8b",
+  "node_id": "epoch:the-vocabulary-says-where-abandonment-lives",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "epoch_type": "milestone",
+    "name": "Capability.status and OBSOLETES stop being silent about each other — the discoverability half of Alex's cancelled-state report, fixed with two descriptions and no schema move",
+    "sequence": 332,
+    "status": "arrived"
+  }
+}

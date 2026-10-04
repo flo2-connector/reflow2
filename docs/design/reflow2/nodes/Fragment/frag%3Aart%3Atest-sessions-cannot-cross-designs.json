@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:4b2f2d2028755ecbd628bef9bedd2bc899e0de7b9de17aa245bd59dd5f92684b",
+  "node_id": "frag:art:test-sessions-cannot-cross-designs",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered sessions_cannot_cross_designs.rs"
+  }
+}

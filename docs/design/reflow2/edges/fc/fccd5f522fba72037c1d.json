@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:024d9bd23b858e7d2daa3e1d5bb4d7d5ad6e3e70892f515a7d2102d16ba529ea",
+  "edge_type": "REALIZES",
+  "from_id": "art:acknowledgement-approver-test",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "verified"
+  },
+  "to_id": "cap:an-acknowledgement-says-whose-judgement-it-was"
+}

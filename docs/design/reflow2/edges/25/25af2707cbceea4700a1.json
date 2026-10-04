@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:908c6450d4068f303c7dcd8747b2ea0841b8c98711ae6ce614e62da7ace16391",
+  "edge_type": "AT_EPOCH",
+  "from_id": "chg:backlog-question-settled",
+  "properties": {},
+  "to_id": "epoch:backlog-retired"
+}

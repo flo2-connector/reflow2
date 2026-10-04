@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:2b9e0de5c19b82e6787253edaf726d140b3983f5ab25e25a17d46ffdffed3dc9",
+  "node_id": "art:schema-readiness",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "spec",
+    "granularity": "atomic",
+    "last_confirmed_at": "2026-08-02",
+    "location": "schema/readiness.yaml",
+    "name": "readiness.yaml",
+    "status": "realized",
+    "volatility": "stable"
+  }
+}

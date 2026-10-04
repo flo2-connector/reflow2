@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:be07127bd4e708173fb0f289aac3f6ef5bfc56cd3bdf4943d74fe6a26307f212",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:log-issue-folds-into-jot",
+  "properties": {
+    "approved_at": "2026-09-24",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

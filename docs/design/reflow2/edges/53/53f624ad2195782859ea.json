@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:a1e2f4c26e0336ba51077ced5123a9a25edae28e41d6b7b189230ece1db9b026",
+  "edge_type": "REALIZES",
+  "from_id": "art:genesis-skill",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:genesis"
+}

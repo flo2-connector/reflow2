@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:26b473ab7b9b4663810f4bc190152f1ed44bfa31bc06a43b09c529b38b547109",
+  "edge_type": "CHANGED",
+  "from_id": "chg:anchor-decision-second-hint",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "dec:anchor-retire-or-implement"
+}

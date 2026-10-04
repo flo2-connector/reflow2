@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:8cfe1908789156d16689edb470ee3094b408b61d6aa8bda7986ff28b8567c13d",
+  "node_id": "fact:manual-work-f2a5ddc9e6c169a8",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "manual_work",
+    "statement": "Parsed a month of agent session transcripts, and separately queried the hosting gateway's write log, to answer \"which writers changed this node, when, and had they read it since the previous writer?\" across sessions and subagents. The design keeps each node's prior state on overwrite, and the revision block names what one write replaced. But nothing serves a node's write history by writer, and nothing records which agent (as opposed to which person) made a write, so concurrency and lost-update questions can only be answered from outside the design.",
+    "subject_id": "proj:reflow2",
+    "valid_from": "2026-09-29",
+    "value": "{\"diagnosis\":\"tool_missing\",\"reflow2_tool\":null}"
+  }
+}

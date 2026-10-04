@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:ab88020717897283e751cb79d0e41cfef333f64f52d854c1d077e6b3457330ac",
+  "node_id": "cap:receipts-say-once-bundles-compact-reads-and-a-tiered-tool-surface",
+  "node_type": "Capability",
+  "properties": {
+    "description": "A shared reply helper that returns id, changed fields with sizes, edges drawn as sentences and warnings (removed text by size, prior text on request); a per-session registry of standing prose sent once then tagged; an all-or-nothing capture call for a requirement with its capability, links and author; column-form lists with field projection; and short tool descriptions with long guidance behind a help call — lessons still delivered at the call they concern.",
+    "name": "Write receipts, say-once standing guidance, capture bundles, compact list reads and short tool descriptions on reflow2's MCP surface",
+    "provenance": "authored",
+    "status": "planned"
+  }
+}

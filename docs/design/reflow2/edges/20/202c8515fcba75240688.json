@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:791d4eeb40158e8a8577387d636f6831d31dc82b0c3e2c39834820b97f45007a",
+  "edge_type": "CAUSES",
+  "from_id": "art:schema-temporal",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "schema/temporal.yaml:139 enumerates SCHEDULED_FOR.from as [Requirement, Capability, Question]. Verification and Decision are absent, so schedule_for refuses them and only past-tense OCCURS_DURING remains. Same class as the VERIFIES.to list that lacked Interface until 2026-08-22.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:defect-a-planned-verification-cannot-be-scheduled-because-scheduled-for-does-not-enumerate-it"
+}

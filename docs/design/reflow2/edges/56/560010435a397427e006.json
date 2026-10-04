@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:3be98dea24f90888f448b085c0fc030f4218db8ab11cf7e16dd7832b8a30a46f",
+  "edge_type": "SCHEDULED_FOR",
+  "from_id": "cap:a-write-replies-with-a-receipt",
+  "properties": {
+    "modality": "expected",
+    "recorded_at": "2026-09-29"
+  },
+  "to_id": "epoch:fix-what-the-two-agent-exercise-found-2026-09-29"
+}

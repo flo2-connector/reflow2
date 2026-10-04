@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:887d7c93fb08c888ba786c664cc181f936755d4954a9e07cec7b678f2abfd612",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:idea-should-the-gate-set-be-selected-per-diff",
+  "properties": {
+    "authored_at": "2026-09-21",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:claude-code"
+}

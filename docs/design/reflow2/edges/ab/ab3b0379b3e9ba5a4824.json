@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:253b86ad4f3945f697d5a81112e415b288bb84db47d2cdd8f7d16ec9f646acde",
+  "edge_type": "SCHEDULED_FOR",
+  "from_id": "req:a-terminal-agent-can-auto-approve-reads-and-confirm-each-write",
+  "properties": {
+    "modality": "expected",
+    "recorded_at": "2026-10-01"
+  },
+  "to_id": "epoch:planned-the-call-door-works-for-an-agent-that-cannot-use-mcp"
+}

@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:a40bfa6de22d8bb1bcb999b4ac6ab53fef7aed1cbca6d18ba7adb47510afa662",
+  "edge_type": "CAUSES",
+  "from_id": "fact:defect-an-undeclared-property-is-stored-without-complaint",
+  "properties": {
+    "basis": "observed",
+    "confidence": 1.0,
+    "evidence": "Found on my own write and confirmed against the schema; the 134 deny_unknown_fields occurrences are what turned it from a slip into an asymmetry worth stating as intent.",
+    "validation_status": "validated"
+  },
+  "to_id": "req:a-write-says-what-it-did-not-recognise"
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:c3628017588373859e59d8050bbe7a67ddbde607a888d228003808e7ed7849f6",
+  "node_id": "dec:idea-other-centralities",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "RECORDED AS BRAINSTORMING, NOT AS A PROPOSAL — from the 2026-08-01 dynograph-foundation review. Recorded for completeness; this is the WEAKEST of the ideas in this batch and is written down mainly so a later session knows it was considered and not chosen.\n\nTHE UNUSED FUNCTIONS: degree_centrality (with DegreeMode), closeness_centrality, eigenvector_centrality, and clustering (local clustering coefficient). All exact, all already available.\n\nWHAT EACH WOULD MEAN HERE: closeness = how near a node is to everything else, so \"how quickly does a change here reach the whole design\". Eigenvector = importance by association with important nodes. Clustering coefficient = how tightly a node's neighbourhood is interconnected, a possible signal for over-coupled subsystems.\n\nTHE HONEST COUNTER-ARGUMENT, which is why this ranks last: betweenness is the RIGHT measure for the question reflow2 asks — how much of the golden thread routes THROUGH this node — and the others answer questions nobody has asked yet. Degree is already computed locally in structure.rs and needs no crate. Adding measures because they exist is how a report becomes a dashboard nobody reads, and reflow2 has an explicit instinct against that (dec:report-dont-judge, and BL-42's noise-floor lesson).\n\nIF ANY: clustering coefficient is the only one with a question attached that reflow2 does not already answer — \"is this subsystem more tangled inside than the design says it should be?\" — and even that overlaps leiden communities.",
+    "name": "OPEN — is betweenness the right centrality, or should closeness / eigenvector / clustering also be read?",
+    "rationale": "Recorded deliberately as a considered-and-not-chosen idea. The brainstorm skill's rule is that roads not taken are part of the design's memory; without this node a later reviewer would rediscover four unused centrality functions and re-litigate them.",
+    "status": "proposed"
+  }
+}

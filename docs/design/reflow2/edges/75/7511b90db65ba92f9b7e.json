@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:5f4612f32e944c63ebd14a2dd08f212a3cb3b9099859f90cd3e22f6c4607ec63",
+  "edge_type": "OBSOLETES",
+  "from_id": "epoch:planned-one-write-surface",
+  "properties": {
+    "confidence": 1.0
+  },
+  "to_id": "epoch:v0280-planned"
+}

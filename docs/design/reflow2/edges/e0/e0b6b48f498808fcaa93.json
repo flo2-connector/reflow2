@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:e0b9933ac722317ca4144aedbece3dedcb2319dd0d06f8244145273a42ea1e0c",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0500",
+  "properties": {
+    "as_checksum": "sha256:2ac46b6977a7415dc6f1fb27e031088ed3b80ab66fd988745fe9809bdcd5e285"
+  },
+  "to_id": "art:test-absence-means-nobody-said-and-a-plan-holds-a-check"
+}

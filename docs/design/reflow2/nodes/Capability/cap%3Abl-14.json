@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:6c2930d8d2cf58d8187f79038df8e24cd05196be526b5a28ce074008505e54c0",
+  "node_id": "cap:bl-14",
+  "node_type": "Capability",
+  "properties": {
+    "description": "tools/ sweep follow-ups\n\nThe remaining adopt-list items in [reflow-audit.md](reflow-audit.md): typed gap resolution strategies, abstraction-gap → strategy, document round-trip, MCP resources/prompts.\n\nMigrated from docs/backlog.md BL-14 on 2026-08-07 (epoch:backlog-retired). Size estimate carried from the row: M.",
+    "name": "[BL-14] tools/ sweep follow-ups",
+    "provenance": "imported",
+    "status": "planned",
+    "tier": "operational"
+  }
+}

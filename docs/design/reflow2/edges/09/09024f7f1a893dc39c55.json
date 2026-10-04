@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:4910472378ee3dafb92e990401ddb181c1a501a4b2c3f7a60f4dfbf76a8f62f5",
+  "edge_type": "REALIZES",
+  "from_id": "art:test-every-one-shot-mode-resolves-its-design-first",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:a-build-can-call-one-tool-from-the-shell-and-read-the-reply-as-json"
+}

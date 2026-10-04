@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:51d064e04762cf12b6a286f8bebf017120bd884eed7f339cb93632ca282cc4b7",
+  "edge_type": "CHANGED",
+  "from_id": "chg:install-reaches-the-agent",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:test-init"
+}

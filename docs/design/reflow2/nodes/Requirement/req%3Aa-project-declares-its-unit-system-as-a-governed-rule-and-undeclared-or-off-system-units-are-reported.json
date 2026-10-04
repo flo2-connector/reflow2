@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:fedc97eaa00964c4f8eaae064a6b51987b346e3d9b21ef78fd5aeedefc571c87",
+  "node_id": "req:a-project-declares-its-unit-system-as-a-governed-rule-and-undeclared-or-off-system-units-are-reported",
+  "node_type": "Requirement",
+  "properties": {
+    "concern": "core",
+    "lineage": "original",
+    "name": "A project declares its unit system as a governed rule, and a quantity with no unit or a unit outside the system is reported",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "A project can state the unit system its design is done in — per quantity kind (mass in kg, energy in eV, length in mm), not one blanket system, because real designs are legitimately mixed — as a rule the project follows, captured the way any other rule is (req:a-rule-is-recorded-with-its-consequence): the owner is asked whether breaking it stops the build, and the answer is recorded either way. A detector walks every unit-bearing field the design holds — a Constraint's quantity and its contributions, the units on a published boundary's quantities, and any later field that carries a unit — and reports (i) a quantity that names NO unit and (ii) a unit outside the declared system. Absence is a finding, not a judgement. The detector says when it had nothing to run on: a design that has declared no quantities reads as unchecked, never as clean. Chosen by Anthony on 2026-09-13 after the Mars Climate Orbiter account, whose review board found the systems-engineering function \"not robust enough\" to catch a unit mismatch — this is that review made mechanical. Distinct from the seam requirement (req:a-quantity-that-crosses-a-published-boundary-declares-its-unit-and-the-seam-check-compares-them), which compares two sides of one boundary; this checks the whole design against one declared rule, and it has nothing to check until units are declared somewhere, so it follows that requirement rather than leading it.",
+    "status": "accepted"
+  }
+}

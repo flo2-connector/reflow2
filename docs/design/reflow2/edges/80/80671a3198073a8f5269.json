@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:39e49709d573bc196955095968e7daae4be2527042a7f8aac661dbb590aeca62",
+  "edge_type": "PROVIDES",
+  "from_id": "cmp:service",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "ifc:mcp-tools"
+}

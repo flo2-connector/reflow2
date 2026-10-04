@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:907cfbf1b405c60f1d97ee17545db2e24362a3d153875395d6e78750731252ef",
+  "node_id": "art:proposed-asserts-nothing-test",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "location": "crates/reflow2-core/tests/proposed_asserts_nothing.rs",
+    "name": "tests/proposed_asserts_nothing.rs",
+    "status": "realized"
+  }
+}

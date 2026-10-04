@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:786a9ebe62170763a43c1dd809600471aa4f58866f25fc194b5bbe3187b170bc",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:maturity",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:maturity"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:dcd7929f8ec3087e71b3222a14914c008d8fb0b9c3ca339b52c40a30a34043fa",
+  "edge_type": "CHANGED",
+  "from_id": "chg:search-nl-verified",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "ver:search-natural-language"
+}

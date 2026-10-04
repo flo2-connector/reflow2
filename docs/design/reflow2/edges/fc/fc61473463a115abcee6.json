@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:0949d83efc89b286ce05e4c9bc998054570011a4f94ac28ddab737ea5f9c5df0",
+  "edge_type": "GOVERNED_BY",
+  "from_id": "cap:a-verified-capability-names-something-that-can-re-run-its-check",
+  "properties": {
+    "note": "The ruling sets the bar this capability enforces and carries the grandfathered baseline it reads. The set lives there rather than in the script so that silencing a finding means editing the design where a review sees it."
+  },
+  "to_id": "dec:a-capability-may-not-newly-reach-verified-on-a-claim-alone"
+}

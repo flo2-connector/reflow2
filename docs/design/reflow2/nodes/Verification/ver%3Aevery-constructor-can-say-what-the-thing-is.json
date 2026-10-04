@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:a968cb95bb97622b6a7075c83cf3a8e21dbc9997bc4ce4707ce2a83de4c73dab",
+  "node_id": "ver:every-constructor-can-say-what-the-thing-is",
+  "node_type": "Verification",
+  "properties": {
+    "description": "The test file every_constructor_can_say_what_the_thing_is.rs, given a check of its own in the REALIZES repair (dec:realizes-is-restricted-to-capability-component-and-interface): it had pointed REALIZES at the requirement it tests.",
+    "findings": "Passed in PR #574's CI run 35815550892 (the file as a cargo target).",
+    "kind": "verification",
+    "last_run_at": "2026-09-23",
+    "level": "integration",
+    "location": "crates/reflow2-mcp/tests/every_constructor_can_say_what_the_thing_is.rs",
+    "method": "test",
+    "name": "Every constructor can say what the thing it creates is",
+    "status": "passing"
+  }
+}

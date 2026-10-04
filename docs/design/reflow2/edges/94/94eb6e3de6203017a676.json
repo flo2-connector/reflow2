@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:adfd348835d3cb37aec4f107d576597a34abc98515e55290b1c183c1c2897572",
+  "edge_type": "ANTICIPATES",
+  "from_id": "dec:a-tool-carries-the-users-phrasing-and-the-corpus-is-the-test",
+  "properties": {
+    "evidence": "The corpus gives every tool a job stated in a user's words and a scorer that ranks tools against it — the job vector the dimension analogy needs. The top-5 test proves each tool is findable; the confusability read this idea proposes (which other tools land in a tool's top 5) is the same instrument asked the second question."
+  },
+  "to_id": "dec:idea-prune-the-tool-surface-to-an-orthogonal-essential-set"
+}

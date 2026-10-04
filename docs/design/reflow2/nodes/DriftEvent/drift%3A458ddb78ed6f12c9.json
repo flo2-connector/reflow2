@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:08342962315661ed69ddacddd8e59176639ef9d5e010791a009dc44781ec054b",
+  "node_id": "drift:458ddb78ed6f12c9",
+  "node_type": "DriftEvent",
+  "properties": {
+    "detected_at": "2026-07-21",
+    "drift_type": "checksum_change",
+    "name": "art:hierarchy drift",
+    "resolved": true,
+    "severity": "medium",
+    "summary": "'art:hierarchy' has changed since it was registered against the design"
+  }
+}

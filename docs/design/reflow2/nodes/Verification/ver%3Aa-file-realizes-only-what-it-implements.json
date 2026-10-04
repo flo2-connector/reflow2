@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:ad407f05ea8aa23ce2d3a070a703c2c6767835c49d53d75465c3b5e1d70c38f0",
+  "node_id": "ver:a-file-realizes-only-what-it-implements",
+  "node_type": "Verification",
+  "properties": {
+    "description": "Six core tests: the schema refuses REALIZES onto a Requirement and a Verification and accepts a Capability; link_artifact refuses a Requirement before writing anything and names SATISFIES/VERIFIES; it names CHANGED for a change; it still realizes a capability and implements a check; a legacy REALIZES onto a check imports as IMPLEMENTS and is reported; a legacy REALIZES onto a change is refused by name. The on-open migration is not exercised (the schema now refuses the edge it migrates) — stated in the file.",
+    "findings": "6/6 pass. Plus in-memory imports of the six other committed designs on the machine: 5 import (qbench with 5 conversions), dynograph-foundation refused only by the unrelated VERIFIES→Project case.",
+    "kind": "verification",
+    "last_run_at": "2026-09-23",
+    "level": "integration",
+    "location": "crates/reflow2-core/tests/a_file_realizes_only_what_it_implements.rs",
+    "method": "test",
+    "name": "A file realizes only what it implements, and a design written before the change still imports",
+    "status": "passing"
+  }
+}

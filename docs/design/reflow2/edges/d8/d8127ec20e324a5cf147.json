@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:380b0838bfb52ed2d19009495eae3ccfeab6768d96eab76a7bde68c3891e25a1",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:a-stored-twin-is-kept-by-the-store-test",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:a-stored-twin-is-kept-by-the-store-test"
+}

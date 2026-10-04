@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:15b51508cc491390bf50c2a4d69a2926c9b99952058ddc655bcbbc281109b7fc",
+  "node_id": "art:hub-command",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "document",
+    "description": "The slash command that fronts the hub skill; .claude/commands/hub.md is its byte-identical in-repo copy.",
+    "location": "getting-started/commands/hub.md",
+    "name": "hub.md — the /hub command",
+    "status": "realized"
+  }
+}

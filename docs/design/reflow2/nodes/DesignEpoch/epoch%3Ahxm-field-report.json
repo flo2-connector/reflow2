@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:076ac75bf65b3306d2ec13e79879e9207e2639f31efe7cea6ea9554bc5f34702",
+  "node_id": "epoch:hxm-field-report",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "epoch_type": "incident_response",
+    "name": "Field report from hxm_program: three graphs on one repo, one of them minted BY ACCIDENT because the pre-design surface never looked for nearby designs (2026-08-05)",
+    "sequence": 281,
+    "status": "arrived"
+  }
+}

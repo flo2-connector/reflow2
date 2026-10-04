@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:4e7a789f74d0a23b6b00bb11a953ea596bf691dca9fb5883eb01fdd7f267bf31",
+  "node_id": "dec:idea-prose-currency-quotes-enough-to-judge-without-a-second-read",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Recorded as BRAINSTORMING, not as a proposal. dev_storyflow agent, 2026-09-06 on 0.48.0, beside a field confirmation of the check itself (three stale descriptions caught in one day — fact:prose-currency-caught-three-stale-descriptions-in-one-field-session): \"Small ask: the excerpt is cut at 240 chars; when the stale words sit past the cut (they did here) the reader has to fetch the node anyway — consider quoting the first sentence AND a diff-worthy tail, or the whole thing when under ~1 KB.\"\n\nOPTIONS: (a) quote the whole field when it is under a size cap (~1 KB), else head + tail with the cut marked. (b) raise the cut to 1 KB flat. (c) leave 240 and rely on get_node — the block already names the field. The stakes: the block exists so the reader can judge IN THE SAME REPLY; a cut that hides the judgement-bearing words defeats it, and fact:defect-the-reply-costs-more-than-the-answer is the standing objection to quoting everything.",
+    "kind": "exploratory",
+    "name": "OPEN — prose_currency cuts its excerpt at 240 characters; when the stale words sit past the cut the reader fetches the node anyway. Quote the whole description under ~1 KB, or the first sentence and a diff-worthy tail?",
+    "rationale": "COUNTER-ARGUMENTS. (a) is the reporter's ask and keeps the reply bounded; the 'diff-worthy tail' is a guess about where stale words live (the field said the tail, once). (b) is simpler and costs up to 1 KB on every status move that carries prose — measured cost unknown. (c) is what shipped and it worked three times out of three, with one extra read. A RANKING IS A FINDING: (a) with the cap measured against this design's median description length before choosing the number. Anthony's call.",
+    "status": "proposed"
+  }
+}

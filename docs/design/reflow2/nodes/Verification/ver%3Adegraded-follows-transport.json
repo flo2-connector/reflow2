@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:b1ae8860559f9501736fc83a88cae3bce74974f8daae486beaae98926b09af99",
+  "node_id": "ver:degraded-follows-transport",
+  "node_type": "Verification",
+  "properties": {
+    "description": "The degraded surface comes out of the door the caller asked for: with the graph genuinely held by another process AND --http given, an HTTP client still completes the handshake, still finds the reason in its instructions, and can still call reflow2_unavailable — plus the startup line says DEGRADED rather than letting an operator read 'serving over HTTP' and walk away. 4 cases in tools/test_degraded_server.py, measured against a real held lock.",
+    "findings": "It caught the fault it was written for: against the v0.14.0 code all four fail with 'nothing ever listened on the port the caller asked for', because main.rs's Err arm called serve(stdio()) and never read cli.http (BL-105).",
+    "kind": "verification",
+    "last_run_at": "2026-07-26",
+    "level": "integration",
+    "method": "test",
+    "name": "The degraded surface comes out of the door the caller asked for",
+    "status": "passing"
+  }
+}

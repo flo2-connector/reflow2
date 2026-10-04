@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:8342ef689d214348f9196755c89941576d239bdefc63b0dd8607d3e9b2fd846e",
+  "edge_type": "HAS_SNAPSHOT",
+  "from_id": "dec:external-blob-store-pressure",
+  "properties": {},
+  "to_id": "snap:epoch:arrival-delta:dec:external-blob-store-pressure"
+}

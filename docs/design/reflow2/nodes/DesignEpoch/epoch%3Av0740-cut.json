@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:43da39fb305a7d52987f0b78738788ed72700cbc3f74d5d11594caacc819b381",
+  "node_id": "epoch:v0740-cut",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "description": "The cut that ships the hub skill (/hub, reflow2 #612): in a session reaching several designs, each fact goes to the design it belongs in, and a collaborator's idea waits in the hub until someone who can write to the right design routes it. It serves combined-plan position 6: flo2's shared hubs point every hub at this skill, so flo2.io upgrades to this release before flo2 #98 deploys. Cut on @ajs's word, 2026-09-28 (\"Yes, cut 0.74.0\"). Sequence 653 places it after position 3's arrival (652) and before position 7 (656).",
+    "epoch_type": "release_cut",
+    "name": "v0.74.0 release cut (2026-09-28)",
+    "sequence": 653,
+    "status": "arrived"
+  }
+}

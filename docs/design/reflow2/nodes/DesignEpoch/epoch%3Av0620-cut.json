@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:85f91ab15a87936b2ee1ecb8e9631050b094f664f132ad49529b49bb2482067a",
+  "node_id": "epoch:v0620-cut",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "description": "The release cut for v0.62.0, 2026-09-16, on Anthony's word (\"Cut the release\"). Ships six PRs merged since v0.61.2: #518 (the 2026-09-15 capture), #519 (the thirteen overtaken-defect rulings: the contradiction and unresolved_setup rules compute their condition, add_artifact takes a checksum, Interface.medium gains procedural), #520 (dependencies to current: rmcp 3.4, sha2 0.11, two unused declarations removed), #521 (tools/impact_of_diff.py, a git diff read as a design change), #522 (/log-issue and loop_status.follow_ups), #523 (GraphExport.taken_at and the PHANTOM gate). Sequence 502 follows the v0.61.2 cut (501). Minor bucket: three new user-facing capabilities. The schema stamp did not move (28 node types, 65 edge types, schema 1; the procedural enum value is not counted by the stamp), so no upgrade note. 28 ChangeEvents in the increment, found by diffing ids against v0.61.2's export: six feature/fix records, one late record for #449, one for the dependency refresh, and twenty baseline acceptances.",
+    "epoch_type": "release_cut",
+    "name": "v0.62.0 cut — /log-issue, a diff read as a design change, an export that says where it was taken",
+    "sequence": 502,
+    "status": "arrived"
+  }
+}

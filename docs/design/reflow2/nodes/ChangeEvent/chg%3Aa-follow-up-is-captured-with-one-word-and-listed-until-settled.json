@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:8a6bc6ae8f8a6c201cbac8c5af1a5289314a1b6dca8d42ec02e526ca3c59c3d1",
+  "node_id": "chg:a-follow-up-is-captured-with-one-word-and-listed-until-settled",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "detected_at": "2026-09-16",
+    "name": "/log-issue: a follow-up is captured with one word, and loop_status lists every open one until it is settled",
+    "rationale": "Anthony, 2026-09-16: walking past a beamline he saw a service he deployed misbehaving, and back at the desk wanted to type one word so it entered the design as something to follow up on. Three brainstorms had reached the same gap from three sides (a to-do with no cheap home, a failure never revisited mid-task, and this), and the recorded counter-argument to any capture was the same each time: a capture nobody settles is a to-do list by another name, the objection that killed a Task node type. So the build is two halves and neither is optional — the door asks nothing, and the loop lists what came through it until a person settles it. The general /capture-something door was deliberately NOT built: a door that asks \"which kind is this?\" is the ceremony being avoided, and the decision names a week of real use as the test of whether one door or three. No new vocabulary: follow_up is a convention on record_finding's free-text fact_type, made real by the one thing that reads it.",
+    "subject": "system",
+    "summary": "THE DOOR: a new served skill, log-issue (getting-started/skills/log-issue/SKILL.md, mirrored byte-identical to .claude/skills and .grok/skills), and its /log-issue command (getting-started/commands/log-issue.md, copied to .claude/commands and user scope). It takes the person's sentence, finds the subject from their noun via search_design (the Project when nothing matches), and calls record_finding with fact_type `follow_up`, the sentence verbatim, dated — no cause, no node type, no id asked, no loop check. THE BOUNDARY READ: DesignGraph::open_follow_ups in report.rs lists every TemporalFact with fact_type follow_up, no valid_to and no incoming INVALIDATES, oldest first; LoopStatus gains `follow_ups_open` and `follow_ups` (a FollowUp carries fact_id, subject_id, statement, captured_on), a line in `next`, and an entry under `not_attributable` when scoped. capture-session's closing step now reads follow_ups out to the user and settles each. loop_status's tool description names the class (toolsnap updated); skill_lint's NON_TOOL_TERMS gains the five field terms the skill spells out; docs/skills-and-tools.md re-rendered (28 skills). Pinned by crates/reflow2-core/tests/a_follow_up_is_owed_until_it_is_settled.rs (5 cases); workspace 241 suites and both clippy gates green."
+  }
+}

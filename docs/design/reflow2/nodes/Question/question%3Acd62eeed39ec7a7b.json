@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:daf9e2885237f33410d98a6c3d07d0ff9295a88b7b6dbb92be70756b38e73330",
+  "node_id": "question:cd62eeed39ec7a7b",
+  "node_type": "Question",
+  "properties": {
+    "answer": "\"go with req:composed-analysis and req:interface-spec-complete next\" (Anthony, 2026-07-27). Build it. Paired with composed-analysis: the import makes two designs analysable together, this makes the seam between them describable in comparable terms.",
+    "asked_at": "2026-07-27",
+    "context_setter": "Nothing satisfies requirement “A published interface carries enough to check compatibility, not just prose”",
+    "gap_id": "gap:cd62eeed39ec7a7b",
+    "question": "When one project publishes how to connect to it, reflow2 currently records the technology and little else — the rest is one block of free text. That means two projects can be linked and reflow2 still cannot tell you they disagree. Do you want it to capture the connection details properly (data formats, endpoints, security, error codes, rate limits), and if so is that the next thing you want built?",
+    "rephrase_degraded": false,
+    "status": "answered"
+  }
+}

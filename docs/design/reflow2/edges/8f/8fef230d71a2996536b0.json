@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:c62b5b2d44a7a561c33f48a34a7d95866723c318b93d146595478b4a05f672c4",
+  "edge_type": "CHANGED",
+  "from_id": "chg:scoped-analysis-built",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:service"
+}

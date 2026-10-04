@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:f1fa0fd43f6d9d355ccb482bd4f8929bcf4697fe48c4a83026f17e58be9e87e1",
+  "edge_type": "CHANGED",
+  "from_id": "chg:read-only-is-honoured-by-every-client-mode-2026-10-03",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cap:latent-surface"
+}

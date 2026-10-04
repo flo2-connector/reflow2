@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:9aa7a23833ec3a05891c9d77f57016168f59a3b21f96cd932cc2b43d664410c4",
+  "node_id": "cap:independent-evidence",
+  "node_type": "Capability",
+  "properties": {
+    "description": "The INDEPENDENCE axis of the evidence-quality family (BL-136). Reads the CALIBRATED_AGAINST edges recording what a value was derived from, and marks any VERIFIES edge whose Verification IS, or PRODUCES, evidence its own target was calibrated against as CONSUMED — a fit, not a test. Consumed checks are excluded from the count of independent evidence, so a capability whose only passing checks are consumed reports as not independently verified. Structural by construction and not analytic: BL-136's originating project built four independent internal diagnostics and none could have found the defect, because no check inside a design can establish its own independence — only the outside source could. So this records and reports the relation rather than attempting to detect circularity from the evidence itself.",
+    "name": "Refuse to let evidence a value was fitted to count as its validation",
+    "provenance": "authored",
+    "status": "verified",
+    "tier": "operational"
+  }
+}

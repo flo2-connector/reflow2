@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:ca8bb5541fa9189467dd5039b0d31125d44ab1de1e381436589687b9145c8e52",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-owner-rules-on-scope-and-reachability",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "dec:should-specifies-propagate-impact"
+}

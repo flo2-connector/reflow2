@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:d9a09b066e3396d005105dbbe0144f59bbc196a54ab0181795830f34b2e82f45",
+  "node_id": "chg:dynograph-stays-its-own-repo-for-now",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "scope_change",
+    "name": "\"Leave dynograph-foundation as its own repo for now\" takes the repo-split option off the table without settling the releasability question",
+    "subject": "record"
+  }
+}

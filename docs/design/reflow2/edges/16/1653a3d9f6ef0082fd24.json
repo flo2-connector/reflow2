@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:3a18d0c1da6daac9c199435000d11db868dcc6af3650dba6a7f739325987ca08",
+  "edge_type": "CHANGED",
+  "from_id": "chg:planning-axis-intent",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "req:epochs-can-be-planned"
+}

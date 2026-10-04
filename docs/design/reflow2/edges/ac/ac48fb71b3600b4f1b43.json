@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:1448d525290497466e225055a4296889730ddcd6106d458fbdbb61d5b6f7964c",
+  "edge_type": "CHANGED",
+  "from_id": "chg:skills-are-composed-of-attribute-classes",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:adopt-skill"
+}

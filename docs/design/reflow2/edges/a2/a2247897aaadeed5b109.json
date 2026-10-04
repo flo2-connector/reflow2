@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:7f4cc804a5fbb258b210862de96889538d99a48731d8ab2ac98126704bdfab06",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "req:read-while-held",
+  "properties": {
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "dec:read-while-held-mechanism"
+}

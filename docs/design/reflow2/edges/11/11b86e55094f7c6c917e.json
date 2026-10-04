@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:57650c0280a7bbefe52f56743998ae95302c8e5d1640f5a9daeff67d8704e462",
+  "edge_type": "CAUSES",
+  "from_id": "chg:four-root-causes-from-two-field-reports-are-fixed-at-the-cause",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "Its item (4) \"fixes the words\" of orphan_level alone: \"contain a top-level part under the Project with `contains`\". fact:root-cause-a-childless-root-part-has-no-legal-level... had named BOTH rules. hierarchy.rs's level_spine_disagreement message was left saying \"nothing contains it\", with no cure, so the agent reached for the nearest box instead of the Project.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:root-cause-an-external-part-trips-level-spine-disagreement-and-the-cure-is-named-only-on-its-sibling-rule-2026-09-29"
+}

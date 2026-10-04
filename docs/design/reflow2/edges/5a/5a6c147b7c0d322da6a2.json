@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:b033c061ad98d0fe11faa577b65baf7b48c557c803b85893341b04f031b0632b",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-held-design-test-waits-for-the-holder-not-the-store",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:a-build-can-call-one-tool-from-the-shell-test"
+}

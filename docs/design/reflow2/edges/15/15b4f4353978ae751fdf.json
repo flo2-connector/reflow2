@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:4ca5a6ae48e9ed5f431751bf63d28aaf7d28549275f0bd713a949f487d586433",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "ifc:ambient-agent",
+  "properties": {
+    "authored_at": "2026-08-09",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

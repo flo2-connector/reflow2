@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:41308e7d5ff2f1861d3c7b49906fb00074519b24a0f42af0a30fe97a3bc1dc62",
+  "edge_type": "CHANGED",
+  "from_id": "chg:unallocated-component-reads-the-ruling",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cmp:detect"
+}

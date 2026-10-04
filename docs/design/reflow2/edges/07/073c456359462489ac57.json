@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:426456a0fef30f8cd26284d922657e2648168bb346bc2491ed78bc8a02b6cc5e",
+  "edge_type": "CAUSES",
+  "from_id": "art:tools-built",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "built.rs external_dependency returns g.dependency_manifest(), the TOML text of EVERY declared dependency, instead of the stored Resource node. receipt.rs shapes only objects carrying node_id/node_type/properties or edge_type/from_id/to_id/properties, so the manifest passes through the choke point untouched and carries no id, no revision and no removal report.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:root-cause-external-dependency-replies-with-the-whole-manifest-because-the-receipt-shapes-only-node-and-edge-records-2026-10-02"
+}

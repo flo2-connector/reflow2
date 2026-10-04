@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:01fa8c9d48ff28c409fbc2ce5d5ffb1df58157f8c2da644e674a454a243596ac",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:the-build-question-is-silent-while-nothing-is-built-test",
+  "properties": {
+    "covers": "whole"
+  },
+  "to_id": "ver:a-finding-says-when-the-state-is-normal-for-the-phase"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:6726d24fccd9259a2064592f71ad780048f71b712d2cc9dad1f1d01d3b349ddf",
+  "edge_type": "CHANGED",
+  "from_id": "chg:settling-a-decision-records-which-option-won",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:service"
+}

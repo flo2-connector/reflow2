@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:b2c76e9738a391d8cfefd46f0fcb100938bf7b128670e39232c78540431ebe24",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-saved-design-moves-to-the-item-layout-2026-10-03",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:162d9b22827de8080746cb2eb14c46757305bea0a38cdb5c0f1a0298fa95b484",
+    "checksum_basis": "measured"
+  },
+  "to_id": "art:docker-smoke-script"
+}

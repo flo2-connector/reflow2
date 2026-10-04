@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:d4b245045289679edc95662a15af83176a9e998aa2b6c15d2d525678d51cc0ba",
+  "node_id": "dec:ownership-reads-claims-before-adding-an-edge",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Build the first cut of req:ownership-is-an-edge-so-debt-has-an-addressee by making the loop's reporting consume the CLAIMS edges claim_region already writes, rather than by introducing a new OWNED_BY edge type. Decide on OWNED_BY only after that is built and shown to be insufficient.",
+    "name": "Seat-scoped debt is built from the CLAIMS the graph already carries; OWNED_BY is added only if claims prove insufficient",
+    "rationale": "Anthony's word, 2026-08-08, when accepting the requirement. THE INPUT IS ALREADY IN THE GRAPH AND NOTHING READS IT: claim_region records a seat's region as a seed plus a depth, computed the same way detect_gaps computes a scope — so 'the part I hold' already means one thing everywhere, and the fleet's own #5 ask observes that 'nothing else consumes it'. A seat-scoped loop_status is therefore reachable with no new vocabulary. WHY THIS ORDER RATHER THAN THE EDGE FIRST: adding a node/edge type is the most expensive and least reversible kind of change to this schema, and the UAF audit already found 30 of 60 edge types never used once — so an unused OWNED_BY would not be a novel failure here, it would be the common one. If claims turn out to model the wrong thing (they are transient work-in-hand, while ownership is durable and survives the session), that is a real distinction and the edge becomes justified on evidence rather than on anticipation. WHAT THIS DOES NOT DECIDE: whether ownership and claim are ultimately the same concept. It only fixes the build order.",
+    "status": "accepted"
+  }
+}

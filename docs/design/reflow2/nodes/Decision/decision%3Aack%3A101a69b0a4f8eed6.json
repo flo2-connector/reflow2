@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:ffb550c8bc9d68b680a213ec980393ae538176acdb08d55d46227d5ff8ff0704",
+  "node_id": "decision:ack:101a69b0a4f8eed6",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Accepted the gap gap:101a69b0a4f8eed6.",
+    "name": "Reviewed: gap:101a69b0a4f8eed6",
+    "rationale": "Standing disposition for planned-but-unbuilt capabilities (user's 2026-07-23 call, applied again 2026-07-24). Naming the check now because this one is unusually easy to fake, and the obvious test would be worthless: asserting that requirements recovered from a suite come back looking correct proves nothing, since they were derived from that suite. The real check is the NEGATIVE one — recover intent from a passing suite, then assert those requirements do NOT read as verified or delivered on the strength of the same tests that produced them, and that cap:derived-completion (BL-104) refuses to count them. A companion case should recover from a FAILING test and assert it lands as an open gap rather than a satisfied requirement, since that is the one signal in this area that cannot be circular. If this capability is ever built and its verification only demonstrates successful extraction, the verification is wrong even when it passes.",
+    "status": "accepted"
+  }
+}

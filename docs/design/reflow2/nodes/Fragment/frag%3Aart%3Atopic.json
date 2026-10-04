@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:6c64a729726b3d473a437c1830f1020dfb5da5431cbca481cdc1a1ed89502ad7",
+  "node_id": "frag:art:topic",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered topic.rs — the /topic view computed server-side: grouped hits, status, connections, latest dated change, mandatory not-found line, bounded reply"
+  }
+}

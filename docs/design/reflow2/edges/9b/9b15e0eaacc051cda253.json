@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:82f14adf5b3086681ddbc243fb61509d689ca2a43ff9e223dde31fb5237bdba2",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-git-diff-is-read-as-a-design-change",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cmp:propagate"
+}

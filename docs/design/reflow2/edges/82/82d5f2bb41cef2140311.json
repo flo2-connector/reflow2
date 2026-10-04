@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:bfb828e0026c1ef0ac62aeea4a31fc17165fa6604acaf4c9f9420476ebaaf857",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:test-bad-news-reaches-the-decision-behind-it",
+  "properties": {
+    "covers": "whole"
+  },
+  "to_id": "ver:bad-news-reaches-the-decision-behind-it"
+}

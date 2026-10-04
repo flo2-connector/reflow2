@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:b23515acab799f15a392e21291e8ea16c957a9ee9a1749d7bcf743b9965f4b50",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0760",
+  "properties": {
+    "as_checksum": "sha256:442c70d8c6094d961bbc1bb55becaf964e72fc411d8cea7779132e0550b1f8e5"
+  },
+  "to_id": "art:a-lesson-is-served-at-the-step-handler-test"
+}

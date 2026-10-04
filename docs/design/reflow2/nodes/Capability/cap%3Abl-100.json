@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:999d16939a443da12d39227faf4e41ddd8e0d140bfef81281d37306ae6194caf",
+  "node_id": "cap:bl-100",
+  "node_type": "Capability",
+  "properties": {
+    "description": "\"Rubber-ducking\" mode — think it through before committing anything to the graph\n\n*Idea file, line 7: \"work through planning and idea realization before committing concepts to graph… agent-assisted thinking process.\"* This collides head-on with a recorded position, which is why it should be decided rather than drifted into: the git prior-art study explicitly listed the index/staging area under explicitly do NOT import — *\"continuous-capture doctrine deliberately rejects a staging gate.\"* Rubber-duck mode is a staging area wearing a friendlier name. That is not a reason to drop it; the original rejection was aimed at a gate that sits between *every* edit and the graph, whereas this is an opt-in mode for a specific activity (early, exploratory thinking where most ideas are meant to be discarded). Note what already works today: a thinking session that simply makes no write calls is rubber-ducking, and the read tools (search_design, graph_report, propagate_from, alternatives_for) are exactly the ducking aids. So the real feature is narrower than it first looks — capturing the outcome of such a session in one deliberate act, with the discarded branches either dropped or preserved as unchosen alternatives (which is what the [BL-70] fork layer just built the vocabulary for: register_alternative under a proposed Decision). Design it as *\"end the session by choosing what survives\"*, not as a staging buffer in front of every tool. Size M\n\nMigrated from docs/backlog.md BL-100 on 2026-08-07 (epoch:backlog-retired). Size estimate carried from the row: M.",
+    "name": "[BL-100] \"Rubber-ducking\" mode — think it through before committing anything to the graph",
+    "provenance": "imported",
+    "status": "planned",
+    "tier": "operational"
+  }
+}

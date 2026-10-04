@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:f28a5185a960ffb18e319febf56659e0a4caa08ffae20e0be83e5e331b20313f",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:idea-human-newcomer-reader",
+  "properties": {
+    "authored_at": "2026-08-05",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:alex"
+}

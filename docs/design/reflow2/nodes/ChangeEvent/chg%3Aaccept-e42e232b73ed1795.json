@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:8218178ba4e53bd21363685fff173bcef6feb227faf63363428946d78c866492",
+  "node_id": "chg:accept-e42e232b73ed1795",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "resync",
+    "detected_at": "2026-08-09",
+    "name": "The v0.26.0 version bump in reflow2.toml. `design_holds` because a version string carries no design meaning — the design meaning of a cut lives in rel:v0260 and epoch:v0260, not here. Accepted BEFORE release_includes_all is applied, deliberately: the manifest freezes each artifact's current checksum as shipped, and doing it the other way round freezes the pre-bump value and costs a second export (the v0.20.0 lesson)."
+  }
+}

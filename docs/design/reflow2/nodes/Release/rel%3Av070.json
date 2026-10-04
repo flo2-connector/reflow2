@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:5e4627e644171eee7407a14f37430b9f5af0d2fcb6d56621f8b43454f5df5ca8",
+  "node_id": "rel:v070",
+  "node_type": "Release",
+  "properties": {
+    "description": "Minor: Snapshot.edges (BL-63, snapshots capture design edges), single_point_of_failure measured on the as-built operational network (BL-69), and the consumer CI coherence gate reflow2_check.py + ci-gate skill (BL-66) — the kit tarball's first second tool. Superseded in place by v0.8.0.",
+    "name": "v0.7.0",
+    "status": "retired",
+    "unit_type": "binary",
+    "version": "0.7.0"
+  }
+}

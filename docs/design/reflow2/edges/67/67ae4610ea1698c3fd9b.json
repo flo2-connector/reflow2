@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:77acb50136ce9536c8036dc024abf51ce54b7e19b974bb2ad872049ec26027da",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-question-is-put-to-a-person-and-records-who-answered",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cap:questions"
+}

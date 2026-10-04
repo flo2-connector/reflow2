@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:5ad0a3f1863707175c2e7a22bc9d5cec5bb7c04a6ffbe62eea6a12ff4a385f8d",
+  "node_id": "chg:accept-f5d009f115db42d1",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "refactor",
+    "detected_at": "2026-08-06T13:10:00Z",
+    "name": "NON_TOOL_TERMS gains the SCHEDULED_FOR / DesignEpoch / GATED_ON vocabulary the new plan-increments skill names — modality, expected, required, achieved, sequence, kind, min_level, deployed, unreleased_component. The lint's own failure message asks for exactly this, in the same diff. No design meaning: the allowlist is how the lint distinguishes a field name from a mistyped tool, and adding the terms a new skill legitimately uses carries no claim about the design."
+  }
+}

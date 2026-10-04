@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:a2131b6844f7d92ca6f9f412ba7cd67ff2f563289adf592370ee4f8585090b50",
+  "edge_type": "CHANGED",
+  "from_id": "chg:accept-64cceb69c008a2b8",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:skill-link-projects"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:50bf60fe1dd2727a83e105aefe60f58f96959187f4866d4ed3673775d91af59b",
+  "edge_type": "REALIZES",
+  "from_id": "art:seam",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:complementary-pairing"
+}

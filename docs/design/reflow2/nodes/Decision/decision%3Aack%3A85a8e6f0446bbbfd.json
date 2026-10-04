@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:6743753e56b08c898c6bcafcf03ae276809badea3b5002a099cede7c7c365cbd",
+  "node_id": "decision:ack:85a8e6f0446bbbfd",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Accepted the gap gap:85a8e6f0446bbbfd.",
+    "name": "Reviewed: gap:85a8e6f0446bbbfd",
+    "rationale": "User (who:ajs, standing policy from 2026-07-23, applied again 2026-07-25): validation happens through the trials programme — docs/trials/ is where \"built the right thing\" is exercised against operational intent; formal validation-kind Verification nodes are not this project's tracking mechanism. Re-fired because cap:publish-surface joined the set (45 → 46). The trial here writes itself and is the sharpest one this project has had available: publish reflow2's own surface — ifc:mcp-tools and ifc:graph-export are now designated, so the document is real — hand it to Alex, and see whether he can build against it WITHOUT the repo. That is req:design-reachable-without-the-repo tested by the only person who can test it. What the seven tests cannot tell us is whether the boundary set is RIGHT: a design that designates too little publishes a useless surface, and one that designates too much has published its internals under another name. Only a consumer discovers which.",
+    "status": "accepted"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:55f36d39350699f353992be9bdb37450699c10bdbc66ecbc2365b0d68a667d3c",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0740",
+  "properties": {
+    "as_checksum": "sha256:a490927751f54a16058fe3f0f748ee7fc68b0358a6d2434355feb29db545d36e"
+  },
+  "to_id": "art:test-an-export-says-which-tree-it-was-taken-in"
+}

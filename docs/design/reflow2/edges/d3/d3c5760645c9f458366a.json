@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:e92304acd08b5cb562adb0ab69c06f1a8234065b65737bd65b19d62f5f757a7f",
+  "edge_type": "HAS_TEMPORAL_FACT",
+  "from_id": "req:skill-use-survives-a-long-session",
+  "properties": {
+    "evidence": "The third and fourth observations of this requirement, 2026-08-23 — the first from outside this repo, and the first where a SECOND agent reproduced the reported failure the same day."
+  },
+  "to_id": "fact:an-agent-stopped-reaching-for-reflow2-and-a-second-one-reproduced-it-the-same-day"
+}

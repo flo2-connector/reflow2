@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:df2551b9d3b5eda3f99ea8153787f64993e5264b20cecdbd2488bd304cea213b",
+  "node_id": "frag:art:test-a-capture-that-replaces-a-node-says-so",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered a_capture_that_replaces_a_node_says_so.rs — the served handlers, failing first"
+  }
+}

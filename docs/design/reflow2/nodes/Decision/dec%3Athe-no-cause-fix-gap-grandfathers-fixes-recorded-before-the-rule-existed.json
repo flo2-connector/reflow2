@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:445d1c4ca3fca56a8fa1b823f74dc5471e6d5a80eb60e7ee1308f464b93de21a",
+  "node_id": "dec:the-no-cause-fix-gap-grandfathers-fixes-recorded-before-the-rule-existed",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Anthony ruled on 2026-09-07 (\"yes, agree with all 5\"): the FixWithoutRecordedCause gap source gains a date boundary, the same shape the intent-authority gate already uses to grandfather nodes settled before that rule existed. Fixes recorded on or after the boundary are counted; the 183 recorded before it are excluded from the count and named as grandfathered rather than as debt. The boundary is the date req:a-fix-says-whether-it-corrected-the-cause was accepted. Nobody backfills a cause onto a historical fix.",
+    "kind": "choice",
+    "name": "The fix-without-a-cause gap counts only fixes recorded after the rule existed — the 183 earlier ones are grandfathered, not backfilled",
+    "rationale": "Writing causes for 183 fixes made before anyone was asked to record one would be invention, not recall — the sessions that made them are gone, and a cause reconstructed from a diff is exactly the confident wrong answer the root-cause skill exists to stop. Leaving the aggregate standing was the alternative: it is honest, but it is a permanent warning nobody can ever clear, and a finding that can never go green stops being read, which costs more than it reports. The date line keeps the measurement live where it can act — on every fix made from now on — and states the historical position plainly instead of hiding it, because the excluded count is still reported as grandfathered. Precedent: the intent-authority gate reports 356 grandfathered nodes beside 314 named ones and is read as trustworthy for exactly that reason. Scheduled for v0.52.0; it is a small change to the detector, not a schema move.",
+    "status": "accepted"
+  }
+}

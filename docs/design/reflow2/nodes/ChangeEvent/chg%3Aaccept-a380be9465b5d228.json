@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:319abafb9f4bdc24102790c016c718fc6f653432df5341bc8a4ee69474d07c1c",
+  "node_id": "chg:accept-a380be9465b5d228",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "refactor",
+    "detected_at": "2026-08-24T21:45:00Z",
+    "name": "One test function renamed from a_declaration_retired_by_a_PROPOSED_decision_still_reports to ..._a_proposed_decision_... . The test's assertions, subject and meaning are untouched: it still pins that is_discontinued requires the withdrawing Decision to be ACCEPTED, so a proposed removal keeps reporting. The rename is a clippy non_snake_case fix — `cargo clippy -p reflow2-core --no-default-features --all-targets -- -D warnings` refused to compile the test target, and the narrower clippy invocation run in the prior session did not reach it. Nothing the design says about dependency reconciliation moved.",
+    "subject": "system"
+  }
+}

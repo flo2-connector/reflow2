@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:885e98805ee7b5763b4d08addc0bceace5e0f74505289df4152890eea34156a1",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-saved-design-moves-to-the-item-layout-2026-10-03",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:fd7d146443194bb92d3f851864bf18d04fed7904bd59449b5e962d9e3bf7d767"
+  },
+  "to_id": "art:vscode-call-door-field-report-2026-10-02"
+}

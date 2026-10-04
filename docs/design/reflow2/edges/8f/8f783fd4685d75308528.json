@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:90f440497b21e8f3c5737c6eaa88443f4038ed15baf88191b4e70afa7a60f128",
+  "edge_type": "GOVERNED_BY",
+  "from_id": "req:design-identity",
+  "properties": {},
+  "to_id": "dec:identity-out-of-band"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:eb7e3124c300a7af53e7bb20be6be000902bc64aebe9f669ff4136a62906ef79",
+  "edge_type": "CHANGED",
+  "from_id": "chg:remote-sessions",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "req:sessions-across-machines"
+}

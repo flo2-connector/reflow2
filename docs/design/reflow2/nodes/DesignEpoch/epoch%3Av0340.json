@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:a45d53ea4833553c7c08d551ff6a39b4de00ddee2617ba0604a102fbfccd6b93",
+  "node_id": "epoch:v0340",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "epoch_type": "release_cut",
+    "name": "v0.34.0 — the instruments stop overstating: five requirements, two breaking changes, and a seedless way in",
+    "sequence": 355,
+    "status": "arrived"
+  }
+}

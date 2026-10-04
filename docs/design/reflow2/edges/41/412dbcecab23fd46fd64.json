@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:a58bf5dde7c8cfe071870a3b2aaf8ecdac11ce4dea27d3b9bd3c90811c2a3757",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-saved-design-moves-to-the-item-layout-2026-10-03",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:722b56ace4c4be001c2ad396f142c4ba50f09eeca8f8615eeb3e75adeed28d13"
+  },
+  "to_id": "art:every-tool-is-found-by-a-query-in-the-users-words-test"
+}

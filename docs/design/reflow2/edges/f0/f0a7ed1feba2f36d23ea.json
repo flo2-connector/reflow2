@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:34b2a7bb737769489358605a22bb184354e33359e9de2ae48936a83333be8d06",
+  "edge_type": "REALIZES",
+  "from_id": "art:vocabulary",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cmp:vocabulary"
+}

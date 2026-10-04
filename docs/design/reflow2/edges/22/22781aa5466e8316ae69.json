@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:442790f65429e0ce2a9f1a4c6604ce2a8a0b7ba571f41191349a36e48805cceb",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:an-artifact-declares-what-only-its-author-knows",
+  "properties": {
+    "authored_at": "2026-08-05",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

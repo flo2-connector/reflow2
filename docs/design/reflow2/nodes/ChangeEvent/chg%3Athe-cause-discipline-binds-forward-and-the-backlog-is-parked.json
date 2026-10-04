@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:38155f6f8589a5e7e83fefa017b986db868f798780f97fe91ed5c7ff9d35d474",
+  "node_id": "chg:the-cause-discipline-binds-forward-and-the-backlog-is-parked",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "scope_change",
+    "name": "The cause-edge boundary is fixed at its detector's landing, 228 pre-detector fixes are parked, and the requirement stops claiming a settled fork is open",
+    "subject": "system",
+    "summary": "Closes the `fix_without_recorded_cause` gap (228 of 259 fixes joined to no cause) by parking every pre-detector fix under a subordinate ruling, and corrects the stale prose that made the work harder than it should have been.\n\nWHAT CHANGED: (1) `dec:the-cause-discipline-binds-forward-not-backward` recorded and accepted — the cause-edge limb binds from 2026-09-06, the day its detector shipped, subordinate to and GOVERNED_BY the 2026-08-17 parent ruling. (2) 228 GOVERNED_BY ruling=parks edges drawn from the pre-detector fixes to it. (3) This requirement's closing paragraph, which had said the retro question was NOT YET DECIDED for three weeks after it was decided, replaced with the settled answer and a note on where the two limbs' boundaries sit.\n\nVERIFIED, not assumed: `detect_gaps` went 8 → 7 and `fix_without_recorded_cause` no longer appears in `by_source`.\n\nMEASURED BEFORE ANY WRITE: 259 fixes, 31 joined to a cause, 228 not, and ZERO of the 228 recorded on or after the detector's landing — every fix since carries its cause. That is what makes the boundary honest rather than convenient: the detector was reporting a backlog accumulated while nothing asked, not a discipline being ignored.\n\nNOT A REPAIR, so it carries no `repair` disposition: nothing was broken and nothing was fixed in the system. This is a scope ruling on what an existing detector ranges over."
+  }
+}

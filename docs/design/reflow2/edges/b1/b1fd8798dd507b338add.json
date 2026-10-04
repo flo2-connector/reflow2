@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:934752d8465e45154b1f8fceac035eaf0093b5af3a52f90930cd44ee88bbeacf",
+  "edge_type": "GOVERNED_BY",
+  "from_id": "cap:intent-authority-is-checked",
+  "properties": {},
+  "to_id": "rule:design-intent-moves-only-on-the-owners-word"
+}

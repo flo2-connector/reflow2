@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:b516c4b77fa2306ae8deef810e55647cfb785efd6260d3d540c750bf3757f43e",
+  "node_id": "req:a-photocopy-says-it-is-one",
+  "node_type": "Requirement",
+  "properties": {
+    "concern": "core",
+    "kind": "functional",
+    "lineage": "original",
+    "name": "Every export says it is a copy: where and when it was taken, and that it is a fork nobody tracks",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "Anthony (who:ajs), dev_reflow2 hub session, 2026-09-27",
+    "statement": "Every design export shall carry, in the document itself, that it is an export: the server and design id it was taken from, when, and that from that moment it is a fork reflow2 does not track or refresh. Importing one shall say plainly that it replaces the design it lands in, or starts a new one (rules 3 to 5 of dec:idea-one-blueprint-the-store-is-the-design-and-an-export-is-a-perishable-photocopy). The purpose is that no reader, agent, tool or person mistakes an export for the live design. Two measured cases show the need: fact:a-moved-design-cannot-be-watched-and-its-frozen-export-reads-as-live-2026-09-27, and an export mailed to two people who each import it and both believe they are \"on the design\" (dec:idea-how-does-somebody-share-a-reflow2-design). Anthony, 2026-09-27, accepting \"export stamp\", which answers the design-and-export decision's open question (d).",
+    "status": "accepted"
+  }
+}

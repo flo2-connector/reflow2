@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:ba0991c2e4e65f552b7458cce9e3b45a4b5d4db5b1aa6dbe1103401ac9693297",
+  "edge_type": "REALIZES",
+  "from_id": "art:a-revising-write-says-what-it-removed-test",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:a-revising-write-says-what-it-removed"
+}

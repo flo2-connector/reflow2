@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:3c240b53469eda1eb5c0c61f5c83e1918ba13edecab7e3857022c2f628b6eb3d",
+  "node_id": "art:export-to-reaches-the-daemon-gate",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "test",
+    "description": "A CI gate that drives a real `--shared` client over stdio, writes one node, and requires the export file to appear. It exists because the defect it pins was found by INSPECTION while building the feature: a --shared client is a proxy, so passing it --export-to and stopping there would have meant the flag every installed project now carries has no effect in the default configuration, while every test that drove a plain stdio server passed. Shown to fail — with the forwarding removed it reports the file never appeared — before it was trusted.",
+    "location": "tools/test_export_to_reaches_the_daemon.py",
+    "name": "test_export_to_reaches_the_daemon.py",
+    "status": "realized"
+  }
+}

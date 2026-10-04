@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:6074aeac5ef4c83aae39dbb30b6d8e334bd6bc5a778e21eccaec97803e9d3335",
+  "edge_type": "CHANGED",
+  "from_id": "chg:nudge-resolves-home-relative-hooks",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:nudge-detect"
+}

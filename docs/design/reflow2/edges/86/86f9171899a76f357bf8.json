@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:a8c1619f72c54db54426fef95f72ded729906bd5cae72891437a8971f1fb6190",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0620",
+  "properties": {
+    "as_checksum": "sha256:776dac29b2d37ee2139dc434d8de8edc523315dac4b91f4140dad826d94222c3"
+  },
+  "to_id": "art:help-skill"
+}

@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:ce542e50fce3c9ae248c00350c75358bf9b082e1bb1f4a7cf9831557bb8aa2c8",
+  "node_id": "ver:container-image",
+  "node_type": "Verification",
+  "properties": {
+    "description": "The image builds, runs unprivileged, and a design survives replacing the container (run by hand on a real Docker daemon, 2026-08-06, 6 checks): builds clean on BOTH bases (ubuntu:22.04 the release base, ubuntu:24.04 the dev fallback); the container reaches `Up (healthy)`, so the HEALTHCHECK's /dev/tcp probe works and the port is only bound after the store is open; `id` inside reports uid 1000 on both bases; the volume gets the designed layout with graph.id.json and graph.meta.json BESIDE the store rather than inside it; and THE ACCEPTANCE TEST FROM req:hosted-state-outlives-the-image PASSES — stop the container, start a new one against the same volume, and graph_id is byte-identical (4934a26b7cc87ed2 both times) with ZERO re-mint warnings, so the new container adopted the existing design rather than opening an empty one beside it. WHAT THIS DOES NOT COVER, stated because the gap is invisible otherwise: the release.yml `container` job has never run — publishing needs a version tag — so registry login, push, multi-tag and the pull-back verification are unexercised. The Dockerfile is proven; the publish path is written and untested.",
+    "kind": "verification",
+    "last_run_at": "2026-08-06T11:45:00Z",
+    "level": "integration",
+    "method": "demonstration",
+    "name": "The image builds, runs unprivileged, and a design survives replacing the container",
+    "status": "passing"
+  }
+}

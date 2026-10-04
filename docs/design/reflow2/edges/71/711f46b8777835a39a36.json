@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:f61419997f77e03846f481c5d9e44f2aaab98bdca898417b03ab3d579bdfc90d",
+  "edge_type": "ABOUT_ENTITY",
+  "from_id": "fact:an-agent-stopped-reaching-for-reflow2-and-a-second-one-reproduced-it-the-same-day",
+  "properties": {
+    "evidence": "Names the hard limit on this capability from the outside: the highest-rated fix asks it to key on whether an edited file is a registered artifact, which it cannot do because the hook deliberately never reads the graph."
+  },
+  "to_id": "cap:skill-triggers"
+}

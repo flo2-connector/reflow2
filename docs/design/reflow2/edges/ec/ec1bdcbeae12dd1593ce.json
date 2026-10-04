@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:ab20e0aa9235af09c5c2b1a163c4d2b571c973a59aa7734ed4f3d73417bb5aed",
+  "edge_type": "CHANGED",
+  "from_id": "chg:remote-sessions",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:test-shared-sessions"
+}

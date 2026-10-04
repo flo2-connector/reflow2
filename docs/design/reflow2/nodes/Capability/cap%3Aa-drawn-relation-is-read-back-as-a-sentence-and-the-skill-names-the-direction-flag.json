@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:17b342642e6ec63c69e8bd4db8e460de6456ced4a6e8e621f0980286c7bb5dd2",
+  "node_id": "cap:a-drawn-relation-is-read-back-as-a-sentence-and-the-skill-names-the-direction-flag",
+  "node_type": "Capability",
+  "properties": {
+    "description": "As built 2026-09-20, closing both halves of flo2 F16. THE ECHO: review_relations labelled each edge `BLOCKS -> cmp:artifact-store`, which omits the subject — and a reader who has just written the call supplies the subject they INTENDED rather than the one they sent, which is how two reversed edges passed their author twice in one session. The label is now `{from} {RELATION} {to}`, so the two directions no longer render alike: outward reads `req:deleting BLOCKS cmp:store` and inbound reads `cmp:store BLOCKS req:deleting`. Applied to every relation rather than only the asymmetric ones, because the label already existed and a uniform shape reads better than a conditional one; the asymmetric relations are where it earns the change. THE INSTRUCTION: the brainstorm skill stated that direction is part of the claim and that nothing would catch a reversal, and never named `incoming`, which has always existed — so a user who believed no such flag existed drew two edges backwards, then routed two more through create_edge by hand and wrote a script to check direction. The skill now names the flag and tells the reader to read the echoed sentence back. Test: crates/reflow2-core/tests/a_drawn_relation_is_read_back_as_a_sentence.rs. Three existing assertions in tests/review_relations.rs pinned the old label and were updated, each keeping its own intent.",
+    "name": "A drawn relation is read back as a sentence with its subject, and the skill names the flag that draws an inbound one",
+    "provenance": "authored",
+    "status": "realized"
+  }
+}

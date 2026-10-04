@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:d5d1cffd68ca35177d02f62494c437378beb0a9e32c4afd7339db23ff120ff06",
+  "edge_type": "CHANGED",
+  "from_id": "chg:bl73-component-verified",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:detect"
+}

@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:0574b101f231c0240509d1d5a68f96571a8aee17c50b469864a5a0909e62b3a8",
+  "edge_type": "CAUSES",
+  "from_id": "fact:defect-a-property-naming-a-node-is-unguarded-while-edges-are-not",
+  "properties": {
+    "basis": "observed",
+    "confidence": 1.0,
+    "evidence": "The second direction of the same theme — a declared property holding a dangling node reference, where the other is an undeclared property name. Two facts, one requirement, which is what the per-theme ruling asked for.",
+    "validation_status": "validated"
+  },
+  "to_id": "req:a-write-says-what-it-did-not-recognise"
+}

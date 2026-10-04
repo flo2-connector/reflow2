@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:18d0f2be2b76f92ccee01bbf2192710bed7b9c5c3a559ea662e3afcaf4aa6e12",
+  "node_id": "chg:bl86",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "name": "BL-86: set-based schema stamp — record which types, disambiguate the upgrade refusal"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:5993612f5ff3c51851e938f5806323bbe873454cde08a33cd9d9af9a884fb803",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-reply-carries-its-payload-once-on-every-tool",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:a-reply-is-sent-once-gate"
+}

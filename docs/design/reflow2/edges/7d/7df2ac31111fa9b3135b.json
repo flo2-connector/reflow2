@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:c84422401f6009986960d6e9e8c96c15164ebfbc20fc4586a2c2e2bb1040b919",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:a-reconcile-stamps-every-check-it-compared",
+  "properties": {
+    "approved_at": "2026-09-22",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

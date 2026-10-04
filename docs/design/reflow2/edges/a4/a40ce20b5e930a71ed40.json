@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:eb33d91303766b6af892293539668b119ced267582048481c9c46457bdeea0a4",
+  "edge_type": "CONTRADICTS",
+  "from_id": "fact:hydrate-cost-is-superlinear-in-edges-and-the-byte-store-is-not-the-bottleneck",
+  "properties": {
+    "alignment": "opposing",
+    "confidence": 0.9,
+    "evidence": "That idea compares embedded engines on the assumption that the engine is what costs. Measured with NO engine at all — in-memory backend, no RocksDB, no tantivy — hydrate is still 8.8s at 3,140 nodes, with 95% of it inside import_graph and only 4% in JSON parsing. Whichever engine wins that comparison, it cannot move the number that matters, so the premise the comparison rests on is contradicted rather than merely unsupported."
+  },
+  "to_id": "dec:idea-a-byte-backend-that-compiles-in-seconds"
+}

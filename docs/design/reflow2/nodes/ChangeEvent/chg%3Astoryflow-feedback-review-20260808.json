@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:4dbb5dda3426edb28693a4b19db5691c92a445107f571a3f16534315764529d8",
+  "node_id": "chg:storyflow-feedback-review-20260808",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "name": "dev_storyflow's 2026-08-08 reports reviewed and recorded: a shipped seat-liveness fix proved incomplete, time-bound claims need a home with an expiry, and the computed claim region is re-opened"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:cb12c733dcc6c8d49afee43e6f94b524cda26b2b88e7ca0442f7f6f7ef836808",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-how-does-a-test-result-get-back-in-when-the-tester-may-not-be-an-agent",
+  "properties": {
+    "evidence": "That measurement is what shows the mechanism exists and has never left a trace, which is why this question is about firing it rather than building it.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "fact:every-link-of-the-founding-chain-exists-as-a-tool-and-the-chain-has-never-been-walked-on-reflow2-itself"
+}

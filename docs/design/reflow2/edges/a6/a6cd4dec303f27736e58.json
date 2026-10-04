@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:1caf26b35573660ba2783475d064a8429076920e883cd3a237586dbb68d33e64",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-rule-binding-a-component-is-modelled-20260808",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cap:vocabulary"
+}

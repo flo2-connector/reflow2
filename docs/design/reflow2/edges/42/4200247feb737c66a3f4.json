@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:895d2f46453d83c3927aecce3b560dd84680b63bf7cb4cb5a8166f7d1c3096a4",
+  "edge_type": "GOVERNED_BY",
+  "from_id": "req:a-cluster-can-be-declared-deliberately-separate",
+  "properties": {
+    "note": "The cluster that fires is governance, and that decision commits the project to growing it here"
+  },
+  "to_id": "dec:governance-integrates-not-splits"
+}

@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:b12f79a2f80247f86843a628b2c5a49fbf06a5e123b93757083cf9f5d62e5543",
+  "node_id": "ver:discontinued-is-read",
+  "node_type": "Verification",
+  "properties": {
+    "description": "A discontinued thing stops being unfinished work, and the marker is READ (crates/reflow2-core/tests/discontinued_is_read.rs, 6 cases). THE DEFECT CASE: a capability withdrawn by an accepted Decision raises no gaps — the content store had read `realized` with a `passing` check for two days after its code was deleted. THE AUTHORITY CASE: a `proposed` decision to withdraw has withdrawn nothing, which is rule:design-intent-moves-only-on-the-owners-word on the retire path. THE CASCADE: the requirement a withdrawn capability served drops back to unsatisfied and is asked about again, so a discontinuation is not invisible one hop away. THE VISIBLE COUNT: delivery falls AND reports satisfied_only_by_discontinued, because a number that moves with no explanation is the silent-drop failure forbidden everywhere else. TWO COUNTERWEIGHTS carry the weight: a live capability beside a discontinued one is still asked about, and OBSOLETES from something that is NOT a Decision (a superseding epoch) does not discontinue — without that, any obsoleting edge would silence a capability. NOT COVERED: an OBSOLETES edge whose target no longer exists, and discontinuation is read for Capabilities only — Components, Interfaces and Artifacts have no reader.",
+    "findings": "MUTATION-CHECKED THREE WAYS, each verified applied before running: dropping the accepted-only check fails the authority case alone; accepting OBSOLETES from any source fails two; disabling all three detector reads fails the defect case. ⚠️ WRITTEN AFTER THE IMPLEMENTATION, not before — the third such instance recorded on 2026-08-11 (fact:implement-first-cost-an-edge-case-2026-08-11), and the cost showed up as a first draft asserting the wrong detector would fire: deleting the only artifact zeroes unrealized_capability's population, so unverified fired instead. The assertions now name the PROPERTY (it is asked about at all) rather than a detector, which is closer to the contract.",
+    "kind": "verification",
+    "last_run_at": "2026-08-11",
+    "level": "unit",
+    "method": "test",
+    "name": "A discontinued thing stops being unfinished work, and the marker is read",
+    "status": "passing"
+  }
+}

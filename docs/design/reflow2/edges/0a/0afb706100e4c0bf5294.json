@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:ee2bfb13a16cf7e2793a8ca9fff24ab6d37b1e916c40126f99f6abb25b0fcfa7",
+  "edge_type": "CHANGED",
+  "from_id": "chg:bl182-granularity",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:report"
+}

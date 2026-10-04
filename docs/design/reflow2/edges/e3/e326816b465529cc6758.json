@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:21630a0e4a56c2f980117bc6ca0ba74bf4b8ce273f42d79769e55fa8da6f45a5",
+  "edge_type": "REALIZES",
+  "from_id": "art:tools-coherence",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cmp:tools-coherence"
+}

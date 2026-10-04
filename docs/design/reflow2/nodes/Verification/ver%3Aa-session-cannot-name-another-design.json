@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:a378b8dead41087ab89bf6abf9f7a8b05e9dbcbfa5f3c5dfa57d5cf656d4bb8d",
+  "node_id": "ver:a-session-cannot-name-another-design",
+  "node_type": "Verification",
+  "properties": {
+    "description": "A design a session was not attached to cannot be reached by NAMING it: a graph_id it was not attached to is REFUSED rather than served, and a path is not an alternative route in. NOW COVERED, 2026-08-12, in crates/reflow2-mcp/tests/a_session_names_its_design.rs (8 cases) against the surface that finally exists — crates/reflow2-mcp/src/registry.rs. CLAUSE 1 is pinned twice, and the second case is the one that matters: an id this registry does not hold is refused (`an_id_the_registry_does_not_hold_is_refused`), AND a design that genuinely exists elsewhere on the machine is refused identically (`a_real_design_outside_the_root_is_refused_like_any_other`) — so knowing a real graph_id is not a way in, and the registry's ROOT is the boundary. CLAUSE 2 is pinned as a refusal rather than left to the type system (`a_filesystem_path_is_not_an_alternative_route_in`): a path handed to attach() comes back as an unknown ID, never resolved as a location. Belt and braces on both: a Binding exposes ONE design and offers no operation taking another id, so 'cannot name another' holds BY CONSTRUCTION and not by a check anyone must remember — `a_binding_carries_one_design_and_offers_no_way_to_ask_for_a_second`. And WHO MAY LIST WHICH DESIGNS is untouched: graph_ids() returns what the OPERATOR placed under the root, which is right for one owner's neighbourhood and is not a multi-tenant policy (dec:idea-a-session-holds-several-graphs, unanswered).",
+    "findings": "MUTATION-CHECKED: serving an unknown id by falling back to any design fails 3 cases; accepting a path as a route in fails exactly the case that names it. THE TRIPWIRE THAT FORCED THIS IS RETIRED — the_registry_clauses_are_not_covered_here fired the moment registry.rs appeared, exactly as designed, and is now a pointer (the_registry_clauses_are_covered_now) that fails if this coverage is ever deleted. ⚠️ WHAT THIS DOES NOT COVER, stated so the green is not read wider than it is: no TRANSPORT is wired, so no session can yet select a design at runtime — cap:select-graph-by-id prefers an HTTP path prefix /g/<graph_id>/ and remains in_progress.",
+    "kind": "verification",
+    "last_run_at": "2026-08-12",
+    "level": "integration",
+    "method": "test",
+    "name": "A design a session was not attached to cannot be reached by naming it",
+    "status": "passing"
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:90055b89251372741d65909977f6ecd15ffba17931172eb490d755982cd5f0ad",
+  "edge_type": "HAS_SNAPSHOT",
+  "from_id": "cap:release-publishes-a-container",
+  "properties": {},
+  "to_id": "snap:epoch:preserved-on-write:cap:release-publishes-a-container"
+}

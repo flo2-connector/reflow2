@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:e470276a4bfce295fbd190d242b374f10d4f7bd30176cec6e1a354a49dc4c80c",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-saved-design-moves-to-the-item-layout-2026-10-03",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 2,
+    "action": "modified",
+    "checksum_after": "sha256:dda58d1432772bd302a22db836a7a805ecee78aeb31d3bb28b0bacb133b82345",
+    "checksum_basis": "measured"
+  },
+  "to_id": "art:sync-debt"
+}

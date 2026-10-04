@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:e4205196f7dff7ed0859ddeab6747e98a627bc1941405fc9ff5fe45d5963972d",
+  "edge_type": "SPECIFIES",
+  "from_id": "art:schema-inference",
+  "properties": {
+    "format": "json_schema"
+  },
+  "to_id": "ifc:core-api"
+}

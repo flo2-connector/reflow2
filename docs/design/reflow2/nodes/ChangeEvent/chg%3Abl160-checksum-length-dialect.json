@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:145616cde11ca21b2afcdcff17ae5545ee1467d9a21a5fdabac4525d1cd8cd55",
+  "node_id": "chg:bl160-checksum-length-dialect",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "test_failure_fix",
+    "name": "BL-160: a registered checksum's LENGTH is a dialect too, and the compensation lived in the wrong layer. reflow2's own designs register `hexdigest()[:16]` (build_design_graph.py) while an honest caller running `sha256sum` supplies all 64, and `reconcile_artifacts` compared STRINGS — so a full sweep of a provably clean tree reported 51 phantom drifts in the same minute `reflow2_check.py` said \"OK — design and build agree\". The gate was right for the wrong reason: it carried a Python workaround truncating the observation to the registered length, which no other consumer had. This is BL-125 in a second form and takes the same verdict — a false red on a gate whose whole job is to be believed is worse than no gate. `artifact::checksums_agree` now answers it in the core for every consumer, on BOTH the drift comparison and `set_artifact_checksum`'s would-move-the-baseline guard (the half that would have failed a BL-157 bulk sweep on every short-registered artifact), and the Python workaround is DELETED rather than duplicated by the next consumer. Required is a real PREFIX relationship, never truncate-both-to-N, and it applies to the `sha256:` dialect only. MEASURED ON THE REAL DESIGN: 109 artifacts, 51 truncated baselines, all 51 now unchanged, and the only 4 drifts are the files this change edited. Corrects a belief the design itself had recorded — chg:accept-e52b527aba651ac4 says a full-length registration is \"harmless, since reconcile truncates the observation to the registered dialect\"; reconcile never did, the gate did."
+  }
+}

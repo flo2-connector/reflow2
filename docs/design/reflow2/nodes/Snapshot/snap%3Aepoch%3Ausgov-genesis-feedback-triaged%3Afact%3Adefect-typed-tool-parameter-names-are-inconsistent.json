@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:b31cc974614df4f1e61810ab4d2395949c36d95ff1c69dcec265d8ed9a585ecd",
+  "node_id": "snap:epoch:usgov-genesis-feedback-triaged:fact:defect-typed-tool-parameter-names-are-inconsistent",
+  "node_type": "Snapshot",
+  "properties": {
+    "edges": "[{\"direction\":\"in\",\"edge_type\":\"HAS_TEMPORAL_FACT\",\"other_type\":\"Component\",\"other_id\":\"cmp:service\",\"properties\":{}},{\"direction\":\"out\",\"edge_type\":\"ABOUT_ENTITY\",\"other_type\":\"Component\",\"other_id\":\"cmp:service\",\"properties\":{}}]",
+    "state": "{\"basis\":\"measured\",\"confidence\":1.0,\"fact_type\":\"defect\",\"statement\":\"TYPED TOOL PARAMETER NAMES DISAGREE WITH THE NODE PROPERTIES THEY SET, AND ONE SESSION HIT NINE OF THEM. Each cost a failed call, an error and a retry: `add_decision` rejects `status`; `set_decision_status` wants `decision_id` not `id`; `record_change` wants `target_type`/`target_id` not `node_type`/`node_id`, and `name` not `description`; `governed_by` rejects `note` though describe_schema DOCUMENTS note on GOVERNED_BY; `satisfies`/`allocate` take only from_id/to_id; `create_edge` wants `props` not `properties`; `add_epoch` requires `sequence`, undiscoverable until it fails; `add_capability` rejects `capability_type` and `tier` though nodes CARRY both; `propagate_from` wants `seed_ids` not `node_ids`. NOT ONE IS WRONG ON ITS OWN. Together they mean a fluent session still fails roughly ONE CALL IN FOUR, because the mental model 'typed constructors take the node's own property names' is right often enough to keep being used and wrong often enough to keep costing a round trip. || SOURCE: Observed by the dev_storyflow fleet on 2026-08-15, on reflow2 0.31.0 with served == installed verified through /proc/<pid>/exe. Three agent seats, one shared graph, one day.\",\"subject_id\":\"cmp:service\",\"value\":\"{\\\"mismatches_in_one_session\\\":9,\\\"estimated_failure_rate\\\":\\\"~1 call in 4\\\",\\\"examples\\\":[\\\"add_decision.status\\\",\\\"set_decision_status.decision_id\\\",\\\"record_change.target_type\\\",\\\"governed_by.note\\\",\\\"create_edge.props\\\",\\\"add_epoch.sequence\\\",\\\"add_capability.capability_type\\\",\\\"propagate_from.seed_ids\\\"]}\"}",
+    "target_id": "fact:defect-typed-tool-parameter-names-are-inconsistent",
+    "target_type": "TemporalFact"
+  }
+}

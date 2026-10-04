@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:a76df1a43fdac7ee2fa53663b6069c423c393dcba373819e88dca76705e9a4c9",
+  "edge_type": "VERIFIES",
+  "from_id": "ver:a-write-unit-is-all-or-nothing",
+  "properties": {},
+  "to_id": "cap:a-refused-write-stores-nothing"
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:e524de0c9f492a67aea0e8ae4cce08de3d02d075d37db07b06669245e5650db5",
+  "edge_type": "EVOLVES_INTO",
+  "from_id": "dec:idea-every-design-starts-as-a-pseudo-design-and-whether-reflow2-already-holds-that-layer",
+  "properties": {
+    "evidence": "Option A, promoted on Anthony's word 2026-09-13 and sharpened by him in the promotion: the one-page layer is a reference for the implementing agent, held like pseudocode, not a rendering for a person."
+  },
+  "to_id": "req:the-implementing-agent-holds-a-compact-design-reference-derived-from-the-graph"
+}

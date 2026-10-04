@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:f1e14faafbe005639bdf6103797b86180a0528ca04cbea6b3ae40c916247f816",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-handoff-hook-is-retired-and-the-contradiction-closed",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "req:a-session-says-what-it-did-by-hand-that-reflow2-already-serves"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:865157faf03f52ae925899c261c78d9288c1d12fad25be5cb0d4d7fe0478a1d2",
+  "edge_type": "REALIZES",
+  "from_id": "art:a-lesson-is-served-at-the-step-handler-test",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "verified"
+  },
+  "to_id": "cap:a-lesson-is-served-at-the-step-it-concerns"
+}

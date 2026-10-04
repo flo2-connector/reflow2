@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:c914ac836a613d629d3bb7498736c3785e7110eabd5c3eb9233e16b2c980c5c5",
+  "edge_type": "CHANGED",
+  "from_id": "chg:brainstorm-skill-built",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:skills-catalog"
+}

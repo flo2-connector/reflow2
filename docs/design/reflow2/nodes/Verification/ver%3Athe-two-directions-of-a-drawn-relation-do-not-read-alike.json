@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:0965f1db2ba6776fe5c02300ad377c3515cd806c7ae0215508f8fabfa8adcf89",
+  "node_id": "ver:the-two-directions-of-a-drawn-relation-do-not-read-alike",
+  "node_type": "Verification",
+  "properties": {
+    "description": "crates/reflow2-core/tests/a_drawn_relation_is_read_back_as_a_sentence.rs: three tests. The third is the one that matters — if the two directions rendered the same, the echo could not catch a reversal.",
+    "findings": "3 of 3 passing; the 14 existing review-relations tests pass with three assertions updated to the sentence form.",
+    "kind": "verification",
+    "last_run_at": "2026-09-20",
+    "level": "unit",
+    "method": "test",
+    "name": "An outgoing relation reads subject first, an inbound one reads with the other node as subject, and the two directions do not read alike",
+    "status": "passing"
+  }
+}

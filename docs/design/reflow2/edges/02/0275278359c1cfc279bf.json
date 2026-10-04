@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:3cd96a8309b163f60d3efdff36425f189e84cbe7881b6e1174c2a1ece292ebaf",
+  "edge_type": "CAUSES",
+  "from_id": "fact:defect-a-measured-contribution-carries-no-date-so-it-is-believed-forever",
+  "properties": {
+    "basis": "observed",
+    "confidence": 1.0,
+    "evidence": "music_graph F22; the CONSTRAINS edge was read in schema/core.yaml and confirmed to declare note, contribution and basis with no date before this requirement was stated.",
+    "validation_status": "validated"
+  },
+  "to_id": "req:evidence-carries-the-date-it-was-taken"
+}

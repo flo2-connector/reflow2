@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:415a7ec1cc56e3f571f91859e764a031f2f2110ddd1dd114eaa54a0284855dda",
+  "edge_type": "CHANGED",
+  "from_id": "chg:register-obligation-becomes-lint-checked",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:skill-lint"
+}

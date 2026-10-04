@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:e8198e8e787ae745e47404d9627e60d5ab4c71d1473d434c96d80e03f77eb0ad",
+  "node_id": "decision:ack:7957f52a429a38a3",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Accepted the gap gap:7957f52a429a38a3.",
+    "name": "Reviewed: gap:7957f52a429a38a3",
+    "rationale": "Standing disposition for planned-but-unbuilt capabilities (user's 2026-07-23 call, applied again 2026-07-24). The check to write when this is built, because the obvious one is too weak: asserting that the view returns SOMETHING ranked proves nothing. The test must assert the ranking RULE — construct a graph with a proposed Decision that governs an otherwise-ready piece of work, and require the view to surface the decision above that work, not beside it or beneath it. A second case should assert the view stays honest about its own blind spots: until cap:derived-completion lands it cannot distinguish allocated from delivered, so it must say so rather than presenting a confident ordering built on an unanswerable question. A prioritisation view that hides what it cannot see is worse than no view, because it reads as authoritative.",
+    "status": "accepted"
+  }
+}

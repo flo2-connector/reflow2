@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:140e8b0a79738a3b347b9df67af16743d9530ad47bfa4da1009ffd5d9ab1195c",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:edge-orthogonality",
+  "properties": {
+    "approved_at": "2026-07-22",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

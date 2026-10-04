@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:7b5d85087cbbc91150451616bf862d53fdbb9268390ba40159efe005bfc54710",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-specifies-edges-are-drawn-and-the-vocabulary-is-measured",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "req:declared-vocabulary-is-reachable-from-the-surface"
+}

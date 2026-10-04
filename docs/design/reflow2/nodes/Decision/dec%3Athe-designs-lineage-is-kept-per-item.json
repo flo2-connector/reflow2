@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:110ae98d7b4948e0a1da4cbbef4212841145ce7dc805a787e88d23f8ad43e29d",
+  "node_id": "dec:the-designs-lineage-is-kept-per-item",
+  "node_type": "Decision",
+  "properties": {
+    "chose": "Anthony, 2026-10-03: \"yes, go with your recommendation for the 6\" (item 13, decision 2).\nOPTION (a): each changed item's prev_item_hash is its hash at the merge-base; the lineage check runs per item; the whole-design hash is computed on read, never stored. This supersedes dec:export-once-per-pr and dec:export-serialisation-belongs-to-the-gate.\nFor a contributor: export as often as wanted, any commit; no chained_from; merging main is plain `git merge`. The #571 mid-merge break cannot happen.",
+    "decision": "OPTIONS\n(a) PER-ITEM LINEAGE. ⭐ RECOMMENDED. Every node and edge file carries its own content_hash and the prev_item_hash of the version it replaced. The design's history is the set of item chains, walkable without git, plus ChangeEvents for the human account. There is no shared header, so there is no hot spot and nothing to conflict on. A squash-merge lands each changed item one hop, which is what dec:export-once-per-pr protected, now per item and by construction.\n(b) LEAN ON GIT'S HISTORY. This drops the purpose the chain was built for (dec:export-hash-chain: the design's history must not depend on git). Rejected for that reason.\n(c) A SEPARATE LINEAGE LOG FILE. Every PR appends to it, so it conflicts on every PR pair: the same hot spot, moved.\nRECOMMENDED (a). Consequences: dec:export-once-per-pr and dec:export-serialisation-belongs-to-the-gate are superseded, because multiple exporting commits on a branch no longer break anything; each item's chain advances only when that item changes. The coherence gate's LINEAGE check becomes per item: every changed item's prev_item_hash must equal that item's hash at the merge-base.",
+    "kind": "choice",
+    "name": "SETTLED 2026-10-03 — the design's lineage is kept per item (prev_item_hash at the merge-base); the whole-design hash is computed on read",
+    "rationale": "Designed 2026-09-23 on Anthony's instruction. PROPOSED for his word. It resolves the CONTRADICTS edge req:the-saved-design-merges-correctly-under-gits-ordinary-merge carries against dec:export-once-per-pr by keeping that decision's PURPOSE (one hop per merge, history independent of git) and dropping its MECHANISM (one whole-file chain). The #571 lineage failure (an export taken mid-merge chaining from the wrong main) cannot happen per item, because an item unchanged by the branch keeps main's hash.",
+    "status": "accepted"
+  }
+}

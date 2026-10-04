@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:bb1fc4ce55b6061075770c1d7cf970608baeda60e08ea096b5ba11db428cc3cf",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-pair-with-mcp-for-blender-as-the-hands-that-make-and-show-the-cad-artifact",
+  "properties": {
+    "evidence": "A pairing with a CAD tool is only worth anything if the answer to who-holds-the-pen is 'the agent carries the design INTO the tool that makes the artifact'. If the agent authors geometry directly (the bhome road), there is nothing to pair with.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "dec:idea-who-authors-the-domain-artifact"
+}

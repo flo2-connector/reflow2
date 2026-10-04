@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:c00bfec95f193aa78cdb4547faa2e2d5a57ab2ec3374e1159f24cd18b71ef6e1",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-what-else-should-cast-doubt-on-a-settled-decision-and-what-should-strengthen-one",
+  "properties": {
+    "evidence": "Both asks are extensions of that capability's trigger set — one adds an input it lacks, the other asks for the mirror-image walk for good news — so neither is buildable before it is.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "cap:revise-trigger"
+}

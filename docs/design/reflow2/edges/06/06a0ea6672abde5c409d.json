@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:755d7aa9803ec564f95c525a9fdfc0d038209a9bf767ff5eb3b1778411b42f52",
+  "edge_type": "CHANGED",
+  "from_id": "chg:every-skill-has-a-command",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "dec:commands-are-the-exception"
+}

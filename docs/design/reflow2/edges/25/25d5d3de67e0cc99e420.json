@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:ce0d5e571eae59d496d581458d152b6afd666fa32348dacc3761500d6a24c15a",
+  "edge_type": "GOVERNED_BY",
+  "from_id": "cap:claim-liveness",
+  "properties": {},
+  "to_id": "dec:advisory-concurrency"
+}

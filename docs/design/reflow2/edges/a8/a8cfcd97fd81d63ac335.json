@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:fc9b49ded62bcbd5bcbae098713e65a6c8f43ae6394ebbd13aeea9f2364c21aa",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:tools-assure",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:tools-assure"
+}

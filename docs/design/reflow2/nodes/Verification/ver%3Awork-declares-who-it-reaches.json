@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:187760440cb8796d640c26c37bb127af0e8b6487156ea25a07e8c7753e118a62",
+  "node_id": "ver:work-declares-who-it-reaches",
+  "node_type": "Verification",
+  "properties": {
+    "description": "7 cases, crates/reflow2-core/tests/internal_only_delivery.rs. FIRES: a need whose only declared delivery is `internal`. DOES NOT FIRE: one `consumer` deliverable alongside internal work (the rule forbids MISTAKING internal work for product work, never doing it); a requirement the user dropped; a design that has classified nothing. AN UNDECLARED ARTIFACT IS EVIDENCE OF NEITHER SIDE and is counted in the evidence rather than read as internal. Per-requirement, not aggregate, pinned by a two-need case: accepting \"this one is internal on purpose\" must not pre-accept the next. An audience outside the enum is refused naming both legal values. MUTATION-CHECKED THREE WAYS: counting undeclared artifacts as internal failed exactly the undeclared case; ignoring `dropped` status failed exactly the dropped case; and REMOVING THE \"nothing to run on\" GUARD FAILED NOTHING — which proved the guard was dead code rather than the test weak, and it was deleted. 🛑 THAT THIRD MUTATION EXPOSED A REAL HOLE, recorded rather than closed: a design that has declared no audience anywhere is silent in every surfaced report. `vocabulary_coverage` was the obvious home and does not fit — its unused list names node and edge TYPES, never PROPERTIES, so the field is counted and never named. This check pins that hole so it cannot close silently.",
+    "findings": "7 of 7 passing. Two of three mutations caught exactly the cases naming them; the third caught nothing and that was the useful one — it proved a guard dead and exposed that no surfaced report names an unused PROPERTY, which is now recorded as an open hole rather than papered over.",
+    "kind": "verification",
+    "last_run_at": "2026-08-22T16:20:00Z",
+    "level": "integration",
+    "method": "test",
+    "name": "A need delivered only by internal work is asked about, and an unclassified design is not judged",
+    "status": "passing"
+  }
+}

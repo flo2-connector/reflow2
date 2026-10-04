@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:7bf3e7c5d78ea71a38655ec5680fc56f4055d92a008a8843734b43ff9ec0bce6",
+  "node_id": "chg:governance-proposal-skill-20260808",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "name": "The capture half of governance ships: a rule's consequence is asked in plain language and written explicitly, so `enforced` stops being inherited from a default nobody chose"
+  }
+}

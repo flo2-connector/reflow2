@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:4f6d21317433d7d58b9fd02166d7086a413d428535db8c431e0a15d7c034c2a8",
+  "edge_type": "GOVERNED_BY",
+  "from_id": "chg:a-node-records-what-the-user-calls-it",
+  "properties": {
+    "evidence": "The build exists because of this requirement and took its scope from it: five types, additive, renames nothing, gates nothing."
+  },
+  "to_id": "req:a-node-records-what-the-user-calls-it"
+}

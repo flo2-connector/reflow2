@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:9df7b0cfc0e7acba719132c0c63101ca2e89dab92595aed81f01eb91955da527",
+  "node_id": "ver:closure-reads-a-design-phase-and-a-build-phase",
+  "node_type": "Verification",
+  "properties": {
+    "kind": "verification",
+    "last_run_at": "2026-09-29",
+    "level": "integration",
+    "location": "crates/reflow2-core/tests/closure_reads_a_design_phase_and_a_build_phase.rs",
+    "method": "test",
+    "name": "closure_report reads a design phase beside the build phase: a design allocated, traced and checked on paper closes at design and not at build; a budget on estimates closes at design only; a parked requirement is parked, never a hole; a proposed ruling parks nothing; every reading names its phase",
+    "status": "passing"
+  }
+}

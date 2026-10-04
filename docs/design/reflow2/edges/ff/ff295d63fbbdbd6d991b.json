@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:390a8a0d54b279c4a8bdb56ed7a4d02e57d5e55d8dc0a361dbe55a452325575c",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:scheduling-a-question-test",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:scheduling-a-question-test"
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:b213fb6e0994dbd785d227544ae57ba766b67062ca3d3d9d8a2c3229422b07bb",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:test-a-local-client-works-against-a-remote-server",
+  "properties": {
+    "covers": "whole"
+  },
+  "to_id": "ver:a-local-client-works-against-a-remote-server"
+}

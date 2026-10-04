@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:d4b060f3330c9250637402fce43e4305e2c3fa9b59eb2b7e37e6102f0524edd7",
+  "edge_type": "REALIZES",
+  "from_id": "art:impact-check-skill",
+  "properties": {
+    "completeness": "partial",
+    "conformance": "reviewed"
+  },
+  "to_id": "cap:the-graph-asks-what-a-session-made-false"
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:0de702c0c3d50a85db0088624ef884e74d345471d5cc1c06f71ca7f65bed9036",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:onboarding",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:skills"
+}

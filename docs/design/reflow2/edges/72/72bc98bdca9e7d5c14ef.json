@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:263e342708d66d61a398b7e91f775c5474431c72a2da0049b2d7eda436a2a1c6",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:arrival-delta",
+  "properties": {
+    "authored_at": "2026-07-30",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

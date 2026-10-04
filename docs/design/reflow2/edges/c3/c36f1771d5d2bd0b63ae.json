@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:e3d3508a4e035df032e15742bd18c0da2c63e04857cfd8519fab3453c6eb3ca6",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0780",
+  "properties": {
+    "as_checksum": "sha256:398050eaadec1bb6091ae8a57c634fb1bf557fb98aa7cd2a13dfe6da8bcbc0d6"
+  },
+  "to_id": "art:proxy"
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:9ddf650b71f72813abf1547155d55be7e63228dc7d01163d8a39346af36ab452",
+  "node_id": "frag:art:merge-driver-test",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered test_merge_driver.py"
+  }
+}

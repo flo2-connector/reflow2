@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:3d5e0c37e253ce6ed85f5c215c6a35056bec93653d0a08881736f1ec3c9c0027",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:a-component-can-be-moved-not-just-given-another-parent",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:hierarchy"
+}

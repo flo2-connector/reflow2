@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:647141563ad4aed4dd854ed088b0828ec73a712f0e9c48f574dd96c4c74236fd",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:idea-a-one-word-capture-for-something-to-come-back-to",
+  "properties": {
+    "approved_at": "2026-09-16",
+    "authored_at": "2026-09-16",
+    "roles": [
+      "author",
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

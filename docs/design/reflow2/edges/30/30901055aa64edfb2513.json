@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:f5b4a290d060770bcc67f84204771cae4783b0f0fb28a4a701873e7e33f497c9",
+  "edge_type": "CAUSES",
+  "from_id": "cap:scoped-analysis",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "Read from `regions.rs:170`: `design_regions` loops over every REGION_SEED_TYPE node — 1 Project + 108 Components on this design — and calls `self.scope_region(&n.node_id, depth)?` inside the loop, so the region walk is rebuilt from scratch per seed rather than built once and interrogated. Measured on the wire 2026-09-11: a single scoped walk (`detect_gaps` with `scope` and `depth: 1`) costs 5,173 ms; 109 of those is ~545 s, which accounts for the observed >300 s with no other cause needed. The three rollups it calls first — detect_gaps 3,881 ms, open_defects via detect_defects 10,711 ms, claims 5,143 ms — are each paid ONCE and together are ~20 s, so they are not the story.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:design-regions-is-one-expensive-region-walk-per-seed-and-there-are-109-seeds"
+}

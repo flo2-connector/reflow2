@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:88899430d11331a961442625f8661e0cfa128d1c3fc7c000f9cade968435110d",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:should-propagate-seed-from-a-drift-event",
+  "properties": {
+    "authored_at": "2026-08-09",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:storyflow-api-boss"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:9f66cbbcf11c2893c20b4c51f4b13b1ba267fa6e24bb08855b557768316cba99",
+  "edge_type": "REALIZES",
+  "from_id": "art:find-tools-corpus-fixture",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "reviewed"
+  },
+  "to_id": "cap:tool-search"
+}

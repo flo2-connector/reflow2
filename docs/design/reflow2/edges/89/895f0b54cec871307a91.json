@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:bd353476b3b3131ef4c5b2429b08956df545eab884a625b64aa19fb1ebce5d3f",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-shareable-record-is-findable",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:kit-pointer"
+}

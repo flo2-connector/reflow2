@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:a8380cdf897d1edc4dfe6e81f3376d57e471fbdae59dc42f52103e77772acea2",
+  "node_id": "frag:art:run-ci-gates",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered run_ci_gates.py"
+  }
+}

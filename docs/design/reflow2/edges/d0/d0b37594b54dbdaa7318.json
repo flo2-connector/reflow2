@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:59d2658380f3909890c99c2905bf2f5a3d1fbdc553669792f828e3d2b8c35fc2",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:parallel-work",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:skills"
+}

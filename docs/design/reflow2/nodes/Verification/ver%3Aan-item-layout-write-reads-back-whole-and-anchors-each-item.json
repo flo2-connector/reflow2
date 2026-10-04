@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:3f3b729a38916a0e54b41cf3c17aa150ec0d793baa550532037635bc0fca8fc3",
+  "node_id": "ver:an-item-layout-write-reads-back-whole-and-anchors-each-item",
+  "node_type": "Verification",
+  "properties": {
+    "description": "Core: the layout of a design reassembles to the same nodes, edges and whole-design hash; an unchanged design rewrites nothing; one change writes one file; a changed item names its anchor hash across repeated exports and gets the anchor's file back when changed back; a new item has no prev; outside git it chains from disk; a tampered or misplaced item is named and two files for one item are refused; an unknown field is refused; ids become safe file names. MCP: export_graph to a directory writes the layout, design.json holds graph_id and schema_version only, the layout ignores its taken_at sidecar, an unchanged re-export writes nothing, import_graph reads it back to the same hash, a changed item chains from main in a real git repo while untouched items keep main's bytes, a directory holding other files is refused, and a tampered item is named on import.",
+    "findings": "2026-10-03 (chg:the-design-is-saved-one-file-per-item-2026-10-03): 12 of 12 core tests (the 8 layout tests) and 3 of 3 MCP tests pass.",
+    "kind": "verification",
+    "last_run_at": "2026-10-03",
+    "level": "integration",
+    "method": "test",
+    "name": "An item-layout write reads back as the same design and anchors each changed item at the merge-base",
+    "status": "passing"
+  }
+}

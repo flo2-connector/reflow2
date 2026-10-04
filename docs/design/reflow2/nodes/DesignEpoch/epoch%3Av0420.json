@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:e78ce055bbe4363ad9eb874e5bb7ef1e8a12e0db341d26b29f4af5ddf4abd65f",
+  "node_id": "epoch:v0420",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "epoch_type": "release_cut",
+    "name": "v0.42.0 cut — the root-cause skill, composed skill classes, and the field-report fixes Alex was waiting on",
+    "sequence": 388,
+    "status": "arrived"
+  }
+}

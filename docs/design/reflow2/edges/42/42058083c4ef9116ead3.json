@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:f62d7b00196be0afc6ae5c2a6b7828261009d72ddda72583db236efd5a2a69bb",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:the-server-keeps-the-working-tree-export-current",
+  "properties": {
+    "approved_at": "2026-09-11",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

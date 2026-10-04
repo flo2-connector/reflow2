@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:02073b7315f78d9e4d77a3d1adc4c4b940f34e2b4ef6eb845b2343482ad09af0",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:hosted-state-on-a-volume",
+  "properties": {},
+  "to_id": "req:hosted-state-outlives-the-image"
+}

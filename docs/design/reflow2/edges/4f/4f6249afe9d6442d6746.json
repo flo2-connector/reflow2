@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:8c56c308fa51ed62bd6b404a3125c6815c5ad2cebb9495e316df7987815de8f2",
+  "edge_type": "VERIFIES",
+  "from_id": "ver:a-consumer-migrates-to-the-item-layout-and-its-gate-passes",
+  "properties": {},
+  "to_id": "cap:a-project-migrates-to-the-item-layout"
+}

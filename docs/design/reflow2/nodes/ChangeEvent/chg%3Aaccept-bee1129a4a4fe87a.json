@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:0925c748817e732986d1c69a7cb6c46118e38b14828fb6060a6255275de58e89",
+  "node_id": "chg:accept-bee1129a4a4fe87a",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "test_failure_fix",
+    "name": "Added the overview breadcrumb required by AGENTS.md rule 2."
+  }
+}

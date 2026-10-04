@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:bc1fa0b73cb19ba102a86d9afa078fd93c8a24f9d9fb8e795e0aef367c3f8175",
+  "edge_type": "CHANGED",
+  "from_id": "chg:bl186-ordering-and-standing-questions",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cap:corpus-ingest"
+}

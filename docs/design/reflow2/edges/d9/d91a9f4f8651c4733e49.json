@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:7323cd9b200723ce31b51b1df323f81c3e1ad09a8fbfc0ddf5fb4e9a498089dd",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0720",
+  "properties": {
+    "as_checksum": "sha256:6cc16ca10742fffe4358412d459e451e98af7f8eec7e5292647a24d424d9f8e9"
+  },
+  "to_id": "art:test-a-design-closes-against-a-declared-threshold"
+}

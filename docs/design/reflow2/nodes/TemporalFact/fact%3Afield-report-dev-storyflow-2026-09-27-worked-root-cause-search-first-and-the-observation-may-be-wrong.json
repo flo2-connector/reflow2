@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:b5e48e67f93280447e171a72c9a5f2e40ef8f15e12a269ce0f5197eddf96b426",
+  "node_id": "fact:field-report-dev-storyflow-2026-09-27-worked-root-cause-search-first-and-the-observation-may-be-wrong",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "observation",
+    "name": "WHAT WORKED (dev_storyflow, 2026-09-24 and 2026-09-27): the root-cause skill's \"the observation itself may be wrong\" candidate changed an outcome, and step ② (search the raw words first) twice found the record that settled it",
+    "source": "art:dev-storyflow-feedback-2026-09-27",
+    "statement": "Recorded so a regression is checkable. 09-24 (session 3bd108ab): the finding to fix (\"onboarding writes a blob the sheet never reads\") was true in code but never observed — a census showed 0 of 1,182 characters had ever received onboarding spells, because onboarding's only screen is mounted nowhere; \"Fixing the stated cause alone would have changed nothing a player sees. The `search_design`-on-the-raw-string step found the TemporalFact that originally made the claim, which is how I learned it was inferred, not seen.\" 09-27 evening (on flo2.io): \"Root-cause step ② paid off immediately. One of four defects … had been root-caused on 09-26 as an instance of a recorded 137-call class. Reading that saved a re-diagnosis. It also exposed that my own step-⑥ claim … was stale, because the gate had been fixed on 09-26.\" What must not regress: step ②'s raw-words search and step ③'s mandatory \"the observation itself is wrong\" candidate.",
+    "subject_id": "cap:root-cause-skill",
+    "valid_from": "2026-09-27"
+  }
+}

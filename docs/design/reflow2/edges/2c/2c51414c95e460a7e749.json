@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:625b401bf48c16adaba7e45894ccf97a797aa13c8a267d608cfc155805f5d499",
+  "edge_type": "CHANGED",
+  "from_id": "chg:loop-reports-assigned-decisions",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:tools-coherence"
+}

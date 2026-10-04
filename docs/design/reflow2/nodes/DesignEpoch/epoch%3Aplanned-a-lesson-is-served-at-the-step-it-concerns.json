@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:e6545320cdc02e75161e77dc52010e580e4aa3b43a069d0596ed7a681f1b505c",
+  "node_id": "epoch:planned-a-lesson-is-served-at-the-step-it-concerns",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "description": "Anthony's word, 2026-09-12 (\"go with your recommendations on the 5\" — item 3). Follows 437 (/feedback).\n\nIN: (1) DesignRule and TemporalFact gain an optional `steps` property (list of served skill names and/or served tool names) — declared in the schema, offered by record_finding and add_design_rule, revisable. (2) `get_skill` carries, beside the body, every lesson THIS design holds whose `steps` names that skill, newest first, each with its id, its name and the node it is hung on. (3) The tool list this server serves carries, on each tool's description, the lessons this design holds for that tool — so the moment an agent reads how to call it, it reads what bit this project last time. Toolsnaps are unaffected because they are taken on an empty design. (4) The seven lessons migrated on 2026-09-12 name their steps where a step exists (plan_epoch's defect → `plan_epoch`; format-before-export → `export_graph`; the pipe trap and the false all-clear → the release flow's skills where one exists, else none). (5) Tests shown to fail first: a lesson naming a skill appears in that skill's reply and in no other; a lesson naming a tool appears on that tool's listed description and nowhere else; a lesson naming no step appears in neither; an empty design lists the surface unchanged (the toolsnap gate proves it); a step name that is neither a served skill nor a served tool is REFUSED with the nearest names, so a typo cannot file a lesson where nothing will ever serve it.\n\nNOT IN: a new node type; a lessons page; enriching every tool REPLY (refusals already carry reflow2's own lessons; a project's lessons on a refusal is a later, measured step); delivery outside reflow2's steps (shell, git, CI); claiming the recurrence stops — the baseline is recorded and the next session is the measurement.",
+    "epoch_type": "revision",
+    "name": "Increment 438 — a lesson is served at the step it concerns",
+    "sequence": 438,
+    "status": "arrived"
+  }
+}

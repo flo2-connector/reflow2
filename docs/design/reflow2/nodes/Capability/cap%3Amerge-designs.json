@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:7c63f79be2000f09c33c43629eafd6511edaf8dbabd93ede41c4cc0189bcca76",
+  "node_id": "cap:merge-designs",
+  "node_type": "Capability",
+  "properties": {
+    "description": "Given a common-ancestor export and two divergent records, compute a typed three-way merge per node and per property (git's trivial-merge case table over typed values, not lines): where only one side changed, take it; where both changed differently, surface a structured conflict as a Question rather than guessing. Deletion is retain-and-ask. The write-side sibling of cap:compare-designs. BL-80 #1+#2, the core of BL-12's merge. BUILT + VERIFIED (art:merge, ver:merge, 46 tests): merge_designs proposes (writes nothing); resolve_merge materialises the merged design from the human's per-conflict decisions; apply_merge commits it into the live graph atomically, refusing until every conflict is decided. Surfaces: merge_designs (read-only) + apply_merge (write) MCP tools; and the file-pure git-file pair of CLI modes --merge (propose, printing conflicts and their ids) and --merge-apply (apply a decisions file with resolve_merge, printing the merged export document, never touching the graph and refusing until every conflict is decided). Base is git's merge-base; the reflow2-native DAG is BL-70; rerere is BL-80 #5.",
+    "name": "Three-way merge two divergent designs",
+    "provenance": "authored",
+    "status": "verified",
+    "tier": "operational"
+  }
+}

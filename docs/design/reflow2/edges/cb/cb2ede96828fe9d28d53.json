@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:5c8c15ce4034ca1236563271a92d37442c582e276b39bc329158149fd1eef46f",
+  "edge_type": "CHANGED",
+  "from_id": "chg:linked-repos-trial-run",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "dec:linked-repos-poc"
+}

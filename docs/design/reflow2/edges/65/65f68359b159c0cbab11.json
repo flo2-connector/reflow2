@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:297e16a3fc2e6230a6e4299c6a56265a69ff3dea35ca1a725a67ed5f4eba8b8f",
+  "edge_type": "REALIZES",
+  "from_id": "art:a-settled-decisions-name-stops-asking-test",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:settling-a-decision-records-which-option-won-without-rewriting-the-deliberation"
+}

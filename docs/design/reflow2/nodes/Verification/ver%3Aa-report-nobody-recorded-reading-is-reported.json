@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:f4e823630cc05dd7133af8cf0fb4fefa59e161be976b0d1bb6176447652c016b",
+  "node_id": "ver:a-report-nobody-recorded-reading-is-reported",
+  "node_type": "Verification",
+  "properties": {
+    "findings": "6 passed. Confirmed against the LIVE reflow2 graph as well as the fixture: 3 untriaged_report findings, all info, and the report this session triaged and back-linked is correctly absent — the true negative that could not have existed before the compliance edge was drawn.",
+    "kind": "verification",
+    "last_run_at": "2026-09-09",
+    "level": "integration",
+    "method": "test",
+    "name": "untriaged_report fires on a governed document with no CAUSES edge, is cleared by the edge, survives parking, ignores an ungoverned document and a non-methodology rule, and never rises above info (6 cases)",
+    "status": "passing"
+  }
+}

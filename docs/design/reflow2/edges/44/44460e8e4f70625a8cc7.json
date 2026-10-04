@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:63d247449e7cdacdc40c3c5649db0fb094e7d299c1080826e8aa1939d5073fed",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-required-interface-is-not-an-unprovided-one",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:detect"
+}

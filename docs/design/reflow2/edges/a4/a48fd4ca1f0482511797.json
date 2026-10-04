@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:3e71e199438c388ab0f52b59459571849b641a850436496adf69166f2a322656",
+  "edge_type": "CHANGED",
+  "from_id": "chg:delivery-can-be-a-model-change",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:temporal"
+}

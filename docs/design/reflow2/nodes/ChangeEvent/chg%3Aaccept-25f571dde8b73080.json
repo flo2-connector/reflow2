@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:ceddcb8f2f8b8e8c3ea9bfd7baa3bc236425eda2837f3189bf0286d34794413a",
+  "node_id": "chg:accept-25f571dde8b73080",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "resync",
+    "detected_at": "2026-09-17",
+    "name": "Accepted a new baseline: the change carries no design meaning",
+    "subject": "system"
+  }
+}

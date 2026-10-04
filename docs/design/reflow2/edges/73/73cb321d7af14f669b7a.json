@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:3aa4e71fbfdc1fe7c479f29fddf55720d495b662e6a42b584fde200891f7120a",
+  "edge_type": "REALIZES",
+  "from_id": "art:test-a-superseded-finding-does-not-read-as-current",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:claims-carry-their-age"
+}

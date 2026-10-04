@@ -1,0 +1,20 @@
+{
+  "content_hash": "sha256:a350bb35747fb8d800d7a8c09afab3201e0dd68c92bde2906489a9837894cb81",
+  "node_id": "fact:the-direction-flag-on-a-relation-exists-and-no-skill-names-it-so-two-edges-landed-reversed",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "confidence": 0.9,
+    "fact_type": "defect",
+    "name": "`incoming` exists on every relation link and no served skill mentions it, so a reporter drew two edges backwards and then filed the flag as missing",
+    "source": "flo2 reflow2_feedback.md, session of 2026-09-19",
+    "statement": "FLO2 F16 was filed claiming `review_relations` can only draw edges FROM its own node, and CORRECTED the same day by its own author: the `incoming` flag exists and works. MEASURED 2026-09-19: `incoming` is in review_relations' published schema, and `grep` over all 30 served skills finds the word in NONE of them. The cost was paid twice before the correction — two BLOCKS edges landed asserting the reverse of what their own `evidence` prose said, caught only by the reporter re-reading their own call — and then a third time in work: believing no flag existed, they routed two relations through create_edge by hand and wrote a script to verify direction. ⭐ THE SHAPE, and the reporter names it as the fifth instance in one file: the field existed, the tool served it, and its absence was inferred from a reply and from a skill that did not mention it. 'An API is not a schema — and a skill is not an API reference either.' This is the three-legs rule with the INSTRUCTION leg missing: the brainstorm skill's step 4 tells an agent that direction is part of the claim and that nothing will catch a reversal, and then does not name the remedy the tool already offers.",
+    "steps": [
+      "brainstorm",
+      "link-ideas",
+      "review_relations"
+    ],
+    "subject_id": "fact:vocabulary-needs-three-legs-and-a-users-project-gets-none-of-it",
+    "valid_from": "2026-09-19"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:99449525cc8b9b3dae5e30f6da8561638b2f2bc5621ff6fffc0b80188fafb142",
+  "node_id": "chg:seam-incompatibility",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "name": "Two linked designs can be compared boundary by boundary, and Interface.medium stops defaulting to REST — a default that had been asserting a technology nobody chose"
+  }
+}

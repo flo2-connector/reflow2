@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:8d04a1daa588cbb9c07e338aeab775811fdc5d364e8742d439de359ab2fcb952",
+  "node_id": "ver:ility",
+  "node_type": "Verification",
+  "properties": {
+    "description": "Computed evidence reaches its axis without becoming a verdict (crates/reflow2-core/tests/ility.rs) — 11 cases, weighted to the refusals. THREE LINES DEFENDED AT ONCE. (1) NO SCORE IS EVER DERIVED — asserted as JSON field names rather than prose, because the report legitimately says the words 'grade' and 'score' while explaining what it refuses to do, and the first version of this test tripped on its own explanation. Collapsing findings into maintainability: 0.62 is the lossy move dec:readiness-is-an-observation-the-threshold-is-the-judgement already refused for TRL. (2) ADVERSE IS INHERITED, NEVER RE-JUDGED: a finding counts against an axis only where the computation that produced it already calls it a defect. Modularity is a ratio, a trajectory band is a POSITION `maturity` refuses to grade, a granularity observation is one `granularity` refuses to call a defect, and a surprising connection may be hidden coupling OR a creative link — all reported as context, because relabelling them here would overrule a module that deliberately declined to judge and would smuggle back the thresholds those modules were built without. (3) IT MUST NOT PRETEND: performance, security, scalability and observability report NOT INFORMED with the reason rather than reading clean. THE ASYMMETRY IS DELIBERATE AND TESTED: an asserted good score over adverse evidence is flagged, but an asserted LOW score over a quiet axis is NOT — 'no detector fired' is an absence of evidence, and treating it as evidence would be the reading claiming a clean axis is healthy, which it cannot know.",
+    "findings": "MUTATION-CHECKED against five seeded regressions. Four were caught. THE FIFTH WAS INERT AND EXPOSED A MIS-NAMED TEST RATHER THAN A HOLE: deleting the HealSeverity::Info guard fails nothing, because all four mapped categories are Warning-or-Critical by construction and orphan_node is already excluded by mapping to no axis — so the test was renamed from an_info_defect_... to an_unmapped_defect_category_..., which is what it actually proves, and the guard's unreachability is stated at its site. A surviving mutation is not proof a test is weak; check the mutation first.",
+    "kind": "verification",
+    "last_run_at": "2026-08-03",
+    "level": "unit",
+    "method": "test",
+    "name": "Computed evidence reaches its axis without becoming a verdict",
+    "status": "passing"
+  }
+}

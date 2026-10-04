@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:2b69450230940c83ea645567065b1de14e43326a6440346400e0a6b0b16a1d4e",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-saved-design-moves-to-the-item-layout-2026-10-03",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:7b53fd4a4fb0c2bfac8a48dc15bcb83b4fb19435f3133b9b8edf4d0d7663d334",
+    "checksum_basis": "measured"
+  },
+  "to_id": "art:dependency-currency-checker"
+}

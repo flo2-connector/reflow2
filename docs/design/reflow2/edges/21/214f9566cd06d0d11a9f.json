@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:38571b9abd565b892d983ca147ce800b5e222878a7528d13f383d5f1bb6ca56e",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:a-skill-is-found-by-describing-the-job-and-the-corpus-is-the-test",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:skills"
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:6b2b86d5e3ffa87e74594d9a093cd63595d85930a45d27874e91022370b42eb2",
+  "node_id": "chg:baseline-ceae8eb92a6bd75b",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "baseline_established",
+    "detected_at": "2026-09-04",
+    "name": "First baseline. Excerpt of lines 6726-7085 of the fleet's append-only feedback file, captured 2026-09-04. Frozen observation.",
+    "subject": "record"
+  }
+}

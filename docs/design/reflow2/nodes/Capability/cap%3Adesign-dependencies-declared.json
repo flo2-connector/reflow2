@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:3091d91d22164a81e3a463ba7a65bf822ba5bf96863330f3a519ee078d33ee3f",
+  "node_id": "cap:design-dependencies-declared",
+  "node_type": "Capability",
+  "properties": {
+    "description": "A dependency declaration records the source, the version a design MEANS to depend on, the parts taken and the build switches forwarded by name; `reconcile_dependencies` compares that against what the build actually resolves and reports both opposite failures — the build taking something nothing declares, and a declaration the build no longer takes. `dependency_manifest` emits `reflow2.toml`, stamped with which reflow2 produced it. Declaring nothing reads as \"nobody has said\", never as \"depends on nothing\".",
+    "name": "Declare which version of another design you depend on, and check it against the build",
+    "provenance": "authored",
+    "status": "realized",
+    "tier": "operational"
+  }
+}

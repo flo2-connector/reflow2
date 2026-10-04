@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:59904c5a713de2c2ae0b28cd355673eae1ca92a4c838c6d3e0728e9b97950281",
+  "node_id": "dec:idea-relevance-ranking",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "RECORDED AS BRAINSTORMING, NOT AS A PROPOSAL — from a review of what dynograph-foundation offers that reflow2 does not yet use (2026-08-01, at Anthony's request). Nothing here is settled.\n\nTHE OBSERVATION: propagate.rs:389 ranks impacted nodes by GLOBAL betweenness centrality — `design_network()?.betweenness()`. That answers \"is this node generally important in the design?\", which is not the same question as \"is this node relevant to the change I just made?\". IP-9's stated intent is the second one.\n\nTHE IDEA: dynograph_graph::personalized_pagerank (already a dependency, unused) is random-walk-with-restart — the teleport mass returns to a SEED SET instead of spreading uniformly, so scores measure relevance to those seeds. Seeding it on the change's own seed nodes gives exactly the missing question.\n\nCHEAP: the crate is already pinned, the function is exact on graphs this size, and propagate already builds the network. Small.\n\nTHE HONEST COUNTER-ARGUMENT, and it is a real one: betweenness is not wrong, it is answering a different and also-useful question. The existing doc comment defends it — \"a change landing on a high-betweenness node has a wider SECONDARY blast radius\" — which is about onward propagation, not relevance. So this may be an ADDITION rather than a replacement, and two ranking columns may be worse for a reader than one. Whether a reader wants both, or one, or a blend, is undecided and is the actual open question.\n\nFiled as a backlog row on Anthony's word (2026-08-01) — the work is tracked; this Decision records that the SHAPE is still open.",
+    "name": "OPEN — should a blast radius rank by relevance TO THE CHANGE rather than by global importance?",
+    "rationale": "Surfaced by comparing reflow2's actual imports against dynograph-graph's exports: 8 of 17 are used. This was the strongest of the unused ones because it lands on the most-read output in the system and the mismatch between the question asked and the question answered is documented in reflow2's own doc comment.",
+    "status": "proposed"
+  }
+}

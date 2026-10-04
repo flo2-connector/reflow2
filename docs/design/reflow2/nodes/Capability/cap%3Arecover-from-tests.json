@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:66aeccdf66ec1dc4df96f117705d0ef73c37bef2af1b42d54f89ac0b9b8e4694",
+  "node_id": "cap:recover-from-tests",
+  "node_type": "Capability",
+  "properties": {
+    "description": "Read requirements, functions and features back out of tests and their results, for the case where that is most or all of what survives — no specification, thin documentation, sometimes not even readable source, but a suite that says what the system was expected to do and a result set saying whether it did. Alex's observation, 2026-07-24. An expansion of cap:adopt rather than a rival: adopt already names tests among its evidence sources and already registers each suite as a Verification on the component it covers. What is new is the degenerate case, where tests are the PRIMARY source, so adopt's ordinary method does not apply — 'structure from imports and calls, never from prose' assumes a repo to read, and there may not be one. THE LOAD-BEARING CONSTRAINT, and the reason this needs its own computation rather than a paragraph in the adopt skill: a requirement recovered from a PASSING test is verified by construction. The test that produced the requirement is the same test that would prove it, so the golden thread closes on itself and the recovered design reads as fully delivered the moment it is created, having demonstrated nothing. This is the schema's `inferred` provenance trap one turn sharper — with code you get satisfied-by-construction, with test results you get satisfied AND verified by construction, which would defeat cap:derived-completion (BL-104) outright. So: intent recovered from a test must be marked as such, and must NOT count that same test as its verification evidence. A test-derived requirement is a claim about what someone once intended, not proof that it holds today. Corollary worth keeping: a FAILING test is the more informative artifact of the two, because it states an intent the system does not currently meet — which is a genuine gap, and the one thing in this whole area that cannot be circular. PLANNED.",
+    "name": "Recover intent from test evidence, without letting the tests prove themselves",
+    "provenance": "authored",
+    "status": "planned",
+    "tier": "operational"
+  }
+}

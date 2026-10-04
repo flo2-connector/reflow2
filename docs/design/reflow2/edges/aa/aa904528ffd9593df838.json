@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:79eb400acd39b686ddcec7ed40704029604fbdae3ce013b0de12d5b140cdc75c",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-saved-design-moves-to-the-item-layout-2026-10-03",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:a6fd6cdc4dbd01013df6e6e051029d4b9aa7c66bffd47269c01e6f8f5ce38729",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:a-lesson-is-served-at-the-step-wire-test"
+}

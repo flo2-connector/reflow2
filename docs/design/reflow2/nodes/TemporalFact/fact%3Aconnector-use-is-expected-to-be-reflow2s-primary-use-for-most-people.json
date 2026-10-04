@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:219612f52fe70138b1f5a225cf04fb22fb05e1fc944708148ef9d0df3edd4b64",
+  "node_id": "fact:connector-use-is-expected-to-be-reflow2s-primary-use-for-most-people",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "confidence": 0.8,
+    "fact_type": "status",
+    "name": "ANTHONY, 2026-09-20: connector use \"is going to be the primary use of reflow2 for most people\" — which makes the tool surface the whole product experience, not one input among several",
+    "source": "who:ajs",
+    "statement": "FLO2 F30, filed by them as context rather than a defect, and relayed here because reflow2's own roadmap should hold the claim in writing rather than inferring it from flo2's requests. Anthony's words, 2026-09-20:\n\n    \"People just want to use their existing subscriptions/plans with the AI model of\n     their choice and that they almost don't realize that they are using reflow2 (via\n     a connector) in the background. I think that is going to be the primary use of\n     reflow2 for most people.\"\n\n⭐ NOTE THE SUBJECT: reflow2, not flo2. If it holds, the connector is not a secondary integration surface beside a CLI — it is the main way the engine meets people.\n\nWHY IT REWEIGHTS WORK ALREADY FILED. flo2's own client is retired (`dec:idea-proto-becomes-the-hosted-service`), and everything that used to teach a person what a design graph IS — the three columns, the \"Not said yet\" panel, the composed ask, a clickable finding — lived there and is gone. Inside somebody else's chat there is no panel and no chip. What remains is TOOL NAMES, TOOL DESCRIPTIONS AND TOOL RESULTS. So a tool surface that is merely correct satisfies the architecture and still fails. Three things already on the record stop being polish:\n· F24 — serving the type-discrimination rules as DATA. flo2 no longer owns a system prompt to encode them in, so there is nowhere else for them to live.\n· F26/F28 — the reply shape, and outcome-shaped tools rather than a 1:1 mirror of the engine. The vocabulary is the interface now, so its shape is the product's shape.\n· Anything that makes a tool result self-explaining: in a host chat a result that needs context the caller does not have is a dead end, because flo2 cannot render a hint beside it.\n\n⚠️ ONE MEASURED OBSTACLE, filed in flo2's graph and worth knowing here: ChatGPT gates full MCP WRITE access behind a \"Developer Mode\" toggle it describes as powerful but dangerous and intended for developers. So for writes, the invisible-and-seamless story holds on Claude and Grok and NOT on all three today.\n\nNOT A DEFECT AND NOTHING TO ACTION DIRECTLY. Recorded so the earlier items are read as load-bearing, and so a later reader meets the claim rather than reconstructing it. It is a FORECAST about usage, stated by the owner — it is his to revise, and nothing here has measured it.",
+    "subject_id": "proj:reflow2",
+    "valid_from": "2026-09-20"
+  }
+}

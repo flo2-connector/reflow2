@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:8653afb8ee141f17f1eb2bf22966598103a94bcb5e1d3e7326ba307ce317d360",
+  "node_id": "art:test-a-finding-or-refusal-names-the-route-that-works",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "test",
+    "location": "crates/reflow2-mcp/tests/a_finding_or_refusal_names_the_route_that_works.rs",
+    "name": "a_finding_or_refusal_names_the_route_that_works.rs",
+    "status": "realized"
+  }
+}

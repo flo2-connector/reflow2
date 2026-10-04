@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:828985cdf11f808f31262a875f04db9eb500c14e0cd2e675b8becadd7d71a929",
+  "edge_type": "CHANGED",
+  "from_id": "chg:bl165-schema-artifacts",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:artifact"
+}

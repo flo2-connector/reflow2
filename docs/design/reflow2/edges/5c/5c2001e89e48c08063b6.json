@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:a16117e0173f4f5083ae0e10140f00f70cda2d48e01604d70ebcf95608612bf2",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0780",
+  "properties": {
+    "as_checksum": "sha256:6e385bd8b44cd6da17118760dce6481c97d0fbc0023959b356dec3186b694386"
+  },
+  "to_id": "art:test-adopt-is-incremental-with-a-frontier-and-a-deferred-derivation-marker"
+}

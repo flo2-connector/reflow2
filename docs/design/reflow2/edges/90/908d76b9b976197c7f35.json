@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:b86246f787bbcc7c666d141d4adaa68f6d840b69f54f7b9377f272121a8030a1",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-lineage-gate-moves-to-the-merge-base-too",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cap:the-server-writes-the-export-through-and-chains-it-from-main"
+}

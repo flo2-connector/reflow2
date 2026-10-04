@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:a3360fc3fef75f77488b28ed4799378830994e21624304cc9b2854002f90535c",
+  "edge_type": "GOVERNED_BY",
+  "from_id": "ver:check-reconciles-dependencies",
+  "properties": {},
+  "to_id": "rule:fixes-are-judged-by-the-third-party"
+}

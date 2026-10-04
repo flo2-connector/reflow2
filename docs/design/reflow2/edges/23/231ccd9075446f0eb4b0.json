@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:ae5531b0e2ff39a8ec443f4b2403f077c35ace9be30ba3ff54c0a11a997dc13e",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:aggregate-gap-keying",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:detect"
+}

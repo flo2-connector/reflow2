@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:f47764029af9fefa912080afa2125aa0d856a7d0e91e25949ddc00a15bad0801",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0610",
+  "properties": {
+    "as_checksum": "sha256:70526eac3e1332f9a8cd5fd2fb3ffeee00b6ea490f7ab4820db2b3e449f543af"
+  },
+  "to_id": "art:machine-install"
+}

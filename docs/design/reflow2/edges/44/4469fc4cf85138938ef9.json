@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:b99d461e4228ec153a0f29af6b63cdd4bc3d5af284b418c65c762a2fd3c83cd4",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "ifc:mcp-protocol",
+  "properties": {
+    "authored_at": "2026-08-09",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

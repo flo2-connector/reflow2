@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:3b5755a4417b8b653a42ade7f5cdf8ce06baca8514615b8957f60425ab60e861",
+  "node_id": "ver:a-contract-answers-at-the-altitude-you-asked",
+  "node_type": "Verification",
+  "properties": {
+    "description": "crates/reflow2-core/tests/seam_coverage.rs, 5 cases on a fixture built to be the exact shape of the problem: a dependency recorded between two modules and a contract declared between two DIFFERENT modules, so the two sets are disjoint at module level and meet only when lifted.\n\nTHE CASE THAT CARRIES THE CORRECTNESS ARGUMENT is `lifted_to_the_altitude_where_the_contract_lives_it_is_covered`, because lifting only the COUPLINGS is the obvious half-fix and looks right — the contracts stay between the leaves and the vocabularies remain as disjoint as before. Proven non-inert by reverting to that half-fix: that one case fails while the other four stay green.\n\nThe rest pin what keeps a roll-up honest rather than merely small: a coupling internal to one box is NOT a seam one level up (both sets lift, so it disappears rather than becoming a self-pair); an altitude nothing reaches reports 0 couplings compared AND the count of endpoints dropped, so a vacuous zero announces its own vacuity instead of reading as a clean bill; and the projection writes nothing back, pinned by exporting the design before and after and comparing content hashes — a stored edge between two subsystems would make the graph assert a contract nobody declared and be indistinguishable afterwards from one somebody did.",
+    "findings": "5 cases passing, alongside `cargo test --workspace` (40 suites, 0 failures), fmt, core and mcp clippy, skill_lint and smoke_mcp. MEASURED on reflow2's own design driving the built binary over real stdio: module altitude 72 couplings / 42 contracts / 64 uncovered; `subsystem` 11 / 13 / 0, with `sys:coherence-loop <-> sys:foundation` naming `cmp:allocate <-> cmp:graph` as where its contract actually sits; `system` (a level this design populates with nothing) reporting 0 couplings compared and 114 endpoints dropped rather than a clean bill. PROVEN NON-INERT by reverting to the half-fix that lifts only the couplings: `lifted_to_the_altitude_where_the_contract_lives_it_is_covered` fails and the other four stay green, which is the point — the half-fix is the obvious move and looks correct.",
+    "kind": "verification",
+    "last_run_at": "2026-08-23",
+    "level": "integration",
+    "method": "test",
+    "name": "Both sets lift, a zero says what it compared, and the roll-up writes nothing back",
+    "status": "passing"
+  }
+}

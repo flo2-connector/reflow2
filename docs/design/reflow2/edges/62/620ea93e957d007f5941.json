@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:50c0bec5b07a44d161f5ae9c5d1e9d4689a517c0fdb3fd5eb70b9b4a1babcfaa",
+  "edge_type": "CAUSES",
+  "from_id": "art:hxm-program-feedback-2026-09-28",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "The root-cause pass on this document's 09-28 report (F-36, /where failed wholesale when reads were refused): all seven tools publish the same readOnlyHint, so the refusals were the harness's; reflow2's part is that where-am-i gathers from 15 read calls with no minimum answer and no served skill says what to do when a call is refused.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:root-cause-where-am-i-rests-on-fourteen-separate-reads-and-no-skill-says-what-to-answer-when-one-is-refused-2026-09-28"
+}

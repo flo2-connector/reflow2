@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:02302248cfe2fd47383ff25c9563a876b13706d9ce28f508fd7ae7daa757a4cc",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:compare-alternatives",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:alternatives"
+}

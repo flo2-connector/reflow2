@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:6d3f658b8115b29cef6b06d5e5e9e991e78641e92a4efa7f01d559ec829a847d",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-is-subsystem-the-right-unit-to-sweep-when-the-coupling-is-a-level-down",
+  "properties": {
+    "evidence": "Choosing a traversal is only worth anything once something can SEE what the traversal is looking for. If the instrument question resolves to 'we cannot cheaply know', there is nothing for any traversal to find and the unit becomes moot.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "dec:idea-what-instrument-can-actually-see-unused-code-here"
+}

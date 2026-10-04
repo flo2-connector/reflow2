@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:c2a56bfc821de2a6dacd53e846573f8d5e838739119da8c295654f2c3bd825dc",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:a-prohibition-written-into-prose-is-noticed-as-unfiled",
+  "properties": {
+    "approved_at": "2026-09-14",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

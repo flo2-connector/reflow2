@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:c3dc60dd35515629528d3c0e5d93c08cf35de74178e3fb3c851747f9813c7831",
+  "edge_type": "CHANGED",
+  "from_id": "chg:get-skill-serves-a-slash-command-2026-09-24",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:tools-skills"
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:650203ee277961609f82e90206e96fa1b3941ee18e9f42428f61598a49797259",
+  "node_id": "decision:ack:6632226c74b49c3a",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Accepted the gap gap:6632226c74b49c3a.",
+    "name": "Reviewed: gap:6632226c74b49c3a",
+    "rationale": "User (who:ajs, standing policy from 2026-07-23, applied again 2026-07-25): validation happens through the trials programme — docs/trials/ is where \"built the right thing\" is exercised against operational intent; formal validation-kind Verification nodes are not this project's tracking mechanism. Re-fired because cap:mirror-surface joined the set (46 → 47). The trial is now unusually concrete and unusually available: reflow2 and storyflow are two separately-owned designs on one machine, which is exactly the split option (c) describes, so publishing one's surface and mirroring it into the other tests composition on real designs rather than a seven-node fixture. What no test can establish is whether the SEAM was drawn in the right place — a boundary that turns out to carry the wrong contract shows up as constant renegotiation, and only two owners using it discover that.",
+    "status": "accepted"
+  }
+}

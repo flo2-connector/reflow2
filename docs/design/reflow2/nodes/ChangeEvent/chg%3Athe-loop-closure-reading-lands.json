@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:9d2baae533a265090a788d31808b3c83eec4f15f1044c912b538429d7d920b85",
+  "node_id": "chg:the-loop-closure-reading-lands",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "detected_at": "2026-09-22",
+    "name": "loop_status says whether a real result ever came back, and a recorded reconcile stamps every check it compared",
+    "rationale": "An agreeing run left no trace, so a design could not tell \"never fed a result back\" from \"every result matched\" — the entry point of Anthony's founding chain was invisible. His word 2026-09-22 on both the reading and the stamp.",
+    "subject": "system",
+    "summary": "Step 3 of the approved ordering. New loop_closure module; LoopStatus.loop_closure plus a never_closed line in next (not counted in clean); reconcile_verification with record_events stamps last_reconciled_outcome / last_reconciled_at / last_failed_run_at on each observed check and returns `stamped`; three declared properties on Verification; where-am-i reads the reading beside the delivery line. (A sentence naming the stamp in the reconcile tool's description was tried and dropped — see fact:one-tools-description-sentence-made-two-other-tools-confusable.)"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:b9ffd7c37c4f1fa1ba81fa62c7498546457d848c67368896ad5e403ed5d2c17e",
+  "node_id": "chg:accept-938cfeb07716ec88",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "refactor",
+    "detected_at": "2026-09-12",
+    "name": "rmcp 3.1.2 → 3.3.0. The macro now refuses an empty #[tool_router]; the base `impl ReflowService` block (constructors and shared helpers, no #[tool] fn, the twelve slices summed onto it) is empty by design and now says so with `allow_empty` and a comment. No function moved and the served surface is byte-identical — 180 toolsnaps match — so the design holds. CAUGHT BY THE GATE IN CI: I had accepted no checksum because Cargo.lock is unregistered, and forgot the bump also touched this registered file.",
+    "subject": "system"
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:b4bf67808308466d4f58a2d759819f19161021498663843ac2528751673edc53",
+  "node_id": "fact:the-acting-agent-stamp-reaches-authored-by-edges-only-so-a-who-held-as-a-property-records-its-own-via-2026-09-29",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "finding",
+    "name": "The acting-agent stamp (#632) reaches AUTHORED_BY edges only; a \"who\" held as a node property (Question.answered_by, idea 2) gets the agent only if its writer reads acting() itself",
+    "source": "crates/reflow2-core/src/acting.rs (origin/main 87f17ec) and branch feat/a-question-is-addressed-and-records-who-answered",
+    "statement": "MEASURED 2026-09-29 while building idea 2 (cap:a-question-names-whom-it-was-put-to-and-who-answered) on top of #632. The ACTS_FOR rung stamps `*_via` in exactly one place, the store's edge write, and only when the edge type is AUTHORED_BY (crates/reflow2-core/src/acting.rs stamp_through_acting_agent: `if edge_type != edge::AUTHORED_BY { return Ok(None) }`). So \"every write records the agent\" holds for every authorship, review and approval, and for nothing else that names a person. Idea 2 records whom a question was put to and who answered it as Question PROPERTIES (asked_of, answered_by), because neither is authorship: an AUTHORED_BY role on the Question would say the answerer made the question, and an approver role on an asked Question already means \"assigned, not yet given\", which makes a different addressee and answerer ambiguous. The expected \"answers carry the acting agent automatically\" therefore did NOT hold: the branch added Question.answered_via, written by answer_question from DesignGraph::acting(), with ACTS_FOR drawn to the answerer through the same record_acts_for. The class: any future \"who\" that is not an AUTHORED_BY role (an addressee, a claimant, an owner set by a property) needs its writer to read acting() or it records no agent. NOT ESTABLISHED: whether OWNED_BY and CLAIMS writes should be stamped too; that is intent.",
+    "subject_id": "req:a-write-and-an-approval-record-the-agent-and-the-person-it-acts-for",
+    "valid_from": "2026-09-29"
+  }
+}

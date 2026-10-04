@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:593c1e19a95d80e4836109f1f5667d66283cd6c1ad0afad53330e5397668a4ff",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-mirror-can-be-refreshed",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cap:mirror-surface"
+}

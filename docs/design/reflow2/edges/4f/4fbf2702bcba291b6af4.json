@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:429e1fe2645445ae975b56a4be53970eeb2f86ed8c9a4362d4d48026cb78cf2c",
+  "edge_type": "TRIGGERS",
+  "from_id": "fact:field-report-flo2-2026-09-18-a-skill-states-what-a-person-types-but-not-what-a-person-reads-nor-who-it-is-for",
+  "properties": {
+    "evidence": "The measured absence is what raises the question."
+  },
+  "to_id": "dec:idea-a-skill-carries-a-line-for-a-person-and-says-who-it-is-for"
+}

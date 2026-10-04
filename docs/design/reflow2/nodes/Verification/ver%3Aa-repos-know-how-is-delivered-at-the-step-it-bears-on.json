@@ -1,0 +1,17 @@
+{
+  "content_hash": "sha256:de69d914563dcf01d6a5fd8738d1a3c044c2dcf839c97598f3e2ac081ac100c6",
+  "node_id": "ver:a-repos-know-how-is-delivered-at-the-step-it-bears-on",
+  "node_type": "Verification",
+  "properties": {
+    "description": "crates/reflow2-core/tests/a_repos_know_how_is_delivered_at_the_step_it_bears_on.rs — two cases over the two findings.",
+    "findings": "kh run: 2 passed, 0 failed.",
+    "kind": "verification",
+    "last_reconciled_at": "2026-09-23",
+    "last_reconciled_outcome": "passed",
+    "last_run_at": "2026-09-17",
+    "level": "unit",
+    "method": "test",
+    "name": "A convention with no steps is named and one with steps is delivered; an unregistered adapter is named once the design is real and a documents edge with doc_kind agent_instructions answers it",
+    "status": "passing"
+  }
+}

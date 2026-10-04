@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:2807988e5785910d307c7f66791427e260e675376951096792210f9d4836f767",
+  "node_id": "fact:defect-a-null-sent-to-create-node-is-stored-as-a-third-state-between-stated-and-unstated",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "confidence": 1.0,
+    "fact_type": "defect",
+    "name": "create_node stores a null property VALUE — so `enforced: null` is neither `true`/`false` nor absent, and readers that test presence and readers that test the value disagree about whether the rule's power was stated",
+    "statement": "① SYMPTOM, dev_storyflow 2026-09-06 on 0.48.0: 'a way to UNSET a property through the typed constructor — `create_node` with `enforced: null` is what I reached for; whether null stores as unstated or as the value null is not stated in the reply.' ② PRECEDENT: fact:defect-an-undeclared-property-is-stored-without-complaint (the property bag stores what it is given) and dec:does-enforced-default-to-gate-blocking (three states: true / false / ABSENT-means-nobody-said). No precedent for the null case. ③ CANDIDATES: (a) null is dropped and the key removed (unset); (b) null is dropped and the stored value kept (no-op); (c) null is STORED as a value, a third state. ④⑤ MEASURED 2026-09-07 on a copy of reflow2's own store with the 0.50.0 binary: add_design_rule with enforced=true (approver named) → stored true; create_node with props {enforced: null} → reply carries `enforced` present with value null and NO `undeclared` note; get_node afterwards → `enforced` present, value null. (c) holds. ⑥ CLASS: the store keeps a null value and every reader decides for itself what null means — the intent-authority gate (Python `is not None`) reads it as UNSTATED, a presence test (`contains_key`, the shape change_axis_unstated uses) reads it as STATED, a value test (`as_bool`) reads it as unstated. Three readers, two answers, one property. The same hazard sits under every optional enum on every type. ⑧ FIX SHAPE (not taken here): create_node treats a null-valued prop as UNSET — removes the key — and says so in the reply (`unset: [\"enforced\"]`), which is the reporter's expectation and the only reading all three readers agree on; the typed constructors gain nothing, because absent already means unstated there. ⑨ NOT ESTABLISHED: whether any live design already holds null-valued properties (not measured); whether the schema validator should refuse null on a declared enum instead of unsetting.",
+    "subject_id": "art:service",
+    "valid_from": "2026-09-07",
+    "value": "{\"reported\":\"2026-09-06 dev_storyflow on 0.48.0\",\"measured_on\":\"0.50.0, store copy\",\"stored\":\"null value, key present\",\"undeclared_note\":false,\"readers_disagree\":[\"check_intent_authority: unstated\",\"contains_key: stated\",\"as_bool: unstated\"],\"fix_shape\":\"null unsets the key and the reply says so\"}"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:30c39cf57df2edf4d830deb8f3af082d06015208f7f3309d7ca57e238e48efda",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-check-and-its-findings-are-different-things",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "ver:plan-increments"
+}

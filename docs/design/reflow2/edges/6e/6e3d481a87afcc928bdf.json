@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:ca0e5d8970bb8dfae8b4f2f5d1ca6a8f9bead97f8bc627227b9860a06ec9d196",
+  "edge_type": "CAUSES",
+  "from_id": "dec:the-four-2026-09-rules-are-advisory-because-no-detector-can-yet-see-a-violation",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "Leaving the rule advisory with no detector and no steps is what left it with no moment of delivery, which is the failure this question is about.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "dec:idea-what-belongs-in-the-graph-and-what-belongs-in-an-agents-memory-and-why-the-rule-keeps-losing"
+}

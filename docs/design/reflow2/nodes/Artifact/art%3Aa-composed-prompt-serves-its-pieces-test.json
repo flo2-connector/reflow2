@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:e6756b8014121fb7a9051ce753b5877646fa7f948a3fdaf010229b39ddbb7e0a",
+  "node_id": "art:a-composed-prompt-serves-its-pieces-test",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "location": "crates/reflow2-mcp/tests/a_composed_prompt_serves_its_pieces.rs",
+    "name": "a_composed_prompt_serves_its_pieces.rs",
+    "status": "realized"
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:9a550b5af91abdf547425d91078f1148e5aa93b94cdc6e42acce3f6ec2f47a60",
+  "edge_type": "HAS_TEMPORAL_FACT",
+  "from_id": "cap:the-record-moved-is-surfaced",
+  "properties": {},
+  "to_id": "fact:the-sync-roll-test-fails-under-two-concurrent-cargo-test-runs-and-passes-alone"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:4caf70b6023074564b0fecd758021ad61115a407ca8f52d36710fa3ca28766d9",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-question-is-put-to-a-person-and-records-who-answered",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:skill-lint"
+}

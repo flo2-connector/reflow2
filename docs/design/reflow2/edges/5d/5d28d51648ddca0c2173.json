@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:2457b716bed082ed0d5deb66e776b5b048aaf8ef133e42e05a844d6b6f0e351f",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:the-agent-never-authors-what-requires-accountable-sign-off",
+  "properties": {
+    "approved_at": "2026-08-30T00:00:00Z",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

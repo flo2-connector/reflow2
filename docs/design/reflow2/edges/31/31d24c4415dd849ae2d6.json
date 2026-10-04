@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:3e04e60a3c91a4af864a5f14fc219d0de2e9e5d1ecea41f178f40fcadc2142d4",
+  "edge_type": "REALIZES",
+  "from_id": "art:check-health-skill",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:heal"
+}

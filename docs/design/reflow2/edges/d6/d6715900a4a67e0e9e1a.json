@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:1e175b2d35e8664afce9e3f54be699a891ef062a6c96a0c1bc0c02edba0429fe",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:a-quantity-carries-its-provenance-and-an-unsourced-one-is-named",
+  "properties": {},
+  "to_id": "req:a-quantity-carries-how-it-was-obtained-and-an-unsourced-one-is-reported"
+}

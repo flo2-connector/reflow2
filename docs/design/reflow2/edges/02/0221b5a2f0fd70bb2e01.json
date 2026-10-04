@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:3cc9bc756b3dfce2f1f05b35a36d2e2938eca764f23b1ccf70ae10187860500f",
+  "edge_type": "REALIZES",
+  "from_id": "art:fielded",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cmp:fielded"
+}

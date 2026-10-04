@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:2b80f433e6e7c3b8342de1481c71c52f5c80a3ef5f097f97ff115bbf01cd5395",
+  "node_id": "chg:the-44-wrong-realizes-edges-are-repaired",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "defect_fix",
+    "detected_at": "2026-09-23",
+    "name": "The 44 REALIZES edges that pointed at changes, requirements, checks and findings are replaced by the edge each should have been",
+    "rationale": "Corrected at the cause of each edge, per dec:realizes-is-restricted-to-capability-component-and-interface: every one is re-expressed as the relation it actually meant, so no link is lost. The design's KNOWLEDGE changed, not the system — subject: record. The schema restriction that stops the class recurring follows in the same PR.",
+    "subject": "record",
+    "summary": "Replacements written before any removal: 12 CHANGED (change → the file it touched, where none existed), 2 DOCUMENTS (field-report document → its finding), 6 IMPLEMENTS (test file → its check: 4 new checks, 2 existing ones that nothing implemented), 2 VERIFIES (those existing checks → the requirement), 1 REALIZES re-pointed (vocabulary-reach baseline → cap:the-design-says-what-its-own-tools-cannot-write). Then the 44 wrong REALIZES edges removed: 29 on ChangeEvents, 7 on Requirements, 6 on Verifications, 2 on TemporalFacts.\n\nADDED AFTER CI CAUGHT IT: removing the 44 left 5 files attached to nothing (self_host_uses_documents). Each got its true edge: check_doc_versions.py REALIZES cap:a-cut-moves-every-version-claim-together; the taxonomy command REALIZES cap:establish-taxonomy-before-bulk-capture; tests/provenance.rs IMPLEMENTS ver:stamp; upgrading-to-v0.55.0.md DOCUMENTS dec:qualitygate-is-retired-…; the_compliance_layer_is_whole.rs IMPLEMENTS a new ver:the-compliance-layer-is-whole that VERIFIES cmp:operate (the layer has no requirement or capability — recorded as a finding)."
+  }
+}

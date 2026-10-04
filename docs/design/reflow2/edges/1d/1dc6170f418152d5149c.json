@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:7ff32bb17f810d3555d572602af0228f3c8445e9636520ea3e2486ec1dad0ea6",
+  "edge_type": "CONSTRAINS",
+  "from_id": "rule:per-design-state-is-never-a-process-global",
+  "properties": {
+    "basis": "estimated",
+    "note": "The service is where per-design state accretes: cap:graph-registry names graph_path, content_path, identity and write_gen as things that must become per-graph, and all four ride the service today."
+  },
+  "to_id": "cmp:service"
+}

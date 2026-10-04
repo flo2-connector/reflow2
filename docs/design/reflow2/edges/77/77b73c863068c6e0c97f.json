@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:f8b12fd3e4587cbabe226f03ab62a53cba0cd3d0dffc4e74d5ab58679c114724",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-decomposition-ladder-is-open",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cmp:byte-store"
+}

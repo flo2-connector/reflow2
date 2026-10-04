@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:3e9f860ad1cebc7d951a6daf0a2e86a34073a10c9410817fe009472c2c59e719",
+  "node_id": "req:an-idea-the-design-already-built-stops-reading-as-an-open-question",
+  "node_type": "Requirement",
+  "properties": {
+    "lineage": "original",
+    "name": "An idea the design has already built stops being offered as an open question",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "When a brainstormed idea is promoted and the promotion lands — an accepted Requirement, a realized Capability, a recorded change, a rule now in force — the question it came from must stop reading as open work. The loop raises it so its owner can rule on it; closing it stays the owner's word (rule:design-intent-moves-only-on-the-owners-word).\n\nTWO HALVES, because the failure has two. The promotion must DRAW the edge that records what the idea became (`EVOLVES_INTO`), and something must READ that edge. Neither alone is enough: an edge nothing reads is exactly what produced this requirement, and a reader with no edge to read is blind by construction.\n\nAnthony's word, 2026-09-14, on being shown the triage: \"Go with (a) and (b)\" — (a) the instruction at the moment of promotion, (b) the detector that notices its absence.",
+    "status": "accepted"
+  }
+}

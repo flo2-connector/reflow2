@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:6e647b04904e870f2cf573f7161701453f44a59e357a5d1d85fad71d283a72d4",
+  "node_id": "decision:ack:34185b8ad2a0aa83",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Accepted the gap gap:34185b8ad2a0aa83.",
+    "name": "Reviewed: gap:34185b8ad2a0aa83",
+    "rationale": "Checked 2026-09-07: still open. seam_report still takes another design's export and interface pairs, so the name still describes a job it does not do. seam_coverage now carries the within-design meaning, which is one of the three options the record left undecided, but no rename happened.",
+    "status": "accepted"
+  }
+}

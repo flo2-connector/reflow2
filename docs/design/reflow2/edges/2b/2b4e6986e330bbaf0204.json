@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:70254722843a6943f7100986f77bcd7570fa4e148b72237530477e90b91a0a71",
+  "edge_type": "ABOUT_ENTITY",
+  "from_id": "fact:defect-a-tool-minted-seat-is-never-registered-so-gone-is-still-unreachable",
+  "properties": {},
+  "to_id": "cap:claim-liveness"
+}

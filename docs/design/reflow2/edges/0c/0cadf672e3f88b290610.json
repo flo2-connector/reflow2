@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:7aa76f0a29421c68a8a4fff85e98299894d94b1cade36a38f7815d4f599c52cd",
+  "edge_type": "REALIZES",
+  "from_id": "art:render-views",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:report"
+}

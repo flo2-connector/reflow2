@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:f22f56473875deeeb02291c590c97c8e388528d2b37c5ea17c899a9579c00e9e",
+  "edge_type": "GOVERNED_BY",
+  "from_id": "art:vscode-call-door-field-report-2026-10-02",
+  "properties": {
+    "note": "Triaged under this rule, 2026-10-02, on Anthony's \"Full triage, 4 agents\": root-cause per limitation and friction, brainstorm per idea, findings and open questions hung off this report."
+  },
+  "to_id": "rule:field-feedback-issues-are-root-caused-and-ideas-are-brainstormed"
+}

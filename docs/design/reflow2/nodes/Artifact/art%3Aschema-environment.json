@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:937ffb9c1ad71ea2f4119721653316531c7f8fe9876f4a57bcc89f6868600f21",
+  "node_id": "art:schema-environment",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "spec",
+    "granularity": "atomic",
+    "last_confirmed_at": "2026-08-02",
+    "location": "schema/environment.yaml",
+    "name": "environment.yaml",
+    "status": "realized",
+    "volatility": "stable"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:346efdc78b00fd82620030b1c75a9ecfe0e85704fc4d5735d46844ef06347652",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "drift:8b3bb87c344ba339",
+  "properties": {
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "art:service"
+}

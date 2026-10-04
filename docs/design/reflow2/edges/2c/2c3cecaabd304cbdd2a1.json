@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:9352dda09beddc2d4bade803ac396e93c5028c7ac5254298e21f8ff3818b9716",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:test-an-exposed-server-verifies-bearer-tokens",
+  "properties": {
+    "covers": "whole"
+  },
+  "to_id": "ver:an-exposed-server-verifies-bearer-tokens-to-the-oauth-2-1-floor"
+}

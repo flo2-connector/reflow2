@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:bb19371fb90c6b1ce19e54dd316ff45fb8e1099b629542eb7f47795ec2bf2181",
+  "edge_type": "CHANGED",
+  "from_id": "chg:an-unknown-field-refusal-names-the-nearest-served-parameter-first",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:service"
+}

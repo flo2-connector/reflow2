@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:66013776798df4d6fcf45314a526372d2acf6f53bd11a7467355225bab10323c",
+  "node_id": "req:the-builds-toolchain-is-pinned",
+  "node_type": "Requirement",
+  "properties": {
+    "concern": "core",
+    "kind": "nonfunctional",
+    "lineage": "original",
+    "name": "The repo names the toolchain its gates are measured against",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "The build pins the toolchain its gates run on, so a green result is green against a compiler somebody chose, and a compiler upgrade arrives as a reviewable commit rather than as an unannounced change on a Tuesday.\n\nWHAT IT IS FOR: on 2026-08-24 every clippy gate passed locally and both CI jobs failed on the same lint with IDENTICAL FLAGS — the compiler version was the narrow gate. The gate-list cross-check compares command strings and structurally cannot see that axis. Pinning is also what lets the local gate runner and CI agree on the one thing they currently cannot compare.\n\nNOT IN SCOPE HERE: a matrix across operating systems or toolchains. The server ships as a Linux binary and a container image, and no OS-specific defect has been recorded on this project — a matrix would multiply an hour-long job to guard a class nobody here has been bitten by. A separate scheduled run against floating stable, reporting drift without blocking, remains an open option rather than a requirement.",
+    "status": "accepted"
+  }
+}

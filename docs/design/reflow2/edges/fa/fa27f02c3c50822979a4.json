@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:c9b277b6f1d6c9677102309b9f7b8de0f677f577ff484c730d8ad1d12da52557",
+  "edge_type": "INVALIDATES",
+  "from_id": "chg:every-argument-refusal-names-the-tool-and-the-field-path",
+  "properties": {
+    "at": "2026-10-02",
+    "note": "Verified false 2026-10-02: set_requirement_status with only status now answers naming `requirement_id` as missing and 'Already passed: `status`', asserted over an MCP session."
+  },
+  "to_id": "fact:the-already-passed-listing-never-reached-the-wire-because-it-was-wired-only-into-the-err-arm-2026-10-02"
+}

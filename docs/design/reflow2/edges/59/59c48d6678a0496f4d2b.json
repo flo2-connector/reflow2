@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:df0bb9b30807f59897edd3704a65a9e4c20978b75dd3216a62591f4ea9243dc5",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:idea-a-repo-that-holds-its-design-moves-it-to-a-remote-server-once",
+  "properties": {
+    "approved_at": "2026-09-25",
+    "roles": [
+      "author",
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

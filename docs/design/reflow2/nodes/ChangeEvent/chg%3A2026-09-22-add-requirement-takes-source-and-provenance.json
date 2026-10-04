@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:87ac458f509d21aef393f3d8700e77ffb5cb8c3738f4dde8287174929cb2a02f",
+  "node_id": "chg:2026-09-22-add-requirement-takes-source-and-provenance",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "defect_fix",
+    "name": "add_requirement takes source and provenance, so the documented path for a levied requirement needs no escape hatch",
+    "repair": "corrected_cause",
+    "subject": "system"
+  }
+}

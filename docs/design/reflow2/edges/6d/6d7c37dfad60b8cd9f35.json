@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:bfe59d8aa4855942888cb9b125cc507c552f77c5708690924f9b3bf507ca93f8",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0320",
+  "properties": {
+    "as_checksum": "sha256:e2efa0a05f6a46929a0f4634871281407af7b196061300cf9fdf63f9a06a6050"
+  },
+  "to_id": "art:consumption"
+}

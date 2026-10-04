@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:5ea1274d805be918bc952a734e3d88ec98c96f74097ee22cc3bae370ad710db3",
+  "edge_type": "OBSOLETES",
+  "from_id": "dec:field-reports-are-untracked-because-the-repository-is-public",
+  "properties": {
+    "evidence": "The same accepted decision that retires every other field report: the repository is public, so a field report is captured into the graph and the file itself is untracked (docs/feedback/ is gitignored). Drawn when the 2026-10-02 fold brought this report to main, because the live store registered it without the retirement and the CI gate then reads missing_artifact on a checkout without the file (fact:defect-registering-an-untracked-field-report-repeated-the-ci-failure-the-decision-already-named). Its absence from a checkout is the design and the build agreeing, not drift."
+  },
+  "to_id": "art:vscode-call-door-field-report-2026-10-02"
+}

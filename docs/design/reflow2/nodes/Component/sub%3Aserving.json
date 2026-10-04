@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:6e84bc58d86cbf430df3fb4a0d90dec0a8e70f75d99e16c90f5c215c9ae44a08",
+  "node_id": "sub:serving",
+  "node_type": "Component",
+  "properties": {
+    "level": "subsystem",
+    "name": "Serving and transport",
+    "provenance": "authored",
+    "purpose": "How the surface is actually reached: the service that answers, the process entry point, the MCP-over-HTTP primitives, the stdio-to-HTTP session proxy, the shared-mode manager, and the registry that maps a graph_id to an open design.\n\nThese are the parts that would still exist if every tool were deleted — the machinery of BEING a server, distinct from WHAT is served.",
+    "status": "planned"
+  }
+}

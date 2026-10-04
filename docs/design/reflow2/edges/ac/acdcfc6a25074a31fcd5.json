@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:a8780af27c9e7903bded916befbbf04bf55626eed6c018e64218cf2e4e114d48",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:absorb-the-foundation-subset-and-end-the-dependency",
+  "properties": {
+    "approved_at": "2026-08-24",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

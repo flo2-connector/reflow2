@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:8ea84bd65f4aeec73e39925ac467cf47b2b63d41671e1fd9b21fa593a9af52a8",
+  "node_id": "chg:every-edge-type-declares-what-it-means",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "commits": "6f3fb53",
+    "detected_at": "2026-09-28",
+    "name": "Every edge type declares what it means, and describe_schema serves the reading",
+    "rationale": "req:every-edge-type-declares-what-it-means, promoted by Anthony 2026-09-28. The meaning of an edge is encoded today in at least six private lists with nothing keeping them in agreement (structural_rule, is_traceability_edge, RISK_EDGES, COMMITMENT_EDGES, ARTIFACT_BOOKKEEPING, and the five projection lists of 2026-08-14), and one edge is already used against its meaning (DriftEvent → Anchor drawn as DEPENDS_ON). A declared reading is the one source those can move onto.",
+    "rationale_basis": "contemporaneous",
+    "subject": "system",
+    "summary": "BUILT: EdgeTypeDef gains an optional `reading` (a Reading core, modifiers, per-value `splits`, basis). Every edge type in schema/*.yaml declares one, fifteen of them with splits, all basis classified. describe_schema serves a one-line `reads_as` on every read and the whole reading on a from/to query, and counts readings by basis. DesignGraph::edge_types_read_as returns the types that always mean a primitive apart from those decided per edge, and edge_reads_as / edge_is_read_as read one edge from its own values. tests/every_edge_type_declares_what_it_means.rs: five tests, observed failing first. Additive: no endpoint, property or validation rule changes."
+  }
+}

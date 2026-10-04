@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:db735800870132d577fc1e69bf8d66915a454fe435a1678589f35ed74c5836eb",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:read-only-client",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:read-only-client"
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:3c17d46f0950fb24b9641562e456809843a94bcabaf444ebab58fa139083e65b",
+  "edge_type": "CAUSES",
+  "from_id": "art:vocabulary-reach",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "The instrument's candidate filter fuses reachability with adoption: it reports a property only when nothing has ever written it AND no typed tool accepts it. A schema default injected at write, or a handful of create_node calls, makes an unreachable property read as used and removes it from the list before the reachability question is asked.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:defect-a-declared-property-can-be-unreachable-and-invisible-to-the-reach-instrument-when-a-default-populates-it"
+}

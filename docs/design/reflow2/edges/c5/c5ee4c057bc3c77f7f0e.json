@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:541199f6d1869fb46cba876b73f501f23466a330c1a48086540f2a3b09c17ce5",
+  "edge_type": "CHANGED",
+  "from_id": "chg:accept-f5263546cb372a12",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:tools-ingest"
+}

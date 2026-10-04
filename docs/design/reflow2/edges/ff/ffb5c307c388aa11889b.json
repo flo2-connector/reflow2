@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:fdfe6ad5011fd7b8c7d65c2e244c47e3f68a418f1eb5e90da14754f24a4c33c2",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0730",
+  "properties": {
+    "as_checksum": "sha256:3c5b06035cd61138f6c5b92d05bb88854652e0286d7a3274a1a204c82e70b801"
+  },
+  "to_id": "art:test-a-recalled-reason-is-not-read-as-one-written-at-the-time"
+}

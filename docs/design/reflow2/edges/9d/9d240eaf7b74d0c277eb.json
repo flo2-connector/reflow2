@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:331257ecf01f7b34396e29c0ff68c870b7dccf3133b602fceee897e78f9c4d7f",
+  "edge_type": "CHANGED",
+  "from_id": "chg:accept-789e348e5693b959",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:the-export-can-be-ordered-before-its-writes"
+}

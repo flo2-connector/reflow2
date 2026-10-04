@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:f627e5ac58ce264b20070d06dc2eb857df8bc851c9097b17d0374284216fbb24",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art-merge",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:merge"
+}

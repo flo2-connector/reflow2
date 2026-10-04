@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:ec6204e2ef0dd452b90e7d6d9e4c024cb0d79a307b23b45eac499cb31e73eca9",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:capture-session-skill",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:skills"
+}

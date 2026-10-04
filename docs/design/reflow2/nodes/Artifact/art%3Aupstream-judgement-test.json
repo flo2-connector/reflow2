@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:48cfdea5cd6981d41d1901318abd354afb9159deea2c934510ccf7ef597c81a0",
+  "node_id": "art:upstream-judgement-test",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "location": "crates/reflow2-core/tests/an_upstream_design_is_watched_not_imported.rs",
+    "name": "tests/an_upstream_design_is_watched_not_imported.rs",
+    "status": "realized"
+  }
+}

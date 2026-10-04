@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:0736a2ac97a621c1cd5651e82af70187c169a18ac7cf261a85fc30e37396c6e2",
+  "edge_type": "OBSOLETES",
+  "from_id": "dec:the-hub-is-built-because-users-have-asked-for-it",
+  "properties": {
+    "confidence": 1.0
+  },
+  "to_id": "dec:the-hub-waits-for-somebody-to-ask-for-it"
+}

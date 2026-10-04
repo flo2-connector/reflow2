@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:1f913c35b462e6aacfeca80f7c5c5c990e16a04960b9ed822cd5581f78b320af",
+  "edge_type": "REALIZES",
+  "from_id": "art:render-skills-and-tools",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:a-tool-description-predicts-what-the-tool-does"
+}

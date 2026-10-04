@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:0b85ccdc60ca0a40249f8032d14cd18c14755931797bad4c8805c3b7db32ad02",
+  "edge_type": "ABOUT_ENTITY",
+  "from_id": "fact:external-agent-side-report-2026-08-11",
+  "properties": {
+    "evidence": "Independent second instance of the same shape, from the OTHER side. That decision was recorded from the ARTIFACT side — a source document in a sibling repo cannot be registered without failing the gate. The external report hit it from the DESIGN side: a satisfying capability living in a paired graph cannot be reached by SATISFIES/REALIZES, so structurally-answered gaps stay open forever as acknowledgements. Two projects, two entry points, one boundary references cannot cross."
+  },
+  "to_id": "dec:idea-how-is-a-source-outside-the-repo-registered"
+}

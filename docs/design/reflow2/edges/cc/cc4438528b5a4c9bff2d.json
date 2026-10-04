@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:c81b4a75b96976681d7b0a711c25116cf968d8ff75166ef51af9b930a5d206a9",
+  "edge_type": "GOVERNED_BY",
+  "from_id": "fact:defect-two-more-constructor-shape-frictions-met-while-working-add-artifact-cannot-set-a-checksum-and-delete-edge-refuses-the-types-create-edge-requires",
+  "properties": {
+    "evidence": "This record exists because that rule requires a refusal met while working on reflow2 to be captured before moving on, rather than worked around silently."
+  },
+  "to_id": "rule:a-reflow2-tool-failure-met-while-working-is-captured-as-a-to-do"
+}

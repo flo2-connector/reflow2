@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:132afdcfefdaa85c6ce597784e5ac70e3f3bfeeae5820eab21bdaf024c906525",
+  "node_id": "art:schema-structure",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "spec",
+    "granularity": "atomic",
+    "last_confirmed_at": "2026-08-02",
+    "location": "schema/structure.yaml",
+    "name": "structure.yaml",
+    "status": "realized",
+    "volatility": "stable"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:3f0f8f6b5b9f491555941a461d66dc75160ce79d40762fec72a9138387620112",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:the-record-moved-reaches-an-ordinary-read",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:sync"
+}

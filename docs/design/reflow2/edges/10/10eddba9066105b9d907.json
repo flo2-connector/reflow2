@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:293dba44a7d28f59d05fe7f4358a8e04b866fdb294071310a1f42318ff92a344",
+  "edge_type": "CAUSES",
+  "from_id": "fact:the-tool-class-census-answers-the-open-questions-own-test-and-half-the-sweeps-findings-are-one-offs",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "The census named the bare-zero reply as one of the six class-level findings of the sweep and measured the house style it violates: four read-only tools carry `not_observed_about` or its equivalent and are excellent at it, while others answer a bare zero. This change is that class fixed at the reply shape, with a wire gate so a fortieth tool cannot join it.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "chg:an-empty-answer-says-which-empty-it-is"
+}

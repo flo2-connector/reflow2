@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:e41a9b8e640c21724031eecba0525bf0d6f8b229606e50a4b29fe300887505af",
+  "edge_type": "VERIFIES",
+  "from_id": "ver:a-worktree-fix-passes-the-gate-with-no-hand-made-private-store",
+  "properties": {},
+  "to_id": "cap:a-session-is-known-by-its-worktree-and-branch"
+}

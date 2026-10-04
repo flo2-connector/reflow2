@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:2cb88d0c888aef37cc9ed5c356dae4509d903a8222c5d05d95b068b0d98ca048",
+  "edge_type": "CHANGED",
+  "from_id": "chg:add-artifact-takes-the-first-checksum",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cap:mcp-surface"
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:7111620d22f463f3ce9bd90b1414e810ee9c90f11857d00db168ca609e8e1a16",
+  "node_id": "snap:epoch:preserved-on-write:epoch:planned-local-files-are-measured-for-a-remote-design:r2",
+  "node_type": "Snapshot",
+  "properties": {
+    "edges": "[{\"direction\":\"in\",\"edge_type\":\"SCHEDULED_FOR\",\"other_type\":\"Requirement\",\"other_id\":\"req:a-local-client-works-against-a-remote-reflow2-server-by-url\",\"properties\":{\"modality\":\"expected\",\"recorded_at\":\"2026-09-27\"}}]",
+    "state": "{\"description\":\"COMBINED PLAN POSITION 7 (epoch:planned-combined-plan-reflow2-and-flo2, agreed 2026-09-27; it was 6 of 10 until two flo2.io increments were added the same night). After position 3.\\n\\nStep 4 of the tracked-export retirement plan (2026-09-27). Delivers point 3 of req:a-local-client-works-against-a-remote-reflow2-server-by-url, as revised the same day: the client measures local files (artifact registration, drift, reconcile) and sends their checksums as asserted, because the server cannot see the person's disk. The export write-back half of that point is WITHDRAWN (rule 3), so it is not in this step. Follows step 3; precedes steps 6 and 7.\\n\\nALSO THE HOME OF GROUP 2 of flo2's dec:the-seventeen-tools-api-flo2-io-withholds-and-what-brings-each-back (2026-09-27): wall_check returns for a hosted design only through this client, which reads the person's own folder and sends results. (Corrected the same night: reconcile_dependencies and ingest_corpus_step were first listed here too, but both take their input from the caller and read no file — flo2's fact:only-wall-check-of-the-machine-side-tools-reads-files-itself-2026-09-27.) And it turns flo2's combined position 2 (the file-evidence tools taking the caller's evidence) from the agent's word into a measurement the client takes.\",\"epoch_type\":\"milestone\",\"name\":\"[Combined 7] Retiring the tracked export, step 4 — the client measures the folder's own files and reports them to a design on a server\",\"sequence\":656,\"status\":\"planned\"}",
+    "target_id": "epoch:planned-local-files-are-measured-for-a-remote-design",
+    "target_type": "DesignEpoch"
+  }
+}

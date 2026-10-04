@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:43819822d1f921c7360d20dae42bc457be1a41e8d586753e76b80194482c3450",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:tool-confusability",
+  "properties": {
+    "covers": "whole"
+  },
+  "to_id": "ver:the-confusability-replica-agrees-with-the-live-ranker"
+}

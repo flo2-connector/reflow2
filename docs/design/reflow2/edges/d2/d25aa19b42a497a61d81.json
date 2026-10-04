@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:75e2e3b57dcc4e66130eb7be485aebf672465485d22eb72130317ce91dbe452b",
+  "edge_type": "ABOUT_ENTITY",
+  "from_id": "fact:every-cost-number-today-was-a-debug-build-and-the-live-store-is-7x-its-content",
+  "properties": {
+    "note": "Qualifies the '22.6s, repeatably' this decision rests on: that figure was a DEBUG binary, over the shared HTTP daemon, on a live store carrying 7.4x the bytes of its own content. The decision STANDS — release-on-fresh-store is still 4.5s and a Stop hook cannot block that long — but the number measures a whole setup, not the call."
+  },
+  "to_id": "dec:the-stop-hook-asks-the-graph-asynchronously"
+}

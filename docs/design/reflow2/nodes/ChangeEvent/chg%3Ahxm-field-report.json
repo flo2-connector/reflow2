@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:5feaeea7c9cc581d28d556be821ae729b6bf675e1c93c6b19c34464d70fb8199",
+  "node_id": "chg:hxm-field-report",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "test_failure_fix",
+    "name": "The hxm_program field report lands: an accidental third graph from an unchecked \"no design here\", a loop_status clean that never scanned, and cross-graph links done in prose the loop cannot see"
+  }
+}

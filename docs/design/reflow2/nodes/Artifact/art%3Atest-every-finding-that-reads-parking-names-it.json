@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:49f4f102c68a30f69fd3098b9f66ecefffa55dadaf7ad53516d177308757f218",
+  "node_id": "art:test-every-finding-that-reads-parking-names-it",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "test",
+    "location": "crates/reflow2-core/tests/every_finding_that_reads_parking_names_it.rs",
+    "name": "every_finding_that_reads_parking_names_it.rs",
+    "status": "realized"
+  }
+}

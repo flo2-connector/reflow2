@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:baa083c1e9a892f41fd41cc1c1b6ee3b4f93a7e62064ea5c7bc80007a85f1ae6",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:a-report-nobody-recorded-reading-is-reported",
+  "properties": {
+    "evidence": "The capability IS the rule third leg. The rule says every issue a field report names gets a root-cause pass and every idea a brainstorm pass; this detector is what notices when a report was registered and nothing recorded that reading it produced anything. A DesignRule rather than a Requirement is the honest target here — SATISFIES is deliberately wildcard-from-and-to for exactly this, and inventing a Requirement so the edge could point at one would be manufacturing intent to satisfy a detector."
+  },
+  "to_id": "rule:field-feedback-issues-are-root-caused-and-ideas-are-brainstormed"
+}

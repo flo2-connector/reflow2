@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:bc17bd6f850c0c95e7eeac7c248bd02a4abc647abf9e7271af835b2236066c75",
+  "node_id": "cmp:packaging",
+  "node_type": "Component",
+  "properties": {
+    "kind": "module",
+    "level": "subsystem",
+    "name": "packaging",
+    "provenance": "authored",
+    "purpose": "How reflow2 SHIPS — the part of the system that turns a build into something a consumer can install, pin and run.\n\nOwns what already exists and was never modelled: release.yml's per-platform binary matrix (linux-x86_64, linux-arm64, macos-arm64, macos-x86_64), the consumer kit and its manifest, and the install/update path. Adds the container image: a Dockerfile, one linux/amd64 + linux/arm64 index, each architecture smoke-tested on its own runner before any push, whose digest the release notes name (#617, 2026-10-01), version tagging from [workspace.package] so consumers pin rather than chase latest, publication to a pullable registry, and a non-root runtime uid that matches the mounted volume's ownership.\n\nRECORDED BECAUSE THE BLIND SPOT WAS PRE-EXISTING, not because the container created it. The design's 54 other components mirror Rust modules, so nothing owned the shipping path even though the release workflow, the kit and the installer are real, load-bearing artifacts and req:frictionless-update is accepted intent. Capturing flo2's container requirement is what walked into it.\n\nAlso carries the documentation obligation that comes with a server image: reflow2 has NO authentication, --http-allow-host is DNS-rebinding protection only, and the image must be stated to require a private network behind a gateway that does authorize.",
+    "status": "planned",
+    "tier": "operational"
+  }
+}

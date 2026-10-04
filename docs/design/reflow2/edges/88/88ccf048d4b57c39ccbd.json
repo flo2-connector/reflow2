@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:eba63477b941b38b46bd7a59f20e220f0a3ce02c37b0aa971212fba22dbc6fdf",
+  "edge_type": "CHANGED",
+  "from_id": "chg:baseline-23a6650df48c886f",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:test-graph-construction-is-setup"
+}

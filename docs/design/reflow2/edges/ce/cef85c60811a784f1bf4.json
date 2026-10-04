@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:2a62d6edd633651633b5be77f09ff117b041d7471dd17f6f2113996be800bf37",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:a-set-aside-decision-is-recorded-where-the-loop-can-read-it",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:schema"
+}

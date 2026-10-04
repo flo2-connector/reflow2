@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:3279603554eafad7fd773e87d3ec66d2112fbc16f2784c8028966a41d616c034",
+  "node_id": "chg:add-decision-draws-related-to-for-every-kind-and-every-constructor-names-its-edges",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "defect_fix",
+    "commits": "db84580",
+    "detected_at": "2026-09-29",
+    "name": "add_decision draws related_to for every kind, and every constructor names the edges it drew",
+    "rationale": "Root cause: fact:root-cause-add-decision-discards-the-edge-echo-its-related-to-computed-2026-09-28 (third sighting 2026-09-29, art:dev-reflow2-two-agent-exercise-feedback-2026-09-29 item I16). The drawing sat inside the `exploratory` scope that belongs to the relatedness refusal, and the core ReviewOutcome was discarded; the class is that each constructor hand-built its reply with no shared 'edges this call drew' block. Fixed at the class: one module holds the invariant, and crates/reflow2-mcp/tests/a_constructor_names_every_edge_it_drew.rs pins it over every such constructor by diffing the export before and after the call. OBSERVED RED on a clean origin/main build (3 of 3 failed: choice drew no edge at all, add_capability and add_verification named nothing); green on the fix.",
+    "repair": "corrected_cause",
+    "subject": "system",
+    "summary": "related_to is drawn for every kind of Decision, not only exploratory ones, and every constructor that draws edges inline (add_decision, add_capability, add_verification, add_change_event, record_finding) names each drawn edge in `edges_drawn` as a subject-first sentence through one shared path (crates/reflow2-mcp/src/drawn_edges.rs); an edge a revise re-sends is named in `edges_already_present`."
+  }
+}

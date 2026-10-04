@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:2fcdc54169ceed46acdc6aaddd4ab0b716ce3d0717131a97f4eeed9543c45fe0",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-report-is-not-a-list-of-every-check",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cmp:report"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:6021705ab7850f6b826b4f0f08a16c64e8a49d8b0011c57de9b14137fd4fa835",
+  "edge_type": "REALIZES",
+  "from_id": "art:settling-a-decision-records-which-option-won-test",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:settling-a-decision-records-which-option-won-without-rewriting-the-deliberation"
+}

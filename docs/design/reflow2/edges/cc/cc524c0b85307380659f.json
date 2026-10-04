@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:6055df619b32adf983a7a966b2009b61abfaa817eaf4387f88ddd91c27af50ba",
+  "edge_type": "EVOLVES_INTO",
+  "from_id": "req:skill-use-survives-a-long-session",
+  "properties": {
+    "evidence": "That requirement's own 'CANDIDATE MECHANISMS, in the order the evidence supports' section is the proto-form of this layering — it separates trigger mechanisms from measurement and names the structural ceiling on the trigger. This node generalises that into four independent failure points so a future proposal can be placed before it is built. The requirement stays live and governing; this is the analysis grown out of it, not a replacement."
+  },
+  "to_id": "dec:idea-where-does-tool-use-actually-fail-four-layers"
+}

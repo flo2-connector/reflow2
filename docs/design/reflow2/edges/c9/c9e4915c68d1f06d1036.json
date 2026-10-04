@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:ca60813d4b71b05993cc399d5e7a077a1cbe5ea010da11499f9482e65de2a5b4",
+  "edge_type": "SCHEDULED_FOR",
+  "from_id": "req:a-batch-of-calls-runs-under-one-approval-and-one-export",
+  "properties": {
+    "modality": "expected",
+    "recorded_at": "2026-10-01"
+  },
+  "to_id": "epoch:planned-the-call-door-works-for-an-agent-that-cannot-use-mcp"
+}

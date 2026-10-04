@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:6ce6c9c6fccba02ff79076d23a08d453a94f9b4a2e59cf597e639936e779a283",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:lessons",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:lessons"
+}

@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:76ea52c1b2a684f2aec6e6cc92e4c8e8ff31a8bbdc6eacd0063f095adf0574d3",
+  "node_id": "art:opencode-loop-nudge-plugin",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "description": "The OpenCode half of the coherence loop's trigger — an adapter that translates OpenCode's plugin hooks (chat.message, tool.execute.after, the session.idle event) into the hook-event JSON tools/loop_nudge.py reads on stdin, and delivers its sentence through experimental.chat.system.transform. Holds no judgement; shipped in the kit under plugins/ and installed into .opencode/plugins/ (project) or ~/.config/opencode/plugins/ (machine). Reviewed 2026-09-14 against OpenCode 1.18.31's plugin types, loader and tool naming.",
+    "location": "getting-started/plugins/reflow2-loop-nudge.js",
+    "name": "reflow2-loop-nudge.js",
+    "status": "realized"
+  }
+}

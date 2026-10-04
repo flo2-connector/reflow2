@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:a7f14659b734f333e5e7b4b000670a9a0d69ca7b096f00e61bae5ea94d07a475",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:derived-completion",
+  "properties": {},
+  "to_id": "req:completion-computed"
+}

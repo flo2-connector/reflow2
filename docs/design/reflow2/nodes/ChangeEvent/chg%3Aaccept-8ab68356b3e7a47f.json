@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:b57430d98b462e32cf3ca636f42147599a01eac91889c11e1e67308fe8b48e92",
+  "node_id": "chg:accept-8ab68356b3e7a47f",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "resync",
+    "detected_at": "2026-08-05",
+    "name": "The NON_TOOL_TERMS allowlist gained the CorpusReport field names and token_sort_ratio, which the ingest-corpus skill names in backticks. DESIGN_HOLDS deliberately: what skill_lint DOES is unchanged — only its data moved, to stay in agreement with a surface that grew elsewhere. The lint refusing the new skill until this was done is the guard working, not a defect."
+  }
+}

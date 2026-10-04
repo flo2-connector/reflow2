@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:4da64dc37445891302357a766db0e818831fe4bbdffe3d6569200fdb5bdff813",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-saved-design-moves-to-the-item-layout-2026-10-03",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:406baa61d08bd23d4042eb810fc5c64ba907affb3b864651e43f01e324955e77",
+    "checksum_basis": "measured"
+  },
+  "to_id": "art:test-a-near-match-of-another-type-is-named-as-a-layer"
+}

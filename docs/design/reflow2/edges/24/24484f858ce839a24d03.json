@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:92d74689e8228ae1c87bc56e20a4777bd1915852a6926c8c71d3771ddb7fe2dd",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-fact-carries-its-date-and-the-date-is-read",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:schema-temporal"
+}

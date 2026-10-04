@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:c20b118df2bd94a0bdf0d57299177fb11648bea7831192ef8c12eee3ee91dc2c",
+  "edge_type": "CHANGED",
+  "from_id": "chg:every-served-skill-carries-a-line-for-a-person-and-says-who-it-is-for",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:skill-lint"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:e638d5c287394fb544ba001a7d04d264ff9d6f4a64dfa78a50b8e1d7221ed26f",
+  "node_id": "chg:delivery-can-be-a-model-change",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "defect_fix",
+    "name": "Delivery can be a model change — a capability declares what kind of thing delivers it, and arrival_delta stops asking about finished work",
+    "subject": "system"
+  }
+}

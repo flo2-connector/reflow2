@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:9245b69aa85f3e6e571476a2b90d574dcd54b945cef307eed50a105155454430",
+  "node_id": "cap:verification-freshness",
+  "node_type": "Capability",
+  "properties": {
+    "description": "Extends the confirmation ledger (cap:freshness) with the verification side of the same question. Per capability: the newest dated last_run_at across its passing VERIFIES checks, set beside the dates the ledger already computes for baseline accepts on its realizing artifacts — so a reader can see that a capability is claiming `verified` on a check that predates the code it covers. A SIGNAL, NOT A GAP, deliberately (dec:verification-freshness-not-a-gap): it is a standing property of the claim rather than an event, it fires on every legitimate refactor as readily as on a real hole, and a list that can never reach zero gets skimmed — which is the failure the whole gap workflow exists to prevent. THREE CONSTRAINTS THE CORE ALREADY IMPOSES AND THIS MUST HONOUR: the core takes no clock, so this compares recorded timestamps supplied by callers and never asks the system what time it is; undated events are not comparable, which the ledger already states; and where either side is undated the answer is an explicit `unknown` that is REPORTED, never a silent pass — an unanswerable freshness question presented as freshness is the same lie in a new place.",
+    "name": "Say whether a check is older than what it checks",
+    "provenance": "authored",
+    "status": "verified",
+    "tier": "operational"
+  }
+}

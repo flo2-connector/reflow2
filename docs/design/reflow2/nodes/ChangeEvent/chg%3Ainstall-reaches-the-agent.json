@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:46bcdc882422016464d2d2f8722e80998425e55561dd104f566b956e86e49e61",
+  "node_id": "chg:install-reaches-the-agent",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "test_failure_fix",
+    "name": "The installer creates the primary-harness instruction file when a project owns none, so an install cannot report success while leaving the kit invisible"
+  }
+}

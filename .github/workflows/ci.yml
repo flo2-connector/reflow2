@@ -183,7 +183,7 @@ jobs:
         # spawns the reflow2-mcp binary (built just above), which the no-RocksDB
         # core job does not build — placed there it FileNotFounded on every push,
         # so the gate silently never ran in CI (found cutting v0.10.0).
-        run: python3 tools/reflow2_check.py --export docs/design/reflow2.json
+        run: python3 tools/reflow2_check.py --export docs/design/reflow2/
       - name: Coherence-gate suite (hermetic — the gate's own regression net, BL-88)
         run: python3 tools/test_reflow2_check.py
       - name: The server and the CI gate give one answer about every artifact location (real binary)
@@ -218,7 +218,7 @@ jobs:
         # the thing that fires BL-176 and could not find that bug on itself for
         # eleven releases. This fails if the design record drifts back to
         # REALIZES-only and silently loses the ability to catch that regression.
-        run: python3 tools/self_host_uses_documents.py docs/design/reflow2.json
+        run: python3 tools/self_host_uses_documents.py docs/design/reflow2/
       - name: Design intent moves only on the owner's word
         # The one ENFORCED rule this project has that actually enforces. Anthony
         # marked it gate-blocking on 2026-08-09 ("stop the build") and nothing
@@ -228,14 +228,14 @@ jobs:
         # came before. The boundary lives in the graph on
         # dec:the-authority-check-guards-forward-not-backward, not in the script,
         # so silencing a finding means editing the design where a review sees it.
-        run: python3 tools/check_intent_authority.py docs/design/reflow2.json
+        run: python3 tools/check_intent_authority.py docs/design/reflow2/
       - name: Intent-authority suite (hermetic — it must never pass quietly)
         run: python3 tools/test_check_intent_authority.py
       - name: A capability that claims reach beyond this repo is realized by something a consumer gets
         # The wall check was built here, generalised in code to "any project", and reached
         # a consumer through nothing — this checkout has the script, so it could not feel
         # the absence. The gate reads the export; the class is "realized only by tools/".
-        run: python3 tools/check_consumer_reach.py docs/design/reflow2.json
+        run: python3 tools/check_consumer_reach.py docs/design/reflow2/
       - name: Consumer-reach gate suite
         run: python3 tools/test_check_consumer_reach.py
       - name: A capability does not NEWLY claim a check nothing can re-run
@@ -245,7 +245,7 @@ jobs:
         # on dec:a-capability-may-not-newly-reach-verified-on-a-claim-alone and
         # the set may only shrink — a SET and not a count, because a count stays
         # still while one claim is earned and another is introduced.
-        run: python3 tools/check_verification_ratchet.py docs/design/reflow2.json
+        run: python3 tools/check_verification_ratchet.py docs/design/reflow2/
       - name: Verification-ratchet suite (hermetic — it must never pass quietly)
         run: python3 tools/test_check_verification_ratchet.py
       - name: Command surface agrees with itself

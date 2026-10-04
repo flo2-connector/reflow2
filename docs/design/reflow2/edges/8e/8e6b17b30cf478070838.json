@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:c9ae633990c026bc0f69f38c947b05a7d42febb70936d6262a61b622459ac82f",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-session-can-report-what-it-did-by-hand",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "req:a-session-says-what-it-did-by-hand-that-reflow2-already-serves"
+}

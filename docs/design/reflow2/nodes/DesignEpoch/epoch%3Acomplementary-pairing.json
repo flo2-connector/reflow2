@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:1f5c369a9a4bc013d8a5f6025a8e3cc121544e2f4bea9ad6d2ba2eb9d6d79b63",
+  "node_id": "epoch:complementary-pairing",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "epoch_type": "revision",
+    "name": "The subscribe side becomes declarable and the seam is computed",
+    "sequence": 236,
+    "status": "arrived"
+  }
+}

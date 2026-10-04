@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:9508678f577a031b51c0eae51e5493d6bd4628868970e646a6e299da25effe40",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:surface-usage-instrument",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:surface-usage-instrument"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:b4a5ae54023f409b85a0c6aaad6fba5732962e72021e079e672548f6cea56540",
+  "edge_type": "REALIZES",
+  "from_id": "art:temporal",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "verified"
+  },
+  "to_id": "cap:a-change-event-is-written-complete-in-one-call"
+}

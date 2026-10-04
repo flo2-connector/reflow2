@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:23d2dbf1a739712f0502aae33c761d9952fb3d88b7911e5b6452ceedfe6a4bcb",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:a-session-with-no-seed-can-still-orient",
+  "properties": {
+    "approved_at": "2026-08-16",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

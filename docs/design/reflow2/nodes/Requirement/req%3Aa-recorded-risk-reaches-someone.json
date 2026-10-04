@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:599dbe6eac249063c702d242af89f5fac67f7190772bf096e21f3643d4518f71",
+  "node_id": "req:a-recorded-risk-reaches-someone",
+  "node_type": "Requirement",
+  "properties": {
+    "concern": "core",
+    "designation": "internal",
+    "kind": "functional",
+    "lineage": "original",
+    "name": "A recorded risk reaches someone — RISKS is a finding source, not an edge only propagation can see",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "A RISKS edge is surfaced by the routine calls people actually make — `loop_status` reporting recorded risks to what you own, and `detect_gaps(scope=…)` including risks that terminate inside the region — rather than being reachable only by someone who already suspects a change and asks for its blast radius.\n\nTHE EVIDENCE IS A SUCCESS STORY WEARING A FAILURE'S CLOTHES, which is why it is worth a primitive. In storyflow, `cap:fleet_step_reset` --RISKS--> `req:fleet_no_idle_worker` was recorded in advance, verified in the committed export. Hours later that exact causal chain ran: the user reset seats, the reset seats were invisible to every boss because a roster row is the product of a WRITE and an arriving seat has not written, a boss measured an empty pool and staffed nobody, and workers idled while a boss with lanes stood by. Somebody modelled their own incident correctly and in advance — AND IT REACHED NO ONE. `loop_status` never mentions RISKS. `detect_gaps` scoped to the owning component returned 12 gaps and this was not among them, because RISKS is not a gap source. Writing it down was never the hard part.\n\nMEASURED IN REFLOW2'S OWN DESIGN, 2026-08-09: ONE RISKS edge in 7,097. And the source tells the rest — `RISKS` appears in exactly one place in the entire codebase, `crates/reflow2-core/src/propagate.rs:34`, inside a `RISK_EDGES` constant. It is therefore reachable ONLY through `propagate_change`, which a caller reaches by already knowing something changed. No detector, no gap source, no report. `BLOCKS` (2 edges) and `MASKS` (0) sit in the same constant and have the same problem.\n\n⭐ THIS SHARPENS AN OPEN QUESTION RATHER THAN DUPLICATING IT. dec:idea-detect-vocabulary-that-nothing-reaches counts an edge type as REACHED if it is instantiated, named in the propagation table, or named anywhere in non-test Rust. RISKS PASSES THAT TEST AND IS STILL WRITE-ONLY. So the census as specified would clear it, and a second test is needed: not \"is this vocabulary named in code\" but \"can a reader who does not already know about it ever be shown it\". Declared-versus-code and code-versus-retrieval are different failures, and only the first is currently modelled.\n\nTHE COUNTER-DISCIPLINE, recorded because it is part of the proposal rather than an objection to it: two edges in a whole graph means the type is effectively unused, so surfacing it will not be noisy. If it later becomes noisy, the answer is to require an assessment date on the edge — not to stop reporting.\n\nSOURCE: storyflow gap A of the peer set — found by storybug Boss (47accf78), filed by api-boss (05af57c1), 2026-08-09, v0.26.1.",
+    "status": "proposed"
+  }
+}

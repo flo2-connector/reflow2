@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:5391bf09e0ecf8a2e07b01bd9301ed03aab459e7fe34b78951f1395c710f3b25",
+  "edge_type": "HAS_TEMPORAL_FACT",
+  "from_id": "art:tools-capture",
+  "properties": {},
+  "to_id": "fact:a-write-that-removes-a-property-reported-nothing-moved-2026-10-03"
+}

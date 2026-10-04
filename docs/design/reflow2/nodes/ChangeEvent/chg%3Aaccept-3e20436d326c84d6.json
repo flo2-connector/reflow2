@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:bd2df4016b1cb89b5cea6ad9269aa74810ee95b54dc1b8cf4a7e8318cdd4a650",
+  "node_id": "chg:accept-3e20436d326c84d6",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "refactor",
+    "detected_at": "2026-08-08",
+    "name": "ContributorReq.id gains a serde alias for contributor_id. The rationale moved from a /// doc comment to a // comment after the toolsnap gate caught it: JsonSchema derives the advertised description from doc comments, so the explanation had become part of the served add_contributor schema. All 149 toolsnaps now match — the served surface is unchanged, which is what the alias was always meant to be."
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:8d36cd08d51a8ca901a19fab6c61b4bf8885166bdbc7c60983e4af4ab4f0abc0",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-name-is-not-a-report",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "ver:the-loop-says-what-this-session-added"
+}

@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:f6e443f0c0d50b9adcee6c9ff0b8c8a82ac32f83a2f72ad54d335ac5ed5dee00",
+  "node_id": "art:test-check-verification-ratchet",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "test",
+    "description": "The ratchet's own regression net, hermetic. Twelve tests; five pin that it cannot pass quietly.",
+    "location": "tools/test_check_verification_ratchet.py",
+    "name": "tools/test_check_verification_ratchet.py",
+    "status": "realized"
+  }
+}

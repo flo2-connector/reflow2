@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:f09679fdfc55648c72090904fafc2dd9f22929d8cc6bee706d017ab8104018b4",
+  "edge_type": "CHANGED",
+  "from_id": "chg:edge-prose-is-read-when-the-node-under-it-moves",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:tools-coherence"
+}

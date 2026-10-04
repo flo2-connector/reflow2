@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:7a35722f9fa009e03d8d89a623505bce36cc8277403e23fc847653adfb202ce7",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:decomposition-coverage-is-asked",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:detect"
+}

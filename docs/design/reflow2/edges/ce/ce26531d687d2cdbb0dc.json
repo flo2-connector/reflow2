@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:f9f5bac24737e35ae2583e1480d5d3048906ba520ea9f5965609a77b762d57a2",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-server-and-the-gate-share-one-meaning-for-an-artifact-location",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:measure"
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:bde40f81ff438abeedd6c41bd35ea81c49f9306040f6eccd11a3480e6f1f5755",
+  "node_id": "chg:the-v0550-upgrade-note-says-it-is-superseded",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "documentation",
+    "name": "The v0.55.0 upgrade note says at the top that its migration is superseded, without rewriting what it said",
+    "rationale": "An upgrade note that demands work nobody needs is worse than no note, because it costs a migration AND teaches the reader that this project's required actions are not really required. The distinction that matters is between correcting a document and annotating it: this one was not wrong when written, it was overtaken.",
+    "summary": "docs/upgrading-to-v0.55.0.md told every consumer a migration was REQUIRED. After the version guard learned to refuse on a population rather than a declaration, that is no longer true for anyone going to v0.56.0 or later: only a graph that genuinely HOLDS a QualityGate is refused, and by every measurement taken no design ever held one.\n\nA banner now says so at the top — try opening first, and if it opens you are done.\n\nTHE ORIGINAL TEXT IS KEPT UNCHANGED, DELIBERATELY. It was correct for the release it was written for, and a reader still on v0.55.0 or v0.55.1 needs exactly those instructions. Rewriting it would falsify a record of what was true; annotating it leaves both the claim and its supersession readable."
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:358fc23f1c60a7e83ccf4941e1be0ae497f1b0a729b0a41b41a24a23fdcd4afa",
+  "edge_type": "CHANGED",
+  "from_id": "chg:bl70-fork-layer",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "cmp:merge"
+}

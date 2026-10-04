@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:bf819cc361732a3c4d435c17286e7136adb157a0c6f1380dbab4e64c0e90a011",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0600",
+  "properties": {
+    "as_checksum": "sha256:d7ad0005715563e4089ca5a4f2ff2a4a2cb2b07c8feafd611610cb278c9cf468"
+  },
+  "to_id": "art:test-a-session-with-no-seed-can-find-one"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:88e7ee4b6ca99895a5641f02041bf6ea17d3604cf0d83ecc85dae4c0c10ccda4",
+  "edge_type": "CHANGED",
+  "from_id": "chg:wire-planning-cluster",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "req:graph-indexes-snapshots"
+}

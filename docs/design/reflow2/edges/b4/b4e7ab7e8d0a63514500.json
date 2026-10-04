@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:d78dfd7c8145b9d6a9b3b051b46ac78fca151aeec1bc78925db6fdc49b903cae",
+  "edge_type": "INVALIDATES",
+  "from_id": "chg:currency-has-a-non-linux-answer",
+  "properties": {
+    "at": "2026-09-05",
+    "note": "THE CAUSE IS FIXED, AT THE CAUSE: currency_verdict combines the /proc link with a startup size:mtime fingerprint, so a non-Linux server answers current/stale and 'unknown' is reserved for both signals failing. The fact's own FIX SHAPE paragraph is what shipped, including the pure function pinned failing-first. BOUNDED, and this is why it is an INVALIDATES and not a closure: (1) the fact's ⑨ still stands — NOT RUN ON macOS; the darwin case is asserted through the pure function on Linux, and Alex's next run is the real verification. (2) The AMPLIFIER clause (the note carried into `next` on every call when not current) is untouched: with an answer on macOS it no longer fires there, but a genuine UNKNOWN (both paths failing) is still carried per call — a smaller open question. (3) The class statement, the measurement, and the observation that the portable primitive sat unused one module away all remain true and are the reason the fix took the shape it did."
+  },
+  "to_id": "fact:defect-currency-is-read-from-proc-self-exe-so-every-non-linux-run-answers-unknown-on-every-call"
+}

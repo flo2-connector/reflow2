@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:e0bc4db19b42a3fed207ec2515ee1c2f7ee523ec0406a3fd8028c2b2018adc86",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-owner-rules-on-scope-and-reachability",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "req:declared-vocabulary-is-reachable-from-the-surface"
+}

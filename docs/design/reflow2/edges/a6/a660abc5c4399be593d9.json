@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:9ba59cc1bdaba4c0c066bf5eaa64758dd51ba26f50624a4803360d6ac118faa7",
+  "edge_type": "HAS_SNAPSHOT",
+  "from_id": "req:skill-use-survives-a-long-session",
+  "properties": {},
+  "to_id": "snap:epoch:skill-use-still-needs-reminding:req:skill-use-survives-a-long-session"
+}

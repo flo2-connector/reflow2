@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:8781d0e4158988a591dd977d7f61cc1af56bef2cf067538561e79ac35aa069a2",
+  "node_id": "frag:art:heal",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered heal.rs"
+  }
+}

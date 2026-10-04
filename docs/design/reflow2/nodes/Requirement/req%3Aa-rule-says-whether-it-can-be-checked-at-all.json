@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:8cd0e7124b76b67743f050da81fc59550d2d762ce24de9fca2a68ab82e76018f",
+  "node_id": "req:a-rule-says-whether-it-can-be-checked-at-all",
+  "node_type": "Requirement",
+  "properties": {
+    "concern": "core",
+    "designation": "internal",
+    "kind": "functional",
+    "lineage": "original",
+    "name": "A rule says whether a check is even possible, so \"no detector\" splits into debt and accepted limit",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "A rule or requirement can declare its VERIFIABILITY — detectable / detectable-but-unwritten / undetectable-by-nature, with a required reason for the last — so that \"which of my rules have no check?\" splits into a backlog and a set of accepted limits, and only the first is debt.\n\nTHE GAP THIS CLOSES. \"No check is possible\" and \"no check yet\" are OPPOSITE states that read identically today. Both surface as \"unverified\". A rule about INTENT — \"do not shape data to satisfy a tool\" — has no detectable signature by construction, because the compliant and non-compliant artefacts are byte-identical. A rule about a file layout is merely unwritten. Reporting them the same way makes the report untrustworthy: a reader cannot tell a permanent limit from a to-do.\n\nREFLOW2 HAS ALREADY SOLVED THIS EXACT SHAPE ONCE, one domain over, which is the strongest argument that the distinction is real and not a special case. `granularity` distinguishes `opaque` — a subtree claimed as a unit ON PURPOSE — from `pending_expansion` — a PLACEHOLDER for work not done — and reflow2's own tool documentation says they \"look identical to every report today and are opposite states: a decision versus unfinished work.\" The same distinction is missing for verifiability. It is also the same principle as dec:does-enforced-default-to-gate-blocking, where a rule's power is stated rather than defaulted.\n\nWHY IT MATTERS TO THE REPORT AND NOT ONLY TO THE RECORD. Of nine rules recorded in the storyflow trial, two got checks, one was detectable-but-unwritten, and THREE were undetectable by construction. Filing those three as unverified debt would misreport a third of the set forever — and a permanent red nobody can clear is how a report loses its readers.\n\nRELATED, AND THE REASON THIS IS URGENT RATHER THAN TIDY: `unverified_enforced_rule` already fires today on `enforced: true` with no incoming VERIFIES, and rule:bl-41 is currently caught by it. Without this distinction that detector cannot tell a rule that is waiting for a detector from one that can never have one.\n\nSOURCE: storyflow fleet governance report, api-boss (05af57c1), 2026-08-09, v0.26.1. Bound as stated by its author: one project, one month, one fleet shape — hypotheses to test, not requirements.",
+    "status": "accepted"
+  }
+}

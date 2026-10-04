@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:bd0ff2e96135ea4243b80f55ec9c5628c3323f39bc885058cd5ba46025fb08a9",
+  "node_id": "chg:the-four-layer-frame-gets-its-natural-experiment",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "documentation",
+    "detected_at": "2026-08-28",
+    "name": "Snapshot the four-layer frame before this session's evidence is added to it",
+    "rationale": "Recorded ON the existing node rather than as a parallel one, following that node's own rationale: splitting \"would lose the comparison, which is the only part that does any work\".\n\nSnapshotted BEFORE the merge, which is the step this same session skipped twice on other nodes and was warned about by the tool both times (\"no snapshot holds the prior value\"). Doing it correctly here is not tidiness — the prior text of that node is the record of what the frame said before this evidence arrived, and the whole value of the addition is the comparison.",
+    "subject": "record",
+    "summary": "Adds two observations from the 2026-08-28 session to `dec:idea-where-does-tool-use-actually-fail-four-layers`: the author of a skill not using it an hour after writing it (layers ① and ③ saturated, failure at ②), and a systematic skip pattern the frame does not predict — capture/orient skills used, change-governing skills skipped."
+  }
+}

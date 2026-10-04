@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:2a583ae43072d8d4f9ad37497ed8e2663f6c423dbe53aa970a0587f89732b175",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:results-from-the-code-flow-back-into-a-design-that-lives-elsewhere",
+  "properties": {
+    "approved_at": "2026-09-27",
+    "authored_at": "2026-09-25",
+    "roles": [
+      "author",
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

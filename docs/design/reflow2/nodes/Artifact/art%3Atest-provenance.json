@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:d7d736ecb11e06b8a4bcceec18d91f8de58f32ef73c07c3a37ccf68e99f4099f",
+  "node_id": "art:test-provenance",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "test",
+    "description": "Drives check_and_stamp against real files rather than through open_rocksdb, so it runs on the fast path.\n\nSince 2026-09-08 it also carries the field-reported zero-instance case and the three controls that stop its fix becoming \"always open\": an UNKNOWN type still refuses and still says the binary is BEHIND; a retired type that IS populated still refuses, naming what it holds; and a population that CANNOT BE COUNTED still refuses, because a scan error read as zero would open the graph the guard exists to protect.\n\nThe zero-instance test was written against the unfixed code and observed to fail, reproducing the reporter's error text verbatim including the 0.50.0/0.55.1 version pair.\n\nREGISTERED LATE, on the day the guard it tests locked a user out for the second time. The file existed and was outside the design record, so nothing connected it to the decision it enforces.",
+    "location": "crates/reflow2-core/tests/provenance.rs",
+    "name": "tests/provenance.rs — which reflow2 wrote this graph, and the four controls that keep the retired-type refusal honest",
+    "status": "realized"
+  }
+}

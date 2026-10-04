@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:2e0bece5d2daecf5b3f432d887b96d111e19f693e903ea8c45d06fb07f92ef05",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-what-watches-for-the-last-responsible-moment-to-arrive",
+  "properties": {
+    "note": "option (b) here would be this one's stated trigger",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "dec:idea-is-allocation-running-ahead-of-the-seams"
+}

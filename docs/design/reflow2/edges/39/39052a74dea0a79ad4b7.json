@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:6008337f7c2b07f1854a691afdc44e687d110242ba37c6b197a6c9fd88be6077",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:idea-a-claim-says-what-its-session-is-doing-and-never-reads-gone-when-it-cannot-be-verified",
+  "properties": {
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

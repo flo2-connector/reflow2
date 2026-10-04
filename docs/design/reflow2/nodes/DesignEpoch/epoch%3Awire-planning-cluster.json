@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:4baa663bd11d9416484bc5b1ae5686037b3407316a16265b5684c5251b9592d1",
+  "node_id": "epoch:wire-planning-cluster",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "epoch_type": "revision",
+    "name": "The planning cluster joins the thread, and a wrong-direction dependency surfaces",
+    "sequence": 237,
+    "status": "arrived"
+  }
+}

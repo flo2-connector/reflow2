@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:c2ea9fcf67637165705e1cb5cd3d845d1d3c375a3d5603be3baacab0d53ac471",
+  "edge_type": "REALIZES",
+  "from_id": "art:adopt-skill",
+  "properties": {
+    "completeness": "partial",
+    "conformance": "unchecked",
+    "note": "the instruction leg: adopt points at the skill after the breadth pass"
+  },
+  "to_id": "cap:establish-taxonomy-before-bulk-capture"
+}

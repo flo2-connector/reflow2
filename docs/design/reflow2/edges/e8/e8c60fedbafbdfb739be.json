@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:48df52a96048e8c311fce1671d93e17c824a3c1c7479bc9f342e160c1914d9b5",
+  "edge_type": "CHANGED",
+  "from_id": "chg:bl179-maturity-profile",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:tools-coherence"
+}

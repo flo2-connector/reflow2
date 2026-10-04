@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:5fe0138003179dc9a9772c249d69ac39241e5e0de3e5689cbfb27bc91f9aa395",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-read-of-a-held-design-is-as-true-as-the-live-one",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cap:a-build-can-call-one-tool-from-the-shell-and-read-the-reply-as-json"
+}

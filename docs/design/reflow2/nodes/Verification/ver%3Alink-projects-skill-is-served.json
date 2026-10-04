@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:d7cf7b051096b748ea7060d7254b9f7323159d043f03025851bb6303c57c9589",
+  "node_id": "ver:link-projects-skill-is-served",
+  "node_type": "Verification",
+  "properties": {
+    "kind": "verification",
+    "last_run_at": "2026-08-13",
+    "level": "integration",
+    "method": "test",
+    "name": "The link-projects skill is served byte-identical to its source, its frontmatter names it after its directory, it states the standing rule, its mirrors match, and every tool it names resolves on the real surface (crates/reflow2-mcp/tests/served_skills.rs + tools/skill_lint.py)",
+    "status": "passing"
+  }
+}

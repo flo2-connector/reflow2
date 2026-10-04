@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:79aa912177ebadf084f8a6ca385a85f135e18de80a8ff1769a96315d5b9a0e2a",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:nothing-moved",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:artifact"
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:29bee6ba5f53c313e332c1808cc6d7c0c922ae67c7d7fe7b062401228afa504b",
+  "node_id": "snap:epoch:the-register-rule-reaches-the-words:art:detect-and-ask-skill",
+  "node_type": "Snapshot",
+  "properties": {
+    "edges": "[{\"direction\":\"out\",\"edge_type\":\"REALIZES\",\"other_type\":\"Capability\",\"other_id\":\"cap:the-loop-holds-the-invitation\",\"properties\":{\"completeness\":\"complete\",\"conformance\":\"unchecked\"}}]",
+    "state": "{\"artifact_type\":\"document\",\"checksum\":\"sha256:fb1997d89bc468e1882eaae13b340476f37b478954845b7a54bd423f55f3e93b\",\"location\":\"getting-started/skills/detect-and-ask/SKILL.md\",\"name\":\"detect-and-ask/SKILL.md — the ask half of the loop, and now the rule for when NOT to ask\",\"status\":\"realized\"}",
+    "target_id": "art:detect-and-ask-skill",
+    "target_type": "Artifact"
+  }
+}

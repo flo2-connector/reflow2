@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:25caf5de5ecad8b2817c92b7dbdc5dd7e52fc9b23d168873b21daa50c15c9c38",
+  "node_id": "chg:checksum-canonical-both-sides",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "test_failure_fix",
+    "name": "BL-125: canonicalise the checksum on BOTH sides of the drift comparison, not only on the way in. The 2026-07-25 write-side fix left drift.rs comparing literally, so the identical false red came back through the read door and a bare hash registered and observed reported drift on every artifact of an untouched tree. Measured at the real MCP surface before and after: unchanged 0 with a checksum_change and propagation_seeds seeded from a file nobody touched, then unchanged 1 with no findings and no seeds."
+  }
+}

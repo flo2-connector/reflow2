@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:bb2f5a2b9575510ec03870420d806242fa2238312a015932d963d0f4706b54d3",
+  "node_id": "cmp:export",
+  "node_type": "Component",
+  "properties": {
+    "kind": "module",
+    "level": "component",
+    "name": "export",
+    "provenance": "authored",
+    "purpose": "The export module.",
+    "status": "planned",
+    "tier": "operational"
+  }
+}

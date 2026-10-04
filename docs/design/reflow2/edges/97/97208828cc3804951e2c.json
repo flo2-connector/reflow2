@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:38e487ea0c652090722a558f82f796ae42303396f86734816808770e12ad0fba",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "req:friction-has-a-baseline",
+  "properties": {
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "req:friction-has-a-severity-bar"
+}

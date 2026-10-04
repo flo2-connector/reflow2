@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:28a037bc45ef3ccdb0d28714215e3c69419ebe7bd36f49236f80743ee91b9b8f",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:missing-sibling",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:detect"
+}

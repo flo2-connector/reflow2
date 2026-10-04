@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:9c3b24db531e59fa172c93777cfc18b6186ab5171cd811dd959e9f4aa95082c6",
+  "node_id": "frag:art:test-a-dangling-reference-is-found-whatever-its-degree",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered a_dangling_reference_is_found_whatever_its_degree.rs"
+  }
+}

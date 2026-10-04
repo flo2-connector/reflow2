@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:d0bdcc20eda5ef1ae46318f9863625fc461bb5753f343b5f7bdac2b35fba9053",
+  "edge_type": "VERIFIES",
+  "from_id": "ver:siblings-are-not-merged-away",
+  "properties": {
+    "pinned": "node_type,locale,unicode_script,resolution_thresholds,corpus_size,separator_style",
+    "swept": "name_shape,prefix_family_size,abbreviation_vs_distinct_word,version_suffix,token_order,discriminator_enabled"
+  },
+  "to_id": "cap:ingest"
+}

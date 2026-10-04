@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:3d4623d1346e6ddbf58ea5977a7c2520118a2262c07ab9a2b0c982b9155024c5",
+  "node_id": "art:readme",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "document",
+    "granularity": "atomic",
+    "location": "README.md",
+    "name": "README.md",
+    "status": "realized",
+    "volatility": "stable"
+  }
+}

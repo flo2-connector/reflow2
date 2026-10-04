@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:ce8268a62325bf22e1a1bfc707a5aa3c586b1224cc1240f058fe2f1c8353479b",
+  "node_id": "chg:accept-eefeacb241cd44c8",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "detected_at": "2026-09-22",
+    "name": "One line added to the gate list: tools/test_test_run_to_files.py, the converter's own net, mirroring its new ci.yml step.",
+    "subject": "system"
+  }
+}

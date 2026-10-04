@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:9b7077b17dcfa21e63e6747b52a7dedced9af2469c8d9251a123e4f2729444e0",
+  "edge_type": "VERIFIES",
+  "from_id": "ver:a-stale-write-is-refused",
+  "properties": {},
+  "to_id": "cap:a-write-can-be-conditional-on-what-was-read"
+}

@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:ce32a3743f23dbf8231edcebd127423e1389fe61c7bc93922b84c700411b7003",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:idea-the-server-counts-its-own-refusals-so-no-session-has-to-remember-to",
+  "properties": {
+    "authored_at": "2026-09-06",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:claude-code"
+}

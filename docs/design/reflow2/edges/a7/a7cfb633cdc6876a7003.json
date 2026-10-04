@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:9e205e2c8741a98d26eee3bee22af52ac6e15a764efaa62f2ca6608cfc88d292",
+  "edge_type": "CHANGED",
+  "from_id": "chg:what-next-built",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:tools-coherence"
+}

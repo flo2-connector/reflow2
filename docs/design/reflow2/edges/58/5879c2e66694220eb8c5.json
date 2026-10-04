@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:ccb6b31418ccccd73886a2ff6f62ada583e9dd75505c3bc79bba75c72580005d",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0730",
+  "properties": {
+    "as_checksum": "sha256:9ad56c234dcffbca6f016d50b71c5ffab9e33a3380d18c5fafb445de5474e079"
+  },
+  "to_id": "art:docker-build-script"
+}

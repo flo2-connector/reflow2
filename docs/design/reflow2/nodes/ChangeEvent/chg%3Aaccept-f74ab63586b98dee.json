@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:c363b1175ef234ecfbc7b7bb0da10e990147b88a3eaa7fffd914ab4dd03c8f11",
+  "node_id": "chg:accept-f74ab63586b98dee",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "test_failure_fix",
+    "detected_at": "2026-07-23",
+    "name": "Live-store catch-up: the 2026-07-23 session (f4109cb stamp-ordering, dc9bf96 refusal message) reconciled these checksums in the committed export via the build script while the live server was down; this accepts the same on-disk content in the live graph. Fixes restore intended behaviour — no design meaning."
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:07549b657df67655821b06ed875da8804cedff9205c7ac8697de5c8fd165b8db",
+  "edge_type": "CHANGED",
+  "from_id": "chg:search-nl-defect",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cap:search"
+}

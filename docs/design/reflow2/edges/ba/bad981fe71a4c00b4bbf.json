@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:248ccaab84268a8deb25d08418fa7b3d5076403ea0fbf19c9196ef01f4454d29",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-check-and-its-findings-are-different-things",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "ver:readiness-gating"
+}

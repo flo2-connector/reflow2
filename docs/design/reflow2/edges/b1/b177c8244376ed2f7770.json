@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:41848a5a5f8f484d3bb74f419caaef69c3746f3ab257d99e87467931fba60089",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:test-a-write-records-the-agent-it-went-through",
+  "properties": {
+    "covers": "whole"
+  },
+  "to_id": "ver:a-write-records-the-agent-beside-the-person-it-acts-for"
+}

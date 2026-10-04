@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:a1eefbb8e49cf9a5e366cc7358a77beb72dfdbd2758645f595583423fbb47a24",
+  "node_id": "frag:art:schema",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered crates/reflow2-core/src/schema.rs"
+  }
+}

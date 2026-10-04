@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:bce7f0f1d5eb2830fe24cad3f3c072a0162e937bff4f975e4219bdea9c801f07",
+  "node_id": "cap:publishable-promise",
+  "node_type": "Capability",
+  "properties": {
+    "description": "A Requirement can be designated `published`, and `export_surface` then carries it alongside the boundaries — so a design can state what it UNDERTAKES TO DO, not only what it exposes. Opt-in per requirement, `internal` by default because publishing is a commitment; undesignated intent is still withheld and still counted. A surface with no promises says so in as many words, so \"none stated\" never reads as \"none exist\".",
+    "name": "Publish a promise, not just a boundary",
+    "provenance": "authored",
+    "status": "realized",
+    "tier": "operational"
+  }
+}

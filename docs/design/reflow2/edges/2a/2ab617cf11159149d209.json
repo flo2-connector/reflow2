@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:5a6a0cccfd1f751d161ae04bef121124c41cbff5d34b96af141b437960f83315",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:a-hosted-server-closes-idle-designs-and-says-busy-when-full",
+  "properties": {
+    "approved_at": "2026-09-27",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

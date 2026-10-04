@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:c815a048b3dec8584a1388b2903169bc8afa99d547a62546c938db1957733d24",
+  "edge_type": "CHANGED",
+  "from_id": "chg:describe-designs-built",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:latent"
+}

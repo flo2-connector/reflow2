@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:dec7b78e34b7b3a72339e0bee00e621f30f4dd503c9852b2d5606ebb8e0b8f2b",
+  "edge_type": "GOVERNED_BY",
+  "from_id": "cap:a-relation-tool-accepts-the-other-familys-names",
+  "properties": {
+    "note": "The ruling this implements: option A with a stated convention, option C folded in, B rejected, D left open."
+  },
+  "to_id": "dec:idea-one-way-to-name-which-node-across-the-tool-surface"
+}

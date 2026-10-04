@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:adcbadadfad43502056c0f8028e6b9f9beba42be509ac7576c0a0073dcb0efdd",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:artifact-intent-test",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:artifact-intent-test"
+}

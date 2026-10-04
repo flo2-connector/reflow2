@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:3da0c4cc85db4ff353094c9ab5121a68e4fb86b4c5b0a409a72ac3b6a7f2bd01",
+  "node_id": "fact:bl-204",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "defect",
+    "statement": "[BL-204] The served brainstorm skill prescribes a mandatory call and justifies it with behaviour that changed a fortnight ago",
+    "subject_id": "cmp:skills",
+    "value": "{\"evidence\": \"*Found 2026-08-04 by following the skill, which is the only way this surfaces.* brainstorm step 3 says: *\\\"set_decision_status to proposed. This call is not optional: add_decision defaults to accepted, which would assert a settlement that never happened.\\\"* add_decision has not defaulted to accepted since 2026-07-25 \\u2014 its own served description says so (*\\\"It lands proposed \\u2026 BEHAVIOUR CHANGED 2026-07-25: this used to default to accepted\\\"*), and recording two brainstorm Decisions today confirmed it: both landed proposed with no second call. The instruction is now harmless-but-false, and it is the ONLY kind of skill error that self-lint cannot catch \\u2014 skill_lint checks that served tool NAMES exist, not that the behaviour a skill ASSERTS about a tool is still true. This is [BL-197]'s shape from inside the kit rather than from the tool descriptions, and [BL-183]'s from the other direction (there, the served revise-design skill prescribed the call that CAUSED the bug; here it prescribes a call that is merely redundant \\u2014 same failure to re-read the skills when a tool's behaviour moves). Fix has two halves and the second is the valuable one: correct the sentence, and then ask what would have caught it \\u2014 a check that every behavioural claim a skill makes about a tool is restated from that tool's own description, or at minimum a rule that changing a tool's default requires grepping the served skills for its name. Cheap to fix, and worth more as the ONE case where the kit's own instructions drifted from the binary that serves them. Size S\", \"origin\": \"Migrated from docs/backlog.md BL-204 on 2026-08-07 (epoch:backlog-retired). Size estimate carried from the row: S.\"}"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:9b9acd1ff7f71174dcb604e2e7acec247d8c121c39827cca3192c75a0544d44b",
+  "node_id": "chg:accept-596bad1298ffeb19",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "documentation",
+    "detected_at": "2026-09-22",
+    "name": "AGENTS.md: the new e2e gate added to the list of real-binary gates",
+    "subject": "system"
+  }
+}

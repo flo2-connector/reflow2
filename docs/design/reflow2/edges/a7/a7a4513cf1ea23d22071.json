@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:53e0d20c3cde8867c72081c1bddccc79e6b18bdccb99dd2ab1028fdf397d3771",
+  "edge_type": "HAS_SNAPSHOT",
+  "from_id": "cap:kpp-proposal",
+  "properties": {},
+  "to_id": "snap:epoch:kpp-capture:cap:kpp-proposal"
+}

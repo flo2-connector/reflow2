@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:8bc24c83e86425dbb2087752b03f5996a3826cec3b5fbad8c45b46884127f2dc",
+  "node_id": "chg:2026-09-22-published-surface-carries-a-promise",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "name": "detect_gaps asks a design that publishes contracts and no promise, and reflow2 publishes its first six requirements",
+    "repair": "corrected_cause",
+    "subject": "system"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:c624554eab9b1f9454c0cdd969874e9cbcf51e6f0b7dafe54e2d41bfebd959ce",
+  "node_id": "decision:ack:7d8edafb0bd7aea3",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Accepted the gap gap:7d8edafb0bd7aea3.",
+    "name": "Reviewed: gap:7d8edafb0bd7aea3",
+    "rationale": "APPROVED WORK, NOT YET BUILT (Anthony, 2026-07-25). The mechanism is settled by dec:identity-out-of-band — a UUID minted at genesis, stored beside the store, refused rather than defaulted when a later open disagrees. Queued, not undecided.",
+    "status": "accepted"
+  }
+}

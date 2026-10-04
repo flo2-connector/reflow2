@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:6e3da29f07cb8c02289c93911506789618cf1da200144fda9a20c182692419bb",
+  "node_id": "question:3f38ed37a3d0f834",
+  "node_type": "Question",
+  "properties": {
+    "answer": "Change it everywhere — a hint names the call to make next rather than trailing the skill name in brackets. (Anthony, 2026-07-31.)",
+    "asked_at": "2026-07-31",
+    "context_setter": "Nothing satisfies requirement “A hint that names a skill must name it as the next CALL, not as a parenthetical — a citation is read as attribution, not instruction”",
+    "gap_id": "gap:3f38ed37a3d0f834",
+    "question": "When reflow2 tells an agent which skill to use, it currently mentions the name in brackets at the end — and agents read that as a footnote rather than an instruction. Do you want the wording changed everywhere to say plainly \"do this next\", or leave it as it is?",
+    "rephrase_degraded": false,
+    "status": "answered"
+  }
+}

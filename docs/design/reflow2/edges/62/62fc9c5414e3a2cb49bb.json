@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:2ddfce3c3b5779b12e5dc777efc08ddc1766d49ddc0b76afebf1ba1531705129",
+  "edge_type": "CAUSES",
+  "from_id": "art:hxm-program-feedback-2026-09-28",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "The root-cause pass on this document's 09-14 /feedback window (the ledger is younger than the design): usage_report states a first window only in words, the ledger restarts per machine and the design keeps no birth date, so a short ledger reads as a quiet design.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:root-cause-a-first-feedback-window-never-says-the-design-is-older-than-its-ledger-2026-09-28"
+}

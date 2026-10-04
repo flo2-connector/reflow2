@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:289244fbc543dcd9b3c2024116ff2c68b3b1cf11654827adcfbe5a892b5f4b1f",
+  "edge_type": "CHANGED",
+  "from_id": "chg:tool-minted-seat-liveness-20260808",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:main"
+}

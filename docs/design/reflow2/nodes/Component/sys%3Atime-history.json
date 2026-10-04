@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:e1429caaace1a15b822e3a1013002e845d1fc76bc8ce431ed2745f97e8f9efe0",
+  "node_id": "sys:time-history",
+  "node_type": "Component",
+  "properties": {
+    "kind": "module",
+    "level": "subsystem",
+    "name": "Time & History",
+    "provenance": "authored",
+    "purpose": "The change axis: epochs, decisions, the roads not taken — hold and compare alternatives, diff and merge divergent designs, so the past survives being updated.",
+    "status": "planned",
+    "tier": "operational"
+  }
+}

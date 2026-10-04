@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:fe274eeca3c76696d9aa3284570b0e52fe4e3f75bdcd7dfe591ebec12bcb4f34",
+  "node_id": "chg:acknowledgement-not-structure",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "test_failure_fix",
+    "name": "BL-124: exclude review records from the design network. An acknowledgement Decision is wired GOVERNED_BY into everything it acknowledges, so it joined the island it acknowledged and made disconnected_community permanently unclosable. Fixed at design_network() rather than at the defect-id hash because it has three consumers. MEASURED on reflow2's own graph: 125 review records carrying 610 edges; four of the eight most central nodes were acknowledgements and are now none, with real components rising (rel:v0170 +75%, cmp:detect +41%); and surprising_connections went 16 to 32 — the bookkeeping edges were SUPPRESSING half the real surprises by tying communities together, which is the opposite of the predicted pollution."
+  }
+}

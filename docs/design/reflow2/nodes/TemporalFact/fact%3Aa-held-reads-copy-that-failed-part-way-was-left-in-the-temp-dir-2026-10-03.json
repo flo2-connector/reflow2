@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:9c307e81f3f8bda00909274c60d56f20491ced3e27a8ee2f060355ad56af2121",
+  "node_id": "fact:a-held-reads-copy-that-failed-part-way-was-left-in-the-temp-dir-2026-10-03",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "defect",
+    "name": "MEASURED 2026-10-03 by CI on PR #657: a copy of a held store that failed part-way was left in the temp dir as reflow2-snapshot-<pid>. snapshot_dir created the directory and returned at the first file it could not copy, and a file an opening RocksDB deletes between the listing and the copy is one such file",
+    "source": "art:main",
+    "statement": "FOUND by the degraded-server suite (tools/test_degraded_server.py, test_nothing_is_left_behind) in CI run 37097319439 on PR #657: after the workspace tests, `/tmp/reflow2-snapshot-99729` was in the temp dir. The new held-read tests make door reads while a `--serve-shared` holder is starting, which is when RocksDB deletes superseded files (a flushed WAL, an old MANIFEST or OPTIONS) and rotates its LOG.\n\nCAUSE, in code (main d9e2a8f and after): `snapshot_dir` creates `<tmp>/reflow2-snapshot-<pid>`, copies each flat file with `?`, and returns at the first error, so a partial copy of the design stays on disk. GraphSnapshot::cleanup, which removes the copy and its sidecars, runs only on the success path. Reproduced deterministically by making the store's LOG unreadable while held (crates/reflow2-mcp/tests/a_held_designs_read_is_as_true_as_the_live_one.rs, a_copy_that_fails_part_way_leaves_nothing_behind), observed failing before the fix. The same race happened locally on the pre-fix binary during that run: a held-read probe made while the holder was starting left /tmp/reflow2-snapshot-1205964 holding 6 of the store's 8 SSTs, because two had been compacted away between the listing and the copy (NotFound).\n\nCLASS: a temporary second copy of a design outliving the read it was made for, which the cleanup code's own comment calls something for a later session to mistake for the real one.",
+    "subject_id": "cap:snapshot-read",
+    "valid_from": "2026-10-03"
+  }
+}

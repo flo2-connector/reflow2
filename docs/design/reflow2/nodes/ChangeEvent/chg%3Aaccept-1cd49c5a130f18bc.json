@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:cf3bf022b2dad8be6668fa7a587aab89c25408308f7aa8393bd1a7bf5898cc83",
+  "node_id": "chg:accept-1cd49c5a130f18bc",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "refactor",
+    "detected_at": "2026-08-15",
+    "name": "v0.31.0 cut: the version string moved 0.30.0 -> 0.31.0 in reflow2.toml. The DESIGN HOLDS — a cut's design meaning lives in the Release node and its epoch, not in a version string, and no dependency declaration changed. Accepted BEFORE release_includes_all deliberately, so the manifest freezes the post-bump file; freezing first and correcting the as_checksum afterwards is the two-step version of the same thing and has cost a retry on a previous cut."
+  }
+}

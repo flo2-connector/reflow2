@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:f70597e8a6e87d86398eb61f18c45e3f0c060c93cd6cad1d39c4ed642a82f23c",
+  "edge_type": "CHANGED",
+  "from_id": "chg:reflow2-read-and-reflow2-write-split-the-door-by-what-a-call-does-2026-10-03",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "req:a-terminal-agent-can-auto-approve-reads-and-confirm-each-write"
+}

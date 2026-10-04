@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:ef1b6198201f369d1fdcbf9d26460689d9282f08825d0fa363f7b3d5d66be61e",
+  "edge_type": "REALIZES",
+  "from_id": "art:why-skill",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:the-served-text-applies-the-readers-lens-without-writing-it-into-the-design"
+}

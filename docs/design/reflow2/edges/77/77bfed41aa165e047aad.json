@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:3d8083d8b6eac22d7e94e9e3313603a3fef89a46f05f7a0def81eb3503296e5f",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:sweep-harness",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:sweep-harness"
+}

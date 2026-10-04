@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:bc44b7ccd3abfe44790d4d97a34183bfb46ebc56f3dd9901af58ed5c83dcb9e6",
+  "edge_type": "CHANGED",
+  "from_id": "chg:bl97-103-idea-capture",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "req:concurrent-planning"
+}

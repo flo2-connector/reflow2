@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:f67d7e17def02d400c5b079e4ac529a0cf2b760a55f8d0bae6f8174f0a025057",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "req:context-is-a-modelled-quantity",
+  "properties": {
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "req:edge-defaults-do-not-assert"
+}

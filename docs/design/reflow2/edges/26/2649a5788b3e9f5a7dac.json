@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:e3f60ea74a1f9fe15b42651981aeded1ac8921a423de310d7187ff4df73da1d4",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "rule:an-identified-issue-is-enduring-never-dropped",
+  "properties": {
+    "authored_at": "2026-08-20",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

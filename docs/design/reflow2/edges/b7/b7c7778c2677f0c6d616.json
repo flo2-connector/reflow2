@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:ab267506e4b53e026eb8786d5991fba2e10a9b24e8365f3ea8f90f194f488c40",
+  "edge_type": "OBSOLETES",
+  "from_id": "dec:fix-the-comparison-before-pointing-it-earlier",
+  "properties": {},
+  "to_id": "dec:idea-does-a-session-open-by-comparing-the-record"
+}

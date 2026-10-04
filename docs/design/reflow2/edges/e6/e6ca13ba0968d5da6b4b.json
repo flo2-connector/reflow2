@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:3ecbb8c374eb8a04fc5bcb3e9ec51c70a02f5a3bb36b2b3d5d4932b270369548",
+  "edge_type": "GOVERNED_BY",
+  "from_id": "dec:certainty-derived",
+  "properties": {
+    "note": "Deriving certainty from status x provenance is this rule mechanized: every move off proposed records the owner's word"
+  },
+  "to_id": "rule:design-intent-moves-only-on-the-owners-word"
+}

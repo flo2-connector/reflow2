@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:843498c30c11c664d40713bbd493dc67c1829b27c0f7ad584c773e34644b2005",
+  "node_id": "snap:epoch:preserved-on-write:fact:revising-a-finding-resets-its-fact-type-to-finding-2026-09-26",
+  "node_type": "Snapshot",
+  "properties": {
+    "edges": "[{\"direction\":\"in\",\"edge_type\":\"HAS_TEMPORAL_FACT\",\"other_type\":\"Verification\",\"other_id\":\"ver:constructors-preserve\",\"properties\":{}}]",
+    "state": "{\"basis\":\"measured\",\"confidence\":0.9,\"fact_type\":\"defect\",\"name\":\"MEASURED 2026-09-26 on 0.71.0: re-calling record_finding on an existing fact with only id, subject_id and valid_to reset its fact_type from \\\"status\\\" to \\\"finding\\\", despite \\\"omitted fields keep their stored value\\\"\",\"source\":\"dev_reflow2 hub session, 2026-09-26, reflow2-mcp 0.71.0 (the child-reflow2 connection)\",\"statement\":\"Closing fact:the-tier-deferral-is-due-to-be-re-asked-2026-09-26 (stored fact_type \\\"status\\\"), the call record_finding {id, subject_id, valid_to: \\\"2026-09-26\\\"} came back with valid_to set AND fact_type \\\"finding\\\". fact_type had not been passed. The tool's own description says \\\"CONTENT FIELDS ARE REQUIRED TO CREATE AND OPTIONAL TO REVISE … omitted fields keep their stored value\\\", and this check claims re-calling a constructor does not erase what the design knew. So at least fact_type is defaulted on revise rather than kept. The other fields (basis, confidence, name, source, statement, valid_from) were kept. Put back with a second call passing fact_type \\\"status\\\". Same class as the plan_epoch status reset (fact:plan-epoch-on-an-existing-epoch-resets-its-status-to-planned), which was fixed for epochs. Not root-caused: whether the default comes from the tool's parameter default or the store's merge was not read.\",\"subject_id\":\"ver:constructors-preserve\",\"valid_from\":\"2026-09-26\"}",
+    "target_id": "fact:revising-a-finding-resets-its-fact-type-to-finding-2026-09-26",
+    "target_type": "TemporalFact"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:dd6f80f3dc41cd25660b1dab5ba6931f5163605aebe3535a2ce3035872c67f84",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:idea-severability-cut",
+  "properties": {
+    "authored_at": "2026-08-01",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:claude-code"
+}

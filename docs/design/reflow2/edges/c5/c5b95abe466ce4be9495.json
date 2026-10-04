@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:fe49582bf2dc7569785142e98f7e4d2e53247112722a329b4c841777123de3ba",
+  "edge_type": "CHANGED",
+  "from_id": "chg:reflow2-read-and-reflow2-write-split-the-door-by-what-a-call-does-2026-10-03",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cap:a-build-can-call-one-tool-from-the-shell-and-read-the-reply-as-json"
+}

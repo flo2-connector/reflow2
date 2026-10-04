@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:db77f0d27faff329b37152c8fe6ea801241827502bb4b555a92aeb2b77d271d3",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:a-tied-merge-breaks-by-degree-not-by-alphabet",
+  "properties": {
+    "authored_at": "2026-08-10",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:claude-code"
+}

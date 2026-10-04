@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:8c404af644c6f33ca345451e18e7c7b1ada0885dfaf11fae1108df7299c8decb",
+  "node_id": "chg:bl74-loop-status",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "name": "BL-74 rungs c+b: loop_status debt rollup + loop hints in write-tool results"
+  }
+}

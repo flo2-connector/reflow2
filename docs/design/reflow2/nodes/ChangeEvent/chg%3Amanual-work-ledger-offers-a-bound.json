@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:5714cb125551627155c60ea261bb28c3f7c4614a35fd4fcd2ff38debdb3c5ddb",
+  "node_id": "chg:manual-work-ledger-offers-a-bound",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "defect_fix",
+    "detected_at": "2026-09-30",
+    "name": "manual_work_ledger takes budget_chars and fits its reply to it",
+    "rationale": "THE CAUSE: manual_work_ledger was one of the no-argument read tools, so it had nowhere to put a bound, and the reply-budget gate only catches such a tool once the design it is measured on grows past 30,000 characters. It did: 31,037 characters on 2026-09-28 (the gate failed PR #620, recorded in the live store as fact:manual-work-ledger-outgrew-the-reply-budget-with-no-bound-and-the-gate-caught-it-2026-09-28), and 33,670 on 2026-09-30 when the 2026-09-29 live records were folded into main (PR #637 failed the same gate). OBSERVED FAILING FIRST: tools/replies_are_bounded.py with a clean origin/main f7f96de build, seeded from #637's folded export, exits 1 naming manual_work_ledger OVER BUDGET AND UNBOUNDED; with this change it passes. The class guard is the existing gate (ver:every-oversized-reply-offers-a-bound), which flagged manual_work_report on its watchlist at --budget 5000 on 2026-09-13.",
+    "rationale_basis": "contemporaneous",
+    "repair": "corrected_cause",
+    "subject": "system",
+    "summary": "manual_work_ledger now takes budget_chars (crate::reply_budget::BudgetReq) and bounds its reply with bound_reply: prose (`what`) is trimmed first and the list is never sampled, so every entry's id, diagnosis and tool survive and the reply says what it withheld. The reply shape is unchanged ({count, items}) and an empty ledger still says why. The code is PR #620's uncommitted fix of 2026-09-28, landed unchanged so #620 merges over it cleanly."
+  }
+}

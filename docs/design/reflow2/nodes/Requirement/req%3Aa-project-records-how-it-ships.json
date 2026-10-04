@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:86c43d444986e619a2e8348b2904bc12a46fde432a00cfa640582cf40af4e284",
+  "node_id": "req:a-project-records-how-it-ships",
+  "node_type": "Requirement",
+  "properties": {
+    "concern": "core",
+    "designation": "internal",
+    "kind": "functional",
+    "lineage": "original",
+    "name": "A design records how its project actually ships",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "A design that has Releases shall also record the ordered procedure for producing one — the steps, their order, and the external conventions they depend on — so that cutting a release is read from the design rather than reconstructed from what was done last time.\n\nANTHONY'S WORDS, 2026-07-31, raised while watching the v0.19.0 cut: \"should every reflow2 project have a requirement to describe its 'release instructions'? ... having a set of release instructions (what are all the steps that need to occur) would be nice. Then the agent doesn't have to look at what was done previously to release or whether it was released on pypi or whatever makes sense for the project being developed.\"\n\nTHE VOCABULARY ALREADY EXISTS AND SHOULD BE USED RATHER THAN EXTENDED. A release procedure is an ordered process, which is what Flow models: add_flow, part_of_flow with step_order, TRIGGERS transitions carrying a role, read back by flow_report. This wants no new node type and no new document.\n\nWHY THIS IS NOT dec:orientation-is-computed-not-written IN REVERSE. That decision refused a START-HERE file because orientation is DERIVABLE — a projection of design state, so the answer was build the view. Release steps are NOT derivable from the graph: which registry (PyPI / crates.io / GitHub releases / a manufactured build), which workflow, which credential, what the tag format is, which files carry a version claim. These are facts about the world outside the design, and no projection can compute them. The same derivability test therefore argues FOR recording them. That distinction is the load-bearing part of this requirement: record what cannot be computed, compute what can.\n\nEVIDENCE, from the v0.19.0 cut itself. The procedure was reconstructed from `git show v0.18.0` plus grepping AGENTS.md for \"release\" — seven steps that exist nowhere as a list: the version in three files plus the lockfile; the CHANGELOG heading plus a fresh empty Unreleased; an upgrade doc REQUIRED IF AND ONLY IF the schema stamp moved; version claims in docs/overview.md and AGENTS.md; the graph manifest, release epoch and prior-release retirement; export exactly once onto the committed file; tag and push. At least two of those are unguessable and were discoverable only by reading a past commit message.\n\nWHERE IT BITES AS A DETECTOR: a Project holding Release nodes with no release Flow is a gap worth surfacing, the same shape as unrealized_capability. Scope deliberately unsettled here — whether this is a reflow2-wide obligation on every governed design or advice the genesis/adopt skills ask for is Anthony's call, not this requirement's.\n\nPROPOSED — captured in his wording, not yet his signature.",
+    "status": "accepted"
+  }
+}

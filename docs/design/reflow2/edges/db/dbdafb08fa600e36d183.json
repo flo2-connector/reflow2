@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:290f48e888b1a96aeaf9308b5157a90a86205bf4eb7c33b4be0c73a80ac854ef",
+  "edge_type": "CHANGED",
+  "from_id": "chg:stop-hook-asks-the-graph",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:kit-instructions"
+}

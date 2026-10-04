@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:80bf32e8b07afff11a4acb957e54f195dd3ec54e64089e8c98a3a7633134e5ff",
+  "edge_type": "ANTICIPATES",
+  "from_id": "req:vocabulary-covers-personnel",
+  "properties": {
+    "evidence": "The deferred personnel requirement (2026-08-07) already named \"who performs a function\" as inexpressible, which is option (d)'s ground."
+  },
+  "to_id": "dec:idea-an-outside-part-is-marked-as-outside-and-an-outside-party-is-a-consumer"
+}

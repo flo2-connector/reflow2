@@ -1,0 +1,17 @@
+{
+  "content_hash": "sha256:e273cb9063508c11c7a1e0d06eb45638ec2a5a7fc0f78252d0595ff3281507f9",
+  "node_id": "ver:publishable-promise",
+  "node_type": "Verification",
+  "properties": {
+    "description": "A designated promise travels with the surface while undesignated intent stays home and is counted; nothing is published by default; a promise-free surface SAYS it is promise-free and distinguishes \"none stated\" from \"none exist\"; a promise count appears in the note; designation can be withdrawn; designating leaves status and statement alone; an invented designation and a non-existent requirement are both refused (crates/reflow2-core/tests/publishable_promise.rs, 9 cases).",
+    "findings": "MUTATION-CHECKED: removing the one line that carries promises fails exactly the case that names the defect, and nothing else.",
+    "kind": "verification",
+    "last_reconciled_at": "2026-09-23",
+    "last_reconciled_outcome": "passed",
+    "last_run_at": "2026-07-28",
+    "level": "integration",
+    "method": "test",
+    "name": "A designated promise travels with the surface while undesignated intent stays home",
+    "status": "passing"
+  }
+}

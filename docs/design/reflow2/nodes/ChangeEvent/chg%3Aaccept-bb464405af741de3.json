@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:13e34c2fb9d73966167addf2b87cb6af96b2178c00ea46b0c1d2f19dcc4a73a7",
+  "node_id": "chg:accept-bb464405af741de3",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "documentation",
+    "detected_at": "2026-08-23",
+    "name": "Version string moved 0.38.0 -> 0.39.0 for the v0.39.0 cut. The design meaning of a cut lives in the Release node and its epoch, not in a version string, so nothing this file declares about DEPENDENCIES changed. Accepted BEFORE the manifest is frozen, deliberately: `release_includes_all` freezes each artifact's CURRENT checksum, so freezing first would have recorded that v0.39.0 shipped the pre-bump file, and the fix afterwards is two steps instead of one.",
+    "subject": "system"
+  }
+}

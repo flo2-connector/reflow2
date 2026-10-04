@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:7dc409569a917f27a27305798b9cad3c2756c9a90c4b82787c59d7ef7ce85f2b",
+  "node_id": "chg:atproto-hash-chain",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "name": "Export content hash + lineage chain + compare ancestry (AT-proto capture)"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:4fb40f390543ceba64c3da1d584657f4660d80986f75eebbe1bd2a7bfc9b726d",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:stop-nudge-asks-the-graph",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:nudge"
+}

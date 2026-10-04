@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:9ad16955bdd44464846e215eb71acbd2c83135798a2f35d402ca34b01360fbd3",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-declared-dependency-can-be-watched-without-being-imported",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cmp:depends"
+}

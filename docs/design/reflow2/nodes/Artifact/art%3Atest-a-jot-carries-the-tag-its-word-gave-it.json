@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:7848cc91bd617247c2175c4c0fbff9ed36f3de7df7f42f16ece6a4c321f39adb",
+  "node_id": "art:test-a-jot-carries-the-tag-its-word-gave-it",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "test",
+    "description": "Pins the boundary half of /jot: each word's tag and its settle_toward road; the next line counting open notes by tag; an untagged row carrying no tag key; and only follow_up and follow_up:<tag> counting as notes (an empty tag is untagged; finding and follow_ups are not notes).",
+    "location": "crates/reflow2-core/tests/a_jot_carries_the_tag_its_word_gave_it.rs",
+    "name": "a_jot_carries_the_tag_its_word_gave_it.rs",
+    "status": "realized"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:cf9f898c1bacdc03c3f467e3212af8c856bece69c6a8c335c39997d55002f85e",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:test-no-per-design-globals",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:test-no-per-design-globals"
+}

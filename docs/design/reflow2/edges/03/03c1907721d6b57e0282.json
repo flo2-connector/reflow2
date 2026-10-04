@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:935bac27e39f99c98e70d95ec55a6ff65dc205285d1241784af5880747a051a4",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:idea-feedback-arrives-by-git-push-and-pull",
+  "properties": {
+    "authored_at": "2026-08-13",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

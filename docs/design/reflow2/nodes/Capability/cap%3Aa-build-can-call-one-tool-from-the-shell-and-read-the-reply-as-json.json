@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:b0d298a32b0aefa7b342554900b10a4ce1ed5f82aecf36b45a8d3f4af867262b",
+  "node_id": "cap:a-build-can-call-one-tool-from-the-shell-and-read-the-reply-as-json",
+  "node_type": "Capability",
+  "properties": {
+    "description": "As built 2026-09-19. `reflow2-mcp --graph-path <dir> --call <tool> [--args '<json object>' | --args -]` opens the graph, serves it to an in-process client over an in-memory pipe, makes ONE call through the same `call_tool` path a session uses (usage recorded under the client name `reflow2-mcp --call`; refusals hinted and worded identically), prints the reply's structured JSON on stdout (text blocks become JSON strings when a tool has no structured reply), and exits 0; a refusal goes to stderr with exit 1; a reply the tool marked `is_error` exits 2. Arguments are validated as a JSON object and the tool name is checked against the served list BEFORE the graph is opened, so a typo never mints a graph directory. While another process holds the graph, a tool whose annotation says read-only answers from the same best-effort snapshot copy `--export-snapshot` uses and stderr says SNAPSHOT; a writer refuses with the lock explanation plus the sentence that it needs the graph itself. Documented in getting-started/SETUP.md and AGENTS.md. Test: crates/reflow2-mcp/tests/a_build_can_call_one_tool_from_the_shell.rs (five cases against the real binary, one against a real held lock). Built under the OPEN idea dec:idea-a-derived-document-cites-the-graph-the-way-it-cites-the-model-through-a-door-a-build-can-use on the owner's 'work through them one by one'; the idea's other options (a report the server writes through like the export; a documented stdio client) are not taken and the idea stays open for his word.",
+    "name": "A build can call one tool from the shell and read the reply as JSON: `reflow2-mcp --call <tool> --args <json>`",
+    "provenance": "authored",
+    "status": "realized"
+  }
+}

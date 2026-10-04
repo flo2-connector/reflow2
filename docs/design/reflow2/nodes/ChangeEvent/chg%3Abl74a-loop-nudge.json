@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:44dedf0a32b41cc38d09991af0ddd792ad63c23902d427ef2acc7b72de1c62ec",
+  "node_id": "chg:bl74a-loop-nudge",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "name": "BL-74 rung a: the loop-nudge hook — the trigger fired by the harness's own events"
+  }
+}

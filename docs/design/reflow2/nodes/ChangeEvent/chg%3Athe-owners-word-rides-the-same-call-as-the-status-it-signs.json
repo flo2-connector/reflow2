@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:7d05190af9551e8a090dd487f54ccad602a175ea34ba3d588da22cc9cdbd5fd8",
+  "node_id": "chg:the-owners-word-rides-the-same-call-as-the-status-it-signs",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "detected_at": "2026-09-06",
+    "name": "The owner's word rides the same call as the status it signs; a check lands wired; plan_epoch names its sequence",
+    "rationale": "The commonest capture cost a forced serial round trip, and the same day a session took the status half and forgot the signature half and CI went red. The shape that survives dec:certainty-derived: the constructor refuses a settling status that carries nobody's name, so the signature is present rather than assumed, and it is the same edge the gate reads. The setters stay lenient because they have consumers, but say the sentence the gate would say later. Three design choices on the record: (1) refuse on constructors, report on setters; (2) a rule's stated power counts as settling, so add_design_rule now needs the approver too, and the governance-proposal skill says so; (3) the epoch hint moved to a shared pre-check because a fix placed in one handler recurred on its sibling within a day. The proposal-③ wire-this-capability call was not taken.",
+    "subject": "system",
+    "summary": "Item 3 of v0.50.0. add_decision and add_requirement take optional status + approver + acted_at; add_design_rule takes approver + acted_at beside enforced; a settling status without an approver is refused before any write and a named approver is drawn as AUTHORED_BY role=approver; set_decision_status and set_requirement_status take approver and reply with carries_nobodys_name when a settling status is written without one. add_verification takes verifies, status, findings and last_run_at in one call. add_epoch and plan_epoch share the sequence hint. Six toolsnap goldens regenerated; six skills updated to the one-call forms; skill-lint allowlist gains approver and findings; AGENTS.md rule 11 records Anthony's tool-failure rule."
+  }
+}

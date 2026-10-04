@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:c8be43f4cb3f9b94dc2bb038f7c2532c61641c1ef1974fb416a3dd8366608c0a",
+  "edge_type": "REALIZES",
+  "from_id": "art:detect",
+  "properties": {
+    "completeness": "partial",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:kpp"
+}

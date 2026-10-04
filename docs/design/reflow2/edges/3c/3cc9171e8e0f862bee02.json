@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:418a8595e2e495e9a2d592307168b5263127f5e681216834ae707119bcf4550e",
+  "edge_type": "GOVERNED_BY",
+  "from_id": "art:hxm-program-feedback-2026-08-26",
+  "properties": {
+    "note": "A dated field report from hxm_program, 2026-08-26. Registered so the design knows the evidence exists and where it lives; no claim edge drawn, per the ruling. It is a frozen observation and must not be revised as the design moves.",
+    "ruling": "parks"
+  },
+  "to_id": "dec:a-dated-field-report-is-registered-and-parked"
+}

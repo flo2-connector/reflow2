@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:5ec9fec1a0dfaa528630c5e2e39001bf8cecd8791110a374ccf047974860c4cc",
+  "node_id": "art:interface-spec-test",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "granularity": "atomic",
+    "location": "crates/reflow2-core/tests/interface_spec.rs",
+    "name": "tests/interface_spec.rs",
+    "status": "realized",
+    "volatility": "stable"
+  }
+}

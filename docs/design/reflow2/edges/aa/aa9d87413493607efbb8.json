@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:9a79fdc0e94b2b9f1c29475e60d7db1da803ff1af25a64ac004829138b8ca911",
+  "edge_type": "SCHEDULED_FOR",
+  "from_id": "cap:closure-reads-a-design-phase-and-a-build-phase",
+  "properties": {
+    "modality": "expected",
+    "recorded_at": "2026-09-29"
+  },
+  "to_id": "epoch:fix-what-the-two-agent-exercise-found-2026-09-29"
+}

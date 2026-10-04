@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:bc6e19863842f635d436422f8d6d08658142bdc83a372b155823c2297783739a",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-saved-design-moves-to-the-item-layout-2026-10-03",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:54f85eb29be81e74b8d6d3b0934017f4f64c3e8a98f8ee2cf220103a3d300409",
+    "checksum_basis": "measured"
+  },
+  "to_id": "art:test-a-signature-is-the-callers-own-where-it-is-written"
+}

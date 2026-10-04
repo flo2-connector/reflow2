@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:d1b0673988748553451475ca9281acda65ed3f3fa7452d51b3abaae49d3703e2",
+  "node_id": "chg:accept-f813f5619f659197",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "defect_fix",
+    "detected_at": "2026-08-28",
+    "name": "`composes` moved from a TOP-LEVEL frontmatter key into `metadata`. reflow2_init's harness-portability check refused the top-level form and was right to: skill frontmatter is a SHARED SURFACE and OpenCode reads only {name, description, license, compatibility, metadata}. No design meaning changed — the same classes are declared, in the one place every harness tolerates.",
+    "subject": "system"
+  }
+}

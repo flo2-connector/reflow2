@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:9ff6efe83a664ed3ee512d78c3d9cd1fc00e0c516768012801adc598334eb5bb",
+  "node_id": "chg:accept-100292b297046fff",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "test_failure_fix",
+    "detected_at": "2026-09-02",
+    "name": "TEST REORDERED, DESIGN UNMOVED. The smoke test acknowledged a gap and then phrased it; the new refusal correctly fired. Its assertion was 'asking a gap records the question' — the acknowledged object was incidental — so the withdrawal now precedes the question block, with the reason recorded inline. The guard was NOT weakened to make the test pass, which was the available wrong move.",
+    "subject": "system"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:b0ff153ff2e6fa1ebfcac068799919e90ba9c78d83374ce95f522b4bac036e76",
+  "edge_type": "CHANGED",
+  "from_id": "chg:bl104-built",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "ver:derived-completion"
+}

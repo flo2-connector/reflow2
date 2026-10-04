@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:b9e0b6597ceec16dcef2f7e98bed7d69b65c5daaf0900d7a4389489ba0b7e477",
+  "edge_type": "CHANGED",
+  "from_id": "chg:reflow2-measures-registered-files-and-never-reads-them-for-meaning",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:drift"
+}

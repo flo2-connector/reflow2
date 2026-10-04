@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:397d1ad24b05e836ae714c84b10ce0d11f8609fcc149ab1b51e07ca6ea6b4acc",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:reconcile-verified",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:verify"
+}

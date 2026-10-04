@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:06fee6def9cede225cb77028dc59d0d89b948c9a22e7b2afdeeafc3d65f6c7bf",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:idea-diff-driven-impact",
+  "properties": {
+    "approved_at": "2026-09-16",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

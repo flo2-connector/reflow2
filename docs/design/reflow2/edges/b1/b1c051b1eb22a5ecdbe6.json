@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:1130c36218b0fa30659601ce3e94b90ebea33acc97ab2561605da75f8e07eb97",
+  "edge_type": "CHANGED",
+  "from_id": "chg:unresolved-setup-skips-on-either-side-not-both",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:heal"
+}

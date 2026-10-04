@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:08a4b1f638b4379fd473da5427811a62d232fdc0eb14f0d1f5057010b9271598",
+  "node_id": "dec:idea-a-capability-can-be-marked-contested",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "UNSETTLED. Reported 2026-08-08 by dev_storyflow's sb-boss: they demoted a capability from `realized` to `in_progress` after a failing walk, and between the walk and the demotion the graph went on asserting something false with no way to say so — a window that, on a `--shared` graph, every attached session reads as current. Two shapes, both theirs: (a) a lightweight `contested` marker or status value; (b) let a FAILING `kind=validation` VERIFIES edge automatically flag the capability's status as unsafe to trust. THE SECOND FITS THIS DESIGN'S GRAIN BETTER ON ITS FACE AND THAT IS WORTH STATING, THOUGH NOT DECIDING: dec:passing-is-verified already computes \"verified\" from a check that PASSES rather than from a status field, so computing \"contested\" from a check that FAILS is the same move inverted, needs no new enum value, and cannot be forgotten the way a marker can. The argument against it is equally real — a failing check does not always mean the claim is wrong, and auto-flagging would make every red test a challenge to the design rather than to the code.",
+    "name": "OPEN — how does a capability say its own status is under challenge, in the window between evidence arriving and someone being ready to restate it?",
+    "rationale": "Recorded because demoting early is itself a claim — it asserts a position on work that may turn out fine — so the absence of a middle state pushes a reporter toward one of two wrong assertions. Adjacent and worth reading together: req:blocking-is-partial applies the same instinct to drift rather than to a failing check. Evidence: fact:defect-no-way-to-mark-a-capability-contested.",
+    "status": "proposed"
+  }
+}

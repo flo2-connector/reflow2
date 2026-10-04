@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:fe047cb0fbb80200ea28d43911fdd57be9a8c7f6d88927610eec06c212c9b407",
+  "edge_type": "CONSUMES",
+  "from_id": "cmp:granularity",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "ifc:graph-read"
+}

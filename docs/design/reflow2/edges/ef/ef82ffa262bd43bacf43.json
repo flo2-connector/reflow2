@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:dbdb743f23c2196c6eb06d85f4380d05b44de7726a82ac14028b1b2bf6bd8701",
+  "edge_type": "CHANGED",
+  "from_id": "chg:accept-84e72e0a877c9770",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:report"
+}

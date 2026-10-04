@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:ab68fe47742a51c3b9b9e6a596863276ba0a63ba7e4137fb60aa4bd3e05acbd1",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-repair-can-say-what-it-invalidated",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:where-am-i-skill"
+}

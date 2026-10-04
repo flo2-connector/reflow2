@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:60789caa233c28df31a244fabdb977d8b16c2767ae7963883a277b32ffed5a3f",
+  "edge_type": "REALIZES",
+  "from_id": "art:tools-capture",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked",
+    "note": "the typed leg: add_component kind"
+  },
+  "to_id": "cap:establish-taxonomy-before-bulk-capture"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:e34375dcf9eeb42a4463433435879cb5b074e853b5501b5c42a93333fc6f40ac",
+  "edge_type": "CHANGED",
+  "from_id": "chg:authorship-survives-approval",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:graph"
+}

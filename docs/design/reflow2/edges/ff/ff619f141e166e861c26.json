@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:e41a14901195b56b5b75ed029e266cfece31e46d02e977f197a550d1ab514fb4",
+  "edge_type": "CHANGED",
+  "from_id": "chg:storyflow-feedback-review-20260808",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "fact:defect-a-tool-minted-seat-is-never-registered-so-gone-is-still-unreachable"
+}

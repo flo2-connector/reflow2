@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:e607026d0dee2b46fb0476f85d5db5e3a9357d654c83f4286d981725d7ef696f",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:certify-restructuring",
+  "properties": {},
+  "to_id": "req:restructuring-is-certified"
+}

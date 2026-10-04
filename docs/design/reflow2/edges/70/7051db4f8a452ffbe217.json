@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:2762088f91b2d4235e721c1e86a946997c5feb2d06a2a50855013ac30d1d0951",
+  "edge_type": "REALIZES",
+  "from_id": "art:structure",
+  "properties": {
+    "completeness": "partial",
+    "conformance": "verified"
+  },
+  "to_id": "cap:a-sweep-says-what-it-could-not-have-found"
+}

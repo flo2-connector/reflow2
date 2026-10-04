@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:b00e266f1638d0357f484989a533fa05bf7b7485675ea00b9d072b6e54648116",
+  "edge_type": "ANTICIPATES",
+  "from_id": "fact:vocabulary-needs-three-legs-and-a-users-project-gets-none-of-it",
+  "properties": {
+    "evidence": "The earlier one saw this coming. It named the three legs — typed tool, instruction, detector that notices absence — and predicted that vocabulary without the third leg fails to reach a design. These five are that prediction instantiated inside reflow2's own project rather than in a user's, with the additional detail that the missing detector has a single concrete shape: a per-type coverage query that does not exist."
+  },
+  "to_id": "fact:five-capabilities-were-built-reachable-and-unreached-and-one-query-shape-found-them-all"
+}

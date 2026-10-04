@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:082400b892eae4937e8746923671e7989269bac945b9f5c871bd683e8baf86c9",
+  "node_id": "decision:ack:c8cfb3f3be9183af",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Accepted the gap gap:c8cfb3f3be9183af.",
+    "name": "Reviewed: gap:c8cfb3f3be9183af",
+    "rationale": "User (who:ajs, standing policy from 2026-07-23, re-applied 2026-07-27): validation happens through the trials programme — docs/trials/ is where \"built the right thing\" is exercised against operational intent; formal validation-kind Verification nodes are not this project's tracking mechanism. Re-fired because cap:evidence-fidelity joined the set (57 → 58). Sharply ironic for this one and worth saying so: the capability that just taught reflow2 to distinguish proof-against-a-model from proof-against-reality is itself proven only by unit tests against a synthetic graph. Its validation is whether, on a real design with a real rig, \"proven only in simulation\" is a sentence that changes what someone does next — which is a trial, exactly as this standing disposition says.",
+    "status": "accepted"
+  }
+}

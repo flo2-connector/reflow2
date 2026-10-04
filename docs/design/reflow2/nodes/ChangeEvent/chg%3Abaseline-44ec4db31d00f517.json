@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:e2ee36964f0ddb1dd070ac55bf2e81309576cce24812c4080632301816a05346",
+  "node_id": "chg:baseline-44ec4db31d00f517",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "baseline_established",
+    "detected_at": "2026-08-07",
+    "name": "First checksum for a file that has never had one, so nothing moved and there is nothing to take a position on. The file is expected to be stable: it is a one-shot migration that has already run, kept for the CLASSIFY mapping rather than for re-execution — running it again against a deleted docs/backlog.md yields an empty document."
+  }
+}

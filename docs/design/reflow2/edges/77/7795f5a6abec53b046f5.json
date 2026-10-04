@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:3107f4f28ad3d260091f09dbff360c2d3b3192e42c15edbfc34954cee605342b",
+  "edge_type": "CLAIMS",
+  "from_id": "who:claude-code",
+  "properties": {
+    "claimed_at": "2026-09-22T00:00:00Z",
+    "depth": 2,
+    "note": "Splitting \"verified\" into a check something can RE-RUN and a check somebody TYPED, and ratcheting the claim-only set from here. Touches verify.rs, report.rs and a new CI gate.",
+    "seat": "asligar-bitecool:36234:db24bf76"
+  },
+  "to_id": "dec:passing-is-verified"
+}

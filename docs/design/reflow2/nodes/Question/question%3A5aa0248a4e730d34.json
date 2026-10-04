@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:a2c452e5236f6960e73f9bcebb83b0bd5b5cc57eba3e42433f7df6fe38770fab",
+  "node_id": "question:5aa0248a4e730d34",
+  "node_type": "Question",
+  "properties": {
+    "answer": "Anthony, 2026-07-28: \"go with your recommended order, start with the kit install.\" PART ONE BUILT — the installer now reaches the file the agent actually reads: when a project owns NO instruction file, the primary-harness convention (`CLAUDE.md`) is CREATED carrying a pointer to `AGENTS.md`, rather than only appending to files that already exist. Kept deliberately narrow: creation happens only when the project owns no instruction file at all, so a repo that already has one does not get another invented, and the created file stays a pointer rather than becoming a second home for instructions. PART TWO — whether the eight slash commands ship with the kit — is NOT answered and stays open: it touches `dec:skills-served`, and I flagged it as Anthony's call rather than mine.",
+    "asked_at": "2026-07-28",
+    "context_setter": "Nothing satisfies requirement “The install must land its pointer where the agent will actually read it”",
+    "gap_id": "gap:5aa0248a4e730d34",
+    "question": "Installing reflow2 into dynograph-foundation reported success and left it invisible — you opened a session and saw nothing, because the installer wrote AGENTS.md into a repo that had no instruction file, and Claude Code reads CLAUDE.md first. Should the installer write to whichever file the agent will actually open, rather than only adding to files that already exist? And separately: should the eight slash commands (/gaps, /health, /where and the rest) ship with the kit, so a consumer project gets the same ergonomics reflow2's own repo has — or does that cut against the decision to serve everything from the server rather than copy it?",
+    "rephrase_degraded": false,
+    "status": "answered"
+  }
+}

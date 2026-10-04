@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:dfdcbe38db1556a0fa5a1bdef722783418771c7889dd9393567911f2b8809ff6",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:delta-reconcile",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:skills"
+}

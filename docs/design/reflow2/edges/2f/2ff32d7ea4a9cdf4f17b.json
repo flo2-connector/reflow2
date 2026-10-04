@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:cb93d50d5ffb4a833d22d1e4cc8f4db5f15abdfa343f8202eb6b365cb8d938ab",
+  "edge_type": "CONTRADICTS",
+  "from_id": "dec:idea-is-session-context-already-in-the-graph",
+  "properties": {
+    "alignment": "supporting",
+    "evidence": "cap:session-memory already holds the answer to the moot question — the connective tissue (what was tried, what was rejected, what turned up sideways) is what lives only in the session. This node records that the question was asked again and that the capability's load-bearing gap is still open: the only mechanism forcing a session to leave takeaways behind still watches markdown file mtimes and points away from the graph."
+  },
+  "to_id": "cap:session-memory"
+}

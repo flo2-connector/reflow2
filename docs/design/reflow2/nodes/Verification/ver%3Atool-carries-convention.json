@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:6b8f788b3b5259f54cf09666bcf9f14bed4d08349bee77b06a6b2e7de9157ff3",
+  "node_id": "ver:tool-carries-convention",
+  "node_type": "Verification",
+  "properties": {
+    "description": "The convention rides the tool and stays bounded: the tools whose skills carry a non-inferable rule have that one sentence in their served description (checked against a named list, so adding a tool without considering it is caught); no description exceeds the sentence budget, because the cost of this is context paid on every session; and the toolsnap goldens still match, so the addition is a deliberate surface change rather than drift. Enforced in skill_lint alongside the existing served-tool-name checks. PLANNED.",
+    "kind": "verification",
+    "last_run_at": "2026-08-01",
+    "level": "unit",
+    "method": "test",
+    "name": "The convention rides the tool, and stays inside its budget",
+    "status": "passing"
+  }
+}

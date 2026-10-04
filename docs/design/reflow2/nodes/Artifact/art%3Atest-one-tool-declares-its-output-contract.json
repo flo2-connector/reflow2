@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:225469a5296472b11466b64e89e636dac81f39ea5d50fd4ddc1f8322b8876661",
+  "node_id": "art:test-one-tool-declares-its-output-contract",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "location": "crates/reflow2-mcp/tests/one_tool_declares_its_output_contract.rs",
+    "name": "one_tool_declares_its_output_contract.rs",
+    "status": "realized"
+  }
+}

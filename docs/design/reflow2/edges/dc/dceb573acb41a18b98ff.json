@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:90bcb17dd002a0d8b2d700db1719dfa97d90964167717e18b034be22a314b2ab",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:mirror-surface",
+  "properties": {},
+  "to_id": "req:design-composes"
+}

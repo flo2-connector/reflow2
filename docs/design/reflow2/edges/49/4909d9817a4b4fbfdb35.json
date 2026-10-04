@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:25828d2ffe00436bdfd1f89277d9f4cd8fc5b5eeed3bbf6ec5e589856f8fcde3",
+  "edge_type": "EVOLVES_INTO",
+  "from_id": "dec:idea-one-way-to-name-which-node-across-the-tool-surface",
+  "properties": {
+    "evidence": "The idea asked for one way to name a node across the surface; Anthony ruled convention (i) on 2026-09-06 and this change built it: the type is optional and resolved from the id wherever an existing node is named, refused on collision. The argument NAMES (from_id vs target_id vs node_id) are the remaining half of the idea and stay open."
+  },
+  "to_id": "chg:a-node-is-named-by-its-id-and-the-type-is-optional-across-the-relation-surface"
+}

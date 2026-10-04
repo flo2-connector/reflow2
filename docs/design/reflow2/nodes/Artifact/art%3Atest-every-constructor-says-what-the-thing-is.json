@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:278950ccf3bfd62dcd3bc61af4d4cc96f0406e7f77800aa72bc8780641a5aa29",
+  "node_id": "art:test-every-constructor-says-what-the-thing-is",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "test",
+    "location": "crates/reflow2-mcp/tests/every_constructor_can_say_what_the_thing_is.rs",
+    "name": "every_constructor_can_say_what_the_thing_is.rs",
+    "status": "realized"
+  }
+}

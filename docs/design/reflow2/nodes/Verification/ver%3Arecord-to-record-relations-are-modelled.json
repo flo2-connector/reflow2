@@ -1,0 +1,17 @@
+{
+  "content_hash": "sha256:1f78ec4958d90494c3b73cb49a67a533c99a1e1d64c9e7ffe3a5dd362d75ceee",
+  "node_id": "ver:record-to-record-relations-are-modelled",
+  "node_type": "Verification",
+  "properties": {
+    "description": "Seven cases in `crates/reflow2-core/tests/record_to_record_relations.rs`.\n\nWHAT IT PINS, and the shape is deliberate: each case asserts on the COMPUTATION that reads the new vocabulary, not on the edge being writable. `dec:edge-orthogonality` says a distinction earns its keep only if something reads it, and a test that merely wrote an edge would prove the opposite of what is claimed.\n\n· IMPLEMENTS — two checks, one with a script and one without, come back with different `has_executable_form`. That is the split `never_run` could not make.\n· IMPLEMENTS is a MODELLED fit, not a tolerated wildcard — asserted by checking the endpoints REJECT an unrelated type, since a wildcard accepts everything. Widening it to `*` later fails here rather than silently.\n· COMPLEMENTS — HEAL refuses to propose a merge for a pair declared complementary.\n· ⭐ AND THE SAME PAIR WITHOUT THE EDGE IS PROPOSED FOR MERGE. This is the case that makes the guard mean something: if HEAL declined to merge two DesignRules for some unrelated reason, the guard above would pass vacuously and prove nothing. Same graph, one edge removed, opposite answer.\n· superseded — a check flipped from `passing` to `superseded` stops counting as live coverage.\n· SUPERSEDES accepts a Verification pair, which it refused before.\n· The widening did not strand the original Fragment pair — checked rather than assumed, because narrowing an endpoint list is what makes already-written edges unimportable, and this schema records that trap on VERIFIES.",
+    "findings": "7 of 7 cases pass. Full workspace suite green alongside them: 125 suites, 1312 passed, 0 failed.\n\n⭐ TWO GUARDS CAUGHT THIS CHANGE BEFORE THE SUITE DID, and both were right. `schema::tests::all_domains_merge_and_validate` and `vocabulary::tests::vocabulary_covers_the_whole_schema` both pin the edge-type count at 61 and failed at 63. That is the mechanism working: a pinned count is what forces whoever adds an edge type to notice they moved the stamp and owe an upgrade note. Both updated to 63 with the reason recorded beside them.\n\n🛑 AND THE REASON THEY WERE MISSED FIRST TIME IS WORTH KEEPING: `cargo test -p reflow2-core --test record_to_record_relations` passed while the LIB tests failed. Running one test target is not running the suite, and a green single-target run reads exactly like a green suite.\n\nTHE CASE THAT MAKES THE COMPLEMENTS GUARD MEAN ANYTHING is `without_the_edge_the_same_pair_is_proposed_for_merge`: the same two DesignRules, one edge removed, ARE proposed for merge. Without it the guard could pass vacuously — HEAL declining to merge for some unrelated reason would look identical to the guard working.",
+    "kind": "verification",
+    "last_reconciled_at": "2026-09-23",
+    "last_reconciled_outcome": "passed",
+    "last_run_at": "2026-08-23",
+    "level": "unit",
+    "method": "test",
+    "name": "Each new record-to-record edge is read by a computation, and the merge guard is proven non-inert",
+    "status": "passing"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:ea8ef3d0dd2df54f1d0cf844b3b21e751436136102cd7107dfd32baed869adb5",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-saved-design-moves-to-the-item-layout-2026-10-03",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:edc33e1a891f98bca5a0b9b4fcbbfc993e2121fcf6b644efa99d48291ef5fb3c",
+    "checksum_basis": "measured"
+  },
+  "to_id": "art:test-a-read-only-server-with-no-store-serves-the-latent-surface"
+}

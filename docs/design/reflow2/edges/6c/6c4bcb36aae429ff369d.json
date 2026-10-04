@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:74c2cb07dfc0d83c05f02366aae6f809b28a0a29926a7204075d78455b724f3a",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-prune-the-tool-surface-to-an-orthogonal-essential-set",
+  "properties": {
+    "evidence": "A prune list needs to tell an unused tool from an unreachable one; BL-155 is exactly that open question and its instrument (surface_usage, now the per-project usage ledger). Pruning on closeness alone would remove reads nobody could find rather than tools nobody needs.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "dec:bl-155"
+}

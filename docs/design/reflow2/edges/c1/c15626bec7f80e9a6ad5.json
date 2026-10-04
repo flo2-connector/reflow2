@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:fd4eb8bb83023d52f6a3e4370da80d383706cc9d0c3b98dbfa1909f354a50036",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "req:derived-relations-and-reports-are-maintained-incrementally",
+  "properties": {
+    "evidence": "An engine can only run the derived relationships once they are declared as rules.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "req:reflow2s-code-reasons-from-the-declared-meanings-and-every-derived-relationship-is-a-declared-rule"
+}

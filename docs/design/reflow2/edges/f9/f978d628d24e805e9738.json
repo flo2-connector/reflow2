@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:e5e3d4b09badc19d172b45d24deab3c7558d0610e1759cd67bd7e16131e79d6d",
+  "edge_type": "ANTICIPATES",
+  "from_id": "dec:idea-how-does-an-artifact-say-it-belongs-to-another-repository",
+  "properties": {
+    "evidence": "Its option (d), \"make the existing notion declarable rather than inferred\", saw this coming on 2026-09-21. Extra roots is one concrete form of that declaration, made per tree instead of per artifact."
+  },
+  "to_id": "dec:idea-a-design-measures-under-a-configured-list-of-extra-roots"
+}

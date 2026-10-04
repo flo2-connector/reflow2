@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:d356682c5f8a81316dce3d4fd1cedcfac877cc8eb92a999685ecb0e1e39b154a",
+  "node_id": "fact:manual-work-b4d0c4de46644a8f",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "manual_work",
+    "statement": "Wrote a throwaway script to walk the exported design and find every property whose value NAMES a node id, then check whether that id still resolves — the read-side counterpart of the write-time guard added this session. It found nine, split by cause: some were wrong when written (a typo in a prefix) and the rest were VALID when written and broke later when the target was renamed. The second group is the whole point: no write-time check can ever reach them, because nothing was wrong at the moment of writing. Also had to hand-classify each one as a genuine dangle versus a forward reference that merely sorted later in the document, which is a distinction the design has no way to express.",
+    "subject_id": "proj:reflow2",
+    "valid_from": "2026-08-29",
+    "value": "{\"diagnosis\":\"tool_missing\",\"reflow2_tool\":null}"
+  }
+}

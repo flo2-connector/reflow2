@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:4fded28cb7157b9b6ecba736ee2433d96d05eec86e70737d21351b911f2da781",
+  "node_id": "req:closing-a-gap-is-schedulable-work",
+  "node_type": "Requirement",
+  "properties": {
+    "lineage": "original",
+    "name": "Closing an open question is schedulable work, so a plan can hold what the design still owes",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "The work of resolving an open question must be placeable into an increment alongside everything else. Where only built things can be scheduled, the plan shows features and hides the decisions blocking them.\n\nTHE NEED, in Anthony's words 2026-08-20: \"add gaps that need to be closed to increments/epochs.\" The design could schedule a Release, a Capability and a Requirement, and could not schedule the one kind of work that most often decides whether an increment lands.\n\nIt fails independently of the mechanism chosen: any planning surface that cannot hold an unresolved question breaks it.",
+    "status": "accepted"
+  }
+}

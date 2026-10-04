@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:5fa7e2449ac6007c2369ab09b2ab4aeac53a98ec375dcb58615901bd97c3d06d",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-saved-design-moves-to-the-item-layout-2026-10-03",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:587eb994506e10d2def3eb32380989e9e3a39270d8535419299551a8227168af",
+    "checksum_basis": "measured"
+  },
+  "to_id": "art:revising-an-epochs-prose-keeps-its-status-test"
+}

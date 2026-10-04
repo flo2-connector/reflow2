@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:9ca1f54bfcfed7b6e223b1053265e1f7be7519c1bc942b4dab08c1f98b1aa121",
+  "edge_type": "CHANGED",
+  "from_id": "chg:wire-planning-cluster",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "dec:where-plans-live"
+}

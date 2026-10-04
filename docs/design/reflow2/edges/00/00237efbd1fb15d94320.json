@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:20256c0ec38750b86cfd72d204362b346faca0f447455014acd1713bb7445510",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:a-build-can-call-one-tool-from-the-shell-test",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:a-build-can-call-one-tool-from-the-shell-test"
+}

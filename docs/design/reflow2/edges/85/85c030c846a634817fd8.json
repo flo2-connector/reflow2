@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:8c51bcbd5865893141700266b89721dac008397df1d910dcafbe2b87a8d98275",
+  "edge_type": "REALIZES",
+  "from_id": "art:tools-claims",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cmp:tools-claims"
+}

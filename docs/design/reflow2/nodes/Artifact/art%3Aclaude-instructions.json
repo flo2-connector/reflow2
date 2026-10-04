@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:db152cc2818062b6dabc8e813d41f6fbd5fd5e264b2e6d4ec62688370a25942d",
+  "node_id": "art:claude-instructions",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "document",
+    "location": "CLAUDE.md",
+    "name": "CLAUDE.md — the Claude Code pointer at AGENTS.md and the order of a session",
+    "status": "realized"
+  }
+}

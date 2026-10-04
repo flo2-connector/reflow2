@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:adea7a2acc2efbb7671963789c438e6585c91b61155d1aafeae14687eec438ff",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:the-repository-root-holds-only-what-a-build-a-contributor-or-a-harness-needs",
+  "properties": {
+    "approved_at": "2026-09-28",
+    "authored_at": "2026-09-28",
+    "roles": [
+      "author",
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

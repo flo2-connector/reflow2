@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:443fe4d7ed306d3b1faafc3012be0afe3e59d235e013ee4795e2aadd1ea8e9b8",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:a-node-can-say-who-may-change-it",
+  "properties": {
+    "authored_at": "2026-08-09",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:storyflow-api-boss"
+}

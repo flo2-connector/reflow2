@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:8094589d79943c023995ee474f6ca0ddacc3604140bedece40cc9a5b61554d0c",
+  "node_id": "frag:art:test-the-two-reported-fields",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered the_two_reported_fields_can_be_set.rs"
+  }
+}

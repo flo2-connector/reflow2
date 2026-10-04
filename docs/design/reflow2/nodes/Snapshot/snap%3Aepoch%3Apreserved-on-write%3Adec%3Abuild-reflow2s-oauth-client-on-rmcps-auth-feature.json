@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:abe4a5e09d2f41df4de1a6eeb08cd9cbbda9688a23efc0f16e4f7d6c87261576",
+  "node_id": "snap:epoch:preserved-on-write:dec:build-reflow2s-oauth-client-on-rmcps-auth-feature",
+  "node_type": "Snapshot",
+  "properties": {
+    "edges": "[]",
+    "state": "{\"decision\":\"Raised 2026-10-01 while planning cap:a-remote-client-signs-in-to-its-server-with-oauth-2-1. fact:what-flo2s-clerk-and-a-team-keycloak-accept-from-a-cli-oauth-client-2026-10-01 holds the measurement.\\n\\n(a) rmcp's `auth` feature, from the official SDK reflow2 already builds on. It already does the MCP-specific half: discovery from the challenge, the issuer check, the registration order (pre-registered, CIMD, DCR), PKCE S256, `resource` everywhere, the RFC 9207 iss checks, union step-up with limits, and a CredentialStore trait for the keychain.\\nreflow2 still has to close three gaps:\\n- refuse, not warn, when code_challenge_methods_supported is absent;\\n- refuse the legacy-endpoint fallback;\\n- run its own one-shot loopback listener and open the browser.\\nCost: reqwest 0.13, oauth2 5 and url join a build that has no reqwest today; reflow2's own HTTP client is hand-written on hyper-free rustls.\\n(b) The oauth2 5 crate directly, the crate rmcp's auth is built on. Fewer new dependencies, but reflow2 re-writes the MCP discovery, iss and CIMD logic rmcp already has and tests monthly.\\n(c) Hand-rolled on reflow2's existing HTTP client. The fewest dependencies and the most new security-sensitive code.\\n\\nLEAN: (a). The MCP half is the part most likely to be got subtly wrong, and the official SDK tracks the spec. The three gaps are pinned by reflow2's own failing-first tests (increment 2), so a future rmcp change that loosens them fails the build.\",\"kind\":\"choice\",\"name\":\"OPEN — build reflow2's OAuth client on rmcp's `auth` feature (bringing reqwest in), or on the oauth2 crate directly\",\"status\":\"proposed\"}",
+    "target_id": "dec:build-reflow2s-oauth-client-on-rmcps-auth-feature",
+    "target_type": "Decision"
+  }
+}

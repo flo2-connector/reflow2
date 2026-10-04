@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:aba0239d8cea5caf5f8c5718cdc7f4b0ceb5bcd7ea09d7e2c696b64bb1b58a2b",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:wall-check-served",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:wall-check-served"
+}

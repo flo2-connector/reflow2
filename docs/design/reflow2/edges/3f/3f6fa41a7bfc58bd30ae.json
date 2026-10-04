@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:af9b5ed4cd716d2b0a69a1db0accd4bfb37531a01b770e02a5566c40cf4e65be",
+  "edge_type": "HAS_TEMPORAL_FACT",
+  "from_id": "dec:idea-what-guarantees-the-export-if-the-export-is-the-only-durable-copy",
+  "properties": {},
+  "to_id": "fact:the-server-already-sees-sessions-end-and-a-disciplined-session-still-ran-5-hours-unexported"
+}

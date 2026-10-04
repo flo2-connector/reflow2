@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:5c3e429d73526b9eda857088d38ecb4b9b3a083a2ece96f6a407437c669a86ad",
+  "edge_type": "INVALIDATES",
+  "from_id": "chg:the-served-text-keeps-the-readers-lens-out-of-the-design",
+  "properties": {
+    "at": "2026-10-01",
+    "note": "#642's change (merged 2026-09-30, released in v0.76.0 on 2026-10-01 and deployed to flo2.io that morning) replaced the served lens text. Re-read on 2026-10-02 from the v0.77.0 release binary: get_skill where-am-i now says 'THE READER'S LENS IS YOURS TO APPLY, AND THE DESIGN DOES NOT HOLD IT ... never write it into the design, not on a Contributor and not in any other node', and the old 'record it with `add_contributor`' sentence is absent. The finding's own text asked for this edge once the live store met main; the 2026-10-02 fold is where both records first sit in one export."
+  },
+  "to_id": "fact:the-served-lens-still-tells-the-agent-to-record-a-readers-background-in-the-design-2026-09-30"
+}

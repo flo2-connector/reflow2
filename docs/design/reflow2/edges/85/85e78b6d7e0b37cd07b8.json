@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:049fb48d96a52a8d2cd7d6c6ce5e59f4a8f5871f51a582dbb52a30dc36556886",
+  "edge_type": "REALIZES",
+  "from_id": "art:machine-install",
+  "properties": {
+    "conformance": "verified"
+  },
+  "to_id": "cap:update-is-one-word"
+}

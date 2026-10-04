@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:397874d111d5f9abdd325af570829358a5782f089a975a89ff537e473fbab7ea",
+  "node_id": "frag:art:dependency-currency-checker",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered dependency_currency.py — every dependency, action and the Rust floor against its latest release; fails on an unheld new series"
+  }
+}

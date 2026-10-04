@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:8cbc1bde70deccf4218cf0035a92754b7ca7de348f45fdd184992f0bb9aec6e8",
+  "node_id": "epoch:a-report-describes-the-walk-that-produced-it",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "epoch_type": "revision",
+    "name": "A finding describes the walk that produced it, and an empty orientation read says which zero it is — requirement 1 completed",
+    "sequence": 348,
+    "status": "arrived"
+  }
+}

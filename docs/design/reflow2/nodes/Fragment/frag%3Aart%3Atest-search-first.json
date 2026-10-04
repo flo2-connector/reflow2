@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:4307941070107722e1db55a92ca54bf178ced2c2a50523a459cd365986475f02",
+  "node_id": "frag:art:test-search-first",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered search_first_fires_at_the_tool.rs — six cases: the refusal, the rollback, both deliberate routes, the no-false-refusal counterweight, and the cross-type catch"
+  }
+}

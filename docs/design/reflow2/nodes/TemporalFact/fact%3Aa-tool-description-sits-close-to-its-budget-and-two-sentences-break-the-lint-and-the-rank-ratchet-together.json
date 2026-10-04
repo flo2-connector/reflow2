@@ -1,0 +1,17 @@
+{
+  "content_hash": "sha256:325376aa350bc2715767c682fc5254c135d82797990311002a8d6a665acf84ee",
+  "node_id": "fact:a-tool-description-sits-close-to-its-budget-and-two-sentences-break-the-lint-and-the-rank-ratchet-together",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "confidence": 0.9,
+    "fact_type": "finding",
+    "name": "A tool description sits close enough to its budget that two added sentences fail the lint AND the rank ratchet, and the second failure is caused by the first",
+    "statement": "Measured 2026-09-20 adding two sentences to gap_to_prompt's description: the lint failed at 1,624 characters against a 1,500 budget, and `no_new_mutually_confusable_pair` failed in the same run. They look like two problems and are one. The ranking scorer divides by a length term, so lengthening a description lowers its own scores and can move a neighbour into or out of a top-five list; a baseline pair therefore came apart. Trimming to 1,479 cleared both, and all five ranking tests passed unchanged.\n\n⭐ THE ORDER THAT SAVES A RUN: build, `toolsnap.py --update`, then read the description's length BEFORE running the ratchet, because the ratchet takes about 38 seconds and the length check takes none. A description near the budget is the signal; 1,479 of 1,500 leaves room for roughly one sentence.\n\nAND THE GENERAL SHAPE, which is why this is worth a record rather than a note: the served text is an input to two different gates with different failure messages, so a single edit reports twice and neither message names the other. The measurement is the link between them.",
+    "steps": [
+      "ci-gate"
+    ],
+    "subject_id": "cap:a-composed-prompt-serves-its-pieces-and-a-closed-gap-refuses-branchably",
+    "valid_from": "2026-09-20"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:72d3145228bfcb9d321f36f9d601444d41bd64873d47276556b283f1bd8d3f3f",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-projects-first-session-leaves-the-adapter-in-place",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "art:skills-build"
+}

@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:ac26a55da47a8782ec3142cf546fcfc8bf6144284c5672db9dfba802ab2add19",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "cap:delta-reconcile",
+  "properties": {
+    "authored_at": "2026-07-28",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "ctr:claude-fable"
+}

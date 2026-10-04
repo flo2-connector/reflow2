@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:64d364c67da377e2d136e33ff8843472ff0ad6ddeb81bc13a46ada3c348334f1",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-write-records-the-agent-beside-the-person-it-acts-for",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:report"
+}

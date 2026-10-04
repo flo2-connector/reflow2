@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:7423eb29c5d4d8541d9f563d1f31645766455ef663472e03dfc14821ce5df333",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:a-session-reports-the-work-it-did-by-hand",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:manual-work"
+}

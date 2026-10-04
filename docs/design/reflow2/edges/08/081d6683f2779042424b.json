@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:0223fb04f30b251e0a72bbd7dd973f6e025aaf1f01997efe85c8bcf9da195807",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-saved-design-moves-to-the-item-layout-2026-10-03",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:256c98dda6561d5f807cac46ba57c130a83da3bea97b58954d8cd1b7e27b1081",
+    "checksum_basis": "measured"
+  },
+  "to_id": "art:test-a-file-realizes-only-what-it-implements"
+}

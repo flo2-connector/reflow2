@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:d95ab79e66875053cd5d8af320a9cc945a751940b11e176b02c03a5e3bcebb24",
+  "node_id": "cap:projection-cycles-carry-their-birth-and-death-epochs",
+  "node_type": "Capability",
+  "properties": {
+    "description": "At every design epoch, computes each named projection's independent cycles and matches them to the previous epoch's (persistent homology over the epoch sequence; zigzag where relationships end), so a cycle reports when it formed, when it broke or was filled in, and how long it has stood; epochs where many form or break at once are reported as readings.",
+    "name": "Each named projection's cycles carry the design epoch they formed and the epoch they broke or were filled in",
+    "provenance": "authored",
+    "status": "planned"
+  }
+}

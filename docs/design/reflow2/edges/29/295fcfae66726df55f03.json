@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:793c58cdf91ad72ba5c7ddea975b422f2562cd3d2530464b6357bb6c0e96335e",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-every-project-shapes-its-own-git-governance",
+  "properties": {
+    "note": "The general case rests on the specific one. reflow2's own git rules are the worked example: if reflow2 cannot wire its OWN export and branch policy into its OWN governance layer, prompting every consumer to shape theirs would be shipping a shape that has never been shown to hold. Do the self-host case first, then generalise.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "dec:idea-should-reflow2-carry-its-own-git-discipline"
+}

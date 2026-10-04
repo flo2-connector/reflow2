@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:82cebc0d6951aaf7e126d72a374e0d2da2f9e7520c97e12e98164b7bb18c2137",
+  "node_id": "art:test-a-write-unit-is-all-or-nothing",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "test",
+    "location": "crates/reflow2-core/tests/a_write_unit_is_all_or_nothing.rs",
+    "name": "a_write_unit_is_all_or_nothing.rs — a write unit nests, sees its own writes and discards whole",
+    "status": "realized"
+  }
+}

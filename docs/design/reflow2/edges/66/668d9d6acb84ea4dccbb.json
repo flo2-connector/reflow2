@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:15ca639294c2d91a8f4df86a913cd8d1ddcd925a37cfa903dfb28aaffdd71570",
+  "edge_type": "REALIZES",
+  "from_id": "art:test-the-schema-serves-the-rules-that-tell-the-types-apart",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "verified"
+  },
+  "to_id": "cap:the-design-interview-precedes-the-capture"
+}

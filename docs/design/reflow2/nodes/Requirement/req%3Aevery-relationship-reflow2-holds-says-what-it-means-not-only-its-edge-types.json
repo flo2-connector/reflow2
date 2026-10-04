@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:1ce04e88019bd7476b5f4bb6b0477573b41bc1ff77fed940cbc591b8c2a593da",
+  "node_id": "req:every-relationship-reflow2-holds-says-what-it-means-not-only-its-edge-types",
+  "node_type": "Requirement",
+  "properties": {
+    "concern": "core",
+    "kind": "functional",
+    "lineage": "original",
+    "name": "Every relationship reflow2 holds says what it means — not only its 65 edge types but the pointer, type, status, time and ordering fields and the nodes that stand for relationships — in one vocabulary shared with StoryFlow, and a name that means something else in StoryFlow is flagged",
+    "priority": "high",
+    "provenance": "imported",
+    "source": "Anthony, 2026-09-28, in a dev_reflow2 session: \"what is applicable to reflow2 and storyflow from the 5 tests? If we need to apply things to reflow2 and storyflow, then please add them to their respective design graphs also.\" Test 1 of dec:what-a-true-knowledge-graph-is (graph-primitives design on flo2, graph 85a2a1a36e7c942d), accepted on his word the same day.",
+    "statement": "Test 1 of the accepted definition of a true knowledge graph (graph-primitives design on flo2: dec:what-a-true-knowledge-graph-is), applied to reflow2. Of the 213 relationship-bearing items in reflow2's schema at 4659832b, only 65 are edge types; req:every-edge-type-declares-what-it-means covers those. This requirement extends the same declared reading — primitive or composition of primitives, plus operators (sign, modality, negation, perspective, clock, strength, grade) — to the other 148: 47 pointer properties, 56 type fields, 13 status fields, 21 time stamps, 5 ordering numbers and 6 node types that stand for a relationship.\n\nThe readings use ONE vocabulary shared with StoryFlow — the same primitives and operator kinds — so a reading means the same thing in both systems. A check fails on a missing reading, on a primitive or operator outside the shared vocabulary, and on a name whose reading collides with StoryFlow's (SUPERSEDES replaces here and outranks there; INVALIDATES makes a finding stale here and is a fallacious attack there).\n\nMet when that check passes over every item. The algebra of each relationship (req:every-relationship-declares-its-algebra-and-no-method-runs-where-it-cannot-represent-it) and the roles of a relationship's participants (req:a-relationship-stored-as-a-node-names-the-role-each-participant-plays) are parts of the same reading. Baseline: 0 of 213 (three-graph classification, primitives repo).",
+    "status": "proposed"
+  }
+}

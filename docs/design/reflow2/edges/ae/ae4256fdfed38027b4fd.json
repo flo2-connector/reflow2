@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:a5e2fc6b4bba9d0cfaa4d1667d6382d2c5f34de288b608a79b6920f06d778606",
+  "edge_type": "TRIGGERS",
+  "from_id": "fact:authored-by-describes-itself-as-inert-and-is-the-assignment-primitive",
+  "properties": {
+    "evidence": "Instance ③: the authored_by description says the edge never enlarges a blast radius — true of propagation, and read at the point of writing the edge it means 'nothing computes on this', while approver+proposed drives loop debt."
+  },
+  "to_id": "dec:idea-the-load-bearing-prose-is-unchecked-against-the-code-it-describes"
+}

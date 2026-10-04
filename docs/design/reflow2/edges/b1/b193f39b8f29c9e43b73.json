@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:a73e3ceb045914c09ccbc9c1925e114324f442d890e9948cbaf1ab8d10f038df",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:feedback-is-a-computed-tally",
+  "properties": {},
+  "to_id": "req:feedback-on-reflow2-is-computed-from-a-record-the-server-kept"
+}

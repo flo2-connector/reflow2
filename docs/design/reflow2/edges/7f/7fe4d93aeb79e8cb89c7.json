@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:33f124063b35500ed078b399b8b99b2d5ea30421aaf77afaf72d2b4c53476aef",
+  "edge_type": "CAUSES",
+  "from_id": "chg:the-prescribed-layer-pairs-stop-refusing",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "That repair's own text: \"THE SET IS THE PAIRS WITH EVIDENCE, NOT EVERY PAIR THAT COULD BE ARGUED FOR. Requirement↔Component is plausibly a layer pair and is deliberately absent — nobody has measured it.\" PRESCRIBED_LAYER_PAIRS in capture.rs (read 2026-09-16) holds ten pairs and none of Capability↔Component, Requirement↔Component, Component↔Component or Capability↔DesignRule. The xrt-demo genesis supplies the measurement the repair said it was waiting for: 7 refusals on those pairs, 7 judged distinct with distinct_from, 0 duplicates; bhome's 2026-08-31 count was 12/0 on other pairs. The repair worked as designed and its stated reopening condition has now been met.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:root-cause-the-guard-still-refuses-thread-pairs-because-the-prescribed-set-was-built-from-evidence-and-the-evidence-for-capability-component-arrived-today"
+}

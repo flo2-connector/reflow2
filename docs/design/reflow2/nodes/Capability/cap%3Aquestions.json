@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:abb83e6c4b4eaa0160ddc446db7aa42dd4f8fd4887fdacf30c3752be2ab234e7",
+  "node_id": "cap:questions",
+  "node_type": "Capability",
+  "properties": {
+    "description": "Questions outlive the session; answers stay visible.",
+    "name": "Remember what was asked",
+    "provenance": "authored",
+    "status": "verified",
+    "tier": "operational"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:28beb455ba1ff9feb5a98fb7ad92d96469258d62b66dacc5994d42b2b34fbf5f",
+  "edge_type": "CHANGED",
+  "from_id": "chg:search-first-fires-at-the-tool",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "cap:search-first-at-the-tool"
+}

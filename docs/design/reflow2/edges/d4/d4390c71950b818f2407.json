@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:c4bd2492903b5ec51dc204c61e9a9f30aac475712f4f41559ca61b3fb483842e",
+  "edge_type": "CHANGED",
+  "from_id": "chg:mcp-tools-boundary-specified",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "ifc:mcp-tools"
+}

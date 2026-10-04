@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:b9893735d5d579a2f6b679f2e80b36ff1904b460632142be350c29926d8e772a",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-name-is-not-a-report",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "ver:the-vocabulary-says-where-abandonment-lives"
+}

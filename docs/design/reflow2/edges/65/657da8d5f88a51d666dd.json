@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:98f6eba3ce4b4ca53bd21d68b55575c46441854bb0cc75c26ecc9e847483628c",
+  "edge_type": "CHANGED",
+  "from_id": "chg:kit-manifest-check-written",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "ver:kit-manifest-agrees"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:3aa2fb153dc37ed5b2b985374a43f5d1e79b77c9ff176018d3abcd87ef8a22b8",
+  "edge_type": "CHANGED",
+  "from_id": "chg:bl89",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cmp:skills"
+}

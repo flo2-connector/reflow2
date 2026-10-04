@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:ff5128202602a3e45e95a5949ebc5093de3b64714b4cb0779c58109405e79e96",
+  "node_id": "decision:ack:55471b7ba5187b51",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Accepted the gap gap:55471b7ba5187b51.",
+    "name": "Reviewed: gap:55471b7ba5187b51",
+    "rationale": "Anthony, 2026-10-03, in chat: \"All six: not fixed\". The change touched this defect's subject but did not fix it, and the defect stays open. Measured reason: chg:a-read-of-a-held-design-is-as-true-as-the-live-one changed export_write only so a copy of a held store reads the sync record at the design's path and writes none; a client passing --export-to to a shared server started without it is unchanged.",
+    "status": "accepted"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:6b9b3a90f69af70e7df793b07ef2f63f00960e420d0a8f9a32351119dc06daef",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:test-adopt-is-incremental-with-a-frontier-and-a-deferred-derivation-marker",
+  "properties": {
+    "covers": "whole"
+  },
+  "to_id": "ver:adopt-is-incremental-with-a-frontier-and-a-deferred-derivation-marker"
+}

@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:69be7adf97ea2522c3368449e5e4c582f93c29a8cc19dd0108fe55dc6fe9b392",
+  "node_id": "art:an-undated-change-event-says-so-test",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "description": "Two probes. THE CASE: an event written with no `detected_at` carries an `undated` note that names the field AND what cannot be computed without it — the assertion deliberately requires the note to say what the absence COSTS, because a bare \"no date\" is the silent behaviour with extra words. It also checks the event was still written, so the note cannot drift into a refusal. SILENT: a dated event has nothing to report.\n\nOBSERVED FAILING FIRST against the unfixed binary, 2026-09-10: \"no `undated` block in: {changed:[], event:{...}}\". The silent probe passed vacuously, as it must when nothing fires at all.\n\n⚠️ SCOPE, so a green reading is not over-read: this covers `add_change_event`, which is the tool that HAS the field and the one hxm_program was using. `record_change` — the path the root-cause discipline sends you to — carries `repair` but no date at all and is untouched here. See `fact:record-change-places-an-event-by-epoch-and-212-of-214-epochs-carry-no-date`.",
+    "location": "crates/reflow2-mcp/tests/an_undated_change_event_says_so.rs",
+    "name": "an_undated_change_event_says_so.rs — the note, and the silence when it is dated",
+    "status": "realized"
+  }
+}

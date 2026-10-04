@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:850a22d994890c9a005f8ab75efc5ab9482dc1a55030c36145667e10acee28c2",
+  "edge_type": "TRIGGERS",
+  "from_id": "cap:release-publishes-a-container",
+  "properties": {
+    "role": "feeds — the published assets are verified off the release object, and now the DESIGN's record of what they contained is verified the same way. Both readings are of the authoritative object, never of the call that wrote it"
+  },
+  "to_id": "cap:a-release-that-shipped-nothing-is-reported"
+}

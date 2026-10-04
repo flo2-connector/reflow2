@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:58ac8f8ab1b7f0404c258bfcb8f8ac5bb80c9473f0175db1c768becfedf78908",
+  "edge_type": "REALIZES",
+  "from_id": "art:a-session-that-reads-and-never-writes-is-seen-test",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:the-loop-counts-this-sessions-reads-and-writes-and-says-when-a-write-is-owed"
+}

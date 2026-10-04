@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:07615581b082b003b06abf60b6dcb0c06c4ef9702703c2c3c1f4a5fff04c46f8",
+  "node_id": "chg:accept-0c6cd76f71527326",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "detected_at": "2026-07-31",
+    "name": "PR #2 (fix/surface-last-run-at): detect.rs and report.rs now carry Verification.last_run_at — a failing gap says WHEN the check last ran, and a `failing` that never ran says 'never run' rather than implying a measurement was taken; loop_status and graph_report list each check with its status, last_run_at and how many nodes it speaks for. Deliberately not wired into loop_status's `clean`/`next`: visibility, not a new nag. NO DESIGN NODE MOVED, which is why this is design_holds. Whether this earns a capability of its own is OPEN and is the user's call — note that it is NOT cap:verification-freshness (BL-106, still `planned`), which is the confirmation-ledger freshness fact and a different surface. Until then last_run_at stays what it has been since it was added: written by verify.rs and read by nothing in the core."
+  }
+}

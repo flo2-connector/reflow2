@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:db6fbd5b4bf42c60edc1858b8f3dd97a8db280eb6ae61dec4499d0771a6e89df",
+  "edge_type": "INVALIDATES",
+  "from_id": "chg:reachability-is-asked-without-asking-adoption-and-the-instrument-runs-in-ci",
+  "properties": {
+    "evidence": "The finding was that the instrument ran in no workflow step, no gate script and no build target. It runs in ci.yml now, is named in AGENTS.md, and skill_lint holds it there, so the observation no longer describes the build."
+  },
+  "to_id": "fact:the-reachability-instrument-is-wired-into-no-gate-so-its-filter-was-never-the-only-cause"
+}

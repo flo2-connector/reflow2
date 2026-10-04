@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:62648bae7a1a359e26d27d86d3e88767ea11b353132b6835dd8584c58445e4e7",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:heal",
+  "properties": {},
+  "to_id": "req:a-detector-reads-the-properties-that-qualify-its-own-finding"
+}

@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:33c162827b2eb3c4ee3c33fc625ded5d7c717bd7195670c7f9c68ef9c61929fa",
+  "edge_type": "AT_EPOCH",
+  "from_id": "snap:epoch:preserved-on-write:cap:a-server-drains-before-it-stops",
+  "properties": {},
+  "to_id": "epoch:preserved-on-write"
+}

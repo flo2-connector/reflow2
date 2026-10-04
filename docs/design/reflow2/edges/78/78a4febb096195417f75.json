@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:b2cb63d0e32b56a031f65c8b70e5d051db1e4fc58810d9087e2ec9602757c6b8",
+  "edge_type": "CHANGED",
+  "from_id": "chg:bl183-constructors-merge",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "ifc:core-api"
+}

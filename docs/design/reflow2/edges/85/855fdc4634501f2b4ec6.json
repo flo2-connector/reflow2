@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:f5d7e86ee8ce583206178d8ebbc07f14ff967304c5be1267b7a4c75ce491d225",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-saved-design-moves-to-the-item-layout-2026-10-03",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:9150e01643a52c38795729538031a0637671a13eebb9eab5f8f53318475a9a01",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:feedback-is-a-computed-tally-wire-test"
+}

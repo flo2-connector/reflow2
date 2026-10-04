@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:15adaff6c02e3e4fb9b8b5870b43eda958cd89d07f1584d3045b143c7bd3d6c2",
+  "node_id": "rel:v0520",
+  "node_type": "Release",
+  "properties": {
+    "description": "Answers a field report by fixing its class rather than its instances. add_epoch and plan_epoch take a description and a checksum, add_requirement takes a priority, and add_interface, add_project, add_release, add_resource, add_environment and add_artifact each take a description — six constructors that could not say what the thing they made IS. record_finding makes the moment a cause is written into a tool call, and its description demands the root-cause skill by name, which is the first use of a tool-side demand to reach a skill whose trigger is the agent's own state. The reachability instrument stops fusing reachability with adoption, asks per type rather than across a flat name pool, and runs in CI as a regression gate over a grandfathered baseline. Also carries the design record: five rulings, the triage of all 46 overtaken defect records, and today's field-feedback triage.",
+    "name": "v0.52.0 — the vocabulary the surface could not write",
+    "status": "retired",
+    "unit_type": "binary",
+    "version": "0.52.0"
+  }
+}

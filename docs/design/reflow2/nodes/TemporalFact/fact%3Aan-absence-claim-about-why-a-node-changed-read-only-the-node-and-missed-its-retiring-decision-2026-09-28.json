@@ -1,0 +1,17 @@
+{
+  "content_hash": "sha256:64c60f341376ddcf6961c9a2f5f5fc63bbb1156241965c39eba16814e131dea8",
+  "node_id": "fact:an-absence-claim-about-why-a-node-changed-read-only-the-node-and-missed-its-retiring-decision-2026-09-28",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "finding",
+    "name": "\"Nothing records why it was dropped\" was said after reading only the requirement's own properties with get_node — the why was on the decision that retired it, one edge away, which get_node does not show",
+    "source": "this session's own error, corrected the same day",
+    "statement": "INSTANCE, 2026-09-28, dev_reflow2 hub session. Linking a new requirement to req:context-is-a-modelled-quantity (status dropped), the agent read it with get_node, saw a statement that gave no reason, and wrote into two designs — and told Anthony — that the reason for the drop was unrecorded. It was recorded: dec:proposed-requirements-pruned (2026-07-30, on Anthony's word) retired it with an explicit reason, and the retired node is linked to it, as retire-from-design requires. The agent found it only after Anthony said he did not know, via git log -S on the committed export and then search_design for the decision.\n\nTHE LESSON, for the step it concerns: a node's STATUS says what happened to it; the decision that moved it says WHY, and that lives one edge away. get_node returns properties, not edges, so \"the node does not say why\" is a claim about one node's text, never about the design. Before saying a change's reason is unrecorded, read the node's connections (topic_report, or propagate_from depth 1) for a governing or retiring decision — which is what req:a-claim-that-the-design-holds-nothing-says-where-it-was-checked asks an absence claim to state. Three records were corrected the same day.",
+    "steps": [
+      "get_node"
+    ],
+    "subject_id": "req:a-claim-that-the-design-holds-nothing-says-where-it-was-checked",
+    "valid_from": "2026-09-28"
+  }
+}

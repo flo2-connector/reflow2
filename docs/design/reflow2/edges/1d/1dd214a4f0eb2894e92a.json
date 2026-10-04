@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:294ec3ccdc951f910698374a10c5997d52604936ac28cb20e152871df3a3b8bb",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "req:reflow2s-code-reasons-from-the-declared-meanings-and-every-derived-relationship-is-a-declared-rule",
+  "properties": {
+    "evidence": "Code can only select by declared reading, and a derived relationship can only be declared as a composition of primitives, once the readings exist.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "req:every-relationship-reflow2-holds-says-what-it-means-not-only-its-edge-types"
+}

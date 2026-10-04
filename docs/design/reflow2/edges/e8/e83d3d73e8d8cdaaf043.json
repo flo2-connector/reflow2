@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:4631162886428e6f8007d24a4a4304d636a93ce95dc0805ac59f1bf9ec9be63c",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:explains-itself",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:docs"
+}

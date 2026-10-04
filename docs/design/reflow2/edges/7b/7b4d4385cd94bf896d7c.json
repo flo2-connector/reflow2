@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:4db133bda084964764fa23535b1543af96a5cc93968e9b4fba148bd9a7970fae",
+  "edge_type": "CHANGED",
+  "from_id": "chg:import-adopts-identity",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cap:design-identity"
+}

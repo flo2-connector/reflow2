@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:fbc773014703246708a52cf9d56cfbf3153aca79d6d0aeffaec443349d08c8c2",
+  "node_id": "chg:accept-2d7b12d88e41ddfc",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "test_failure_fix",
+    "detected_at": "2026-07-28",
+    "name": "First registration — the file was written for cap:machine-wide-install in the same session that recorded it."
+  }
+}

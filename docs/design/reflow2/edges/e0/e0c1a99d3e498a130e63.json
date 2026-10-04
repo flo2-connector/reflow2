@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:5b1097e6c4ff660f884f37f4cb9ada575e3ccb1c11639cc2752c7edd5e3ae769",
+  "edge_type": "VERIFIES",
+  "from_id": "ver:a-release-that-shipped-nothing-is-reported",
+  "properties": {},
+  "to_id": "cap:release-pinned-to-time"
+}

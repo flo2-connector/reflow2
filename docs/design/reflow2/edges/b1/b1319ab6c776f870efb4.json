@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:8ce2bdd930152c0d852784b0617119e3469c58bd5e77e4a8cf58cae7d4c2efa1",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0610",
+  "properties": {
+    "as_checksum": "sha256:dccfaf23ecae26729bfff2673b75432f2b13d766053f8b5fe2f2447e44cab6ed"
+  },
+  "to_id": "art:claim-age-test"
+}

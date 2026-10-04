@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:6e136890139e9c97b30f29cff3690de58f4db35c6ff791618c083f14402a3d19",
+  "node_id": "fact:bl-189",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "defect",
+    "statement": "[BL-189] 95 self-corrections against 7 retirements across 334 memory files — a corpus that corrects itself and never retires itself",
+    "subject_id": "cmp:ingest",
+    "value": "{\"evidence\": \"*Same field report, 2026-08-04, exact greps over all 334 non-satellite files.* 95 files (28%) carry a self-correction or supersession; 7 declare themselves resolved. So a warning about a bug fixed in June still reads as live today with nothing to say otherwise \\u2014 the same shape as the evidence-OBE finding in [BL-187], in a different folder, which is what makes it a lifecycle gap rather than a filing habit. reflow2 has the retirement half already \\u2014 the retire-from-design skill and its one load-bearing question, *was this ever true?* \\u2014 but nothing prompts it, nothing measures the imbalance, and loop_status has no notion of a record that has outlived its subject. A second measurement in the same sample is the most actionable thing in the whole report and needs NO schema at all: 102 of 334 files (31%) declare themselves FUTURE / parked / unbuilt \\u2014 product intent sitting in markdown that reflow2 models perfectly today as Requirements and Capabilities at proposed/planned. The biggest single category in that corpus is not a missing type; it is un-ingested design intent, which feeds [BL-186] directly. Size M\", \"origin\": \"Migrated from docs/backlog.md BL-189 on 2026-08-07 (epoch:backlog-retired). Size estimate carried from the row: M.\"}"
+  }
+}

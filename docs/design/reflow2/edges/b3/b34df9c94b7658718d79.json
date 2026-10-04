@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:9ef893a2d61a0f91a99ad548bfbfaea6d6e03a5f2709b29b4cee1fde1de5c398",
+  "edge_type": "CAUSES",
+  "from_id": "art:hxm-program-feedback-2026-09-28",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "The root-cause pass on this document's 09-28 report (F-32, operator attestation has no grade): operator evidence has an honest home (an observation check in production) that proves the capability, but a stale check leaves attention only through its own status, and nothing relates other evidence or a ruling to it. This is the third shape of the one-status class.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:root-cause-a-stale-check-leaves-attention-only-by-its-own-run-and-other-evidence-cannot-answer-it-2026-09-28"
+}

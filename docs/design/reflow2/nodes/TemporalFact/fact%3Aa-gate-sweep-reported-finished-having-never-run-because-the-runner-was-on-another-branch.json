@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:7cabb09a5326322f27a72ac1c6866c55bdc880899b41557e810f204c160fb24f",
+  "node_id": "fact:a-gate-sweep-reported-finished-having-never-run-because-the-runner-was-on-another-branch",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "confidence": 1.0,
+    "fact_type": "finding",
+    "name": "MEASURED 2026-09-20: a full gate sweep 'finished' having executed nothing — the runner lived on a different branch, python exited 2 on a missing file, and the completion notification was indistinguishable from a clean run",
+    "statement": "A NEW WAY TO VIOLATE THIS RULE, and it arrived on the very day the gate runner was built to end the previous way. The runner had just been written on one branch (#558). A second branch was cut from main, which did not yet have it. The sweep was launched, the background watcher reported the job complete, and the log held exactly two lines: \"python3: can't open file 'tools/run_ci_gates.py': [Errno 2] No such file or directory\" and \"RUNNER_EXIT=2\". WHY IT IS WORTH A RECORD RATHER THAN A SHRUG. Exit 2 is not a gate failure and not a pass; it is the interpreter refusing to start. Every signal a session normally reads said the sweep had run: the job completed, the notification fired, no gate reported a failure, and the failure count was zero BECAUSE NOTHING RAN. Only opening the log distinguished it, and the rule this hangs off says exactly that — success is read from the authoritative object, and for a gate sweep the authoritative object is the summary line naming how many gates ran, never the fact that the process returned. THE SHAPE IS THE SAME AS THE ONE THE RUNNER WAS BUILT FOR and that is the point: hours earlier the same session had piped cargo test through head -40, truncating the report at the fortieth of roughly two hundred test binaries, and read forty consecutive passes as a clean suite. Both are a report that looks complete because the thing that would have contradicted it was never produced. The runner fixes the second and cannot fix the first. WHAT WOULD HAVE CAUGHT IT: the runner refuses to report a pass on zero gates, so had it RUN it would have said so — but it was not there to refuse. A wrapper that cannot find its runner has no such guard, which is the honest limit of putting the check inside the thing being checked. NOT ESTABLISHED: whether this recurs often enough to warrant a guard in the launching wrapper rather than a habit of reading the log. One occurrence.",
+    "subject_id": "rule:success-is-read-from-the-authoritative-object",
+    "valid_from": "2026-09-20"
+  }
+}

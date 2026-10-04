@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:eaade2f486bdd3d94dbd0cfcc4e6d558f9d659d68d5920eba50d4e26b8af077e",
+  "node_id": "ver:a-terminal-agent-auto-approves-reads-and-confirms-each-write",
+  "node_type": "Verification",
+  "properties": {
+    "description": "Nine real-binary tests (art:test-a-terminal-agent-auto-approves-reads-and-confirms-each-write), plus:\n- verbs' unit tests (a writer refused by name; a file writer read without a path and refused with one; the listing holds every served tool once under its annotation);\n- item 1's flag-by-mode walk, extended with a row for each verb;\n- main's check that every table id is a real argument or subcommand;\n- tools/test_init.py driving the installed `reflow2` wrapper, which hands `read` and `write` to the binary word for word and names them in its help.",
+    "findings": "OBSERVED FAILING FIRST on main 293f957: 8 of the 9 tests failed (`read` was an unrecognized subcommand, exit 2). The after-`read` flag walk passed vacuously there and was given a precondition (a bare `read graph_report` runs, and `read add_requirement` is refused by the verb), so it fails on main too. The wrapper test fails on main's help text.\n\nOn the branch, all 9 pass. The walk ran every served tool. Each read-annotated tool also ran through plain --call with no --read-only; none moved anything but bookkeeping, and the design's content hash was unchanged.",
+    "kind": "verification",
+    "last_run_at": "2026-10-03",
+    "level": "system",
+    "location": "crates/reflow2-mcp/tests/a_terminal_agent_auto_approves_reads_and_confirms_each_write.rs",
+    "method": "test",
+    "name": "`reflow2 read` runs only what changes nothing and `reflow2 write` runs anything: every served tool, every flag after the verb, the file rule, the listing, quiet logs",
+    "status": "passing"
+  }
+}

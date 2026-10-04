@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:0fc05e95a47b667c5324c9a50367e5202cc27dd58ecd6747b14ce28295e201d6",
+  "node_id": "epoch:v0280-planned",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "epoch_type": "release_cut",
+    "name": "RETIRED 2026-08-08 — superseded by epoch:planned-one-write-surface. Id names a version it never delivered; kept for its snapshot history.",
+    "sequence": 267,
+    "status": "arrived"
+  }
+}

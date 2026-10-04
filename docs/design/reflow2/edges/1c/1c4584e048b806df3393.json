@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:9249dfc1c856af28126dc389d7fb90f42b8166cf2269f3e9c99a5b79cee5d6c7",
+  "edge_type": "CHANGED",
+  "from_id": "chg:plan-movement-question-answered",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cap:plan-movement-recorded"
+}

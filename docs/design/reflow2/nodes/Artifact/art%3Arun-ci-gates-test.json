@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:7b95322bcc969492965138f9757631875952a8f70afc0cacf68d951122b60806",
+  "node_id": "art:run-ci-gates-test",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "test",
+    "description": "The gate runner's own hermetic net, run in CI. Pins the four ways the runner could lie: a failing gate must fail the run in the exit code and not only in the printed summary; a filter matching nothing is a failure rather than a clean sweep; a near-empty read of ci.yml is refused as broken rather than reported as a short workflow; and the real workflow still yields a plausible gate count, so a future change to its shape cannot quietly reduce the runner to a no-op. It also pins that the runner never grows its own copy of the gate list or a pyyaml dependency. Written because the runner's first draft had that exact failure twice over — it printed a clean summary on a filter matching nothing, and never returned a non-zero exit code at all, so every sweep that day was read off the log by eye.",
+    "location": "tools/test_run_ci_gates.py",
+    "name": "test_run_ci_gates.py",
+    "status": "realized"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:409a18cc22e632c9356576c9fa10ad271f214aa16c82528c1854c352a5a8ceb0",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-saved-design-moves-to-the-item-layout-2026-10-03",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:282bc88886695a7910cb53980d90f0fc2db5480011c1c6e56d96ad082fd588e2",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:test-a-local-client-works-against-a-remote-server"
+}

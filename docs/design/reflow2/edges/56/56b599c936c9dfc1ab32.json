@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:733d4bcd363f158e13700e4ef6e1c238575879cac5a43efa772a833185ec0757",
+  "edge_type": "REALIZES",
+  "from_id": "art:detect",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:a-fix-with-no-recorded-cause-and-a-defect-its-subject-outran-are-noticed"
+}

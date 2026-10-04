@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:5390b280799fa3f56f9e5dda046a571c71d4352037a8db2f8ae77435d9b73bd2",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:publishable-promise-test",
+  "properties": {
+    "covers": "whole",
+    "note": "migrated 2026-09-22 from a REALIZES link_artifact drew in error"
+  },
+  "to_id": "ver:publishable-promise"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:c615a072e4cbf3628f6d581e13b5b24e0d4e8d82dcf8226012ed18acb5cb2636",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-merge-proposal-discloses-what-it-would-destroy",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cap:heal"
+}

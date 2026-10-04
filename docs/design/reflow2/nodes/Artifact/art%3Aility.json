@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:59f036af8f333d1ddfb399cf4c0d070c052179482162b5dfc945a67c5dd88447",
+  "node_id": "art:ility",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "granularity": "atomic",
+    "location": "crates/reflow2-core/src/ility.rs",
+    "name": "ility.rs",
+    "status": "realized",
+    "volatility": "stable"
+  }
+}

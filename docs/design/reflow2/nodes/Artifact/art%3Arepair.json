@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:f9522c1866606ed0a539d3383d20442fc7eec9e14319272b0d99b05a4542decf",
+  "node_id": "art:repair",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "location": "crates/reflow2-core/src/repair.rs",
+    "name": "repair.rs — what still rests on a patch",
+    "status": "realized"
+  }
+}

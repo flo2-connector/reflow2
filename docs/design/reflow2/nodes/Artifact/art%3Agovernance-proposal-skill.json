@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:aa2e97cc8bb2f7fb89399f6c7e571a49ddeee66e04300f80df6beec5274ed405",
+  "node_id": "art:governance-proposal-skill",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "document",
+    "granularity": "atomic",
+    "location": "getting-started/skills/governance-proposal/SKILL.md",
+    "name": "governance-proposal/SKILL.md",
+    "status": "realized",
+    "volatility": "stable"
+  }
+}

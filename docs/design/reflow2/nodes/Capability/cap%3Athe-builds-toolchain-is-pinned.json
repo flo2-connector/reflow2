@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:40d28b7203a5dc54ed2f7dc67d68383650cc5250c21406bf4aa69e22e0a824a0",
+  "node_id": "cap:the-builds-toolchain-is-pinned",
+  "node_type": "Capability",
+  "properties": {
+    "description": "A rust-toolchain.toml pins the compiler version and the components the gates need (clippy, rustfmt). CI's toolchain step and every local run of the gate runner then resolve to the same build, which is the one axis the gate-list cross-check cannot compare: it matches command strings, and the 2026-08-24 failure had identical strings on both sides.\n\nThe cost is stated rather than hidden: a pin means nobody upgrades until something forces it, so the upgrade becomes a deliberate commit that must go green before it lands. That is the trade being taken — scheduled red instead of surprise red.",
+    "name": "The toolchain the gates run on is named in the repo, so local and CI measure against the same compiler",
+    "provenance": "authored",
+    "status": "planned"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:cc5733949d95fbee5c5381863617d0fd65d78eba80f3d2d8c87448563ce3921b",
+  "node_id": "art:registry-http",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "description": "The `/g/&lt;graph_id&gt;/` router — the transport half of per-session design selection, and the thing that gave Registry::discover a caller outside its own tests. A hand-written hyper/tower Service because this crate deliberately does not take axum. Holds one StreamableHttpService per design, opened ON DEMAND, with a per-id OnceCell so concurrent first requests for one design collapse into a single open rather than racing, and, since 2026-09-27, a lifecycle:\n- a design idle past --registry-idle is closed;\n- at --registry-max-open the least recently used idle design is closed to make room;\n- only when every slot is serving a request is the newcomer refused, with 503 and Retry-After, never 404;\n- closing ends the design's sessions;\n- a reopen waits until the previous copy has released its store.\nUntil then, a cap refused past its limit and nothing was ever closed. Isolation holds by construction: the only way to name a design is the id segment, it goes straight to Registry::attach, and each design has its own session manager so a session id minted under one prefix is unknown under another.",
+    "location": "crates/reflow2-mcp/src/registry_http.rs",
+    "name": "registry_http.rs",
+    "status": "realized"
+  }
+}

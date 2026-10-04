@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:5e82fa18689afa0e9a9859a6cc6422a1280e266682e052888547eaafa949c5c2",
+  "node_id": "chg:v050-as-released",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "resync",
+    "name": "v0.5.0 as-released model: rel:v050 recorded (33 artifacts frozen at tag v0.5.0 + the skills tree), deployed active on the developer machine; rel:v040 retired and its deployment declaration withdrawn (upgraded in place); INCLUDES joined the traceability table so a release is part of the design network rather than an island"
+  }
+}

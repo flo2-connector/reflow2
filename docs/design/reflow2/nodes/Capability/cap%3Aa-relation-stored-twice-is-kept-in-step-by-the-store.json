@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:edb35ce0ccb677a8176980047b39dacb9ebaca8e2178b14456eb1c03436e82fc",
+  "node_id": "cap:a-relation-stored-twice-is-kept-in-step-by-the-store",
+  "node_type": "Capability",
+  "properties": {
+    "description": "Each relation reflow2 holds as both a property and an edge declares its authoritative property in the schema (`twin_of`). DesignGraph::create_node, which every node write passes through, keeps the derived edge, and a moved property takes its edge with it. Opening a store and importing a document run one repair: missing copies are drawn, a finding's non-subject HAS_TEMPORAL_FACT becomes ABOUT_ENTITY, and retired stored values are removed. Every repair is named, in loop_status `repaired_on_open`, in the import report `twin_repairs`, and on --import. The generic edge tools refuse a copy drawn or deleted against its property, naming what to do instead. The CI gate names an out-of-step committed export as its own finding.",
+    "name": "A relation stored twice is kept in step by the store: its derived copy is drawn on every write, repaired on open and import with each repair reported, and refused when drawn by hand against its authority",
+    "provenance": "authored",
+    "status": "verified"
+  }
+}

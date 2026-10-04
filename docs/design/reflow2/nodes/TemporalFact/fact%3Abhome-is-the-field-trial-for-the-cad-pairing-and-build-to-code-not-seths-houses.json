@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:ea66cd3c4614bb3b5eec752b75fd54ce61498b6d7155e21c98bc01f6a9fc5b93",
+  "node_id": "fact:bhome-is-the-field-trial-for-the-cad-pairing-and-build-to-code-not-seths-houses",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "decision_input",
+    "name": "Anthony 2026-09-16: run the CAD pairing and the build-to-code check on his own bhome project first, rather than waiting for Seth's drawings",
+    "statement": "Anthony, 2026-09-16, in his words: \"We can do something with my bhome project that I mentioned earlier. I was actually trying to build that project per code and even seeing a 3d rendering would be cool. Hopefully, it can prove out a lot of this versus waiting for my brother.\" bhome (/home/ajs7/project/bhome, its own reflow2 graph, 128 nodes) is a 40-ft high-cube container pod dwelling: 27 requirements all still `proposed`, 40 components, 8 constraints of which ONE carries a number (interior floor area ≤ 280 sqft), one drawing (plan-sheet-01.html, hand-authored, checksummed), three permitting options as `model` artifacts, an accepted decision to build to code whether or not inspected — and NO EnvironmentRule at all, so \"build to code\" names no code. That is the trial: declare the artifact standard and the codes that bind, make the shell and interior in the tool rather than in HTML, read dimensions back as measured quantities against the constraints, and see whether the design catches what a plan-checker would. Box state at the time: no Blender installed (snap 5.2.2 or apt 4.0.2 available), uv present, no ifcopenshell, 11 GB RAM, no GPU reported.",
+    "subject_id": "dec:idea-pair-with-mcp-for-blender-as-the-hands-that-make-and-show-the-cad-artifact",
+    "valid_from": "2026-09-16"
+  }
+}

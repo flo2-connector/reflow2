@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:40e48d30a22a0dd61c3bf6c68158c2e5209e5060eb684ca5ff6bf3b886dae436",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:propagate",
+  "properties": {},
+  "to_id": "req:golden-thread"
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:ea00f87b25eed7fb9cfb6469a3829023fe53cf2a4043469f1e433d49c31f342f",
+  "node_id": "chg:planned-increments-slip-one-after-v0250",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "scope_change",
+    "name": "Slip: one honest write surface moves from v0.28.0 to v0.29.0"
+  }
+}

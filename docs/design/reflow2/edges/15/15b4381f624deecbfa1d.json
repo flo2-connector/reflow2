@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:7d7860061b1dfbdae2b63935d83916d2f386ee71fbe7ac20c80d78268d4a8e7c",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "rule:success-is-read-from-the-authoritative-object",
+  "properties": {
+    "approved_at": "2026-08-14",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

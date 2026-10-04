@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:046e201c61179186e80f87780e8e84b9389a5cf8e52ea201093dcb40b6702c84",
+  "node_id": "req:delivery-counts-work-that-is-not-code",
+  "node_type": "Requirement",
+  "properties": {
+    "lineage": "original",
+    "name": "Delivery arithmetic counts work that is not code, so a design whose product is a model is not reported as undelivered",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "What counts as delivering a capability must be stateable. Where delivery is assumed to mean an artifact on disk, every design whose output is a model, a document or a decision reports as undelivered forever and the number stops meaning anything.\n\nTHE NEED, from the measured defect rather than the remedy: an epoch reported delivery against capabilities whose product was never going to be a file, so the figure could only ever fall. Found by running the loop honestly rather than by looking for it, 2026-08-20.\n\nIt can fail independently: any future delivery computation that keys on artifacts alone breaks it.",
+    "status": "accepted"
+  }
+}

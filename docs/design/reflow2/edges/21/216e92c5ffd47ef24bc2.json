@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:ce5b3c891fd08541b3edde511d3d5d9c97c7cba0cef10c67ca3eeb09d0221e1a",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:a-budget-declares-sum-or-path-and-its-verdict-follows",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:budget"
+}

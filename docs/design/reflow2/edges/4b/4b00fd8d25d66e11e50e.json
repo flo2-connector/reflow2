@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:93ebad41d145b39d991eeef1b37af341ab968eb68aa3e3ab76835888da81bd26",
+  "edge_type": "CAUSES",
+  "from_id": "fact:defect-propose-heal-describes-neither-what-it-swept-nor-what-it-considered",
+  "properties": {
+    "basis": "observed",
+    "confidence": 1.0,
+    "evidence": "The field report is what brought this requirement into existence — `observed` rather than `causal` because a person reading it stated the intent; the fact did not produce it mechanically. Both halves were reproduced on reflow2's own graph before the requirement was written.",
+    "validation_status": "validated"
+  },
+  "to_id": "req:a-report-says-what-it-swept-and-whether-its-checks-ran"
+}

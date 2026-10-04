@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:23a1705bdb597ea599425f0e1ab487d2fe5e6f8bd50dc04a255c2cb852313c30",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-degraded-server-recovers-when-its-cause-clears-and-readiness-tells-the-truth",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cap:latent-surface"
+}

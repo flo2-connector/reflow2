@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:e8bb297174af21b425aa34a5b1cf0e6f2375d1833b5feabbf56614a66c376d9b",
+  "node_id": "epoch:a-zero-that-is-not-an-absence",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "epoch_type": "revision",
+    "name": "A zero that cannot be told from an absence, in two more places (2026-08-09)",
+    "sequence": 299,
+    "status": "arrived"
+  }
+}

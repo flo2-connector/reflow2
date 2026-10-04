@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:d419fc20918c91efc139fbea68eefcca9bb4c20fea331d37574a81c43e2490e9",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-remote-located-artifact-is-not-a-missing-file",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:check"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:db2b9cb1a3b7357aa644b2c3838c43ca58cf10dc0c96d64a22cbd9cc4dc93439",
+  "edge_type": "INVALIDATES",
+  "from_id": "chg:the-replayed-gap-is-an-echo",
+  "properties": {
+    "at": "2026-09-02",
+    "note": "The guard this fact measured is DELETED — rehydration now runs on every replayed gap, resolved by id, so 'rehydrate declines when the caller sent text' is no longer true of the code. Its METHOD survives and is why it is closed rather than erased: it found that the server already held the authority and merely declined to use it, which refuted the reporter's own requested fix (a `gap_id` parameter) and produced a better one."
+  },
+  "to_id": "fact:the-gap-replay-warning-exists-because-rehydrate-declines-to-run-when-the-caller-sent-text"
+}

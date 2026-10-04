@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:2c802aaa124f12ad860656fcad851be62fccca17773bd6f6227d1584834b6f68",
+  "node_id": "snap:epoch:preserved-on-write:chg:the-44-wrong-realizes-edges-are-repaired",
+  "node_type": "Snapshot",
+  "properties": {
+    "edges": "[{\"direction\":\"out\",\"edge_type\":\"CHANGED\",\"other_type\":\"Capability\",\"other_id\":\"cap:a-file-realizes-only-what-it-implements\",\"properties\":{\"accepted_baseline\":false}}]",
+    "state": "{\"change_type\":\"defect_fix\",\"detected_at\":\"2026-09-23\",\"name\":\"The 44 REALIZES edges that pointed at changes, requirements, checks and findings are replaced by the edge each should have been\",\"rationale\":\"Corrected at the cause of each edge, per dec:realizes-is-restricted-to-capability-component-and-interface: every one is re-expressed as the relation it actually meant, so no link is lost. The design's KNOWLEDGE changed, not the system — subject: record. The schema restriction that stops the class recurring follows in the same PR.\",\"subject\":\"record\",\"summary\":\"Replacements written before any removal: 12 CHANGED (change → the file it touched, where none existed), 2 DOCUMENTS (field-report document → its finding), 6 IMPLEMENTS (test file → its check: 4 new checks, 2 existing ones that nothing implemented), 2 VERIFIES (those existing checks → the requirement), 1 REALIZES re-pointed (vocabulary-reach baseline → cap:the-design-says-what-its-own-tools-cannot-write). Then the 44 wrong REALIZES edges removed: 29 on ChangeEvents, 7 on Requirements, 6 on Verifications, 2 on TemporalFacts.\"}",
+    "target_id": "chg:the-44-wrong-realizes-edges-are-repaired",
+    "target_type": "ChangeEvent"
+  }
+}

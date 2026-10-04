@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:306ca55e46b741ddffc0e1cc7c793e75a263f8c45f14014864fffaed21afd471",
+  "node_id": "decision:ack:6ac59b7adcc72d03",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Accepted the gap gap:6ac59b7adcc72d03.",
+    "name": "Reviewed: gap:6ac59b7adcc72d03",
+    "rationale": "Standing disposition for planned-but-unbuilt capabilities (user's 2026-07-23 call, applied again 2026-07-24). Naming the check now, because this one has an unusually good fixture available: reflow2's own graph. When built, the verification should assert that requirements demonstrably shipped — invoked over MCP, persists in-repo, runs on Linux and macOS — come back DELIVERED without anyone having hand-set a status, and that a requirement whose satisfying capability has a failing check does NOT. The second half is the real test: today ver:search-natural-language is failing, so cap:search must not read as delivered, and req:agent-native must reflect that. A derivation that cannot go backwards is just a slower assertion.",
+    "status": "accepted"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:a6f62be343a9641cf6c5bec7ab02730cb05d2c612b2b21a6658f5b5ce721295e",
+  "edge_type": "REALIZES",
+  "from_id": "art:tools-skills",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cmp:tools-skills"
+}

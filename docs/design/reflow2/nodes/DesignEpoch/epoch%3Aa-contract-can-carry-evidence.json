@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:73e893d75134077e752764ea22beea9a0be43fbca554d3bccc910f7435a624f8",
+  "node_id": "epoch:a-contract-can-carry-evidence",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "epoch_type": "revision",
+    "name": "A contract can carry evidence — VERIFIES reaches an Interface, and the check that already existed can finally attach (2026-08-22)",
+    "sequence": 375,
+    "status": "arrived"
+  }
+}

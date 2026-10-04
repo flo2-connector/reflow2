@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:24eb414d176bd5bb778a56fe0c1ed04b366d6bb184341885cf21c3011b205ef2",
+  "node_id": "rel:v090",
+  "node_type": "Release",
+  "properties": {
+    "description": "Minor: loop_status + the write-tool loop_hints + the loop-nudge hook (BL-74, adoption-critical, from the first extensive field trial), and the export hash-chain (dec:export-hash-chain, from the AT Protocol comparison — the committed design record is now tamper-evident in CI). No schema change. First release whose kit tarball carries loop_nudge.py.",
+    "name": "v0.9.0",
+    "status": "retired",
+    "unit_type": "binary",
+    "version": "0.9.0"
+  }
+}

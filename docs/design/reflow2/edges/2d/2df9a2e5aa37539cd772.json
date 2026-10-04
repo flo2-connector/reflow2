@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:921ff431c4cb7b19f453226dfd8aed5c9e30b2f3b352ab6a1f5562878ddd48af",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-check-and-its-findings-are-different-things",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "ver:the-harness-registry-is-confirmed-by-the-harnesses"
+}

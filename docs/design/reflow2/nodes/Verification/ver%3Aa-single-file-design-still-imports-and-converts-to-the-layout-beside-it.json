@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:4fe03e2672fe8187876da0110d5fc0faa6697dd44871ac049f11d46428ffbe95",
+  "node_id": "ver:a-single-file-design-still-imports-and-converts-to-the-layout-beside-it",
+  "node_type": "Verification",
+  "properties": {
+    "description": "The migration path for a project still on one .json file (every project but reflow2 today, and every design flo2.io holds): the single file imports through the same reader as the layout; exported to the directory beside it (demo.json -> demo/) it becomes the layout with the single file's content hash, design.json records that hash as migrated_from, the layout imports cleanly, and read back out as a single file it is the original design.",
+    "findings": "2026-10-04 (chg:item-layout-lineage-holds-through-a-conflict-resolved-mid-merge-2026-10-04): a_single_file_design_still_imports_and_converts_to_the_layout_beside_it passes. It does not cover reflow2_init converting a project (cap:a-project-migrates-to-the-item-layout stays planned).",
+    "kind": "verification",
+    "last_run_at": "2026-10-04",
+    "level": "integration",
+    "location": "crates/reflow2-mcp/tests/the_design_is_saved_one_file_per_item.rs",
+    "method": "test",
+    "name": "A single-file design still imports, and converts to the item layout beside it with nothing lost",
+    "status": "passing"
+  }
+}

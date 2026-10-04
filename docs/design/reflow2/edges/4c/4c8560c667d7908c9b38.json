@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:39560fdf0b45c97ecf408c2c3fdb049a6f199629278a1449f849935b5cdfb295",
+  "edge_type": "ANTICIPATES",
+  "from_id": "req:reflow2-has-a-public-page-anyone-can-read",
+  "properties": {
+    "evidence": "The 2026-08-14 wish for a GitHub Pages site anticipated this: the same site, now also taking the repository's documentation and front door."
+  },
+  "to_id": "dec:idea-the-repo-front-door-is-minimal-and-the-documentation-is-a-small-site"
+}

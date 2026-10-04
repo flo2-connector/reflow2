@@ -1,0 +1,17 @@
+{
+  "content_hash": "sha256:bf5f72b3298c94be55eae1130f909aa203ba54fae847886963a724b09b736393",
+  "node_id": "fact:a-cut-cannot-refresh-the-mcp-clients-of-a-running-agent-session-2026-09-24",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "finding",
+    "name": "MEASURED 2026-09-24 on the v0.69.0 cut: step 9 cannot refresh the stdio MCP clients a running agent session spawned, and the local gate run with the installed kit binary refuses the new export",
+    "source": "the v0.69.0 cut session: /proc exe links, --stop-shared replies, reflow2_check.py output",
+    "statement": "Two things met on the v0.69.0 cut, recorded because step 9 and the local gate read as complete without them.\n\n1. SESSION CLIENTS STAY ON THE OLD BINARY.\n- After the release rebuild, `--stop-shared` refreshed reflow2's own `--serve-shared` daemon onto 0.69.0.\n- But the three `--shared` stdio processes that the running Claude Code session had spawned (for dev_reflow2, flo2 and reflow2) kept executing the DELETED 0.68.0 image. `/proc/<pid>/exe` read \"(deleted)\".\n- `--stop-shared` on dev_reflow2's and flo2's graph paths answered \"no shared server is recorded … nothing to stop\": those stores are held by the session's own client processes, not by a separately recorded daemon.\n- Only restarting the agent session, or reconnecting its MCP servers (/mcp in Claude Code), moves them. Step 9's \"stop every shared daemon\" does not reach them, and a cut should say so to its user rather than report the served binary as matching the tag.\n\n2. THE LOCAL GATE USES WHATEVER BINARY IT FINDS.\n- `python3 tools/reflow2_check.py --export docs/design/reflow2.json` picked up the INSTALLED kit binary (0.68.0).\n- It REFUSED the 0.69.0-stamped export: \"written by reflow2 0.69.0, and you are running 0.68.0, which is BEHIND it\".\n- With `--bin target/release/reflow2-mcp` it passed.\n- CI builds from source and is unaffected. But during a cut, the local gate needs `--bin` pointed at the new build, or it fails for a reason that has nothing to do with the design.",
+    "steps": [
+      "release_report"
+    ],
+    "subject_id": "cap:a-cut-ends-with-the-served-binary-matching-the-tag",
+    "valid_from": "2026-09-24"
+  }
+}

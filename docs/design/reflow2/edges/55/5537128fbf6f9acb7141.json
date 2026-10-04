@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:2aa4375a8ee9dc56e2e2bc913604766625ec8c94bb9e5614239315d7274f6f76",
+  "edge_type": "YIELDED",
+  "from_id": "frag:alex-2026-08-14-remainder",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "fact:defect-an-accepted-decision-can-be-widened-by-an-agents-diagnosis"
+}

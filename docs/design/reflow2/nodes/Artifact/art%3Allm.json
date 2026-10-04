@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:4f10e5800f2fe00d4c217230fe9a5e058d1cec8a0e2099f0361bc0913fa7e627",
+  "node_id": "art:llm",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "granularity": "atomic",
+    "location": "crates/reflow2-core/src/llm.rs",
+    "name": "llm.rs",
+    "status": "realized",
+    "volatility": "stable"
+  }
+}

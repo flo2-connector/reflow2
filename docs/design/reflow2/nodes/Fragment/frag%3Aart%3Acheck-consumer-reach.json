@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:9d3302e4ae0065b61a89d5c8dee1f88c2ba22e5ee3602e1c4c128c9c7ccac0fb",
+  "node_id": "frag:art:check-consumer-reach",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered check_consumer_reach.py"
+  }
+}

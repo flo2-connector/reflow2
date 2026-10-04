@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:a20dac9299e42ab3f51a49b08e058c74d5fd3609e981f482858240417bda9c5d",
+  "node_id": "rr:3b54c55ec4654af2",
+  "node_type": "Question",
+  "properties": {
+    "answer": "theirs",
+    "gap_id": "rr:3b54c55ec4654af2",
+    "question": "recorded merge-conflict resolution (rerere)",
+    "rephrase_degraded": false,
+    "status": "answered"
+  }
+}

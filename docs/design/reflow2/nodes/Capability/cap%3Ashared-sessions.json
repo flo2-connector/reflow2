@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:85ec00490475efc1cf9ceae2b92d3d0ff7a7cd966b31d2be975dfcf721ff732c",
+  "node_id": "cap:shared-sessions",
+  "node_type": "Capability",
+  "properties": {
+    "description": "--http <addr> serves the design over streamable HTTP so many client sessions share one process. The store is single-writer PER PROCESS, so this satisfies the constraint rather than working around it: one server means exactly one writer. rmcp builds a service per session through a factory, and ReflowService::share decides the split — the graph and the write generation are shared because they are properties of the design; the seat and the read-hint memory are minted fresh because they are properties of whoever just connected. The graph moved from a Mutex to an RwLock so concurrent reads do not queue behind each other, and the compiler audited the read/write split in the process: all 32 read sites genuinely need only &DesignGraph. No authentication — the flag's help and the startup line both say to bind loopback or a private network.",
+    "name": "Several sessions work one design at once, through one server",
+    "provenance": "authored",
+    "status": "verified",
+    "tier": "operational"
+  }
+}

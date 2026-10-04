@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:25d7bd4b6cc51f50669354e76ee956a2c71e1e72246c1e6225d93e7efc8f3e1d",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "req:a-projects-first-session-leaves-the-adapter-in-place-whichever-route-reached-reflow2",
+  "properties": {
+    "evidence": "This supplies the adapter that requirement expects to exist and be registered.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "req:a-repos-procedural-know-how-is-delivered-at-the-step-it-bears-on-and-the-design-knows-the-adapter-exists"
+}

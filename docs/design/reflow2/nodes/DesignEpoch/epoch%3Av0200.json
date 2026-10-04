@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:819829d29eb8312f7fd8426c1d499493ad79abc562c45962daed7e26d26c62c8",
+  "node_id": "epoch:v0200",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "epoch_type": "release_cut",
+    "name": "v0.20.0 cut — the changelog becomes a derived view, and three fixes found by pointing reflow2 at a real project",
+    "sequence": 243,
+    "status": "arrived"
+  }
+}

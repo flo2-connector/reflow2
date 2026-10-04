@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:89ce895fc09cf73a07dcbbba78893c424bc867875e36dc07ec86eeff6cce3a93",
+  "node_id": "ver:an-overlay-folds-after-a-squash-merge",
+  "node_type": "Verification",
+  "properties": {
+    "description": "Squash-merge a branch that carries an overlay into main, then pull main into the main checkout. PASS: the shared store now holds the branch's facts, the overlay is gone, and a second fold attempt changes nothing. A second branch deleted without merging leaves its facts readable as retired history and absent from the shared store.",
+    "kind": "verification",
+    "level": "integration",
+    "method": "test",
+    "name": "A branch's overlay folds into main after a squash-merge, exactly once, and a deleted unmerged branch's overlay is retired, not folded",
+    "status": "planned"
+  }
+}

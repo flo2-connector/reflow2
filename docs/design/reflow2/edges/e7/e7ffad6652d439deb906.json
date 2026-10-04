@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:694dab06c3dc7d005495b87a027fdb55e8f5cc24030b70de640e607db869d495",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-design-is-watched-at-the-server-that-holds-it-2026-09-27",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cap:a-declared-dependency-is-watched-not-imported"
+}

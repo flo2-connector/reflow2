@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:8eef59278112aaba9a4bf2b64f906375a4aefce02642eb6677a843aab427694d",
+  "edge_type": "CHANGED",
+  "from_id": "chg:find-tools-matches-whole-words-zero-weights-universal-terms-and-normalises-for-length",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:service"
+}

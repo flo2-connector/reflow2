@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:6888b97fcf9ce283053a03a4d294420561b2201632f550f33a8dbb65b456c55f",
+  "node_id": "cap:bl-40",
+  "node_type": "Capability",
+  "properties": {
+    "description": "Viewpoints as pure projections (SYNTHESIZE held to a no-extrapolation standard)\n\nFirst increment done, 2026-07-19: the catalogue doubled — operational flow (from BL-37's machinery, retiring the seed's standing confession), as-released (from BL-34's), and decisions views join the original three; --graph-path projects a live graph via --export; [viewpoints.md](viewpoints.md) is the catalogue with the no-extrapolation rules and the not-yet-projectable list. The graph stores the design; the agent only renders, and each confession is a gap by definition. Second increment done, 2026-07-19: evolution (axis Z — PRECEDES solid, sequence dotted and cross-checked, floating ChangeEvents confessed) and provenance (authored-vs-inferred, the Fragment ledger, dangling YIELDED confessed) complete the projectable rows — 8 views rendered. Remaining direction (the author intends to expand this thread): once the catalogue's shape settles, projection data as typed core read tools on the MCP surface (flow_report is the template), so the in-session agent renders without an LLM in the projection path. As-fielded and measures landed with BL-9 / BL-11 — all ten catalogue rows now render\n\nMigrated from docs/backlog.md BL-40 on 2026-08-07 (epoch:backlog-retired). Size estimate carried from the row: M–L.",
+    "name": "[BL-40] Viewpoints as pure projections (SYNTHESIZE held to a no-extrapolation standard)",
+    "provenance": "imported",
+    "status": "planned",
+    "tier": "operational"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:2ee444564486db51c86cf3a7845a882b4d829d1f5d4cda26f59b0c4548a613ce",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:idea-detect-ownership-orphans",
+  "properties": {
+    "authored_at": "2026-08-09",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

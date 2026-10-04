@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:de82b2da14909f1d5c00db0dd2f2d71ced57f1af0ae780d3bcb402e2a9edee48",
+  "node_id": "art:taxonomy-command",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "document",
+    "description": "Copied to .claude/commands and the user-scope commands folder; aliased in skills.rs so asking for the command by name resolves to the skill.",
+    "location": "getting-started/commands/taxonomy.md",
+    "name": "commands/taxonomy.md — the /taxonomy shortcut onto the establish-taxonomy skill",
+    "status": "realized"
+  }
+}

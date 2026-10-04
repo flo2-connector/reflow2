@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:1520055fab7993efc3cf6c7fb4570cbe510c6d541413b1c8afcd51bf2b154e4b",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:a-design-can-be-asked-what-fraction-of-a-kind-carries-a-relation",
+  "properties": {
+    "approved_at": "2026-08-31",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

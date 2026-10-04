@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:27a63daa07e877897bbcc82e38b1219e1528750c0d38d797846cb8fc1ad1da25",
+  "node_id": "chg:accept-d3cbeecdecc8d059",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "test_failure_fix",
+    "name": "capture-session added to the catalogue, 2026-08-12. The design HOLDS: SKILLS.md gained one row for a skill the design already carries as cap:capture-session-skill (realized, governed by dec:idea-a-capture-session-skill-the-user-types). The catalogue moved to match the design, not the other way round."
+  }
+}

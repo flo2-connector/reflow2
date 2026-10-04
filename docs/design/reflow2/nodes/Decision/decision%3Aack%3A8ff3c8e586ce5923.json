@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:ff9b3b8853936932a6f31ead05c777c9fb019396393a20f437a357dae9c74bda",
+  "node_id": "decision:ack:8ff3c8e586ce5923",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Accepted the gap gap:8ff3c8e586ce5923.",
+    "name": "Reviewed: gap:8ff3c8e586ce5923",
+    "rationale": "DELIBERATELY OPEN, and the vehicle is now named. req:the-agent-never-authors-what-requires-accountable-sign-off is a PROHIBITION on the agent, and I recommended re-classifying it out of the capability question on the ground that nothing can 'provide' a thing not happening. Having read the schema rather than assuming it, that recommendation was half right: SATISFIES is deliberately wildcard at both ends, so a Constraint or an EnvironmentRule COULD close this edge — but drawing one today would close the gap without building anything, which is the manufactured-intent failure this project keeps meeting. What would genuinely deliver it is a refusal at the tool: reflow2 recognising that an artifact carries professional accountability, declining to author it, and recording the returned result as a Verification with its provenance. That is real work nobody has scheduled. EnvironmentRule is the right home for the prohibition when it is built (a licensure requirement is dictated by the world, not chosen by the design, which is exactly what separates EnvironmentRule from Constraint), and the compliance layer for it shipped in v0.54.0. Recorded so the gap reads as known and deferred rather than unnoticed.",
+    "status": "accepted"
+  }
+}

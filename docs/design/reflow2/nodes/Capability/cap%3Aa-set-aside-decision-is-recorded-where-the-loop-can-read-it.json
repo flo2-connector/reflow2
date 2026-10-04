@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:5db49323277b149f9273ca5cd22590d547fd5c4d195d58ee0dbb9bf6583110e4",
+  "node_id": "cap:a-set-aside-decision-is-recorded-where-the-loop-can-read-it",
+  "node_type": "Capability",
+  "properties": {
+    "description": "A Decision whose idea is sound and whose moment is wrong can be recorded as set aside in a field the coherence loop reads, so it leaves the \"what needs me\" list without being rejected, superseded, or quietly left to look live.\n\n⭐ BUILT 2026-09-12 (epoch:planned-a-set-aside-decision-is-not-debt). Decision.status gained `deferred`. loop_status, what_next and every gap detector already asked == \"proposed\", so a deferred decision drops out of every debt list by construction — the tests make that a contract. Setting aside is the owner's act like accepting: `deferred` carries an approver (refused at the constructor without one, reported at the setter), but it does not trigger the settled-question prose check, which only `accepted` earns. A deferred choice cannot have alternatives registered under it.\n\nMEASURED 2026-09-11, the pressure that asked for it: 690 Decisions against proposed | accepted | superseded | rejected. Ten said DEFERRED in prose and twenty WITHDRAWN, against four carrying `rejected` in the field — and one node is literally named \"DEFERRED, SHAPE ONLY —\" while its status reads `proposed`. (The thirty is a substring count — a floor on the pressure, not a census.)\n\nWHY IT IS NOT COSMETIC: a `proposed` Decision carrying an approver edge is DEBT. A deferred idea is not, and every one that sat in the same bucket made the list slightly less true — a list that degrades is how a person learns to stop reading it.\n\nSCOPED TO `deferred`, NOT `withdrawn`, DELIBERATELY: the test for a candidate state is what would READ it. For deferral, loop_status and what_next change behaviour. For withdrawn nothing would.\n\nIT LANDED BEHIND THE VOCABULARY GUARD, as sequenced: adding an enum value is exactly the change the old stamp could not see. The guard caught its own arrival — two of its tests failed the day `deferred` became known, correctly, and were generalised.",
+    "name": "A decision set aside is recorded in a field a computation can read, so the loop stops counting it as work somebody owes",
+    "provenance": "authored",
+    "status": "verified",
+    "tier": "operational"
+  }
+}

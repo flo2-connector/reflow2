@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:890f0186b032990d95cad735f0bcd636794c88a5d3a3b9d38839fcac3688c3a0",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:a-user-can-see-that-the-process-was-followed",
+  "properties": {
+    "authored_at": "2026-08-16",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

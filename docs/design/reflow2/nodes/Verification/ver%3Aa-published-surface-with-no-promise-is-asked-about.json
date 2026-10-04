@@ -1,0 +1,18 @@
+{
+  "content_hash": "sha256:8d87e1139eed63fd69ecb539fd0abb3a22d731f5da9dbb1a65e3eefe75e556ea",
+  "node_id": "ver:a-published-surface-with-no-promise-is-asked-about",
+  "node_type": "Verification",
+  "properties": {
+    "description": "Three tests in `crates/reflow2-core/tests/a_design_that_publishes_contracts_publishes_intent.rs`: a design publishing a boundary and no requirement is asked about it; publishing ONE requirement silences it; a design publishing no boundary at all is never asked.\n\nOBSERVED FAILING first — the first test red, the other two passing vacuously, which is exactly the shape a detector's tests take before the detector exists.\n\nALSO CHECKED AGAINST THE REAL DESIGN, both sides of the fix: with 3 published Interfaces and 0 published Requirements the condition held; after six requirements were marked `published` on Anthony's word it does not.\n\nRE-RUN: `cargo test -p reflow2-core --no-default-features --test a_design_that_publishes_contracts_publishes_intent`.",
+    "findings": "3/3 green 2026-09-22 after the first was observed red. On the real design the predicate went from true (3 published boundaries, 0 of 262 requirements published) to false (6 published).",
+    "kind": "verification",
+    "last_reconciled_at": "2026-09-23",
+    "last_reconciled_outcome": "passed",
+    "last_run_at": "2026-09-22",
+    "level": "unit",
+    "location": "crates/reflow2-core/tests/a_design_that_publishes_contracts_publishes_intent.rs",
+    "method": "test",
+    "name": "Fires on a published contract with no published promise, quiet at one, quiet when nothing is published",
+    "status": "passing"
+  }
+}

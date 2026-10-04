@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:406449ae401d80333df2e4727da75fc5816148fbc230882350f047faf4967245",
+  "edge_type": "MITIGATES",
+  "from_id": "dec:idea-a-bulk-matcher-says-which-of-a-list-of-texts-the-design-already-holds",
+  "properties": {
+    "evidence": "That finding records that a population check has no read-only or batch form, so it gets done by grepping the export. A bulk matcher, in any of options (a) to (d), is the answer to that hazard."
+  },
+  "to_id": "fact:root-cause-a-population-check-has-no-served-form-2026-09-28"
+}

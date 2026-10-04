@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:b803f131c6117efb287cea8934050df20abe50e1c5e9cac5a33cafeff88e3add",
+  "node_id": "frag:art:skill-lint-test",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered test_skill_lint.py"
+  }
+}

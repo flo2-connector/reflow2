@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:67dc675540c109d7081f83b070ee67f3f678164faa110947cbfb623859f88610",
+  "edge_type": "VERIFIES",
+  "from_id": "ver:a-dependency-declaration-replies-with-a-receipt",
+  "properties": {},
+  "to_id": "cap:a-write-replies-with-a-receipt"
+}

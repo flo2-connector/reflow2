@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:caf128fa543f64b9998f786c02b8d9dae76c0a8c2b4080be6ff8011326941532",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:test-an-exposed-server-verifies-bearer-tokens",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:test-an-exposed-server-verifies-bearer-tokens"
+}

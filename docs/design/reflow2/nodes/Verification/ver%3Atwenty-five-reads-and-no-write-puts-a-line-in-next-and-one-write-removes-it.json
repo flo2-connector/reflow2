@@ -1,0 +1,17 @@
+{
+  "content_hash": "sha256:6b5201ecf0459d31aa6f8fa1b218b3dab7e7e325c7e1dc8850c1749eab181da9",
+  "node_id": "ver:twenty-five-reads-and-no-write-puts-a-line-in-next-and-one-write-removes-it",
+  "node_type": "Verification",
+  "properties": {
+    "description": "crates/reflow2-mcp/tests/a_session_that_reads_and_never_writes_is_seen.rs (3 tests) and tools/test_loop_nudge.py (2 tests).",
+    "findings": "pr run: 3 Rust tests and 2 hook tests pass.",
+    "kind": "verification",
+    "last_reconciled_at": "2026-09-23",
+    "last_reconciled_outcome": "passed",
+    "last_run_at": "2026-09-18",
+    "level": "integration",
+    "method": "test",
+    "name": "Twenty-five reads and no write put a line in next and one write removes it; below the threshold nothing is said; a read-only surface is never told it owes a finding; the stop hook nudges once on the same inverse and one write settles it",
+    "status": "passing"
+  }
+}

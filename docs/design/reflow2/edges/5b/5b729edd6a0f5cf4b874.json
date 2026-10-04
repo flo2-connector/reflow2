@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:ce789d0834c26f6c90aee58b18b384f7aa9e6d182579de1f0adfd874e3f3df15",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-ruling-parks-a-node",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:service"
+}

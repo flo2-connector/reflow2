@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:2cf56eb6df68b1421def9f2b7709fd9967e1e2e8270264c6edd3b1f836a40a59",
+  "node_id": "art:export",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "granularity": "atomic",
+    "location": "crates/reflow2-core/src/export.rs",
+    "name": "export.rs",
+    "status": "realized",
+    "volatility": "stable"
+  }
+}

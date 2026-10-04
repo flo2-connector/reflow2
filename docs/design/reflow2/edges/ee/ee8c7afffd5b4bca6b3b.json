@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:dc047f3b4541341d4cc219dcc0b1caadc44394447a7862cc0bdaf9206fbd311d",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:test-a-budget-adds-only-numbers-in-its-own-unit",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:test-a-budget-adds-only-numbers-in-its-own-unit"
+}

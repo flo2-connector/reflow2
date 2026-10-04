@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:2b7ec078171f764ff65a526f807c2e35029d803adcd33c4a9bd2e649367348d7",
+  "edge_type": "EVOLVES_INTO",
+  "from_id": "dec:idea-stated-module-function-is-what-makes-failure-mode-testing-derivable",
+  "properties": {
+    "evidence": "Anthony asked the same question a day apart - 2026-08-20 'if we can modularize reflow2 and know which functions that each module is supposed to perform, we can then do more encompassing testing (what are the edge cases, what are the failure modes)', and 2026-08-21 'more exhaustive tests for each subsystem'. The earlier node named the mechanism; this one carries the measurement of how far off it is - 3 of 192 capabilities state their shape. Same thought, grown up."
+  },
+  "to_id": "dec:idea-can-exhaustive-per-subsystem-tests-be-derived-rather-than-imagined"
+}

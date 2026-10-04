@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:5b8904b54b294bf17d36ab1e67374e9097d565ccaacc006872a3de0073d8393f",
+  "node_id": "chg:container-packaging",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "name": "reflow2 gains a container image: a Dockerfile and a release.yml job that publishes a version-tagged image, so a consumer (flo2, and @alex) can run reflow2 without a Rust toolchain. Carries the volume layout that keeps designs outside the image."
+  }
+}

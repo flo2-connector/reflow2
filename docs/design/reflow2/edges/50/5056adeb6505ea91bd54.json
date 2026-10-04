@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:ffdd8ffbf1ef4d687b09333607dab4758b0c8cf3aa7fd1d977b564dc32b99906",
+  "edge_type": "CHANGED",
+  "from_id": "chg:multi-writer-decided",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "cap:cluster-claims"
+}

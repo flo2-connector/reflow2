@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:bfe583c4c9ebcf9b6cb58951c7a4f44517ceceea81b25a40b0848764779ca76f",
+  "edge_type": "CAUSES",
+  "from_id": "dec:idea-who-authors-the-domain-artifact",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "This requirement is the one thing Anthony promoted out of that brainstorm on 2026-08-30 — tier 3 of the three-tier split it proposed. The decision stays open on the other two tiers; this is the road that was taken.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "req:the-agent-never-authors-what-requires-accountable-sign-off"
+}

@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:1f3436ebb2a0075951632f2467c91179aee805cfc62c3d8afb0cde915b39f60c",
+  "node_id": "ver:kpp-capture-path",
+  "node_type": "Verification",
+  "properties": {
+    "kind": "verification",
+    "last_run_at": "2026-07-25",
+    "level": "unit",
+    "method": "test",
+    "name": "The confirmed KPP is recordable, and the objective is never invented or mistaken for the threshold (tests/kpp.rs, 3 cases)",
+    "status": "passing"
+  }
+}

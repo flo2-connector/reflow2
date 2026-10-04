@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:b5e13af60a9fc7017070553398e6fe30e46c5eea944ea4e3a1ab2f8087c84463",
+  "edge_type": "CHANGED",
+  "from_id": "chg:allocation-follows-the-code-not-the-neighbour",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cmp:seam"
+}

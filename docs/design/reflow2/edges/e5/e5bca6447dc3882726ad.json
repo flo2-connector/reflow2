@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:89d7d18184d2a206623eca05afda967e5da388ea2b335b673dafda798e38021f",
+  "edge_type": "CHANGED",
+  "from_id": "chg:every-argument-refusal-names-the-tool-and-the-field-path",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cap:a-missing-field-refusal-names-the-fields-this-call-lacked"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:3d5d31dd841366cfd3181d0484eb3f4238b3e18c63d8ec0388eee765e8dbb47b",
+  "edge_type": "REALIZES",
+  "from_id": "art:loop-nudge",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "verified"
+  },
+  "to_id": "cap:stop-nudge-asks-the-graph"
+}

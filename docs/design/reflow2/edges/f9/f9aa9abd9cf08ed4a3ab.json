@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:087be61171119bb7a51c0c29d5591b2d3c915b362ffa9120c2c88d6a928066bf",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:todays-binary-reads-exports-taken-at-past-releases",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "sys:intake"
+}

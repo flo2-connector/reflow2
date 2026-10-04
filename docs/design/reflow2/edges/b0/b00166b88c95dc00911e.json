@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:f8df1823d39b8cf78bfc134b4c65a91a8d9c24d3bcea74a58784f3a22dc0bbde",
+  "edge_type": "REALIZES",
+  "from_id": "art:init",
+  "properties": {
+    "conformance": "verified"
+  },
+  "to_id": "cap:update-is-one-word"
+}

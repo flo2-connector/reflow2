@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:bb6ab91108bc173199aced11293eb47749e89692f7d4a504fb4c88564e8fa09d",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:content-reaches-every-seat",
+  "properties": {
+    "authored_at": "2026-07-31",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

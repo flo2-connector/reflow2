@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:3e864cee21d869124c03818edd7d13a4f1007576c6538b38bce202e952288cd3",
+  "edge_type": "CHANGED",
+  "from_id": "chg:accept-96e9f11e62ac29fd",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:evidence-test"
+}

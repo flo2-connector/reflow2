@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:86a548322c079cd20de36dad4f7be0787bbfc9fe7cb4b05b1d35faeb6b984dd9",
+  "node_id": "chg:accept-64e66b501a7bb6c9",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "documentation",
+    "detected_at": "2026-09-01",
+    "name": "The v0.46.0 version bump. The design meaning of a cut lives in the Release and its epoch, not in a version string, so nothing the file describes behaves differently.\n\n📌 ACCEPTED BEFORE the manifest is frozen, deliberately: `release_includes_all` freezes each artifact's CURRENT checksum, so accepting after would record that v0.46.0 shipped the pre-bump file. The release-cut annex records this ordering as costing a gate failure and a second export every time it is got wrong.",
+    "subject": "system"
+  }
+}

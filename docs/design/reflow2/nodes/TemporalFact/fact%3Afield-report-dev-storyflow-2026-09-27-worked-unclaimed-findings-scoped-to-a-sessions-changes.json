@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:54cd43848fa0649294ee4ced686e0d0febeee8d356a202a0f8c5449239f98652",
+  "node_id": "fact:field-report-dev-storyflow-2026-09-27-worked-unclaimed-findings-scoped-to-a-sessions-changes",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "observation",
+    "name": "WHAT WORKED (dev_storyflow on flo2.io, 2026-09-27 evening): `unclaimed_findings` scoped to the two ChangeEvents a session wrote returned exactly three candidates, all three the right question",
+    "source": "art:dev-storyflow-feedback-2026-09-27",
+    "statement": "Recorded so a regression is checkable. Reporter (session f56683f3, hosted StoryFlow design, reflow2 0.72.0 engine): \"`unclaimed_findings`, scoped to the two ChangeEvents I wrote, returned exactly three candidates and all three were the right question: one finding fully retired by my fix, one only partly answered, and one fixed by an earlier PR, not by me. It is the first time 'what did this session make false?' took one call instead of a hunt.\" What must not regress: the scope to named ChangeEvents, and a candidate list short enough that every item is a real question (3 of 3 here).",
+    "subject_id": "cap:the-graph-asks-what-a-session-made-false",
+    "valid_from": "2026-09-27"
+  }
+}

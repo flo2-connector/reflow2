@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:e39596c5b84611c3b7a1d84350b988ea7d359b789b78e033670b14a876f36cf7",
+  "edge_type": "GOVERNED_BY",
+  "from_id": "cap:a-registered-file-is-measured-under-the-project-root-and-the-record-says-measured-or-asserted",
+  "properties": {
+    "note": "reading for meaning stays the agent's; this measures only"
+  },
+  "to_id": "dec:agent-navigates-content"
+}

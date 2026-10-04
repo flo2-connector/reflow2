@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:9ce5508ba02f20322030b8df4bb26c78cdac167f5279d78043eca6b46d0a946f",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0500",
+  "properties": {
+    "as_checksum": "sha256:dad53a2a19acf6c530fde3bae50cd36202dc47f57d1148470a035e156e663117"
+  },
+  "to_id": "art:test-edge-prose-is-governed-like-node-prose"
+}

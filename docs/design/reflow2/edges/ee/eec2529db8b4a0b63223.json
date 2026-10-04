@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:f012b9774fa9aff0ad077bbaf79d3fb8aca46aabc3aa3fb2bb62fc292e7d707e",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-saved-design-moves-to-the-item-layout-2026-10-03",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:3503b42cf82e75f2a9f521424ec91b84c8c0f7e35053d695e50ed1d56b39d7c9",
+    "checksum_basis": "measured"
+  },
+  "to_id": "art:a-settled-decisions-name-stops-asking-test"
+}

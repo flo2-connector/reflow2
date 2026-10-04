@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:ca67a929f4a1c261cfc43db9a1ca289f1b29bfe527630febdd9bf18748c7b0b1",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:remote-sessions",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:main"
+}

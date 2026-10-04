@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:68a1cb4de347bdab5feb74cf5a8acf44814713130b5573e1ee6933d9ff19deef",
+  "edge_type": "EVOLVES_INTO",
+  "from_id": "dec:idea-a-skill-is-found-by-describing-it-the-way-a-tool-is",
+  "properties": {
+    "evidence": "Promoted 2026-09-20 on Anthony's word ('Agree with all your recommendations'). Option chosen: A separate finder rather than find_tools scoring both, so the tools' own rank ratchet is untouched; the scorer is shared, so the two catalogues cannot drift apart."
+  },
+  "to_id": "req:a-skill-is-reachable-from-a-description-of-the-job-in-a-persons-words"
+}

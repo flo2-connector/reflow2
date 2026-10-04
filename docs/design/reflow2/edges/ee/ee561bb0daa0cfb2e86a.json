@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:88113dd0ef82bf28740fdae33d83b30dcacb7d9f62242c2fd78b5197ad86eaaf",
+  "edge_type": "CHANGED",
+  "from_id": "chg:one-status-contract-across-sibling-constructors-and-a-node-is-named-by-the-key-the-last-tool-used",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:test-the-guard-reads-the-request-before-refusing"
+}

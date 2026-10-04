@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:d66f4913649beb012d3fe254c3b8ca0ff2092e75239df95c1f16e8d33ebd9e0a",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-saved-design-moves-to-the-item-layout-2026-10-03",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:04201e13e15c834d5bcfa2252552d2d1f0a04da827e45c2db326e1af838ae77a"
+  },
+  "to_id": "art:bhome-cad-demo-feedback-2026-09-16"
+}

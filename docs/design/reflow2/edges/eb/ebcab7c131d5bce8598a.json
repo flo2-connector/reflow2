@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:fcf2d520ecc96d94a98175a02585eed5f244e0d0c12933aa1791a9b0f70a151b",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:test-nudge-path",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:test-nudge-path"
+}

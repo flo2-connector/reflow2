@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:2c8583a6d99d7ad84e7e09c72591c32b87ef2ab747f1614add62d8b309398098",
+  "node_id": "ver:stateless-seat",
+  "node_type": "Verification",
+  "properties": {
+    "kind": "verification",
+    "last_run_at": "2026-07-30",
+    "level": "system",
+    "method": "measurement",
+    "name": "One client, one seat — measured per transport and per protocol version",
+    "status": "passing"
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:2482d4f619772151194ba6c2ca5877dd2476a75d4fa76737fc67e53a86f13b5a",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:a-write-is-credited-to-who-it-was-for",
+  "properties": {},
+  "to_id": "req:a-session-names-the-person-it-writes-for-and-the-server-remembers-it"
+}

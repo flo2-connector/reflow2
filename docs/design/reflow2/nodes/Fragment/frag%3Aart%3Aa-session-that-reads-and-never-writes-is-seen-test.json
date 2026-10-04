@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:97fcecde664076ac97597154fcdb260c03242e39b2789d5830bb5c532b3469f9",
+  "node_id": "frag:art:a-session-that-reads-and-never-writes-is-seen-test",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered a_session_that_reads_and_never_writes_is_seen.rs"
+  }
+}

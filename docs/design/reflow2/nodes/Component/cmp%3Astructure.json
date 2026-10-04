@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:219da1daff6bdea543817dac6522d4e4715d12aa05caff9c0561c20adc561b9e",
+  "node_id": "cmp:structure",
+  "node_type": "Component",
+  "properties": {
+    "kind": "module",
+    "level": "component",
+    "name": "structure",
+    "provenance": "authored",
+    "purpose": "The structure module.",
+    "status": "planned",
+    "tier": "operational"
+  }
+}

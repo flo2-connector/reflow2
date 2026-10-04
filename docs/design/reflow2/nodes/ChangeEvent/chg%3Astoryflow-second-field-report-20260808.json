@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:cc4ed25b797b5f4b195dbc0b469c4762f29f10ad7f0d4d6e4c214d5b19b3aa0c",
+  "node_id": "chg:storyflow-second-field-report-20260808",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "resync",
+    "name": "The second dev_storyflow field report lands: a capability can be realized and dead for want of an input path, a finding has nowhere to put its bounds so grading went into node names, and merge still picks the wrong survivor"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:544690ee38be4edbc0ce54a9572a64d52f7a8cac6c8612a044583e22e45f4b07",
+  "edge_type": "INVALIDATES",
+  "from_id": "chg:the-overtaken-defect-records-were-triaged-against-the-v0510-build",
+  "properties": {
+    "evidence": "An Artifact governed by an accepted Decision with ruling parks is skipped by the orphan arm and reported under the sweep's parked list instead (heal.rs:1015-1038,1585-1592), which is counted rather than silenced."
+  },
+  "to_id": "fact:defect-orphan-node-fires-on-the-state-a-disposition-rule-prescribes"
+}

@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:fc034be5192ba32959b3204613cdcd973fe93b0854321271e62c33255d07428f",
+  "node_id": "ver:an-empty-answer-says-which-empty-with-optional-parameters-too",
+  "node_type": "Verification",
+  "properties": {
+    "findings": "OK on the item 8 branch (9 widened probes). On main it reported one BARE reply: get_node +node_type {\"node\": null}.",
+    "kind": "verification",
+    "last_run_at": "2026-10-03",
+    "level": "system",
+    "location": "tools/empty_speaks.py",
+    "method": "test",
+    "name": "empty_speaks.py asks every read again with each optional id- or type-shaped parameter filled, and every empty answer says which empty it is",
+    "status": "passing"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:0323c7fb2e31b79aac31ed43beaf534842b00512b22a3a21d3085dc5286ac861",
+  "edge_type": "MITIGATES",
+  "from_id": "dec:idea-a-proposed-decision-asserts-nothing-so-what-may-a-structural-detector-say-about-it",
+  "properties": {
+    "evidence": "That requirement says a state a ruling declares correct must be reported as parked rather than as a defect, and it was implemented detector by detector — which is how the gaps got in. F-03 is a case the ruling mechanism cannot reach at all, because a brainstormed idea has no accepted Decision to point at and should not need one. This asks whether `proposed` is itself the sweep class that requirement needs."
+  },
+  "to_id": "req:a-deliberate-state-is-not-a-defect"
+}

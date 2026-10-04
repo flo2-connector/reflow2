@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:5d1245e1a75d7fe5d0d8835c35652caf7ca9fed2d143531ea245fe190e6f4630",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:something-to-come-back-to-is-captured-with-one-word",
+  "properties": {
+    "approved_at": "2026-09-16",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

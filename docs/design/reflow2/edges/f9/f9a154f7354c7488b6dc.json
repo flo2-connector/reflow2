@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:20c7ac36b7fc3a5c049d4da253c92d27a14cbe4c0496aeb1adc39d0f26a4c334",
+  "edge_type": "INVALIDATES",
+  "from_id": "chg:two-prescribed-pairs-every-detector-skips-withdrawn-nodes-and-shared-cause-gaps-name-each-other",
+  "properties": {
+    "at": "2026-09-06",
+    "note": "PARTIAL, AND SYMPTOM-SIDE BY DESIGN. Shape ① is treated on the reporting side: the unallocated and unrealized gaps on one capability now name each other and the single allocate call, so the caller sees one cause not two rows — exactly the non-lossy grouping the fact said was the right fix. NOT DONE for ①: the heal-side unthreaded-cluster defect is not cross-referenced (different rollup), and the PREVENTION of the forgotten edge — qs idea #4, a one-call 'wire this capability' — is an open decision, not built. Shapes ② (unvalidated gap fires before validation is possible) and ③ (each exploratory idea costs a gap) are UNTOUCHED: ③ turned out to be the aggregate unreviewed_ideas row, already designed as one low-severity finding whose per-idea cure is the brainstorm skill's linking step; ② is a semantics change to a gap and awaits a ruling. The fact stays open for ① prevention and ②."
+  },
+  "to_id": "fact:defect-one-missing-edge-arrives-as-three-findings-and-two-gaps-fire-before-they-can-be-acted-on"
+}

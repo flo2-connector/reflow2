@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:a3193d27433c7026bee8fc12539b01e8cb3e0d7877a447c27472675e19cfd4bf",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:a-reason-given-after-the-fact-says-so-and-is-never-read-as-a-check",
+  "properties": {
+    "approved_at": "2026-09-23",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

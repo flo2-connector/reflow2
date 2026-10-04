@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:748a974281a8fbe58801c05c4abc0148d3362a99efd0aa72f4fedb73ca671c17",
+  "edge_type": "INVALIDATES",
+  "from_id": "chg:a-dangling-reference-is-detected-on-its-own-terms",
+  "properties": {
+    "at": "2026-08-29",
+    "note": "CLOSED ON THE READ SIDE, WHICH IS THE WHOLE OF WHAT THAT FACT MEASURED. It named the fix in its own last line — \"a rule that walks every property declared `node_ref` and reports an unresolvable value on its own terms, independent of the node's degree\" — and that is what `dangling_reference` is, reusing `declared_node_refs` exactly as the fact suggested so the detector and the write guard cannot disagree about what a reference is.\n\n🛑 ITS STATED SCOPE IS NOT CLOSED WITH IT, and must not be read as closed. The fact says plainly it was \"measured on ONE property (`TemporalFact.subject_id`) on ONE graph\" and that whether other types declare `node_ref`, and whether any of those dangle, was NOT measured. The new rule is written against the SCHEMA rather than against that one property, so it would find those too — but nobody has run it on a graph that has any, and a rule that would catch something is not the same fact as a measurement that nothing is there. On reflow2's own graph `subject_id` is still the only declared `node_ref`, so this design cannot supply the evidence.\n\nWHAT ELSE THE MEASUREMENT KEEPS: its numbers (9 dangling, 7 reported, 2 silent), its mechanism sentence, and its observation that the bias ran the wrong way — an edgeless node being the least consequential place for a broken pointer. That last is now recorded as the reason the rule ignores degree, so it outlived the defect it explained."
+  },
+  "to_id": "fact:a-dangling-reference-is-only-detected-when-the-node-is-also-edgeless"
+}

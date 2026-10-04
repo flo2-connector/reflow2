@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:d043a97769e6545ebbcab7c2e34ed84e1af8cac5a5ccd1a0d30955fd08913075",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:a-skill-is-reachable-from-a-description-of-the-job-in-a-persons-words",
+  "properties": {
+    "approved_at": "2026-09-20",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

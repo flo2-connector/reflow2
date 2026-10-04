@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:f60fb37ceb4df256de986803f9cb0e77686587866d2a683f4b0c242b8de51eb5",
+  "node_id": "chg:the-sweep-findings-requirement-is-withdrawn-as-a-requirement",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "scope_change",
+    "name": "The sweep-findings success criterion is withdrawn as a requirement — it is a to-do list with a completion condition, not a property of the product",
+    "subject": "record"
+  }
+}

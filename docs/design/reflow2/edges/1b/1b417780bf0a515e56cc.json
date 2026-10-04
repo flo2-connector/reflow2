@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:4fad7453109ee302c9af022c3de90bb576e76bad7d7d3817469e1970deef8528",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-saved-design-moves-to-the-item-layout-2026-10-03",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:6c3201bbf211543b45e5f58faac18ca04de6f707afe4c9ba6841dc2100a21765",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:one-meaning-for-a-location-test"
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:6ee489e8f28d4a0ad77a323b0bd3d0998e6eeabdc4574d723cc4a077d57a75a8",
+  "edge_type": "DOCUMENTS",
+  "from_id": "art:dev-storyflow-feedback-2026-09-27",
+  "properties": {
+    "evidence": "The brainstorm pass this rule requires: this exploratory Decision is the 09-25 gap's idea (passing, with N expected-change assertions), in the reporter's words."
+  },
+  "to_id": "dec:idea-a-run-can-pass-with-its-exceptions-stated"
+}

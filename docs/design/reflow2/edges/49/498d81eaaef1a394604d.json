@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:999a70fa7d133fc6f097f8861d5c5e34d4a85a4c475a3e30c90128b4a890f2d8",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:fix-the-comparison-before-pointing-it-earlier",
+  "properties": {
+    "authored_at": "2026-08-10",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

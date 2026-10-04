@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:85a0f1df6c7b85986bff7bf15e3d09c1d39866975c970adfac435e902a0f56fa",
+  "edge_type": "SCHEDULED_FOR",
+  "from_id": "cap:plan-movement-recorded",
+  "properties": {
+    "modality": "required",
+    "recorded_at": "2026-07-31"
+  },
+  "to_id": "rel:v0190"
+}

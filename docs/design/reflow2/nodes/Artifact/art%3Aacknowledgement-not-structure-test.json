@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:fc659febe511a85a1871f46ac47c4b4153001ed9eb8108ab9b84148cfa0155b3",
+  "node_id": "art:acknowledgement-not-structure-test",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "granularity": "atomic",
+    "location": "crates/reflow2-core/tests/acknowledgement_not_structure.rs",
+    "name": "acknowledgement_not_structure.rs",
+    "status": "realized",
+    "volatility": "stable"
+  }
+}

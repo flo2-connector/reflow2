@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:2729426e3897d1bf465f709654cfcd447a59b3b7016d993f4070381b9b0b3f29",
+  "node_id": "fact:a-graph-per-tier-strains-the-graph-per-ownership-rule-2026-09-30",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "finding",
+    "name": "A graph per TIER (accepted 2026-09-30) strains this rule's graph per OWNERSHIP boundary. Under one owner, Alex's UI/API/e2e split is one graph with levels by this rule and several tier graphs by the new acceptance. Resolve it when the vertical linking mechanism is designed",
+    "source": "dev_reflow2 hub session, 2026-09-30, on settling dec:idea-a-top-level-graph-holds-what-the-component-graphs-share",
+    "statement": "On 2026-09-30 @ajs accepted option (b) of dec:idea-a-top-level-graph-holds-what-the-component-graphs-share (\"Go with your recommendations\"): each tier is its own design, linked vertically, with intent down and evidence up. The linking mechanism was left to be designed when the first real tiered design needs it.\n\nThis rule (accepted 2026-07-25) says a graph per OWNERSHIP boundary, with `level`s inside, and rejected \"a graph per system\" as a rule, because every seam costs a coordinate, a roll-up and a freshness check. The idea node itself noted the strain: \"Alex's UI/API/e2e split is depth under one owner, so under today's rule it is ONE graph — which is exactly the rule his ask strains.\"\n\nNothing is contradicted YET, because no tier graph under a single owner exists. But the two accepted records now answer differently for that case, and the vertical linking design must say which boundary creates a new graph: ownership, authority/abstraction tier, or both. It should also say what a tier seam owes in coordinate, roll-up and freshness, the costs this rule named. The modelling trap recorded on the idea node still applies: an authority ladder (strategic/operational/tactical) is not Component.level's assembly ladder.",
+    "subject_id": "dec:nested-graphs",
+    "valid_from": "2026-09-30"
+  }
+}

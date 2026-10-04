@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:d98bd2fcd15446cbc9be6c8aed02d092b848913a355feb157177829a58e93c0a",
+  "edge_type": "VERIFIES",
+  "from_id": "ver:the-server-says-when-it-is-stale",
+  "properties": {},
+  "to_id": "cap:the-server-knows-its-own-currency"
+}

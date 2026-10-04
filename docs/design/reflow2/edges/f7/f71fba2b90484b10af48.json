@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:b049f424ecf95b3f9332906b5ad0240e71a9003713dc32e7932f2463c745f094",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-how-does-a-test-result-get-back-in-when-the-tester-may-not-be-an-agent",
+  "properties": {
+    "evidence": "Option (a) consumes that accepted requirement's output: the run record is what a gate-to-Verification mapping would feed into reconcile_verification, and without it there is nothing to feed back.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "req:a-ci-run-leaves-a-machine-readable-record-of-what-it-ran"
+}

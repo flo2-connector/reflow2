@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:dcc0155a7c96acf08c497144b349b8fd1c4a9d412585ac8ad8e8e70e71a002fb",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:commitment-edges-survive-snapshots",
+  "properties": {
+    "authored_at": "2026-07-31",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

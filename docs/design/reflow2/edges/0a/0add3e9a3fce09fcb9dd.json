@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:238dfc38aa21835d8d583fc0e87351d06445a76dcc54ba59866bde16a8f39123",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:usage-ledger",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:usage-ledger"
+}

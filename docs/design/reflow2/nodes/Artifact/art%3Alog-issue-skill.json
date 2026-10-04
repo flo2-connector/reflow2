@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:cd4c6b0e56b6372ed5d2ef9c6b00b22d65667030fea4c854aeb54c2c1cf463c6",
+  "node_id": "art:log-issue-skill",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "document",
+    "description": "The door: take the sentence as given, find the subject from the user's noun (Project when nothing matches), record_finding with fact_type follow_up and the sentence verbatim, say one line back. Do not sort it at capture; do not run the loop check for it. 'Settling one, later' says how a boundary closes each. Served from the binary; byte-identical copies in .claude/skills and .grok/skills, and the /log-issue command in getting-started/commands.",
+    "location": "getting-started/skills/log-issue/SKILL.md",
+    "name": "log-issue/SKILL.md",
+    "status": "realized"
+  }
+}

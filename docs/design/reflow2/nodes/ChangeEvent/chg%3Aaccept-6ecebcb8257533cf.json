@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:334d3531b0de54a32fe0f50bb6c9299657bdee7ae7e709e82f26503e7565a162",
+  "node_id": "chg:accept-6ecebcb8257533cf",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "resync",
+    "detected_at": "2026-08-05",
+    "name": "The v0.24.0 version bump. DESIGN_HOLDS deliberately: the design meaning of a cut lives in the Release node and its epoch, never in a version string, so nothing about what this project IS moved here. This drift is structural to every cut — reflow2.toml is a registered artifact and bumping it is step 1 — and accepting it BEFORE freezing the release manifest is what stops the manifest recording the pre-bump checksum and costing a second export."
+  }
+}

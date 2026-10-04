@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:0fed9282146438912d72c011f25d91d78ebd65e9e9a0bb56d681f66e02b7eda3",
+  "node_id": "chg:accept-943f9c508e56ba0c",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "refactor",
+    "detected_at": "2026-08-18T00:35:00Z",
+    "name": "The v0.34.0 version bump. The design meaning of a cut lives in the Release and its release_cut epoch, not in a version string — so the manifest moved and the design holds. Accepted BEFORE release_includes_all so the frozen manifest records the post-bump file, which is what actually ships.",
+    "subject": "system"
+  }
+}

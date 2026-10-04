@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:2dbdfd0df707a24e418d9d99fe91b0b35a708536cf3c1d32edb62f563931fa41",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-design-served-after-a-held-lock-frees-is-prepared-the-way-a-healthy-start-prepares-it",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:test-a-degraded-server-recovers-when-its-cause-clears"
+}

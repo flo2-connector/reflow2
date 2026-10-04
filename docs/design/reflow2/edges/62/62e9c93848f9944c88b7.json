@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:fb97297c9e9792a8165189327cd1583f85e49789f789386d4e94716352c3592a",
+  "edge_type": "CAUSES",
+  "from_id": "art:capture-intent-skill",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "The routing table is written as skill prose for an agent to read, so the one artefact that states how to tell the types apart is the one artefact a consumer of the served contract never sees.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:the-schema-serves-the-types-and-not-the-rules-that-tell-them-apart-so-a-numeric-prohibition-was-filed-as-a-requirement"
+}

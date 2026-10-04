@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:757847d2b8d58e1bafcbf26e870db01498e85f72c01bd11d154e0d98adb1468f",
+  "node_id": "ver:every-edge-type-declares-a-well-formed-reading",
+  "node_type": "Verification",
+  "properties": {
+    "description": "A core test over the compiled schema: every edge type has a `reading`; its primitive (or every component of its composition) is in the declared primitive set; every modifier kind is in the declared modifier-kind set; every property named as a modifier is declared on that edge; basis is `classified` or `reviewed`. It also asserts describe_schema serves the reading on the whole-vocabulary read and on an edge query. It checks that readings EXIST and are well-formed, not that any reading is right — rightness is the owner's review.\n\nEXTENDED 2026-09-28 for per-value splits (option (a)): a split must be on a property the edge declares, name at least one value, and, where that property is an enum, key only its values; each split value's reading is held to the same form checks as the type's own. Two further tests pin behaviour rather than form. The selector lists CAUSES and INTERACTS_WITH as decided per edge, never as always a cause. One edge reads by its own values: an unset `basis` is the correlational default and not a cause; `spurious`, or `causal` with a `refuted` status, is not a cause; CONTRADICTS `supporting` is compares(+); AUTHORED_BY with two roles is two readings; INTERACTS_WITH `triggers` is a cause. Observed failing before the splits were declared, and two schema mutations (a value outside the enum, a split on an undeclared property) were each caught, naming the edge.\n\nEXTENDED AGAIN, same evening, for the eleven further splits and Anthony's reading of `observed`. The selector lists CHANGED and DEPENDS_ON as decided per edge for `causes`, and DUPLICATES and YIELDED for `same-as`. Per edge:\n- CAUSES `observed` is a cause.\n- DEPENDS_ON unset is causes⁻¹(+), `data_flow` is flows-to⁻¹, and `function_call` is causes(+).\n- CHANGED `added` is source-of · made, and `removed` is causes(-) · ends.\n- An unset DUPLICATES (the `suspected` default) never reads as same-as; an `asserted` one does.\n- SATISFIES `planned` carries the modality `intended`, and an unset SATISFIES carries none.\n- VIOLATES_RULE `confirmed` is `permitted`: a waiver.",
+    "findings": "5 passed (cargo test -p reflow2-core --test every_edge_type_declares_what_it_means). Observed failing first twice: with the readings stashed (the original three tests, the first on ABOUT_ENTITY), and with the splits stripped (the selector listed CAUSES, then CHANGED and DEPENDS_ON, as always a cause). Two schema mutations caught by the well-formedness check.",
+    "kind": "verification",
+    "last_run_at": "2026-09-28",
+    "level": "unit",
+    "location": "crates/reflow2-core/tests/every_edge_type_declares_what_it_means.rs",
+    "method": "test",
+    "name": "Every edge type declares a well-formed reading",
+    "status": "passing"
+  }
+}

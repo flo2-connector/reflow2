@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:87229c00e902e73c1b495c88cde7215477b4af8dd5ce3ca5069b2a97f07678e1",
+  "edge_type": "CAUSES",
+  "from_id": "cmp:graph",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "`DesignGraph::outgoing`/`incoming` (graph.rs:949) delegate straight to `engine.scan_outgoing_edges` rather than to the memoised `Adjacency` this same file defines forty lines earlier. That one pair of methods is what every one of the 142 call sites goes through, so the waste is located in this component rather than in any of the twenty that call it.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:the-adjacency-memo-serves-one-caller-and-142-edge-reads-still-go-to-the-store"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:45b72ed5315c9fd06cfc479f6abc8cad92090af268492e890992b8b24ff3230c",
+  "edge_type": "CHANGED",
+  "from_id": "chg:an-exposed-server-verifies-bearer-tokens-itself",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:mcp-http"
+}

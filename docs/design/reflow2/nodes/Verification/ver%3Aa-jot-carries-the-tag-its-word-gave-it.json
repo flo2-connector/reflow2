@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:38e2c3483baf2760ed0b4ea4792db0b7a847f83f5d9f458003fb224130190989",
+  "node_id": "ver:a-jot-carries-the-tag-its-word-gave-it",
+  "node_type": "Verification",
+  "properties": {
+    "description": "cargo test -p reflow2-core --no-default-features --test a_jot_carries_the_tag_its_word_gave_it: four tests over open_follow_ups and loop_status — each word's tag and its settle_toward road; the next line counting open notes by tag; an untagged row carrying no `tag` key; and only follow_up and follow_up:<tag> counting as notes. The word-to-skill half (jot, note, log-issue all resolve to jot, and jot's shortcut is /jot) is pinned in crates/reflow2-mcp/src/skills.rs, three_words_reach_the_one_jot_and_its_shortcut_is_jot.",
+    "findings": "4 passed, 0 failed, on branch feat/jot. The same file FAILED TO COMPILE against the unchanged code (no field `tag` / `settle_toward` on FollowUp), observed before the change was written.",
+    "kind": "verification",
+    "last_run_at": "2026-09-24",
+    "level": "unit",
+    "location": "crates/reflow2-core/tests/a_jot_carries_the_tag_its_word_gave_it.rs",
+    "method": "test",
+    "name": "A jot carries the tag its word gave it and settles by that tag",
+    "status": "passing"
+  }
+}

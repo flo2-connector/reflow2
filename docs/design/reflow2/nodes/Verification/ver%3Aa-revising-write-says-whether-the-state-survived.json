@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:d00ea1c2cdfcbf5d633360723db0f372aacec50febab7252fd62087a00358484",
+  "node_id": "ver:a-revising-write-says-whether-the-state-survived",
+  "node_type": "Verification",
+  "properties": {
+    "description": "crates/reflow2-mcp/tests/a_revising_write_says_whether_the_state_survived.rs.\\n\\n\\u2b50 THE SIXTH PROBE EXISTS BECAUSE A MUTATION FOUND ITS ABSENCE. Making the hash comparison always succeed left all five original probes GREEN \\u2014 so 'some snapshot exists for this node' would have passed for 'the state you just replaced is safe', which is the worst possible answer: a reassurance that a destroyed thing is recoverable. The added probe snapshots, revises, then revises AGAIN, and requires the second reply to say NOT preserved because the snapshot holds the original rather than the intermediate.\\n\\nTHREE MUTATIONS, all caught after that: preservation never detected (the old unconditional behaviour); the hash comparison always matching; the two notes made identical again.\\n\\n\\u26a0\\ufe0f ONE PROBE'S PREMISE WAS WRONG AND THE CODE WAS RIGHT. The enrichment probe first used `status`, which `add_decision` already sets to `proposed` \\u2014 so writing `accepted` genuinely IS a replacement and the warning was correct. It now uses `alternatives`, the one Decision property no constructor writes, and asserts `replaced` is empty so the fixture cannot silently stop being an enrichment.",
+    "findings": "6 probes pass; 1322 workspace tests, 0 failures; clippy clean; all 152 toolsnaps match (the surface is unchanged \\u2014 this is a richer REPLY, not a new tool).",
+    "kind": "verification",
+    "last_run_at": "2026-08-18T15:40:00Z",
+    "level": "integration",
+    "method": "test",
+    "name": "Six probes: destroyed is named as destroyed, preserved is told there is nothing to do, the two replies actually differ, a stale snapshot does not count, an enrichment is not warned about, and nothing is blocked",
+    "status": "passing"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:2f64265fc379dcad3c582f981f013aead0aa51aeb8c0422fa13e800356f8c2f2",
+  "edge_type": "REALIZES",
+  "from_id": "art:export",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cmp:export"
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:08b26ef6c44b2bfcf9dd1184cac0eba7eeb8ae9de77f465075b67ca315cf432b",
+  "node_id": "art:sweep-coverage-test",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "location": "crates/reflow2-core/tests/sweep_coverage.rs",
+    "name": "sweep_coverage.rs",
+    "status": "realized"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:7c2a92193fc3a7ce3c6ec23fa3d7f9b3cb9573e8068ee6c6aee72295b6278cf4",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0380",
+  "properties": {
+    "as_checksum": "sha256:91b178074b3a1053f59932fd5c13139335078538356a73b7a6c5a6ad89e55082"
+  },
+  "to_id": "art:skill-lint"
+}

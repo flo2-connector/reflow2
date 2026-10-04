@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:5990214ac1fd0177106a680e450c857b794816bee27b289745a588c694e23c1c",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:skill-loads-are-counted",
+  "properties": {},
+  "to_id": "req:skill-adherence-is-measured"
+}

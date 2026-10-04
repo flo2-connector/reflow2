@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:20bf0746510aaf3a1578fbb8fd0b37b250980b2c860f06a30851d51355c47735",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-saved-design-moves-to-the-item-layout-2026-10-03",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:55246a51aa02d8694794f52a67cb2b1e4b8095d0067449a6725b60344c7ebb3b",
+    "checksum_basis": "measured"
+  },
+  "to_id": "art:a-claimed-check-is-counted-apart-from-a-runnable-one-test"
+}

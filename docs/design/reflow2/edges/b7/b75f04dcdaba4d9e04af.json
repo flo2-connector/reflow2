@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:366a3b566f4b95ae463c2c5b86e7020f1d9af64f938455762e4f302fdda1a757",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:every-required-parameter-is-described-gate",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:every-required-parameter-is-described-gate"
+}

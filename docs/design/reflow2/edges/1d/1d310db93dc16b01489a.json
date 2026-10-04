@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:11a8cd2b507198f452fa96183b97220479328d49aa3c92fb4d23e59e311811e6",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-no-documents-rule-gains-its-reasoning-and-its-exception",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "rule:design-information-lives-in-the-graph-not-in-documents"
+}

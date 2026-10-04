@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:0180aa06e2406695c66f763dd70ea1c9fbd5ee4b417a0bc87828a7ba5d896fbb",
+  "node_id": "chg:accept-6c7ef19fc1a25a65",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "test_failure_fix",
+    "detected_at": "2026-09-05",
+    "name": "The `event()` helper's AddChangeEventReq literal gained `description: None` for the new field. Assertion unchanged.",
+    "subject": "system"
+  }
+}

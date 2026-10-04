@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:b982099de7bdb9fbe8047da492b9ba4fa56d0f715d9e206114c8aac52cbebb5d",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:test-orientation-needs-nothing-to-start",
+  "properties": {
+    "covers": "whole",
+    "note": "conformance stated at registration: verified | migrated 2026-09-22 from a REALIZES link_artifact drew in error"
+  },
+  "to_id": "ver:a-session-with-no-seed-can-find-one"
+}

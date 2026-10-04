@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:1588a0e445f338bcbfbe8e4e3d7eb04117950c81f34457943021efac674a6be4",
+  "edge_type": "GOVERNED_BY",
+  "from_id": "art:grok-build-tui-feedback-2026-08-27",
+  "properties": {
+    "note": "A dated field report from 2026-08-27. It describes nothing and implements nothing, correctly: it is true of a moment and must not track the design as it moves. Same genre and same ruling as its four siblings.",
+    "ruling": "parks"
+  },
+  "to_id": "dec:a-dated-field-report-is-registered-and-parked"
+}

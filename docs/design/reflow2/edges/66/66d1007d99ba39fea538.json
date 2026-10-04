@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:c9dac56efbb107490f2ae43d86bff17bc1b7321e6c0553bd410eefa7b66ad59b",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-saved-design-moves-to-the-item-layout-2026-10-03",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:18ab1a2815d928cd7778a98e132bcb1fce46adb92b13bb66a57a926252a60e99"
+  },
+  "to_id": "art:ophyd-service-feedback-2026-08-19"
+}

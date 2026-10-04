@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:9e01d14b05c23158e7da47044ac12124b78f5544e040d5e63e1015dfe2dca5d7",
+  "edge_type": "SCHEDULED_FOR",
+  "from_id": "req:the-local-client-opens-the-persons-files-for-the-tools-that-name-one",
+  "properties": {
+    "modality": "expected",
+    "recorded_at": "2026-09-27"
+  },
+  "to_id": "epoch:planned-the-local-client-opens-files-for-the-tools-that-name-one"
+}

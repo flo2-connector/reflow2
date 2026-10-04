@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:3cfa9847f5a544e20da53f87d9e0d69fc5831c74c3dcf9713eea6d87f7cc1de7",
+  "node_id": "art:fixture-bearer-test-rsa-key",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "data",
+    "location": "crates/reflow2-mcp/tests/fixtures/bearer_test_rsa_2048.pk8",
+    "name": "bearer_test_rsa_2048.pk8 — a throwaway RSA key generated for the bearer test; it protects nothing",
+    "status": "realized"
+  }
+}

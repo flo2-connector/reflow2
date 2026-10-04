@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:bd458d00abfd6d296df08f034a1c57cdceb25d86af3881b9caa4836eb24afb97",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-saved-design-moves-to-the-item-layout-2026-10-03",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:7263308771657e5a4572218416a208d19418bd5a3a55e59a5dc5e72be8ab204f",
+    "checksum_basis": "measured"
+  },
+  "to_id": "art:test-a-budget-says-how-it-composes"
+}

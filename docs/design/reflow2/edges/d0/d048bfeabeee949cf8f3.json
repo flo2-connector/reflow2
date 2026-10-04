@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:c419c7884ecc564e64d7f1d022e547f5badbc1ac40fa3cea4924a4b481dc18c0",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:one-search-reaches-every-design-a-hub-tracks",
+  "properties": {
+    "approved_at": "2026-09-28",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

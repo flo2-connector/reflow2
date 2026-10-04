@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:0746ae577d5d2d08cff060793390426255eac9aa40c016644aa9b15f1207dced",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-mirror-can-be-refreshed",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:export"
+}

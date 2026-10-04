@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:57c020ef9e78d54eba36414605c02178e5128577681b0d9fa6dc504ae471acb4",
+  "node_id": "chg:bl174-false-green-for-consumers",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "name": "The served instructions gain the false-green counterweight, and the file carrying them becomes an Artifact the design can see (BL-174)"
+  }
+}

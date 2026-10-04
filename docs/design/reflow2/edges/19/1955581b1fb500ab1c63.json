@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:0173f9808d612ec92a2ec8d6d69e1316f7eabe9fc14d02e5eadf88e1e86fd512",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:delivery-kind-test",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:delivery-kind-test"
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:d2d253a133b219b6c2584d566ce0f3222a9d4965409b0d469f28763a5e46c3f9",
+  "edge_type": "CAUSES",
+  "from_id": "dec:idea-how-does-the-graph-learn-what-a-session-invalidated",
+  "properties": {
+    "basis": "causal",
+    "evidence": "This settles the parent brainstorm's option C for BOTH carriers it named. The parent measured the problem twice on TemporalFacts and asked for 'an edge from a ChangeEvent to the finding it ANSWERS'; dev_storyflow hit the identical gap on a Verification in a different project and proposed INVALIDATES_RUN. One relation covers both, so the endpoints stayed open. The parent's options A (a stale_measurement detector), B (capture-session asks) and E (the stop hook counts) are UNTOUCHED and still open.",
+    "validation_status": "validated"
+  },
+  "to_id": "dec:a-stale-finding-is-closed-by-a-claim-not-a-computation"
+}

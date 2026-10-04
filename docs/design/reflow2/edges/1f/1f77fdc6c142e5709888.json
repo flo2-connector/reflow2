@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:bb7dec9c2b346827cafec5142700705d2ddd8771d6149a5520e212a28a57bad2",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-held-design-test-waits-for-the-holder-not-the-store",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "ver:a-held-designs-read-is-as-true-as-the-live-one"
+}

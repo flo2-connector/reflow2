@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:8893ae75367efb4875e8984d9743755f7b59f8a42223810f2981f88764dc52ff",
+  "edge_type": "ANTICIPATES",
+  "from_id": "dec:idea-prune-the-tool-surface-to-an-orthogonal-essential-set",
+  "properties": {
+    "evidence": "The 2026-09-17 prune idea asked, at the level of tools, for an essential set, for the same reason Alex gives for the whole product: too many close choices cost the agent and the person."
+  },
+  "to_id": "dec:idea-reflow2-does-fewer-things-and-does-them-really-well"
+}

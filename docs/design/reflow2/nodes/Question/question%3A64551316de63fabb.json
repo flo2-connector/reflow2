@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:c7678759a0032c3fa5a0e87cf661263707068d51f73ac9c1e0acfbe4afd1be67",
+  "node_id": "question:64551316de63fabb",
+  "node_type": "Question",
+  "properties": {
+    "answer": "Anthony, 2026-08-20: put it inside the agent surface. Agreed with the recommendation, and the reasoning matters more than the placement — this is where the code IS today, not where the registry will eventually belong. All three of its capabilities are unbuilt, nothing realizes it, and its own description says the per-graph state it will own \"today rides on ReflowService as per-process state\". Modelling it as a peer of the ten subsystems would claim a separation that has not happened. When the hosted tier is real and the split actually occurs, promoting it is one move_component call — which is exactly the situation that operation was built for.",
+    "context_setter": "Declared level disagrees with spine position",
+    "gap_id": "gap:64551316de63fabb",
+    "question": "The registry — the part that holds many designs in one process, opening them on demand and evicting them when idle — is declared a leaf component but nothing contains it, so it sits at the top of the decomposition alongside the nine subsystems. It is also the only component in that position whose capabilities are entirely unbuilt and unverified, which suggests the placement may be a symptom rather than the defect. Where does it belong: inside the agent surface, inside the foundation with the store it multiplexes, or as a subsystem of its own once the hosted tier is real?",
+    "rephrase_degraded": false,
+    "status": "answered"
+  }
+}

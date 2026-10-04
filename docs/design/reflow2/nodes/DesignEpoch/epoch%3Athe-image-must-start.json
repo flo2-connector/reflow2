@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:40015eed9f06d79a9bee2358404b62f5c62a85aa3a05b301d1d467e695f0c137",
+  "node_id": "epoch:the-image-must-start",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "epoch_type": "revision",
+    "name": "The release proves the image starts before it publishes it",
+    "sequence": 336,
+    "status": "arrived"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:b747a4050d648a85ab83c3a2eb27060807132304e0a4ba77b595b8327d9e2f16",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-revise-keeps-what-it-was-not-passed",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:lens-names-test"
+}

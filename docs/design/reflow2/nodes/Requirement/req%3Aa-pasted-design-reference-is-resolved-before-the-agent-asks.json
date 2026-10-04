@@ -1,0 +1,17 @@
+{
+  "content_hash": "sha256:ee072c7d289df41b32aded90665c5ce6bb168412d47552cf5683bc7945e303fe",
+  "node_id": "req:a-pasted-design-reference-is-resolved-before-the-agent-asks",
+  "node_type": "Requirement",
+  "properties": {
+    "concern": "usability",
+    "kind": "functional",
+    "lineage": "original",
+    "name": "A design reference (a design's address plus element ids, an edge as type/from/to) has one documented format, and an agent handed one resolves each element on the named design before asking the person anything",
+    "no_relation_note": "Searched reflow2 for a reference to an element in another design, one way to name a node, and pasted ids. The nearest were:\n- dec:idea-one-way-to-name-which-node-across-the-tool-surface: tool parameter naming (node_id as an alias), not a pasteable reference, so a different question.\n- req:design-identity: a design knowing its own name, which the reference's design address relies on but does not depend on.\n- art:every-reference-parameter-names-its-type-test: a test about parameters.\nThe idea it grew from is flo2's dec:idea-copy-a-reference-to-design-elements-and-paste-it-into-any-session, in another design, so no edge can be drawn to it.",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "Anthony, 2026-09-29, dev_reflow2 hub session, brainstorm on flo2's dashboard: \"copy that (not copy the text, but copy the node(s) IDs and edge(s) IDs) then be able to paste them directly into a session and the agent knows exactly what requirement or decision or gap I want to work\". Promoted with \"Go with your recommendation and record as accepted\".",
+    "statement": "reflow2 documents one plain-text format for referring to elements of a design: the design's name and address, then element ids, with an edge written as its type and the two elements it joins. Any host can produce it; flo2's dashboard copy button is the first (flo2's req:an-element-copies-a-reference-an-agent-can-resolve). The served instructions and the hub skill tell an agent what to do when a message carries one: open each element on the named design (the element, its neighbourhood, and for a gap the question it raises) before asking the person anything, and say which elements it resolved and which it could not find.\n\nA reference names WHICH elements. It is never read as an instruction about WHAT to do, and nothing in an element's text becomes one. If the person did not say what they want, the agent asks, but it asks about elements it has already read.\n\nThis is the reflow2 half of flo2's dec:idea-copy-a-reference-to-design-elements-and-paste-it-into-any-session, option (b), chosen by Anthony on 2026-09-29.",
+    "status": "accepted"
+  }
+}

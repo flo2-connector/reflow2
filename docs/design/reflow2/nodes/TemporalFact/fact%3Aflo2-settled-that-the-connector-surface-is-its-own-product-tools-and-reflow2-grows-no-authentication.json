@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:4048b6c60502764dd7967ff6214a82e399372e2b21f6e2ae47103f5e40af1c01",
+  "node_id": "fact:flo2-settled-that-the-connector-surface-is-its-own-product-tools-and-reflow2-grows-no-authentication",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "confidence": 0.9,
+    "fact_type": "status",
+    "name": "flo2 settled that the connector surface is its own product-shaped tools, so most of what a connector needs is not reflow2's work — and two named things must NOT be built here",
+    "source": "flo2 reflow2_feedback.md, F26/F27/F28, 2026-09-20",
+    "statement": "FLO2 F28 corrects its own F27 the same day, after Anthony settled the architecture in flo2's graph: reflow2 stays an ENGINE and grows no authentication; flo2 is the OAuth 2.1 resource server; the connector surface is flo2's own outcome-shaped tools implemented USING reflow2, not reflow2's tools and not reflow2's tools filtered.\n\n🛑 TWO THINGS THEY EXPLICITLY ASK NOT TO BE BUILT, and the reasoning is theirs and is good.\n① NO CONNECTOR MODE, TOOL SUBSET OR ALLOW-LIST. Filtering 181 tools down to twelve 'still puts detect_gaps, scan_nodes and gap_to_prompt in front of somebody who came to design a greenhouse. Fewer of the wrong shape is not the right shape.' They cite published MCP guidance against converting endpoints 1:1 into tools and for intention-level capabilities. Their verdict on this surface: 'Its 181-tool surface is correct for what it is — an engine driven by a developer with a coding agent on a trusted network. Do not degrade it to serve a connector it should not be serving.'\n② NO OAUTH IN REFLOW2. 'It would be the wrong layer. Identity is per-product; reflow2 has several consumers and flo2 is one.' Adding it would bake one consumer's identity model into a component the others deploy differently.\n\n⭐ WHAT REMAINS ON REFLOW2, their list: the result shape (recorded separately), the protocol question (answered), and F24 and F25 from the earlier addendum, of which F24 is now MORE load-bearing because a product surface must classify correctly on somebody else's model with no system prompt to lean on.\n\nAND TWO THINGS THEY ASK NOT TO BREAK: `ingest_step` being stateless with explicit handles, which matches the spec's stateful-tools guidance, and `isError: true` plus an explanatory sentence, which is what the spec wants so a model can self-correct.",
+    "subject_id": "cap:a-reply-takes-the-shape-its-client-can-read",
+    "valid_from": "2026-09-20"
+  }
+}

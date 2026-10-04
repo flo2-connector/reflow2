@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:0594379af5ca00f1af0463a119b62ba411e9fbb9f23bc249779d6bd27b903b00",
+  "edge_type": "BLOCKS",
+  "from_id": "dec:idea-linking-half-ideas-needs-a-task-that-can-be-run",
+  "properties": {
+    "evidence": "That node asks whether ideas form a graph, and its own measurement (145 ideas, 12 edges) is evidence FROM a corpus nobody has linked. Until the backlog is worked or deliberately declined, any answer to it is measuring the absence of a task rather than the nature of ideas — so this standing unresolved keeps that one unanswerable on its own terms."
+  },
+  "to_id": "dec:idea-do-ideas-form-a-graph-or-only-a-list"
+}

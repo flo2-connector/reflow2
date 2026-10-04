@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:7af7aeb908cd69b6d032c056db2a63707af7f942c3b3b00c872e8e303d9439b3",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-cli-describes-a-tool-with-its-schema-and-lessons-2026-10-03",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "ver:the-cli-describes-a-tool-with-its-schema-and-lessons"
+}

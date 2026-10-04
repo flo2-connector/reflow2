@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:58585c41679ca0c164e311275da662da2b969d96ab13bd20ca06007530ccbdd2",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:pointing-a-session-is-project-scope-only",
+  "properties": {
+    "authored_at": "2026-08-05",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

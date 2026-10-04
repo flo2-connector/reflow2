@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:cafbb967bbffe1fa7d78df417daa9a0608be9b96c741cafaa5382e725e5b57b8",
+  "node_id": "chg:accept-402643b1b7044f89",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "refactor",
+    "detected_at": "2026-08-17",
+    "name": "Renamed category and detect_defects -> open_defects; the assertions are unchanged.",
+    "subject": "system"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:4180f16ddc276c3f431a9306b2e90aec0e6897fc2a28d6d6548a79db38ad3046",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:test-a-procedural-boundary-has-a-word",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:test-a-procedural-boundary-has-a-word"
+}

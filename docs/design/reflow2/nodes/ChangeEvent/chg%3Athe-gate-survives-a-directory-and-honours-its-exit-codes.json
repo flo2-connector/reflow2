@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:b93f7756179fd984b1c55afce7be4a1ca7b9e348700e6674f8255bd42b92aeae",
+  "node_id": "chg:the-gate-survives-a-directory-and-honours-its-exit-codes",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "test_failure_fix",
+    "name": "`reflow2_check.py` stops crashing on a directory Artifact and stops misfiling faults as gate failures: a directory is reported present-but-unhashable (`no_baseline`, a note), and the entrypoint becomes `run_guarded()` — a NAMED function, so the exit-code contract is callable and therefore checkable. Three mutations kill three tests."
+  }
+}

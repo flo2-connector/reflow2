@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:aec08db9d1f2e353c0d7e3d8d0cc79b1109859c9472ae40c2097c427fc2039ee",
+  "edge_type": "CHANGED",
+  "from_id": "chg:accept-299470f8b4fae678",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:vocabulary"
+}

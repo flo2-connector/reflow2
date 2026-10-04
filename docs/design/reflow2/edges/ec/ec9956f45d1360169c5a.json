@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:c4cedc68f4063cee97299a753444e1e64cc3aa981359846ea034cd385d2fd37e",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:a-remote-client-signs-in-to-its-server-with-oauth-2-1",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:proxy"
+}

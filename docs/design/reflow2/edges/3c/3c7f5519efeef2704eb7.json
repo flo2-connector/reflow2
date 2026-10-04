@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:fe30c25a8088624973d093190406ea5034a3183dfd2b6b1025120943127c8d93",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-a-bulk-write-can-be-checked-before-it-is-written",
+  "properties": {
+    "evidence": "This idea presupposes the standing decision and is defined relative to it: a check-only pass writes nothing (so atomicity is untouched), and apply-valid is opt-in only (an explicitly chosen state, which is the standing rationale's own exception). If the all-or-nothing decision were ever reversed this idea would be moot, not wrong — so it DEPENDS_ON that decision standing. It addresses the iteration cost that decision's rationale acknowledges it creates; read apart it could be mistaken for a reversal, which it is not.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "dec:bulk-is-all-or-nothing-with-per-item-findings"
+}

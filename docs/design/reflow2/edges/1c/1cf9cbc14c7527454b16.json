@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:6bb55bee1221ca44dd5f5b3182e26d6ddaa55f62b326c9ece1d0e0e9730f9730",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:a-refused-write-stores-nothing",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:service"
+}

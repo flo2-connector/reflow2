@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:343b50aca17f018ec23fe3410402fec1a9a8ad223c42ce437dba22eea3e9cf98",
+  "node_id": "decision:ack:3c2b600d190d579f",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Accepted the gap gap:3c2b600d190d579f.",
+    "name": "Reviewed: gap:3c2b600d190d579f",
+    "rationale": "Checked 2026-09-07: still open, and measured worse. ChangeEvent still declares no author and neither constructor takes a contributor; 829 change events now carry zero authorship edges, against 360 when the record was written.",
+    "status": "accepted"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:3ab03425f6ffcf081a55d18a6a56a46a0a27d50ed845052a6fe6fcdfc0e450f1",
+  "edge_type": "REALIZES",
+  "from_id": "art:test-mirror-refresh",
+  "properties": {
+    "completeness": "partial",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:mirror-surface"
+}

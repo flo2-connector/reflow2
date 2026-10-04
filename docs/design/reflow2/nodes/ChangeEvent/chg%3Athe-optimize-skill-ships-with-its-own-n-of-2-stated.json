@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:53f8f879bfeeb778c5e3dd5dd4a2422cac2ee39bd188d1e55723de8caf9c190d",
+  "node_id": "chg:the-optimize-skill-ships-with-its-own-n-of-2-stated",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "name": "The optimize skill ships, with its n=2 stated in its own text",
+    "rationale": "Anthony asked for it after the procedure had been run twice by hand - once on the test suite (the schema parse cached, 41.3 ms -> 266 us, suite 191.8 s -> 96.5 s) and once on the product surface (the 26-48 s cold start, measured and deliberately left unfixed for want of a budget). He chose (c) then (a): run it again first, then write the skill.\n\nBoth runs are what the skill is made of, and its honest-limits section says so - steps 4, 6 and 7 each caught a real mistake, while steps 1, 2 and 3 are discipline generalised from two cases. skill_lint pins all ten clauses INCLUDING the n=2 admission, because every one of them is a clause a hurrying reader would happily drop: writing the budget first feels like ceremony when you can already see the fix, stopping under budget feels like leaving value on the table, and asserting structure instead of a duration is more work than a threshold.\n\nThe skill also contradicts the framing it was asked under, on purpose: it does NOT wait for black boxes to be identified, because both runs succeeded with no contract on the module.",
+    "summary": "A 21st served skill: optimise one module against a budget written down before the code changes."
+  }
+}

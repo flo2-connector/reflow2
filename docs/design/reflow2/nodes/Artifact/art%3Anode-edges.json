@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:1c7b1cceed164d07e6b3a6c5783eadaf4a73bc9f16ea5b39518576f08edd692f",
+  "node_id": "art:node-edges",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "description": "DesignGraph::node_edges: every edge on a node with its type, direction, from/to, the other end (id, type, name, resolved across every node type and never guessed), its properties and twin_of. Filters by direction and edge types, orders rarest type first, bounds by limit and by the shared reply budget (spent_chars for what the caller sends beside it), and reports total, by_type, matched, filtered_out, omitted, next_offset, capped_by, dominant and empty_because.",
+    "location": "crates/reflow2-core/src/node_edges.rs",
+    "name": "crates/reflow2-core/src/node_edges.rs — one node's edges read back as edges: both directions, the other end named, each edge's own properties, twins marked, filtered and bounded",
+    "status": "realized"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:e1aa3cdf722a8ef37b78c36b3afabbc8cd0ea2a34e999bb08916cbbb4a6778f0",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:store-backend",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:store-backend"
+}

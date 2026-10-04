@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:585a4c34f7cac71bd5c422c3ebb7ae1edee96f4d794e4b746aa5880891a0189b",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:the-graph-asks-what-a-session-made-false",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:verify"
+}

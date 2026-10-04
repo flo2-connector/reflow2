@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:8f4902478c2b10277a054a8247e370e0a6948d9c3e74aad801f3f6a1d9b74fb0",
+  "edge_type": "RISKS",
+  "from_id": "fact:call-ignores-read-only-and-the-write-lands-2026-10-02",
+  "properties": {
+    "evidence": "A person who builds the auto-approve rule this requirement is about from the existing --read-only flag would auto-approve writes, because --call ignores the flag (measured: the write landed, exit 0)."
+  },
+  "to_id": "req:a-terminal-agent-can-auto-approve-reads-and-confirm-each-write"
+}

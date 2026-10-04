@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:c400b457c1ecf2d6156c745608814fd55a0d424fb907da863c9fbe0f04be0fad",
+  "edge_type": "VERIFIES",
+  "from_id": "ver:a-remote-located-artifact-is-not-judged-and-says-so",
+  "properties": {},
+  "to_id": "art:check"
+}

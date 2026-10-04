@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:65742dd5b102ba085ab449c558777275e14b2f6147ad6df4dfdd7d98e16bf145",
+  "node_id": "art:test-every-writer-signs-as-the-caller-fixture",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "test",
+    "location": "crates/reflow2-mcp/tests/fixtures/every_writer_signs_as_the_caller.json",
+    "name": "every_writer_signs_as_the_caller.json (one call per served write tool, naming the caller)",
+    "status": "realized"
+  }
+}

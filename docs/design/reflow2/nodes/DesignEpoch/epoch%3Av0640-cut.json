@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:8b8a69c548daa639125f52ac0a03f877c10e05ed884717f89105a2f4f9b86f82",
+  "node_id": "epoch:v0640-cut",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "epoch_type": "release_cut",
+    "name": "v0.64.0 cut — Alex's second and third ideas: the frontier and the deferred-derivation marker; conventions delivered at their step and the adapter registered",
+    "sequence": 504,
+    "status": "arrived"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:28825122d9493d4bd711cf5094b49bb2c57bd5711c7136e7d0cbeb1119616481",
+  "node_id": "cmp:foundation-vocabulary",
+  "node_type": "Component",
+  "properties": {
+    "level": "component",
+    "name": "foundation-vocabulary",
+    "provenance": "authored",
+    "purpose": "`Schema`, `Value`, `DynoError` and the property/node/edge type definitions — the types every other module in reflow2 speaks. A schema is a runtime description of what nodes and edges may exist, what properties they carry, and how entity resolution works; it is what drives validation on every write.\n\nAbsorbed from `dynograph-core` at v0.12.0 on 2026-08-24 into `crates/reflow2-core/src/foundation/core/` — 1,941 lines, of which `schema.rs` is 1,752.\n\n⚠️ DISTINCT FROM `cmp:schema`, and the names are close enough to be worth stating: `cmp:schema` is reflow2's OWN schema module (`src/schema.rs`) — the eleven `schema/*.yaml` files and the design's node and edge types. This is the ENGINE those declarations are validated by. The same name collision that forced `cmp:graph-algorithms` in increment 3 applies here, which is why this is not called `cmp:schema-core` or folded into the existing node.\n\n🛑 THIS IS THE ONE CRATE WITH ZERO DEAD WEIGHT. Every other absorption left the majority behind — 82% of vector, 75% of resolution, 42% of graph. reflow2 imports eight of core's names and needs all four of its files. \"Only take what we need\" happened to mean \"take all of it\", and that is a measurement rather than a concession.\n\n⭐ IT IS ALSO WHY INCREMENTS 4 AND 5 COULD NOT BE SPLIT. `dynograph-storage` re-exported `DynoError`, `Schema` and `Value` from here, and `StoredNode.properties` is a `HashMap<String, Value>` of this very type — so taking this in-tree while storage stayed external would have given reflow2 two of each. See `chg:increments-4-and-5-are-one-increment`.\n\nPUBLIC, unlike `stats`/`fuzzy`/`graphalg`: these types were already in reflow2-core's public API before the absorption and `reflow2-mcp` names them constantly. EXTERNAL DEPENDENCIES BROUGHT: `serde_yaml`, `uuid`, `thiserror`.",
+    "status": "planned"
+  }
+}

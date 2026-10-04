@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:96dd73d721df597bb4d32b64c2e59244dffffc4b3d2050b844ef76dc0c0ad521",
+  "edge_type": "CHANGED",
+  "from_id": "chg:replace-text-moves-one-sentence-without-resending-the-field",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:find-tools-corpus-fixture"
+}

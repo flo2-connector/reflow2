@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:a76351d6e31b679020503e0ad0710a86ccd03b703a9051910a9470351904279a",
+  "node_id": "art:upgrading-v0160",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "document",
+    "granularity": "atomic",
+    "location": "docs/upgrading-to-v0.16.0.md",
+    "name": "upgrading-to-v0.16.0.md",
+    "status": "realized",
+    "volatility": "stable"
+  }
+}

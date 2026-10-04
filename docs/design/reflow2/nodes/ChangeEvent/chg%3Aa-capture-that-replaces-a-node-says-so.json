@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:c45f0604e5071c9a8f402fff2cbbac26c4eb65325e4b5fc5d948df7b952cb2e1",
+  "node_id": "chg:a-capture-that-replaces-a-node-says-so",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "commits": "dd9626d33f052b122da447c4032dfa7eeb837b9b",
+    "detected_at": "2026-09-30",
+    "name": "A capture can say its node REPLACES an older one, and the choice made at the near-match check — distinct or replaces — is kept on the record",
+    "rationale": "CAUSE (fact:root-cause-a-status-that-falls-behind-reality-is-silent-and-a-superseding-capability-leaves-no-trace-2026-09-30, live design): the capture guard's only routes past a same-type near-match were sharpen and distinct_from, and distinct_from was consumed in the call and written nowhere — so a capability rebuilt under a new node left its predecessor planned and its requirement pointing at it, and nobody could later establish whether the writer had seen the old node. Approved by Anthony 2026-09-30: \"Yes, fixes for 1-3 should go ahead\" (fix 2). This is shape (B) of dec:idea-is-the-evolution-vocabulary-unused-because-nothing-asks-for-it (ask at capture, where the duplicate guard already looks), built within the vocabulary the accepted decisions sanction: OBSOLETES from the successor (retire-from-design; dec:reopen-supersedes), no status value for retirement (dec:idea-does-a-capability-need-a-cancelled-state), and only an ACCEPTED Decision withdraws a node from the counts (dec:idea-discontinued-is-a-first-class-state) — so a replaced capability or component keeps counting until the owner withdraws it, and the reply says so. NOT SETTLED HERE: which retirement edge survives (dec:one-retire-edge), and what should read an OBSOLETES from a successor. FAILING FIRST: 11 of 12 tests failed on origin/main 01fe82a before the fix.",
+    "rationale_basis": "contemporaneous",
+    "subject": "system",
+    "summary": "New reflow2_core::supersede (check_replaces, supersede, record_judged_distinct). `replaces` on add_requirement / add_capability / add_component / add_decision / add_design_rule; the same-type refusal names three routes; the five tool descriptions and the `distinct_from` parameter text say the choice is kept. `distinct_from` declared as a list:string property on six node types (schema/core.yaml, functional.yaml, structure.yaml; the stamp does not move). temporal.rs exposes BOOKKEEPING_TYPES and COMMITMENT_EDGES to the crate. capture-intent, revise-design, retire-from-design, capture-session and the served instructions teach the three answers. 76 test struct literals gained `replaces: None`. New test: crates/reflow2-mcp/tests/a_capture_that_replaces_a_node_says_so.rs (12 tests)."
+  }
+}

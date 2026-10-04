@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:e0a226dfc5bc9ddb3b0b938d54d8647e91c4313c76e4665c18cb7bc98ed89dce",
+  "edge_type": "CAUSES",
+  "from_id": "art:dev-storyflow-feedback-2026-09-08",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "The root-cause pass on the verification-gap half of this report: three of the eight gaps it names were already built, so the finding is about discoverability rather than about the schema.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:three-of-eight-reported-verification-gaps-were-already-built"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:6e1fb244b7c5bc821e45415755b77a01f8ef0ac11e1790fedaaa9721df9403cc",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-name-is-not-a-report",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "ver:import-document-usability"
+}

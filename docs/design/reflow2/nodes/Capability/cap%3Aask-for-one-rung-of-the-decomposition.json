@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:99a7141de5fe8bfe9f761789a14092abd0437b1d9565d16a5d33f883199fbd8f",
+  "node_id": "cap:ask-for-one-rung-of-the-decomposition",
+  "node_type": "Capability",
+  "properties": {
+    "description": "`scan_nodes` takes `level` — component / subsystem / system / system_of_systems / enterprise — so \"what are the top-level boxes?\" is one call with one answer. It refuses an unknown rung, and refuses `level` on any type other than Component rather than returning an empty list, because \"no Components at that rung\" and \"that is not a rung\" are different facts and the second silently reads as the first. A node with no level answers to `component`, matching the schema default, so older nodes are not lost by the filter.\n\nWHY IT IS A CAPABILITY AND NOT A CONVENIENCE: the field was indexed and populated all along, and with no way to ask by it every caller derived the top tier from the containment spine — which returns leaves nobody wired to a parent. Measured on this design: 8 subsystems by declared level, 2 leaves by spine position.",
+    "name": "Ask for one rung of the decomposition ladder directly, instead of deriving it from the containment spine",
+    "provenance": "authored",
+    "status": "realized",
+    "tier": "operational"
+  }
+}

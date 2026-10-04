@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:2b1ad7db7b3d8f9da6e7f1ac6a2ecc9642dd4f645462040f7c181aec221e246f",
+  "edge_type": "INVALIDATES",
+  "from_id": "chg:the-surface-says-what-it-already-knew",
+  "properties": {
+    "at": "2026-09-06",
+    "note": "CLOSED LATE, BY THE EVENT THAT ACTUALLY FIXED IT. This change built the reporter's option (b): a deferred requirement is asked a DIFFERENT, lower-ranked question ('still parked?') rather than the covered/deferred/dropped one, pinned in the_surface_says_what_it_already_knew.rs (a_deferred_requirement_is_asked_whether_it_is_still_parked; an_accepted_requirement_keeps_the_original_question_and_outranks_a_parked_one). The fact was never linked to it, so on 2026-09-06 it still read OPEN on the ledger and a session re-fixed it — wrongly, by skipping `deferred` outright, which silenced the designed question; the existing pins caught that within the hour and the change was reverted. Drawn now so the record says what the code says. The fact's ⑨ (whether reflow2's own graph shows the same 28/14/8/6 ratio) remains untaken and is the only part still open."
+  },
+  "to_id": "fact:defect-unsatisfied-requirement-fires-on-requirements-whose-status-is-the-answer"
+}

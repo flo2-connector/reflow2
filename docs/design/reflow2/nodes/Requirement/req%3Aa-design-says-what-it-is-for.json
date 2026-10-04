@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:ab1f458067868630a70b12a136ace69d2961e752a66532a79108164576f92481",
+  "node_id": "req:a-design-says-what-it-is-for",
+  "node_type": "Requirement",
+  "properties": {
+    "lineage": "original",
+    "name": "A design records the quality attribute it is built for, and is asked if it has not",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "A design SHALL be able to record which quality attribute it is built FOR, and SHALL be asked when it has not.\n\nWHY IT IS INTENT AND NOT A NICETY: the attribute decides WHICH GROUPING IS RIGHT, and the four disagree. Performance wants the least chatter across boundaries. Reliability wants no single part everything depends on, and may deliberately put the same function in two places — the opposite of maximal modularity. Maintainability wants what changes together to live together, which is a different edge set entirely. Security wants boundaries following trust and data classification, which is constrained partitioning rather than clustering. A design that allocates without answering silently optimises for performance.\n\nIT IS A TARGET, NOT A SCORE. `DimensionAssessment` records what a system IS on an axis; nothing recorded what it is FOR. Measured 2026-08-25: 0 DimensionAssessment and 0 DimensionObservation nodes exist, so the nine-axis vocabulary had been fully defined and never once used.\n\nABSENCE MUST READ AS \"NOBODY WAS ASKED\". The property carries no default, because a detector over the absence is the only thing that notices the question being skipped — and because a default would be materialised onto every existing Decision when an export is read back.\n\nNOT KNOWING YET IS A FIRST-CLASS ANSWER. A design that weighed the question and has not committed SHALL be distinguishable from one nobody asked, and SHALL keep being asked until it settles. The two must never be reported identically, and a deferral must not be closeable by an acknowledgement that never expires.\n\nASKED EARLY, ALLOCATED LATE. The question is asked at genesis because asking is cheap and the cost of asking late is reworking services already built; the allocation it informs still waits for the last responsible moment. These are different questions and only one of them is deferred.",
+    "status": "proposed"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:dccb5e3819b6ad2a01d50f3ae9c291b7378fb494fd034b2670f99e4948eea529",
+  "node_id": "frag:art:regions-rs",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered crates/reflow2-core/src/regions.rs"
+  }
+}

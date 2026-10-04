@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:c484c17850f8efbb545aec1081fcc0f147990f7bc72a288b92929b581742ebe7",
+  "node_id": "art:latent",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "granularity": "atomic",
+    "location": "crates/reflow2-mcp/src/latent.rs",
+    "name": "latent.rs",
+    "status": "realized",
+    "volatility": "stable"
+  }
+}

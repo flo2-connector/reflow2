@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:f474c2ebb9763374c078de1a5d5b4cb4b855d386aa7bef7ec919ec2b36cca698",
+  "node_id": "chg:a-drawn-relation-is-read-back-as-a-sentence",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "detected_at": "2026-09-20",
+    "name": "A drawn relation is read back as a sentence, and the brainstorm skill names the direction flag",
+    "rationale": "flo2 F16, promoted 2026-09-20 on Anthony's word and built fifth in the order he agreed. The echo was the remaining ask after the reporter corrected their own entry; the skill sentence closes the cause the finding names.",
+    "summary": "relate.rs: the drawn/already_present label is a sentence with its subject; brainstorm skill (+mirrors) names `incoming` and tells the reader to read the echo back; one new test; three existing assertions updated; CHANGELOG."
+  }
+}

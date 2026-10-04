@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:358bcfea89e47a240f4861f6477f21659dd316e4530064b7ff36d63c172783b0",
+  "edge_type": "CHANGED",
+  "from_id": "chg:add-decision-draws-related-to-for-every-kind-and-every-constructor-names-its-edges",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:tools-assure"
+}

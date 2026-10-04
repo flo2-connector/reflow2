@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:491179a23a21e1c46533cf13d7081c8bbcd41e4411fb447b0e6cc2156fb765a7",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:a-release-that-shipped-nothing-is-reported",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:detect"
+}

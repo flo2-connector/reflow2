@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:d59f643438e97d88906d73411a7401a1fff26a10bd253bccd65cf316cb1446e9",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-bulk-edge-write-runs-each-typed-helpers-own-checks",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:tools-capture"
+}

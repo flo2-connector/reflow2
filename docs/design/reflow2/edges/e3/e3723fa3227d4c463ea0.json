@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:a7e525b3192082098b074820baec532481deccc786003cf312fce01a04f3f643",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:a-stored-twin-has-one-authority-test",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:a-stored-twin-has-one-authority-test"
+}

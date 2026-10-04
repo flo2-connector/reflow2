@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:957c20c19114e00b7fe3a583f1fda26ba390e74bb08c8d79ca92568e5f59266c",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:graph-registry",
+  "properties": {},
+  "to_id": "req:many-designs-one-service"
+}

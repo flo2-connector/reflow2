@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:302aac2faf5f69973cc2e1c7ae53def86280438d047ee3c8d6da4f6747c69c7a",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:schema-temporal",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:schema-temporal"
+}

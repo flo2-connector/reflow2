@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:b27b5a6eb72da123ca763a8dec6db682889db5c4e14bb3ed138cc5d7bb2c3090",
+  "node_id": "art:docker-image-release-notes-script",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "description": "A filter (notes on stdin, notes on stdout) that publish release runs before un-drafting. Everything outside the reflow2:container-image markers is kept verbatim, first; a re-run with the same digest is byte-identical and with a new one leaves one section naming it. Markers are matched with a trailing carriage return ignored; an unterminated section is refused rather than dropping the notes after it.",
+    "location": "docker/image-release-notes.sh",
+    "name": "docker/image-release-notes.sh — writes the image section, with the index digest, into a release's notes: appended, between markers, replaced on a re-run",
+    "status": "realized"
+  }
+}

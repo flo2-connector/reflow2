@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:a403951c2d5c201195fb2f02ccd50f0ef81ef9465a117371fc9f6f1f9fc33512",
+  "edge_type": "CHANGED",
+  "from_id": "chg:baseline-103ed5645f463462",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:built-right-review"
+}

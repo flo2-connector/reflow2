@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:f5a76d67276e8b618a243ccdd176c91fe03830b8e46e2f1c0cd753b5747a6ec5",
+  "node_id": "cap:the-loop-closure-reading",
+  "node_type": "Capability",
+  "properties": {
+    "description": "DesignGraph::loop_closure (crates/reflow2-core/src/loop_closure.rs) reads each live Verification's reconcile stamp and every status_mismatch DriftEvent, and classifies the design as nothing_to_close / never_closed / closed_without_a_failure / a_failure_came_back, with counts, the last dated comparison and one plain sentence. LoopStatus.loop_closure carries it; an unscoped loop_status adds a `next` line for never_closed AFTER `clean` is computed. The where-am-i skill reads it beside the delivery line. A check merely TYPED as failing is a claim and does not count as a failure that came back.",
+    "name": "loop_status carries the loop-closure reading — whether a real result ever came back — and says never_closed in next without counting it against clean",
+    "provenance": "authored",
+    "status": "realized"
+  }
+}

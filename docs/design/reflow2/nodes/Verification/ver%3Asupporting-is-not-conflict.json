@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:e15b8b9d7d774372e79837d89791994bcfb7a45b179be40041bb9af9a16696da",
+  "node_id": "ver:supporting-is-not-conflict",
+  "node_type": "Verification",
+  "properties": {
+    "kind": "verification",
+    "last_reconciled_at": "2026-09-23",
+    "last_reconciled_outcome": "passed",
+    "last_run_at": "2026-07-28",
+    "level": "unit",
+    "method": "test",
+    "name": "A supporting CONTRADICTS edge produces no contradiction; an opposing one still does; and one with no alignment still does, so no design written before the fix changes behaviour (crates/reflow2-core/tests/contradiction_alignment.rs, 3 cases). MUTATION-CHECKED: removing the alignment check fails exactly the supporting case and leaves the two counterweights green — which is what proves the fix did not simply silence the detector.",
+    "status": "passing"
+  }
+}

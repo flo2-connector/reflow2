@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:a133ceb82ec283062e7650fa19442ff20d7503b3bf35937b53f83467cda7abe9",
+  "node_id": "chg:backlog-brainstorm-data-model-constraint",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "scope_change",
+    "name": "The backlog brainstorm gains the measured data-model constraint: free text is unlimited but only 52 properties are indexed, so prose in a node is grep by another name"
+  }
+}

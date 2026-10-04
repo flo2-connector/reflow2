@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:df44d593d9de76e95884fd82849652c145e921d5df293c77f7c5d9eb38f9b01f",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:the-builds-toolchain-is-pinned",
+  "properties": {},
+  "to_id": "req:the-builds-toolchain-is-pinned"
+}

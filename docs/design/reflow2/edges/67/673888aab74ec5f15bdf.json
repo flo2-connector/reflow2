@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:f2f153d1eac3253362e659c9b0db57a089c0004bc0d83ee270d16a2c9cfc7dee",
+  "edge_type": "GOVERNED_BY",
+  "from_id": "req:an-export-says-which-tree-it-was-taken-in",
+  "properties": {
+    "note": "The requirement is the decision's shape made into intent: the coordinate on the export rather than on nodes, kept while unchanged, read by the gate for the one case that is a defect. Re-opening the decision re-opens the requirement."
+  },
+  "to_id": "dec:idea-should-a-node-carry-its-git-coordinate"
+}

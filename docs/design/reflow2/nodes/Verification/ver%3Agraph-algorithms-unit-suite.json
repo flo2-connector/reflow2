@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:dc8f1f407f02da351ea36d08ebb3a590d3d63bd6cd3976b1452243aef80a4603",
+  "node_id": "ver:graph-algorithms-unit-suite",
+  "node_type": "Verification",
+  "properties": {
+    "description": "The 47 `#[test]` cases carried inside `crates/reflow2-core/src/graphalg/`, run by `cargo test -p reflow2-core --lib graphalg` and by both CI jobs. Distribution: communities 10, graph 9, betweenness 7, cuts 6, cycles 5, components 5, scc 5.\n\n⚠️ THIS IS A `partial` CHECK AND THE MISSING HALF IS NAMED ON PURPOSE. The capability claims \"reflow2 OWNS the graph theory it analyses designs with\". These tests were ABSORBED WITH THE CODE — they are upstream's, and they verify the ALGORITHMS ARE CORRECT IN ISOLATION. That is a weaker statement than the capability makes, in three specific ways:\n\n① **Nothing tests that the absorption preserved behaviour.** The risk peculiar to reflow2 is not whether Tarjan is right — it is whether the move changed anything. `cap:certify-restructuring` exists for exactly this question and was not run against it.\n\n② **`paths.rs` and `error.rs` carry ZERO tests**, and `paths` appears in no reflow2 call site at all — it is likely among the eight `#![allow(dead_code)]` items Anthony deferred trimming on 2026-08-24. A file nothing calls and nothing tests is not covered by this check in either sense.\n\n③ **The tests exercise the algorithms directly, not reflow2's consumption of them.** The consumed surface is EIGHT entry points — `Graph`, `GraphBuilder`, `betweenness_centrality`, `connected_components`, `cut_structure`, `find_cycle`, `leiden`, `strongly_connected_components` — reached from three call sites (`structure.rs`, `allocate.rs`, `flow.rs`). Those three carry their own passing checks (`cap:heal`, `cap:allocate`, `cap:model-process`), so the algorithms ARE exercised end to end — but by checks that verify the DETECTORS, and which would keep passing if a detector were correct for the wrong reason.\n\n⭐ WHY IT IS RECORDED ANYWAY RATHER THAN LEFT OPEN. `unverified_capability` fired because no Verification node existed, not because nothing had been checked — a RECORDING gap, not a coverage hole. Writing a new test purely to satisfy a recording gap would be the tail wagging the dog. What this node must not become is a green light read as covering ①–③; the honest close of those is a test that runs the three consumers over a known design graph and asserts the structural answers.",
+    "findings": "`cargo test -p reflow2-core --lib graphalg` on 2026-08-26: **47 passed, 0 failed, 0 ignored** (154 filtered out). Run against the v0.40.0 tree at d68bb88.\n\nWHAT THE RUN DID NOT COVER, restated so a reader of the status alone meets it: `paths.rs` and `error.rs` contributed 0 of the 47; no case compares pre- against post-absorption behaviour; and no case enters through the eight entry points reflow2 actually consumes.",
+    "kind": "verification",
+    "last_run_at": "2026-08-26",
+    "level": "unit",
+    "method": "test",
+    "name": "The absorbed graph algorithms have 47 unit tests, inline in the module",
+    "status": "passing"
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "content_hash": "sha256:b882a7fc32528a60d82ee7401f85c806aa65ea6d5d6aafcaef1f122a5d781f72",
+  "node_id": "fact:compare-designs-has-no-reply-budget-2026-09-13",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "confidence": 0.95,
+    "fact_type": "defect",
+    "name": "compare_designs has no reply budget where detect_gaps and reviewed_gaps both do — diffing two 9-16 MB exports returns an unusable reply, and a user wrote a script instead",
+    "statement": "REPORTED 2026-09-13 by @ajs, met while working in flo2. Filed by them as friction.\n\ncompare_designs takes no budget_chars. detect_gaps and reviewed_gaps both do. Diffing two exports of 9-16 MB therefore returns a reply no client can use, and the user's response was to write their own script.\n\n⭐ THEIR OWN FRAMING, AND IT IS THE PART THAT MATTERS: \"the bounded form is what's missing, not the tool.\" The computation is right; only the reply is unusable. That distinction is what separates this from a feature request.\n\nTHIS IS A KNOWN CLASS, NOT A NEW ONE. fact:defect-graph-report-outgrows-its-own-reply-linearly records the same shape, and the bounding those two gap tools carry was added for exactly this reason — detect_gaps's own documentation says the failure it exists to stop \"is not a slow call, it is the CLIENT refusing the reply, at which point the session sees a wall of harness text and reflow2 never gets to suggest narrowing.\" compare_designs was not swept when the others were.\n\n🛑 THE SWEEP-SHAPED HAZARD, which is why the class link is drawn rather than left implied: fact:the-parallel-batch-class-recurred-because-only-its-instance-was-fixed records what happens when a class is fixed one instance at a time. Bounding compare_designs alone would repeat it. The honest fix asks which OTHER read tools return an unbounded reply, and answers that before touching this one.\n\nWHAT A REPLACEMENT COSTS THE USER MEANWHILE: a hand-written script, outside the design, that nothing can read or check — the same shape as a private translator kept outside the graph.",
+    "steps": [
+      "compare_designs"
+    ],
+    "subject_id": "cap:delta-reconcile",
+    "valid_from": "2026-09-13",
+    "value": "{\"missing_param\":\"budget_chars\",\"tools_that_have_it\":[\"detect_gaps\",\"reviewed_gaps\"],\"export_size_mb\":\"9-16\",\"user_workaround\":\"hand-written script\",\"reported_by\":\"@ajs\",\"class\":\"reply outgrows its own budget\"}"
+  }
+}

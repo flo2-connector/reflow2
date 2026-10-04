@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:a10e7bb507bc81cc125bb9be21bbe726f6ff90084a878744476ecf6544ebc4a1",
+  "node_id": "chg:accept-f61b0d48c2426ddf",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "refactor",
+    "detected_at": "2026-08-20",
+    "name": "`item_is_delivered` calls the new predicate instead of matching on verify's enum, so temporal no longer references crate::verify at all. The delivered/not-delivered answer is byte-identical; only the coupling is gone.",
+    "subject": "system"
+  }
+}

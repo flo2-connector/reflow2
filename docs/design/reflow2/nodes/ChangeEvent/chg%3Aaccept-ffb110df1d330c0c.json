@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:da5a98ac242b46a3db697ffa783f9a0d944200e7faf6e9743d017b31574c14e6",
+  "node_id": "chg:accept-ffb110df1d330c0c",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "test_failure_fix",
+    "detected_at": "2026-08-12",
+    "name": "SETUP.md aligned to the installer's corrected wording, 2026-08-12 (Alex's report). THE DESIGN HOLDS: \"registers reflow2 with your agent for every project on this machine\" became \"makes reflow2 globally available to your agent, in any project on this machine\", and the section heading with it. Documentation matching behaviour that did not change."
+  }
+}

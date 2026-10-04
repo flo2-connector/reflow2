@@ -1,0 +1,19 @@
+{
+  "content_hash": "sha256:bbce8641d9e66700a9788cf8ac8aa74dd6ad6981d0471ffab464b784b48e4f86",
+  "node_id": "fact:defect-the-wall-check-claims-any-project-and-ships-only-in-the-dev-repo",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "confidence": 0.95,
+    "fact_type": "defect",
+    "name": "DEFECT: the wall check is recorded as working \"on any project, with no configuration\" and \"a reflow2 user gets this the moment they have registered artifacts\" — but it is a script under tools/ in this repo, the consumer kit does not ship it, and find_tools cannot return it; a consumer re-wrote it by hand 25 days after it was built",
+    "statement": "MEASURED 2026-09-14. .github/workflows/release.yml packages the consumer kit as `tools/reflow2_init.py`, `tools/reflow2_install.py` (line 106 — a correction to the first version of this record, which said the kit carried only reflow2_init.py and getting-started/; the consumer-reach gate written the same afternoon caught the omission by flagging the installer as unreachable, so the gate now reads the shipped set off release.yml itself) and `getting-started/`. tools/wall_check.py is not among them. reflow2_init.py installs skills and the MCP config and, by design, \"never a src/ layout or build file\". find_tools searches the SERVED surface (181 entries); asked the user-phrased question the capability answers — \"does my declared decomposition match the real coupling\" — it returns evaluate_allocation, detect_defects, realizes and seam_coverage, none of which reads source.\n\nTHE CLAIM ON THE RECORD: this capability's description says \"a reflow2 user gets this the moment they have registered artifacts, which link-artifacts already asks them to do\" and was \"GENERALISED 2026-08-21 (PROPOSAL 3, Anthony's word) from a reflow2-only script into something that works on whatever project a design describes.\" The generalisation was of the CODE — it reads any design's Artifact locations — not of the DELIVERY. A reflow2 user who installed from the kit has no such file and no served tool that names it.\n\nTHE CONSEQUENCE, observed: an agent on a work project (fact:a-work-project-hand-rolled-four-analyses…) wrote the import-boundary walk by hand on 2026-09-14 and diagnosed it \"unknown\". That is the identical hand-rolled script that this capability was BUILT FROM on 2026-08-20 — the same question, answered by hand a second time, on a second project, after the answer existed. The three-leg rule, one more time: the code exists; no instruction and no served entry points a consumer at it; nothing notices a consumer doing it by hand except the consumer.\n\nTHE ROOT CAUSE was walked the same day (fact:root-cause-the-wall-check-was-generalised-in-code-and-never-in-reach-and-the-checkout-cannot-feel-it): the kit is a symptom; the cause is the three consumer legs — served, named, gated — all absent, on a checkout that cannot feel their absence. FIXED by serving the script from the binary as the `wall_check` tool, naming it in check-health and adopt, and the consumer-reach gate.",
+    "steps": [
+      "find_tools",
+      "report_manual_work"
+    ],
+    "subject_id": "cap:a-declared-wall-is-checked-against-the-coupling-it-contains",
+    "valid_from": "2026-09-14",
+    "value": "{\"kit_contents\":[\"tools/reflow2_init.py\",\"tools/reflow2_install.py\",\"getting-started/\"],\"wall_check_in_kit\":false,\"served_as_mcp_tool_before\":false,\"find_tools_returned_it_before\":false,\"days_between_build_and_hand_rewrite_elsewhere\":25,\"first_version_understated_the_kit\":true}"
+  }
+}

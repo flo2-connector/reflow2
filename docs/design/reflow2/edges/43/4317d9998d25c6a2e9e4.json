@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:841ce72effa10a5abe5cd8a838d92e75147cdc5667c4fec08a2abefc8fc322c2",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-field-evidence-is-a-prioritisation-input",
+  "properties": {
+    "note": "Weighting field evidence by SOURCE INDEPENDENCE is the honest version of the prioritisation idea, and it is impossible while every source is the same two related households. Whether evidence ARRIVES from anyone outside that circle is upstream of whether it should move a priority.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "dec:idea-feedback-collection-is-asked-once-and-recorded"
+}

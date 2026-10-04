@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:024bc428b36c07bbb7e7ec0a0aa38460ac4f47bcceae8e99be4901cbecd333d5",
+  "edge_type": "CHANGED",
+  "from_id": "chg:arrival-delta-built",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:temporal"
+}

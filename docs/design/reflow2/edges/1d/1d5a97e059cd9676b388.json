@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:23a06de79d4e51fdab55452a9ac886a9fa70b97817d9081f01ef8ed933274299",
+  "edge_type": "PROVIDES",
+  "from_id": "cmp:sanitize",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "ifc:ingress-trust-boundary"
+}

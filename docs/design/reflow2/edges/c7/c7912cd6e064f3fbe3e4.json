@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:a842552d4bd394608de9d64586b75c5a3f9be0cd4cb74c41d939f5f79e7a4c09",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-owner-rules-on-scope-and-reachability",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "dec:a-black-box-needs-three-edges-not-one"
+}

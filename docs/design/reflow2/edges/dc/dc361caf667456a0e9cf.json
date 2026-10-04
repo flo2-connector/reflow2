@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:b4e14b5921c41ef5a6973660216f848454fc137d2a5687fee1adbca02910d4e3",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-saved-design-moves-to-the-item-layout-2026-10-03",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:dc88dfbc4e1aacbc"
+  },
+  "to_id": "art:sanitize"
+}

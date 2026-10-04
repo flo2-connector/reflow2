@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:3319c9d0e2cbc1e16a5037d689de520a6aa78d5145dbe5f5a8cb7ba03fb56a68",
+  "node_id": "chg:accept-c08ff09348fbbe16",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "refactor",
+    "name": "cargo fmt only",
+    "subject": "system"
+  }
+}

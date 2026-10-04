@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:97ae14120f249616338a244d9a1032f769333a4988572567a53e3d95d251967b",
+  "edge_type": "INVALIDATES",
+  "from_id": "chg:the-confusability-replica-ranks-as-find-tools-does-2026-10-03",
+  "properties": {
+    "at": "2026-10-03",
+    "note": "The replica strips the list-time additions and agrees 193/193 at top 1 with the live ranker; --validate runs in CI."
+  },
+  "to_id": "fact:the-confusability-replica-ranks-a-bulk-door-sentence-find-tools-never-sees-2026-10-03"
+}

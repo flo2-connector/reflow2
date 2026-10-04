@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:b12ecae74f141680324568738812efec8263c3a334a274ad35f5edae03bcd38e",
+  "edge_type": "CHANGED",
+  "from_id": "chg:storyflow-second-field-report-20260808",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "dec:idea-a-capability-declares-its-input-path"
+}

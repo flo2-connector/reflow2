@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:19c43ab48a7a51d69560ad49fb076a986b6d1367ca16f280f9fe88ff4c4ffb25",
+  "edge_type": "ANTICIPATES",
+  "from_id": "fact:an-out-of-tree-artifact-registration-passed-locally-as-unmeasurable-and-failed-ci-as-missing",
+  "properties": {
+    "evidence": "That measurement is the out-of-tree case in miniature, which separation turns into the normal case."
+  },
+  "to_id": "dec:idea-a-design-apart-from-its-code-knows-where-its-implementation-is"
+}

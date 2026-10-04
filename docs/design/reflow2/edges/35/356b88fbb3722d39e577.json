@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:1020db5ce11267c5924f9a519b1d83b378bc8761c7420aca7bb11abe421f26c1",
+  "edge_type": "SCHEDULED_FOR",
+  "from_id": "cap:a-budget-declares-sum-or-path-and-its-verdict-follows",
+  "properties": {
+    "modality": "expected",
+    "recorded_at": "2026-09-29"
+  },
+  "to_id": "epoch:fix-what-the-two-agent-exercise-found-2026-09-29"
+}

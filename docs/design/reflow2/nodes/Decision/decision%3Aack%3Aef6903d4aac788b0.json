@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:8bbc93b5e326e8841df317260a9b252cbaad08bf4fd9b3e3963761a1d8f2e0e4",
+  "node_id": "decision:ack:ef6903d4aac788b0",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Accepted the gap gap:ef6903d4aac788b0.",
+    "name": "Reviewed: gap:ef6903d4aac788b0",
+    "rationale": "Checked 2026-09-07: still open. The enforced-rule detector silences on a passing verification, which reads only the check's status and never the edge's pinned or swept scope; the evidence report remains the only reader of those.",
+    "status": "accepted"
+  }
+}

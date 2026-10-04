@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:b3cab0e4a44115d1a913df44a723161e16715d4e795b3560a750abc6bc484750",
+  "edge_type": "VERIFIES",
+  "from_id": "ver:a-read-only-server-with-no-store-serves-the-latent-surface",
+  "properties": {},
+  "to_id": "cap:shared-sessions"
+}

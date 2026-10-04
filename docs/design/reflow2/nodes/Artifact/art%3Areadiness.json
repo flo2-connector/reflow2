@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:a9cd90319de4b1862dda65127882f783d85d888628cd9bcca0c158fadd1b43bd",
+  "node_id": "art:readiness",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "granularity": "atomic",
+    "last_confirmed_at": "2026-08-02",
+    "location": "crates/reflow2-core/src/readiness.rs",
+    "name": "readiness.rs",
+    "status": "realized",
+    "volatility": "stable"
+  }
+}

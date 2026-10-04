@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:cf358585f69a505a0c3a3428823f20ac34334660315cc324e7c38c19cd1379bd",
+  "node_id": "frag:art:enforced-rule-detector-test",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered enforced_rule_needs_a_detector.rs"
+  }
+}

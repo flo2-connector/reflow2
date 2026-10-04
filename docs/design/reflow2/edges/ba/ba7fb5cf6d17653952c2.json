@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:98e86889fbf6c372251930680c9cc853ea9c7dbb53a96eba13f41ee19cc8b4b0",
+  "edge_type": "CHANGED",
+  "from_id": "chg:an-unplaced-sentence-has-a-home-and-the-instructions-say-to-search-first",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:schema-build"
+}

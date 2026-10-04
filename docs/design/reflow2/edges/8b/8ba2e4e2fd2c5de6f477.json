@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:e4b799c348c0c689aa61ddcd439ac53f03e0e554b078b565c241ad2c34f9f01f",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:plan-increments",
+  "properties": {},
+  "to_id": "req:epochs-can-be-planned"
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:ad5872165f9768f95ace67c689fd6a3b88dbbbd61f654f988851381123c7a44c",
+  "node_id": "rule:never-a-bare-cargo-clean-on-the-dev-box",
+  "node_type": "DesignRule",
+  "properties": {
+    "category": "convention",
+    "enforced": false,
+    "name": "Never a bare `cargo clean` on the dev box — scope the clean, or lose the 34-minute RocksDB C++ build",
+    "statement": "A bare `cargo clean` destroys the librocksdb-sys C++ build cache, and the next build is ~34 minutes cold instead of ~50 seconds warm (release rebuild ~7.5 min via tools/reflow2-rebuild.sh). The target directory regrows by roughly 250 GB per day of building and does need clearing, so the rule is HOW, not whether: `rm -rf target/{debug,release}/incremental`, then `cargo clean -p reflow2-core -p reflow2-mcp` — the project's own crates only. Measured 2026-09-12 (a scoped clean took disk from 99% to 37% with the RocksDB cache kept). Wrap heavy cargo runs in `systemd-run --user --scope -p MemoryMax=6G` (the box's OOM note). Advisory: nothing can gate a shell command, so this lives where any agent on the box reads it. Moved here from an agent's machine-local memory file on 2026-09-12 (rule:a-rule-the-project-follows-lives-in-the-graph-not-in-an-agents-memory)."
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:cd7d8d7f8f1acdbff38f3286f15161bdbc2ff6e7576abd5522d273ce7b23e985",
+  "node_id": "frag:art:read-only-client",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered read_only_client.rs — a --read-only CLIENT screens every line before it is sent"
+  }
+}

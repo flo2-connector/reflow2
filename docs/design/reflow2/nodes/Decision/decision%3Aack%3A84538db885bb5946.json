@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:4bbb94e694b9942d82a88a483986a5c96ff70e04e6a9afded371945fe69cb4e0",
+  "node_id": "decision:ack:84538db885bb5946",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Accepted the gap gap:84538db885bb5946.",
+    "name": "Reviewed: gap:84538db885bb5946",
+    "rationale": "Deferred on Anthony's word, 2026-07-28 — but flagged as the item most deserving to be UNparked first, because it contradicts a founding requirement (req:intent-preserved, the past is never overwritten) and does so SILENTLY: record_change reported success both times and the design's own history lost a version with no warning. Deferred rather than patched because the fix is a genuine three-way choice, not an oversight: snapshot identity per REVISION (include the ChangeEvent id — truest to the founding rule, but HAS_SNAPSHOT becomes one-to-many and \"the snapshot for this epoch\" stops being a single thing readers can assume); REFUSE a second record_change in one epoch (cheap and loud, but epochs bound a round of WORK not a single edit, so it pushes an unrelated concern onto the caller); or keep one snapshot per epoch DELIBERATELY as the state at epoch start, making the second call a no-op (preserves the original, loses the intermediate, and needs semantics written down that are currently only implied). Each changes what a reader may assume, so it is a vocabulary-shaped call. What is NOT open: the silence. If a revision cannot be snapshotted without discarding an earlier one, the call must say so — that part needs no decision.",
+    "status": "superseded"
+  }
+}

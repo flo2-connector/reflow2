@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:ce851a691730d9f40f980fad839eb19bf122ad0c37299ac3d9e16077d4fc7059",
+  "edge_type": "VERIFIES",
+  "from_id": "ver:every-client-mode-honours-read-only",
+  "properties": {},
+  "to_id": "cap:a-local-client-reaches-a-remote-server"
+}

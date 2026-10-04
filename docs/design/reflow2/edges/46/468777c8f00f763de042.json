@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:53f8b7a7051f2fa0539330aec76d4251b7bab970a1b6c76b2f17713da0ec1644",
+  "edge_type": "CHANGED",
+  "from_id": "chg:rules-can-be-verified-20260808",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "dec:does-enforced-default-to-gate-blocking"
+}

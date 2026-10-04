@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:7d4d6ad4eabbdd4f2455262f40eba1c944cbec6b9dbb78dcee229db9943fef2f",
+  "edge_type": "HAS_SNAPSHOT",
+  "from_id": "cap:edges-are-selected-by-their-declared-reading",
+  "properties": {},
+  "to_id": "snap:epoch:preserved-on-write:cap:edges-are-selected-by-their-declared-reading:r3"
+}

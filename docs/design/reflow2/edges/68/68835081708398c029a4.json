@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:7c6e25ec329661eaca3dded75e0fcd0f24b2a2213320c9c4ffcc1cb953bdad09",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-an-operating-project-ranks-incidents-failing-checks-and-safety-above-design-completeness-gaps",
+  "properties": {
+    "evidence": "The operations-mode half (option a) is worth building only if the umbrella lands on taking operations in. The urgency mark, the gap-kind ruling and the session view (b, c, d) do not depend on it.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "dec:idea-reflow2-serves-a-design-in-operations-where-incidents-feed-the-design"
+}

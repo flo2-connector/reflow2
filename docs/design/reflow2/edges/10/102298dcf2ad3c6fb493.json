@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:9595401e311106d0b3d6439267dfe9d0aa296709c5ef078b0b10a7357e22d3f2",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:reflow2-declares-its-derived-relations-and-serves-a-read-that-runs-them",
+  "properties": {
+    "approved_at": "2026-09-29",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

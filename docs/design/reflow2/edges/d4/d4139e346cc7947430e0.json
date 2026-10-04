@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:305c4410fbbd8412d7dc8037e0445ecc477d7698eba53e3cd6ce27fe51fe03b0",
+  "edge_type": "CHANGED",
+  "from_id": "chg:link-projects-skill-served",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "req:linking-two-projects-is-a-served-process"
+}

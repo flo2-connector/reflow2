@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:3e7f574ca1abc85492310adb030b9fc20bb993eecee3f82c3d1b4a0530136dbd",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0601",
+  "properties": {
+    "as_checksum": "sha256:4153e2b121b9d7c82e33bca52d8f9111465f6537d0ebcc5d6e8ccbecaf383232"
+  },
+  "to_id": "art:report-roll-withheld-test"
+}

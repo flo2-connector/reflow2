@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:d461d6807c7e9659624f2d96d7833aebf4e72bf6d9165f2daa991e075ea70c25",
+  "node_id": "chg:content-surface",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "name": "content_put / content_get / content_exists — the store becomes reachable from a session"
+  }
+}

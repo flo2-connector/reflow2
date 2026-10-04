@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:50d1cdbbdda20ec087101c00b764e2a3a2ee017907dac1cb7fb7ba74fa60c3b1",
+  "node_id": "art:preserve",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "granularity": "atomic",
+    "location": "crates/reflow2-core/src/preserve.rs",
+    "name": "preserve.rs",
+    "status": "realized",
+    "volatility": "stable"
+  }
+}

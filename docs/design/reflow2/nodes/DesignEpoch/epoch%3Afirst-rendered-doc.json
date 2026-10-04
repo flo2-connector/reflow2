@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:073b6e3a8f9ebc2c45a47c7c32ea206c7d57d6d6c3a23173270f1214a7ca0de5",
+  "node_id": "epoch:first-rendered-doc",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "epoch_type": "revision",
+    "name": "The first outward-facing doc rendered from the graph instead of hand-written",
+    "sequence": 318,
+    "status": "arrived"
+  }
+}

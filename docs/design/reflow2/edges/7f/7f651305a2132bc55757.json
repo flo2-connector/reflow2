@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:ef5f97f9f90c53a6b9bd5c6d6f38b6a438499fd7ff7a32625fab4dab11048327",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:an-undeclared-coupling-is-named-not-just-counted",
+  "properties": {
+    "approved_at": "2026-08-30T00:00:00Z",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

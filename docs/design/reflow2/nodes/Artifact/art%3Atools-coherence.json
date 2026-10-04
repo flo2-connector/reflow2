@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:91982bd6a61c363b6d1f7633665f129108cc1d5281b5c5a9f172e91645f97940",
+  "node_id": "art:tools-coherence",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "granularity": "atomic",
+    "location": "crates/reflow2-mcp/src/tools/coherence.rs",
+    "name": "tools/coherence.rs",
+    "status": "realized",
+    "volatility": "stable"
+  }
+}

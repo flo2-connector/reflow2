@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:68da85c176bb62c1d679499522cea6f01770c2ff5aa7537e2b185cf989b0fe6d",
+  "node_id": "chg:a-design-says-which-vocabulary-it-has-never-used",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "name": "vocabulary_coverage ships in the shape a two-arm trial chose",
+    "subject": "system"
+  }
+}

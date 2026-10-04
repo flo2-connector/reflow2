@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:dd357f7fa7c7590a0fdd48fe0eea670829a1cffaa4ceb366b11a74d673c92437",
+  "node_id": "fact:three-consumer-projects-on-the-dev-box-carry-no-pointer-file-and-no-hook-because-init-never-ran-the-user-scope-route-bypasses-it",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "observation",
+    "name": "MEASURED 2026-09-19: flo2, SeattleArch and bhome hold neither the pointer AGENTS.md nor a REFLOW2.md sidecar, none carries the kit stamp, only flo2 has the session hook and only bhome an .mcp.json — reflow2_init never ran in any of them; they reach reflow2 through the user-scope registration, which installs nothing",
+    "source": "Anthony's question 2026-09-19 ('did we get away from AGENTS.md being put in each project repo?'), checked on the dev box",
+    "statement": "Since 2026-07-25 (req:thin-install) the ~20 KB working instructions are served by get_instructions and reflow2_init writes only a short stable pointer (POINTER.md as AGENTS.md, or REFLOW2.md when the project owns an AGENTS.md), the hooks and the MCP config. On this box none of the three consumer projects went through init: the user-scope registration in ~/.claude.json serves every directory without it. They work — the server's connect-time instructions say 'call get_instructions first' and the Seattle adopt did — but the SessionStart/Stop hooks fire only where settings.json exists (flo2), and req:a-repos-procedural-know-how-is-delivered-at-the-step-it-bears-on-and-the-design-knows-the-adapter-exists now expects each project's instruction file to exist and be registered (agent_instructions_unregistered fired on the Seattle design for exactly this). Not a defect of the pointer design; a gap between the two install routes: init writes the adapter, user-scope writes nothing.",
+    "subject_id": "cap:skills-served",
+    "valid_from": "2026-09-19"
+  }
+}

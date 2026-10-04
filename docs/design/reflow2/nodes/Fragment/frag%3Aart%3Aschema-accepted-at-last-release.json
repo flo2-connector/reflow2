@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:946daa169dc7a7d7765b23674b9720b845ed490b06950cf76272ffc5e05caa30",
+  "node_id": "frag:art:schema-accepted-at-last-release",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered accepted-at-last-release.json — what the last release's schema accepted"
+  }
+}

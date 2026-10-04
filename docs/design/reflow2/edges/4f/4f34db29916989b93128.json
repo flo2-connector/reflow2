@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:bb317c4d5d94b828b54e91adf1a61a6070dbac26d400a5289e5de59163d314e3",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:reflow2s-kit-is-packaged-to-the-agent-plugins-specification",
+  "properties": {
+    "approved_at": "2026-09-28",
+    "authored_at": "2026-09-28",
+    "roles": [
+      "author",
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

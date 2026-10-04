@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:1f9805fffa8d89fa68effe924b8c761dffb61f609df8e59a9b6de50097840e36",
+  "node_id": "ver:propagate",
+  "node_type": "Verification",
+  "properties": {
+    "kind": "verification",
+    "level": "integration",
+    "method": "test",
+    "name": "propagate.rs",
+    "status": "passing"
+  }
+}

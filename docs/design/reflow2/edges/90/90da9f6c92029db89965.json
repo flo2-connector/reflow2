@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:5f563781e049017bf7000d60a9b12aa6f5379407baa4d84116593c2a5dd0b519",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "rule:fix-it-properly-while-it-is-still-cheap",
+  "properties": {
+    "authored_at": "2026-08-17",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

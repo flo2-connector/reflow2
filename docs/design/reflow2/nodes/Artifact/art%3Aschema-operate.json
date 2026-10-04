@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:6867f933231c57af7f4df1dd2c943d6d8cb92614da489350add9050b3656a4f0",
+  "node_id": "art:schema-operate",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "spec",
+    "granularity": "atomic",
+    "last_confirmed_at": "2026-08-02",
+    "location": "schema/operate.yaml",
+    "name": "operate.yaml",
+    "status": "realized",
+    "volatility": "stable"
+  }
+}

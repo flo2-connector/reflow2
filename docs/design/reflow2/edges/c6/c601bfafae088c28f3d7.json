@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:8eddc254b912e2a12f849f86ab93c0e99c00dd54f8609c2cd1a2bcbf02723df2",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "req:the-same-thing-held-in-reflow2-and-another-graph-is-linked-as-the-same",
+  "properties": {
+    "evidence": "An identity link into another design is only followable once linking two projects is a served process; this requirement says what every such link must carry.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "req:linking-two-projects-is-a-served-process"
+}

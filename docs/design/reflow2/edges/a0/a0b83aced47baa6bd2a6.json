@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:ef30dd39a5d9d7acfaaac1787465e17df83b27531a1e40df67e08dbd721ce1eb",
+  "edge_type": "CAUSES",
+  "from_id": "fact:find-tools-misses-split-into-a-vocabulary-gap-no-ranking-can-close-and-a-scorer-that-lets-long-descriptions-crowd",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "That finding located the scorer half of the misses in three one-line shapes in score_tool/term_weights (substring match, stopwords weighted, no length normalisation) and bounded it by ablation. This change is the repair of exactly those three, and is measured against the same 180-query corpus: 53 misses to 42 with no tool regressing. It does NOT repair the finding's other half, the 12 zero-overlap misses, which stay open on the decision.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "chg:find-tools-matches-whole-words-zero-weights-universal-terms-and-normalises-for-length"
+}

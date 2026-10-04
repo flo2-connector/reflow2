@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:ebd58bbe9c6e96b8d4264008457a2cd0e50fb299a109e035af2a73a7545ca4bd",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-refusal-names-its-own-fix-20260808",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:claims"
+}

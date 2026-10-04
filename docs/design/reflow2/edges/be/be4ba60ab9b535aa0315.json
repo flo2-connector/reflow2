@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:b503adf179b5173aac1b4147224e21a2ce84a20264ef89a4396add2b80af5819",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:distribution-debt-is-reported",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:report"
+}

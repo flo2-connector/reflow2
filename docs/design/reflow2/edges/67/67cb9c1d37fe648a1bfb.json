@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:bcf9f468e576e1eadf96c591bf45e382b61815e07ac8391c8ec037ed2b1720a4",
+  "edge_type": "HAS_TEMPORAL_FACT",
+  "from_id": "cap:release-publishes-a-container",
+  "properties": {},
+  "to_id": "fact:the-cut-verified-the-assets-and-never-the-image-2026-09-14"
+}

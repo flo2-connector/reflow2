@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:e866dfac20d124e2691031feadd46ba99b81a04fbc96432d584f6af48b3629a0",
+  "edge_type": "PROVIDES",
+  "from_id": "cmp:shared",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "ifc:a-session-declares-its-worktree"
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:316de7a40de5b8faa6f1fb507ac417098781a85a19738eb15921cdad2bd9a68b",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:a-design-can-be-served-ephemerally",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:service"
+}

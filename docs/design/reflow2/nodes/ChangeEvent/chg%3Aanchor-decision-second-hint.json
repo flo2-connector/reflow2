@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:25b71cec45b2159679fe53edd1a9e06defb7b351839f503d9e4c02bc88fed9cc",
+  "node_id": "chg:anchor-decision-second-hint",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "refactor",
+    "name": "Amend dec:anchor-retire-or-implement: a SECOND schema hint points at the dead Anchor type"
+  }
+}

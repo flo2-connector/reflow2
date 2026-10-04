@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:484d6d35aeec2b279623b8a2d8c7601b64477f0934691b8071923c1c4d527fb4",
+  "node_id": "cap:a-design-can-be-served-ephemerally",
+  "node_type": "Capability",
+  "properties": {
+    "description": "`--ephemeral` serves a design that lives only in the process and is gone when it stops. Built to answer dec:idea-is-the-byte-backend-selectable-at-runtime, and shaped by it: named for what happens to the WORK rather than for which engine is underneath, because reflow2's premise is that a design outlives the session and a neutral `--backend memory` would frame durability as a preference.\n\nREFUSES, rather than warns, alongside --graph-path, --registry-root, --shared and --serve-shared — each names a design on disk and the combination is likelier a mistake than an intention. --graph-path is detected from the ARGUMENTS, because a parsed value cannot tell a user's choice from clap's default.\n\nSAYS SO IN THE HANDSHAKE, FIRST, because an agent connecting over HTTP never sees the operator's stderr. The condition is `graph_path: None` — the same fact as \"no directory backs this\" rather than a second flag that could drift — and it survives `share()`, so every per-session service carries it.\n\n--export-to still works, so a scratch design can be written through to a file after all.",
+    "name": "A design can be served in memory only, labelled as scratch, and every flag that names a design on disk is refused alongside it",
+    "provenance": "authored",
+    "status": "realized"
+  }
+}

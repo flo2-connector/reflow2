@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:c3b9b5a6e1d1059970a0e9c2c8ab4ea8c441e95fafdca5c47485ffb8d64d3251",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:restructuring-is-certified",
+  "properties": {
+    "authored_at": "2026-08-02",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

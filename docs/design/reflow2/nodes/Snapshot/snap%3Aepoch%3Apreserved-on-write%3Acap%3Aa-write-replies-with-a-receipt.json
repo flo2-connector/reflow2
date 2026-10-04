@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:f514410a8f8ec102bec27cb3861c250db54534abf9a1f8145b4c5285ffdb3b65",
+  "node_id": "snap:epoch:preserved-on-write:cap:a-write-replies-with-a-receipt",
+  "node_type": "Snapshot",
+  "properties": {
+    "edges": "[{\"direction\":\"in\",\"edge_type\":\"CLAIMS\",\"other_type\":\"Contributor\",\"other_id\":\"who:claude-code\",\"properties\":{\"claimed_at\":\"2026-09-29\",\"depth\":1,\"note\":\"R-E (dev_reflow2 hub fix program): write replies become receipts, shaped at call_tool; branch feat/a-write-replies-with-a-receipt.\",\"seat\":\"asligar-bitecool:410383:d500b68f\"}},{\"direction\":\"out\",\"edge_type\":\"ALLOCATED_TO\",\"other_type\":\"Component\",\"other_id\":\"cmp:dto\",\"properties\":{\"weight_basis\":\"estimated\"}},{\"direction\":\"out\",\"edge_type\":\"SATISFIES\",\"other_type\":\"Requirement\",\"other_id\":\"req:a-write-replies-with-a-receipt-not-the-whole-node\",\"properties\":{}},{\"direction\":\"out\",\"edge_type\":\"SCHEDULED_FOR\",\"other_type\":\"DesignEpoch\",\"other_id\":\"epoch:fix-what-the-two-agent-exercise-found-2026-09-29\",\"properties\":{\"modality\":\"expected\",\"recorded_at\":\"2026-09-29\"}}]",
+    "state": "{\"description\":\"One shared receipt shape for every write. It carries the id, which fields changed (characters before and after), every edge drawn as a subject-first sentence, and every warning and removal report. replace_text stops echoing the prior field in full; the prior text stays available from the preserved snapshot. Planned by the 2026-09-29 fix program.\",\"name\":\"Write tools reply with a receipt (id, fields changed with sizes, edges drawn as sentences, every warning and removal report), not the whole stored node\",\"provenance\":\"authored\",\"status\":\"planned\"}",
+    "target_id": "cap:a-write-replies-with-a-receipt",
+    "target_type": "Capability"
+  }
+}

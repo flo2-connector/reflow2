@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:3080cf52778922bbacb39c2bcdd2951bf6b745405b03390d3b4990311ece7a0a",
+  "node_id": "ver:shared-sessions",
+  "node_type": "Verification",
+  "properties": {
+    "description": "Against a real server over real HTTP: two sessions get distinct MCP sessions, a write by one is visible to the other immediately with no export or merge, their claims carry DIFFERENT seats (the bug that would have been silent — seats were minted per process), four concurrent readers all finish, and the served kit reaches an HTTP client exactly as it reaches a stdio one (tools/test_shared_sessions.py, 4 cases)",
+    "kind": "verification",
+    "last_reconciled_at": "2026-09-23",
+    "last_reconciled_outcome": "passed",
+    "level": "unit",
+    "method": "test",
+    "name": "Two sessions share one design over real HTTP, with seats that differ",
+    "status": "passing"
+  }
+}

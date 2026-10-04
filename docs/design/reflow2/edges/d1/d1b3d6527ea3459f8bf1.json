@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:b3a0bf06d855f6c56a4b84cc0d9132b32cc30d5663078a3ec3fee54e526e2fb7",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:triage-feedback-is-a-served-step-and-the-feedback-rules-are-delivered-on-it",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:skills"
+}

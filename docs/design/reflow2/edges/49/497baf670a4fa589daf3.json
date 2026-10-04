@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:ae3130324f15f41133582b880a8a3439fe20dfe469b6ae45f80c33ec1818d071",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0510",
+  "properties": {
+    "as_checksum": "sha256:b3b2bac1387c9c53"
+  },
+  "to_id": "art:surface-usage-instrument"
+}

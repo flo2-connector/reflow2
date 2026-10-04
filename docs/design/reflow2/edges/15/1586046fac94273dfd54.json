@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:282ffb695b3fb6608ca55a794125f98a92d6045a31be0bf450965b139e1e2d7e",
+  "edge_type": "INVALIDATES",
+  "from_id": "chg:a-reply-carries-its-payload-once-on-every-tool",
+  "properties": {
+    "at": "2026-09-21",
+    "note": "The DEFECT is fixed and shipped in v0.66.0: the private helper delegates to json_result, all six tools carry one payload, and tools/a_reply_is_sent_once.py asks the whole surface. NO valid_to, deliberately — the finding is PARTLY a dated measurement (64,120 bytes on the wire for 31,374 of payload, three handshake names) and that measurement stays true about 20 September forever. Closing it would erase evidence; this edge says what overtook it and leaves the numbers where they are."
+  },
+  "to_id": "fact:six-tools-still-send-the-payload-twice-because-the-reply-shape-is-pinned-by-instance-and-not-by-enumeration"
+}

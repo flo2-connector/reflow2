@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:746b8e3ff4701c21b2a126afbb3ff425ef5f5b34c81255a0b52aea2760088f5d",
+  "edge_type": "REALIZES",
+  "from_id": "art:test-surface-orphaned",
+  "properties": {
+    "completeness": "partial",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:publish-surface"
+}

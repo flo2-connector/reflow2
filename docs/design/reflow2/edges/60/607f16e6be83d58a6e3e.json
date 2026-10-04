@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:d856312bfc6fd2dc7af39fe6e08c7b40a6713ead29059529d03169d3a3ff4a54",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:claim-age-test",
+  "properties": {
+    "covers": "whole",
+    "note": "migrated 2026-09-22 from a REALIZES link_artifact drew in error"
+  },
+  "to_id": "ver:a-claim-reads-back-with-its-age"
+}

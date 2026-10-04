@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:8718d71d83ff92a50bc9e46f956c3c173d2a70a3b341f48f884e26117afa51c2",
+  "edge_type": "CHANGED",
+  "from_id": "chg:closure-is-one-computation-and-both-read-surfaces-use-it",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:search"
+}

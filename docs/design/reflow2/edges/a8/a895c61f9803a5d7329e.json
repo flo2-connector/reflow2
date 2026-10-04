@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:f4ecdd0da33f85548b5f7ec25f898a2603b2fe9afd1cc0a0672f95f893b44394",
+  "edge_type": "CHANGED",
+  "from_id": "chg:two-repair-rules-compute-the-condition-their-message-names",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:proposed-asserts-nothing-test"
+}

@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:eb5f4520e32b75830ea9b06a0137dd0ddae8890c0ffe1297145a7d5af397c3b9",
+  "node_id": "epoch:v0520-cut",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "description": "The increment that answered a field report by fixing its class. A user reported two fields their tools would not take; the root-cause pass found six constructors that could not say what the thing they made IS, and a reachability instrument that structurally could not see them. Ships: record_finding (the moment a cause is written becomes a tool call, and the tool demands the root-cause skill by name), the reachability instrument unfused and wired into CI as a regression gate, description on six constructors plus checksum on the epoch pair and priority on add_requirement, and the design-record work — Anthony's five rulings, the triage of all 46 overtaken defect records, and the field-feedback triage itself.",
+    "epoch_type": "release_cut",
+    "name": "v0.52.0 cut — the vocabulary the surface could not write",
+    "sequence": 399,
+    "status": "arrived"
+  }
+}

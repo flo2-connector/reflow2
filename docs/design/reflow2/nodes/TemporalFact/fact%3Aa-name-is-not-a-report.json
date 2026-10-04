@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:08d0de8aecf784903829d4fa308b14caafd278cc697dc042b83ea469466c8d99",
+  "node_id": "fact:a-name-is-not-a-report",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "confidence": 1.0,
+    "fact_type": "measurement",
+    "statement": "87 VERIFICATION NAMES HELD WHOLE REPORTS AND NOW HOLD NAMES. Moved verbatim into `description`; `findings` untouched. Longest name 654 words → 60. Distribution over all 199 checks: 173 at 0-25 words, 26 at 26-60, ZERO above 60. ⇒ `graph_report {include_verifications: true}` fell 165,207 → 55,520 bytes, which is the real payoff — the escape hatch the #305 digest points at was itself unreadable, so 'withheld but reachable' was only half true. The DEFAULT report is unchanged at 15,485; the names were never in it. || ⚠️ THE COUNT I FIRST GAVE WAS WRONG AND THE CORRECTION WAS THE WHOLE JUDGEMENT. I reported '113 names to fix' — but 113 is how many exceed the ROLLUP TRUNCATION threshold of 25 words, which is a DISPLAY limit, not a defect. The bottom of that band are real names that merely run long (`ver:merge-driver`, 29 words: 'Real git branches: disjoint edits merge with no human, a both-sides conflict leaves the path unmerged and names itself...'). The defect separates by STRUCTURE, not length: of the 26-40 word band 0 of 16 are multi-sentence, while of the 101-200 band 32 of 34 are, and every one of the 201-700 band is. Anthony chose the >60-word boundary: 87 rewritten, 26 dense-but-legitimate names left alone. ⇒ A THRESHOLD BORROWED FROM A RENDERER IS NOT A DEFINITION OF A DEFECT. || HOW IT WAS DONE SAFELY, and the method is the transferable part: the new names were AUTHORED (extracting a first clause yields another fragment, not a name), but the preserved text was COPIED BY SCRIPT from the committed export and never retyped, so corruption in transit was impossible by construction. Then verified: all 87 descriptions byte-identical to the original names, all 87 names as authored, and no property lost to the constructors' merge semantics. || WHAT THIS DOES NOT DO: it does not sort the originals into 'what the check IS' versus 'what a run FOUND'. Most of the 87 mix both. That split is 87 judgement calls and a wrong one writes narrative into an evidence field, so `findings` was left alone deliberately rather than filled in on a guess. || SOURCE: 2026-08-23, reflow2 0.38.0, driving the built binary over real stdio.",
+    "subject_id": "cmp:verify",
+    "valid_from": "2026-08-23"
+  }
+}

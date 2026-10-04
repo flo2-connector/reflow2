@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:ba9fff431f4ba96a7b272092855b45b3b38b3f4cded6333e9efbf949a21f87cb",
+  "node_id": "cap:relation-nodes-declare-their-participants-roles",
+  "node_type": "Capability",
+  "properties": {
+    "description": "Declares subject / object / conduit / witness (or the type's own roles) on each relation-standing node type — Interface, TemporalFact and the rest of the six — and carries the role in the declared reading of each edge or pointer from it, so the conduit PROVIDES ∘ CONSUMES⁻¹ through an Interface is a declared three-party relation.",
+    "name": "Node types that stand for a relationship declare their participants' roles, and each edge or pointer from them reads as the role it fills",
+    "provenance": "authored",
+    "status": "planned"
+  }
+}

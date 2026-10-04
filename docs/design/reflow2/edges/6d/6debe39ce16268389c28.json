@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:06a12b110f671b98e936ffb18317878bf3dfd8abad60183ca7b498c802992c0c",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:branch-facts-are-held-in-a-per-branch-overlay",
+  "properties": {},
+  "to_id": "req:implementation-facts-travel-with-the-branch-that-produced-them"
+}

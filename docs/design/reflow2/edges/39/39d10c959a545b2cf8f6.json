@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:f328e0782048c01c3d1283d0813dda28ff23951b57fd0e7a4cd6f85eef3ffd24",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:a-scoped-answer-says-whether-it-narrowed",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:scope"
+}

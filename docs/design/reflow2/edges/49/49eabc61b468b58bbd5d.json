@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:f7197eacb54bbb2cd0cd266e2e903c159fefe47cfe982340a0d7718256782d55",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-saved-design-moves-to-the-item-layout-2026-10-03",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:20b5cc250d0f5c51c503d464c21647d4058fed65f15a118a3ae59169d0c6cb0e",
+    "checksum_basis": "measured"
+  },
+  "to_id": "art:a-stored-twin-is-kept-by-the-store-test"
+}

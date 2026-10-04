@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:c6703d27dc70e9f0d17b03358f6b4b6819e29afd896f3245bc27c5ce074010a1",
+  "edge_type": "REALIZES",
+  "from_id": "art:regions-rs",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cmp:regions"
+}

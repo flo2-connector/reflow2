@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:39fcdff88dbada0a260778d335f497d3df2114a7a3bcd32b5a14c9f3aa091ec3",
+  "node_id": "chg:baseline-dc5be23c700ad7ed",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "baseline_established",
+    "detected_at": "2026-08-24",
+    "name": "First baseline. The file is unchanged since PR #321 shipped it — only the design's knowledge of it is new, which is why chg:the-repair-capability-gets-its-thread carries subject=record.",
+    "subject": "record"
+  }
+}

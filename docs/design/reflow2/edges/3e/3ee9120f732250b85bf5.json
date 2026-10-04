@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:be3c7a5e629455a2581c1109757e0a3788d3927864d347c2f9829bebb25be2da",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:claim-liveness",
+  "properties": {
+    "coverage": "partial",
+    "evidence": "The seat registry added on 2026-08-08 makes the count of attached sessions COMPUTABLE in the serving process (identity::attached_seat_count), which is the input this requirement needs. NOT COVERED: nothing yet reports it in a payload -- loop_status and graph_report still do not say how many seats are attached, nor label their rollups as graph-wide, which is what the requirement actually asks for. Recorded as partial so the remaining work stays visible rather than being closed by a capability that merely made it possible."
+  },
+  "to_id": "req:a-session-can-tell-it-is-not-alone"
+}

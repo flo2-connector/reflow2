@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:6918cb889d07b9169a61245b050bbed9fb0b7119f44d60089e1fdbdc9414bdd8",
+  "node_id": "ver:each-architecture-is-smoke-tested-before-any-push-and-only-a-two-platform-index-is-tagged",
+  "node_type": "Verification",
+  "properties": {
+    "description": "tools/test_release_workflow.py, run in the core CI job (hermetic: no network, no Docker). It reads release.yml and asserts: linux-arm64 is built natively on ubuntu-22.04-arm; the image job has one leg per architecture on its own runner, and docker/smoke.sh runs before the first login or push in the same job; each leg pushes by digest with the OCI labels; container image needs the image job and calls docker/publish-index.sh; publish needs container image, requires the arm64 asset, downloads no digest artifact into dist/, and writes the notes before --draft=false; every writing step and job carries `github.event_name == 'push' || inputs.dry_run == false`; the image text no longer says NO AUTHENTICATION and names --http-oidc-issuer, every flag and variable it names is declared in main.rs, and the ENTRYPOINT forwards \"$@\". It DRIVES docker/publish-index.sh against a stand-in registry (both platforms: one create, both tags, digest output; one missing, two of one platform, or a tag instead of a digest: refused with nothing tagged; a registry serving a different index after the push: caught by the read-back), docker/image-release-notes.sh (appended, idempotent, replaced on a new digest, CRLF-safe, an unterminated section refused), and tools/install.sh with a stand-in uname and gh (Linux aarch64 and arm64 fetch the linux-arm64 asset).",
+    "findings": "FAILING FIRST on a5be4dc (v0.76.0), 2026-10-01: 0 of 8. Passing on the branch: 8 of 8. Mutation-checked: ungating the push-by-digest step, rewriting the merge gate as `!inputs.dry_run`, removing publish-index.sh's pre-tag check, removing its read-back check, and dropping publish's need on container image each turn it red (7 of 8).\nDEMONSTRATED ON A THROWAWAY LOCAL REGISTRY (registry:2) with a docker-container builder, 2026-10-01: the branch Dockerfile wrapping the released v0.76.0 linux-x86_64 binary was built --load and passed docker/smoke.sh (both phases); it and a stand-in arm64 image (FROM scratch, built --platform linux/arm64 without QEMU) were pushed by digest with the workflow's own command; publish-index.sh made one index listing linux/amd64 and linux/arm64, tagged 0.0.0-r617 and latest at one digest, and the amd64 member pulled from that tag passed docker/smoke.sh. With the arm64 digest left out, or amd64 given twice, it refused before tagging: no new tag, :latest unchanged.\nNOT YET PROVEN, and only a dry run or the next tag can: the native arm64 build of the binary (RocksDB on ubuntu-22.04-arm), the REAL arm64 image starting under docker/smoke.sh on an arm runner, GHCR login and push by digest, and the notes edit on a real release. Rehearse the first two with: gh workflow run release.yml --ref feat/617-multi-arch-image-with-its-digest -f dry_run=true.",
+    "kind": "verification",
+    "last_run_at": "2026-10-01",
+    "level": "integration",
+    "location": "tools/test_release_workflow.py",
+    "method": "test",
+    "name": "Each architecture is smoke-tested before any push, and only a two-platform index is tagged",
+    "status": "passing"
+  }
+}

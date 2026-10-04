@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:84f323af176890e50c605c9d08975fda2f1a8e7509455b9e13691b8ae533e686",
+  "edge_type": "CHANGED",
+  "from_id": "chg:unallocated-component-reads-the-ruling",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:detect"
+}

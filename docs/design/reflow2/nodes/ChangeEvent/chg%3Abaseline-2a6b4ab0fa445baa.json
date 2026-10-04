@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:d39a33b356c0cb016023c838c7cedc3d2a88d8fdb3001d8f088c3f87718febed",
+  "node_id": "chg:baseline-2a6b4ab0fa445baa",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "baseline_established",
+    "detected_at": "2026-08-23",
+    "name": "First baseline. Excerpt of lines 6204-6725 of the dev_storyflow fleet's single append-only reflow2_feedback.md, verified as new by confirming the 2026-08-16 upload is a STRICT PREFIX of the 2026-08-23 one. A frozen dated field report: it is correct precisely by NOT tracking the design as it moves, which is why it is parked rather than left to read as an orphan.",
+    "subject": "record"
+  }
+}

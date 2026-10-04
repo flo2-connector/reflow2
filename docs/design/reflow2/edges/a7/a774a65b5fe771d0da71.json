@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:d8cc10f3079bc8c4c8e8cfdc4044b1fc5eb390cc191276680a4b7977ce0113a5",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-record-can-say-which-question-it-answered",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:vocabulary"
+}

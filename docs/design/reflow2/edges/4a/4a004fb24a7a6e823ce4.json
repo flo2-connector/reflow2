@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:7740f15a2c66f39c1f60c7905fc969ad6655bab2067c16057cf28d0280b5e19c",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:release-trigger",
+  "properties": {
+    "authored_at": "2026-07-31",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

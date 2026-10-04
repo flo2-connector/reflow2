@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:106957253b0f02c360646e19748e3eebcbb734c5eca4148b13b74f280189f504",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:test-ephemeral-says-so",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:test-ephemeral-says-so"
+}

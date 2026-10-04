@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:85a14298a189fd9aaf53da0872c292d9d966b40492c5e812211629ffa9eeb2ab",
+  "node_id": "frag:art:bearer",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered bearer.rs — the OAuth 2.0 resource server: bearer gate, JWT verification, key set, metadata"
+  }
+}

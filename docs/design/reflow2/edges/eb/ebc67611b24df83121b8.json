@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:3196784c4d06d7e5ab10b3bd39e3d4e8c31fcc966af8931af95e7972d80b4e6c",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:check-kit-manifest",
+  "properties": {
+    "covers": "whole",
+    "note": "migrated 2026-09-22 from a REALIZES link_artifact drew in error"
+  },
+  "to_id": "ver:kit-manifest-agrees"
+}

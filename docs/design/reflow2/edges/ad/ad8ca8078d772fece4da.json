@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:0d2b6ee32c209cfa9ff515289fcc86caff844cc0c96e507a09f0d789c59780c8",
+  "edge_type": "CHANGED",
+  "from_id": "chg:baseline-e0aa97eb03234ff6",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:test-nothing-asks-what-a-session-made-false"
+}

@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:76dbddb863c7d401cf5b33f87a5b1d25ee9407f6212df2743f8a8482dfb2b0b0",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:defects-are-temporal-facts",
+  "properties": {
+    "approved_at": "2026-08-06",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

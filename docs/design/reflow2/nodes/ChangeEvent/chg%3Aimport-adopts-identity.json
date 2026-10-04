@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:5aadf3024c23fe089bc86070c265610ce17402221184a22ac9c87aed8860c8c7",
+  "node_id": "chg:import-adopts-identity",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "test_failure_fix",
+    "name": "An empty store takes the name of the design it restores, so the round trip stays byte-identical"
+  }
+}

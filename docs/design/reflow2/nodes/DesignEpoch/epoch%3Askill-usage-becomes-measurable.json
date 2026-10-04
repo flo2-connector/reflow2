@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:937ea841be59ab903e211f933f8dda5b339269a2d6c2f69bc5997f65aa4f4f35",
+  "node_id": "epoch:skill-usage-becomes-measurable",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "epoch_type": "milestone",
+    "name": "Skill and tool usage becomes measurable — the uninteresting increment that has to come first, because everything after it is judged against a number nobody can currently see",
+    "sequence": 309,
+    "status": "planned"
+  }
+}

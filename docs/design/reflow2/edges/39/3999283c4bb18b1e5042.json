@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:51d82f20b6534b7b9eae0dbea4e87c50df8204775fe2e1510975b07fe196d0a7",
+  "edge_type": "CHANGED",
+  "from_id": "chg:reviewed-defects-built",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:heal"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:671057537ba1403d3fc6277cf08145db9fdc914ad7a33d747288d7f29df5b043",
+  "edge_type": "CHANGED",
+  "from_id": "chg:toml-fallback-reader",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cap:design-dependencies-declared"
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:412c2622d8fb2f42a25aa47f5e8cc1703d91f095b0b48766569afc0343d86097",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0710",
+  "properties": {
+    "as_checksum": "sha256:24c201e5e508bd2f5ed6f8a96a71100e380f9b30eb9692616ff1565b0c374e66"
+  },
+  "to_id": "art:scheduling-a-question-test"
+}

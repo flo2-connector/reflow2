@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:b58adc8a1f100f4d47000df25faa8ee0eab44b65283bd6601a2f806d194d5abb",
+  "node_id": "req:version-combination-is-an-object",
+  "node_type": "Requirement",
+  "properties": {
+    "concern": "core",
+    "designation": "internal",
+    "kind": "functional",
+    "lineage": "original",
+    "name": "A combination of per-design versions is a named object that can be re-validated, not a one-off comparison",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "When several coupled designs each carry their own version, the question that matters before deploying is not \"do these two agree at their seam?\" but \"does THIS SET of versions hold together?\" — and that set must be a durable, named, dated object the design can re-check, not a comparison run once and lost. reflow2 today has only pairwise machinery: cap:design-dependencies-declared (declare which version of another design you depend on), cap:seam-incompatibility (say when two linked designs disagree at a boundary), cap:composed-analysis (analyse two designs together without merging them), compare_designs (two as-designed records). Nothing names an N-way combination or lets it be validated again later. THE PRIOR ART IS reflow's OWN, and it worked: workflow 01b-bottom_up_integration.json step SE-08 (Mixed-Version Validation) created a version-specific index file — naming convention index_v{scenario}-{YYYYMMDD}.json, e.g. index_v2.0-auth-v1.0-gateway-20251030.json — pointing at specific versioned files rather than symlinks, then ran validation over that combination (checking interface contract compatibility, breaking changes between versions, integration issues, dependency conflicts), generated a system graph for that combination alone, and recorded the outcome so known-good combinations were documented. Its stated use case: \"Validate auth_service v2.0 works with api_gateway v1.0 before deploying.\" Also supported baseline snapshots for regression testing. THIS IS THE MECHANISM req:epochs-can-be-planned ALREADY ASKS FOR, captured 2026-07-28 in Anthony's own words: \"an epoch or increment must pin the set of per-repo design versions it means, or the question 'which epoch are we talking about?' has no answer, which is the failure this exists to prevent.\" reflow had built the pin; reflow2 stated the need without it. Operationally load-bearing for the ecosystem case rather than the single-repo one: several coupled repos, each with its own graph, evolving at different rates. Found 2026-07-28 reviewing the original reflow workflows. Anthony's word: capture it.",
+    "status": "proposed"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:3cecd348c536ace8ed2c84c60453c6a9d69b668c31ad3e4c1afe14b4eda8737d",
+  "edge_type": "CAUSES",
+  "from_id": "art:dev-storyflow-feedback-2026-09-08",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "The root-cause pass on this document's CONNECT_TIMEOUT report: measured at t+30.0s against a real unopenable store, the degraded surface is correct and arrives exactly when the client gives up.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:a-startup-refusal-and-the-clients-give-up-are-both-thirty-seconds"
+}

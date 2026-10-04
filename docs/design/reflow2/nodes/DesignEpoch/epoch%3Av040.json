@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:525424de321bf8e241b33be4bddcaa43a7ad122cdd6e8e2defc069ba8257b513",
+  "node_id": "epoch:v040",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "description": "Cut at git tag v0.4.0. The earliest tag carrying docs/design/reflow2.json, so it is the first epoch with a retrievable design document — decisions that predate it appear here as their earliest evidence, not their origin. The export predates the hash chain (dec:export-hash-chain, v0.9.0), so no checksum is claimed.",
+    "epoch_type": "release_cut",
+    "name": "v0.4.0 release cut (2026-07-20)",
+    "sequence": 10,
+    "status": "arrived"
+  }
+}

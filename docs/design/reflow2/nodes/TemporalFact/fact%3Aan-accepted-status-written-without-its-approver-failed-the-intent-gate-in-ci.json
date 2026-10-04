@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:bfd0a4befbd76789ec4340461d292b042bbe5cff7f60543291a4e9a1fb102a8d",
+  "node_id": "fact:an-accepted-status-written-without-its-approver-failed-the-intent-gate-in-ci",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "confidence": 1.0,
+    "fact_type": "observation",
+    "name": "A Decision moved to accepted with set_decision_status and no authored_by(role=approver) failed CI's intent-authority gate — the owner's-word write and the who-said-it write are two calls, and the second was forgotten",
+    "statement": "OBSERVED 2026-09-06 on PR #438. Two Decisions were moved to accepted on Anthony's recorded word (his 2026-09-06 approval of the v0.50.0 plan) with set_decision_status, and the AUTHORED_BY role=approver edge was not drawn. Local gates (reflow2_check, skill lint) were green; CI's 'Design intent moves only on the owner's word' job (tools/check_intent_authority.py) FAILED with '2 node(s) reached a settled state with nobody's name on them'. Fixed by drawing authored_by(role=approver, acted_at) for both and re-exporting; one amend, one CI rerun.\n\nWHY IT IS EVIDENCE FOR THE SUBJECT IDEA: this is the constructor-ergonomics complaint in its status-setter form. The owner's word exists and is quoted in the decision text, but the tool that records the status does not take the approver, so the signature lives in a separate call that nothing forces — and rule:design-intent-moves-only-on-the-owners-word is ENFORCED, so the omission is a red build, not a note. The same fix the qs agent proposed for add_decision (status refused unless a contributor is named) applies to set_decision_status: a status past the landing default should REQUIRE the approver in the same call.\n\nALSO: tools/check_intent_authority.py is a CI gate that reflow2_check does not run, so a locally-green tree can fail CI on it. Run it locally before pushing.\n\nBOUNDS: one instance, one session, one agent; the count of prior instances is not measured here (the gate's own note records 356 grandfathered nodes and a 49-node batch on 2026-08-23).",
+    "subject_id": "dec:idea-should-a-constructor-accept-the-owners-word-in-one-call",
+    "valid_from": "2026-09-06",
+    "value": "{\"pr\":438,\"nodes_failed\":2,\"tool_used\":\"set_decision_status\",\"missing\":\"AUTHORED_BY role=approver\",\"gate\":\"tools/check_intent_authority.py\",\"local_gates_green\":true,\"ci_reruns\":1}"
+  }
+}

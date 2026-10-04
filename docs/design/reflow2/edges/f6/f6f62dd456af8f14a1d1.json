@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:0260e02df82d5a6f86a6a669e1248db58e6a3d5b48f90f576e0dcf90786f17df",
+  "edge_type": "CHANGED",
+  "from_id": "chg:bl58-silent-failure-batch",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:heal"
+}

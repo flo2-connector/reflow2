@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:a24204581542d98fdc1872424c8c9453d21ef67ae74046e899b90b2c0dd428d7",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0700",
+  "properties": {
+    "as_checksum": "sha256:b2403e009acdeda5e59431b86e81ecc7a591677b9fee1e3840cf3f4de3aaf05c"
+  },
+  "to_id": "art:test-a-settled-choice-can-be-gone-back-to"
+}

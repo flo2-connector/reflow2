@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:61275d319955f2cd7b9e481f5ab231a9691b984761b12b4d0a78ab5f8e38d166",
+  "edge_type": "HAS_SNAPSHOT",
+  "from_id": "cmp:packaging",
+  "properties": {},
+  "to_id": "snap:epoch:preserved-on-write:cmp:packaging"
+}

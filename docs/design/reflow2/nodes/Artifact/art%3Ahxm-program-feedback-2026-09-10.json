@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:4a7018a18d4f9ffa59d3dc40f56dd3f91095b138ae1f6d2905d4d1881811a93e",
+  "node_id": "art:hxm-program-feedback-2026-09-10",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "document",
+    "description": "The running log kept by AJ's agent sessions on `hxm_program` — a HUB over ~10 beamline repos at Brookhaven, used as program memory rather than as the design of one system. Appended through 2026-09-10 (reflow2 0.56.0 for the final session).\n\n⚠️ THE APPEND-ONLY PREFIX PROPERTY COULD NOT BE VERIFIED THIS TIME, and that is worth recording rather than glossing. The convention is that only the newest upload matters because older copies are strict prefixes, checked with `head -n <old> <new> | diff - <old>`. Both previously registered hxm reports (2026-08-19, 2026-08-26) point at `docs/feedback/`, which is GITIGNORED, so neither file exists on this machine and there was nothing to diff against. Everything from the `Session 2026-08-26 → 28` heading onward was treated as new on the strength of the dates alone.\n\n⚠️ ITS ISSUE NUMBERING COLLIDES. F-09, F-10 and F-11 each appear TWICE with different content — once in the 2026-08-25/26 block (session-end nudge, sizing defaults, coverage_report exclusions) and again in the 2026-08-26→28 block (sibling near-match chaining, CONTRADICTS misuse, ANTICIPATES defect noise). Any triage citing \"F-11\" must say which.\n\nRegistered and PARKED under `dec:a-dated-field-report-is-registered-and-parked`: a frozen observation from outside reflow2's development, which must not be revised as reflow2 moves, so no DOCUMENTS edge would be honest.",
+    "location": "docs/feedback/2026-09-10-hxm-program-agent-feedback.md",
+    "name": "hxm_program field report, 2026-09-10 — the hub-over-many-repos log",
+    "status": "realized"
+  }
+}

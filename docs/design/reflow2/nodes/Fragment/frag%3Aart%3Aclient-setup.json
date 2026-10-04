@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:02a89b91db11e5119ba4e6c10fb42d09f2e51fdb6366826df5c52d111a157ddd",
+  "node_id": "frag:art:client-setup",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered client_setup.rs — `reflow2-mcp setup`: the settings file, the OS keychain, checking a key against the server, and the key `--remote` carries"
+  }
+}

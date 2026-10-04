@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:ebb964eccd4aacee835981b10ec166fa44024fe2916cc8852cfec1e4a056535e",
+  "node_id": "chg:accept-4810f73d13acff9e",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "defect_fix",
+    "detected_at": "2026-09-22",
+    "name": "HOME isolated so the no-hook handshake test reads the bare project, not a machine-wide OpenCode plugin — fact:the-no-hook-handshake-test-read-the-developers-machine-wide-opencode-plugin.",
+    "subject": "system"
+  }
+}

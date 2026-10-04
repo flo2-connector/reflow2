@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:465bfa274a03f75d941c8e4e61f838136a1651a2849543630819dc212f9517e1",
+  "edge_type": "OBSOLETES",
+  "from_id": "epoch:planned-status-accounting",
+  "properties": {
+    "confidence": 1.0
+  },
+  "to_id": "epoch:v0260-planned"
+}

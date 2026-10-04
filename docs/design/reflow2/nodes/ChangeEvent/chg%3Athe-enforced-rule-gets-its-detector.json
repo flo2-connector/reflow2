@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:484efce421c917bb908fba585818fee2b81b46f3e4b7a7a6927941b242227097",
+  "node_id": "chg:the-enforced-rule-gets-its-detector",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "scope_change",
+    "name": "The id-not-a-path clause becomes its own advisory rule, and the enforced clause gets the detector it now owes"
+  }
+}

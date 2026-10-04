@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:d4f3bd093201663485105f9159741b0bdec0e1fa304a87b972975ff0f2718ae8",
+  "edge_type": "CAUSES",
+  "from_id": "fact:root-cause-a-hosted-session-hears-nothing-about-exports-because-the-only-export-line-rides-a-tracked-export-2026-09-28",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "That walk (0.72.0) measured this exact case, \"Local store with the same content, never exported: the same silence\", and traced it to loop_status's only export sentence being gated on tracked-export records. Re-measured unchanged on 0.77.0 through --call.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:a-never-exported-local-design-is-still-silent-in-loop-status-through-the-door-on-0-77-0-2026-10-02"
+}

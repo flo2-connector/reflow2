@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:fe314fcfc1e3d2122c4f14827122f043060058e283ccfc79fc5e40cd4db8cb0c",
+  "edge_type": "CHANGED",
+  "from_id": "chg:every-open-store-shares-one-memory-budget-2026-09-27",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "req:one-open-design-costs-a-deliberate-amount-of-memory"
+}

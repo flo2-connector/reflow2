@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:05f2224bdd9f0ee7f34d256ac53ea0681f643927594f92156f6528cc1d03b187",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-snapshot-warning-is-field-aware-and-the-export-note-reaches-the-caller",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:temporal"
+}

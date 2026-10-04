@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:0a7d84173fadfce1156f0a1361d53e5e1e239d00b4e22026c1fda7022428b6db",
+  "edge_type": "CONSTRAINS",
+  "from_id": "con:a-full-orientation-pass-costs-at-most-8-seconds",
+  "properties": {
+    "basis": "measured",
+    "contribution": 4192.0,
+    "measured_at": "2026-09-12",
+    "note": "CORRECTS THE SECOND STALE EDGE NAMED BY fact:the-budget-edges-still-carry-the-pre-fix-numbers-so-budget-report-says-exceeded-for-a-budget-that-holds — this edge carried 31,000 ms, the PRE-fix figure, while the same day's fact recorded 6,459 warm / 11,103 cold after the fix. Re-measured 2026-09-12 on a physical copy of the live store, 0.59.0 release, direct stdio, quiet box, WARM (tools/agent_surface_profile.py): loop_status 1,299 + open_questions 1,271 + detect_gaps 0.7 + graph_report 1,621 = 4,192 ms — under the 8,000 limit, which the budget's own statement scopes as warm. NOT RE-MEASURED TODAY: the cold-start pass, which was 11,103 on 2026-09-05 and over the limit; that half of the 09-05 reading stands until somebody takes it again."
+  },
+  "to_id": "cap:loop-status"
+}

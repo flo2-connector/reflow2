@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:4f9f6da607de57dcbada9854412e3d0617570c8e061f2671ef37415217e3422f",
+  "edge_type": "OBSOLETES",
+  "from_id": "dec:field-reports-are-untracked-because-the-repository-is-public",
+  "properties": {
+    "evidence": "Inbound field reports are kept out of git (docs/feedback/ is gitignored) because the repository is public; the file stays on this machine and the design keeps what it yielded. Retired by the same accepted decision as the eleven before it, so a checkout without the file reads expected_absence, not missing_artifact."
+  },
+  "to_id": "art:xrt-demo-genesis-feedback-2026-09-16"
+}

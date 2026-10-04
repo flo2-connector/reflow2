@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:6b1ac460f327fdaa3a31496ae96c704263d1f0c81eacd3ceccf794790913d538",
+  "edge_type": "CAUSES",
+  "from_id": "art:detect",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "The prompt is formatted from the gap's title and description in one statement and only the formatted string is returned, so the structure the server had is destroyed at the moment of assembly and the consumer must reconstruct it by parsing.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:gap-to-prompt-welds-the-title-and-the-why-into-one-string-and-returns-only-the-string-so-the-one-consumer-splits-prose"
+}

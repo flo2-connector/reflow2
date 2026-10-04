@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:65fa182fdd53f3d86a278e2762f4850749457502f31c9d66939ad10585e8fb21",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:a-declared-wall-is-checked-against-the-coupling-it-contains",
+  "properties": {},
+  "to_id": "req:an-analysis-a-consumer-needs-is-served-named-and-gated"
+}

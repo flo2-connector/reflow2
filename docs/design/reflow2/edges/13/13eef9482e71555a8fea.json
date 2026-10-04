@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:a562d6faa7349cb14c1f14619cae5ecd67179d318ffb1e84b5cdd373ef2fdcf1",
+  "edge_type": "CAUSES",
+  "from_id": "cap:snapshot-read",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "The snapshot copy was built for export, which reads only the store. snapshot_dir (main.rs, since accd8b5, 2026-07-25) skips the full-text index directory and says in a comment \"do not use a snapshot for search_design\". call_one_tool (#544, 2026-09-19) reused it for EVERY read_only_hint tool. The limit lived only in that comment, and the held-lock test asserts only that graph_report's reply is an object.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:root-cause-a-held-design-answers-search-through-the-door-with-a-false-nothing-matched-2026-10-02"
+}

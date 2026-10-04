@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:3a022fa1c74d51b70aa9cdf498f1567ca20b85872bb2db35ed2062a0c32f288c",
+  "edge_type": "ANTICIPATES",
+  "from_id": "dec:idea-one-owner-many-projects",
+  "properties": {
+    "evidence": "The one-owner-many-projects question asked where the graph lives when one person works many interrelated projects; hxm_program is that case made real, and a project-scoped status read is what it asked for first."
+  },
+  "to_id": "dec:idea-a-project-scoped-status-rollup-answers-what-has-this-project-achieved-in-one-call"
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:674b961b3a966fbacc8fda9a8f6cd192a29ebb6f1a42629cffb52ec972d71656",
+  "node_id": "cap:a-revising-write-says-what-it-removed",
+  "node_type": "Capability",
+  "properties": {
+    "description": "As built 2026-09-20. A revision reply gained `shortened`: for every text field this call made shorter, the field, the characters before and after, and the number removed, ordered by the largest loss. Absent when nothing was removed, so an ordinary enrichment is unchanged and only a caller who actually shortened something is told. The revision `note` LEADS with the loss when there is one, because the rest of that note explains where the prior state lives and this says what left. Only text counts: a number changing is not a loss. 🛑 A REPORT, NEVER A GATE — refusing a shrink without a permission flag was considered and rejected, because deleting on purpose is a legitimate edit and the flag would tax every honest one. The prior value is still returned in `replaced`, which is what makes the loss recoverable rather than merely visible. Test: crates/reflow2-mcp/tests/a_revising_write_says_what_it_removed.rs, three cases including one asserting a drastic shortening still succeeds.",
+    "name": "A revising write says what it removed, with the size of the loss, and never refuses the shrink",
+    "provenance": "authored",
+    "status": "realized"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:eda023ee28c1c11d5520164360a1a61afa5c5a68c187d0657eb65f92e4877138",
+  "node_id": "frag:art:graph",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered crates/reflow2-core/src/graph.rs"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:49e96e181c5e95ddcf13ac2b20106a5b21f21171e9f531cb92723bb990ef48ee",
+  "edge_type": "GOVERNED_BY",
+  "from_id": "cap:a-flows-entry-and-exit-are-computed-from-its-step-order",
+  "properties": {
+    "note": "The ruling this capability implements."
+  },
+  "to_id": "dec:a-flows-order-is-its-step-order-and-entry-and-exit-are-computed"
+}

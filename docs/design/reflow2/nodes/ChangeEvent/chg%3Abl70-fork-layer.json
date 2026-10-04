@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:8b25b875c7a2cfb0049bfd500bfce2647c88f0ebea403c4e0c5a4613cd7bf063",
+  "node_id": "chg:bl70-fork-layer",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "name": "BL-70 fork layer designed: epoch spine backfilled from release tags, decisions anchored, merge/alternatives modelled"
+  }
+}

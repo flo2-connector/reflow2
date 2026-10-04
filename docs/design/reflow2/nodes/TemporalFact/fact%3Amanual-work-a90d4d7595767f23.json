@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:9eba77ca8181879cced6cec5f7ef8e3540a73727c8d3d656fc116e26249a99ce",
+  "node_id": "fact:manual-work-a90d4d7595767f23",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "manual_work",
+    "statement": "Wrote a script over two designs' saved exports that counted accepted requirements and accepted decisions whose own source or statement text names where they came from (a particular working session), split by the earliest date in the text. It was a running tally of intent for a trial log. The date split was wrong once, because a node quoting an older date was counted as older.",
+    "subject_id": "proj:reflow2",
+    "valid_from": "2026-09-26",
+    "value": "{\"diagnosis\":\"tool_missing\",\"reflow2_tool\":null}"
+  }
+}

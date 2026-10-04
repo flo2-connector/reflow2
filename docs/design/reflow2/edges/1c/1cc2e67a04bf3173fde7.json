@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:18076488bd63440ec322a899d7a783e850cf53c324a2f0edd3cae6d0cf1f8830",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:test-a-write-unit-is-all-or-nothing",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:test-a-write-unit-is-all-or-nothing"
+}

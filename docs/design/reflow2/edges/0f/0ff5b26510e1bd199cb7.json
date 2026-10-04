@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:2ed3fa625e9db49b333e2a3d686aca43307a5f31394ce6409c96f799ff4b6c7b",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:a-code-folder-names-its-design",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:proxy"
+}

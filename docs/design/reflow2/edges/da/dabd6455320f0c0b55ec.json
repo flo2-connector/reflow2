@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:56f7f773d771e189e1a074c1f80a6565eb3b49c17c1ce3ef440d8c5a20fd4a29",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:triage-feedback-skill",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:triage-feedback-skill"
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:5155f04a9d40428f3ecbd1e9164a7b105f21cf5e02f471b4a629a781a2123ebf",
+  "node_id": "chg:the-content-block-is-chosen-per-client",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "defect_fix",
+    "name": "The content block of a JSON reply is chosen per client in call_tool: grok gets the payload duplicated into the text block, opencode an empty one, everyone else the signpost; --content-policy overrides and is forwarded to a spawned daemon; the signpost names the flag",
+    "repair": "corrected_cause",
+    "subject": "system"
+  }
+}

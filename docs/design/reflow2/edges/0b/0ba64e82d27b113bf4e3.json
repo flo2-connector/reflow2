@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:2aa977c7565cbba5b4ec206b17ac0be099c97aa6fd4c3c24f6be647f899f2196",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-documentation-change-has-a-name",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:service"
+}

@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:b9ab788d2f9abc57e981366e5025ac4decfaa9f10b6329ff23183437f615e915",
+  "node_id": "art:host-gate",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "description": "HostRule (loopback plus --http-allow-host, extended and never replaced; matching kept identical in meaning to rmcp 3.4's) and HostGate, a tower service that serve_http puts in front of whatever it serves: single-design --http, the --serve-shared daemon, the --registry-root router (before routing) and the degraded surface. rmcp's own copy of the check is disabled where the config is built, so there is one owner. A refusal is a plain-text 403 naming the Host it saw, the allowed hosts and the exact flag; stderr logs the same fix once per distinct refused host, capped at 32. Added 2026-09-28 for GitHub issue #616 (fact:root-cause-the-host-refusal-is-the-librarys-opaque-403-and-the-fix-is-named-only-at-startup-2026-09-28).",
+    "location": "crates/reflow2-mcp/src/host_gate.rs",
+    "name": "host_gate.rs — the Host allowlist, owned by reflow2 in front of every HTTP surface; a refusal names the host, the allowed hosts and --http-allow-host",
+    "status": "realized"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:3faeffe251a81deae83ceb51b03ee9bccb6768b7fb945113a9b198ce2b61632d",
+  "edge_type": "REALIZES",
+  "from_id": "art:upstream-judgement-test",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "verified"
+  },
+  "to_id": "cap:a-declared-dependency-is-watched-not-imported"
+}

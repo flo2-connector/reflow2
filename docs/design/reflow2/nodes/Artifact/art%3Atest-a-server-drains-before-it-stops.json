@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:6c232f7494df396ba2d367429745fcbad3c7dd1a8200f175050f07705f317d76",
+  "node_id": "art:test-a-server-drains-before-it-stops",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "test",
+    "description": "End-to-end tests of req:a-server-drains-before-it-stops over the real binary, the real HTTP transport and a real SIGTERM, with designs minted by the binary. Both fail against the 0.72.0 behaviour (status 143, the change missing from the export) and pass with drain.rs.",
+    "location": "crates/reflow2-mcp/tests/a_server_drains_before_it_stops.rs",
+    "name": "a_server_drains_before_it_stops.rs — under a real SIGTERM, a change made just before the stop reaches the export and the store reopens; a registry server closes every design by name",
+    "status": "realized"
+  }
+}

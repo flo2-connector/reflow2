@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:4110cc0c01679b2682157e9ad67b2c782081d34e8b8302fe653ce800aa420af3",
+  "node_id": "chg:accept-e5e2eec3ed94eb2a",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "test_failure_fix",
+    "detected_at": "2026-08-10",
+    "name": "Two more WhatNext FIELD names declared in NON_TOOL_TERMS — `shaping` and `governs_retired`. The lint refused the skill until they were, correctly: they read exactly like tool names. No design meaning."
+  }
+}

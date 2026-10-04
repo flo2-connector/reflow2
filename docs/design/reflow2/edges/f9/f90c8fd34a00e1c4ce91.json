@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:c0b29031f315539f6e7b6d9d76a05270d3f2876c2a3d32ec6d2d7b7d76ca7c81",
+  "edge_type": "HAS_SNAPSHOT",
+  "from_id": "cap:content-manifest",
+  "properties": {},
+  "to_id": "snap:epoch:arrival-delta:cap:content-manifest"
+}

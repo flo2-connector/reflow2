@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:7a65cc3bc7abea650bf6a7f4a6e7c78f6897370e572561d048753ff990e4128b",
+  "node_id": "frag:art:confirm",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered confirm.rs"
+  }
+}

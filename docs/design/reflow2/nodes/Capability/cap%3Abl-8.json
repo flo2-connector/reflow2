@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:a9fca9e0aaf1112bcf811f3c75f0840e2d992adb6e13ef4e3759908e4e7faaf3",
+  "node_id": "cap:bl-8",
+  "node_type": "Capability",
+  "properties": {
+    "description": "Session state / multi-project\n\nSelect a graph per project; give agents memory across sessions. Core already supports graph_id; nothing exposes it. See the memory note and [reflow-audit.md](reflow-audit.md). *Partial precedent, 2026-07-19:* the design graph now carries the session distillate — 8 Decision nodes with rationale, each linking the session transcript URL (which every commit also carries as a Claude-Session: trailer). The doctrine: the graph holds decisions, not tape; a transcript is an artifact outside the graph, one link away. The remaining BL-8 work is the live memory (questions, working state) across sessions, and the Fragment/YIELDED/TemporalFact layer is the schema-complete, zero-write-side machinery for it\n\nMigrated from docs/backlog.md BL-8 on 2026-08-07 (epoch:backlog-retired). Size estimate carried from the row: L.",
+    "name": "[BL-8] Session state / multi-project",
+    "provenance": "imported",
+    "status": "planned",
+    "tier": "operational"
+  }
+}

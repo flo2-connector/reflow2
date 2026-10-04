@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:f56a2485edd9d512b2a56c05e5519e3fb99cf5572fc24f80a5cbe5a97bee2850",
+  "edge_type": "ABOUT_ENTITY",
+  "from_id": "fact:defect-add-verification-cannot-reach-its-own-fields",
+  "properties": {},
+  "to_id": "cmp:verify"
+}

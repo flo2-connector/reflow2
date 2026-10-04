@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:2ea00a2e20a74b0b82cc36a34051d21f93bd1542c7d2af158abddc75c9c0471c",
+  "node_id": "chg:a-cross-type-near-match-is-named-as-a-layer",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "defect_fix",
+    "detected_at": "2026-08-29",
+    "name": "A near-match of another type is described as a different kind of record, not as a near-duplicate",
+    "rationale": "Reported by Alex 2026-08-29 (art:grok-shell-feedback-2026-08-29): after recording a ChangeEvent for a code change, capturing the same idea as a Requirement was refused naming that ChangeEvent, and a Decision restating a Capability was refused naming the Capability. The served instructions ASK for both records, so an agent following the loop honestly tripped the guard every time — his words, \"distinct_from works; it is just the default path now.\"\n\n🛑 THE REFUSAL WAS KEPT ON PURPOSE, AND THE OTHER REPAIR WAS REJECTED. Excluding cross-type pairs from the filter would have removed the friction and also removed a real catch when an agent genuinely duplicates an idea across layers — trading a false alarm for a silent miss, which is the failure this guard was built to stop. Nobody has counted how often a cross-type hit IS a real duplicate, so suppressing the check would act on an unmeasured assumption.\n\n🛑 SO THIS DOES NOT REACH THE CAUSE, AND SAYS SO. fact:the-near-match-filter-has-no-node-type-term stays OPEN and stays literally true: the selection is still `not-itself AND score-above-floor`, with no type term. What changed is the WORDING, one layer later. That is the conservative half of the repair and it matches how the guard was justified — refuse_unless_deliberate is documented as forcing a CHOICE, never as preventing a write.\n\nRoot-caused with the root-cause skill; pinned by two tests written first and OBSERVED FAILING — cross-type FAILED and same-type PASSED against the unfixed code, which is the split that shows the tests discriminate rather than merely rejecting current behaviour.",
+    "subject": "system",
+    "summary": "The search-before-you-add guard now words its refusal according to whether the near-match is the SAME TYPE as the node being created. A same-type hit reads as before and offers SHARPEN. A hit of another type is described as a different KIND of record, says that recording what shipped and recording what must stay true are different acts on the same work, and does NOT offer sharpening — calling `add_requirement` with a ChangeEvent's id is not a route that exists. `refuse_unless_deliberate` takes the created node's type; the four constructors that refuse (Requirement, Capability, Component, Decision) pass it."
+  }
+}

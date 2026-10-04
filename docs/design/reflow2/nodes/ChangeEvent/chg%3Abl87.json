@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:80a53aa3d84e9b815a3fff4a4f4abe816d85a044cb59901f7dc00d43af869ba1",
+  "node_id": "chg:bl87",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "refactor",
+    "name": "BL-87: import tolerates an unstamped document (stamp optional + reported), like content_hash"
+  }
+}

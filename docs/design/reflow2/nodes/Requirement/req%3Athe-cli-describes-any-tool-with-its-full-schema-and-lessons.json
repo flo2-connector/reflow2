@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:765346572dce190e2479791bcd0489cc74d7ecdb34dbb0f1580a58581f0f6e34",
+  "node_id": "req:the-cli-describes-any-tool-with-its-full-schema-and-lessons",
+  "node_type": "Requirement",
+  "properties": {
+    "lineage": "original",
+    "name": "The CLI describes any served tool in full — its input schema with types and required fields, and the lessons tools/list carries for it",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "Step 4 of the plan to make the `--call` door work for an agent that cannot use MCP (Anthony, 2026-10-01; his idea 5 in using_call.md).\n\nToday find_tools gives parameter NAMES only (query.rs ~853). The lessons a DesignRule or TemporalFact hangs on a tool ride only its tools/list description (lessons.rs:230), which a door agent never reads. So it learns types from refusals, one round trip per mistake, and never meets the lessons.\n\nMUST:\n- `--describe <tool>` prints the tool's full input schema and its description including the appended lessons, exactly as tools/list serves them.\n- A whole-list form lets an instructions generator render a reference from the binary.\n- What it prints is the served list itself, so it cannot disagree with what an MCP session is offered.",
+    "status": "proposed"
+  }
+}

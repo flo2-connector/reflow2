@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:3aa8a171598990fc88d60dc159ac85a104ce3559ac22a4ac22af10a5354573eb",
+  "edge_type": "CHANGED",
+  "from_id": "chg:maturity-trajectory-is-normal",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "dec:maturity-restructuring-delta"
+}

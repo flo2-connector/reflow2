@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:f611d92406a1bc941c0c82bd4880a687c014e41a0b3c23dbf8c7bf4ae8d90b28",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:establish-taxonomy-before-bulk-capture",
+  "properties": {},
+  "to_id": "req:a-taxonomy-is-decided-once-before-bulk-capture-and-every-instance-cites-it"
+}

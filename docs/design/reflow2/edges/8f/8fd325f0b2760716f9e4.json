@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:2e965f9b916cdc76414672e45e0515faba53e778fd1723ea2a8333c6ca112b93",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-what-would-a-provided-contract-buy-substitution-derived-tests-or-a-mock",
+  "properties": {
+    "evidence": "All three returns - substitution, derived failure modes, mocks - need the shape of the function stated, and that capability is what writes it. It was built because inputs/outputs were UNWRITABLE at 0 of 170; the tool now exists and stands at 3 of 192. So the blocker moved from 'no tool' to 'no instruction and no detector', and nothing here can proceed until that is faced.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "cap:a-capability-states-what-it-takes-and-gives"
+}

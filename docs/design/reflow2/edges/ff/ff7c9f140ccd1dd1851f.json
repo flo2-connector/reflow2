@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:37921042a3e972cd94ffba30c121703b1e20ef37c5a8774b4a4d8f5a0e8b3a22",
+  "edge_type": "GOVERNED_BY",
+  "from_id": "cap:the-loop-nudge-reaches-opencode-through-a-plugin-adapter",
+  "properties": {
+    "note": "A plugin file is outside the one assumption that rule allows (that the product can call an MCP server), so this ships as an ADDITION where it works, exactly as the rule permits for hooks and commands: the served surface still rests on MCP alone, and a product without a plugin model is told so by the nudge-presence check rather than left silent."
+  },
+  "to_id": "rule:mcp-and-the-graph-are-the-only-common-ground"
+}

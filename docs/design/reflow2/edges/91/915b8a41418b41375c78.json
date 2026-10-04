@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:f4bda01b82a1dd29d794586007f96d940ec7db601010996c4d94e04aea624ad4",
+  "edge_type": "CHANGED",
+  "from_id": "chg:foundation-consumes-redrawn-from-imports-2026-08-19",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cmp:propagate"
+}

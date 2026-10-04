@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:68851bee9a0e1ea846e7286d44c09660ff53a4ba0f4f5a67dcdd58a58513d8f4",
+  "node_id": "art:bulk-edges",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "description": "Dispatches each draw_edges item to the named typed helper's own body (<helper>_on, the function the tool itself runs after taking the lock) inside one atomic batch (DesignGraph::atomically), and generates the \"FOR MANY AT ONCE\" sentence on every helper's served description from one list.",
+    "location": "crates/reflow2-mcp/src/bulk_edges.rs",
+    "name": "bulk_edges.rs — draw_edges: the bulk form of every typed edge helper, running each helper's own body per item",
+    "status": "realized"
+  }
+}

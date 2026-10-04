@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:d1ccb6be680d49e9769cd8966303cf0e7b27e7a6ba13d9bd5fe2c97b440d8a83",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-saved-design-moves-to-the-item-layout-2026-10-03",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:5eb669c9a38d73bc322958a0838926da4e43a3fa982f2dce1945810e0a1054ce",
+    "checksum_basis": "measured"
+  },
+  "to_id": "art:vocabulary-reach-baseline"
+}

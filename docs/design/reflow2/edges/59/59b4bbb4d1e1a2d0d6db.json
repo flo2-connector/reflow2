@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:3c19950814e6afc027494b3b304d6402ddc4ffd341923a1fe95628dc693ff3cc",
+  "edge_type": "CHANGED",
+  "from_id": "chg:package-vs-collaboration",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "dec:idea-package-versus-shared-server"
+}

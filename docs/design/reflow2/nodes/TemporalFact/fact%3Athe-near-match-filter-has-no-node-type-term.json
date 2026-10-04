@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:01c6c884fea945db963d9b78b58f87a9d036c49e0bf35bf6179075ef3e870234",
+  "node_id": "fact:the-near-match-filter-has-no-node-type-term",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "confidence": 1.0,
+    "fact_type": "defect",
+    "statement": "THE MEASURED CAUSE of Alex's cross-type refusals. Read 2026-08-29 in `crates/reflow2-mcp/src/tools/capture.rs`:\n\n    const NEAR_MATCH_RATIO: f32 = 0.5;                          // line 65\n    let floor = self_score * NEAR_MATCH_RATIO;                   // line 186\n    let near: Vec<NearMatch> = result.hits.iter()\n        .filter(|h| h.node_id != node_id && h.score >= floor)    // line 190\n\n🛑 **THE FILTER HAS TWO TERMS AND NEITHER IS THE NODE TYPE: not-itself, and score-above-floor.** `node_type` IS carried into `NearMatch` — and printed in the refusal, which is why Alex could see he had been handed a ChangeEvent — but it is display only. Nothing in the selection reads it.\n\nSO THE CROSS-TYPE BEHAVIOUR IS NOT A TUNING PROBLEM AND LOWERING OR RAISING THE RATIO CANNOT ADDRESS IT. A ChangeEvent and the Requirement behind it describe one piece of work in one vocabulary; they SHOULD score alike, and any threshold that separated them would also stop catching genuine same-type duplicates written in different words — which is the guard's whole purpose.\n\n⭐ THE REPAIR IS AVAILABLE WHERE THE DEFECT IS, WHICH IS WHY THIS IS WORTH RECORDING PRECISELY: the type pair is already in hand at line 190, so the guard can act on it without any new lookup, plumbing or vocabulary. Two shapes, and they are not equivalent:\n  ① EXCLUDE the prescribed layer pairs from the filter (ChangeEvent -> Requirement/Decision). Removes the friction; also removes a real catch if the agent genuinely was duplicating.\n  ② KEEP the refusal and change what it SAYS when the types differ — name the layering rather than presenting it as a duplicate. Keeps every catch, costs one more round-trip, and is a message change rather than a behaviour change.\n② is the conservative one and matches how this guard was justified in the first place (`refuse_unless_deliberate` is documented as forcing a choice, not as preventing a write).\n\n📌 NOT A REGRESSION AND NOT A MISFIRE: the guard's own doc comment says it must never refuse on a WEAK resemblance and records the ratio as deliberately conservative. It is behaving exactly as specified. What was never specified is what a near-match of a DIFFERENT TYPE means — the code was written as though every hit were a candidate duplicate, and the design's own capture loop produces hits that are not.",
+    "subject_id": "cap:search-first-at-the-tool",
+    "valid_from": "2026-08-29",
+    "valid_to": "2026-09-01"
+  }
+}

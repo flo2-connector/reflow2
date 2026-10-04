@@ -1,0 +1,17 @@
+{
+  "content_hash": "sha256:1b4ef68b318d4516b3c1a8ca2b67297d222f1dd2c94bcfe578fa6003d74baa09",
+  "node_id": "fact:defect-a-one-shot-stdio-session-loses-the-reply-to-its-last-call-though-the-call-completed",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "confidence": 0.9,
+    "fact_type": "defect",
+    "name": "DEFECT: driving reflow2-mcp over stdio with the calls piped in and stdin closed, the LAST call's reply is lost — `export_graph` wrote the file and the driver saw no response; rmcp logs \"timed out draining in-flight responses\". Seen five times in one day",
+    "statement": "REPRODUCED five times on 2026-09-14 with the ~30-line JSON-RPC driver the release-cut annex prescribes: initialize → notifications/initialized → tools/call export_graph {path} written to stdin, stdin closed, stdout collected. The export lands on disk, correct and chained; the `id: 2` reply never appears on stdout; stderr ends with `WARN rmcp::service: timed out draining in-flight responses`. A driver that judges the call by its reply reports FAILURE for an export that succeeded — which is how \"export ok: False\" was printed three times over a correct file before the pattern was recognised.\n\nMECHANISM (inferred, not yet read in rmcp): the server sees EOF on stdin while the long call is in flight, begins shutdown, and the drain timeout is shorter than the export; the response is dropped rather than flushed. A short call (loop_status) in the same session DID reply, so it is the last-long-call position, not the tool.\n\nWHY IT MATTERS: rule:success-is-read-from-the-authoritative-object says judge by the file, and that is what saved every one of the five — but a tool whose success is unreadable from its reply is a tool that TEACHES the wrong habit to anyone who does not already know the rule. The release-cut procedure's machine-local annex now says \"judge the export by the FILE\"; that is a workaround note, and the fix belongs in the server.\n\nWHAT WOULD ADDRESS IT: on stdin EOF, finish and flush in-flight replies before exiting (a drain that waits for the call rather than a fixed timeout). Either way, a test: pipe a call, close stdin, assert the reply arrives.",
+    "steps": [
+      "export_graph"
+    ],
+    "subject_id": "proj:reflow2",
+    "valid_from": "2026-09-14"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:72a0adaf1646a42e2cc3f32de2d8ce3b40ad49863d70de42267899954dd740ca",
+  "edge_type": "CHANGED",
+  "from_id": "chg:every-edge-type-declares-what-it-means",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:vocabulary"
+}

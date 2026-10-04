@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:1f3368df1d91062c9d72cb2fac919d0d146d8c0a4df4f4d21b1a4da4afab933c",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:replace-text-test",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:replace-text-test"
+}

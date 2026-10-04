@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:1fdaa85137964a1d2d2c68b943725d77c1b6124e2bc4d65c3e6492cc589a4eef",
+  "edge_type": "GOVERNED_BY",
+  "from_id": "art:hxm-program-feedback-2026-09-10",
+  "properties": {
+    "note": "A dated field report from hxm_program, written from outside reflow2's development. Frozen observation: it must not be revised as reflow2 moves, so no DOCUMENTS edge is honest. Third hxm report after 2026-08-19 and 2026-08-26.",
+    "ruling": "parks"
+  },
+  "to_id": "dec:a-dated-field-report-is-registered-and-parked"
+}

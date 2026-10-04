@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:57fa496d75c9f257911d75b83bfdf98ece8f7f81944a1f854511dc4174b741f1",
+  "edge_type": "HAS_TEMPORAL_FACT",
+  "from_id": "cap:search-first-at-the-tool",
+  "properties": {},
+  "to_id": "fact:twelve-near-match-refusals-across-two-designs-and-not-one-was-a-duplicate"
+}

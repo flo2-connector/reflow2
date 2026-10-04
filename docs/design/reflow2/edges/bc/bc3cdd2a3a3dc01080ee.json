@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:56f4d7b1065cb010651ed5e1252828b219d58095325380586f9feb10765accd8",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:a-cut-moves-every-version-claim-together",
+  "properties": {},
+  "to_id": "req:a-project-records-how-it-ships"
+}

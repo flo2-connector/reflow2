@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:bdefbee66af60862e7632fb5018089271bf9f674c74ae0ffe3e985035cc43d42",
+  "edge_type": "CHANGED",
+  "from_id": "chg:bl69-spof-cut-vertices",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:heal"
+}

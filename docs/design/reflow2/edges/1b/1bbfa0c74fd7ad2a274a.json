@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:8139f60c289df64c11f0ca65d4840ad68632dc60fd95174b448b493d42899519",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-saved-design-moves-to-the-item-layout-2026-10-03",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:3478374b9e535f9b7e08b5b2079e7494fc0c109c13ec473913a224968e09206e",
+    "checksum_basis": "measured"
+  },
+  "to_id": "art:lens-handler-test"
+}

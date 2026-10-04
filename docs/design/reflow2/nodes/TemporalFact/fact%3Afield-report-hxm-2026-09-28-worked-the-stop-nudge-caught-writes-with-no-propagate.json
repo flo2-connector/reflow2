@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:6c78089334e653c3203753937017a0086c60834ea50337dc90f0c2ef1a7cab46",
+  "node_id": "fact:field-report-hxm-2026-09-28-worked-the-stop-nudge-caught-writes-with-no-propagate",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "observation",
+    "name": "WHAT WORKED (hxm_program, 2026-09-28): the Stop-hook nudge caught two graph writes with no propagate_change, fired once, and the blast radius it prompted came back with nothing owed — \"cheap and correct\"",
+    "source": "art:hxm-program-feedback-2026-09-28",
+    "statement": "Recorded so a regression is checkable. Reporter (the hxm_program hub, 2026-09-28): \"The Stop-hook nudge caught a real skip. Two graph writes and no `propagate_change`: the nudge fired once, the blast radius was computed, and nothing was owed. That's cheap and correct.\" The same hub, 2026-08-25/26: \"The harness's Stop hook did fire once ('1 graph write and no loop check') and was correct.\"\nWhat must not regress: once per session, and only on a real skip.\nNOTE, from the same triage (fact:root-cause-a-stateless-caller-is-named-by-the-mcp-librarys-default-2026-09-28): the probe this nudge spawns appears in the usage ledger as a harness called `rmcp`, which is how the hub's first /feedback report met it as an unattributable client.",
+    "subject_id": "cap:stop-nudge-asks-the-graph",
+    "valid_from": "2026-09-28"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:056afb9adb1e27a54874b5aad732a551a609ee44dde0ad912ea5731722bafff7",
+  "edge_type": "REALIZES",
+  "from_id": "art:sync",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cmp:sync"
+}

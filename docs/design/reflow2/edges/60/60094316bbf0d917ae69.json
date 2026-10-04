@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:21949c43e4d32af64ccd80e0bd4e5656f2fda5d9008bd92e23fc0b56a5c2dfff",
+  "edge_type": "REALIZES",
+  "from_id": "art:main",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:snapshot-read"
+}

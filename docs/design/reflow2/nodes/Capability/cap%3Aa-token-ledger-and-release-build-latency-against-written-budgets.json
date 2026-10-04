@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:62a496c65d2894198485d8a57b469cffa1d32ac7a1fd7672222d387455e34a15",
+  "node_id": "cap:a-token-ledger-and-release-build-latency-against-written-budgets",
+  "node_type": "Capability",
+  "properties": {
+    "description": "Instruments the MCP surface to record calls and reply characters per named task; times each tool on release builds against reflow2's own design and a small one; records budgets as Constraints before any optimisation and re-measures them every release.",
+    "name": "A token ledger per named task and release-build latency per tool, measured against budgets written first and re-measured each release",
+    "provenance": "authored",
+    "status": "planned"
+  }
+}

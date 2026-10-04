@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:99d94aeaf96e96c3df3a3bfdb944418e3ecd8ef9faf00e3143d621e68aa62089",
+  "edge_type": "REALIZES",
+  "from_id": "art:graph",
+  "properties": {
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:a-write-is-credited-to-who-it-was-for"
+}

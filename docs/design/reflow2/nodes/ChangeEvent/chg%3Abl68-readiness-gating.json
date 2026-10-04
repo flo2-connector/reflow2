@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:6c67d63898abb253476e96bcc8b0b586a95735ca60f272d0c2996428f2d3732c",
+  "node_id": "chg:bl68-readiness-gating",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "name": "BL-68 part (1): readiness becomes a GATING score with a forecast — a ReadinessAssessment construct (TRL/MRL, 1-9), a GATED_ON edge carrying the stated threshold, and TemporalFact gaining basis + confidence so a forecast marks itself as a projection rather than an observation"
+  }
+}

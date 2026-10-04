@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:b1f52fbe502e37f5cf3b8751763b92f3f4b50bb81df8da7a2437453279788057",
+  "node_id": "req:inviolable-intent",
+  "node_type": "Requirement",
+  "properties": {
+    "concern": "core",
+    "designation": "internal",
+    "kind": "functional",
+    "lineage": "original",
+    "name": "Intent that must hold no matter what is recorded as inviolable, and a violation is computed, not remembered",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "A design must be able to record intent that no downstream decision may trade away — a key performance parameter, in the acquisition sense: a threshold that, if missed, fails the effort regardless of how well everything else went. Inviolable intent is distinct from a Requirement (a goal to achieve, tradeable against other goals) and from a Constraint (a limit imposed on the design). reflow2 must (a) let that intent be stated with its threshold and, where it applies, its objective value; (b) COMPUTE a violation rather than rely on anyone remembering — an accepted Decision, an allocation, or a change whose blast radius contradicts a KPP must be surfaced loudly and above ordinary gaps; and (c) show a KPP crossing in impact analysis BEFORE the edit is made, not after it has been committed. A KPP that nothing checks is a comment.",
+    "status": "accepted"
+  }
+}

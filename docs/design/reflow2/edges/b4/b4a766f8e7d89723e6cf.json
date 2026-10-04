@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:1e54d16fb1b711a0a1303d89388aaaf7ff5febd1f8ae21726123318211797860",
+  "edge_type": "REALIZES",
+  "from_id": "art:tools-capture",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked",
+    "note": "add_design_rule steps (pre-existing delivery leg)"
+  },
+  "to_id": "cap:a-repos-conventions-are-delivered-by-step-and-its-adapter-is-registered"
+}

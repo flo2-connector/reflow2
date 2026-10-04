@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:aa968833c9d4f22e30f0c56853cfe66a8db93640fb7b3155bcce00125fff7a5c",
+  "node_id": "art:test-a-writing-call-keeps-the-committed-export-current",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "test",
+    "description": "Eleven real-binary tests, isolated HOME, a deadline per run: in a project whose .mcp.json names the export, a writing call keeps it current (one stderr line naming the path and the config; compare_designs live-vs-export and fresh-export-vs-kept both identical); a read (get_node, loop_status, graph_report) and a refused write leave the file's bytes and mtime untouched; --export-to names the file and wins over the configuration, and a read with it writes nothing; .vscode/mcp.json with ${workspaceFolder} is read; with nothing named anywhere a write says so and writes none; disagreeing configurations are refused with no store and no export; a merge-mangled export is left alone, exit 3, the write landed; an unwritable export (no folder) exit 3; --no-export writes none and says the export is behind, and is refused with --export-to; in git, two door writes each chain prev_content_hash from the COMMITTED export; a pointer folder still refuses (item 1) with or without --export-to.",
+    "location": "crates/reflow2-mcp/tests/a_writing_call_keeps_the_committed_export_current.rs",
+    "name": "crates/reflow2-mcp/tests/a_writing_call_keeps_the_committed_export_current.rs — eleven real-binary tests of the door's export",
+    "status": "realized"
+  }
+}

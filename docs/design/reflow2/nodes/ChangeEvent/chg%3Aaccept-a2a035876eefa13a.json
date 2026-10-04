@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:d4f3889bf52bd07b79ff24a2fc518a710a69fdd48450e1842bb0b4506f5c4f33",
+  "node_id": "chg:accept-a2a035876eefa13a",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "test_failure_fix",
+    "detected_at": "2026-07-23",
+    "name": "Live-store catch-up: same as art:graph — committed export already carried this checksum (a28d0a4); live store was behind because that session's server was down. Refusal-message fix (dc9bf96, BL-86) restores intended behaviour — no design meaning."
+  }
+}

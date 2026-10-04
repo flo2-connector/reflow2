@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:b095e2f71645a93b95e7ca8a6c4ca5e57c2feff2a1ae783ace5fe63ef32c519c",
+  "edge_type": "CAUSES",
+  "from_id": "fact:the-commonest-structural-edge-has-no-typed-helper-and-its-name-is-taken",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "The measured defect is the evidence; this is the open question about the two repairs it suggests.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "dec:idea-should-there-be-a-typed-depends-on-and-the-existing-name-freed"
+}

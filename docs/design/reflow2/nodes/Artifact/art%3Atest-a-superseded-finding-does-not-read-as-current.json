@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:d82db78140956003f6fde6df03b113fef7552ccc76580290080ac442bb9c0a12",
+  "node_id": "art:test-a-superseded-finding-does-not-read-as-current",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "test",
+    "location": "crates/reflow2-core/tests/a_superseded_finding_does_not_read_as_current.rs",
+    "name": "a_superseded_finding_does_not_read_as_current.rs",
+    "status": "realized"
+  }
+}

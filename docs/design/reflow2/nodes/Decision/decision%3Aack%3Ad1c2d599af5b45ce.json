@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:fc9c08b19abc2fcec9e83e7274f99158c5fa8c65912f2a03a8a1fff280cb3d4e",
+  "node_id": "decision:ack:d1c2d599af5b45ce",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Accepted the gap gap:d1c2d599af5b45ce.",
+    "name": "Reviewed: gap:d1c2d599af5b45ce",
+    "rationale": "Acknowledged on Anthony's word, 2026-07-28: validation is tracked OUTSIDE this graph and deliberately so. The real fitness-for-purpose evidence is the trials — the brownfield trial on ophyd-service and the greenfield trial on aidrone, both logged in docs/trials-private/ — plus sustained real usage of the StoryFlow fleet. None of these are modelled as Verification nodes of kind=validation, and backfilling 67 of them would manufacture records where the evidence lives in prose and in use. The spec-level verifications that DO exist are genuine and passing; this gap marks the boundary of what the graph claims to know, not a hole in the testing. Revisit if trial findings start needing to be traceable per-capability.",
+    "status": "accepted"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:1254e58ee7d4b9c93eb72e931362cb23e6a5d75a9e2ff9b3daf40c1dc23f61a3",
+  "edge_type": "REALIZES",
+  "from_id": "art:scope",
+  "properties": {
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:a-finding-describes-the-walk-that-produced-it"
+}

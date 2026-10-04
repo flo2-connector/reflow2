@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:3c8adfabf9d230ecf359aad44db3d8c6240d45ee9913d5b9a8a401489c6c1944",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:test-provenance",
+  "properties": {
+    "covers": "whole"
+  },
+  "to_id": "ver:stamp"
+}

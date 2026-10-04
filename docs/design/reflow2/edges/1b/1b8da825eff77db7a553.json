@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:e52edb5a34fb73a1b3fb4c40fc3492f7412f9fc3faa896a6d9bb616822db01f8",
+  "edge_type": "TRIGGERS",
+  "from_id": "cap:a-cut-exports-the-record-once-from-the-new-binary",
+  "properties": {
+    "role": "feeds — the record is committed and merged, so the tag can go out. Branch, draft PR, CI green, merge, THEN tag on main"
+  },
+  "to_id": "cap:release-publishes-a-container"
+}

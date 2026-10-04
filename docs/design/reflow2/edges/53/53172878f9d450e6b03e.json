@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:3e571b78e6cb40ea4b6eec69e606a978b62b4da6db77d01b66ad2382d764544d",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:detect",
+  "properties": {},
+  "to_id": "req:the-tool-finds-its-own-blind-spots"
+}

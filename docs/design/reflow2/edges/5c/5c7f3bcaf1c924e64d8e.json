@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:40852812c362fff30cd3cb7f3efc67183b0b685442065ac24a73cca55485afbf",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:release-trigger-needs-a-required-item",
+  "properties": {
+    "evidence": "This refines the trigger dec:release-trigger states; it is meaningless without it and cannot be read on its own.",
+    "optional": false,
+    "weight_basis": "evidence"
+  },
+  "to_id": "dec:release-trigger"
+}

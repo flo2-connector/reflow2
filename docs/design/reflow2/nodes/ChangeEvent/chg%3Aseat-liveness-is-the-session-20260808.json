@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:68ae13fa3a95652d16d691f9c96d0d43db060817e7352fd34debcc997442136b",
+  "node_id": "chg:seat-liveness-is-the-session-20260808",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "test_failure_fix",
+    "name": "Seat liveness stops answering about the server and says so — a claim whose client is gone reads gone, not live"
+  }
+}

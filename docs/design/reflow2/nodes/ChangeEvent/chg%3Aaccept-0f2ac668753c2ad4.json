@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:9b35a6746c046c332b9d3fcc39059859ad07887e97af822d30667469fa9901aa",
+  "node_id": "chg:accept-0f2ac668753c2ad4",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "test_failure_fix",
+    "name": "The v0.52.0 version bump. Accepted BEFORE the manifest is applied, so the release records the file it actually ships rather than the pre-bump one. The design meaning of a cut lives in the Release and its epoch, not in a version string.",
+    "subject": "system"
+  }
+}

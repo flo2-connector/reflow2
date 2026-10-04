@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:ba33aace86ca9464992696fa9794e9f04b23781c1fe5ab650c718b0065a1e53d",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:test-a-writing-call-keeps-the-committed-export-current",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:test-a-writing-call-keeps-the-committed-export-current"
+}

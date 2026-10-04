@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:114aa4597e66cf598af50e157a4a6b69a9d792edea7919ee6ebe7bd104ee7877",
+  "edge_type": "CHANGED",
+  "from_id": "chg:absorb-core-storage-text",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:bulk"
+}

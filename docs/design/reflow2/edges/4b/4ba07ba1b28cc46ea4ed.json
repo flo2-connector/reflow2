@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:dd061ccdf67694d6dc89251f42663308e46ca8104ee355da505f5d903f39c4af",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-deliverable-declares-who-it-reaches",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:detect"
+}

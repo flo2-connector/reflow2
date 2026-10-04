@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:56cfd59c83683569485251e5d59c56eadcb83ccd4a23fbf21c61524d01f0e425",
+  "node_id": "epoch:v0530-cut",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "description": "Two corrections to what the design tells a reader about itself, both found by the design misleading its own agent. Closure had two available answers and the two surfaces each read a different one, so a finding another record had refuted came back from search with no marker at all; it is now one graph-aware computation both surfaces use. And the unreachable-vocabulary count was a flat 43 that conflated a hole somebody wants filled with a property an operation writes, where a caller parameter would let somebody forge a computed fact; split by intent it is 14 holes, 15 written by an operation, 13 unused.",
+    "epoch_type": "release_cut",
+    "name": "v0.53.0 cut — a refuted finding stops reading as current, and a count starts meaning something",
+    "sequence": 401,
+    "status": "arrived"
+  }
+}

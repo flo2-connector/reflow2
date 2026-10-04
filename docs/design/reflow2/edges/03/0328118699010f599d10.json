@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:7f78ca49b01d06d8a76ecceb470e0dbdeabcbf735b5c3a15fea8cd708a7c7bd4",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:the-spine-is-checked-for-two-parents-and-for-level-disagreement",
+  "properties": {
+    "coverage": "partial",
+    "evidence": "Checks the spine is a tree and agrees with declared level. Does not check that a box has a boundary."
+  },
+  "to_id": "req:recursive-black-box-decomposition"
+}

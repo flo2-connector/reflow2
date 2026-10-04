@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:f6792b5022cc7e69cdf53dd50d61e163a546e793b067bcac41e55e517b2ef362",
+  "node_id": "frag:alex-2026-08-14-item-13",
+  "node_type": "Fragment",
+  "properties": {
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Item 13: 'get_instructions truncates (~22.6 KB, cut mid-file). Standing rules after the cut never arrived.' Re-attributed on measurement: the server returns the whole document; the client capped it. The ordering is the defect."
+  }
+}

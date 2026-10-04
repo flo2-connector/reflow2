@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:7f6024d9018ea6ee28153064532a326c24ccbfa8d69bb94df64435c44172670c",
+  "node_id": "chg:accept-d470cc223bc3a3db",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "test_failure_fix",
+    "detected_at": "2026-08-01",
+    "name": "First baseline — the suite as written for the evidence-quality family."
+  }
+}

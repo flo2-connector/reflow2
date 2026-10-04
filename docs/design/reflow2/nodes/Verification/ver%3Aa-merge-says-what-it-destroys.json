@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:136f362fb76d702c5fab3077ab1f468f5af2366bc3e3f18e65bbaa8e80824f8b",
+  "node_id": "ver:a-merge-says-what-it-destroys",
+  "node_type": "Verification",
+  "properties": {
+    "kind": "verification",
+    "last_run_at": "2026-08-08",
+    "level": "unit",
+    "method": "test",
+    "name": "A merge proposal discloses what it would destroy before it can be applied, and a proposal that deletes a node stops reporting itself as needing no review",
+    "status": "passing"
+  }
+}

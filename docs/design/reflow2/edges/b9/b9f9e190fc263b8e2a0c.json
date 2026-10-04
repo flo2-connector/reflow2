@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:b89124a4e7d681d25bc4b6c8270fc4c2e978e480e8094bd3c81d02289d69b1ce",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:a-revising-write-says-what-it-removed",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:tools-capture"
+}

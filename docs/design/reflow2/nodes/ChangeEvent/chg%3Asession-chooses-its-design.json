@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:86e1af0d6f39a112ae2ae5e31ca621d980e6e49586c7e9494a5bcfb4125551bd",
+  "node_id": "chg:session-chooses-its-design",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "name": "Anthony's fix captured as intent: a session finds out what designs exist and is told which to use — with the measured correction that \"list all graph_ids\" returns one per store, so the useful tool describes a design at a PATH"
+  }
+}

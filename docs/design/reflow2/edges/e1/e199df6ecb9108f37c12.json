@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:d8f892bc4ccb9f09af77f84def1e82809b8b288f4ce3d60a5468aa4b00866156",
+  "edge_type": "CAUSES",
+  "from_id": "art:hxm-program-feedback-2026-09-28",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "The root-cause pass on this document's 09-14 /feedback window (an unattributable `rmcp 3.3.0` client): the hook's graph probe calls statelessly and declares nothing, and the server names every call from the handshake alone, so rmcp's own library default is recorded as a harness, even for a stateless caller that declares itself.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:root-cause-a-stateless-caller-is-named-by-the-mcp-librarys-default-2026-09-28"
+}

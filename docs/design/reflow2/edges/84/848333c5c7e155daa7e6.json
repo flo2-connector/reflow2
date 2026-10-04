@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:3d69870b075c6fa7914330f87418a63cb1dbfcecafa72de02db2e8834b62e215",
+  "edge_type": "CAUSES",
+  "from_id": "cap:a-code-folder-names-its-design",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "The pointer check this capability built is one position in main()'s early-return dispatch (origin/main crates/reflow2-mcp/src/main.rs ~1834), scoped by its own description and by dec:the-pointer-file-is-dot-reflow2-toml-and-the-first-slice-attaches-one-design to \"a client started in the folder\". Every one-shot mode returns above it (--export ~1619, --call ~1631, --import ~1640), and each opens the store with an opener that creates a missing one. Its only test drives a stdio client.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:root-cause-one-shot-modes-return-before-the-pointer-check-and-opening-a-store-creates-it-2026-10-02"
+}

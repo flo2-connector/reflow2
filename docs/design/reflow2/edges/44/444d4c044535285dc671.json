@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:2d8ba3a3021a4235ed3cdb70f39960796c620674979142405957abbf29b2ccf7",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "req:content-reaches-every-seat",
+  "properties": {
+    "evidence": "The graph already solved distribution by being a repo file plus merge-on-pull; blobs do not inherit that, which is why this requirement exists.",
+    "optional": false,
+    "weight_basis": "evidence"
+  },
+  "to_id": "dec:multi-writer-architecture"
+}

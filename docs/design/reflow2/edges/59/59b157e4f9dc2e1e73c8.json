@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:2253634e621d7720781b9dcc8bb634b84e6e53fdf90a13ee2e8d47bab8610ebd",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:vocabulary-covers-materiel",
+  "properties": {
+    "authored_at": "2026-08-07",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:eea45846c9e21cf266e97c1875230f0c1a989a328193121643f1e7ea878eacb8",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-write-can-be-conditional-on-what-was-read",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:service"
+}

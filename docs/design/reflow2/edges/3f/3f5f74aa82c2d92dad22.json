@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:e4b3fb47c743bd825c2d7799d79814efd4dbf44fbc4f9218900913fae055ec3e",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "req:an-owners-answer-recorded-outside-a-session-is-shown-to-the-next-agent-and-applied-only-to-its-node",
+  "properties": {
+    "evidence": "Applying an answer as a named person's word needs the design to record whom a question was put to and who answered it. That requirement supplies both, and this one extends it to decisions and to answers given outside a session.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "req:a-question-is-addressed-to-a-person-and-records-who-answered"
+}

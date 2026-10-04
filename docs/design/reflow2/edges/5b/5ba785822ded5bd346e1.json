@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:45b8aa3565a62acceabfbd4fce065a2e1977688f541f8e2ff3c44a1663ff9bf2",
+  "edge_type": "REALIZES",
+  "from_id": "art:tools-coherence",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked",
+    "note": "the served closure_report tool"
+  },
+  "to_id": "cap:closure-report"
+}

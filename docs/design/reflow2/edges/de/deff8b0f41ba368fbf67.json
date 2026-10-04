@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:2a786e380e8a2df4cddd07a0dc05b7ab8b4221270a682e33d64bc72b64721ff5",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:calibration-propagates",
+  "properties": {
+    "approved_at": "2026-08-01",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

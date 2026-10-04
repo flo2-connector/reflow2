@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:8dbbbbfd835ac65e87d7b46b3cbd4875e4c56bac09b904851b3a6f470cfb1c6d",
+  "node_id": "frag:art:ingest-handshake-test",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered tests/ingest_handshake.rs"
+  }
+}

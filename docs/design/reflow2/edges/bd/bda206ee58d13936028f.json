@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:441ff3d0bb61e5a10428dde574fa6a3eda0740682bd27d7228a8241d5481f2b1",
+  "edge_type": "GOVERNED_BY",
+  "from_id": "req:design-dependencies-declared",
+  "properties": {},
+  "to_id": "rule:fixes-are-judged-by-the-third-party"
+}

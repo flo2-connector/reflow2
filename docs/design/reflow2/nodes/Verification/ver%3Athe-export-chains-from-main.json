@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:f53cdbc9f12b99b202b1eba42ba4c0cd8be130651c018f320c212c84c3690a68",
+  "node_id": "ver:the-export-chains-from-main",
+  "node_type": "Verification",
+  "properties": {
+    "description": "`crates/reflow2-mcp/tests/the_export_chains_from_main.rs`, two hermetic tests over scratch git repositories.\n\nTHE ONE THAT MATTERS builds the exact shape dec:export-once-per-pr could not survive: a committed export on main, a branch, an export, a commit, then a second export. It asserts BOTH branch exports carry main's content hash as their prev_content_hash — so whatever order the commits were made in, a squash-merge lands exactly one hop — and that neither chains from the other.\n\nTHE SECOND asserts the fallback: outside a git repository the on-disk chain still forms, the receipt reads `chained_from: disk`, and `chain_note` says why. Nothing about exporting requires git.\n\nSHOWN TO FAIL BEFORE IT WAS TRUSTED: reverting the anchor to the on-disk predecessor makes the branch test fail on the assertion that names the rule, with the intermediate hash in the message. A check nobody has seen fail is the NEW-01 shape on this project's own record.\n\nWHAT IT DOES NOT COVER: the second half of the increment — the server keeping the working-tree export current without being asked — is not built, so nothing here exercises a debounce, a background write, or what happens when the working tree holds a hand edit.",
+    "findings": "Both tests pass on the merged code. Against the pre-fix anchor the branch test fails as designed: the second branch export chained from the first (sha256:32ac3a8b…) instead of from main (sha256:7f7a0359…). The full mcp suite — 63 test binaries — passes alongside it, and toolsnap reports exactly one changed schema, export_graph's description, which was re-blessed deliberately.",
+    "kind": "verification",
+    "last_run_at": "2026-09-12",
+    "level": "integration",
+    "method": "test",
+    "name": "Two exports on one branch both chain from the committed ancestor",
+    "status": "passing"
+  }
+}

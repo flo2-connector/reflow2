@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:3e80686b33eb490ae89614d71d491592131ad2dcb2480f47de8ebbe3d95e7170",
+  "node_id": "chg:the-image-smoke-waits-for-the-store-instead-of-breaking-on-running",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "test_failure_fix",
+    "name": "The image smoke test waits for the identity sidecar instead of breaking out when the container is not yet Running",
+    "repair": "corrected_cause",
+    "subject": "system"
+  }
+}

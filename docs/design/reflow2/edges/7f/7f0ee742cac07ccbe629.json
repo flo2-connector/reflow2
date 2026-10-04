@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:9ed3a7cbcfa26739bc244355a72c4c07d4c896c1a179ae00b20b842019f13e86",
+  "edge_type": "CHANGED",
+  "from_id": "chg:nine-tools-gain-a-reply-budget",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "cap:every-oversized-reply-offers-a-bound"
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:cdc5ad389bc414a04995045b7e6baecd414e752a03c8a5398dee6c8cc428503b",
+  "edge_type": "CAUSES",
+  "from_id": "cmp:proxy",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "proxy.rs Upstream::send treats ANY failed post, including an HTTP 404 \"Session not found\" from a live server, as \"the server stopped answering\". It calls ensure_server_async (which re-attaches to the same live server), drops the session id and re-sends the client's initialize, so the server mints a fresh session, whose handler's SeatLease::attach() is a new seat. The server side cause is rmcp 3.4.0 LocalSessionManager's DEFAULT_KEEP_ALIVE of 300 s, which reflow2 uses unchanged (LocalSessionManager::default()); on idle expiry the handler, and with it the old SeatLease, is dropped.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:root-cause-an-idle-session-expires-and-the-proxy-silently-takes-a-new-seat-so-live-claims-read-gone"
+}

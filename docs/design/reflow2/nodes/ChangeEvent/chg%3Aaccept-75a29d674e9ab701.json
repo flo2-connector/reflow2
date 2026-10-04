@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:c29795e4c518b1cec663a51b57ff4f36ec1973fd7ff773893c00362f1112c56a",
+  "node_id": "chg:accept-75a29d674e9ab701",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "detected_at": "2026-08-11",
+    "name": "Adds edge::INTERACTS_WITH, a constant for an edge type the schema has carried since the functional layer landed. No design meaning moves: the edge already existed, was already exported, and is already named in FUNCTION_PRESERVATION_INVARIANT as a bare string. This only gives the reader a constant instead of a literal."
+  }
+}

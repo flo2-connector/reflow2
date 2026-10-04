@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:46504face162b5b6025e68edd8317aa30d4811d27e2c7af94e9587e15bb2afbd",
+  "node_id": "ver:the-axis-has-a-detector",
+  "node_type": "Verification",
+  "properties": {
+    "description": "6 cases, crates/reflow2-core/tests/change_axis_unstated.rs. THE LOAD-BEARING ONE IS ZERO USAGE: a design with changes and no axis on any of them must be asked, which is precisely what a consistency-shaped check cannot see — decomposition_coverage keys on a Requirement already carrying a DECOMPOSES edge, so a project that never decomposed reads clean with all three legs apparently present. Also pinned: the complement (a fully stated design is not asked, so the detector cannot pass by always firing), silence on a design with no changes at all, the partial case reporting only the unstated ones, and the DENOMINATOR appearing in the title, because a numerator alone cannot distinguish a drifting design from one that just started. THE AGGREGATE PROPERTY HAS ITS OWN CASE: the gap id must survive the population growing, or the user's standing acknowledgement is undone by the next change anybody records — the trap unvalidated_capability fell into and was re-acknowledged about twenty times for, and sharper here because ChangeEvents are the fastest-growing node type in any active design. The sixth case pins that a blank axis cannot be written at all (the schema enum refuses it on every path including import_graph), which is what licenses the detector to be a plain presence check rather than carrying an emptiness guard that could never fire.",
+    "findings": "6 of 6 passing. Also exercised against this design's live graph rather than only fixtures: it produced ONE gap reading \"468 of 594 recorded change(s) do not say what kind of change they were\", at severity 0.30. That run is the evidence against the reason this detector was nearly not built — 468 unstated events yield one question, not 468, because the aggregate keying already existed.",
+    "kind": "verification",
+    "last_run_at": "2026-08-22T14:58:00Z",
+    "level": "integration",
+    "method": "test",
+    "name": "change_axis_unstated fires at zero usage, aggregates, and stays silent once answered",
+    "status": "passing"
+  }
+}

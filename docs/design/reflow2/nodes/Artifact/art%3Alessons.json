@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:7d4b266c2fa94b7a672ea604e20576d50ff8c992a45cd86e06fbebe399dc705a",
+  "node_id": "art:lessons",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "description": "Delivery of a design's lessons at the step they name: the served-step set (skills + tools), validation with nearest-name refusal, one scan of rules and facts keyed by step (newest first), and the tool-list enrichment that leaves an empty design's surface untouched. Read by get_skill and the list_tools override in service.rs.",
+    "location": "crates/reflow2-mcp/src/lessons.rs",
+    "name": "lessons.rs",
+    "status": "realized"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:1fca715e35a026441560cdad55dd6ad3a94d72162a9d36c4c7de1222aaa96cae",
+  "node_id": "frag:art:test-a-stored-item-the-schema-now-refuses-is-reported",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered a_stored_item_the_schema_now_refuses_is_reported.rs — the refused_by_schema detector, against stores written under a wider schema"
+  }
+}

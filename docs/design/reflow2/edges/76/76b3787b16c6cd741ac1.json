@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:d611a3ed661b392ad019d8c9c39bdb4b72d470f139f64bebf22ad9d33bdc287e",
+  "edge_type": "CHANGED",
+  "from_id": "chg:update-is-one-word",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "cap:update-is-one-word"
+}

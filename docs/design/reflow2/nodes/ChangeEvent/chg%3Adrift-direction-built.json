@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:5640f4d7633271f4fca536cd028850a8f38cc74674ff06b01e11decdee97564f",
+  "node_id": "chg:drift-direction-built",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "name": "Directional drift built: reconcile now says understated / overstated / diverged and names the delta"
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:f48fce680d0d6f3a0c8699c751359dc562bc6d0b3b1a2c44c3a8d6bf63569426",
+  "node_id": "fact:checking-which-design-a-server-holds-takes-a-write-marked-call-2026-09-28",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "finding",
+    "name": "MEASURED 2026-09-28: the only tool that says which design a server holds (design_identity) is marked as a write, so checking a folder's pointer costs one logged write per session start on flo2.io",
+    "source": "who:claude-code",
+    "statement": "Found while building the first slice of the pointer file. The client checks that the server at `.reflow2.toml`'s address holds the design the file names. Searched for a read-only way to learn a server's graph id: reflow2's handshake (get_info) names no design, and among the tools only design_identity returns `graph_id` directly (tools/skills_tools.rs). It is `read_only_hint = false` because passing `label` renames the design, and flo2.io's gateway treats a call it cannot see is read-only as a write: it ensures the caller is a Contributor and records the call in its write log. So each session started in a folder with a pointer to flo2.io leaves one design_identity entry in flo2's write log.\nNot harmful, and the check is worth it (it is what stops a session being attached to the wrong design). The clean fix is a read-only way to ask: the design's id in the handshake, or a read-only identity tool. Either needs a reflow2 release and, on flo2.io, the new tool admitted by its gateway.",
+    "subject_id": "cap:a-code-folder-names-its-design",
+    "valid_from": "2026-09-28"
+  }
+}

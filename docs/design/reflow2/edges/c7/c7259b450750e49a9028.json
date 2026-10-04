@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:c1f237db482529bf7958a95012c689a45f227348ec5c28d135a49efc613af2ef",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-a-failing-check-whose-findings-name-a-changed-file-is-flagged-rerun-owed",
+  "properties": {
+    "evidence": "The hint is only acceptable if it closes nothing; that ruling is the boundary it has to stay inside, and the idea is worthless if it crosses it.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "dec:a-stale-finding-is-closed-by-a-claim-not-a-computation"
+}

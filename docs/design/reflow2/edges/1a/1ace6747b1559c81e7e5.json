@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:93041ead1fe1ac9840afe617d2d4f9a6b466fabf081ff1e68ce391333b6f370b",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-design-is-saved-one-file-per-item-2026-10-03",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "cap:changelog-entries-are-fragments-assembled-at-the-cut"
+}

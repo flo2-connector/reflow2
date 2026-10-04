@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:e9df3d39a65e69501dd76211a8785b81b76fbdcec2dabffb00414ac31d8e13ef",
+  "node_id": "art:bulk",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "granularity": "atomic",
+    "location": "crates/reflow2-core/src/bulk.rs",
+    "name": "bulk.rs",
+    "status": "realized",
+    "volatility": "stable"
+  }
+}

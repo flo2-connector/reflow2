@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:26e3de477a9502e35fbf34e3b1b328ce8b839723a3ae3cc0fe7febd967f95ae5",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-should-the-gate-set-be-selected-per-diff",
+  "properties": {
+    "evidence": "Selecting gates is only possible because the gate list is now machine-read from the workflow and already takes a filter; against three hand-kept copies of the list, selection would be unimplementable.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "req:the-gate-list-is-run-not-only-cross-checked"
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:4fae43dae8d315695cfa0ea84a229b79b09abbdf9c9f5c9e20f4a5d30d51255e",
+  "edge_type": "ABOUT_ENTITY",
+  "from_id": "fact:external-agent-side-report-2026-08-11",
+  "properties": {
+    "evidence": "The report's own synthesis, and the node it produced. Three of its separately-filed frictions — stale last_run, deferred artifact capture, prose asks that do not register — share this one cause."
+  },
+  "to_id": "dec:idea-the-loop-only-sees-what-an-agent-hand-carries"
+}

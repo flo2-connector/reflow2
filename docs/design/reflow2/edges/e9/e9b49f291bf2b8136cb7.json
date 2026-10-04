@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:6c77ebe67fe541ff2530539b62205ab8581eed261270248d03592d1788907bb2",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:test-degraded-server",
+  "properties": {
+    "covers": "whole",
+    "note": "migrated 2026-09-22 from a REALIZES link_artifact drew in error"
+  },
+  "to_id": "ver:degraded-surface"
+}

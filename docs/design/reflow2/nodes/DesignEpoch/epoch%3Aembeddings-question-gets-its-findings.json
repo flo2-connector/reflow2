@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:8567cf21e6f9e4012f87f5aeb6173d81df57824cd0692334553dc61a94815b73",
+  "node_id": "epoch:embeddings-question-gets-its-findings",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "epoch_type": "revision",
+    "name": "The embeddings question gets measured findings, and stops being an orphan (2026-08-04)",
+    "sequence": 269,
+    "status": "arrived"
+  }
+}

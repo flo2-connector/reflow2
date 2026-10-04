@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:31814ff0fdb9ff9a45eb071c4e86db2690aa95525b0f64bba4abb8f606036549",
+  "edge_type": "CHANGED",
+  "from_id": "chg:bl74-loop-status",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cmp:report"
+}

@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:1e271a80fa516fea26e3361898bbbcbc14aa48b0f1221d7f7b4d1acc9630635c",
+  "edge_type": "GOVERNED_BY",
+  "from_id": "cap:machine-wide-install",
+  "properties": {},
+  "to_id": "dec:install-once-per-machine"
+}

@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:be69c571cb65918783c7809df52fffb2a2b3a62fd46e2ccc9da407e658a198ef",
+  "edge_type": "VERIFIES",
+  "from_id": "ver:an-item-layout-write-reads-back-whole-and-anchors-each-item",
+  "properties": {},
+  "to_id": "cap:the-design-is-saved-one-file-per-item"
+}

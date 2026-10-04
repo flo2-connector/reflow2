@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:655559e4ea6c49b07671ebd252eb888f14636fcdc0a308bb4bdfd9a49a40a458",
+  "node_id": "chg:a-served-sentence-carries-no-run-of-spaces",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "defect_fix",
+    "detected_at": "2026-09-03",
+    "name": "The seat-level export sentence loses three runs of ten spaces",
+    "rationale": "⭐ THE CAUSE IS THE PATCH TOOL, NOT THE COMPILER OR THE FORMATTER, and the first guess was wrong. `cargo fmt` was the obvious suspect — a formatter that reflows a wrapped literal. REFUTED BY EXPERIMENT: a throwaway crate with the same `\\`-continued string went through `cargo fmt` unchanged and printed single spaces, because Rust strips the indentation after a `\\`-newline and fmt preserves the continuation. The corruption came from the PYTHON HEREDOC used to write the file: inside a non-raw triple-quoted string, `\\`+newline is Python's OWN line continuation, so Python consumed the backslash and the newline before Rust ever saw them and left the Rust indentation as literal text.\n\n🛑 THE CLASS IS \"A TOOL IN THE MIDDLE SILENTLY TRANSFORMED THE CONTENT\", and it is invisible three ways at once: the diff looks right, `cargo fmt` accepts it, no test read the sentence, and only a human reading a real reply can see it. That is why the pin is over EVERY message this module can produce rather than over the sentence that broke — the next occurrence will be a different sentence written by the same means.\n\n⚠️ IT SHIPPED IN THE SAME PR THAT FIXED A FALSE SENTENCE, which is the part worth keeping: the work was verified end-to-end on the real seat, the served line was read in full, and the spacing was still missed because attention was on whether the CLAIM was true. Correctness of content and correctness of presentation were checked by the same glance and only one of them actually got checked.",
+    "subject": "system",
+    "summary": "`sync_debt::unexported_work`'s sentence shipped in chg:the-unexported-claim-is-answered-once-for-the-seat containing THREE runs of ten literal spaces, and reached a real `loop_status` reply on this seat. The format string is rewritten with genuine `\\`-newline continuations. `no_served_sentence_contains_a_run_of_spaces` pins the class over every message the module produces — not over the one sentence that broke — and was OBSERVED FAILING against the shipped string (checked out from HEAD) before passing on the fix. 24 tests in the file, fmt and clippy clean."
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:9cdbac01926555e8c1a16f0f931bb039f940e8c89b008ce2fb0dcca4164a0e5a",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:upgrading-v0160",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:upgrading-v0160"
+}

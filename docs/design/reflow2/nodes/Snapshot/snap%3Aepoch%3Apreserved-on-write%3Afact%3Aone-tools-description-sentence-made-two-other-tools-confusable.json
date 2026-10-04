@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:5c34dc14fd5db5e568d45463b420c5c02fe35c4790b2272ba4a0414bfce27274",
+  "node_id": "snap:epoch:preserved-on-write:fact:one-tools-description-sentence-made-two-other-tools-confusable",
+  "node_type": "Snapshot",
+  "properties": {
+    "edges": "[{\"direction\":\"in\",\"edge_type\":\"HAS_TEMPORAL_FACT\",\"other_type\":\"Capability\",\"other_id\":\"cap:the-loop-closure-reading\",\"properties\":{}}]",
+    "state": "{\"basis\":\"measured\",\"confidence\":0.9,\"fact_type\":\"finding\",\"name\":\"MEASURED 2026-09-22: adding one 40-word sentence to reconcile_verification's description made reconcile_artifacts and wall_check a NEW mutually confusable pair — neither was edited\",\"statement\":\"While building the loop-closure reading, one sentence was appended to reconcile_verification's served description (naming the new stamp). `every_tool_is_found_by_a_query_in_the_users_words::no_new_mutually_confusable_pair` then failed on (\\\"reconcile_artifacts\\\", \\\"wall_check\\\") — two tools whose text was untouched. Reverting only that sentence made the test pass again (5/5). The finder ranks over the whole catalogue, so a description edit shifts term weights for every tool and can move a pair that was not touched across the confusability line. Consequence for anyone editing a description: the pair a failure names need not include the tool you changed; revert-and-rerun is the quick attribution. Not root-caused further — which terms moved was not measured. The sentence was dropped rather than reworded, because the reply's `stamped` field already announces the stamp.\",\"subject_id\":\"cap:the-loop-closure-reading\",\"valid_from\":\"2026-09-22\"}",
+    "target_id": "fact:one-tools-description-sentence-made-two-other-tools-confusable",
+    "target_type": "TemporalFact"
+  }
+}

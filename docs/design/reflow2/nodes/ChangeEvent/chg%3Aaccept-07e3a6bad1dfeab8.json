@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:f794cca033e66d24d66a1012268050a55db555f8cc8617eec636f3c8540d81f3",
+  "node_id": "chg:accept-07e3a6bad1dfeab8",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "refactor",
+    "name": "Mechanical only: the constrains and governed_by probes take the new trailing note argument as None. What they assert is unchanged.",
+    "subject": "system"
+  }
+}

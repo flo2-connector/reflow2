@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:4e448c67e80f460d0b49a638473820d64f9464e742d59885628d8150e19ba076",
+  "node_id": "art:kit-pointer",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "document",
+    "granularity": "atomic",
+    "location": "getting-started/POINTER.md",
+    "name": "POINTER.md",
+    "status": "realized",
+    "volatility": "stable"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:e33084cf8cf0b482fb70568c1a6e048444090560d31956d36d7cb59c4b0d1569",
+  "edge_type": "REALIZES",
+  "from_id": "art:alternatives",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:compare-alternatives"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:c957effe58d12278a5e4d196a320385206efdca0e6c37de5f055d0f50243d2e1",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-rule-binding-a-component-is-modelled-20260808",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:schema-structure"
+}

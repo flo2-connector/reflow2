@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:eaab3a6f28fa9fd158cbc783b8c27224e1bcb7d4b5f9a5a26ba94e2a29aca82b",
+  "node_id": "req:evidence-says-what-it-covered",
+  "node_type": "Requirement",
+  "properties": {
+    "concern": "core",
+    "designation": "internal",
+    "kind": "functional",
+    "lineage": "original",
+    "name": "A passing check says what part of the space it actually covered",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "When a check verifies a claim, the design must be able to say what the check held fixed and what it varied. A capability whose every passing check pins the same parameter, and whose design declares it independent of that parameter, must read as narrowly proven rather than as proven. Where no check states its scope the answer must be that the scope is unstated — reported and counted, never read as full coverage, because silence about coverage is how a check that only ever ran at one point of the space reads as if it ran everywhere.",
+    "status": "accepted"
+  }
+}

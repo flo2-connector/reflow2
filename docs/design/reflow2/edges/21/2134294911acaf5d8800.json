@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:aa079e41968ae6c35e6bfc536c5f3841da693b45b94a5d54369a2f0c7682a9ec",
+  "edge_type": "INVALIDATES",
+  "from_id": "chg:the-cli-describes-a-tool-with-its-schema-and-lessons-2026-10-03",
+  "properties": {
+    "at": "2026-10-03",
+    "note": "Verified false after this change, on the branch binary over a scratch import of main's export (6,511 nodes): `--call describe_schema --args {\"tool\":\"get_node\"}` returns get_node's 2 lessons as records, fact:an-absence-claim-about-why-a-node-changed-read-only-the-node-and-missed-its-retiring-decision-2026-09-28 (the one this finding named) among them; `--describe` delivered all 269 lessons on 91 tools, and `--list-tools --full` equals stdio tools/list entry by entry. Pinned by the_cli_describes_a_tool_with_its_schema_and_lessons.rs."
+  },
+  "to_id": "fact:root-cause-tool-lessons-reach-only-tools-list-and-no-door-reply-carries-one-2026-10-02"
+}

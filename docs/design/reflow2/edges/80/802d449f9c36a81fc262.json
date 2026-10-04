@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:a200fb76b452f2605c4d0a909ec81ca2fc8666148a9cb3667a272ba850c40771",
+  "edge_type": "CAUSES",
+  "from_id": "art:schema",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "schema.rs validate_node inserts a declared default for every missing property, unconditionally, on the create_node path every constructor uses (its own test: validate_node_applies_defaults). Measured 2026-09-05: a fresh Verification with no level/method EXPORTS level=unit, method=test. The injector is the cause; the missing setter is the symptom the reporter met.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:defect-a-verifications-level-and-method-can-be-set-only-at-birth-so-a-wrong-default-is-on-the-record-forever"
+}

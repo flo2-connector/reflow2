@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:d65d9aa5acc579f58a0a93ee31c2e01a0be58c9b156cc251fb4b6390de8a3cf7",
+  "edge_type": "CHANGED",
+  "from_id": "chg:an-empty-answer-says-which-empty-it-is",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:service"
+}

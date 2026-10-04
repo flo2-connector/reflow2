@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:6d281bc69bc885f3a9cc5b63bdbca92521c9a347ef25c658169a9f2a784c9da1",
+  "node_id": "chg:baseline-08ecaafebf6b9b59",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "baseline_established",
+    "detected_at": "2026-08-29",
+    "name": "First baseline. A field report is a fixed historical document — it records what one session on one machine observed on one day, so it should never change again; any later drift on this file means it was edited after the fact, which is a defect in the record rather than an update to it.",
+    "subject": "record"
+  }
+}

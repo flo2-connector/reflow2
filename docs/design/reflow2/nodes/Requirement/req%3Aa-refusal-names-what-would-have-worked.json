@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:413f38326626e32d5f444d8af45b058aef4d497a771857400e0cae5251992ea6",
+  "node_id": "req:a-refusal-names-what-would-have-worked",
+  "node_type": "Requirement",
+  "properties": {
+    "concern": "core",
+    "designation": "published",
+    "kind": "functional",
+    "lineage": "original",
+    "name": "A refusal names what would have worked — a rejected argument comes back with its legal values, not just a verdict",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "WHEN A SERVED TOOL REFUSES AN ARGUMENT BECAUSE IT IS NOT ONE OF A FIXED SET, THE REFUSAL NAMES THE SET. The caller should not have to make a second call to learn what would have worked.\n\nTHE GAP THIS CLOSES. `parse_enum` — the single helper every enum argument on the served surface passes through — refused with `unknown change type: \"correction\"` and nothing else. No enumeration, no nearest match, no pointer to `describe_schema`. The caller is usually an AGENT MID-TASK, for whom a refusal that does not say what would have worked costs a whole round trip and a context switch into schema reading.\n\n⭐ THE VALUES WERE NEVER UNAVAILABLE, WHICH IS WHAT MAKES THIS A DEFECT RATHER THAN A FEATURE REQUEST. serde already builds `unknown variant `correction`, expected one of `requirement_creep`, `new_feature`, …` and the helper was DISCARDING it with `map_err(|_| …)`. The answer was constructed and thrown away on every rejection.\n\nWHY THE FIX BELONGS IN THE SHARED HELPER, not at the call site that was reported: a hand-maintained list per tool rots the first time a variant is added, and one function serves every enum argument reflow2 exposes. Fixing it there means every refusal gains the list at once — which is what the reporter meant by \\\"this alone kills three of the eight\\\".\n\nEVIDENCE. Filed by dev_storyflow 2026-08-03 (api-boss): \\\"enum rejections should list the legal values… this alone kills three of the eight.\\\" RE-CONFIRMED STILL LIVE 2026-08-09 by dragon Boss (`cca98fbf`), who recorded the cost precisely: \\\"one wasted call, then describe_schema{node_type: ChangeEvent, required_only: true} to learn the 11 legal values.\\\" And reproduced a third time the same day by a session in THIS repo while recording a correction — which is how it came to be fixed.\n\nWHAT THIS REQUIREMENT DOES NOT SAY, so the scope is not read wider than it is: it does not ask for fuzzy nearest-match suggestions, and it does not ask that every refusal of any kind enumerate an alternative — only that a CLOSED SET, which the surface already knows, is stated rather than withheld. Where the message shape is unrecognised, the honest fallback is the underlying error's own words rather than a silent return to the bare verdict.\n\n⚠️ A SEPARATE AND UNRESOLVED HALF, recorded here so it is not mistaken for closed: dragon Boss's second point was that NONE of the eleven legal `change_type` values means \\\"the record was WRONG about reality\\\". `resync` connotes reality moving and the design catching up. Adding a value would move the schema stamp and is Anthony's call; this requirement is only about the refusal being useful, not about the vocabulary being complete.",
+    "status": "accepted"
+  }
+}

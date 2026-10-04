@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:8ba36875cc37c3039d916254ff5149c52951144a40bbcd0ddb051678695a98d0",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-saved-design-moves-to-the-item-layout-2026-10-03",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:8509a63c12530134efe5ad2c6d6a222e7d2665f80c9ecbfaff7d3d1cb325ae28",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:test-every-tool-list-carries-the-cache-hints"
+}

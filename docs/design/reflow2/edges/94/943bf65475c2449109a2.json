@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:af166d1525717d83f53e8e1571615237e3d11553e9222fca41a20137b4e3fa6a",
+  "edge_type": "ANTICIPATES",
+  "from_id": "dec:idea-reflow2-serves-a-design-in-operations-where-incidents-feed-the-design",
+  "properties": {
+    "evidence": "The umbrella question over the same report's operations ideas names O-18 as one of the questions it holds. Its options (b) and (c) keep the incident log outside the design, which is the case this idea answers."
+  },
+  "to_id": "dec:idea-root-cause-precedent-reaches-the-projects-own-file-archive"
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:f0dcf42bd6507a6ef36ee422d64d92cf5c911d77a233963c122bec2a26b34c8c",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:live-tier",
+  "properties": {
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

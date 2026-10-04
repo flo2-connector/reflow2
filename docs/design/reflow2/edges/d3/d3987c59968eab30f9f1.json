@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:4cc37b6795c5e1ca274b947ca7e32ed49764b5b6b1acaf4e8e9eb93ed5f0bd9b",
+  "edge_type": "REALIZES",
+  "from_id": "art:taxonomy-command",
+  "properties": {
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:establish-taxonomy-before-bulk-capture"
+}

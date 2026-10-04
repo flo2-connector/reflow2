@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:69d927f30a21b06634d62d58923d3e54df78b7727bdb134c3da2cd957f617cf8",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:distribution-debt-is-reported",
+  "properties": {},
+  "to_id": "req:the-loop-says-what-distribution-is-owed"
+}

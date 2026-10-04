@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:591a8d11e96dfe2707f13bb45a4cbc110452c64bcdfe98919e409eae9a5f3945",
+  "edge_type": "INVALIDATES",
+  "from_id": "chg:two-prescribed-pairs-every-detector-skips-withdrawn-nodes-and-shared-cause-gaps-name-each-other",
+  "properties": {
+    "at": "2026-09-06",
+    "note": "FIXED AT THE CAUSE: the two pairs the fact named (Decision-Verification, Requirement-Decision) are in PRESCRIBED_LAYER_PAIRS and pinned. The third (Decision-DesignEpoch, n=1) is deliberately NOT added, per the fact's own 'watch, not add' — one more report would justify it. Also learned while pinning: add_verification runs no near-match guard at all (and lacks distinct_from), so the reporter's Decision-beside-Verification fire was the Decision constructor's; the Verification side is silent by omission, which is a separate small gap not closed here."
+  },
+  "to_id": "fact:defect-two-prescribed-layer-pairs-are-missing-so-a-check-beside-its-ruling-is-refused-as-a-duplicate"
+}

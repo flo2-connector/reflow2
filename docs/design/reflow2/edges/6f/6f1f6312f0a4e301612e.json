@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:a4526ccd8a1557bfc83861ce462d4e2af4378728ef505cff3a70fc1b1e831450",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "req:a-hint-names-its-next-call",
+  "properties": {
+    "evidence": "It is that requirement's delivered hint whose wording is losing the effect — the pointer exists and is verified; only its grammar fails.",
+    "optional": false,
+    "weight_basis": "evidence"
+  },
+  "to_id": "req:read-surfaces-debt"
+}

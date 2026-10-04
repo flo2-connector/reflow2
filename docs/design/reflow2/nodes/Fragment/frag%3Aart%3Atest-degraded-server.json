@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:79319f63e4e608a005f1d261bdbd48aced5ab697216e8ba2cf2b9b1df2a2f5b7",
+  "node_id": "frag:art:test-degraded-server",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered test_degraded_server.py"
+  }
+}

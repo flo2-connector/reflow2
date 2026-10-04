@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:cdea73054b816ce1802a7a484059e58a65a86de55f98f0f7b67c74df6fd6cdde",
+  "node_id": "chg:option-d-was-built-as-a-tool-and-a-scoring-heuristic-was-abandoned",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "name": "Option (d) became a tool, and the scoring approach was measured and dropped",
+    "rationale": "Anthony chose (d) then (a). (d) was built as a reusable tool rather than a one-off script, because tests the design has never heard of is every project's problem.",
+    "summary": "link_tests.py attributes tests to components on a two-clause rule and refuses to guess at the rest."
+  }
+}

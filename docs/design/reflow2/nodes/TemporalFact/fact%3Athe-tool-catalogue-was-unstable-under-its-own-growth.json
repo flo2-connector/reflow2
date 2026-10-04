@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:0716f174de8861574748f228201ae2613cd3d68ae9aa605fef11687c0da39fe0",
+  "node_id": "fact:the-tool-catalogue-was-unstable-under-its-own-growth",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "measurement",
+    "statement": "FOUND BY BREAKING IT, 2026-08-18. Adding one tool (`set_capability_signature`) turned a green workspace red: `find_tools` stopped returning `link_artifact` for the query 'register a file that realizes a capability'.\\n\\nTHE MEASUREMENT. The top six scored 28, 27, 26, 26, 25, 24 \\u2014 a one-point near-tie across the whole visible band, with the default limit of 5. So the fifth and sixth places were separated by noise, and any new tool mentioning a common word displaced whatever was fifth.\\n\\nTHE CAUSE was in `score_tool`: every query term contributed the same weight regardless of how many tools mentioned it. 'capability' appears in dozens of descriptions; 'file' in a handful. Treating them equally is what compressed the band. There was no inverse document frequency anywhere in the catalogue, while `search_design` next door has used BM25 over Tantivy for months.\\n\\nWHY IT MATTERS BEYOND ONE TEST: THE CATALOGUE WAS UNSTABLE UNDER ITS OWN GROWTH. With 152 tools and rising, any addition could silently evict the right answer for a query nobody was thinking about \\u2014 and `req:agent-native` promises every capability is reachable over one surface, which is only true if an agent can FIND the tool. The failure mode is silent by construction: nothing tells you the answer you needed was sixth.\\n\\nFIXED AT THE ROOT rather than by widening the assertion or trimming the new tool's description, both of which were available and both of which would have hidden it. Term weights are now ln(1 + N/df). Measured after: 49.5, 38.3, 32.1, 29.1, 29.1, 28.8 \\u2014 the band spread out, and `link_artifact` moved from 6th to 3rd.\\n\\n\\u26a0\\ufe0f AND THE EVIDENCE WAS NEARLY LOST. The first workspace run was piped through `awk` to total the results, which discarded every failure line and left only 'workspace: 1314 passed, 1 failed' \\u2014 no test name, no assertion. Same class as the remembered `cargo test | grep | head` trap in a new costume: A SUMMARISING PIPELINE IS A TRUNCATING PIPELINE. Re-run with full output to a file, the name and the assertion were both there.",
+    "subject_id": "req:agent-native",
+    "valid_from": "2026-08-18"
+  }
+}

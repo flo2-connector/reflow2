@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:e7633ad20e4db5d00256bef8aacf46f0d8536a5a60e4e23ff354316f6bcb652d",
+  "node_id": "fact:manual-work-0558b9a365cf5479",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "manual_work",
+    "statement": "Wrote a script for how deeply embedded each node is — a k-core decomposition over design edges with bookkeeping edges excluded, and separately the longest chain of decisions a node rests on — to answer \"how cemented is this design, and how hard would this node be to change\". Nothing served answers either; the four brainstorms of 2026-09-06 are the request for it.",
+    "subject_id": "proj:reflow2",
+    "valid_from": "2026-09-06",
+    "value": "{\"diagnosis\":\"tool_missing\",\"reflow2_tool\":null}"
+  }
+}

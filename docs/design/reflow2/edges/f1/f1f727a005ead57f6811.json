@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:c739e4992ffea1575e80e24bd0020a2263ed323bc0c8a4e289cbbee2579cacaf",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-topic-view-is-served-as-one-call-with-a-mandatory-not-found-line",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "ver:a-topic-report-groups-hits-names-the-latest-dated-change-and-always-says-what-it-did-not-find"
+}

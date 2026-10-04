@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:3e825ecbbb83bd9f5f544c1dcff927dd5bed559d9dffa3a4ee3a7bb63fd6f326",
+  "edge_type": "CHANGED",
+  "from_id": "chg:baseline-9325dcf17144c0a8",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:detect-and-ask-skill"
+}

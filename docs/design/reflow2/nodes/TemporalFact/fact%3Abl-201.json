@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:2a84eaae4a96aa476c8e8acee1c8ea339ffe0d00f086cba00453ba3de810290c",
+  "node_id": "fact:bl-201",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "defect",
+    "statement": "[BL-201] Requirement.concern is an eleven-value ility axis that NO CODE READS — the quality axis was designed twice and the first one was never wired up",
+    "subject_id": "cmp:vocabulary",
+    "value": "{\"evidence\": \"*Same census, 2026-08-04.* Requirement.concern \\u2014 core / logistics / sustainment / safety / security / cost / schedule / manufacturability / usability / environmental / other, indexed, present since the beginning, described in the schema as covering *\\\"the ILS considerations an SME surfaces\\\"* \\u2014 is core on all 110 requirements, and grep '\\\"concern\\\"' crates/reflow2-core/src/*.rs returns nothing. Meanwhile v0.23.0 shipped ility_report ([BL-184]), which computes nine quality axes by mapping existing findings onto them \\u2014 and correctly reports performance/security/scalability/observability as NOT INFORMED, because nothing computes over them. The field that would let a user DECLARE those concerns has been sitting on Requirement the whole time. So: either wire concern into ility_report as declared (as opposed to computed) evidence for an axis \\u2014 carefully, since [BL-184]'s load-bearing rule is that adverse is INHERITED and never re-judged, and a declared concern is not a finding \\u2014 or retire the property under retire-from-design and stop advertising it through describe_schema. Deciding which IS the row. Size S\", \"origin\": \"Migrated from docs/backlog.md BL-201 on 2026-08-07 (epoch:backlog-retired). Size estimate carried from the row: S.\"}"
+  }
+}

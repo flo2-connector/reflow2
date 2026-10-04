@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:2d8f312fb827233cddf1e12aa153ccbbab4c11fa990ec287cb2a5f88cb48ae6c",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:test-item-layout-merges",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:test-item-layout-merges"
+}

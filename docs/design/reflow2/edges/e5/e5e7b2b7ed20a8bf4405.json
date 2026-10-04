@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:a068472c455dc6e10a4bd4fefcd1a724d1ec6e1b8b6be68dc5e09a180befd088",
+  "edge_type": "EVOLVES_INTO",
+  "from_id": "dec:idea-every-typed-edge-helper-has-a-bulk-form-that-keeps-its-checks",
+  "properties": {
+    "evidence": "Promoted on Anthony's word, 2026-09-29 (\"go with the 7 ideas you'd promote\"): bulk forms that keep each typed helper's checks, named by every helper. Option (d), a component written with its structural edges in one call, was not part of what he accepted."
+  },
+  "to_id": "req:every-typed-edge-helper-has-a-bulk-form-that-keeps-its-checks"
+}

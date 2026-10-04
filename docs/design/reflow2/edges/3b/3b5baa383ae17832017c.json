@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:905466f2e606cd4729199a1fb9ec7dde6b12524f2ecbd2462b2301aa0740c905",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-saved-design-moves-to-the-item-layout-2026-10-03",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 2,
+    "action": "modified",
+    "checksum_after": "sha256:0ff3d7b6d2fcad7dd4d0c24a2c08f2652a85279638492214062372acbb84a206",
+    "checksum_basis": "measured"
+  },
+  "to_id": "art:check-consumer-reach"
+}

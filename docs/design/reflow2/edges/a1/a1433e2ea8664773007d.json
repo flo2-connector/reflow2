@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:54712ef1befca59ecdb0e2d7dde3692e356a20dbedbaa9b7ecb8f9e67ad61e6f",
+  "edge_type": "INVALIDATES",
+  "from_id": "chg:the-owners-word-rides-the-same-call-as-the-status-it-signs",
+  "properties": {
+    "at": "2026-09-06",
+    "note": "The cheap fix the fact names (a handler pre-check that names the current maximum) is now SHARED between add_epoch and plan_epoch, so recurrence #2 on the sibling is closed at the point both share; pinned by plan_epoch_without_a_sequence_names_where_you_are_too beside the add_epoch pin. The design question the fact leaves open (auto-assign vs required) is untouched and stays with dec:idea-add-epoch-assigns-the-next-sequence-or-names-it."
+  },
+  "to_id": "fact:defect-add-epoch-requires-a-sequence-the-refusal-cannot-name-because-the-required-field-helper-is-generic"
+}

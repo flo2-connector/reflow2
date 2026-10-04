@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:6d652b706054b842cdfbf431be63ecf7d1109c4a386298327c02ceda91728499",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:every-argument-refusal-names-the-tool-and-the-field-path",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:service"
+}

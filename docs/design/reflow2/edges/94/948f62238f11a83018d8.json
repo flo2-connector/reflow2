@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:8f8f9bde8b064950398572df9d4ea54b02d2869aca711edc80b5932dd7dfad57",
+  "edge_type": "CAUSES",
+  "from_id": "sub:tool-surface",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "The cause is in this subsystem's own assumption about its dependency's error shape: call_tool matched `Err(e)` for a refusal rmcp 3 delivers as `Ok(Complete { is_error: true })`. Named here rather than on an external node because nothing outside reflow2 changed — rmcp behaved as documented throughout, and the mismatch was a belief about it held in one file and checked by nothing.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:the-unknown-field-interception-was-dead-from-the-day-it-shipped-and-its-test-could-not-see-it"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:9e2a5a1a1e973118ed8adc21a13deacaac698a24a467698d303e22aa95bdd954",
+  "edge_type": "REALIZES",
+  "from_id": "art:genesis",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cmp:genesis"
+}

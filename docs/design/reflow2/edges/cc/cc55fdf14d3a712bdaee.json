@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:fd161f33f045c63296c45b678e85e5007bff1960e37700f1869fd46127397bd7",
+  "edge_type": "CHANGED",
+  "from_id": "chg:coverage-built",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:adopt-skill"
+}

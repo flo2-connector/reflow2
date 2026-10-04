@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:1d852d7c0d84466287bb199f9a1f918dbbf6a04de5a51ad20745af195d861545",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:feedback-skill",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:feedback-skill"
+}

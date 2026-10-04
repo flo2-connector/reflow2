@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:2b61b5c1a5356e915377eefb8e7d84f646f53d9015d028a67f2a5da43cb4db50",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-installer-says-the-graph-is-tracked-20260808",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:init"
+}

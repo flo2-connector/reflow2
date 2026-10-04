@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:7cd8887424e102c53e1efc6f7281ee757828fe86ddc129ac6f51c06e4e74f73c",
+  "node_id": "fact:field-report-bhome-2026-09-18-seven-of-eight-version-skew-refusals-were-names-that-never-existed-second-project",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "confidence": 0.9,
+    "fact_type": "defect",
+    "name": "FIELD REPORT (bhome S3, 2026-09-18): eight refusals filed as 'version skew, same diagnosis as Session 2' — MEASURED: seven of the eight argument names never existed in any release (get_instructions.scope, propagate_from.seeds, find_tools.intent, add_epoch.status, snapshot_before_change.reason, review_relations.edge_type, reconcile_verification.note) and the eighth, add_change_event.id, is required and was omitted. The second project in two days to report guessed names as schema drift",
+    "source": "bhome feedback.md, Session 3 (2026-09-18), triaged 2026-09-19 through the triage-feedback skill",
+    "statement": "Reporter: 'Argument shape, six more failures to version skew … Same diagnosis as Session 2 and the same cost.' MEASURED against toolsnaps at v0.62.0 and today: none of the seven fields existed at either; `id` on add_change_event has always been required. PRECEDENT already on the record: fact:reading-the-published-schema-turned-13-constructor-refusals-into-zero — guessing refused 13 of 20 constructors, reading describe_schema refused none. flo2 F1 (2026-09-18) was the same class with the same wrong diagnosis. CAUSE, two parts: the agent guesses names by analogy instead of reading the served schema, and until 2026-09-19 the refusal text led with 'your client's tool list may predate the server', which both reporters copied into their diagnosis. The second part is fixed in the field-feedback batch (nearest served parameter first); the first is the recorded lesson that describe_schema is read before a constructor is called.",
+    "subject_id": "req:a-refusal-names-what-would-have-worked",
+    "valid_from": "2026-09-19"
+  }
+}

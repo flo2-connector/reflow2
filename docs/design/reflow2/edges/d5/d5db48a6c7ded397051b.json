@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:0514c3142e938589a456bb8aebde66a62909c006a906466b5e070f7b1bc4c02a",
+  "edge_type": "PART_OF_FLOW",
+  "from_id": "cap:changelog-view",
+  "properties": {
+    "step_order": 2,
+    "weight_basis": "estimated"
+  },
+  "to_id": "flow:release-cut"
+}

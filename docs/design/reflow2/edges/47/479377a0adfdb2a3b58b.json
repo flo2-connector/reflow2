@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:bd367d5f983633ebacd89df2c017945d966294b6d1f047049c6e1a89cae8443b",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-loop-can-say-what-it-does-not-know",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:tools-coherence"
+}

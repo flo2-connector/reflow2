@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:74c04985aa3c013bdb022d3cc6e5ea71523577307c3381c6b82e3d60a5726c69",
+  "node_id": "chg:context-estimation-reassessed",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "scope_change",
+    "name": "Reassess req:context-is-a-modelled-quantity: static token estimation is the weak half; measurement is the answer"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:8610516b62306baf721803ce5af90e4cc9269cab4a8a401ff4452cdb2daf8e25",
+  "node_id": "rel:v0690",
+  "node_type": "Release",
+  "properties": {
+    "description": "One change since v0.68.0: get_skill accepts the word a person types. \"gaps\", \"/gaps\", \"/where\" and \"/impact-check\" each return their skill (skills::resolve), and the reply's `requested_as` says what was asked for. A command that is a tool (/debt, /decisions, /next) still refuses and names the tool.\n\nMeasured on flo2's connector: a chat model asked for \"gaps\", was refused, and asked again for \"detect-and-ask\".\n\nMinor, because get_skill's result gains an optional field. No schema stamp change (28 node types, 65 edge types, schema_version 1), so no upgrade note. Also carries the design-only record from #582: a hub starts a new child design by opening it from the same session.",
+    "name": "v0.69.0 — get_skill serves the skill a slash command names",
+    "status": "retired",
+    "unit_type": "binary",
+    "version": "0.69.0"
+  }
+}

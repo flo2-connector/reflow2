@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:62ec0b259cbcd8cf88eedb88e5fcc2ea6e35975e8cdf3163a94159b689427c03",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-is-subsystem-the-right-unit-to-sweep-when-the-coupling-is-a-level-down",
+  "properties": {
+    "evidence": "The right unit differs by which shape is being hunted: duplication is found by comparing across the codebase, which a per-subsystem walk is structurally bad at, while under-separation is already located at five named artifacts and needs no walk at all.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "dec:idea-is-the-cleanup-target-duplication-or-under-separation"
+}

@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:b92c3ae781c78cdd85c7bd1b449194596f04f528a367b5399863de2b0bde402f",
+  "node_id": "req:one-setup-command-chooses-local-or-remote-once",
+  "node_type": "Requirement",
+  "properties": {
+    "concern": "usability",
+    "kind": "functional",
+    "lineage": "original",
+    "name": "One setup command chooses, once, whether new designs live locally or on a remote server, and signs in there with a browser sign-in or a key",
+    "priority": "high",
+    "provenance": "authored",
+    "source": "Anthony (who:ajs), dev_reflow2 hub session, 2026-09-26",
+    "statement": "A person shall be able to run one reflow2 setup command that records where NEW designs go, locally or on a named remote server, and signs in there once: by browser for a server that offers it, or with a key for a server that hands them out. After that every agent session in every folder finds reflow2 configured, and the agent never knows or cares which it is.\n\nDISTINCT FROM req:a-local-client-works-against-a-remote-reflow2-server-by-url, which says how the client works against a remote server once it is attached; this says how the person chooses, once, where the client points for new work, and how its credential gets there.\n\nTERMS, settled with it (dec:idea-one-command-switches-reflow2-between-local-and-remote):\n- A folder that already holds a design follows it (its pointer file, or its local store), never the setting.\n- Switching moves no design; moving one is the deliberate import.\n- A key is never taken as a literal on the command line: it is named (an environment variable the client reads itself), prompted for without echo, or piped in, and then kept in the OS keychain. Replacing it is the same one command.\n- Local stays the default, and choosing it needs no network, no account and no sign-in (req:reflow2-keeps-working-entirely-on-one-machine).\n\nIN ANTHONY'S WORDS: \"Then every time you run cd project_x and then run Claude, the reflow2 is already configured when you setup reflow2. Then the reflow2 client handles everything whether that be ti the local or remote...the agent never knows or cares\".",
+    "status": "accepted"
+  }
+}

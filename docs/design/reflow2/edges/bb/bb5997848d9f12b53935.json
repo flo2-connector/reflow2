@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:43ae5b84abbe927f678349eaf320b37b8d344d5d350de6ecd3d2a66059b0ede7",
+  "edge_type": "HAS_SNAPSHOT",
+  "from_id": "dec:a-capability-may-not-newly-reach-verified-on-a-claim-alone",
+  "properties": {},
+  "to_id": "snap:epoch:preserved-on-write:dec:a-capability-may-not-newly-reach-verified-on-a-claim-alone"
+}

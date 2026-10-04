@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:5f108a1f067ba9a0dbb5dac77478dbcebf2ed10dbd8b6fb04177827a971c17d4",
+  "edge_type": "CONSUMES",
+  "from_id": "sys:intake",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "ifc:core-api"
+}

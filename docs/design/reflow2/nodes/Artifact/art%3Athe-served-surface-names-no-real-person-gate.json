@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:edb96476b7214f72cd60b8503d0ed10c0a3b1dbc0a6f445aedba7cffaa271b19",
+  "node_id": "art:the-served-surface-names-no-real-person-gate",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "test",
+    "description": "The CI gate that stops reflow2 shipping a real person's identity to every project it is installed into. It reads this design's own Contributors of kind `person` and fails if any of their id, handle or display name appears in text reflow2 serves: the committed toolsnaps, which are goldens of tools/list; the schema files describe_schema reads out; and the skill bodies get_skill returns, taken from getting-started/skills, which is the source the kit ships rather than either mirror. It refuses to pass when it found no people to look for or fewer than fifty served texts, because a check with nothing to look at reads exactly like one that ran clean. Written 2026-09-20 after Anthony asked whether he was turning up in other people's projects by default; observed to fail first with nine hits, six of which a hand search had missed. Its honest limit is that it can only know the people THIS design records, so another project's identifiers, like the bhome artifact and IfcMCP tool name that were in Constraint.limit_source, had to be removed by hand and would not be caught if they returned.",
+    "location": "tools/the_served_surface_names_no_real_person.py",
+    "name": "the_served_surface_names_no_real_person.py",
+    "status": "realized"
+  }
+}

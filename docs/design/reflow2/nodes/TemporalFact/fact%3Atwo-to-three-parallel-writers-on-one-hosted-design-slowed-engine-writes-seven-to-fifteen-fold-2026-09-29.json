@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:91039b279c0181294a8c4b576834ba49fc7f481b7a24ec5a46151b6795a55def",
+  "node_id": "fact:two-to-three-parallel-writers-on-one-hosted-design-slowed-engine-writes-seven-to-fifteen-fold-2026-09-29",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "finding",
+    "name": "With 2–3 Claude Code writers in flight on one hosted design (StoryFlow on flo2.io, 09-29 00:42–01:18 UTC), the median engine write time rose from about 0.25 s to 1.8–3.7 s, and the engine logged 73 search-index \"couldn't find segment\" warnings during the write bursts. No loss was seen",
+    "source": "who:claude-code",
+    "statement": "MEASURED 2026-09-29 by the read-only server-side half of the islands study. Sources: flo2's design_writes (created_at to finished_at per write, joined to the connector call log) and `docker logs reflow2` on the droplet.\n\nWHAT WAS SEEN:\n- StoryFlow, 09-29 00:42–01:18 UTC: 28 episodes in which 2 or more writes from Claude Code 2.1.283 were in flight at the gateway together, covering 67 writes. A 2.1.284 process interleaved from 01:06:50 to 01:15:14.\n- Median engine write time over those windows: 1.8–3.7 s, against about 0.25 s outside them.\n- 73 tantivy \"couldn't find segment in SegmentManager\" warnings from 00:24 to 04:19, clustered around StoryFlow (59) and graph-primitives (26) write bursts, with a median of 31 writes within ±60 s of each warning.\n- The engine twice closed flo2's design \"to make room for\" StoryFlow (00:50:59, 01:14:41). It runs with --registry-max-open 64.\n\nWHAT IS INFERRED, NOT PROVEN:\n- The slowdown is attributed to writes waiting on the store's single write lock. No per-write lock-wait timing exists to confirm it. Idle closes and reopens of other designs in the same window may also contribute.\n- The warnings read as a merge-versus-commit race in the search index under a high commit rate. No lost or stale search result was observed, but none was tested for.\n\nWHY IT MATTERS: the only real concurrency measured in a month is one person's parallel subagents (fact:measured-concurrency-across-all-designs-shows-no-lost-work-and-islands-would-mostly-block-a-sessions-own-subagents-2026-09-29), and this is its cost on the hosted engine. The ideal-knowledge-graph design targets 1,000 active users on one engine, so this is the first field number for write contention there.",
+    "subject_id": "req:sessions-share-a-graph",
+    "valid_from": "2026-09-29"
+  }
+}

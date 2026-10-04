@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:ca4fa8149c2769bb5def2a153c5f61ef05ca4f5bcc64708d43a73d1d13ac04e1",
+  "node_id": "frag:art:one-shot",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered one_shot.rs — every one-shot mode resolves its design first, and the flag × mode table"
+  }
+}

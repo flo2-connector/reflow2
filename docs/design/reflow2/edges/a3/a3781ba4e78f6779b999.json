@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:e31d1653a182cf669e9262f1c311b6961498fc8c56943c98b2719da9d8c943c6",
+  "edge_type": "REALIZES",
+  "from_id": "art:kit-pointer",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:skills-served"
+}

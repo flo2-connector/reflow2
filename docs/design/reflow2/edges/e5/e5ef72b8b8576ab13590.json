@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:a310110b7440693aeed6916e070832476d7df570cf0d8dd53529431c9e4bae92",
+  "edge_type": "AT_EPOCH",
+  "from_id": "snap:epoch:preserved-on-write:fact:defect-add-epoch-requires-a-sequence-the-refusal-cannot-name-because-the-required-field-helper-is-generic",
+  "properties": {},
+  "to_id": "epoch:preserved-on-write"
+}

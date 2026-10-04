@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:f2c8f759df2f85902816f4f50825e6e34dd5e5f150a9ed6c8f6abaf7922da5d8",
+  "edge_type": "CHANGED",
+  "from_id": "chg:baseline-8bb4fbb7b79bb7da",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:upgrading-v0460"
+}

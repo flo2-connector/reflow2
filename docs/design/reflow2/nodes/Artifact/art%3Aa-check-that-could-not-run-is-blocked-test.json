@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:2b08dde3ee19d9952adee1e59df878a1fba8984efd3359f9588cac80c9c3d78e",
+  "node_id": "art:a-check-that-could-not-run-is-blocked-test",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "test",
+    "location": "crates/reflow2-core/tests/a_check_that_could_not_run_is_blocked.rs",
+    "name": "a_check_that_could_not_run_is_blocked.rs — blocked is an outcome, outranks a pass, never hides a failure, and raises a gap that never says failed",
+    "status": "realized"
+  }
+}

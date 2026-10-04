@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:88a93236910f9bbea4eed67b09f1efb8f72f87e2c2a318c7894123ea2f3f8c1b",
+  "edge_type": "CHANGED",
+  "from_id": "chg:search-first-fires-at-the-tool",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:service"
+}

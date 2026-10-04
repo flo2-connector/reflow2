@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:e73c3c50aae7da8b4cffd5ddfd6bdded71f6558fa8f14e910b2237e7ccbd28c4",
+  "node_id": "frag:art:address-watch-test",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered tests/a_design_is_watched_at_the_server_that_holds_it.rs"
+  }
+}

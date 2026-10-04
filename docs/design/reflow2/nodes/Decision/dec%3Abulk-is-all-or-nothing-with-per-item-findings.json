@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:04d476f4ac95bf0ed23a01968bda6ee5867cb2c90d24ff9604f325be4f6f684e",
+  "node_id": "dec:bulk-is-all-or-nothing-with-per-item-findings",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Every bulk form attempts every item, collects each failure with its index, and if any item failed discards the whole batch and returns the complete failure list. A rejected batch is returned as an ERROR carrying the failures in its data, never as a payload with applied:false.",
+    "name": "A bulk write is all-or-nothing AND reports every failure — the refusal-semantics question was a false choice",
+    "rationale": "BL-153 posed this as a choice — \"one refusal semantics to define (all-or-nothing, or per-item findings?)\" — and the two were never exclusive. ALL-OR-NOTHING COSTS NOTHING HERE: the store already has an atomic batch (begin_batch/commit_batch/discard_batch) that HEAL's apply step and import_graph both use, and a partial bulk write leaves a design in a state nobody chose. PER-ITEM FINDINGS ARE SEPARATELY NECESSARY: BL-118 files exactly the opposite defect against import_graph — \"validation is fail-fast, one error per attempt\" — and BL-139 records what it costs, that the adopt loop's corrective re-import is where it breaks. A bulk form surfacing one error per round trip would replace N writes with N retries and save nobody anything. The failure carries its INDEX as well as its id because an id alone cannot tell two identical entries apart, and a list an agent generated is exactly where a duplicate turns up. The error-not-payload choice follows the same rule as everywhere else: a tool result reads as success, so \"nothing was written\" dressed as a result is the silent-failure shape this project forbids.",
+    "status": "accepted"
+  }
+}

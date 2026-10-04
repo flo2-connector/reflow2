@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:3d7dfe48fbf6ebfb44f223ce2ee5ddec80d279965a99b63d11811bf8c0ff1e01",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-is-redis-a-third-backend-option-and-what-would-it-buy-over-rocksdb-or-in-memory",
+  "properties": {
+    "evidence": "The one benefit Redis offers that neither RocksDB nor in-memory can — one live graph shared across PROCESSES and MACHINES — is only worth its cost if many-people-on-one-design must hold as a LIVE store rather than through the one shared server and git-transported exports it holds through today. If that requirement is met the way it is now, the Redis option has no distinctive benefit left.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "req:many-people-and-many-projects-compose"
+}

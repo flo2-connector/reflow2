@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:6094b47f0258b3ea99fec8bf4738aec3562ea1431708ab7bc20fd749adecacd1",
+  "edge_type": "REALIZES",
+  "from_id": "art:tool-confusability",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:the-rank-ratchet-and-the-confusability-instrument"
+}

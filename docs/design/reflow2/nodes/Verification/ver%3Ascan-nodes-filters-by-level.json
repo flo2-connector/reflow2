@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:b8c965baca1dcd5fc2120df8f1dfc3344efd868e13b0376eec8593a91bb61ba1",
+  "node_id": "ver:scan-nodes-filters-by-level",
+  "node_type": "Verification",
+  "properties": {
+    "description": "2 cases in crates/reflow2-mcp/tests/tools.rs. The filter returns the 2 subsystems and the 2 components, an unset level answers to `component` so older nodes are not lost, and an unfiltered scan still returns all four — the filter adds a question rather than changing the default answer.\n\nTHE SECOND CASE IS THE LOAD-BEARING ONE: a typo'd rung and a non-Component type are REFUSED, not answered with an empty list, and the refusal names what would have worked. An empty list says \"none at that rung\" while meaning \"that is not a rung\", which is the silent wrong answer the whole filter exists to end.",
+    "kind": "verification",
+    "level": "integration",
+    "method": "test",
+    "name": "scan_nodes filters by decomposition level, and refuses what is not one",
+    "status": "passing"
+  }
+}

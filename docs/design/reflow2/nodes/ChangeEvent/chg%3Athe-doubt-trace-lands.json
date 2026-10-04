@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:3a563f8185755e5bbc730546af04c6942726dc3e973f8904d66bab8d31f1056f",
+  "node_id": "chg:the-doubt-trace-lands",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "detected_at": "2026-09-22",
+    "name": "decisions_in_doubt: bad news is walked back to the settled decisions behind it",
+    "rationale": "Step 4 part two on Anthony's rulings: no threshold, no ranking, good news counted never stored, readiness out, nothing re-opened. Structural defects deliberately not traced yet — stated on the capability.",
+    "subject": "system",
+    "summary": "New core module doubt.rs and read-only tool choices_in_doubt (renamed from decisions_in_doubt before merge, for findability; takes budget_chars; each piece of evidence stated once) (cap:revise-trigger, planned → realized). The root-cause skill gains a `Choice` bone naming it; docs/skills-and-tools.md regenerated; find_tools corpus gains its user-phrased query; skill_lint allowlists the two reconcile fields the bone names."
+  }
+}

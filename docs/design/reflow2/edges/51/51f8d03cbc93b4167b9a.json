@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:aa827232d51c199a8ea0f3507b8548b68765453bffc69eb7bfd0eeefe307ac83",
+  "edge_type": "TRIGGERS",
+  "from_id": "dec:idea-reflow2s-own-design-moves-onto-flo2-io-or-stays-local",
+  "properties": {
+    "evidence": "@ajs raised the changelog question as the remaining problem once the design leaves the repo: moving the design forces deciding how CHANGELOG.md is written without a committed export."
+  },
+  "to_id": "dec:idea-how-changelog-md-gets-written-once-the-design-is-the-record"
+}

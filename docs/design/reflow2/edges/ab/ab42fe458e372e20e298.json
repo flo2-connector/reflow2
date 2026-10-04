@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:13265b7c3208597876464e37ef64b89a4ba690437de3e780ee6dc6b865d83cdf",
+  "edge_type": "CHANGED",
+  "from_id": "chg:planned-increments-slip-one-after-v0250",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "epoch:v0260-planned"
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:f576ac440def301f30ea4258b34724c9e7d4372774af3b2044d550f7b8687dd2",
+  "edge_type": "RISKS",
+  "from_id": "art:grok-shell-feedback-2026-08-30",
+  "properties": {
+    "evidence": "The report's item 3 names a state the drift gate exists to prevent: a dependent write racing inside a parallel batch, whose failure is invisible because success is not readable, leaving a committed export whose artifact hashes do not match disk. The risk is carried by the combination of the two defects rather than by either alone."
+  },
+  "to_id": "fact:alexs-third-report-lands-and-one-of-its-two-standing-items-is-already-fixed"
+}

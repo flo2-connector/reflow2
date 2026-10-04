@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:4596ffae2f3cca2eaf5a20dc1a76e44c8d783fddfb28f73437d7e0aa8c7a067b",
+  "node_id": "snap:epoch:preserved-on-write:epoch:planned-local-files-are-measured-for-a-remote-design",
+  "node_type": "Snapshot",
+  "properties": {
+    "edges": "[{\"direction\":\"in\",\"edge_type\":\"SCHEDULED_FOR\",\"other_type\":\"Requirement\",\"other_id\":\"req:a-local-client-works-against-a-remote-reflow2-server-by-url\",\"properties\":{\"modality\":\"expected\",\"recorded_at\":\"2026-09-27\"}}]",
+    "state": "{\"description\":\"COMBINED PLAN POSITION 7 (epoch:planned-combined-plan-reflow2-and-flo2, agreed 2026-09-27; it was 6 of 10 until two flo2.io increments were added the same night). After position 3.\\n\\nStep 4 of the tracked-export retirement plan (2026-09-27). Delivers point 3 of req:a-local-client-works-against-a-remote-reflow2-server-by-url, as revised the same day: the client measures local files (artifact registration, drift, reconcile) and sends their checksums as asserted, because the server cannot see the person's disk. The export write-back half of that point is WITHDRAWN (rule 3), so it is not in this step. Follows step 3; precedes steps 6 and 7.\\n\\nALSO THE HOME OF GROUP 2 of flo2's dec:the-seventeen-tools-api-flo2-io-withholds-and-what-brings-each-back (2026-09-27): wall_check, reconcile_dependencies and ingest_corpus_step return for a hosted design only through this client, which reads the person's own folder and sends results. And it turns flo2's combined position 2 (the file-evidence tools taking the caller's evidence) from the agent's word into a measurement the client takes.\",\"epoch_type\":\"milestone\",\"name\":\"[Combined 7] Retiring the tracked export, step 4 — the client measures the folder's own files and reports them to a design on a server\",\"sequence\":656,\"status\":\"planned\"}",
+    "target_id": "epoch:planned-local-files-are-measured-for-a-remote-design",
+    "target_type": "DesignEpoch"
+  }
+}

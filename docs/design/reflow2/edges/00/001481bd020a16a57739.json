@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:658c9dd77132ae88be2ca3f0a0becf06292b3eecd20e2d75e7228a9091f991f2",
+  "edge_type": "CHANGED",
+  "from_id": "chg:an-exposed-server-verifies-bearer-tokens-itself",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:tools-claims"
+}

@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:b265f379e86bc8ef1222500436268e9d1ad29145e55771697a9ec7525c058918",
+  "node_id": "art:latent-promotion-test",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "test",
+    "description": "Four tests that drive the REAL binary over stdio with a client-neutral clientInfo through opt-in: only the latent tools before; reflow2_start_design creates the store, the client receives notifications/tools/list_changed, tools/list shows the full surface, get_skill genesis answers, and the next step contains no \"run /mcp\"; a second start_design says the surface is served; a store that appears underneath (the 2026-08-15 restore case) is served on the next call. Three observed failing against the 0.60.2 binary. Run by CI after the build.",
+    "location": "tools/test_latent_promotion.py",
+    "name": "test_latent_promotion.py",
+    "status": "realized"
+  }
+}

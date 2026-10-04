@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:af9a58794d04a3d04e90a13f35ac27da82c581878aeb365645cadeb8f8ee47da",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-saved-design-moves-to-the-item-layout-2026-10-03",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:33dcb73ee856487bd482d90334f9959e4042bf2fdfc72fd762f82d80fa38f3a0",
+    "checksum_basis": "measured"
+  },
+  "to_id": "art:test-a-bulk-edge-write-keeps-each-helpers-checks"
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:72dad436459f974fffc7dc2b6389c1da079a229b6d1e3b55cebc10200f2c844d",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:cycle-names-its-basis",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:heal"
+}

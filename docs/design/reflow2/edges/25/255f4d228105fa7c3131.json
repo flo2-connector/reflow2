@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:7eda26e5e98c88a5d4a345025808670c3f64e788ba243def87c7a7e93071f8ee",
+  "edge_type": "EVOLVES_INTO",
+  "from_id": "dec:idea-one-command-switches-reflow2-between-local-and-remote",
+  "properties": {
+    "evidence": "Option (c), settled the same day with the setup command: the client creates the design where it points, attaches and writes the pointer."
+  },
+  "to_id": "req:genesis-in-an-empty-folder-creates-the-design-where-the-client-points"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:88101bd6dfd6e735472df271c68cff8f8087230896667b38a95279344bc10dc2",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-name-is-not-a-report",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "ver:bulk-forms"
+}

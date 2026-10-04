@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:9906c958f3ab236e68abf4d235757f477732e7304ec02ce1bb47aa3f5d187717",
+  "edge_type": "CHANGED",
+  "from_id": "chg:baseline-6569644bc3b4cba0",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:optimize-skill"
+}

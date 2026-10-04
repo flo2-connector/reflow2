@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:30f8cd757923ce7697ae5923df01a6cb70d1472ae3c87bb5ee7102ab32e9f059",
+  "edge_type": "INVALIDATES",
+  "from_id": "chg:get-node-reads-a-nodes-edges-2026-10-03",
+  "properties": {
+    "at": "2026-10-03",
+    "note": "Verified false after this change, on the branch binary over a scratch import of main's export: get_node with include_edges true on req:a-lesson-is-served-at-the-step-it-concerns returns all 7 stored edges, AUTHORED_BY included, each with its stored from/to, the other end's id, type and name, and its own properties (evidence on EVOLVES_INTO and both DEPENDS_ON). A served read now returns one node's edges as edges."
+  },
+  "to_id": "fact:root-cause-no-served-read-returns-one-nodes-edges-and-the-nearest-is-an-impact-walk-2026-10-02"
+}

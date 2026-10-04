@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:5b74f160f4fcecf8b928050e342856dc70141e5652d5e1079021bfa42c61e1a0",
+  "edge_type": "HAS_SNAPSHOT",
+  "from_id": "art:heal",
+  "properties": {},
+  "to_id": "snap:epoch:a-dangling-reference-is-found-on-its-own-terms:art:heal"
+}

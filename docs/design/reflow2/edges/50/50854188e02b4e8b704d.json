@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:1976ca7df7f55de060410b296c345766ec4ae8e8a1f65c02aaa83eb53d1d102a",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0530",
+  "properties": {
+    "as_checksum": "sha256:efe95161ecab4c2235ae8bdd9d71436141545fd047f6049e966c4705f56a24b1"
+  },
+  "to_id": "art:by-hand-signal-test"
+}

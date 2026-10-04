@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:0d739210619fc807920baea604886e27792d0024a6266147b4e94e7ce0c2468b",
+  "edge_type": "INVALIDATES",
+  "from_id": "chg:the-unexported-claim-is-answered-once-for-the-seat",
+  "properties": {
+    "at": "2026-09-03",
+    "note": "THE DEFECT IT MEASURED IS REPAIRED, SAME DAY, AND VERIFIED ON THE SEAT IT WAS MEASURED ON. `loop_status.next` went from 8 lines to 3 against a fresh binary with `served_by.stale: false`; the five false sentences are gone and `sync` still reports all six targets, so nothing true was suppressed.\n\n🛑 WHAT SURVIVES THE REPAIR AND IS THE REASON THE NODE IS WORTH KEEPING. (1) THE CLASS — a per-item computation stated as a whole-system fact, invisible because every test drove exactly ONE item. Only this one rollup was examined; whether other served reports phrase per-target findings as seat-wide claims is unmeasured, and that is the sentence a later session should act on. (2) The refutation of the leading candidate: filtering scratch paths was already tried and reverted, and a 1545-node backup outside any temp path defeats it independently. (3) The method note — that the report described noise and the measurement found falsehood, and that a noise framing would have bought ranking or dedup while leaving every sentence just as untrue.\n\n⚠️ AND ITS OWN MEASUREMENT ADVICE OUTLIVED THE FIX: the first coupling grep read `node::DECISION` as vocabulary-free, so any re-derivation must count constants, not string literals. That warning was written for a different investigation the same day and applies to this one too.\n\n📌 NOT CLOSED BY THIS: the three standing bounds on the node-count comparison — equal counts with different ids, an edge-only divergence, and a property-only write are all still invisible. The seat-level form inherits every one of them, so this remains a reading aid and not a durability guarantee."
+  },
+  "to_id": "fact:defect-the-unexported-claim-was-computed-per-file-and-stated-per-seat"
+}

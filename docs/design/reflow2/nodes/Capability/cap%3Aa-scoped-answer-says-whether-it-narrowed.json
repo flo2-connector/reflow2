@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:d4aa66a328ea255d79a65e1409cdb442f9fd82c5fa72e10030f8dec4fe8276e3",
+  "node_id": "cap:a-scoped-answer-says-whether-it-narrowed",
+  "node_type": "Capability",
+  "properties": {
+    "capability_type": "query",
+    "description": "`Scoped` carries `share_of_anchored` — the fraction of the design's ANCHORED findings this 'narrowed' answer holds — plus a `narrowing_note` that appears in words when that exceeds SCOPE_IS_BARELY_NARROWER_AT (0.5).\n\nTHE DENOMINATOR IS THE DESIGN. It is `in_scope + out_of_scope`, deliberately not `total`: unanchored findings are statements about the design as a whole and could never fall inside ANY region, so dividing by `total` would flatter every scoped answer by a constant and make regions look narrower than they are.\n\nTHE THRESHOLD IS A JUDGEMENT AND IS ADMISSIBLE ANYWAY. `dec:report-dont-judge` normally forbids one. It is allowed here because the finding is about THIS TOOL'S OWN ANSWER rather than about the design: saying 'the narrowing you asked for did not narrow' is the instrument reporting on itself, which is the one place a judgement is owed rather than withheld. The threshold is named in the message so a reader can disagree with it rather than having to discover it.\n\nMEASURED AGAINST THE OLD DEFAULT AS A CONTROL: over all 56 Components of reflow2's own design the note fires 56 of 56 at depth 3, and 0 of 56 at the new default of 2.\n\nBOTH DETECTORS GET IT. Gaps and defects both return `Scoped`, and a self-check only one of them performed would be exactly the half-applied rule that made the vacuity note need repairing twice.",
+    "inputs": "[\"scope\",\"depth\"]",
+    "name": "A scoped read reports how much of the design it still holds, and says in words when that is most of it",
+    "outputs": "[\"share_of_anchored\",\"narrowing_note\",\"in_scope\",\"out_of_scope\",\"total\"]",
+    "provenance": "authored",
+    "status": "verified"
+  }
+}

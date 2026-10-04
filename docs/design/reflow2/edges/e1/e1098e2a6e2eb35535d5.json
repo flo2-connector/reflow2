@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:5ff232340d47f47f01093ca4151268283e56d89cb6acb31bfec427b30235c001",
+  "edge_type": "CONTRADICTS",
+  "from_id": "dec:idea-the-handoff-file-contradicts-an-accepted-decision-and-nobody-reconciled-them",
+  "properties": {
+    "alignment": "opposing",
+    "evidence": "That decision is ACCEPTED and forbids a written orientation document in as many words — 'NO START-HERE FILE... a START-HERE.md is dev_storyflow in miniature'. The committed hook `.claude/handoff_nudge.py` blocks the agent from ending a working session until it writes exactly such a document into machine-local memory. Both cannot stand: either the hook is wrong or the decision is narrower than it reads. The hook shipped 2026-07-23, the decision was accepted 2026-07-31, and nobody reconciled them."
+  },
+  "to_id": "dec:orientation-is-computed-not-written"
+}

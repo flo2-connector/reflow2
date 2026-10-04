@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:ce3f825ba58e8df49703eabe7dc59a0e525dedbfa9dcf13a91c35cbe49ee4497",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-name-is-not-a-report",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "ver:ility"
+}

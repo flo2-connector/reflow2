@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:034a516bd324a4c43e312e90ecf4248c865b6504b90495a91a5f652245b1d74b",
+  "edge_type": "CHANGED",
+  "from_id": "chg:governance-proposal-skill-20260808",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "cap:governance-proposal"
+}

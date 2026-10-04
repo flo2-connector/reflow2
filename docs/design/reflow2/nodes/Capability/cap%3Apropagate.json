@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:fca8824fc0233998cb05b37c71d2b17a8b86911da214296870861dafe0b37991",
+  "node_id": "cap:propagate",
+  "node_type": "Capability",
+  "properties": {
+    "description": "Walk the golden thread to compute a blast radius.",
+    "name": "Propagate impact",
+    "provenance": "authored",
+    "status": "verified",
+    "tier": "operational"
+  }
+}

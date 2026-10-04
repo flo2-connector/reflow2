@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:1c27b2c25a3a30ee365ae74477082a1c6a4ea5b3dbb5f27c39d7f3ec039b34bd",
+  "edge_type": "CHANGED",
+  "from_id": "chg:storyflow-second-field-report-20260808",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "dec:idea-a-skill-may-assert-the-defaults-it-relies-on"
+}

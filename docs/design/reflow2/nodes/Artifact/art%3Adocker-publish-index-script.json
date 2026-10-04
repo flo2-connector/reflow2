@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:0f067153bfa7fe5873cc6a2266f01bbf681b862879e6aebeb3a493bf1ca73793",
+  "node_id": "art:docker-publish-index-script",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "description": "Called by release.yml's `container image` job. Composes the index with `imagetools create --dry-run` and checks its platforms BEFORE tagging, creates :<version> and :latest in one call, reads the pushed tag back and checks again, requires :latest to resolve to the same digest, prints \"published <image>:<version>\" for the cut, and writes image/version/digest/platforms to GITHUB_OUTPUT. A source that is not sha256:<64 hex> is refused before any registry call.",
+    "location": "docker/publish-index.sh",
+    "name": "docker/publish-index.sh — joins the per-architecture digests into one index, tags <version> and latest, and refuses unless it lists linux/amd64 and linux/arm64",
+    "status": "realized"
+  }
+}

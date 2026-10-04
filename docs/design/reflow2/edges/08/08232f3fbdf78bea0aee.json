@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:75df5e8b23b8808ea5e7a6fb53c89c2fcc4eb590f846a5252668eb9e45cd4d97",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-read-of-a-held-design-is-as-true-as-the-live-one",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:service"
+}

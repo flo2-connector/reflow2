@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:dda76ffc0ac024aae0aa2f3249a87ac6b7f1351845d7a7190e665082a7db26a5",
+  "node_id": "art:test-a-revise-keeps-what-it-was-not-passed",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "test",
+    "description": "The class pin for fact:root-cause-the-revise-contract-is-implemented-per-handler-and-guarded-by-instances-2026-09-28. Calls tools BY NAME over an in-process MCP transport, so a constructor that starts promising optional-to-revise joins the moment it is served.",
+    "location": "crates/reflow2-mcp/tests/a_revise_keeps_what_it_was_not_passed.rs",
+    "name": "a_revise_keeps_what_it_was_not_passed.rs — the revise contract held over every tool that promises it, membership read off the served surface",
+    "status": "realized"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:5ad9b53d7dc89514f4e3c6946a0e9a00bb23dc67b77567a5ed169aff4a7b80b0",
+  "node_id": "epoch:2026-09-22-a-published-promise-carries-its-evidence",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "description": "THE LESSON, and it is the day's shape arriving a third time: **a claim nothing can re-run is the same defect whether it sits inside a design or crosses a boundary.**\n\nInside, this design spent the day on it: 241 capabilities reading \"verified\" against 21 with a check anything could re-run. At the seam, `export_surface` published a behavioural promise and withheld every check — so a consumer received a commitment and no way to tell whether it currently held. Same defect, one layer out, and nobody had read it that way.\n\nWHAT LANDED: a check travels when its `VERIFIES` target is a published Interface or a published Requirement. Derived from the TARGET's designation, never from a designation of its own — a third opt-in gate would have reproduced the failure measured the same morning, when 262 requirements carried zero `published` because the vocabulary existed and nothing asked.\n\n⭐ AND THE HALF THAT WAS NOT PLANNED. Measuring what would actually travel on this design — 3 of 315 — showed that two of the three carry internal build paths, internal ChangeEvent ids and internal node counts in `findings`. A surface exports nodes AS STORED, because trimming one would make it import as a lie, so that disclosure is real and cannot be edited away.\n\n⇒ The answer was not to suppress it but to NAME it: `SurfaceExport.evidence` lists the checks that left, carried through to both MCP reply shapes. A disclosure the caller cannot see is not a disclosure that was reported. That is the house rule — report, never silently repair — applied to a risk the implementation itself created.\n\nWHAT THIS EPOCH DID NOT SETTLE: whether an owner should be able to withhold a specific check on a published target. Today they cannot, short of un-publishing the target. Nobody has asked for it, so nothing was built for it.",
+    "epoch_type": "revision",
+    "name": "The evidence crosses the seam, and the disclosure it brings is named rather than silent",
+    "sequence": 570,
+    "status": "arrived"
+  }
+}

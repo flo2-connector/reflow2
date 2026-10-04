@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:6898a7364d7a7deeaec63280de7b179257601e2c172419b9ff8b7aaae30792b5",
+  "edge_type": "CONTRADICTS",
+  "from_id": "dec:idea-discontinued-is-a-first-class-state",
+  "properties": {
+    "alignment": "supporting",
+    "evidence": "The content store is the first real instance of the thing this node is trying to name, and its handling sets the precedent whether or not anyone names it."
+  },
+  "to_id": "dec:idea-discontinue-the-content-store"
+}

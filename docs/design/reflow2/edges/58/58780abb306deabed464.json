@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:09f2e2934cd1c2d56facd2182ddad01320b8aece70e0404ef62a238120723c94",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-published-contract-with-no-check-is-reported",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:detect"
+}

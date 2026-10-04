@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:1bee1588e0f3f1db15955e192510e7268f86bc0fee6a3552071cfff93954f82d",
+  "edge_type": "CHANGED",
+  "from_id": "chg:absorb-core-storage-text",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "art:dependency-manifest"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:6cb4f736f22bd4518834d920500f48019c2c4c2be8ab919d9c7c8d6a2ffda245",
+  "edge_type": "REALIZES",
+  "from_id": "art:where-am-i-skill",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:the-agent-asks-who-it-is-talking-to"
+}

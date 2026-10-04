@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:4c5327aeeb5b04e4109dc8c95a87db5a06ac369feffd51944c929911353e5cf8",
+  "edge_type": "CHANGED",
+  "from_id": "chg:prohibitions-in-prose-are-noticed",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:detect"
+}

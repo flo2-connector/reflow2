@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:d7c7432b8834fc5d38b244628eab829c3ff1ea6337b97fb798677934a80f9afd",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-saved-design-moves-to-the-item-layout-2026-10-03",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:8c68109b4d6a03012d7ce0a0183bc3c4abae616c11a4d5999ca1ad895721bbc5",
+    "checksum_basis": "measured"
+  },
+  "to_id": "art:mint-seat-liveness-test"
+}

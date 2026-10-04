@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:06e0bb6a5ecf7582d43918569e356dbf2ab27c04b614b96fb0cf6ea6c20f6688",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:tool-confusability",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:tool-confusability"
+}

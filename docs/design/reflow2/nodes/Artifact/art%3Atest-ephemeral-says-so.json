@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:70dc0bda32bde03d41463df7192720dfc3f5be35dc4ef1c345f4b89fe8581607",
+  "node_id": "art:test-ephemeral-says-so",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "description": "Pins that an ephemeral design announces itself in the handshake, that the announcement survives share() into the per-session service an HTTP client actually gets, and that a design on disk is NOT labelled — the negative case, without which the warning would become noise readers skip.",
+    "location": "crates/reflow2-mcp/tests/an_ephemeral_design_says_so_in_its_handshake.rs",
+    "name": "an_ephemeral_design_says_so_in_its_handshake.rs",
+    "status": "realized"
+  }
+}

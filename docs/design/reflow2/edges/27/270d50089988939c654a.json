@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:e5a6969d351bb2397c31578c4882653e07c8f6d8b1e13eb203eb88d3d4b15017",
+  "edge_type": "CHANGED",
+  "from_id": "chg:deep-review-tier1",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:heal"
+}

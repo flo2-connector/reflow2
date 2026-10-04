@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:cb453823c1710a19ebd05aa24e3a980ede0f7d4991c59283fb0d9d666c4472cc",
+  "node_id": "cap:the-domain-standard-is-asked-recorded-and-its-absence-noticed",
+  "node_type": "Capability",
+  "properties": {
+    "description": "Three legs, as built 2026-09-16. A typed home: an EnvironmentRule of rule_type `standard` that the Project COMPLIES_WITH (the edge now accepts a Project as its source), carrying `authority`, `reference` and the new `checker` — the tool that validates a file against the standard. \"None known for this domain\" is recorded with the existing acknowledge_gap on the finding, not with a new property; a drawing or model says what it is with complies_with or violates_rule to the declared standard, not with a format property. An instruction: genesis and adopt ask the question before any artifact exists, and the genesis tool's next_steps repeat it. Two detectors: `artifact_standard_undeclared` on a Project with no declared standard (0.35 with no drawing or model in the design, 0.65 once some exist unasked; keyed twice so \"none known\" acknowledged at genesis does not swallow the first drawing that arrives; silent on a mirror), and `artifact_not_under_declared_standard` naming each drawing/model with neither COMPLIES_WITH nor VIOLATES_RULE to the declared standard, one rollup keyed on the set. reflow2 opens no file; validity is the checker's run, whose output is the evidence on the compliance edge.",
+    "name": "The domain's artifact standard is asked at the opening interview, recorded as a rule, and its absence is noticed",
+    "provenance": "authored",
+    "status": "realized"
+  }
+}

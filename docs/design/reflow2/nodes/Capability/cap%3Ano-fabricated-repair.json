@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:ac2ff2ac6b42dfaf943caeb17cc85efeb02d6859868f221fa201495adcc75d10",
+  "node_id": "cap:no-fabricated-repair",
+  "node_type": "Capability",
+  "properties": {
+    "description": "A HEAL finding carries a suggested_fix_type ONLY where a mechanical repair would restore or reorganise something the design already holds. Where the only way to quiet a finding would be to assert a relationship nobody stated, the fix type is ABSENT and `repair_is_a_judgement` carries the sentence a reader needs instead.\n\nTHREE FINDINGS CHANGED, all of them inventions: `disconnected_community` and `dead_end` both offered `generate_bridge` — create edges until it is connected — and `orphan_node` offered `generate_owner`, a link nobody drew. Each may be reporting something perfectly correct: a subsystem that genuinely does not couple, a component that is genuinely standalone, a parked thought that correctly governs nothing yet.\n\nTHE LINE IS NARROW AND THE COUNTERWEIGHT IS TESTED. `break_cycle` removes an edge that EXISTS; `merge` is gated on a human-asserted DUPLICATES; `generate_decision` writes a node recording a judgement somebody must make. None asserts a relationship about what already relates to what, and all three keep their suggestions. A test pins that, because a rule against invention silently becoming a refusal to help would be the worse outcome.\n\nWHY ABSENCE PLUS A SENTENCE RATHER THAN A `no_fix` VALUE: a field that still says here is the repair sends the next reader looking for one. Absence says there is no operation; the sentence says what to do instead. Same shape as the changelog draft `needs_a_human`.",
+    "name": "Where no honest repair exists, the finding says so instead of offering one",
+    "provenance": "authored",
+    "status": "realized"
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:bf54a9cf3b1800d125ace4823195e39b1bdbe9bc5cf66c126f07e8e03da53e8d",
+  "node_id": "fact:the-gap-replay-warning-exists-because-rehydrate-declines-to-run-when-the-caller-sent-text",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "confidence": 1.0,
+    "fact_type": "defect",
+    "statement": "MEASURED IN SOURCE 2026-09-02, and it REFUTES THE REPORTER'S OWN ASK, which is why it is recorded rather than the request they made.\n\nproj:chama's genesis session mangled a GapCandidate between gap_to_prompt's two passes — duplicating a fragment of the title — and the answer re-keyed, degrading the question to raw detector jargon. Their ask: 'the server already has the gap from detect_gaps — pass 2 could take gap_id alone.'\n\n⭐ THE SERVER ALREADY DOES EXACTLY THAT, AND DECLINED TO. `ask.rs:205` calls `self.rehydrate_gap(gap)` on the serve pass, and `rehydrate_gaps` (ask.rs:375-398) re-runs `detect_gaps()` and REPLACES the caller's gap with the server's own copy, matched on `candidate.id == gap.id`. chama's id was intact — only the title was mangled — so rehydration WOULD have restored the true title and the answer would have keyed correctly.\n\n**THE GUARD IS THE DEFECT.** ask.rs:379-382:\n    let compacted = |gap| gap.description.is_empty() && gap.evidence.is_empty();\n    if !gaps.iter().any(compacted) { return Ok(gaps); }\nRehydration runs ONLY when the caller sent an EMPTY description and evidence. It was built for a different purpose — recovering a row from a BUDGETED detect_gaps reply — so its trigger asks 'did the caller send nothing?' rather than 'might what the caller sent be wrong?'. A NON-EMPTY description is treated as trustworthy, which is precisely the case where it can be corrupt.\n\nSO THE WARNING IS PROSE STANDING IN FOR A ONE-LINE FIX. The ⚠ at ask.rs:63 ('REPLAY EACH GAP OBJECT UNCHANGED') exists because the guard declines, not because the server lacks the gap. The repair is to rehydrate whenever the id resolves, not to add a gap_id parameter — a new parameter would leave the old path intact and still trusting the caller's copy.\n\n⚠️ NOT ESTABLISHED, and it is why this is a fact rather than a change: always-rehydrating re-runs the detectors on every serve pass (cost, mitigated to once per batch), and it would start REFUSING asks about a gap that has since closed, which the current path allows when the caller holds a full copy. Whether that refusal is correct is a judgement nobody has been asked for.",
+    "subject_id": "cmp:tools-ask",
+    "valid_from": "2026-09-02",
+    "valid_to": "2026-09-02"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:0d0e955bb08a66eb6d3d06ef2ea78ec10be4d3eea69056150d0586ee8919d1c1",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0420",
+  "properties": {
+    "as_checksum": "sha256:557e7e6dd6b83bb847999fd1dd15d6ca926339791af22786ff9c1780971dca6a"
+  },
+  "to_id": "art:brainstorm-skill"
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:c4c66bcd123f20e099415ab4fec13098b0cff988fddf5893b484b17d1d8f4743",
+  "node_id": "chg:a-moved-record-is-diffed-against-the-store-not-an-export",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "performance_optimization",
+    "name": "The moved-record check asks the live store what it lacks by membership (LiveDesign / StoreMembership) instead of exporting the whole graph to compare two documents; the read path, loop_status and sync_status all use it, and sync_debt keeps its closure signature over a lazily-built export-backed oracle",
+    "repair": "corrected_cause",
+    "subject": "system"
+  }
+}

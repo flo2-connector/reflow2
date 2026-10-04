@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:652b328f9cc08ce6bfbc93c989b42de4f348656ed87d2fa82e85225ab38557d8",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-call-holding-the-only-copy-keeps-it",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:tools-query"
+}

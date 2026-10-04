@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:dfb105828a4679d7bfc99ee1af3fdfd8f2ea368897ad766ef64c39242fd16bcb",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-follow-up-is-captured-with-one-word-and-listed-until-settled",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "cap:something-to-come-back-to-is-captured-with-one-word"
+}

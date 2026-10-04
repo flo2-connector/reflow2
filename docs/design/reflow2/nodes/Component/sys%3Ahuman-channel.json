@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:5d7bca1fbab3c5ca2b4a9d7cb923d407f4c44ee8008870b2d4eaebe4d43d6cdd",
+  "node_id": "sys:human-channel",
+  "node_type": "Component",
+  "properties": {
+    "kind": "module",
+    "level": "subsystem",
+    "name": "Human Channel",
+    "provenance": "authored",
+    "purpose": "Turn an underspecified design into a plain-language question for the human, and remember what was asked.",
+    "status": "planned",
+    "tier": "operational"
+  }
+}

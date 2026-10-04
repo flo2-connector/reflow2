@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:dec4d97298a002d12b65a667b15a4b4969b1d72a2ea1da1bea2180f49c958bc2",
+  "edge_type": "MITIGATES",
+  "from_id": "dec:idea-what-regression-corpus-guards-the-upgrade-path",
+  "properties": {
+    "evidence": "That root cause is version skew between a binary and a document, which no gate could see because every gate runs one version against itself; a corpus of past-release exports is the direct net under it."
+  },
+  "to_id": "fact:root-cause-the-853-is-an-older-binary-writing-the-old-role-default-onto-a-newer-document-not-the-export-leaving-a-default-implicit"
+}

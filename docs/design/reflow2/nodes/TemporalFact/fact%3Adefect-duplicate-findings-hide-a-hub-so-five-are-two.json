@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:c39c31877466d541798cd15aa32bee20042f22cba3bdd70650992c1c0005ee88",
+  "node_id": "fact:defect-duplicate-findings-hide-a-hub-so-five-are-two",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "confidence": 1.0,
+    "fact_type": "defect",
+    "statement": "FIVE DUPLICATE FINDINGS WERE REALLY TWO HUB NODES, AND THE COUNT IS WHAT MADE THEM LOOK INDEPENDENT. Reported 2026-08-08 by w-3f408ab0 (dev_storyflow, LANE STORYBOOK-WALK). A detect_defects scoped to cap:storybook_output (depth 3, region_size 71) returned `in_scope: 5`, every one `category: duplicate` / `suggested_fix_type: merge`. Reading the MEMBERS rather than the count: `dec:edge_reads_derive_from_schema_not_allowlist` appears in THREE of the five pairs — against three decisions with nothing in common but being decisions — and `req:backend_as_product` appears in the other two. So five findings are two nodes the scorer pairs with everything. WHY THIS IS A REPORT AND NOT A SHRUG, in the reporter's words: their fleet is stood down from apply_heal because 'mechanical' merges were proposed off false duplicates, and FIVE SEPARATE WARNINGS READ AS FIVE SEPARATE JUDGEMENTS CORROBORATING EACH OTHER, while 'one node the scorer pairs with everything' reads as what it is — a property of the SCORER, not of the design. The grouping would have made the stand-down diagnosable from one call instead of from a human reading five messages. FIX SHAPE: when a node appears in >= N duplicate pairs, say so in the output (`hub: true`), or group the pairs by shared member. The detector already holds every pair, so the grouping is free. THE REPORTER FRAMES IT AS THEIR OWN RULE POINTED BACK AT US: a set reduced to a scalar is not a check of the set — here the scalar is the finding count. NOT FIXED BY THE 2026-08-08 DUPLICATES.basis WORK (PR #99): that stops a suspected edge licensing a deletion; it does not stop five findings over two nodes reading as five independent judgements.",
+    "subject_id": "cap:heal",
+    "valid_from": "2026-08-08",
+    "value": "{\"reported\":\"2026-08-08 dev_storyflow, w-3f408ab0, LANE STORYBOOK-WALK\",\"measured\":\"detect_defects scope cap:storybook_output depth 3 region_size 71 -> in_scope 5, all duplicate/merge\",\"actual\":\"dec:edge_reads_derive_from_schema_not_allowlist in 3 of 5 pairs; req:backend_as_product in the other 2\",\"harm\":\"a count makes correlated findings read as independent corroboration, during a stand-down\",\"fix_shape\":\"hub: true when a node appears in >=N pairs, or group pairs by shared member; the pairs are already in hand\",\"not_covered_by\":\"PR #99 DUPLICATES.basis - that gates deletion, not the counting\"}"
+  }
+}

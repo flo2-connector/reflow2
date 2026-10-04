@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:acdfcd25d6378cd2651caa58f98a6f792699ca81fa44ac41b52030110b96d5aa",
+  "edge_type": "BLOCKS",
+  "from_id": "dec:until-designs-share-a-server-the-cross-design-check-runs-at-the-hub",
+  "properties": {
+    "evidence": "The ruling defers building the write-time warning until related designs share a server, because a server-side check cannot see a sibling design today."
+  },
+  "to_id": "req:a-write-is-warned-when-the-same-thing-already-lives-in-a-related-design"
+}

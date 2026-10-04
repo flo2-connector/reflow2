@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:fcbf50b216b849b355b41cd78d2a6b0f99c0609f8cf61d5255c68c0e0c211cae",
+  "node_id": "cmp:depends",
+  "node_type": "Component",
+  "properties": {
+    "kind": "module",
+    "level": "component",
+    "name": "depends",
+    "provenance": "authored",
+    "purpose": "DEPENDS — declare which version of another design you depend on, and check whether it still says what you thought.",
+    "status": "planned",
+    "tier": "operational"
+  }
+}

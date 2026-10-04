@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:cb16afd8ef25244ede29396d1b6ebae917083c8dbd5fe8281f03d0e087b20737",
+  "edge_type": "REALIZES",
+  "from_id": "art:read-only-client",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:a-local-client-reaches-a-remote-server"
+}

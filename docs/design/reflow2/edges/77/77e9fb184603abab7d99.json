@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:510f2feb2d7d5444c5b4e19e4c67ebe405ab00040e05c6251c6ae7bb71f134a7",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:recover-from-tests",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:ingest"
+}

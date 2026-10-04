@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:e690f759c9b6ba9deb68c634eb199c88507fca3de473112e256b3f5c23206e68",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:accreted-intent-becomes-a-design",
+  "properties": {
+    "authored_at": "2026-08-04",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

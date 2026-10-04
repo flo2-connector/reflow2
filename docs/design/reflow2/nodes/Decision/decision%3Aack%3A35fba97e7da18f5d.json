@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:0cf9dd960e480de557998a44967b752844f4d5452f4add3dfa0f03c9eb3b757e",
+  "node_id": "decision:ack:35fba97e7da18f5d",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Accepted the gap gap:35fba97e7da18f5d.",
+    "name": "Reviewed: gap:35fba97e7da18f5d",
+    "rationale": "Checked 2026-09-07: still open. get_node returns properties only with no edge option, scan_nodes has no status filter, and topic_report's connections give edge-type counts without target ids, so a set question still cannot be answered without an export.",
+    "status": "accepted"
+  }
+}

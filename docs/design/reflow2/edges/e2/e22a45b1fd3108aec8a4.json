@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:ef619a096d351999c665de6053870c5ebe9adb4c2eb865bbec0a338904e46ad6",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-git-exchange-path-is-defended",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "cap:the-design-record-merges-per-node-in-every-clone"
+}

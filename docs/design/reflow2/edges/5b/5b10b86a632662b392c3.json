@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:d422c689e2de8f69e8b37aef327c1ec72c729fc6d13a6019b24eed87598c580c",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-spawned-daemon-caps-its-allocator-arenas",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:shared"
+}

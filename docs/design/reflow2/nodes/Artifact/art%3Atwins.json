@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:26d07e298d4c3cbc322da95131fb64aaa35c2424998093cfc80ec5904d1e8e97",
+  "node_id": "art:twins",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "description": "Stored twins: the declared twins, the keep-on-write the store runs in create_node, the refusal the generic edge tools ask for, and the reported repair run on open and import.",
+    "location": "crates/reflow2-core/src/twins.rs",
+    "name": "crates/reflow2-core/src/twins.rs",
+    "status": "realized"
+  }
+}

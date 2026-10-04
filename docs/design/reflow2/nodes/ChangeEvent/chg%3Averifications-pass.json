@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:1879d183f9ac7dda59f68298c700f05132fa9991fbe389995a9fa69d2970734a",
+  "node_id": "chg:verifications-pass",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "name": "Test evidence is extracted, and a claim is not allowed to count as proof"
+  }
+}

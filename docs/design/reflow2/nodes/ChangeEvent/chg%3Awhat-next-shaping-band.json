@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:ff0349d8b4c7e7a7a171161c26aa5bbb597c9a75240cd5994893b44f0e56ada0",
+  "node_id": "chg:what-next-shaping-band",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "name": "The shaping band lands, and cap:what-next is complete. Its own recorded caveat — that raw GOVERNED_BY in-degree is the wrong signal because the top hit was a pruning decision governing ten DROPPED requirements — turned out to need exactly ONE refinement: exclude retired nodes. Measured, that decision governs 10 of which 9 are dead, so liveness removes it outright. BREADTH WAS TRIED AND REJECTED ON MEASUREMENT: weighting by distinct governed types demotes every exemplar the capability names as the right sort of thing, because functional decomposition governs 8 Components and the three-party division 7 Capabilities — one type each. Governing eight Components IS shaping; single-typedness is not shallowness. `shapes` is reported for the reader and kept out of the ranking."
+  }
+}

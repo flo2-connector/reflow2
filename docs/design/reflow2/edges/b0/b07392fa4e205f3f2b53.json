@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:e0b31566a30683a7b3667835394f2a8fdca6ba794170addeb2e3509f37a17b22",
+  "edge_type": "GOVERNED_BY",
+  "from_id": "req:concurrent-planning",
+  "properties": {},
+  "to_id": "dec:concurrent-work-isolation"
+}

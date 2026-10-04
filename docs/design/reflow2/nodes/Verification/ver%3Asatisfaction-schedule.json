@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:3fedc344c6068c9818b666211fb6c1487ee557098565980bc6550b5adb3f7a43",
+  "node_id": "ver:satisfaction-schedule",
+  "node_type": "Verification",
+  "properties": {
+    "kind": "verification",
+    "last_run_at": "2026-07-31T01:30:00Z",
+    "level": "integration",
+    "method": "test",
+    "name": "SCHEDULED_FOR: both paired views, modality, and the two refusals — crates/reflow2-core/tests/temporal.rs",
+    "status": "passing"
+  }
+}

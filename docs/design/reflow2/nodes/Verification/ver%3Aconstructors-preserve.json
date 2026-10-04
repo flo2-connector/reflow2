@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:d148ce7b08b0dcabf5ca7e974ced3b78e55aed5962e5c6ad48a03a9536e0bb7c",
+  "node_id": "ver:constructors-preserve",
+  "node_type": "Verification",
+  "properties": {
+    "description": "Re-calling a constructor does not erase what the design already knew (crates/reflow2-core/tests/constructors_preserve.rs) — 9 cases. THE COUNTERWEIGHTS ARE WHAT KEEP THE FIX FROM BEING A DIFFERENT BUG: a first call still writes schema defaults rather than inheriting, a named property is still overwritten, and an explicitly-passed optional still wins — so `merge` never became `first write wins` or `you may never change this back`. create_node and import_graph deliberately still REPLACE, because an import document is a complete statement of a node and merging there would resurrect properties it meant to omit.",
+    "findings": "WRITTEN BEFORE THE FIX: all 6 defect cases failed and all 3 counterweights passed. THE AUDIT, not the instance, is the finding: 16 of 18 public add_* helpers named a SUBSET of their node type's properties and wrote create-or-REPLACE, so re-calling one to revise a node reset every unnamed property to its schema default. add_interface lost 13 including `designation` (which contracts are published boundaries, req:key-interfaces); add_requirement lost `status`, which IS certainty (dec:certainty-derived), so rewording forged the user's signature in reverse; add_capability un-built a verified capability; add_artifact was BL-166 still reachable one call away, that fix having landed on link_artifact only. It survived BL-46 and BL-166 because it is INVISIBLE until a property has been moved off its default. It violated req:no-silent-fallback, accepted and priority CRITICAL.",
+    "kind": "verification",
+    "last_run_at": "2026-08-02",
+    "level": "unit",
+    "method": "test",
+    "name": "Re-calling a constructor does not erase what the design already knew",
+    "status": "passing"
+  }
+}

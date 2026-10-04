@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:8e53b35c20008d952ce6dbfcbfb6574866da42da15c039786561c7a9a199114f",
+  "node_id": "chg:accept-e52b527aba651ac4",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "test_failure_fix",
+    "detected_at": "2026-07-29",
+    "name": "Catch-up for da50ae8 (\"A dangling edge was accepted, stored, and reported by nothing\"), which changed graph.rs to REFUSE an edge naming an id nobody created — matching what snapshot_node and add_change_event already did. The design held: req:no-silent-fallback already said this and the code was brought to meet it, so there is no design meaning to record. Same class as chg:accept-a2a035876eefa13a.\n\nFOUND BY THE GATE BEING RED, not by anyone noticing: da50ae8 landed without the reconcile, so main's CI has failed on this one finding for three commits (runs of 2026-07-29 03:33, 03:47, 03:54, all \"workspace + real-binary instruments\"). The registered checksum was also the full 64-char digest where every sibling registers 16 — harmless, since reconcile truncates the observation to the registered dialect, but it is why the mismatch reads oddly."
+  }
+}

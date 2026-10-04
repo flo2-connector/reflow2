@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:18983fcd14e900553cd15b781a792f2c2bd9d03eadf33ee773282f5262651136",
+  "node_id": "cap:granularity-observation",
+  "node_type": "Capability",
+  "properties": {
+    "description": "Count the Capabilities each registered Artifact realizes and name those that are distributional outliers within this design, with the arithmetic and both cutoffs attached. It reports a fact and refuses a verdict: no severity, no suggested fix, and no claim about size — an artifact of any length realizing one capability is silent here. Because the comparison is against this design's own spread, a uniformly coarse early-phase design produces no finding, which is what keeps the reading from punishing correct function-first work.",
+    "name": "Report where the build does not separate what the design separates",
+    "provenance": "authored",
+    "status": "verified",
+    "tier": "operational"
+  }
+}

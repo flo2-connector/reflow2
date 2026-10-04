@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:13a927d88083a0a3095c6440568a4b45fecd13dc63c7ce32dca07abaff03f684",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:an-undated-change-event-says-so-test",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:an-undated-change-event-says-so-test"
+}

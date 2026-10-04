@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:9bcf0887f20954acbc73c15b75dc7f3e4e1da25ac24853e275f757602447c0ea",
+  "edge_type": "GOVERNED_BY",
+  "from_id": "req:a-session-runs-a-release-binary",
+  "properties": {
+    "evidence": "Ruled 2026-09-11 as 'do the release binary with rocksdb': keeping the store was decided on the ground that its cost is the builder's and its benefit is the user's, and this requirement is the user's half."
+  },
+  "to_id": "dec:idea-does-reflow2-need-a-byte-store-at-all-or-only-durability"
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:2131782e581f5875fef0301490c1948f69772f07ff2cd95d47edfca69a39c9d7",
+  "node_id": "chg:accept-141e53b465de3671",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "refactor",
+    "detected_at": "2026-09-10",
+    "name": "Same mechanical cause: a `CapabilityReq` struct literal gained the two new fields as None. The search-first behaviour under test is unchanged. The design HOLDS.",
+    "subject": "system"
+  }
+}

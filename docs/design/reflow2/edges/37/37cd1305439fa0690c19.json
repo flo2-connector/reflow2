@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:3b73f414135ef8e7020d24537d2ba7d36d6ff054777fad277db1e3faf9ac2ac5",
+  "edge_type": "MITIGATES",
+  "from_id": "chg:2026-09-22-link-artifact-draws-implements-for-a-check",
+  "properties": {
+    "evidence": "The change is the answer already taken, and it is a mitigation rather than a settlement: it stops the one call site that was writing the wrong edge, which makes this question less urgent without answering it. Any other writer reaching create_edge directly can still draw REALIZES onto a Verification."
+  },
+  "to_id": "dec:idea-should-realizes-stop-being-a-wildcard"
+}

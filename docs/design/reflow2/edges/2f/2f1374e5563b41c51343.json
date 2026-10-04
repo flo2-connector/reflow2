@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:962367431b5b5a5cd788c94bdc42e09520b5528e85f0dc160e1bade8b9677630",
+  "edge_type": "CHANGED",
+  "from_id": "chg:container-packaging",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cap:release-publishes-a-container"
+}

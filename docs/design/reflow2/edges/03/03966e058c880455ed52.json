@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:d4a3131fe1a76c4771f27e516e36646d5c33387cdb56d5638ca3017e967cb676",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:install-reaches-the-agent",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:init"
+}

@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:619a91094aa885a2c4c673a5d9d1732a360e2e99fdc37985189ef46a02407dcc",
+  "edge_type": "CONTAINS",
+  "from_id": "sub:session-posture",
+  "properties": {},
+  "to_id": "cmp:discover"
+}

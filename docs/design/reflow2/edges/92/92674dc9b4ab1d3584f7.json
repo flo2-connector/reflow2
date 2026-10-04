@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:a5a7543162b5073bb9f41aaa4171271de9a7e5856f1a5b538dd195c3a40aa64c",
+  "edge_type": "EVOLVES_INTO",
+  "from_id": "dec:idea-could-a-projects-codegraph-become-part-of-its-reflow2-design",
+  "properties": {
+    "evidence": "Option (d) promoted on Anthony's word, 2026-09-23. Options (a) merge, (b) as a stance only, and (e) move colleagues to reflow2 views stay recorded as considered; folding DECISIONS.md was withdrawn because hxm_program's D-0016 makes it the deliberate file-side home of accepted decisions."
+  },
+  "to_id": "req:adopt-can-take-a-code-graph-as-its-mechanical-structural-pass"
+}

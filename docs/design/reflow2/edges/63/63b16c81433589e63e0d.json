@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:74cf9b45aeb20f8334853579ec7a9f076bbb67157a0af10e7cf8f47785ead33c",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "cmp:ingest",
+  "properties": {
+    "dependency_type": "function_call",
+    "optional": false,
+    "weight_basis": "evidence"
+  },
+  "to_id": "cmp:temporal"
+}

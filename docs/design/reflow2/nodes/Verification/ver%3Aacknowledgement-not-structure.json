@@ -1,0 +1,17 @@
+{
+  "content_hash": "sha256:ffdacd6fa2a5091b9a45cdcdf3c40ffccdc9dd48a58e73d99c790d205e8aa5b5",
+  "node_id": "ver:acknowledgement-not-structure",
+  "node_type": "Verification",
+  "properties": {
+    "description": "An acknowledgement is a statement ABOUT the design, not a part of it (crates/reflow2-core/tests/acknowledgement_not_structure.rs) — 5 cases. Acknowledging a disconnected_community CLOSES it and it stays closed on re-detect, which is the livelock: the review Decision is wired GOVERNED_BY into the affected set and the defect id hashes that set, so the acknowledgement used to join the island it acknowledged and mint a new, larger, unaccepted id without limit. Withdrawal still reopens it, and reopens the SAME defect rather than a differently-shaped one. THREE COUNTERWEIGHTS, which are what keep the fix from being a way of silencing a detector: an ORDINARY Decision still counts as structure (excluding all Decisions would pass the livelock case and island everything a real decision governs), a genuinely isolated cluster still fires, and the review record is still stored with its reason and still reachable by GOVERNED_BY from what it acknowledges.",
+    "findings": "WRITTEN BEFORE THE FIX: the two bug cases failed and all three counterweights passed.",
+    "kind": "verification",
+    "last_reconciled_at": "2026-09-23",
+    "last_reconciled_outcome": "passed",
+    "last_run_at": "2026-08-01",
+    "level": "integration",
+    "method": "test",
+    "name": "An acknowledgement is a statement about the design, not a part of it",
+    "status": "passing"
+  }
+}

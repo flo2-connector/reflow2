@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:f352429838c610af981265f022f6bbf10d41a84f16f893e1ba4446a61ba47702",
+  "node_id": "chg:accept-542897888c724245",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "resync",
+    "detected_at": "2026-09-21",
+    "name": "Two shipping-version claims moved to v0.66.0. Same reasoning; accepted before the manifest for the same reason.",
+    "subject": "system"
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:173e0c0a982e626ad1e69f25c9a46f00552868034e1ec4166541ef43fdcfce34",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:reconcile-built",
+  "properties": {},
+  "to_id": "req:golden-thread"
+}

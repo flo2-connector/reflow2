@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:ba665975e242217f51d0dffab283cf9138c53fcb8e5ac6a5a92e93ebb9363029",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0630",
+  "properties": {
+    "as_checksum": "sha256:6b58139a0fd5f095c64c4c465f03cfed8200015ef0e7af3a4e7cca064727de39"
+  },
+  "to_id": "art:compose-test"
+}

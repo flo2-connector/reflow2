@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:f68e9cc306e82ce87f65a02e4b19209758512555331139edeaef861b1eb8f9b0",
+  "node_id": "chg:accept-6926b3bb3c354811",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "documentation",
+    "detected_at": "2026-09-10",
+    "name": "The `undated` mention was removed from add_change_event's TOOL DESCRIPTION after skill_lint refused it at 1901 of a 1500-character budget. The BEHAVIOUR is unchanged and still tested; the explanation now lives where it was already fuller — the `detected_at` parameter doc, and the `undated` note the reply itself carries. That placement is this project's own stated preference: a note read at the moment of the mistake beats a paragraph in a description nobody re-reads. The design HOLDS.",
+    "subject": "system"
+  }
+}

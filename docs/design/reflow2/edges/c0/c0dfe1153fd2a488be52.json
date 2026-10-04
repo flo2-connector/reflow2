@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:29634c20eba83226dbb65024b08a17c25629a0ca0369b5f55ac5300f4c7451bd",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:a-design-says-what-crosses-each-boundary-between-its-parts",
+  "properties": {
+    "approved_at": "2026-08-23",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:7ffa24895a0431289d23ea9096a48a7da6c1091c75e42ce84f2b418e049d7e9b",
+  "edge_type": "CHANGED",
+  "from_id": "chg:2026-09-22-add-requirement-takes-source-and-provenance",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cap:vocabulary"
+}

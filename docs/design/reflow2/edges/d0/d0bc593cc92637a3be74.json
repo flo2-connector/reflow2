@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:f263650d46e88ed4f84ad14ae190aaf913448aaf3392bad93bb56d89cde34c63",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:planned-epochs",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:temporal"
+}

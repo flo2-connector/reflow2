@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:8ad788d5fed415b9eeb7cffd3c867524860ebe93b4625d749949dd1618de4acf",
+  "edge_type": "CHANGED",
+  "from_id": "chg:every-required-parameter-and-every-thin-description-says-what-it-is",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:tools-exchange"
+}

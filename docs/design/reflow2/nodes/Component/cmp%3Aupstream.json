@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:89499088c23d81b9a49a4601ed17d2dbca13ac65d88fbd76bfd1fe7fed5f6035",
+  "node_id": "cmp:upstream",
+  "node_type": "Component",
+  "properties": {
+    "kind": "module",
+    "level": "component",
+    "name": "upstream",
+    "provenance": "authored",
+    "purpose": "Reads the designs this one DEPENDS ON, without taking them in. Opens each declared upstream export named in the committed manifest, computes its content hash from content, and reports what is there — so `cmp:depends` can judge whether the upstream has moved. Implemented in `crates/reflow2-mcp/src/upstream.rs`.\n\n⚠️ IT READS, IT DOES NOT NAVIGATE, AND IT NEVER WRITES. `describe_designs` makes the caller find candidate paths because reflow2 does no file navigation; that rule is intact here, because every path opened is one this design pointed at ITSELF in its own committed manifest. Nothing on this path writes — not the baseline, not a sync record — because a check that refreshed what it compares against would report a move once and then go permanently quiet.\n\nGiven a part of its own on the ruling recorded as `chg:allocation-follows-the-code-not-the-neighbour` (2026-08-25), the same call made for `cmp:manual-work` earlier the same day: it is a real, checksummed module, so crediting its function to `cmp:sync-debt` or `cmp:depends` next door would be the neighbour-misfiling that ruling corrects. Placed under `sub:across-designs` beside `cmp:depends` and `cmp:seam` because what it does is cross a design boundary — not under `sub:serving`, where it merely happens to live in the crate.\n\n📌 THE CAPABILITY IS ALLOCATED TO `cmp:depends`, NOT HERE, AND THAT IS DELIBERATE. `cap:a-declared-dependency-is-watched-not-imported` spans two modules — the judgement in `depends.rs`, the reading here — and the standing ruling says move it, do not dual-allocate. The declaration and the comparison are what the capability IS; this supplies what was found on disk, exactly as a caller supplies `observed` to `reconcile_dependencies`. The artifact layer records both files as realizing it, which is the honest reading and the reason the two layers can be compared at all. It is also a live instance of `dec:idea-a-capability-is-a-set-of-functions-and-a-black-box-delivers-functions`, which asks whether a capability should be a SET of functions across parts — open, and this is a real case for it rather than a hypothetical.",
+    "status": "planned",
+    "tier": "operational"
+  }
+}

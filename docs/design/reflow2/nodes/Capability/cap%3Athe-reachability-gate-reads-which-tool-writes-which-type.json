@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:103ccc188787ceb4b95514aed4d07446110e5ed3488ca828d1988e83518d987f",
+  "node_id": "cap:the-reachability-gate-reads-which-tool-writes-which-type",
+  "node_type": "Capability",
+  "properties": {
+    "description": "As built 2026-09-20. THE POOL IS GONE: tool_parameters() used to add every parameter of every write tool it could not attribute to a type — 54 tools, 109 names — to EVERY node type, and the zero-usage branch asked the flat name set besides. A property therefore counted as writable when any unrelated tool used the same word. Now each write tool sits in exactly one of three categories: WRITES_TYPE (writes that type's own properties), EDGE_ONLY (writes an edge, or mints nodes through an operation rather than from caller-named properties), POLYMORPHIC (writes one named property on a caller-chosen type — set_provenance and `provenance`). A tool in none of them raises Unplaceable and the gate EXITS 2 naming it, so the map cannot rot silently as the surface grows. Two mappings were under-specified rather than absent and are widened: link_artifact mints the provenance fragment and writes its content_ref, note_kind and provenance; snapshot_before_change writes the Snapshot it captures as well as the ChangeEvent. The ingest steps moved from operations to Fragment writers. MEASURED OUTCOME: the gate reported `0 HOLE` before and reports 2 now, both real, and the 24 properties that rested on the pool are each judged against their own type's tools. Tests: tools/test_vocabulary_reach.py gained four cases, including a probe that adds an unplaced tool and asserts the gate stops.",
+    "name": "The reachability gate reads which tool writes which type, and refuses a tool it cannot place",
+    "provenance": "authored",
+    "status": "realized"
+  }
+}

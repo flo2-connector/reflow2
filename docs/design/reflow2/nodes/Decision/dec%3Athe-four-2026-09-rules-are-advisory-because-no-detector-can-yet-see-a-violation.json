@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:a6f27cf06f7bc20841b819903b93b6251558d6d2686bdeb80c3aba8a4b113e1b",
+  "node_id": "dec:the-four-2026-09-rules-are-advisory-because-no-detector-can-yet-see-a-violation",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Anthony ruled on 2026-09-07, on a plain-English walk-through of the open rulings: `enforced: false` on all four rules that carried no enforcement — rule:a-reflow2-tool-failure-met-while-working-is-captured-as-a-to-do, rule:every-failure-is-searched-and-every-cause-is-root-caused-before-it-is-written, rule:field-feedback-issues-are-root-caused-and-ideas-are-brainstormed, and rule:a-rule-the-project-follows-lives-in-the-graph-not-in-an-agents-memory. His word: \"yes, agree with all 5\", accepting the recommendation as put to him.",
+    "kind": "choice",
+    "name": "The four rules set in September 2026 are advisory, not gate-blocking, until something can detect a violation",
+    "rationale": "A rule marked `enforced: true` in this schema owes a detector — the enforced state is what unverified_enforced_rule reads, and gate-blocking a rule nothing can check turns the gate into a promise the tooling cannot keep. None of the four has a detector today: no computation can see that a session met a tool refusal and swallowed it, that a cause was written without the skill's steps, that a triage skipped the two skills, or that a lesson went into a memory file instead of the graph. Advisory states the intent honestly and leaves the enforcement question live rather than answered wrongly. The tool-failure rule is the first candidate to revisit, because dec:idea-the-server-counts-its-own-refusals-so-no-session-has-to-remember-to would give it a detector that no session has to remember; when that lands, enforcement becomes a real question rather than an aspiration. This settles the four unstated_rule_enforcement gaps under dec:does-enforced-default-to-gate-blocking, which removed the default precisely so this would be somebody's stated ruling.",
+    "status": "accepted"
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:d26c96bc34c70aba0c5ad9dfe3949771c58b7cbf168618853c0a42024675c0b5",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:tool-search",
+  "properties": {},
+  "to_id": "req:agent-native"
+}

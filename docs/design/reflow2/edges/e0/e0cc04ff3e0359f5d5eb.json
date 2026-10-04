@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:6eedee8163888921da44e3a159536837125ff07ab778eef84ffb5a2d6841cc59",
+  "edge_type": "CHANGED",
+  "from_id": "chg:accept-b68a94b177123593",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:capture-session-skill"
+}

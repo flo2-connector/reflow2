@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:4f08195ac2709efbb82bd40481d8d96da6e689b1441252d29e8e89a8a593eff7",
+  "node_id": "ver:a-scheduled-question-is-delivered-by-being-answered",
+  "node_type": "Verification",
+  "properties": {
+    "description": "crates/reflow2-core/tests/scheduling_a_question.rs, 6 cases.\n\nWHAT IT PINS: that a Question can be scheduled at all; that an unanswered one is `outstanding`, which is correct and is the case that outcome exists for; that answering it makes it `delivered`, computed from what answer_question writes rather than asserted beside it; that a WITHDRAWN one is `discontinued` and never `outstanding`; that a Question needs neither artifact nor check, unlike the two other schedulable types; and that a Question with NO status reads as `asked` rather than as settled, so nothing written before this silently promotes to delivered on the day of an upgrade.\n\n⭐ THE FIXTURE FAILURE IS WORTH KEEPING IN THE RECORD, because it is how this test file nearly proved nothing. The first draft named the Question node arbitrarily. answer_question takes a GAP id and resolves it to `question:<same suffix>`, so it could not find the node — and THREE of the six cases still passed, because they only exercised the schedule edge. A file that had stopped at those three would have looked like proof and demonstrated nothing. The convention is now documented in the fixture itself rather than left as a trap.\n\nNOT COVERED, stated rather than left to be found: nothing here checks that the ANSWER was written back into the design. Delivered means the question was answered; the gap it came from closes when the DESIGN changes, which is separate work the loop counts separately as `unwritten_answers`. A scheduled question can therefore read `delivered` while its gap is still open, and that is correct rather than a defect — two different acts, and the schedule tracks the second.",
+    "findings": "RUN 2026-08-21: 6 passed, 0 failed. Whole crate 1133 passed / 0 failed across 109 binaries — exactly +6 tests and +1 binary against the 1127/108 baseline.\n\nNOT EXERCISED ON LIVE DATA, and said rather than left to be assumed: this graph holds exactly ONE Question and it is already answered, so there is no natural outstanding-to-delivered transition to show here. Manufacturing a schedule that did not fit the data would have been theatre.\n\nTHE FIXTURE FAILURE THAT NEARLY MADE THIS FILE MEANINGLESS: the first draft named the Question node arbitrarily, so answer_question could not resolve it from the gap id — and three of the six cases PASSED ANYWAY because they only touched the schedule edge. The interesting three were exactly the three that failed.",
+    "kind": "verification",
+    "last_run_at": "2026-08-21",
+    "level": "unit",
+    "method": "test",
+    "name": "A scheduled question is delivered by being answered, and a withdrawn one is not outstanding",
+    "status": "passing"
+  }
+}

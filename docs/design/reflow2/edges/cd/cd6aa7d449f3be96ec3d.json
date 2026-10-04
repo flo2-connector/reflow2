@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:dcc6169caec9937447904d94a056b977ad655fcb1622180c8527f5352e91b6ab",
+  "edge_type": "CAUSES",
+  "from_id": "fact:gap-to-prompt-welds-the-title-and-the-why-into-one-string-and-returns-only-the-string-so-the-one-consumer-splits-prose",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "The welded string is what makes the pieces question live.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "dec:idea-should-gap-to-prompt-serve-the-pieces-it-assembles-and-take-a-key-instead-of-an-echo"
+}

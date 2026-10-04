@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:346dc7575dc103bf901706252af51235ee55aa58a386938ffe20fd7d8999c3e1",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:changelog-entries-are-fragments-assembled-at-the-cut",
+  "properties": {},
+  "to_id": "req:the-changelog-is-the-one-record-of-what-changed-and-no-required-upgrade-step-is-lost"
+}

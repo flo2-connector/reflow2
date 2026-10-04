@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:308c31035a8789f196edb993127981be7f59b36a9826b7d7a17d565345ac37b6",
+  "node_id": "chg:a-refusal-no-peer-can-resolve-stops-the-wait-instead-of-timing-out",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "defect_fix",
+    "name": "A --serve-shared daemon that refuses for a cause no peer can resolve records that refusal, and the spawning session stops waiting at once — t+30.0s becomes t+0.3s, and the reason reaches the agent instead of a CONNECT_TIMEOUT. Losing the store-lock race is deliberately untouched. Full measurement in fact:a-startup-refusal-and-the-clients-give-up-are-both-thirty-seconds.",
+    "subject": "system"
+  }
+}

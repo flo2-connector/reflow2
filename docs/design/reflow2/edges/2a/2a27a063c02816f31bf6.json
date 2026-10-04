@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:f8d69d42b1ad9cdc80430c4efe3542fb2229a0e987c6b11edc235180f4066265",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:a-part-can-be-moved-not-only-given-a-second-parent",
+  "properties": {
+    "approved_at": "2026-08-23",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

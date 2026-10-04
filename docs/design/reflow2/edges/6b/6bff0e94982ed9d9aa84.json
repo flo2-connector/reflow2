@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:55b4cd9248dfd61b90af35d138bedb8a8338966512e578e3abf386309a6b36dc",
+  "edge_type": "CHANGED",
+  "from_id": "chg:core-api-withdrawn-from-the-published-surface",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "ifc:core-api"
+}

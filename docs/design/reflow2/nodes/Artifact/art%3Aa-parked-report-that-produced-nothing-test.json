@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:32de605b4e563aedd7f66c5423af96820cdaa087e58d79d0f6ba17916ef05ab2",
+  "node_id": "art:a-parked-report-that-produced-nothing-test",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "test",
+    "location": "crates/reflow2-core/tests/a_parked_report_that_produced_nothing_is_reported.rs",
+    "name": "a_parked_report_that_produced_nothing_is_reported.rs — the untriaged_report detector, its true negative, and the parking counterweight",
+    "status": "realized"
+  }
+}

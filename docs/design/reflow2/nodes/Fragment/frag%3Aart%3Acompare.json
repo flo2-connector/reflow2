@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:c99842427a8b41a69601ab72640b3dd339aafc368aa61f3d75c4c9b44f0797b2",
+  "node_id": "frag:art:compare",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered compare.rs"
+  }
+}

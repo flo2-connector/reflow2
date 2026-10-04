@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:397a12e1752ebd84474ec8bd35c494d39f9b64df6191906cc5ca738dec201abf",
+  "node_id": "chg:accept-8c9c475cb4ccb492",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "documentation",
+    "name": "Re-rendered by tools/render_skills_and_tools.py --write after the graph_report_markdown description was trimmed (826→490 chars) following the previous render; the --check gate on CI caught the one stale row. Lesson for the chain: the render is the LAST step after any description edit.",
+    "subject": "system"
+  }
+}

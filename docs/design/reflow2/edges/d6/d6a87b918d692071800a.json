@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:6698dc7d9c4ad09c8a17f3bb8350b165ff7580372f15210394461dd30039d1a1",
+  "edge_type": "CHANGED",
+  "from_id": "chg:an-in-memory-design-is-reachable-as-ephemeral",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:service"
+}

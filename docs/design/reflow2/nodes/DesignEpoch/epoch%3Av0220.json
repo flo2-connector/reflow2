@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:c4beb2908b2a59a5d9fa2ad85d25237ec9a55de210c22fce247d1c6d5d287199",
+  "node_id": "epoch:v0220",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "epoch_type": "release_cut",
+    "name": "v0.22.0 cut — the delivery epoch becomes computed rather than declared, and the bulk import door finally describes itself",
+    "sequence": 256,
+    "status": "arrived"
+  }
+}

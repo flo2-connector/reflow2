@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:044e21182e0364ef654c02974c10eaf80401aedcd5f5f6669ad69348a53c48e3",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:shared-sessions",
+  "properties": {
+    "coverage": "full"
+  },
+  "to_id": "req:reflow2-keeps-working-entirely-on-one-machine"
+}

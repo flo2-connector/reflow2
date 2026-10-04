@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:4665922bcab896743dab85ec93a75a62fa38d1a7f8041dc6015268a390310ac3",
+  "node_id": "rel:v0680",
+  "node_type": "Release",
+  "properties": {
+    "description": "Three changes since v0.67.0. (1) The why skill (/why) and tools/why_history.py: an interview of a system's designer in two walks, by feature and by change, with the git history setting the questions and every answer recorded as recalled. (2) ChangeEvent.rationale_basis and ChangeEvent.commits, written by add_change_event with repair/stands_in_for; the confirmation ledger never counts a recalled change as a check, and repair_report counts unstated recalled repairs apart. (3) REALIZES points only at a Capability, a Component or an Interface; the 44 wrong links on reflow2's own design were repaired first, and legacy REALIZES onto a check becomes IMPLEMENTS on open and import. No schema stamp change: 28 node types, 65 edge types.",
+    "name": "v0.68.0 — the reasons behind an existing system are recorded from the person who designed it",
+    "status": "retired",
+    "unit_type": "binary",
+    "version": "0.68.0"
+  }
+}

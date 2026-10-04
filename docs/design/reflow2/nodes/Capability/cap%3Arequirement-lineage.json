@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:70568c7608135a245757d60f1a4f7ec6e76f01653d44026a7c86aca073ab8a52",
+  "node_id": "cap:requirement-lineage",
+  "node_type": "Capability",
+  "properties": {
+    "description": "Hold the requirement tree. BUILT 2026-07-25. A new DECOMPOSES edge (Requirement → Requirement, child→parent, a traceability edge so requirement families cluster on their own meaning) plus a `lineage` property (original / decomposed / derived). Before this reflow2 had ZERO requirement-to-requirement edges: a systems-engineering tool holding requirements as a flat list. THE COMPUTATION THAT EARNS IT, and the half that is built: DELIVERY NOW ROLLS UP. cap:derived-completion credits a decomposed parent through its children instead of demanding it carry a capability of its own — EVERY child, not any, because a parent half-delivered is not delivered and `any` would let one finished slice of a checkout system report the whole thing done. The roll-up inherits the property that made delivery a derivation rather than an assertion: it goes backwards, so a child's check starting to fail un-delivers the parent with nobody editing anything. `decomposes` refuses a cycle, because a tree containing itself has no leaves and could never roll up honestly; it also sets the child's lineage, so the edge and the label cannot disagree — letting them would make the classification a second thing to maintain, which is how the requirement lifecycle went unused in the first place. Exposed over MCP as `decomposes` and `set_requirement_lineage` (93 tools), because a capability with no door is the failure this project found in `ingest` earlier the same week. SCHEMA CHANGE: edge types 53 → 54, so a graph written by this build is refused by older binaries with 'update reflow2' — the additive direction, which is loud and correct, and the one BL-86's set-based stamp made unambiguous. STILL TO BUILD: the derived half's teeth — naming, when a Decision is re-opened, the requirements that existed only because of the road taken. The vocabulary and the link are in place (lineage `derived` + GOVERNED_BY the Decision); the query is not.",
+    "name": "Hold the requirement tree: original, decomposed, derived",
+    "provenance": "authored",
+    "status": "verified",
+    "tier": "operational"
+  }
+}

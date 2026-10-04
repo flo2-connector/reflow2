@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:f77bc241d5787c93a65be5a5b61133adb2f54671d1c3f7a550531fa8a8aba9e0",
+  "edge_type": "REALIZES",
+  "from_id": "art:ingest",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cmp:ingest"
+}

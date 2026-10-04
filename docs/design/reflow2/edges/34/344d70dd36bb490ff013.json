@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:8efe701703bfe9c756b95856dd7464d6a80ae1dd2233ecff1683baf36f7ac8cf",
+  "edge_type": "TRIGGERS",
+  "from_id": "chg:an-absent-referent-gets-an-answer-and-three-replies-stop-overclaiming",
+  "properties": {
+    "evidence": "Probing every criterion-2 verdict against the current surface is what produced the design_regions timing measurement and sent the diagnosis to its cause. That finding is the tenth verdict and is deliberately NOT repaired here: it is a core performance change, not a reply-shape one."
+  },
+  "to_id": "fact:design-regions-is-one-expensive-region-walk-per-seed-and-there-are-109-seeds"
+}

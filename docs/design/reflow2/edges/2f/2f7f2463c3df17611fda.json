@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:233a0da43ec8ec36f0309265e23f731b63e120a901e4cb47feee76eed59131db",
+  "edge_type": "SCHEDULED_FOR",
+  "from_id": "req:init-installs-the-terminal-route-for-vs-code-and-update-keeps-it-current",
+  "properties": {
+    "modality": "expected",
+    "recorded_at": "2026-10-01"
+  },
+  "to_id": "epoch:planned-the-call-door-works-for-an-agent-that-cannot-use-mcp"
+}

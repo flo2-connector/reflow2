@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:6aecd8e4a6a73738f5c56e5333a69aa796a2e6d5d20ef4f47caf02c73782db0f",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-server-keeps-a-usage-ledger-and-feedback-renders-it",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:service"
+}

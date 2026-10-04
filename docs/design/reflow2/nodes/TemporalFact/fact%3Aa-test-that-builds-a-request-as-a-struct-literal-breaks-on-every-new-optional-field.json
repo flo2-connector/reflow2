@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:f8a0b577183f328565a8ca0a39cbea53df9166194f5fcd94ed12595ea50c17ad",
+  "node_id": "fact:a-test-that-builds-a-request-as-a-struct-literal-breaks-on-every-new-optional-field",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "confidence": 0.85,
+    "fact_type": "finding",
+    "name": "A test that builds a request as a struct literal breaks on every new optional field; one built from JSON does not",
+    "statement": "Measured twice on 2026-09-19/20 while adding optional parameters to request structs. Adding `status` to four constructors broke 20 struct literals across the suite; adding `kind` and `location` broke 26 more. Each break is a compile error that says nothing about the change under test, and the bulk edit that fixes them is itself error-prone — it put the new field after the closing brace both times, costing a second gate run each time.\n\nTHE ALTERNATIVE IS ALREADY IN USE AND COSTS NOTHING: `serde_json::from_value::<RequirementReq>(json!({…}))` builds the same request from the fields the test actually cares about, ignores the ones it does not, and is unaffected when an optional field is added. The tests written for the status contract and the shell door use it; the older ones predate it.\n\nNOT A CALL TO REWRITE THE SUITE. The point is the direction of travel: a NEW test that constructs a request should build it from JSON, so the cost of adding an optional parameter stays proportional to the parameter rather than to the number of tests that happen to mention its struct.",
+    "subject_id": "cap:the-reachability-gate-reads-which-tool-writes-which-type",
+    "valid_from": "2026-09-20"
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:d5416a32de20d00b35e1520df7211cb7d11698a4b2e8009f40ce1e255b0214dc",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:scoped-analysis",
+  "properties": {},
+  "to_id": "req:concurrent-planning"
+}

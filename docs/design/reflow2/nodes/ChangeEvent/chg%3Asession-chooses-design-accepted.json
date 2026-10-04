@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:397b644ab29a17e916fefd557d4577d6efc59439242050a06810a885268be8c6",
+  "node_id": "chg:session-chooses-design-accepted",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "requirement_creep",
+    "name": "Anthony confirms the wording: a session finding out what designs exist and being told which to use moves from proposed to accepted"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:c6d9aa27d0eed7a4f40d1cf9a31b592f13c39e3e8ecfff0860eed53af306a173",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:status-question-finds-the-read-test",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:status-question-finds-the-read-test"
+}

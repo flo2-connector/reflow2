@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:93366920c76662cd15e3ea1808d6fa68c2d07ffa4ad2da97964126cb069cb0f1",
+  "edge_type": "CHANGED",
+  "from_id": "chg:bl181-service-split",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:skill-lint"
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:2776cbd0a41d09cffbb3ddbcd0cb95e468f67e1e03e760e77d9fe2cb4374ca2b",
+  "node_id": "frag:art:test-a-registered-artifact-asserts-nothing-it-was-not-told",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered a_registered_artifact_asserts_nothing_it_was_not_told.rs — add_artifact stores only the status it is told; link_artifact writes realized on first registration and never downgrades on a re-link"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:2ba1acd0320c0372a6d4296f5c3b4e00c88746ece000765304a7575172dedffa",
+  "edge_type": "CONTRADICTS",
+  "from_id": "dec:idea-the-store-becomes-a-session-cache-and-the-export-becomes-the-truth",
+  "properties": {
+    "alignment": "opposing",
+    "evidence": "Corroboration, not conflict (alignment is supporting): the 2026-08-09 node's FIFTH ROAD states this same shape — object storage holds the export as the source of truth, a node hydrates a RocksDB+tantivy cache on demand, eviction is free because the cache is derived. Anthony reached it again independently on 2026-08-24 from a compile-speed question rather than a hosting question. Two derivations from different premises landing on one shape is evidence about the shape."
+  },
+  "to_id": "dec:idea-a-hosted-tier-of-many-single-writer-tenants"
+}

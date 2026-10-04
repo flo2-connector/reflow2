@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:5113d1783ff89488a51559079c7f2576bc07839a707261df9cd9082ff2f0d197",
+  "edge_type": "REALIZES",
+  "from_id": "art:a-loop-hint-says-where-the-node-landed-test",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:decision-point"
+}

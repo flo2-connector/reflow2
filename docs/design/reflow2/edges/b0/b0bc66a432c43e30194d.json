@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:ef807ce333f04ad86c61ff995da1a0f1306b19ee1fa8fc10ad170ff5ec84d4ee",
+  "edge_type": "CAUSES",
+  "from_id": "cap:session-memory",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "req accepted, cap planned; grep of skills for a write-before-answer instruction: none; loop_status fields: none read-side; usage.rs records seat + tool per call",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:field-report-flo2-2026-09-18-findings-stayed-in-chat-and-the-accepted-session-memory-requirement-has-only-a-planned-capability"
+}

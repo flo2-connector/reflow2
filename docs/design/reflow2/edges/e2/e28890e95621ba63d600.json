@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:ff811852f45a554f20ddc6c42e21f9bb68acba7b1171d1f7c3be4cb833a2076f",
+  "edge_type": "SCHEDULED_FOR",
+  "from_id": "req:evidence-carries-the-date-it-was-taken",
+  "properties": {
+    "modality": "expected",
+    "recorded_at": "2026-08-16"
+  },
+  "to_id": "epoch:triage-fixes"
+}

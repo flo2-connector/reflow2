@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:3eac13b819faf416fb06ce708a902e15e47b5f66ad0a5227dce94555ce40a3c8",
+  "node_id": "req:coverage-visible",
+  "node_type": "Requirement",
+  "properties": {
+    "concern": "core",
+    "designation": "internal",
+    "kind": "functional",
+    "lineage": "original",
+    "name": "The design must be able to say how much of the system it has never modelled",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "reflow2 must be able to report the portion of a real system that no node in the design has ever claimed, so that the thinness of a recovered or evolving model is measurable rather than merely felt. An empty gap list must mean \"the design is coherent AND it covers the system\", not \"the design is coherent about the fraction it happens to know\". The report says what is unclaimed and how large it is; it never scores the design, never blocks, and never treats coarse-but-honest modelling as a deficiency — a single opaque Component legitimately claims everything beneath it.",
+    "status": "accepted"
+  }
+}

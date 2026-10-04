@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:0ce53c3ce75972bd95f8c91e1de716a7fc9f282fe3fcbc91586a4f3f7268645d",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:ask-for-one-rung-of-the-decomposition",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:hierarchy"
+}

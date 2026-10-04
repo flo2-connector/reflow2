@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:07f83d81239fadc81b16b1cc10b0e74dea805b7cc85beec8a0912d895617077f",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0210",
+  "properties": {
+    "as_checksum": "sha256:25db9bfb196de65609c48f3aec924f55bdcac7c8492066658f310832b17156ef"
+  },
+  "to_id": "art:test-degraded-server"
+}

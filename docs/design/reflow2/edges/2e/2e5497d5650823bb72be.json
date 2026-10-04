@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:4851a8535fc47902369cee31af94f6cb997ab616d72c6c4450b4827ec1f46fcb",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:convert-design-to-items",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:convert-design-to-items"
+}

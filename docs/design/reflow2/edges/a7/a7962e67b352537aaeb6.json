@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:b8cb7e8ea26c9dbbe8324f9a6f7e43fd9e5cc983379742f18284611e0155a1e3",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-read-of-a-held-design-is-as-true-as-the-live-one",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:empty-speaks-gate"
+}

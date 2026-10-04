@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:5d3a61bf09d7792cfe75fd431ab285c9a7e736c243902757bfaad1be6f461ff5",
+  "edge_type": "CAUSES",
+  "from_id": "art:hxm-program-feedback-2026-09-28",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "The root-cause pass on this document's 09-28 report (F-33, design-completeness gaps drown the operations signal): the loop's `next` is a fixed design-phase sequence in code. A Project cannot declare a phase (mode is governance only), a finding has no safety mark, and open defect findings and failing checks are never lines of `next`.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:root-cause-the-loops-order-is-fixed-for-the-design-phase-and-the-operations-signal-is-not-in-it-2026-09-28"
+}

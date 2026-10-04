@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:37c627a4f633f99884b47696889a6f49fd3819451d94fec454965e27e62ecd0e",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:evidence-test",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:evidence-test"
+}

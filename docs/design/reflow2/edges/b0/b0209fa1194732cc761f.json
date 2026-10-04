@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:2b1169b12b3d5e7aebbffcb17435c8fe8b9c2189e6b0e11db401ed59bc5360e9",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0590",
+  "properties": {
+    "as_checksum": "sha256:7f3d5ab127e36ac15de0c7781b1e6b5554879cbca77198f3def12972900b3586"
+  },
+  "to_id": "art:regions-rs"
+}

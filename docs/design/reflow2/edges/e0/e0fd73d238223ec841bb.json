@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:ba0cbfc7b858e9f0fc6638a36a2b9b917880ed2413c4e04ca0cddbe157d4bdd6",
+  "edge_type": "DOCUMENTS",
+  "from_id": "art:dev-storyflow-feedback-2026-09-27",
+  "properties": {
+    "evidence": "The brainstorm pass this rule requires: wish #52 (add_decision related_to echoes each drawn edge as a subject-first sentence) duplicates option (d) of this existing idea; a dated note naming the second asker was appended to it."
+  },
+  "to_id": "dec:idea-a-relation-offered-on-any-decision-is-drawn-or-said-to-be-ignored"
+}

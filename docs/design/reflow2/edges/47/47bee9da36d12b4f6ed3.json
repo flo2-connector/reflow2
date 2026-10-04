@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:e087d8a49d3dc8b17dc6974a397c3940991730efcb387004be59dfdbad30a366",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-saved-design-moves-to-the-item-layout-2026-10-03",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:263e6128473b52a324a83436e13c4de086d3cb597e33562e7fd7206ef0d0eb13",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:address-watch-test"
+}

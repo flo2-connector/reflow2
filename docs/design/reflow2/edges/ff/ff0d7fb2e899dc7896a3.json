@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:0f03345af05fb2b734ea2d754306113895a65fab77c691eb35c3306568702911",
+  "edge_type": "ABOUT_ENTITY",
+  "from_id": "fact:the-kit-manifest-gate-cannot-run-in-ci-because-ci-is-never-installed-into",
+  "properties": {},
+  "to_id": "fact:defect-kit-manifest-drift-is-invisible-to-ci"
+}

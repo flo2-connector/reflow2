@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:fe921fc6b3d828230124aa28d9acb69c6716e5942eee2c974dc89ca588eb1309",
+  "edge_type": "CHANGED",
+  "from_id": "chg:accept-4ec8ddd180c5160e",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:a-prose-field-that-swallowed-a-parameter-says-so"
+}

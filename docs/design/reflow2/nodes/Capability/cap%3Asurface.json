@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:e9dadf854357256bb03072c83b2eb5d8b77394f4696dbb8232cd4bc593c70a2e",
+  "node_id": "cap:surface",
+  "node_type": "Capability",
+  "properties": {
+    "description": "Turn a gap into a question in the user's words.",
+    "name": "Ask the user a plain question",
+    "provenance": "authored",
+    "status": "verified",
+    "tier": "operational"
+  }
+}

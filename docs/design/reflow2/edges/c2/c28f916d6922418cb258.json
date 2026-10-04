@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:d3d211966d999bc1b1b30df9c6f3bc88ba32c6993768b0f2426f23b4bf31d0ec",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:a-registry-server-lists-the-designs-under-its-root",
+  "properties": {
+    "approved_at": "2026-09-23",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

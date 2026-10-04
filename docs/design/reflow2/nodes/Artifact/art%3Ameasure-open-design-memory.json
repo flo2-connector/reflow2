@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:9c56fcb6a0d260a0a6e08d0cc09d8757b0f6395737437df6cb29a5e54d599dbb",
+  "node_id": "art:measure-open-design-memory",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "description": "The executable form of ver:the-per-open-design-cost-is-measured, whose method was prose until 2026-09-27. It builds N real-sized copies of a design under one registry root, each under its own graph_id, and opens them one by one. At each step it reads VmRSS, VmHWM, RssAnon and RssFile, then times a burst of writes. Options: --server-arg passes server flags (for example --store-memory), and --no-search tells opening apart from searching. It is the instrument req:one-open-design-costs-a-deliberate-amount-of-memory asks for before and after any change to how stores use memory.",
+    "location": "tools/measure_open_design_memory.py",
+    "name": "tools/measure_open_design_memory.py — what one open design costs in memory, and what writing to it costs in time",
+    "status": "realized"
+  }
+}

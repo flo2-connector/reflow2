@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:87340e16bec76ded76fd4ee4595948db65c1fea96cd83a556abb75ada1796239",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-taxonomy-is-decided-once-before-bulk-capture-and-every-instance-cites-it",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:skill-lint"
+}

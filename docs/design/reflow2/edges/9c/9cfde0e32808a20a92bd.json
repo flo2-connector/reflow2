@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:6ae00536c88f8f8020536ec3196d7a240158a4703bd8fb61bdfa5cbabbab490b",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-a-nested-part-has-an-address-not-only-a-parent",
+  "properties": {
+    "evidence": "An address through the spine only means anything because that requirement already demands nesting as deep as the design needs. Without recursive containment there is no path to address, so this idea rests entirely on that requirement holding.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "req:recursive-black-box-decomposition"
+}

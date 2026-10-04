@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:765738d35688bc938b8372f4fd2b12b5c010cac82c98d4822de139437d09dba7",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0470",
+  "properties": {
+    "as_checksum": "sha256:4329e5563666ab6708edfe68c0d0188818571b39ea408c70ef71663bc2f98f36"
+  },
+  "to_id": "art:kit-pointer"
+}

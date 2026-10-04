@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:b83130e268af4abbf9fbd79607ad2304c3efd9fbaa716b3799194dd51f667e9f",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-read-only-server-with-no-store-serves-the-latent-surface-and-creates-nothing-2026-10-03",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cap:latent-surface"
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:852662b3d6b8a2c34b355fa0d7cdcc1431714612fe9cccf14e864869b517d4e8",
+  "node_id": "chg:accept-7afe9cc1cb0c8dec",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "refactor",
+    "detected_at": "2026-09-22",
+    "name": "cargo fmt only — rustfmt rewrapped two expressions. No assertion, message or behaviour changed.",
+    "subject": "system"
+  }
+}

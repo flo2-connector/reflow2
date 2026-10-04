@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:572d9413c03d0e5b7402b73f891e12aa87c7da939671bfc3e448e3b064bc0b30",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:a-derived-per-primitive-index-with-interned-edge-types",
+  "properties": {},
+  "to_id": "req:the-graph-engine-keeps-a-compact-index-per-primitive"
+}

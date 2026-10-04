@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:eef0a065640f9b91a91fdab8203d8d592e3da3b64579cc1ed18b556a09da7d57",
+  "edge_type": "REALIZES",
+  "from_id": "art:service",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:a-relation-tool-accepts-the-other-familys-names"
+}

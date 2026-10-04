@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:2469fe18f5f6378e4836b0508acde6227e0a46ecd106a27868cd31d2fdff2ef4",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-how-does-a-test-result-get-back-in-when-the-tester-may-not-be-an-agent",
+  "properties": {
+    "evidence": "Anthony's 2026-09-22 ask includes POSITIVE feedback strengthening a design choice; corroboration currently has to be said with a CONTRADICTS edge marked `supporting`, and that open question is where the positive half of feedback is decided.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "dec:idea-how-should-one-finding-say-it-corroborates-another"
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:3d79ba386dd83c5576753703fd0f004129ad74b56991dbffa230d9930d746823",
+  "node_id": "cap:a-status-advance-says-whether-its-prose-predates-it",
+  "node_type": "Capability",
+  "properties": {
+    "description": "When a set_*_status call actually MOVES a status and the node carries prose, the reply carries a prose_currency block naming both statuses, the field, and an excerpt of the prose - so the caller can judge whether the description still reads true in that reply rather than in another call. Silent when the status did not move, and silent when there is no prose. It never judges the text: it states that the prose was written under the OLD status and asks, per dec:report-dont-judge. This is option A of dec:idea-a-status-that-advances-past-its-own-prose, chosen by Anthony on 2026-09-04. The reporter's own reasoning is why it is a reply and not a detector: the call already knows the description was not touched, so the divergence is caught at the moment it is created, while the author is still in the room. Its stated limit, from that decision: it reaches only the agent making the call, so a description that rots because the WORLD changed, with no status move, is untouched.",
+    "name": "A status that moves past the prose describing it says so, in the reply that moved it",
+    "provenance": "authored",
+    "status": "realized"
+  }
+}

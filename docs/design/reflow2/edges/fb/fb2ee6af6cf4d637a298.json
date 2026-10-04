@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:4c0db13b1a470b82b5c4f69ad2417caa829f9442083e02b95eeeb64ea96b0fbe",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "drift:a84bbf1bb26c76ea",
+  "properties": {
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "art:heal"
+}

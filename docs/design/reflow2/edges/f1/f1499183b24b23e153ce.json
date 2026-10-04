@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:bd9c459881cfc56fc035659708a9f424a7759563c03c5bae866c43b88ff3a448",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:a-rule-is-recorded-with-its-consequence",
+  "properties": {
+    "authored_at": "2026-08-08",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:storyflow-api-boss"
+}

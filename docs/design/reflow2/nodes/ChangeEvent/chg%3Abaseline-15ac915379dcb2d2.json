@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:6abb5a97200950f17c0f395927516c372fc397136ddf78a83d8f5a00da1dc2dc",
+  "node_id": "chg:baseline-15ac915379dcb2d2",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "baseline_established",
+    "detected_at": "2026-08-05",
+    "name": "First baseline. Registered in v0.24.0's window without a checksum, so it has been reporting `no_baseline` on every gate run since — correctly, since nothing could judge it. Set now BEFORE freezing the release manifest, because `without_checksum` named it as the one entry that could not say WHAT shipped, and a manifest with a hole is the thing AGENTS.md says a release must not have. Nothing moved: this records a baseline, not a change."
+  }
+}

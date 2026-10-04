@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:7323e4b67ed76d7cc2f02e8e212dbc119db08e4bab8ac8b39b91acc37ae62bf5",
+  "edge_type": "ANTICIPATES",
+  "from_id": "fact:defect-a-schema-narrowing-orphaned-live-edges-and-no-export-is-ever-imported",
+  "properties": {
+    "evidence": "That defect is the retrofit cost of a fielded schema paid once already — a schema change reached into live graphs and orphaned edges — which is the 100x tier this idea says the schema sits in."
+  },
+  "to_id": "dec:idea-cost-to-change-is-read-from-lifecycle-phase-the-rule-of-tens-in-the-graph"
+}

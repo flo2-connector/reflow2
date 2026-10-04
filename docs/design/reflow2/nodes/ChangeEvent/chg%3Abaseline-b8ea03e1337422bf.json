@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:fbbef80e17691adb013020880cce5e4ec1087970052c653b5b99b5701fca2bec",
+  "node_id": "chg:baseline-b8ea03e1337422bf",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "baseline_established",
+    "name": "new; observed failing against the unfixed code first; measured in the fix worktree",
+    "subject": "record"
+  }
+}

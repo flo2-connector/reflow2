@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:32891330e60ba97aa6330799ea148e89000cdc318dd0807a653ee4f8c6868bac",
+  "node_id": "art:test-a-dangling-reference-is-found-whatever-its-degree",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "location": "crates/reflow2-core/tests/a_dangling_reference_is_found_whatever_its_degree.rs",
+    "name": "a_dangling_reference_is_found_whatever_its_degree.rs",
+    "status": "realized"
+  }
+}

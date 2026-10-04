@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:424444b335080efa11b19d5c11ce3ad11d49bed888ec3b3301c952bacb0d7c39",
+  "edge_type": "CHANGED",
+  "from_id": "chg:enum-fields-publish-their-legal-values-from-the-schema",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:verify"
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:4f5bb46dd0c4794c9dc49a36ac2c969e8f9dccb9c1e786a1e9e5cd6785d50913",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:branch-facts-are-held-in-a-per-branch-overlay",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:branch-overlay"
+}

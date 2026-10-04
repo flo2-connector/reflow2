@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:232ec9141689b1a5c3a7cdfe64af240353f623bd08a3674596879cd97f0497be",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:a-project-names-its-domains-artifact-standard-from-the-beginning-and-its-absence-is-reported",
+  "properties": {
+    "approved_at": "2026-09-16",
+    "roles": [
+      "author",
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

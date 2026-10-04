@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:a4ae386a14e7e436239396be43347ca95cae79b80a4df655fb68c85a06bd67e3",
+  "node_id": "rule:a-cut-ends-by-rebuilding-the-served-release-binary",
+  "node_type": "DesignRule",
+  "properties": {
+    "category": "convention",
+    "name": "A cut ends by rebuilding the release binary this box serves, then stopping every shared daemon",
+    "statement": "After release_report confirms the release is out and its assets are verified, run tools/reflow2-rebuild.sh and stop every shared daemon (--stop-shared per project, or a full restart of those sessions; a /mcp reconnect does not replace a running server). Confirm with pgrep -fa target/release/reflow2-mcp and ls -l /proc/<pid>/exe: (deleted) means that server is still the old build. Why: the user-scope registration serves target/release with no launcher in the path, so nothing else tells other projects' sessions the binary is behind. Measured 2026-09-18: a real building design was adopted on 0.62.0 for a whole session while 0.64.0 was published.",
+    "steps": [
+      "release_report"
+    ]
+  }
+}

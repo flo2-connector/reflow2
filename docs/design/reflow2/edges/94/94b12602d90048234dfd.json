@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:99a7817de964003e28c33869bb9c9471573bcf5284281442d687a760c22ae232",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0660",
+  "properties": {
+    "as_checksum": "sha256:7ffad444162083422bc00a902cf8e5f1bb66668962cf1846abab62ab46c6ee4a"
+  },
+  "to_id": "art:test-a-node-is-named-by-its-id-and-the-type-is-optional"
+}

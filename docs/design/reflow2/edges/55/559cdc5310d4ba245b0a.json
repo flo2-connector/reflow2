@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:7a551b46657b149a478651424e4e7401cce0d4c7e4f71107d37b6d3b453c986b",
+  "edge_type": "ANTICIPATES",
+  "from_id": "req:what-changed-since-i-looked-and-by-whom",
+  "properties": {
+    "evidence": "dev_storyflow api-boss asked on 2026-08-07 for 'what changed since time T, and by whom' as a query. This recency view is the same need arriving again from the same project, seven weeks later, on the hosted engine."
+  },
+  "to_id": "dec:idea-a-recency-view-lists-the-designs-changes-newest-first"
+}

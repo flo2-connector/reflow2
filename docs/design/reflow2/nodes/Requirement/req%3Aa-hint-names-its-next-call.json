@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:c8049f00117941d5371ebe3c997e06642a4f12f82421fb57d2705c73ecd01f23",
+  "node_id": "req:a-hint-names-its-next-call",
+  "node_type": "Requirement",
+  "properties": {
+    "concern": "core",
+    "designation": "internal",
+    "kind": "functional",
+    "lineage": "original",
+    "name": "A hint that names a skill must name it as the next CALL, not as a parenthetical — a citation is read as attribution, not instruction",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "Where reflow2 tells an agent which skill to use, it must phrase it as the call to make next rather than as a trailing reference. MEASURED, and this is the whole evidence: `add_capability` returned `loop_hint: \"loop: wire satisfies to the requirement this serves, then run detect_gaps when the capture batch lands (detect-and-ask)\"`. The agent that received it DID wire `satisfies` and DID run `detect_gaps` — and did NOT load `detect-and-ask`. The imperative clauses were obeyed; the skill name in parentheses was read as an attribution for where the advice came from, not as a step to take.\n\nSo the pointer already exists and already names the right skill — `cap:read-loop-hint` and the write-side `loop_hint` are both `verified` — and it still failed. That makes this cheaper than anything else in this family: the mechanism is built, delivered and correct, and only the wording is losing the effect. `run get_skill(\"detect-and-ask\") first` is a step; `(detect-and-ask)` is a footnote.\n\nSCOPE: every place reflow2 names a skill to an agent — the write tools' `loop_hint`, the read-side hint, `loop_nudge.py`'s Stop message, the SessionStart orientation, and the MCP server instructions. The rule is one line: if a skill is worth naming, name the call.\n\nNOT PROPOSED: making the hints longer or more numerous. The finding is about grammar, not volume, and a hint that grows is a hint that gets skimmed — the failure `dec:read-hint-shape` already guarded against by firing only when the debt is real.",
+    "status": "accepted"
+  }
+}

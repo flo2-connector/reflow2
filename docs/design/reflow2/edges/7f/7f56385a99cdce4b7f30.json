@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:3edac8013d3d3440501419e5b36621eaf2714acceee6fa892269b50f10298172",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-should-a-node-say-it-has-layers-and-let-a-reader-ask-for-them",
+  "properties": {
+    "evidence": "If a field can be edited in place, the strata the layers idea worries about stop accumulating; the layers question depends on whether this lands first.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "dec:idea-replace-one-sentence-in-a-field-without-resending-the-field"
+}

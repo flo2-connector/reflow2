@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:a7c20cebfff4b52547c58e713db7d8a04f1d668f621ab29b22ba6d7419050114",
+  "node_id": "frag:art:mint-seat-liveness-test",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered mint_seat_liveness.rs"
+  }
+}

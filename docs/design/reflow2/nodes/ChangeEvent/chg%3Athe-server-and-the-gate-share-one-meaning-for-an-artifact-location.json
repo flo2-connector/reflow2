@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:f1844d0bec70360fe93f291c34b483f465379e54754b381d941d2f1afaec769c",
+  "node_id": "chg:the-server-and-the-gate-share-one-meaning-for-an-artifact-location",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "defect_fix",
+    "detected_at": "2026-09-23",
+    "name": "The CI gate asks the server to measure, so one piece of code decides what an artifact location means",
+    "rationale": "Root-caused 2026-09-23 from flo2 PR #47: after flo2 re-located twelve artifacts to pinned URLs its CI gate went green while its own loop_status still reported twelve missing files. The class was already recorded once in the other direction (fact:the-out-of-tree-notion-exists-but-is-keyed-on-the-path-shape-and-only-one-instrument-honours-it): two copies of 'what does a location mean', and each new shape taught to one. Fixing the URI case in measure.rs alone would have repaired the instance and left the class open, so the gate no longer holds a copy. Pinned by tools/test_one_meaning_for_an_artifact_location.py, which builds one project holding every shape and requires the same verdict from both instruments; OBSERVED FAILING on the unfixed binary and gate (4 of 9 shapes disagreed) before the fix. The same defect was live on this design: art:storyflow-engineering-principles, registered at a URL, read as missing in reflow2's own loop_status.",
+    "subject": "system",
+    "summary": "The server's file measurement (measure.rs, used by loop_status and reconcile_artifacts) and the CI gate (reflow2_check.py) each decided what a location means, and disagreed on four shapes: a URI (gate: not judged; server: missing), an absolute path outside the project and a `..` escape (gate: hashed; server: refused as outside the root), and `file#fragment` (gate: missing; server: measured). measure.rs now names a URI `Remote` and never looks for it on disk; each unmeasurable entry carries its reason sentence; a new `--tree-root` flag lets a store opened away from its tree measure against it; and the gate starts its server with `--tree-root <project>` and takes the no-argument reconcile's measurement instead of hashing files itself."
+  }
+}

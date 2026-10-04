@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:de3bd1e62d7869c974b848132757bd9f5bade80df2611c1fd73c6e9dafb6f19b",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:a-newcomer-can-ask-the-agent-what-this-is",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:skills"
+}

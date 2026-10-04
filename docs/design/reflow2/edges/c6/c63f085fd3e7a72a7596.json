@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:bdb062ad43e6ad4ed549fdbf9861aa142b865c15786a6ace823bb22d3acf3d08",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "req:sources-are-kept-not-just-parsed",
+  "properties": {
+    "evidence": "It is that requirement's corpus whose sources are being kept; it extends corpus ingest rather than standing alone.",
+    "optional": false,
+    "weight_basis": "evidence"
+  },
+  "to_id": "req:corpus-ingest"
+}

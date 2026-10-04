@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:868e531fad4248f99819a92e626f8f326dabd743d07def56a9cc4d9eac348991",
+  "edge_type": "CHANGED",
+  "from_id": "chg:bl159-gate-list-cross-check",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "ver:skill-lint"
+}

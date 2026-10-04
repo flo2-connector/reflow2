@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:7288bb832ded56a783335dd09956abf1ac61f06c1f53b3e4e61670780e5045c5",
+  "edge_type": "REALIZES",
+  "from_id": "art:handshake",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "verified"
+  },
+  "to_id": "cap:the-handshake-is-written-down-beside-the-graph"
+}

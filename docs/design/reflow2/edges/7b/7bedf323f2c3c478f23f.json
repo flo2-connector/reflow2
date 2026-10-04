@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:11b1e32a746317bab0ce82ed233662499c467bdc9527bb6b9f9b55be04ec8e5f",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-a-node-can-be-re-keyed-and-keep-its-edges-lineage-and-old-name",
+  "properties": {
+    "evidence": "A re-key is only history-preserving if the per-item lineage chain can be carried across the key change, which is the capability this would extend.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "cap:lineage-is-kept-per-item"
+}

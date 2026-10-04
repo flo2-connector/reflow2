@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:af7e92f7b1aa4ab34e136346a16fa136db10d94fa9db4defc171f7211833dd60",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-prescribed-layer-pairs-stop-refusing",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:test-search-first"
+}

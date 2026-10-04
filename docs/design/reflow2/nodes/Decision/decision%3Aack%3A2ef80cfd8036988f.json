@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:5206cdd4e8aebb6680263125f1ba591fdcfd46d0110a34468ed6b3593699d728",
+  "node_id": "decision:ack:2ef80cfd8036988f",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Accepted the gap gap:2ef80cfd8036988f.",
+    "name": "Reviewed: gap:2ef80cfd8036988f",
+    "rationale": "Deferred on Anthony's word, 2026-07-28, with the rest of the reflow workflow review. Accepted and not dropped, and the need is already demonstrated rather than argued: eight brainmaker friction items sit in feedback.md unconverted, and two Verification nodes carry friction findings inside their NAMES with the word \"unwritten\" in them, because there is nowhere else to put them. Deferred because the taxonomy is the design work and copying reflow's twelve categories wholesale would be wrong — several are phase-shaped (hierarchical_phase_transition_issues and friends) and reflow2 has no phases, while reflow2 needs at least one category reflow never had, for friction that cannot be reported without quoting someone's design. The severity criteria transfer better than the categories do. Any scheme adopted must carry report-friction's redaction discipline with it, since reflow2 installs into other people's projects and reflow's loop ran only on its own repo.",
+    "status": "accepted"
+  }
+}

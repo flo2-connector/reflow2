@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:b64992062acf415a63bf47039d52528e01d8a25132a74afe99c47a17917f1b8b",
+  "node_id": "chg:every-open-store-shares-one-memory-budget-2026-09-27",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "detected_at": "2026-09-27",
+    "name": "Every store a process opens shares one RocksDB memory budget (--store-memory), measured before and after",
+    "rationale": "req:one-open-design-costs-a-deliberate-amount-of-memory, on @ajs's word (\"Yes, let's build the now items in reflow2\").\n\nMEASURED BEFORE AND AFTER, as the requirement demands, on four copies of reflow2's own design with MALLOC_ARENA_MAX=2, debug builds of the same tree:\n- per open design 41.0 → 36.3 MB, within the run-to-run spread;\n- peak 294 → 289 MB;\n- writes 6.0 → 6.0 per second.\nThe budget moved nothing measurable at this size, because RocksDB's buffers are not where a design's memory goes. A budget of 8 vs 512 MB moved the per-design cost by about 2 MB. What the ~36 MB IS is recorded as fact:a-reflow2-sized-open-design-costs-about-36mb-of-heap-and-rocksdb-is-not-most-of-it-2026-09-27: private heap taken at open, not yet attributed.\n\nSo this makes the store's share deliberate and bounded, the letter of the requirement's first sentence, at no measured cost. It does NOT make the whole per-design cost \"a number somebody chose\". The requirement stays accepted, not met.\n\nThe test was observed failing with the write-buffer manager unset: the second store's memtable was then charged nowhere.",
+    "subject": "system",
+    "summary": "backend.rs gives the process one StoreBudget, set once before the first store opens: a shared LRU cache, plus a WriteBufferManager charged to that same cache. Every column family of every store uses the shared cache, with index and filter blocks cached in it, and a 4 MiB write buffer instead of 64 MiB. Every store is capped at 64 open table files.\n\nNew `--store-memory <MB>` (default 128) sets the budget. Also new:\n- reflow2_core::{set_store_memory_budget, store_memory_usage};\n- tools/measure_open_design_memory.py, which splits RssAnon from RssFile;\n- a single-test integration binary proving two stores are charged to one budget."
+  }
+}

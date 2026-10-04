@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:ef9a209a15d98c681e2342c2f2ad1db932f8b14774aedf094f507b93b574cb55",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-last-two-from-the-field-triage",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cmp:tools-ask"
+}

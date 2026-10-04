@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:f79a6f81cb37b3793a360129f0a3c4d251b83995078ffc4fd921c50aaa226c37",
+  "node_id": "dec:operational-spof",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "single_point_of_failure candidates are Components, Interfaces, Resources, Environments.",
+    "name": "Only things that operate can be single points of failure",
+    "rationale": "The suggested fix is add_redundancy, and redundancy is only coherent for running parts; a golden thread converges on intent by design, so intent hubs are the thread working. 22 of 22 false positives cleared, 4 true survivors. Decided 2026-07-19 (https://claude.ai/code/session_013aumVdHrRHu24cLirn6Cam); BL-5.",
+    "status": "accepted"
+  }
+}

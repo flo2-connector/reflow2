@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:1977b1e2b2dd899a67e28ea6448b487a2569def253e2b82f0fbf99768a15cf35",
+  "node_id": "epoch:v0770-cut",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "description": "The cut that ships GitHub issue #617 (Alex): one linux/amd64 + linux/arm64 image index under one digest, and a native linux-arm64 binary. Cut in the dev_reflow2 hub session on Anthony's word, 2026-10-01 (\"yes, go with option 1\": merge #646, then cut the next release so Alex can pull the two-architecture image). Contents, by PR: #646 alone. The release publishes one linux/amd64 + linux/arm64 index and names its digest in the notes; linux-arm64 is built natively on ubuntu-22.04-arm and tools/install.sh installs it on Linux aarch64/arm64; the image's label, Dockerfile and docker/build.sh say what v0.76.0 made true about authentication; release.yml takes dry_run (a dry run of #646's workflow, run 36956513495, passed before this cut). No Rust source changed apart from the version. The schema stamp does not move (28 node types, 66 edge types), so no upgrade note is owed. Sequence 663 places it after epoch:the-image-is-two-architectures-and-names-its-digest (661), where #646 recorded its work, and after the planned milestone at 662; the planned milestones 656-660 and 662 have not arrived and pin nothing.",
+    "epoch_type": "release_cut",
+    "name": "v0.77.0 release cut (2026-10-01)",
+    "sequence": 663,
+    "status": "arrived"
+  }
+}

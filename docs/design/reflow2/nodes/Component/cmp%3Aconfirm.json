@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:d8d0c80722196ab2e051fda322d05f3f4e11d89df21abbbaeb20cf4406c19536",
+  "node_id": "cmp:confirm",
+  "node_type": "Component",
+  "properties": {
+    "kind": "module",
+    "level": "component",
+    "name": "confirm",
+    "provenance": "authored",
+    "purpose": "The confirm module.",
+    "status": "planned",
+    "tier": "operational"
+  }
+}

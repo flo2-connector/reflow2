@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:bfc7171f29145e6a88b66c34473beafa03007fd4ebed9e686456a644d99d3d6b",
+  "edge_type": "AT_EPOCH",
+  "from_id": "snap:epoch:kpp-capture:cap:sanitize-ingress",
+  "properties": {},
+  "to_id": "epoch:kpp-capture"
+}

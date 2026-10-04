@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:36659d7b6499b80733cd6eee9b225838c170aaa821696f997bff4d76ab99d8ea",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:find-tools-rank-baseline",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:find-tools-rank-baseline"
+}

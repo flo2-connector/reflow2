@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:3734673e546a379bbc9ff636a75c780fe2c8fbbf324b91b8736980658d454abd",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:detect",
+  "properties": {},
+  "to_id": "req:coherence"
+}

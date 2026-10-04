@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:cf8402c03417aaf04ad11356ef5eec36d4399bdbfca686db28500653450597de",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-name-is-not-a-report",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "ver:granularity"
+}

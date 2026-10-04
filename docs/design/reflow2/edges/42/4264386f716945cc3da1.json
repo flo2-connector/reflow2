@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:b3c56186101b3c44a4346a78993382dc2c7892ad0b4672e180fd0b683ffe2c41",
+  "edge_type": "REALIZES",
+  "from_id": "art:heal",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:a-finding-names-the-mechanism-that-parks-a-deliberate-state"
+}

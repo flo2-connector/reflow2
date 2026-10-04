@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:efe6a8d112703efcda566108a1e16e5ff3a9e09cd33e7830df38be5b9a46c4b9",
+  "edge_type": "CAUSES",
+  "from_id": "art:tools-capture",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "capture.rs's set_optional_props is documented as \"Write optional properties a core constructor does not take, after the node lands\", and every typed handler writes the node first, then validates enums, links and edges in later upserts, with no batch around the call; only two refusals (the duplicate guard, add_capability's missing thread target) hand-roll a delete, and only on a create.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:root-cause-a-typed-constructor-writes-the-node-before-its-later-checks-and-a-refusal-leaves-it-2026-10-02"
+}

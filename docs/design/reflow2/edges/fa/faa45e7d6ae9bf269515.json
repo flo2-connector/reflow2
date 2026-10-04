@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:59573d4509a71f6004c4945ea1328195ea06a52af6c07fa67f072218d6443f60",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0370",
+  "properties": {
+    "as_checksum": "sha256:7979028e8c95724dd5696d9b1fee3f307c718b7d9f4e086a968620b602eec420"
+  },
+  "to_id": "art:publishable-promise-test"
+}

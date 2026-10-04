@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:c0cee2e617fcc847547bcf507c85b842f803a8fbbff84bc1e58e01c9541ca250",
+  "edge_type": "REALIZES",
+  "from_id": "art:detect",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "verified"
+  },
+  "to_id": "cap:a-published-surface-with-no-promise-is-asked-about"
+}

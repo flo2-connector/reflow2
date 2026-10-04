@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:6c8b2718e0660eb7f8f5e9528b6d812c182e4b3c391903f4e50fa64314a48360",
+  "edge_type": "ANTICIPATES",
+  "from_id": "req:friction-has-a-baseline",
+  "properties": {
+    "evidence": "The dropped requirement (2026-07-28) described the same shape: execution separated from evaluation, a blind second agent, a stored baseline, and regression called out. The three-agent trial is that shape run as a practice, not a product mechanism, which keeps to its drop reason (\"act on friction, don't model it\")."
+  },
+  "to_id": "rule:reflow2-and-flo2-are-exercised-by-a-three-agent-design-trial"
+}

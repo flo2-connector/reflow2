@@ -1,0 +1,18 @@
+{
+  "content_hash": "sha256:be40a2313ed9885d12c524db7747ac30b67baece9ebbe9fdedcebd91ddb1797e",
+  "node_id": "fact:the-2026-09-29-triage-changed-12-of-30-reported-conclusions-and-7-were-live-recurrences",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "finding",
+    "name": "MEASURED 2026-09-29: triaging a 30-issue field report by skill changed 12 of the reporter's conclusions, wholly or partly. 7 of the 30 were live recurrences of causes already root-caused in earlier sessions whose fixes had not shipped",
+    "source": "art:dev-reflow2-two-agent-exercise-feedback-2026-09-29",
+    "statement": "COUNTED from the outcome lines of the dev_reflow2 hub's trial log, Session 5 (the report behind art:dev-reflow2-two-agent-exercise-feedback-2026-09-29). Five triage agents each ran root-cause per issue, fetched fresh, against reflow2 0.74.0 and flo2.\n\nTHE REPORTER'S CONCLUSIONS, 30 issues (I25 and I29 are one finding; I30 was found during the triage). The reporter was the hub session itself: Claude, writing from a designer agent's friction log.\n- WHOLLY OVERTURNED, 6:\n  - I2: \"three inconsistent gates\" was one flo2 gateway rule;\n  - I5: flo2, not reflow2, refused the oversized reply;\n  - I8: the \"none describes themselves\" statement was true, since it counts people only;\n  - I11: a cure existed (contains under the Project);\n  - I13: CAUSES is excluded from the walk on purpose, and GOVERNED_BY threads;\n  - I21: the auth enum already encodes it.\n- PARTLY OVERTURNED, 5:\n  - I1: the approval is incomplete, not false;\n  - I9: an Actor consumer already clears it through create_edge;\n  - I14: record_finding does write a dated measurement;\n  - I18: the path total is computed, but the verdict uses the sum;\n  - I24: create_edges was reachable through the connector.\n- REFRAMED, 1: I20. reflow2 declares none of its derived relations, so there is nothing for a tool to evaluate.\n- WORKING AS DESIGNED, 1: I27.\nThat is 12 of 30 changed by measurement.\n\nRECURRENCES, 7 of 30. Each cause had been root-caused in an earlier session and was still live on 0.74.0:\n- I2's fixed \"lands proposed\" hint: a defect of 2026-08-14;\n- I3's stale \"OPEN\" names: flo2 F12, fixed 2026-09-19 for the body only;\n- I12, parks never named: the 4th instance of its class;\n- I14a, the bare VERIFIES refusal: root-caused 2026-09-28;\n- I16, related_to dropped: first seen 2026-09-23, root-caused 2026-09-28;\n- I19, a run has one status: root-caused 2026-09-28;\n- I30, record_finding writes defaults on revise: root-caused 2026-09-28.\nSix of the seven were found again within 1 to 10 days of their root cause.\n\nWHAT THIS IS EVIDENCE FOR, stated as observation, not cause:\n(a) The skill-driven triage earns its cost: reading the report would have carried 12 wrong or partial conclusions into the design, and the reporter was the maintainer's own agent.\n(b) A root cause recorded without its fix leaves the class live, and a later report re-finds it. On 2026-09-29 Anthony answered this triage with \"Fix all the root causes\"; the fix program is epoch:fix-what-the-two-agent-exercise-found-2026-09-29.\n\nLIMITS:\n- Counted from one-line outcome summaries written by the hub session from each agent's report, not re-derived from every fact.\n- \"Partly\" is a judgement per item.\n- The 30 items come from one exercise and one reporter.",
+    "steps": [
+      "triage-feedback",
+      "root-cause"
+    ],
+    "subject_id": "cap:triage-feedback-is-a-served-step-and-the-feedback-rules-are-delivered-on-it",
+    "valid_from": "2026-09-29"
+  }
+}

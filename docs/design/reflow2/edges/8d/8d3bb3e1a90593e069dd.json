@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:136ca0cebb5a21c483bf12812b63281c9fd07f381ff9693f44e1a0a1d3413364",
+  "edge_type": "CAUSES",
+  "from_id": "dec:idea-one-way-to-name-which-node-across-the-tool-surface",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "git show v0.62.0/v0.59.0/v0.50.0 toolsnaps: five of six fields absent in every release; flo2 session first ts 22:55Z vs rebuild 13:00 local; nine 'unknown field' refusals in the session log between 23:07 and 23:38",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:field-report-flo2-2026-09-18-eight-rejected-calls-were-guessed-names-not-a-stale-client-and-the-refusal-said-stale"
+}

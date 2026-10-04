@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:30f5d5a26d34bca5f12128457c62ddfde44f913f6d41f7ab9a5fbb72d57e6aef",
+  "node_id": "req:roads-not-taken",
+  "node_type": "Requirement",
+  "properties": {
+    "concern": "core",
+    "designation": "internal",
+    "kind": "functional",
+    "lineage": "original",
+    "name": "The roads not taken are preserved and forkable",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "reflow2 preserves not only what was decided but what was considered and rejected: every Decision keeps its unchosen alternatives as first-class, forkable siblings, and any past decision can be re-opened at its epoch and a different branch taken from that point. The design is a navigable decision tree, not only a linear history — the extension of req:intent-preserved from 'the past is never overwritten' to 'the roads not taken are never lost either.' The unchosen option and its rationale are stored; the alternative's consequence design is computed on demand by replay, never eagerly maintained.",
+    "status": "accepted"
+  }
+}

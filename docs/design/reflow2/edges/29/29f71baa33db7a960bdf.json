@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:493845bb98138804875b33f93e7ad00eb788951128cde86e553b2e232f13b00f",
+  "edge_type": "HAS_SNAPSHOT",
+  "from_id": "req:build-loop-is-bounded",
+  "properties": {},
+  "to_id": "snap:epoch:reflow-workflow-review:req:build-loop-is-bounded"
+}

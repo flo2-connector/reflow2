@@ -1,0 +1,17 @@
+{
+  "content_hash": "sha256:6a94b42ca6a4afe1da59d86f48914e102e0cde01f7c5bd2c9fcfbb780135d0f6",
+  "node_id": "req:a-surface-states-its-own-scope",
+  "node_type": "Requirement",
+  "properties": {
+    "concern": "core",
+    "designation": "internal",
+    "kind": "functional",
+    "lineage": "original",
+    "name": "An output says which question it answered, and what it could not see",
+    "priority": "medium",
+    "provenance": "authored",
+    "rationale": "THE REPORTER OFFERED THIS AS THE ACTIONABLE GENERALISATION over three separate incidents in one day, each a REAL, CORRECT number that answered a different question than the reader's: (1) merge scores presented as a detection report while silently feeding an irreversible deletion — two competent sessions each held half of it and neither could see the whole, because the similarity surface and the delete-proposing surface NEITHER NAMES THE OTHER; (2) open_questions returning count: 0 while the loop owed 69 gaps, 26 defects and 40 unproven/unexamined claims — both numbers correct, neither saying so; (3) per-session rollups that silently became fleet-wide under --shared. In all three the fix is the same shape: LET THE OUTPUT STATE ITS OWN SCOPE. THE STRONGEST SINGLE INSTANCE, because six independent sessions reported it without consolidating (fact:defect-scoped-detectors-do-not-flag-a-degenerate-region): a scoped detector returning in_scope: 0 over region_size: 1 reads as a pass and is the opposite — an island, where the detector had one node to look at. One reporter caught it only by running a control on a sibling node to prove the measurement could return more at all. Notably, region_size being IN the payload is what three of them credited as working; the defect is purely that the interpretation is left to a reader who, under load, will skip it. THIS IS ALSO ALREADY REFLOW2 DOCTRINE, which is the strongest argument for building it: the served AGENTS.md says in terms that a successful tool response is a claim rather than a result, that '0 gaps' means nothing was detected and never that nothing is wrong, and instructs the agent to ask what a check could not have seen. This requirement is that rule moved from the reader's discipline into the payload — which is exactly the fleet's own repeated lesson that a discipline whose only evidence is that someone runs it disappears the moment they stop.",
+    "statement": "A reflow2 surface that returns a count SHALL state the scope of that count — what question it answered and what it does not cover — rather than leaving a correct number to be read as an answer to a different question. Generalised by dev_storyflow's api-boss 5d608b85 from three same-day cases, 2026-08-07, and independently converged on by six sessions for the degenerate-region case.",
+    "status": "accepted"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:c6d49a93f42377cf5f78973f5a5652fb20444124eddaf4b35e523d5fa6fd510b",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-repair-can-say-what-it-invalidated",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:verify"
+}

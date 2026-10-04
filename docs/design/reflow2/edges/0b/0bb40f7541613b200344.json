@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:bbf13ead33f6fb3bc54f1f4addf05b27ebbbcacdb51e2c98c6a4428f0ec48011",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-revising-write-says-whether-the-state-survived",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "req:a-discipline-is-delivered-at-the-tool-not-in-a-catalogue"
+}

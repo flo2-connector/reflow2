@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:f80b5cdda906412bccd0401576ec54b56ecda0a296362c89972f86fd2688dbae",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:a-revising-write-keeps-what-it-would-have-lost",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:temporal"
+}

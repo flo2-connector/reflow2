@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:9247f808c3b1d6ea7a1695f5b324b28a19d7a5fc562e6293d2a7eb5c2b605af3",
+  "edge_type": "INVALIDATES",
+  "from_id": "chg:procedural-joins-the-interface-media",
+  "properties": {
+    "at": "2026-09-15",
+    "note": "Interface.medium now carries `procedural`, defined in the schema as a rule-governed exchange between institutions or roles. The seventeen boundaries the reporter filed under `human` have a word; whether it should be one value or several was decided as one (dec:procedural-is-the-medium-for-a-boundary-between-institutions)."
+  },
+  "to_id": "fact:the-medium-enum-has-no-word-for-an-institutional-or-legal-contract"
+}

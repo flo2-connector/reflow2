@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:43c7e480e25259c01325a86a13b67bb294a6368083f61f7f7981f1e272327409",
+  "edge_type": "REALIZES",
+  "from_id": "art:tools-claims",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:seat-handle"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:6941fbf559392e0ceecf9f2f668b808bc945cfa270dba0cf27488aec12f16540",
+  "edge_type": "CHANGED",
+  "from_id": "chg:dependency-currency-is-recorded-as-realized-2026-10-03",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cap:dependency-currency-is-checked-monthly-and-before-every-cut"
+}

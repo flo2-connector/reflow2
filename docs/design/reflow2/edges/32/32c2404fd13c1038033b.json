@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:10e07503f326ac7e5312ecf383ab76b9faa3d5d69efa7119fadc740165b066a1",
+  "edge_type": "REALIZES",
+  "from_id": "art:service",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cmp:service"
+}

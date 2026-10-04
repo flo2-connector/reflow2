@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:cfb6113eab51e77430bd99184815d5d08169e8cd45f299483855e6194b868dd3",
+  "node_id": "cap:a-design-holds-the-users-own-vocabulary",
+  "node_type": "Capability",
+  "properties": {
+    "description": "record_alias puts the domain nouns a user actually uses onto the node they mean, on the five types that name a thing rather than a statement. Terms MERGE, so a second word never costs the first and repeating one is a no-op; the node's `name` is untouched and nothing keys on an alias, so a wrong one cannot make anything else wrong.\n\nThe merge is the load-bearing part rather than a convenience. A replacing setter here would be this codebase's most-repeated defect — a write path that builds a node from a partial property set and erases what the caller did not name, fixed four times already — arriving in the one place where the value erased is a person's own vocabulary.",
+    "name": "The design holds the user's own vocabulary for its parts, additively",
+    "provenance": "authored",
+    "status": "realized"
+  }
+}

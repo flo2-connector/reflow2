@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:a9613f20888afc1456ead2a9dc3c401bc5180445a1ee20fc7e79d7a720c4aa42",
+  "node_id": "chg:accept-1f6e12e8ae6095ef",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "refactor",
+    "detected_at": "2026-08-17",
+    "name": "Comment references to the renamed unthreaded_cluster category; behaviour unchanged.",
+    "subject": "system"
+  }
+}

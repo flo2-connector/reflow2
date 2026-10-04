@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:63fd969f0a8ffaa3bdb7140bac443c82db97c39e976f4bcf5c11e04d76e33c7d",
+  "node_id": "art:brainstorm-skill",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "document",
+    "granularity": "atomic",
+    "location": "getting-started/skills/brainstorm/SKILL.md",
+    "name": "brainstorm/SKILL.md",
+    "status": "realized",
+    "volatility": "stable"
+  }
+}

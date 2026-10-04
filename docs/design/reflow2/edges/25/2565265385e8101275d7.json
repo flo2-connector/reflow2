@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:ef1ea8ed622284ce2eb12542adb3193a3e386c773b26da891db9b9e2d96f3bd2",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:check-consumer-reach",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:check-consumer-reach"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:9db3f51cbfa6de8514abade85ba4e0e8831621c0164e9e2478cc396ab1bdf1e3",
+  "edge_type": "INVALIDATES",
+  "from_id": "chg:the-answered-question-line-says-only-what-it-knows",
+  "properties": {
+    "at": "2026-09-02",
+    "note": "The defect this fact measured on 2026-08-16 is repaired: the message no longer asserts anything about design nodes, and the narrow honest repair it named ('for the message to say what it actually knows') is what was built. The fact's DESCRIPTION of the mechanism stays accurate and worth reading; only its currency as an open defect has ended."
+  },
+  "to_id": "fact:defect-loop-status-asserts-an-answer-never-reached-the-design-from-a-fact-that-cannot-say-so"
+}

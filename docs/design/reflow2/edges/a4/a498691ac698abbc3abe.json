@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:181c7aa5a02f07bf752de6e485fa0d691606c6ae4183fe73f7f3a6abacd30ab1",
+  "edge_type": "CHANGED",
+  "from_id": "chg:release-without-manifest-detector",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "flow:release-cut"
+}

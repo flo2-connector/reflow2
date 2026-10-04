@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:f80b753d6ed7ef5e0e3fca2620ec3602ee6e4fc4e820ce649a111437a2826e0b",
+  "node_id": "dec:what-reflow2-does-when-a-server-does-not-rotate-refresh-tokens",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Raised 2026-10-01 while planning cap:a-remote-client-signs-in-to-its-server-with-oauth-2-1.\n\nreq:every-oauth-role-reflow2-plays-meets-oauth-2-1-at-a-minimum lists \"refresh tokens are rotated or sender-constrained\" under the client floor. In OAuth 2.1 -16 §4.3.1 and the MCP security considerations, that is a MUST on the AUTHORIZATION SERVER. A client can only honour rotation, by discarding the old token and storing the new one atomically, or ask for sender-constraint (DPoP). flo2.io's Clerk advertises no DPoP. Whether it rotates is UNVERIFIED, and increment 0 measures it.\n\nOPTIONS if a server does not rotate:\n(a) Accept. Store the refresh token in the OS keychain and use it. Note the server's shortfall in the design, not in the client.\n(b) Warn once at setup (\"this server does not rotate refresh tokens\"), then accept.\n(c) Refuse to keep a refresh token and sign in again whenever the access token expires.\n(d) Implement DPoP in the client for servers that offer it, which flo2.io does not today.\n\nLEAN: (b) for now, plus a finding on flo2's design if Clerk does not rotate. (c) costs a browser trip every hour and buys little, because the token never leaves the keychain. (d) waits for a server that offers it.",
+    "kind": "choice",
+    "name": "OPEN — what reflow2's client does when the authorization server neither rotates nor sender-constrains refresh tokens",
+    "status": "proposed"
+  }
+}

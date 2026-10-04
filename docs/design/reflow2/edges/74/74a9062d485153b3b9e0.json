@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:ecf9cac065592cbb6b21114a89489fd0681a3a35d8fbc3803078277e80e04b2c",
+  "edge_type": "SCHEDULED_FOR",
+  "from_id": "req:a-rule-knows-where-else-it-is-written-down",
+  "properties": {
+    "modality": "expected",
+    "recorded_at": "2026-08-09"
+  },
+  "to_id": "epoch:governance-becomes-expressible"
+}

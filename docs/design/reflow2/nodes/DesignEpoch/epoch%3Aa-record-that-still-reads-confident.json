@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:7295c268e954fe3a86485e37263ccb24b9b892acf953f3b2ee15869cce9ce72a",
+  "node_id": "epoch:a-record-that-still-reads-confident",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "epoch_type": "revision",
+    "name": "A record keeps reading confident after the thing it describes has moved — twelve instances in one day, and every fix was a place the disagreement becomes visible",
+    "sequence": 374,
+    "status": "arrived"
+  }
+}

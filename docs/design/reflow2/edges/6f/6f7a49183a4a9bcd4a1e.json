@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:08f0bbcb07ed3d19fde5967cc35d59de498b48631ed2c651e7f93e70f097453f",
+  "edge_type": "CHANGED",
+  "from_id": "chg:an-understated-status-is-reported",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "req:a-status-that-claims-less-than-the-design-shows-is-reported"
+}

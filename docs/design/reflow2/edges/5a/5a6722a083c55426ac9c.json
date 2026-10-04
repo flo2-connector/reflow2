@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:6aa6bf12a51b84a57324d3ea98e9b36d2b1419008b8130f83f93601f1a8e771c",
+  "edge_type": "REALIZES",
+  "from_id": "art:graph-probe",
+  "properties": {
+    "completeness": "partial",
+    "conformance": "verified"
+  },
+  "to_id": "cap:the-graph-asks-what-a-session-made-false"
+}

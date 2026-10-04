@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:3b914d50a514cacb5443ce8acc130c7edd6f7f784faf964703d9202a487bdf72",
+  "edge_type": "CHANGED",
+  "from_id": "chg:delivery-can-be-a-model-change",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:tools-capture"
+}

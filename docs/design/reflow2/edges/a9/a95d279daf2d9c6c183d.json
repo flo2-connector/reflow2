@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:0735652cfee25088286fd5e79de5654f479c40292a7bc6a90c576c9e29cfd1d1",
+  "edge_type": "CONSUMES",
+  "from_id": "cmp:proxy",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "ifc:a-session-declares-its-worktree"
+}

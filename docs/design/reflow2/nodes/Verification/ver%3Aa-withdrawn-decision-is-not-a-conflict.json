@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:127c9492005fdb75075754062baca83bdbe91569a9279c7907ccf9d62d6ba099",
+  "node_id": "ver:a-withdrawn-decision-is-not-a-conflict",
+  "node_type": "Verification",
+  "properties": {
+    "description": "A withdrawn Decision contradicting its successor is not reported as a defect (crates/reflow2-core/tests/heal.rs) — 5 cases. THE CASE: a `rejected` Decision linked by CONTRADICTS to what replaced it is the HEALTHY shape — tried in thought, refuted, here is what we did instead — and reporting it as a warning made recording a refutation CORRECTLY cost a defect while burying it in prose cost nothing. `superseded` is pinned as the same shape by a different route. TWO COUNTERWEIGHTS, and they are what stop the fix becoming a hole: two ACCEPTED decisions that contradict each other are still reported, because a live disagreement is the whole reason the detector exists and trading a false positive for a false negative is strictly the worse bug; and `proposed` is NOT treated as withdrawn, because undecided is not abandoned and silencing it would hide exactly the disagreements a brainstorm exists to surface. The sibling `alignment: supporting` rule is pinned separately so the two skips cannot be collapsed into one.",
+    "findings": "MUTATION-CHECKED TWICE: removing the status check fails only the two withdrawn cases; widening it to \"anything not accepted\" fails ONLY the proposed counterweight, which is the case proving it does not silence too much. MEASURED ON THE REAL DESIGN: 16 defects and 4 contradictions before and after — reflow2 holds 10 superseded and 1 rejected Decision and ZERO CONTRADICTS edges from any of them, so nothing here was silenced.",
+    "kind": "verification",
+    "last_run_at": "2026-08-16",
+    "level": "unit",
+    "method": "test",
+    "name": "A withdrawn Decision contradicting its successor is not a defect",
+    "status": "passing"
+  }
+}

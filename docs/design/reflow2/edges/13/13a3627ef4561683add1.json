@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:2c5c8bd83b344b266205bcd685933f3663af06f2af022c748519891440ade59f",
+  "edge_type": "GOVERNED_BY",
+  "from_id": "req:claims-have-owners",
+  "properties": {},
+  "to_id": "dec:identity-out-of-band"
+}

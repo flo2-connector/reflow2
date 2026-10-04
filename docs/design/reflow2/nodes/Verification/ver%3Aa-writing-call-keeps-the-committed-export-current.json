@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:09c8d01fa01abf0d88f6dd96cca8db8f7a13d9bbb81291b60a5f6327606bbb10",
+  "node_id": "ver:a-writing-call-keeps-the-committed-export-current",
+  "node_type": "Verification",
+  "properties": {
+    "description": "The door's export through the real binary in real folders: kept current in every shape the installer writes or the file --export-to names (compare_designs reads identical against it); by the write-through's rules (lineage from the committed export in git; a merge-mangled file left alone with exit 3); and NOT written by a read, a refused write, a pointer folder, or disagreeing configurations. Unit tests beside it (call_export::tests, 7) cover the four configuration shapes, entries for other stores or that never write through, ${workspaceFolder}/equals-form/default graph path, disagreement, unexpandable variables named, the flag winning, and the configuration list held to tools/reflow2_init.py's MCP_CONFIGS.",
+    "findings": "OBSERVED FAILING FIRST on main c4e1cbd (code stashed, tests kept): all 9 tests of the file then written failed — the export was never created or changed by a write, --export-to was refused by the item-1 gate — and item 1's updated test (export_to_with_call_is_honoured…) and its flag walk failed on the refusal. The two added after (an unwritable export ends 3; --no-export writes none and says the export is behind) cover the I/O branch and the flag added once the cost was measured. On the branch merged with main 293f957: 11/11, item 1's file 9/9, call_export unit tests 7/7; the workspace run (on f6fa63f, main 72bf252 merged) 345 suites, 2,971 passed, 0 failed; both clippy runs clean with -D warnings. COST, measured: On reflow2's own design (6,478 nodes, 41,875 edges, a 28 MB export; release build, medians of five) a write took 1.65 s alone and 6.0 s with its export; export_graph took 3.1 s to a new path and 5.1 s onto the committed path; peak 413 MB.",
+    "kind": "verification",
+    "last_run_at": "2026-10-03",
+    "level": "system",
+    "location": "crates/reflow2-mcp/tests/a_writing_call_keeps_the_committed_export_current.rs",
+    "method": "test",
+    "name": "A writing --call keeps the committed export current — eleven real-binary tests",
+    "status": "passing"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:cfa6df41b08cf6162d54e6f8e454732d78d2f18506742400d1099e4be09600b8",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-repair-capability-gets-its-thread",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cmp:verify"
+}

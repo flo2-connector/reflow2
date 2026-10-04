@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:cdc1e876aec298740e8fd791d5f5505a2bb23dc66ef1753c4a0e893bab8f7b3a",
+  "edge_type": "CHANGED",
+  "from_id": "chg:alexs-four-surface-fixes-sequence-hint-get-node-by-id-auth-hint-and-bulk-check-only",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:tools-capture"
+}

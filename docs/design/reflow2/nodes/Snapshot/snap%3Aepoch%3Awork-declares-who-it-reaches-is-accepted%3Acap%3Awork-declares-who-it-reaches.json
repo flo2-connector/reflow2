@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:90e1d63b70d01ea015c7220235309d5e30209d36a76ce41dd9b7fae135081218",
+  "node_id": "snap:epoch:work-declares-who-it-reaches-is-accepted:cap:work-declares-who-it-reaches",
+  "node_type": "Snapshot",
+  "properties": {
+    "edges": "[{\"direction\":\"in\",\"edge_type\":\"VERIFIES\",\"other_type\":\"Verification\",\"other_id\":\"ver:work-declares-who-it-reaches\",\"properties\":{}},{\"direction\":\"out\",\"edge_type\":\"SATISFIES\",\"other_type\":\"Requirement\",\"other_id\":\"req:work-says-whether-it-reaches-a-consumer\",\"properties\":{}}]",
+    "state": "{\"description\":\"`Artifact.audience` records `consumer` or `internal`, set through `set_artifact_intent` alongside granularity and volatility. The `internal_only_delivery` finding then names a Requirement whose every DECLARED delivering artifact is internal, with none declared consumer. Per-requirement rather than aggregate, because accepting \\\"this need is served by our own tooling on purpose\\\" is a claim about one need. Never inferred from a path: a directory rule would encode one project's layout, which is the failure the requirement exists to prevent. An undeclared artifact is evidence of neither side and its count goes in the evidence. KNOWN INCOMPLETE: a design that has declared no audience anywhere is silent in every surfaced report, because vocabulary_coverage names unused node and edge TYPES but never unused PROPERTIES.\",\"name\":\"A deliverable declares who it is for, and a need nothing consumer-facing delivers is reported\",\"provenance\":\"authored\",\"status\":\"realized\"}",
+    "target_id": "cap:work-declares-who-it-reaches",
+    "target_type": "Capability"
+  }
+}

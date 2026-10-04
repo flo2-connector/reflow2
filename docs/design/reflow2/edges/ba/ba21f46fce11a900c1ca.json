@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:6134ad85e0a9a7e1b165565226fd932b40685e1a3b1f56a41cbeb2694ffb5363",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:pointer",
+  "properties": {
+    "covers": "partial"
+  },
+  "to_id": "ver:a-code-folder-attaches-to-the-design-it-names"
+}

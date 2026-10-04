@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:c92f0730cf0bc92a2930e0fb7be26700cc8e1d42ca533c07cac83be3e2bd2931",
+  "edge_type": "CAUSES",
+  "from_id": "art:tools-capture",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "add_contributor is declared in this file, and its `id` parameter carries the only worked example an agent sees when it invents a contributor id: \"Stable id (e.g. `who:ajs`, `who:claude-code`)\". Both are real Contributor rows in this project's graph and the first is a named private individual. The description is served verbatim to every client in every project, so the example travels wherever reflow2 is installed. Named as the cause rather than the schema files because this one is attached to the operation that WRITES a contributor; schema/core.yaml and schema/temporal.yaml carry the same class of example on fields that are read rather than authored.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:the-served-surface-offers-a-real-persons-contributor-id-as-the-worked-example-on-the-field-that-creates-contributors"
+}

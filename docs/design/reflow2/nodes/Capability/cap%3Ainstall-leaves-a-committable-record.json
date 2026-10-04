@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:c2cf97f75f4a7cf8bdd37a486411ac607f53e8d1977809bdf215eda12571e748",
+  "node_id": "cap:install-leaves-a-committable-record",
+  "node_type": "Capability",
+  "properties": {
+    "description": "`ensure_design_record` writes `docs/design/<project>.json` on every install — including a brand-new project, which is the only case either user actually hit. Never overwrites an existing record, and never fatal: a missing or unrunnable binary produces an actionable line rather than a traceback over an otherwise-successful install.\n\nThree surfaces say where it is, in the words of whoever is reading: the `.gitignore` comment (the human who goes looking), the installer's closing summary (the human who just ran it), and `POINTER.md` (the AGENT, which is what keeps the export current afterwards).\n\n⭐ THE VALUE OF WRITING AN EMPTY EXPORT rather than waiting for a design: it is a real document — stamp, `graph_id`, `content_hash`, zero nodes — so the first real export CHAINS FROM IT instead of starting a lineage nobody can check. And the file exists at the moment somebody goes looking, which is the entire complaint.\n\n📌 WHAT IT DOES NOT DO: keep the record current. That is the agent's job on every change, which is why `POINTER.md` carries the one-export-per-PR rule rather than the installer trying to enforce it.",
+    "name": "A fresh install leaves the shareable design record in the repo, git-visible, and says so where the user is looking",
+    "provenance": "authored",
+    "status": "realized"
+  }
+}

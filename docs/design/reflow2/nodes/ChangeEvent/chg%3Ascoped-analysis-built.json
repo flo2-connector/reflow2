@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:d4e8c3fb0cfdf70769b9b44de7b6f2a7dab8450699634f4643886510a16b7bdb",
+  "node_id": "chg:scoped-analysis-built",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "name": "Scoped detection: detect_gaps and detect_defects answer for one part of the design, and name what they left out"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:981f6ca2cd6071c60824cc057a1732abec6af0703360faaa28fdd437ea3dda0e",
+  "edge_type": "CHANGED",
+  "from_id": "chg:bl66-ci-gate",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:check"
+}

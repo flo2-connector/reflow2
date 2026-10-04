@@ -17,8 +17,7 @@ someone without the tool; the graph holds what the tool can compute.**
 ## For agents reading this
 
 **Before anything else: `git pull --rebase`.** Claims travel in the committed design
-(`docs/design/reflow2/`, one file per node and per edge — or `docs/design/reflow2.json` until the
-conversion lands), so a graph you haven't pulled is a claim board from the past — same trap as
+(`docs/design/reflow2/`, one file per node and per edge), so a graph you haven't pulled is a claim board from the past — same trap as
 before, same fix.
 
 **Before starting work:** `claim_report`. If someone holds the region, or holds something that
@@ -497,7 +496,6 @@ to keep both, not to choose.
 | `changelog.d/*.md` | Never conflicts: each pull request writes its own fragment file, and the cut assembles them into `CHANGELOG.md` ([changelog.d/README.md](changelog.d/README.md)). Nobody edits `CHANGELOG.md`'s `[Unreleased]` by hand any more — `tools/changelog_fragments.py --check` fails a PR that does. |
 | `COORD.md`, `CHANGELOG.md` | Resolved automatically — `.gitattributes` marks them `merge=union`, so both sides' lines are kept. If you *still* see a conflict, you both edited the same line: keep both meanings and tidy the wording. |
 | `docs/design/reflow2/` (the item layout) | **Merged by git's ordinary merge** — one file per node and one per edge, so two people editing different parts of the design touch different files and merge with no conflict and no driver, on GitHub too (`dec:how-the-saved-design-is-laid-out-so-git-merges-it`). A conflict is a REAL one: the same node or edge changed differently on both sides, shown as one small file named after the item. Decide what that item should say; take one side of that one file so the layout reads (`git checkout --theirs -- <file>`), import the layout into your store, write what the item should say, and export, during the merge or after it — the exporter rewrites the file with the right `prev_item_hash`. Never resolve it with `--ours`/`--theirs` without reading both sides; that discards what the other person wrote. |
-| `docs/design/reflow2.json` (the single file, until the conversion) | Merged by reflow2's `--merge-driver` where a clone has configured it (see [AGENTS.md](AGENTS.md)); GitHub cannot run it, so a PR conflicts here whenever another design-touching PR merges first. Merge main in and replay your record onto main's export. |
 | `docs/backlog.md`, `docs/requirements-coverage.md` | Usually you each touched different rows — keep both. If it's the **same** row, someone's status is newer than yours; check `git log -p` on that file and ask rather than overwriting. |
 | `docs/trials/*` | Append-only evidence. Keep both; never edit someone else's trial record. |
 | Source and tests | A real conflict here means the claims didn't work — two people edited the same module. Reconcile the *intent*, not just the text, and re-run the full gates before pushing. |

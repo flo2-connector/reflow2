@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:c36ed374eee7b1dcae560423bc41e7079664f43bb6fed75351c8d61efa4cd053",
+  "edge_type": "CHANGED",
+  "from_id": "ce:quality-target-2026-08-25",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "cap:quality-target-is-stated-or-asked-for"
+}

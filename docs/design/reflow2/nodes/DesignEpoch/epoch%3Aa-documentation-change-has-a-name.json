@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:b006d44f199b6acf276000bdcbfc83434740e3ad9f1fa60d5872c8c3f0149e97",
+  "node_id": "epoch:a-documentation-change-has-a-name",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "epoch_type": "revision",
+    "name": "A documentation change has a name — \"the thing was right and its description of itself was wrong\" stops borrowing three other labels (2026-08-22)",
+    "sequence": 376,
+    "status": "arrived"
+  }
+}

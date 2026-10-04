@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:31f1e7229f152ff64aced78ef4c6781f53b67352a7dbfc953c53d6b7f6bd4dfd",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:a-repair-says-which-kind-it-was",
+  "properties": {},
+  "to_id": "req:a-fix-says-whether-it-corrected-the-cause"
+}

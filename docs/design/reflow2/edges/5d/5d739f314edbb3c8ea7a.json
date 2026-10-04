@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:b4a3ab714a5732b90b028d020529d4c76a1dd5bed047160c940ec77195da45bd",
+  "edge_type": "ANTICIPATES",
+  "from_id": "dec:idea-a-contract-is-declared-at-the-lowest-level-and-rolled-up",
+  "properties": {
+    "evidence": "Accepted 2026-08-23, it already said where the glue's interface specs live (at the lowest level that defines them, rolled up above), which thins what an integration hub holds in the 2026-09-26 sharpening."
+  },
+  "to_id": "dec:idea-a-graph-whose-children-are-themselves-reflow2-designs"
+}

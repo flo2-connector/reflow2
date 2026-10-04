@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:65bc39856e4388ad669cc471ecbca1f663412fd1e4d4773db21a3b62f354ac5a",
+  "edge_type": "MITIGATES",
+  "from_id": "dec:idea-should-a-modelled-budget-be-a-gate-that-measures",
+  "properties": {
+    "evidence": "That incident was a hand-maintained contribution going stale after a perf fix; a build that measures the contribution and writes it back is the direct answer to that hazard."
+  },
+  "to_id": "fact:the-budget-edges-still-carry-the-pre-fix-numbers-so-budget-report-says-exceeded-for-a-budget-that-holds"
+}

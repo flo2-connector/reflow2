@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:bca6971ff3fbc7e654ab396d8ceef416766fd3833082e2b993e10001348627ca",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-graph-asks-what-a-session-made-false",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cap:a-repair-can-say-what-it-invalidated"
+}

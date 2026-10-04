@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:e7d4e400ec0b71ff195f33e94cee60cd9971af9ec08134c77c696073455ff64b",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:tools-capture",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:tools-capture"
+}

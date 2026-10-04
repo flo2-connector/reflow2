@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:d3dabc072109ed0832b2a143f90b46b31c9a3153fd6d508d3b1b080de9569554",
+  "node_id": "question:c54e80b55a3273a9",
+  "node_type": "Question",
+  "properties": {
+    "answer": "Record the storyflow brownfield adopt trial (2643 files, 5 true findings) as the proof, with its real outcome; this session's self-adopt run is a second data point.",
+    "context_setter": "Nothing verifies “Recover a design from an existing system”",
+    "gap_id": "gap:c54e80b55a3273a9",
+    "question": "You've now tried recovering a design from an existing codebase on several real projects — what would count as proof that this works well enough to rely on, and should one of those trial runs be recorded as that proof?",
+    "rephrase_degraded": false,
+    "status": "answered"
+  }
+}

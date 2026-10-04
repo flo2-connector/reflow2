@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:7903abb44ce9c2784864f11b3b6b950d342b11807f518c9300244a35200618c1",
+  "edge_type": "ANTICIPATES",
+  "from_id": "cap:an-open-question-its-own-promotion-answered-is-noticed",
+  "properties": {
+    "evidence": "This built capability is a narrow, computed detector for one kind of 'overtaken' question: one its own promotion already answered. The step-back's overtaken pile generalises it."
+  },
+  "to_id": "dec:idea-a-step-back-review-sorts-the-open-list-into-overtaken-closable-and-pressing"
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:d03d428624c2911a59918e2cf7b2fce1724a8c6b9e0c8f9fc752df94c96538e9",
+  "edge_type": "ANTICIPATES",
+  "from_id": "rule:a-rule-the-project-follows-lives-in-the-graph-not-in-an-agents-memory",
+  "properties": {
+    "evidence": "His 2026-09-04 rule already answers this idea's own counter-argument (\"Memory.md serves the purpose\"): a memory file is machine-local, so the notepad belongs in the graph with memory holding only a pointer."
+  },
+  "to_id": "dec:idea-does-the-agent-keep-a-notepad-in-the-graph-for-the-next-agent"
+}

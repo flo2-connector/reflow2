@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:c5754606a7a2655e18775cfea3ba9503c3bb6538fabe9f94ff7931e01e333cf9",
+  "edge_type": "CHANGED",
+  "from_id": "chg:accept-db91642cfa721537",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:test-a-registered-artifact-asserts-nothing-it-was-not-told"
+}

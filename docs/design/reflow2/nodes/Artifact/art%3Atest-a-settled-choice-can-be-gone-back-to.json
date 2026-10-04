@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:1b6d604f50525d112778b6ab419d190c7b06cf8cbefdd94060e3aa2a6d35a1a8",
+  "node_id": "art:test-a-settled-choice-can-be-gone-back-to",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "test",
+    "description": "The seven core tests behind fork_point and reopen.",
+    "location": "crates/reflow2-core/tests/a_settled_choice_can_be_gone_back_to.rs",
+    "name": "a_settled_choice_can_be_gone_back_to.rs",
+    "status": "realized"
+  }
+}

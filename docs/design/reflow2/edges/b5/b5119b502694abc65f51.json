@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:f7763a47086e53fd3443273a9c509b6311f067ce5d86b81c65e1bd232fd28e03",
+  "edge_type": "INVALIDATES",
+  "from_id": "chg:a-composed-prompt-serves-its-pieces",
+  "properties": {
+    "at": "2026-09-20",
+    "note": "Built 2026-09-20: the pieces ride back beside the prompt, and a gap that has closed refuses with `reason: gap_closed` in its data. The findings stand as the measurements."
+  },
+  "to_id": "fact:gap-to-prompt-welds-the-title-and-the-why-into-one-string-and-returns-only-the-string-so-the-one-consumer-splits-prose"
+}

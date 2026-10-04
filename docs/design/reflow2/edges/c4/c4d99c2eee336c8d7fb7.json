@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:e25b75196b03adb7fd814a9056c7070145482b4a7438238fc8828064a30f549d",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:the-authority-check-guards-forward-not-backward",
+  "properties": {
+    "approved_at": "2026-08-11",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

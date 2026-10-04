@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:7a11498237d4e680c3d94a932b38e400772dc74ba998c6645852db01107d6cc4",
+  "edge_type": "CHANGED",
+  "from_id": "chg:baseline-b8ea03e1337422bf",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:test-every-tool-list-carries-the-cache-hints"
+}

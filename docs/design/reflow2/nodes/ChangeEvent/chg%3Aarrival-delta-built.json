@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:46af0db4e396f3371ca483d8caac198cb9c7ef839a0221bac401960443246712",
+  "node_id": "chg:arrival-delta-built",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "name": "The arrival delta built: arrival_delta on the core and the MCP surface, the SCHEDULED_FOR loss guard, and snapshots excluding by edge role"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:a69bbe63b6db2002b32b56eab9ea2603c4b7a7e79d84a6d498481144632fe475",
+  "node_id": "frag:art:test-a-refused-host-is-told-which-flag-admits-it",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered a_refused_host_is_told_which_flag_admits_it.rs — against the real binary, an unlisted Host gets a 403 naming the host, the allowed hosts and --http-allow-host, on the single-design server and the registry router (before it routes); the log says it once per host; loopback and named hosts are still answered"
+  }
+}

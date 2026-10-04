@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:d6882ab6abff3d74989f2d6419d724d1e8a5c9562bf597b20f509deefe82abde",
+  "node_id": "chg:the-lineage-gate-moves-to-the-merge-base-too",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "defect_fix",
+    "name": "The lineage gate (reflow2_check.py) moves to the merge-base anchor — it had been left on HEAD~1 when the export tool moved, and refused the first branch that did what the tool guarantees",
+    "repair": "corrected_cause",
+    "subject": "system"
+  }
+}

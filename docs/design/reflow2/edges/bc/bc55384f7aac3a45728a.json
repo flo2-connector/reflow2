@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:7ed19a92afa6d87d87d3bdf985e1e622b475ca5855225f17c8f4a234de79a724",
+  "edge_type": "GOVERNED_BY",
+  "from_id": "req:an-irreversible-operation-is-concurrency-aware",
+  "properties": {
+    "note": "This requirement is the second guard for a decision that is already accepted and currently defeated in the build -- not new intent. Whether it should exist as a separate requirement at all, or be folded into enforcing dec:ask-not-repair, is Anthony's call."
+  },
+  "to_id": "dec:ask-not-repair"
+}

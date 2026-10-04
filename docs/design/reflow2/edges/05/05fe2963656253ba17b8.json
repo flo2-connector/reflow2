@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:28cc86d0504fdca9cf32b823866c0288d06aa01454c19c4715c3b35adb859e7b",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:the-agent-asks-who-it-is-talking-to",
+  "properties": {},
+  "to_id": "req:the-agent-learns-who-it-is-talking-to"
+}

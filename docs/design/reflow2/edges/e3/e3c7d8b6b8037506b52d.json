@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:bd7b6b56623161e5bae9c4a401c78a627fd3d71fc51a3706dd578fde377579bc",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:drain",
+  "properties": {
+    "covers": "partial"
+  },
+  "to_id": "ver:a-server-drains-before-it-stops"
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:ff8554f84b7d8f1950fe763dac98fafa949de6146e53c2ba8a5b1ed7a7776295",
+  "edge_type": "OBSOLETES",
+  "from_id": "dec:field-reports-are-untracked-because-the-repository-is-public",
+  "properties": {
+    "note": "Retired from the BUILD's view like every field report since 2026-09-02: the file is gitignored and kept on the author's machine; the Artifact keeps its name and checksum as the proof of what was captured."
+  },
+  "to_id": "art:dev-storyflow-feedback-2026-09-07"
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:f5603607cb73b7355d0d401182645daff3e88dc936ac29dd173c20111b81a6ac",
+  "edge_type": "CAUSES",
+  "from_id": "fact:field-report-bhome-2026-09-18-every-constructor-lists-its-missing-fields-at-once-and-the-other-tools-refuse-one-at-a-time",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "The finding measured that the non-constructor surface refused one field at a time; this names them all, and which.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "chg:a-contribution-may-be-negative-and-a-refusal-says-which-fields-are-missing"
+}

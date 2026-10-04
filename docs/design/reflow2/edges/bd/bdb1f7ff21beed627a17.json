@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:04ff9edec2c6c1d374eb25d623883b2ba49fe14dc77f1a3929b6900c2c443ae8",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:idea-the-schema-declares-what-each-relation-means-in-primitive-terms",
+  "properties": {
+    "authored_at": "2026-09-28",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

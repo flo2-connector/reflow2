@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:3a1d40657ebb5429ec2b240df815df1215be9035076b1fa77adfb4ec5175bcfb",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-a-location-names-its-repository-or-an-archived-repo-is-relocated",
+  "properties": {
+    "evidence": "The relocation map, and option (c) entirely, need the design to know which repository each location belongs to, and this requirement (proposed, unscheduled) is where that is stated.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "req:the-design-knows-where-each-implementation-is"
+}

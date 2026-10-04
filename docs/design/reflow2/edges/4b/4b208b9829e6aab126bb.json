@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:ee4968e4fde2d9f9fdb2a9a07aa3eacbe368f77c8c8b627ec37ba29d867a9321",
+  "edge_type": "CHANGED",
+  "from_id": "chg:publishable-promise",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:service"
+}

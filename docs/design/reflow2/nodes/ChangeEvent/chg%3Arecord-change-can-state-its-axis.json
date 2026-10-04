@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:4bdf3d077c0367f12cd9cf25b1690aea83fae29bc6737dcdfbea3a271a481914",
+  "node_id": "chg:record-change-can-state-its-axis",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "defect_fix",
+    "name": "`record_change` can state its axis — ChangeRecord gains `subject`, so the generic change path stops being the one door the ChangeSubject field cannot be reached through",
+    "rationale": "The existing comment in `record_change` argues correctly that the generic path must not INFER an axis, because the mapping from change_type is not total. It then draws the wrong conclusion — that the axis must be absent — when the available move is to let the CALLER state it. Not-inferring and not-askable are different things, and conflating them is what left 468 of 593 change events with no axis. Adding the field to the struct rather than defaulting it makes every one of the 19 construction sites answer the question explicitly, which is the point of the axis.",
+    "subject": "system",
+    "summary": "`ChangeSubject {system, record}` was added to the ChangeEvent schema and to `add_change_event`, but `ChangeRecord` — the struct `record_change` takes — carries no `subject` field, so `record_change` passes `None` unconditionally and no caller can say otherwise. The artifact-checksum paths were NOT the gap: `set_artifact_checksum` already stamps the axis itself from the disposition (`design_holds` -> system, `baseline_established` -> record) and `design_updated` inherits it from the event the caller already wrote. `record_change` is the only remaining door. Fix: `ChangeRecord` gains `subject: Option<ChangeSubject>`, `record_change` passes it through, and `RecordChangeReq` exposes it on the served surface."
+  }
+}

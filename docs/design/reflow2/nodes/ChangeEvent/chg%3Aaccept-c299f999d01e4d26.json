@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:4ba2e9610bf15b24c44c8434c813a094017655f4dc728281f0b3994140b5847c",
+  "node_id": "chg:accept-c299f999d01e4d26",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "test_failure_fix",
+    "name": "Read guard instead of mutex lock; no behaviour change."
+  }
+}

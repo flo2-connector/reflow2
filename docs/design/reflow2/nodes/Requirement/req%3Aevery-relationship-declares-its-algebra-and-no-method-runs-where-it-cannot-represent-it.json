@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:9a36ea29825b148734d5f53a2c33345b81784e9943107953959e9d8649208973",
+  "node_id": "req:every-relationship-declares-its-algebra-and-no-method-runs-where-it-cannot-represent-it",
+  "node_type": "Requirement",
+  "properties": {
+    "concern": "core",
+    "kind": "functional",
+    "lineage": "original",
+    "name": "Every relationship's declared reading also states its algebra — symmetric or not, transitive, the inverse of what, what it composes into — no analysis or embedding runs where its method cannot represent that algebra, and the declared algebra is checked against the design's own data",
+    "priority": "medium",
+    "provenance": "imported",
+    "source": "Anthony, 2026-09-28, in a dev_reflow2 session: \"promote as intent the new ideas from vector math, Topology (sheaves), Topology (persistent homology), and Relations with 3+ participants. Add to the reflow2 and storyflow designs accordingly.\" Promoted from the graph-primitives design on flo2 (graph 85a2a1a36e7c942d): dec:idea-declare-each-relationships-algebra-and-match-the-math-to-it, options (a)–(c).",
+    "statement": "Extending req:every-edge-type-declares-what-it-means: each relationship reflow2's schema declares — edge types first, then the pointer, type and status fields that carry a relationship — states its algebra as part of its declared reading: symmetric or antisymmetric, transitive, functional, the relation it is the inverse of, and the compositions it takes part in (e.g. the contract pair PROVIDES ∘ CONSUMES⁻¹).\n\n(1) A computation that selects relationships by meaning REFUSES a relationship whose algebra its method cannot represent, and says so rather than returning a number: a part-of ladder is treated as a hierarchy, not a flat network; a method that cannot represent symmetry is never run on a symmetric relation; shortest path or centrality refuses a relation it has no meaning for.\n(2) The declared algebra and compositions are CHECKED against the design's instance data: a declared property or composition the data breaks is reported with the instances that break it, and a regularity the data follows that nothing declares is reported as a candidate — an induced check on deduced rules, never a silent repair.\n\nEvidence: RotatE (Sun, Deng, Nie & Tang, ICLR 2019) shows embedding families differ in which relation patterns they can represent at all (TransE no symmetry, DistMult symmetry only, ComplEx no composition, RotatE all four); hierarchies need hyperbolic or box geometry (Nickel & Kiela, NeurIPS 2017; Balažević et al., NeurIPS 2019; Abboud et al., NeurIPS 2020). OWL calls these property characteristics, and rule mining learns them from data (Hogan et al., ACM Computing Surveys 2021, §4.1.3 and §5.4). The three-graph classification already records inverse, algebra and composition per item (primitives repo, analysis/classified). Serves tests 1 and 3 of the accepted definition of a true knowledge graph (graph-primitives design: dec:what-a-true-knowledge-graph-is).",
+    "status": "proposed"
+  }
+}

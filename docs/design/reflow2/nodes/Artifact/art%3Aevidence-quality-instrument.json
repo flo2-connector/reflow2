@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:355ac61f0b6187adafe48c6d331ee93724d4f4d1788b72b4b2c418cd53ae9937",
+  "node_id": "art:evidence-quality-instrument",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "granularity": "atomic",
+    "location": "tools/evidence_quality_instrument.py",
+    "name": "Evidence-quality instrument — what the three axes report on a real design",
+    "status": "realized",
+    "volatility": "stable"
+  }
+}

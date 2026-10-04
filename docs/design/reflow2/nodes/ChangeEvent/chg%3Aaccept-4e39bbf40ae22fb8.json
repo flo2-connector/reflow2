@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:ae3b6cbda8a84356530973b31ff2638863d158d499ad67f0a4fa8298e019368e",
+  "node_id": "chg:accept-4e39bbf40ae22fb8",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "test_failure_fix",
+    "name": "Correcting my own mistake: I had just written schema/core.yaml's hash onto this artifact, which points at crates/reflow2-core/src/schema.rs. That file is unchanged; this restores its real (16-char) baseline. schema/core.yaml is not a registered artifact, so the CLAIMS.seat addition needs no accept here."
+  }
+}

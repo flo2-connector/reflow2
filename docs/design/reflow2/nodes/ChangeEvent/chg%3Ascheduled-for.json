@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:1a1fa37dd4c4543b793a6c4ae0bd0b5e39c58aeac70a63fc804b233013a94999",
+  "node_id": "chg:scheduled-for",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "name": "SCHEDULED_FOR: the satisfaction schedule gets an edge that carries modality"
+  }
+}

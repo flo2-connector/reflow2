@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:339f2ba88a38d1d0b93a828c114ddc8df5084c08d50f42129cf399e0b63a5c6c",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-repair-capability-gets-its-thread",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cap:a-repair-can-say-what-it-invalidated"
+}

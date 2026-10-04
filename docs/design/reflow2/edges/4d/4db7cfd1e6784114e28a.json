@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:e6ccb4bb5eb882f581e78899b1ea2ccf835b108b9d3722b46185985470431f03",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:bl-8",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:registry"
+}

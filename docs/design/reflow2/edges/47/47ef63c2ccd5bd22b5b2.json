@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:a4c9d4e3bdd656eff2f7a722ff35b5e7dc87d5964bdd9d544271ed0ae731ca8e",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:as-of-epoch",
+  "properties": {},
+  "to_id": "req:graph-indexes-snapshots"
+}

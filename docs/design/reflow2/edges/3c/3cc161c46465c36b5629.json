@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:288fad9f51f23e532592a8254e87fc965bf04a71d6dd01f763d129eede93add2",
+  "edge_type": "CONSUMES",
+  "from_id": "sys:intake",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "ifc:temporal-api"
+}

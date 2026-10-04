@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:8475a9d60adf9258b218511a0c9405c3809e19e06ad38fa51b9588899e17bbde",
+  "edge_type": "CHANGED",
+  "from_id": "chg:every-overridden-tool-list-is-built-in-one-place-2026-09-26",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:service"
+}

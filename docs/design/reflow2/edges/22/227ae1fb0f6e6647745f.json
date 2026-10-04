@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:ff3de8eefa4c2847f63b97305ad58b30c374a50b62c2759205ebfbb52c5ab279",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-name-is-not-a-report",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "ver:what-next-bands"
+}

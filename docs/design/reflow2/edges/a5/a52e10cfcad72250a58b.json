@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:abc8871f2ceb0075b61c6345dff3b878dab1b27db271ad4d4afece7832b7b72b",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-saved-design-moves-to-the-item-layout-2026-10-03",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:c99164a5e24c74faa7eb7194ceb71b67a4cc9f8c8cd30a5820325dfd932b88be",
+    "checksum_basis": "measured"
+  },
+  "to_id": "art:test-a-write-records-the-agent-beside-the-principal"
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:2ce9081714ff68f921faeca1c851e9c6e073dd60e4ba4a74b33f9e784d3afbbf",
+  "edge_type": "CAUSES",
+  "from_id": "cap:replace-text-moves-one-unique-sentence-or-appends-under-the-revision-guard",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "The revising write returns the prior value but performs no comparison, so a rewrite that removes content and one that does not produce replies a reader cannot tell apart.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:a-revising-write-that-shrinks-a-field-reports-nothing-and-two-load-bearing-paragraphs-were-lost"
+}

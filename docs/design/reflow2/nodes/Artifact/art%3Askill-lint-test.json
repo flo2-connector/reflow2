@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:9212c577b6f17844d7d26ae5862e797e8d689c7416b800fcd02315e5f249be64",
+  "node_id": "art:skill-lint-test",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "granularity": "atomic",
+    "location": "tools/test_skill_lint.py",
+    "name": "test_skill_lint.py",
+    "status": "realized",
+    "volatility": "stable"
+  }
+}

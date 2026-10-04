@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:583f5d94a665d716a277180c5a752ebcad58c2e4d86c16a7a1b8fe1fe4f3ad7e",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "cmp:drift",
+  "properties": {
+    "dependency_type": "function_call",
+    "optional": false,
+    "weight_basis": "evidence"
+  },
+  "to_id": "cmp:nodes"
+}

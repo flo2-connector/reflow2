@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:abcb006cc0f649ec5ddd64888697564ae9ee7c0869dddd68f45a4b8239c98d92",
+  "node_id": "ver:the-first-reply-carries-the-pieces-and-a-stale-gap-refuses-with-a-reason",
+  "node_type": "Verification",
+  "properties": {
+    "description": "crates/reflow2-mcp/tests/a_composed_prompt_serves_its_pieces.rs: two tests. The first asserts the served title and why appear in the composed prompt, and that the marker it replaces still exists, so the test cannot pass vacuously. The second replays a real gap under an id no gap has, which is the stale-chip case exactly.",
+    "findings": "2 of 2 passing; full gate set green.",
+    "kind": "verification",
+    "last_run_at": "2026-09-20",
+    "level": "integration",
+    "method": "test",
+    "name": "The first reply carries the gap's pieces and they are the values the prompt was built from; a stale gap refuses with a machine-readable reason and keeps its prose",
+    "status": "passing"
+  }
+}

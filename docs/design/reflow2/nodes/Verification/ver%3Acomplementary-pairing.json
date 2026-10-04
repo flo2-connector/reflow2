@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:7686a9821604fa08f23214eef450cd729ab15108545c36a9e74fb3a7e3fa86e8",
+  "node_id": "ver:complementary-pairing",
+  "node_type": "Verification",
+  "properties": {
+    "kind": "verification",
+    "last_run_at": "2026-07-30",
+    "level": "integration",
+    "method": "test",
+    "name": "Complements pair, like-with-like does not, and a name match that cannot connect is reported",
+    "status": "passing"
+  }
+}

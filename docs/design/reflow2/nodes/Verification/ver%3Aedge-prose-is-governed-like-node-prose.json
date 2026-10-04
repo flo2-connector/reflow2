@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:d71188ba0c63260fe971b5a5cb9f9be8d5f393199a1b3eb2e16f408ca7d0b08a",
+  "node_id": "ver:edge-prose-is-governed-like-node-prose",
+  "node_type": "Verification",
+  "properties": {
+    "description": "`crates/reflow2-core/tests/edge_prose_is_governed_like_node_prose.rs`, four cases.\n\n⭐ THE COUNTERWEIGHT CARRIES MORE WEIGHT THAN THE POSITIVE CASE and asserts two things, not one: that an edge still supported by the node is NOT reported, AND that the check actually examined it (`edges_with_prose == 1`). A silent result over an unexamined edge would prove nothing — this design's own standing rule about what a zero means.\n\nThe other two: an edge whose evidence still says \"arctic\" after the requirement narrowed IS named, with the term itself rather than only the edge; and a node with no snapshot returns a `coverage_note` saying the check was SILENT about its edges rather than clean on them, naming `record_change` as what would let it answer.",
+    "findings": "4 passed, 0 failed, in the full workspace run of 1925 tests (0 failed) on 2026-08-31.\n\n⚠️ HOW THESE TESTS WERE OBSERVED TO DISCRIMINATE, stated because \"written first and watched fail\" is the claim that is easiest to make and hardest to check later. The function did not exist when they were written, so they failed to COMPILE rather than failing on behaviour — a weaker form of the rule. What supplies the missing evidence is the counterweight: the naive implementation (compare edge prose against the node's CURRENT text only) was written first and rejected precisely because it flags `demand` and `envelope` in the still-holding edge, neither of which was ever in the requirement. The counterweight fixture is the measurement that killed that implementation, and it is asserted alongside `edges_with_prose == 1` so a future silent pass cannot come from examining nothing.",
+    "kind": "verification",
+    "last_run_at": "2026-08-31",
+    "level": "unit",
+    "method": "test",
+    "name": "Edge prose that outlived its node is named, and prose that still holds is not",
+    "status": "passing"
+  }
+}

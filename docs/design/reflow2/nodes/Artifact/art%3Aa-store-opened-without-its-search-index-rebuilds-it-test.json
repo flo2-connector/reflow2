@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:2b9cd3ed7d2760b33aa094c63e0987186460896ed14e914475b61b00c43daea5",
+  "node_id": "art:a-store-opened-without-its-search-index-rebuilds-it-test",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "test",
+    "location": "crates/reflow2-core/tests/a_store_opened_without_its_search_index_rebuilds_it.rs",
+    "name": "a_store_opened_without_its_search_index_rebuilds_it.rs",
+    "status": "realized"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:3787e80346f74db3832e285cf04806bfaa0f39842f9c741b7d3fb748787eb876",
+  "node_id": "dec:idea-a-derived-document-cites-the-graph-the-way-it-cites-the-model-through-a-door-a-build-can-use",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "RECORDED AS BRAINSTORMING, NOT AS A PROPOSAL (the field-feedback rule). From bhome S3: the plan-sheet generator cites the IFC mechanically and cites the graph through design-facts.json, a hand copy of budget_report, so 'the half of the sheet reflow2 owns is the half with no mechanical guarantee'. OPTIONS, none chosen: (a) a one-shot CLI door — `reflow2-mcp --graph-path … --call budget_report '{\"constraint_id\":…}'` printing the tool's JSON and exiting — the smallest change, the same binary, no agent, respects the single-writer lock the way --export-snapshot does; (b) derived views written through like the export: name a report and a path and the server keeps the file current after every change (the docs-as-views direction, dec:idea-outward-docs-are-rendered-from-the-graph, turned into a mechanism instead of an agent act); (c) document tools/smoke_mcp.py's stdio client as the consumer door — it exists and drives every gate here; (d) leave it: the sheet says in terms that it cannot see the budget move. COUNTER to (b): a report is computed and can be large; a file per report per change is the auto-export cost times the number of views; (a) puts the cadence in the build, where the reporter already has one.",
+    "kind": "exploratory",
+    "name": "OPEN — how does a build script read a budget (or any report) from the graph without an agent and without a hand transcription — a one-shot CLI call, a report the server writes through like the export, or a documented stdio client?",
+    "rationale": "Recorded from the field report beside the docs-as-views idea rather than folded into it: that one asks whether the AGENT renders documents from graph data; this asks for a door a BUILD can use with no agent in the loop.",
+    "status": "accepted"
+  }
+}

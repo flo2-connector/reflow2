@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:6ac429ed66e2acc2ddd8b32db617611b14d14a815be77d44781929069b0ed75f",
+  "edge_type": "REALIZES",
+  "from_id": "art:granularity",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:granularity-observation"
+}

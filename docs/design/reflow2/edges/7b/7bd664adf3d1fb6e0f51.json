@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:9b8d28ea67115af8277d8bc4d31535a9eef5209d7308490552e758fbe3b0f0d2",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:an-idea-the-design-already-built-stops-reading-as-an-open-question",
+  "properties": {
+    "approved_at": "2026-09-14",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

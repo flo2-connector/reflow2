@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:f7f7d88628b7ef5564cd1d9ebfcb55ed98a9f5487ed55705830b95ba2cc985d2",
+  "edge_type": "CHANGED",
+  "from_id": "chg:accept-f7480f38c36dcef5",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:readme"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:97b6ed508714655b39caa6563015873ff5206e5f1c323eaec04dde5ad5bacec0",
+  "edge_type": "SCHEDULED_FOR",
+  "from_id": "req:a-server-offers-a-consistent-live-snapshot-of-every-store",
+  "properties": {
+    "modality": "expected",
+    "recorded_at": "2026-09-27"
+  },
+  "to_id": "epoch:planned-backups-without-stopping-the-server"
+}

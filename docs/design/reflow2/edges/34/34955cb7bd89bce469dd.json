@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:d334897ee07d3f8c510296b703902fe19c895278d98431ec10bf1598733de9ed",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-capture-that-replaces-a-node-says-so",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:test-a-prescribed-layer-pair-no-longer-refuses"
+}

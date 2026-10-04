@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:abfb921727619786b04551fdb144269cd14af62320fd81f3f5136c5788e4c01a",
+  "edge_type": "CHANGED",
+  "from_id": "chg:accept-82c9b859b8326cbd",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:agent-instructions"
+}

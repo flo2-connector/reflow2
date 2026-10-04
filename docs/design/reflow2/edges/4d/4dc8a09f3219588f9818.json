@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:4a0f968c667c1365c0880aabbede352e87cf1ae3a32afe711f1c3d134ac32375",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-saved-design-moves-to-the-item-layout-2026-10-03",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:4f50ca974d580d541de0c8dd180600b5ce5d919ca56ec440787d7bd8ef2d3eff",
+    "checksum_basis": "measured"
+  },
+  "to_id": "art:a-design-that-publishes-contracts-publishes-intent-test"
+}

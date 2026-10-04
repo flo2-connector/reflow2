@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:1ab735a7e7d66ce065b1cbb8aa1569d5aa21338dd50ab2f86743044afcd734e2",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "cap:gap-carries-a-reading",
+  "properties": {
+    "authored_at": "2026-07-31",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

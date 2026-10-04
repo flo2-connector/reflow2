@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:1e29dab18dd36063c353009ea9c8ad2a9eed738b56d72b5c71ff4dcedf660ce1",
+  "node_id": "chg:accept-41cb200c8b595eb3",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "refactor",
+    "detected_at": "2026-08-02",
+    "name": "Version bump 0.21.0 -> 0.22.0 only. The schema change is what moved the design and it is recorded on chg:bl68-readiness-gating; this file records WHICH version, and no design claim in it changed."
+  }
+}

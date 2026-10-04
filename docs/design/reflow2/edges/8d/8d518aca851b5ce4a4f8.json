@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:3f52af9ae4ecd787e23c977c108d89630cdd01ef3ce4b854cda00639f7769ad7",
+  "edge_type": "RISKS",
+  "from_id": "dec:idea-may-a-caller-asserted-identity-be-trusted-and-for-what",
+  "properties": {
+    "evidence": "If an identity reflow2 takes on trust can become an approver, the enforced owner's-word rule and the CI gate that checks it are only as strong as the connecting client's honesty, and there is no authentication today."
+  },
+  "to_id": "rule:design-intent-moves-only-on-the-owners-word"
+}

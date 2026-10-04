@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:928904ed657d1e17a3a20e0bb65d2479f16811c3823b9cf84a9894198a245d6f",
+  "edge_type": "AT_EPOCH",
+  "from_id": "chg:the-release-publishes-one-amd64-and-arm64-index-and-names-its-digest",
+  "properties": {},
+  "to_id": "epoch:the-image-is-two-architectures-and-names-its-digest"
+}

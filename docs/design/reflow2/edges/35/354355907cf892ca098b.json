@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:ebc74744f7569ca0d83e66a461c506a657a4422c773c6b14cbef400bb3ede534",
+  "edge_type": "HAS_SNAPSHOT",
+  "from_id": "cap:the-agent-asks-who-it-is-talking-to",
+  "properties": {},
+  "to_id": "snap:epoch:preserved-on-write:cap:the-agent-asks-who-it-is-talking-to"
+}

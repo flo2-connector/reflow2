@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:77386863566d5ccd7cf302a8c4b052d673bb054ca13d2458d121a78541d15d9d",
+  "edge_type": "ANTICIPATES",
+  "from_id": "fact:export-import-export-is-lossless-but-not-a-fixed-point-until-one-normalising-pass",
+  "properties": {
+    "evidence": "The 2026-08-24 finding named the class — the committed export is not in its importer's normal form, and a rehydrate produces one phantom diff — and flo2 met it three weeks later on a different field, the roles migration."
+  },
+  "to_id": "fact:field-confirmation-flo2-853-authored-by-edges-gained-roles-on-import-the-roles-migration-seen-from-the-consumer-side"
+}

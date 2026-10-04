@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:bbbc207f09e3b650c3ad36500f41d2adae1ec6e45f784798db33e864efbe3ef0",
+  "edge_type": "GOVERNED_BY",
+  "from_id": "req:session-memory-in-graph",
+  "properties": {},
+  "to_id": "dec:multi-writer-architecture"
+}

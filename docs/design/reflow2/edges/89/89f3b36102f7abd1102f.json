@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:aa2872248ac8a4636e925b400ed6e882ecb118356d40d8f48732863d34871d41",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:an-unconnected-idea-is-visible-as-one",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:relate"
+}

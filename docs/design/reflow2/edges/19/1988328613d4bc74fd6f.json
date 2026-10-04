@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:252a02f3f217a0ecedb11d7afa8a8a28baccadaec2d2cf7cf959fefa43a48a16",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-published-contract-says-what-two-systems-must-agree-on",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "ifc:mcp-tools-http"
+}

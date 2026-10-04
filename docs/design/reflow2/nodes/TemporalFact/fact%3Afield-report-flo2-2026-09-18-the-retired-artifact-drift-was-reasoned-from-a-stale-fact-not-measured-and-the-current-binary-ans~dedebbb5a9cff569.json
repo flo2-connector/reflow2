@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:cb3da77b781654a45807b6012d1d2b1b3feec4c5917560e3c53f5ccadd546656",
+  "node_id": "fact:field-report-flo2-2026-09-18-the-retired-artifact-drift-was-reasoned-from-a-stale-fact-not-measured-and-the-current-binary-answers-expected-absence",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "confidence": 0.9,
+    "fact_type": "observation",
+    "name": "FIELD REPORT (flo2, 2026-09-18): 'a correctly-executed retirement adds a permanent missing_artifact DRIFT' — NOT REPRODUCIBLE: flo2's committed export imported under 0.64.0 and reconciled with the proposal absent answers `expected_absence`, which the gate files as a note; the session drew the OBSOLETES edge at 23:39:12Z and never ran the gate again; the 2026-08-15 fact recording this defect is still on the record as if live",
+    "source": "flo2 reflow2_feedback.md, session 2026-09-18 (Anthony's own project; the agent triaging was this session, root-cause skill run at Anthony's prompt)",
+    "statement": "MEASURED: import flo2.json into a scratch store under target/debug 0.64.0; get_node art:multi-graph-proposal → discontinued: true; reconcile_artifacts observed present:false → kind expected_absence, 'an accepted decision retired it — the design and the build agree'; tools/reflow2_check.py fails only on checksum_change and missing_artifact. TIMELINE from the flo2 session log: gate runs at 23:21Z, OBSOLETES edge at 23:39:12Z, no gate run after. PRECEDENT: fact:defect-a-retired-artifact-still-reports-missing-forever (2026-08-15) records exactly this defect, which has since been fixed in drift.rs (is_discontinued → ExpectedAbsence); nothing marks the fact as closed, and the retire-from-design skill never says the gate reads OBSOLETES as an answer. The reporter reasoned from what the record still says rather than measuring — the staleness bone.",
+    "subject_id": "fact:defect-a-retired-artifact-still-reports-missing-forever",
+    "valid_from": "2026-09-18"
+  }
+}

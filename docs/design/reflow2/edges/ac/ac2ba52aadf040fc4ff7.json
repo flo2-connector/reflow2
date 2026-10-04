@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:a8d9df203120db6e5b01e311d7810f11bb5d517cbba14029a178df26672e139c",
+  "edge_type": "REALIZES",
+  "from_id": "art:detect",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:aggregate-gap-keying"
+}

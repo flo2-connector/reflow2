@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:66ca97ed5c3f49b45e20e6445aa1b4aa10143f9a085e3435e49d54e41a1aac9f",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:where-plans-live",
+  "properties": {
+    "authored_at": "2026-07-30",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

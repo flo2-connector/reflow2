@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:e9443589ae917a2329e8ac482b786fed1ff6ebb02ad1a995a806729945977500",
+  "edge_type": "CHANGED",
+  "from_id": "chg:read-only-is-honoured-by-every-client-mode-2026-10-03",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cap:shared-sessions"
+}

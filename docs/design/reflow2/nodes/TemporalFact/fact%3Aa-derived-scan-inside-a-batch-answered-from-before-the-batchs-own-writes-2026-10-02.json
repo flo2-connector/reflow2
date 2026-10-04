@@ -1,0 +1,20 @@
+{
+  "content_hash": "sha256:173fbbc3082724f6546c73662c287c8b08bbbaea1e161b0df7e32aba9ed3ba35",
+  "node_id": "fact:a-derived-scan-inside-a-batch-answered-from-before-the-batchs-own-writes-2026-10-02",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "defect",
+    "name": "MEASURED: inside an open batch, a memoised derived scan (detect_gaps; the defect scan, node-type index and adjacency share the memo) answered from before the batch's own writes, because the write generation it is keyed on moved only on a committed write. And a nested begin_batch committed the outer batch early",
+    "source": "art:test-a-write-unit-is-all-or-nothing",
+    "statement": "Found while building dec:idea-a-refused-typed-write-stores-nothing, 2026-10-02, on main 9ecb405 / d9e2a8f, with failing-first tests in crates/reflow2-core/tests/a_write_unit_is_all_or_nothing.rs, observed FAILING on main.\n\n(1) STALE DERIVED SCAN. Inside DesignGraph::atomically, detect_gaps; add_capability(cap:fresh); detect_gaps returned the first call's gaps, and cap:fresh (asked for by nothing) was absent. The control, the same two calls outside a batch, named cap:fresh. Cause: DerivedMemo is keyed on StorageEngine::write_generation, which ReadCache moved only on invalidate (a committed put/delete, or commit_batch). A buffered write moved nothing, and neither did a discard. Latent in every path that reads a derived scan inside a batch (draw_edges runs typed helper bodies inside atomically).\n\n(2) A NESTED BATCH COMMITTED THE OUTER ONE. begin_batch inside an open batch logged a warning and committed the first. Measured: an outer atomically wrote req:outer, an inner create_nodes failed and discarded, the outer item then failed, and req:outer was durable afterwards. Harmless while no batch sat inside another; fatal to a call-sized unit.\n\nBoth fixed in chg:a-refused-write-stores-nothing (staged writes and discards move the generation; batches nest as savepoints).",
+    "steps": [
+      "draw_edges",
+      "create_nodes",
+      "create_edges",
+      "import_graph"
+    ],
+    "subject_id": "art:read-cache",
+    "valid_from": "2026-10-02"
+  }
+}

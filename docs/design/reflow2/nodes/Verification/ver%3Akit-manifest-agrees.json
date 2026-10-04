@@ -1,0 +1,17 @@
+{
+  "content_hash": "sha256:8aeca6189dd9b44f71f6e4a97f7c57b20dc0280a41c73df634bc0d85e5b6cc10",
+  "node_id": "ver:kit-manifest-agrees",
+  "node_type": "Verification",
+  "properties": {
+    "description": "`tools/check_kit_manifest.py` — version, file set and per-file hashes.\n\n⚠️ THE NAME USED TO CARRY THE REPORT, AND THE WORD IN IT WAS `unwritten`. It read: *\"friction 2026-07-25: reflow2's own manifest is four releases stale and nothing noticed; unwritten\"* — while `status` said `passing`. Both halves were wrong by 2026-08-28: the check HAD been written, and it was not being run.\n\n⭐ WHAT WAS ACTUALLY TRUE ON 2026-08-28, measured rather than read off the node: the check existed and FAILED on a clean tree — *\"installed by kit 0.30.0, but this source is 0.41.0\"*, plus three shipped command files the manifest did not record. It appeared in neither `ci.yml` nor the AGENTS.md gate list.\n\nTHE DRIFT WAS CLEARED: the installer was re-run and the manifest read back OUT OF THE FILE as 0.41.0 / d3cb4ab / 36 files — not trusted from the installer's own summary, because `fact:the-v0380-manifest-shipped-empty-because-a-dry-run-reads-like-a-write` records a dry run reading exactly like a write.\n\n🛑 BUT THIS CHECK IS NOT GATED, AND CANNOT BE, IN THIS REPOSITORY. Adding it to `ci.yml` was tried and REVERTED: `.reflow2/` is gitignored and nothing under it is tracked, so a CI checkout has no installation at all and the check exits 2 there — every build would go red. The fresh-install case that could run in CI is already covered by `test_init.py`. `fact:the-kit-manifest-gate-cannot-run-in-ci-because-ci-is-never-installed-into` carries that measurement, and `fact:defect-kit-manifest-drift-is-invisible-to-ci` stays OPEN and sharpened rather than closed.\n\n⇒ SO A PASSING STATUS HERE MEANS SOMEBODY RAN IT BY HAND. Nothing runs it on a schedule, and the next drift will accumulate exactly as this one did.\n\n📌 The report that used to live in this name is here in `description` instead, which is where it belongs — `fact:a-findings-name-can-claim-more-than-its-data-and-the-name-is-what-search-returns` (2026-08-27) measured that `search_design` returns the NAME, so a report written into a name is what every reader meets first.",
+    "findings": "RAN 2026-08-28 and it FAILED first: `stale_version` (installed by kit 0.30.0, source 0.41.0) plus three `file_set` findings — `.claude/commands/link-ideas.md`, `next.md` and `optimize.md` shipped and unrecorded. Confirmed pre-existing by stashing the working tree and re-running: still exit 1, so not caused by this session's edits.\n\nAfter re-running the installer: `kit manifest: OK — the installation agrees with the kit source (10 note(s))`, exit 0. Verified by reading `.reflow2/kit-version.json` directly — `reflow2_version: 0.41.0`, `commit: d3cb4ab`, 36 installed files — rather than believing the installer's own \"Now: reflow2 0.41.0\" line.\n\nThe 10 remaining notes are in-sync skill mirrors under `.claude/` and `.grok/`, which are deliberate here and enforced by `skill_lint`.",
+    "kind": "verification",
+    "last_reconciled_at": "2026-09-23",
+    "last_reconciled_outcome": "passed",
+    "last_run_at": "2026-08-28",
+    "level": "system",
+    "method": "test",
+    "name": "The installed kit's manifest agrees with the kit source it claims to be",
+    "status": "passing"
+  }
+}

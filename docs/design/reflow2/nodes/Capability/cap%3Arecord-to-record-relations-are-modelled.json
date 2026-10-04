@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:cd905f779a128b354d4fd9e833b683a7611ea02194fbc6046bbdef098aa36f6c",
+  "node_id": "cap:record-to-record-relations-are-modelled",
+  "node_type": "Capability",
+  "properties": {
+    "description": "Three additions to the vocabulary, each a MODELLED fit rather than a widened wildcard, and each with a computation that reads it.\n\n· **`IMPLEMENTS`, Artifact → Verification** — \"this file is the executable form of that check\". New edge type. Lets `never_run` split *nobody ran it* from *it has no executable form at all*.\n· **`COMPLEMENTS`, DesignRule → DesignRule** — \"these two stand beside each other and must not be merged\". New edge type. Read by `possible_duplicate`/HEAL, which then refrain.\n· **`SUPERSEDES` accepts Verification → Verification**, and `Verification.status` gains `superseded` — a retired check stops reporting a stale `passing` or a misleading `skipped`.\n\n⚠️ TWO OF THESE MOVE THE SCHEMA STAMP AND ONE DOES NOT, AND THAT IS THE INTERESTING PART. `GraphStamp::current` counts `schema.edge_types.keys()` — TYPE NAMES ONLY. So the two new edge types take it 61 → 63 and owe an upgrade note, while widening `SUPERSEDES`'s endpoints and adding an enum value are INVISIBLE to it. Measured from `provenance.rs`, not assumed.\n\n⭐ WHICH INVERTS THE USUAL INSTINCT: moving the stamp is the SAFE kind of change, because an old binary refuses the graph and `unreadable_by` names the type and says whether to migrate or update. A widened endpoint or a new enum value passes the stamp check, opens fine, and then faults on one specific edge at import — the stamp-blindness pattern this design has now recorded four times. Shipping the invisible changes ALONGSIDE a stamp-moving one is deliberate: the stamp catches what they cannot.",
+    "name": "A file can be named as the executable form of a check, two rules can be declared complementary, and a replaced check can say so",
+    "provenance": "authored",
+    "status": "planned"
+  }
+}

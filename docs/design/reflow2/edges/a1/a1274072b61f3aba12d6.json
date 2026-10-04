@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:d7e2752f5dfd7df6ca9834d562f71ef499890912dc46084f05a82954194fe0f7",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-would-a-graph-database-serve-reflow2-better-than-a-kv-store-at-its-scale",
+  "properties": {
+    "evidence": "A graph database is a NETWORK store like Redis: its one distinctive benefit over the embedded and in-memory options — a live graph shared across processes and machines, with traversals pushed to the server in one round trip — is only worth its daemon and its latency if many-people-on-one-design must hold as a live store rather than through the shared server and git exports it holds through today.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "req:many-people-and-many-projects-compose"
+}

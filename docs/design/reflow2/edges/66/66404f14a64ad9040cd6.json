@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:8daf4abf00021b5e64c31268bd5da9013ca7d784619690363c9129ea76ead6c7",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:test-the-schema-serves-the-rules-that-tell-the-types-apart",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:test-the-schema-serves-the-rules-that-tell-the-types-apart"
+}

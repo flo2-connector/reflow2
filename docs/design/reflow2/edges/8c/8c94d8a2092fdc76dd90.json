@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:61438f889114b9816682c871a0bbf0284a626be744e739ea1ad9a24668ba503d",
+  "edge_type": "SCHEDULED_FOR",
+  "from_id": "cap:reflow2-installs-as-one-plugin-for-claude-code-and-grok",
+  "properties": {
+    "modality": "expected",
+    "recorded_at": "2026-10-01"
+  },
+  "to_id": "epoch:planned-reflow2-ships-as-a-plugin"
+}

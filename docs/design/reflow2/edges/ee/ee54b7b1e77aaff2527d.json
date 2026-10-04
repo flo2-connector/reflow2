@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:0faa4b2529ffa68f42ee5c413dd1750082a515bd26285e00ee1676234ab83131",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:merge-designs",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:merge"
+}

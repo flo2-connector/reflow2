@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:223049bb4eafea9a957056ec1054f6c6b8ea5c29ee05bef4a3e7ac7ec959e9a0",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:idea-document-generation",
+  "properties": {
+    "authored_at": "2026-08-03",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:claude-code"
+}

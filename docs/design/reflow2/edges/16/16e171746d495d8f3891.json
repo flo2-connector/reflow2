@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:f4c160946d0225c7eb1e5f025e49457d277c51edb701651e7da65733add35eaa",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "epoch:planned-the-three-source-reading-analyses",
+  "properties": {
+    "approved_at": "2026-09-14",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

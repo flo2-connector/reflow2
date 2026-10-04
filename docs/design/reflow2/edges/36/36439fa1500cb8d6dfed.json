@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:2dc0647a9140b9ef78662cc01ff7c044ecff883efaee4b308ebb180525cac8be",
+  "edge_type": "REALIZES",
+  "from_id": "art:vocabulary-reach-baseline",
+  "properties": {
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:the-design-says-what-its-own-tools-cannot-write"
+}

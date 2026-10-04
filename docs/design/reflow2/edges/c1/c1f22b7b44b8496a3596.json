@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:edc547e33c7451e78911a8ca49d0641540b87edb2a2aaf3cf7a1b1eb1d85fb59",
+  "edge_type": "REALIZES",
+  "from_id": "art:test-a-replaced-value-is-kept",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "verified"
+  },
+  "to_id": "cap:a-revising-write-keeps-what-it-would-have-lost"
+}

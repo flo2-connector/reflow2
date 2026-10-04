@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:136ead5b95254526bbc6f84133585fe5b4afa4aa879b5ab3aeade33361ec50dc",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-stored-twin-has-one-authority",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "cap:a-relation-stored-twice-is-kept-in-step-by-the-store"
+}

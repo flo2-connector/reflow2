@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:4dd9e85f86a6f0fdad4be73215ad43d658aef48b0f4122c7d4ddf448656e904b",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:claim-a-region-by-query",
+  "properties": {},
+  "to_id": "req:concurrent-planning"
+}

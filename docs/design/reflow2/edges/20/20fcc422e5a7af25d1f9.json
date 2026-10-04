@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:68028c4f8eaf2701bc3444075b49d0faec3db40ca22f14c495675c5a289f1480",
+  "edge_type": "CHANGED",
+  "from_id": "chg:seam-lift-finds-a-container-by-level-not-by-id-prefix",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:seam-coverage-test"
+}

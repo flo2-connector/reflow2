@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:5f963b1f46db806d10353808b1641c70c94b1ad17068b78ad36d8e85a58465bb",
+  "edge_type": "EVOLVES_INTO",
+  "from_id": "dec:how-a-session-is-pointed-at-a-design",
+  "properties": {
+    "confidence": 0.85,
+    "evidence": "The shape question grew into this capability, built 2026-09-13 as `/g/<graph_id>/`. It weighed (a) edit .mcp.json and reconnect against (b) a graph reference carried per call, and what shipped is (b) in its safest form — carried in the URL path, never defaulted. Both blockers it named are gone: the discovery half was settled separately as dec:describe-a-design-without-binding-to-it and `describe_at` exists, and the store-lock complication is handled by the registry opening on demand. Its own stated rule that should survive either choice — 'default when exactly one design is reachable; refuse and list them when several are' — is what the router does. The capability's description already said it 'Contributes an answer to' this decision, in PROSE, where no query could read it."
+  },
+  "to_id": "cap:select-graph-by-id"
+}

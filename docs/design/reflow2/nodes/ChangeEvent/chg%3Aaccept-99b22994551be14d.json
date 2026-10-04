@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:17b56d380d100f1912a5ad0eb0239e58f75ad83c87d31faac1b9f3e2f34bc381",
+  "node_id": "chg:accept-99b22994551be14d",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "resync",
+    "detected_at": "2026-09-22",
+    "name": "Merge of #571 and #573: both added a line to AGENTS.md (a gate each); the baseline is the merged file, measured.",
+    "subject": "system"
+  }
+}

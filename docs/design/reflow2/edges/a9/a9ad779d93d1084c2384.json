@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:a9950e43aa8581319ed46fcb708640a3962133a0ba48a902033c301c3a00d5f9",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:live-tier",
+  "properties": {
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "dec:central-host"
+}

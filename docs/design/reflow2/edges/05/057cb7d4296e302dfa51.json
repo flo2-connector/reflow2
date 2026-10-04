@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:af33b4b353e1fd3dd90a2b7a9daa1ef849c583a249bfae1544312e320aa27d81",
+  "edge_type": "REALIZES",
+  "from_id": "art:test-a-write-unit-is-all-or-nothing",
+  "properties": {
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:a-refused-write-stores-nothing"
+}

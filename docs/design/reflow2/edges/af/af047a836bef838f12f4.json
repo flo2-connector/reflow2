@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:1927947e08a699a8b6c36bf851033d5882132d93a7e09c3a4c4a3d6cb12fd849",
+  "edge_type": "CHANGED",
+  "from_id": "chg:skills-are-composed-of-attribute-classes",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:optimize-skill"
+}

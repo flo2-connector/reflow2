@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:d1eff648249f93a9282cfd295a3fa6b99ff31daf59b9a1bcf17c6dfc09463259",
+  "node_id": "dec:idea-what-happens-to-work-built-on-a-fork-of-reflow2",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "RECORDED AS BRAINSTORMING, NOT AS A PROPOSAL, AND NOT LEGAL ADVICE. Anthony, 2026-09-23: if somebody forks the repo, their work should be owned by reflow2.\n\n⚠️ THE HONEST ANSWER FIRST: as stated, this is probably not achievable. Copyright in new code belongs to whoever wrote it; a license can set CONDITIONS on using reflow2, but it generally cannot transfer ownership of someone else's independent work to the licensor. A clause that tried would be unusual, likely unenforceable in places, and would scare off nearly every user.\n\nIDEAS THAT GET CLOSE, NONE CHOSEN:\n(a) FORBID COMPETING OR COMMERCIAL DERIVATIVES — via the license chosen in the sibling question (PolyForm Shield, FSL, BSL, PolyForm Noncommercial). A fork then cannot be sold or used to compete, whoever owns its new code. This is what usually protects a business like flo2.io.\n(b) REQUIRE A GRANT BACK — a license condition that modifications be licensed back to the owners (a \"grant-back\"), so the owners may use and relicense what forks build. Closer to his intent than ownership; rare in software licenses and needs careful drafting.\n(c) COPYLEFT-STYLE SHARING (AGPL-like) — modifications must be published under the same terms, so improvements come back into view. Does not stop commercial use by itself and is incompatible with the anti-competition goal unless combined with a commercial exception.\n(d) OWN WHAT YOU MERGE — for anything a fork sends back as a PR, the CLA from the ownership question makes it the owners' on acceptance. This fully covers the work that re-enters reflow2.\n(e) TRADEMARK — register \"reflow2\" (and flo2) so a fork cannot trade on the name. Separate from copyright, often the strongest practical protection.",
+    "kind": "exploratory",
+    "name": "OPEN — can the owners claim work other people build on a fork of reflow2, and if not, what gets close?",
+    "no_relation_note": "No prior graph node on forks or derivative ownership; linked to its sibling questions from the same session.",
+    "rationale": "Kept separate because it is the part of his ask most likely to need reshaping, and a fair record says so plainly rather than listing it as one option among equals.",
+    "status": "proposed"
+  }
+}

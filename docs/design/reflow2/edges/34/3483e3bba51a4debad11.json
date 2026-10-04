@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:812e882ab277dbbf18134e5fadea42a9cc3c0dd2bcf3acb29e80bfa11c357298",
+  "edge_type": "CHANGED",
+  "from_id": "chg:an-unplaced-sentence-has-a-home-and-the-instructions-say-to-search-first",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:test-the-schema-serves-the-rules-that-tell-the-types-apart"
+}

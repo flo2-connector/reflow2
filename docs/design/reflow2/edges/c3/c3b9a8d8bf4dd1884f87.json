@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:6f713fa0d3482a899a515f678a79a5379a08fe21deb730e0388e5a63429b7d62",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:quality-target-is-stated-or-asked-for",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:detect"
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:a377f578f031666f81704fb8f4499f6200d938d13e2cbe789fc4fdba54a12ff8",
+  "edge_type": "GOVERNED_BY",
+  "from_id": "fact:a-local-feature-error-was-worked-around-instead-of-read-as-the-ci-contract",
+  "properties": {
+    "note": "The obvious repair was to gate the whole test file, which would have made CI green by deleting coverage from the job that has no index. Clause 1 is why it was split instead: the half that can be checked everywhere now is."
+  },
+  "to_id": "rule:fix-it-properly-while-it-is-still-cheap"
+}

@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:60f7249266560c147e8a6e2addbcaedce02232a0f57199f39e3aefedf1d56f3a",
+  "edge_type": "VERIFIES",
+  "from_id": "ver:sessions-cannot-cross-designs",
+  "properties": {},
+  "to_id": "req:a-session-cannot-address-another-design"
+}

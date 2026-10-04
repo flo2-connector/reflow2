@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:0266ce97fde1a8dd0e18897185bf20326fde7aeb3e791cb9fb4cb1e792be82be",
+  "edge_type": "CHANGED",
+  "from_id": "chg:verifications-pass",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cap:detect"
+}

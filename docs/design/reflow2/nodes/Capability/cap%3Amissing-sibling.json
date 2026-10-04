@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:a3b7500fea6df8f99a0911524254a7ac0f863b033812fb3a249bc2942e60528e",
+  "node_id": "cap:missing-sibling",
+  "node_type": "Capability",
+  "properties": {
+    "description": "Anthony, 2026-07-25: \"you have requirements A and C, but you missed B.\" A genuinely different kind of gap from everything detect_gaps finds today. Every existing gap source reasons about STRUCTURE — this requirement has no capability, this capability has no check — and each is deterministic because the hole is visible in the graph's shape. A missing requirement is invisible in the shape: the design is perfectly coherent without it, which is exactly why nobody notices. TWO AXES, and the user's fighter-jet example shows they are different detections. BREADTH is the bigger one: a stakeholder states that the wings must provide X lift and sustain Y G, and the engine must make Z thrust — two SUBSYSTEM-level requirements, which implies a subsystem decomposition in which landing gear, avionics, fuel, flight controls, life support, structures, hydraulics and thermal have nothing whatsoever. That is not interpolating a missing item between two others; it is noticing that 2 of roughly 12 expected subsystems have been named at all, which requires knowing what kind of thing is being built. DEPTH is the second: the wing requirement is itself thin, since wings need more than lift and G-load. Both are semantic — pattern-matching against a domain archetype — so they belong to the LLM half of dec:three-party-checks, not the deterministic core. Bounded accordingly: the agent proposes, the graph records at `proposed`, the human decides, and nothing enters above proposed, or the tool starts inventing intent and dec:human-decides is broken in the way that matters most. cap:requirement-lineage sharpens it considerably — requirement families (which Leiden already clusters, once requirement-to-requirement edges exist) are precisely where an omission is both most likely and most detectable, because a family with two members in a design whose siblings have twenty is visible without knowing any domain at all. PLANNED.",
+    "name": "Notice the requirement nobody wrote down",
+    "provenance": "authored",
+    "status": "planned",
+    "tier": "operational"
+  }
+}

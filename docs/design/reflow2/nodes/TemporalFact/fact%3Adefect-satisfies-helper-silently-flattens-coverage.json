@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:7400b09e3b9ce91d454501ca13d79bf04fb2616d90aa751ded10ef33939edeb8",
+  "node_id": "fact:defect-satisfies-helper-silently-flattens-coverage",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "confidence": 1.0,
+    "fact_type": "defect",
+    "statement": "THE `satisfies` HELPER CANNOT EXPRESS THE COVERAGE THE SCHEMA DOCUMENTS, SO PARTIAL SATISFACTION IS RECORDED AS FULL. `describe_schema` documents `coverage: full|partial|planned` and `evidence` on SATISFIES; the typed helper accepts neither. Two capabilities were linked in one session that each serve HALF of their requirement — one covers a requirement's 'capture' half while its 'mine backward' half is served by nothing — and both now read as flat satisfaction to any rollup, with the qualification surviving only in prose a rollup does not count. THE FAILURE DIRECTION IS OVER-CLAIMING, SILENTLY, ON THE EDGE THE SKILLS THEMSELVES CALL 'the backbone of design traceability'. The same shape applies to the other typed edge helpers that drop documented edge properties. || SOURCE: Observed by the dev_storyflow fleet on 2026-08-15, on reflow2 0.31.0 with served == installed verified through /proc/<pid>/exe. Three agent seats, one shared graph, one day.",
+    "subject_id": "cmp:graph",
+    "value": "{\"documented_props\":[\"coverage\",\"evidence\"],\"helper_accepts\":[],\"capabilities_mislabelled\":2,\"failure_direction\":\"over-claim\"}"
+  }
+}

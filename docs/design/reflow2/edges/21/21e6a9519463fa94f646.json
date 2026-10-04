@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:ef257b1820d01f38888fea86ce189792cc55ac8cc23470b89a1b7b710ec7ff9f",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-saved-design-moves-to-the-item-layout-2026-10-03",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:075c416a5863bab2afe8895248033115898984892df70778b9d95be462a8d25c",
+    "checksum_basis": "measured"
+  },
+  "to_id": "art:a-drawn-relation-is-read-back-as-a-sentence-test"
+}

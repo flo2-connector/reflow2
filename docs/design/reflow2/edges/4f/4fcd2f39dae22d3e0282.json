@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:4984b0b1f8874137897e39a621d85a34247ab3c834bc8df48e81684cea226065",
+  "edge_type": "SCHEDULED_FOR",
+  "from_id": "req:a-lesson-is-served-at-the-step-it-concerns",
+  "properties": {
+    "modality": "expected",
+    "recorded_at": "2026-09-12"
+  },
+  "to_id": "epoch:planned-a-lesson-is-served-at-the-step-it-concerns"
+}

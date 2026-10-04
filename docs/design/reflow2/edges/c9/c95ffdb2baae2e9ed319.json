@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:f0fc489a6aa429767d98bcd24c747bd7971281f02ed40e0f02220331c997b576",
+  "edge_type": "INVALIDATES",
+  "from_id": "chg:a-revise-of-an-epoch-keeps-its-status",
+  "properties": {
+    "at": "2026-09-12",
+    "note": "The core constructor now carries an existing epoch's status forward on a revise and sets `planned` only on create; pinned by revising_an_epochs_prose_keeps_its_status.rs, which read `planned` before the fix. The fact's valid_to is set to the same day."
+  },
+  "to_id": "fact:plan-epoch-on-an-existing-epoch-resets-its-status-to-planned"
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:7406f12516f51e3781bf91a22a35643b33e96c1fdc92bce8ec26d182c91f406e",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:test-a-registered-artifact-asserts-nothing-it-was-not-told",
+  "properties": {
+    "covers": "whole"
+  },
+  "to_id": "ver:a-registered-artifact-asserts-nothing-it-was-not-told"
+}

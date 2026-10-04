@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:53af81078137f2d35a06fcbe4f6d733c052f7c6321f86c36178bfcb6752a091b",
+  "edge_type": "REALIZES",
+  "from_id": "art:sync",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:stale-seat-refusal"
+}

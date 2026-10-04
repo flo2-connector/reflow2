@@ -1,0 +1,17 @@
+{
+  "content_hash": "sha256:206a193b881350e94efa7c34f39aeea44d9843a4e6d01668aa553b6089a0836c",
+  "node_id": "req:the-server-is-the-authority-on-its-own-currency",
+  "node_type": "Requirement",
+  "properties": {
+    "concern": "core",
+    "designation": "internal",
+    "kind": "functional",
+    "lineage": "original",
+    "name": "The running server says whether it is stale, instead of making a human compare two numbers",
+    "priority": "medium",
+    "provenance": "authored",
+    "rationale": "MEASURED AND CHEAP TO FIX (fact:defect-a-running-server-cannot-say-it-is-stale): served_by.reflow2_version reported 0.22.1 while the on-disk binary was 0.24.0, with `--serve-shared` detached on purpose so every restart re-attached to the same stale process and nothing reported a problem. The existing guard failed in the most instructive way possible — it reports a LITERAL that a human must compare against a number the block does not contain, so a stand-down post saying 'demand served_by: 0.22.1' was satisfied four days later by a session that duly reported a PASS on a broken invariant. Four sessions read the same true value on two days and drew OPPOSITE conclusions. THE FIX WAS VERIFIED ON A LIVE SERVER BEFORE BEING PROPOSED: the kernel already marks a replaced binary's /proc/self/exe as '(deleted)', so stale:true is derivable from one syscall with no path re-resolution and no second binary read — and it answers the real question ('has my executable been replaced?') rather than answering it indirectly via a version string that breaks when two builds share a number. REFLOW2 ALREADY KNOWS THIS KERNEL BEHAVIOUR FROM THE OTHER SIDE: fact:defect-rebuild-strands-the-shared-server is the same deleted-inode condition biting spawn_daemon through current_exe(). One signal, two symptoms, and detecting it fixes both. THE SECOND CLAUSE COMES FROM A SEPARATE PATTERN the fleet named: three version-dependent facts landed in copied instruction blocks in ONE DAY with no version stamp and no expiry — the served_by literal, a 'there is no mint_seat tool' correction that was true when measured and rotted when the binary moved, and a claim_region schema note describing the pre-shared-server architecture. Their proposal is that the server state 'as of <version>' beside any tool-existence claim, so a copied doc can be CHECKED rather than trusted. A doc that cannot be distinguished from a stale doc is indistinguishable from a wrong one.",
+    "statement": "The server SHALL report whether the binary it is running has been replaced since it started, as a field rather than as a literal for the reader to compare — and tool-existence and behaviour claims SHOULD be answerable against the running binary rather than trusted from a copied document. Requested by dev_storyflow's w-613d836b and w-6904efa6, 2026-08-07.",
+    "status": "accepted"
+  }
+}

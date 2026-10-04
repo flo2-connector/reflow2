@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:4426c4b8430101aca37efe625dbe08403bbd81222a2ea849d5ca8fa4afe44332",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:one-setup-command-chooses-local-or-remote",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:proxy"
+}

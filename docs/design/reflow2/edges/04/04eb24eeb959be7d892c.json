@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:60469d714a07bafde6c73538834510661aa1221adb8f414e0da61ca27bd64aae",
+  "edge_type": "TRIGGERS",
+  "from_id": "cap:changelog-view",
+  "properties": {
+    "role": "feeds — the increment's changes are now known, so the stamp can answer whether an upgrade note is owed. Pin every ChangeEvent of the INCREMENT first, found by diffing ids against the previous tag's export rather than against memory: v0.22.0's changelog read 12 entries before that diff and 47 after, with unmapped empty both times"
+  },
+  "to_id": "cap:stamp"
+}

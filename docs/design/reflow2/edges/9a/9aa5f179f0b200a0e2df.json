@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:7a3fbd269c11be64df9ea8667741a5c2ddbd1fa86076403256c7a79dcae654fc",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:idea-who-authors-the-domain-artifact",
+  "properties": {
+    "authored_at": "2026-08-30T00:00:00Z",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

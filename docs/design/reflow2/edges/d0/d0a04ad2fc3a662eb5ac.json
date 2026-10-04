@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:e3b50ebd11269bc9d9f790d51209d6bc50ba53e6c057903882f6ee5522f5e78d",
+  "edge_type": "MITIGATES",
+  "from_id": "dec:idea-revise-notes-guards-and-defaults-read-the-merged-node",
+  "properties": {
+    "evidence": "Option (B) or (C) is the class fix for the hazard that finding records: handler notes, guards and defaults computed from the call instead of the merged node."
+  },
+  "to_id": "fact:root-cause-the-revise-contract-is-implemented-per-handler-and-guarded-by-instances-2026-09-28"
+}

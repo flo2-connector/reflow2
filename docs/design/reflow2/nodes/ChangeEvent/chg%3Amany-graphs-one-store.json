@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:55b30fd7689dc5d54e670a8b81cd5bcd2001210ed2c6ea976f457bd9a07cc5a8",
+  "node_id": "chg:many-graphs-one-store",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "scope_change",
+    "name": "Anthony's graph_id question recorded with the mechanics measured: co-location is free and already intended, but edges still cannot cross a graph_id even inside one store"
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:3b4b84bd8f553f618aef7f27bdd3dcef915049407708f66b15f0e733105312c4",
+  "node_id": "req:build-granularity-is-visible",
+  "node_type": "Requirement",
+  "properties": {
+    "concern": "core",
+    "designation": "internal",
+    "kind": "functional",
+    "lineage": "original",
+    "name": "A design can see where its build stopped following it",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "Where the build holds as one artifact what the design holds as several distinct capabilities, reflow2 shall report that disagreement as an observation measured against the design's own distribution — never against an absolute size, never as a defect, and without ruling on which side is wrong.",
+    "status": "accepted"
+  }
+}

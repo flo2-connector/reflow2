@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:00cb0ae1b5d5168b2de0f7fd984a6838c10381c65a5f1093eaddf1b7acff6c23",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:fixture-bearer-test-rsa-key",
+  "properties": {
+    "covers": "whole"
+  },
+  "to_id": "ver:an-exposed-server-verifies-bearer-tokens-to-the-oauth-2-1-floor"
+}

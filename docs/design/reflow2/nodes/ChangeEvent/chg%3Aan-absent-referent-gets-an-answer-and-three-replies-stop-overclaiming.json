@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:3bb12497585fe4c3b6cf9be458c7fdfaac3a17ea77e917049e32ac7381455cb6",
+  "node_id": "chg:an-absent-referent-gets-an-answer-and-three-replies-stop-overclaiming",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "defect_fix",
+    "name": "Nine of criterion 2's ten open verdicts: an absent referent gets an answer rather than a bare zero, three replies stop claiming more than they checked, two descriptions account for what they return, and reviewed_gaps gets a budget",
+    "repair": "corrected_cause",
+    "subject": "system"
+  }
+}

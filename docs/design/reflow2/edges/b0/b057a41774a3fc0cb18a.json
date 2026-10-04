@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:4ead91b5a7838e84ccb69d5f89d0b10718c58f390f9fd8b69e5e6b6a441a6256",
+  "edge_type": "DOCUMENTS",
+  "from_id": "art:github-issue-616-oauth-resource-server",
+  "properties": {
+    "evidence": "The issue's main ask (reflow2 as a native OAuth resource server) contradicts this accepted ruling. Under the brainstorm skill's answer-first step it is recorded as a request to reopen, with its new arguments, awaiting Anthony's word, and not as a fresh idea."
+  },
+  "to_id": "dec:the-registry-root-is-the-tenant-boundary"
+}

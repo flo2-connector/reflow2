@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:34d0b5eadf481fe162d94325934b1ba04485edc3b0c64fcc9c32d75271fe4f35",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:collaborating",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:collaborating"
+}

@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:c8e9c06bb843c0cd9060d0a5d8f69c0f66f46b4689964b37e5a544f2b575b7dc",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:a-design-holds-the-users-own-vocabulary",
+  "properties": {},
+  "to_id": "req:a-node-records-what-the-user-calls-it"
+}

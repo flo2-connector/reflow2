@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:cb9002a2a8c6be3f54186585e38c062e5b8b394cf2a7bdb32cb986e2c3f3262b",
+  "edge_type": "CONTRADICTS",
+  "from_id": "fact:alexs-third-report-lands-and-one-of-its-two-standing-items-is-already-fixed",
+  "properties": {
+    "alignment": "opposing",
+    "evidence": "alignment=supporting. That decision is open on how a content-only client gets an answer without resurrecting the 2x wire cost. This is its third independent occurrence — two clients, three sessions — and the user's own ranking of it as the item everything else is downstream of. Corroboration and escalation, not conflict."
+  },
+  "to_id": "dec:idea-how-does-a-content-only-client-get-an-answer"
+}

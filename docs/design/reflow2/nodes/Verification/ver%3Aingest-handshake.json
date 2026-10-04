@@ -1,0 +1,17 @@
+{
+  "content_hash": "sha256:c6dfafd3624958a386a3dd5ba526d01547e4adaa4311a43f131dc014341697bb",
+  "node_id": "ver:ingest-handshake",
+  "node_type": "Verification",
+  "properties": {
+    "description": "The ambient agent drives INGEST to completion with no LLM provider, and the design lands with its provenance Fragment; an ABANDONED handshake writes NOTHING (the prepare rounds replay against a throwaway graph, so a half-answered run cannot strand half a design); the same input takes the same rounds, since each call is self-contained and no session state is held; and an answer nothing asked for is reported rather than ignored.",
+    "findings": "4 Rust cases, plus an end-to-end run over real MCP against the built binary: 4 rounds, 6 nodes, with the recovered Decision and Component both present (crates/reflow2-core/tests/ingest_handshake.rs)",
+    "kind": "verification",
+    "last_reconciled_at": "2026-09-23",
+    "last_reconciled_outcome": "passed",
+    "last_run_at": "2026-07-27",
+    "level": "integration",
+    "method": "test",
+    "name": "Ingest completes with no LLM provider, and an abandoned handshake writes nothing",
+    "status": "passing"
+  }
+}

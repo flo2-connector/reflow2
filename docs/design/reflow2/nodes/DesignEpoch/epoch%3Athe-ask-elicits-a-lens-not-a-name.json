@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:a6612194bcf5b736d7c6e029d463371e0f80751beee8d67d5f7cfbd1c3fc1a74",
+  "node_id": "epoch:the-ask-elicits-a-lens-not-a-name",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "epoch_type": "revision",
+    "name": "The orientation question asks for a background, not a name — because \"Bob\" answered the first version correctly and told the agent nothing",
+    "sequence": 360,
+    "status": "arrived"
+  }
+}

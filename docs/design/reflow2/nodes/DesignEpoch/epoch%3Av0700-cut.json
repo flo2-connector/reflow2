@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:54724e5dba75327e23b7a23f4138ad3ec7c6d33a5f52f01aa55ad6d5f7469adf",
+  "node_id": "epoch:v0700-cut",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "description": "The cut that ships /jot: one skill reached by /jot, /note and /log-issue, where the word typed is the note's tag, and loop_status listing each open follow-up with its tag and where it settles. One change pinned. Follows epoch:v0690-cut.",
+    "epoch_type": "release_cut",
+    "name": "v0.70.0 release cut (2026-09-24)",
+    "sequence": 611,
+    "status": "arrived"
+  }
+}

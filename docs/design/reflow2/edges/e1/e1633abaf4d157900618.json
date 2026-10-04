@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:e77ac6fd6b89a74668f24f959fda5f7576ef4dbfa72f1e9a9947b8626fd4fe82",
+  "edge_type": "EVOLVES_INTO",
+  "from_id": "dec:idea-should-ci-write-its-run-results-back-into-the-design",
+  "properties": {
+    "evidence": "Anthony promoted this idea on 2026-09-21 in its minimal form — the run record as a build artifact — so the question grew into that requirement; the stronger write-back form stays unpromoted on this node."
+  },
+  "to_id": "req:a-ci-run-leaves-a-machine-readable-record-of-what-it-ran"
+}

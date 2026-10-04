@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:2a4a5e8945f43675e18f90a1e190661fea0286d8c36acee5a38661f3afd14061",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-design-is-watched-at-the-server-that-holds-it-2026-09-27",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "req:a-design-watches-another-design-at-the-server-that-holds-it"
+}

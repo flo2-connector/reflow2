@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:6f9624ed4e9a56bfa6e7208fc634edb3d4d5c5af215d46dce6c517b46082c3e2",
+  "edge_type": "CHANGED",
+  "from_id": "chg:bl186-folder-driver",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:service"
+}

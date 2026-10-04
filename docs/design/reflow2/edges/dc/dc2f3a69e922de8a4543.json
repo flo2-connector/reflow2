@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:bd38085f9cb3cc229ada9aff74bd1d05719e247e1d212d3b2af8535a4d3c8f00",
+  "edge_type": "CHANGED",
+  "from_id": "chg:bl183-constructors-merge",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cap:store"
+}

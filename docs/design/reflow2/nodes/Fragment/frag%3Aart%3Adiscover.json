@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:2da00a5353c77dd3113ab417b1139b883a0e3825c91251b41be67ab031b3a906",
+  "node_id": "frag:art:discover",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered discover.rs — what design lives at a path, read from sidecars and never by opening"
+  }
+}

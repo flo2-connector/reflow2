@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:fbb8e992349e6d5e2ac2881d4ed99ed6417e64094ec85b21d1d6206647b9fe5e",
+  "edge_type": "CHANGED",
+  "from_id": "chg:consumption-detector-built",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:tools-coherence"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:ff6f26ea42d99bab1cb40d60198f7c4d5fe4682d6e3ac3e0ba10af93d5530e0d",
+  "edge_type": "REALIZES",
+  "from_id": "art:repair",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:a-repair-says-which-kind-it-was"
+}

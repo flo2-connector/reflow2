@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:5b169fb16537b1b76fdb9bfd887b11a8edb516b31461ba2abf5771ee5c8682fe",
+  "edge_type": "CONSUMES",
+  "from_id": "cmp:heal",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "ifc:ingress-trust-boundary"
+}

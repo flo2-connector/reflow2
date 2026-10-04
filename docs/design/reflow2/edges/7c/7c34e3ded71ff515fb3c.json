@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:1e386706af26e3c1a08dae82ea4bb6bba113b458f55d8aa40a77ca5de0fa423e",
+  "edge_type": "CAUSES",
+  "from_id": "art:dev-storyflow-feedback-2026-09-27",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "The root-cause pass on this document's 09-25 report (a 31/35 walk has only one status): a run has one status and every rollup reads only that; the second sighting of the qs 2026-09-04 gap.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:root-cause-a-run-has-one-status-and-its-qualification-reaches-no-rollup-2026-09-28"
+}

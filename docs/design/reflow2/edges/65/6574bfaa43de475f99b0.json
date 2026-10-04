@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:c23d92a05da25522dc092a521ef0078f303f1f8388f90f3f4c155ce8cbaa4d80",
+  "edge_type": "VERIFIES",
+  "from_id": "ver:readiness-gating",
+  "properties": {},
+  "to_id": "cap:readiness-gating"
+}

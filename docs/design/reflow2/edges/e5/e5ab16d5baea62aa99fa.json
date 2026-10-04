@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:991112b4c8263553bc3eace8fe00b50fe8673f49593b486c87d1eae17924746b",
+  "edge_type": "MITIGATES",
+  "from_id": "dec:idea-a-composite-orientation-read-so-a-refused-call-costs-one-retry",
+  "properties": {
+    "evidence": "A composite read that degrades by section, or a stated minimum answer, answers the root-caused defect: where-am-i's 15 separate reads have no floor, so one refused call takes the orientation down."
+  },
+  "to_id": "fact:root-cause-where-am-i-rests-on-fourteen-separate-reads-and-no-skill-says-what-to-answer-when-one-is-refused-2026-09-28"
+}

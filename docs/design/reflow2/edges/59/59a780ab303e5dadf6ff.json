@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:6816ad3d4f8f3de7b2e7549a27616d76857577c3b29ed8d5f60ec3fbfabb0ae9",
+  "edge_type": "BLOCKS",
+  "from_id": "req:kit-reaches-the-agent",
+  "properties": {
+    "evidence": "The install reported success while leaving the kit invisible to the harness in the target repo. dynograph-foundation, 2026-07-28."
+  },
+  "to_id": "cap:kit"
+}

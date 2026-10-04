@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:5eccc386548204a755c021f49348f074d92619376f6bbb170681fbb6df31cfe8",
+  "node_id": "cap:kit",
+  "node_type": "Capability",
+  "properties": {
+    "description": "One command sets up or refreshes the design environment.",
+    "name": "Install into a consumer project",
+    "provenance": "authored",
+    "status": "verified",
+    "tier": "operational"
+  }
+}

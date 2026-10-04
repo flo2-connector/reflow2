@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:f7ca21aea5773b823625761e09726bcbe31226fc43f1a943593bb4cdb4057ab4",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-loop-closure-reading-lands",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:schema-verify"
+}

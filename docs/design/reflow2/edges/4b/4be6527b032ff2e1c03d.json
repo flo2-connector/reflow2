@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:66f406d3e3dec9751e5cffefc001ac73660f5f48ccaa06a567839333d740a6f5",
+  "edge_type": "MITIGATES",
+  "from_id": "dec:idea-an-outside-part-is-marked-as-outside-and-an-outside-party-is-a-consumer",
+  "properties": {
+    "evidence": "Its candidate (d), a requirement a person will meet is not correctly unmet, is option (d) here."
+  },
+  "to_id": "fact:root-cause-parking-is-still-not-named-where-an-unsatisfied-requirement-is-read-2026-09-29"
+}

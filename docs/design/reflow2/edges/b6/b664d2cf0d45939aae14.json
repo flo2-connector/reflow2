@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:a0135725e122978d7cd464254fd5c5f02dcf1695574c4e16b80bb14da2a8f3c6",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "req:epochs-can-be-planned",
+  "properties": {
+    "optional": false,
+    "weight_basis": "evidence"
+  },
+  "to_id": "req:version-combination-is-an-object"
+}

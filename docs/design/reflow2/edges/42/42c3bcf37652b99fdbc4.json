@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:a89f8b7194f99e232ba6a70da7d7f62ed6257d85bd9be5ad4a532a82a916da79",
+  "edge_type": "REALIZES",
+  "from_id": "art:reply-budget",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "verified"
+  },
+  "to_id": "cap:every-oversized-reply-offers-a-bound"
+}

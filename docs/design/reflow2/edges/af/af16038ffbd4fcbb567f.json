@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:22964cb0ac3b2949452da74af67cff6e6a5044e7a56c710674b03562c5eed56d",
+  "edge_type": "REALIZES",
+  "from_id": "art:foundation",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "verified"
+  },
+  "to_id": "cap:store"
+}

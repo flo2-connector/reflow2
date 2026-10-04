@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:53614c018b8966f1ff7acbb39c74b8f63385eb0f75e6728e91ec6628eb976121",
+  "edge_type": "ANTICIPATES",
+  "from_id": "fact:the-live-graph-does-not-branch-so-two-open-prs-collide",
+  "properties": {
+    "evidence": "It asked, unanswered since 2026-08-14, 'whether something should notice that the store has writes belonging to a branch you are not on', and recorded seven recurrences worked around by serialising PRs. This idea is that question answered at its root."
+  },
+  "to_id": "dec:idea-the-design-gets-a-branch-dimension-for-implementation-facts"
+}

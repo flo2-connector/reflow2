@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:6b037f93c4ec5a0f7866dd71167915f58e584005d13e5b73bf8f126d8c0ddb3a",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-saved-design-moves-to-the-item-layout-2026-10-03",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:34701500af93dbcf"
+  },
+  "to_id": "art:github-mcp-study"
+}

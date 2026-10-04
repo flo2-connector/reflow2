@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:87fe751cd211a3f428c20a35e75bf329878f353d15ee9e85d0ae38f82c3ebe61",
+  "node_id": "chg:a-gap-question-keeps-the-readers-vocabulary",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "defect_fix",
+    "name": "A gap question keeps the reader's vocabulary — the prompt template stops contradicting its own tool description",
+    "subject": "system"
+  }
+}

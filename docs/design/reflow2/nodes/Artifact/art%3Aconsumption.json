@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:19a2740900b287600983513dcc9e374f7e48c06d1993771f7b7227f2c869fefa",
+  "node_id": "art:consumption",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "granularity": "atomic",
+    "location": "crates/reflow2-core/src/consumption.rs",
+    "name": "consumption.rs",
+    "status": "realized",
+    "volatility": "stable"
+  }
+}

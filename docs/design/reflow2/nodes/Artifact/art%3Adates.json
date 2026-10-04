@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:a972eee3f18c91dd50a99262c42a873bee72cb7f060f3397c13c3eb93220d4ec",
+  "node_id": "art:dates",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "location": "crates/reflow2-core/src/dates.rs",
+    "name": "dates.rs",
+    "status": "realized"
+  }
+}

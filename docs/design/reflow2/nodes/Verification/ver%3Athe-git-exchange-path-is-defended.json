@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:fd57ab6e76e63b49f968088a87fc695e43d4db4a1e9e9ed53878e95db8b8b749",
+  "node_id": "ver:the-git-exchange-path-is-defended",
+  "node_type": "Verification",
+  "properties": {
+    "kind": "verification",
+    "last_run_at": "2026-08-13",
+    "level": "integration",
+    "method": "test",
+    "name": "A moved record reaches an ORDINARY read and names import_graph, an untouched one stays silent, and the installer writes both halves of the merge rule while leaving a driver somebody else set alone (crates/reflow2-mcp/tests/the_record_moved_and_the_session_is_told.rs + tools/test_init.py, both CI gates)",
+    "status": "passing"
+  }
+}

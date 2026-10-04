@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:42681aea21cfd1d0727cab2e5095ade3eb9cb8a975b6b3ffd063b5df49b9d88b",
+  "node_id": "req:every-tool-description-is-accurate-about-what-the-tool-does",
+  "node_type": "Requirement",
+  "properties": {
+    "concern": "core",
+    "lineage": "original",
+    "name": "Every served tool's description is accurate about what the tool actually does — its behaviour, its reply shape, and what an empty answer means",
+    "priority": "high",
+    "provenance": "authored",
+    "statement": "Anthony, 2026-09-11, stating the success criteria for the tool-sweep effort: \"that each tool description is accurate about what it actually does\". A tool's served description shall let a consumer predict what the tool returns, including what an empty or zero result means, before calling it. Measured 2026-09-11 by predicting each tool's behaviour from its served text and then calling it: 13 of 37 blind-scored read-only tools scored MISS or PARTIAL — hierarchy_issues (8 words, indistinguishable clean from vacuous), dimension_drift (`{\"value\":null}` on a legal call), propose_allocation (238 clusters from one edge with no warning), describe_designs (reports a verified-absent path as `opted_in`), reconcile_dependencies (says \"the build agrees\" when no build was observed), compose_and_analyse (empty seam on a purpose-built one). Those thirteen are the initial acceptance list; the description-vs-behaviour prediction test is the method.",
+    "status": "proposed"
+  }
+}

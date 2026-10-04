@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:7279f694c1116c7f8b604418a6bc23ca151c2560401ef469facd6f384aa2125d",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-wish-routed-to-capability-is-not-silent",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "dec:exploratory-staging"
+}

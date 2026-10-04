@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:fd5cf1adc9d317e34900a62ce297792f6a154fcd77226e0159e0f441017eb7b0",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:idea-a-record-only-change-event-needs-a-record-shaped-why",
+  "properties": {
+    "approved_at": "2026-09-19",
+    "roles": [
+      "author",
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

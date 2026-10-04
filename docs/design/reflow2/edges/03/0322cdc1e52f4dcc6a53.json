@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:f8269de4d81df816559d2bac3f831efa2049621d4192557f2b2d49352a3fd3e6",
+  "edge_type": "CHANGED",
+  "from_id": "chg:accept-047452907ffdceb9",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:enforced-rule-detector-test"
+}

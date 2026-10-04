@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:6bc9251cc80da31086235154236b78d477c97874014ebd1608e86a37a930d798",
+  "node_id": "cap:complementary-pairing",
+  "node_type": "Capability",
+  "properties": {
+    "description": "`Interface.designation` carries the boundary's external ROLE — `published` (offers), `required` (needs one from outside), `both`, or `internal` — and `pair_designs` matches COMPLEMENTS across two designs: published/both against required/both, never like with like. The `required` half did not exist before 2026-07-30, which is why a design could say what it offered but not what it needed in any form another design could be matched against.\n\nTwo boundaries pair when their names match fuzzily (reusing ingest's two-band resolution rather than a second matcher) AND they agree on `medium`, `transport_security` and `auth`. Five outcomes: paired, CONFLICTS (names match, axes refuse — reported with every refusing axis), unmet needs, dead surface, and duplicate providers. Uncertain names are candidates to ask about, never actions. Boundaries with no role are counted and named, because `internal` is the default and cannot distinguish a deliberate choice from an unlabelled one. Produces the pairs `seam_report` previously had to be handed by a person.",
+    "name": "Two designs pair by complementary role, so the seam is computed rather than hand-wired",
+    "provenance": "authored",
+    "status": "realized",
+    "tier": "operational"
+  }
+}

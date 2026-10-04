@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:99ac8d61ceb39f7b9f71c1127d463504bc7f47455327f0c74630f8c4cbeec9a8",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:test-design-identity",
+  "properties": {
+    "covers": "whole",
+    "note": "migrated 2026-09-22 from a REALIZES link_artifact drew in error"
+  },
+  "to_id": "ver:design-identity"
+}

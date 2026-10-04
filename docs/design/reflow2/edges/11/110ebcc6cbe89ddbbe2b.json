@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:9e657c1139a49f4bada9cf637bf0a446215d5776cc42b4908668b10d2cecbf0a",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-saved-design-moves-to-the-item-layout-2026-10-03",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:f51e9525234d2aa27bb95385be990303e87cfa7e418bcd11967e47f970a8989e",
+    "checksum_basis": "measured"
+  },
+  "to_id": "art:test-every-open-store-shares-one-memory-budget"
+}

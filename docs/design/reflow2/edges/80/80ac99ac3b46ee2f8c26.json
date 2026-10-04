@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:048f4385f1ea822b3da1526a32344ce5de9081f245e7e9500eb5ea909b155026",
+  "edge_type": "CHANGED",
+  "from_id": "chg:isolation-check-written",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cap:hosted-state-on-a-volume"
+}

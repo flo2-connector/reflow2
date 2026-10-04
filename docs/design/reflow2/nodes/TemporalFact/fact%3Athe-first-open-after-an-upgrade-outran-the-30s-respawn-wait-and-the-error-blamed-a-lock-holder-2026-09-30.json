@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:6d3b3eebf3b33b0c3705a57a933a3618c93c81862c6b323b07ee1124d04da620",
+  "node_id": "fact:the-first-open-after-an-upgrade-outran-the-30s-respawn-wait-and-the-error-blamed-a-lock-holder-2026-09-30",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "finding",
+    "name": "OBSERVED 2026-09-30: after swapping the served binary to 0.75.0 and running --stop-shared, the first MCP call failed. \"no shared reflow2 server came up … within 30s … The usual cause is that something else already holds the store's write lock\". The new server was the lock holder: it was still opening a store written by 0.74.0, and came up about 40 s after the spawn",
+    "source": "dev_reflow2 hub session, v0.75.0 install on the dev box, 2026-09-30 07:42–07:43 UTC",
+    "statement": "OBSERVED on reflow2's own design store (about 6,100 nodes), the first open by v0.75.0 of a store written by 0.74.0.\n\nTimeline, from .reflow2/graph.server.log:\n- 07:42:52: the new server opens the graph and holds the lock;\n- 07:42:58 and 07:43:04: two more spawns exit with \"another process already has the design graph … open\";\n- 07:43:32: the log reads \"this graph was written by reflow2 0.74.0 (28 node types, 65 edge types); you are running 0.75.0 (28, 66). Additive only\", then \"shared server … is up\".\nThe client's 30 s rendezvous wait had expired by then. Its error named the likely cause as another process holding the write lock, when the holder was the very server it had started, still opening.\n\nThe next call, about a minute later, succeeded against the new server.\n\nNOT ESTABLISHED: what took about 40 s of the open (a schema check, a search-index rebuild, or the log's tantivy segment warnings). Nothing was measured beyond the log timestamps. Recorded as the observation; the root-cause skill has not been run. Candidate remedies:\n- the wait reads whether the lock holder is the process it spawned, and says \"still opening\" rather than blaming a stray;\n- the wait lengthens while that process is alive.",
+    "subject_id": "cap:latent-surface",
+    "valid_from": "2026-09-30"
+  }
+}

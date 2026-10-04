@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:e25386ab4f5f2cf19e296c3b3413bd07250180dd533e193b2be6348cb508f4b5",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-read-only-server-with-no-store-serves-the-latent-surface-and-creates-nothing-2026-10-03",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cap:a-build-can-call-one-tool-from-the-shell-and-read-the-reply-as-json"
+}

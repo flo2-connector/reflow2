@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:33c0ea7fe26f98d9e918d929ee8988b38552b349298f4deb3dcf2311d76e107b",
+  "node_id": "ver:the-guard-reads-the-request-before-refusing",
+  "node_type": "Verification",
+  "properties": {
+    "description": "crates/reflow2-mcp/tests/the_guard_reads_the_request_before_refusing.rs — three cases; two observed refused against the stashed unfixed guard, the counterweight passing before and after.",
+    "kind": "verification",
+    "last_reconciled_at": "2026-09-23",
+    "last_reconciled_outcome": "passed",
+    "last_run_at": "2026-09-16",
+    "name": "A near-match the write names as its own relation target is never refused; Requirement↔Component reports and does not refuse; a same-type near duplicate still refuses with the escape",
+    "status": "passing"
+  }
+}

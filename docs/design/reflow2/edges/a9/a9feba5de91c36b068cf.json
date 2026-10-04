@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:28598b76169f6fd1b5baf57da965cebae65aa874c09e25401126533bcd4a9543",
+  "edge_type": "CHANGED",
+  "from_id": "chg:search-first-fires-at-the-tool",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:tools-capture"
+}

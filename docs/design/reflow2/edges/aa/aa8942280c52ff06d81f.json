@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:1727c161d2be848db72deadd74d5ac696fb6c4e26b29bbd181f9717432c1b1e1",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-check-and-its-findings-are-different-things",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "ver:a-measurement-says-when-it-was-taken"
+}

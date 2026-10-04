@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:78315e3be411ff629f90ffd2bdc820ce63dea61c20334eb825301127251a3250",
+  "edge_type": "EVOLVES_INTO",
+  "from_id": "dec:idea-a-person-learns-what-to-do-next-once-they-have-a-design",
+  "properties": {
+    "evidence": "Anthony kept option (a), a \"what next\" at the end of the skills that create a design, as intent on 2026-09-24 (\"keep reflow2 (a) and (b) as intent\")."
+  },
+  "to_id": "req:a-skill-that-creates-a-design-ends-by-naming-what-to-do-next"
+}

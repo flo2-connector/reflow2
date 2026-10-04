@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:762cf9f447d1e50246610ca48aebde3365b6fc9a9c1a141fa6548975786e81bf",
+  "edge_type": "INVALIDATES",
+  "from_id": "chg:a-restore-judges-a-reference-against-the-document-not-the-walk",
+  "properties": {
+    "at": "2026-08-29",
+    "note": "The asymmetry this recorded is closed on the WRITE path: a property declared `node_ref` is now refused when it names a node that does not exist, the same refusal an edge endpoint has had since 2026-07-28, pinned by `crates/reflow2-core/tests/a_property_that_names_a_node_is_guarded.rs` (8 tests, observed failing before the guard existed).\n\n🛑 BOUNDED, because the fact's own scope note is still true and must not be read as closed with it: a write-time guard reaches only the values that were WRONG WHEN WRITTEN. Measured 2026-08-29 on this graph's nine dangling references, five are the `prj:`/`proj:` typo this refuses and four were VALID WHEN WRITTEN and broke later when the target was renamed. Those need detection over the graph as it stands, which is a separate cause with a separate fix and is not claimed here."
+  },
+  "to_id": "fact:defect-a-property-naming-a-node-is-unguarded-while-edges-are-not"
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:1897f06473aee1e5846a84abd1605aefa9aa722f3b96e51370904d8858dd0f48",
+  "node_id": "cap:a-write-is-credited-to-who-it-was-for",
+  "node_type": "Capability",
+  "properties": {
+    "description": "The `writes_for` tool declares, per session, the Contributor this session writes for; a request's `_meta` key `reflow2/writes_for` names someone for that request alone and wins over the session's. While a call writes for someone, the graph records every node written at `create_node` — the one place every node write passes — and when the write lock is released each written node gets an AUTHORED_BY (role author) to that contributor (`reflow2_core::attribution`). Snapshots and Contributors are never credited. A write for a name the design does not hold is refused before the handler runs, so nothing is written. On the sessionless transport a session declaration is refused (it could not persist) and `_meta` is the way. ATTRIBUTION ONLY, on trust: the declared contributor is never used as an approver.",
+    "name": "A session names who it writes for once, or a request names them in _meta, and every node written is credited to them as author",
+    "provenance": "authored",
+    "status": "realized"
+  }
+}

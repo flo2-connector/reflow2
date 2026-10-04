@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:905aa242b6586034c980cd43af3de98cb32151bb62625532f458bff7fba40278",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:skill-adherence-is-measured",
+  "properties": {
+    "approved_at": "2026-08-06T11:20:00Z",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:64863e62bd2da09fafba69e84b9b8e275cf9219bb43aa48357cdfe50deb9542e",
+  "edge_type": "INVALIDATES",
+  "from_id": "chg:every-argument-refusal-names-the-tool-and-the-field-path",
+  "properties": {
+    "at": "2026-10-02",
+    "note": "Verified false 2026-10-02: reconcile_artifacts with present \"yes\" now answers naming `reconcile_artifacts` and `observed[0].present` ('expected true or false'), exit 2."
+  },
+  "to_id": "fact:five-lists-decoded-inside-their-handlers-were-refused-naming-neither-the-tool-nor-the-item-2026-10-02"
+}

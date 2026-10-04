@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:7c744c1a5f9233f1f0eee47a407a14a16c47b117f840027a81e076e792403db8",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:idea-the-server-counts-its-own-refusals-so-no-session-has-to-remember-to",
+  "properties": {
+    "approved_at": "2026-09-12",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:7139bf92aeff9ffc9b5333accacac2b3431da584d148bb8674cc5640ba5f3127",
+  "edge_type": "CHANGED",
+  "from_id": "chg:root-cause-is-tiered-search-every-failure-run-the-skill-before-a-cause-is-written",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "dec:idea-how-does-root-cause-become-automatic-rule-hook-detector-or-composition"
+}

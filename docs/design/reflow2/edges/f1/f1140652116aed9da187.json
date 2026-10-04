@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:fef75d6cda5f3bce5ae448b4e252d3f8207ba59ecd2e2c7ecc7b28f56f1d42b8",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-hub-skill-names-a-local-hubs-declared-dependencies-as-its-list-2026-10-03",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:hub-skill"
+}

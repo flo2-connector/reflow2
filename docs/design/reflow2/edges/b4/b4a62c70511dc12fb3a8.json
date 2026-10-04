@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:e79764453de7302f5c15cef2608d5d5a6a77a52625fe12324fa2fab6b6c319bd",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:capture-session-skill",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:capture-session-skill"
+}

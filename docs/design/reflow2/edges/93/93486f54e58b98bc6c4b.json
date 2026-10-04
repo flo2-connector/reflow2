@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:5fbd8b7563556b083c87e50f40d20c5c714d2dc518abea54ae93262ab9b73ede",
+  "edge_type": "CONTRADICTS",
+  "from_id": "fact:defect-a-finding-has-no-bounds-so-grading-goes-in-the-name",
+  "properties": {
+    "alignment": "supporting",
+    "confidence": 1.0,
+    "evidence": "Both report that a Verification's qualifications live outside any field the loop can read. That one asks for structured RESULT fields (exit_code, command, observed/expected); this one asks for bounds/caveats/grade and a findings/report field. Same root, two proposals - settle them together."
+  },
+  "to_id": "fact:defect-verification-evidence-is-prose-so-passing-can-contradict-itself"
+}

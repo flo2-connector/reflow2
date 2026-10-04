@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:ef731e0b95d3280398b610dee66b17c5338cc2996b151ca2d874d2dbc6331fc6",
+  "node_id": "chg:isolation-check-written",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "name": "The conditional precondition of dec:one-process-many-stores is written and run — 4 clauses hold, and the volume case does not"
+  }
+}

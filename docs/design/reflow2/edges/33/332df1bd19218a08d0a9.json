@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:f25ef3f36ade88a53caec092d1186b902ea9a8ecee89ae4f0337ed82a8edf65d",
+  "edge_type": "CHANGED",
+  "from_id": "chg:framework-registry-reassessed",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "req:framework-is-chosen-not-defaulted"
+}

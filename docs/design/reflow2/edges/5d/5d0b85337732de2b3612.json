@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:0d8943d1118d014e6b39b2f836081426eec77eefb5fa326caae5925c47330eed",
+  "edge_type": "MITIGATES",
+  "from_id": "dec:idea-a-refused-typed-write-stores-nothing",
+  "properties": {
+    "evidence": "Each option answers the measured hazard: a refused typed write leaves its node behind, misreports it on a revise, and its retry skips the duplicate guard."
+  },
+  "to_id": "fact:root-cause-a-typed-constructor-writes-the-node-before-its-later-checks-and-a-refusal-leaves-it-2026-10-02"
+}

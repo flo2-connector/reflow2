@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:6a3583fe330677a118777ca1fb9f088eaf504f4d8d798ceb0114693e3b119582",
+  "edge_type": "REALIZES",
+  "from_id": "art:loop-status-lens-test",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "verified"
+  },
+  "to_id": "cap:the-skill-response-carries-the-lens"
+}

@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:9d44ffbc301e9196343b2e6178669e8a448b1939940282fcf0d11a026e41ec3c",
+  "edge_type": "VERIFIES",
+  "from_id": "ver:sanitize-ingress",
+  "properties": {},
+  "to_id": "cap:sanitize-ingress"
+}

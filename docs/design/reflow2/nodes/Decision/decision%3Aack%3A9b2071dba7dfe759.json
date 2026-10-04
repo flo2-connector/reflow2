@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:1fed8b1e4a21bfde46a1d40ced7d3e5d180882c96d21bf0f455ba7c63298c24f",
+  "node_id": "decision:ack:9b2071dba7dfe759",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Accepted the gap gap:9b2071dba7dfe759.",
+    "name": "Reviewed: gap:9b2071dba7dfe759",
+    "rationale": "User (who:ajs, standing policy from 2026-07-23, re-affirmed 2026-07-24): validation happens through the trials programme — docs/trials/ (self-host, adopt dogfood, erosion, phase-coverage, fleet feedback) is where \"built the right thing\" is exercised against operational intent; formal validation-kind Verification nodes are not this project's tracking mechanism. The gap re-fired only because its affected set grew by one: cap:derived-completion (BL-104) joins the same disposition. Worth noting that it is a better-than-average fit for the policy rather than an awkward one — whether \"20 of 30 delivered\" is the RIGHT number to compute is not a question a unit test can answer, and it will be settled by whether the figure proves useful when someone actually asks what to work on next, which is precisely a trial rather than a check.",
+    "status": "accepted"
+  }
+}

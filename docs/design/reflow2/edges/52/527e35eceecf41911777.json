@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:e583f0c57e2ff89d94a0b69445c170cc73e4c6152850e89dcd7217fad2f7ea62",
+  "edge_type": "TRIGGERS",
+  "from_id": "fact:the-defect-count-is-severity-blind-so-parked-ideas-are-reported-as-outstanding-debt",
+  "properties": {
+    "evidence": "F-18's workaround has a third step whose only purpose is to dodge that finding: after minting an Artifact purely to carry a cause, the reporter drew a `realizes` edge to something \"so it is not an island\". The orphan_node line is what forces that extra write, so the reporting behaviour measured there is what makes this friction cost two writes instead of one."
+  },
+  "to_id": "dec:idea-the-thing-you-need-to-point-at-is-usually-not-a-node-yet"
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:7b7d3e851ea8790fccc605c180bf12076b3f064bfb84f9abd6484df8a93ffc64",
+  "edge_type": "EVOLVES_INTO",
+  "from_id": "dec:idea-a-shell-driven-agent-approves-reads-once-and-confirms-each-write",
+  "properties": {
+    "evidence": "Option (4), read/write verbs, became step 3 of the door plan agreed 2026-10-01."
+  },
+  "to_id": "req:a-terminal-agent-can-auto-approve-reads-and-confirm-each-write"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:8dbe258b1c59a7a2f89c01ef048de09d22a0b6f7864ebfd79617cf9b91d995a5",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-quantity-says-how-it-was-obtained-and-a-check-on-it-has-a-form-a-tool-can-rerun",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "art:test-a-quantity-says-how-it-was-obtained"
+}

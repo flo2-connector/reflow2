@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:f27987173523f3fa7d6e924e186939d52f5b8f5fb788c17850b5513206bba74a",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:every-skill-serves-a-summary-and-an-audience-and-the-shortcut-count-is-computed",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:skills"
+}

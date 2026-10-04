@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:8702ca240e0caab3cf3c3d992a5c6e6fd8b49c1ca54676940a1efa243ff0ec7b",
+  "edge_type": "CONTAINS",
+  "from_id": "cmp:byte-store",
+  "properties": {},
+  "to_id": "cmp:rocksdb-backend"
+}

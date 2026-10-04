@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:f4893974a07ce7834e98b99043e139d515aceefe4de32a69fdca68334fa9fe8f",
+  "node_id": "req:the-graph-engine-keeps-a-compact-index-per-primitive",
+  "node_type": "Requirement",
+  "properties": {
+    "concern": "core",
+    "kind": "nonfunctional",
+    "lineage": "original",
+    "name": "Where measurement shows adjacency work is the cost, reflow2's graph engine keeps one compact index per primitive — edge types interned, symmetric relations stored once, inverses computed from the declared algebra — derived from the stored graph, never written as a second copy",
+    "priority": "medium",
+    "provenance": "imported",
+    "source": "Anthony, 2026-09-28, in a dev_reflow2 session: \"let's go with idea 4, the 1, 2, and 3\" — promoting dec:idea-store-each-primitive-as-its-own-compact-index from the graph-primitives design on flo2 (graph 85a2a1a36e7c942d).",
+    "statement": "THIRD of the four performance requirements Anthony promoted on 2026-09-28. GATED on req:time-and-tokens-are-measured-per-task-against-budgets: built where that measurement shows adjacency scans or edge-type comparison miss a budget, not before.\n(a) A compressed-sparse-row adjacency per primitive, built from the declared readings at load or refresh, so a one-kind projection is an existing array rather than a filter over every edge.\n(b) Edge-type names and property keys interned to small integers in hot paths (cheapest; may be worth doing regardless).\n(c) Using the declared algebra (req:every-relationship-declares-its-algebra-and-no-method-runs-where-it-cannot-represent-it): a symmetric relation stored once, an inverse pair stored one way, a declared composition computed rather than stored.\n(d) Hot bulk-read fields held as columns — last, and only if measured.\nEvery index is DERIVED from the stored graph and rebuilt from it; it is never written independently, because a second copy that can drift is what test 2(i) of the true-knowledge-graph definition forbids.\n\nCounter-argument carried from the brainstorm: at reflow2's sizes algorithms already run in milliseconds, and its recorded wins (hydrate 8.8 s → 0.9 s, defect sweep 44.5 s → 4.4 s) came from whole-graph passes and redundant work, not adjacency layout — the gate exists for exactly that reason.",
+    "status": "proposed"
+  }
+}

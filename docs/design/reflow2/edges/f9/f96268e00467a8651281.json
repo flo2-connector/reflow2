@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:0aff47332c56aa8bfb584d972cb4ef9ab6836734414cf322c8297b80b77bd194",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-finding-or-refusal-names-the-route-that-works",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:hierarchy"
+}

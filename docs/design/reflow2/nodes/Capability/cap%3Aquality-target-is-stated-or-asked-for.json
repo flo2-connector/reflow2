@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:8f5651e381ce451ddba77121f3dfa034b3672a7ae48aa87938fb65f4d8f957e3",
+  "node_id": "cap:quality-target-is-stated-or-asked-for",
+  "node_type": "Capability",
+  "properties": {
+    "description": "`Decision.quality_target` (the nine axes of DimensionAssessment.dimension, no default), the `set_quality_target` tool that writes it while preserving every other property, and the `quality_target_unstated` gap that reports its absence.\n\nTHREE STATES, NOT TWO. An ACCEPTED Decision carrying a target settles the question and the finding goes quiet. A PROPOSED one carrying a target is somebody LEANING — weighed but not committed — and the finding reads \"still being weighed\" at severity 0.40 instead of \"unstated\" at 0.55. Nothing at all means nobody was asked. Superseded and rejected targets are history, not a position.\n\nThe finding names `set_quality_target` as the answer and names `acknowledge_gap` as the WRONG move, because the gap is aggregate-keyed and accepting it once would silence a deferral permanently.\n\nGated on the design having said what it DOES: silent at 0 capabilities and 0 requirements, which is `design_without_intent`'s ground.",
+    "name": "Record what a design is built for, and report when nothing says",
+    "provenance": "authored",
+    "status": "realized"
+  }
+}

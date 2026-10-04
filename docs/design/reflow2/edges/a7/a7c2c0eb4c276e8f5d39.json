@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:d279394a9de2f5261f06e57e4982e53b4a185051cbf8a6b7eee486bb208fefc3",
+  "edge_type": "REALIZES",
+  "from_id": "art:host-gate",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:remote-sessions"
+}

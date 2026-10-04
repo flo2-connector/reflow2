@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:b1c5e3982e20b59adc2a25d21b97d3925f1027b836ffb63d4d475a4581dc2f3d",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:a-change-event-is-written-complete-in-one-call",
+  "properties": {
+    "coverage": "full",
+    "evidence": "Both declared text fields reachable from the constructor; 3 cases pin it."
+  },
+  "to_id": "req:a-change-record-carries-why-in-the-same-act"
+}

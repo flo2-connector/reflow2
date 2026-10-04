@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:eccd3948b484189c97139c958930b78e263dcf352d339658a39e69bb52405cbf",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-design-is-saved-one-file-per-item-2026-10-03",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:50dc5c5d038eda02827dfbf6c779f541a1141f1b4ce357967b34da72d71af95b",
+    "checksum_basis": "measured"
+  },
+  "to_id": "art:replies-are-bounded-gate"
+}

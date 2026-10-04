@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:1666431bf393c8e5a4bcc240fc664dd51b2cde7a7f7fa21654a4072ab3fd1b2e",
+  "node_id": "art:pointer",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "description": "Reads `.reflow2.toml` beside a folder's `.reflow2/` ([design] id + address, optional [[also]]), refusing by name anything that is not a pointer; asks the server at the address which design it holds (design_identity) and classifies the answer as confirmed, different, refused or unconfirmed; builds the notice put in front of the handshake instructions and the refusal a degraded session reads. Seven unit tests.",
+    "location": "crates/reflow2-mcp/src/pointer.rs",
+    "name": "pointer.rs — a code folder's .reflow2.toml: read, checked against the server, and said to the agent",
+    "status": "realized"
+  }
+}

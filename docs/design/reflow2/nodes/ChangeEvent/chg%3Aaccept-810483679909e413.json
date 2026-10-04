@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:a6a657bfec988a196e2514e95181ee2aceafd0dd9f4f06e64fed42bbc71c0ffb",
+  "node_id": "chg:accept-810483679909e413",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "refactor",
+    "name": "rustfmt only.",
+    "subject": "system"
+  }
+}

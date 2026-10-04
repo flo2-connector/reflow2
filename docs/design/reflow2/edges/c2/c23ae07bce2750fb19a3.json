@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:e629adaf91b3cc70a4dedc249270a825b9d6cb481c1031a98047c57eb34ddd5d",
+  "edge_type": "REALIZES",
+  "from_id": "art:proposed-asserts-nothing-test",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "verified"
+  },
+  "to_id": "cmp:heal"
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:79812a2f0c0d8bc2eaccba8409e49ff56e21baf08b1a5f7666fd52cf6e591116",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:test-item-layout-merges",
+  "properties": {
+    "covers": "whole"
+  },
+  "to_id": "ver:the-python-reader-reads-every-odd-id-where-the-server-wrote-it"
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:0821f1ec5a775af7a6b427815fc599e6cc9ebb64d2cf3b5f48347aa4b5e9e13a",
+  "node_id": "epoch:usgov-genesis-feedback-triaged",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "epoch_type": "milestone",
+    "name": "A governance-domain genesis session stress-tests the vocabulary: the report's own top-severity item is refuted (Constraint already fits and the DOCUMENTATION ruled it out), its lowest-severity item turns out to be the same root cause and a tenth instance of an existing defect, and a descriptive-model status question goes to Anthony (2026-08-15)",
+    "sequence": 340,
+    "status": "arrived"
+  }
+}

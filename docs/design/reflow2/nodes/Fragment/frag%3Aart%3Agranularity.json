@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:b10eb0d509943a596c91338437f72426410d5b3ef9eda612cff74607e79ae5c6",
+  "node_id": "frag:art:granularity",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered granularity.rs"
+  }
+}

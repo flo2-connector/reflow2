@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:4a095a4918d2e15a7309529e8e03d3a423fac760b903b3ede036104d1a3cd9f7",
+  "node_id": "decision:ack:7a268920fdfe0ba7",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Accepted the gap gap:7a268920fdfe0ba7.",
+    "name": "Reviewed: gap:7a268920fdfe0ba7",
+    "rationale": "Accepted at component granularity, re-fired because cap:brainstorm joined the set (3 → 4), and the four split into three distinct honesty cases worth keeping straight. cap:change-an-existing-feature and cap:onboarding: neither skill has been WRITTEN, so the detector reads them as covered purely because they are allocated to a component carrying a passing check — detector generosity, not evidence, and each gets its own verification when built. cap:parallel-work: the skill exists and the machinery under it is independently proven (ver:merge-driver, four cases run by real git); what has no test is the procedure across two people and two checkouts, which is a field trial. cap:brainstorm: the skill exists and there is nothing under it to test — it is prose over existing tools, and every guard it carries is unenforceable by construction (an agent that creates a Requirement mid-brainstorm has violated the skill, and no fixture can catch that, because the same tool call is correct one message later after the user says yes). Its check is a person: a session where someone thinks out loud, reads back what was recorded, and says whether those are their ideas. That is the trials programme, where the standing validation disposition already puts it — and until such a trial runs, this capability's status of `realized` rather than `verified` is the honest reading.",
+    "status": "accepted"
+  }
+}

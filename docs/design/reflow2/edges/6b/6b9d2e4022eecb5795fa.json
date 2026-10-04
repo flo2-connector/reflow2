@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:f62dfb32eb1e22f0436bed48acd043a16614146c12302404646ccda9d25ef072",
+  "edge_type": "ANTICIPATES",
+  "from_id": "fact:vocabulary-needs-three-legs-and-a-users-project-gets-none-of-it",
+  "properties": {
+    "evidence": "Capability.inputs and outputs are declared in the schema, have no typed tool, no instruction and no detector - and stand at 3 of 192. The three-legs fact predicted this population before anyone counted it here, and it is why option (a) cannot begin with the declaring."
+  },
+  "to_id": "dec:idea-can-exhaustive-per-subsystem-tests-be-derived-rather-than-imagined"
+}

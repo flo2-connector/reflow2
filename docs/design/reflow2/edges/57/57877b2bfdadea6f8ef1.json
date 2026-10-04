@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:79724d2ab2feeb96e9d60d6c11288e76224169ed256fffc4c8a2310977d4eb22",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:bounded-reads",
+  "properties": {},
+  "to_id": "req:no-silent-fallback"
+}

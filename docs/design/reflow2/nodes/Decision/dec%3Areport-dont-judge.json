@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:d28adf90a047bbbc34492b66f547ccb47f76772204fc8c1ee80b792b52ef2950",
+  "node_id": "dec:report-dont-judge",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Per capability: drifting / confirmed / unexamined, with the disposition counts visible.",
+    "name": "The confirmation ledger reports claim history, never judges a claim",
+    "rationale": "Five design_holds claims with zero design edits is the erosion signature and the ledger makes it legible — but judging a specific claim false is semantic, and a deterministic detector would fire on every stable design with cosmetic churn (the unexpected_coupling lesson). Decided 2026-07-19 (https://claude.ai/code/session_013aumVdHrRHu24cLirn6Cam); BL-35.",
+    "status": "accepted"
+  }
+}

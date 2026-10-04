@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:9274b6abb0fe79fdefa6513bda66bdeab7e039a7947392e9e0f2789ca94a3518",
+  "edge_type": "CHANGED",
+  "from_id": "chg:accept-dccec2cba830ec2f",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:the-export-chains-from-main-test"
+}

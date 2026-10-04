@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:1996237a9aa59dc1364a59bcb0370c23dee573ecdc97e3b858ff077f56edce9a",
+  "node_id": "ver:snapshot-per-revision",
+  "node_type": "Verification",
+  "properties": {
+    "kind": "verification",
+    "last_run_at": "2026-07-29",
+    "level": "integration",
+    "method": "test",
+    "name": "A second revision in one epoch keeps both snapshots, and an unchanged re-capture mints none",
+    "status": "passing"
+  }
+}

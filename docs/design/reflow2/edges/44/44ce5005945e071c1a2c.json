@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:548a5c5a1a60a27f3451d71a161d65db62a70ff2acf4c58788410220fba2c88e",
+  "edge_type": "REALIZES",
+  "from_id": "art:test-search-first",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:search-first-at-the-tool"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:092059720b6d355b659c7b4be3a6ddfd3157aa5263c6ca74646e2b42f0470229",
+  "edge_type": "CHANGED",
+  "from_id": "chg:backlog-brainstorm-data-model-constraint",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "dec:idea-backlog-belongs-in-the-graph"
+}

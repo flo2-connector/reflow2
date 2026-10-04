@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:db4de2877bd31d696f8c34031e8cd899d734655558cfd17a95f461317a0b3c36",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:alternatives-unranked-forkable",
+  "properties": {
+    "approved_at": "2026-07-22",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

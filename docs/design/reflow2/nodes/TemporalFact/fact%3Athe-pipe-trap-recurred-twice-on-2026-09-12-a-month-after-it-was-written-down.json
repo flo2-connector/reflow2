@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:c16bd47360a741532816f72919bd29ee4386831899b1e15511546e2ffce470c8",
+  "node_id": "fact:the-pipe-trap-recurred-twice-on-2026-09-12-a-month-after-it-was-written-down",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "confidence": 1.0,
+    "fact_type": "finding",
+    "name": "The piped-gate trap recurred twice on 2026-09-12 — a red gate was committed on both times — a month after the fact was recorded and with a rule pointing at it",
+    "statement": "`python3 tools/reflow2_check.py | tail -1 && git commit …` committed on a FAILING gate twice in one day (2026-09-12), because the pipeline's exit code is `tail`'s. The trap was first recorded 2026-08-14 (this fact's subject) and is named by rule:success-is-read-from-the-authoritative-object; the agent had both on the record and in its memory file. Both recurrences were caught before push. What works: redirect the gate to a file, capture `rc=$?` on its own line, and commit only inside `if [ $rc -eq 0 ]`. Recorded as a recurrence rather than a new lesson because the RECURRENCE is the finding: a written lesson did not change the next command, which is the measured premise behind dec:idea-does-the-agent-keep-a-notepad-in-the-graph-for-the-next-agent — the check at the step is what stops it.",
+    "subject_id": "fact:a-piped-gate-reports-the-pipes-exit-code-not-the-gates",
+    "valid_from": "2026-09-12"
+  }
+}

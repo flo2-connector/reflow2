@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:b07ae00bac85d6bf7f2292f39e4fad4ebe3b95ebb6456a76aea6d692af421cb9",
+  "edge_type": "REALIZES",
+  "from_id": "art:adopt-skill",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:adopt"
+}

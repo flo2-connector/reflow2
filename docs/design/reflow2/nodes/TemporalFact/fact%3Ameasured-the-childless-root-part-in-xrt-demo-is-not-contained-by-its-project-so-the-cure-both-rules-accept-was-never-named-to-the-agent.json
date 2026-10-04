@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:cec6abe6d9ad06973d2c8fbcab2511cc2ea2e0c962d789b3ad3dd175634eb782",
+  "node_id": "fact:measured-the-childless-root-part-in-xrt-demo-is-not-contained-by-its-project-so-the-cure-both-rules-accept-was-never-named-to-the-agent",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "measurement",
+    "name": "MEASURED (xrt-demo's live graph, driven by the 0.62 debug binary, 2026-09-16): cmp:agent-seam is `level: system`, hierarchy_issues raises exactly one orphan_level on it, and the message \"not contained by anything above it\" is literally true — no CONTAINS edge from the Project reaches it. Candidate (c) holds: the cure both rules accept was never taken because nothing named it",
+    "statement": "Taken with tools/smoke_mcp.Server against /home/ajs7/project/xrt-demo/.reflow2/graph (not locked; no writes). get_node cmp:agent-seam → level \"system\", status planned. hierarchy_issues → one finding: orphan_level on cmp:agent-seam, \"'cmp:agent-seam' (system) is not contained by anything above it and contains nothing below it\"; no level_spine_disagreement, and none of the other ten components fires (they have parents or children). Since orphan_level's has_higher_parent accepts a Project parent, the absence of the finding under a Project CONTAINS edge is what the code already does; the edge is simply not there. So the root cause resolves to: the genesis skill says \"contains each new node under the Project\" and the agent did not for this one; the finding's message names the condition and not that cure, so the agent turned the only knob the message mentioned (level) and found both settings wrong. The joint-exemption candidate (a) is latent, not the cause here. FIX (his word): orphan_level's message says \"if this is a top-level part, contain it under the Project with `contains`\"; and the genesis and adopt skills say the same where they tell the agent to nest. No schema change.",
+    "subject_id": "fact:root-cause-a-childless-root-part-has-no-legal-level-because-two-self-limiting-hierarchy-rules-were-never-checked-jointly",
+    "valid_from": "2026-09-16"
+  }
+}

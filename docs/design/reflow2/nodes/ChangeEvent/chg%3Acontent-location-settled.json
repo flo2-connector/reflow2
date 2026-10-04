@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:688bc0e90e9060f227de82fb44632109b09fbf59445cbf6eb3645c0bdd4fe7d9",
+  "node_id": "chg:content-location-settled",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "scope_change",
+    "name": "Where content lives, settled on Anthony's word: object_store with a local backend, blobs committed to the repo"
+  }
+}

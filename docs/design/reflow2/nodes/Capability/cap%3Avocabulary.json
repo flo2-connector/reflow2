@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:efe9d92e17f61059a68080009d5e60d3d82ebb036f4295ce628a3feb2fe48c0e",
+  "node_id": "cap:vocabulary",
+  "node_type": "Capability",
+  "properties": {
+    "description": "Tell a client what types exist and what may join them.",
+    "name": "Describe the vocabulary",
+    "provenance": "authored",
+    "status": "verified",
+    "tier": "operational"
+  }
+}

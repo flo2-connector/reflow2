@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:3a5f335c2217c50a76f2259bd982b9284307b0c0532ae7dddc2d047a6abe6738",
+  "node_id": "chg:accept-c0b9a9de29aa056f",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "documentation",
+    "detected_at": "2026-09-04",
+    "name": "Excerpt extended with lines 7086-7103 of the source (one entry, dated 2026-09-05 by the reporter, appended 22:12 local). The source file is append-only and the prefix property was re-verified before extending: head -n 7085 of the fetched file is byte-identical to the previous capture. The artifact describes the same thing, one entry longer.",
+    "subject": "system"
+  }
+}

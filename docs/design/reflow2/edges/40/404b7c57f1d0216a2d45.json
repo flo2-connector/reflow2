@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:ddf086395aea4f8c3f8b8df315631ad30ab559b0dba544275083e6df6689165c",
+  "edge_type": "DEPLOYED_TO",
+  "from_id": "rel:v060",
+  "properties": {
+    "status": "rolled_back"
+  },
+  "to_id": "env:dev"
+}

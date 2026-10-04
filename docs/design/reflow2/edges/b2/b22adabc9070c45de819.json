@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:b369c41f95cb3742d9224d3765e82144b4a2d8fa9d72a66d753c2791603ca3f7",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "req:the-agent-never-authors-what-requires-accountable-sign-off",
+  "properties": {
+    "evidence": "The boundary only exists because reflow2 accepted designing hardware, buildings and processes. A software-only tool never produces an artifact anybody has to be licensed to sign, so this obligation is created by that requirement rather than standing on its own.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "req:design-anything"
+}

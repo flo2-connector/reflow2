@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:4074aac7de73c27e51f2530c49459924ebd43f92f2cc80ba79c6873fc303ba06",
+  "node_id": "decision:ack:dd3c69b16fec5439",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Accepted the gap gap:dd3c69b16fec5439.",
+    "name": "Reviewed: gap:dd3c69b16fec5439",
+    "rationale": "Deferred on Anthony's word, 2026-07-28, alongside the other four captured from the reflow workflow review. The requirement is accepted, not dropped: is_entry_point / is_exit_point / inputs / outputs / capability_type are declared and read by nothing, which blocks three of reflow's five functional-mode detectors (unreachable_functions, dead_end_functions, unexplained_outputs). Both honest resolutions — compute against the vocabulary, or remove it — are real work scheduled for a later increment. Sibling of req:defaults-do-not-assert, itself parked the same day.",
+    "status": "accepted"
+  }
+}

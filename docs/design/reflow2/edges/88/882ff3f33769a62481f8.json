@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:e4e173aed49b11da3edf5f320b0c3532ae56959bb4708a8d015cb87f34019f89",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:a-capability-claiming-reach-beyond-this-repo-is-realized-by-something-a-consumer-gets",
+  "properties": {},
+  "to_id": "req:an-analysis-a-consumer-needs-is-served-named-and-gated"
+}

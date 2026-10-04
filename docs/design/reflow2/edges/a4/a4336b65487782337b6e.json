@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:8c79a8dadd4f25c8258eaff995038f7e061fb52f3faf2365805ffa991c9fd9e4",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-read-of-a-held-design-is-as-true-as-the-live-one",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cap:a-sweep-says-what-it-could-not-have-found"
+}

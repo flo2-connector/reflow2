@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:0ade9966eaa0d8496ba9693ae9954ba5994c32713b00be9afb1b4aafe20a5c30",
+  "node_id": "decision:ack:bd5aefd848b8d3e4",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Accepted the gap gap:bd5aefd848b8d3e4.",
+    "name": "Reviewed: gap:bd5aefd848b8d3e4",
+    "rationale": "Accepted at component granularity, with the caveat carried since cap:onboarding first raised this and now true of a third capability — but with one real difference worth recording. For cap:change-an-existing-feature and cap:onboarding the caveat is that neither skill has been WRITTEN, so the detector reads them as covered purely because they are allocated to a component that carries a passing check; that is detector generosity, not evidence. cap:parallel-work is different: the skill exists, and the machinery it drives is independently proven — cap:git-merge-driver carries ver:merge-driver, four cases run by real git. What has no test is the PROCEDURE the prose describes (worktree, claim, export before commit, release), and it is not testable in CI in any honest way: it spans two people, two checkouts and a pull. Its check is a field trial, which is where the standing validation disposition already puts it. So: accepted, and when the trial runs, its record in docs/trials/ is this capability's evidence rather than a synthetic test.",
+    "status": "accepted"
+  }
+}

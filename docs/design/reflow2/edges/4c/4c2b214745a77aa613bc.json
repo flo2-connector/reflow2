@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:520dbc7ea6c9a1d9463d37e67061967d1423516d3abbc2982e230cf0cfa51017",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0760",
+  "properties": {
+    "as_checksum": "sha256:eddcc09c1b746d5ec9aca9813f1cb9116367bfe17552326813397fbb60e0aa31"
+  },
+  "to_id": "art:flow"
+}

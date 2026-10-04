@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:ad0a542e6e4ea874549254a675a083acbf6a3e675d35486aef72e6fd1558fe3e",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:a-build-can-call-one-tool-from-the-shell-and-read-the-reply-as-json",
+  "properties": {},
+  "to_id": "req:a-build-reads-a-report-from-the-design-without-an-agent-in-the-loop"
+}

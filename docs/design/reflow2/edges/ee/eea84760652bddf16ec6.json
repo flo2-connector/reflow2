@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:336e9603b387ac10637cb85728f228c502fea93f367002604d7630eb36638259",
+  "edge_type": "CHANGED",
+  "from_id": "chg:orphan-decision-degree-zero",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:unreachable-decision-test"
+}

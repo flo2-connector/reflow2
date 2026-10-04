@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:5885d237fbbd3e21e1a1b5a0aa46f3f26d50de26738f64ed38d184cce94a74ce",
+  "node_id": "cmp:manual-work",
+  "node_type": "Component",
+  "properties": {
+    "kind": "module",
+    "level": "component",
+    "name": "manual-work",
+    "provenance": "authored",
+    "purpose": "The work a session did BY HAND that reflow2 already serves — the negative space. Records one piece of hand-rolled work with a closed-set diagnosis (`tool_missing` / `tool_not_found` / `tool_refused` / `unknown`) and reads the collection back, so a MISSING tool is distinguishable from an UNFINDABLE one. Implemented in `crates/reflow2-core/src/manual_work.rs`; the record is written as a TemporalFact, stays local, and must never be lifted into telemetry (`req:telemetry-carries-usage-never-design-content`).\n\nGIVEN A PART OF ITS OWN on Anthony's word 2026-08-26, under the ruling recorded as `chg:allocation-follows-the-code-not-the-neighbour` (2026-08-25, 'move it, do not dual-allocate'): the module is real, checksummed and linked by `art:manual-work`, so the cheap alternative — crediting the function to `cmp:temporal` next door because both write TemporalFacts — is precisely the misfiling class that change spent a session correcting in 19 places. Allocating instead to `cmp:tools-temporal`, where `report_manual_work` and `manual_work_report` are declared, was rejected against `dec:the-tool-surface-slices-hold-no-function-of-their-own`. Filing it by PURPOSE under `sub:session-posture` was also offered and declined: that is the by-purpose habit the same ruling corrects against, and it would split a core module from its siblings in core.",
+    "status": "planned",
+    "tier": "operational"
+  }
+}

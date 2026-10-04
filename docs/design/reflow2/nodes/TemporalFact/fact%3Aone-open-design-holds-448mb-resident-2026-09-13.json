@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:d0ab917b7d716045e6159d65667ca8a126cc8228d5f87675a829de2015faa0f8",
+  "node_id": "fact:one-open-design-holds-448mb-resident-2026-09-13",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "confidence": 0.9,
+    "fact_type": "property",
+    "name": "BASELINE — one server holding one 202-node / 2.9 MB design sits at 448 MB resident, and no cause for that is established",
+    "statement": "MEASURED 2026-09-13 BY FLO2'S SESSION, not by this one, and relayed by @ajs in conversation. Release binary, --serve-shared, one store open, holding a 202-node / 2.9 MB design:\n\n    VmRSS 448 MB · VmHWM 473 MB\n\nReproduce with: grep -E '^(VmRSS|VmHWM)' /proc/$(pgrep -f 'reflow2-mcp.*serve-shared')/status\n\nWHAT THE NUMBER IS ODD AGAINST: 2.9 MB of design, 448 MB resident — roughly 150x. That ratio is the reason this is written down rather than filed as a tuning preference.\n\n🛑 NO CAUSE IS ESTABLISHED HERE, DELIBERATELY. The explanation offered with the reading — that all six column families in ALL_CFS take Options::default(), so six write buffers at 64 MB is ~384 MB of memtable before anything else, and only nodes and edges even get a block-based table factory — is ARITHMETIC READ OUT OF crates/reflow2-core/src/foundation/store/backend.rs (cf_options(), RocksBackend::open()). flo2's own session says so in as many words: \"the causal claim above is arithmetic from source, not yet a measurement.\" It is the first plausible explanation and it has not been put to anything that could refute it. Recording it as the cause would be exactly the move the root-cause discipline exists to stop, so it is recorded as a HYPOTHESIS and no CAUSES edge is drawn.\n\nWHAT WOULD SETTLE IT: change one setting at a time on the same design and re-read, rather than all three at once. Write throughput must be watched on the way down — this trades memory for it.\n\nALSO NOT ESTABLISHED: how much of the 448 MB is per-process and how much is per-open-store. One process with one store is one point on a line. ver:the-per-open-design-cost-is-measured is the measurement that separates them.",
+    "subject_id": "cmp:rocksdb-backend",
+    "valid_from": "2026-09-13",
+    "value": "{\"vmrss_mb\":448,\"vmhwm_mb\":473,\"design_nodes\":202,\"design_mb\":2.9,\"binary\":\"release\",\"mode\":\"--serve-shared\",\"stores_open\":1,\"measured_by\":\"flo2 session 2026-09-13\",\"cause_established\":false,\"hypothesis\":\"six ALL_CFS column families at Options::default(), ~64MB write buffer each\"}"
+  }
+}

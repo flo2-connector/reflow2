@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:4dc875a72816e9fdfc2bb4ba2cf92a9f4bb720a751119f4b69843eaa3c0007c6",
+  "node_id": "art:tools-skills",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "location": "crates/reflow2-mcp/src/tools/skills_tools.rs",
+    "name": "skills_tools.rs",
+    "status": "realized"
+  }
+}

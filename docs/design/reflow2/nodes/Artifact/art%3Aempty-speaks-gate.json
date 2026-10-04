@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:568da6f1235ee34677636276d7609d05ce3a2a38f76f9607d8d86917b6e5cde9",
+  "node_id": "art:empty-speaks-gate",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "test",
+    "description": "The wire-level class gate for the bare-zero defect: starts the built binary on an EMPTY store, calls every no-argument read-only tool by name from `tools/list` — so a new tool joins the class the moment it is served — and fails if a reply whose count/items/value is empty carries neither `empty_because` nor the loop-debt `loop_hint`. Checked on the wire rather than in-process because the obligation is about what a consumer receives. Measured before the fix: 39 no-arg read-only tools, 10 empty on an empty design, 1 speaking, 9 bare. Runs in CI's workspace job after smoke_mcp and is listed in AGENTS.md's everyday gate block.",
+    "location": "tools/empty_speaks.py",
+    "name": "empty_speaks.py",
+    "status": "realized"
+  }
+}

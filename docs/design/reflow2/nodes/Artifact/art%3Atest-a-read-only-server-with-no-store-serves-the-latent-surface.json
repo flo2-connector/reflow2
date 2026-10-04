@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:9dd6b5f66b5d1321ef466f73fbe2aa572c88c2cee81a60b15f2a13c2d6442cf4",
+  "node_id": "art:test-a-read-only-server-with-no-store-serves-the-latent-surface",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "test",
+    "description": "Three real-binary tests with an isolated HOME. The walk: stdio, --http and --serve-shared, each in an empty folder and an opted-in one, started with --read-only: the handshake says there is no design store and why, the latent tools are listed, reflow2_start_design is refused naming --read-only, describe_designs answers, /readyz says 503 over HTTP, and the folder stays byte-identical; then another process creates the store, and the same session reads it, has its write refused READ-ONLY, /readyz says 200, no rendezvous is left and the write never lands. --only-if-present over stdio and --http with --export-to: served on the transport asked, and the design it starts keeps the export current. The registry pin: --registry-root --read-only creates nothing under an empty root and serves a design that appears there read-only (passes on main by construction).",
+    "location": "crates/reflow2-mcp/tests/a_read_only_server_with_no_store_serves_the_latent_surface.rs",
+    "name": "a_read_only_server_with_no_store_serves_the_latent_surface.rs — every serving mode, --read-only, no store: latent surface, nothing created",
+    "status": "realized"
+  }
+}

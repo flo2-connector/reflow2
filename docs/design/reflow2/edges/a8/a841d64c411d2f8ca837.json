@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:038fd299aee358121040ae0735598fab4bc30cf0ce6b919fc9ae2b48f02137eb",
+  "edge_type": "VERIFIES",
+  "from_id": "ver:a-local-client-works-against-a-remote-server",
+  "properties": {},
+  "to_id": "cap:a-local-client-reaches-a-remote-server"
+}

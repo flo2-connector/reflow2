@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:bce376ab5201c1439acabf4c4d4db799efa42f5c885e571946996e2ce22b8662",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:check-health-skill",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:check-health-skill"
+}

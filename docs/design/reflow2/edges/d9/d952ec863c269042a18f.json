@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:ac3606ff66e57b42ee867eda8177335a7acfa0903dda5e57d6a4d409cd6ebae5",
+  "edge_type": "CAUSES",
+  "from_id": "fact:defect-sibling-constructors-disagree-on-how-to-name-a-node-and-what-status-it-lands-in",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "toolsnap scan 2026-09-19 (approver/acted_at on 3 of 20 constructors; props on 2 tools; id-family counts 23/5/15/4); schema/*.yaml: 11 status defaults remain; chg:a-node-is-named-by-its-id-… scope = relation surface; Python replay of nearest_legal_field on 12 cases",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:field-report-flo2-2026-09-19-f10-seven-more-rejections-are-the-constructor-half-of-a-defect-recorded-by-three-projects-and-half-fixed"
+}

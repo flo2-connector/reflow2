@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:4b5da9e344bb71a038c40acd16868b5dc5259e261113573700e7b33623d084b2",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-a-standing-delegation-to-an-agent-is-a-record-with-an-escalation-boundary",
+  "properties": {
+    "evidence": "A delegation can only be cited by a settlement if the settlement can name the agent that acted, which is the ACTS_FOR rung.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "dec:idea-an-agent-acting-for-a-person-is-recorded-as-both"
+}

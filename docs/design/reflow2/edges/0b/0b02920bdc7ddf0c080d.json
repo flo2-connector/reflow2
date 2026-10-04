@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:8bc08659f33028291f3a70d745827d0abf44c09bcd8910de9ef791aa91bf62f8",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-prescribed-layer-pairs-stop-refusing",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:test-a-near-match-of-another-type-is-named-as-a-layer"
+}

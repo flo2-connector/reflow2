@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:55732c31dbad5fa91e51ac68eac012a3d83bd62e8d95e380e8083102cb611a4a",
+  "node_id": "req:one-open-design-costs-a-deliberate-amount-of-memory",
+  "node_type": "Requirement",
+  "properties": {
+    "concern": "core",
+    "lineage": "original",
+    "name": "The memory one open design costs is a number somebody chose, not the sum of the store's defaults",
+    "priority": "high",
+    "provenance": "authored",
+    "statement": "The resident memory a single open design costs is set deliberately — write buffer per column family, a block cache shared across the families rather than one each, and a ceiling on open file handles — rather than inherited from RocksDB's per-column-family defaults. Any change to those settings is measured on the same design before and after, and the write throughput traded away is measured alongside the memory saved, because this trades one for the other.\n\nRaised by @ajs from flo2's 2026-09-13 session, relayed in conversation. flo2 cannot make a capacity claim about hosting N designs while the per-design cost is unmeasured, so this requirement is what stands between flo2's arithmetic and a number.\n\nSCOPE NOTE — this says the cost is CHOSEN and MEASURED. It does not state what the number should be; that is a judgement about what reflow2 is for and is not settled here.",
+    "status": "accepted"
+  }
+}

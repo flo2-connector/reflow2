@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:088c5ffe8aecb4b96eea4e0a0417250701ed49d1c503f0efbc797f07a6ef5478",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:test-a-taxonomy-is-decided-once-before-bulk-capture",
+  "properties": {
+    "covers": "whole"
+  },
+  "to_id": "ver:a-taxonomy-is-decided-once-before-bulk-capture"
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:b022b4fa4657fbfd6d723718e921370953b8d02600fd96ebc223cbc7fcee6305",
+  "edge_type": "DOCUMENTS",
+  "from_id": "art:dev-storyflow-feedback-2026-09-27",
+  "properties": {
+    "evidence": "The brainstorm pass this rule requires: this exploratory Decision is the 09-25 idea (record_finding prompts for a census when a finding names a class), in the reporter's words."
+  },
+  "to_id": "dec:idea-a-finding-that-names-a-class-is-asked-for-its-census"
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:cf1c7f711d412511d95ecfe964ec436d0b3320cdaa2ca5af1cd9f94c10ec2726",
+  "node_id": "chg:accept-a4adfda7dd327dd7",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "documentation",
+    "commits": "73cf37bd67e5ab70ad0f56217f61233e369e64f8",
+    "name": "Comment only: REALIZES's note names migrate_edge_rewrites, EDGE_REWRITES and the narrowing gate. The vocabulary is unchanged.",
+    "subject": "system"
+  }
+}

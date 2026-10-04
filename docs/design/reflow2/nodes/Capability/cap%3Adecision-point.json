@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:ebd2257aff8b8af5edad0b9619ad71ea8996c0f0081c2ad099b36e4c741027f9",
+  "node_id": "cap:decision-point",
+  "node_type": "Capability",
+  "properties": {
+    "description": "A proposed Decision is a decision point: register alternatives under it as lightweight Artifact pointers (branch-by-file, each naming its export), GOVERNED_BY the Decision and CONTRADICTS their siblings — the fork held open. Refuses registering under a settled decision. Collapse chooses a winner: the Decision moves to accepted, losers are superseded (OBSOLETES, retired on the record not deleted), and the outcome + rationale are written into the Decision's own alternatives field. The teeth: the undecided_decision_point DETECT gap surfaces a proposed Decision with >=2 alternatives as an open fork ('which do you choose?'), anchored so it clears on collapse. The winner's content-merge reuses apply_merge. BL-70 rung 2; ops set_decision_status, register_alternative, alternatives_for, collapse_decision.",
+    "name": "Hold and collapse a decision point (forkable alternatives)",
+    "provenance": "authored",
+    "status": "verified",
+    "tier": "operational"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:020d7d64f1a434e6fbc4b288715b0dc4cb38a15d8493d0583208b7c6db5805bf",
+  "node_id": "epoch:v0240",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "epoch_type": "release_cut",
+    "name": "v0.24.0 cut — the document corpus can actually be ingested, and the trial that proved it found a silent data-loss defect older than the increment",
+    "sequence": 279,
+    "status": "arrived"
+  }
+}

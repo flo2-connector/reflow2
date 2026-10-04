@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:bc10947a9979b57b9a98480973d0f557bd1386f453b4d25f2b2ccaa0e550d1f1",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:test-a-stored-item-the-schema-now-refuses-is-reported",
+  "properties": {
+    "covers": "whole"
+  },
+  "to_id": "ver:a-stored-item-the-schema-now-refuses-is-reported"
+}

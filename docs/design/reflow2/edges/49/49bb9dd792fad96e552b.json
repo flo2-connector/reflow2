@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:97bc37c56fa408e3f69652a255bbe7dbf9e86f96c012182382671a7700b7ba94",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:bounded-reads",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:service"
+}

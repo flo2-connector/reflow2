@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:9e7bde4fca4f7b96dab2070dbf0e193b940bdc9f0f1704b3dd76acead498e29c",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:idea-should-edge-prose-be-governed-the-way-node-prose-is",
+  "properties": {
+    "approved_at": "2026-08-31",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

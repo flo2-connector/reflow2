@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:005223ba10230b671ccdd16212a990d49e67b28216b8c8399a2e452514ba4939",
+  "edge_type": "CHANGED",
+  "from_id": "chg:accept-f813f5619f659197",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:adopt-skill"
+}

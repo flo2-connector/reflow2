@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:0d28ae577bb8b56192badcd32c553dba622c9a3a89d704ce26b94b6a0fb5fb20",
+  "node_id": "question:7bdb8b6cce42d588",
+  "node_type": "Question",
+  "properties": {
+    "answer": "Same thing as the authored 'Reconcile against what was built' — merge them (user: \"go with your recommendation on all the duplicates\"). Keep the stub's write-side wording (checksummed registration) in the survivor.",
+    "context_setter": "Nothing verifies “Artifact reconciliation”",
+    "gap_id": "gap:7bdb8b6cce42d588",
+    "question": "How will you check that comparing the recorded files against what's really on disk actually works — or is this the same ability your design already covers and tests under the name 'reconcile against what was built'?",
+    "rephrase_degraded": false,
+    "status": "answered"
+  }
+}

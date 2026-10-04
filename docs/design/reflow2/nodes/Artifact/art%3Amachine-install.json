@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:3d83b99d14efc9a38ea0c08f228897f58f1c50acfe115701667f9ddaa51a41cc",
+  "node_id": "art:machine-install",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "granularity": "atomic",
+    "location": "tools/reflow2_install.py",
+    "name": "reflow2_install.py",
+    "status": "realized",
+    "volatility": "stable"
+  }
+}

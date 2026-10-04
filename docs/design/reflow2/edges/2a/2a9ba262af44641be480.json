@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:2f1ba469599c53f6346ced387a51d5b382d59802a778e06df0fd8cca18377c9a",
+  "edge_type": "REALIZES",
+  "from_id": "art:scope-corpus-ingest",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cmp:docs"
+}

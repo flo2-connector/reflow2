@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:b1a285cf007cef6eac5fabef124729a10fa723be5de3ab07bc562bd9d3280e6e",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-shared-client-outside-the-project-attaches-to-the-running-server",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cmp:shared"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:e32f4bb55218b195f490982eb9c9a9b8419702232e0c79dbd6ae60652181eb1e",
+  "edge_type": "CHANGED",
+  "from_id": "chg:record-to-record-relations-are-modelled",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:vocabulary"
+}

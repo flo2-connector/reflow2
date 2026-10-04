@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:a3a56919d1721df6a85928502bd95c619539691d1d890d5f71ac5022e0b2632a",
+  "node_id": "ver:dimensions",
+  "node_type": "Verification",
+  "properties": {
+    "kind": "verification",
+    "level": "integration",
+    "method": "test",
+    "name": "dimensions.rs",
+    "status": "passing"
+  }
+}

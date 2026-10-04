@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:d7f478f95e4856b6717b6fa434f4beb6044cdf41347558ead82bedec00a701da",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:absorb-rocksdb-024-unchanged-then-switch-separately",
+  "properties": {
+    "approved_at": "2026-08-24",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:bee785293dcfd9b34580457d62f30cedbe3119bc9a8e05c02e0b7d78e24755aa",
+  "node_id": "frag:art:checksum-dialect-test",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered checksum_dialect.rs"
+  }
+}

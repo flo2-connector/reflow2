@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:a3ecb13e696ae0b57aef8d47ac0a79466d71a1a61f37e593f39e2683ed0ac29b",
+  "edge_type": "REALIZES",
+  "from_id": "art:tools-capture",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:governance-mode"
+}

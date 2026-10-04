@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:5f1db00f2267f0feb97a4078a6c25c2440d783382615edb8867082aa6ed52959",
+  "node_id": "ver:derived-completion",
+  "node_type": "Verification",
+  "properties": {
+    "kind": "verification",
+    "last_run_at": "2026-07-24",
+    "level": "integration",
+    "method": "test",
+    "name": "Delivery is derived from the thread, and goes backwards when the evidence does",
+    "status": "passing"
+  }
+}

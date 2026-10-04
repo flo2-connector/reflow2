@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:5250e49b1d517c7b5bab36be2dc07f9bbac693080bdcc8efd25541361ad952e9",
+  "edge_type": "CHANGED",
+  "from_id": "chg:accept-3989c9914e441633",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:mint-seat-liveness-test"
+}

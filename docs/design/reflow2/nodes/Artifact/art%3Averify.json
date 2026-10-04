@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:37265077d5250876a43c7f131d4225ac0bb0883d1afcf5fcaf9939359d33e918",
+  "node_id": "art:verify",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "granularity": "atomic",
+    "location": "crates/reflow2-core/src/verify.rs",
+    "name": "verify.rs",
+    "status": "realized",
+    "volatility": "stable"
+  }
+}

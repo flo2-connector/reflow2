@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:ce47d67f2c1ecb72a85f42c4cd91be3f7f40ceadcce8257a0c6a93897368a2d2",
+  "node_id": "chg:the-confusability-replica-ranks-as-find-tools-does-2026-10-03",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "defect_fix",
+    "commits": "2da7e72502bf431c7f54f51aa6cd4aa89d793185,c43538875f18954bec7c6d59dc10b32ddf76df60,d9ba2ad2fb9782ad09dccfa27ce12aba397ea368,6359527049b8f695a304ffbd03298a3249182a63,24ba00b0417ea018879c988ea3ce86ed0fc148ad",
+    "detected_at": "2026-10-03",
+    "name": "The confusability replica ranks what find_tools ranks, and CI checks it against the live ranker",
+    "rationale": "fact:the-confusability-replica-ranks-a-bulk-door-sentence-find-tools-never-sees-2026-10-03, confirmed on main at 293f957: the new validator over the old scoring reported 186/193 top-1 and 115/193 exact top-5, as the finding measured. THE CLASS: a replica scored the published surface while the live ranker scores the router's, and its agreement was checked once by hand against a saved file (the --validate path read a scratchpad file from another session). The echo parameter was the same class and is stripped too. Not established: the four remaining exact-top-5 differences.",
+    "rationale_basis": "contemporaneous",
+    "repair": "corrected_cause",
+    "subject": "system",
+    "summary": "tools/tool_confusability.py strips what tools/list adds at list time (the draw_edges sentence on 32 edge helpers, the echo parameter, a lessons block) before scoring, agreeing with the live find_tools on 193 of 193 corpus queries at top 1 (189 at an exact top 5). --validate asks the real binary and exits 1 on any top-1 disagreement, and runs in ci.yml; --baseline validates first and refuses to rewrite the ratchet otherwise."
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:d79b6110e7323c27a8d5918f8485adb3b343a4404165bfc8e4e3007959ed87cc",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-registry-names-every-store-it-found-and-cannot-serve",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:dockerfile"
+}

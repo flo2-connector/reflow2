@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:13dd326abed82034767b9b5b270b1e0da311b8419687148631e712e4574bd68e",
+  "edge_type": "GOVERNED_BY",
+  "from_id": "art:vscode-call-door-field-report-2026-10-02",
+  "properties": {
+    "note": "A dated field report pinned at one commit: it records what was observed on 2026-10-01/02 and must not be revised as the design moves. The living guide on the branch is a separate file.",
+    "ruling": "parks"
+  },
+  "to_id": "dec:a-dated-field-report-is-registered-and-parked"
+}

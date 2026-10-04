@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:77192b26641b790cf9a7901e5658f19053c1657580e139509c1138ec1f404f85",
+  "node_id": "chg:loop-status-takes-a-contributor",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "name": "loop_status takes an optional contributor_id and lists the assigned decisions — the asynchronous half of the loop, attributing assignment and refusing to attribute anything else"
+  }
+}

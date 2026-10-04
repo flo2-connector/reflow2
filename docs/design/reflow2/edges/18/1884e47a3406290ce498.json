@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:be7ef6b2598d1da113e26254c14b772f38ba58b01e6bd9989ff3615e17eaa808",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:content-store-for-what-the-graph-points-at",
+  "properties": {
+    "authored_at": "2026-07-31",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

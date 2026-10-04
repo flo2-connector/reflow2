@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:7cab3342436aca7ec789ece2a5e1ecb8dd305bc9555ad023e43859ae2c1d2617",
+  "edge_type": "SCHEDULED_FOR",
+  "from_id": "req:a-rule-says-whether-it-can-be-checked-at-all",
+  "properties": {
+    "modality": "expected",
+    "recorded_at": "2026-08-09"
+  },
+  "to_id": "epoch:governance-becomes-expressible"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:e3cab094d1da2ed0dc3ec948150efba771ed3dde50c2e87a2a74f3cedba1edf4",
+  "edge_type": "CHANGED",
+  "from_id": "chg:manual-work-ledger-offers-a-bound",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cap:a-session-reports-the-work-it-did-by-hand"
+}

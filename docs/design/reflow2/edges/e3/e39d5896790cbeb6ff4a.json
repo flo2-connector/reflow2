@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:6eff0fef4f7a24482ecd67e5f6d4fac1f3d3df5970ced4192330d602f49e5fe6",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:adopt",
+  "properties": {},
+  "to_id": "req:adopt-existing"
+}

@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:a1e1ffbade5b484700ebf15cb14167636a96f9fef9b91c65df31304e2a9ebde9",
+  "node_id": "ver:read-loop-hint",
+  "node_type": "Verification",
+  "properties": {
+    "kind": "verification",
+    "level": "integration",
+    "method": "test",
+    "name": "tools.rs: read-side loop_hint fires on debt, only on change, silent when clean",
+    "status": "passing"
+  }
+}

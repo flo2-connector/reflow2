@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:a4fae068184215ddbcc659b179d95751443341019e73f7fd78225a0ff2f08526",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-name-is-not-a-report",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "ver:an-unobserved-location-means-the-sweep-missed-it"
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:8718a1e15761c9afd508ae8fc42433c6f4cb433ae0720641e430caab2e89f404",
+  "node_id": "chg:a-design-holds-acceptance-says-why-the-code-moved-and-the-no-cause-gap-states-the-discipline",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "defect_fix",
+    "name": "design_holds on a baselined artifact requires change_type (no default; the refusal names repair labels as repair-only and the reconcile labels), the fix-without-recorded-cause gap states the discipline with a triage recipe and never offers to decline it, and the detector tells checksum acceptances from repairs by construction — root-caused from the 2026-09-14 field report, pinned by five acceptance tests and three detector tests, five observed failing first",
+    "repair": "corrected_cause",
+    "subject": "system"
+  }
+}

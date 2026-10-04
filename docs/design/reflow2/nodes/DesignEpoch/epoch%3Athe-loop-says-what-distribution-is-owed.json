@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:fa1258a340ff88b05d5c110e68a6947cb233ca8aa394847fdb1e81bd4fbff2ad",
+  "node_id": "epoch:the-loop-says-what-distribution-is-owed",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "epoch_type": "milestone",
+    "name": "The loop says what distribution is owed — flo2's F5, carried by the read-side hint. LAST ON PURPOSE: its value is downstream of the comparison deserving belief (dec:fix-the-comparison-before-pointing-it-earlier step 3)",
+    "sequence": 313,
+    "status": "planned"
+  }
+}

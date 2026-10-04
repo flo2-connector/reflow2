@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:434d83f6144dc18126a6e01cde08a660141d11bcd9d4b005f882a0b0513e65ad",
+  "node_id": "chg:bl186-ordering-and-standing-questions",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "name": "Ingest settles a merged node's name without consulting arrival order, and persists a near-match as a DUPLICATES edge so the ask can be batched across a corpus"
+  }
+}

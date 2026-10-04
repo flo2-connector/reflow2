@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:7a741453761ff57902492e068805d8097157f2a925c3f23e7265b9fc98623070",
+  "node_id": "fact:field-report-flo2-2026-09-18-what-worked-and-must-not-regress",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "observation",
+    "name": "FIELD REPORT (flo2, 2026-09-18) — what worked, recorded so a regression is checkable: the two-stage duplicate/relation refusal on add_decision; export_graph's chained_from receipt; add_decision landing proposed 7 of 7 and set_decision_status refusing a settling status with no approver; compare_designs separating a version rename from a design change (14 AUTHORED_BY edges)",
+    "source": "flo2 reflow2_feedback.md, session 2026-09-18 F8/F9 (triaged 2026-09-19 through the triage-feedback skill, which delivered both feedback rules)",
+    "statement": "In the reporter's words: 'the second refusal produced the DEPENDS_ON edge … that a later reader actually needs, and I would have skipped it'; 'chained_from: origin/main@bec6b34 confirmed the anchor in one line'; '7 of 7'; 'because the diff was property-level I could tell a reviewer those 14 were not design changes. A file diff could not have said that.'",
+    "subject_id": "proj:reflow2",
+    "valid_from": "2026-09-18"
+  }
+}

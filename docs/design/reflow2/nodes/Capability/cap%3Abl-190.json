@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:56feb3dafdf8dca986c03b5799aad0b7a730434ba6deb395d340dd441d95a475",
+  "node_id": "cap:bl-190",
+  "node_type": "Capability",
+  "properties": {
+    "description": "\"This role is ACCOUNTABLE for that component\" is inexpressible — and the only edge that says ownership IS the decomposition spine\n\n*Same field report, 2026-08-03, modelling the fleet's own governance.* describe_schema{from:Component,to:Component} returns CONTAINS as the only modelled fit, hinted as *\"Ownership/containment ... the axis-Y decomposition spine (see Component.level / matryoshka)\"*. Using it for stewardship would make a boss contain a microservice and corrupt hierarchy_issues — one of the detectors the fleet most wants to trust. Per AGENTS.md (*\"if nothing models the relationship, leave the edge out rather than asserting one that is wrong\"*) the reporter left it out, and that is the right call producing the wrong outcome: the ownership matrix, their most load-bearing governance artifact, is simply silent in the graph — and a relationship nobody records is indistinguishable from one that does not exist. Consequence stated precisely: reflow2 cannot answer \"who owns this blast radius\", which is the question a multi-agent team most needs of an impact report. Candidate: an accountability/stewardship edge (Contributor or role → any node) explicitly NOT part of the decomposition spine and NOT a traceability edge — the way AUTHORED_BY and CLAIMS are already deliberately excluded from impact propagation, so the precedent exists in-schema. Schema touch: worth landing with [BL-185]/[BL-143] if those go, since one schema change pulls the minor bump, the upgrade doc and the foundation-migration checklist and two do not cost twice. Size M\n\nMigrated from docs/backlog.md BL-190 on 2026-08-07 (epoch:backlog-retired). Size estimate carried from the row: M.",
+    "name": "[BL-190] \"This role is ACCOUNTABLE for that component\" is inexpressible — and the only edge that says ownership IS the decomposit",
+    "provenance": "imported",
+    "status": "planned",
+    "tier": "operational"
+  }
+}

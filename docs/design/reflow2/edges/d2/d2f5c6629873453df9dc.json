@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:9d7e1744ffeb59817844d52ae4b8e492971995de293effcc40a3fcf9ded81aa5",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:coord-board-in-graph",
+  "properties": {
+    "authored_at": "2026-07-25",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

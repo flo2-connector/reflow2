@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:2e299ac93d4c8eab9574450c01c7d7fce1b77697fa93bec048aa160a06f6ba9e",
+  "node_id": "ver:a-scoped-answer-actually-narrows",
+  "node_type": "Verification",
+  "properties": {
+    "description": "crates/reflow2-core/tests/a_scoped_answer_actually_narrows.rs.\n\nWHAT IS DELIBERATELY NOT CHECKED HERE: a unit test cannot reproduce a 56-component sweep, and a fixture tuned until it shows a 50..60 spread would be a test written to match the answer rather than to the requirement. The probes hold the PROPERTIES that make the sweep's result impossible to hide; the sweep itself was run against the BUILT BINARY and its numbers live in the capability and the decision.\n\nTHE FIXTURE WAS PROBED BEFORE IT WAS ASSERTED ON. The first version produced only the three lifecycle-phase gaps, all unanchored, so every share was 0.0 and three probes failed for a reason that had nothing to do with the code under test. The shape was then checked against the real detectors and rebuilt around gaps they actually emit.\n\nFIVE MUTATIONS, each failing at least its own probe: default back to 3; share divided by `total`; the narrowing note never firing; one note field carrying both meanings; and the defect path skipping the self-check.",
+    "findings": "1078 core tests pass. The real-design sweep over all 56 Components: at the new default in_scope 2-27 (median 4), share 0.02-0.32, narrowing_note fired 0 of 56. Same sweep at depth 3 as a control: in_scope 50-60, narrowing_note fired 56 of 56 — the instrument catches the exact defect that motivated it.",
+    "kind": "verification",
+    "last_run_at": "2026-08-18T03:40:00Z",
+    "level": "integration",
+    "method": "test",
+    "name": "Five probes: the default is the measured one, the share uses the only honest denominator, a scope that swallows the design says so, the two notes stay separate, and defects get the same check",
+    "status": "passing"
+  }
+}

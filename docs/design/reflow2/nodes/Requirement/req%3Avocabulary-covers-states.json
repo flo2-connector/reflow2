@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:102004b04d2cf1c6289ea68ed4feb2f2cbdabb2123df926a9680f48a139300b8",
+  "node_id": "req:vocabulary-covers-states",
+  "node_type": "Requirement",
+  "properties": {
+    "concern": "core",
+    "designation": "internal",
+    "kind": "functional",
+    "lineage": "original",
+    "name": "Behavioural state and its transitions are modellable, distinct from lifecycle status",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "Anthony, 2026-08-07, from the UAF audit: there is no state machine anywhere in the schema, and a whole UAF model-kind column depends on one.\n\nTHE DISTINCTION THAT MAKES THIS A REAL GAP RATHER THAN A NAMING ONE: reflow2 has plenty of `status` fields — a Requirement is proposed/accepted/deferred/dropped/met, a Capability is planned/realized/verified, a Verification is planned/passing/failing. Every one of those is a LIFECYCLE status: where a design element has got to in its own maturation. None of them is a BEHAVIOURAL state: a mode the designed thing is in while it operates. And no transition is modelled between any of them — the enums are values, not a graph, so even the lifecycles cannot be projected as a state diagram.\n\nWHAT CANNOT BE SAID TODAY: that a detector is in acquiring / idle / faulted; that a vehicle is in launch / cruise / re-entry; that a protocol connection is in handshake / established / draining; which event causes which transition; which states are safe to be interrupted in. A state view is not expressible, and neither is \"what modes must this interface work across\".\n\nWHY IT MATTERS BEYOND reflow2: reflow2 is a request-response tool with no operating modes to speak of, so the absence costs nothing here and everything on anything with modes. Anthony's own current case is one — a beamline instrument has states, and the analysis stack behaves differently in each.\n\nNOT SPECIFIED HERE: whether states attach to Components, Capabilities or both; whether a transition is an edge or a node; and whether lifecycle status should be unified with behavioural state or kept firmly apart. Kept apart is the likelier answer and is still a decision, not an assumption.",
+    "status": "deferred"
+  }
+}

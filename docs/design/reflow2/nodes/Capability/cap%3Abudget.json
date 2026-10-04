@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:54b2518c240660548433c447a341dc65315e69246d79ceeeb0783d60e1b28726",
+  "node_id": "cap:budget",
+  "node_type": "Capability",
+  "properties": {
+    "description": "Sum contributions along the thread; refuse a total it cannot honestly compute.",
+    "name": "Roll up a budget against a constraint",
+    "provenance": "authored",
+    "status": "verified",
+    "tier": "operational"
+  }
+}

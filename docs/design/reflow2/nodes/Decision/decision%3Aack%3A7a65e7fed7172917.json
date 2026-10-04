@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:e27064d3e38e96b255b61697085883ff3809830c640593e0704e7676158e8f82",
+  "node_id": "decision:ack:7a65e7fed7172917",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Accepted the gap gap:7a65e7fed7172917.",
+    "name": "Reviewed: gap:7a65e7fed7172917",
+    "rationale": "Standing disposition for planned-but-unbuilt capabilities, with one thing worth saying plainly: this capability is realized by prose and diagrams, not code, so \"verification\" here means someone who did not build reflow2 reading the README and successfully running it. That is a trial, not a test suite — which is the same reason the 33-capability validation gap is dispositioned to the trials programme. It arrives with BL-102, and the honest check is a person, not a CI job.",
+    "status": "accepted"
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:7ed9c9f13e3ce0421da6d5b69e0394455040f828141a4d4621fd7ec5ded4b93f",
+  "node_id": "ver:a-store-opened-without-its-search-index-rebuilds-it",
+  "node_type": "Verification",
+  "properties": {
+    "description": "RocksDB stores written, closed, and reopened. With fulltext/ deleted, the word is found, `searched` counts every searchable node, and search_rebuilt_on_open reports 0 indexed before; an index in step is not rebuilt; a true miss names the population searched. Engine unit tests in crates/reflow2-core/src/foundation/store/engine/fulltext_tests.rs pin the floor: an index that loses the store's documents refuses an empty answer, naming both counts, until rebuilt.",
+    "findings": "3 passing (plus 2 engine unit tests). Not runnable on main: the API it reads (searched, search_rebuilt_on_open) is new; the behaviour it pins was measured on main through the door test.",
+    "kind": "verification",
+    "last_run_at": "2026-10-02",
+    "level": "integration",
+    "location": "crates/reflow2-core/tests/a_store_opened_without_its_search_index_rebuilds_it.rs",
+    "method": "test",
+    "name": "A store opened without a search index that covers it rebuilds it, says so, and a search from an index that does not cover its store never answers \"nothing matched\"",
+    "status": "passing"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:7a944d13439532d5682f0acf307fb75bca74d04eded0d31de57fe277d412a39f",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-design-reference-is-scoped-to-the-black-box-under-work",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "req:the-implementing-agent-holds-a-compact-design-reference-derived-from-the-graph"
+}

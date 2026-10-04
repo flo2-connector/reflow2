@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:a4eb4e63e6142bae4e8c72ea36c3e4baabb60bffc2ca88eec857d19aec81a356",
+  "node_id": "req:each-fact-reflow2-holds-is-held-correctly-and-kept-current",
+  "node_type": "Requirement",
+  "properties": {
+    "concern": "core",
+    "kind": "functional",
+    "lineage": "original",
+    "name": "Each fact reflow2 holds is held correctly and kept current — one authoritative copy, status fields that say which kind of state they hold, judgements that say who asserts them, time that names its clock, and a way to re-confirm every kind of fact that can go stale",
+    "priority": "medium",
+    "provenance": "imported",
+    "source": "Anthony, 2026-09-28, in a dev_reflow2 session: \"what is applicable to reflow2 and storyflow from the 5 tests? If we need to apply things to reflow2 and storyflow, then please add them to their respective design graphs also.\" Test 2 of dec:what-a-true-knowledge-graph-is (graph-primitives design on flo2, graph 85a2a1a36e7c942d), accepted on his word the same day.",
+    "statement": "Test 2 of the accepted definition of a true knowledge graph (graph-primitives design on flo2: dec:what-a-true-knowledge-graph-is), applied to reflow2. Baselines are reflow2 @ 4659832b from the three-graph classification.\n\n(i) ONE AUTHORITATIVE COPY. About ten relations are stored two or three ways (HAS_TEMPORAL_FACT + ABOUT_ENTITY + subject_id; VALID_FROM + valid_from; ASSESSED_ON + target_id; Verification.location restating IMPLEMENTS). Each has one copy, or declares which copy is authoritative and a check holds the others to it — so an analysis gives the same answer however the fact is stored.\n(ii) STATUS FIELDS SAY WHAT THEY HOLD. 10 of 13 status fields bundle several kinds of state (Requirement.status holds the owner's stance, a verdict and a lifecycle; \"planned\", the commonest value across statuses, is a modality). Each status value declares which it is: the owner's stance, a verdict, a lifecycle stage, a modality, or tense.\n(iii) WHO ASSERTS A JUDGEMENT. 22 of 65 edge types carry a basis, source or confidence, and none records who asserted the edge (AUTHORED_BY exists for nodes only). Every relationship that carries a judgement says who asserts it and on what grounds.\n(iv) TIME NAMES ITS CLOCK. No time anchor declares its clock, and 20 of 21 sit on the calendar rather than at a design epoch. Each time anchor and ordering declares which clock it runs on: design epoch, calendar date, or the design's own change history.\n(v) STALE FACTS ARE DETECTABLE. Largely present already — drift against the codebase (artifact checksums, reconcile), stale verdicts (invalidated findings, rerun owed), claims never checked against reality (confirmation). What is added: every kind of fact that can go stale has a way to be re-confirmed against what it describes and says when it last was, and the coverage across fact kinds is measured rather than assumed.\n\nMet when a check passes over every item (for (v), that the mechanism exists for every kind of fact, not that every fact is true). Options (b) status vocabulary, (c) clocks and (d) who-says-so of dec:idea-the-schema-declares-what-each-relation-means-in-primitive-terms are the routes.",
+    "status": "proposed"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:a1c5cec4b0f0ab6d952d187f7b3a7f666b91f28a3e7b773ca543988146f1741b",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:degraded-surface",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:proxy"
+}

@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:e25b49d5df3bb79ad828db01fb80ee3fc35df04732a10de858333ba992bd7df1",
+  "edge_type": "GOVERNED_BY",
+  "from_id": "cmp:service",
+  "properties": {},
+  "to_id": "dec:service-spof-accepted"
+}

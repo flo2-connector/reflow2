@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:c9e1a14749303cb6aa69f0de080f8dbf1a497380d3a9a9cc560a1d4bc7e2360a",
+  "node_id": "decision:ack:b419dc7ce8da8c12",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Accepted the gap gap:b419dc7ce8da8c12.",
+    "name": "Reviewed: gap:b419dc7ce8da8c12",
+    "rationale": "Deferred on Anthony's word, 2026-07-28 — and unlike everything else parked today, this one has an EXTERNAL CLOCK. The MCP 2026-07-28 specification removes protocol-level sessions and the Mcp-Session-Id header; reflow2's seat-per-client rests on rmcp building a service per session, which is a consequence of those sessions existing. The feature lifecycle policy guarantees a minimum twelve-month window between deprecation and removal, so there is time, but the deadline is somebody else's to set. Deferred rather than started for two reasons. The dependency is pinned at rmcp = \"2\" and the migration realistically lands with rmcp v3, so the work is gated on an SDK that is still in beta — starting now would be building against a moving target. And the design question underneath is not mechanical: the spec's prescribed replacement is a server-minted handle passed as an ordinary tool argument, which is arguably BETTER than inheriting identity from a transport detail (it works identically across stdio, HTTP and whatever comes next), but deciding how a client obtains and carries that handle without putting a parameter in front of every human is the actual work. Revisit when rmcp v3 stabilises; do not let it sit until the window closes.",
+    "status": "accepted"
+  }
+}

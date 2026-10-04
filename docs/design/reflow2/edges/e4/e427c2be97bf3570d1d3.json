@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:6e5f2246d26a99c5fc761a7aeef20c8dccd68716809575842ae468f328f55573",
+  "edge_type": "MITIGATES",
+  "from_id": "chg:re-linking-an-artifact-no-longer-renames-it",
+  "properties": {
+    "evidence": "MITIGATES rather than INVALIDATES, and the distinction is the point. This change adds the linker to the guard and corrects its header, so the known gap is closed — but the guard's membership is still a hand-maintained list, so the cause it names is still live and the next write path added under a different call name will be outside it again. Reading this as a fix would be the 'the error is gone, so it's fixed' failure."
+  },
+  "to_id": "fact:the-preserve-on-revise-guard-draws-its-membership-on-a-call-name-not-on-a-behaviour"
+}

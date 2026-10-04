@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:60787464e7e45252df31771573afd0448845bfd39e426a1c09a3e66fedd7e32a",
+  "edge_type": "REALIZES",
+  "from_id": "art:test-every-client-mode-honours-read-only",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:a-surface-can-refuse-every-write"
+}

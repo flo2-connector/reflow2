@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:b35ed456b5f078671a655aaa2601a0164691175112abb992f0972ce026e3a6f2",
+  "node_id": "epoch:the-schema-serves-what-tells-the-types-apart",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "description": "flo2 F24, on Anthony's word of 2026-09-22 (\"go with F24 next\"). `describe_schema` served the node TYPES and not the rules that tell them apart, so a consumer generating an extraction prompt from the schema got type names and nothing that separates them — and a numeric prohibition was filed as a Requirement on a live site.\n\n⭐ THE WORK TURNED OUT TO BE ORDERED, NOT SINGLE. Lifting the routing table into data exposed that the table CONTRADICTED ITSELF: row 1 routed \"it must never…\" to Requirement while row 7 routed \"we must never…\" to Constraint saying \"Not a Requirement\", so the rule turned on a pronoun and flo2's sentence matched the wrong row. Serving it unchanged would have propagated a wrong rule to every consumer at once. The table was corrected first, then served.\n\nWHAT LANDS: `discrimination` per node type in the schema (cue phrases in a person's own words, the neighbouring type and why they differ, a worked counter-example), carried through `NodeTypeSpec` so `describe_schema` serves it for free; eight routed types filled in; the routing table corrected; and `tools/check_discrimination_rules.py` wired into CI as the gate that keeps the two records one contract.\n\nNOT IN THIS EPOCH, and separable: `prohibition_in_prose`'s six phrasings are all built on MUST or ALLOWED/FORBIDDEN and cover no CAN — \"can never\", \"cannot\", \"may not\", \"shall not\" all miss. That is the OTHER half of F24 and has a different cause from the one this epoch fixes.",
+    "epoch_type": "revision",
+    "name": "The schema serves the rules that tell the types apart — and the rules were wrong first (2026-09-22)",
+    "sequence": 520,
+    "status": "arrived"
+  }
+}

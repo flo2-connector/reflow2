@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:e355d491f86b33de65026679ccc9b01bb8759b486243e1f825e6b79852238b5a",
+  "node_id": "cap:derived-completion",
+  "node_type": "Capability",
+  "properties": {
+    "description": "Derive a requirement's delivery state from the golden thread rather than reading a hand-set field. BUILT 2026-07-24 as `delivery_coverage()` in report.rs, surfaced on graph_report as `delivery` and as a line in the Markdown view. A requirement is DELIVERED when something satisfies it AND that capability is realized AND currently carries a passing check, at its own or component granularity. Two properties are load-bearing and both are pinned by tests. FIRST, it goes BACKWARDS: because capability_verification only reports Verified/ComponentVerified for checks that pass (dec:passing-is-verified), a requirement stops being delivered the moment its check starts failing, with nobody editing anything — a derivation that can only ratchet up is a stored claim with extra steps. SECOND, inference is not evidence: a requirement whose own provenance is `inferred` was read back out of the code implementing it, so its satisfaction is a tautology; those are counted apart as `inferred_only` rather than silently dropped, because otherwise a brownfield adopt would report itself fully delivered on arrival. Dropped requirements are excluded from the denominator — abandoning a need is not failing to deliver it. FIRST REAL ANSWER, against reflow2's own design the day it was built: 20 of 30 requirements delivered, 29 satisfied — a question that was flatly unanswerable an hour earlier, when zero requirements carried `met`. STILL TO DO from the original scope, deliberately not built here: distinguishing SUPERSEDED from DROPPED from EVOLVED, and surfacing MET-BUT-REGRESSED as a TemporalFact with VALID_TO. The headline number came first because it is what makes the rest legible.",
+    "name": "Compute what is delivered, and expose the requirement lifecycle that is currently unused",
+    "provenance": "authored",
+    "status": "verified",
+    "tier": "operational"
+  }
+}

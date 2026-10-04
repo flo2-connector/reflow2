@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:b95ba01edbe0cf2837c31b016de1b8d7140735331f88f9a02a3cf18899e08d0e",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "cmp:propagate",
+  "properties": {
+    "dependency_type": "function_call",
+    "optional": false,
+    "weight_basis": "evidence"
+  },
+  "to_id": "cmp:graph"
+}

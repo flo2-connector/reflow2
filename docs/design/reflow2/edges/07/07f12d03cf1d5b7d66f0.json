@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:3eae60c23e4b721e97800f8d30253b576acb72a9bb9ce0e65e5990ba0fcffc15",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:bl-185",
+  "properties": {
+    "note": "BL-185 is the RECORDING question — can the graph tell a test written from the requirement from one written to match the code. This is the PROCESS question. If verification were planned when the need is stated, 'written from the requirement' becomes the normal case rather than something the graph must detect after the fact, so answering the process question shrinks the recording one. Deciding BL-185 first would be answering how to label a distinction nobody has yet made routine.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "dec:idea-verification-is-planned-with-the-requirement"
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:54fbd7fc3d5e291b6a5f475d64cc4e88b057e57ff28cdea895b640095d4f4810",
+  "node_id": "chg:remote-sessions",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "name": "Sessions on another machine: name the hosts the server will answer for"
+  }
+}

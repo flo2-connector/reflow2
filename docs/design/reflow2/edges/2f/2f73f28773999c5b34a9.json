@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:e502d122201acdf75eec24c495a9bd2be3b2c178ec8e267e6eb2a638f154ad8a",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:find-skills-corpus",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:find-skills-corpus"
+}

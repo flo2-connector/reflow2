@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:b1e18ca712f63f98d74f766e2abca456bb410151384a7a2c216bd68264c3342b",
+  "node_id": "epoch:detector-spec-cannot-name-a-forked-identity",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "epoch_type": "revision",
+    "name": "The enforced authority rule's detector spec is corrected: it named one Contributor id, and the owner has two",
+    "sequence": 304,
+    "status": "arrived"
+  }
+}

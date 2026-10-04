@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:c8977975d330a87ccb84573a0e9c785f1f73b858db070dbf3be8982bfb56dca5",
+  "edge_type": "REALIZES",
+  "from_id": "art:test-every-tool-list-carries-the-cache-hints",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:latent-surface"
+}

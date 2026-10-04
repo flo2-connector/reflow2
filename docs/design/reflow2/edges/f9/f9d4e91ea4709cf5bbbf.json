@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:f341551a8d9641f999a141bba639795a71aab23d4a350d1d9662d3a27f469994",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-saved-design-moves-to-the-item-layout-2026-10-03",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:32234bbec55bf4893f04983d3628dec8931b58560b9f1c2a3818432f5f90f85e",
+    "checksum_basis": "measured"
+  },
+  "to_id": "art:fixture-bearer-test-rsa-key"
+}

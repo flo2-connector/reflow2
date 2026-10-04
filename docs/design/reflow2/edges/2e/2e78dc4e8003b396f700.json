@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:8b3709c263d6f8405583b39f4e74946ee322158995f4b4fb38f4a59bf9c0c7b3",
+  "edge_type": "CAUSES",
+  "from_id": "fact:the-root-cause-skill-is-demanded-by-no-tool-and-named-by-no-trigger-so-it-loads-only-by-luck",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "The rule was broken because the skill it mandates has no demand on any tool and no name in any trigger, so loading it depends on the agent remembering to want it. Measured at 19 to 24 percent compliance where no demand exists.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:the-field-feedback-rule-was-broken-the-same-day-it-was-ruled-on-and-the-half-that-held-was-the-half-already-in-context"
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:8014b7793afb9d9b78e2aba6222f3c74059c138c465d96e0ad0ed5f00bb13642",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0750",
+  "properties": {
+    "as_checksum": "sha256:237104c69d8d7d54c2aa07dd3eaf42180fc9aee1f1cdaaf056e87397c4a90934"
+  },
+  "to_id": "art:taxonomy-command"
+}

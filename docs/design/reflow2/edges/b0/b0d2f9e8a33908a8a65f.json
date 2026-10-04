@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:8d5940e4d83942225d13a07e6e0f7232ef98d708cffa91eb3b22db1bb977ffb3",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-44-wrong-realizes-edges-are-repaired",
+  "properties": {
+    "accepted_baseline": false
+  },
+  "to_id": "cap:a-file-realizes-only-what-it-implements"
+}

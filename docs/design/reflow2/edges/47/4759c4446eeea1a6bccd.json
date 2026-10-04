@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:de3eac72a98ac40fa08c473b7eeb462f536ebf6321b02418286928d405b722e9",
+  "edge_type": "CHANGED",
+  "from_id": "chg:import-cluster",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:export"
+}

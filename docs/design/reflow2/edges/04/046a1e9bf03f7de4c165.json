@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:16623c881e9531571e0cd13bdd7a7514bae0f9a34626632b803cafab89b5b35e",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:one-status-contract-across-sibling-constructors-test",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:one-status-contract-across-sibling-constructors-test"
+}

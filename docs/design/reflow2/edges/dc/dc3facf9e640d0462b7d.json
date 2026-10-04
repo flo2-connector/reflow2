@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:52f98ab2ffd690eb558d339ae3b43320c4f91b293c1524085dd6df95071d11f0",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-partition-marker-must-be-read-back",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "req:a-cluster-can-be-declared-deliberately-separate"
+}

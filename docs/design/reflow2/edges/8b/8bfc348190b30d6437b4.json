@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:3d40bd691f6078f1755e438fbe855ccfe907a1b476a43e16f62c28d827f1f571",
+  "edge_type": "CHANGED",
+  "from_id": "chg:bl75-certainty-derived",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cmp:skills"
+}

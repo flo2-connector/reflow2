@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:6af43d5d4a38229d0f640fe027ad90995f1220c398e830c3dd8bc8b3b4530d5b",
+  "edge_type": "CAUSES",
+  "from_id": "cap:search-first-at-the-tool",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "The guard forces a choice between sharpening the existing node and creating a new one with distinct_from. It offers no way to say the new capability REPLACES the old, and it records neither choice. So a capability rebuilt under a new id leaves the predecessor planned and its requirement pointing at it, with no trace of whether the writer ever saw it. Measured on flo2's three old/new pairs, which have no joining edge.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:root-cause-a-status-that-falls-behind-reality-is-silent-and-a-superseding-capability-leaves-no-trace-2026-09-30"
+}

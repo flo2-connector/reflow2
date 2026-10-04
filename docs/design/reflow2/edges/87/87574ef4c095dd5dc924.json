@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:cf52dbeaf185675a6f2df34969c84526afc92f77b2f36cc8539f65a399210646",
+  "edge_type": "HAS_SNAPSHOT",
+  "from_id": "cap:describe-design-at-path",
+  "properties": {},
+  "to_id": "snap:epoch:describe-designs-built:cap:describe-design-at-path"
+}

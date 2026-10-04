@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:4f18a80c22ca0fc9bb7c9b97e0eecbb02ad0afb6fa4e1e15246cd587978fd349",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-how-does-somebody-share-a-reflow2-design",
+  "properties": {
+    "evidence": "The split between sharing (one blueprint, one server) and handing over (a photocopy is a fork) comes from rules 2 and 5 of that accepted decision; without them the options here would not divide that way.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "dec:idea-one-blueprint-the-store-is-the-design-and-an-export-is-a-perishable-photocopy"
+}

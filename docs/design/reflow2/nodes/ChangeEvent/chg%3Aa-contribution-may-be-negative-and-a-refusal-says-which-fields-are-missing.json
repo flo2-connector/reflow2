@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:f6ea44520d583964364bc36627c9b07d7b668fee71f37b0bd3f517c6412a1807",
+  "node_id": "chg:a-contribution-may-be-negative-and-a-refusal-says-which-fields-are-missing",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "documentation",
+    "detected_at": "2026-09-19",
+    "name": "A contribution may be negative (said on the tool, its parameter and the optimize skill); a missing-field refusal names the fields this call lacked",
+    "rationale": "Two instruction gaps from bhome S3 and flo2 F10 (2026-09-18), taken in Anthony's 'work your way through them one by one' (2026-09-19). Both mechanisms already existed; what was missing was the sentence that says so (three-legs rule: typed tool + instruction + detector) and, for the refusal, the one fact only the server holds — which fields this call passed.",
+    "summary": "capture.rs: constrains description; service.rs: ConstrainsReq.contribution doc, missing_fields_hint with the call's arguments, call_tool keeps them; optimize skill (+mirrors); one test; CHANGELOG."
+  }
+}

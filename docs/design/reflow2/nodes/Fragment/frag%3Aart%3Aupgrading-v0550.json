@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:7455ba89c7f2bb136b7b7b4ba64144cfb9d34e68653c2891bee1ececed5a8667",
+  "node_id": "frag:art:upgrading-v0550",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "note_kind": "author",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered docs/upgrading-to-v0.55.0.md — the first upgrade note whose action is REQUIRED of every consumer, because the first type removal locks every existing graph out until it is migrated"
+  }
+}

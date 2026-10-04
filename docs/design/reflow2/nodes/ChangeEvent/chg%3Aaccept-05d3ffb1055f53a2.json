@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:681509177726a243cf555a7918f82cd28d9b446a05fbc432256939ba8e261499",
+  "node_id": "chg:accept-05d3ffb1055f53a2",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "refactor",
+    "detected_at": "2026-08-19",
+    "name": "Call-site only: two add_change_event calls gained `None, None` for the new optional text parameters. No behaviour change of any kind — the two baseline-drift events it records are byte-identical to before.",
+    "subject": "system"
+  }
+}

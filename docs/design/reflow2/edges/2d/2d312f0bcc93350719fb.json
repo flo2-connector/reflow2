@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:d27e5466d9b05a73b61f98d63351a6aeb387d0d8116c8e804ad498e9ef4848ae",
+  "edge_type": "MITIGATES",
+  "from_id": "dec:idea-can-reflow2-see-the-work-a-session-did-by-hand",
+  "properties": {
+    "evidence": "BL-155 states plainly that it 'cannot tell unused from unreachable', and lists three explanations it has no way to separate. Hand-rolled work discriminates between them directly: a session that wrote a script to do X proves someone wanted X badly enough to build it, which absence-of-a-call can never show. This is the instrument that would resolve BL-155's stated ambiguity rather than restate it."
+  },
+  "to_id": "dec:bl-155"
+}

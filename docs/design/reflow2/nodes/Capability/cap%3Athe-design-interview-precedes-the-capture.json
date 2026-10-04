@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:7ab06185a851ac5536bc9e9b6b970b15564c98c9c4a26d98777d50f42980a7c8",
+  "node_id": "cap:the-design-interview-precedes-the-capture",
+  "node_type": "Capability",
+  "properties": {
+    "description": "Two halves, and neither is useful alone.\n\nINTERVIEW STEP — `genesis` and `capture-intent` gain an explicit early step: establish what KIND of thing is being designed by probing questions in the user's own domain (what must it do, what is it made of, what meets what, what counts as finished, what will you hand someone when it is done), and NEVER by asking the user to choose a node type. Modelled on reflow's S-01A semantic-matching interview, without its framework registry.\n\nROUTING TABLE — a served mapping from the user's phrasing to the node type it belongs in, plus the artifacts to expect for that kind of thing (structural / electrical / plumbing drawings for a facility; schemas and migrations for an IT system). Looked up rather than improvised. Follows `capture-session`'s precedent, whose own routing table's first dogfood found a hole in it — a table can be wrong in public, an improvisation cannot.\n\n📌 THE ANSWER SHAPES EXTRACTION AND PHRASING AND GATES NOTHING. Which questions get asked and which vocabulary is spoken back may vary by the kind of thing; which analyses reflow2 runs must not. A cycle detector runs wherever there are dependency edges, whoever calls them interfaces or interactions.",
+    "name": "The agent asks about the thing, not about the schema — an interview step and a routing table",
+    "provenance": "authored",
+    "status": "realized"
+  }
+}

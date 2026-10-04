@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:2d2c29ff9be06e34804bd0b16a02824a3a14937a4ee16392d67e5745c35825ed",
+  "edge_type": "CONTRADICTS",
+  "from_id": "fact:defect-causes-validation-status-hint-names-the-wrong-enum",
+  "properties": {
+    "alignment": "supporting",
+    "confidence": 1.0,
+    "evidence": "A SECOND proven instance for a requirement that had one. The first was schema prose asserting a relationship the schema cannot hold (the dead Anchor type). This is schema prose asserting VALUES the property's own enum rejects — CAUSES.validation_status offered 'observational / intervention / mechanism / temporal' against an enum of unvalidated/hypothesis/validated/refuted, with zero overlap. It suggests a THIRD mechanical check beyond the two the requirement names: a parenthesised slash-separated list in a property description must match that property's enum values. Crude, but it would have caught this, and that parenthetical shape is the convention every such hint uses. Found by calling describe_schema first, as AGENTS.md instructs, and being refused by the write."
+  },
+  "to_id": "req:schema-prose-is-checked"
+}

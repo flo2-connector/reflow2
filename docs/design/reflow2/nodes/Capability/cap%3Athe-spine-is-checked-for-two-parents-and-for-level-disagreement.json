@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:bb4e9e70c4b212338bf8376dc06e0a6068de637a8690551260a53d2fdef0a911",
+  "node_id": "cap:the-spine-is-checked-for-two-parents-and-for-level-disagreement",
+  "node_type": "Capability",
+  "properties": {
+    "description": "Two decomposition detectors, surfaced as gaps: `multiple_parents` — a Component contained by more than one parent, so \"which box is this in?\" has no single answer and every containment walk silently picks whichever it reached first; and `level_spine_disagreement` — a Component sitting at the root of the spine while declaring a level something else claims to be above, which is what makes the two ways of asking for the top tier return different sets.\n\nSELF-LIMITING BY CONSTRUCTION: the second compares against the highest level actually PRESENT, so a design where every part is a `component` has no ladder to disagree with and reports nothing. Nothing here prescribes a ladder depth.",
+    "name": "The containment spine is checked for a box in two boxes, and for a declared level that disagrees with spine position",
+    "provenance": "authored",
+    "status": "realized",
+    "tier": "operational"
+  }
+}

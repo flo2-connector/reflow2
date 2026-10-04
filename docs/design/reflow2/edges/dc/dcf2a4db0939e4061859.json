@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:c442a2374eb8bf22af69672b8e4b29da5bcae9e494531d2477dc3af9dc417c5d",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-genesis-and-adopt-write-the-served-pointer-into-a-project-with-no-instruction-file",
+  "properties": {
+    "evidence": "Whatever route is chosen serves that requirement's adapter; it does not replace it.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "req:a-repos-procedural-know-how-is-delivered-at-the-step-it-bears-on-and-the-design-knows-the-adapter-exists"
+}

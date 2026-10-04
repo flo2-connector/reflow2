@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:87e9499e386fbac808733ac7e18d948192bc2beadf04c4a1e090f8ba458d1b98",
+  "node_id": "fact:a-drained-stop-in-production-cut-the-backup-pause-to-2s-2026-09-28",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "finding",
+    "name": "MEASURED 2026-09-28 in production: on flo2.io's 0.73.0 engine the nightly backup's container stop took about 1 s and the whole pause about 2 s, down from 10-12 s on 0.72.0",
+    "source": "the flo2-backup journal on the flo2 droplet, read from the dev_reflow2 hub session",
+    "statement": "FIRST PRODUCTION STOP OF A DRAINING SERVER. flo2.io's engine runs reflow2 0.73.0 as PID 1 in a container (--registry-root, 13 designs). The nightly backup at 04:12 UTC on 2026-09-28 logged \"stopping reflow2\" at 04:13:49, the archive written at 04:13:50 (11 MB), and \"reflow2 restarted\" at 04:13:51. On 0.72.0 the same stop took 12 s an hour earlier (03:16:43 to 03:16:55, the pre-upgrade backup), and 10-11 s on every nightly before it: the process had no SIGTERM handler, so Docker waited out its 10 s timeout and killed it. So the drain (#607, v0.73.0) removed about 10 s of the pause, which is most of what epoch:planned-backups-without-stopping-the-server set out to remove. What is NOT measured: whether any request was in flight during that stop (it was 04:13 UTC, quiet), so the grace path under load is still proven only by tests/a_server_drains_before_it_stops.rs.",
+    "subject_id": "cap:a-server-drains-before-it-stops",
+    "valid_from": "2026-09-28"
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:55222f5b080d3873ce1c68eb242390d462277c69a625ed6fef07d3caa2ed90eb",
+  "edge_type": "HAS_SNAPSHOT",
+  "from_id": "art:detect",
+  "properties": {},
+  "to_id": "snap:epoch:aggregate-gap-ack:art:detect"
+}

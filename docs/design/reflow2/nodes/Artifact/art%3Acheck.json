@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:1e7591fb4a08f87faa95372bf9eef45f310c36a82816a20f018b17514b47cff0",
+  "node_id": "art:check",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "granularity": "atomic",
+    "location": "tools/reflow2_check.py",
+    "name": "reflow2_check.py",
+    "status": "realized",
+    "volatility": "stable"
+  }
+}

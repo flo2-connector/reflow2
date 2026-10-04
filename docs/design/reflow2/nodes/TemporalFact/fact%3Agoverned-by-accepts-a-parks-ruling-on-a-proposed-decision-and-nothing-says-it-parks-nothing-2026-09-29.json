@@ -1,0 +1,18 @@
+{
+  "content_hash": "sha256:b6a6b07864243f420feac3cc92fcdfe51e0ee2a3c0a311b2aecd553623ee181b",
+  "node_id": "fact:governed-by-accepts-a-parks-ruling-on-a-proposed-decision-and-nothing-says-it-parks-nothing-2026-09-29",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "defect",
+    "name": "OBSERVED 2026-09-29: `governed_by` with ruling=parks ACCEPTS a ruling that is still only PROPOSED, although its description says the ruling \"must be an ACCEPTED Decision\". Closure and the detectors then ignore it, so the call succeeds and parks nothing, and the reply does not say so",
+    "source": "reflow2 PR #629 (fix agent R-F), dev_reflow2 hub fix program",
+    "statement": "FOUND SIDEWAYS while building the bulk edge form in PR #629. A class test that drives the same inputs through each typed edge helper and through draw_edges expected `governed_by(ruling: \"parks\")` to REFUSE a proposed ruling, as the tool's own description promises: \"The ruling must be an ACCEPTED Decision — a `proposed` one is somebody thinking out loud, and a musing must not suppress a finding.\" On origin/main the helper ACCEPTS it and writes the edge. The detectors and the closure report (as of #626) read only ACCEPTED rulings, so the node stays unparked while the caller got a success reply.\n\nEXPECTED one of two things: refuse, naming the ruling's status and set_decision_status as the way to settle it; or accept and say plainly \"recorded, but it parks nothing until the ruling is accepted\".\n\nThe R-F test now asserts only that the single helper and the bulk form agree. The behaviour itself was left as found, because it is outside I24.\n\nNOT YET ROOT-CAUSED: the root-cause skill has not been run. This is the observation, not a cause.\n\n2026-09-30, FIXED by reflow2 #635 (squash 3a14696). Root cause: fact:root-cause-a-parks-ruling-is-validated-only-by-its-readers-and-the-writer-reports-success-either-way-2026-09-29.\n\ngoverned_by(ruling: parks) now asks parking_ruling_effect, the one predicate behind is_parked, before it stores the edge:\n- to an accepted Decision, the reply carries `parks: {in_force: true}`;\n- to a Decision not yet accepted, the edge is recorded and the reply says `parks: {in_force: false, ruling_status, note}`, which reads that it PARKS NOTHING YET (the second of the two expected outcomes above);\n- to anything that is not a Decision (a DesignRule, say), it is REFUSED.\ndraw_edges runs the same body. Pinned by crates/reflow2-mcp/tests/a_parks_writer_says_whether_it_takes_effect.rs, observed failing first on origin/main 6329079.\n\nStill true by design: create_edge / create_edges write a parks edge with schema checks only, as their descriptions say.",
+    "steps": [
+      "governed_by"
+    ],
+    "subject_id": "cap:a-ruling-parks-a-node-and-parked-nodes-are-counted",
+    "valid_from": "2026-09-29",
+    "valid_to": "2026-09-29"
+  }
+}

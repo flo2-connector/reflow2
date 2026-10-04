@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:f6ddceef4189f6df6653a523ea65acc2d4d580e20b7709fe600d8559ef32a059",
+  "node_id": "fact:field-report-flo2-2026-09-18-change-type-is-required-while-subject-is-optional-so-a-record-only-event-picks-a-system-shaped-why",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "confidence": 0.8,
+    "fact_type": "defect",
+    "name": "FIELD REPORT (flo2, 2026-09-18): a settled decision has no change_type; MEASURED on this design, 117 record-axis events carry code-shaped types (12 scope_change, 11 resync, 9 defect_fix, 9 documentation, 5 new_feature, 3 refactor) — the axis decision made `subject` optional and left `change_type` required",
+    "source": "flo2 reflow2_feedback.md, session 2026-09-18 (Anthony's own project; the agent triaging was this session, root-cause skill run at Anthony's prompt)",
+    "statement": "F2: 'an open Decision moving to accepted is the most common design event in this project and none of the values names it'; the reporter used new_feature. SEARCHED: dec:change-type-splits-into-two-axes (2026-08-15) chose a second axis over more values. MEASURED: schema/temporal.yaml declares change_type `required: true`; ChangeEvent.subject is optional; 117 ChangeEvents on reflow2's own design carry subject=record, 49 of them with a system-shaped change_type (68 are baseline_established). Also noted: a settlement is already recorded by the status move, the approver edge and the preserved snapshot, so no ChangeEvent is OWED for it — the gap bites only when one is written.",
+    "subject_id": "dec:change-type-splits-into-two-axes",
+    "valid_from": "2026-09-18"
+  }
+}

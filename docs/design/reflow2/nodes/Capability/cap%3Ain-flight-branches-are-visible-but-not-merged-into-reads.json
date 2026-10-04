@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:d2ab0a92ab844e4fed6f59488176d68335d595a9411c26ae0ff11b5bf3e0108b",
+  "node_id": "cap:in-flight-branches-are-visible-but-not-merged-into-reads",
+  "node_type": "Capability",
+  "properties": {
+    "description": "A report lists each open overlay: branch, worktree, the records it touches, its age, and the seat and claim behind it. loop_status mentions it when another branch touches ground this session is working. Ordinary reads never include another branch's facts. Depends on claim liveness being true. Designed 2026-09-23 (dec:what-a-session-on-main-sees-of-in-flight-branches).",
+    "name": "Other branches' in-flight facts are visible in an explicit view, never mixed into ordinary reads",
+    "provenance": "authored",
+    "status": "planned",
+    "tier": "operational"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:07e433a938b191c47f77e4e061be68db5a7411583ff904ba9951a9c12127469f",
+  "edge_type": "REALIZES",
+  "from_id": "art:test-a-read-only-server-with-no-store-serves-the-latent-surface",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:a-surface-can-refuse-every-write"
+}

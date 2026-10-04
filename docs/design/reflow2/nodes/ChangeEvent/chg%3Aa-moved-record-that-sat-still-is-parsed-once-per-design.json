@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:082c0649757f3b2dc09b10171527c00b2eb2d7c60a64ac92c59b08840af9c10a",
+  "node_id": "chg:a-moved-record-that-sat-still-is-parsed-once-per-design",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "defect_fix",
+    "name": "The sync stat gate asks \"unchanged since observed\" and \"in step\" as two questions, and a moved-but-unchanged record is answered from the document already parsed on the design's read cache instead of re-read on the first read after every write",
+    "repair": "corrected_cause",
+    "subject": "system"
+  }
+}

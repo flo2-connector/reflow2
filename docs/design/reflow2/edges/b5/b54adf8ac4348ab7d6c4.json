@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:e9c66e7d982112c27771b379d56df5e9668bbbbf3168cf6fc3a1cdb26ea3bd01",
+  "edge_type": "CHANGED",
+  "from_id": "chg:accept-9223ba3d5db95b3f",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:claims"
+}

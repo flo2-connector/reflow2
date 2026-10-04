@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:7af6807fff29f6385358d3358c94d4c49b2f07cf910f6a73d3023ac87a0e18f7",
+  "node_id": "ver:a-record-that-moved-once-is-read-once",
+  "node_type": "Verification",
+  "properties": {
+    "description": "`a_record_that_moved_and_then_sat_still_is_read_once` in crates/reflow2-mcp/tests/the_record_moved_and_the_session_is_told.rs, run by CI with the other 24 cases in that file.\n\nWHAT IT PINS. Two checks of the same moved record through one `ParsedRecords` (the per-design cache the read path holds). Between them the file's bytes are overwritten with garbage OF THE SAME LENGTH and the mtime is restored, so the corruption is invisible to a stat. The second check must still answer `behind` with the same counts. A check that re-reads cannot pass by accident: it finds garbage and answers `unreadable`. STRUCTURE, never a duration — a timing assertion here would measure the CI box.\n\nTHE CLASS IT PINS, not the instance: the stat gate (dec:an-unchanged-sync-target-is-not-re-parsed) conflated \"unchanged since I last read it\" with \"in step with what I last wrote\". `observed` is refreshed by the check path and `last_synced` only by export/import, so a record that moved once — a colleague's export pulled in — and then sat still failed the in-step clause on every check and was re-read and re-parsed whole (16 MB, ~620 ms) on the first read after every write until this seat next exported. That was the entire cost of get_node and search_design in a working session.\n\nALSO HELD BY THIS FILE'S NEIGHBOURS: `the_expensive_export_is_not_built_on_the_ordinary_path` (the in-step path still costs no export), and `ver:no-per-design-process-globals` refused the first cut of the fix, which was a `static` — the cache now rides on the design handle.\n\nWHAT IT DOES NOT COVER: the other ~490 ms of the moved-state cost, which is the live export built to answer a set-membership question, and the 40 ms base cost of any first read after a write. Neither has a check.",
+    "findings": "Observed to FAIL FIRST against the unfixed code, 2026-09-12: `assertion left == right failed ... left: \"unreadable\" right: \"behind\"` — the second check re-read the file and found the garbage. Passes after the fix; 25/25 in the file; `no_per_design_process_globals` 3/3 after the cache moved off the `static`. Measured effect on a copy of the live store, release binary, first get_node after a write with a moved 16 MB record: 1,189/1,114/1,182 ms before -> 633/718/623 ms after; in-step state unchanged at ~41 ms.",
+    "kind": "verification",
+    "last_run_at": "2026-09-12",
+    "level": "integration",
+    "method": "test",
+    "name": "A record that moved and then sat still is read once, not once per write generation",
+    "status": "passing"
+  }
+}

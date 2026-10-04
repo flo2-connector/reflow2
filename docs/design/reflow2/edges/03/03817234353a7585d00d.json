@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:99e552f7baf87663cc4e3a967703d7f42d4d7de49734e2d6cb9c4884422506fc",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-name-is-not-a-report",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "ver:the-capture-skills-do-not-hand-the-vocabulary-back"
+}

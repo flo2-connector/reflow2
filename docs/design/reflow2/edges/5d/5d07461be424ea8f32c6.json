@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:c062c8f7272fe42c4c194103cd4a2530f79fdfb9b16d47cf5cc47b84cffa63d6",
+  "edge_type": "CHANGED",
+  "from_id": "chg:scoped-analysis-built",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "cap:scoped-analysis"
+}

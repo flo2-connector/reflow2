@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:3791fa3ec64d7535a9d88383cddbac55484ce71dcc9852e58046663ce8654a05",
+  "edge_type": "REALIZES",
+  "from_id": "art:a-dependency-declaration-replies-with-a-receipt-test",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:a-write-replies-with-a-receipt"
+}

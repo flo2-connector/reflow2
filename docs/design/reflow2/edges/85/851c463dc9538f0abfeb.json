@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:793628756a8456a0da4846290e176bd0a9c8a5256cacfef3489c9af3255ea391",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-revise-keeps-what-it-was-not-passed",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:tools-capture"
+}

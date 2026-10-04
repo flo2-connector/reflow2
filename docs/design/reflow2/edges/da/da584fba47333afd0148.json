@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:2666048968bf5f372312baebfac133cbed40b42f209c4bceca316fb16c98419d",
+  "edge_type": "CHANGED",
+  "from_id": "chg:allocation-follows-the-code-not-the-neighbour",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cmp:sync-debt"
+}

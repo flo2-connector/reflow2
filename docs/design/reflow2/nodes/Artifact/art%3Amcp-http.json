@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:369a3ba38236430e4d5c81608083d48fd59a0edcbc5b261dbd5e3e3c557aabd6",
+  "node_id": "art:mcp-http",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "location": "crates/reflow2-mcp/src/mcp_http.rs",
+    "name": "mcp_http.rs",
+    "status": "realized"
+  }
+}

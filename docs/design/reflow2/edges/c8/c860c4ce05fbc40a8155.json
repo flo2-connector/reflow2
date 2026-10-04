@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:e74aa418eefb9ef2ca7ebb4f4b4961eab0f94173e08e8295a68c58b30e0aaeaa",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-design-closes-against-a-declared-threshold-and-the-report-names-the-first-hole",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "art:genesis-skill"
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:b82c013fb9ee8bab978d29db83910ec872da65ac2c7087ea77e7ff975384326c",
+  "edge_type": "YIELDED",
+  "from_id": "frag:usgov-2026-08-15-item-3",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "fact:defect-the-constraint-vocabulary-is-documented-as-numeric-so-the-right-node-is-ruled-out"
+}

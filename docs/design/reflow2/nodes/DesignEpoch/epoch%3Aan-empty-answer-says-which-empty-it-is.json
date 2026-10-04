@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:17044c976b91525c2a9f541a6dfbdac6721d3d5b32bbe9b01f542a8ae59878e0",
+  "node_id": "epoch:an-empty-answer-says-which-empty-it-is",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "description": "2026-09-11, after PR #476. The bare-zero class from the tool sweep (D-06/D-12/C-02), for criterion 2 (req:every-tool-description-is-accurate-about-what-the-tool-does): measured on an EMPTY design, 9 of the 39 no-argument read-only tools answered a bare {\"count\":0,\"items\":[]} — indistinguishable from a clean design — while one (open_questions) already said which empty through ok_read_empty_speaks, built after a field report and called by nothing else. The fix is a helper (empty_speaks / ok_json_or_why / ok_read_or_why) and one true sentence per tool about what it swept, plus a wire-level gate (tools/empty_speaks.py, in CI) that calls every no-arg read-only tool on an empty store and refuses a bare zero, so a fortieth tool cannot join the class. Must NOT include get_node's {\"node\":null} on a missing id — an argument-taking read outside this gate's reach, taken with the description-accuracy pass. Sequence 417 follows epoch:a-tool-says-when-you-would-ask-for-it (416).",
+    "epoch_type": "revision",
+    "name": "An empty answer says which empty it is",
+    "sequence": 417,
+    "status": "arrived"
+  }
+}

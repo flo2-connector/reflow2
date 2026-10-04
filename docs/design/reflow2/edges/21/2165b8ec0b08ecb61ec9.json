@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:5f0c901034b726a60a4af80f58a6f9c740be6ec0323b5d38b1be85323353bcc0",
+  "edge_type": "INVALIDATES",
+  "from_id": "chg:absence-means-nobody-said-on-a-verification-and-a-plan-holds-a-check-and-a-ruling",
+  "properties": {
+    "at": "2026-09-06",
+    "note": "FIXED AT THE ROOT the fact named: the schema no longer declares defaults for Verification.method and .level, so the validator has nothing to inject and a check recorded without them stores nothing for them. Fix (1) of the fact's ranked three; fix (3), the setter, shipped in v0.48.0 as the correction tool. Pinned failing-first. BOUNDS: (a) existing Verifications keep whatever value they carry — a node that read `test` yesterday still does, and the setter is how to correct it; (b) DesignEpoch.status still defaults to `arrived` and still injects — deliberately left, its schema argues the case, Anthony did not rule on it; (c) whether 'stored vs read-supplied' was established is now moot — nothing is declared, so nothing is either."
+  },
+  "to_id": "fact:defect-a-verifications-level-and-method-can-be-set-only-at-birth-so-a-wrong-default-is-on-the-record-forever"
+}

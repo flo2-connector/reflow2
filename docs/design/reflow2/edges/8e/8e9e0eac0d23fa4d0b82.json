@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:dcdd3a992f32c9df134d7290fdab946ac37fc622366de1ce851b1694c8dcef6e",
+  "edge_type": "CHANGED",
+  "from_id": "chg:reading-carries-options-cap",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cap:gap-carries-a-reading"
+}

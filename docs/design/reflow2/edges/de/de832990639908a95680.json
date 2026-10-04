@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:f75da260e10a7de87894928b6f4bf31b15609d8f7d20b9a238c0948d4ac85d22",
+  "edge_type": "CAUSES",
+  "from_id": "fact:a-sentence-the-extraction-could-not-place-has-no-home-and-is-lost-after-one-render",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "The lost residue is what raises the question.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "dec:idea-should-an-utterance-nobody-could-place-have-a-named-home"
+}

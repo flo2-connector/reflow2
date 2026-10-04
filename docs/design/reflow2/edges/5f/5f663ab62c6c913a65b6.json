@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:dac6053d4d1c4b18002466429343ecd042a734ff11995cc68397067eabd6c1d0",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:test-a-signature-is-the-callers-own-where-it-is-written",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:test-a-signature-is-the-callers-own-where-it-is-written"
+}

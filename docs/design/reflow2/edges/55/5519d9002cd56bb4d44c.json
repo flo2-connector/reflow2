@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:347d12d33dca4e3e0dd4d7c24102d812d96bef4702d8e894b0fed03c297176f4",
+  "edge_type": "CONSUMES",
+  "from_id": "cmp:dimensions",
+  "properties": {
+    "dependency_type": "function_call",
+    "optional": true,
+    "weight": 0.4,
+    "weight_basis": "evidence"
+  },
+  "to_id": "ifc:req-dyno-vector-api"
+}

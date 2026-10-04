@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:4f9365f9758de2ba39c93b2d8f4bbc1bccde36afaca855200dd96876ba682d1d",
+  "edge_type": "EVOLVES_INTO",
+  "from_id": "dec:idea-a-question-is-addressed-to-a-person-and-travels-as-a-batch-with-its-evidence",
+  "properties": {
+    "evidence": "Promoted on Anthony's word, 2026-09-29 (\"go with the 7 ideas you'd promote\"): addressed questions, answered by a named answerer in one call, travelling as a batch with evidence links."
+  },
+  "to_id": "req:a-question-is-addressed-to-a-person-and-records-who-answered"
+}

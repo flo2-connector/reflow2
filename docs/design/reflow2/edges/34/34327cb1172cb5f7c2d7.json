@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:754a6b62861601d3c7017f23b4f10029ca5c5e00e38c91a3a967d6303775bea1",
+  "edge_type": "DUPLICATES",
+  "from_id": "dec:idea-what-should-the-reply-shape-be-for-a-client-nobody-has-measured",
+  "properties": {
+    "basis": "suspected",
+    "evidence": "The same question — how a content-only client gets an answer without the 2x cost — reached from the other side, by a consumer about to point three unmeasured connectors at the server. Linked rather than merged: the earlier one asks how to serve that client, this one asks what an UNKNOWN client should get by default, and the answers can differ."
+  },
+  "to_id": "dec:idea-how-does-a-content-only-client-get-an-answer"
+}

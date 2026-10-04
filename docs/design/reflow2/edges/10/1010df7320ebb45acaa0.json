@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:e98bb10e14fc5bc8c5a16a6d5595134e2b10ed4d6f2b8815288e8fa1061f903b",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:closing-a-gap-is-schedulable-work",
+  "properties": {
+    "approved_at": "2026-08-23",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

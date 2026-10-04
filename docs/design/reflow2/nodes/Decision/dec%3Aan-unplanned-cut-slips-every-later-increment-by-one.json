@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:12d460a17b89c45f675abe3be3d3d0fba807e9e6e6518932d648da406e947036",
+  "node_id": "dec:an-unplanned-cut-slips-every-later-increment-by-one",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "ACCEPTED on Anthony's word, 2026-08-08: \"when we add in unplanned change to a version, we should just slip the other versions up one to accommodate (what was scheduled for v0.25.0 gets pushed to v0.26.0 and what was scheduled for v0.26.0 gets automatically pushed to v0.27.0 and so on).\" The planned increment is NOT re-scoped to make room, and the unplanned work is NOT held back to protect the number: the number moves and the plan travels with it, intact. APPLIED IMMEDIATELY to the v0.25.0 cut, which shipped the storyflow HEAL disclosure fixes rather than the READ half epoch:v0250-planned was scoped for. WHAT THIS SETTLES that was otherwise decided ad hoc each time: an unplanned cut has three possible responses — rename the planned increment's contents into the new number (which silently redefines what was agreed), drop items to fit (which asserts a withdrawal nobody made), or slip. Slipping is the only one that changes no promise, and it means a plan's CONTENT is stable while its DATE is not — which is what req:plans-move-honestly already says about confidence decaying with horizon. WHAT IT COSTS, and it is worth stating: every slip renames four or more planned epochs, and the version number is currently baked into their IDs (epoch:v0250-planned), which cannot be renamed. So the routine act this decision makes routine is the one the current id scheme handles worst — see dec:idea-a-planned-increment-is-named-by-content-not-by-number.",
+    "name": "When unplanned work takes a version number, every planned increment slips up one rather than being re-scoped or squeezed in",
+    "rationale": "Recorded because it was decided in conversation and would otherwise be re-derived at every cut, which is the failure this project exists to prevent. The immediate trigger: v0.25.0 shipped unplanned work, and I stopped mid-cut rather than assume what should happen to the planned increment — the answer was a policy, not a one-off. Anthony's phrasing makes it automatic (\"and so on\"), so it is a rule a session can apply without asking again.",
+    "status": "accepted"
+  }
+}

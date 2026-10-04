@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:df987278d8c266d1bf8fa0175e9a061ab44fb9d04ade0422ba13040b258ef69d",
+  "node_id": "art:fleet-lessons",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "document",
+    "granularity": "atomic",
+    "location": "docs/fleet-lessons.md",
+    "name": "fleet-lessons.md",
+    "status": "realized",
+    "volatility": "stable"
+  }
+}

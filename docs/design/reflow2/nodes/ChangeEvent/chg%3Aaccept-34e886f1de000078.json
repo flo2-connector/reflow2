@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:aa2845f58c80c50eeadfc399ad2a294db4f237f4a17b7593fea8379ad126577d",
+  "node_id": "chg:accept-34e886f1de000078",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "documentation",
+    "detected_at": "2026-10-03",
+    "name": "The v0.78.0 cut re-blessed the last release's schema snapshot, as #660's gate (tests/a_schema_narrowing_ships_its_migration.rs) orders at every cut: reflow2_version 0.77.0 → 0.78.0, and Verification.last_reconciled_outcome now records `blocked` (#662's widening; no narrowing since 0.77.0, so the bless was not refused). Accepted before the manifest is frozen, as flow:release-cut step 1 orders.",
+    "subject": "system"
+  }
+}

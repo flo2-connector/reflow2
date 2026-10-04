@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:f65c89e286bc4ae78a567cb1337c638379b9a58a93ade0cf4a96e48f50622744",
+  "node_id": "req:reflow2s-code-reasons-from-the-declared-meanings-and-every-derived-relationship-is-a-declared-rule",
+  "node_type": "Requirement",
+  "properties": {
+    "concern": "core",
+    "kind": "functional",
+    "lineage": "original",
+    "name": "reflow2's code reasons from the declared meanings — every computation that selects relationships by meaning does so through the readings — and every relationship it derives is a declared rule that the code runs or is checked against",
+    "priority": "high",
+    "provenance": "imported",
+    "source": "Anthony, 2026-09-28, in a dev_reflow2 session: \"what is applicable to reflow2 and storyflow from the 5 tests? If we need to apply things to reflow2 and storyflow, then please add them to their respective design graphs also.\" Test 3 of dec:what-a-true-knowledge-graph-is (graph-primitives design on flo2, graph 85a2a1a36e7c942d), accepted on his word the same day.",
+    "statement": "Test 3 of the accepted definition of a true knowledge graph (graph-primitives design on flo2: dec:what-a-true-knowledge-graph-is), applied to reflow2.\n\n(1) Every computation that selects relationships by what they MEAN does so through the declared readings, never through a private list of names. req:every-edge-type-declares-what-it-means says a computation CAN select by reading; this says it MUST. Baseline: the projections of dec:a-projection-is-named-and-the-battery-runs-over-it are hand-kept name lists, and exclusion lists are private constants (structure.rs, heal.rs).\n(2) Every relationship reflow2 derives from others is declared as a composition of primitives — an inference rule the graph holds. Baseline: 0 of 23 declared (e.g. the contract pair PROVIDES ∘ CONSUMES⁻¹, coupling lifted up part-of, \"delivered\" = satisfied ∧ built ∧ its check passes, or every part delivered).\n(3) Each declared rule is either what the code runs, or checked to give the same result as the code on a real design; a declared rule nothing runs or checks is decoration.\n\nMet when a check passes over every meaning-selecting computation and every derived relationship.",
+    "status": "proposed"
+  }
+}

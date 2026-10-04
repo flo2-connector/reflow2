@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:fee3f63d5995045ef6375609a1512e0a57b7f64f28026dd4b2008d1244018735",
+  "node_id": "req:vocabulary-covers-personnel",
+  "node_type": "Requirement",
+  "properties": {
+    "concern": "core",
+    "designation": "internal",
+    "kind": "functional",
+    "lineage": "original",
+    "name": "People are modellable inside the design, not only around it — organisation, role, and who performs a function",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "Anthony, 2026-08-07, from the UAF audit: the Personnel domain has NO vocabulary in reflow2. Two people-shaped types exist and neither is this — `Contributor` is who authored the design, `Actor` is who the designed system serves. Both sit outside the system being designed.\n\nWHAT CANNOT BE SAID TODAY: which role performs a function; the organisation a function belongs to; a post, a competence, or a responsibility assignment; who is accountable for a component. So an organisational view, a manning view, or a responsibility matrix has nothing to project from — and \"which function is allocated to which system\" (already answered by ALLOCATED_TO) has no counterpart for \"which function is allocated to which PERSON or ROLE\".\n\nWHY IT MATTERS BEYOND reflow2, which is the reason this is a requirement and not a curiosity: reflow2 itself is a tool with an agent and one user, so people barely appear inside its design and their absence is invisible here. Almost every non-software project has people IN the design — a beamline has operators, a satellite programme has crews and controllers, a hospital system has clinicians. `rule:fixes-are-judged-by-the-third-party` says fixes are judged by what they do for somebody else's project, and this is a gap only somebody else's project would feel.\n\nNOT SPECIFIED HERE, deliberately: whether this is one node type or several, whether a role is a first-class node or a property on an edge, and whether reflow2 should follow UAF's Post/Role/Competence split or a simpler shape. Those are design questions and picking one now would foreclose them.",
+    "status": "deferred"
+  }
+}

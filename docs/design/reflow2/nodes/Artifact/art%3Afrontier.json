@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:138f262491e3e9d9e41178d730c968a9314456f0aca398a12e6417a62f05d7b3",
+  "node_id": "art:frontier",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "location": "crates/reflow2-core/src/frontier.rs",
+    "name": "frontier.rs — the deferred-derivation marker read and the frontier report: structure without intent, the deferred, the uncaptured (with a sweep), the resume point",
+    "status": "realized"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:2f951a979b2719f0c8da895374ede0b4b56a5bc045ab14f34d2e4e70b86d24da",
+  "node_id": "decision:ack:755a5d5272eb702d",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Accepted the gap gap:755a5d5272eb702d.",
+    "name": "Reviewed: gap:755a5d5272eb702d",
+    "rationale": "Deferred on Anthony's word, 2026-07-28, closing the reflow workflow review. Accepted and not dropped. Deferred rather than built because it should be decided TOGETHER with req:edge-defaults-do-not-assert, not before it: weight_basis asserting \"estimated\" over an absent weight and the weight facet being empty are two faces of one question, and fixing the default in isolation might delete the slot this requirement needs. Three things are genuinely open and none is mechanical: the granularity of an estimate (per capability, per tool call, per skill); whether estimates are authored, measured from real sessions, or both — weight_basis already distinguishes estimated / evidence / measured, which is itself evidence the facet was designed for this; and what a threshold even means when there is no fixed window, since models differ and reflow's 160k CRITICAL / 140k WARNING were its own environment's numbers, not a law. Recording one figure as if it were universal would be the asserting default this family of requirements exists to prevent.",
+    "status": "accepted"
+  }
+}

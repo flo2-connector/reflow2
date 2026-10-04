@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:2c5fe75dc339404ff980be69a3ec9533907e040537ebf98b49cb1d1c918df30d",
+  "node_id": "art:test-a-detector-consults-what-the-graph-already-holds",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "location": "crates/reflow2-core/tests/a_detector_consults_what_the_graph_already_holds.rs",
+    "name": "a_detector_consults_what_the_graph_already_holds.rs — a withdrawn rule raises no gap; gaps sharing one cause name each other; and the header records the deferred-requirement pin that was WRONG and why",
+    "status": "realized"
+  }
+}

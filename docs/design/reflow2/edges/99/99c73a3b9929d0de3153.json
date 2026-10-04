@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:bdab6093b43fc8bf167157b1d0f4dab72b294c4c0f67107da946578edad764d4",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-schema-serves-the-rules-that-tell-the-types-apart",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:schema-functional"
+}

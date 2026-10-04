@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:9e568ee3d9afece03651526f4045e5de15041da62996152a460ec038d604ff86",
+  "node_id": "art:changelog-test",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "granularity": "atomic",
+    "location": "crates/reflow2-core/tests/changelog.rs",
+    "name": "tests/changelog.rs",
+    "status": "realized",
+    "volatility": "stable"
+  }
+}

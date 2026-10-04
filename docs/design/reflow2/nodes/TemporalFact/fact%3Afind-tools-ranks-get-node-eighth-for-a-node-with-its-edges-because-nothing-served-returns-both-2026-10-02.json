@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:50a639afd7565d29451a2fb0024ad77997b435f1b99dec314ccb912134500410",
+  "node_id": "fact:find-tools-ranks-get-node-eighth-for-a-node-with-its-edges-because-nothing-served-returns-both-2026-10-02",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "finding",
+    "name": "MEASURED on 0.77.0: find_tools ranks get_node 8th for \"read one node by id with its properties and edges\" (below create_edges, draw_edges, scan_nodes, add_actor, describe_schema, provides and delete_node), and so leaves it out of the default 5. It ranks get_node 1st for \"read one node by id\", \"fetch a node by id\" and \"pull up the full record for a requirement\". The ranking is honest. The miss is a symptom of having no edge reader, not a find_tools defect",
+    "source": "art:vscode-call-door-field-report-2026-10-02",
+    "statement": "FROM THE 2026-10-02 TRIAGE (agent B), tool friction \"find_tools for 'read one node by id with its properties and edges' does not return get_node\" in art:vscode-call-door-field-report-2026-10-02. Root-cause skill fetched fresh.\n\nMEASURED, by `--call find_tools` with limit 8 and then 200, on a scratch import of main's export. Full table in /home/ajs7/.claude/jobs/fa666a94/tmp/triage-B/find_tools_ranking.txt.\n\n| Query | get_node rank |\n|---|---|\n| \"read one node by id with its properties and edges\" | 8 (scores: create_edges 12.84 … get_node 8.5) |\n| \"read one node by id\" | 1 |\n| \"fetch a node by id\" | 1 |\n| \"pull up the full record for a requirement\" | 1 |\n| \"show a node's neighbours\" | 1 (propagate_from 5) |\n| \"get a node and its edges\" | 2 |\n| \"list the edges of a node\" | 9 |\n| \"which nodes link to this one\" | 142 |\n\nCAUSE: find_tools is BM25-weighted over name, description and parameter names (query.rs:817). \"edges\" is a high-weight term on the edge writers' names and descriptions. get_node's description correctly does not mention edges, because it returns none. A query asking for a node WITH its edges describes a tool that does not exist (fact:root-cause-no-served-read-returns-one-nodes-edges-and-the-nearest-is-an-impact-walk-2026-10-02), and find_tools ranked what exists.\n\nTHE REPORT'S CONCLUSION, PARTLY OVERTURNED: the observation is exact, but find_tools is not at fault. A weight change that lifted get_node here would send the agent to a tool that does not answer the \"and edges\" half.\n\nNot established: whether the reporter's agent would have tried a shorter query. The report does not say.",
+    "subject_id": "cap:tool-search",
+    "valid_from": "2026-10-02"
+  }
+}

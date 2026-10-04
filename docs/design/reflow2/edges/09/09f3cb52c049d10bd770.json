@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:6df647ca11454a3d823d28b0a431d202ad61ea1fa32022d221cca353f4e615a3",
+  "edge_type": "CHANGED",
+  "from_id": "chg:session-context-is-documentation",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cap:session-memory"
+}

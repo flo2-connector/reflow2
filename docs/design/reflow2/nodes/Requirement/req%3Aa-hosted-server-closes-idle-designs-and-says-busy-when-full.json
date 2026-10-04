@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:bd27e49507b6652c88a7f170bcb2334b1091ecf8b340e2a5d61444723022744a",
+  "node_id": "req:a-hosted-server-closes-idle-designs-and-says-busy-when-full",
+  "node_type": "Requirement",
+  "properties": {
+    "concern": "core",
+    "kind": "functional",
+    "lineage": "original",
+    "name": "A server holding many designs closes the ones nobody is using, reuses the least recently used slot when full, and answers \"busy\" (503), never \"not found\", when it truly cannot open one",
+    "priority": "high",
+    "provenance": "authored",
+    "source": "@ajs, dev_reflow2 hub session, 2026-09-27",
+    "statement": "A reflow2 server that holds many designs (a registry root):\n- SHALL close a design that has had no request for its idle timeout (default about 15 minutes; configurable, and 0 means never);\n- SHALL, when a new design is asked for at its open-design limit, close the least recently used design that has no request in flight, instead of refusing;\n- SHALL refuse only when every open design has a request in flight. The refusal is 503 Service Unavailable with Retry-After and the same plain-language explanation, never 404, because 404 tells a client the design does not exist;\n- SHALL NOT reopen a closed design in the same process until the previous copy has actually released its store, so a quick reopen can never collide with the copy being closed;\n- SHALL end every session held on a design when it closes it. A client on an older MCP revision then gets 404 for that session and re-initializes, as the MCP spec requires; flo2's gateway already does.\n\nWHY, in @ajs's words (2026-09-27), after the research on scaling: \"Yes, let's build the now items in reflow2\". What happened: on 2026-09-27 flo2.io's engine refused 3 of 11 designs as 404 because nothing it had opened was ever closed (fact:flo2-io-met-the-open-design-cap-with-no-idle-eviction-2026-09-27).\n\nWhat current practice does (fact:how-current-practice-closes-and-moves-stateful-objects-2026-09-27): every system that serves many small stateful objects per process closes idle ones. Default timeouts: Akka 2 min, Orleans 15 min, Dapr 60 min. Past a limit it closes the least recently used one (Akka's active-entity-limit).",
+    "status": "accepted"
+  }
+}

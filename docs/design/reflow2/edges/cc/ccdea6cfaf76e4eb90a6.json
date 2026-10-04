@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:e4fd0d454c018cee71b924e0f3917e1befdce7f4f621e8b65d6f314b35318ab6",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0130",
+  "properties": {
+    "as_checksum": "sha256:74c0459e03ad38ce"
+  },
+  "to_id": "art:dto"
+}

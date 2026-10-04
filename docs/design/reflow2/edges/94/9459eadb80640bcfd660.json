@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:547822435add945b40878e3a11cb79637deefa4edd620a4bd623d0b56162a426",
+  "edge_type": "AT_EPOCH",
+  "from_id": "snap:epoch:preserved-on-write:cap:revise-trigger",
+  "properties": {},
+  "to_id": "epoch:preserved-on-write"
+}

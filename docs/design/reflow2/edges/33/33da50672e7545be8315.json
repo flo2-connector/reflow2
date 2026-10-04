@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:417346f53a3f43a0d6bcd7c1300aa25d8c5077a989da9eb12f482db92a29551c",
+  "edge_type": "CHANGED",
+  "from_id": "chg:no-idea-goes-quiet",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "req:no-idea-goes-quiet"
+}

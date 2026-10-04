@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:63743cb44f0e6dfde57a66f2b6f6c7e85e6f03e6a3cb4c4054d0837f67df5a76",
+  "node_id": "chg:central-host-status-corrected",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "resync",
+    "name": "dec:central-host moved from accepted back to proposed on Anthony's word, 2026-08-05. Its status contradicted its own text, which opens \"UNDECIDED\" and lays out four roads with none chosen, and downstream reads status rather than prose — where-am-i reports accepted decisions back as \"what you decided\", so the graph was telling Anthony he had settled on a hosted surface. Nothing about the decision itself changed; only the record was brought back into agreement with what the node already said. Recorded before the edit."
+  }
+}

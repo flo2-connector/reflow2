@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:e5fc18821b04e405183750d0cd05da11e5ac02c853a43869743858f34063e553",
+  "node_id": "chg:user-is-still-the-reminder",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "requirement_creep",
+    "name": "Anthony, 2026-08-06: \"as always, please use reflow2 skills and tools to implement any of this. this always gives us a first use case to see where we need to fix/improve reflow2 skills and tools. I still don't like reminding this all the time (which needs to be an enduring requirement to increase the probability that an agent will use reflow2 skills and tools and not rely on itself).\" Adds a second dated observation to req:skill-use-survives-a-long-session and, newly, the DOGFOODING rationale — skill use is the instrument that finds defects in the skills, so skipping it costs evidence, not just tidiness."
+  }
+}

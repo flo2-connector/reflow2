@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:280799bd46c0a5698d793985cdfe2838222e8f0978e609a299212fb85c3e7f68",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "cmp:vocabulary",
+  "properties": {
+    "dependency_type": "function_call",
+    "optional": false,
+    "weight_basis": "evidence"
+  },
+  "to_id": "cmp:graph"
+}

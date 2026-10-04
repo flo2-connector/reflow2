@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:46788b4ea51f3dcd45a4e1cd30885293764a42cc07588f2ce9401deab2314696",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:include-edges",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:include-edges"
+}

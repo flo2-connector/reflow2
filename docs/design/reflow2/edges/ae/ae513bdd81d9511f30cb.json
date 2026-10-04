@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:fb10d7e6a70b10502e9ca3e9943139922f3e72665f04255ca43cbe1baa5279d2",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-degraded-server-recovers-when-its-cause-clears-and-readiness-tells-the-truth",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:proxy"
+}

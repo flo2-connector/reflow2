@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:14d2f6ad998c81dc0131d0dae22cf69577050d38181207b23c4f60b88a1ea90a",
+  "node_id": "frag:art:tool-listing",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered tool_listing.rs — the one place an overridden tools/list reply is built; owns the 2026-07-28 cache-hint rule rmcp writes inline in its macro"
+  }
+}

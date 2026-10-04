@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:128e3c552f2b25a22ecc0c6f45ea86e5d4193c24ee5acc2ddf1ba91bc03d6e3c",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:granularity-observation",
+  "properties": {},
+  "to_id": "req:build-granularity-is-visible"
+}

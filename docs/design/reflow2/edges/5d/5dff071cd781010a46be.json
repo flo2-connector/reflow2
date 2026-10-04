@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:8e3de02e575073fdc0d58157ab00a6a6a8b0be313524e960327acc51f27375a9",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:degraded-surface",
+  "properties": {},
+  "to_id": "req:never-silently-absent"
+}

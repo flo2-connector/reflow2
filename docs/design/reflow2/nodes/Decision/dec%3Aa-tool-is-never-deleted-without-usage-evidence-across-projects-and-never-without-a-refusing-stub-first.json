@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:8399ebb9d4ca7ddd9d0931a8ce70ea3e4773ef306e245813d46f2d91cd0fe99c",
+  "node_id": "dec:a-tool-is-never-deleted-without-usage-evidence-across-projects-and-never-without-a-refusing-stub-first",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Anthony, 2026-09-18, on the measured prune list: 'I'm a little hesitant to delete tools.' The ruling, on the agent's recommendation and his word: nothing is deleted on one project's ledger. A fold or removal waits for usage evidence from more than one project (Alex's repos through usage_report, the work project), and when it comes it ships first as a stub under the old name that refuses and names the replacement — for one release — so a removed door is never a silent absence (req:a-refusal-names-what-would-have-worked). The confusion is removed with words instead: every tool first for its own job, no new mutual pair, both ratcheted. The prunable kinds stay on the record as candidates: 7 singular/plural doors, 6 constructor-plus-edge pairs, 3 two-doors pairs (186 → 170 if all taken).",
+    "kind": "choice",
+    "name": "A tool is never deleted without usage evidence across projects, and never without shipping as a refusing stub for one release first",
+    "rationale": "The failure he named is the agent's debate at the moment of choosing, and the ranker is where that moment lives; making each tool first for its own job removes the debate without removing capability, and the ratchet stops the surface growing more confusable. Deleting on one project's ledger would remove reads nobody could find rather than tools nobody needs — BL-155's own caveat.",
+    "status": "accepted"
+  }
+}

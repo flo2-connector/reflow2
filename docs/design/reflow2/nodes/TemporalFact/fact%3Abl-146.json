@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:873bdceb3a6686cc4ac02787425eb7da5226cb7096b180a75d1554747172b50e",
+  "node_id": "fact:bl-146",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "defect",
+    "statement": "[BL-146] coverage_report marks a location unobserved when a parent directory also claims it, so the field that answers \"did I forget to sweep this?\" cannot be trusted",
+    "subject_id": "cmp:scope",
+    "value": "{\"evidence\": \"*Found 2026-08-01 by an /adopt pass over music_graph, a ~11k-LOC Python research repo taken from an empty graph to 134 nodes / 379 edges. Reported in that project's own reflow2_feedback.txt.* archive/reco.py and archive/reco_clean.py were passed explicitly in the sweep AND are covered by an artifact claiming archive/ as a whole. Both came back in unobserved_locations despite appearing in observed. Harmless in this pass, and it is the one field whose entire job is to say *you forgot to sweep this* \\u2014 a false entry there makes the honest completeness signal untrustworthy. Worth noting what is NOT broken: the opaque-parent case itself works, and is deliberately pinned by ver:coverage (*\\\"ONE OPAQUE ARTIFACT LEGITIMATELY CLAIMS THE MASS BENEATH IT\\\"* \\u2014 900 vendored files under one registered directory report zero unclaimed). So the claiming logic is right and the unobserved bookkeeping disagrees with it. Fix shape: a location observed under a parent's claim is observed; reconcile the two paths so observed and unobserved_locations cannot both contain the same entry. A test that they are disjoint is owed either way \\u2014 that invariant is checkable and was not checked. Size S\", \"origin\": \"Migrated from docs/backlog.md BL-146 on 2026-08-07 (epoch:backlog-retired). Size estimate carried from the row: S.\"}"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:bfb4497fe925a6f5fa9f31b13c3950c1f81be41d4ecd1fcad21644eca783408b",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-budget-says-how-it-composes",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:test-a-finding-or-refusal-names-the-route-that-works"
+}

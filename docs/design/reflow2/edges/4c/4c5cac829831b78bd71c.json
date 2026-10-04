@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:0033b6dbd99e87a81bfedd850aca8c84d9a2531eb593bcbe53ed8c5e3f633bc0",
+  "edge_type": "REALIZES",
+  "from_id": "art:detect",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:an-understated-status-is-reported"
+}

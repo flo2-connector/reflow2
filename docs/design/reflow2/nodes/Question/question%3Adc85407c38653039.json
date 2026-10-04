@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:faf0b813a3d085ac0dc110236ce9cfaa55640f917ac792aa84929eff82538cb4",
+  "node_id": "question:dc85407c38653039",
+  "node_type": "Question",
+  "properties": {
+    "answer": "Anthony, 2026-07-30: BUILD IT NOW. A gap acknowledgement must expire when the CONTENT it judged changes, not only when the set of affected nodes changes. Found live on 2026-07-30 while promoting the planning axis: an accepted review was left defending a requirement that no longer said what the review quoted, which reads as a human having agreed to something they never saw.",
+    "context_setter": "Nothing satisfies requirement “A gap acknowledgement must expire when the thing it judged changes, not only when the SET of affected nodes changes”",
+    "gap_id": "gap:dc85407c38653039",
+    "question": "When you say \"this issue is fine, I've looked at it\", that sign-off currently keeps holding even after the thing you looked at has been reworded underneath you — so it can end up defending something you never actually read. Should we build it so your sign-off expires when the wording changes, put that off, or leave it as it is?",
+    "rephrase_degraded": false,
+    "status": "answered"
+  }
+}

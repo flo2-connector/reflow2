@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:03769795dd93c9592174ceaa497144cc7054bccae4da0d1d60b2726ad5ac4ed4",
+  "edge_type": "HAS_SNAPSHOT",
+  "from_id": "fact:root-cause-one-shot-modes-return-before-the-pointer-check-and-opening-a-store-creates-it-2026-10-02",
+  "properties": {},
+  "to_id": "snap:epoch:preserved-on-write:fact:root-cause-one-shot-modes-return-before-the-pointer-check-and-opening-a-store-creates-it-2026-10-02"
+}

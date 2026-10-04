@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:7bae195906844168e328f87f3700d7bca809f3cb315143a8371e7a97f330e645",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-reachability-gate-reads-tools-not-names",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:test-the-guard-reads-the-request-before-refusing"
+}

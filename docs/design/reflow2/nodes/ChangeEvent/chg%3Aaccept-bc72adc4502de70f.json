@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:0cd237757a8d7f2e5ccfc42985e8d459ec8aa92eaf46969e63a5378e0bae3c11",
+  "node_id": "chg:accept-bc72adc4502de70f",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "documentation",
+    "detected_at": "2026-08-25",
+    "name": "One known-term added so the linter does not read the new gap kind as an unserved tool name. The lint's own rules are unchanged — bookkeeping that keeps an existing gate accurate, carrying no design meaning.",
+    "subject": "system"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:505b5295ffe04ded20f9ef17ff4df65d38e4028018fb66be8de657f82ca63add",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:agent-authored-feedback-is-reproducible-and-never-leaves-unasked",
+  "properties": {
+    "authored_at": "2026-08-14",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

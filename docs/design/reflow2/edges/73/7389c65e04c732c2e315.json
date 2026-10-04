@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:a33085ded9ad95c025d7c105d7e6094bbe92ff93ec339eac3e87bedf94e25f0f",
+  "edge_type": "REALIZES",
+  "from_id": "art:pointer",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "verified"
+  },
+  "to_id": "cap:a-code-folder-names-its-design"
+}

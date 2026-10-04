@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:20165cc3df5341e3474a6e9c8d0fa9e8c04f22fa0e02f58803b93089d19a6327",
+  "node_id": "epoch:v0360",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "epoch_type": "release_cut",
+    "name": "v0.36.0 — the agent learns whose words to use: orientation asks what lens the reader brings, a Constraint stops reading as numeric-only, and the loop stops inviting closure after every capture",
+    "sequence": 364,
+    "status": "arrived"
+  }
+}

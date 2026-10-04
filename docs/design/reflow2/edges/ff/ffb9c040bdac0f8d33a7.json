@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:0ebddd595999796ebca9d9174b0c4d71e0060438eb15ccde69d73829dc39c429",
+  "edge_type": "ANTICIPATES",
+  "from_id": "dec:idea-how-does-a-test-result-get-back-in-when-the-tester-may-not-be-an-agent",
+  "properties": {
+    "evidence": "That open question already asked how a person inspecting a house feeds results back, which this principle now requires."
+  },
+  "to_id": "req:design-and-implementation-stay-coherent-both-ways"
+}

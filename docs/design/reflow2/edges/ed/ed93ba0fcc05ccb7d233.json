@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:037f0987729b62313f2771fd0ec9833e1a58f3117655aa232c30197adfb34ac0",
+  "edge_type": "REALIZES",
+  "from_id": "art:confirm",
+  "properties": {
+    "completeness": "partial",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:nothing-moved"
+}

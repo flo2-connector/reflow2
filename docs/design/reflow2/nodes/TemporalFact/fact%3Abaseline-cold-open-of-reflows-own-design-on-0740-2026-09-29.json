@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:6b0a20065305a7ef87f49c176e660ce025fcfb0c932f54ae64e6b77102fa420c",
+  "node_id": "fact:baseline-cold-open-of-reflows-own-design-on-0740-2026-09-29",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "confidence": 0.75,
+    "fact_type": "finding",
+    "name": "BASELINE (measured 2026-09-29, installed 0.74.0 release, isolated): reflow2's own design (5,928 nodes, ~108,400 facts) cold-opens in ~1.25 s using ~54 MB over the empty store, about 520 bytes per fact. A rebuild from its export takes ~7 s; open plus a full detect_gaps ~4.2 s. Token-side baseline from the same exercise: ~610 designer calls over 3 rounds, ~290 KB echoed for ~40 KB of edits, 120 KB of describe payloads for 41 tools",
+    "source": "art:dev-reflow2-two-agent-exercise-feedback-2026-09-29",
+    "statement": "From art:dev-reflow2-two-agent-exercise-feedback-2026-09-29 (Measured baselines, and items I4/I6), for this requirement's \"budgets written before any optimisation\".\n\nTIME AND MEMORY. Measured by the DESIGNER AGENT of the two-agent exercise, not re-run in this triage: a copy of docs/design/reflow2.json in a scratch directory, the installed 0.74.0 release binary via --call / --graph-path, scratch HOME confirmed empty afterwards.\n- Cold open: about 1.25 s, and about 54 MB above the empty-store baseline, so roughly 520 bytes per asserted fact. This is the number req:one-open-design-costs-a-deliberate-amount-of-memory asks to be chosen rather than inherited.\n- Rebuild of the store from the export: about 7 s.\n- Open plus one full detect_gaps: about 4.2 s.\n\nTOKENS PER TASK, from the same exercise:\n- The designer made about 610 tool calls over 3 rounds of one design task.\n- About 290 KB of replies echoed back for about 40 KB of edits (the designer's estimate).\n- The describe payloads for the 41 tools the designer had to look up come to 120,363 characters (average 2,935; add_constraint 7,541), MEASURED by this triage from 0.74.0's tools/list.\nThe per-call echo sizes are in fact:root-cause-a-write-replies-with-the-whole-stored-node-and-replace-text-adds-each-prior-field-2026-09-29.\n\nUse: the \"before\" column for req:the-mcp-surface-is-sized-for-tokens-per-task and req:the-graph-engine-keeps-a-compact-index-per-primitive. The same exercise will be re-run on fixed versions as an after-test.\n\nBounds: one design, one machine, single runs, no variance measured. The 520 B/fact figure is divided by the ASSERTED facts, and derived facts are not counted.",
+    "subject_id": "req:time-and-tokens-are-measured-per-task-against-budgets",
+    "valid_from": "2026-09-29",
+    "value": "{\"design\":\"reflow2 own design\",\"nodes\":5928,\"facts_asserted\":108400,\"cold_open_s\":1.25,\"cold_open_mb_over_empty\":54,\"bytes_per_fact\":520,\"rebuild_from_export_s\":7,\"open_plus_detect_gaps_s\":4.2,\"describe_payload_chars_41_tools\":120363,\"designer_calls_3_rounds\":610,\"echoed_kb\":290,\"edit_kb\":40,\"binary\":\"0.74.0 release\"}"
+  }
+}

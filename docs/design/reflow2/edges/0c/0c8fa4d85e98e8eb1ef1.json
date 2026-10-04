@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:d2ca70dd12efc87a14a1323cc87a941952fafd58b8b025b6109c07625dc95fcf",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:test-a-write-replies-with-a-receipt",
+  "properties": {
+    "covers": "whole"
+  },
+  "to_id": "ver:a-write-replies-with-a-receipt"
+}

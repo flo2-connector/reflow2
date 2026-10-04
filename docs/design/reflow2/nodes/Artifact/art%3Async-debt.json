@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:c238f763cb21fa4c3893d886b8d0a1bbf7c642ea0cbde518e7b3359a168b86ec",
+  "node_id": "art:sync-debt",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "granularity": "atomic",
+    "location": "crates/reflow2-mcp/src/sync_debt.rs",
+    "name": "sync_debt.rs",
+    "status": "realized",
+    "volatility": "stable"
+  }
+}

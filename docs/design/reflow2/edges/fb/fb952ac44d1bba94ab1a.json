@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:954eeb06bfda8848b270d98f3080a8b26b02065004981eaf4fbd2d29c3e3a213",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:an-export-says-which-tree-it-was-taken-in",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:export"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:16fa632b49adb92089c22dec61617c6d5abc6e86ead14330594bfa7412f4b75e",
+  "edge_type": "CHANGED",
+  "from_id": "chg:decisions-pass",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:ingest"
+}

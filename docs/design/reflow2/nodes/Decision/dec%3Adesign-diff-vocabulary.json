@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:b4ae642b35d00aa7f95e9b013eb96724f3d103122ed41013e6519c6259936569",
+  "node_id": "dec:design-diff-vocabulary",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "A design-vs-design diff (compare_designs) exists as a core op exposed as both an MCP tool and a CLI flag. It compares two export documents, or the live graph against one document. Findings are directional — added / removed / changed relative to an explicitly named base — with property-level detail on changed nodes, grouped into two bands: design content vs the supporting/bookkeeping layer (ChangeEvents, DriftEvents, Fragments, Questions). It reports divergence between two as-designed records and never judges which side is right; the word 'drift' stays reserved for design-vs-reality.",
+    "name": "Design-vs-design comparison is directional, banded, and lives in the core",
+    "rationale": "User decided all four axes 2026-07-21 (BL-71 rung c vocabulary session). Directional because all three consumers have a real base — the committed record (the BL-71 clobber tripwire), the main branch (BL-70 branch-by-file comparison), the state a claim was made against (BL-12 merge) — while AoA can still read the report neutrally or run it both ways. Banded because the real 2026-07-21 divergence was 3 Decisions and 8 Requirements buried under ~20 bookkeeping nodes; a flat list hides exactly what matters. Core op (not a kit script) because deterministic design computation belongs in the tested core; CLI flag so CI and no-server contexts reach it, like --import/--export. It is the read side of the rung a+b upsert-layering, the sibling of the reconcile family — which compares design against reality, hence the separate word: divergence, not drift.",
+    "status": "accepted"
+  }
+}

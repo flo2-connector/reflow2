@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:f329d3e5250f36c358cc9b9c9284c892a04a885d3721920bad09b4e8872ef79c",
+  "node_id": "chg:next-names-the-safe-tool-20260808",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "test_failure_fix",
+    "name": "The loop's to-do list names the read-only tool as the imperative, and the brainstorm skill stops citing a default that changed"
+  }
+}

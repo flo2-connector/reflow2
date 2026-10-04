@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:b000541b276aec49a132782aaf9d24e529653014486df2fb3f24402b744f1dda",
+  "node_id": "req:a-skill-is-reachable-from-a-description-of-the-job-in-a-persons-words",
+  "node_type": "Requirement",
+  "properties": {
+    "lineage": "original",
+    "name": "A skill is reachable from a description of the job, in the words a person would use",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "Promoted 2026-09-20 on Anthony's word. flo2 F8: 'the only way to find a skill you cannot name is to read all 29 descriptions', and the owner's own line, 'I continually forget which skills are available.' BUILT in v0.65.0 as `find_skills`, with a held-out corpus of one query per skill and the same rank-first ratchet the tools have: 30 of 30 in the top five, 25 of 30 first.",
+    "status": "accepted"
+  }
+}

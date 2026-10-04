@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:b49becb8d93afc400250f4da1e5dacb6624bb768771b37e554a16e689998acf2",
+  "edge_type": "CAUSES",
+  "from_id": "cap:gap-carries-a-reading",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "The parameter is typed as the whole object and its own description names no narrower obligation, so the schema asks for a finding while the implementation wants a key, and a consumer that reads the type pays for the difference on every call.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:gap-to-prompt-takes-the-gap-as-an-object-and-reads-only-its-id-so-a-consumer-recomputes-every-gap-per-click"
+}

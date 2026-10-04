@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:d24df2e3c495180ad487b807a337c09bbd68506839ad6032f79a33b850d20854",
+  "edge_type": "VERIFIES",
+  "from_id": "ver:get-node-reads-its-edges",
+  "properties": {},
+  "to_id": "cap:one-nodes-edges-are-read-back-as-edges"
+}

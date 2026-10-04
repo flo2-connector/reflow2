@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:a56b8575a633c28a547bab35264a0e51288968208e85b3ddc53d9172f3abe22f",
+  "edge_type": "EVOLVES_INTO",
+  "from_id": "dec:idea-an-incremental-resumable-region-scoped-adopt-with-a-frontier-and-a-deferral-marker",
+  "properties": {
+    "evidence": "Promoted on Anthony's word, 2026-09-17: \"I'd like to accept/promote all of Alex's ideas. We can work them after the current set of tasks.\" Option A (the two primitives on existing vocabulary) is the shape the requirement took; option B (the scoped-detector defects) is recorded as a dependency inside it."
+  },
+  "to_id": "req:adopt-can-be-incremental-and-resumable-with-a-frontier-and-a-deferred-derivation-marker"
+}

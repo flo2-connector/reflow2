@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:c0d76beec87515c3ac2ce0b3fcf79ee0b6034f3a1571392ac09630783eb34027",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:a-sweep-says-what-it-could-not-have-covered",
+  "properties": {
+    "approved_at": "2026-08-23",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

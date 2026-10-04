@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:141b8c48e7ae2e6c368c24687b177a158a1de151bcc265e7c8853af24b24bab0",
+  "node_id": "fact:manual-work-bd46d05a4e70ba56",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "manual_work",
+    "statement": "Wrote a script, several times across the session, to find which REGISTERED artifacts had drifted: load the committed export, map each Artifact's location to its stored checksum, hash the files git reports as changed, and print the ones that differ.\n\n`reconcile_artifacts` is the served tool for this and I did not use it once — it takes observations the caller has already computed and performs no file I/O itself, which is a deliberate design, but it means the hashing-and-diffing half is left to every caller and I rebuilt it each time rather than writing it once.",
+    "subject_id": "proj:reflow2",
+    "valid_from": "2026-09-01",
+    "value": "{\"diagnosis\":\"tool_not_found\",\"reflow2_tool\":\"reconcile_artifacts\"}"
+  }
+}

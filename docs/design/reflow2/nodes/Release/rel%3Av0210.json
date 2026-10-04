@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:e3c0f40d6cb731bd71f5ec0b2e713c2b0346eb95af8bf742d326e927f8157838",
+  "node_id": "rel:v0210",
+  "node_type": "Release",
+  "properties": {
+    "name": "v0.21.0 — the quality of evidence becomes a fact the graph holds: a check's TIME, INPUT and INDEPENDENCE (BL-106/126/136), plus a cycle finding that says which edge kinds it walked (BL-141a). Re-scoped from the four agent-facing capabilities it was planned for; those remain scheduled here and report as outstanding.",
+    "status": "retired",
+    "unit_type": "binary",
+    "version": "0.21.0"
+  }
+}

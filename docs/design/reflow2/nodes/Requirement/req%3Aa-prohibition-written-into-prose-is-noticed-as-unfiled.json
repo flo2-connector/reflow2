@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:aab5c56ddfde50ca811757bcb7e389b280b5df17cd0abc23dedcde0a47730c2e",
+  "node_id": "req:a-prohibition-written-into-prose-is-noticed-as-unfiled",
+  "node_type": "Requirement",
+  "properties": {
+    "lineage": "original",
+    "name": "A prohibition written into a design node's prose is noticed as having no home a check can read",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "When a Requirement, Capability, Component, Interface or accepted Decision carries a prohibition in its own text — the \"no number in it\" phrasings capture-intent's routing table sends to a Constraint — and no Constraint binds that node, the loop says so, once, as a finding about the practice. The table already routes such a sentence to a Constraint rather than a Requirement, because a Constraint can `constrains` what it binds and be read by the checks; an instruction with nothing noticing its absence is one leg of three.\n\nMeasured before it was asked for: reflow2's own design held ≈61 such sentences in prose (9 of 10 sampled genuine) against 8 Constraint nodes, on a routing row that had been added precisely because eleven prohibitions were left as Requirements (fact:capture-is-blind-to-three-families-and-the-routing-table-has-a-row-for-two-of-them).\n\nAnthony's word, 2026-09-14: \"Build the detector for prohibitions living in prose.\"\n\nOut of scope by design: nudging a brainstormed idea (a proposed Decision's prohibition is a musing), flagging a DesignRule or a Constraint (both are homes), reading records and checks as intent, matching the shall-clause (the requirement idiom), or judging whether the sentence should become a Constraint — filing or acknowledging stays the reader's call.\n\n(This node deliberately does not spell the phrases it is about: a record that quotes the pattern trips the detector that reads it — measured on the first draft of this very node.)",
+    "status": "accepted"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:4be1d14a4a8984720042807d2bda9de63a94305e64e18ae2e6e76f7149671e32",
+  "node_id": "art:auto-export",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "description": "The server's write-through: a doorbell rung on every write, a debounced task (2s quiet, 10s ceiling) that coalesces a burst into one export, and the hand-edit guard that declines rather than overwrite. Tracks the baseline twice — in-process and via the recorded sync — so the guard also fires on a memory-backed server with no graph_path, and so a session's own deliberate export never looks like tampering. Never passes accept_divergence: an automatic write that discards somebody's work is the one outcome that cannot be undone from the thing that caused it.",
+    "location": "crates/reflow2-mcp/src/auto_export.rs",
+    "name": "auto_export.rs",
+    "status": "realized"
+  }
+}

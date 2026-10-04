@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:f133e499b6137251d479a5c8208beb2d669135d244549b8fca7d33023407b592",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-record-can-say-which-question-it-answered",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:nodes"
+}

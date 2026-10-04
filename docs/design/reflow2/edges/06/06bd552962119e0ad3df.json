@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:2d018113f0ff11249271fc5bb3dc069f41fbb334d13f170b5dcb2a3ff6969f79",
+  "edge_type": "CHANGED",
+  "from_id": "chg:shared-sessions",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:identity"
+}

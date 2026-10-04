@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:cd43f990673f1c87b15276e6e61726f7ac57b4bc501e58a3393906ddfc867ecf",
+  "node_id": "req:concurrent-planning",
+  "node_type": "Requirement",
+  "properties": {
+    "concern": "core",
+    "designation": "internal",
+    "kind": "functional",
+    "lineage": "original",
+    "name": "Several people can plan against one design without colliding",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "A team, not a single author, must be able to work on one design at the same time: each person able to see what the others hold, to work in a scope that does not collide with theirs, and to have genuinely overlapping work surfaced as decidable conflicts rather than silent last-writer-wins. Whether this extends to simultaneous editing with live presence, or stops at non-colliding parallel work with good merges, is deliberately not asserted here — it depends on an architecture question that is still open, and the weaker form may be what teams actually need.",
+    "status": "accepted"
+  }
+}

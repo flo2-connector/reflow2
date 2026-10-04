@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:986f6ca3e6dcfc10687a4371debf4413a36bb673f992301e6b00a2d6675d3dc7",
+  "node_id": "art:registering-the-file-that-is-a-check-test",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "test",
+    "description": "Four tests pinning that registering the file that IS a check gives the check an executable form, draws no REALIZES, and is enough on its own for the runnable count — plus the unchanged capability case.",
+    "location": "crates/reflow2-core/tests/registering_the_file_that_is_a_check_gives_it_an_executable_form.rs",
+    "name": "crates/reflow2-core/tests/registering_the_file_that_is_a_check_gives_it_an_executable_form.rs",
+    "status": "realized"
+  }
+}

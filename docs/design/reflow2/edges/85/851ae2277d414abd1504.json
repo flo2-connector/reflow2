@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:dc9f49af91b28b595e319c1398c4b2d18b3f0a214d4c2e99e09963c3da7d3f3f",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:hub-skill",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:hub-skill"
+}

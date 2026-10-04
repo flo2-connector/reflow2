@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:0d412638143ab99aeccc3e2eb1145e74c6ae04ee4884a5e4e26ffb435a46b8f1",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:every-skill-is-found-by-a-query-in-the-users-words-test",
+  "properties": {
+    "covers": "partial",
+    "evidence": "The test asserts hub is served, has a corpus query, and ranks first for it; the rest of the contract (frontmatter, standing rule, served terms, mirrors, command) is tools/skill_lint.py and tools/check_command_surface.py, both CI gates."
+  },
+  "to_id": "ver:the-hub-skill-is-served-and-found-for-its-job"
+}

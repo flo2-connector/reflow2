@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:89f28a0e27a3fffdcded6d50ed835df3138d426623178d4e05367d1ae2efdd06",
+  "node_id": "epoch:rule-enforcement-split",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "epoch_type": "revision",
+    "name": "The per-design-state rule is split so each clause carries the enforcement it can honestly bear (2026-08-09)",
+    "sequence": 295,
+    "status": "arrived"
+  }
+}

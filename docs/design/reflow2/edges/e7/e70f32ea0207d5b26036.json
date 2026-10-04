@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:3d39dba0812c712c51b80c3a59c2112199d15f0bdaa21aa933af5a7eeeccf628",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-quantity-says-how-it-was-obtained-and-a-check-on-it-has-a-form-a-tool-can-rerun",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "art:test-a-number-names-its-source"
+}

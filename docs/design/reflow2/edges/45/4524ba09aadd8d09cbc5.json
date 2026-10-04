@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:c318716c221e4356bf36026120839388585e50cf7bea22e9c82b3fe431d5e7c8",
+  "edge_type": "ANTICIPATES",
+  "from_id": "fact:defect-the-latent-surface-never-re-probes-after-a-cli-restore",
+  "properties": {
+    "evidence": "The 2026-08-15 restore report asked, as its first preference, for the latent server to re-probe on tool call and promote to the full surface in place; only its second and third preferences were built, and this walk builds the first."
+  },
+  "to_id": "fact:root-cause-the-opt-in-was-finished-by-a-client-command-and-the-latent-process-never-grew-the-surface"
+}

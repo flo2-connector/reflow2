@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:af4b53ad7b9d4c4eaffd3a25a1332f4fd5fb097d91ec2417bb320d8a16d80c92",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0710",
+  "properties": {
+    "as_checksum": "sha256:257a9e64ba62c4b8354188ae2a43c90114ac03a4c5cf94b9256e3142f573ab44"
+  },
+  "to_id": "art:a-build-can-call-one-tool-from-the-shell-test"
+}

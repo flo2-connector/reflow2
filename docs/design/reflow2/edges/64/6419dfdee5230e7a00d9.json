@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:6c164cf2f47821e994b9d295259f8d96e5ca76aa4cf7add9ff012b54e22ec623",
+  "edge_type": "CHANGED",
+  "from_id": "chg:bl180-function-preservation",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:service"
+}

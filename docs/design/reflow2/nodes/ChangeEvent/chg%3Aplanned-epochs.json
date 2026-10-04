@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:2eacda025a2da25c450524784fd639087a361e451a8df054f1998758dcdd9717",
+  "node_id": "chg:planned-epochs",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "name": "Planned epochs built: DesignEpoch.status, plan_epoch, set_epoch_status, and record_change refusing a point that has not happened"
+  }
+}

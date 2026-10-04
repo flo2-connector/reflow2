@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:c4244fe7ce945c9b36663442b8818d15c444e53162749b1d79b42b4731edf04e",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:graph",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:graph"
+}

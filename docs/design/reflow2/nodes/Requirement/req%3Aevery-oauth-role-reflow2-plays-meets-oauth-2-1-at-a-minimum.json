@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:e8319f58b204f661a1e3c18b64d057791327973d97690378994a4e4fc25fef0c",
+  "node_id": "req:every-oauth-role-reflow2-plays-meets-oauth-2-1-at-a-minimum",
+  "node_type": "Requirement",
+  "properties": {
+    "concern": "security",
+    "kind": "nonfunctional",
+    "lineage": "original",
+    "name": "Every OAuth role reflow2 plays meets OAuth 2.1 (draft-ietf-oauth-v2-1) at a minimum",
+    "priority": "high",
+    "provenance": "authored",
+    "source": "Anthony (who:ajs), dev_reflow2 hub session, 2026-09-28",
+    "statement": "Anthony, 2026-09-28: \"I'd like to make it a requirement to meet https://datatracker.ietf.org/doc/draft-ietf-oauth-v2-1/ at a minimum.\"\n\nWHAT IT COVERS: every OAuth role reflow2 takes on.\n· NOW, the RESOURCE SERVER: an exposed reflow2 server verifying Bearer access tokens (fix 4 of issue #616, cap:an-exposed-server-establishes-who-is-calling-before-intent-can-be-settled).\n· LATER, any CLIENT role: for example the sign-in flow reflow2's own --remote client still owes (point 1 of req:a-local-client-works-against-a-remote-reflow2-server-by-url).\nreflow2 plays no authorization-server role and issues no tokens (dec:idea-authentication-is-somebody-elses-layer-and-the-line-is-the-contributor-id).\n\n\"AT A MINIMUM\" MEANS OAuth 2.1 IS THE FLOOR. Where reflow2 serves MCP, the MCP authorization specification's profile applies on top, including protected resource metadata (RFC 9728) and audience-bound tokens (RFC 8707). Where the two differ, the stricter one wins.\n\nWHAT THE FLOOR INCLUDES, as understood when this was written. Each item is checked against the draft's own text when the work is built, and pinned by a test:\n· As a resource server: access tokens are accepted in the Authorization header as Bearer tokens and NEVER from a URI query string. Every token is validated before use (signature, issuer, audience restricted to this resource, expiry). Failures answer with a WWW-Authenticate challenge and the right status (400 invalid_request, 401 invalid_token, 403 insufficient_scope). A token received is never passed through to another service.\n· As a client: the authorization code grant with PKCE (S256), and no implicit or password grant. Redirect URIs match exactly. Refresh tokens are rotated or sender-constrained. Tokens never travel in a URL.\n· Transport: tokens only cross TLS. reflow2 does not terminate TLS itself, so how TLS is met in a deployment (loopback, or a TLS-terminating proxy in front) is stated by the server, never assumed.\n\nWHAT IT DOES NOT CHANGE: local use (stdio, --shared, loopback) involves no OAuth at all and stays exactly as it is.\n\nTHE DRAFT MOVES: conformance is to the current draft when the work is built. If it becomes an RFC, that RFC.\n\nAnthony, later the same day: \"when it gets its own RFC status, we can adopt that as the requirement.\"",
+    "status": "accepted"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:ce4436acafc3279c284713453b9e70e303b823f592adc293bba0b87ade03c75a",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:seat-liveness-shared-test",
+  "properties": {
+    "covers": "whole",
+    "note": "migrated 2026-09-22 from a REALIZES link_artifact drew in error"
+  },
+  "to_id": "ver:handed-out-seat-liveness"
+}

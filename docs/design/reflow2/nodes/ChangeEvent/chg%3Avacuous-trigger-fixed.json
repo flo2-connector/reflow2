@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:46a141811cad87a27a2e3a4c466201abbe82795115e79bd346413f52ac893347",
+  "node_id": "chg:vacuous-trigger-fixed",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "test_failure_fix",
+    "name": "The cut trigger stops being vacuously true, and v0.19.0 takes the content work"
+  }
+}

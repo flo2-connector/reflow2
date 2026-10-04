@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:69cc5a1b59c7abc8f50b3278a7b847438841c71c9a50769e7a168e0a0026f402",
+  "edge_type": "CHANGED",
+  "from_id": "chg:accept-6414f7a4c781cef4",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:proposed-asserts-nothing-test"
+}

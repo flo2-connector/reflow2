@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:dc5d8e9af10981a473a4337f190c9ab02351eaf17d7856cfb60c11cae9dff66d",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-design-says-which-vocabulary-it-has-never-used",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "req:declared-vocabulary-is-reachable-from-the-surface"
+}

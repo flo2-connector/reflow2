@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:5c28bd8329243e9ab68837562e79ee65b27bf8d8e855fd935c586d8962d4f6ed",
+  "node_id": "dec:idea-replace-one-sentence-in-a-field-without-resending-the-field",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "RECORDED AS BRAINSTORMING, NOT AS A PROPOSAL (the field-feedback rule: every idea gets the brainstorm skill). From flo2 F3/F4, the third project to report it. OPTIONS, none chosen: (a) `revise_text {node, field, old, new}` with the uniqueness refusal — the same operation the artifact tools already offer for files; (b) `append_section {node, field, text}` — narrower, matches the ═══ house style exactly; (c) the layers idea: the node says it has layers and a reader asks for one — larger, and already open; (d) structural instead of prose: `set_decision_status` takes a `chosen` sentence stored as its own property, so 'which option won' never lives in the body. COUNTER: (a) makes graph text the target of an edit instruction, which the standing rule forbids for reading; for writing it is the caller's own text and the uniqueness refusal bounds it.",
+    "kind": "exploratory",
+    "name": "OPEN — should a node's prose be editable by replacing one unique string in one field (refused if absent or not unique), so settling a prose-option decision or appending a dated section never re-sends the body?",
+    "rationale": "Recorded from the field report beside the open layers question rather than folded into it: that one asks how a reader sees strata; this asks how a writer avoids making them.",
+    "status": "accepted"
+  }
+}

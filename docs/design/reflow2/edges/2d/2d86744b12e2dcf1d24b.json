@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:d0da763fa2479b3ab27c47166b55722c1f95eae943eaf12a1aa540eb7f04949e",
+  "edge_type": "TRIGGERS",
+  "from_id": "fact:the-answered-question-message-recurred-in-a-third-project-with-the-computation-unchanged",
+  "properties": {
+    "evidence": "The recurrence measurement — same computation, third project, seventeen days on — is what turned a known wording defect into a live question about whether the cheap repair is worth making at all. Drawn from the fact to the idea because the measurement came first."
+  },
+  "to_id": "dec:idea-how-should-the-loop-know-that-an-answer-reached-the-design"
+}

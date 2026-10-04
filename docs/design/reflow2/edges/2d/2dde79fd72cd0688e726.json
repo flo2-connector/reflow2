@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:6069f653134e30cc9371337be5d43ed9697725fcf4508f0cf51a4de1b8200c50",
+  "edge_type": "CHANGED",
+  "from_id": "chg:alex-fleet-review-20260809",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cap:mcp-surface"
+}

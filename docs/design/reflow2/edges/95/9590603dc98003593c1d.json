@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:b43abe360cdb19a4d7cdae1289450eadd87c2811354035d395417a2c30610185",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:detect",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:detect"
+}

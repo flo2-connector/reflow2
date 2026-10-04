@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:d6a14ade7013fbe90c92e30a6a953a500305c28b71aa76a6657169f651fdf46f",
+  "edge_type": "CAUSES",
+  "from_id": "cap:the-skill-response-carries-the-lens",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "The reminder on the wire was delivered on get_skill and list_skills only (skills.rs:301, two call sites); every served skill's final instruction is to call loop_status, so the reply an agent reads last before its closing words was the one on that path carrying no lens, and its `next` list is agent-facing text in reflow2's vocabulary that nothing marked as such.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:root-cause-the-lens-rode-the-skill-rail-and-the-closing-words-are-chosen-on-the-loop-rail"
+}

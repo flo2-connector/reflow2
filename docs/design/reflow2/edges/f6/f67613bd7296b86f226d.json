@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:9c66492255569b334046129a49c50c4b978cce10125f8ce5a1ee716e1c478948",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:the-design-is-saved-one-file-per-item",
+  "properties": {},
+  "to_id": "req:the-saved-design-merges-correctly-under-gits-ordinary-merge"
+}

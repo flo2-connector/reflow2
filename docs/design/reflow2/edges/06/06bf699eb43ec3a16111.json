@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:47f37447d3c718f61e0d736c8f5e9dd27b880563fab74d7f525fbcd872ed35cf",
+  "edge_type": "REALIZES",
+  "from_id": "art:report",
+  "properties": {
+    "completeness": "partial",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:derived-completion"
+}

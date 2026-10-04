@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:227a77097c29386972c0918a9f57409023aa2f12e84d2636310f954a0edf5057",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-settled-decisions-name-stops-asking",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:prose-currency"
+}

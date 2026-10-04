@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:32b4229359dfe52f3fae7daa69dea53376a4992b53a03d60de9b380e78f1ed51",
+  "node_id": "dec:idea-should-settling-a-decision-record-which-option-won",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Recorded as brainstorming on 2026-09-19 from flo2's F12, not as a proposal.\n\nTHE OBSERVATION. `set_decision_status` takes the id, the status, the approver and the date, and nothing else. It moved two decisions to `accepted` correctly and left both NAMED 'OPEN — is … the one thing flo2 is missing?' with bodies ending 'Options, none chosen.' Their sentence is the argument: 'An accepted Decision that still reads as an open question is worse than an unsettled one, because a later reader trusts the prose over the status field.'\n\nWHY THE EXISTING ROUTE DOES NOT APPLY. `collapse_decision` is the tool for naming a winner and it needs REGISTERED alternatives; these options were prose paragraphs inside the decision text, which is what the brainstorm skill asks for. So the only route left is re-sending the whole node through add_decision with the name and body rewritten — a four-kilobyte upsert to change a status and a heading, and the exact operation measured to lose content elsewhere in the same report.\n\nTHE OPTIONS.\n(a) A free-text `chose` or `outcome` on set_decision_status: the settling act says what it settled, beside the status it sets, without touching the deliberation. Smallest, and it adds a field to a setter rather than a concept to the model.\n(b) Lean on `replace_text` (v0.65.0) instead: settle, then replace the 'OPEN —' heading in one call. Costs nothing to build and is available today; COUNTER — it is two acts where the user performed one, and nothing ties the new heading to the settlement.\n(c) Make collapse_decision work over prose options by registering them at settle time. Largest, and it argues the options should have been alternatives all along.\n\n⚠️ THREE ENTRIES IN THAT FILE PUSH TOWARD THE SAME DANGEROUS OPERATION — this one, the append request, and the absence of an epoch-free snapshot — and it is the one operation with no guard on it.",
+    "kind": "exploratory",
+    "name": "OPEN — should settling a Decision be able to say WHICH option won, without rewriting the deliberation that produced it?",
+    "status": "accepted"
+  }
+}

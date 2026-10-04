@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:c5c3e7c81e1749dd4d5345915e79f62e9ae41812d4102f25b8918589845cdb57",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-node-is-named-by-its-id-and-the-type-is-optional-across-the-relation-surface",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:tools-assure"
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:c66d9adf2915615e4e7d4493cd2ca9d24e24c9f6c55fbb367881e7ed4388e35e",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0690",
+  "properties": {
+    "as_checksum": "sha256:a38c17cb353e6074ddc473e97423e75ae841560e4b085e60c7320089f7b2727c"
+  },
+  "to_id": "art:test-a-node-records-what-the-user-calls-it"
+}

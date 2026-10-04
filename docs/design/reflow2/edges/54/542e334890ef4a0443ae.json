@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:3d42e6818c738207c5696d204fafe8df44fbb61e2668db73fd2fd937db5221ff",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-name-is-not-a-report",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "ver:no-fabricated-repairs"
+}

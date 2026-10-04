@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:0d8e9566f0bb28e686997c012bf9542c933783eae79373be2fb43157a43d0553",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-saved-design-moves-to-the-item-layout-2026-10-03",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:5787ba8537b5656c724c4edd3e5755de8dfcea0860ff0c555d1cb2711e243d50",
+    "checksum_basis": "measured"
+  },
+  "to_id": "art:test-a-server-closes-designs-nobody-is-using"
+}

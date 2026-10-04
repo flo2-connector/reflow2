@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:6e30035bc88993b11120a6e4cc8ba6ef777f3a7de3101f7c10f58728e48f362c",
+  "edge_type": "CHANGED",
+  "from_id": "chg:skill-loads-are-counted",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "cap:skill-loads-are-counted"
+}

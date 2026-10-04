@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:dc8823f1928e3dd10210f402d191291403c09dc354d9d7b149d33c4e40d685f8",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "fact:the-levied-requirement-blocker-cleared-and-the-workaround-recurred",
+  "properties": {
+    "authored_at": "2026-08-09",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

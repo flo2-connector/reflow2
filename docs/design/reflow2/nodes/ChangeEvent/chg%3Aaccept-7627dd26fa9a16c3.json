@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:9a74a7b0051cbf59825124c3e86c278247c9f74342a4e7ec424e4dbc9bfe3aa4",
+  "node_id": "chg:accept-7627dd26fa9a16c3",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "refactor",
+    "detected_at": "2026-08-01",
+    "name": "Version string bumped 0.19.0 to 0.20.0 for the v0.20.0 cut. The design meaning of the cut lives in rel:v0200 and epoch:v0200, not in this file — the manifest's declared surface and its dynograph-foundation pin (v0.12.0) are both unchanged, so nothing a consumer agrees with has moved."
+  }
+}

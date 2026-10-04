@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:9f00c87db53cba8305db56e8423322046485f27f912431148858284424fb5d2c",
+  "edge_type": "MITIGATES",
+  "from_id": "dec:idea-a-problem-in-the-users-words-should-retrieve-the-tool-that-answers-it",
+  "properties": {
+    "evidence": "BL-155 records the hazard in its own words — 'a capability nobody can find is worth what an absent one is worth' — and its group (c) is exactly this failure: reads that answer real questions on designs that exist today, which nobody reaches for. This node is the answer to that hazard rather than another measurement of it: BL-155 asks WHICH tools are unreachable, this asks WHY retrieval fails and what would fix it."
+  },
+  "to_id": "dec:bl-155"
+}

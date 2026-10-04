@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:7be73b727f45e250936f6c4d4fa083c4161d7ca968f67d4270964df64c3aa1dc",
+  "edge_type": "CHANGED",
+  "from_id": "chg:foundation-consumes-redrawn-from-imports-2026-08-19",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "ifc:req-dyno-vector-api"
+}

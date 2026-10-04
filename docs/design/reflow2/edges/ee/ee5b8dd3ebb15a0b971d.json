@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:c4667fd64960f6d84c6753a360a716b4fb32bdad446cd370b2cd5cf653cf1330",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:test-the-compliance-layer-is-whole",
+  "properties": {
+    "covers": "whole"
+  },
+  "to_id": "ver:the-compliance-layer-is-whole"
+}

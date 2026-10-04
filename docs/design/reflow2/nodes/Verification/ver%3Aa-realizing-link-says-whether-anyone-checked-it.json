@@ -1,0 +1,17 @@
+{
+  "content_hash": "sha256:3cdd2a39a8c976a26695463a1c5d09b59ba39b36c6f7a0f34801ff08f93b2f7e",
+  "node_id": "ver:a-realizing-link-says-whether-anyone-checked-it",
+  "node_type": "Verification",
+  "properties": {
+    "description": "A realizing link says whether anyone checked it, and the unchecked ones are counted (crates/reflow2-core/tests/an_edge_says_whether_anyone_checked.rs) — 11 cases, all passing 2026-08-16. TWO COUNTERWEIGHTS DEFINE THE FEATURE, and they are the shipped-bug case restated: a COMPLETE artifact is still unchecked, and a MATCHING CHECKSUM is still unchecked. Complete, hashed, green, and wrong is exactly what happened to the user who found the civil-date bug in the product. If `conformance` and `completeness` ever collapse into one field, those two fail. NO SILENT CAPS: the unchecked SAMPLE stops at ten and the unchecked COUNT does not, because a truncated list that also truncated the count would under-report the problem — the one direction this must never fail in. `link_artifact` is pinned to return `completeness: complete` and `conformance: unchecked` from the same call, since registering a file is not checking it and the defaults must not drift together. And the tally is asserted to be reachable through `evidence_report`, so that if the property ever stops being read it stops being vocabulary and this says so (`dec:edge-orthogonality`). NOT COVERED: nothing moves an edge off `unchecked` except a caller saying so, and no case here proves anyone ever will; the claim is that the silence is countable, not that it gets broken.",
+    "findings": "THE MEASURED RESULT ON REFLOW2'S OWN DESIGN, end-to-end through a restarted server: 223 realizing links, 223 UNCHECKED, 0 reviewed, 0 verified, 0 unrecognised — a sentence the design could not produce at all before this. MUTATION-CHECKED THREE WAYS: capping the count as well as the sample fails the no-silent-caps case; defaulting link_artifact to optimism fails the read-back case; and mutating the missing-value fallback killed only ONE case — which was itself the finding. ⚠️ THAT PARTIAL KILL IS RECORDED RATHER THAN PAPERED OVER: a probe showed the schema `default:` MATERIALISES the property at write, so every new edge stores `unchecked` explicitly and the in-code fallback covers only edges written BEFORE the property existed. That shape cannot be built through the API, because a property once written cannot be removed. It is therefore proven on the real graph — all 223 links predate the property and all 223 report unchecked — and NOT by a unit case.",
+    "kind": "verification",
+    "last_reconciled_at": "2026-09-23",
+    "last_reconciled_outcome": "passed",
+    "last_run_at": "2026-08-16",
+    "level": "unit",
+    "method": "test",
+    "name": "A realizing link says whether anyone checked it, and the unchecked are counted",
+    "status": "passing"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:d2a82abb8993b430862d961867e61a5fd2a5a77e5bc3bc4605dc539f1444ba26",
+  "node_id": "decision:ack:heal:d1860c2ddc91c43c",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Accepted the structural defect heal:d1860c2ddc91c43c.",
+    "name": "Reviewed: heal:d1860c2ddc91c43c",
+    "rationale": "ACCEPTED AS ARCHITECTURE, and this one is a DELIBERATE chokepoint rather than merely an unavoidable one. A session names the design it works on through exactly one door, and `registry.rs` says why in its own words: `Registry::attach` takes an id and treats it as an ID ALWAYS, there is deliberately no `path_for(id)` and no `attach_path`, because \"a convenience overload is exactly how this property would be lost, so it is absent rather than documented\".\n\n⭐ SO REDUNDANCY HERE WOULD BE A DEFECT, not a repair. The property `ver:a-session-cannot-name-another-design` protects — that a session cannot reach a design it was not attached to — holds BY CONSTRUCTION precisely because there is one route in. A second path is the thing that guarantee exists to forbid.\n\n⚠️ NOT ACCEPTED: that concentration carries no risk. If this door breaks, every session is affected. What is accepted is that the concentration is the security property, and that `add_redundancy` would trade a correctness guarantee for an availability one nobody has asked for.",
+    "status": "accepted"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:e724013061f907d5c9f7bb43fe78ee65826482752f4dbe61b3e62f513eee8436",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:the-same-thing-held-in-reflow2-and-another-graph-is-linked-as-the-same",
+  "properties": {
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

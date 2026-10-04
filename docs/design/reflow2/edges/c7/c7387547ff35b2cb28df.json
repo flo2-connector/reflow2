@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:23d24512f7c4911c5b89fedfb0a15cede9908e8f4600a53c63c077ee331addbc",
+  "edge_type": "REALIZES",
+  "from_id": "art:loop-nudge",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:skill-loads-are-counted"
+}

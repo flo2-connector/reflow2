@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:33464c2d50586fafb74783fc8eeb1f88f2c008258db5d3afc6c0b1d9945a07a2",
+  "node_id": "ver:every-gate-runs-the-binary-it-is-told",
+  "node_type": "Verification",
+  "properties": {
+    "findings": "9/9 on the item 8 branch; with main's smoke_mcp, replies_are_bounded and a_reply_is_sent_once restored it fails naming those three.",
+    "kind": "verification",
+    "last_run_at": "2026-10-03",
+    "level": "unit",
+    "location": "tools/test_run_ci_gates.py",
+    "method": "test",
+    "name": "No python gate ci.yml runs names a reflow2-mcp build path or a private variable for one in code; reflow2_check reads $REFLOW2_BIN first; reflow2_bin takes the variable, then debug, then release said on stderr",
+    "status": "passing"
+  }
+}

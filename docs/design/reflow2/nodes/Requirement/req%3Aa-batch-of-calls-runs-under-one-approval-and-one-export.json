@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:8322d500bcc23ec807df9fd94c18323203bd5647836763684d8bd5556e91679f",
+  "node_id": "req:a-batch-of-calls-runs-under-one-approval-and-one-export",
+  "node_type": "Requirement",
+  "properties": {
+    "lineage": "original",
+    "name": "A batch of tool calls runs through the door in one process, under one approval and with one export at the end",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "Step 6 of the plan to make the `--call` door work for an agent that cannot use MCP (Anthony, 2026-10-01; his idea 6 in using_call.md). A capture burst (genesis seeds dozens of nodes) is otherwise dozens of approvals, store opens and exports.\n\nMUST:\n- A batch form reads JSON lines of {tool, args} and runs them in order against one open store.\n- It stops at the first refusal and says which line, leaving the earlier lines written and named.\n- It exports once at the end when any line wrote.\n- It never carries a settle past the owner's word: the store's own signature check applies to every line.",
+    "status": "proposed"
+  }
+}

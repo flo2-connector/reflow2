@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:749a8f73a2da9f393ec6a23a81b846d343129bf5f3f5059c15a1eb8b725e6439",
+  "edge_type": "CONTAINS",
+  "from_id": "sys:human-channel",
+  "properties": {},
+  "to_id": "cmp:llm"
+}

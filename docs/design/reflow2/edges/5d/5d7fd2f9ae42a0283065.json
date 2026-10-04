@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:f2a797e8928e66459280b4476fc58a70b1e6660c3356e69bdfc5b0a5684c8052",
+  "edge_type": "CHANGED",
+  "from_id": "chg:accept-29fe3c16d641f3ba",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:genesis"
+}

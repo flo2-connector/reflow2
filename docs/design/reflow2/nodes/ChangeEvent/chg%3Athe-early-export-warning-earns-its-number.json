@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:56a9dd1fb74aea4f48bf2e78586725c55fa4085ee353a3ac5f0c34f7bb399f2a",
+  "node_id": "chg:the-early-export-warning-earns-its-number",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "documentation",
+    "detected_at": "2026-08-31",
+    "name": "The export ordering hazard is measured, and the warning says by how much",
+    "rationale": "A warning that says a thing CAN happen and a warning that says it happens 45% of the time are read differently, and only one of them changes what a harness author does.\n\n⭐ THE METHOD WAS THE TRAP, and it is recorded so nobody re-measures it wrong. Driving the pair with tokio::join! in one task reads 1% — join! polls in order, the write takes the lock first, and the honest conclusion from that number is \"too rare to mention\". The per-task shape a real server uses reads 45%. A 40x method artefact sat between the obvious measurement and the true one.\n\n🛑 THE PART WORTH ACTING ON IS THE SECOND ARM. sync_debt's unexported-work nudge fires on live_nodes > export_nodes, so it sees an early export that dropped a NODE and is blind to one that dropped a PROPERTY change — measured, 0 of 10 caught. That is precisely the shape of Alex's 2026-08-30 report (set_artifact_checksum, old checksum still in the export), so the one net that exists would not have told him. Whether to replace the node-count proxy with something that moves on any write is left as a decision rather than built: the service already counts write generations, but that counter is per-process and resets on restart, so it is a candidate and not yet a design.\n\n⚠️ AND THE PROMPT FOR ALL OF THIS WAS A STALE RECORD. A session read the 2026-08-30 finding's \"not established\" section, reported three items as outstanding, and recommended work that had shipped in PR #392 hours earlier and was passing on main. Two INVALIDATES edges now stand against that node so the next reader meets the correction rather than the claim.",
+    "subject": "record",
+    "summary": "Took the measurement two findings said was owed, and rewrote export_graph's parallel-batch warning to carry it. The hazard was real: with each call on its own task, as a real server runs them, the export serialised a state missing a concurrent write in 91 of 200 trials (~45%). Added crates/reflow2-mcp/tests/the_export_can_be_ordered_before_its_writes.rs — two arms, ignored by default because they are measurements rather than gates. No behaviour changed; the description now states a measured rate instead of a mechanism argument, and names the blind spot in the downstream net."
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:019e83ddb1c493264edcbcbb9c0363c15362f58c6aad2deb2bc9e7d4f2217f0a",
+  "node_id": "req:a-build-reads-a-report-from-the-design-without-an-agent-in-the-loop",
+  "node_type": "Requirement",
+  "properties": {
+    "lineage": "original",
+    "name": "A build script, a Makefile or a CI step reads a report from the design without an agent session",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "Promoted 2026-09-20 on Anthony's word. bhome's plan-sheet generator read the budget from a hand-transcribed file 'because reflow2 is an MCP server and not a library the script can import', so the half of the sheet the design owned was the half with no mechanical guarantee. A consumer must be able to read any served report from a shell, get JSON, and get an exit code it can branch on. BUILT in v0.65.0 as `--call <tool> --args '<json>'`: it runs the tool through the same path a session uses, so refusals are worded the same and usage is recorded the same; a read-only tool still answers while a server holds the graph, from the snapshot the export already uses, and a writer refuses.",
+    "status": "accepted"
+  }
+}

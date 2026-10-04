@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:9bbd670c835d1f1db33a07bee441238349af094fc8395046a30bb83dd6f752a1",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-v0470-cut-moves-every-version-claim",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "sys:foundation"
+}

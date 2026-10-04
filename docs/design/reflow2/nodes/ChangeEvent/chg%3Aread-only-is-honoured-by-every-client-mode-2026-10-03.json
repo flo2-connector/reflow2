@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:e5beca284c06c5a449fc62778756b714112ef2888dcb6680cb1f2a65534d2ac2",
+  "node_id": "chg:read-only-is-honoured-by-every-client-mode-2026-10-03",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "defect_fix",
+    "commits": "745d5628caae0a1fc20fa373dbe06110fe3a576f,745c96cd968de29555be25e5c373b558dce3288f,72bf2522015febc609d3ce0656ab5fc829a7c601",
+    "detected_at": "2026-10-03",
+    "name": "--read-only is honoured by every client mode: a forwarding client refuses every write before it is sent, the latent surface starts no design, and --shared with no store starts nothing",
+    "rationale": "THE CAUSE, walked in fact:root-cause-a-client-forwards-every-line-and-read-only-reached-only-the-service-it-never-builds-2026-10-03 and confirmed on main c4e1cbd by 8 tests observed failing there: --read-only reached only the service a SERVER builds (into_read_only) and item 1's one-shot table; a client builds neither, so it forwarded writes to a server somebody else started writable. The server cannot refuse on one client's behalf (it serves other sessions; a --shared daemon keeps the flags of whoever started it), so the screen lives in the process the agent talks to. WHY THREE SOURCES: the server's tools/list says what it will do (the same served read_only_hint --call uses, item 1); this build's own hint guards against a server that says less; the file rule covers export_graph/export_surface, annotated read-only because they do not write the graph. A tool unknown to either side, or a list that cannot be read, is a write — the brief's rule. One FILE_WRITING_TOOLS list now serves both walls, asserted in file_write_permitted and held by a scan test. LEFT OUT, deliberately: the serving half (a read-only stdio/--http/--serve-shared server still creates an empty store on an empty path — fact:a-read-only-server-creates-an-empty-store-where-there-is-none-2026-10-03, named in the help as the exception); the pointer client's own pre-attach identity probe (design_identity with no label writes nothing on a held design; a read-only identity call is pointer.rs's recorded follow-up); an agent's design_identity through a read-only client is refused by its hint, as --read-only --call refuses it. ACCEPTED DECISION: the brief from the 2026-10-02 triage (item 1b, Anthony: \"I accept all your recommendations\").",
+    "rationale_basis": "contemporaneous",
+    "repair": "corrected_cause",
+    "subject": "system",
+    "summary": "A --read-only client (--remote, --shared, a client attached through .reflow2.toml) now screens every line before it is sent (read_only_client.rs): a call leaves only when this build's served surface, the server's own tools/list and the file rule all say it reads, and anything it cannot classify is refused as a write — an MCP tool error naming --read-only, nothing sent. The flag is a REQUIRED argument of every forwarding entry point in proxy.rs. The latent surface refuses reflow2_start_design under --read-only and serves a later design read-only; --shared --read-only where there is no store starts no server and says why. The handshake is recognised by its parsed method, not a substring. --read-only --help lists every mode and how it honours the flag."
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:8765a643ca99dee0e95b54294e6a4c3f986d33a0c9c7b90da4f7965d0e6b988e",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:test-a-run-is-fed-back-by-file",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:test-a-run-is-fed-back-by-file"
+}

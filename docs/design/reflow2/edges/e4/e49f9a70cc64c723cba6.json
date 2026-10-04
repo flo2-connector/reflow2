@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:393c2903e66adc669978049f5f7b44740f26423c999dd03e9cb88d3fea8f7396",
+  "edge_type": "CHANGED",
+  "from_id": "chg:constraint-not-numeric-skill-lint-allowlist",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:skill-lint"
+}

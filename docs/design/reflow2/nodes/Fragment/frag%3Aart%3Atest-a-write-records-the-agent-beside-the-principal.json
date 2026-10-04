@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:4fa929ba9b5b016bbde90246b01664717803805c38fc7ccf407993102757e91f",
+  "node_id": "frag:art:test-a-write-records-the-agent-beside-the-principal",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered Test: a write and an approval record the agent beside the person, over every settle path"
+  }
+}

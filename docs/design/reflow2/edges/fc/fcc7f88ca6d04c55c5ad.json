@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:3fb876422a87257d67163e57be0e7374ba26f16da2574778c3d97d17d4b27cf9",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:freshness",
+  "properties": {},
+  "to_id": "req:coherence"
+}

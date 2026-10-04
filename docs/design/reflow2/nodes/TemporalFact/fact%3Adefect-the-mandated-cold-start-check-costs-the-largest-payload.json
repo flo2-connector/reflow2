@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:74c74948b3786e3299b47677594c75ccee17b9fa2910fb949d41b4c18919ceca",
+  "node_id": "fact:defect-the-mandated-cold-start-check-costs-the-largest-payload",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "confidence": 1.0,
+    "fact_type": "defect",
+    "statement": "THE ONE CHECK EVERY SESSION IS REQUIRED TO MAKE BEFORE IT TRUSTS ANYTHING IS THE MOST EXPENSIVE CALL IN THE API, AND IT IS PAID FOR TWO SCALARS. Reported 2026-08-08 by dragon Boss f96eccd3. Their constitution (S.md step 6, and reflow2's own BL-32 note) binds every session to confirm the serving binary BY RELATION: read graph_report -> served_by.reflow2_version and compare it against `reflow2-mcp --version` on disk. THE RULE IS RIGHT — a literal expires, a relation does not. But `served_by` is reachable only through graph_report, which also returns the ENTIRE verification roll (28 nodes on their graph, several with multi-thousand-character names) plus top_gaps with full descriptions. They needed exactly two scalars, reflow2_version and binary_mtime_unix, and paid a very large payload for them. THE REPORTER'S OWN CONCLUSION IS THE FINDING: the cheapest-to-state rule in their constitution is the most expensive to obey, WHICH IS PRECISELY THE PRESSURE THAT MAKES A SESSION SKIP IT AND QUOTE A REMEMBERED LITERAL INSTEAD — the failure that produced the rule. A guard whose cost scales with the graph will be skipped on the graphs where it matters most. FIX SHAPE, theirs: a tiny `server_identity` call returning the serving binary's version, mtime and pid; or carry those two fields in loop_status, which is already advertised as the one cheap call. RELATED, AND NOT THE SAME THING: fact:defect-a-running-server-cannot-say-it-is-stale is about the server being unable to ANSWER the staleness question; this is about the answer being priced out of reach. req:the-server-is-the-authority-on-its-own-currency is accepted and unbuilt, and would subsume both — the /proc/self/exe `(deleted)` check is one syscall and needs no payload at all.",
+    "subject_id": "cap:loop-status",
+    "valid_from": "2026-08-08",
+    "value": "{\"reported\":\"2026-08-08 dev_storyflow, dragon Boss f96eccd3\",\"binding_rule\":\"confirm the serving binary by relation - graph_report.served_by vs --version on disk\",\"cost\":\"graph_report also returns the full verification roll (28 nodes, multi-thousand-char names) and top_gaps\",\"wanted\":\"two scalars - reflow2_version, binary_mtime_unix\",\"finding\":\"the cheapest-to-state rule is the most expensive to obey, which is the pressure that makes a session skip it\",\"fix_shape\":\"a tiny server_identity call (version, mtime, pid), or carry both in loop_status\",\"related\":\"fact:defect-a-running-server-cannot-say-it-is-stale; req:the-server-is-the-authority-on-its-own-currency (accepted, unbuilt)\"}"
+  }
+}

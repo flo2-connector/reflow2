@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:b9c3cec091a3c2868f623181cf13576b5c4e36063694218a0ea49657b99692d9",
+  "node_id": "who:flo2",
+  "node_type": "Contributor",
+  "properties": {
+    "description": "A separate project that has reflow2 installed and files field reports back to it, relayed by Anthony. Its reports arrive as numbered findings (F4, F16, F19, F24, F25 and others) and several have already changed this design — the `incoming` flag on relations, the requirement `kind` parameter, the revising-write loss report, the routing-table runbook row. Created 2026-09-21 because flo2 had authored material in this graph for weeks with no Contributor to attribute it to: its findings were recorded as facts citing \"FLO2 Fnn\" in prose, which no query can read as authorship. Its proposals are ADVISORY here, exactly as Alex's are — a field report is evidence, not intent, and moving anything in this design on it still needs Anthony's word.",
+    "handle": "flo2",
+    "kind": "automated_agent",
+    "name": "flo2 (consuming project)"
+  }
+}

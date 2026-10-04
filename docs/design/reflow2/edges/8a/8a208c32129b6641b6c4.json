@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:ae9538c92be2a13b43151852a2a4aed12b466e4ab1c591de25e0136c899057b1",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:genesis",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:genesis"
+}

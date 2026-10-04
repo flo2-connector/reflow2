@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:ac73d0662c79e38ab60f9a6f9ecd71838c02aabdf92bb5464c96704c9d9d7f55",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:model-process",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:flow"
+}

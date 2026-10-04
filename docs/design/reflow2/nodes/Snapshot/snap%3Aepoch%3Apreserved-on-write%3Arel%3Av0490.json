@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:96bfc93d9cf9a1306a18789ff3a407587b6ed0994815eb0cb569f1ad38427b85",
+  "node_id": "snap:epoch:preserved-on-write:rel:v0490",
+  "node_type": "Snapshot",
+  "properties": {
+    "edges": "[{\"direction\":\"out\",\"edge_type\":\"DEPLOYED_TO\",\"other_type\":\"Environment\",\"other_id\":\"env:ci\",\"properties\":{}},{\"direction\":\"out\",\"edge_type\":\"DEPLOYED_TO\",\"other_type\":\"Environment\",\"other_id\":\"env:container\",\"properties\":{}},{\"direction\":\"out\",\"edge_type\":\"DEPLOYED_TO\",\"other_type\":\"Environment\",\"other_id\":\"env:dev\",\"properties\":{}}]",
+    "state": "{\"name\":\"v0.49.0\",\"status\":\"planned\",\"version\":\"0.49.0\"}",
+    "target_id": "rel:v0490",
+    "target_type": "Release"
+  }
+}

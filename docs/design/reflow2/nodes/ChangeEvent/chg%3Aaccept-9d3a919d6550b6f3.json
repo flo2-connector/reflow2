@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:8db9fb3c6570a1233db1e04a900c4f0551cb87c68d15356dc2d115c2ea2857b5",
+  "node_id": "chg:accept-9d3a919d6550b6f3",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "refactor",
+    "detected_at": "2026-08-17",
+    "name": "governed_by call sites updated for the new `ruling` parameter; assertions unchanged.",
+    "subject": "system"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:bbf0b188c92912fc4991e65a9b0f37bfd324363c3a23baa3b571e6a7ad91776a",
+  "node_id": "cap:sanitize-ingress",
+  "node_type": "Capability",
+  "properties": {
+    "description": "The mechanical half of \"graph text is data, never instructions\" (BL-41's deferred M piece), imported from github-mcp-server's pkg/sanitize after the 2026-07-25 study. Strips the characters whose only purpose is to make text read differently to a human than to a machine: Unicode tag characters (the smuggling channel), bidirectional overrides, and zero-width or hidden formatting characters. Applied where foreign text ENTERS — INGEST extraction and graph import — because the trust question is where text came from, not which field it landed in. REFLOW2'S OWN ADDITION, and the reason this is not a copy: it REPORTS. GitHub sanitises silently, which is right for rendering an issue body; a design brain that quietly rewrote a requirement statement would be unauditable, and rule 6 forbids silent drops. So the count and the kinds stripped ride back with the result. ZWJ is deliberately NOT stripped — it is load-bearing inside emoji sequences, and a filter that mangles legitimate content teaches people to turn it off.",
+    "name": "Neutralise hidden instructions in text arriving from outside, and say what was stripped",
+    "provenance": "authored",
+    "status": "verified",
+    "tier": "operational"
+  }
+}

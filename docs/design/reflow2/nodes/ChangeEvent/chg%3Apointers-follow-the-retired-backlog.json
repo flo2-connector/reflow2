@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:cdac9dac596da9464be44d6416469fdca61536f23b945706bda1f8182037cb62",
+  "node_id": "chg:pointers-follow-the-retired-backlog",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "scope_change",
+    "name": "The instruction files stop pointing at docs/backlog.md, because the file is gone: README.md drops it from the docs list, and CLAUDE.md, AGENTS.md and COORD.md now send a reader to the graph — loop_status for what the loop owes, detect_gaps for the open questions, search_design to find a past finding by its words. AGENTS.md's \"where to record what\" table now names the SHAPE instead of the file (a TemporalFact defect, a planned Capability, a proposed Decision, a DesignRule), and COORD.md's \"reference the id, don't restate it\" rule now names node ids rather than BL ids. COORD.md's historical claim-board entries were deliberately LEFT ALONE: they record what happened on dates that have passed, the BL ids they cite now resolve to nodes, and rewriting a log to match the present is the overwrite this project exists to prevent. Design-side half of the two-sided accept for art:readme."
+  }
+}

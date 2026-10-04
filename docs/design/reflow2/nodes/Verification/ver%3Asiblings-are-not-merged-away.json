@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:9a424adde4453a9ea3b28a1b568777c674cb407e4d6b8361e31f87da3bcbb8c8",
+  "node_id": "ver:siblings-are-not-merged-away",
+  "node_type": "Verification",
+  "properties": {
+    "description": "A similarity score does not decide identity: sibling names stay apart and true duplicates still converge (crates/reflow2-core/tests/sibling_merge.rs, 5 cases). Nine crates sharing the `dynograph-` prefix survive as nine nodes each carrying its OWN name — before BL-213 this was five, with two carrying a sibling's name. An abbreviation (Auth / Authentication) is never reported as distinguished; a version suffix (Auth Service v2) is; reordered tokens (Read Path Cache / Cache Read Path) still converge, so BL-186's ordering fix is untouched; and a held-back merge names the word that held it.",
+    "findings": "MUTATION-CHECKED: disabling the discriminator restores the 5-of-9 loss and fails exactly the three tests naming those properties, while the two that should be insensitive to it still pass. FIELD-CHECKED against the real dev_storyflow document that found the defect: 9 of 9 crates survive.",
+    "kind": "verification",
+    "last_run_at": "2026-08-05",
+    "level": "unit",
+    "method": "test",
+    "name": "A similarity score does not decide identity",
+    "status": "passing"
+  }
+}

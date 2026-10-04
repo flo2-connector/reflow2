@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:ce3c701d77eb743e6aa02154d6cc494749e7a5920e90d988112433cdb370717b",
+  "edge_type": "CHANGED",
+  "from_id": "chg:bl90",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:loop-nudge"
+}

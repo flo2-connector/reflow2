@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:6bf9a19fb88d656f843a3b5eb675ec9d55bbdde8297350ac153960b762fc0ab2",
+  "node_id": "art:record-to-record-relations-test",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "location": "crates/reflow2-core/tests/record_to_record_relations.rs",
+    "name": "record_to_record_relations.rs",
+    "status": "realized"
+  }
+}

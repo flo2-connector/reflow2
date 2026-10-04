@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:e60c625fb9feaabe878589f0028f985fab3e2391567f8329e48d6c1124a14f1c",
+  "edge_type": "CHANGED",
+  "from_id": "ce:subsystem-split-2026-08-25",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "sub:tool-surface"
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:6952c82b0862b7c31ce971e2efc2523e0b68fddd64205fbb3e8805b9664dfba7",
+  "node_id": "decision:ack:ebf17b5d2c53cf03",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Accepted the gap gap:ebf17b5d2c53cf03.",
+    "name": "Reviewed: gap:ebf17b5d2c53cf03",
+    "rationale": "Deferred on Anthony's word, 2026-07-28. Nothing is built for it because the capability was captured the same day and is scheduled for a later increment — as-designed and as-built agree that this is unbuilt, which is the honest state rather than a defect. Revisit with the unallocated and unverified gaps on the same node.",
+    "status": "accepted"
+  }
+}

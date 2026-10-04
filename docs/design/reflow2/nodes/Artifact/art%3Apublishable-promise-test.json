@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:ad66875209f3ba41adb441b21166832f1cdf8b37bf71772b2a7fee7819b75092",
+  "node_id": "art:publishable-promise-test",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "granularity": "atomic",
+    "location": "crates/reflow2-core/tests/publishable_promise.rs",
+    "name": "tests/publishable_promise.rs",
+    "status": "realized",
+    "volatility": "stable"
+  }
+}

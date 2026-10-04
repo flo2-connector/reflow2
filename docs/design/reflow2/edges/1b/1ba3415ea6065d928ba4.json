@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:18f4a619c362f2665f8e579da1a27b6a38517a05f41ce9fd5b167543dce6443a",
+  "edge_type": "OBSOLETES",
+  "from_id": "epoch:planned-seams",
+  "properties": {
+    "confidence": 1.0
+  },
+  "to_id": "epoch:v0270-planned"
+}

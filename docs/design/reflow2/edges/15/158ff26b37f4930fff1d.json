@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:2ebd886b95c3035ada8b2b5bccdf55db66a1a0347b504b9853f6f583ca27c352",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-saved-design-moves-to-the-item-layout-2026-10-03",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:39287537e7e0cdc82b477fc183c5ed6f09cfa4e76ae389cec7e6e49039b18e18",
+    "checksum_basis": "measured"
+  },
+  "to_id": "art:test-a-code-folder-attaches-to-the-design-it-names"
+}

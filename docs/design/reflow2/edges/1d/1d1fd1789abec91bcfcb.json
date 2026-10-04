@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:cd9448510964b126ce28cda5d59435b1e4aba9811cbbfd6fe43c935bc7b3e8bd",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-stored-twin-has-one-authority",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:render-views"
+}

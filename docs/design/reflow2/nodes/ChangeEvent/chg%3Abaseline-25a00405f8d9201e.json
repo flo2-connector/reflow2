@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:4bb548b537d1e99f7a8a7bcbb37eeb005f6c98ca28a7f7b81779e2eae6a7f8a4",
+  "node_id": "chg:baseline-25a00405f8d9201e",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "baseline_established",
+    "detected_at": "2026-08-24",
+    "name": "First baseline — a new file. Absorbed from dynograph-resolution's fuzzy.rs at v0.12.0 (0bb3bca): token_sort_ratio and its closure (jaro, jaro_winkler, jaro_winkler_prepared, sort_tokens) plus eleven of twelve tests. PreparedName and resolver.rs were left. Private to the crate, like stats.rs, so absorbing does not widen a surface ifc:core-api already records as unenumerable.",
+    "subject": "record"
+  }
+}

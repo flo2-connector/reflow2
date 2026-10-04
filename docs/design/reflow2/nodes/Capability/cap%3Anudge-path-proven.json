@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:e6aa2e1672a4c6d805d62e243c5b2b179921ed3ea26b5f735cb6d2f3caf7e1b6",
+  "node_id": "cap:nudge-path-proven",
+  "node_type": "Capability",
+  "properties": {
+    "description": "Two halves. PROOF: tools/test_nudge_path.py reads .claude/settings.json, takes the command the harness would run, and runs THAT with the JSON a real Stop hook receives — asserting the {\"decision\":\"block\"} the harness actually consumes, that the reason names what happened, that a session which ran the loop check is left alone, and that the nudge fires once (on the harness's stop_hook_active) rather than holding a session hostage. BACKSTOP: the server looks for a registered Stop hook and reports installed | absent | broken (registered but the script is missing — the dangerous middle case, since the settings file looks right) | unknown (project dir undeterminable, never reported as absent). The advisory rides the HANDSHAKE INSTRUCTIONS, the one channel every session reads unasked, and loop_status carries the same as a machine-readable field. This matters because reflow2_init installs no hooks at all: every consumer project has no session-end nudge, and until now nothing said so.",
+    "name": "The loop's own safety net is checked, and its absence is announced",
+    "provenance": "authored",
+    "status": "verified",
+    "tier": "operational"
+  }
+}

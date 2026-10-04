@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:443e4bbc457aff9eb18bc246fcd06767ffd54a7f1314a40477e68f18e8986d7b",
+  "edge_type": "CHANGED",
+  "from_id": "chg:mode-chosen",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "req:mode-is-chosen-and-changeable"
+}

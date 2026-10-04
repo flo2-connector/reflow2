@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:87f2d5243b08047cbddba1dceda91ed9ca4da2d5c1e83179c99f18f08f999ea9",
+  "edge_type": "CAUSES",
+  "from_id": "fact:link-artifact-draws-realizes-only-so-the-discoverable-way-to-register-a-check-gives-it-no-executable-form",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "Measured on the export 2026-09-22: 40 Verifications carry a REALIZES from a registered artifact and no IMPLEMENTS — somebody named the file that is the check and got no executable form — while 30 of the 31 that DO have a form were drawn purely by create_edge, bypassing link_artifact entirely. So the instructed route reliably produces a formless check and the working route is the one nothing points at. It is a PARTIAL cause: it accounts for 40 of the 282, and the rest were recorded with no file named at all.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:the-verification-record-is-mostly-unfalsifiable-and-the-ai-coding-project-critique-lands-on-that-half"
+}

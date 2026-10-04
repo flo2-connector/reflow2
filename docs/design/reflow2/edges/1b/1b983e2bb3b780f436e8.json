@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:b37674e37309fc7c7be8d5686a87d7fbcabfefee1bd9b64c750e2ecd81d6278a",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-should-a-node-carry-its-git-coordinate",
+  "properties": {
+    "evidence": "Both are the same bet in different clothes: a declared property is worth adding only if something reads it and something keeps it true. That node measures what happens when neither holds — 205 requirements at a default nobody chose — and a per-node branch field with no recomputation would be the same shape at ten times the node count.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "dec:idea-the-requirement-tiers-exist-and-nothing-reads-them"
+}

@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:779f7e85527091683235fd5e179d7219db08fb8c18042516eb137f867c8fddc8",
+  "node_id": "question:e68c76afcb57424c",
+  "node_type": "Question",
+  "properties": {
+    "answer": "\"I believe documentation is part of reflow2 (not external to). I think that is true to just about any project deliverable — that documentation is part of the project. It'd be like if I designed a fighter jet using reflow2, but then didn't deliver any documentation on it to the user. Likewise, documentation is part of reflow2 itself.\" — Anthony, 2026-07-24. So documentation is owned by the product, not treated as material about it: a new Documentation subsystem containing a docs component now owns cap:explains-itself, and README.md and getting-started/SETUP.md are registered as checksummed Artifacts realizing it. The consequence he is asserting, taken literally: a README that drifts from what the system does is a detectable defect on the same footing as drifted code, not something someone eventually notices.",
+    "asked_at": "2026-07-24",
+    "context_setter": "Capability “Explain itself to someone who has not been convinced yet” isn't assigned to any part",
+    "gap_id": "gap:e68c76afcb57424c",
+    "question": "You want reflow2 to explain plainly what it is and how to run it, before it explains what it believes. Nothing currently owns that job — the README, the getting-started guide and the diagrams are written by hand and belong to no part of the system. Should one part be responsible for explaining reflow2 to a newcomer, or is that simply documentation that lives outside the design?",
+    "rephrase_degraded": false,
+    "status": "answered"
+  }
+}

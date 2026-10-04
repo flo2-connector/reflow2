@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:e5953a595a3fad3fdc9a1e17eb4b35b532b15e54c28e3cd3a18400463564483f",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-node-records-what-the-user-calls-it",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:vocabulary-reach"
+}

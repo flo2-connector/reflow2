@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:71e69b5a53ccb26f906b1bf13fbb6d863ebdf2dbb6f85546a550e51f00a25350",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:coverage-visible",
+  "properties": {
+    "authored_at": "2026-07-24",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:6ece82e336d093f3249851c3c4767b7c97e988da12379aef67a83958e99dc54c",
+  "node_id": "chg:the-topic-view-is-served-as-one-call-with-a-mandatory-not-found-line",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "detected_at": "2026-09-06",
+    "name": "The /topic view is served: topic_report computes what the design holds about one subject, with a mandatory not-found line",
+    "rationale": "Anthony asked for a look, not a decision: \"I just want to see something about a topic.\" The projection doctrine put the digest in the server so two agents render one subject the same way, and the not-found line is load-bearing because a digest built on a search miss is a confident wrong answer. The first read of reflow2's own design through the tool found a defect in that very line — it called 436 facts NOT matched when the list had merely been cut at twenty — which is the reason the line exists, turned on itself; fixed and pinned before merge. Undated changes are never offered as latest, the same rule as the overtaken-defect detector, so a node whose changes carry no date reads as \"nothing dated on the record\" rather than as untouched.",
+    "subject": "system",
+    "summary": "Item 5 of v0.50.0. New core module topic.rs and served tool topic_report(query, limit, budget_chars): keyword search, hits grouped by node type, per hit status / discontinued / claim age / connections by edge type and direction / the latest DATED change or measurement; a mandatory not_found line naming what was searched, which populated types matched nothing (or, when the list was cut at its limit, which are not among the top N), the limit cut and index drift; a reply bounded like detect_gaps with count and by_type never trimmed. A thin `topic` skill and /topic command; skill-lint allowlist gains the reply fields; one new toolsnap golden."
+  }
+}

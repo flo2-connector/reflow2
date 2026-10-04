@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:ebbb9d7fff37b5c3ed4d0b72259926f72bd0e5163c8c9897590e924b08b93c66",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0420",
+  "properties": {
+    "as_checksum": "sha256:c5ae98896e2558c42d86c890f7348c6c3b4f5d8895e6aafb723516edc24c2e56"
+  },
+  "to_id": "art:setup"
+}

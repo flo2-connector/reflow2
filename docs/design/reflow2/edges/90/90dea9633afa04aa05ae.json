@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:8f584f235cd21743bacb72af96647d30992cdd0b2ce3ccfa4d98397b1144cf51",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-project-is-asked-what-standard-its-artifacts-must-be-in-from-the-beginning",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "art:test-the-compliance-layer-is-whole"
+}

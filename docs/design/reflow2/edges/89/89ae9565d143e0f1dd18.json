@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:b7ce0d00bdbafeed5573921e7bd56bd40ea7cd9b69d1b76145229de78087a9a3",
+  "edge_type": "AT_EPOCH",
+  "from_id": "chg:a-moved-record-that-sat-still-is-parsed-once-per-design",
+  "properties": {},
+  "to_id": "epoch:a-record-that-moved-once-is-read-once"
+}

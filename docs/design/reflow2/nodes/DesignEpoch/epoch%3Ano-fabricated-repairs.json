@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:a6db28d24bff88a24c8b047fc659654952d532890a39a1297c5357db74676bf9",
+  "node_id": "epoch:no-fabricated-repairs",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "epoch_type": "revision",
+    "name": "A repair suggestion stops proposing fabrication (2026-08-10) — storyflow gap D, shipped alone because it needs no schema change and a tool that proposes corrupting the graph is wrong on its own terms",
+    "sequence": 316,
+    "status": "arrived"
+  }
+}

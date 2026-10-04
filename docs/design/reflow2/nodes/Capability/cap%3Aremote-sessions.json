@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:320dbad5b534e75944c6db7640c54c87c5208e1ba05a9864bde4cee886cd6477",
+  "node_id": "cap:remote-sessions",
+  "node_type": "Capability",
+  "properties": {
+    "description": "--http-allow-host <HOST>, repeatable, names a host or host:port this server will answer for, so sessions on other machines can attach to the same process. It is needed because the streamable-HTTP transport answers only requests whose Host header is on an allowlist — localhost, 127.0.0.1 and ::1 by default. That is DNS-rebinding protection, and with no authentication on reflow2 it is the only thing between a web page the user visits and their design, which is why reaching the server from another machine is an explicit flag rather than a side effect of binding a public address. The flag EXTENDS the default allowlist rather than replacing it, so naming a remote host cannot lock out the local sessions already using the server. And binding a non-loopback address without naming a host prints a warning naming what would have worked, because the failure mode it prevents is an opaque 403 with nothing saying why.",
+    "name": "Reachable from another machine, but only on purpose",
+    "provenance": "authored",
+    "status": "verified",
+    "tier": "operational"
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:38a749d5b82a0574ce58986af729028ef5f208ed019a24a51a6f2c9ea07fb4cc",
+  "edge_type": "ABOUT_ENTITY",
+  "from_id": "fact:defect-a-deferred-tool-reads-as-a-nonexistent-one",
+  "properties": {},
+  "to_id": "cap:degraded-surface"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:d51e3765fcec4b4ef9330eb3107c5a765e5d5722e76062c2c7fa6cf13df9ddb8",
+  "edge_type": "DUPLICATES",
+  "from_id": "fact:a-dangling-reference-is-only-detected-when-the-node-is-also-edgeless",
+  "properties": {
+    "basis": "suspected",
+    "evidence": "THE SAME FINDING, RE-DERIVED THREE DAYS LATER BY A SESSION THAT DID NOT SEARCH FIRST. The 2026-08-26 node already says it: the orphan check short-circuits on degree > 0 before it looks at pointer properties, so a fact attached to anything hides its broken subject, and the better a fact is linked the less likely its dangling subject is to be seen. The 08-29 node states the same mechanism in its own words and calls it new. LINKED RATHER THAN MERGED because both reasons matter and the numbers genuinely differ: 08-26 measured 8 of 9 caught with 1 invisible, 08-29 measured 7 of 9 with 2. Neither is wrong - fact:defect-kit-manifest-drift-is-invisible-to-ci gained edges between those dates and crossed from visible to invisible, which is the mechanism demonstrating itself on a live node. The later node also carries what the earlier does not: the bias argument, and the rule that shipped as #373."
+  },
+  "to_id": "fact:nine-temporalfacts-point-their-subject-at-a-node-that-does-not-exist"
+}

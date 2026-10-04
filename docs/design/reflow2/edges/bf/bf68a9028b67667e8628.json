@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:8fd83bad8cd44bd872d66b65b30cb98c4143d46361c6904527ab62a1762c3289",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-saved-design-moves-to-the-item-layout-2026-10-03",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:4df030bd7a01963e34aab4043e560c7bf75d50b3b97fbc66d524d250d043985f",
+    "checksum_basis": "measured"
+  },
+  "to_id": "art:reflow2-measures-a-registered-file-and-never-reads-it-test"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:7b5207c3ebd4dca5641dd78527af7843c28781411df27fa5a5022cbf0f843d7c",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-name-is-not-a-report",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "ver:arrival-delta"
+}

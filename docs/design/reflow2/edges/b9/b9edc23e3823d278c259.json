@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:f776c19cad53bc265d9f024c297ee0a04546b7f088b345b8d81f854149ef7abf",
+  "edge_type": "CHANGED",
+  "from_id": "chg:tool-minted-seat-liveness-20260808",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cap:claim-liveness"
+}

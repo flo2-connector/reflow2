@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:65d7ea91283b2e55f652b3c890445c8bf71b8e959bd1c37e8a634e1265995407",
+  "edge_type": "EVOLVES_INTO",
+  "from_id": "rule:field-feedback-issues-are-root-caused-and-ideas-are-brainstormed",
+  "properties": {
+    "evidence": "The 2026-09-05 rule made root-cause automatic for FIELD feedback only. Anthony now asks for the same on issues the agent meets while building and testing; this idea is the field rule generalised, with the scope caveat the field rule never needed."
+  },
+  "to_id": "dec:idea-root-cause-runs-at-the-moment-a-cause-is-about-to-be-written-not-on-every-failure"
+}

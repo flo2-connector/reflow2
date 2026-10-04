@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:60db59d63645cce1eb786dcee99a4e886145599752256375adced995ceb955ad",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:interface-spec",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:graph"
+}

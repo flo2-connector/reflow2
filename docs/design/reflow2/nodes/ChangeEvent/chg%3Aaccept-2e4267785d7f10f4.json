@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:937d1c125a58f2f79a0ebf2d563dac9daa9eac7d9d6f86d38aa56f210dbac1c4",
+  "node_id": "chg:accept-2e4267785d7f10f4",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "refactor",
+    "detected_at": "2026-08-29",
+    "name": "`cargo fmt` only — the baseline was taken before the formatter ran. Nothing the file asserts changed.",
+    "subject": "system"
+  }
+}

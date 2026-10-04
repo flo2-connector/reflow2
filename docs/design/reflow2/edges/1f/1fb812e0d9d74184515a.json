@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:c9cdab8730d6f96f4cacabf334ce8d94a5b4ad0c7f58c7781f3c3f41fe403216",
+  "edge_type": "SCHEDULED_FOR",
+  "from_id": "cap:the-register-rule-reaches-the-words",
+  "properties": {
+    "modality": "expected",
+    "recorded_at": "2026-09-14"
+  },
+  "to_id": "epoch:planned-the-mechanism-reaches-the-moment"
+}

@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:f9e3b1e427854211c7ee55325f2129738ac5d61ccaacffcab250192b5a04626b",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:the-agent-renders-the-design-for-the-reader-who-needs-it",
+  "properties": {
+    "approved_at": "2026-09-28",
+    "authored_at": "2026-09-28",
+    "roles": [
+      "author",
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

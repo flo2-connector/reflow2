@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:3389c87c2b4be7d30bd5f5cd3f25cecaee597d9bc4ff164e073aa58f46efdb3f",
+  "edge_type": "CAUSES",
+  "from_id": "fact:defect-a-pre-served-skills-install-is-stranded",
+  "properties": {
+    "basis": "observed",
+    "confidence": 1.0,
+    "evidence": "Two agents derived the migration independently the same day and disagreed, one with a regression. The decision point exists because the knowledge is re-derived per session rather than held anywhere.",
+    "validation_status": "validated"
+  },
+  "to_id": "dec:idea-the-kit-diagnoses-a-stale-project"
+}

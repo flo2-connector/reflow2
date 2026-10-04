@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:375921ed8181b2a1b544103ed47f6269f0a54ad95b75a033e19e3d9ce213e621",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-signature-is-the-callers-own-where-it-is-written",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:tools-claims"
+}

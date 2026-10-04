@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:0a5e907a6a405dcda2fb686ddc04bd35af6f82022a5c80ccd280e6a80f67806c",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:test-a-degraded-server-recovers-when-its-cause-clears",
+  "properties": {
+    "covers": "whole",
+    "evidence": "This test file is the check. CI runs it under cargo test --workspace, and it failed 5 of 5 against unfixed main before the fix."
+  },
+  "to_id": "ver:a-degraded-server-recovers-when-its-cause-clears"
+}

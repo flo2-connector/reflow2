@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:b29b3d4c109617f1396475172ee15a05035f86984c68f5d3532649d4c6194a4f",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:incremental-adopt-with-a-frontier-and-a-deferred-derivation-marker",
+  "properties": {},
+  "to_id": "req:adopt-can-be-incremental-and-resumable-with-a-frontier-and-a-deferred-derivation-marker"
+}

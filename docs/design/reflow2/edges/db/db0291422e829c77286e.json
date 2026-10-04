@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:330977fa7f96cbdebf9a60cef55baa35d6950a8802419bbd714b0f16960224b2",
+  "edge_type": "ABOUT_ENTITY",
+  "from_id": "fact:the-builder-reads-source-where-a-consumer-has-only-the-surface-and-find-tools-returned-the-negation",
+  "properties": {
+    "note": "A THIRD measured retrieval failure for that open question, and the first where the ranked hit was the query's semantic OPPOSITE rather than merely wrong. Its two recorded cases were a miss (set_interface_designation for a coupling question) and a confidently-wrong hit that causes a defect (contain_component for 'move a component'). This one: 'record when a point in time actually happened' returned plan_epoch, which creates a point that has NOT happened, because the description contains the negation of the query term — and the right tool, add_epoch, was absent from the top five of 180."
+  },
+  "to_id": "dec:idea-a-problem-in-the-users-words-should-retrieve-the-tool-that-answers-it"
+}

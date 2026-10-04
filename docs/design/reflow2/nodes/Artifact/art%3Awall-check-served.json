@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:5ce45fbc0f333eb69a68d89b8db252363f2d1fccadcb7d1efbcc2bfe67c2ea54",
+  "node_id": "art:wall-check-served",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "location": "crates/reflow2-mcp/src/wall_check.rs",
+    "name": "wall_check.rs — the wall check compiled into the binary and served as a tool",
+    "status": "realized"
+  }
+}

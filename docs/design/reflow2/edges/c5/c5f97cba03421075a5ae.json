@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:8113514db5d44f04172fd66420cd29eacff0136af7a1b8a5e2438f653fc22f8e",
+  "edge_type": "CHANGED",
+  "from_id": "chg:prohibitions-in-prose-are-noticed",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:skill-lint"
+}

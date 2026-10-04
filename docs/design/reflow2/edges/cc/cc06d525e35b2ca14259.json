@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:bf5abc4d44b75d7697318e0be3ca646a944cb9da9418926680b86775e5cf0d91",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:reflow2-conforms-to-the-mcp-specification-revision-it-serves",
+  "properties": {
+    "approved_at": "2026-09-28",
+    "authored_at": "2026-09-28",
+    "roles": [
+      "author",
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

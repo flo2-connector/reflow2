@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:7d2dcbdfda4487489336f23de8863821948ba2565177f3651fdb7efbe414fe26",
+  "edge_type": "CHANGED",
+  "from_id": "chg:sidecar-loss-refused",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:graph"
+}

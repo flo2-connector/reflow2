@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:aa2307e14d8ea81cde3015c6e04256b5088dd2e4f38cffa44b6befb02ee5fe83",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-design-is-saved-one-file-per-item-2026-10-03",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:c565c0afd0dd35f2321ee9a5453fbd800eea7601261d3cf7fb03a17578105ee0",
+    "checksum_basis": "measured"
+  },
+  "to_id": "art:sweep-harness"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:8dc83ef8eb09897c24804497db1dcf67bc960044bc005828843a8f9834c1d0da",
+  "edge_type": "CHANGED",
+  "from_id": "chg:stored-data-is-rechecked-against-the-current-schema",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:test-a-file-realizes-only-what-it-implements"
+}

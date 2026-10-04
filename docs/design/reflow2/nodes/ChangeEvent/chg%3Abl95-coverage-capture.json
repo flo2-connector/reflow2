@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:589afc383134b45700a1a09843d24be39bc0a42542401239148c21ee037d3277",
+  "node_id": "chg:bl95-coverage-capture",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "name": "BL-95 captured: the design must be able to say what it has never modelled"
+  }
+}

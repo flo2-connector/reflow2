@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:140b41ece0e1064b94e95fa1d1c99db059c1d3edcd32ca0dfa81830107ff0dde",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-refused-write-stores-nothing",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "art:drain"
+}

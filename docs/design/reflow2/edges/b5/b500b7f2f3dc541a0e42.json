@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:e53edc66f6c062e1f38173f57ec529c8712fc0091c8c31bb1f7599a06c9e6d6d",
+  "edge_type": "CAUSES",
+  "from_id": "fact:gap-to-prompt-takes-the-gap-as-an-object-and-reads-only-its-id-so-a-consumer-recomputes-every-gap-per-click",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "The indistinguishable refusal is what made the consumer recompute; this makes it branchable.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "chg:a-composed-prompt-serves-its-pieces"
+}

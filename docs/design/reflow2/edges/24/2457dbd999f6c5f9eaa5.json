@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:d75ac1a5f5260e0db9f60235896fca220431a1d6d9f759cb3292ec42354d537c",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:a-jot-captures-an-idea-in-one-breath-and-sorts-it-later",
+  "properties": {
+    "approved_at": "2026-09-24",
+    "roles": [
+      "author",
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:ce7178216f9c737f399a958ef1f52cde6a5d6854972dec0304d507f774c90060",
+  "edge_type": "CONTRADICTS",
+  "from_id": "dec:idea-is-session-context-already-in-the-graph",
+  "properties": {
+    "alignment": "supporting",
+    "evidence": "Removes one of the content store's founding motivations. cap:session-memory's own design needs no store — takeaways are first-class graph content and the transcript is a Fragment carrying a session UUID, a pointer rather than bytes. So the session-context justification does not survive, and it strengthens the discontinue case rather than complicating it."
+  },
+  "to_id": "dec:idea-discontinue-the-content-store"
+}

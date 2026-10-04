@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:e5c3c9c160cbb31a4e5fab539783677fbd3afab7310ff113b9fbac8908c9dd57",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:idea-a-planned-increment-is-named-by-content-not-by-number",
+  "properties": {
+    "approved_at": "2026-08-08",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

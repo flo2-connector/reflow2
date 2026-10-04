@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:7f9f279a9ebec72917f6b05569c7d8f03490c09d76b859c4510aebd347c5c747",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "ver:container-image",
+  "properties": {
+    "authored_at": "2026-08-06T11:45:00Z",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:claude-code"
+}

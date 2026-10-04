@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:065258bd89ae48de59203e794cb183369ab79f22b663f648a8be09f90e9b5c25",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:a-design-over-the-parts-of-one-thing-holds-what-no-part-owns",
+  "properties": {
+    "approved_at": "2026-09-26",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

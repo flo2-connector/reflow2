@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:6606053cb4740b9705243614828f22f7725dfd375972c0546c526b70a04d16e6",
+  "node_id": "chg:accept-5107770eff781f1a",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "refactor",
+    "name": "Mechanical only: HEAL's governed_by call site takes the new trailing note argument as None. HEAL passes no note and behaves exactly as before.",
+    "subject": "system"
+  }
+}

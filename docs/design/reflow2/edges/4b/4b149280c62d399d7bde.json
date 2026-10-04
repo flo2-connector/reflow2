@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:5bfe8ef7bbb2b5b6216b2ff4738b514d9f933048fc338b0e311a1ba1817b6797",
+  "edge_type": "GOVERNED_BY",
+  "from_id": "req:set-scoped-acknowledgement-keys-on-its-rule",
+  "properties": {},
+  "to_id": "dec:aggregate-gap-keyed-on-rule"
+}

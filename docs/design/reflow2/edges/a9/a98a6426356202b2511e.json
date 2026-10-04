@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:8590c540a747a74c81bf4614aab85da914e0c8850e64ca013cd1abdfc9956e65",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-saved-design-moves-to-the-item-layout-2026-10-03",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:dd7f2081ab31c23342bc622f0291b5559623420015a193cafc7c73ddc79f787a",
+    "checksum_basis": "measured"
+  },
+  "to_id": "art:a-held-designs-read-is-as-true-as-the-live-one-test"
+}

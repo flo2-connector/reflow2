@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:9c56b7d31eb3d468c94449148d099122e2a783a21830a8cd998ea5f36166cb99",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:an-exported-fact-says-when-its-subject-left-the-design",
+  "properties": {
+    "authored_at": "2026-09-13",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

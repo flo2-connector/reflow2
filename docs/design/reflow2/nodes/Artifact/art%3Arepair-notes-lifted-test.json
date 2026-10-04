@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:e525c8f1ec146331fb1647bf42e4a9789add643a1bdf3afb8fb3e4751f0d8d84",
+  "node_id": "art:repair-notes-lifted-test",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "location": "crates/reflow2-mcp/tests/the_same_paragraph_fifty_times.rs",
+    "name": "the_same_paragraph_fifty_times.rs",
+    "status": "realized"
+  }
+}

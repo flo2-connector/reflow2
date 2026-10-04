@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:0384840c632a7f44ce7bf47695383d5bee6a55013d7c6da77f7dc73d401be270",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-stored-twin-has-one-authority",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:test-the-fourteen-holes-are-writable"
+}

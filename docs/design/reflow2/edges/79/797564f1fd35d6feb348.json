@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:364c6add4edd1fb6476ce8c39bc90fe0a56690242ba469ebae005e9d79e717e7",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:server-currency-test",
+  "properties": {
+    "covers": "whole",
+    "note": "migrated 2026-09-22 from a REALIZES link_artifact drew in error"
+  },
+  "to_id": "ver:the-server-says-when-it-is-stale"
+}

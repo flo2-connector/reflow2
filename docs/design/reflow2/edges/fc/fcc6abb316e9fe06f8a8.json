@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:26e8d87aaaf83b246db8407bfc33ed159307018adbe19870b87c2b422b39d095",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:registering-the-file-that-is-a-check-test",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:registering-the-file-that-is-a-check-test"
+}

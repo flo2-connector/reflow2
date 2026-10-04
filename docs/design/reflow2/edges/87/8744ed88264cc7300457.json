@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:4edc958a0f5995f487f7f0e602bf066598fc7d8b9452db85285af9ec9dd95bd7",
+  "edge_type": "CHANGED",
+  "from_id": "chg:atproto-hash-chain",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:export"
+}

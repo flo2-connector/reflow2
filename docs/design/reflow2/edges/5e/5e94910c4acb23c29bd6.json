@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:a7df5389e020ea934130f6e5851c24258f25bef0174020b5dc805b202bdfbedf",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:test-a-registered-artifact-asserts-nothing-it-was-not-told",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:test-a-registered-artifact-asserts-nothing-it-was-not-told"
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:f424278439e4efa628bcf1762da98623a3add660fccd836d53a06433e70066b4",
+  "node_id": "chg:atomic-requirement",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "name": "The decomposition stopping rule captured: atomic requirements, and the over-decomposition failure"
+  }
+}

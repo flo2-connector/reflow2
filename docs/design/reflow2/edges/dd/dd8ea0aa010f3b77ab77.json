@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:0ccf6da6f94686a3a91c054015957904117c2442bcfeb6ee1022a9fe0e23c868",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:test-a-write-records-the-agent-beside-the-principal",
+  "properties": {
+    "covers": "whole"
+  },
+  "to_id": "ver:a-write-records-the-agent-beside-the-person-it-acts-for"
+}

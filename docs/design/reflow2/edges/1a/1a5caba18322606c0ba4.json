@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:89c7f4f87c8c57b09af3033b1577a729b1833215a9ecdc407f5d05869de5acc0",
+  "edge_type": "CAUSES",
+  "from_id": "fact:the-near-match-filter-has-no-node-type-term",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "Cause -> symptom, established by reading the code rather than by inference. The symptom node records WHAT Alex hit (add_requirement refused naming a ChangeEvent; add_decision refused naming a Capability). This node records WHY: the near-match filter at capture.rs:190 tests only not-itself and score-above-floor, and carries node_type for display only. Direction matters and is checked — the untyped filter produces the cross-type refusal, never the reverse. Confidence 1.0 on the mechanism; the OPEN part is which of the two repairs to take, and that is a judgement about how often a cross-type hit is a real duplicate, which nobody has counted.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:the-duplicate-guard-cannot-tell-a-second-layer-from-a-second-copy"
+}

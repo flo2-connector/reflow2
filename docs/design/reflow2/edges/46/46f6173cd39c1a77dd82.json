@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:1080030a4bb1690df2e36c2837cb66a8be12fa05b888ddbefef2cd9ecdda1076",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:arrival-delta",
+  "properties": {},
+  "to_id": "req:plans-move-honestly"
+}

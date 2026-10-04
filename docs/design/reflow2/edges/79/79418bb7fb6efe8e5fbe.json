@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:72aa6f60bed29055eea15091ae8623cafee148119473b85d29cc562ee3cdde3d",
+  "edge_type": "REALIZES",
+  "from_id": "art:heal",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:supporting-is-not-conflict"
+}

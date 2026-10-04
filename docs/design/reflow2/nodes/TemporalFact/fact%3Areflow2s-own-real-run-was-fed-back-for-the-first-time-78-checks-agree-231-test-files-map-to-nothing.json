@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:2f7f94844acc8d63605ce7266a1f71b9a25ea83c46c621bfb14f679c82c63acb",
+  "node_id": "fact:reflow2s-own-real-run-was-fed-back-for-the-first-time-78-checks-agree-231-test-files-map-to-nothing",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "confidence": 0.95,
+    "fact_type": "finding",
+    "name": "MEASURED 2026-09-23: reflow2's own real test run was fed back for the first time — 311 test files, 78 checks compared and stamped, all agreeing; 231 files map to no check. The loop now reads closed_without_a_failure",
+    "statement": "Source: PR #574's CI run 35815550892 (cargo, 283 test files, all passed, at b84b81d — the commit #574 merged) plus the 28 python test scripts under tools/ run locally on the step-4 branch. Fed through reconcile_verification(observed_by_file, record_events, detected_at 2026-09-23) against the shared server after its restart onto the new build. Dry run first, then recorded: 78 agreements, 0 findings, 78 stamped, 231 unmapped. loop_status.loop_closure moved never_closed → closed_without_a_failure (78 of 329 compared). THREE TRAPS MET ON THE WAY, all avoidable: (1) `gh run view --log` and `--job … --log` exited 0 with EMPTY output for this run, and the converter then reported 'files: 0' rather than refusing — `gh api repos/<o>/<r>/actions/jobs/<id>/logs` returned the real 10,567-line log; (2) the converter is named `tools/test_run_to_files.py`, so a `test_*.py` glob runs IT and records its bare-invocation usage error as a failed test — excluded by hand here, and it would be a false failure on every such run; (3) the harness had cached reconcile_verification's schema from before `observed_by_file` existed, so the parameter could not be sent through the tool — the feed went over the shared server's own HTTP endpoint instead. WHAT IT DOES NOT SHOW: whether the 231 unmapped files test anything the design names — most checks in this design are records of a claim, not links to a test file (248 of 329 have no executable form).",
+    "subject_id": "cap:a-real-run-is-fed-back-by-file",
+    "valid_from": "2026-09-23"
+  }
+}

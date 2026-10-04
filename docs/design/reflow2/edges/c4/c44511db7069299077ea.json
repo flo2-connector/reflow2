@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:1b26fe3024eda146a65fb44c283b8326278d1d5e18308eeea2e2bc46619445a9",
+  "edge_type": "CHANGED",
+  "from_id": "chg:accept-5dcc951c991c6c0e",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:tools-coherence"
+}

@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:466c3348e9cd469a7911c4221c92f37ee08946b1a1ec1a353ed9d68da13f0717",
+  "node_id": "fact:manual-work-25af4e9940dc5c70",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "manual_work",
+    "statement": "Several times in one session, wrote a script listing the nodes and properties that differ between the committed export on main and the working export, to see what a PR's design change actually contains before committing it.",
+    "subject_id": "proj:reflow2",
+    "valid_from": "2026-09-27",
+    "value": "{\"diagnosis\":\"tool_not_found\",\"reflow2_tool\":\"compare_designs\"}"
+  }
+}

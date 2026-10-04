@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:57060b7dc1faf4fad4a3528fb9296ace9adfcfc9ebffe4810c9c321374711cd7",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0310",
+  "properties": {
+    "as_checksum": "sha256:07c82cd7671c1241"
+  },
+  "to_id": "art:interface-spec-test"
+}

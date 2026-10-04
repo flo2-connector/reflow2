@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:a3c897e454acdf47226f39e06318bc5ee6f718eaf237e6ebde6c98435fa3f524",
+  "node_id": "ver:every-oversized-reply-offers-a-bound",
+  "node_type": "Verification",
+  "properties": {
+    "description": "Two halves. (1) tools/replies_are_bounded.py in CI: seeds a real design from the committed export, calls every no-argument read tool, and fails on any reply over the budget that declares no bound — and fails equally if NOTHING overflowed, so a detector with nothing to run on cannot read as one that ran clean. (2) Eight unit tests in crates/reflow2-mcp/src/reply_budget.rs covering: a fitting reply returned byte-identical with no budget block; prose cut while numbers survive exactly; ids and hashes surviving every rung; the hint always reaching the reader; a bare array wrapped so it can carry its own explanation; and two that pin bugs this module itself shipped — a list must not be shortened unless the tool opted in, and a NAME must survive the zero rung that drops every hint.",
+    "findings": "PASSING 2026-09-13. Gate: measured 37 no-argument read tools, 6 exceeded 30,000 chars, every one offered a bound. VERIFIED TO FAIL, not merely to pass — at --budget 5000 it exits 1 and names eight unbounded tools (design_regions, evaluate_allocation, granularity_report, graph_report, ility_report, manual_work_report, reviewed_defects, surprising_connections), which are the watchlist for a larger design. Unit tests: 8 passing. Measured before/after on this design: describe_schema 117,252 -> 47,904 with all 65 edge types still listed; confirmation_ledger 125,383 -> 31,673; invalidated_findings 88,242 -> 27,492; evidence_report 75,159 -> 18,643; detect_defects 56,455 -> 31,971. Three of those remain a few percent over the default: once prose is gone the remainder is structure, which is never trimmed by design, and each reply reports its own reply_chars. Toolsnaps regenerated — 9 changed, 0 added, 0 removed. Workspace clippy clean; reflow2-mcp lib 81 and tools 80 passing.\n\n2026-09-30: CAUGHT A REAL ONE, as it exists to. On PR #637's fold of the 2026-09-29 live records, manual_work_ledger answered 33,670 characters with no bound and the gate exited 1 (reproduced locally with a clean origin/main f7f96de build). manual_work_ledger was on this check's 2026-09-13 --budget 5000 watchlist under its old name, manual_work_report. Fixed by chg:manual-work-ledger-offers-a-bound: with that build the same seeded run passes, and the ledger is bounded, not exempted.",
+    "kind": "verification",
+    "last_run_at": "2026-09-30",
+    "level": "integration",
+    "method": "test",
+    "name": "Every oversized reply offers a bound, and the gate fails when it had nothing to run on",
+    "status": "passing"
+  }
+}

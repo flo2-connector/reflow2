@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:f77642cefe8df6acc7f06038ba2738cacaa55e3b0e70175c60024c47b761884d",
+  "node_id": "cap:a-published-promise-carries-its-evidence",
+  "node_type": "Capability",
+  "properties": {
+    "description": "`export_surface` now keeps any Verification whose `VERIFIES` edge lands on a published Interface or a published Requirement, and `SurfaceExport.evidence` names them — carried through to both MCP reply shapes, because a disclosure the caller cannot see is not a disclosure that was reported.\n\n⭐ WHY. Delivery is computed as SATISFIED and REALIZED and A PASSING CHECK. A consumer receiving a published promise and no check could not tell whether it currently HOLDS — so the surface handed across a claim nothing can re-run. That is exactly the defect this design removed from its own insides on 2026-09-22 (241 capabilities reading \"verified\", 21 with a check anything could re-run), reproduced at the seam.\n\n🛑 DERIVED, NOT A THIRD OPT-IN, and the reason is measured. Interfaces and Requirements each travel on an explicit `designation`; a third gate on Verification would reproduce the failure measured the same day — 262 requirements, ZERO marked `published`, because the vocabulary existed and nothing asked. THE OWNER ALREADY OPTED IN WHEN THEY PUBLISHED THE TARGET.\n\nSCOPED TO THE COMMITMENTS, not to everything on the surface. A Component travels because a published contract needs its sides, not because anyone undertook anything about it, so a check on that component stays home. Measured on this design: 3 of 315 Verifications travel.\n\n⚠️ AND IT DISCLOSES, WHICH IS WHY `evidence` NAMES RATHER THAN COUNTS. A check travels AS STORED — trimming one would make it import as a lie — and `findings` is free text. Measured on the three that travel here: internal build paths (`target/debug/...`), internal ChangeEvent ids and internal node counts, all in that field. Bounded, real, and now readable by the owner before the surface leaves rather than discoverable in somebody else's graph.",
+    "name": "A published surface carries the checks for what it published, and names which ones left",
+    "provenance": "authored",
+    "status": "realized"
+  }
+}

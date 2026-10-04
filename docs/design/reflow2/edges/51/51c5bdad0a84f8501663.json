@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:1960d00edc17d040cd5e3cc9a7b962e64239ed355854c0b80fa48932efd5fa79",
+  "edge_type": "REALIZES",
+  "from_id": "art:dockerfile",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:release-publishes-a-container"
+}

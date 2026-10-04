@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:060f1157eea81ce28f2992b915f364ab9775e09e825206a9d45da4f0699c0d55",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-name-is-not-a-report",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "ver:claim-liveness"
+}

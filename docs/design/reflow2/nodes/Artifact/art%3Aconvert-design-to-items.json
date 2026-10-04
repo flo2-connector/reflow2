@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:c0a595e9bc85664a0539e3dfb3b01bfe017a7eb5bce6b5f5697d3a65e7954124",
+  "node_id": "art:convert-design-to-items",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "location": "tools/convert_design_to_items.py",
+    "name": "tools/convert_design_to_items.py",
+    "status": "realized"
+  }
+}

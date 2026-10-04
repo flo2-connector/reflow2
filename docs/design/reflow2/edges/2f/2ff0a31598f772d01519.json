@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:f0e693d49b68bc931319e961e38ebd7877340e8032139300d1501f7304e75cb9",
+  "edge_type": "CONSUMES",
+  "from_id": "cmp:init",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "ifc:graph-export"
+}

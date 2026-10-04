@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:f0565673447c8b8fa25eb89e2fe4d4d360812521a609174df00f83faa4aa3d94",
+  "node_id": "art:migrate-backlog",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "granularity": "atomic",
+    "location": "tools/migrate_backlog.py",
+    "name": "tools/migrate_backlog.py — the one-shot migration that executed dec:backlog-is-retired, and the record of which row became which node",
+    "status": "realized",
+    "volatility": "stable"
+  }
+}

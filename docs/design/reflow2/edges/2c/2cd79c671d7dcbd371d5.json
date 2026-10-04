@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:8300a4d7b262ef5577d3d928db94dc1183b35bcd606bec0c309c0f340283858b",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-capture-that-replaces-a-node-says-so",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:capture-intent-skill"
+}

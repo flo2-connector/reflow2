@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:cb8618dd8c9c3c73eb2a3504c2555ce03cb79740dfffccbae3dc9ec44081ffc0",
+  "edge_type": "BLOCKS",
+  "from_id": "fact:the-level-ladder-has-a-hard-floor-at-component-and-no-assembly-rung",
+  "properties": {
+    "confidence": 1.0,
+    "evidence": "The requirement's own words are \"nested as deep as the design needs\", and the closed `level` enum makes the downward half of that unsatisfiable rather than merely unpopulated: there is no value to give a part of a component, so the containment is refused by hierarchy_issues. Measured 2026-08-25 by attempting it. This is the vocabulary blocking an accepted requirement, which is different from the requirement simply being unfinished."
+  },
+  "to_id": "req:recursive-black-box-decomposition"
+}

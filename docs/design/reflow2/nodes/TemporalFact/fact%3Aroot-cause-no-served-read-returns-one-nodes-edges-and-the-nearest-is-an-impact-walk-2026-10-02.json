@@ -1,0 +1,18 @@
+{
+  "content_hash": "sha256:37e84e919bd08efc59c96972dfec7884306dde324c48f15bcf0f44c102026437",
+  "node_id": "fact:root-cause-no-served-read-returns-one-nodes-edges-and-the-nearest-is-an-impact-walk-2026-10-02",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "finding",
+    "name": "ROOT CAUSE (walked, measured on 0.77.0): no served read returns one node's edges as edges. get_node returns properties only. propagate_from at max_depth 1 is the nearest: it gave 6 of the 7 edges on a test node (it dropped AUTHORED_BY), with impact direction rather than edge direction and no evidence. topic_report gives counts per edge type, and only export_graph is complete. find_tools surfaces none of these for the report's wording, and the lesson naming the workaround rides only get_node's tools/list description",
+    "source": "art:vscode-call-door-field-report-2026-10-02",
+    "statement": "RUN AS THE SKILL (root-cause, fetched fresh), 2026-10-02, triage agent B. Item L19 of art:vscode-call-door-field-report-2026-10-02, \"No edge reader. get_node takes no edges option, and find_tools does not surface a neighbours tool\". The report's working pattern was to read the export.\n\n② PRECEDENT: fact:an-absence-claim-about-why-a-node-changed-read-only-the-node-and-missed-its-retiring-decision-2026-09-28 met the same gap in-session, wrote a false absence claim, and hung its lesson on get_node (\"read the node's connections (topic_report, or propagate_from depth 1)\"). No Decision or Requirement proposes an edge reader; Decision and Requirement searches for \"a node's edges / neighbours\" found none.\n\n⑤ MEASURED on a scratch import of main's export, node req:a-lesson-is-served-at-the-step-it-concerns. The export holds 7 edges on it: AUTHORED_BY, 2× DEPENDS_ON, EVOLVES_INTO, SATISFIES, SCHEDULED_FOR, VERIFIES.\n- get_node: properties only. Its schema takes only {id, node_type}.\n- propagate_from {seed_ids:[id], max_depth:1}: direct_ring lists 6 neighbours with edge_type and `direction`. AUTHORED_BY is missing. `direction` is the IMPACT direction (downstream / lateral / causal), not the stored from→to, and no edge property (evidence) is shown.\n- topic_report: `connections` gives a COUNT per edge type and direction for each hit, with no neighbour ids, and it is keyed by words, not by id.\n- relation_candidates: `already_related` lists review-relation neighbours by id only.\n- export_graph: the only complete reader, and it costs the whole design.\n- None of the 195 tool descriptions says \"returns a node's edges / neighbours\".\n\nfind_tools rank for the report's own phrase, \"read one node by id with its properties and edges\": get_node 8th, propagate_from 14th, relation_candidates 29th, export_graph 149th. The default limit is 5, so none is shown. For \"show a node's neighbours\", propagate_from is 5th.\n\n⑥ CLASS: the graph's edges, which are what the design IS, have no per-node read. Each partial reader was built for another job (impact, topic, linking), so its description names that job, and find_tools, which ranks descriptions, cannot map \"edges of a node\" to any of them. Through the door, the one lesson that names the workaround is invisible (fact:root-cause-tool-lessons-reach-only-tools-list-and-no-door-reply-carries-one-2026-10-02).\n\nCONFIRMED, with one correction to the report: a partial edge reader does exist (propagate_from depth 1). It is just not findable, and it is not complete.",
+    "steps": [
+      "get_node",
+      "propagate_from"
+    ],
+    "subject_id": "req:a-claim-that-the-design-holds-nothing-says-where-it-was-checked",
+    "valid_from": "2026-10-02"
+  }
+}

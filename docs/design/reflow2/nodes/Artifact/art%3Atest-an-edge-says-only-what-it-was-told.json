@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:6a333259befd2c279ec24d30e570b2ee397010894b38ad5c8657720e487f3c20",
+  "node_id": "art:test-an-edge-says-only-what-it-was-told",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "test",
+    "description": "Four cases. Did not compile against the unfixed core (no satisfies_with_coverage, no partially_satisfied), which is the reach hole itself; the basis half was written to fail behaviourally and could not be run in isolation because the file did not compile — recorded as such rather than claimed.",
+    "location": "crates/reflow2-core/tests/an_edge_says_only_what_it_was_told.rs",
+    "name": "an_edge_says_only_what_it_was_told.rs — satisfies stores coverage where delivery reads it and a partial satisfier does not deliver; a contribution that is not there has no basis; the rollup still reads an absent basis as estimated",
+    "status": "realized"
+  }
+}

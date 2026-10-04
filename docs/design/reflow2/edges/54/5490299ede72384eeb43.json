@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:f92ca247bc848df1fd0bb5b3302931c9be92cada3c46b28f81ef2d8688feb966",
+  "edge_type": "GOVERNED_BY",
+  "from_id": "req:concurrent-planning",
+  "properties": {},
+  "to_id": "dec:multi-writer-architecture"
+}

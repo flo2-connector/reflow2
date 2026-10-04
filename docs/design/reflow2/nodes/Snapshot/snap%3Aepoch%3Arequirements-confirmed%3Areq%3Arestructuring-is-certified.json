@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:16a2701fa3958aecdc46413a8540e607241ae94939b2729a3ec82e31527b2226",
+  "node_id": "snap:epoch:requirements-confirmed:req:restructuring-is-certified",
+  "node_type": "Snapshot",
+  "properties": {
+    "edges": "[{\"direction\":\"in\",\"edge_type\":\"SATISFIES\",\"other_type\":\"Capability\",\"other_id\":\"cap:certify-restructuring\",\"properties\":{}},{\"direction\":\"out\",\"edge_type\":\"AUTHORED_BY\",\"other_type\":\"Contributor\",\"other_id\":\"who:ajs\",\"properties\":{\"acted_at\":\"2026-08-02\",\"role\":\"author\"}}]",
+    "state": "{\"concern\":\"core\",\"designation\":\"internal\",\"kind\":\"functional\",\"lineage\":\"original\",\"name\":\"A restructuring is certified, not asserted\",\"priority\":\"medium\",\"provenance\":\"authored\",\"statement\":\"When a design change claims to move structure while holding function invariant, reflow2 shall decide that claim from the two as-designed records alone — reporting whether any Capability or Requirement was added or removed and whether any SATISFIES link changed — and shall refuse to certify a divergence it cannot classify, answering indeterminate rather than passing it silently.\",\"status\":\"proposed\"}",
+    "target_id": "req:restructuring-is-certified",
+    "target_type": "Requirement"
+  }
+}

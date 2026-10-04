@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:5288d84c333a4ba65f9f417ce11012499723d8a338389f67792fbf0e982c88f1",
+  "edge_type": "REALIZES",
+  "from_id": "art:coherence-gate-test",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "verified"
+  },
+  "to_id": "cap:reconcile-built"
+}

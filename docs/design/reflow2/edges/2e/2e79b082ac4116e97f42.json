@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:95ebbc054c62892814418fae093b3bc8f9e93fd09de4d0c27287c0fa3ebb42d0",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-saved-design-moves-to-the-item-layout-2026-10-03",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:626895b1382f68fdc9b4dac1d8cd358574700904aeedc36d200359edeaf21e09",
+    "checksum_basis": "measured"
+  },
+  "to_id": "art:test-an-exposed-server-verifies-bearer-tokens"
+}

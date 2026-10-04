@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:e332b1bf1c043ed7f7b85d75abf563f4ada97a207762d2b486a41be1c5d579af",
+  "node_id": "chg:gap-reporting-at-corpus-scale",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "name": "The scale finding is recorded: unsatisfied_requirement is per-node (verified in is_aggregate), so 300 captured ideas produce 300 identical gaps — BL-145 at an order of magnitude, against a base rate the detectors never assumed"
+  }
+}

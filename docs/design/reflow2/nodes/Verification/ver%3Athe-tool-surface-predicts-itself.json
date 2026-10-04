@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:e3bef9e5aa418291fcb76c359b127d90783479ca39a1e805a1b8ab68ebb1f224",
+  "node_id": "ver:the-tool-surface-predicts-itself",
+  "node_type": "Verification",
+  "properties": {
+    "description": "Three executable checks, each with derived membership or a mechanical comparison, so a 181st tool cannot regress the class silently:\n\n1. `crates/reflow2-mcp/tests/every_required_parameter_is_described.rs` — every required parameter on the served surface carries a non-empty description; EXEMPT is empty and a second test refuses a stale entry. Membership derived from the served schema, like its sibling every_reference_parameter_names_its_type.\n2. `tools/render_skills_and_tools.py --check` — docs/skills-and-tools.md's tool rows, kinds and header counts match the committed toolsnaps; `--write` regenerates them. Wired into CI's core gates.\n3. `crates/reflow2-mcp/tests/every_tool_is_found_by_a_query_in_the_users_words.rs` — the findability acceptance corpus from the previous increment, unchanged, which this increment's rewrites had to keep passing.\n\nPlus skill_lint's 1,500-character budget on every rewritten description, and toolsnap's re-blessed goldens as the record of exactly what moved.\n\nWHAT IT DOES NOT COVER: whether a description is GOOD. Presence, consistency and findability are pinned; quality is the blind prediction test, a judgement the next sweep re-runs. And the held-out paraphrase corpus is deliberately not a gate — it is scored and stated (34 of 42), never enforced, so it stays an honesty check rather than the next thing tuned to.",
+    "findings": "All three gates pass on the final source. Each was shown to fail before being trusted: stripping one doc comment made gate 1 name exactly `verifies.verification_id`; flipping one row's kind made gate 2 refuse; and gate 3 FAILED FOR REAL on the first rewrite — 8 of 180 tools fell out of their top 5 because rewriting \"from purpose\" had paraphrased away the user-phrased sentence, and scan_nodes rose into the top 5 making its exemption stale — then passed 180 of 180 once the sentence was restored on each and the exemption removed. Toolsnaps: 82 files re-blessed, 76 of the insertions being one parameter description each. Full mcp suite 66 binaries green with --no-fail-fast; smoke_mcp, empty_speaks, refusal_speaks, check_command_surface, check_doc_versions, validate_schema, skill_lint all green. Held-out paraphrases 34 of 42 (from 36): no new miss, two former passes at ranks 6–8, one former miss risen to rank 8 — stated on fact:after-the-description-pass-180-of-180-reach-the-top-five-and-the-held-out-set-reads-34-of-42 and not tuned to.",
+    "kind": "verification",
+    "last_run_at": "2026-09-12",
+    "level": "integration",
+    "method": "test",
+    "name": "Every required parameter is described, the tools doc matches the surface, and every tool is still findable — three gates, each shown to fail first",
+    "status": "passing"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:9a3c96b4259e38a374a82d052aded6f2d0213aca39a9b44a64e47d33a09d2bc8",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0770",
+  "properties": {
+    "as_checksum": "sha256:d26547e8941235698bac5161b7f87a7028d861ac9bf6adb72dc7537fc508cb2c"
+  },
+  "to_id": "art:test-a-write-replies-with-a-receipt"
+}

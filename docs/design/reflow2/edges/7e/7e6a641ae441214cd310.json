@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:a4bc32b21f95f024307f8b23f23075c546c399c0c2d6134d62df431efa1a0d42",
+  "edge_type": "ANTICIPATES",
+  "from_id": "dec:idea-a-hosted-tier-of-many-single-writer-tenants",
+  "properties": {
+    "evidence": "The earlier idea saw this coming and asked it without a number: \"what does reflow2 look like at 1k / 100k / 1M tenants each holding their OWN design, and what must not be foreclosed now?\" This one arrives with the number — flo2 at ~10,000 simultaneous users on different projects — and with the second half the earlier one only gestured at, namely what must not be foreclosed being the LOCAL case specifically. Direction is deliberate: the abstract question anticipated the concrete one, not the reverse."
+  },
+  "to_id": "dec:idea-does-serving-flo2-cost-the-local-case"
+}

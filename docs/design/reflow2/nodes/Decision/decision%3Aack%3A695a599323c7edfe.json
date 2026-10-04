@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:988c479422ea6ffb93d5b308abb2106f22257805260e7a52d10278bfc830dccc",
+  "node_id": "decision:ack:695a599323c7edfe",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Accepted the gap gap:695a599323c7edfe.",
+    "name": "Reviewed: gap:695a599323c7edfe",
+    "rationale": "User (who:ajs, 2026-07-23): validation happens through the trials program — docs/trials/ (self-host, adopt dogfood, erosion, phase-coverage, fleet feedback) is where \"built the right thing\" is exercised against operational intent; formal validation-kind Verification nodes are not the tracking mechanism for this project.",
+    "status": "accepted"
+  }
+}

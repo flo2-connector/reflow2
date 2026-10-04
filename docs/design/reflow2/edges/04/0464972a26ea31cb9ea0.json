@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:3616c0f44a64dc06819f6a98f3c53ef32c4e2d3f836f1342d955344e097336b0",
+  "edge_type": "HAS_SNAPSHOT",
+  "from_id": "fact:defect-add-decision-hints-lands-proposed-on-a-write-that-left-it-accepted",
+  "properties": {},
+  "to_id": "snap:epoch:preserved-on-write:fact:defect-add-decision-hints-lands-proposed-on-a-write-that-left-it-accepted"
+}

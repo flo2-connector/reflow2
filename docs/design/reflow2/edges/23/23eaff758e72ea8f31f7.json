@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:777947b1212bdcff3dc63570c927d49535b30cfdcecec31cd7b759faffaeefb8",
+  "edge_type": "CHANGED",
+  "from_id": "chg:backlog-question-settled",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "dec:idea-backlog-belongs-in-the-graph"
+}

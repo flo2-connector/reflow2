@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:5279e17f7555f0a56d6ad608a032ade555a60c82ef4e678b9a065b7a3e4b3981",
+  "node_id": "ver:install-leaves-a-committable-record",
+  "node_type": "Verification",
+  "properties": {
+    "kind": "verification",
+    "last_run_at": "2026-08-13",
+    "level": "acceptance",
+    "method": "test",
+    "name": "A FRESH project gets docs/design/&lt;project&gt;.json, it is not covered by any ignore rule, and it is a real chainable document — plus the three surfaces that name it (tools/test_init.py, a CI gate at ci.yml:58)",
+    "status": "passing"
+  }
+}

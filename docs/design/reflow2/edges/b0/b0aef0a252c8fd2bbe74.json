@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:6cc2ccdca13322d49c754c6385d333744691322d6d87ac11035dfefa36ac9ce9",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:comparing-two-designs-does-not-reach-into-the-reporting-layer",
+  "properties": {
+    "coverage": "partial",
+    "rationale": "Makes the second of the two declared boundaries severable. With change 1 it completes the DAG; alone it removes one cycle of two."
+  },
+  "to_id": "req:modularity-computed"
+}

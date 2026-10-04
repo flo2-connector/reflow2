@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:8eccea49aac9693d2739351ec58506a6a4d94b820a6f481005045bca11649175",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:a-release-that-shipped-says-what-it-shipped",
+  "properties": {
+    "approved_at": "2026-08-21",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

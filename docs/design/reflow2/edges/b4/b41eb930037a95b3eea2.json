@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:0bec3f7c87fd4f7e9910a56c79f97c41b06ec27e24f637679307bd2b54e2483c",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:test-a-node-records-what-the-user-calls-it",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:test-a-node-records-what-the-user-calls-it"
+}

@@ -1,0 +1,17 @@
+{
+  "content_hash": "sha256:0924c9b4fac7caa936bf18c13ffce3f85e95da0e329120945bf018349284a1d2",
+  "node_id": "ver:the-taxonomy-skill-is-served-and-the-finding-reaches-the-surface",
+  "node_type": "Verification",
+  "properties": {
+    "description": "crates/reflow2-mcp/tests/the_taxonomy_skill_is_served_and_the_finding_reaches_the_surface.rs — three cases, the three legs.",
+    "findings": "tax3 run: 3 passed, 0 failed; the command-surface test (4) also green with the new /taxonomy alias.",
+    "kind": "verification",
+    "last_reconciled_at": "2026-09-23",
+    "last_reconciled_outcome": "passed",
+    "last_run_at": "2026-09-17",
+    "level": "integration",
+    "method": "test",
+    "name": "The establish-taxonomy skill is served and names its finding; add_component says a part's kind on the typed constructor; a mixed encoding reaches the surface as encoding_undecided through detect_gaps",
+    "status": "passing"
+  }
+}

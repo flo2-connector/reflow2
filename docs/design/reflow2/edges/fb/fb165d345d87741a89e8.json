@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:6df592b5fe7f9e4b4bd0f7a2d9d2daad1eef93f1b418110398e925eea7c3ed2d",
+  "edge_type": "CHANGED",
+  "from_id": "chg:acknowledgement-not-structure",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:bl124-instrument"
+}

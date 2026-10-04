@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:ad8808988ec2a766260be55b1521a6e66f03acf8553513ca6b01ae9905ddcff9",
+  "edge_type": "REALIZES",
+  "from_id": "art:latent",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:latent-surface"
+}

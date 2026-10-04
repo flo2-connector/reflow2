@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:b35c21d76b4f6ebd624774ba44efe47d80a238708e680641d7f0d1c328c570cc",
+  "node_id": "chg:requirement-lineage-built",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "name": "Requirement lineage built: DECOMPOSES edge, lineage property, and delivery rolling up the tree"
+  }
+}

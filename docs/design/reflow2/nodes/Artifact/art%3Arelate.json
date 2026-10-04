@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:e16ed181593a81e78d680b422e68d0903f3e92d824b72b38bd4dfa1e56eede21",
+  "node_id": "art:relate",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "location": "crates/reflow2-core/src/relate.rs",
+    "name": "relate.rs",
+    "status": "realized"
+  }
+}

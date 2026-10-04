@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:397424eb7f97b6593f38a62d55d4900eca0a1fc08c8edac98a2d339349e4580d",
+  "edge_type": "EVOLVES_INTO",
+  "from_id": "dec:idea-the-decision-status-enum-is-thinner-than-the-lifecycle-people-actually-use",
+  "properties": {
+    "evidence": "Anthony promoted the deferred half of this idea to intent on 2026-09-11. Only HALF travelled: the requirement is scoped to `deferred`, because that is the one candidate state with a named reader (loop_status and what_next both change behaviour). The `withdrawn` half and the derive-from-age alternative stay open on this idea."
+  },
+  "to_id": "req:an-idea-that-stopped-is-not-counted-as-debt-somebody-owes"
+}

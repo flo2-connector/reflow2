@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:a02be2216a211fa7659076a6aa0cd3365c8612fc7ffefb3745d5c8030b628175",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:lineage-is-kept-per-item",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:export"
+}

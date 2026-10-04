@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:0c61d583b8bfb878d6e4324519970f73fda66537d973b84f79bb5f7cef9251bf",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:changelog-test",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:changelog-test"
+}

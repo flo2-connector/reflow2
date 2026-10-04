@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:04c6d50a1077fd1dd3b7a9deb294fcc48024cfabd3e924dce0969943d92bb028",
+  "edge_type": "CONTAINS",
+  "from_id": "cmp:byte-store",
+  "properties": {},
+  "to_id": "cmp:memory-backend"
+}

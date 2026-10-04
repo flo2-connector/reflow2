@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:df60c3f13835b47354ad0bafcb68ba49d12443eb602924011534dc8d3745853d",
+  "edge_type": "REALIZES",
+  "from_id": "art:test-a-refused-host-is-told-which-flag-admits-it",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:remote-sessions"
+}

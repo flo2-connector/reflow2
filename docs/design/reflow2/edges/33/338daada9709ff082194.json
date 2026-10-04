@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:688778ab516241610967007b5a84a4d5a5dcc90003bfde4832d0ea76165a5d40",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:the-register-rule-reaches-the-words",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:agent"
+}

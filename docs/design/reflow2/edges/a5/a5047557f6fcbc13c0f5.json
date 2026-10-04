@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:0da72f83bfd41f62940c323e983ec1b195cb154d07981ec915ef6a6e585d1eb9",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-kernel-stops-being-bisected",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "sys:vocabulary"
+}

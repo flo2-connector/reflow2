@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:6cfeaacdfd3eb7d0fbd84f215ff6b34959cd9cdea179ef47514e7592a1f1d2e3",
+  "node_id": "fact:the-schema-described-the-answers-edge-for-months-before-it-existed",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "confidence": 1.0,
+    "fact_type": "defect",
+    "statement": "MEASURED 2026-09-02 WHILE BUILDING THE EDGE, and it is instance ⑤ of the unchecked-prose class — found, like ④, by ordinary work rather than by looking for it.\n\n`Question.answer`'s schema description has read, for as long as the type has existed:\n\n  \"What the user said, in their own words. **The design nodes it produced are linked separately.**\"\n\n**THEY WERE NOT LINKED. SEPARATELY OR OTHERWISE.** There was no edge from any design record to a Question, and `describe_schema{from: Decision, to: Question}` returned ZERO exact and ZERO half-exact matches — 17 wildcards and nothing that modelled the pair. A reader following that sentence would go looking for a linkage the design does not have, which is exactly what happened: api-boss proposed building it on 2026-08-15 as fix (3) for a different defect, evidently without the sentence leading them to it either.\n\n⭐ IT IS THE SHARPEST INSTANCE OF THE CLASS SO FAR, because the prose is not merely over-reaching a computation — it DESCRIBES A STRUCTURE THAT DOES NOT EXIST. ① loop_status asserted past its data; ② describe_schema presented one criterion as another; ③ authored_by understated itself; ④ unresolved_setup asked a different question from the one its message names. This one documents a feature.\n\nAND IT SHOWS WHAT THE CLASS COSTS WHEN IT RUNS THE OTHER WAY: a sentence describing something absent is a SPEC nobody implemented. The repair here was not to correct the prose but to build what it described, which is the better outcome and was only available because the sentence was right about what the design NEEDED.\n\n⚠️ NOT ESTABLISHED: how long the sentence stood. It predates this session by an unknown margin and no ChangeEvent records its authorship; `git log -S` on the schema file would date it and was not run.",
+    "subject_id": "cmp:foundation-vocabulary",
+    "valid_from": "2026-09-02"
+  }
+}

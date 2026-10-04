@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:a53972904c5f5efbf5c58765c983f40f8e2a5cfa5fdf303d45716ff29fe44e99",
+  "edge_type": "ANTICIPATES",
+  "from_id": "dec:idea-a-skill-may-assert-the-defaults-it-relies-on",
+  "properties": {
+    "evidence": "That question asks whether a skill should assert the tool DEFAULT it depends on so the build breaks when the default moves. It is the same question one scope down: an unstated obligation between two surface elements that nothing checks. The narrower case was recorded first."
+  },
+  "to_id": "dec:idea-a-tool-class-should-carry-a-contract-that-something-checks"
+}

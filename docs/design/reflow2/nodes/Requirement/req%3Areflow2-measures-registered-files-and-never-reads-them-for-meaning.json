@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:0c53cb4b7d7de831bca82299820f230dfcfd7d439d623b35170c4b3b4f98f33c",
+  "node_id": "req:reflow2-measures-registered-files-and-never-reads-them-for-meaning",
+  "node_type": "Requirement",
+  "properties": {
+    "lineage": "original",
+    "name": "reflow2 measures a registered file — hash, size, presence, under the project root — and never reads a file for meaning; every checksum says whether it was measured or asserted",
+    "priority": "high",
+    "provenance": "authored",
+    "statement": "Anthony, 2026-09-18, closing the file-I/O brainstorm on its narrow option: the slogan 'reflow2 does no file I/O' was always shorthand for 'no interpretation', and hashing is counting. A registered artifact's checksum is MEASURED by the server when the caller omits it (sha256, streamed; bytes in, a digest out) and the record says `checksum_basis: measured`; a supplied value is recorded as `asserted` and, when the file is reachable, compared. `reconcile_artifacts` called with nothing measures every registered artifact with a location and names, with why, each it could not reach. `loop_status` reports the live count of drifted and missing files at every boundary. THE BOUNDS ARE THE REQUIREMENT: a location is resolved only under the directory the design lives in, and a path or symlink that escapes it is refused unread; nothing returns content; nothing lists or walks a tree; and a server that does not hold the tree — in memory, a registry served over HTTP, a shared server on another machine — says 'not on this machine' by name instead of reporting files absent or drift zero. Reading for meaning (parsing, extracting, navigating) stays the agent's (dec:agent-navigates-content); reflow2-core still reads no file. Why: until this, every checksum in reflow2's own graph was a pasted sha256sum and the graph could not tell a pasted hash from a made-up one; two users asked (qs 2026-09-04, Alex 2026-09-17) and the Seattle building adopt pasted every one of its checksums the morning this was accepted.",
+    "status": "accepted"
+  }
+}

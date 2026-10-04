@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:ba7327636ec07e0f0fa3ff390bcfd5211e5b780da763a9e66adb910804b92194",
+  "edge_type": "CHANGED",
+  "from_id": "chg:an-http-server-drains-before-it-stops-2026-09-27",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:auto-export"
+}

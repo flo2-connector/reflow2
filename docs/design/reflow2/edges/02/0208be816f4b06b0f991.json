@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:33617530f3e3e6705e18eeb0f6c7c1fad564872e89ff2e790ea2ea9ef93921bc",
+  "edge_type": "REALIZES",
+  "from_id": "art:test-opencode-plugin",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "verified"
+  },
+  "to_id": "cap:the-loop-nudge-reaches-opencode-through-a-plugin-adapter"
+}

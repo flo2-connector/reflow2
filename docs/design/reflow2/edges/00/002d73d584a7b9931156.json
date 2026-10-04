@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:e044f504ecd5dff36c33bd41b3a8bad778f65e87ffab5bd58fabc0c2b47cc14d",
+  "edge_type": "CHANGED",
+  "from_id": "chg:get-node-with-a-node-type-says-why-an-id-is-absent-2026-10-03",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:empty-speaks-gate"
+}

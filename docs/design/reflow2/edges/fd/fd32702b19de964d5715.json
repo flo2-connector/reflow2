@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:e4e33ae554f43980d54a144d172bb0121fe35ba9ebc24796239d0855d2b53786",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:checksum-dialect-test",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:checksum-dialect-test"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:a5d8da6753e56c4b3d5343051bf6b8eca0c1106f227428ce8f8bb454ab77d099",
+  "edge_type": "CHANGED",
+  "from_id": "chg:bl186-folder-driver",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:scope-corpus-ingest"
+}

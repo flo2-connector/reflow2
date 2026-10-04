@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:9c8fd0f4b55c7af4780648b8ea8258d674fc065f5426cc1f0c4416c10772e461",
+  "edge_type": "GOVERNED_BY",
+  "from_id": "req:design-reachable-without-the-repo",
+  "properties": {},
+  "to_id": "dec:central-host"
+}

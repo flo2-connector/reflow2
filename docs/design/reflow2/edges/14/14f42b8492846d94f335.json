@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:14cdc3429bc737c6b2e6864cffa35f2eb5cd2f480a7e74a241870bd8538108a8",
+  "edge_type": "CHANGED",
+  "from_id": "chg:storyflow-second-field-report-20260808",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "fact:defect-no-way-to-mark-a-capability-contested"
+}

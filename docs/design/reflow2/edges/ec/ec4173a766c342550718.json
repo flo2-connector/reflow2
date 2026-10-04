@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:d30276e931e01b690fc9629771bad03b09afaca6f50a32ee211a01cfe6496453",
+  "edge_type": "REALIZES",
+  "from_id": "art:nudge-detect",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cmp:nudge"
+}

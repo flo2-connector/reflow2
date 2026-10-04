@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:61d14e7d758ec4badeb72c0648f7678fbad10b2f0d8b8605f78da97f2ab03af5",
+  "node_id": "ver:a-node-attached-to-nothing-is-reported-whatever-its-type",
+  "node_type": "Verification",
+  "properties": {
+    "kind": "verification",
+    "last_run_at": "2026-08-16",
+    "level": "unit",
+    "method": "test",
+    "name": "Five probes: an edgeless epoch is reported, a Verification that verifies nothing is reported, a pointer property counts as attachment, DETECT keeps its own types, an empty design is not a defect",
+    "status": "passing"
+  }
+}

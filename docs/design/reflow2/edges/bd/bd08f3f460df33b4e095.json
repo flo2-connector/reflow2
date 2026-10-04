@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:4a12afd5949a353a32b0e48050e4667135f77f315e65230f0f460a6d62579dfc",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "cmp:scope",
+  "properties": {
+    "dependency_type": "function_call",
+    "note": "Runs the unscoped detectors and then buckets their findings; it never reimplements a detector, so a new gap source is scoped for free.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:detect"
+}

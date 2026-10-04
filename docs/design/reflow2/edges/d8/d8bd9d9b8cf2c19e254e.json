@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:b3978390d8723d5b913f69c34c8c56db202c13cac0e028879bee8490748306f0",
+  "edge_type": "HAS_SNAPSHOT",
+  "from_id": "cap:shared-sessions",
+  "properties": {},
+  "to_id": "snap:epoch:linking-repos:cap:shared-sessions"
+}

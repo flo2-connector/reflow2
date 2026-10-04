@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:3dc7f4b0e6837e918b94a40b3d38cb850c4b8ec30b6b40c4729a7be38177dac1",
+  "edge_type": "GOVERNED_BY",
+  "from_id": "req:skill-adherence-is-measured",
+  "properties": {},
+  "to_id": "decision:ack:230d69056201ed59"
+}

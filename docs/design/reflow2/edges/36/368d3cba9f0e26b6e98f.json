@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:e29dc99b06872521642224da4ddc06f66e06222ca1366cc4afb48ad51a3039b6",
+  "edge_type": "CHANGED",
+  "from_id": "chg:accept-b618dd570582ca6f",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:ingest"
+}

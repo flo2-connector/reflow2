@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:374077424aa7466c4938f06c7a79e545127fe67fe71f307c0f1c0c22a88e519d",
+  "edge_type": "REALIZES",
+  "from_id": "art:graph",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:a-contributors-roles-toward-a-node-are-a-set-that-a-write-adds-to"
+}

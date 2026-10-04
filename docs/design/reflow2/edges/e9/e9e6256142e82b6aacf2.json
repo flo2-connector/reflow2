@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:4fafdcc56ebf40c75d0a0d6df7dd3eb4cd31cfe63b863f76ca49b555dd490e99",
+  "edge_type": "REALIZES",
+  "from_id": "art:schema-core",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked",
+    "note": "Project.closure_legs, Project.closure_threshold, Constraint.margin"
+  },
+  "to_id": "cap:closure-report"
+}

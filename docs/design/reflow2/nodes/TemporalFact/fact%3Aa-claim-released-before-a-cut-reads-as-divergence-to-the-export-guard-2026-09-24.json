@@ -1,0 +1,18 @@
+{
+  "content_hash": "sha256:abfd2749d71881fa38dd1fbf0e1338268e30d38dae1425cf432a68640d294ebf",
+  "node_id": "fact:a-claim-released-before-a-cut-reads-as-divergence-to-the-export-guard-2026-09-24",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "finding",
+    "name": "MEASURED 2026-09-24 on the v0.70.0 cut: a claim released before the cut makes step 6's export REFUSE as divergence, because the committed file still holds the CLAIMS edge the graph no longer has",
+    "source": "the v0.70.0 cut, run from the dev_reflow2 hub session",
+    "statement": "The /jot claim was made on feat/jot and travelled into main's export with #586. It was released (release_claim) at the start of the cut, as AGENTS.md's order of operations says. Step 6's export onto the cut branch was then REFUSED by the stale-seat guard: \"would DELETE 0 node(s) and 1 edge(s) … CLAIMS who:claude-code -> req:a-jot-…\". That edge was not somebody else's work; it was the released claim, removed on purpose. The export went through with accept_divergence: true, and the commit message says why.\n\nThe lesson for the next cut: when the ONLY dropped item is a CLAIMS edge you released yourself, accept_divergence is correct; read the \"Dropped:\" line before passing it, because the same flag would discard real work. The guard cannot tell a released claim from a colleague's missing edit, and neither flow:release-cut nor release_claim says this will happen.",
+    "steps": [
+      "export_graph",
+      "release_claim"
+    ],
+    "subject_id": "cap:a-cut-exports-the-record-once-from-the-new-binary",
+    "valid_from": "2026-09-24"
+  }
+}

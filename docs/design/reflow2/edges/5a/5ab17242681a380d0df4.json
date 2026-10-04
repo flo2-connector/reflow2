@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:56843b092501a265c867f4ab9976a92252ca7678f2c16097a86adac073c43189",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-check-and-its-findings-are-different-things",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "ver:a-claim-reads-back-with-its-age"
+}

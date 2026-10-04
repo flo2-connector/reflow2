@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:4065227148107a94823e6c1d3e00e7264b1cf2746132fde9b835d4f2a9071b46",
+  "edge_type": "CHANGED",
+  "from_id": "chg:retire-from-design-says-a-retired-files-absence-is-expected",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "art:retire-from-design-skill"
+}

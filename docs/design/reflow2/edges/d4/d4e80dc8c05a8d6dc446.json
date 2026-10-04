@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:c5c94c99f83563ac8cf303ccd67d94ae3148d9eac193fb133702f354ad27232b",
+  "edge_type": "REALIZES",
+  "from_id": "art:claims",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:cluster-claims"
+}

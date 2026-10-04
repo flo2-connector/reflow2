@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:05d1b8d6691bb277ae452a2cc5c649f8a6d8cc16b3388a4cc572952c3d3f531b",
+  "node_id": "chg:absorb-vector-stats",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "refactor",
+    "detected_at": "2026-08-24",
+    "name": "Increment 1 of the absorption — the two statistics functions come in-tree and dynograph-vector leaves reflow2's manifest",
+    "rationale": "The cheapest increment first, deliberately, so the pattern is proven on something reversible before anything hard is touched. `stats.rs` has ZERO external imports — pure stdlib arithmetic — and one consumer, so nothing about this step can go wrong in an interesting way. That is the point of doing it first.\n\n⭐ PROVENANCE IS A REQUIREMENT OF THIS DECISION, NOT A NICETY. The recorded objection to absorbing is that vendoring converts a visible dependency into an invisible one: the pin at `reflow2.toml` carries a written reason for every bump, and once code is in-tree that record has no successor. So every increment names the exact TAG and the exact FILES, in the ChangeEvent and in a header on the absorbed code itself. A later reader must be able to find what this came from.\n\n⚠️ AND WHAT THIS INCREMENT DOES NOT DO, stated because the manifest will look like it does: `dynograph-vector` leaves reflow2's DIRECT dependencies, but `dynograph-resolution` declares it as a dependency of its own, so cargo keeps building it until increment 2 lands. **One line out of Cargo.toml is not one crate out of the build.**",
+    "subject": "system",
+    "summary": "First increment of `dec:absorb-the-foundation-subset-and-end-the-dependency`. `mean` and `linear_regression_slope` are absorbed into a new `reflow2-core` module from `dynograph-vector`'s `stats.rs` at tag v0.12.0 (`19b6760`), with their upstream tests. `dimensions.rs` — the only consumer — imports locally, and `dynograph-vector` is removed from reflow2's direct dependencies.\n\nTAKEN, NAMED EXACTLY: `linear_regression_slope` and `mean` from `crates/dynograph-vector/src/stats.rs`, plus the six `linreg_*` tests and `mean_basic_and_empty`.\n\nNOT TAKEN: the other seven public functions in that file — `pearson_correlation`, `variance`, `std_dev`, `percentile`, `median`, `softmax`, `spearman_rank_correlation` — and the whole of `hnsw.rs` (1,165 lines) and `distance.rs` (776). reflow2 calls none of them. Taking them would be exactly the dead weight this decision exists to avoid."
+  }
+}

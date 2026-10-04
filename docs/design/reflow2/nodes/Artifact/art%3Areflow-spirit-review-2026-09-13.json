@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:c8640e6bb2a52d27c52a2612da07240dbf02823051734ad45ffa2c9ae44cfe58",
+  "node_id": "art:reflow-spirit-review-2026-09-13",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "document",
+    "description": "The 2026-09-13 review of the whole original reflow repository for its spirit and intent, and of whether reflow2 has drifted from it — the quote trail behind fact:reflow2-keeps-reflows-spirit-and-inherits-its-one-real-drift. Dated and parked, never linked with DOCUMENTS (dec:a-dated-field-report-is-registered-and-parked): it records what five readers found on one day, not what any node of the design is. Sibling of docs/reflow-audit.md (2026-07-18, item-by-item) which it does not supersede.",
+    "location": "docs/reflow-spirit-review-2026-09-13.md",
+    "name": "reflow-spirit-review-2026-09-13.md",
+    "status": "realized"
+  }
+}

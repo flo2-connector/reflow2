@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:cbd98efc9714c8fdfe87ed85c267064defba250e0a9a31518748df63c5ad2a21",
+  "edge_type": "SCHEDULED_FOR",
+  "from_id": "cap:derived-relations-are-declared-checked-against-the-code-and-evaluated-by-a-served-read",
+  "properties": {
+    "modality": "expected",
+    "recorded_at": "2026-09-29"
+  },
+  "to_id": "epoch:fix-what-the-two-agent-exercise-found-2026-09-29"
+}

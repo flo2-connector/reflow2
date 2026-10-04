@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:de7eea45f3889198e7f99dbd863986332df5dbe39e7cac99be32f91f68d5fa7d",
+  "node_id": "chg:accept-ddfe8314125ace84",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "detected_at": "2026-08-19",
+    "name": "scan_nodes filters by `level`, refusing an unknown rung AND refusing `level` on any non-Component type rather than returning an empty list — 'no Components at that rung' and 'that is not a rung' are different facts and the second silently reads as the first. An unset level answers to `component`, matching the schema default, so older nodes are not lost by the filter.",
+    "subject": "system"
+  }
+}

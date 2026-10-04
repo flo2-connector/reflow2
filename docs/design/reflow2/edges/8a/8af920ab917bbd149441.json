@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:d0571bc1214c0729a6b7b214344ff77023c6250bfdcfef11cd64daeb868a7e9e",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:a-check-records-what-it-found-separately-from-what-it-is",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:verify"
+}

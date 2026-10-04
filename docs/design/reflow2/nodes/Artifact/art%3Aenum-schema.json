@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:3df17c861e051364cf8f01460eb0a52d1f57c44d8edfbd292dcaaa8057e8f638",
+  "node_id": "art:enum-schema",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "location": "crates/reflow2-mcp/src/enum_schema.rs",
+    "name": "enum_schema.rs — one schema_with fn per enum request field, reading legal values from the compiled-in schema (or the handler's own const) at tool-listing time",
+    "status": "realized"
+  }
+}

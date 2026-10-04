@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:a31b1c198adcf5f9fe911441000457a64eb04685fb177d0f6c57862ecce3f946",
+  "edge_type": "INVALIDATES",
+  "from_id": "chg:alexs-four-surface-fixes-sequence-hint-get-node-by-id-auth-hint-and-bulk-check-only",
+  "properties": {
+    "at": "2026-09-05",
+    "note": "FIXED AT THE MECHANISM THE FACT NAMED: the add_epoch handler now pre-checks `sequence` before the generic RequiredFields helper and the refusal names the current maximum (or 'no epochs yet'), so the caller no longer scans epochs to learn a number the tool already had. Pinned (add_epoch_without_a_sequence_names_where_you_are), observed failing first. NOT CLOSED: the fact's own ⑨ — whether auto-assignment is right at all — stays open on dec:idea-add-epoch-assigns-the-next-sequence-or-names-it; the shipped fix deliberately does NOT assign, because a sequence is a position claim and sequences are spaced on purpose."
+  },
+  "to_id": "fact:defect-add-epoch-requires-a-sequence-the-refusal-cannot-name-because-the-required-field-helper-is-generic"
+}

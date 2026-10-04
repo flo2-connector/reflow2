@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:8f057bcb2325500ec477c4af8707bb5c511160809411a5678120c549464cada6",
+  "edge_type": "AT_EPOCH",
+  "from_id": "chg:constraint-not-numeric-add-constraint-desc",
+  "properties": {},
+  "to_id": "epoch:constraint-is-not-only-numeric"
+}

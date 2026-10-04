@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:02eb2ee886e2e477113514e4caa114ce8286bdf480bc718266da5d51ce5fec1a",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:design-composes",
+  "properties": {
+    "authored_at": "2026-07-25",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:e3750a6158473a1ada86ab64d2e9f7919cf5e9e465d5c589715732fd36d8fd40",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:idea-the-loop-only-sees-what-an-agent-hand-carries",
+  "properties": {
+    "authored_at": "2026-08-11",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:claude-code"
+}

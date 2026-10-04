@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:8657f67cb54331a0bba4a6d0596b0b17415fbd41b5e6bd8d0da2ac8b4f021a2a",
+  "node_id": "decision:ack:7776535dd4f8ca62",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Accepted the gap gap:7776535dd4f8ca62.",
+    "name": "Reviewed: gap:7776535dd4f8ca62",
+    "rationale": "Anthony, 2026-10-03, in chat: \"All six: not fixed\". The change touched this defect's subject but did not fix it, and the defect stays open. Measured reason: a first /feedback report windows \"since the ledger began\" and never says when. #656 does not touch the window.",
+    "status": "accepted"
+  }
+}

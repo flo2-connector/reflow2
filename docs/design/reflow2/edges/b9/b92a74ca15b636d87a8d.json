@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:a2df3be8b5bb06d70b0734bae7723826660073a3907aa08d19b889650421fd67",
+  "edge_type": "AT_EPOCH",
+  "from_id": "snap:epoch:work-declares-who-it-reaches-is-accepted:req:work-says-whether-it-reaches-a-consumer",
+  "properties": {},
+  "to_id": "epoch:work-declares-who-it-reaches-is-accepted"
+}

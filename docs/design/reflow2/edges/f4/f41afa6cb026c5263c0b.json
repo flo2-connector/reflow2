@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:758e9cbb6ac466e8451a8ffba8815ebe977484d5fa941f5e69f25b223397023a",
+  "edge_type": "CHANGED",
+  "from_id": "chg:rmcp-3-5-0-base64-0-23-and-the-lock-refreshed-2026-10-02",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "art:service"
+}

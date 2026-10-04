@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:b2484029e01f32536898b8fd3dfd04a5189d32a4430378ef5c42173530875bb8",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:governance-proposal",
+  "properties": {},
+  "to_id": "req:a-rule-is-recorded-with-its-consequence"
+}

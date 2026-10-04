@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:ebe8a5a52e572fd5a17edfd422e8eaeec7720763476a6e5c7a590eff1c1748af",
+  "node_id": "rel:v0560",
+  "node_type": "Release",
+  "properties": {
+    "description": "The version guard asks the store instead of the stamp, and a node records what the user calls it. Retired at the v0.57.0 cut.",
+    "name": "v0.56.0",
+    "status": "retired",
+    "unit_type": "binary",
+    "version": "0.56.0"
+  }
+}

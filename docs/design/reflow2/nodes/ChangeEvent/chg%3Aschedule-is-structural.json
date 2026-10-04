@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:c224e549e5fa095755a41325b1af695ab8afd90f382b21be201aca3e4b8738a7",
+  "node_id": "chg:schedule-is-structural",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "test_failure_fix",
+    "name": "SCHEDULED_FOR joins the structural direction table, so the schedule stops being invisible to impact and topology"
+  }
+}

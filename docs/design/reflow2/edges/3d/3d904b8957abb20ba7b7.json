@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:395c1f13cde260d1b20f4b2560cb9025e4fafbbf3abb05f982abba1b939de578",
+  "edge_type": "CHANGED",
+  "from_id": "chg:iteration-budget-was-elicited",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "req:build-loop-is-bounded"
+}

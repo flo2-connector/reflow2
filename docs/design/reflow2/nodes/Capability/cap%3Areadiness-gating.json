@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:8620d2c0a93fcfc4be81e399f89d32a79e21b36b279ce7d35da94229e5b1ae84",
+  "node_id": "cap:readiness-gating",
+  "node_type": "Capability",
+  "properties": {
+    "description": "TRL/MRL readiness as its own construct — a `ReadinessAssessment` carrying an integer level 1-9 and a kind, attached to the enabling technology — plus a `GATED_ON` edge from the increment to that technology carrying the level it demands, and a `TemporalFact` forecast series marking itself `forecast` rather than `measured` with author-stated confidence. From those three the delivery epoch is computed FORWARD: the earliest epoch by which every gating technology clears its stated level, reported with the reason (\"2036 because this component is TRL 3 today, projected 7 in 2035, and this increment needs 7\"). Refuses to invent a threshold: an ungated increment is reported ungated, never ready.",
+    "name": "Readiness gates an increment, and the roadmap says why",
+    "provenance": "authored",
+    "status": "verified",
+    "tier": "operational"
+  }
+}

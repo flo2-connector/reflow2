@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:799659cfa7292d7695884be123cf3733dc2c45d20bacef5abb5deb1c3b64b8b3",
+  "edge_type": "CHANGED",
+  "from_id": "chg:coverage-built",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cap:adopt"
+}

@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:50b7b758d000d7e4e97abbace34cb3000d35ee21e4484188d09379c8439e70fc",
+  "node_id": "fact:field-report-flo2-2026-09-18-operational-know-how-has-a-home-and-the-routing-table-says-it-has-none",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "confidence": 0.85,
+    "fact_type": "defect",
+    "name": "FIELD REPORT (flo2, 2026-09-18): a droplet runbook (pin --idle-timeout, sidecars beside the store, snapshot export for backups, no network filesystem) went into a Decision's prose because capture-intent's routing table says 'nothing fits cleanly' — MEASURED: a DesignRule takes any category and GOVERNED_BY is legal from an Environment, so the vocabulary fits and the row is what is wrong",
+    "source": "flo2 reflow2_feedback.md, session 2026-09-18 (Anthony's own project; the agent triaging was this session, root-cause skill run at Anthony's prompt)",
+    "statement": "F5 in the reporter's words: 'None of that is a Requirement, a Constraint or a Decision… add_environment_rule looked right by name but is explicitly for rules that cannot be negotiated'. SEARCHED: dec:idea-where-does-a-disk-space-rule-live-when-the-gate-runs-on-the-wrong-machine (OPEN) is the same shape on this project. MEASURED: add_design_rule's `category` is free text ('a free-text grouping; the schema does not fix the set'); schema/structure.yaml declares GOVERNED_BY from `*` to [Decision, DesignRule, Requirement], so env:droplet GOVERNED_BY rule:droplet-runbook is legal today; capture-intent line 57 still says '⚠️ Nothing fits cleanly'. The reporter followed the table, and the table is wrong.",
+    "subject_id": "dec:idea-where-does-a-disk-space-rule-live-when-the-gate-runs-on-the-wrong-machine",
+    "valid_from": "2026-09-18"
+  }
+}

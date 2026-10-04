@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:f2fb096fab760a3cac457e5339fac5fdc75c6ac466f7a88e7cd58e055117c2fb",
+  "node_id": "chg:accept-d7721953336bff19",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "refactor",
+    "detected_at": "2026-07-30",
+    "name": "One term added to NON_TOOL_TERMS: `seat` is a FIELD on claim_region, not a tool, and the lint's own failure message prescribed adding it in the same diff. No design meaning — the lint's contract is unchanged."
+  }
+}

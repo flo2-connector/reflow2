@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:aa260b67822de95f05cdd8b1e69e7e8fe3bdc2ac96240ba18ca7fa5354faae64",
+  "edge_type": "REALIZES",
+  "from_id": "art:skill-link-projects",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:link-projects-skill"
+}

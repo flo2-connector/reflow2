@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:d7a2f4f91d3e358d1a88b8e9599fc867e3423038c1bf71cd2f92738ebd4d587a",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:built-and-consumed-by-nothing",
+  "properties": {},
+  "to_id": "req:the-design-says-what-was-built-and-never-used"
+}

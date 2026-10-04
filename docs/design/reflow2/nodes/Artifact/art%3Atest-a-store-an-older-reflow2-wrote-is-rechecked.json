@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:496d9d20fb2333550e7267c5a3388e7761c509e8790feca86803c5297abdc238",
+  "node_id": "art:test-a-store-an-older-reflow2-wrote-is-rechecked",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "test",
+    "description": "Real-binary test: --call detect_defects, --export and --import on a RocksDB store written under the pre-narrowing endpoints.",
+    "location": "crates/reflow2-mcp/tests/a_store_an_older_reflow2_wrote_is_rechecked.rs",
+    "name": "a_store_an_older_reflow2_wrote_is_rechecked.rs — the binary's detect_defects, export and import on an older store",
+    "status": "realized"
+  }
+}

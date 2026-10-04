@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:a444f650b77e27eedc9c89bc84771bded823bac1fe10d906b448c58e875167ed",
+  "edge_type": "CHANGED",
+  "from_id": "chg:four-root-causes-from-two-field-reports-are-fixed-at-the-cause",
+  "properties": {
+    "accepted_baseline": false
+  },
+  "to_id": "art:test-the-guard-reads-the-request-before-refusing"
+}

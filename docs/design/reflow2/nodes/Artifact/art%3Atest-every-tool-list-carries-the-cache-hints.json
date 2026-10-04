@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:47c945c39edb3ece88db2940e62e2bf099db8c614f57cf77be10a6ce443197bf",
+  "node_id": "art:test-every-tool-list-carries-the-cache-hints",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "test",
+    "location": "crates/reflow2-mcp/tests/every_tool_list_carries_the_cache_hints_its_protocol_requires.rs",
+    "name": "every_tool_list_carries_the_cache_hints_its_protocol_requires.rs — full, latent and degraded listings over the real binary, under 2026-07-28 and 2025-11-25",
+    "status": "realized"
+  }
+}

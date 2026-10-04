@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:2b6305ca1c3e8cb5acd292040b102fa5f6c46d3259010db75a268644db27532b",
+  "node_id": "chg:accept-4ea9cc8c4b76cafc",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "refactor",
+    "name": "Call-site churn only from the LinkArtifactOptions signature change. What this file tests is unchanged.",
+    "subject": "system"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:06fd1e0724f414bc07a06f0507feb7e87e9eb40ebe86668449dbd14dfa99649e",
+  "node_id": "chg:absorb-resolution-fuzzy",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "refactor",
+    "detected_at": "2026-08-24",
+    "name": "Increment 2 of the absorption — the fuzzy matcher comes in-tree, and dynograph-vector finally leaves the build graph with it",
+    "rationale": "Placed second because `fuzzy.rs` was verified standalone before the plan was written — no internal crate dependencies at all — so like increment 1 it cannot fail in an interesting way. Both cheap increments run before anything hard, which is the whole shape of the plan.\n\n⭐ THE PROVENANCE RULE HOLDS: repo, tag, commit, file, what was taken and what was deliberately left, in a header on the absorbed code. The recorded objection to absorbing is that vendoring turns a visible dependency into an invisible one, and the pin's written history has no successor once the code is in-tree; the header is that successor.\n\n⚠️ WHAT TO WATCH ON THE NEXT ONE: increments 1 and 2 were both self-contained arithmetic with no external crates and one or two call sites. Increment 3 (graph algorithms, 1,844 lines, a Leiden implementation) is the first that carries real intellectual content, and increments 4 and 5 carry 62 files of churn and a RocksDB engine. **Nothing learned from these two should be read as evidence that the rest are easy.**",
+    "subject": "system",
+    "summary": "Second increment of `dec:absorb-the-foundation-subset-and-end-the-dependency`. `token_sort_ratio` and its closure — `jaro`, `jaro_winkler`, `jaro_winkler_prepared`, `sort_tokens` — are absorbed from `dynograph-resolution`'s `fuzzy.rs` at tag v0.12.0 (`0bb3bca`), with their tests. `seam.rs` and `ingest.rs` import locally, and `dynograph-resolution` is removed from reflow2's dependencies.\n\nTAKEN: the four functions behind `token_sort_ratio`, and eleven of the twelve tests.\n\nNOT TAKEN: `PreparedName` and its `score` method (`pub(crate)`, built for the resolver's many-candidates loop, which reflow2 never runs), the test that exercises it, and the whole of `resolver.rs` — 911 of the crate's 1,211 lines, an EntityResolver reflow2 has never called.\n\n⭐ THIS IS THE INCREMENT THAT MAKES INCREMENT 1'S CAVEAT COME TRUE. `dynograph-vector` left reflow2's manifest in increment 1 but stayed in the build graph, because `dynograph-resolution` declared it. Removing resolution removes the last path to it, so **two crates leave the build here, not one** — and the caveat written into increment 1 is what predicted it."
+  }
+}

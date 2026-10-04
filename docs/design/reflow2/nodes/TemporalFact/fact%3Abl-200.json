@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:fd64475e5ed838c66898a9c6253a19be7a568dfb951e45364103d22b979abdd4",
+  "node_id": "fact:bl-200",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "defect",
+    "statement": "[BL-200] provenance is authored on 402 of 402 nodes — the brownfield half of the product has never once been dogfooded",
+    "subject_id": "cmp:provenance",
+    "value": "{\"evidence\": \"*Same census, 2026-08-04.* Every Capability, Component, Fragment, Interface and Requirement in this graph entered it authored. Not one inferred, reconciled, healed or imported node has ever existed here \\u2014 and inferred is the load-bearing one, written by the adopt path. Five code branches key on it and none is exercised by the highest-volume real graph this project has: report.rs:70 (certainty_of returns Recovered only for inferred/reconciled/healed, so the recovered bucket of the \\\"Requirement certainty\\\" line is structurally unreachable here \\u2014 the reading that exists to keep a summary honest has never shown its honest case), report.rs:763 (a complete thread counted inferred_only rather than delivered), detect.rs:1195, heal.rs:408, preserve.rs:226. Why it matters beyond coverage: per Anthony's own calibration greenfield and brownfield are BOTH first-class, and in his working life brownfield is closer to the norm. reflow2's own graph was authored alongside its code, so it is a genesis design by construction \\u2014 the trial that runs thousands of times exercises the half that already worked. This is sharpening.md \\u00a75's standing bias one level deeper: not \\\"the front half of the lifecycle\\\" but \\\"the front half of the PRODUCT\\\". The fix is not a rewrite \\u2014 keep ONE adopted graph in standing rotation (any repo nobody here wrote, run through adopt, re-run each release) and every branch above gets a live case. Pairs with [BL-199]: both are self-host blind spots, and both were invisible to every instrument. Size M\", \"origin\": \"Migrated from docs/backlog.md BL-200 on 2026-08-07 (epoch:backlog-retired). Size estimate carried from the row: M.\"}"
+  }
+}

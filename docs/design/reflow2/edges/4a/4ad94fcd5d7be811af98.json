@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:cf5f7b2ebbb020884eb6dffb68ccd4be4f6d2579b97ab8389409bce6dae2de4e",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:the-changelog-is-the-one-record-of-what-changed-and-no-required-upgrade-step-is-lost",
+  "properties": {
+    "approved_at": "2026-09-28",
+    "authored_at": "2026-09-28",
+    "roles": [
+      "author",
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:08238049289d240810145c2012093e51b51e789fbf1386375c044e8d743bf1b8",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-saved-design-moves-to-the-item-layout-2026-10-03",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:d5b8136dc10bd65c239172c1f5153a1f101923114a3bb955be14670529033d8d"
+  },
+  "to_id": "art:test-a-rule-tests-the-condition-its-message-names"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:6949c26f6c8f6a440b32f875df03414100c8863087bfb67374248e14670baeee",
+  "edge_type": "CHANGED",
+  "from_id": "chg:bl50-tool-boundary",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:vocabulary"
+}

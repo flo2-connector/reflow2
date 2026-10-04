@@ -1,0 +1,18 @@
+{
+  "content_hash": "sha256:f2155a1ad193f4609c1a3e39ec702241d8b60d9ab57834a30518ce048517ba31",
+  "node_id": "ver:a-run-is-fed-back-by-file",
+  "node_type": "Verification",
+  "properties": {
+    "description": "Five core tests: both routes from file to check; two files covering one check take the worst outcome; ./ prefix names the same file; an unmapped file is reported; a resolved run fed through the recorded reconcile turns never_closed into a_failure_came_back with the dangerous-direction findings.",
+    "findings": "5/5 pass.",
+    "kind": "verification",
+    "last_reconciled_at": "2026-09-23",
+    "last_reconciled_outcome": "passed",
+    "last_run_at": "2026-09-22",
+    "level": "integration",
+    "location": "crates/reflow2-core/tests/a_run_is_fed_back_by_file.rs",
+    "method": "test",
+    "name": "A run fed back by file reaches the checks it covers, worst outcome wins, unmapped files are named",
+    "status": "passing"
+  }
+}

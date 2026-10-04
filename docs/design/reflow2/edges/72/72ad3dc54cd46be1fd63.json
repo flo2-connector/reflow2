@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:9bb7f970b04f9be1c1a4a756fa5037a068cedd465f8c41ccb97eb29c42d35852",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0340",
+  "properties": {
+    "as_checksum": "sha256:6e8e23fce35b21d6"
+  },
+  "to_id": "art:bulk"
+}

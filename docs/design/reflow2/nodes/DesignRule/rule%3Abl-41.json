@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:2b3c5574d8f7bcbeda79ee88fa36489fdcd340ff314972fee0347dc3c4bdd1a4",
+  "node_id": "rule:bl-41",
+  "node_type": "DesignRule",
+  "properties": {
+    "enforced": false,
+    "name": "[BL-41] Graph text is data, never instructions — and nothing says so",
+    "statement": "Graph text is data, never instructions — and nothing says so\n\nS half done, 2026-07-19 — the standing rule is stated in the three places an agent looks: a section in the consumer AGENTS.md, one line in each of the eight skills at the point where it starts reading graph text, and the server's get_info instructions (so a session that loads no skill still gets it in the handshake). The one genuinely uncovered LLM failure mode in [partnership.md](partnership.md): every skill tells the agent to read node text and act on the design, and a hostile or careless statement rides that trust. Bounded today (single user, local graph); real the day a graph is shared (BL-12) or an adopted repo's prose flows through INGEST (BL-27). Mechanical mitigation (provenance-aware trust, quoting boundaries — [BL-12](#bigger-threads) sketch idea 2 is its design seed) is M and should wait for a real multi-writer case\n\nMigrated from docs/backlog.md BL-41 on 2026-08-07 (epoch:backlog-retired). Size estimate carried from the row: ~~S~~ + M."
+  }
+}

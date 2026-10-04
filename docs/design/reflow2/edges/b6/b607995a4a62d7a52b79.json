@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:85704e79d493608bec6f0efbc144240d8bd1f3e6394feac296882991abbf12d3",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-registry-names-every-store-it-found-and-cannot-serve",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cap:hosted-state-on-a-volume"
+}

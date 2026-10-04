@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:d96b89fc1c08518cb4924c895f5a75336e98fdc8eea59db024797e333ccdc5ad",
+  "edge_type": "REALIZES",
+  "from_id": "art:import-from-a-newer-reflow2-test",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:an-import-knows-its-own-age-and-a-server-behind-its-record-says-so"
+}

@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:b0be8a7113b58bdf5bc70da065ae03d7a52b8e2e5662bb608ecbd14f190fe633",
+  "node_id": "fact:a-newborn-capability-with-no-owner-scores-below-the-build-gates-threshold",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "status",
+    "statement": "MEASURED 2026-08-29 during the v0.43.0 cut. PR #385 shipped `cap:a-client-elects-a-server-of-its-own-build` with a PASSING Verification but no `ALLOCATED_TO` and no `REALIZES` — a capability with a check, no owning part and no file. Its CI was green and correctly so: the two gaps it raises score 0.50 (\"isn't assigned to any part\") and 0.45 (\"nothing builds it\"), and `reflow2_check.py --gap-threshold` defaults to 0.80. The gate exited 0 with both listed as NOTES.\n\nTHE DEBT SURFACED ONE PR LATER, in the release cut, and only because a human READ the notes. That is the asymmetry worth naming: CI reads the EXIT CODE, and a person reads the OUTPUT. Everything between 0.00 and 0.80 is visible to exactly one of those two readers, and nothing routes it to the other.\n\nWHAT THIS IS NOT: a calibration error. 0.80 is a defensible line and lowering it to 0.45 would fail the build on every deliberately-deferred allocation (`dec:idea-allocation-waits-for-the-last-responsible-moment` parks exactly that, on purpose). The observation is narrower and it is about AGE: severity is computed from the gap's shape, and knows nothing about whether the capability was introduced by the commit under test or has stood unallocated for six weeks. A brand-new orphan and a long-accepted deferral score identically. The FIRST is a thing the author forgot in the last hour and would fix on sight; the SECOND is a standing decision. Only the author of the PR can tell them apart, and they are the one reader the exit code never shows the list to.\n\nNOT PROPOSING A FIX. `loop_status {\"since_export\": true}` already computes what is owed on ground the committed export does not hold, which is the closest existing answer to \"what did THIS change introduce\" — whether the gate should use it is undecided and nobody has been asked.",
+    "subject_id": "art:check",
+    "valid_from": "2026-08-29"
+  }
+}

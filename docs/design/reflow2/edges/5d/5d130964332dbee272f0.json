@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:4cf19dd438bd99fbd3e5d9ccfd17ddd8b73a01d577ace11725541fdfb0b68e8e",
+  "edge_type": "PRECEDES",
+  "from_id": "epoch:planned-read-half",
+  "properties": {},
+  "to_id": "epoch:planned-status-accounting"
+}

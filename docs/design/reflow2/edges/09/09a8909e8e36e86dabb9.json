@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:e0f2129ff50d22f8c53442f6c7e2852423e88ea28a418d3f211063177bb5c22e",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:test-test-run-to-files",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:test-test-run-to-files"
+}

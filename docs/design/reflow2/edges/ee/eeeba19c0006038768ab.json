@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:6a0728e8077f495347c2fbfa5703cf9bbf2f4c86191f4e70abd61b65f8fbaf23",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-topic-view-is-served-as-one-call-with-a-mandatory-not-found-line",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:service"
+}

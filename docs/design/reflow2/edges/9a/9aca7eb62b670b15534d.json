@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:135b2df5357977cd6ca2d12ed75874cd0355a365be9d2b44d487610be07088e8",
+  "edge_type": "EVOLVES_INTO",
+  "from_id": "dec:idea-should-the-reachability-gate-attach-a-tools-parameters-only-to-the-types-it-writes",
+  "properties": {
+    "evidence": "Promoted 2026-09-20 on Anthony's word ('Agree with all your recommendations'). Option chosen: Narrow the pool by extending the tool-to-type map AND refuse a tool that cannot be placed, so the map cannot go stale silently; the two known fields are fixed regardless."
+  },
+  "to_id": "req:the-gate-that-says-every-property-can-be-written-reads-tools-not-names"
+}

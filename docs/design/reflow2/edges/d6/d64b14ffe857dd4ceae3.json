@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:ceffd7da6c50fbf4e749ba29543a50debc3b14fa1ff5a749ab77ff563916c180",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:test-served-skills",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:test-served-skills"
+}

@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:a8d4caaaa0f6b60f7909271d22c30de892a42a09b2cc38b76ac04cf449a9eada",
+  "edge_type": "GOVERNED_BY",
+  "from_id": "rule:every-failure-is-searched-and-every-cause-is-root-caused-before-it-is-written",
+  "properties": {},
+  "to_id": "dec:the-four-2026-09-rules-are-advisory-because-no-detector-can-yet-see-a-violation"
+}

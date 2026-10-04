@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:6c76aad79fa20a66d3644c0234dcbcfc22b4942acdf3ca3c239c8cbb851b1f47",
+  "edge_type": "ANTICIPATES",
+  "from_id": "dec:idea-lifecycle-dimensions-on-a-requirement",
+  "properties": {
+    "evidence": "The 2026-09-06 idea that a requirement carries lifecycle dimensions (fielding thought about at the start) saw coming the question of what the design owes its fielded, operating phase."
+  },
+  "to_id": "dec:idea-reflow2-serves-a-design-in-operations-where-incidents-feed-the-design"
+}

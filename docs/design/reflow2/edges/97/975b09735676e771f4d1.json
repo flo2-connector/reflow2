@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:5aa62f05dba67aa1e6e0555af644a5224aca60fdfd588f7c33f4ba6b8caa3811",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:a-capture-can-say-its-node-replaces-an-older-one-and-the-choice-at-the-near-match-check-is-kept",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:service"
+}

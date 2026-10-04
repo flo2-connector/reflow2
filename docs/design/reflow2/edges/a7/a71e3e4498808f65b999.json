@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:73b604338788e449224358aad1122bc35cbc1f88f789077ba0db6f23bdf7e117",
+  "edge_type": "INVALIDATES",
+  "from_id": "chg:omitting-last-run-at-no-longer-erases-it",
+  "properties": {
+    "at": "2026-08-09",
+    "note": "The fact records silent data loss — set_verification_status deleted last_run_at when the optional parameter was omitted — and its own text says \"FIXED 2026-08-09.\" This ChangeEvent is that work: the call stops deleting last_run_at when the parameter is omitted. Edge drawn 2026-08-28 during the field-defect sweep."
+  },
+  "to_id": "fact:defect-set-verification-status-erased-last-run-at"
+}

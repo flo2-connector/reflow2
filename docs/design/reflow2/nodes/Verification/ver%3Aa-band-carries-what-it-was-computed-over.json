@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:9ff565e54a2bac881f218cf60512c8b150fbc576c5e700641869f9773ce99013",
+  "node_id": "ver:a-band-carries-what-it-was-computed-over",
+  "node_type": "Verification",
+  "properties": {
+    "description": "crates/reflow2-core/tests/maturity.rs, two cases.\n\n`a_band_that_can_read_low_for_a_correct_design_says_so` asserts the seams band carries a caveat naming the ALTITUDE it answers at and pointing at `seam_coverage`; that the four bands where a correct design reads low all carry one (seams, realization, assurance, operation); and that the three which measure exactly what they claim carry NONE. The negative half is the load-bearing one — a caveat on every band is noise, and noise is how a real warning stops being read.\n\n`the_rendered_report_carries_the_caveat_next_to_the_number` asserts it survives into `to_markdown`. THAT IS THE CASE TO BREAK FIRST when doubting this check: the defect was never that the caveat did not exist — `seam_coverage` emitted it all along — but that the tool QUOTING the number stripped it. A caveat living only in the struct would have prevented nothing.",
+    "findings": "Both cases pass on main at 1f789f3 (#391). Run 2026-08-30: `cargo test -p reflow2-core --no-default-features --test maturity` — 12 passed, 0 failed; and the whole core suite, 136 suites / 1552 passed / 0 failed. CI green on both jobs for that commit.\n\nRecorded 2026-08-30 during the increment wrap-up, and the delay is the finding rather than a footnote: `arrival_delta` on epoch:planned-seams reported the capability as `outstanding` even though it was realized and merged, because delivery is computed from the thread and no passing check pointed at it. The check existed as code from the moment the feature did; the design did not know. That is the gap between \"it is tested\" and \"the design can say it is tested\".",
+    "kind": "verification",
+    "last_run_at": "2026-08-30",
+    "level": "unit",
+    "method": "test",
+    "name": "A band that can read low for a correct design says so, and the caveat survives into the rendered report",
+    "status": "passing"
+  }
+}

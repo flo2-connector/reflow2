@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:3e254c34debdbec2d1e32882c431d9cc731947fcc7f0f246ea445382a99e957e",
+  "node_id": "chg:baseline-9404e88ac5891f51",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "baseline_established",
+    "detected_at": "2026-09-15",
+    "name": "First baseline for foundation/mod.rs, taken as its YAML reader moved to serde_yaml_ng; it had shipped in every manifest as without_checksum.",
+    "subject": "record"
+  }
+}

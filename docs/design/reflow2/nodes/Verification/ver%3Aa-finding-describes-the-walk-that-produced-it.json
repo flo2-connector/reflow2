@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:cbc8f84c6201b69c9cf4ee763e8afa3b3b21d89636f81cb5bcda0c1894dd1b99",
+  "node_id": "ver:a-finding-describes-the-walk-that-produced-it",
+  "node_type": "Verification",
+  "properties": {
+    "kind": "verification",
+    "last_run_at": "2026-08-17",
+    "level": "integration",
+    "method": "test",
+    "name": "Five probes: the island finding names its walk and its scope, the scope figure tracks the graph, an empty orientation read names the debt, a clean one says all-clear, and a region that returned something never claims nothing could be found",
+    "status": "passing"
+  }
+}

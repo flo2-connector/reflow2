@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:66fec0a2b430b1104705f812c894de237d54eebf931fd08863c6aac1959cece8",
+  "node_id": "art:a-design-that-publishes-contracts-publishes-intent-test",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "test",
+    "description": "Three tests pinning the detector: fires on a published contract with no published promise, quiet at one, quiet when nothing is published.",
+    "location": "crates/reflow2-core/tests/a_design_that_publishes_contracts_publishes_intent.rs",
+    "name": "crates/reflow2-core/tests/a_design_that_publishes_contracts_publishes_intent.rs",
+    "status": "realized"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:1bd9ef94b95881c34c91ab8e30ac8f03a7adb8db65597c5dc00360311b6c8232",
+  "node_id": "chg:allocation-follows-the-code-not-the-neighbour",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "defect_fix",
+    "detected_at": "2026-08-25",
+    "name": "The allocation layer is corrected against the artifact layer",
+    "rationale": "THE HEADLINE WAS WRONG AND THE ARTIFACT LAYER ALREADY KNEW. `unallocated_component` reported \"33 of 85 parts hold no function\"; 31 of the 33 are real source modules with a linked, checksummed file, and for most of them the module header cites by id the very capability the design had filed elsewhere — coverage.rs names cap:coverage (allocated to cmp:drift), regions.rs names cap:a-session-with-no-seed-can-find-one (allocated to cmp:scope).\n\nThe lesson is about the CHECK, not only the design: a detector that reads one layer and reports absence, while a second layer in the same graph holds the answer, states something stronger than it measured. That is the failure `dec:reflow2-is-built-for-observability` exists to forbid — an answer that misrepresents what the design knows. The cross-layer comparison this event records was done by hand in a Python script over the export; nothing in reflow2 offers it.\n\nRecorded as `subject: record` deliberately: not one line of the system changed. Only the design's account of where its own functions live.",
+    "subject": "record",
+    "summary": "Measured every allocated Capability against the file that REALIZES it: 59 agree, 23 disagree, 130 carry no file evidence either way. 19 of the 23 disagreements name an implementing module that the design was reporting as holding NO function — the function was captured, and filed against a neighbouring module. Corrects those allocations to the module whose code implements them, on Anthony's word 2026-08-25 (move it, do not dual-allocate)."
+  }
+}

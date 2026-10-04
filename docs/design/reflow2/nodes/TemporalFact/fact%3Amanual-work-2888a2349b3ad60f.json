@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:085314d4c1adfe1db046da9dc494e589c35340034dc760725418fbf843539a06",
+  "node_id": "fact:manual-work-2888a2349b3ad60f",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "manual_work",
+    "statement": "Wrote a script to count what fraction of a node type carries a given relation or property — rules whose text cites another rule, decisions with a supersedes or evolves-into edge to another decision, defect facts and rules per month, decision-to-decision edges by type. Searched the surface first: the nearest served thing counts vocabulary usage, not the share of a population that carries a relation; the accepted requirement asking for exactly this is still unsatisfied.",
+    "subject_id": "proj:reflow2",
+    "valid_from": "2026-09-06",
+    "value": "{\"diagnosis\":\"tool_missing\",\"reflow2_tool\":null}"
+  }
+}

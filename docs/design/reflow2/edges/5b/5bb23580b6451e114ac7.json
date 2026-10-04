@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:5d24efab7292247b3662829a5792bea2f0662d119d353361fd3ebbfbb0d0810c",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:unallocated-component-detector",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:detect"
+}

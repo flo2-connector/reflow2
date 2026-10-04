@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:7414c4585c152bcdee5962a824cf9d6a3a92c4e029f2f0ee589a713c1f19b804",
+  "edge_type": "ABOUT_ENTITY",
+  "from_id": "fact:hydrate-cost-is-superlinear-in-edges-and-the-byte-store-is-not-the-bottleneck",
+  "properties": {},
+  "to_id": "cmp:byte-store"
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:19fc3f6b39273206ce2f40b73fbb52b89a8907c6e5561a401310f67deaa7a0a5",
+  "node_id": "frag:art:tools-query",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered tools/query.rs"
+  }
+}

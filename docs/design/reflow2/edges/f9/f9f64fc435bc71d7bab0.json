@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:fa75d99d401d40fd5c5f80f5dc3a29bd9ed91af5ca571dc919f9e2fa147ff976",
+  "edge_type": "CHANGED",
+  "from_id": "chg:surface-says-what-it-orphaned",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:export"
+}

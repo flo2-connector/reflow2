@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:b1e7fb79d2e65d0743195774a74c6a4dc6ea3e02bb4382799bb07328a5e75edd",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:test-a-setup-command-chooses-local-or-remote-once",
+  "properties": {
+    "covers": "whole"
+  },
+  "to_id": "ver:the-setup-command-saves-only-what-the-server-accepted"
+}

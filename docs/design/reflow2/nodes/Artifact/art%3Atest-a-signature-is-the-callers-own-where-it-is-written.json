@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:b7ad7daf616c8b029ec12f4ace1f431261e6d023f7b77b0a8d651b3eb3dec850",
+  "node_id": "art:test-a-signature-is-the-callers-own-where-it-is-written",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "test",
+    "location": "crates/reflow2-core/tests/a_signature_is_the_callers_own_where_it_is_written.rs",
+    "name": "a_signature_is_the_callers_own_where_it_is_written.rs (the store's write points)",
+    "status": "realized"
+  }
+}

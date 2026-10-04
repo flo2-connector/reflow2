@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:7eaddfa99db1d53737346e160f7e67a5c10b472307e850a569e731531c1f26ba",
+  "edge_type": "ANTICIPATES",
+  "from_id": "dec:idea-how-does-reflow2-enforce-the-contract-regime-a-domain-already-has",
+  "properties": {
+    "confidence": 0.9,
+    "evidence": "That question — how does reflow2 make an agent USE the typings, protocols, contracts and standards a domain already has — asked exactly this and named no mechanism for it. A domain seed template is a candidate ANSWER, and the first concrete one recorded. Direction runs from the older question to the idea: it saw this coming."
+  },
+  "to_id": "dec:idea-a-domain-seed-template-starts-a-design-in-the-fields-own-shape"
+}

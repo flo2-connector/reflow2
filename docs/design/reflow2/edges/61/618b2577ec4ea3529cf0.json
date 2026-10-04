@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:e83c7563842a313b8c51c21959dddfe02e5f957d7c03fb2b2bbde8bc4892a198",
+  "edge_type": "CHANGED",
+  "from_id": "chg:baseline-b76f09916bd26b0e",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:test-session-names-its-design"
+}

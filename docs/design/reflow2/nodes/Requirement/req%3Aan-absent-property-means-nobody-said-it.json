@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:44dbd710294257c74006edaa7c17633967dde9ad7e3d3a9f423c96a64a160d80",
+  "node_id": "req:an-absent-property-means-nobody-said-it",
+  "node_type": "Requirement",
+  "properties": {
+    "concern": "core",
+    "designation": "internal",
+    "kind": "functional",
+    "lineage": "original",
+    "name": "An absent property means nobody said it — a value equal to the schema default is not written",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "A design record does not serialize a property value that equals the schema's default, so the presence of a property means somebody chose it and its absence means nobody did. This is BL-198's own stated fix shape (`fact:bl-198`), captured as intent because Anthony agreed to it on 2026-08-10 (`dec:fix-the-comparison-before-pointing-it-earlier`, step 1). PARTLY LANDED ALREADY, which is why capturing it matters: 0.25.0 wrote defaults into the export and 0.27.0 does not, while BL-198 is still listed PLANNED — so satisfying this requirement is partly reconciling the plan with what shipped rather than building something new. THE POINT IS NOT BYTE SIZE. This is the property-level form of the confirmed-versus-asserted distinction the project already enforces for requirements: `graph_report`'s certainty line exists because status carries the user's word, and `dec:certainty-derived` argues that distinction must be DERIVABLE rather than stored. At property level it is currently neither, and omission makes it derivable for free.",
+    "status": "accepted"
+  }
+}

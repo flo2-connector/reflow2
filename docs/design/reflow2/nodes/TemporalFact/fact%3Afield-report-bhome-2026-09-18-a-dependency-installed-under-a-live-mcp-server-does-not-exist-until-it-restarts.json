@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:e4e65a66444146b541ff5fdb1d17c39a19a9d2d0e504d312f8766b67c390ae5a",
+  "node_id": "fact:field-report-bhome-2026-09-18-a-dependency-installed-under-a-live-mcp-server-does-not-exist-until-it-restarts",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "observation",
+    "name": "FIELD REPORT (bhome S3, 2026-09-18, partner side): CairoSVG was installed into the running IFC server's environment and ifc_plot failed identically afterwards, because the server imported once at startup — 'a dependency installed under a live MCP server does not exist until the server restarts, and nothing in the error says so'. The same class as reflow2's own ninth release-cut step: a running server keeps the image it started from",
+    "source": "bhome feedback.md, Session 3 (2026-09-18), triaged 2026-09-19 through the triage-feedback skill",
+    "statement": "Not reflow2's defect; recorded because it is the third instance of the class in a week (the release binary, the shared daemon, now a partner's interpreter) and the lesson generalises: after installing or rebuilding anything a live server loaded, restart it, and a reconnect is not a restart.",
+    "subject_id": "cap:a-cut-ends-with-the-served-binary-matching-the-tag",
+    "valid_from": "2026-09-18"
+  }
+}

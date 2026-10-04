@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:54b43a3856c4bc67366bc4c71ee7afc01a6c001eaa4b462253fd4df5f77bbaa8",
+  "edge_type": "CHANGED",
+  "from_id": "chg:accept-04f1020b8000c46a",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:detect-and-ask-skill"
+}

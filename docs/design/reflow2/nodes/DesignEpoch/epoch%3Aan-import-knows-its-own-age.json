@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:3ba9c4c79cc72629555e5d56f92debdaf9cfb897b660d985fcf593c83cd2ab84",
+  "node_id": "epoch:an-import-knows-its-own-age",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "description": "Response to flo2's \"853 edges gained a field\" (2026-09-14), root-caused as an older release binary (0.59.0, served by the launcher) importing/writing a record a newer reflow2 (0.60.2) had written: import compared no versions, the open-time guard compared only vocabulary, and the old binary's `role: author` default landed on 853 AUTHORED_BY edges in silence. Anthony's word: \"yes on three-leg fix\". Ordering: after the v0.61.1 cut (499). MUST NOT: refuse an OLDER document (additive, reads whole); refuse on vocabulary the guard already handles; hide the materialized counts on a same-version import (they are the defaults the export left implicit on purpose, and saying so is the point). Tests were written together with the fix, not failing-first; the mcp suite, core suite, clippy and smoke are green on the branch.",
+    "epoch_type": "incident_response",
+    "name": "An import knows its own age (2026-09-15)",
+    "sequence": 500,
+    "status": "arrived"
+  }
+}

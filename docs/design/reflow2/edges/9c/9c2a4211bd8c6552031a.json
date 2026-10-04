@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:55d1039194508d7bfaa5a4f60706ffe9bf12c81bdccc23c490294a1c0db310f7",
+  "edge_type": "EVOLVES_INTO",
+  "from_id": "dec:idea-verifies-takes-a-list-of-targets",
+  "properties": {
+    "evidence": "The older thought, that one helper (verifies) takes a list, grows here into every typed edge helper having a bulk form, measured on a whole design built through the connector."
+  },
+  "to_id": "dec:idea-every-typed-edge-helper-has-a-bulk-form-that-keeps-its-checks"
+}

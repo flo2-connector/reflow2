@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:b0593cc2b792265fd46b1e9ed85b93e9634fd88a6c29b94c6aca65289c04a154",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:bulk-forms",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:bulk"
+}

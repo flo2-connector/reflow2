@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:a6c1194da3b57a136642734b2c0bf94b62fd049364422c2af742fbe5e2c09044",
+  "edge_type": "REALIZES",
+  "from_id": "art:service",
+  "properties": {
+    "completeness": "partial",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:one-nodes-edges-are-read-back-as-edges"
+}

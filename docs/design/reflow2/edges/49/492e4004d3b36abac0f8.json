@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:25acd89e5c70aecccff8aaf10358290538313b3f442be1c48069a49ac465a75d",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-export-round-trip-injected-defaults",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "art:export-via-binary"
+}

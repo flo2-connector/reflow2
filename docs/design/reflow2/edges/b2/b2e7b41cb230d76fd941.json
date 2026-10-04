@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:276debfbc9930e76b88abb091b6c8ce7577bc0e17aa0289fe9ce0cca5d308f63",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "req:a-lesson-lands-in-the-cheapest-correct-place-and-the-rule-saying-so-arrives-at-the-step",
+  "properties": {
+    "evidence": "The delivery half is entirely that requirement's mechanism, applied to this rule.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "req:a-lesson-is-served-at-the-step-it-concerns"
+}

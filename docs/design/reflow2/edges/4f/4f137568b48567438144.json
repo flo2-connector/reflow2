@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:0b07457b2c5fe46bca6a2e9e165ab8cba3fcbc662bd48840fc9b9d784f95a1af",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-loop-can-say-what-it-does-not-know",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:graph"
+}

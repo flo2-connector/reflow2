@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:9177ac247a213ef21bbbbba8678485aa587fc2f87435d3b326b719e1314e8cdd",
+  "edge_type": "CAUSES",
+  "from_id": "fact:a-report-with-no-way-to-narrow-itself-crossed-its-cap-because-the-design-grew-not-because-anything-changed",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "The measured overflow is what this bounds.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "chg:the-ility-report-is-bounded-when-the-designs-own-growth-crossed-the-cap"
+}

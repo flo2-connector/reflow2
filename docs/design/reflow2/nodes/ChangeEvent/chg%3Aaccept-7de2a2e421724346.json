@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:2ca6c5f97f89a13618bf16cdb2d4919975643990e9464ed5d833b27075ade60c",
+  "node_id": "chg:accept-7de2a2e421724346",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "refactor",
+    "detected_at": "2026-08-03",
+    "name": "Registered before the clippy pass; the only edit since is manual_contains (iter().any() -> contains()) plus rustfmt. No behaviour and no design meaning moved — the 11 tests are unchanged and still passing."
+  }
+}

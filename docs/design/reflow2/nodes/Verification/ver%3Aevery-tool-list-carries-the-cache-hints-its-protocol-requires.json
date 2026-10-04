@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:97d5dfad86223ba4d0c733eb1f8b5bf0898ad2404cae9b4af83cc3ae2c0396ba",
+  "node_id": "ver:every-tool-list-carries-the-cache-hints-its-protocol-requires",
+  "node_type": "Verification",
+  "properties": {
+    "description": "crates/reflow2-mcp/tests/every_tool_list_carries_the_cache_hints_its_protocol_requires.rs, 3 tests replaying Claude Code 2.1.283's captured opening. Observed failing on 2026-09-26 against the unfixed code (latent: \"ttlMs must be a number under 2026-07-28, got null\"), passing after the fix. Run: `cargo test -p reflow2-mcp --test every_tool_list_carries_the_cache_hints_its_protocol_requires`. Also checked by hand with the real client the same day: `claude mcp list` refused the 0.71.0 release's latent listing and showed the fixed build \"✔ Connected\".",
+    "kind": "verification",
+    "level": "integration",
+    "method": "test",
+    "name": "Every surface's tool list carries ttlMs and cacheScope for a 2026-07-28 client and neither for a 2025-11-25 one — full, latent and degraded, over the real binary",
+    "status": "passing"
+  }
+}

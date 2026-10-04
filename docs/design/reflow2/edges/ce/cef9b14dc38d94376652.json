@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:b9eca90e53274faf442777275c53af60b4eb460022f0f99be6f3ecfdd2d7c3be",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-name-is-not-a-report",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "ver:artifact-intent"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:d9348b72251cbe29feacf24d2019da56ba35b46c95c47a1b05949cc161ee1937",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-taxonomy-is-decided-once-before-bulk-capture-and-every-instance-cites-it",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:enum-schema"
+}

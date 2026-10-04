@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:c22de974477ab9c5c1b8b7acee67f5c0707c186d96e029f8e9ffae0f813e8186",
+  "edge_type": "CHANGED",
+  "from_id": "chg:documentation-subsystem",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "art:setup"
+}

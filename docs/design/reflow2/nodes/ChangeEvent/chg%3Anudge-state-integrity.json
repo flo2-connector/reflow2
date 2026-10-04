@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:aac059802dfac3cc92856ac80e44b684f8c0014cfbe16fdd5aa92a2154828b1f",
+  "node_id": "chg:nudge-state-integrity",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "test_failure_fix",
+    "name": "BL-161: the loop nudge was corrupting the tally it judges from — a non-atomic write plus an error-swallowing read let one concurrent hook wipe the session's record, so a session that consulted the graph constantly was told at Stop that it never had"
+  }
+}

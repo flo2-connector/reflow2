@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:b1ad51ecad7d101ece415cc97243587a42cb4ce5a62601b1c8512d75b22f330f",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:idea-distributional-thresholds",
+  "properties": {
+    "authored_at": "2026-08-01",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:claude-code"
+}

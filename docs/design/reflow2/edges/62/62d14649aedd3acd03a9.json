@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:191ccd8c4f3983efd2d4410a692557dec34140f843b39ae8df10e70c904095e5",
+  "edge_type": "CHANGED",
+  "from_id": "chg:init-asks-which-harness",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cap:init-asks-which-harness"
+}

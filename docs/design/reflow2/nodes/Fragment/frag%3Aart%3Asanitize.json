@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:8c824e8debca8eb56e71a6f7554b2be6f77176fd874376667f8bd8af742981e8",
+  "node_id": "frag:art:sanitize",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered sanitize.rs"
+  }
+}

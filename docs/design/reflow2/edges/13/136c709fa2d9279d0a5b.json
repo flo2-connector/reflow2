@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:6a31b277faf80b6be3efe73d148af4dbc33754134f60272ad5c1b1e1c4bb206a",
+  "edge_type": "ABOUT_ENTITY",
+  "from_id": "fact:defect-set-artifact-checksums-accepts-a-malformed-digest",
+  "properties": {},
+  "to_id": "cmp:artifact"
+}

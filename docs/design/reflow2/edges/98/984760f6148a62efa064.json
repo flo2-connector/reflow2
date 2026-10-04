@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:aff3e865e5d3bc4fe6b46b1f64e87991e00a2c979aa2a3f0558e3c1ba9e5b8c7",
+  "edge_type": "INVALIDATES",
+  "from_id": "chg:the-overtaken-defect-records-were-triaged-against-the-v0510-build",
+  "properties": {
+    "evidence": "The wrapper's source hash now covers schema/*.yaml and every SKILL.md alongside the Rust sources (tools/reflow2-mcp-launch.sh:58-66), and its header names this defect as the reason."
+  },
+  "to_id": "fact:defect-the-launch-wrapper-cannot-see-a-schema-change"
+}

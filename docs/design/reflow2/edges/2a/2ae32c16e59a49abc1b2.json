@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:559136a52a3fa319dafffa2e2562414543917a96a46732e5c705653fc849dfa3",
+  "edge_type": "REALIZES",
+  "from_id": "art:ility",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:ility-signals"
+}

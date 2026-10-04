@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:d156902e7630efc02f758ec8cd4f44bfb794a71a30c1b7f782b835333b035595",
+  "node_id": "chg:accept-e6cce9fa69ea0529",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "documentation",
+    "detected_at": "2026-09-04",
+    "name": "Only the required-fields refusal text changed - three runs of eighteen literal spaces removed by restoring real backslash-newline continuations. Nothing this file DOES behaves differently; the message says the same thing legibly. Same defect class as the served sentence repaired this morning, and found by the whitespace invariant written for that one.",
+    "subject": "system"
+  }
+}

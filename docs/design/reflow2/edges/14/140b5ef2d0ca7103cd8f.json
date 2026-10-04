@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:eb02219773545e89fd5f5c2fae81e55f561d52a70d9e534943b628821fc12b78",
+  "edge_type": "CHANGED",
+  "from_id": "chg:seat-liveness-is-the-session-20260808",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cap:seat-handle"
+}

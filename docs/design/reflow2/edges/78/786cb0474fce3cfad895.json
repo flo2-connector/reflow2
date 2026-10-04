@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:484589e1c13fb522959e0396fb6e6fd469ea43c7a8daf9b391fff66f68c295a0",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-build-can-call-one-tool-from-the-shell",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:main"
+}

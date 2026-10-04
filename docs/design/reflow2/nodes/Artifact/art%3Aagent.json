@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:5c5afb5acfe43c9af4e4bf84ea899b954a495f9b74ea74d4b06b6f5c0dda46e3",
+  "node_id": "art:agent",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "granularity": "atomic",
+    "location": "crates/reflow2-core/src/agent.rs",
+    "name": "agent.rs",
+    "status": "realized",
+    "volatility": "stable"
+  }
+}

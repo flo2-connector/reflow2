@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:70d50312c7a14ed708c5f8b5b6966b28447dec5f1895da605c315f50bc17a12e",
+  "edge_type": "INVALIDATES",
+  "from_id": "chg:a-degraded-server-recovers-when-its-cause-clears-and-readiness-tells-the-truth",
+  "properties": {
+    "at": "2026-09-28",
+    "note": "Answers the finding at its class:\n- a held store is retried with bounded backoff (0.5 s to 5 s) and served in place by the same process, on stdio and --http;\n- a --shared session whose election timed out re-elects and switches in place;\n- causes that cannot clear are not polled;\n- /readyz answers 200 only while the design is served, and the image's HEALTHCHECK probes it.\nMeasured in containers on one volume: 503 while the old container held the store, 200 about 1 s after it stopped, with no restart. The 2026-09-14 latent-surface finding, the other member of this class, was already answered by its own same-day fix (in-place promotion on every call), so no INVALIDATES is drawn to it from here."
+  },
+  "to_id": "fact:root-cause-a-server-degraded-by-a-held-lock-never-retries-and-looks-alive-2026-09-28"
+}

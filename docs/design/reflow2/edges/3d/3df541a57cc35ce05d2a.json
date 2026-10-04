@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:c174974bbcfc37a3242d62ae7f95f357ed143a145ea90f391154e486ddf8bef3",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:a-session-serves-a-release-binary",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:packaging"
+}

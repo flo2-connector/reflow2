@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:7de091688a3d04d3606587d4c4ab9f39da6a9e6cef01485ea9ffcf15c6a0c8e7",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:a-real-test-run-is-fed-back-in-the-unit-a-runner-reports",
+  "properties": {
+    "approved_at": "2026-09-22",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

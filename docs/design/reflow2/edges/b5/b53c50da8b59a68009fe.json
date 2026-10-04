@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:a80d81ec692ef4d1df2949ef77ea7f34a01944cfdb601cbdbd34414bfbfbdd29",
+  "edge_type": "INVALIDATES",
+  "from_id": "fact:field-report-flo2-2026-09-18-the-retired-artifact-drift-was-reasoned-from-a-stale-fact-not-measured-and-the-current-binary-answers-expected-absence",
+  "properties": {
+    "at": "2026-09-19",
+    "note": "Measured 2026-09-18 under 0.64.0: a retired artifact's absence is expected_absence; the 2026-08-15 defect no longer describes the build."
+  },
+  "to_id": "fact:defect-a-retired-artifact-still-reports-missing-forever"
+}

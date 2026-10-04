@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:77a132763c87a3bfd23af204b4bb7f0db450f5c95af5fd71b980f313c604283f",
+  "edge_type": "CHANGED",
+  "from_id": "chg:an-idea-is-a-declared-kind",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:skill-lint"
+}

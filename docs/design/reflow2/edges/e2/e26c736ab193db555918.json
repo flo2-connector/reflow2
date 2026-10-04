@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:445adda19972a6b84fe030c76d01535cda50b416f08a51c36f497531e1082205",
+  "edge_type": "CHANGED",
+  "from_id": "chg:kpp-proposal-built",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:readme"
+}

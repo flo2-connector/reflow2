@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:39f6fea4861f31acd7d9cd214ab55723661c2c773fa57bd0d365e88921ced85b",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:the-loop-holds-the-invitation",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:skills"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:38ac1b11735f96084e92214a7864af0655bbc3a90ec704c6486385339dbabf8c",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:the-foundation-is-one-subsystem-not-two-halves",
+  "properties": {
+    "coverage": "partial",
+    "rationale": "Makes one of the two declared boundaries actually severable. The requirement also asks for encapsulation and cohesion, which this does not touch."
+  },
+  "to_id": "req:modularity-computed"
+}

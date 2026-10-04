@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:21970236cbf1f00eada090b300243ff790a5bb1da31f2608f70f00fb29640452",
+  "edge_type": "INVALIDATES",
+  "from_id": "chg:external-dependency-replies-with-a-receipt-and-a-re-declare-keeps-what-it-was-not-passed-2026-10-03",
+  "properties": {
+    "at": "2026-10-03",
+    "note": "external_dependency now replies with the declared Resource and a revision block; the reply no longer grows with other declarations (a_dependency_declaration_replies_with_a_receipt.rs), and every write's reply shape is classified in a test."
+  },
+  "to_id": "fact:root-cause-external-dependency-replies-with-the-whole-manifest-because-the-receipt-shapes-only-node-and-edge-records-2026-10-02"
+}

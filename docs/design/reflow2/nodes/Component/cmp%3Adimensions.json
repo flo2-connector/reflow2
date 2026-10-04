@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:0b66f511355d90c6df957929cc2cee2408fdbeec5617017d446401c860160c84",
+  "node_id": "cmp:dimensions",
+  "node_type": "Component",
+  "properties": {
+    "kind": "module",
+    "level": "component",
+    "name": "dimensions",
+    "provenance": "authored",
+    "purpose": "The dimensions module.",
+    "status": "planned",
+    "tier": "operational"
+  }
+}

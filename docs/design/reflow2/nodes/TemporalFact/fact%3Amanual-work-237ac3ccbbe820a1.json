@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:17946b7f7ce0c5157b89591ac7af2581d93a1355719896c047e08ab5513ffdb3",
+  "node_id": "fact:manual-work-237ac3ccbbe820a1",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "manual_work",
+    "statement": "Answered \"how much of this system is untested?\" entirely outside the design: shell commands to count test functions, source files and lines, then installed a coverage tool and ran it for line/region/function percentages per module. The design holds 312 Verification nodes and a computed delivery line, and none of it could answer the question the owner actually asked — nor can it hold the answer now that it exists, since a coverage figure has no home beyond free-text prose on a TemporalFact. The gap is two-sided: nothing reads a coverage measurement in, and nothing reports its absence.",
+    "subject_id": "proj:reflow2",
+    "valid_from": "2026-09-22",
+    "value": "{\"diagnosis\":\"tool_missing\",\"reflow2_tool\":null}"
+  }
+}

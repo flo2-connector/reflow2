@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:305bdbb67021fb35fc383585c987ed87e83a9d043a82b5bd94648de2d9848604",
+  "edge_type": "GOVERNED_BY",
+  "from_id": "art:dev-storyflow-feedback-2026-09-07",
+  "properties": {
+    "note": "A dated field report: registered so its checksum and identity are on the record, parked because a DOCUMENTS edge would be a fiction.",
+    "ruling": "parks"
+  },
+  "to_id": "dec:a-dated-field-report-is-registered-and-parked"
+}

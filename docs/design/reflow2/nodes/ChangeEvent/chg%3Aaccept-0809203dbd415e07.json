@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:7bd8f4d134af40fd990ec14f9216e6e7abdfdceed43535a9187098165f5f00d9",
+  "node_id": "chg:accept-0809203dbd415e07",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "test_failure_fix",
+    "detected_at": "2026-08-04",
+    "name": "BL-206: the gate swept 124 of 144 artifacts and reported OK over the other 20 — scan_nodes said `omitted: 20, capped_by: size` and the JSON-RPC client discarded those fields, then claimed `exhaustive: true`. The design held exactly as written; the code was repaired to do what it already claimed. Sweep now pages on next_offset and dies if the count misses total."
+  }
+}

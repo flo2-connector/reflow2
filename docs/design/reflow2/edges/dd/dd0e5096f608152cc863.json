@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:92fc324114cc68aca29ee5dc615172072dc8bb98392ba511c8c9747c17b0096b",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:a-stored-twin-has-one-authority-test",
+  "properties": {
+    "covers": "whole"
+  },
+  "to_id": "ver:a-stored-twin-has-one-authority"
+}

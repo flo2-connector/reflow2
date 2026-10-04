@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:1b437650886c4f35446a78049895ba3b2eb1fe170350d2677f0d6407b40067bc",
+  "edge_type": "CHANGED",
+  "from_id": "chg:sync-debt-surfaced",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "cap:the-record-moved-is-surfaced"
+}

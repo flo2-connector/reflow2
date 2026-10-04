@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:7de81a3783a50c0e063726806d05cd995b9342068c234750566d1e93a80070c7",
+  "node_id": "chg:dependencies-stay-near-latest-checked-monthly-and-before-cuts-2026-10-02",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "decision_settled",
+    "commits": "ae7f388574938e731556d4027d3ce0d4ea09aabd,66620f79c4c09e845ca09aa92699e5862446f969",
+    "detected_at": "2026-10-02",
+    "name": "Dependencies stay at or near their latest releases: a monthly and pre-cut `dependencies` workflow, a holds file, and the Rust floor at stable minus one (1.94 -> 1.98); AGENTS.md's rocksdb-pin rule is replaced",
+    "rationale": "The accepted requirement contradicted the AGENTS.md rule it replaces (fact:the-dependency-currency-requirement-contradicts-the-agents-md-rocksdb-pin-rule-2026-10-02, in the live store); accepting it meant rewriting that paragraph in the same change. The floor was set once at 1.94 and nothing compiled at it (fact:rust-version-1-94-was-set-once-and-nothing-checks-it-2026-10-02); the decision dec:the-rust-floor-is-stable-minus-one-and-a-ci-build-checks-it makes a CI build check it. Verified locally: cargo +1.98 check --workspace --all-targets --locked passed (22m20s cold); clippy at the new floor passed for both crates with no new lints; the checker's live run on current main is OK with one dated hold (rocksdb 0.25, its own PR).",
+    "rationale_basis": "contemporaneous",
+    "subject": "system",
+    "summary": "req:reflow2-keeps-its-dependencies-at-or-near-their-latest-releases, accepted by Anthony on 2026-10-02 ('Yes, accept requirement'), and his choice of the Rust floor ('Go with your recommendation': stable minus one, checked by a CI build). .github/workflows/dependencies.yml runs monthly, on dispatch, and on any PR touching a manifest, the lockfile, a workflow or dependency-holds.toml; a cut's step 1 changes Cargo.toml, so every cut runs it. Its currency job (tools/dependency_currency.py) fails on anything behind a new major or 0.x series with no dated, reasoned hold, on an expired hold and on a failed lookup, and reports in-range refreshes and holds whose bump landed. Its floor job builds the workspace at the declared rust-version, now 1.98. tools/test_dependency_currency.py pins the checker (12 hermetic cases, mutation-checked) in ci.yml's core gates. AGENTS.md's 'do not bump the rocksdb pin as housekeeping' is replaced by the requirement's rule.\n\n2026-10-02, commit db1eec8: the first CI run failed twice for one cause. ci.yml and the floor job run on ubuntu-22.04, whose Python 3.10 has no tomllib. The checker now falls back to tomli (CI installs it), the floor job reads the floor through the checker's own declared_rust_version, and AGENTS.md lists test_dependency_currency among the suites CI runs beyond the everyday block. Checked on CPython 3.10.19: refuses with the install line without tomli; 12/12 with it; floor 1.98."
+  }
+}

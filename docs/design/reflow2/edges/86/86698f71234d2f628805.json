@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:ce71f17f4ded53355cb2a330d758c9d5a8503ba96691849afe01ff875bbc04b2",
+  "edge_type": "ABOUT_ENTITY",
+  "from_id": "fact:defect-causes-validation-status-hint-names-the-wrong-enum",
+  "properties": {},
+  "to_id": "req:schema-prose-is-checked"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:c3e6d52d4c307a9b3e3f1754b5b79acfce7e2f32914bf9112608fc5bc396632a",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-node-records-what-the-user-calls-it",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:tools-capture"
+}

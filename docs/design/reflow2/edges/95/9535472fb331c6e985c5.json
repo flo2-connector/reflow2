@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:e75a8d41a4445c55331aa47c8deb6ea69b5d18cfe4e26b8b4bc09e901d47dd87",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-establish-the-taxonomy-once-before-bulk-capture",
+  "properties": {
+    "evidence": "A taxonomy is a project's domain nouns mapped to reflow2's types; that open question is about exactly the translator that would produce it, so the two are one job seen from the skill side and the routing side.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "dec:idea-the-routing-table-routes-grammar-not-domain-nouns"
+}

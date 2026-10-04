@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:f688ab79f400eeae466ca1a455a290b0eb84f434547139a41036c60c031c4b38",
+  "node_id": "decision:ack:e99afa635a6340fb",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Accepted the gap gap:e99afa635a6340fb.",
+    "name": "Reviewed: gap:e99afa635a6340fb",
+    "rationale": "User (who:ajs, 2026-07-23): tracked under BL-70/BL-80 — same disposition as the verification gap; the capability's owning component arrives with the alternatives/merge work (alternatives.rs/merge.rs are on disk but not yet modelled, noted in the BL-83a session record).",
+    "status": "accepted"
+  }
+}

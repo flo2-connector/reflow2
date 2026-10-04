@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:645e758973811aed5dfe91f27cc995ea99de6f8c729cf37d7ed3224e9a713aa5",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-may-unmotivated-work-merge-into-the-primary-design",
+  "properties": {
+    "note": "Same missing axis, stronger evidence. exploratory-staging asks whether a not-yet-agreed wish belongs in the design at all, measured at 34 of 73 open gaps. A fork is a place where unagreed work is THE POINT rather than a leftover, so answering the fork case likely answers the wish case; deciding them apart risks one foreclosing the other, which that node already warns about for the cancelled-state question.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "dec:exploratory-staging"
+}

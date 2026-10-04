@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:5f8781b3749943949c723802d5f0e83978a827dab07982a96f242f549bf3844e",
+  "node_id": "fact:manual-work-8bc6313b7a02658a",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "manual_work",
+    "statement": "Built each PR's design export by hand: filtered another session's in-flight nodes and edge removals out of a snapshot of the shared live graph, three-way merged the branch's own listed changes onto the current main export at node/edge level in a Python script, then imported the result into an --ephemeral server and exported it — because an ordinary export of the shared graph carries every session's writes.",
+    "subject_id": "proj:reflow2",
+    "valid_from": "2026-09-23",
+    "value": "{\"diagnosis\":\"tool_missing\",\"reflow2_tool\":null}"
+  }
+}

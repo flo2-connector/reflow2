@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:efa5554523dad838f784ee3b4973fa1d86b4b05688bb57c36ebf7327581446f3",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:a-lesson-is-served-at-the-step-it-concerns",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:skills"
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:afeaa4ebe41ec7cc9208d6ae3e42602df5b59e8aee2e31654c05a1883417ccd1",
+  "node_id": "chg:nine-tools-gain-a-reply-budget",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "name": "Nine tools gain a reply budget through one shared helper; two document-shaped tools withhold whole instead, and a CI gate fails when nothing overflowed",
+    "repair": "corrected_cause",
+    "subject": "system"
+  }
+}

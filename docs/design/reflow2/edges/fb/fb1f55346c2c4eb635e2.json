@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:9ebd83a4fe79831590f875b882b70ba38cec8cf13b3cbd4e88acadab1c946034",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:heal",
+  "properties": {},
+  "to_id": "req:a-report-says-what-it-swept-and-whether-its-checks-ran"
+}

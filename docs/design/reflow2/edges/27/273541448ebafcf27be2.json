@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:f4dd39db980074977324b99540850b0f802852be46d0f74475f0a1c426594ab1",
+  "edge_type": "CHANGED",
+  "from_id": "chg:release-without-manifest-detector",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "cap:a-cut-is-read-from-the-design"
+}

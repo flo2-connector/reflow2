@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:a02dc8be04d6725475ddf56adb06c23c1ef6fb029723fe3b973e15690f3910c7",
+  "node_id": "chg:a-write-can-be-conditional-on-what-was-read",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "name": "create_node gains expected_content_hash — a stale write is refused rather than silently overwriting somebody else's work, and create_node gains the revision block it never had"
+  }
+}

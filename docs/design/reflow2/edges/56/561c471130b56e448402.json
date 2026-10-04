@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:0bf348a8aff3cf2c08544052f480466747744f67791188bc38f611f59855826b",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-does-the-agent-keep-a-notepad-in-the-graph-for-the-next-agent",
+  "properties": {
+    "evidence": "A lesson for the next agent can only be written about a failure somebody came back to; the notepad idea has no content unless mid-task failures survive the task.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "dec:idea-a-failure-met-mid-task-is-parked-where-a-boundary-revisits-it"
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:bcf6b2d069059a7ce57af4943733ab31d26aa037f36862c69ef15b78eddf7f37",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-a-designer-and-an-owner-work-a-design-as-two-parties",
+  "properties": {
+    "evidence": "The mode's measured cost was the hand relay of question batches. Without addressed questions, a served mode would only document that relay.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "dec:idea-a-question-is-addressed-to-a-person-and-travels-as-a-batch-with-its-evidence"
+}

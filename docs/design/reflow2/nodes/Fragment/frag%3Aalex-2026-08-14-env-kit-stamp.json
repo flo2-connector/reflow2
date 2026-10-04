@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:e08a802cf332904df5fac9f2e10a552dfe543e5a21e5c7990f938f9d8971fa41",
+  "node_id": "frag:alex-2026-08-14-env-kit-stamp",
+  "node_type": "Fragment",
+  "properties": {
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Environment block: 'On-disk .reflow2/kit-version.json still says 0.11.0 / 0ec473e (2026-07-25 tarball). Kit sidecar and the process you are talking to are not the same generation.' Filed as context, not as an issue; it is the finding with the widest blast radius in the report."
+  }
+}

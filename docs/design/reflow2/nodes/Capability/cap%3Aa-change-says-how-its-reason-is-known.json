@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:6bf6a1b4a103a481eb22a19b2bece8650a311abedfb228b768be47ad78318563",
+  "node_id": "cap:a-change-says-how-its-reason-is-known",
+  "node_type": "Capability",
+  "properties": {
+    "description": "ChangeEvent.rationale_basis (contemporaneous / recalled / unknown) and ChangeEvent.commits, writable from add_change_event along with repair / stands_in_for. The confirmation ledger counts recalled and unknown changes as `recalled_changes`, apart from `design_edits`, so they never move a capability from unexamined to confirmed; repair_report counts unstated recalled repairs as `unstated_recalled`. Old fixes are kept out of the forward-only cause rule by the existing parking mechanism under one owner-approved ruling per project.",
+    "name": "A recorded change says how its reason is known, and a recalled one is never read as a check",
+    "provenance": "authored",
+    "status": "realized",
+    "tier": "operational"
+  }
+}

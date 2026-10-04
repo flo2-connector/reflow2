@@ -1,0 +1,18 @@
+{
+  "content_hash": "sha256:58e0b3c661b7b7083f3336715f6366be6c703e0ff3b00af97b9954f37b3851b5",
+  "node_id": "fact:lesson-a-record-that-quotes-a-phrase-detectors-phrases-trips-the-detector",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "confidence": 1.0,
+    "fact_type": "finding",
+    "name": "LESSON: a Requirement or Capability that DESCRIBES a phrase-matching detector by quoting its phrases is matched by it — the record wore the pattern it named, and the count went 30 → 32 on the detector's own two nodes",
+    "statement": "The first drafts of req:a-prohibition-written-into-prose-is-noticed-as-unfiled and cap:a-prohibition-living-in-prose-is-noticed-once-as-a-practice listed the six phrases the detector matches — in quotes, as documentation. The gate run showed 32 findings where the pre-capture probe had shown 30; the two extra were those nodes. The detector was right by its own rule and the record was wrong by the design's: a node quoting a pattern is indistinguishable, to a substring match, from a node exhibiting it.\n\nTHE RULE: a record ABOUT a lexical detector names the list by its identifier (`PROHIBITION_PHRASES` in detect.rs) and says why the phrases are not repeated. Both nodes were rewritten that way and the count returned to 30.\n\nTHE GENERAL SHAPE, worth a detector of its own one day: any content-matching rule applied to a design that also DOCUMENTS the rule will fire on its documentation. The same holds for `possible_duplicate` (a node that lists near-duplicates reads like all of them) and for the seam-vocabulary checks. Quoting the pattern is the cheap way to document; naming it is the way that survives being read by the thing it describes.",
+    "steps": [
+      "capture-intent",
+      "detect-and-ask"
+    ],
+    "subject_id": "cap:a-prohibition-living-in-prose-is-noticed-once-as-a-practice",
+    "valid_from": "2026-09-14"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:99a4118f4ec1a2dcd293cadfbcf0afb7209cd0be7e2ba59f9a3a79763728d7dd",
+  "edge_type": "REALIZES",
+  "from_id": "art:upgrading-v0180",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cmp:docs"
+}

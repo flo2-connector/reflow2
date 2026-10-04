@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:a14f516fc43c3c5f4854cc9a73ac0967bcc3f356b2f1dd8d0e514deaffee9dc6",
+  "edge_type": "OBSOLETES",
+  "from_id": "dec:field-reports-are-untracked-because-the-repository-is-public",
+  "properties": {
+    "evidence": "The file is gitignored by docs/feedback/, so the registration check must read its absence from the tree as expected rather than as a missing artifact. Same treatment as the previous extract."
+  },
+  "to_id": "art:dev-storyflow-feedback-2026-09-07b"
+}

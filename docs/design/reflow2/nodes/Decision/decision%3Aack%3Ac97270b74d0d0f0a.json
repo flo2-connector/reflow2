@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:239ec8e4cb7253762197ce497e10bf08a5cd8756b7f44daf668b426366d891e2",
+  "node_id": "decision:ack:c97270b74d0d0f0a",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Accepted the gap gap:c97270b74d0d0f0a.",
+    "name": "Reviewed: gap:c97270b74d0d0f0a",
+    "rationale": "Checked 2026-09-07: still open. The contradiction rule gained skips for supporting alignment and withdrawn endpoints but still never consults a resolving Decision, while both the code comment and the skill still describe it as firing only when none exists.",
+    "status": "accepted"
+  }
+}

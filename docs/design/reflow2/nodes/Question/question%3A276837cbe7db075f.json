@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:0e643a8cc24cecbd2bb8f6e082c9e79ae6d33ea79df0002dd872c2b3b3768bcf",
+  "node_id": "question:276837cbe7db075f",
+  "node_type": "Question",
+  "properties": {
+    "answer": "Covered — link it. The v0.5.0 published binaries (3 platforms via release.yml) plus install.sh are exactly this promise; draw SATISFIES from cap:kit and fold the no-rebuild intent into its description.",
+    "context_setter": "Nothing satisfies requirement “Runs on Linux and macOS developer machines”",
+    "gap_id": "gap:276837cbe7db075f",
+    "question": "You promised reflow2 works on both Linux and Mac laptops without users sitting through a long rebuild for every update — but nothing in the design currently claims to deliver that promise. Is it actually covered by the published binaries and install work you just finished, still on the to-do list, or no longer a promise you're making?",
+    "rephrase_degraded": false,
+    "status": "answered"
+  }
+}

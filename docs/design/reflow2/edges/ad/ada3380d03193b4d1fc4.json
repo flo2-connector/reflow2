@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:6c27e48d572cf84d7488c3ce65841ec512583e052472a10d00d71c63bec2e61d",
+  "edge_type": "AT_EPOCH",
+  "from_id": "snap:epoch:preserved-on-write:cap:edges-are-selected-by-their-declared-reading",
+  "properties": {},
+  "to_id": "epoch:preserved-on-write"
+}

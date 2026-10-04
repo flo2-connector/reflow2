@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:e2eddaf0a89612e4727b0ef51c85a8b6844cacdfb0d237dc60b7ce9e97d57ca5",
+  "node_id": "epoch:reflow2-states-its-own-rules",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "epoch_type": "revision",
+    "name": "Anthony states which of reflow2's own four rules he actually meant as gate-blocking: BL-41 stays enforced, the other three become advisory (2026-08-08)",
+    "sequence": 291,
+    "status": "arrived"
+  }
+}

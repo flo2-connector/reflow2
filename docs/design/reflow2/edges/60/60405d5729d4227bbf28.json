@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:2de52cb666d4a087a5e62c0d0f82f6c1110f2978220f2aaacdd91bd53af94682",
+  "edge_type": "HAS_SNAPSHOT",
+  "from_id": "rule:fix-it-properly-while-it-is-still-cheap",
+  "properties": {},
+  "to_id": "snap:epoch:doing-it-right-becomes-design-intent:rule:fix-it-properly-while-it-is-still-cheap"
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:8e9ab6437734c2ed93704911ad53909215a627c108487883ae9a697a7306f807",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:a-dependency-declaration-replies-with-a-receipt-test",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:a-dependency-declaration-replies-with-a-receipt-test"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:a44de9892c64ff4f516358568b4282c8f3c8dbb7f26da51054c1e7fb8c04d078",
+  "edge_type": "REALIZES",
+  "from_id": "art:test-every-open-store-shares-one-memory-budget",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "verified"
+  },
+  "to_id": "cmp:rocksdb-backend"
+}

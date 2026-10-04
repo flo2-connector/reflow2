@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:96603a81a14f786b1c0f868e84125bf059d7aff311cc2a5a495511c07cd270af",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "cmp:registry",
+  "properties": {
+    "authored_at": "2026-08-05T23:10:00Z",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

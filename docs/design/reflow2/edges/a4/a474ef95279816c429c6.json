@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:5905047bdf2f124af895caed2bfb138630633febc42e2e46f0b8b996d1511876",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "req:nudge-path-proven",
+  "properties": {
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "cap:read-loop-hint"
+}

@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:bd34c568492e1de11afef03f9bca3c7a4bd0f3499e0abe6b6af8dd923bc503f6",
+  "node_id": "req:derived-relations-and-reports-are-maintained-incrementally",
+  "node_type": "Requirement",
+  "properties": {
+    "concern": "core",
+    "kind": "nonfunctional",
+    "lineage": "original",
+    "name": "Where measurement shows recomputation is the cost, reflow2 maintains its derived relationships and whole-graph reports incrementally — the declared rules run by an embedded Datalog-style engine, a write recomputes only what it touches, and a cached result is never served stale",
+    "priority": "medium",
+    "provenance": "imported",
+    "source": "Anthony, 2026-09-28, in a dev_reflow2 session: \"let's go with idea 4, the 1, 2, and 3\" — promoting dec:idea-maintain-derived-relations-and-reports-incrementally from the graph-primitives design on flo2 (graph 85a2a1a36e7c942d).",
+    "statement": "FOURTH of the four performance requirements Anthony promoted on 2026-09-28. GATED on req:time-and-tokens-are-measured-per-task-against-budgets: built where a report or derivation misses its budget because it recomputes the whole graph.\n(a) The derived relationships declared under req:reflow2s-code-reasons-from-the-declared-meanings-and-every-derived-relationship-is-a-declared-rule are run by an embedded Datalog-style engine with semi-naive evaluation (candidates to evaluate: crepe, ascent, datafrog), so the declared rule IS the code that runs — test 3's \"run or checked\" met by construction.\n(b) Whole-graph reports (defect sweeps, gap detection, orientation reads) update by what a write touched rather than rescanning, where a delta is well defined.\n(c) Cheapest first: recompute only over the one-kind projection a question needs.\nINVARIANT: a maintained result is never served stale — any write to one of its inputs invalidates or updates it before the next read. This keeps the reason reflow2 computes and never stores delivery (it cannot drift or be inflated), because the maintained result is recomputed, never edited.\n\nCounter-arguments carried from the brainstorm: a stale cache is the failure reflow2 fears most (a stale verdict was quoted as current twice); differential-dataflow-scale machinery is heavy for graphs this size; recompute-from-scratch is simple and obviously correct and may already meet budget after the four wins.",
+    "status": "proposed"
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:9c2fdcc70bd7fd1a2b7590eb7bedf92f831f3c020b0f9078330fc22495b69e72",
+  "node_id": "ver:a-capture-that-replaces-a-node-says-so",
+  "node_type": "Verification",
+  "properties": {
+    "description": "Twelve tests through the served handlers (11 failed on origin/main 01fe82a before the fix; log kept at the session scratchpad replaces-failfirst.log): the refusal names all three routes with the ids filled in; distinct_from is recorded on the created node and a later judgement adds to it; a replacing add_capability moves the requirement's SATISFIES to the new node, deletes the old one, draws OBSOLETES with evidence, records a deprecation that removed the old node with a snapshot still holding the moved edge, leaves the old status `planned` and NOT discontinued, and names what stayed; a revise can replace; another type, an unknown id, and an id in both lists are refused with nothing written; a replacing component takes the allocations; a replacing requirement moves no satisfier and names set_requirement_status; an accepted replacing decision withdraws its predecessor.",
+    "kind": "verification",
+    "last_run_at": "2026-09-30",
+    "level": "integration",
+    "location": "crates/reflow2-mcp/tests/a_capture_that_replaces_a_node_says_so.rs",
+    "method": "test",
+    "name": "A near-match refusal names sharpen, distinct_from and replaces; a replacing capture moves the thread, records the ending with its edges and draws OBSOLETES; distinct_from is kept on the node",
+    "status": "passing"
+  }
+}

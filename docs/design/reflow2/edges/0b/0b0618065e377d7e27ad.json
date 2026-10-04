@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:d9b42e557e6567978628547ea1bac4da3219ba3bfa1eb52dad1df0580a9f901d",
+  "edge_type": "CHANGED",
+  "from_id": "chg:baseline-6a4373d565e0749c",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:relation-coverage"
+}

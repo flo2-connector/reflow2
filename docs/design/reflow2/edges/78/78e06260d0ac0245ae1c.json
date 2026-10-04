@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:20683d89b5163f0e20e2bdb59a9dde1b7a64e65bae936ff1a9598b724f914287",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "req:a-fit-is-not-a-test",
+  "properties": {
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "req:evidence-says-what-it-covered"
+}

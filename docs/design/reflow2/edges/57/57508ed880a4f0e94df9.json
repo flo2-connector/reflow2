@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:dfee9ae044fe405fec9396fc8b3950b8bb74ec0c5e20374d27fd1be72c866c7c",
+  "edge_type": "CHANGED",
+  "from_id": "chg:verifications-pass",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cap:corpus-ingest"
+}

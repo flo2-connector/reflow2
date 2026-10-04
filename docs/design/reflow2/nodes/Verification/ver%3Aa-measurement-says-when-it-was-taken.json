@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:575284858d07b692878c89236923d9686a5d82f8357b8f512613bc4898ab1090",
+  "node_id": "ver:a-measurement-says-when-it-was-taken",
+  "node_type": "Verification",
+  "properties": {
+    "description": "A budget names the measurements that do not say when they were taken (crates/reflow2-core/tests/budget.rs) — 4 cases. THE CASE: a contribution at `basis: measured` with no `measured_at` is listed in `undated_measurements`, and one that states a date is not. TWO COUNTERWEIGHTS DECIDE THE SHAPE. An undated ESTIMATE is NOT reported, because an estimate does not decay and demanding a date from it would raise a finding on correct work — the signal-trained-to-be-ignored failure. And an undated measurement STILL COUNTS toward the total and the verdict: undated is not unstated, and refusing to total it would break every design that has not started dating its numbers, so this reports without ever refusing. The fourth case pins that the date survives onto the edge and back out through the report.",
+    "findings": "MUTATION-CHECKED BOTH WAYS, each killing exactly the right test: demanding a date from every basis fails ONLY the estimate counterweight, and reporting nothing fails the case plus the still-counts case. FROM music_graph F22, where a contribution of 6.9 fps at basis=measured stood against a 40 fps minimum while the true value was 55.06 — right when taken, wrong for days.",
+    "kind": "verification",
+    "last_run_at": "2026-08-16",
+    "level": "unit",
+    "method": "test",
+    "name": "A budget names the measurements that do not say when they were taken",
+    "status": "passing"
+  }
+}

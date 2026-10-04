@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:50572dcd0d8328d405b9e15f3aec50ea1790c27027a2b691cb79ebb5bb9881d5",
+  "node_id": "fact:flo2-2026-09-19-names-what-worked-and-it-is-the-refusals-that-teach",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "confidence": 0.85,
+    "fact_type": "status",
+    "name": "What flo2 said must not regress, 2026-09-19: the refusals that teach the model, and prose_currency",
+    "source": "flo2 reflow2_feedback.md, session of 2026-09-19",
+    "statement": "Recorded as evidence a regression check can read later. ① `create_edge`'s invalid-pair refusal — it names why the pair is illegal, then every edge type that WOULD accept it, each with its hint, distinguishing exact matches from wildcard ones. The reporter: it 'taught me the model' and they dropped an edge they were about to force. ② `set_epoch_status`'s `prose_currency` block — it quoted the description back and pointed out the prose was written under the old status: 'the best safety response I have seen from this surface.' ③ `add_decision` refusing an unapproved `accepted`. ④ The revision-safety note firing on all four revise calls, not just the first: 'consistency matters more than cleverness for a safety net.'",
+    "subject_id": "ver:edges-need-both-ends",
+    "valid_from": "2026-09-19"
+  }
+}

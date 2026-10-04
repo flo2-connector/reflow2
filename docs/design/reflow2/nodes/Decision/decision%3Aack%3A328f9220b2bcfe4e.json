@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:487447b13f6939127403342f97fd55f1c2dc7a807d907cbc7eb65c2c4101789a",
+  "node_id": "decision:ack:328f9220b2bcfe4e",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Accepted the gap gap:328f9220b2bcfe4e.",
+    "name": "Reviewed: gap:328f9220b2bcfe4e",
+    "rationale": "User (who:ajs, standing policy from 2026-07-23, applied again 2026-07-25): validation happens through the trials programme — docs/trials/ is where \"built the right thing\" is exercised against operational intent; formal validation-kind Verification nodes are not this project's tracking mechanism. Re-fired because cap:scoped-analysis joined the set (43 → 44). Sharply apt here, and the trial is already named by the requirement that produced the feature: the tests prove a team sees its own gap and not the other segment's on a seven-node fixture, but whether a REAL team on a program-sized graph finds the scoped answer useful — whether depth 3 is the right radius, whether the four buckets read as honest rather than as noise, and whether a segment lead scoping to their segment gets what they expected — is answerable only by someone doing it. Anthony's satellite case is the trial, and the honest first run is him scoping to a part of reflow2's own graph and telling us whether the answer was his.",
+    "status": "accepted"
+  }
+}

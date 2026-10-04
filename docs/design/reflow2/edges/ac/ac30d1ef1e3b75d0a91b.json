@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:a963f9390df715e71c4e9d6b59466ad629bb70a8336bdebf395b1cb4db9f689c",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-first-finding-closed-under-test-seven",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:capture-session-skill"
+}

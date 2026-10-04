@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:8ded448dbe7ee9fa441efd82a61c70a66ad009914a3ef9f2be880e1fc6f28f77",
+  "edge_type": "CHANGED",
+  "from_id": "chg:governance-capability-gets-its-requirement",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cap:governance-proposal"
+}

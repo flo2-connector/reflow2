@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:7a06960481b8257473fc7b750fdd86b3b89cfbb2b7e4c00a8915810a5c6b9c1a",
+  "node_id": "con:granularity-reads-scale-with-artifacts-not-edges",
+  "node_type": "Constraint",
+  "properties": {
+    "category": "technical",
+    "concern": "core",
+    "direction": "maximum",
+    "limit": 220.0,
+    "name": "The granularity reading costs one store read per artifact it reports on, plus a constant",
+    "priority": "medium",
+    "quantity": "store_reads",
+    "statement": "`granularity_report` shall make no more than **N + 2 store reads**, where N is the number of Artifact nodes.\n\nTHE DERIVATION, and it is a statement about what ought to be true rather than a round number. The reading's answer is ABOUT ARTIFACTS: how many capabilities each one realizes. So the reads it structurally needs are one scan to find the artifacts, one `outgoing` per artifact to find that artifact's REALIZES edges, and one scan for whatever population it must compare against — N + 2. Nothing about the question requires a read per EDGE, and a cost that grows with edges is the reading paying for the shape of the data rather than the shape of its own answer.\n\nMEASURED BEFORE THE BUDGET WAS WRITTEN, 2026-08-21, over reflow2's own design (2853 nodes, 218 artifacts): **552 reads** — 1 `scan_nodes`, 218 `outgoing`, and **333 `get_node`**. The budget at N=218 is 220, so it is currently at **2.5x**. The 333 are one per REALIZES edge, each asking only \"is this id a Capability?\", which one scan answers for all of them.\n\nWHY READS AND NOT MILLISECONDS. Per-read cost was measured as FLAT: `get_node` cost 58.0µs over a 2853-node graph and 55.1µs over a 199-node one, a 1.1x spread across a 14x size difference. Nothing is scanning linearly, so the store indexes correctly and the cost is fixed per-call overhead. That makes the READ COUNT the thing a module controls and the wall clock the thing it does not — and a count is also immune to the trap where a duration assertion in a parallel suite measures machine contention and gets its threshold raised until it stops complaining.\n\n⚠️ HONEST LIMITS. Measured on the in-memory backend in a debug build, which is NOT what users run — they get RocksDB. The read COUNT is a property of the module and carries across backends; the per-read microseconds above do not, and are quoted only to justify counting reads instead of timing them.\n\n⚠️ AND THIS IS NOT A SPEED ARGUMENT. `granularity_report` costs ~250ms against `graph_report`'s ~78s in the same configuration — 0.3% of it. Optimising it for wall clock would be manufacturing work, and the optimize skill says to say so. This budget exists for the STRUCTURAL property: a reading about artifacts should cost per artifact. The real speed target is whatever makes `graph_report` cost 78s, and that has not been measured."
+  }
+}

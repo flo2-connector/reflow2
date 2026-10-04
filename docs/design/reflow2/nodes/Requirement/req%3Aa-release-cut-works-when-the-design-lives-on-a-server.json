@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:57cf594e97dae08a87d6609306fb9d565487db764e8e167f7860b0eb53c122cd",
+  "node_id": "req:a-release-cut-works-when-the-design-lives-on-a-server",
+  "node_type": "Requirement",
+  "properties": {
+    "concern": "core",
+    "kind": "functional",
+    "lineage": "original",
+    "name": "A release cut works when the design lives on a server: checksums measured on the builder's machine are frozen into the design's release, and no export is committed as part of the cut",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "Anthony (who:ajs), dev_reflow2 hub session, 2026-09-27",
+    "statement": "A release cut shall work when the design it describes lives on a server. The release's frozen manifest already lives in the design (release_includes_all freezes each artifact's checksum on the Release's INCLUDES edges). What must change is where the numbers come from and what the cut commits. The checksums are measured on the machine that builds the release and sent to the design as measured-there, and the cut no longer exports and commits an export as its record. Depends on the local client measuring local files for a remote design (req:a-local-client-works-against-a-remote-reflow2-server-by-url, point 3). Anthony, 2026-09-27, accepting \"release cut in the design\" in the tracked-export retirement plan.",
+    "status": "accepted"
+  }
+}

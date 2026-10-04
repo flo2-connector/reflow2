@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:97abbb2bb5bb33790c2da5c89badbbc769d7cc8cf005db55328df07e3376c6f9",
+  "node_id": "chg:design-identity",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "name": "A design knows its own name — established once, adopted for existing graphs, refused rather than guessed"
+  }
+}

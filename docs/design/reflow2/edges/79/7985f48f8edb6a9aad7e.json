@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:549be325f234cf5a5d4a62ce2cd71f79c8b6658640bfe8edd5eb53f76b6db995",
+  "edge_type": "REALIZES",
+  "from_id": "art:auto-export",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:the-server-writes-the-export-through-and-chains-it-from-main"
+}

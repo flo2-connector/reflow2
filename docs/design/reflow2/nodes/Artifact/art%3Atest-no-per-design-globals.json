@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:536a6dd4907a5c1bbe2faac91da09ea11b1319aacb50fff90bcc301d6155f791",
+  "node_id": "art:test-no-per-design-globals",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "granularity": "atomic",
+    "location": "crates/reflow2-mcp/tests/no_per_design_process_globals.rs",
+    "name": "no_per_design_process_globals.rs",
+    "status": "realized",
+    "volatility": "stable"
+  }
+}

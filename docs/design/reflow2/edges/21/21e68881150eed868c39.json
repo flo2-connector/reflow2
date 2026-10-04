@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:0f75b0d9b5cbd8b72fb9fa95e36ccd1eb1d4f1bf053a2d2a7d2fcc9c0bf448ad",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:skill-triggers",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:nudge"
+}

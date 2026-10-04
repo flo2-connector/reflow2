@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:6cdb964513215344e0516efb5f9547be1043fac0d4a36560890cd70cd7a88c5e",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:exploratory-staging",
+  "properties": {
+    "authored_at": "2026-08-10",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

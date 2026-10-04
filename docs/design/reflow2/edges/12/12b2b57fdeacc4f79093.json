@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:6e7aa5dbe825c20d80f52a0adbd8a410a4720a3eb6e2920f5b690fae88ca3cc8",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:repo-file-embedded",
+  "properties": {
+    "approved_at": "2026-09-27",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

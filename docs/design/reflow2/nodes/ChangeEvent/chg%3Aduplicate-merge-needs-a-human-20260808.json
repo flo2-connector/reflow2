@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:ecffb2f95fe6272c0fa89bdc6b68d89dffa4575ee65a1d8d39aff24f09482601",
+  "node_id": "chg:duplicate-merge-needs-a-human-20260808",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "test_failure_fix",
+    "name": "A DUPLICATES edge now says who drew it, and HEAL merges only what a human asserted (field-reported defect from dev_storyflow, 2026-08-07; no failing test existed — see note on change_type)"
+  }
+}

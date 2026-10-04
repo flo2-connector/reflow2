@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:8fc1d72468e4418407eff3cfbdaed5fef7e23fdb70ac37f2def392a7dc2e2652",
+  "edge_type": "CHANGED",
+  "from_id": "ce:subsystem-split-2026-08-25",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "sub:finding"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:4a67cbca3a9b0212a3ebadbb8bacebd05a6919bea9662ce897881db2345fd1c6",
+  "edge_type": "CHANGED",
+  "from_id": "chg:sidecar-loss-refused",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cap:hosted-state-on-a-volume"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:894ae285db3aaacbe93914e4bf428bc6f9a75d2506ae12607a0cbc70c631e09e",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-design-closes-against-a-declared-threshold-and-the-report-names-the-first-hole",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "art:test-a-closure-criterion-is-declared-on-the-served-surface"
+}

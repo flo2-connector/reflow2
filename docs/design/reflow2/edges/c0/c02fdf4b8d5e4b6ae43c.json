@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:489c0329872d942dd4be32847ee5846a49682320ae09746238da0c9d32c570a7",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-what-belongs-in-the-graph-and-what-belongs-in-an-agents-memory-and-why-the-rule-keeps-losing",
+  "properties": {
+    "evidence": "This question is about how to make that rule bind; it is worth nothing if the rule itself does not stand.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "rule:a-rule-the-project-follows-lives-in-the-graph-not-in-an-agents-memory"
+}

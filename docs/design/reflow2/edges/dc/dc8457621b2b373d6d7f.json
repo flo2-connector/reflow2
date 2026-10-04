@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:f1a52d1cc96ae6d2e21bcad023710fa13685d4557d927c843ce4fb88af3b5bc1",
+  "edge_type": "CHANGED",
+  "from_id": "chg:bl88",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cap:report"
+}

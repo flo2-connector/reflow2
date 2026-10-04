@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:7765f3821fbcc1841a251e16c1cc7e23e7b74b4334863c78a2af8e65a043c1fb",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:a-rule-says-whether-it-can-be-checked-at-all",
+  "properties": {
+    "authored_at": "2026-08-09",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:storyflow-api-boss"
+}

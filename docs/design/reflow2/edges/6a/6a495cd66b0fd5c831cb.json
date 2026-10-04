@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:8638ed839facd52b70bba07820624ec93206b4ba52e8944737e698c41ad2bb7c",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:the-design-interview-precedes-the-capture",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:skills"
+}

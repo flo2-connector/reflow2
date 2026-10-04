@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:e85a69bd43ac57f7cd24e83d7609157de47d88afb87abb85e901c76ae559ddd0",
+  "edge_type": "REALIZES",
+  "from_id": "art:one-shot",
+  "properties": {
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:the-cli-describes-a-tool-with-its-schema-and-lessons"
+}

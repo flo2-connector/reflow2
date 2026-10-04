@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:ab2c3f1a1887288516e26913f9967f992b226d774c3a45b2fec3a710d539b95d",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:a-design-says-which-vocabulary-it-has-never-used",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:vocabulary"
+}

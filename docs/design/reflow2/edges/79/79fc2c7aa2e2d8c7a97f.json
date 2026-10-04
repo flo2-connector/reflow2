@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:795c409b072613613fd371e4672b10b928d60f6ae481116b88a41c58b10a79fd",
+  "edge_type": "REALIZES",
+  "from_id": "art:twins",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:a-relation-stored-twice-is-kept-in-step-by-the-store"
+}

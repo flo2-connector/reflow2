@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:5accb16a4401e308235dd0686f77459d59f80b6ab8c7607924414f8ac03cc17b",
+  "edge_type": "GOVERNED_BY",
+  "from_id": "cap:bounded-reads",
+  "properties": {},
+  "to_id": "decision:ack:d1c2d599af5b45ce"
+}

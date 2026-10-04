@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:d107424d28a42df89886cb69b6587a40a23d6a6cc1f2267625c7296387481fe6",
+  "edge_type": "EVOLVES_INTO",
+  "from_id": "dec:idea-the-cli-describes-a-tool-with-its-schema-and-lessons",
+  "properties": {
+    "evidence": "The idea became step 4 of the door plan Anthony agreed on 2026-10-01."
+  },
+  "to_id": "req:the-cli-describes-any-tool-with-its-full-schema-and-lessons"
+}

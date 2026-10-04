@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:8a5e30ce486bc9277d16dc252d327ddc76984ae25de95f819568884ccb849d58",
+  "node_id": "fact:a-reflow2-sized-open-design-costs-about-36mb-of-heap-and-rocksdb-is-not-most-of-it-2026-09-27",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "finding",
+    "name": "MEASURED 2026-09-27: a design the size of reflow2's own (5,600 nodes) costs ~36 MB of private heap per open design, taken at open — and neither RocksDB's buffers, the full-text writer arena, memory-mapped files nor searches account for it",
+    "source": "tools/measure_open_design_memory.py (new), dev_reflow2 hub session",
+    "statement": "MEASURED 2026-09-27 with tools/measure_open_design_memory.py.\n- Setup: 4 copies of reflow2's own design (5,616 nodes, 36,543 edges) under one registry root, opened one after another, with MALLOC_ARENA_MAX=2 as flo2's container runs.\n- Resident memory with no design open: about 16 MB.\n\nEACH OPEN DESIGN COSTS ≈ 36–40 MB, about 6.4 KB per node. The 2026-09-13 measurement (~5 MB per open design) was on small designs, so flo2's capacity arithmetic built on 5 MB is low by about 7× for a design this size.\n\nWHAT IT IS NOT, each ruled out by a measurement:\n- Not RocksDB. Squeezing the new shared store budget from 512 MB to 8 MB moved the per-design cost by about 2 MB (35.7 vs 34.0) and peak by about 40 MB over four designs.\n- Not the full-text writer's arena. DYNOGRAPH_FULLTEXT_WRITER_HEAP_MB at 15 vs 50 measured 35.7 vs 38.0.\n- Not memory-mapped files. Of the ~36 MB per design, RssAnon is 35.7 and RssFile 0.7, so it is private heap, not reclaimable page cache.\n- Not searches. Opening with one cheap call and no search costs the same 36.7 MB.\nSo it is heap the OPEN path allocates and keeps, and it scales with the design's size. Candidates, not measured: the full-text index rebuilt from every node at open (reindex_search) and what it leaves behind; allocator retention from that churn; the per-design service structures.\n\nTHE SHARED BUDGET STILL LANDED, measured before and after on debug builds, same design, same run shape:\n- Per design: 41.0 → 36.3 MB, within the run-to-run spread.\n- Peak for four designs: 294 → 289 MB.\n- Writes per second over HTTP: 6.0 → 6.0.\nIt makes RocksDB's share a number somebody chose and bounds the worst case a busy design could reach, at no measured cost. It does not explain today's per-design cost.\n\nNEXT, to attribute the rest: a heap profile of opening one design (heaptrack or a dhat build). No profiler was installed on the machine, and installing one needs root.",
+    "subject_id": "req:one-open-design-costs-a-deliberate-amount-of-memory",
+    "valid_from": "2026-09-27"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:52b16285b5a88045c613bb9efed4b3f5c5e101ab454862902438fa8796ed7070",
+  "node_id": "epoch:v0471-cut",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "epoch_type": "release_cut",
+    "name": "v0.47.1 cut — a per-file comparison stops being stated as a fact about the seat, and the sentence it produces loses three runs of ten spaces",
+    "sequence": 394,
+    "status": "arrived"
+  }
+}

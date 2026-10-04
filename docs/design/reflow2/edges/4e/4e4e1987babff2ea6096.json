@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:f7d139cb6f7aa2449cc36ef08f2b577ff1ac73e811e74623282967be6a5651aa",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:test-nudge-path",
+  "properties": {
+    "covers": "whole",
+    "note": "migrated 2026-09-22 from a REALIZES link_artifact drew in error"
+  },
+  "to_id": "ver:nudge-path"
+}

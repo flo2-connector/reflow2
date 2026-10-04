@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:4e12a0cf0f18f6fa75aff6b7cb0fc89a426b2e1b8e4b7a6eeb27979b8fd3d958",
+  "node_id": "ver:mirror-surface",
+  "node_type": "Verification",
+  "properties": {
+    "kind": "verification",
+    "last_run_at": "2026-07-25",
+    "level": "integration",
+    "method": "test",
+    "name": "Two designs compose: the mirror carries whose/which-version/when, foreign nodes are marked imported, internals never arrive, the seam is an ordinary local edge reported as a boundary crossing, an id collision is refused with our node untouched, a colliding edge is dropped rather than rewired, and self-mirroring is refused (tests/mirror_surface.rs, 7 cases)",
+    "status": "passing"
+  }
+}

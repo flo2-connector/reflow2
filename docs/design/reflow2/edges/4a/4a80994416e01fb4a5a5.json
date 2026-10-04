@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:25eed3ae77b031dd5c8cfbddff07379db85ccd8cc78e9f6ba1d384d25eb752fb",
+  "edge_type": "ANTICIPATES",
+  "from_id": "fact:manual-work-46b68cd85cf97510",
+  "properties": {
+    "confidence": 1.0
+  },
+  "to_id": "dec:idea-how-does-a-session-ask-which-artifact-covers-a-file"
+}

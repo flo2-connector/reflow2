@@ -1,0 +1,19 @@
+{
+  "content_hash": "sha256:70cdeae4d3b35f81e7e9b0054f24752435521d149ddac82308719ef57a8e74ce",
+  "node_id": "fact:deploy-to-does-not-move-a-releases-own-status-and-no-cut-step-says-to",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "confidence": 1.0,
+    "fact_type": "finding",
+    "name": "A Release stays `planned` after deploy_to — the v0.59.0 cut exported it that way and cost an amend, and no step of flow:release-cut says to set it",
+    "statement": "Measured on the v0.59.0 cut, 2026-09-12. `add_release` lands a Release at `planned`. `deploy_to` then records DEPLOYED_TO edges (dev/ci/container, status active) and leaves the Release's own `status` untouched — correctly, since deployment and lifecycle are different claims — but nothing in `flow:release-cut`'s eight steps says to move it, so the cut exported `rel:v0590` reading `planned` while its manifest was frozen and its assets were about to publish. Caught by reading the written export before committing; fixed with `create_node {\"status\": \"deployed\"}` and a second export, costing one amend and one re-gate.\n\nIT IS NOT NEW AND IT IS NOT VISIBLE: `rel:v0580` carries `deployed`, so a past cut set it the same unrecorded way, and `release_report` does not read the field — it reports the manifest and the deployments, both of which were already right. So the only reader that would have caught a release published while still labelled `planned` is a person looking at the node. ⚠️ RELATED AND STILL OPEN: `release_without_epoch` was hardened on 2026-08-21 to exempt a release only while UNDEPLOYED, which reads that same status — a release left at `planned` after publishing would be exempted from a check it should face.\n\nWHAT WORKS: set the status to `deployed` in the same batch as `deploy_to`, BEFORE the export, and retire the previous release in the same breath. Recorded with `steps` so it arrives at `deploy_to` and `add_release` rather than in a procedure somebody has to remember to re-read.",
+    "steps": [
+      "deploy_to",
+      "add_release",
+      "release_report"
+    ],
+    "subject_id": "cap:release-pinned-to-time",
+    "valid_from": "2026-09-12"
+  }
+}

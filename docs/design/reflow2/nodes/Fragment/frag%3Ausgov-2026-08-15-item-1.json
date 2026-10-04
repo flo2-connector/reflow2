@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:5a025ec5e3516c4acf8a2152f2f4f84fc1b5e6bea30ac5cb24d7c9cf2c98895e",
+  "node_id": "frag:usgov-2026-08-15-item-1",
+  "node_type": "Fragment",
+  "properties": {
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Item 1 (graded LOW): 'add_component takes description; create_node on Component requires purpose. Because create_nodes is all-or-nothing, this failed a six-node batch on four items. The HELPER and the GENERIC path disagree on the field name for the same concept, so reading one does not prepare you for the other.' Counterweight checked by the reporter: Capability and Requirement are consistent in both paths."
+  }
+}

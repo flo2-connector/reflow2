@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:7329014b433a4f111d499951e06246e2b7c4c5b5da05dadd741e97ba45a67a3e",
+  "node_id": "art:hub-skill",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "document",
+    "description": "The source of the served hub skill; .claude/skills/hub and .grok/skills/hub are byte-identical mirrors enforced by skill_lint and check_command_surface.",
+    "location": "getting-started/skills/hub/SKILL.md",
+    "name": "hub SKILL.md — the served step for a session that reaches a hub and the designs it coordinates",
+    "status": "realized"
+  }
+}

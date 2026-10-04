@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:5b2bdc268368d5b320838b5aeaa415ad69dd48248122dba7b5e34830e8a5c5b4",
+  "node_id": "chg:machine-state-not-shared",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "test_failure_fix",
+    "name": "The MCP configs are machine state: gitignored, and the graph path in them relative so worktrees do not collide"
+  }
+}

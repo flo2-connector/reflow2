@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:9b48df3fba51dc4e54a5aece56e2b185e30866ed6c05598bc452f8c3f1d5e964",
+  "node_id": "fact:eight-capabilities-are-reported-built-on-the-strength-of-a-test-file",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "property",
+    "name": "Eight capabilities are reported BUILT with only a test file realizing them, so unrealized_capability reports clean over all of them",
+    "statement": "MEASURED 2026-08-21 while making the per-subsystem test numbers real. EIGHT Capabilities are reported BUILT on the strength of a TEST FILE and nothing else — the only Artifact with a REALIZES edge to them is a file under `tests/`: cap:detect (<- art:test-discontinued-is-read), cap:ingest, cap:artifact-declares-its-own-shape, cap:cycle-names-its-basis, cap:evidence-scope, cap:mirror-surface, cap:publish-surface, cap:search-first-at-the-tool.\n\n🛑 A TEST DOES NOT BUILD A CAPABILITY. It checks one. REALIZES from a test artifact asserts the file DELIVERS the capability, which is false for all eight — cap:detect is delivered by detect.rs; art:test-discontinued-is-read merely exercises it.\n\n⭐ THE CONSEQUENCE IS A SILENT DETECTOR, NOT AN UNTIDY EDGE. `unrealized_capability` fires on a Capability with no REALIZES. All eight have one, so all eight report CLEAN — and a capability with a test and NO IMPLEMENTATION would be indistinguishable from a finished one. The vacuous-zero shape again.\n\n📌 HOW IT SPREAD, which matters more than the count. 16 test files REALIZE a Capability directly; 31 REALIZE a Verification. The 16 are the RECENT ones, four of them created this week by this agent (move_component, delivery_kind, sweep_coverage, scheduling_a_question). Two conventions sit side by side, nothing distinguishes them, and the wrong one is winning because it is ONE EDGE SHORTER. Nobody chose it.\n\nTHE REMEDY, unbuilt and named so the finding does not only state a problem: a test artifact should REALIZE a Verification, and the Verification should VERIFY the capability. One more node, and it is the whole difference between \"this is built\" and \"this is checked\". A detector for `capability_realized_only_by_a_test` is what would stop the shorter path being taken again.",
+    "subject_id": "cap:detect",
+    "valid_from": "2026-08-21"
+  }
+}

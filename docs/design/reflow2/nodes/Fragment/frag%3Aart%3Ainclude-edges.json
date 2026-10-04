@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:b1f9da3d8bb1c1f9dceaa2cd44189b47bc39ee5d8664c5d9fae3e05cd924701b",
+  "node_id": "frag:art:include-edges",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered crates/reflow2-mcp/src/include_edges.rs — get_node's include_edges parameter: true or a filter, its hand-written deserialiser and its published schema"
+  }
+}

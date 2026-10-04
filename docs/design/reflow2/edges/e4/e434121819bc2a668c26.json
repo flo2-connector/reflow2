@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:f2407eb85c8ea6d8dc0233024ba9031d4794ccdabb82b8d3bc5e53fc50952581",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:external-blob-store-pressure",
+  "properties": {
+    "authored_at": "2026-07-31",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:233895919440e8e56a30913bbe1909d835182ac2b842cd8c3378386d04f74695",
+  "edge_type": "ANTICIPATES",
+  "from_id": "dec:the-other-uaf-domains-wait-for-a-project-that-needs-them",
+  "properties": {
+    "evidence": "The August UAF audit already sorted four UAF domains and deferred them with a named trigger. This 1.3 read builds on it and leaves that deferral standing."
+  },
+  "to_id": "dec:idea-what-reflow2-takes-from-uaf-1-3"
+}

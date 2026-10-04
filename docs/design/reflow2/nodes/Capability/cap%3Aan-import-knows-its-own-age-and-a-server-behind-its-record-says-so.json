@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:35adab6ee4fc00425a7d525ee193e6b2672a029dfb1004445e1065bc6dbdc735",
+  "node_id": "cap:an-import-knows-its-own-age-and-a-server-behind-its-record-says-so",
+  "node_type": "Capability",
+  "properties": {
+    "description": "Three legs against the 853. (1) `DesignGraph::import_graph` refuses a document whose stamp names a reflow2 newer than the crate — naming both versions, the direction, the hazard and the way through — unless `ImportOptions::accept_newer`; the tool takes `accept_newer` and the CLI `--accept-newer`. (2) `ImportReport::materialized` counts, by `Type.property` and `EDGE_TYPE.property`, every value the store now holds that the document did not state (schema defaults and migrations), and `--import` prints them. (3) The open-time provenance distinguishes `NewerWriter` (last written by a newer reflow2, same vocabulary — until now misreported as an older graph with the note the wrong way round) from `OlderGraph`; the service keeps the newer writer and `served_by.behind_record` on loop_status and graph_report names it, with a `next` line (BEHIND_NEXT), because `served_by.stale` asks a different question — was my executable replaced — that a release binary merely built before the record answers no, truthfully. Shared prose: `provenance::BEHIND_HAZARD`.",
+    "name": "An import knows its own age, and a server behind its record says so",
+    "provenance": "authored",
+    "status": "realized",
+    "tier": "operational"
+  }
+}

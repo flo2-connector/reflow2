@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:732396df65e50ded4e9956decaabf7d77baa293287074d39830ad0071ff9fb56",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:parallel-work",
+  "properties": {},
+  "to_id": "req:concurrent-planning"
+}

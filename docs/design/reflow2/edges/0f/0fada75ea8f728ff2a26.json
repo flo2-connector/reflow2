@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:983fa8cd8e55c8033706c630c1c60fb1bd2b702e2e4694421857ffcca3673912",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-two-reported-fields-get-their-parameters",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:tools-temporal"
+}

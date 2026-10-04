@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:dee1e0602df06fbe2e7297f6455ba058c4bbfbb14d93489b393b60a745e106cf",
+  "edge_type": "REALIZES",
+  "from_id": "art:evidence-quality-instrument",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:independent-evidence"
+}

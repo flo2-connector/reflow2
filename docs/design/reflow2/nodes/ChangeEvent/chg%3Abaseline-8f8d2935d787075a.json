@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:b28e8b3446819393f0ab3b83eb5d0cee444041115414f6bb26f053c03c0f5395",
+  "node_id": "chg:baseline-8f8d2935d787075a",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "baseline_established",
+    "detected_at": "2026-08-26",
+    "name": "First baseline — written 2026-08-19 on the unmerged branch, landed today.",
+    "subject": "record"
+  }
+}

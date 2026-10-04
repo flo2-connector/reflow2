@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:551a0078d29ef6c290b7fd506d6e52f85929e52a1cfdfca20268f8fa7e0db413",
+  "edge_type": "CHANGED",
+  "from_id": "chg:reading-carries-options",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "req:a-question-arrives-with-a-reading"
+}

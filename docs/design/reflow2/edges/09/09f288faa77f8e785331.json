@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:ef8e6f513099fecc0c54ac2924209624786bc8a85219b77b35ba657e07977994",
+  "edge_type": "CHANGED",
+  "from_id": "chg:delivery-can-be-a-model-change",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "art:delivery-kind-test"
+}

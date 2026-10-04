@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:f467c95ba2bd5e3c9b62994545814610b5261fcd7688c0b007dabf1ff8fc77a1",
+  "node_id": "dec:sanitize-spof-accepted",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "ACCEPT the single_point_of_failure finding on cmp:ingest rather than add redundancy. The topology it reports is true: cmp:sanitize is reached only through cmp:ingest today, because INGEST is the only path by which foreign text currently enters the graph, so every route to the trust boundary runs through one component.",
+    "name": "The trust boundary having one caller makes ingest an articulation point — accepted, and the fix is the second caller",
+    "rationale": "Recorded because the finding appeared the moment the sanitizer landed (2026-07-25) and would otherwise be re-litigated every session, and because the suggested fix is the wrong shape here: `add_redundancy` is coherent for a running part that can fail over, and a second copy of a pure text filter would be duplication, not resilience. What WILL dissolve it is already named in the module docs and in cap:sanitize-ingress — the import path. `import_graph` deliberately does not rewrite the document it is handed (an export's content is its identity), so the next rung is detect-and-report on import, and when that lands the boundary has two callers and the articulation point is gone honestly. Deliberately NOT done: wiring cmp:export or cmp:graph to cmp:sanitize now to quiet the detector, because that would be an edge the code does not have — the same fabrication dec:ask-not-repair forbids of a heuristic. Joins the five accepted SPOFs under the BL-93 disposition: loop_status will not call the structural set clean, and that is expected.",
+    "status": "accepted"
+  }
+}

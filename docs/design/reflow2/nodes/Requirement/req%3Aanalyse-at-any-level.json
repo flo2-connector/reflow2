@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:76ded6a1e75f9674345241861488305d6514631eda6d269f31974486ba5d5cd9",
+  "node_id": "req:analyse-at-any-level",
+  "node_type": "Requirement",
+  "properties": {
+    "concern": "core",
+    "designation": "internal",
+    "kind": "functional",
+    "lineage": "original",
+    "name": "Any level of the design can be analysed on its own, and a narrowed answer says what it left out",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "A person or team responsible for one part of a design must be able to point the detectors at that part and be answered about it — \"is my subsystem coherent, what is it owed\" — without reading the whole program. Anthony, 2026-07-25, from the satellite case: an organisation building a satellite capability has a space segment, a ground/user segment and a control segment; his team owns the satellite, and more specifically inter-satellite laser communications. He must understand the system of systems, but day to day he needs his own part. Two properties are inseparable from the first. A narrowed answer must NAME WHAT IT WITHHELD — findings elsewhere in the design, and findings that belong to no part in particular — because a team shown only its own corner will conclude the program is healthy, which is the silent-drop failure req:no-silent-fallback forbids, one level up from a truncated read. And narrowing must never become the tool deciding what a team is allowed to worry about: a program-level finding that touches their work still reaches them, marked as the program's rather than theirs. Deliberately silent on WHERE the levels live: a subtree of one graph and a design of its own are both answers to this, and that is the architecture question recorded as dec:nested-graphs.",
+    "status": "accepted"
+  }
+}

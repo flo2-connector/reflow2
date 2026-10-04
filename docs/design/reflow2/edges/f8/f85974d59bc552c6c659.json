@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:ceeb5888da29fe66206296769ff54692da0b1086ed6687b19de482e27d09c735",
+  "edge_type": "EVOLVES_INTO",
+  "from_id": "dec:idea-agent-to-agent-feedback-is-a-formal-channel",
+  "properties": {
+    "evidence": "The 2026-08-14 idea established that agent feedback yields real defects and left the delivery mechanism open; this is that idea grown into a specific mechanism — a computed tally rendered by a served skill."
+  },
+  "to_id": "dec:idea-slash-feedback-emits-a-computed-tally-not-an-agents-recollection"
+}

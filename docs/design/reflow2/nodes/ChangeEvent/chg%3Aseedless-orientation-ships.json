@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:48f993e41ba5edb9e40772fe5660fefc9941311aa710230bed891e537e1fa761",
+  "node_id": "chg:seedless-orientation-ships",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "name": "design_regions ships: the parts a design names, sized and costed, for a session that arrived with nothing",
+    "subject": "system"
+  }
+}

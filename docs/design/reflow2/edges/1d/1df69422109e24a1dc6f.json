@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:b7dda13afaaf90c5b89b01894f9d403a36c8c9e1a07278de7a2fc1803dac7773",
+  "edge_type": "CHANGED",
+  "from_id": "chg:requirement-lineage-built",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:vocabulary"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:d6b80421a7d43bf4da4128505b18b772c07bd21c83df785fcee8da1cda514997",
+  "edge_type": "CHANGED",
+  "from_id": "chg:absorb-graph-algorithms",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:allocate"
+}

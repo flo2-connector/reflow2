@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:b830390dcb66ca697a09e96400dbfa1e98ee151bc0981462d3df6528a4be6c68",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:approving-a-node-never-erases-that-someone-authored-it",
+  "properties": {
+    "approved_at": "2026-09-14",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

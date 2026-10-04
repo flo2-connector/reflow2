@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:bdd6d053eb80ccbfac930e66a8d7dd98afbfb632b2c514db9c0e30dcb264d623",
+  "edge_type": "SCHEDULED_FOR",
+  "from_id": "cap:content-store",
+  "properties": {
+    "modality": "required",
+    "recorded_at": "2026-07-31"
+  },
+  "to_id": "rel:v0190"
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:45920379e163e46952e5d9eff928742f79df6b90563b18df61de7dfb01edc87d",
+  "node_id": "chg:derived-release-manifest",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "name": "BL-153: the release manifest becomes derivable, and the two files that carry it move with it"
+  }
+}

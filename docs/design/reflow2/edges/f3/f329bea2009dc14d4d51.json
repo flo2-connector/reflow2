@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:f12043d716223af443762a78140cd7b431e0471e5fcfb2781c3cbfd384183c42",
+  "edge_type": "REQUIRES_RESOURCE",
+  "from_id": "proj:reflow2",
+  "properties": {
+    "criticality": "required"
+  },
+  "to_id": "dep:dynograph-foundation"
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:2f5c7a71b16b38ce547a08bfaf3e61c8e2d92d75f69b4b98715a219c5d5b2da7",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:tools-operate",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:tools-operate"
+}

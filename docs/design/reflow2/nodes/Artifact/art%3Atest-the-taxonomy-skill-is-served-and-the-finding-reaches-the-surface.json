@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:1a03b96d9301d1e1334bbfd3a757850ba91704078bee58218ded298e556e77ed",
+  "node_id": "art:test-the-taxonomy-skill-is-served-and-the-finding-reaches-the-surface",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "test",
+    "description": "Driven through the JSON request shapes so a renamed or unreachable field fails here rather than in front of somebody.",
+    "location": "crates/reflow2-mcp/tests/the_taxonomy_skill_is_served_and_the_finding_reaches_the_surface.rs",
+    "name": "the_taxonomy_skill_is_served_and_the_finding_reaches_the_surface.rs — the three legs on the served surface: the skill is served and names its finding, add_component takes kind, encoding_undecided arrives through detect_gaps",
+    "status": "realized"
+  }
+}

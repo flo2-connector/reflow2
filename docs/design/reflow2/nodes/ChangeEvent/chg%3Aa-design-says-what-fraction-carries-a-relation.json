@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:de671e67ed2af1d381e27711973dd98126b4d5139e7ad09e2bb7ae65b7fa3683",
+  "node_id": "chg:a-design-says-what-fraction-carries-a-relation",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "name": "relation_coverage answers 'of my N things of kind X, how many carry relation R' for any declared kind and relation — and REFUSES an undeclared type rather than answering 0 of 0, which would read exactly like good news",
+    "subject": "system"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:0717d8a3b2c30838e73f9ce8034c63373d72703810761f2e8de562f0d777b6e2",
+  "node_id": "chg:accept-1ea01d3ea7e8701a",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "refactor",
+    "detected_at": "2026-08-08",
+    "name": "ContributorReq.id gains a serde alias for contributor_id. The surface still teaches one name and deny_unknown_fields is unchanged; no design meaning moved."
+  }
+}

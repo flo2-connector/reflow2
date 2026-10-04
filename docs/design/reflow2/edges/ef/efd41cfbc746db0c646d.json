@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:0f148f590aba9a3048aacc37835764d727099dbc3bcee08d0b9430563c180e47",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:test-shared-sessions",
+  "properties": {
+    "covers": "whole",
+    "note": "migrated 2026-09-22 from a REALIZES link_artifact drew in error"
+  },
+  "to_id": "ver:remote-sessions"
+}

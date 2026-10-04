@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:4992aabb8893e6c42fd071454ba8c1c60b430f0d3126097ca9272093b98e5acc",
+  "node_id": "ver:one-nodes-edges-are-read-back-as-edges",
+  "node_type": "Verification",
+  "properties": {
+    "description": "crates/reflow2-core/tests/one_nodes_edges_are_read_back_as_edges.rs, 10 tests, cargo test -p reflow2-core --no-default-features. Passing 2026-10-03.",
+    "kind": "verification",
+    "last_run_at": "2026-10-03",
+    "level": "unit",
+    "location": "crates/reflow2-core/tests/one_nodes_edges_are_read_back_as_edges.rs",
+    "method": "test",
+    "name": "The core edge reader returns every edge of a node in both directions with its other end, its own evidence and twin_of, filters without ever filtering the counts, refuses an unknown edge type, says which empty an empty list is, pages stably, names a dominant type, and fits the reply budget with each edge whole",
+    "status": "passing"
+  }
+}

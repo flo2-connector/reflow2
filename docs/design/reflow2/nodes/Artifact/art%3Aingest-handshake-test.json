@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:9099d7382fda3ef23b70892cf2e21f7cd2cfc549316897d392d420140bbf7ecf",
+  "node_id": "art:ingest-handshake-test",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "granularity": "atomic",
+    "location": "crates/reflow2-core/tests/ingest_handshake.rs",
+    "name": "tests/ingest_handshake.rs",
+    "status": "realized",
+    "volatility": "stable"
+  }
+}

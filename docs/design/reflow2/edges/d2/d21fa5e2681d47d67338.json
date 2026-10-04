@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:45003c3db04a2175fe664fb2d3fe08615f9355fcc1fa2d6f8eb4ba2a8015a402",
+  "edge_type": "GOVERNED_BY",
+  "from_id": "cap:latent-surface",
+  "properties": {
+    "note": "The latent surface is now also what every read-only SERVER serves where there is no store, on the transport it was given, and the decision says so."
+  },
+  "to_id": "dec:a-read-only-server-with-no-store-serves-the-latent-surface"
+}

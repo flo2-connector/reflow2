@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:60009728ded036eb17669ad9a268c14936b4a40af4875be979d6879ed7d766b0",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "req:scenarios-are-modelled",
+  "properties": {
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "cap:model-process"
+}

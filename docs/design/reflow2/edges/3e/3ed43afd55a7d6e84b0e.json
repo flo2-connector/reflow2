@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:1cacd4f93ff47a9ac201ea6cb10a4de2f21474167e1ca6da05e394dafd1ee801",
+  "edge_type": "CHANGED",
+  "from_id": "chg:brainstorm-is-a-kind",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "dec:exploratory-staging"
+}

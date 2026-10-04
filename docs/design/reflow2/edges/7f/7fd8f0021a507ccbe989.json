@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:a944acfddee30ad04ac8ec51b8484d52cf53fae93a16b0662171c41e32bf11eb",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-last-two-unallocated-capabilities-get-owners",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "cmp:manual-work"
+}

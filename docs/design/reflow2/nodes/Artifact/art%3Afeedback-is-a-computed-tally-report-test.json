@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:b57ead75765f097fbcb377e2e69a7ac1fd051d4fac84c9437abae72ff7da3022",
+  "node_id": "art:feedback-is-a-computed-tally-report-test",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "test",
+    "description": "The reading side, on a direct handler call: an in-memory design reports no ledger in words; a report closes its window and a peek does not; a named date reaches back past the marker and a malformed one is refused with its shape; never_called is measured against the live served surface.",
+    "location": "crates/reflow2-mcp/tests/feedback_is_a_computed_tally.rs",
+    "name": "feedback_is_a_computed_tally.rs",
+    "status": "realized"
+  }
+}

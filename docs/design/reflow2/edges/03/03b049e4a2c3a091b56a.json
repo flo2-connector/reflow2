@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:6b5317607867706dd8e9474c40c8b49119cffdd3dc882ae792867917647fe24f",
+  "edge_type": "SCHEDULED_FOR",
+  "from_id": "cap:satisfaction-schedule",
+  "properties": {
+    "modality": "required",
+    "recorded_at": "2026-07-31"
+  },
+  "to_id": "rel:v0190"
+}

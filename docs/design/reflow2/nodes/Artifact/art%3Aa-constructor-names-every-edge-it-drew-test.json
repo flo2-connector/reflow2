@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:6d944593893aa413a28d34a62516ad404bbce96744cf55a18a27a13789945c22",
+  "node_id": "art:a-constructor-names-every-edge-it-drew-test",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "description": "Diffs the export before and after each edge-drawing constructor and asserts the reply names exactly the new edges, subject first.",
+    "location": "crates/reflow2-mcp/tests/a_constructor_names_every_edge_it_drew.rs",
+    "name": "Test: every constructor names exactly the edges it drew",
+    "status": "realized"
+  }
+}

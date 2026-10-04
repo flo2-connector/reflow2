@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:67d3e9995a1f3d5d999be10bee814e87f6e40c07abc4e5eb4ab9ba80a173d5fc",
+  "edge_type": "CHANGED",
+  "from_id": "chg:accept-c0b9a9de29aa056f",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:dev-storyflow-feedback-2026-09-04"
+}

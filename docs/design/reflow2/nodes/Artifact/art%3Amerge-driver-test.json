@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:ee672127dd6e01ce937af032199dcf180d34524ea0db6b8c7cab42642a662fb7",
+  "node_id": "art:merge-driver-test",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "granularity": "atomic",
+    "location": "tools/test_merge_driver.py",
+    "name": "test_merge_driver.py",
+    "status": "realized",
+    "volatility": "stable"
+  }
+}

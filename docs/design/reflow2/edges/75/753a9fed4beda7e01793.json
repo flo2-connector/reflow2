@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:ac00484b2f634cfed66aff6adba2530fa8aba4ce2301a13c3eb5c7ff71c00f6b",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-two-reported-fields-get-their-parameters",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:vocabulary-reach"
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:061c11497afa2200d9324ae760a408cf7e7cf7dc6d7e25295254398e37342860",
+  "node_id": "chg:a-claim-may-be-a-query-20260808",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "scope_change",
+    "name": "Snapshot of the decision while it still reads OPEN / NOT YET DECIDED, before Anthony's ruling is written into it"
+  }
+}

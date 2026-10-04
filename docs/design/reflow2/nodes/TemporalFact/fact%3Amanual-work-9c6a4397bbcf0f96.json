@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:578443dbf922e779c4e3ed6f17c2bd138237eb5b8b0cf78b13d0085751457e1f",
+  "node_id": "fact:manual-work-9c6a4397bbcf0f96",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "manual_work",
+    "statement": "Wrote a script to find every ChangeEvent belonging to a release increment, by diffing node ids between the live design and the previous tag's committed export, then checking which of them carry no epoch pin. It found 16 of 16 unpinned.\n\nThis is hand-rolled on EVERY cut. The release annex records it as the only reliable method — \"diff ChangeEvent ids against the PREVIOUS TAG's export, not against memory\" — after a cut once pinned 6 and missed 16 more, and `changelog_view` returned 12 entries before the diff and 47 after while reporting `unmapped: []` both times. So the tool that would have caught it reported nothing missing.",
+    "subject_id": "proj:reflow2",
+    "valid_from": "2026-09-01",
+    "value": "{\"diagnosis\":\"tool_missing\",\"reflow2_tool\":null}"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:a5e6bc16cd2a4f63a5df61257a86548c47f29e3078b8b8080e11d30c3e422df8",
+  "edge_type": "GOVERNED_BY",
+  "from_id": "dec:idea-backlog-belongs-in-the-graph",
+  "properties": {
+    "note": "This open question is BOUND by the accepted rule rather than competing with it: dec:what-lives-where already says the design record should stop being prose you navigate and become a graph you query. The question here is only what that means mechanically for the backlog, and what vocabulary is missing before it can happen. Drawn deliberately — an idea node with only AUTHORED_BY is invisible to propagate_from and to the orphan detector (BL-209), which is how dec:export-once-per-pr came to be violated by the session that then re-announced it."
+  },
+  "to_id": "dec:what-lives-where"
+}

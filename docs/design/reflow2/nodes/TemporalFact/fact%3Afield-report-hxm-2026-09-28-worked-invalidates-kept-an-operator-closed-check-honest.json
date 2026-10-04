@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:c83ff62adac5a59b530b8078504174c5f551bfa399af40ffb991957cd8da542b",
+  "node_id": "fact:field-report-hxm-2026-09-28-worked-invalidates-kept-an-operator-closed-check-honest",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "observation",
+    "name": "WHAT WORKED (hxm_program, 2026-09-28, reflow2 0.73.0): when an operator closed a stale check on operations evidence, drawing INVALIDATES from the later fix, instead of flipping the check to passing, left it saying exactly what is true: the last run failed, a repair postdates it, a re-run is owed",
+    "source": "art:hxm-program-feedback-2026-09-28",
+    "statement": "Recorded so a regression is checkable. Reporter (the hxm_program hub, 2026-09-28): the owner closed an end-to-end check (a run reaching the facility's data service) on operations evidence (\"in operations, no issues\"). \"Drawing INVALIDATES from the 09-17 fix, instead of flipping the verdict to `passing`, left the check saying exactly what is true: its last run failed, a repair postdates it, and a re-run is owed. `loop_status` read it back that way. This is the right semantics, and it is rare.\"\nWhat must not regress: invalidates never moves a verdict, and loop_status and where-am-i read a failing check with a later repair as \"re-run owed\", not as failing and not as passing.\nTHE SAME REPORT NAMES THE COST OF THE SAME SEMANTICS (F-32, triaged separately): with no grade for operator-attested evidence, this check stays in loop_status's attention indefinitely, on a system everyone agrees works.",
+    "subject_id": "cap:a-repair-can-say-what-it-invalidated",
+    "valid_from": "2026-09-28"
+  }
+}

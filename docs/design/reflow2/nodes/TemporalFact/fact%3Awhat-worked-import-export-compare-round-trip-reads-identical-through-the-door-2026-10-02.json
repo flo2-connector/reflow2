@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:d4a623258e988284a011688792cfb1431bfe7b95675eeff11a6d180d0ba2b4f5",
+  "node_id": "fact:what-worked-import-export-compare-round-trip-reads-identical-through-the-door-2026-10-02",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "finding",
+    "name": "WHAT WORKED, re-measured on 0.77.0 (2026-10-02): the reporter's bulk pattern round-trips through --call. import_graph one document, export_graph, then compare_designs with base_path set to that export reads identical: true (110 nodes and 140 edges unchanged, 0.12 s). Do not regress it",
+    "source": "art:vscode-call-door-field-report-2026-10-02",
+    "statement": "From \"Working patterns that pay off\" in art:vscode-call-door-field-report-2026-10-02: \"Bulk work goes through one document ... import_graph it once, export_graph, then compare_designs with base_path set to the export: it should read identical.\" Measured once by triage agent D on a scratch design (0.77.0; outputs triage-D/out/import_hand110.stdout, export_110_first.stdout, compare_110.stdout).\n\n- import_graph {path: hand-110.json} into an empty store: exit 0; 110 nodes and 140 edges written, none skipped.\n- export_graph {path: exp110.json}: exit 0; content_hash sha256:99a78218…85f0.\n- compare_designs {base_path: exp110.json}: exit 0, 0.12 s. other \"live graph\", ancestry \"unknown\". summary.identical true, nodes_unchanged 110, edges_unchanged 140; every added, changed and removed count is 0.\n\nHOLDS. The round trip is the cheapest whole-design check a door agent has after a bulk write. It compares the live store with what it just exported, so it proves the export is faithful. It does not prove the import matched the source document; for that, compare against the source document itself.",
+    "subject_id": "cap:compare-designs",
+    "valid_from": "2026-10-02"
+  }
+}

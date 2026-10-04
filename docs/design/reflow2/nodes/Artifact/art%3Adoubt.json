@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:8030ff04a03992a1251c35bd7248f8ea308484e99dd734e2aa9242935f3af4b3",
+  "node_id": "art:doubt",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "description": "decisions_in_doubt: which settled decisions bad news now stands behind.",
+    "location": "crates/reflow2-core/src/doubt.rs",
+    "name": "doubt.rs",
+    "status": "realized"
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:3a8d4b64206a9f17c463fd90d432b7b65c9e77cd10419ba480e6290853140445",
+  "node_id": "ver:a-server-drains-before-it-stops",
+  "node_type": "Verification",
+  "properties": {
+    "description": "Ten tests.\n\ndrain.rs, seven, against a fake service over a real listener:\n- a request is work until its answer's body is done, and a GET never is;\n- an answer dropped unread stops counting;\n- waiting ends when the work does, or at the deadline;\n- a request in progress when the stop comes is answered in full (to the chunked body's closing chunk) and its connection closes after it;\n- work that outlasts the grace is cut off, the stop stays bounded, and the report says \"cut off\";\n- an open stream (a GET that never ends) does not make the stop wait out a 30 s grace;\n- durations read back the way the flags take them.\n\nregistry_http.rs, one: a stopping router closes every design, every store is released, and a request after that is Busy (503).\n\nEnd to end, two, over the real binary and a real SIGTERM:\n- a --http --export-to server written to inside the write-through's two-second quiet period exits 0, the export contains the write, stderr says \"stopped (SIGTERM)\" and \"every store released cleanly\", and the store reopens with the change in it;\n- a --registry-root server with two open designs exits 0 and names each design it closed.",
+    "findings": "All ten pass. The whole reflow2-mcp suite passes with them: 108 test binaries, 696 tests, 0 failures. So do the gates that drive the real binary through the shared, degraded and stale-seat paths: test_shared_sessions, test_export_to_reaches_the_daemon, test_shared_attach_from_another_folder, test_degraded_server, test_stale_seat, test_latent_promotion, test_nudge_path, stateless_seat_probe, smoke_mcp, toolsnap. Clippy -D warnings and fmt are clean.\n\nOBSERVED FAILING FIRST, on the released 0.72.0 binary: the same write-then-SIGTERM sequence exited 143 and the export did not contain the write.\n\nThe first run of the in-progress test failed on its own assertion, not on the behaviour: it expected the body to end in \"done\", but the answer is chunked and ends in the closing zero-length chunk. The assertion now reads the chunked form and also checks the connection closed.",
+    "kind": "verification",
+    "last_run_at": "2026-09-27",
+    "level": "integration",
+    "location": "crates/reflow2-mcp/tests/a_server_drains_before_it_stops.rs; crates/reflow2-mcp/src/drain.rs (tests); crates/reflow2-mcp/src/registry_http.rs (tests)",
+    "method": "test",
+    "name": "An HTTP server told to stop finishes work in progress within the grace, writes a waiting export, closes every store, and exits 0",
+    "status": "passing"
+  }
+}

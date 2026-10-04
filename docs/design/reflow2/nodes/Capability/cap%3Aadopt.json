@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:ca1380fc65b8546aee076939c0bc46096f14c583df60ca2e7f4a5afcb2567c66",
+  "node_id": "cap:adopt",
+  "node_type": "Capability",
+  "properties": {
+    "description": "Read requirements, functions and structure back out of a running system.",
+    "name": "Recover a design from an existing system",
+    "provenance": "authored",
+    "status": "realized",
+    "tier": "operational"
+  }
+}

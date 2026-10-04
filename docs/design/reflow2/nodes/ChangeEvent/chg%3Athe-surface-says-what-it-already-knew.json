@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:82e575e6bc6a7829b871338667e55a8030cc606f877f4cc88fcc1c05517bca0f",
+  "node_id": "chg:the-surface-says-what-it-already-knew",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "defect_fix",
+    "name": "Four withheld answers become spoken ones",
+    "rationale": "THE FOUR SHARE NO SUBSYSTEM AND ONE SHAPE: reflow2 HELD the information and the reply withheld it, so a session had to reconstruct by hand what was already computed. That is the same failure as a vacuous zero reading as a pass, one layer over — which is why they shipped together rather than as four patches.\n\nTwo of them were caught only because the reporter did work the tool should have done: the degrade cause was found by DIFFING TWO OF ITS OWN CALLS, and `unused_answers` would have named it on the first read. The lesson is that a flag which reports a failure without its reason moves the diagnosis onto the caller.\n\nThe `deferred` fix is deliberately NOT a silencing. Adding `deferred` to the `dropped`/`met` skip was the obvious repair and the wrong one: those two are FINISHED and this one is POSTPONED, parking is a decision that expires, and dropping the row would make live intent go quiet (`req:no-idea-goes-quiet`). The gap id is a hash of source + affected ids, so existing acknowledgements survive the rewording.",
+    "subject": "system",
+    "summary": "Four fixes from dev_storyflow's 2026-08-23 reports, each verified against the code before it was taken. (1) `constrains` and `governed_by` accept `note`, which both edge types declared and neither typed constructor could reach. (2) A `deferred` requirement is asked whether it is STILL parked, at reduced severity, instead of being asked \"is it covered, deferred, or dropped?\" — a question its own status answers; 8 of 28 gaps in that class were deferred. (3) `rephrase_degraded` gains `degrade_reason`, and `unused_answers` is surfaced from both prompt tools; the explaining LlmError was discarded by an `Err(_)` and `AgentBackend::unused_answers` had no caller anywhere in reflow2-mcp. (4) `graph_report_markdown` cuts gap titles at 20 words and prose at 40 and says so, the truncation `loop_status` already had. No schema change; stamp unmoved at 29 node / 63 edge types."
+  }
+}

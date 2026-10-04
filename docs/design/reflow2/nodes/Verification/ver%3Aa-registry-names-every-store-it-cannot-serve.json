@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:521fe51e52916bfe4e75c017f4d12d544cc2c84b11616da7dc3e88fbc095bf88",
+  "node_id": "ver:a-registry-names-every-store-it-cannot-serve",
+  "node_type": "Verification",
+  "properties": {
+    "description": "crates/reflow2-mcp/tests/a_registry_names_every_store_it_cannot_serve.rs, a real-binary test run in CI's workspace job. It pins the CLASS \"discovery never silently discards what it classified\" over three cases (identity missing, identity unreadable, store missing) and three surfaces (startup stderr, the listing on a bare GET /, the refusal for an unknown /g/<id>/). Beside it, a_session_names_its_design.rs pins the library side: Registry::unserved keeps each case with its kind, attach refuses a store-missing id as StoreMissing, and an EMPTY opted-in directory is not reported. Neither test lets anything open, mint or repair an identity.",
+    "findings": "OBSERVED FAILING FIRST against the unfixed code (main 01ce06c): all 4 tests failed at their first assertion, because startup named nothing. Measured directly on the same build, the store-missing case was worse than reported: the registry listed the id as a design, answered an initialize on /g/<id>/mcp with 200, and created a fresh empty `graph` store beside the old graph.id.json, serving the design as empty. With the fix all 4 pass, and the library test passes.",
+    "kind": "verification",
+    "last_run_at": "2026-09-28",
+    "level": "integration",
+    "location": "crates/reflow2-mcp/tests/a_registry_names_every_store_it_cannot_serve.rs",
+    "method": "test",
+    "name": "A registry names every store it found and cannot serve, and never serves an identity whose store is gone",
+    "status": "passing"
+  }
+}

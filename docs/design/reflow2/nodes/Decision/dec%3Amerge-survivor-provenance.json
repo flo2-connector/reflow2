@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:d561eb36dc90792943c7178e013b4197b61786d6014102bcc063d116648da4bb",
+  "node_id": "dec:merge-survivor-provenance",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "When HEAL merges DUPLICATES-asserted nodes, the survivor is picked by provenance rank (authored > planned > imported > reconciled > inferred > healed); node id breaks ties. Pre-provenance graphs are unchanged.",
+    "name": "Merge survivor is chosen by provenance, id breaks ties",
+    "rationale": "User decided option 2 for BL-29 (2026-07-20): provenance is the closest thing the graph has to 'who asserted this and how deliberately'. Refinement from the 2026-07-20 self-adopt live session: a node with UNSET provenance defaults to authored, which made two genesis stubs tie against authored+verified survivors and nearly win on alphabetical id — set provenance explicitly on both sides before proposing a merge, and consider ranking unset below authored in a future revision.",
+    "status": "accepted"
+  }
+}

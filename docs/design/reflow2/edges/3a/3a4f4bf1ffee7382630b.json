@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:c7493bc12219565da6d3cf3ac33fdf19e32d1bc0f387dfee8e04f3bce99c2181",
+  "edge_type": "VERIFIES",
+  "from_id": "ver:every-one-shot-mode-resolves-its-design-first",
+  "properties": {},
+  "to_id": "cap:a-build-can-call-one-tool-from-the-shell-and-read-the-reply-as-json"
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:de61ae01f61edc4f02fd9c2d86a2f0e3485970900efc479964f6111d31cfe78a",
+  "edge_type": "DOCUMENTS",
+  "from_id": "art:agent-instructions",
+  "properties": {
+    "doc_kind": "agent_instructions"
+  },
+  "to_id": "proj:reflow2"
+}

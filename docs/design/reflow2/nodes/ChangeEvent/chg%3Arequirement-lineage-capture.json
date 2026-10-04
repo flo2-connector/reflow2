@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:7c519a6619772371c2bc16f24e4a06144dee83aadfdf4a0383c603503079bf05",
+  "node_id": "chg:requirement-lineage-capture",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "name": "Requirement lineage (original/decomposed/derived), targeted feature change, and missing-sibling detection captured"
+  }
+}

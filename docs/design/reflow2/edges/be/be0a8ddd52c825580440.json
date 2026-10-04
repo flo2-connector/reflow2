@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:b0257f43c388f7652d0ba7196bf979e665824a545d0f2a2fd22bf6f9e0be898b",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:test-a-rule-tests-the-condition-its-message-names",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:test-a-rule-tests-the-condition-its-message-names"
+}

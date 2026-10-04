@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:d91ad8f8b641ccfb7628dd08ffe3ca1997d4282055a367b22a2456f7bc0c1586",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-saved-design-moves-to-the-item-layout-2026-10-03",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:4153e2b121b9d7c82e33bca52d8f9111465f6537d0ebcc5d6e8ccbecaf383232"
+  },
+  "to_id": "art:report-roll-withheld-test"
+}

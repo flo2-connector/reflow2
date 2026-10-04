@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:6c60cc40082bc72010ef4186e31f81dbd7e8ba1508f04a8a92238307c0edf6a0",
+  "node_id": "art:an-unknown-field-refusal-names-the-nearest-parameter-test",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "test",
+    "location": "crates/reflow2-mcp/tests/an_unknown_field_refusal_names_the_nearest_parameter.rs",
+    "name": "an_unknown_field_refusal_names_the_nearest_parameter.rs"
+  }
+}

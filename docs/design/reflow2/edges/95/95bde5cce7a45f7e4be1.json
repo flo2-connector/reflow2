@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:f6b03d3752cf59f7754259002616b2bf148a71e3a23b8ee23b738d7ae21231cc",
+  "edge_type": "HAS_TEMPORAL_FACT",
+  "from_id": "cmp:skills",
+  "properties": {},
+  "to_id": "fact:bl-154"
+}

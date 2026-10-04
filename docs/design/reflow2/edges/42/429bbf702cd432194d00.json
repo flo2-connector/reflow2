@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:7b288ca355760c324ad13637f36bc789ce2021d236bca01184952c9f9cc27f3d",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:test-a-registry-names-every-store-it-cannot-serve",
+  "properties": {
+    "covers": "whole",
+    "evidence": "This test file is the check. CI's workspace job runs it (cargo test --workspace), and it failed on all 4 cases before the fix."
+  },
+  "to_id": "ver:a-registry-names-every-store-it-cannot-serve"
+}

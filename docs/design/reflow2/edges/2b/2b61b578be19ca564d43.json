@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:9cffe37d74c14dc2365126a573bcfcc01fb8d3598017dc90264accd2258418ea",
+  "edge_type": "GOVERNED_BY",
+  "from_id": "cap:aggregate-gap-keying",
+  "properties": {},
+  "to_id": "dec:aggregate-gap-keyed-on-rule"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:abf2163434e043446a903f8c8f840fc1e411900215c41cfb2cb01afc4e5a8fc2",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-contribution-may-be-negative-and-a-refusal-says-which-fields-are-missing",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "art:a-missing-argument-names-the-tool-and-what-it-wants-test"
+}

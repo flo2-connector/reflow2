@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:e04a07571db9cbcaefef3e136c411bc6af734588e665237a1c71e859baf375d8",
+  "node_id": "chg:baseline-a22fea7a0b5fac76",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "baseline_established",
+    "name": "new test; measured in the feat/remote-client worktree",
+    "subject": "record"
+  }
+}

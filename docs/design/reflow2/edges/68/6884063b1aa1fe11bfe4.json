@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:f8cca8f60c8fa1215169f6294c2041ad50c2bf0d8f29942a58104367af2f2b05",
+  "edge_type": "GOVERNED_BY",
+  "from_id": "cap:a-repair-can-say-what-it-invalidated",
+  "properties": {
+    "note": "The capability exists in this shape — a claim with a reader, not an inferred bucket — because this decision chose that shape on Anthony's word."
+  },
+  "to_id": "dec:a-stale-finding-is-closed-by-a-claim-not-a-computation"
+}

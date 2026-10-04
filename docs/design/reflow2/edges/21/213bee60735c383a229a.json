@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:500be4fd62e2a06d9a7a416e391a85f1eef283d5d1574ad140433a88a3bbc99c",
+  "edge_type": "REALIZES",
+  "from_id": "art:heal",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:a-report-nobody-recorded-reading-is-reported"
+}

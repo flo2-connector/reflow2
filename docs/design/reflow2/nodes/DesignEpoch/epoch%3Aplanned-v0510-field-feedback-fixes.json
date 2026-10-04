@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:d61eb839267a1f402074e5fc29594b29d1b53b0e923c22fe5d4ee72b52cc5f6b",
+  "node_id": "epoch:planned-v0510-field-feedback-fixes",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "epoch_type": "release_cut",
+    "name": "v0.51.0 cut — eight field-feedback fixes delivered as planned: null unsets, a first baseline read as one, the check-beside-capability pair, `test` artifacts, a stale server refuses to export, facts carry a name, get_node takes node_id, an unknown field hints at a stale client (planned 2026-09-07 as seq 398, arrived the same day)",
+    "sequence": 398,
+    "status": "arrived"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:c11ac0cc8037ca64615f18df73fcb9525624f3f0224dd8fb6d62484b2fe7e0b3",
+  "node_id": "fact:bl-217",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "defect",
+    "statement": "[BL-217] CORRECTED, AND THE CORRECTION IS THE FINDING: the export-lineage gate was RIGHT — it enforces dec:export-once-per-pr, accepted since 2026-08-01, and never NAMES it",
+    "subject_id": "cmp:export",
+    "value": "{\"evidence\": \"This row originally claimed the guard had a blind spot. That was wrong. Tripped on PR #87 by a second exporting commit; the chain was internally sound, so the agent concluded the guard was broken and filed it as such. dec:export-once-per-pr says exactly: *\\\"a branch may hold as many commits as it likes, exactly ONE of them may write docs/design/reflow2.json\\\"*. THIRD recorded rediscovery of that decision \\u2014 dec:idea-backlog-belongs-in-the-graph had already called it *\\\"accepted, invisible, violated and then re-announced as new\\\"*, and it happened again in the session that was asked to fix the backlog. The real defect is that the failure message names two causes which EXCLUDE the actual one, both of which invite \\\"restore the file and export once\\\" \\u2014 already done, and cannot help. The remedy it never states is fold-to-one-exporting-commit. The enforcement half is already filed as BL-156 (catch it on the pull_request trigger via git log --name-only origin/main..HEAD, where it is free, instead of after merge on main). NOW IN THE GRAPH \\u2014 this row is a POINTER, not the record: fact:defect-lineage-message-omits-its-own-decision (TemporalFact, fact_type: defect, basis: measured, VALID_FROM epoch:defects-in-the-graph, HAS_TEMPORAL_FACT from dec:export-once-per-pr).\", \"origin\": \"Migrated from docs/backlog.md BL-217 on 2026-08-07 (epoch:backlog-retired). Size estimate carried from the row: S.\"}"
+  }
+}

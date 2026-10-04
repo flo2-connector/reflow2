@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:8afbe01aff0ca07d46b888fb32ffc6999d72eb5680796994c4444ac88f35dcff",
+  "node_id": "dec:idea-a-refusal-for-an-unknown-field-should-name-the-nearest-parameter-and-never-guess-that-the-client-is-stale",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "RECORDED AS BRAINSTORMING, NOT AS A PROPOSAL (the field-feedback rule: every idea gets the brainstorm skill). From flo2 F1 (2026-09-18), where the refusal's staleness hint produced a wrong field report. OPTIONS, none chosen: (a) nearest-name suggestion on unknown-field refusals (the steps validator already does this for step names) and drop the staleness sentence unless the server can know it; (b) `#[serde(alias = \"node_id\")]` on every constructor's `id`, and `parent_id` on `contains` — the accepted naming decision extended to the constructor/reader seam; (c) the refusal includes the corrected call, as the reporter suggested — the server knows the legal set but not the caller's intent, so this over-promises; (d) leave it: the reporter praised the refusal text. COUNTER to (b): an alias for a name that never existed encodes a guess as vocabulary; the rank-first ratchet treats words as the interface, and two names for one field is two doors.",
+    "kind": "exploratory",
+    "name": "OPEN — when a call names a field that no version ever served, should the refusal say 'nearest is `id`' instead of suggesting a stale client — and should constructors accept `node_id` as an alias of `id`, the way relation tools already accept both families?",
+    "rationale": "Recorded from the field report after the measurement overturned the report's own cause.",
+    "status": "accepted"
+  }
+}

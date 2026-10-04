@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:55f9b7a39ef7fb81dccea187569e85579a5dc1b95cfe9252a3b6f4f2210d637e",
+  "node_id": "decision:ack:d39c8c716229303c",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Accepted the gap gap:d39c8c716229303c.",
+    "name": "Reviewed: gap:d39c8c716229303c",
+    "rationale": "Standing disposition for planned-but-unbuilt capabilities. The check divides the way the capability does, which is the point of it: the three STRUCTURAL criteria (traceable, has-a-check, recorded-contradiction) get ordinary deterministic tests with fixtures, and those are the ones worth building first. The four SEMANTIC criteria cannot be unit-tested for correctness — a test asserting \"this vague requirement was flagged\" only proves the fixture was flagged — so what must be pinned there is the GUARD: a quality complaint never edits a requirement, never changes its status, and is surfaced as a question rather than a verdict. Whether the semantic judgements are any good is a trials question, and the honest place to answer it is a real corpus with a human disagreeing.",
+    "status": "accepted"
+  }
+}

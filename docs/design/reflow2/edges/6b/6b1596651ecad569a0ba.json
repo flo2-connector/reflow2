@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:8934fc5f116287aa9120b3bb4a303adc879d593875aafa347db63750cef2d10e",
+  "edge_type": "REALIZES",
+  "from_id": "art:a-stored-twin-is-kept-by-the-store-test",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:a-relation-stored-twice-is-kept-in-step-by-the-store"
+}

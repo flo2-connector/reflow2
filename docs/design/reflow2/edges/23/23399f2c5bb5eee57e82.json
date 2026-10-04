@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:fd596d237fff002ee8ae6a5b05899a346c1837a2e859892d4ecff6a3661988bf",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:a-cut-moves-every-version-claim-together",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:packaging"
+}

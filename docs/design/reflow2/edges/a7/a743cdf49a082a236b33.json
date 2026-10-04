@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:e878a5402773bb9965f36c6de4145029653cd05a0639ecb4ec4921b07f948230",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:the-isolation-proof-runs-against-the-image-that-ships",
+  "properties": {
+    "authored_at": "2026-09-13",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

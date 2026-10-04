@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:008d262e99d9ba8c3bde02ab376957cf28a6b24974ddb8c47f698859e4d6efaa",
+  "node_id": "chg:accept-22c390d18e06606a",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "refactor",
+    "detected_at": "2026-07-26",
+    "name": "cargo fmt reordered one `use` item (StreamableHttpService / StreamableHttpServerConfig) after the baseline was accepted. The design change to this file is already on the record as chg:remote-sessions; this delta is formatting only and carries no design meaning. Caught by the gate rather than noticed — accepting the baseline before running fmt is the sequencing mistake, and the gate is what makes it cost a minute instead of shipping a false checksum."
+  }
+}

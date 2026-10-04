@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:cda0cf4769fbc61e8fe6fefc3300fcb19a45273dec3777a057b9e7564483fd9d",
+  "node_id": "decision:ack:7f72f4a7ae00b8de",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Accepted the gap gap:7f72f4a7ae00b8de.",
+    "name": "Reviewed: gap:7f72f4a7ae00b8de",
+    "rationale": "The design already settled this and the settlement is IN the node: `medium` is deliberately `unspecified` because the enum (REST / gRPC / event / graphql / cli / library / data / mechanical / electrical / human) has NO VALUE for MCP over streamable HTTP. REST is positively wrong — this is a SINGLE endpoint carrying JSON-RPC 2.0, not a resource tree. Adding `json_rpc` is the open option, declined for now because enum values are not counted by the version stamp, so a new one is a compatibility event nothing can detect.\n\nACKNOWLEDGED 2026-08-23 AFTER I GOT IT WRONG. Working this gap I set `medium: REST` to close it — overwriting a documented decision with the value that decision names as incorrect. Reverted within the minute. The cost of leaving it unspecified is real and stated on the node: `medium` is a pairing-key axis and `unspecified` never reads as agreement, so this boundary cannot pair with anything (including flo2's `ifc:reflow2-design-api`, which says REST) until the vocabulary question is settled. That is a true report of the situation, and a wrong value would have destroyed it to make a number go down.",
+    "status": "accepted"
+  }
+}

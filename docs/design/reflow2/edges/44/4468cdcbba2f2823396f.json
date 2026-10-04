@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:0008ae9ee168cb7cd7b461a0e028588b02aed8e5a3dc429da62639c188037a05",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-question-is-put-to-a-person-and-records-who-answered",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:skills-and-tools"
+}

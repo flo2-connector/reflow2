@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:67a7e2b336a36e5f6c15fdcd701af351ea41ba9426c82b449b6f4b58150f65a2",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:compare-alternatives",
+  "properties": {},
+  "to_id": "req:human-decides"
+}

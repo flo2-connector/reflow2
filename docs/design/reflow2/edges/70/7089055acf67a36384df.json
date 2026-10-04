@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:f7fe8c7a5a25765dba379ac16c93b3da6fd8611d7419e06e33111c22b25e6021",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-name-is-not-a-report",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "ver:the-harness-registry-is-confirmed-by-the-harnesses"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:3a81a3e4128076f59c5375e6373d0188ba019826f6937c572f59d68819c8fd9d",
+  "edge_type": "REALIZES",
+  "from_id": "art:kit-instructions",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:the-served-text-applies-the-readers-lens-without-writing-it-into-the-design"
+}

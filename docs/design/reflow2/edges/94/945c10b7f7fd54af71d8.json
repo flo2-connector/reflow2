@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:7fef5f34e1f5ff1078dcf946753b1fb1b5de983d5e22e7211d42bfb10414d165",
+  "edge_type": "INVALIDATES",
+  "from_id": "chg:reflow2-read-and-reflow2-write-split-the-door-by-what-a-call-does-2026-10-03",
+  "properties": {
+    "at": "2026-10-03",
+    "note": "Re-measured on the branch binary.\n- The command text now carries the split: `reflow2 read add_requirement` is refused by name before anything is opened (exit 1).\n- The read set is served on the command line: `reflow2 read --list` gives 78 read and 117 write of 195, with export_graph and export_surface read only without `path`.\n- Every --help flag typed after `read` is refused or harmless.\nOf the finding's other parts: `--read-only` with `--call` was already honoured (item 1). export_graph and export_surface are still annotated read-only and still write a file given `path`, and `read` refuses them with one. So `^reflow2 read ` now separates door reads from writes, which is what the finding said one rule could not do."
+  },
+  "to_id": "fact:root-cause-one-regex-cannot-separate-door-reads-because-the-read-set-is-not-in-the-command-and-not-served-2026-10-02"
+}

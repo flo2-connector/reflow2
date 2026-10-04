@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:9d5ee814763b295e19a7cd98a4e2ae3eb9d8f9fdedbb2de15a838910d364a86d",
+  "node_id": "chg:the-registry-gets-its-transport",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "name": "Registry::discover gets a transport — /g/&lt;graph_id&gt;/ routes one process to many designs, and the two flo2 items blocked on it are both taken",
+    "subject": "system"
+  }
+}

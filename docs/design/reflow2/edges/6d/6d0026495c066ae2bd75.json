@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:3254379d1567c8c95ddc23b0da3936ef81133ac19546ca63c2bd02d85d938b6a",
+  "edge_type": "REALIZES",
+  "from_id": "art:agent-instructions",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked",
+    "note": "the launcher section's step-9 paragraph"
+  },
+  "to_id": "cap:a-cut-ends-with-the-served-binary-matching-the-tag"
+}

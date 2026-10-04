@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:c16085bf55c11c9ae5e24ca469468ec8c39e73255c6c12212db0df4e7e5e93e4",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:delivery-counts-work-that-is-not-code",
+  "properties": {
+    "approved_at": "2026-08-23",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

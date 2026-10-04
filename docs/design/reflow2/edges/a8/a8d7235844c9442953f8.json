@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:e097d3a40433c69ca4ea8b060dbea9f384c7d5155538ac45f08a54a458591c76",
+  "edge_type": "EVOLVES_INTO",
+  "from_id": "dec:idea-slash-feedback-emits-a-computed-tally-not-an-agents-recollection",
+  "properties": {
+    "evidence": "Anthony promoted the idea to intent on 2026-09-12 (\"I want to continue with implementing /feedback\"); the requirement is the idea's lean (A + B, unit = the project since the last report) stated as what is owed."
+  },
+  "to_id": "req:feedback-on-reflow2-is-computed-from-a-record-the-server-kept"
+}

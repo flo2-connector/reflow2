@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:719f3adde69c1f9d61dc811a225e5190b1dc320219269f32d8969f6b5d1953a3",
+  "node_id": "epoch:the-absorption",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "epoch_type": "revision",
+    "name": "The foundation absorption — reflow2 takes what it needs from dynograph-foundation and stops depending on it (2026-08-24)",
+    "sequence": 182,
+    "status": "arrived"
+  }
+}

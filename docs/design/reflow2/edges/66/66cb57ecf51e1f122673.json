@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:d01ef4f0af2d6155e1a20816bd5dfe8b9a69c91a428b738cc2f37dddc06508bf",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:a-published-surface-with-no-promise-is-asked-about",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:detect"
+}

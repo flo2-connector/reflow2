@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:6563968006746e6c572b96072f61c2ef203681da3503fcf869c1dafd08ad6aa3",
+  "node_id": "snap:epoch:linking-repos:dep:dynograph-foundation",
+  "node_type": "Snapshot",
+  "properties": {
+    "edges": "[{\"direction\":\"in\",\"edge_type\":\"REQUIRES_RESOURCE\",\"other_type\":\"Project\",\"other_id\":\"proj:reflow2\",\"properties\":{\"criticality\":\"required\"}}]",
+    "state": "{\"components\":\"dynograph-core,dynograph-storage,dynograph-graph,dynograph-resolution,dynograph-vector\",\"declared_in\":\"Cargo.toml\",\"description\":\"Derived from reflow2's own Cargo.toml, not hand-written. Bumped v0.11.0 -> v0.12.0 on 2026-07-28 for a stated reason rather than as housekeeping (AGENTS.md forbids the latter): v0.12.0 closes a type leak reflow2 was structurally exposed to — `search_fulltext` returned `dynograph_text::TextHit`, from a crate reflow2 never names and reaches only through an optional feature — and it makes the `rocksdb` and `fulltext` feature NAMES a committed contract upstream, which is exactly the reliance this declaration records. Verified before the tag existed by building this consumer against the provider's unreleased tree. MIGRATION CHECKED, not assumed: `keys.rs` and `backend.rs` are untouched between the tags, so a graph written by v0.11.0 reads identically.\",\"features\":\"rocksdb,fulltext\",\"name\":\"dynograph-foundation\",\"provider\":\"https://github.com/sligara7/dynograph-foundation.git\",\"resource_type\":\"design-dependency\",\"version\":\"v0.12.0\"}",
+    "target_id": "dep:dynograph-foundation",
+    "target_type": "Resource"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:c92cbf598f62e90d26ee72ffdbe38286545f2777d50e9d7d7da42fc5ca5749f8",
+  "node_id": "decision:ack:39bc6f37b50dc9c3",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Accepted the gap gap:39bc6f37b50dc9c3.",
+    "name": "Reviewed: gap:39bc6f37b50dc9c3",
+    "rationale": "Standing disposition, re-recorded: reflow2's validation evidence is the trial record in docs/trials/ and the field reports from real use (the 2026-07-25 fleet outage being the sharpest example — validation by a user losing their design brain, not by a test). Those are not modelled as validation-kind Verifications, so the detector is right that the graph cannot see them. NOTE THE REAL FINDING BEHIND THE CHURN: this gap's id is derived from the affected set, so every new verified capability mints a NEW gap id and the acknowledgement does not carry over — it has been re-acknowledged at 48 and 49 capabilities. An acknowledgement that expires because the design grew is expiring for the wrong reason; whether a set-scoped gap should be identified by its RULE rather than its members is a real question about the ack mechanism.",
+    "status": "accepted"
+  }
+}

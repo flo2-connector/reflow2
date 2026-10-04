@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:01470441f51f979c05f6119131985578036d09767720275a040c4899694cf627",
+  "edge_type": "REALIZES",
+  "from_id": "art:dependency-currency-checker",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:dependency-currency-is-checked-monthly-and-before-every-cut"
+}

@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:0e73442c53a673241267dd2c2988cb387048508da802aa9cf437fb0005170e41",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-saved-design-moves-to-the-item-layout-2026-10-03",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:ff87c0ba7ffaa00dc27f744b7102b10f825874887e76effa131190c30f848d67",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:smoke-mcp"
+}

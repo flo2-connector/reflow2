@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:c2e8f0aec23302343db90b831fce158f1ff3e2fe44cfb6b34aa8a0417fa4e780",
+  "node_id": "ver:report",
+  "node_type": "Verification",
+  "properties": {
+    "kind": "verification",
+    "level": "integration",
+    "method": "test",
+    "name": "report.rs",
+    "status": "passing"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:5159a77ed4202b83375f23ddac1b2b33d543bd8872323527b444d2aafba89a01",
+  "node_id": "epoch:linking-repos",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "epoch_type": "revision",
+    "name": "Linking repos: a design analysed against its dependency's design, and an interface that publishes a complete contract (2026-07-27, post-v0.16.0)",
+    "sequence": 200,
+    "status": "arrived"
+  }
+}

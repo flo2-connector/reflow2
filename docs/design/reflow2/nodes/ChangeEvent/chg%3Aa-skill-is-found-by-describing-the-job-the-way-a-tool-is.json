@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:4f5a5f45613542eca5a544948a881b2cfec69bb6c455d6a3642276d829a45468",
+  "node_id": "chg:a-skill-is-found-by-describing-the-job-the-way-a-tool-is",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "detected_at": "2026-09-19",
+    "name": "A skill is found by describing the job, the way a tool is: find_skills, its corpus and its ratchet",
+    "rationale": "flo2 F8 and the owner's own line. Anthony 2026-09-19: 'work your way through them one by one'. Built as a separate finder (option a) so the tools' rank ratchet is untouched; reuses the tools' scorer so the two catalogues share one notion of a match.",
+    "summary": "skills_tools.rs: find_skills; service.rs: FindSkillsReq; skills.rs: catalogue line names it; tools/loop_nudge.py: session-start text names it; find_tools corpus gains its query; new corpus + baseline fixtures; new test file; CHANGELOG."
+  }
+}

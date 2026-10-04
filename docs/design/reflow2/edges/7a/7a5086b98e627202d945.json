@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:7160f75a9f9b1d24195e33aac8f29a3420d2257a1fa85e2c2628dbb801b10bfe",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:a-quantity-that-crosses-a-published-boundary-declares-its-unit-and-the-seam-check-compares-them",
+  "properties": {
+    "approved_at": "2026-09-13",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:832b2f2887a5fd7e8810561de671ee8af37dcacdbe1e811f185e1af63589c53c",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0670",
+  "properties": {
+    "as_checksum": "sha256:51cafb7d1de27950e7f05f9500c61e36a12e254b37ac350b0cade83294b56f32"
+  },
+  "to_id": "art:test-opencode-plugin"
+}

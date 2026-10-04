@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:85de5219498209c2501559306d0932e2200395688936ad7437382dc62d567ed9",
+  "node_id": "chg:accept-7b9e28bb348b04bc",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "documentation",
+    "detected_at": "2026-10-03",
+    "name": "The v0.78.0 cut: reflow2.toml's version 0.77.0 → 0.78.0, moved with Cargo.toml's workspace version, Cargo.lock and AGENTS.md's two shipping-version claims. Accepted before the manifest is frozen, as flow:release-cut step 1 orders.",
+    "subject": "system"
+  }
+}

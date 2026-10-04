@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:8da2dfaafe8e0a0ec3389c46888e51b4443cc088ff4908902a926137bbfaa692",
+  "edge_type": "CONTRADICTS",
+  "from_id": "rule:reflow2-is-one-of-three-parts-and-does-not-compete-with-the-others",
+  "properties": {
+    "alignment": "supporting",
+    "confidence": 1.0,
+    "evidence": "CORROBORATION — that requirement is the LLM-absorbing-the-HUMAN boundary already built, before the partnership framing existed to name it. Its presence is part of the argument that this rule describes something reflow2 was already doing rather than a new direction bolted on."
+  },
+  "to_id": "req:the-agent-never-authors-what-requires-accountable-sign-off"
+}

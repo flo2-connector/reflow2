@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:2bbfd1a81948f8277a04290fdd3d2a134cbdc4a8b44faf703968204af89c1c7a",
+  "edge_type": "GOVERNED_BY",
+  "from_id": "cap:ownership-is-durable",
+  "properties": {
+    "note": "The decision that built it, and that records what was deliberately NOT built: the ownership-orphan detector."
+  },
+  "to_id": "dec:owned-by-is-the-third-who-axis"
+}

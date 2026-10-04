@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:1be8aa91a138e46def9d3c0ab8a6d105f1806a71a21b2d797628994dacc0ea7c",
+  "node_id": "req:an-analysis-a-consumer-needs-is-served-named-and-gated",
+  "node_type": "Requirement",
+  "properties": {
+    "lineage": "original",
+    "name": "An analysis a consumer needs exists for them only when it is served, named and gated — a script in reflow2's own checkout is none of those",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "A capability reflow2 claims to offer \"on any project\" is offered to a consumer only when all three consumer legs are present: it is SERVED (an MCP tool, so `find_tools` can return it and the loop can name it), NAMED (a skill says when to reach for it, in the user's words), and GATED (a check fails the build when a capability claiming reach beyond this repo is realized only by something a consumer never receives). Code generalised in this checkout and left as a script under tools/ satisfies none of them, and this checkout cannot feel that, because it has the script.\n\nThe instance: tools/wall_check.py, built 2026-08-20, generalised 2026-08-21, re-written by hand on a consumer project 2026-09-14 and filed as \"unknown\". The class: fact:the-commands-cover-nine-of-twenty-skills-and-the-checkout-cannot-feel-it, one month earlier, the same blind spot in the environment.\n\nAnthony's word, 2026-09-14: \"I'd like to fix this for all 4.\" The wall check is the first; the other three source-reading analyses follow under dec:reflow2-serves-source-reading-analyses-that-report-and-never-write once their questions are defined in the user's terms.",
+    "status": "accepted"
+  }
+}

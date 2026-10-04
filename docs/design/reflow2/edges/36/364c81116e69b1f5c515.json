@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:b89198a5dae7d323d086e1b0f3bea282630e6e002e695ae1ab6b49ad50be8ee6",
+  "edge_type": "REALIZES",
+  "from_id": "art:test-discontinued-is-read",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:detect"
+}

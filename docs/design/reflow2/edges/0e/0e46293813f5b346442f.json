@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:7d95e863e05b1ded7b078d5298d7a4ee1281d27d7722f92d13a52f698afe056d",
+  "edge_type": "GOVERNED_BY",
+  "from_id": "req:pr-is-a-delta",
+  "properties": {
+    "note": "Reading a change as a delta presupposes changes arrive as pull requests"
+  },
+  "to_id": "rule:nothing-lands-on-main-directly"
+}

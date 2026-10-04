@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:6a0fb3676aad20426c7ba66655d7f3a9261442257977528e8b7582c7f048205b",
+  "node_id": "decision:ack:d0098626ac85ac53",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Accepted the gap gap:d0098626ac85ac53.",
+    "name": "Reviewed: gap:d0098626ac85ac53",
+    "rationale": "RULED 2026-09-15 (Anthony): UNCHANGED, DELIBERATELY. heal.rs merge_survivor still ranks by provenance and breaks a tie by id — read again today — and the finding's own record says why that stands: ranking priority above status (or the reverse) asserts a policy about what matters more, which dec:readiness-is-an-observation-the-threshold-is-the-judgement says reflow2 must not default. What was done instead is disclosure: a merge proposal names what it would destroy and says when the alphabet chose the victim, and any deletion requires human review. The four listed repairs (two checksum acceptances, the instruction-surface routing, the wall check) do not touch survivor selection. The scoring half — weight similarity by shared referents rather than prose — is still open and is a separate piece of work. Acknowledged as a deliberate state.",
+    "status": "accepted"
+  }
+}

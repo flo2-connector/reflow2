@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:87d9d50e0eab5f24d02e7b47fbab115c4264d9fb1d7f906543909e9e9db647f7",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-shareable-record-is-findable",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:test-init"
+}

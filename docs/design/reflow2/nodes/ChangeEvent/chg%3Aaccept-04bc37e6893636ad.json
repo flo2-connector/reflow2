@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:10ea4a773a3c30f633e3cccd50b996b0fc90772fc83ed72b1c0265aa22bc6480",
+  "node_id": "chg:accept-04bc37e6893636ad",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "refactor",
+    "detected_at": "2026-09-16",
+    "name": "The merged document's struct literal sets taken_at: None; no behaviour moved.",
+    "subject": "system"
+  }
+}

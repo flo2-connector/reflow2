@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:e73db04a5d0e920dcfb58c3d53c62fb66e282725f990cd2f591f94a8cc2e954e",
+  "edge_type": "CHANGED",
+  "from_id": "chg:every-gate-runs-the-binary-it-is-told-2026-10-03",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:test-degraded-server"
+}

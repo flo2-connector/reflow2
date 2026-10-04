@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:2db35af78dbac0f29968f3a35f7609133aec8ef3bb18465ef4df6e0261102548",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:an-acknowledgement-says-whose-judgement-it-was",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:detect"
+}

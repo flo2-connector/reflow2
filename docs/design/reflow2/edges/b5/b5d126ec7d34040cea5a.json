@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:1665c515689e5682c4443f0af54575bbdb608b71af7a5549cbcd52b8225be7e7",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:every-tool-carries-the-users-phrasing-and-the-corpus-is-the-test",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:service"
+}

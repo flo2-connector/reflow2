@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:106dc215c244c5030bb2e73def2eecf8649bfe2c4fc1b37dfeb76b1e27ea4c2c",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:a-repair-suggestion-never-proposes-fabrication",
+  "properties": {
+    "authored_at": "2026-08-09",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:storyflow-storybug-boss"
+}

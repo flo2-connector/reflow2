@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:8e8cde49497ac2b5c63b47a690a45f972663e85eb70ba5218a780345e6a81c66",
+  "node_id": "chg:rule-narrowed-to-the-globals-clause",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "scope_change",
+    "name": "The two-clause rule narrows to clause 1 and becomes enforced; clause 2 leaves as its own advisory rule"
+  }
+}

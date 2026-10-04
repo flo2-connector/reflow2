@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:6bcf4d6e7e2bd63397bca62b38662651da8e8f3b337410dcfd0562ec4d97113d",
+  "edge_type": "REALIZES",
+  "from_id": "art:measure-open-design-memory",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:graph-registry"
+}

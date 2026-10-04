@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:259428fed5e2fee9ec24d4b2f70e33de210969e41cad26e0ca1aa76930333712",
+  "node_id": "snap:epoch:preserved-on-write:cap:edges-are-selected-by-their-declared-reading:r2",
+  "node_type": "Snapshot",
+  "properties": {
+    "edges": "[{\"direction\":\"out\",\"edge_type\":\"ALLOCATED_TO\",\"other_type\":\"Component\",\"other_id\":\"cmp:vocabulary\",\"properties\":{\"weight_basis\":\"estimated\"}},{\"direction\":\"out\",\"edge_type\":\"SATISFIES\",\"other_type\":\"Requirement\",\"other_id\":\"req:every-edge-type-declares-what-it-means\",\"properties\":{}}]",
+    "state": "{\"description\":\"Given a primitive (and optionally a sign or sub-kind), the vocabulary returns the edge types whose declared reading matches, sorted, so a projection or rule can be written by MEANING. The first reader to move onto it is the owner's call: the reasoning projection that dec:a-projection-is-named-and-the-battery-runs-over-it (2026-08-14) chose as the first slice was never built and carries three open sub-questions (where it is served, whether a projection is a node or a list, which centrality); and the six existing private lists (structural_rule, is_traceability_edge, RISK_EDGES, COMMITMENT_EDGES, ARTIFACT_BOOKKEEPING and the five projection lists) each encode a purpose-specific judgement that a primitive alone may not reproduce, so moving one needs a stated rule, not a lookup.\\n\\nSEQUENCED ON ANTHONY'S WORD, 2026-09-28: option (c) — the first PR (feat/every-edge-type-declares-what-it-means) ships the declared readings, the one-line and full serving, and edge_types_read_as with its test, and moves NO existing rule onto them. Which reader goes first (the unbuilt reasoning projection, or one of the six private lists under a stated rule) is left for a follow-up PR, after he has reviewed the 65 classified readings.\",\"name\":\"A rule or projection can select edge types by their declared reading instead of by a private list of names\",\"provenance\":\"authored\",\"status\":\"planned\"}",
+    "target_id": "cap:edges-are-selected-by-their-declared-reading",
+    "target_type": "Capability"
+  }
+}

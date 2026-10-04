@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:9dddb662f085275e32694ec6c7f8afa514e179159168a0cb5d87181725ec7fd6",
+  "edge_type": "EVOLVES_INTO",
+  "from_id": "dec:idea-the-instruction-layer-runs-ahead-of-the-typed-tool-layer",
+  "properties": {
+    "evidence": "The 2026-08-31 grouping asked whether reflow2's PROSE runs ahead of its TYPED TOOLS and was rejected as four unrelated causes sharing a symptom. This is the same investigation one step on and a different claim — not that the prose promises tools that do not exist, but that the prose describes behaviour that is not what the code does. Drawn from the older node to this one because that rejection is the direct ancestor of this question and its counter-argument applies here too."
+  },
+  "to_id": "dec:idea-the-load-bearing-prose-is-unchecked-against-the-code-it-describes"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:3b6bb203684b1b445fd6cef2b146f9385c67eec6aa72c065abe6e188e4e1817a",
+  "edge_type": "REALIZES",
+  "from_id": "art:where-am-i-skill",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:the-loop-closure-reading"
+}

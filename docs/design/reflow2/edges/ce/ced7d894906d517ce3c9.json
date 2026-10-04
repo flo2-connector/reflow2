@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:2bda50ff3b857bdd48b653d30f2fba27acf40c1d06697fedeeb5647556e01d5a",
+  "edge_type": "CHANGED",
+  "from_id": "chg:four-root-causes-from-two-field-reports-are-fixed-at-the-cause",
+  "properties": {
+    "accepted_baseline": false
+  },
+  "to_id": "art:test-a-registered-artifact-asserts-nothing-it-was-not-told"
+}

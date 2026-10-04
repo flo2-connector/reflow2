@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:d7a39460dd7a4c26fd674edcd1fb4aa16cd561e76d13565c78fe69c1a61683aa",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "decision:ack:35dde67d212688fb",
+  "properties": {
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

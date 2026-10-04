@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:51d7a2dba837023ebd81014ef37b9a35d6cc839dfdbf4432210bc20ab33e6d68",
+  "edge_type": "SPECIFIES",
+  "from_id": "art:schema-inference",
+  "properties": {
+    "format": "json_schema"
+  },
+  "to_id": "ifc:mcp-tools"
+}

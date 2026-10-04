@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:cb27e3bf54175fb43d70d2e01d0693ce0622529f723404e8ee0d6c3af535dd4c",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:idea-a-nested-part-has-an-address-not-only-a-parent",
+  "properties": {
+    "authored_at": "2026-08-23",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:1a74a7bbcb8c922c6d831aa60125a25abef3a3f88c5220d58fe6986400f0b08c",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0590",
+  "properties": {
+    "as_checksum": "sha256:608714022a94028fab531d33b148e3671f6f63809415f14d39afefa88eeea063"
+  },
+  "to_id": "art:mint-seat-liveness-test"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:f60fb34a0ed247cb3710c609703def0694a214bb55f43446053df19e6fdcd8ac",
+  "edge_type": "CHANGED",
+  "from_id": "chg:absorb-core-storage-text",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cmp:graph"
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:b6dfbfd1ccd0876b8d9438ce6d0075201a77ff02ddeca442746c339fadf1d0d1",
+  "node_id": "art:scheduling-a-question-test",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "location": "crates/reflow2-core/tests/scheduling_a_question.rs",
+    "name": "scheduling_a_question.rs",
+    "status": "realized"
+  }
+}

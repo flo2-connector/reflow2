@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:81ea34354d23f2827c16feadde6853e144ebfc727d32ebc07d2de7389b46f47f",
+  "node_id": "chg:baseline-bcc8d2cb7857453a",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "baseline_established",
+    "detected_at": "2026-08-31",
+    "name": "First baseline. Copied byte-identical from the upload and verified NOT a strict prefix of art:ophyd-service-feedback-2026-08-19 before registering — a fresh document rather than an append, which is the opposite of dev_storyflow's pattern and had to be read off the file rather than assumed.",
+    "subject": "record"
+  }
+}

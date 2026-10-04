@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:202db9f8b8121a14853170b43b820c34b633b541987e844fc599416ed3fd160c",
+  "edge_type": "REALIZES",
+  "from_id": "art:bulk",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:bulk-forms"
+}

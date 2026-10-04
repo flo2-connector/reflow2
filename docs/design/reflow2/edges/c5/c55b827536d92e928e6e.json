@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:31efbcd61f020054ae785b2c2eed8216015ebbe68d7bf25be688225aa6db5b3f",
+  "edge_type": "REALIZES",
+  "from_id": "art:test-two-designs-over-the-transport",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "verified"
+  },
+  "to_id": "cap:select-graph-by-id"
+}

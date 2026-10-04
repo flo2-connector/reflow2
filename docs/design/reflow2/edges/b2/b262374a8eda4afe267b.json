@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:6bc9c84dfbc0991fc2415b2579ae4367074c6575da41c34bd8ef0611abc6ca07",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:governance-mode",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:service"
+}

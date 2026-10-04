@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:a2ba84292907576b68fb9e454c27098742fc72067d7254717effe1fcb10296a1",
+  "edge_type": "CHANGED",
+  "from_id": "chg:classification-and-dependency-are-orthogonal",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "dec:idea-need-to-know-compartments"
+}

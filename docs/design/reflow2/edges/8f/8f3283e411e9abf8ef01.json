@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:037eae3e4bc0f1d1897cd0c6ac7dc5bba33155ed5758c6e0a222a6b13e5cb6fd",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:telemetry-carries-usage-never-design-content",
+  "properties": {
+    "authored_at": "2026-08-09",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

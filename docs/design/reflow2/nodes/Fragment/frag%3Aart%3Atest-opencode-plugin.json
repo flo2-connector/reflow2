@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:4572bdc8b4fbba73262e056aeeab7cb5d4f1d10fcbfd573242ed65586a635811",
+  "node_id": "frag:art:test-opencode-plugin",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered test_opencode_plugin.py"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:c4d412ac0a9984b3182959e442869e2f8f29697fa24d04dfe94f14aba4208b43",
+  "edge_type": "CHANGED",
+  "from_id": "chg:every-one-shot-mode-resolves-its-design-first-and-every-flag-is-honoured-or-refused-2026-10-02",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cap:a-build-can-call-one-tool-from-the-shell-and-read-the-reply-as-json"
+}

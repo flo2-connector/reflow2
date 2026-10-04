@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:f60faf59d4d973d087b94b76af535076cbaa68503d9e7096dbe90b4ef61cfc4d",
+  "edge_type": "CHANGED",
+  "from_id": "chg:wall-check-reads-the-mapping-instead-of-guessing-it",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:wall-check"
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:23a7b8a8dfebe6fda2124bfcb128d654b2f1befb1502c99230958a4691669c7f",
+  "node_id": "art:a-drawn-relation-is-read-back-as-a-sentence-test",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "location": "crates/reflow2-core/tests/a_drawn_relation_is_read_back_as_a_sentence.rs",
+    "name": "a_drawn_relation_is_read_back_as_a_sentence.rs",
+    "status": "realized"
+  }
+}

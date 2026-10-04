@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:ac44dcc6668d67a6bc204fdcec10b8b10fc153cb6599210e4cc08e10fef6d5cd",
+  "edge_type": "CHANGED",
+  "from_id": "chg:accept-16280a243dc9b8ee",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:change-event-text-test"
+}

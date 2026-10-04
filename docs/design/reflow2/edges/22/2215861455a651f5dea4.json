@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:965aedf208b256639637fe76d0a7aad9eaaa4c272edfc259530f43c8e7b8ce82",
+  "edge_type": "CHANGED",
+  "from_id": "chg:baseline-689207db699d2712",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:doc-impact-propagation"
+}

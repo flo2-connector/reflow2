@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:f7997c1287089c2022fae916092227c81b86e008301fb0eab104f8f8e5fa917f",
+  "node_id": "fact:whether-any-client-injects-both-representations-and-doubles-the-tokens-is-unmeasured",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "confidence": 1.0,
+    "fact_type": "finding",
+    "name": "UNMEASURED, and it is now a live risk: the payload-in-the-text-block shape doubles WIRE BYTES, and nobody has checked whether any client injects BOTH representations and doubles the model's tokens too",
+    "source": "who:flo2",
+    "statement": "FLO2 F26 raises it and explicitly declines to assume it away: \"⚠️ The doubling is WIRE BYTES, not necessarily MODEL TOKENS. A client picks one representation to put in front of the model; it does not normally inject both. So the cost lands on a local pipe or an HTTP body, not on the context budget — which is the budget reflow2 actually guards with `budget_chars`. That said, a client that injects both WOULD double the tokens, and nobody has checked whether any does. Worth measuring before assuming it away.\"\n\n⭐ IT STOPPED BEING HYPOTHETICAL ON 2026-09-21. The reply-shape FALLBACK moved from `signpost` to `duplicate` (`chg:an-unmeasured-client-gets-the-payload-not-a-signpost`), so every client not on the measured list — which is every connector, by construction — now receives the payload in `content` AND in `structuredContent`. If any of them concatenates both into the model's context, that client's context cost for a reflow2 reply doubled on that change, silently.\n\nWHAT IS KNOWN, AND IT IS NOT THIS. Two clients have been measured for WHICH field they read: Grok Build keeps only the text block and stores no copy of `structuredContent`; OpenCode hands its model only the text block and fills it from `structuredContent` only when empty. Both are single-representation readers, so for both the change is free. NOTHING has been measured about Claude's connector, ChatGPT's, or any other — and those are precisely the population the fallback now serves.\n\nWHY IT WAS ACCEPTED ANYWAY, so this is not read as an oversight: the alternative default was the signpost, which flo2 measured as failing BOTH populations outright. A possible doubling for an unknown subset is a smaller and more recoverable harm than a certain failure for all of them, and `reply_budget` caps a JSON reply at 30,000 characters so the worst case is bounded. The trade was taken knowingly.\n\nHOW IT WOULD BE MEASURED: point one connector at a server, call one structured tool, and read what the client actually put in the model's context — the same method that answered the question for Grok Build (its session store) and OpenCode (its source). Until then this is an open exposure, not a defect, and the honest statement is that nobody has looked.",
+    "subject_id": "cap:a-reply-takes-the-shape-its-client-can-read",
+    "valid_from": "2026-09-21"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:bb47d32aa95b2b653ed68ba9fd0f59c95e2762dbb1aa25babf7d2adbc62f2df7",
+  "node_id": "epoch:planned-seams",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "epoch_type": "release_cut",
+    "name": "PLANNED — seams become trustworthy before they become work. The instruments that report the seam picture were wrong in both directions: the roll-up dropped 58 of 86 modules and answered a FALSE ZERO, and the module-level band reports a ratio over a population it never names. Fix the instruments, then re-read what they say. NO VERSION NUMBER BY DESIGN (dec:idea-a-planned-increment-is-named-by-content-not-by-number). Supersedes epoch:v0270-planned. REVISED 2026-08-30 — the prior text is preserved on chg:seam-lift-finds-a-container-by-level-not-by-id-prefix and described a world that had moved: it said seams sat at 0% of 73 couplings with 3 Interfaces and none specified, and cited BL-193/BL-190 from a backlog retired 2026-08-07. Today there are 22 Interfaces, several fully specified, and the honest reading is 13 of 19 subsystem boundaries covered with SIX genuinely undeclared.",
+    "sequence": 266,
+    "status": "arrived"
+  }
+}

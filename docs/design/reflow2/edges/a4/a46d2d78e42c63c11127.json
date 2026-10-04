@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:be636ac02f77933d8864c5f12582bf54d0a8d661d0aa7fdf8a73ab504caf0029",
+  "edge_type": "CAUSES",
+  "from_id": "cap:a-decision-can-be-created-already-settled",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "That capability is the INSTANCE fix the 08-09 finding produced — collapsing add_decision plus set_decision_status into one call that cannot be misordered. It made that pair safe and left the class open, which is why the same user hit it again through add_change_event plus pin_at_epoch. The instance fix is the reason the recurrence looks new.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:the-parallel-batch-class-recurred-because-only-its-instance-was-fixed"
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:0c76148f1655b9ad4a680ff9a4ba2e8532b07c584a530416925061d20c20f52d",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:attribution",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:attribution"
+}

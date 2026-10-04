@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:f9624beccfe918c5cf71ad9fc15974c0180d4c6a7a490c2cb06fff029454dd45",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:a-schema-narrowing-ships-its-migration",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:schema"
+}

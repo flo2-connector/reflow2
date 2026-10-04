@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:08828c5c4d69b321b356201c0574a11d7a72d76bb2f108ccf5c48b9af13bb7b4",
+  "node_id": "req:kit-reaches-the-agent",
+  "node_type": "Requirement",
+  "properties": {
+    "concern": "core",
+    "designation": "internal",
+    "kind": "functional",
+    "lineage": "original",
+    "name": "The install must land its pointer where the agent will actually read it",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "FOUND IN USE, 2026-07-28: Anthony installed the kit into dynograph-foundation, opened a session there, reconnected the MCP server, and reported that no reflow2 skills appeared. The server was healthy and holding the graph. The kit was invisible.\n\nTHE CAUSE, and it is the SAME DEFECT CLASS `reflow2_init.py` already documents having been bitten by, in the opposite direction. `INSTRUCTION_FILES` adds a pointer line to every instruction-file convention THAT ALREADY EXISTS, and creates `AGENTS.md` when the project owns no such file. dynograph-foundation had neither `AGENTS.md` nor `CLAUDE.md`, so a fresh `AGENTS.md` was written — correct by the agents.md convention, and not the file Claude Code reads first. The installer's own comment records the storyflow case: \"storyflow carries CLAUDE.md and no AGENTS.md, so the installer saw nothing to protect, wrote a fresh AGENTS.md, and left the file Claude Code actually reads with no mention of reflow2 — the whole kit invisible on the primary path.\" That fix protected an existing `CLAUDE.md`. It did not cover a project that has NO instruction file at all, which is the ordinary state of a repo that has never been agent-worked.\n\nSO THE RULE IS NOT \"protect what exists\" BUT \"reach what reads\". A greenfield or never-agent-worked repo is the common case for adopt, and it is exactly the case where the installer currently produces a file the primary harness may never open.\n\nTHE SECOND HALF, which the same session surfaced: the SKILLS ARE SERVED and correctly so, but the eight slash commands that make them usable (`/gaps`, `/health`, `/where`, `/req`, `/decisions`, `/debt`, `/brainstorm`, `/kpp`) live only in reflow2's own `.claude/commands/` and ship in no kit. So every consumer project loses the ergonomics, and a user who has worked in reflow2's repo experiences the consumer install as broken rather than as thin. The commands are pure pointers — each says \"use skill X\" and hardcodes no path — so they do not carry the staleness that `dec:skills-served` was written to prevent. Whether to ship them is nonetheless a decision that touches that decision's reasoning, and is Anthony's to make rather than mine.\n\nWHAT \"INSTALLED CORRECTLY\" HAS TO MEAN. Not \"the files were written\" — the install reported success in the failing case. It has to mean the agent, in a fresh session, is told reflow2 exists on the path its own harness actually reads.",
+    "status": "accepted"
+  }
+}

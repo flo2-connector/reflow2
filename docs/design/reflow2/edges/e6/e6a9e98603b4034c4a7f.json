@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:af56524ddf68db4ebb8944eab3c24573d6df10d78cc09ea073abbfb5461306f6",
+  "edge_type": "AT_EPOCH",
+  "from_id": "chg:the-probe-slot-is-claimed-atomically",
+  "properties": {},
+  "to_id": "epoch:the-loop-check-stops-firing-twice"
+}

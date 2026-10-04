@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:51f9d6ca3e26ebe7997e4e69df6f26b7fffce01dce08779dcac4c24b6e229dcb",
+  "edge_type": "CAUSES",
+  "from_id": "dec:idea-an-aggregate-acknowledgement-never-expires",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "The permanent silencing of `unreviewed_ideas` on 2026-08-23 is WHY that node stayed unreachable from the allocation reasoning it belongs to. On 2026-08-25 a session settled the allocation-skill question without ever meeting it, and only reached it because the user remembered it existed. This is the mechanism; that node is the node it cost.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "dec:idea-the-ility-chooses-the-allocation-graph"
+}

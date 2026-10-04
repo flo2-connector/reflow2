@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:b00c0b4066ea7869333513f82e7d487b7a0071a03a3fdaffe6ca89cbd827d797",
+  "node_id": "fact:the-answered-question-message-recurred-in-a-third-project-with-the-computation-unchanged",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "confidence": 1.0,
+    "fact_type": "defect",
+    "statement": "A RECURRENCE, NOT A NEW FINDING — and recording it that way IS the point.\n\nproj:chama's genesis session, 2026-09-02, hit `loop_status`: '1 answered question(s) never reached the design — write the answer in, or acknowledge the gap'. They had asked the substrate question, the user said 'not sure', and they did the prescribed thing: recorded a proposed Decision capturing the deferral and called answer_question. Both suggested remedies were wrong. They diagnosed it from scratch and filed it as a new gap.\n\n**IT WAS ROOT-CAUSED IN THIS GRAPH SEVENTEEN DAYS EARLIER.** `fact:defect-loop-status-asserts-an-answer-never-reached-the-design-from-a-fact-that-cannot-say-so`, 2026-08-16, names the mechanism exactly: the counter knows ONE thing — the question is answered and its gap is still open — and the message turns it into a claim about whether design nodes exist. Nothing looks for them.\n\n**CONFIRMED UNCHANGED IN SOURCE TODAY.** report.rs now reads `let unwritten_answers = questions.iter().filter(|q| q.status == \"answered\").count();` and the message at report.rs:864 is verbatim what it was. The variable moved; the computation is byte-identical. The narrow honest repair the 2026-08-16 fact named — 'for the message to say what it actually knows' — was never made.\n\n⭐ THE COST IS NOW MEASURABLE AND IT IS THE ELEVEN-OCCURRENCE SHAPE: three independent sessions (reflow2's own orientation call 2026-08-16, the StoryFlow fleet's case in the same fact, chama 2026-09-02) each paid full diagnosis for a cause already written down and findable by its own error string. chama could not have searched this graph — they are a different project — which is the sharper half: a fix withheld here is re-diagnosed by every consumer independently, and none of them can see that anyone else already did it.\n\nAND THE STATE IT FLAGS IS STILL DELIBERATE. The genesis skill explicitly tells an agent to produce exactly this resting state — deferral recorded as a proposed Decision, gap honestly open. So the instruction and the instrument still disagree, which is `req:a-deliberate-state-is-not-a-defect` and not a wording bug.",
+    "subject_id": "cmp:tools-coherence",
+    "valid_from": "2026-09-02"
+  }
+}

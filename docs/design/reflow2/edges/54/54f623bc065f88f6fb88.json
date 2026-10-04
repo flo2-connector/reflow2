@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:a362b5d0067ea75a4d043f748639d6c79f21f71d416646cb55d91da4c7d11ead",
+  "edge_type": "GOVERNED_BY",
+  "from_id": "chg:two-repair-rules-compute-the-condition-their-message-names",
+  "properties": {
+    "note": "The two definitions the code now computes are this decision's; loosening either means changing the decision, not only the rule."
+  },
+  "to_id": "dec:a-rule-computes-the-condition-its-message-names"
+}

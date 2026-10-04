@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:74b069925f11d47a6354ba26d2d694c9bb0383268bf6a4831cc825072920284d",
+  "node_id": "cap:atomic-requirement",
+  "node_type": "Capability",
+  "properties": {
+    "description": "The stopping rule for the tree cap:requirement-lineage now holds (Anthony, 2026-07-25). A requirement is ATOMIC when it cannot be split further without losing meaning and one person or team can build and test it. Without a termination condition a decomposition goes wrong in BOTH directions, and the second is the dangerous one because it looks like rigour: under-decomposed leaves a compound requirement nobody can test cleanly; OVER-decomposed turns requirements into task lists and code design (\\\"the system must lock the account after three failed attempts\\\" is atomic; \\\"the system must query the login_attempts column and check if the integer equals 3\\\" is not a requirement at all). THE SIGNALS SPLIT THE SAME WAY THE QUALITY CRITERIA DO (dec:three-party-checks), which is what makes this buildable rather than advice. CHEAP AND DETERMINISTIC — build first: NO CONJUNCTIONS, a literal scan of the statement for \\\"and\\\", \\\"or\\\", \\\"additionally\\\", which is a text check needing no model and catching the most common compound requirement; SINGLE OWNER, computable from the graph as whether the capabilities satisfying it allocate to ONE component, since a leaf whose delivery is spread across several parts is not one team's to own; SINGLE TESTING POINT, partly computable as whether it has exactly one check rather than several. SEMANTIC — the agent proposes, the human decides: ESTIMABLE, and OVER-DECOMPOSED, which is the same judgement as the minimally-constrained criterion in cap:requirement-quality seen from the other end — a requirement that dictates implementation and a requirement decomposed into implementation are the same error, and noticing that they are one thing means one detector can serve both. Pairs with cap:missing-sibling: that asks whether a family is missing a member, this asks whether its members are the right SIZE, and a family of uneven grain is a signal for both. PLANNED.",
+    "name": "Know when to stop decomposing — and when someone went too far",
+    "provenance": "authored",
+    "status": "planned",
+    "tier": "operational"
+  }
+}

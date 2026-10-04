@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:3b16bb43e775a8d45aba120e1175fa26bc27055f1ad513578f2d36637a08ab28",
+  "node_id": "fact:bl-131",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "defect",
+    "statement": "[BL-131] The loop nudge is optional setup, and the one time it fired it caught a real hole",
+    "subject_id": "cmp:nudge",
+    "value": "{\"evidence\": \"*Found 2026-07-31 from both sides in one session.* loop_status volunteers that no session-end hook is installed and that therefore *\\\"nothing will remind you when the coherence loop is owed something\\\"* \\u2014 good self-awareness, and the instructions carry the exact settings.json. Then the hook fired and earned it immediately: it caught a session about to end after 14 graph writes with no defect check, holding six brainstormed options islanded from the requirement they exist to serve. The session's own words: *\\\"left to my own devices I would have ended the session with that hole in the graph\\\"* \\u2014 the precise failure the instructions warn about, being committed by an agent that had run detect_gaps diligently after every batch and detect_defects not once in twelve writes. The product documents a known failure mode of itself and then leaves the fix as manual setup the user has to notice and perform. The design's own commentary \\u2014 *\\\"a discipline that depends on being remembered loses to urgency every time; fire it on a trigger, not on virtue\\\"* \\u2014 is validated, and applies to installing the trigger as much as to the trigger. Fix: offer to install the hook during genesis. Relates to [BL-111] and [BL-112] (the nudge's own defects) \\u2014 this is about whether it is there at all. Size S\", \"origin\": \"Migrated from docs/backlog.md BL-131 on 2026-08-07 (epoch:backlog-retired). Size estimate carried from the row: S.\"}"
+  }
+}

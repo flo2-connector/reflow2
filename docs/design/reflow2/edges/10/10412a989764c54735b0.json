@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:2a079abddcb522dcb0ab66eec799a6e88d780a86a0f20890e8a7fd424aa9b24b",
+  "edge_type": "CAUSES",
+  "from_id": "fact:the-parked-idea-predicate-predates-the-vocabulary-that-would-sharpen-it",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "The proxy-keyed predicate is what produces ophyd's item 4, recorded in the triage fact this points at. `is_parked_idea` keys on `status == proposed` alone and so cannot tell an idea deliberately held as an alternative from a choice nobody has settled; `Decision.kind` is exactly that discrimination and arrived four days AFTER the rule (2026-08-30 vs 2026-08-26), read by no detector. Reproduced on reflow2's own graph as heal:43f0bd5292ef9d87 rather than taken on report.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:the-fork-ask-is-a-deferred-branch-whose-reopening-condition-is-now-met"
+}

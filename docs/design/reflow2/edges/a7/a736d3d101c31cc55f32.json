@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:723e458528409aa7c70ed7e25b2a8d3ca8934f08250a49ae8204ad993fbe7209",
+  "edge_type": "CAUSES",
+  "from_id": "art:tools-coherence",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "The tool declared an empty request struct, so there was no parameter a caller could narrow with and no branch that could trim; every neighbouring report that grew past the cap had one.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:a-report-with-no-way-to-narrow-itself-crossed-its-cap-because-the-design-grew-not-because-anything-changed"
+}

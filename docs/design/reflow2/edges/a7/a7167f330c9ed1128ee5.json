@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:bd6e2f465acc52c50d19a4ac7d1b5fa8e168fc76337e144c1be7399aea63aa55",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:owed-to-a-contributor",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:report"
+}

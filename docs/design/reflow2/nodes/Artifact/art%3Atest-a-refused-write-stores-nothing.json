@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:318bcd222bc3734a2521bf5704e6b12e10f118b737d98f53418207a5f6fe4465",
+  "node_id": "art:test-a-refused-write-stores-nothing",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "test",
+    "location": "crates/reflow2-mcp/tests/a_refused_write_stores_nothing.rs",
+    "name": "a_refused_write_stores_nothing.rs — every served write tool refuses with the store untouched, and the measured classes pinned",
+    "status": "realized"
+  }
+}

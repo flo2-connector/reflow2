@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:d9d3436b2514e36439d1ca657c130f84d1b7227e10be0c93b310a738b48137e8",
+  "node_id": "chg:accept-5797039bbb62a5bc",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "refactor",
+    "name": "Mechanical: the pinned edge-type count moves 63 -> 64. One of four places that number is pinned.",
+    "subject": "system"
+  }
+}

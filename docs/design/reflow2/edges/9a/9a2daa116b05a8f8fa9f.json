@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:b53786c55061ab825d42ff77a0bf0b1c66306e926f7af51d56e15f6419fb5074",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-spof-sweep-stops-rebuilding-its-graph",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "con:a-sweep-builds-its-network-a-fixed-number-of-times"
+}

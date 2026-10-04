@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:10ac9416507c2fcdaa114870a1180d252021359c7d9405589561dde3e0d481bd",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-a-view-can-slice-by-altitude-not-only-by-aspect",
+  "properties": {
+    "evidence": "A view that slices by ALTITUDE needs to know what the altitudes ARE, and this decision is what settles that. It is the precise dependency: the altitude view is the missing half of the lowest-level-contract rule (that rule is accepted, its roll-up view is not built), and an open ladder means the rungs it projects onto are per-design rather than a fixed five. ⚠️ AND IT IS NOT ONLY A VIEW: `seam_coverage` ALREADY takes an altitude argument and answers differently per rung — 72/8/64 at module, 11/11/0 at subsystem — so at least one shipped tool keys on the ladder today. That dependency is NOT in the five unsettled items listed on the ladder decision and belongs there.",
+    "optional": false,
+    "weight_basis": "evidence"
+  },
+  "to_id": "dec:the-decomposition-ladder-is-open-not-a-fixed-enum"
+}

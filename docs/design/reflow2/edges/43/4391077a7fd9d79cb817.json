@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:28dd4d8f13a8d3e5c1ff8e96b2dad4a602833606c81a8951c751c964f9f7cb8e",
+  "edge_type": "HAS_TEMPORAL_FACT",
+  "from_id": "art:init",
+  "properties": {},
+  "to_id": "fact:grok-build-does-not-read-mcp-json-so-the-installer-writes-a-config-that-client-never-opens"
+}

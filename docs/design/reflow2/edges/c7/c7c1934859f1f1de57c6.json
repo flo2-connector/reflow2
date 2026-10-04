@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:f5312c8f64b4f0af97eed03edd6ff1a92b4b20212b80b103a71f1a8e91e0e7ca",
+  "edge_type": "HAS_SNAPSHOT",
+  "from_id": "req:scenarios-are-modelled",
+  "properties": {},
+  "to_id": "snap:epoch:preserved-on-write:req:scenarios-are-modelled"
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:d42703e0e439dde6a405be12530e9883c1367fb1190fe418853f4f7721cf2fd9",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "cmp:operate",
+  "properties": {
+    "dependency_type": "function_call",
+    "optional": false,
+    "weight_basis": "evidence"
+  },
+  "to_id": "cmp:nodes"
+}

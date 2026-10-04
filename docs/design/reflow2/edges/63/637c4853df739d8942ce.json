@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:148c87ea8507733389840a56ff4b1ae2bb277cecae6006dff7ab858da2c1723b",
+  "edge_type": "ABOUT_ENTITY",
+  "from_id": "fact:defect-get-skill-carries-no-version",
+  "properties": {},
+  "to_id": "cap:skills-served"
+}

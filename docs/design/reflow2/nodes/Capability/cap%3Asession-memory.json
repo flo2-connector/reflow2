@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:c7815da57852ba6b8f62efbce12ac6ba9623428fb9df051a49b7874b9f6ab391",
+  "node_id": "cap:session-memory",
+  "node_type": "Capability",
+  "properties": {
+    "description": "Session takeaways as first-class graph content: each key decision, finding or realization written when it happens, anchored to the epoch of the session that produced it, and queryable afterwards by the agent as its own prior context. THE FRAMING THE USER SETTLED 2026-07-25, which moves this out of 'agent convenience' entirely: a session's context IS documentation — the how-and-why record of a design's evolution — and documentation is part of the product (sys:documentation, his fighter-jet argument). So this is not memory for the agent's benefit; it is internally-derived design documentation, produced by the work rather than written about it afterwards. That reframing matters because it changes the standard: a convenience can be skipped under load, a deliverable cannot. Decision.rationale and ChangeEvent already capture fragments of the why; what lives only in the session is the connective tissue — what was tried, what was rejected and on what grounds, which findings turned up while doing something else. The substrate landed with the fork layer: an epoch is a session-addressable point, decisions anchor to epochs, change events pin there. The trigger is the load-bearing gap: the existing handoff enforcement watches the modification time of MARKDOWN files, so the only mechanism forcing a session to leave takeaways behind points AWAY from the graph. Reflow2's own doctrine already states the principle in the authored_by contract — record it when a decision is made, not at session end. THE TRANSCRIPT POINTER: each session has a full local record at ~/.claude/projects/<slug>/<uuid>.jsonl, modelled as a Fragment, with nodes distilled from the session YIELDED from it. Two constraints. The session UUID is the portable identity and the absolute path only a machine-scoped hint, because a path stored as identity resolves for one person on one machine and silently misses for everyone on a shared graph. And a pointer to a 3 MB transcript is a RECEIPT, not documentation: leaning on it recreates the markdown problem one level down, since 'it is all in the transcript' is the same excuse as 'it is all in the backlog file'. PLANNED.",
+    "name": "Record and query what a session learned",
+    "provenance": "authored",
+    "status": "planned",
+    "tier": "operational"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:db8821c9fa9fb052ac11c0006270e7e1b417bc42248752a7c8901da07d52a000",
+  "node_id": "decision:ack:6675d6c59b2e2db3",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Accepted the gap gap:6675d6c59b2e2db3.",
+    "name": "Reviewed: gap:6675d6c59b2e2db3",
+    "rationale": "Anthony, 2026-08-23: accepted as history; the axis is required going forward. These changes were recorded before ChangeEvent.subject existed, so the answer is genuinely gone rather than merely unwritten — and guessing it would put fiction into the one field that exists to tell a system change from a record change. New changes get it because the tool now asks.",
+    "status": "accepted"
+  }
+}

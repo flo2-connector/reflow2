@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:4c539e8a1b6e7fafdc6bf14b206e0d85c39d96917a8b6de8aea4cfb8b8b152cc",
+  "edge_type": "CONSUMES",
+  "from_id": "sys:time-history",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "ifc:graph-export"
+}

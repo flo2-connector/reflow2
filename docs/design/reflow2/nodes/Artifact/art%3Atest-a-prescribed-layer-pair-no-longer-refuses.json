@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:995595e0ce7c60902711f3b77fb197d4b0fe18099fc9e57d094acdbd156a9db9",
+  "node_id": "art:test-a-prescribed-layer-pair-no-longer-refuses",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "location": "crates/reflow2-mcp/tests/a_prescribed_layer_pair_no_longer_refuses.rs",
+    "name": "a_prescribed_layer_pair_no_longer_refuses.rs",
+    "status": "realized"
+  }
+}

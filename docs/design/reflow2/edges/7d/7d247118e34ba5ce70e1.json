@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:0dc4eb411717bf8794b050f4c1ec0571145983fbc7d0511de76eb99d877db8f3",
+  "edge_type": "CHANGED",
+  "from_id": "chg:accept-580d509cd2ed1306",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:scope-corpus-ingest"
+}

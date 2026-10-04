@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:26d2c32ac714f5d2a5cba1faa969f6adc6ce764eb7ef45ee720fecc09342a1e8",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:read-surfaces-debt",
+  "properties": {
+    "authored_at": "2026-07-23",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

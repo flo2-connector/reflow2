@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:7b62f08ddb55c60f4b9cae7659918256c4d5e998970a85ffc610dea240364dda",
+  "node_id": "epoch:v0210",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "epoch_type": "release_cut",
+    "name": "v0.21.0 cut — the quality of evidence becomes a fact the graph holds, and a detector stops claiming more than it checked",
+    "sequence": 255,
+    "status": "arrived"
+  }
+}

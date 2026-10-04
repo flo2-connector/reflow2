@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:9b87cd803f7327da6eb3ec181b68e198b3961dd4aa281147a9d9fd57ba977256",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-registry-gets-its-transport",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:dockerfile"
+}

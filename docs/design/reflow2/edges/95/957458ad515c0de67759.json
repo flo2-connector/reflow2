@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:5532c395b8a6eca6eb142e1663adf7bfd150022b13d2b5dba922687177f6a79a",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:hub-command",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:hub-command"
+}

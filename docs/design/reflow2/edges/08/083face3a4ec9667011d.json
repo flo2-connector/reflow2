@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:17f4bc9de4397f76dfa7cddc5370dd6af2a701f2098ccd96f91db63a7ec562e6",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0770",
+  "properties": {
+    "as_checksum": "sha256:9d6d7822a38d848055571ea142d9e19b086fb914c33a40aa64117b929c0696f2"
+  },
+  "to_id": "art:optimize-skill"
+}

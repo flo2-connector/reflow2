@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:b698cdcb06e1ff24dca4e5bfb7fef1d381fedc471aee21d54c7964afb51db6d2",
+  "node_id": "fact:the-environment-compliance-layer-has-no-requirement-or-capability",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "confidence": 0.85,
+    "fact_type": "finding",
+    "name": "MEASURED 2026-09-23: the environment compliance layer (EnvironmentRule, complies_with, violates_rule, variances), built for v0.55.0, has no Requirement and no Capability in reflow2's design — its test could only be tied to the component",
+    "statement": "Found while repairing wrong REALIZES edges: the_compliance_layer_is_whole.rs had pointed REALIZES at the change that added it (chg:the-environment-compliance-layer-is-built-as-a-whole-leg), and when that edge was removed it was attached to nothing — CI's self_host_uses_documents gate caught it. A search for a requirement or capability the layer serves found none; it was built under dec:the-environment-compliance-parking-is-lifted-on-the-condition-it-named with no golden thread. Its test now IMPLEMENTS ver:the-compliance-layer-is-whole, which VERIFIES cmp:operate — the most honest anchor available, and a stand-in for the capability the design does not hold. ALSO THE LESSON FOR THE REPAIR ITSELF: removing a wrong edge can orphan the file it came from; five did, and the local gate run had read the pre-repair export, so it could not see it.",
+    "subject_id": "cmp:operate",
+    "valid_from": "2026-09-23"
+  }
+}

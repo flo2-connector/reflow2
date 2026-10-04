@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:b6919c9e6462ec2a8e78156fc1dc3729920ccaaf1b5de5addfaa2218ffc0151d",
+  "node_id": "chg:baseline-238b75c11ad92d98",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "baseline_established",
+    "detected_at": "2026-08-15",
+    "name": "First baseline. Copied verbatim into the repo from Alex's upload so the location resolves for anyone reading the nodes it produced — the capture-intent rule that a requirement with no recorded source can only be traced back by asking a person."
+  }
+}

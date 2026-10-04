@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:08f933b2ccf14294cadf5b0dac88560e4b962ff6a562e6fc0978d14adafb33a4",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "req:evidence-says-what-it-covered",
+  "properties": {
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "req:verification-keeps-up"
+}

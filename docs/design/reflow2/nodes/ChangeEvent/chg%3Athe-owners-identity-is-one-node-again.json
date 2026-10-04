@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:8fc8a0cc124425b71f3783686cc18fe9f2cda3683c980f3777d5bd63305fe6ef",
+  "node_id": "chg:the-owners-identity-is-one-node-again",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "resync",
+    "name": "MERGE ON ANTHONY'S EXPLICIT INSTRUCTION: `ctr:anthony` folds into `who:ajs`. Its 8 AUTHORED_BY edges are re-pointed with acted_at and role preserved, then the node is deleted. Done BY HAND because apply_heal would have destroyed the wrong node — see the snapshot and the ChangeEvent text"
+  }
+}

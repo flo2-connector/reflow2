@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:7a517e50989c5e0571a910c867b1a7ef4abb8aa168efd48f02785ac9542b2e9a",
+  "edge_type": "GOVERNED_BY",
+  "from_id": "req:content-store-for-what-the-graph-points-at",
+  "properties": {},
+  "to_id": "dec:where-content-lives"
+}

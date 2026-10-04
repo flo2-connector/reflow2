@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:2983e598bfeb6d15ad0223628e4de8580fd382901c8c8645a453eebec3c6b4e6",
+  "node_id": "dec:ask-not-repair",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "possible_duplicate is a DETECT gap; HEAL merges only on a human-drawn DUPLICATES edge.",
+    "name": "Suspected duplicates are asked, never merged",
+    "rationale": "apply_heal deletes a node with no undo, so merge is safe only because the endpoints were asserted; a heuristic must not drive it. A gap can be acknowledged, a HEAL defect cannot be dismissed. Decided 2026-07-19 (https://claude.ai/code/session_013aumVdHrRHu24cLirn6Cam); evidence: 3dtictactoe trial, BL-27/BL-29.",
+    "status": "accepted"
+  }
+}

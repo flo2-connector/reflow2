@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:79b3a4f58570ce6c7eabd4a7c93784cd089794038ff0e649d1afdd0e5df613b6",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-loop-notices-a-fix-with-no-cause-and-a-defect-its-subject-outran",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:skill-lint"
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:f1c6b031432411da875f8f9b05dbad6dbb2cfc586430961691d41de807efbaae",
+  "node_id": "decision:ack:heal:4bd7c50f777fe56e",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Accepted the structural defect heal:4bd7c50f777fe56e.",
+    "name": "Reviewed: heal:4bd7c50f777fe56e",
+    "rationale": "ACKNOWLEDGED UNDER PROTEST, and the protest is the point: this contradiction IS resolved, and the detector cannot see it. dec:the-stranded-server-correction-stands is accepted, is edged GOVERNED_BY from both endpoints, and states exactly which clause of the older fact is withdrawn and why. That is precisely what the check-health skill says makes a contradiction go away ('two nodes joined by CONTRADICTS with no resolving Decision') and what every such issue's own suggested_fix_type asks for ('generate_decision'). It changed nothing: detect_defects returned the identical issue id afterwards. The detector reads the edge and never looks for the Decision — recorded as fact:defect-a-contradiction-cannot-be-resolved-only-acknowledged. So this acknowledgement is a WORKAROUND for a reflow2 defect, not a judgement that the disagreement is acceptable. It is chosen over the only alternative — deleting the CONTRADICTS edge — because deleting it would erase that reflow2's own graph carried a confident, untested claim for a day, and that history is worth more than a clean defect list. WHEN THE DETECTOR IS FIXED, this acknowledgement should be withdrawn (withdraw_defect_acknowledgement) rather than left standing, or the graph will record a resolved contradiction as a tolerated one forever.",
+    "status": "accepted"
+  }
+}

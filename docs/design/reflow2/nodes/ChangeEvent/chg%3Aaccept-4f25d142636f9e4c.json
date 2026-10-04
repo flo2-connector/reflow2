@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:bfcd1df0dc36f992aac71e1fdd02bf1a14d6609173c1ea7b38833dd1e4bbfde7",
+  "node_id": "chg:accept-4f25d142636f9e4c",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "refactor",
+    "detected_at": "2026-08-01",
+    "name": "rustfmt only — no case added, removed or changed; the 18 cases pass identically before and after."
+  }
+}

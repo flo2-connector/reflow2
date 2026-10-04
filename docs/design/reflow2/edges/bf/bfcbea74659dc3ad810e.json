@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:43a6d96436c9dd505b449a83b46d21f5058f63da64b3ac7965d99a7ef1522213",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:ci-runs-the-conformance-kit-against-a-ratchet-baseline",
+  "properties": {},
+  "to_id": "req:ci-runs-the-primitives-conformance-kit-with-a-ratchet"
+}

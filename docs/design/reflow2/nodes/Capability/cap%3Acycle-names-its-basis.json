@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:7f31f1a457f0bc48c824fd5ad42d368c086e7f3d7529fb7d5202182382db5f99",
+  "node_id": "cap:cycle-names-its-basis",
+  "node_type": "Capability",
+  "properties": {
+    "description": "BL-141(a). Every circular_dependency finding now states its basis: the Interfaces any hop was collapsed out of, whether ANY hop is backed by a real DEPENDS_ON edge, and whether every Interface involved is a library/data medium — something read or linked against rather than called across at run time. dependency_pairs collapses `c CONSUMES i` + `p PROVIDES i` into a direct pair, which is correct for detection and discards the one datum a reader needs to tell a coarse interface model from a tangled call graph; the medium is now kept beside the pair instead of thrown away. A REPORT, never a verdict (dec:report-dont-judge): reflow2 cannot know whether one Interface node is standing for two contracts, so it names what it walked and leaves the judgement to the reader — the BL-114 fix shape applied to this detector. Detection semantics are UNCHANGED: the same cycles are found, with the same severity. Whether a foundation-medium contract loop should count as a dependency cycle at all is BL-141(b), still open.",
+    "name": "A dependency cycle says which edge kinds it walked, and through which contracts",
+    "provenance": "authored",
+    "status": "verified",
+    "tier": "operational"
+  }
+}

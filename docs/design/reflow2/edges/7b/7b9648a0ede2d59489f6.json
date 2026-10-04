@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:b78d27d63ebc4d6e15ac7e191c42993357c445583dac5cc75addbc190c251467",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "rule:every-failure-is-searched-and-every-cause-is-root-caused-before-it-is-written",
+  "properties": {
+    "approved_at": "2026-09-07T13:00:00Z",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

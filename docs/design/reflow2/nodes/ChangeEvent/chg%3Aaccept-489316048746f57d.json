@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:23a7c9cbc55cb6c9412491e00d26d791cd512d4110cf7824ca9b129755454c27",
+  "node_id": "chg:accept-489316048746f57d",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "test_failure_fix",
+    "name": "Same bytes — re-registered in the sha256: dialect the gate compares in (the bare-hex false-drift bug, fixed in artifact.rs this session)."
+  }
+}

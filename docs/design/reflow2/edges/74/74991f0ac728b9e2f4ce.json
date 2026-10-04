@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:84d09cdd9c7cb13e59eec88ce03b8f5e77d6bd7b2f2cef83fe67a2e22f005253",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-name-is-not-a-report",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "ver:every-skill-has-a-command"
+}

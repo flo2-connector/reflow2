@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:415cd59fbe47703514a4fa8cd7d7ad4bc450060d0e027c24bda53763f7abdc14",
+  "edge_type": "GOVERNED_BY",
+  "from_id": "epoch:governance-becomes-expressible",
+  "properties": {
+    "note": "This increment is the catch-up work that decision named: governance stays here and gets properly wired"
+  },
+  "to_id": "dec:governance-integrates-not-splits"
+}

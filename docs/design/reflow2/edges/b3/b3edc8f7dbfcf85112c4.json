@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:1c6b7ffc8b18bd9ec1f96ba43fd75bea15d1168af0f78693bb815f09c7c63759",
+  "edge_type": "INVALIDATES",
+  "from_id": "chg:four-root-causes-from-two-field-reports-are-fixed-at-the-cause",
+  "properties": {
+    "evidence": "refuse_unless_deliberate reads the request's declared targets; four thread pairs join PRESCRIBED_LAYER_PAIRS. Pinned by the_guard_reads_the_request_before_refusing.rs."
+  },
+  "to_id": "fact:root-cause-the-guard-still-refuses-thread-pairs-because-the-prescribed-set-was-built-from-evidence-and-the-evidence-for-capability-component-arrived-today"
+}

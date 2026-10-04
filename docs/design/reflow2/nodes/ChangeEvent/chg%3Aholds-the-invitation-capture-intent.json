@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:d9b4b92a31126ac170846200684b35f2054ab3bed68ea7c243905bd7a9b41f56",
+  "node_id": "chg:holds-the-invitation-capture-intent",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "refactor",
+    "name": "capture-intent step 7 keeps the loop check and stops turning it into a question mid-capture"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:f409e4ca9bf12d23253c926c46b9ae02a4e85db6523332f27eb4737a9166d5a1",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:orientation-shows-four-ranked-and-one-unexplored",
+  "properties": {
+    "approved_at": "2026-08-10",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

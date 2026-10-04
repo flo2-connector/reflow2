@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:ad973f2efd8578889e83bdc7b63b653fbf047b955d400e238e831079ac90e20c",
+  "node_id": "fact:fix-without-recorded-cause-calls-real-repairs-checksum-acceptances-2026-10-03",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "confidence": 1.0,
+    "fact_type": "defect",
+    "name": "MEASURED 2026-10-03: fix_without_recorded_cause tells the owner to relabel 30 repairs as checksum acceptances, and 26 of them are real recorded repairs: it reads ANY CHANGED edge marked accepted_baseline as \"minted by an accept\", and set_artifact_checksums(design_updated) marks the real change event's edge that way too",
+    "statement": "FOUND while working fix program item 10 (the overtaken-defect detector), 2026-10-03; NOT FIXED there — outside that item.\n\nOBSERVED on main 73cf37b's export, recomputing detect.rs::detect_fix_without_recorded_cause's own rule: of the uncaused, unparked repair events (defect_fix / test_failure_fix) it counts as 'checksum ACCEPTANCES wearing a fix label' and tells the owner to relabel as resync / refactor / documentation, 30 qualify; only 4 have the chg:accept-… id that set_artifact_checksum mints for a design_holds disposition, and 26 are ordinary recorded repairs — e.g. chg:a-signature-is-the-callers-own-where-it-is-written (#636), chg:a-shared-client-outside-the-project-attaches-to-the-running-server (#571), chg:a-bulk-edge-write-runs-each-typed-helpers-own-checks.\n\nMECHANISM (read, not yet pinned by a test): is_acceptance = any outgoing CHANGED edge with accepted_baseline=true (detect.rs, in detect_fix_without_recorded_cause). artifact.rs::accept_changed_edge writes accepted_baseline=true for BOTH dispositions — design_holds (on the minted chg:accept-… event) and design_updated (on the caller's real change event) — so the flag says 'this edge carried a checksum acceptance', not 'this event exists only because of one'.\n\nEXPECTED: only an event minted by a design_holds acceptance is told it is a mislabelled disposition; a real repair that also accepted its files' checksums is counted as an uncaused repair.\n\nNOT ESTABLISHED: how a stored event minted by an accept should be told apart structurally from a real event whose every CHANGED edge is an acceptance (chg:the-stale-lock-reclaim-is-serialized is one); the id prefix is the only mark today.",
+    "subject_id": "cap:a-fix-with-no-recorded-cause-and-a-defect-its-subject-outran-are-noticed",
+    "valid_from": "2026-10-03"
+  }
+}

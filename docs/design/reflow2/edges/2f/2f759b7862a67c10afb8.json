@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:f8ed96c4b85d3366722254311db2cdb20c55ef023e7ed25d6395b312714deda8",
+  "edge_type": "REALIZES",
+  "from_id": "art:the-argument-check-agrees-with-the-deserialiser-test",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:every-argument-refusal-names-the-tool-and-the-field-path"
+}

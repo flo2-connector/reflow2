@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:efde097918c0024321d2c004b16c69ed09351aed499086295a08b77ff5a64eaf",
+  "node_id": "chg:orientation-fires-on-the-status-claim-and-the-catalogue-answers-a-status-question-in-the-askers-words",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "defect_fix",
+    "name": "The orientation skill's trigger names the act of asserting status to anyone (three mirrored copies, served at every handshake), topic_report's description carries the asker's words at its prior length and names itself the first read before a status is asserted, and a lint contract keeps the trigger clause stated — root-caused from the hxm_program field report, pinned by two catalogue tests and three lint checks that failed first",
+    "repair": "corrected_cause",
+    "subject": "system"
+  }
+}

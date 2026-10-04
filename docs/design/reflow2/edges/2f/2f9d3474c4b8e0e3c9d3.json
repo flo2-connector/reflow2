@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:2709ada55bdffca919b29bee67f4c166c6dc56acb9e81ef53f252128a70a38fa",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:the-mcp-surface-is-sized-for-tokens-per-task",
+  "properties": {
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

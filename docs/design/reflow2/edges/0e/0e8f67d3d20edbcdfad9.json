@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:4e36406e5e029469afe4905ea36b0591c9267aeea65400e790402dd53ca0ef76",
+  "edge_type": "ANTICIPATES",
+  "from_id": "dec:field-reports-are-untracked-because-the-repository-is-public",
+  "properties": {
+    "evidence": "The accepted ruling that field reports are untracked anticipated removing the root-level friction report, which is a field report still in the tree."
+  },
+  "to_id": "dec:idea-the-repository-root-holds-only-what-a-build-or-a-harness-needs"
+}

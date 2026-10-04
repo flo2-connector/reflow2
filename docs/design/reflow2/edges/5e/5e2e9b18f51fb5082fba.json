@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:39ccbf2d9c9c6e86e778bf478d7ea3870c8afb593a9cfc38c6420217fda65b59",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-skill-is-found-by-describing-the-job-the-way-a-tool-is",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "art:every-skill-is-found-by-a-query-in-the-users-words-test"
+}

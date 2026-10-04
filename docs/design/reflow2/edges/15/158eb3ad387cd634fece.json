@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:536fb4676837ae7e186da62239ee66a374b201691eadbf9651fea322cff2b4bf",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-server-keeps-a-usage-ledger-and-feedback-renders-it",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "cap:feedback-is-a-computed-tally"
+}

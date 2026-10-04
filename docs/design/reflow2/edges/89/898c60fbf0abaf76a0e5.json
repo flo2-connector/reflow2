@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:42bbb94996248782b8631f840606af085c25f51722e64196645e27a8c53d9d5a",
+  "edge_type": "SCHEDULED_FOR",
+  "from_id": "dec:how-skills-ride-in-the-reflow2-plugin",
+  "properties": {
+    "modality": "expected",
+    "recorded_at": "2026-10-01"
+  },
+  "to_id": "epoch:planned-reflow2-ships-as-a-plugin"
+}

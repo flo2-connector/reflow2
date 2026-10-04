@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:24bc994164d1530ae116f610f4b5c9fbdb0e994c00700adab15ec2bea8d1f9de",
+  "node_id": "req:a-capture-that-replaces-a-node-says-so-and-the-choice-at-the-near-match-check-is-kept",
+  "node_type": "Requirement",
+  "properties": {
+    "concern": "core",
+    "kind": "functional",
+    "lineage": "original",
+    "name": "A capture that replaces an older node says so — the thread moves to the new node, the old one is retired on the record — and the choice made at the near-match check is kept, so a later reader can tell whether the older node was seen",
+    "priority": "high",
+    "provenance": "authored",
+    "source": "Anthony, 2026-09-30, in the dev_reflow2 hub session, approving the three fixes the root cause named: \"Yes, fixes for 1-3 should go ahead\". This is fix 2: \"give the capture guard a 'this replaces X' route that moves the thread and records the choice, including distinct_from\".",
+    "statement": "When a capture tool's near-match check finds an existing node, the writer can say the new node REPLACES it, as a third answer beside sharpening the existing node and judging the new one distinct. A replacement moves the thread that says what the old node was for onto the new one, retires the old node the way retire-from-design retires a node with a successor (its ending recorded with its edges, an OBSOLETES from the successor, its stored status untouched), and the reply says what moved and what stayed. Whichever answer the writer gives is recorded in the design — a distinct judgement on the node it created, a replacement as the edge and the recorded ending — so that \"was the older node seen?\" has an answer on any design.\n\nWHY: measured 2026-09-30 on flo2's design, a function was rebuilt under a new capability while its predecessor stayed `planned`, with no edge between them and a requirement still pointing only at the old node; distinct_from, the only route past the guard, was consumed in the call and recorded nowhere (fact:root-cause-a-status-that-falls-behind-reality-is-silent-and-a-superseding-capability-leaves-no-trace-2026-09-30, recorded in the live design).",
+    "status": "accepted"
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:b23d46429460a4f7f5c359abf22b5c6ac3673a6b69991c46ed4dd2ee63037161",
+  "edge_type": "AT_EPOCH",
+  "from_id": "snap:epoch:prune-proposed:req:edge-defaults-do-not-assert",
+  "properties": {},
+  "to_id": "epoch:prune-proposed"
+}

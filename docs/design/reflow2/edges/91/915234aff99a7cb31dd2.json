@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:2e454a84eb5b2363acd8b53283a79cd5ddfaa5e223aef76e1b1edc44129922b0",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "rule:the-self-host-always-trails-what-it-teaches",
+  "properties": {
+    "approved_at": "2026-08-23",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

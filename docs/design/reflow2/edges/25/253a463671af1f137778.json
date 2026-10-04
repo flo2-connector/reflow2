@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:dd42be0d951242ecd20dfd91382ee08f007c531378e6a7295f4cfaddfc5c7e5b",
+  "edge_type": "HAS_SNAPSHOT",
+  "from_id": "req:blocking-is-partial",
+  "properties": {},
+  "to_id": "snap:epoch:prune-proposed:req:blocking-is-partial"
+}

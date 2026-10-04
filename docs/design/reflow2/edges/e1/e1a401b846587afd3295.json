@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:4d9a54f3d076958df750f42ff1d1a9cf3c2c4a9493372b010eecb7037a48b70a",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:test-a-signature-is-the-callers-own-where-it-is-written",
+  "properties": {
+    "covers": "whole"
+  },
+  "to_id": "ver:a-signature-is-the-callers-own-through-every-writer"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:e0b30cd9f171e9453b1999f1d93e2e29cf5dbea98e61236cf67f4f3e1b462a1f",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-settled-decisions-name-stops-asking",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:test-every-finding-that-reads-parking-names-it"
+}

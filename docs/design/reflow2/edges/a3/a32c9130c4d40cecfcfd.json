@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:91779e19392f01ba30b547ec80e45281c07c4172d1005080ba48928831539051",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:dependency-currency-is-checked-monthly-and-before-every-cut",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:packaging"
+}

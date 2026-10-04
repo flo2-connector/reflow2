@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:4a2450ca30de99165d4c5a50d0282c516adc210e2c9ba59604d22ec519c7fd75",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "req:design-and-implementation-stay-coherent-both-ways",
+  "properties": {
+    "evidence": "Coherence needs an agent to see both design and implementation, which the link provides.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "req:the-design-knows-where-each-implementation-is"
+}

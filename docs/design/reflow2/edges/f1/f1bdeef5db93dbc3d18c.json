@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:f9702d7d4a32cf1e053752bc8608fb6b7398a961e66bb3beb00171a1f2cfedbd",
+  "edge_type": "ABOUT_ENTITY",
+  "from_id": "fact:defect-a-running-server-cannot-say-it-is-stale",
+  "properties": {},
+  "to_id": "cap:shared-sessions"
+}

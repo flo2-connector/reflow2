@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:9cda8e428cde90b01d10c722e71cf7d40e0664731d92a5d3a08d5e41c39dba39",
+  "node_id": "ver:nudge-path",
+  "node_type": "Verification",
+  "properties": {
+    "description": "The hook is registered, its script exists, and running the REGISTERED command with a real Stop payload produces the block decision the harness consumes — plus silence when the loop was checked, and once-only firing (tools/test_nudge_path.py, 9 cases). The server's detection covers installed / absent / broken / unmalformed-settings (nudge.rs, 4 cases).",
+    "findings": "FOUND BY WRITING IT: the first version asserted a non-zero exit code and failed against a working hook — Stop hooks block by printing JSON and exiting 0, so the test had encoded the wrong contract.",
+    "kind": "verification",
+    "last_reconciled_at": "2026-09-23",
+    "last_reconciled_outcome": "passed",
+    "level": "unit",
+    "method": "test",
+    "name": "The registered hook command produces the block decision the harness consumes",
+    "status": "passing"
+  }
+}

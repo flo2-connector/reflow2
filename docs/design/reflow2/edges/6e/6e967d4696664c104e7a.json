@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:c67a80f0131aca3b95f11a83eb6e17e3e1741e9a21506136714290154b792ae4",
+  "edge_type": "CONTAINS",
+  "from_id": "sub:serving",
+  "properties": {},
+  "to_id": "cmp:handshake"
+}

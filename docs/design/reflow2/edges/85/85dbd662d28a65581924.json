@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:c93e96f011275f38c679e544efb422c75220a61c9e8612e6d3508ecebd9dd156",
+  "edge_type": "CHANGED",
+  "from_id": "chg:hosted-collaboration-raised",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "req:design-reachable-without-the-repo"
+}

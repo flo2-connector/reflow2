@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:615ce2879be84f4ccd9652550a3d65c3806643bea6a25cfb4e3cd3492c0c7ba8",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0600",
+  "properties": {
+    "as_checksum": "sha256:b78fa9e7b867218d12b5f4e478f55228619203e15bebb578d54b0bd00ea0a97d"
+  },
+  "to_id": "art:check-kit-manifest"
+}

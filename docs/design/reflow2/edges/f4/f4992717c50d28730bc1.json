@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:d6e68f355035320b704a5179eaf50a7ec14bf99f667bc84b1611ceaa2bdce975",
+  "edge_type": "ANTICIPATES",
+  "from_id": "dec:idea-governance-management-split",
+  "properties": {
+    "evidence": "The management-split question asked whether management-facing views belong inside reflow2; a status rollup built for a management deck is exactly such a view, so that question governs whether this one is built here."
+  },
+  "to_id": "dec:idea-a-project-scoped-status-rollup-answers-what-has-this-project-achieved-in-one-call"
+}

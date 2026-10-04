@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:ac948cd563c41903556a5581664c0e9889184d200b7e5f395bfc3f190d8da51e",
+  "node_id": "cap:claims-carry-their-age",
+  "node_type": "Capability",
+  "properties": {
+    "description": "Three parts, smallest first. (1) CAPTURE-TIME GUIDANCE: when a statement asserts what the system is right now, the capture path names TemporalFact rather than letting prose be the path of least resistance — subject_id is its only required property, and VALID_FROM / VALID_TO attach it to epochs. (2) A DETECTOR: a Requirement whose statement asserts current system state, with no TemporalFact and no VALID_TO, is unfalsifiable by construction and nothing reports it today. (3) AGE AT READ-BACK: where-am-i and search_design mark how old a node's factual half is, so a six-week-old observation is not narrated as current. Part 3 belongs with the read-half increment; parts 1 and 2 stand alone.",
+    "name": "Time-bound claims land in a TemporalFact, and age is visible where claims are read",
+    "provenance": "authored",
+    "status": "planned",
+    "tier": "operational"
+  }
+}

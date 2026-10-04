@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:aafdb212d0b0d233302ef7eea8f42c9a9c961affdffa6d2bce4cdc80d1a68a9e",
+  "node_id": "chg:accept-683550a33db13365",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "refactor",
+    "detected_at": "2026-09-10",
+    "name": "Mechanical only: `CapabilityReq` gained `satisfies` and `allocated_to`, and this file builds the struct as a literal, so every literal needed the two new fields as None. The behaviour under test — that a prescribed layer pair is reported rather than refused — is unchanged and its assertions were not touched. The design HOLDS.",
+    "subject": "system"
+  }
+}

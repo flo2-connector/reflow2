@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:0c0049e769817d369c2bf4bf2059ffdad796e14d5ff61a55dce7b9eb9aaf4fa0",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:launch-serves-release-gate",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:launch-serves-release-gate"
+}

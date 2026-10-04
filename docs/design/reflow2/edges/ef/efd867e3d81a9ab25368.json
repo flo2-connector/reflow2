@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:8067a6320f0cfb865511ac25fb3c4a9f1c6a7c3b5d0e32786761fa8c43976b8c",
+  "edge_type": "CONTRADICTS",
+  "from_id": "dec:idea-an-unplanned-cut-takes-an-in-between-number",
+  "properties": {
+    "alignment": "opposing",
+    "confidence": 0.8,
+    "evidence": "An alternative answer to the same question, raised as brainstorming minutes after the rule was accepted and in response to the id cost applying it exposed. The accepted rule STANDS and the slip has been applied — this edge marks that a live alternative exists, not that the rule is in doubt."
+  },
+  "to_id": "dec:an-unplanned-cut-slips-every-later-increment-by-one"
+}

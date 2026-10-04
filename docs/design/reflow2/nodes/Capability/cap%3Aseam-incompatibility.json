@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:f660a99a243b34d64e1f06a69cfc41c3b43d440124af90c69690d42c7d6f808f",
+  "node_id": "cap:seam-incompatibility",
+  "node_type": "Capability",
+  "properties": {
+    "description": "Compares paired boundaries across the eight axes an interface spec carries and reports where two designs conflict, where they merely differ in wording, and where NOBODY HAS SAID. Built because a measurement showed the ordinary detectors cannot do it: with a seam hand-drawn between two real designs they produced zero findings, since they reason about structure and a contract mismatch is a comparison of properties across a pair. Always names its own blind spot — the types that cross a boundary are part of the contract and invisible to it.",
+    "name": "Say when two linked designs disagree at a boundary",
+    "provenance": "authored",
+    "status": "realized",
+    "tier": "operational"
+  }
+}

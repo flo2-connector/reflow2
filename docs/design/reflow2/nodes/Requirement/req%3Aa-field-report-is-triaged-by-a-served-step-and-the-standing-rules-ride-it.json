@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:0a975b556e134aba8ca6016d5dc64e502625d77622de1a143f8399b4e9ccc4ba",
+  "node_id": "req:a-field-report-is-triaged-by-a-served-step-and-the-standing-rules-ride-it",
+  "node_type": "Requirement",
+  "properties": {
+    "lineage": "original",
+    "name": "A field report is triaged by a served step, and the standing rules about it ride that step — so the rule that issues get root-cause and ideas get brainstorm is delivered, not remembered",
+    "priority": "high",
+    "provenance": "authored",
+    "statement": "Anthony, 2026-09-18 ('let's start addressing these and implementing fixes'), after rule:field-feedback-issues-are-root-caused-and-ideas-are-brainstormed — set 2026-09-05 after three reminders — was broken a fourth time. Root-caused the same day: the rule named no step, and no served step existed for a maintainer reading a field report, so the 0.64.0 lesson delivery could not carry it and memory failed 4 of 4 times. The moment 'an agent reads a field report' must be a reflow2 step: a served skill the agent pulls (get_skill triage-feedback, /triage), whose reply carries the two rules (`steps` naming it), and whose text runs root-cause per issue and brainstorm per idea, records each finding and question, and never writes a cause it has not measured. The user must not be the trigger (req:skill-use-survives-a-long-session); the skill's own description and the command are the triggers this increment delivers, and a hook that notices a newer feedback file is deferred to evidence.",
+    "status": "accepted"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:70146071530c73fd53585e2975ae7f00aa5da1936fd9183bf69651c853292e14",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-reply-is-not-sent-twice",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cap:bounded-reads"
+}

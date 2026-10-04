@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:d02d3c5556d13434c9ce3f8c7e956914faba3e5cd089ed97143a621d641b677a",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:composed-analysis",
+  "properties": {},
+  "to_id": "req:composed-analysis"
+}

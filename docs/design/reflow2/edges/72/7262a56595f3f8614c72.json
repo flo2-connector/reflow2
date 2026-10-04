@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:5feae922457cf406c270d0a757e578c5a7b91cfdc9bb3c3e3bb4beac4ab6f7b0",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:relation-candidates-are-offered-never-drawn",
+  "properties": {},
+  "to_id": "req:an-unlinked-idea-can-be-offered-its-likely-neighbours"
+}

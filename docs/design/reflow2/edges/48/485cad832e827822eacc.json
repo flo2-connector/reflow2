@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:4381692be1d9d2439648fd4f7d2c9fb87560a7142ab4b9ce005af74e85ed13b6",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-content-block-is-chosen-per-client",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:smoke-mcp"
+}

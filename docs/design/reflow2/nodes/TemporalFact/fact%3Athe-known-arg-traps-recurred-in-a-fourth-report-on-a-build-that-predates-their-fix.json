@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:7f1bfa817c218962c4ac88b774e24e8c7ba24d073b404cd7dd4f2e6b6c8e6a6f",
+  "node_id": "fact:the-known-arg-traps-recurred-in-a-fourth-report-on-a-build-that-predates-their-fix",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "confidence": 1.0,
+    "fact_type": "observation",
+    "statement": "Alex (v0.47.0, 2026-09-05) reports the get_node node_type+id trap and the ChangeEvent `description` mistake, and notes the tool descriptions already flag them: 'known footguns ... they're aware.' RECURRENCE COUNT: the description mistake is now FOUR projects (dev_storyflow, qs, dev_storyflow again after documentation, Alex); the get_node trap is on the record as dec:idea-get-node-by-id-alone-since-the-prefix-names-the-type (2026-09-05, open). WHAT IS ALREADY FIXED AND NOT IN HIS HANDS: #429 (merged 2026-09-05, main 14c1cba) makes add_change_event accept `description` only to refuse it naming summary/rationale — the refusal now teaches at the moment of failure. It is UNRELEASED; 0.47.1 is the latest cut and does not carry it. So this report is the fourth data point for the premise behind #429 (a description is not read mid-work; a refusal is) and is not a new cause. It is also a cost of release cadence: a fix merged the same day a user reports the defect it fixes is indistinguishable, to that user, from no fix. NOT ESTABLISHED: his exact version (Anthony believes 0.47.0).\n\n═══ FIFTH REPORT, dev_storyflow 2026-09-06 on 0.48.0 (triaged 2026-09-07) ═══ Three parameter-shape misses in one evening, each one round-trip, each refusal complete: `verifies` needs `target_type` (OPTIONAL since 0.49.0 — resolved from the id), `authored_by` takes `from_type`/`from_id` (0.50.0 also accepts `node_id`/`node_type` and `to_id`), `set_artifact_checksums` takes `accepts`. Plus `related_to` and `invalidates` field shapes learned by error, and `add_decision` refusing `status` (0.50.0 takes `status` + `approver`). The reporter's own verdict: 'the error text named the expected fields every time … that is the right failure mode.' Same shape as the fourth report: FOUR of the misses are answered on 0.49.0/0.50.0 and invisible on 0.48.0 — the cadence cost, again. Counted, not re-diagnosed.",
+    "subject_id": "req:a-refusal-names-what-would-have-worked",
+    "valid_from": "2026-09-05",
+    "value": "{\"description_mistake_reports\":4,\"fixed_in\":\"#429, merged 2026-09-05, unreleased\",\"get_node_trap\":\"dec:idea-get-node-by-id-alone-since-the-prefix-names-the-type (open)\",\"new_cause\":false,\"recurrences\":[{\"at\":\"2026-09-06\",\"by\":\"dev_storyflow on 0.48.0\",\"misses\":[\"verifies target_type\",\"authored_by from_*\",\"set_artifact_checksums accepts\",\"related_to shape\",\"invalidates finding_*\",\"add_decision status\"],\"answered_on_current_build\":4}]}"
+  }
+}

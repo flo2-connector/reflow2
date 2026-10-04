@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:a9935e7838e28f776864681c267df826747bb445ba7e4a498c8b7b3d03f9e9bf",
+  "node_id": "cap:bounded-reads",
+  "node_type": "Capability",
+  "properties": {
+    "description": "From the same study: GitHub's server generates its instructions from the enabled toolsets and tells the agent in them to paginate in batches of 5-10 and pass minimal_output, and its result types carry field-selection enums whose comments name the heaviest fields. reflow2 has the same problem and lost to it twice in one session on 2026-07-25 — scan_nodes over 72 Decisions returned 96,000 characters and the harness had to spill it to a file before it could be read at all. The precedent for the shape is already in this design: BL-48/BL-49 gave propagate a bounded summary with the full dump behind full=true. This extends that to the readers that grew unbounded, with the rule that a cap is never silent: the page says how many nodes exist, how many came back, and how to get the rest.",
+    "name": "A read that would not fit answers with a bounded page and says what it left out",
+    "provenance": "authored",
+    "status": "verified",
+    "tier": "operational"
+  }
+}

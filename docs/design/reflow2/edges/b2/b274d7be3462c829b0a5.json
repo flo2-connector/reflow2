@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:a671b36be3cc672229d95114e5b0c3fb8cd744b643fef1ed58936659098aef9c",
+  "edge_type": "VERIFIES",
+  "from_id": "ver:a-record-that-moved-once-is-read-once",
+  "properties": {},
+  "to_id": "cap:the-record-moved-reaches-an-ordinary-read"
+}

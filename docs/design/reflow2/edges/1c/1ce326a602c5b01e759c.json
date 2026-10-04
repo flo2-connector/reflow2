@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:6bd92e23876c416a02c09f63a982ff203648a5996c705dd8ba99cfcf0bf488b9",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:test-release-workflow",
+  "properties": {
+    "covers": "whole"
+  },
+  "to_id": "ver:each-architecture-is-smoke-tested-before-any-push-and-only-a-two-platform-index-is-tagged"
+}

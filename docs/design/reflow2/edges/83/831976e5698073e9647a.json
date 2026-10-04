@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:2e7aecd36a364d9040d50729da009f2563e386c5414b88dcc46bc834be91c20c",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-record-can-say-which-question-it-answered",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cmp:tools-coherence"
+}

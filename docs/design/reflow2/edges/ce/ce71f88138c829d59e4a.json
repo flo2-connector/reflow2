@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:e6663a7d3de0b81cb059f01c04a3e2fa8e6b0441159f761e534e44e9cf291610",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:idea-a-hotspot-node-holds-the-live-worklist-and-is-deliberately-not-history",
+  "properties": {
+    "authored_at": "2026-08-26",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

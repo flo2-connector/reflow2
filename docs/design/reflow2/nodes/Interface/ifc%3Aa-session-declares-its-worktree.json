@@ -1,0 +1,17 @@
+{
+  "content_hash": "sha256:65bc7c2630f1490de97d81255a803d234593d62e1d6ff241d895b11593573638",
+  "node_id": "ifc:a-session-declares-its-worktree",
+  "node_type": "Interface",
+  "properties": {
+    "auth": "unspecified",
+    "description": "The contract between the `--shared` stdio proxy (cmp:proxy), or any client, and the shared server (cmp:shared): at initialize, the client states the absolute root of the working tree it runs in and the branch checked out there. The proxy derives both from its own cwd and `git rev-parse`. The server binds them to the session's seat for the session's lifetime. Absent means \"default branch, the server's own tree root\", which is today's behaviour, so an old client keeps working. Designed 2026-09-23 for cap:a-session-is-known-by-its-worktree-and-branch.",
+    "designation": "internal",
+    "medium": "unspecified",
+    "name": "A session declares its working tree and branch to the shared server",
+    "paradigm": "unspecified",
+    "payload_format": "unspecified",
+    "provenance": "authored",
+    "spec": "Carried in the MCP `initialize` request as `params._meta[\"reflow2/worktree\"] = {\"root\": \"<absolute path, canonicalised>\", \"branch\": \"<ref name or null when detached>\", \"head\": \"<commit sha>\"}`. The server echoes what it bound in the initialize result under the same key, so a client can see the binding took. An unreadable root or a root outside any repository is refused by name, never silently treated as the server's own tree. Internal: not a published surface.",
+    "transport_security": "unspecified"
+  }
+}

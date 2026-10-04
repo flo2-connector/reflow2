@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:be825c34a5b3cdbd0f1a28f365f295c854d8d5eb46a5f341ba9b6c8a7c4f260d",
+  "edge_type": "HAS_SNAPSHOT",
+  "from_id": "req:friction-has-a-baseline",
+  "properties": {},
+  "to_id": "snap:epoch:prune-proposed:req:friction-has-a-baseline"
+}

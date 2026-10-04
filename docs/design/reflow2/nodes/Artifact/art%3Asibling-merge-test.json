@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:e48d70445b57ebc6b79c14b7bd4a78e18d3219e2e9b4a165f8fe495f989af630",
+  "node_id": "art:sibling-merge-test",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "granularity": "atomic",
+    "location": "crates/reflow2-core/tests/sibling_merge.rs",
+    "name": "sibling_merge.rs — a score says alike, not the same thing",
+    "status": "realized",
+    "volatility": "stable"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:4f504bf311cc6ffe87c55f54ad93a88fc42091ccaef48a74349d20df2c73570f",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0560",
+  "properties": {
+    "as_checksum": "sha256:660988c137b839e5e17fa68bb05c36c883b09d6754683c9b1736874a6612e65e"
+  },
+  "to_id": "art:dockerfile"
+}

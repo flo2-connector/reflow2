@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:d0720267efc286ae6c6c94132adaf644814129bea202c68182ca2b5d6d85c6b6",
+  "edge_type": "CHANGED",
+  "from_id": "chg:discontinued-gets-its-readers",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cap:content-store"
+}

@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:1301c38ffeece017727c891b8c377b3ce08335c05e863420b063b03dfcdaf0cd",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:an-owners-answer-recorded-outside-a-session-is-shown-to-the-next-agent-and-applied-only-to-its-node",
+  "properties": {
+    "approved_at": "2026-09-29",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

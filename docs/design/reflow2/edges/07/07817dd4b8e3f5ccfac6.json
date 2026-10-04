@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:fde5094e0a94aa2a88178962451b37acabb8413af5fe24cf2e25cbea38b534b8",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:test-the-design-is-saved-one-file-per-item",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:test-the-design-is-saved-one-file-per-item"
+}

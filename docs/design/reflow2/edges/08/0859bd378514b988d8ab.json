@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:b2d82ee13eb5b0ca60a2a81d0adafac530c1e08b504a477bb2ce72b3b6305910",
+  "edge_type": "EVOLVES_INTO",
+  "from_id": "dec:idea-a-graph-whose-children-are-themselves-reflow2-designs",
+  "properties": {
+    "evidence": "The hub idea defines a hub by its children; this asks whether the hub can also bring a new child into being."
+  },
+  "to_id": "dec:idea-a-hub-starts-a-new-child-design"
+}

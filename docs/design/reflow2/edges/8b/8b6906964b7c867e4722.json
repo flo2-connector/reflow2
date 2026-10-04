@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:7467f5cfe9bbbc9bac7e3dc7c92649622e0a2d82efcf30edd7c7b7ec5aa4df33",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-saved-design-moves-to-the-item-layout-2026-10-03",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:6aebcb0e756c9ce4c7ae0dfe5f37ffc9716d2e4da1553152b9eb4199e2620b3f",
+    "checksum_basis": "measured"
+  },
+  "to_id": "art:test-closure-reads-a-design-phase-and-a-build-phase"
+}

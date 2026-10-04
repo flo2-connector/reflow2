@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:eb59bdbf48ac7914291a0c2b859cf341e191a1e45a27fd64d8dfaa5ca1522be7",
+  "edge_type": "CHANGED",
+  "from_id": "chg:cluster-claims-built",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:vocabulary"
+}

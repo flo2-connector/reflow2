@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:a60e7585209c3a422035b926d0c21d224ed0456d78f54e8feec134b36b051f32",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:realizes-is-restricted-to-capability-component-and-interface",
+  "properties": {
+    "approved_at": "2026-09-23",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

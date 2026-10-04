@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:4a596f250b319d15dd1e36f24bbe21d36d47ed9f0a7787f5ab8775c64167824b",
+  "node_id": "ver:every-write-tool-is-placed-and-an-unplaceable-one-stops-the-gate",
+  "node_type": "Verification",
+  "properties": {
+    "description": "tools/test_vocabulary_reach.py: the four new cases beside the three it had. The refusal case writes an unplaced tool snapshot, runs the gate and asserts a non-zero exit naming it.",
+    "findings": "7 of 7 checks pass; the gate reports 2 HOLE, 19 written by an operation, 16 unused.",
+    "kind": "verification",
+    "last_run_at": "2026-09-20",
+    "level": "integration",
+    "method": "test",
+    "name": "Every served write tool is placed in exactly one category, no tool is in two, an unplaceable one stops the gate, and an edge tool's parameters reach no node type",
+    "status": "passing"
+  }
+}

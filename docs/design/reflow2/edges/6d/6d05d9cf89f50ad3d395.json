@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:7fb5568db7bd79c9d938c549b1b0ab5d88e791c67adce48e31729f2ee7b7c208",
+  "edge_type": "CONSTRAINS",
+  "from_id": "con:loop-status-after-a-write-answers-under-one-second",
+  "properties": {
+    "basis": "measured",
+    "contribution": 4096.0,
+    "measured_at": "2026-09-12",
+    "note": "The post-write path, which is the path a working session takes. Median of 4 calls, each preceded by one small write, on a physical copy of the live store (4,343 nodes / 25,004 edges), reflow2-mcp 0.59.0 release, shared transport with --export-to, load 0.1-0.4. 4.1x over the 1,000 ms limit. The same call with no write before it is 1,291 ms, so the entire overage is the per-write-generation memo invalidation."
+  },
+  "to_id": "cap:loop-status"
+}

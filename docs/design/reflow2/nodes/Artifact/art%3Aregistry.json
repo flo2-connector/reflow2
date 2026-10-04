@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:55067606720f01215dd3cab0c194c62070ac9e19427ac0d3c1e293648e8c75cd",
+  "node_id": "art:registry",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "granularity": "atomic",
+    "location": "crates/reflow2-mcp/src/registry.rs",
+    "name": "registry.rs",
+    "status": "realized",
+    "volatility": "stable"
+  }
+}

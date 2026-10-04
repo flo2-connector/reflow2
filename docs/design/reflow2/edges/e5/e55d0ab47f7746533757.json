@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:fd903d17a087b371d0aafff9c2c78b539aa038c03fa4f16151394d84dc9bbcf7",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:seat-liveness-shared-test",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:seat-liveness-shared-test"
+}

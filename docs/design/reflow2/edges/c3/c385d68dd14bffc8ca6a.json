@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:0a9fb16cc181b06458a84383237d469d00801f58ff9de0a928a37512e613d2d0",
+  "edge_type": "CHANGED",
+  "from_id": "chg:absorb-graph-algorithms",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "art:dependency-manifest"
+}

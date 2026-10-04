@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:453033973b6686e988c71cbe0cb334c3411cc98e0127fdc284e1bdb844a23c08",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0540",
+  "properties": {
+    "as_checksum": "sha256:0f68faa69f7be98caba7a90b62162f8c6a964e192800744714fd89ec03560867"
+  },
+  "to_id": "art:smoke-mcp"
+}

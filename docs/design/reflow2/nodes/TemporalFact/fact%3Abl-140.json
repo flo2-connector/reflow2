@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:1ed7d758b51e42a262f42c9e4bbc0a5c35644599635d549a023f74aca07ce12e",
+  "node_id": "fact:bl-140",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "defect",
+    "statement": "[BL-140] designation: required means \"supplied from outside\" and unprovided_interface does not read it, so declaring the truth does not stop the alarm",
+    "subject_id": "cmp:detect",
+    "value": "{\"evidence\": \"*Found 2026-08-01 by an /adopt pass over music_graph, a ~11k-LOC Python research repo taken from an empty graph to 134 nodes / 379 edges. Reported in that project's own reflow2_feedback.txt.* Verified in source 2026-08-01: detect.rs:1165 counts incoming PROVIDES and incoming CONSUMES and never consults Interface.designation. The schema already carries the answer the detector is asking for. designation: required is documented in structure.yaml as *\\\"this design NEEDS one of these FROM OUTSIDE; it is the half that was missing until 2026-07-30, and without it a design could say what it offered but not what it needed\\\"*. Two interfaces marked required (ifc:wav-audio, ifc:fluidsynth-cli) still fired *\\\"Nothing supplies X, but N parts rely on it\\\"* at severity 0.72 \\u2014 the second-highest gaps in the run. The workaround is the finding: the reporter invented a boundary Component (cmp:external-fluidsynth) purely to satisfy the detector, and named it correctly \\u2014 *\\\"that is modelling for the tool, not for the truth\\\"*, which is the failure mode [BL-42] and [BL-23] both exist to prevent. Fix shape: an Interface designated required or both has already answered the question; it should not raise unprovided_interface. The counterweight that must survive: an internal interface with no provider is still a real break, and internal is the DEFAULT \\u2014 so this must key on the designation actually being required/both, never on silence. Size S\", \"origin\": \"Migrated from docs/backlog.md BL-140 on 2026-08-07 (epoch:backlog-retired). Size estimate carried from the row: S.\"}"
+  }
+}

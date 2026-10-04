@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:e933a5bdcbc6de354315c4d3898640a738ff49d28efdcf885a9431da90d14f13",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-how-does-reflow2-enforce-the-contract-regime-a-domain-already-has",
+  "properties": {
+    "evidence": "That question is the structural floor beneath this one: enforcing a contract regime is meaningless while a component can be claimed without stating any boundary at all. If it is answered no, most of the options here have nothing to attach to.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "dec:idea-a-black-box-owes-an-interface-the-way-a-capability-owes-a-requirement"
+}

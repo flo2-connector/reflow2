@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:9d7a77060768985eb0996a3c120b638424e92c080418d9e5f6af805ff657b687",
+  "node_id": "frag:art:test-recording-a-finding-demands-the-skill",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered recording_a_finding_is_a_tool_call_that_demands_the_skill.rs"
+  }
+}

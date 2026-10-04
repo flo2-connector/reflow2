@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:c651b8f65745e2a7b077431fb5907ebc7e2ba4b31d98d55e1519fd51ceb9cc01",
+  "edge_type": "CHANGED",
+  "from_id": "chg:procedural-joins-the-interface-media",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cap:interface-spec"
+}

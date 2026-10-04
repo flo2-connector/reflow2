@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:7e4a5d3e489c251fb7c4882d64965b95cd3659f2d6ea18b605f8071a6751331f",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-saved-design-moves-to-the-item-layout-2026-10-03",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:88703a66c2c6d8e62ce40125319dcfb639d9a358a7a508c0c9c6e32dfad71a98",
+    "checksum_basis": "measured"
+  },
+  "to_id": "art:test-a-write-records-the-agent-it-went-through"
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:1f16396ef4abc264ad759ba6e81ebb4e4a21bb1dd9141fc7229df47b7d7817a1",
+  "node_id": "chg:reviewed-defects-built",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "name": "Accepted structural defects leave the open list — the gap side's bargain kept on the defect side"
+  }
+}

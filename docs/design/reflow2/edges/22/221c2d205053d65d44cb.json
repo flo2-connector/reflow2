@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:e8dbd8eb12c56853ffec60e73be50244cf53d83212931cfce76bf7302861554d",
+  "edge_type": "VERIFIES",
+  "from_id": "ver:launch-serves-release",
+  "properties": {},
+  "to_id": "cap:a-session-serves-a-release-binary"
+}

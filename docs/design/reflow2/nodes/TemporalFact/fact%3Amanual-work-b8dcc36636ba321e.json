@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:2c5a2318c64f47b8c4e72902bf50c2e26cf035a248846d12dc42d33d17a977d1",
+  "node_id": "fact:manual-work-b8dcc36636ba321e",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "manual_work",
+    "statement": "Listed every edge touching one node (in and out, with the edge properties) by reading the committed export with Python, to see how a previous triage had linked its field-report artifact (CAUSES, DOCUMENTS, GOVERNED_BY, OBSOLETES) and to copy the pattern. Also listed the edges of an epoch and of a decision. get_node returns properties only; find_tools surfaced no edge-listing read. topic_report shows a hit's connections, which may partly cover this, but that was not checked.",
+    "subject_id": "proj:reflow2",
+    "valid_from": "2026-09-28",
+    "value": "{\"diagnosis\":\"unknown\",\"reflow2_tool\":null}"
+  }
+}

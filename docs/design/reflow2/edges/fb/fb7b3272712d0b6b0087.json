@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:42ced8f728a88e70f435dfc5d1146cc2b1bf79ba1a4a10860ba73de5d83cd297",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:idea-should-there-be-a-typed-depends-on-and-the-existing-name-freed",
+  "properties": {
+    "authored_at": "2026-08-31",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:claude-code"
+}

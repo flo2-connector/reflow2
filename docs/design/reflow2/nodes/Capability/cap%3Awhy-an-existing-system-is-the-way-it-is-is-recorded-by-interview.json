@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:f5199108180633f06dfccc633bda03e0d4299b94709e2942033700fa34aa6710",
+  "node_id": "cap:why-an-existing-system-is-the-way-it-is-is-recorded-by-interview",
+  "node_type": "Capability",
+  "properties": {
+    "description": "The served `why` skill (`/why`): an interview in two walks — by feature (why does this exist?) and by change (why did it change?) — over a repository's history, recording reasons, needs, choices and never-undo rules on the owner's word and nothing about structure. `tools/why_history.py`, shipped in the kit, reads the git main line as the agenda: changes grouped as a person would recognise them, noise dropped by rule and counted, reverts flagged, one feature's changes as a numbered page, and coverage computed from the design export (ChangeEvent `commits`, open follow-ups, a `why_cursor` finding per feature) rather than kept in a second record. Adopt's intent-recovery phase points to it.",
+    "name": "Why an existing system is the way it is is recorded by interviewing its designer",
+    "provenance": "authored",
+    "status": "realized",
+    "tier": "operational"
+  }
+}

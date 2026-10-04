@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:9f7d0d62a64a14b04980257a66768774ff41b819d364b03767add5b9c5febcfd",
+  "node_id": "fact:the-reflow2-flo2-seam-reran-against-http-2026-08-26",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "confidence": 0.85,
+    "fact_type": "finding",
+    "name": "THE RE-RUN THE 2026-08-13 SEAM MEASUREMENT ASKED FOR — flo2 took it against the HTTP boundary and the answer MOVED: 0 incompatible became 2",
+    "statement": "MEASURED 2026-08-26 BY FLO2, relayed by @ajs on 2026-09-13. Not taken in this session and not independently re-checked here.\n\nfact:reflow2-flo2-seam-measured-2026-08-13 closes by asking that the seam be re-run against the HTTP boundary before its result is treated as still true. flo2 did that. THE ANSWER MOVED:\n\n    incompatible  0  →  2\n\n    · medium              REST        vs  json_rpc\n    · transport_security  tls         vs  none\n\nWHAT THIS OVERTURNS. The 2026-08-13 reading's headline was \"agreed 3 · incompatible 0 · differs 0 · unstated by nobody 5\" — the two projects compatible as far as anything was stated. That was measured against reflow2's stdio MCP surface. Against the HTTP boundary, which is what a hosted flo2 actually speaks to, two axes now disagree outright rather than being merely unstated.\n\nWHAT IT CONFIRMS RATHER THAN OVERTURNS. transport_security was ALREADY named in the 2026-08-13 reading as one of the two axes where reflow2 is the silent side: \"flo2 states auth: none and transport_security: tls; reflow2's own published ifc:mcp-tools states NEITHER.\" Silence has now become disagreement. The report's own wording then was \"the side that assumed less finds out in production\", and this is that.\n\n🛑 WHY IT STOOD OPEN FOR TWO AND A HALF WEEKS, and it is a fact about the seam rather than about anybody's diligence: NOTHING IN FLO2 CAN WRITE TO THIS GRAPH. flo2 measured it, recorded it on its own side, and had no way to close the debt it was closing. The only path was a person carrying it across in conversation, which is what happened on 2026-09-13. That is a property of two designs that are linked in prose and not in machinery.\n\n📌 STILL NOT EXAMINED, carried forward unchanged from the original: the TYPES that cross the boundary. Every axis here is a property OF a boundary; a struct travelling through one is invisible to this check (con:pairing-stops-at-the-boundary).",
+    "subject_id": "ifc:mcp-tools",
+    "valid_from": "2026-08-26",
+    "value": "{\"incompatible_before\":0,\"incompatible_after\":2,\"axes\":[{\"axis\":\"medium\",\"ours\":\"REST\",\"theirs\":\"json_rpc\"},{\"axis\":\"transport_security\",\"ours\":\"tls\",\"theirs\":\"none\"}],\"measured_by\":\"flo2\",\"measured_on\":\"2026-08-26\",\"relayed_on\":\"2026-09-13\",\"reverified_here\":false}"
+  }
+}

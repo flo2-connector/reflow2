@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:9d7c2ad15762263d537deef54d6470c97c63e8ee0681abc639420b056e3c62de",
+  "edge_type": "ANTICIPATES",
+  "from_id": "epoch:2026-09-22-a-published-promise-carries-its-evidence",
+  "properties": {
+    "evidence": "That epoch is where this question was raised — it closes with \"WHAT THIS EPOCH DID NOT SETTLE: whether an owner should be able to withhold a specific check on a published target\". It names the question in one line as part of recording what happened; this node holds it as an open question with its four options and the counter that makes the obvious one suspect. An epoch is a record of a stretch of work and cannot be answered; a proposed Decision can."
+  },
+  "to_id": "dec:idea-may-an-owner-withhold-one-check-from-a-published-surface"
+}

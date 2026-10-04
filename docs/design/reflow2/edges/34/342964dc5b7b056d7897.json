@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:cd203493e5087330cd0b4337845d1a37abf326e5ca81c48ebea3fbb60b0cd0fe",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:idea-dimension-correlation",
+  "properties": {
+    "authored_at": "2026-08-01",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:claude-code"
+}

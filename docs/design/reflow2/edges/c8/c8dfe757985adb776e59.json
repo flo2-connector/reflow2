@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:e8656ac0ca813e56bf8e5280321a3690a397c0523f6a5d2aae977d85b408c119",
+  "edge_type": "CHANGED",
+  "from_id": "chg:bl91",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "req:read-surfaces-debt"
+}

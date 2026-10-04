@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:adae6d75605171924bbf2de531da24d446ae6a3bc9e56b6b394dcdbf97ccf619",
+  "node_id": "chg:baseline-d0fe5db428df9556",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "baseline_established",
+    "detected_at": "2026-08-28",
+    "name": "First baseline. The /root-cause slash command, mirrored to .claude/commands. ver:every-skill-has-a-command requires it to exist.",
+    "subject": "record"
+  }
+}

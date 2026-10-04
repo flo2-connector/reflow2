@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:98b8e8e1c90129ae8540386700ac9cdc983713fd8fba0e94abff4ebf691bf775",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0660",
+  "properties": {
+    "as_checksum": "sha256:363556518dc66b351a28e6daa6ce42c718ff7494381b99441cf20daffdfb0e21"
+  },
+  "to_id": "art:parallel-work-skill"
+}

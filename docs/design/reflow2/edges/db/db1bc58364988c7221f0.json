@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:3f6e2e8d672501bdea773bc1c2e7eed94cbf3073d24dec37538247910f61c701",
+  "edge_type": "CHANGED",
+  "from_id": "chg:bl26-documents-write-side",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:artifact"
+}

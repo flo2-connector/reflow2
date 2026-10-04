@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:b977af8c72b815dfd588376272a3c342bf58f632a8bbb906649b1d4df1f897e8",
+  "edge_type": "REALIZES",
+  "from_id": "art:heal",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cmp:heal"
+}

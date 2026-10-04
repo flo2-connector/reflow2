@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:d9fba14372d4bcdb615883c3cd07e1e1e3f26efa9e2c3092387b8682869b4456",
+  "edge_type": "REALIZES",
+  "from_id": "art:agent",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cmp:agent"
+}

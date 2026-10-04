@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:dd695535bb2452799a0b63e1b8b13c48903e302f8f96cd5e6a338cc41bfbd8e1",
+  "edge_type": "CHANGED",
+  "from_id": "chg:sync-debt-surfaced",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:service"
+}

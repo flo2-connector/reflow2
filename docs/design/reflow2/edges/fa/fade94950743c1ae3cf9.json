@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:6cac09c155a1d57d8e25b867c34e6605e5a6c6f571ff8d55a26c8ffa0583eaf8",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "fact:four-stale-records-in-one-session-and-the-built-mechanism-reached-at-most-one",
+  "properties": {
+    "evidence": "That accepted requirement states the property — a reader can tell what this design has already achieved without asking a person — and explicitly leaves HOW unsettled. This measures how far the current how actually gets, which is the only thing that can tell whether the requirement is met.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "req:the-graph-can-say-what-has-already-been-done"
+}

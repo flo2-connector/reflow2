@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:ac76a6602019951ae92a2ca8ada47bf723aed8a6e58811610e1a955a24a6c1bf",
+  "edge_type": "INVALIDATES",
+  "from_id": "chg:a-node-is-named-by-its-id-and-the-type-is-optional-across-the-relation-surface",
+  "properties": {
+    "at": "2026-09-06",
+    "note": "PARTIAL, and the fact's own title says which halves: 'how to name a node' is addressed across the relation surface (type optional, resolved from the id, refused on collision) and constructors deliberately keep the type required because creation cannot resolve a type from an id that does not exist yet. 'What status it lands in' is UNTOUCHED — whether a constructor accepts an initial status when a contributor is named is convention (ii), open on dec:idea-should-a-constructor-accept-the-owners-word-in-one-call and dec:idea-four-sibling-constructors-four-status-contracts, awaiting Anthony's ruling. The fact stays open for that half."
+  },
+  "to_id": "fact:defect-sibling-constructors-disagree-on-how-to-name-a-node-and-what-status-it-lands-in"
+}

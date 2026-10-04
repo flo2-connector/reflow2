@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:765fa2a43443ea5f66aa5e8e47cb0baca9ff0b3b14aabf75f140365d74325eac",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "rule:a-projects-first-session-leaves-the-adapter-in-place",
+  "properties": {
+    "approved_at": "2026-09-19",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:92beea642859bd5541fbf79e0f6a3c27f24e149f42654113485d689e3c73549d",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "req:agent-artifacts-are-captured",
+  "properties": {
+    "evidence": "Diagrams and mockups are binary or rendered content; the store is what makes them storable at all.",
+    "optional": false,
+    "weight_basis": "evidence"
+  },
+  "to_id": "req:content-store-for-what-the-graph-points-at"
+}

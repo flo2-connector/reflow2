@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:2dd924f8f35ff82559bd3c2f177a611e91783d421b4a173dc354e31734848c77",
+  "edge_type": "ANTICIPATES",
+  "from_id": "dec:idea-authentication-is-somebody-elses-layer-and-the-line-is-the-contributor-id",
+  "properties": {
+    "evidence": "That idea's 2026-09-22 sharpening saw a thin client holding credentials to a server that authenticates nothing itself, with the person carried inside the call rather than by the credential; this requirement is that client, made concrete."
+  },
+  "to_id": "req:a-local-client-works-against-a-remote-reflow2-server-by-url"
+}

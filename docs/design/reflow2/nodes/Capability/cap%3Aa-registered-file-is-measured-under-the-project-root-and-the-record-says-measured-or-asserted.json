@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:f6cb05c481974a97581b5a73cd0043e9ea44aedbb190e8e209a6dda5e89558e2",
+  "node_id": "cap:a-registered-file-is-measured-under-the-project-root-and-the-record-says-measured-or-asserted",
+  "node_type": "Capability",
+  "properties": {
+    "description": "As built 2026-09-18. `crate::measure` (reflow2-mcp) resolves a location under the server's tree root — `<root>` for a store at `<root>/.reflow2/graph`, the operator's `with_tree_root` otherwise — canonicalises it and refuses anything that lands outside (OutsideRoot), tells Absent from NotAFile, streams sha256 in 64 KB reads, and memoises on (length, mtime) per server so the loop pays for a 114 MB drawing set once. `link_artifact`, `set_artifact_checksum` and `set_artifact_checksums` take `checksum` as optional: omitted → measured (`checksum_basis: measured`); supplied → `asserted`, with `agrees` in the reply when the file was reachable. An accept that cannot measure refuses by name rather than moving a baseline to a guess. `reconcile_artifacts` with empty `observed` measures every registered artifact with a location and the reply's `measurement` block names the root, counts, and each unmeasurable location with why; a server holding no tree refuses the empty call by name. `loop_status.artifacts` carries `DesignGraph::drift_summary` (the read-only twin of reconcile: same volatility and retirement rules, counts only) and inserts a line in `next` when drifted+missing > 0. Registry-served designs are opened `without_tree()`. Schema: `Artifact.checksum_basis` (string, written only by the server). What it does NOT do, on purpose: list a root (the frontier's third leg waits), return content, or read for meaning.",
+    "name": "A registered file is measured under the project root, the record says measured or asserted, a reconcile with no arguments sweeps the registered set, and the loop reports live drift",
+    "provenance": "authored",
+    "status": "realized"
+  }
+}

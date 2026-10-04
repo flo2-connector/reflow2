@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:0fa536a66bd6853d84438d5cf09a7455a2de7157179ff59091dc32e57d099f66",
+  "node_id": "art:test-a-write-records-the-agent-beside-the-principal",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "test",
+    "location": "crates/reflow2-mcp/tests/a_write_records_the_agent_beside_the_principal.rs",
+    "name": "Test: a write and an approval record the agent beside the person, over every settle path",
+    "status": "realized"
+  }
+}

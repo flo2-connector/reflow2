@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:b0575d6224bb822da4c7490d05e4f23c67458970262ca140467f44a4c44c768d",
+  "node_id": "ver:content-surface",
+  "node_type": "Verification",
+  "properties": {
+    "description": "The store on the MCP surface (crates/reflow2-mcp/tests/tools.rs, 5 cases): text round-trips and a re-put reports `already_present` rather than looking like new work; NON-UTF-8 BYTES survive the JSON boundary as base64 and come back base64 unchanged, which is the whole reason that field exists; passing both `text` and `base64` is REFUSED rather than resolved by picking one, and passing neither is refused as a mistake rather than stored as an empty blob; `exists` answers false for an unstored hash without erroring, because that is the call someone makes to ask \"do I have everything?\"; and A SERVER WITH NO --content-path CONFIGURED REFUSES BY NAME instead of inventing a directory — blobs are committed, so where they live is a decision about the consumer's repo.",
+    "kind": "verification",
+    "last_run_at": "2026-07-31",
+    "level": "integration",
+    "method": "test",
+    "name": "The content store on the MCP surface, including non-UTF-8 bytes",
+    "status": "passing"
+  }
+}

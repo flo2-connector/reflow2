@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:0fda20ac4344436b28ae6a4f0c08c3a2e8ba342146384183a5debe907c7ba69b",
+  "node_id": "chg:prune-proposed",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "scope_change",
+    "name": "req:defaults-do-not-assert absorbs the edge and vocabulary cases"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:19566e4def707f3fd1c89aacbb2e4710fdfee7bc5aea426376733fbe0394f799",
+  "node_id": "cap:a-boundary-quantity-carries-its-unit-and-the-seam-compares-them",
+  "node_type": "Capability",
+  "properties": {
+    "description": "The write side: set_interface_spec gains a tenth agreement axis — a small structure of quantity name to unit (not a free string and not an enum), on the provider's published boundary and on the consumer's required boundary. The read side: the seam-incompatibility check, which already compares paradigm, payload_format, auth and transport_security across a published/required pair, compares the two unit maps quantity by quantity and reports a disagreement; and the incomplete-published-contract finding names the axis when a boundary that carries quantities states no units. `unspecified` and absence read as UNKNOWN, never as agreement — the materialised-default trap (fact:a-materialised-default-defeats-a-completeness-check) applies to this axis as to the other nine. Unit strings compare by exact spelling in the first cut; whether a canonical unit vocabulary is needed is the brainstorm's option F, deliberately not taken first. Planned 2026-09-13.",
+    "name": "A published boundary declares the unit of each quantity it carries, and the seam check reports the two sides disagreeing or one side silent",
+    "provenance": "authored",
+    "status": "realized",
+    "tier": "operational"
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:38ff7e7aeb98d7b08da84cbcc4e27d67b3f0b240efd579cceaff64ffdeb7c492",
+  "node_id": "req:a-relation-stored-in-more-than-one-place-has-one-authoritative-copy-and-no-copy-drifts-unnoticed",
+  "node_type": "Requirement",
+  "properties": {
+    "concern": "core",
+    "kind": "functional",
+    "lineage": "original",
+    "name": "A relation reflow2 stores in more than one place has one declared authoritative copy, and no other copy can disagree with it or go missing without a check failing",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "Anthony, 2026-09-28, in a dev_reflow2 session: \"fix the relations stored twice\". He was answering the recommendation that followed fact:a-findings-subject-is-stored-up-to-three-ways-and-39-percent-of-findings-have-no-edge-from-their-subject-2026-09-28: 354 of 763 findings have no HAS_TEMPORAL_FACT edge, 4 hang from a different node than their subject_id, and a Flow's exit pointer is stale.",
+    "statement": "Where reflow2 stores one relation in more than one place, the schema declares which copy is AUTHORITATIVE. Examples: a node property naming the node that an edge also joins (TemporalFact.subject_id and HAS_TEMPORAL_FACT; DimensionAssessment.target_id and ASSESSED_ON), or an order held as a pointer, a step number and a flag (a Flow's entry and exit). Every other copy is then one of two things. Either it is DERIVED from the authority, so every write path that sets the authority writes it in the same call. Or it is dropped, because nothing reads it. A design whose copies have already drifted is repaired from the authority, and each repair is reported, never done silently. A check fails when a copy disagrees with its authority or is missing. Deliberate divergences are declared, not tolerated by accident: a historical anchor such as Snapshot.target_id is allowed to outlive the node it named. This is the declared authority that req:where-one-fact-is-held-in-several-places-how-far-the-copies-disagree-is-measured-and-located defers to. That requirement MEASURES disagreement and never repairs; this one decides which copy wins and keeps the others agreeing with it.",
+    "status": "accepted"
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:7fa73be5977375efea1cb19e640123331f3d50bf2411c657d4c61badf7c5b287",
+  "node_id": "ver:a-signature-is-the-callers-own-through-every-writer",
+  "node_type": "Verification",
+  "properties": {
+    "findings": "Observed FAILING FIRST on a clean origin/main 3a14696 build under the shared build lock: 18 of 117 served write tools wrote an AUTHORED_BY naming another contributor for a caller the gateway named (acknowledge_defect, acknowledge_gap, acknowledge_gaps, add_decision, add_design_rule, add_requirement, apply_merge, authored_by, collapse_decision, create_edge, create_edges, create_node, create_nodes, delete_edge, draw_edges, import_graph, set_decision_status, set_requirement_status), and an undeclared registry wrote all five settling calls. Passing on the fix, with every refused call leaving the design exactly as it was. The core test (crates/reflow2-core/tests/a_signature_is_the_callers_own_where_it_is_written.rs) is new with the Signer API it checks, so it could not run on main; it passes.",
+    "kind": "verification",
+    "last_run_at": "2026-09-30",
+    "level": "integration",
+    "location": "crates/reflow2-mcp/tests/a_signature_is_the_callers_own_through_every_writer.rs",
+    "method": "test",
+    "name": "On an engine served for others every served write tool writes only the caller's own signature: each of the write tools read off the served surface is driven through a real registry as the caller and again in another contributor's name, bulk and nested items included; nothing signs or settles where nobody is established; the store's write points hold it",
+    "status": "passing"
+  }
+}

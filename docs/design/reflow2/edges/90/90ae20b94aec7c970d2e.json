@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:df0011b97a601330f5b64eaab7ba6ffea6fef15c20a95cadc2dc013c0c80406f",
+  "edge_type": "CHANGED",
+  "from_id": "chg:orphan-decision-degree-zero",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:heal"
+}

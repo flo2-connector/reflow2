@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:e94ebc910f17b8e0c4957022ea39ac9aa2782e79cfe2c75bd3097ab14f0dcb8d",
+  "node_id": "fact:a-cli-call-in-a-pointer-folder-mints-a-fresh-local-store-2026-10-01",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "defect",
+    "name": "DEFECT (measured 2026-10-01): a one-shot `--call` run in a folder whose .reflow2.toml names a hosted design ignores the pointer AND --only-if-present, and CREATES a fresh local store with a newly minted id — the stray-store hazard the pointer exists to stop",
+    "statement": "OBSERVED while moving nymath's design to flo2.io (dad8f529a065ac9b), from the dev_reflow2 hub session.\n- Setup: nymath had just been given a .reflow2.toml naming https://api.flo2.io/g/dad8f529a065ac9b/mcp, and its old store had been moved aside.\n- Command: `reflow2-mcp --graph-path .reflow2/graph --shared --only-if-present --call design_identity`, the user-scope MCP entry's own arguments plus --call, run in that folder.\n- Result: graph_id 4e342661a79ba9af, label \"nymath\", origin \"minted\". A NEW empty store at nymath/.reflow2 that names itself after the folder. It was removed at once after confirming 0 nodes.\n\nWHY, read from origin/main crates/reflow2-mcp/src/main.rs (~1645–1690):\n- The pointer check (\"A FOLDER THAT NAMES ITS DESIGN FOLLOWS THE NAME\") and the latent --only-if-present check both run only AFTER every CLI-only mode has returned.\n- So --call (and the other one-shot modes) never see either rule, and opening the graph creates it.\n- The client path a harness uses (stdio, no --http, no --serve-shared) does follow the pointer, so a real session in the folder attaches correctly.\n\nWHY IT MATTERS:\n- A script, hook or person running a one-shot read in a moved design's folder silently gets a second, empty design with a fresh id beside the pointer.\n- That is the frozen-store class of fact:an-agent-opened-in-a-moved-designs-folder-is-served-the-frozen-store-2026-09-27, by another door. The empty result reads as \"nothing here\" rather than as an error.\n\nNOT ROOT-CAUSED beyond the ordering. Whether a one-shot mode should follow the pointer (forward the call), refuse with the pointer's address, or open the store only when it already exists is open.",
+    "subject_id": "req:a-code-folder-names-the-design-it-implements-and-its-server",
+    "valid_from": "2026-10-01"
+  }
+}

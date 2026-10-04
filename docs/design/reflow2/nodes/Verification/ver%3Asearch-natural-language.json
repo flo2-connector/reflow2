@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:f7d1a5f8b7f66b9bc49b34f3c95a538df33169f49f8d1a79484a18c5aae275fa",
+  "node_id": "ver:search-natural-language",
+  "node_type": "Verification",
+  "properties": {
+    "criteria": "PASSING as of 2026-07-24, proven by an automated test, not by an upstream claim. Location: crates/reflow2-core/tests/search.rs, featured arm (`cargo test -p reflow2-core --features fulltext --test search`), three cases. (1) `a_natural_language_question_finds_the_requirement_it_asks_about` — two full questions phrased in a person's own words, each of which shares only some vocabulary with its target, must rank that target first against a distractor sharing common words; pins the CLASS, not the instance. (2) `one_unmatched_word_does_not_erase_a_real_match` — the minimal pin reduced to one variable: `upgrade` matches, and `upgrade zzzznotaword` must still match. (3) `a_question_the_design_does_not_answer_still_returns_nothing` — the other half of the contract, because a disjunction that matched everything would destroy the information content of 'no hits' and bring the duplicate problem back from the other direction. REGRESSION PROOF, the step that makes this more than a decoration: the pins were temporarily reverted to dynograph-foundation v0.10.0 and the suite re-run. Cases (1) and (2) FAILED against the pre-fix build with exactly the reported symptom (SearchResult { hits: [] }) and PASS against v0.11.0; case (3) passes against both, correctly, since AND semantics also refused an unrelated question. A test that passes on the broken build proves nothing, so this was verified rather than assumed. Root cause fixed upstream in dynograph-foundation v0.11.0 (PRs #76, #77): TextIndex::search now matches tokens as a ranked disjunction — at least one token required, BM25 ordering — instead of requiring every token.",
+    "kind": "verification",
+    "last_run_at": "2026-07-24",
+    "level": "integration",
+    "method": "test",
+    "name": "A natural-language question finds the requirement it is asking about",
+    "status": "passing"
+  }
+}

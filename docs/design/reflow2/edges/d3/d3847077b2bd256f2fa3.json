@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:6eaa03947a50bb5eec0b04bfa5c04af47d406373d32e124a2cffa6d8cff30145",
+  "edge_type": "REALIZES",
+  "from_id": "art:upstream",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:a-declared-upstream-is-read-where-it-lies"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:9697672d59bf5afc0d06f59fca1f44399b2b4eaa7d7d60db5564fcee3c347636",
+  "edge_type": "CHANGED",
+  "from_id": "chg:stale-seat",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:service"
+}

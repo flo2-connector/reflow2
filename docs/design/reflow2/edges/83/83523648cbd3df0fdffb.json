@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:90979670ac9cc0687ae3e76315cce5fb10c420a2ff8381895936b433cbd62abd",
+  "edge_type": "CAUSES",
+  "from_id": "cap:tool-search",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "Read from `score_tool` and `term_weights` in service.rs: a term scores +2.0×weight if `desc.contains(term)` — a SUBSTRING match, so \"in\", \"is\", \"cap\" match almost every description; the IDF is `ln(1 + n/df)` with df counted by the same substring rule, so a stopword present in all 180 descriptions still carries weight ln(2)=0.69 rather than zero; and no score is normalised for description length, so a 1,500-char description accumulates matches a 200-char one cannot. Reproduced in Python (164/180 ranks agree with the live server) and ablated one factor at a time: whole-word matching alone changes nothing (56→60 misses), dropping stopwords 56→45, length-normalising 56→43, all three together 56→39. The remaining 12 misses have zero content-word overlap with the tool's name, description or parameters, which no scoring change can reach.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:find-tools-misses-split-into-a-vocabulary-gap-no-ranking-can-close-and-a-scorer-that-lets-long-descriptions-crowd"
+}

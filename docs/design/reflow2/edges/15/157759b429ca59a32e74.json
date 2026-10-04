@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:0efc8c6d1c096097ecc28dda6b0646f616abfa463508743076e986ce19c42643",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:a-cut-exports-the-record-once-from-the-new-binary",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:packaging"
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:74a422fb10fc0f4593f4661abf89a59c9b92dad4a1ebc0c9b8e6a2f3fd02f232",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:remote-sessions",
+  "properties": {
+    "coverage": "partial"
+  },
+  "to_id": "req:reflow2-keeps-working-entirely-on-one-machine"
+}

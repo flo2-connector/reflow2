@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:2beed37e2050007e075a1601bd53fe7d0b2b5cbec08931187db959155f408ebd",
+  "node_id": "art:test-session-names-its-design",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "granularity": "atomic",
+    "location": "crates/reflow2-mcp/tests/a_session_names_its_design.rs",
+    "name": "a_session_names_its_design.rs",
+    "status": "realized",
+    "volatility": "stable"
+  }
+}

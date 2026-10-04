@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:64215e6403a3195a1addd3e4f2cb0f408eb343a502be150c3f840af79de4e2e0",
+  "node_id": "ver:no-served-text-writes-a-readers-persona-into-the-design",
+  "node_type": "Verification",
+  "properties": {
+    "description": "Reads every surface reflow2 serves text on, through the real handlers of an in-memory service: the lens on list_skills, get_skill and loop_status in four designs (empty; people with nothing on record beside a described automated agent; one described person; two); get_instructions whole and every section in its manifest, the pointer included; every served skill's body, description and summary, fetched by name; every tool on the served listing, description and every string of its input schema (add_contributor's parameters included); the handshake instructions; and the whole describe_schema reply. Each sentence is held to three stated shapes: (1) a reader's persona term (background, persona, trained in, day to day, who they are, their vocabulary, how they like to think) paired with the design holding it (add_contributor, Contributor, record/recorded, update the record, in/into the design or graph, get_node) within 20 words, not negated in its clause; (2) record/write/save/store it or the answer onto a Contributor; (3) \"the reader's recorded …\". A positive test holds the empty-case lens to the requirement's words on every rail (hands over, your host, your own memory, follow the words they use, ask once, never write it into the design). The classifier's own net pins twelve sentences served on 2026-09-30 as caught and nine corrected ones as passing. A keyword check: it cannot tell an instruction from a sentence describing one, and says so.",
+    "findings": "MEASURED FAILING FIRST, 2026-09-30, on the unfixed tree (origin/main 01fe82a plus the new test only, commit cb59f05), under the shared build lock: the gate test found 35 served sentences telling an agent to hold a reader's persona in the design (the lens on all three rails in all four states; get_instructions whole and its speak-the-readers-domain section; the where-am-i, topic, why and detect-and-ask skill bodies), 38 once shape 3 (\"the reader's recorded ...\") was added; the positive empty-case test and the described-case test failed on every rail; the classifier's own net passed. CI on the same commit (run 36788447861) failed the same three tests. All four pass on the fix.",
+    "kind": "verification",
+    "last_run_at": "2026-09-30",
+    "level": "integration",
+    "location": "crates/reflow2-mcp/tests/no_served_text_writes_a_readers_persona_into_the_design.rs",
+    "method": "test",
+    "name": "No served text tells an agent to write a reader's persona into the design, and the lens with nobody described says where the reader's lens comes from",
+    "status": "passing"
+  }
+}

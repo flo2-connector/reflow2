@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:67e065c3713dc735aea51c5871fa6ada557574d370385f2464f2f3f615eb2ad6",
+  "edge_type": "INVALIDATES",
+  "from_id": "chg:the-registry-names-every-store-it-found-and-cannot-serve",
+  "properties": {
+    "at": "2026-09-28",
+    "note": "The class is fixed: Registry::discover keeps every store it classified and cannot serve, and startup, the listing and the unknown-id refusal all name it with the remedy. The finding's \"the Dockerfile's warning is stale\" half is fixed too, along with the same stale claim in getting-started/UPDATING.md. The finding's candidate C (whether graph.meta.json or graph.sync.json matters silently when graph.id.json survives) was not measured and is not claimed."
+  },
+  "to_id": "fact:root-cause-the-registry-drops-a-store-without-identity-and-says-no-designs-2026-09-28"
+}

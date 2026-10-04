@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:1bef037fa682a79308f2f2e1d19396e7d5091b18ce55f24b4490c7cda925ffcc",
+  "edge_type": "CHANGED",
+  "from_id": "chg:accept-fa632e44a9185e67",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:usage-ledger"
+}

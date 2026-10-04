@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:cfe56e7638630beddee265018fdb08f579bf7303f4876ef472a52e7b3629d3a0",
+  "edge_type": "CONSUMES",
+  "from_id": "cmp:nudge",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "ifc:mcp-tools-http"
+}

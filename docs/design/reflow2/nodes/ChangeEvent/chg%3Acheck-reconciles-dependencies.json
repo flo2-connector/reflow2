@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:c4cead9c9c57e49c45b3fa3bd2db75b4feb19dca7e47140b8be386990ce641dd",
+  "node_id": "chg:check-reconciles-dependencies",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "name": "reflow2_check.py — the gate that ships to every consumer — starts reconciling DECLARED DEPENDENCIES, not only artifacts. Honest-silence first cut: it cannot read every ecosystem's build files, so when a design declares dependencies and the gate observed none it SAYS SO rather than passing in silence."
+  }
+}

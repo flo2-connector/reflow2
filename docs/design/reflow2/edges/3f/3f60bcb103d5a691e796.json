@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:e1d433f2226f4a7410e7facac3690f4465f38770ec3117257d737351848167cd",
+  "edge_type": "CHANGED",
+  "from_id": "chg:an-import-knows-its-own-age-and-a-server-behind-its-record-says-so",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:service"
+}

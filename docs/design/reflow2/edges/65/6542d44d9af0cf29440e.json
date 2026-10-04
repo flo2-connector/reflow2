@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:0eff29409b5df4c5c794c57bcc3faf88c99b8051a63cc8bef5e430776c5753fd",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0680",
+  "properties": {
+    "as_checksum": "sha256:258f9f6edd97fe586f71cbf9c9b6a12459f39b4243ed54d21ace4d5b63a5ac0b"
+  },
+  "to_id": "art:upstream-read-test"
+}

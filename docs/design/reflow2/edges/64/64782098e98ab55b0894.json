@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:fb8ae6b574b3f44388325d04f82343a2f917dfd0819ee86e60f63981e0e57214",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0750",
+  "properties": {
+    "as_checksum": "sha256:2bb942ef4cd7047b067c8974fb03d61864933afa166231316ce72dc05741f2b4"
+  },
+  "to_id": "art:read-only-surface-test"
+}

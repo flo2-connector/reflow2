@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:04d7a3dc25e03cb95e1b4a7bc4d5c01a2b7bdacb473ca0cc884b8d0b30210d22",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-write-is-credited-to-who-it-was-for-2026-09-25",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "cap:a-write-is-credited-to-who-it-was-for"
+}

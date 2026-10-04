@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:400b41856243222300515426c2c540d1e4b02a60eb6a089636dc384465a41b60",
+  "edge_type": "REALIZES",
+  "from_id": "art:mcp-http",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cmp:mcp-http"
+}

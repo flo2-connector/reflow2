@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:f484897a743d07b5e8e6125cb521b564cb40c6452eca279617a65e3836b5c526",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-settled-decisions-name-stops-asking",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:brainstorm-skill"
+}

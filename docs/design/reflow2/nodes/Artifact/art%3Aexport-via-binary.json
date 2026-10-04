@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:ed3800eb48073edd11244ada7014484abca6bb1ccd67992594c6ee2e6cc282a8",
+  "node_id": "art:export-via-binary",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "granularity": "atomic",
+    "location": "tools/export_via_binary.py",
+    "name": "export_via_binary.py — export through a chosen binary, so the stamp says what shipped",
+    "status": "realized",
+    "volatility": "stable"
+  }
+}

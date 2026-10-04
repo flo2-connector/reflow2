@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:e4f89b304d578da37f90977f6a05017f46b594353f1c314ec1f95b891cfe01c7",
+  "node_id": "ver:a-refused-host-is-told-which-flag-admits-it",
+  "node_type": "Verification",
+  "properties": {
+    "description": "crates/reflow2-mcp/tests/a_refused_host_is_told_which_flag_admits_it.rs, against the real binary, plus the host_gate unit tests (7).\n· Single-design --http 127.0.0.1:0: a POST and a GET with Host team.example.org get 403, text/plain, a body naming \"team.example.org\", localhost, 127.0.0.1, ::1 and `--http-allow-host team.example.org`, and exactly one stderr line naming the fix across both requests. Loopback is still answered with 200.\n· --http-allow-host team.example.org: that host and localhost are answered with 200; another host is refused with the list including the added one.\n· --registry-root: GET / and POST /g/<id>/ with an unlisted Host are refused BEFORE the router lists, resolves or opens anything. The body does not reveal what the root holds. Loopback still reaches the router's own 404.\n· Unit tests pin rmcp 3.4's matching (case-insensitive, brackets trimmed, a portless entry admits any port, an entry with a port admits only that one, a missing Host falls back to :authority, a malformed Host is a 400), the bounded echo, and the capped once-per-host log.",
+    "findings": "OBSERVED FAILING FIRST against the unfixed code (0.74.0 + the test only), all 3 cases:\n· the registry router answered an unlisted Host with 404 and its design listing (\"This server's registry root holds no designs\"), because no Host check ran before routing;\n· the single-design server answered 403 with NO content type, rmcp's \"Forbidden: Host header is not allowed\", naming no flag;\n· the named-host case passed its allowed paths and failed on the same opaque refusal.\nWith host_gate in front of serve_http and rmcp's check disabled, all 3 pass, and the 7 unit tests pass. Regression, all passing locally: tools/test_shared_sessions.py (the existing allowlist test, including 403-with-\"Host\" and loopback not locked out), test_degraded_server.py, refusal_speaks.py, test_export_to_reaches_the_daemon.py, test_shared_attach_from_another_folder.py, toolsnap.py, smoke_mcp.py; cargo clippy -p reflow2-mcp --all-targets -D warnings; cargo fmt --check.",
+    "kind": "verification",
+    "last_run_at": "2026-09-28",
+    "level": "integration",
+    "location": "crates/reflow2-mcp/tests/a_refused_host_is_told_which_flag_admits_it.rs",
+    "method": "test",
+    "name": "A refused Host is told which host it used, which hosts are allowed, and the flag that admits it — on every HTTP surface",
+    "status": "passing"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:e0c9420252ef8f2c78976bf0eab4b69dc1df891625bb5a4ff6575fb2c16c9c7b",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:a-write-is-credited-to-who-it-was-for",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:service"
+}

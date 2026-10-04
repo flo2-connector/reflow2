@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:1fa4a1fccab8dcd219d65d8cfb50c085fa74eae0cedb40ecb0da9e44c3e03866",
+  "node_id": "cap:undeclared-seam-is-named",
+  "node_type": "Capability",
+  "properties": {
+    "description": "DETECT names every Component pair joined by DEPENDS_ON with no Interface carrying BOTH a PROVIDES and a CONSUMES between them, as one aggregate gap (`undeclared_seam`) keyed on the rule.\n\nWHY IT IS A CAPABILITY AND NOT A CHORE: the set was already computed. maturity_report's `seams` band divides `declared` by `couplings` on every run, for every design, and discarded the difference. `DesignGraph::seam_sets` is that computation extracted, so the band and the detector cannot disagree about what a contract is.\n\nIT NAMES THE PAIR AND ASKS. It never drafts the Interface — reflow2 can see THAT two parts are coupled and cannot know WHAT crosses the boundary, so proposing a medium/payload/direction would be the fabrication `cap:no-fabricated-repair` exists to prevent. A test asserts the finding stays interrogative and carries no invented contract vocabulary.\n\nTWO SILENCES: no Component depends on another (an absence, not a deficiency — matching the band's own wording), and every coupling already declared.\n\nAGGREGATE, so the standing judgement survives a new coupling while the count in the title moves. reflow2's own design has 73 of these; `unexpected_coupling` was retired for exactly that flood.\n\nComplements `unprovided_interface` / `unconsumed_interface`, which run the opposite direction and both require an Interface to already exist.",
+    "name": "An undeclared coupling is named as a finding, not just counted into a ratio",
+    "provenance": "authored",
+    "status": "realized"
+  }
+}

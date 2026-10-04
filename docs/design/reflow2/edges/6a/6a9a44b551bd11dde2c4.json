@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:36c7cc3e6388e133ea6f49797426a49a23def21c2bccdcabd0b5b3e451956c56",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:idea-feedback-collection-is-asked-once-and-recorded",
+  "properties": {
+    "authored_at": "2026-08-11",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:alex"
+}

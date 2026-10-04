@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:c2f104ecc1b81737fb0ca7ceccbe91dd7c6b10660c09e00d6bae8d7d001dcd11",
+  "node_id": "req:a-finding-says-when-the-state-it-reports-is-normal-for-the-phase",
+  "node_type": "Requirement",
+  "properties": {
+    "lineage": "original",
+    "name": "A finding says when the state it reports is a normal stage rather than a defect",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "Promoted 2026-09-20 on Anthony's word. On a design three days old with nothing built, one finding fires once per capability — 17 times on flo2's own graph — each phrased as something to answer, with no hint that having built nothing yet is where the project IS. Its neighbours carry a paragraph that routes to who can answer and says whether the thing is even a defect; this one carries a single line. A person reads seventeen of them as seventeen defects.",
+    "status": "accepted"
+  }
+}

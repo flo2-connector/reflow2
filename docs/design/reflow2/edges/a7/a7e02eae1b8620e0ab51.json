@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:7a11610a29d7ceb2088a3fd3208f206af821d52ec81916562f7c8160ef5b5250",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:owed-to-a-contributor",
+  "properties": {
+    "coverage": "partial",
+    "evidence": "cap:owed-to-a-contributor is in_progress and holds the same thesis, but its chosen first cut answers 'what has a named person been asked to settle' (proposed Decisions with an approver edge), not 'which gaps are in the part of the system I own'. The fleet's ask is the second one, so this covers the requirement only in part."
+  },
+  "to_id": "req:ownership-is-an-edge-so-debt-has-an-addressee"
+}

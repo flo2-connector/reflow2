@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:7c8227a470d8df2e46c83ac94a3747edfbf134829082a304f0d9045c1f52ce9b",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:session-debt-test",
+  "properties": {
+    "covers": "whole",
+    "note": "migrated 2026-09-22 from a REALIZES link_artifact drew in error"
+  },
+  "to_id": "ver:the-loop-says-what-this-session-added"
+}

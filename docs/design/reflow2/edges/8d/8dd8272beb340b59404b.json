@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:a215a7453b40e3233d726f8dbe452fc69ff57cfd9773f19f5845a26d1a15a0d1",
+  "edge_type": "SCHEDULED_FOR",
+  "from_id": "cap:a-reader-that-cannot-read-the-vocabulary-is-told-what-it-lacks",
+  "properties": {
+    "modality": "expected",
+    "recorded_at": "2026-09-11"
+  },
+  "to_id": "epoch:planned-a-vocabulary-change-is-never-silent"
+}

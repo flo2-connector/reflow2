@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:f1f6bf3f65e31ed9849cc20493009f0e3078c01912cb19f7889c3a846c96338d",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-capture-that-replaces-a-node-says-so",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:derived-edge-readers"
+}

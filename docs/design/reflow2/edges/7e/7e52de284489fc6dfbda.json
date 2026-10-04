@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:e1306cfc338ca294826bda71e2e75cc300a86a0a50deb342408727c0eeabe7cf",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:idea-a-writing-call-exports-afterwards",
+  "properties": {
+    "approved_at": "2026-10-01",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

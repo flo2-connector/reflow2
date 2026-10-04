@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:2b1d402a82c414cdc46e9b17081268f6a43d9092281408cde9a1a60966acff3f",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:a-stored-twin-is-kept-by-the-store-test",
+  "properties": {
+    "covers": "whole"
+  },
+  "to_id": "ver:a-stored-twin-has-one-authority"
+}

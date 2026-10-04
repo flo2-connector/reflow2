@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:aa2c846f07cc4efef5208fa843495db4fbcc861ba257aebf6469a87ec99eb7d4",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-graph-asks-what-a-session-made-false",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:skill-lint"
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:ec3f184f5611d30ed7683ca69199dc40b8df7f2b057aa1b37d255c400e251341",
+  "edge_type": "GOVERNED_BY",
+  "from_id": "sys:intake",
+  "properties": {
+    "note": "The front door is where the rule bites: everything this rule forbids arrives through intake, and the un-distilled remainder of a report is exactly what intake currently has nowhere to put."
+  },
+  "to_id": "rule:design-information-lives-in-the-graph-not-in-documents"
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:f8ebfc1578fbef5a06132caccf2a6c0413011e6b7db827000272a6bfd31d3c93",
+  "node_id": "frag:art:content",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered content.rs"
+  }
+}

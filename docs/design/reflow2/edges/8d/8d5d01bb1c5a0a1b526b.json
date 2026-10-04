@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:e063d64098e547e73f1000a0e8f3c16889eb1306c04649061c261d38405987a0",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:refusal-speaks-gate",
+  "properties": {
+    "covers": "whole"
+  },
+  "to_id": "ver:every-argument-refusal-names-the-tool-and-the-field-path"
+}

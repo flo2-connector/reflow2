@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:d9643e559b9f3f24a0c9963ffca96b7b4a7f1a827c4a17094484ebdfab6b89da",
+  "edge_type": "HAS_TEMPORAL_FACT",
+  "from_id": "art:check",
+  "properties": {},
+  "to_id": "fact:a-newborn-capability-with-no-owner-scores-below-the-build-gates-threshold"
+}

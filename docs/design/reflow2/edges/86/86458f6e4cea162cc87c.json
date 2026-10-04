@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:0449424cee3b27845b6f1d32a561437c8f70c07cdf5ca96a9e66b2a0631ac8c1",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-saved-design-moves-to-the-item-layout-2026-10-03",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:7b920d164ea4539d5a1ca81d28c13fb9e5ff6188fd28998ac9db9fd2c3290307",
+    "checksum_basis": "measured"
+  },
+  "to_id": "art:test-the-near-match-report-is-not-cut-at-three"
+}

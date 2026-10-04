@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:5440bf30d022d46ce651eb298bd077350a8ef0ffc97c67f0db2efb330ce542e1",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:a-generated-code-map-is-linked-from-the-design-never-merged-into-it",
+  "properties": {
+    "approved_at": "2026-09-23",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

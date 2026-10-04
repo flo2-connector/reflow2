@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:0c8a7676057d2f78fa166297c7f717e200bd27bb447c938d023d7159edf9064c",
+  "node_id": "chg:realizes-is-restricted-to-three-target-types",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "constraint_change",
+    "detected_at": "2026-09-23",
+    "name": "REALIZES is restricted to Capability, Component and Interface; link_artifact refuses the rest by name, and legacy REALIZES onto a check becomes IMPLEMENTS on open and import",
+    "rationale": "Anthony's ruling, dec:realizes-is-restricted-to-capability-component-and-interface, after measuring 44 of 45 off-type REALIZES edges wrong. The migration applies the VERIFIES lesson in advance: a tightening must not make an existing design unimportable. Proved against every other committed design on the machine.",
+    "subject": "system",
+    "summary": "schema/build.yaml REALIZES `to: [Capability, Component, Interface]`; artifact.rs REALIZES_TARGETS + realizes_target_hint and a link_artifact guard before any write; graph.rs migrate_realizes_onto_checks on open; export.rs import converts Artifact REALIZES Verification to IMPLEMENTS (ImportReport.migrated_edges) and names the fitting edge when any other REALIZES target is refused."
+  }
+}

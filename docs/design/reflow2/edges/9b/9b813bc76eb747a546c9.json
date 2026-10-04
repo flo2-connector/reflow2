@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:68e9a179d9e69a09a150da791d8eeca217aa42027235e0d6cc4db7350da23cea",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-adopt-the-physical-plant-from-facility-sources-and-flag-drift-between-them",
+  "properties": {
+    "evidence": "Adopting a facility's physical inventory is worth anything only if the umbrella lands on taking operations in as a first-class use (its option a). Under b, c or d it is the project's own script.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "dec:idea-reflow2-serves-a-design-in-operations-where-incidents-feed-the-design"
+}

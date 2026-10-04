@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:96ac2c1953ffc8254da0bed6d8afbf1124721c64971ad1c1dc872a24e0807352",
+  "edge_type": "CHANGED",
+  "from_id": "chg:baseline-4a060277f9d98d5e",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:test-the-compliance-layer-is-whole"
+}

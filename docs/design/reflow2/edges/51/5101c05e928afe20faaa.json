@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:bca1b3618c2771ac9a4eff679b8bda1401febe8276d12a2b0bbb9c8001088d3f",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "fact:the-tool-class-census-answers-the-open-questions-own-test-and-half-the-sweeps-findings-are-one-offs",
+  "properties": {
+    "evidence": "That decision is ACCEPTED for skills — composed of attribute classes, not stamped by one factory and not swept by one exhaustive check. Whether this census argues for extending that settled mechanism to the tool surface is only meaningful given its ruling; the census measures class sizes and deliberately chooses nothing, so it rests on that decision rather than reopening it.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "dec:idea-a-factory-builds-the-mechanics-in-so-a-class-fix-is-one-edit"
+}

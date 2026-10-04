@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:a3f57cc742b589d8bca24ae6441c25d0c9c617c9177d137cf0fd5bbf474728a0",
+  "node_id": "epoch:legitimate-islands-answered",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "epoch_type": "revision",
+    "name": "The legitimate-island question is answered: stop proposing fabrication now, declare partitions next, and only if something reads the declaration back",
+    "sequence": 308,
+    "status": "arrived"
+  }
+}

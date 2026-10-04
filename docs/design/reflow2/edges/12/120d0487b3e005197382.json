@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:85410fb7066653b96cfb3cef0001aae76ecfb82f6c9cfe936e8189c135dfe009",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0620",
+  "properties": {
+    "as_checksum": "sha256:4dd6db54fe4471ca2d1bd7a8eabff6e24a96a031a37d33c18226a21dfa296a3a"
+  },
+  "to_id": "art:export-write"
+}

@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:04b064d70e93134b724a4c5dd0bda17cde8b3517f100244cfbedd65fdb6d7bd3",
+  "node_id": "req:settling-a-decision-records-which-option-won",
+  "node_type": "Requirement",
+  "properties": {
+    "lineage": "original",
+    "name": "Settling a decision records which option won, without rewriting the deliberation that produced it",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "Promoted 2026-09-20 on Anthony's word. flo2 settled two decisions correctly and both kept reading 'OPEN — is …?' with bodies ending 'Options, none chosen.' An accepted decision that still reads as an open question is worse than an unsettled one, because a later reader trusts the prose over the status. The only route today is resending the whole node — the very operation measured to lose content. A short free-text field on the setter lets the settling act say what it settled.",
+    "status": "accepted"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:35bedfcbecbdb593a17c9daf7dc2162bbee32fbac70f105a32e45dab48be8893",
+  "edge_type": "DUPLICATES",
+  "from_id": "fact:the-served-instructions-name-no-way-to-ask-whether-a-thing-already-exists-and-one-consumer-rebuilt-four-that-did",
+  "properties": {
+    "basis": "suspected",
+    "evidence": "The same missing trigger, from the owner's own words on 2026-08-11 and from a consumer on 2026-09-19. Linked rather than merged because they name different catalogues — the graph before adding a node, the tool surface before building one — and both reasons matter."
+  },
+  "to_id": "dec:idea-search-first-fires-without-being-remembered"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:40cce3871b39338184fed72f9315b19395d168f335302d6e56300e3674826504",
+  "edge_type": "CHANGED",
+  "from_id": "chg:bl186-folder-driver",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:increment-plan"
+}

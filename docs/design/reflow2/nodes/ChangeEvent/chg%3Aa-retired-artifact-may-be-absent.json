@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:ebd74a8c1b9fc5af157bfee3f23d38b0090e2feec0d359c261b112995736b623",
+  "node_id": "chg:a-retired-artifact-may-be-absent",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "name": "A retirement carried out stops being reported as drift: `DriftKind::ExpectedAbsence` is added, and `reconcile_artifacts` reads `is_discontinued` on the missing-file path so an accepted OBSOLETES decision turns a `high` failure into a `low` note. A distinct kind rather than silence, following ExpectedChange's precedent — a file deleted by accident after an unrelated retirement must still be visible."
+  }
+}

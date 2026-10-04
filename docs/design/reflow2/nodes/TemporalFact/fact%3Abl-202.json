@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:f3898558290d39c3bef2bd6715a06542aaf6660ce82466241682a9a96a5851db",
+  "node_id": "fact:bl-202",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "defect",
+    "statement": "[BL-202] The typed constructors every skill prescribes reach 44% of the declared properties — so the effective schema is the constructor signatures, not schema/*.yaml",
+    "subject_id": "cmp:nodes",
+    "value": "{\"evidence\": \"*Same census, 2026-08-04.* Across the 13 node types that have a typed constructor: 94 declared properties, 42 reachable through it. 67 of the 208 properties in the whole vocabulary are named by NO request struct anywhere in the 142-tool surface \\u2014 reachable only through the generic create_node, which takes an arbitrary schema-validated property map and which no skill prescribes. Two known rows are symptoms of this single cause: [BL-129] (Interface.medium unreachable from both tools that create and specify Interfaces) and [BL-183] (16 of 18 constructors silently reset every property they did not name, *and the served revise-design skill prescribed the call that did it*) \\u2014 that bug is only possible when a constructor's field list is a proper subset of its type's properties. Fix shape: one write path per node type taking the full property map, with the ergonomic arguments as sugar over it rather than as a second surface. The typed constructors were an ergonomics decision that hardened into a lossy second schema; the generic create_node is the honest surface and it is the one nothing documents. Size L and it is a surface change \\u2014 it moves toolsnaps and wants its own increment. Size L\", \"origin\": \"Migrated from docs/backlog.md BL-202 on 2026-08-07 (epoch:backlog-retired). Size estimate carried from the row: L.\"}"
+  }
+}

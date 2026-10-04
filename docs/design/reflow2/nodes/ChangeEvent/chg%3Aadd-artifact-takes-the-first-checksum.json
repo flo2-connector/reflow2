@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:8ab223aff6bc9a07e7f8b668b7a9d84f956002544806ac69632e0d16b7a303df",
+  "node_id": "chg:add-artifact-takes-the-first-checksum",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "defect_fix",
+    "detected_at": "2026-09-15",
+    "name": "add_artifact can set the first checksum, the way every other door already could",
+    "rationale": "The Artifact schema declares `checksum`, link_artifact takes one and its skill says always supply it, set_artifact_checksum moves one later — and the plain constructor alone could not set the first, so the workaround was create_node with a props bag. The class is the one the reachability instrument cannot see: a declared property no typed constructor offers, hidden because most artifacts carry one through the OTHER door and the property reads as heavily used. CORRECTED THE CAUSE: for this property, yes. The sweep the record said was never run — every constructor that cannot set a declared property of its own type — is still not run, and is the honest remaining edge of this fix.",
+    "subject": "system",
+    "summary": "AddArtifactReq gains `checksum`; the handler writes it through a new core method, DesignGraph::set_artifact_baseline (artifact.rs), which stores the canonical form as a plain property with no ChangeEvent — a first baseline is not a change, the same shape link_artifact uses — and REFUSES to move an existing one, naming set_artifact_checksum as the door that records why a baseline moved. Pinned by crates/reflow2-mcp/tests/add_artifact_takes_the_first_checksum.rs (stored, not merely accepted; absent stays absent; a move is refused). The delete_edge half of the same record is left as built: an edge is identified by its two ids and its type, the endpoint types are redundant for a delete, and the record itself judged the refusal defensible — what it wanted there is the wish already open as dec:idea-a-rejected-field-says-whether-it-moved-or-was-never-there."
+  }
+}

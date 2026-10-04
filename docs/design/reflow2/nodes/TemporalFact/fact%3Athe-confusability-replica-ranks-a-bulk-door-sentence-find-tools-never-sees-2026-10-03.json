@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:4e8e8cb9db1e64792b55caf79e9d07e42df3e7088a0cca872bd2f6807895b867",
+  "node_id": "fact:the-confusability-replica-ranks-a-bulk-door-sentence-find-tools-never-sees-2026-10-03",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "defect",
+    "name": "MEASURED 2026-10-03: tools/tool_confusability.py, the offline replica of find_tools, now agrees with the live ranker on 186 of 193 corpus queries at top 1 and 115 at exact top 5 (its header says 185/185). It scores the toolsnaps, and 32 of them carry the sentence tools/list appends (\"MANY AT ONCE: `draw_edges` …\"), which find_tools ranks without. Stripping that sentence gives 193/193 and 189/193",
+    "source": "art:tool-confusability",
+    "statement": "FOUND while wording get_node's description for fix program item 5 (dec:idea-an-edge-reader-returns-one-nodes-edges-and-find-tools-finds-it). The replica predicted get_node 6th for 'read one node by id with its properties and edges' and 1st for 'get a node and its edges'; the live ranker said 8th and 2nd.\n\nMEASURED: every one of the 193 corpus queries run through `--call find_tools` (limit 5) on an empty design with the branch binary, against tool_confusability.rank over the committed toolsnaps: top-1 agree 186/193, exact top-5 agree 115/193.\n\nCAUSE, separated by measurement: tools/list appends a bulk-door sentence to 32 typed edge helpers (\"MANY AT ONCE: `draw_edges`, items {...}\"), so their toolsnaps contain the word `edges` (draw_edges splits on the underscore). find_tools ranks the router's descriptions, which do not carry it. The replica's document frequency for `edges` is 49 against the live 25, so every query naming edges is weighted wrongly. With that one sentence stripped from each toolsnap, the same replica agrees 193/193 at top 1 and 189/193 at exact top 5.\n\nWHY IT MATTERS: `tool_confusability.py --baseline` rewrites the rank-ratchet fixture from these rankings, and a description pass iterated against the replica is tuned to a scorer that is not the one served.\n\nNOT FIXED HERE (outside item 5). The fix is in load_tools: strip what tools/list appends, or read descriptions from the router rather than from tools/list. Not established: the four remaining exact-top-5 differences.",
+    "subject_id": "art:tool-confusability",
+    "valid_from": "2026-10-03"
+  }
+}

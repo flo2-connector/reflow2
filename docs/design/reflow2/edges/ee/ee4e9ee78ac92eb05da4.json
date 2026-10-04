@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:8280aae1c889c0036e42980daa0e1b1a1ff1a90ec24054674be5af28796ed5db",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-does-serving-flo2-cost-the-local-case",
+  "properties": {
+    "evidence": "Whether serving flo2 costs the local case depends on WHICH LAYER absorbs the scaling work. If it lands in dynograph-foundation as a new `impl KvBackend`, reflow2's shape does not move and the local case is barely at risk. If it lands in reflow2 by loosening \"one design = one directory = one engine\", the local case is exactly what is being changed. So the cost question cannot be answered before the layer question.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "dec:idea-where-does-the-10k-work-actually-land"
+}

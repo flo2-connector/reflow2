@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:9e5fa32f4820bbf3e60e3d9c031dd67568d12e0bb7cf9220e035dd373879e12a",
+  "edge_type": "CHANGED",
+  "from_id": "chg:an-edge-says-whether-anyone-checked-it",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:orphan-attachment-test"
+}

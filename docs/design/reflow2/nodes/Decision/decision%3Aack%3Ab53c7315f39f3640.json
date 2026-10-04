@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:bedd20d28879dab465d6e461de485a73bce886c289d7c5b871a7b11c4a359555",
+  "node_id": "decision:ack:b53c7315f39f3640",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Accepted the gap gap:b53c7315f39f3640.",
+    "name": "Reviewed: gap:b53c7315f39f3640",
+    "rationale": "APPROVED, AND BLOCKED UPSTREAM (Anthony, 2026-07-25: take on the upstream change). It cannot be satisfied inside this repository — dynograph-storage must expose RocksDB's open_as_secondary / open_for_read_only first, and that is a tag-pinned dependency. Acknowledged with the blocker named rather than left looking like unstarted work in this repo.",
+    "status": "accepted"
+  }
+}

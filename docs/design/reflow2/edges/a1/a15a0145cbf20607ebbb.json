@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:5b1b9cc0c257f5e693cd73ba74f1f24618f36a4f55768a9a26bc58e923e53aff",
+  "edge_type": "CLAIMS",
+  "from_id": "who:claude-code",
+  "properties": {
+    "depth": 2,
+    "note": "Ruling on the 13 overtaken-defect records (Anthony 2026-09-15): fixing the contradiction and unresolved_setup rules to test their own condition, add_artifact checksum, Interface.medium procedural; acknowledging the rest.",
+    "seat": "asligar-bitecool:3425173:147fbad8"
+  },
+  "to_id": "cmp:heal"
+}

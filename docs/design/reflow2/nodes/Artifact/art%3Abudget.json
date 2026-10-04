@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:8399381bc5079b3332622426fac04b5cd83283d177d891f08c2f5564ecd65034",
+  "node_id": "art:budget",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "granularity": "atomic",
+    "location": "crates/reflow2-core/src/budget.rs",
+    "name": "budget.rs",
+    "status": "realized",
+    "volatility": "stable"
+  }
+}

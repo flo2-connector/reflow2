@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:197391efa9c021a5cee11ee21d5e816ffa302535e859d09ce136295f2d66e9e9",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "req:a-quantity-carries-how-it-was-obtained-and-an-unsourced-one-is-reported",
+  "properties": {
+    "evidence": "A quantity with no unit cannot be checked by anything, so provenance on a quantity is only meaningful once the unit is a modelled fact; the unit-system requirement is accepted and unbuilt and is realized first.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "req:a-project-declares-its-unit-system-as-a-governed-rule-and-undeclared-or-off-system-units-are-reported"
+}

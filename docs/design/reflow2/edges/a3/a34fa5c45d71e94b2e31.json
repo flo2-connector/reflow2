@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:97eb603892b287b74d0a1bb93486854a4e624fe01e7d8d8c51c10f5cc2f104b7",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-one-command-switches-reflow2-between-local-and-remote",
+  "properties": {
+    "evidence": "The switch configures the local client that requirement describes; without the client there is nothing for it to set.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "req:a-local-client-works-against-a-remote-reflow2-server-by-url"
+}

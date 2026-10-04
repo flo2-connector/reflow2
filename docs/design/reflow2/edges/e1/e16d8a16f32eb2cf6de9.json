@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:b49b5db263502711d5e5ff7412c0da4854f5393c6cf71fbe605b2292b26619ea",
+  "edge_type": "CAUSES",
+  "from_id": "cap:a-reply-takes-the-shape-its-client-can-read",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "The policy is keyed on a client's self-reported name with a hardcoded fallback, so it can only serve clients somebody has already measured, and its fallback is the shape that fails the two populations it was meant to protect.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:the-per-client-reply-shape-exists-and-its-DEFAULT-is-the-one-shape-that-serves-neither-population-and-every-new-connector-is-unknown"
+}

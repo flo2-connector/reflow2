@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:44eed46df5341052114a26b2a9e63ccca00f9338539de27627a874baa48602c4",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-last-two-from-the-field-triage",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:schema-core"
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:0e80f12c1a93f9e112896d6344a250f19ce7c191bc240e8749b6ede63f730bba",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:test-the-design-is-saved-one-file-per-item-mcp",
+  "properties": {
+    "covers": "whole"
+  },
+  "to_id": "ver:an-item-layout-write-reads-back-whole-and-anchors-each-item"
+}

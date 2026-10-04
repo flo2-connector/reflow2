@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:9475011fe574792b583a89950f882bcbcfb6b70beade19d524d0f2adbe5c8087",
+  "edge_type": "INVALIDATES",
+  "from_id": "chg:read-only-is-honoured-by-every-client-mode-2026-10-03",
+  "properties": {
+    "at": "2026-10-03",
+    "note": "Re-measured on the branch binary: --shared, search_design {\"query\":\"initialize\"} answers and so does the next call (measure-fix.log M7); over --remote every message after the handshake carries the session id. Pinned by a_shared_call_that_mentions_initialize_is_not_taken_for_a_handshake and without_read_only_a_remote_client_forwards_every_call."
+  },
+  "to_id": "fact:a-forwarded-call-whose-arguments-hold-initialize-is-taken-for-a-handshake-and-breaks-the-session-2026-10-03"
+}

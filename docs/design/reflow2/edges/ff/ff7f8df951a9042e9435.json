@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:bf61c4b7940ef8ca77e57a46c424c77225f351ccaadb035c5cef40964c709139",
+  "edge_type": "REALIZES",
+  "from_id": "art:check-doc-versions",
+  "properties": {
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:a-cut-moves-every-version-claim-together"
+}

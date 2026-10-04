@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:7b9bc2ac174072fac1e1f0e2025e44d20ea113e0b5e5c4a1457ce817d285f9a0",
+  "edge_type": "CAUSES",
+  "from_id": "art:tools-temporal",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "record_finding in temporal_tools.rs sets fact_type with `unwrap_or(\"finding\")` and basis with `unwrap_or(\"measured\")` on every call, and upsert_node lets those supplied keys overwrite. Measured on 0.72.0: defect→finding and forecast→measured on a name+statement revise, while the replace_text path kept both.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:root-cause-record-finding-writes-its-defaults-on-every-revise-2026-09-28"
+}

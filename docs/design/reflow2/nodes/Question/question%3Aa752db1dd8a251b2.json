@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:d618cd6e9fc89ea1713639980c47b3a1af3701d063fb69e6970222243126176a",
+  "node_id": "question:a752db1dd8a251b2",
+  "node_type": "Question",
+  "properties": {
+    "answer": "\"Start from the next release.\" — Anthony, 2026-07-25, on whether the nine shipped releases should be corrected to record that they included documentation. The past release record is left exactly as it stands. Retro-editing nine Release nodes to claim a contents-line nobody wrote at the time would be reconstructing history rather than recording it, and dec:intent-preserved is specifically about not doing that — the releases genuinely did ship a README and a setup guide, but the design did not model documentation as a deliverable until 2026-07-25, and that is a true fact about when the understanding arrived. The obligation is forward: the next release cut must include cmp:docs in its contents.",
+    "asked_at": "2026-07-24",
+    "context_setter": "“docs” is built but ships in nothing",
+    "gap_id": "gap:a752db1dd8a251b2",
+    "question": "You've just said documentation is part of reflow2, like documentation shipped with a fighter jet. The graph now takes that literally and points out that none of your nine releases lists documentation as something it delivered — even though every one of them shipped a README and a setup guide. Should the past releases be corrected to say they included the documentation, or should this start from the next release onward?",
+    "rephrase_degraded": false,
+    "status": "answered"
+  }
+}

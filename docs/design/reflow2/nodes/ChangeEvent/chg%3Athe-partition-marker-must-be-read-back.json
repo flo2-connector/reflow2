@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:4a38a0f89fc90b898df570c279fb9579308c288404c1091eae550b8846ff8233",
+  "node_id": "chg:the-partition-marker-must-be-read-back",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "constraint_change",
+    "name": "The declared-partition requirement gains a CONDITION: the marker must be read back with its size and its date, or it must not be built at all"
+  }
+}

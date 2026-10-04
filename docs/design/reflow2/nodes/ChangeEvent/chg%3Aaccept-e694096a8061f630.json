@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:7c41dc449df1278db19a59e2e0f80de911bfe532f57db163c15776bc40509aa9",
+  "node_id": "chg:accept-e694096a8061f630",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "documentation",
+    "detected_at": "2026-09-19",
+    "name": "Two version claims moved to 0.65.0 by the cut (the shipping-version line and the loop-status line). The design meaning of a cut lives in the Release and its epoch, never in a version string.",
+    "subject": "system"
+  }
+}

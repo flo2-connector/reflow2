@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:083f5ccb1c22f2d015f3bb2363769f3a2fb03eff119acd47f4f9db9ee144169f",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:test-why-history",
+  "properties": {
+    "covers": "whole"
+  },
+  "to_id": "ver:a-git-history-is-read-as-the-why-skills-agenda"
+}

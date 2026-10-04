@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:8109357a0afec95e7a74ec6278252703377a306d8a08b4b8471129695e6e699f",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-saved-design-moves-to-the-item-layout-2026-10-03",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:225f50d3f3e6b0c4f05aa0bc823497c76e2058b79503a390f9df73e05acb7382",
+    "checksum_basis": "measured"
+  },
+  "to_id": "art:check-health-skill"
+}

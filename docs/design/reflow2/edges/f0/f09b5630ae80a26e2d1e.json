@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:4df6aba864f3ef45959d29d366c0782c6d324ee4048f1581673ead1328a3953f",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:test-dependency-currency",
+  "properties": {
+    "covers": "whole"
+  },
+  "to_id": "ver:the-dependency-currency-checker-cases"
+}

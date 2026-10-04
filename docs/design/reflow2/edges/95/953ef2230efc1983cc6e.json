@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:577809f2181fb94a137db3230c4c28343bf7351927d47c0a1b0022176f97c223",
+  "edge_type": "CHANGED",
+  "from_id": "chg:release-without-manifest-detector",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cap:release-pinned-to-time"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:3bf11649495984cb5f1a4b0350507dc12ad6e63a0cd5aad17fcc7697ddbf1d79",
+  "node_id": "chg:accept-635435417e73d6d7",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "test_failure_fix",
+    "detected_at": "2026-08-01",
+    "name": "cap:tool-carries-convention: three tools gained their missing convention sentence — set_verification_status (planned is not confirmation), record_change (record it BEFORE you make it), export_graph (export once between commits, the lineage link is built from the file already there)."
+  }
+}

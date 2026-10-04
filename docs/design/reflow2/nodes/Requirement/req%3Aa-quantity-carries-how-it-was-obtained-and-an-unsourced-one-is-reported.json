@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:8b783dd8ca8cb3ab290f23cd3fcdd42a42b1b56ce309413f0fd7c052c9aa344d",
+  "node_id": "req:a-quantity-carries-how-it-was-obtained-and-an-unsourced-one-is-reported",
+  "node_type": "Requirement",
+  "properties": {
+    "lineage": "original",
+    "name": "A quantity carries how it was obtained, and a quantity nobody sourced is reported",
+    "priority": "high",
+    "provenance": "authored",
+    "statement": "Every quantity the design stores — a constraint's limit, a fact's value, an interface's rate — records its provenance: measured (by which instrument or artifact, when), computed (from which quantities, by which check with an executable form), or asserted (by whom). An asserted quantity with no name on it is reported, the way an acknowledgement with no approver is reported today; \"asserted by the agent\" is an allowed and visible state, never a refusal, so that a proposed number reads as a proposal. Every verification that matters to a quantity names an executable form a tool can re-run, and a check with none is counted and put to the person at the boundary. A number with no source must look different from a number with one; reflow2 cannot rule out a made-up number, and it can make one impossible to mistake for a measured one. Builds on the accepted unit-system requirement: a quantity with no unit cannot be checked by anything, so that requirement is realized first.",
+    "status": "accepted"
+  }
+}

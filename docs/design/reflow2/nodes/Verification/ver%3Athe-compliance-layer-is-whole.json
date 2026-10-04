@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:7b01a16699b8f6386770d70fee98fa6b9dded86255bcb38550a023d02dcb5fd9",
+  "node_id": "ver:the-compliance-layer-is-whole",
+  "node_type": "Verification",
+  "properties": {
+    "description": "The test file the_compliance_layer_is_whole.rs, given a check of its own in the REALIZES repair: its only meaningful edge had been a REALIZES onto the change that added it. It verifies cmp:operate because the compliance layer has no requirement or capability of its own in the design.",
+    "findings": "Passed in PR #574's CI run 35815550892 (the file as a cargo target).",
+    "kind": "verification",
+    "last_run_at": "2026-09-23",
+    "level": "integration",
+    "location": "crates/reflow2-core/tests/the_compliance_layer_is_whole.rs",
+    "method": "test",
+    "name": "The environment compliance layer is whole: a rule is recordable with its authority, an unanswered mandatory rule is asked about, a granted variance is kept",
+    "status": "passing"
+  }
+}

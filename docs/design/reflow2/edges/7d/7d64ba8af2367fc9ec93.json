@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:b6bcd67a56c9a906f243cdb03006289135d7137f1a3c5229c84a11dccbc29082",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0540",
+  "properties": {
+    "as_checksum": "sha256:259d5952c7c46f429b9341e49c0aa91d7a9e65fe573c9acd1ca9ec5466af28d6"
+  },
+  "to_id": "art:test-mirror-refresh"
+}

@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:05e8155a3f357b62c4f2a0d9fde8854fd92cd36fbd53de538814d3e02736adf0",
+  "edge_type": "HAS_TEMPORAL_FACT",
+  "from_id": "cmp:operate",
+  "properties": {},
+  "to_id": "fact:root-cause-a-deployment-topology-has-no-structured-home-in-the-operate-layer-2026-09-29"
+}

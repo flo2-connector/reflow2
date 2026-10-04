@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:bf7787b25b54154a0a9e7c4c185788aadb63674f5b8af1006d1544342a212c76",
+  "edge_type": "CONSUMES",
+  "from_id": "sys:time-history",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "ifc:core-api"
+}

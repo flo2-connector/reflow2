@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:fc19954124af4399e74b826d6353a86271d301c4d1b970f95a3b38c4298ce5c7",
+  "node_id": "dec:an-unchanged-sync-target-is-not-re-parsed",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Anthony, 2026-09-05: yes. The five dead /tmp exports cost every loop_status ~3.5 s because sync_debt re-reads and re-parses each target on every call to produce the in-step node count. The fix is NOT a rule about where files live - chg:the-orientation-call-stops-rereading-stale-records tried a /tmp rule and reverted it against fifteen correct tests, because hermetic tests, CI and containers all put genuine shared records under a temp dir. The fix is that an UNCHANGED file is not re-parsed: the sync record already stores each target's content hash; it will also store the node count observed at that hash, and a target whose current hash matches the recorded one reuses the count without parsing. A dead file never changes, so it is parsed once and never again; a live record that moved is parsed exactly as today. No target is dropped, no policy about paths is introduced, and the not_checked disclosure stays as it is. To be MEASURED before building: the 3.6 s is more than parse plus hash should cost (python parse of all six was 1.5 s), so the cost inside sync_debt is to be timed first - the fix must be aimed at what is actually slow.",
+    "kind": "choice",
+    "name": "DECIDED - a sync target whose content has not changed is not re-parsed; its recorded node count is reused",
+    "rationale": "Chosen over 'read only targets newer than the committed record' (a policy that can silently skip a real collaborator's record) and over an explicit forget verb (which puts the burden on the user for a cost the tool created). Reusing a recorded count for an unchanged hash is a pure cache of a derived fact over immutable content and cannot change what is reported.",
+    "status": "accepted"
+  }
+}

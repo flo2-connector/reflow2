@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:b198c4d98a2ee820e43b50201e92ce5f09b4086870995b6c6d9edd8882dce940",
+  "edge_type": "CHANGED",
+  "from_id": "chg:recover-from-tests",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "who:alex"
+}

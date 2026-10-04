@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:40ba91a579df7c71c7caedbb67c1f09a6d2fb6ba24c9cb78f14b0cdbbe77dcee",
+  "edge_type": "CHANGED",
+  "from_id": "chg:bl172-coverage-scope-derived",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "dec:coverage-scope-is-declared"
+}

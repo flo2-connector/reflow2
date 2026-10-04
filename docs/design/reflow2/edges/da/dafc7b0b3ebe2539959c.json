@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:497002745a54ea4712d6ff564e62e7e9479f275e15d6e25fc0a419605c1eba01",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:one-sentence-of-a-nodes-text-can-change-without-resending-the-field",
+  "properties": {
+    "approved_at": "2026-09-19",
+    "roles": [
+      "approver",
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

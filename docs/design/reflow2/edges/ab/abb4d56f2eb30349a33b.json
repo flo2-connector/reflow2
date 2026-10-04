@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:caa7cbbd85f8f6ee5afe393605289780d4031d40f75371e247314f2a5cd914f3",
+  "edge_type": "MITIGATES",
+  "from_id": "dec:idea-the-loop-says-when-git-will-line-merge-a-committed-design",
+  "properties": {
+    "evidence": "A use-time git check-attr on each synced export would have told hxm_program its reflow2.json had no merge=reflow2 rule, which is the silence that finding root-causes."
+  },
+  "to_id": "fact:the-merge-rule-is-written-for-a-conventional-path-once-and-nothing-checks-the-real-export-2026-09-23"
+}

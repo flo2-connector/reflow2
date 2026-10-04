@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:6a9686c4f0bfa659744a7a8e031c835bbcf396434e855dbb8d4c5e65dc84208a",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:idea-every-typed-edge-helper-has-a-bulk-form-that-keeps-its-checks",
+  "properties": {
+    "authored_at": "2026-09-29",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:claude-code"
+}

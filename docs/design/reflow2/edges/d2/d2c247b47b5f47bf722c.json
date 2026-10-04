@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:9abe461ce7c56782028619c2f1e3527efeb13d9b20bc37d5403d8404f170f45a",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:a-published-promise-carries-its-evidence-test",
+  "properties": {
+    "covers": "whole",
+    "note": "Drawn by hand: the running binary predates today's fix that makes link_artifact draw this itself for a Verification target."
+  },
+  "to_id": "ver:a-published-promise-carries-its-evidence"
+}

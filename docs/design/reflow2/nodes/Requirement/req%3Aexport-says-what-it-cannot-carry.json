@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:babcb2c12b74986537a12a6cdac0782608e27208609bebda8c1ce3e9e347e59a",
+  "node_id": "req:export-says-what-it-cannot-carry",
+  "node_type": "Requirement",
+  "properties": {
+    "concern": "core",
+    "designation": "internal",
+    "kind": "functional",
+    "lineage": "original",
+    "name": "Once the design points at content, the export must say what it does NOT carry — a pointer with no bytes fails loud, not quietly",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "FOUND BY IMPACT-CHECK, 2026-07-31, before any content-store code was written. `propagate_from cap:content-store` reported three boundary crossings — `ifc:core-api`, `ifc:graph-export`, `ifc:mcp-tools` — and the export one changes what an existing contract MEANS.\n\nTHE CONSEQUENCE. Blobs travel in git (`dec:where-content-lives`); the export document carries only pointers. So the moment content exists, `export_graph` stops being a complete design transfer: hand someone the JSON on its own — email it, drop it in a ticket, move it between machines — and every diagram, transcript and source document silently fails to resolve. Today the export IS the whole design, which is why `dec:export-door-spof-accepted` calls it \"an accepted single door\"; after content, it is the whole design MINUS whatever the graph points at.\n\nTHE REQUIREMENT: an export that references content must say so, and a consumer holding an export without the bytes must be able to TELL. The shape most consistent with what already exists is a manifest of referenced content hashes carried in the export beside the stamp — the stamp already records the vocabulary a document was written with, and this records the content it depends on. Then \"do I have everything?\" is a set comparison rather than a discovery made when a diagram fails to open.\n\nWHY IT CANNOT BE LEFT TO CONVENTION: `req:content-reaches-every-seat` requires an unresolvable pointer to fail LOUD and be nameable, and `req:no-silent-fallback` says the same one layer down. A design that renders quietly without its pictures satisfies neither — and the person who cannot see the diagrams is exactly the person who cannot tell they are missing.\n\nDELIBERATELY NOT SPECIFIED HERE: whether the export should also be able to EMBED content for transfer (self-contained at the cost of size), or only ever declare it. That is a separate question and should not be answered by implication.\n\nNOTE ON PROVENANCE: raised by the agent from an impact-check, not by Anthony. It is `proposed` and wants his word.",
+    "status": "accepted"
+  }
+}

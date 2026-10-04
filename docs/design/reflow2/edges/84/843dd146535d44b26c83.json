@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:70030389111e3257c76d371856954febe4ddcda5752a039aac67582dd7d2833a",
+  "edge_type": "ABOUT_ENTITY",
+  "from_id": "fact:a-broken-export-lineage-is-invisible-to-git-and-the-merge-driver-repaired-it",
+  "properties": {
+    "note": "Names the failure mode that decision creates when two PRs are open at once: each branch exports once chained from main, so both chain from the SAME main and whichever merges second is broken by the first. Nothing warns at open time."
+  },
+  "to_id": "dec:export-once-per-pr"
+}

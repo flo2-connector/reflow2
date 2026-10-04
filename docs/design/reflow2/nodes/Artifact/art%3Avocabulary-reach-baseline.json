@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:f85bcba3fe049419734fa3c37752bcaf4704e6a0251d051a0edec6d22de1b414",
+  "node_id": "art:vocabulary-reach-baseline",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "config",
+    "location": "tools/vocabulary_reach_baseline.json",
+    "name": "vocabulary_reach_baseline.json",
+    "status": "realized"
+  }
+}

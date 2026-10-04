@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:5952eef9b6978fce4b6f9ca9aa4453d9e573f3cb39bf8773b9096cc7bef3e669",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:test-a-refused-write-stores-nothing",
+  "properties": {
+    "covers": "whole"
+  },
+  "to_id": "ver:a-refused-write-stores-nothing"
+}

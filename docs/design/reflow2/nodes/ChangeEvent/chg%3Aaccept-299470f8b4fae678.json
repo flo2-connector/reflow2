@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:ebaafb463bd0ad7d810fc69ba1bbe3c104975c12d03581ce2557c8b5333d52de",
+  "node_id": "chg:accept-299470f8b4fae678",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "test_failure_fix",
+    "detected_at": "2026-08-01",
+    "name": "The same edge-type count assertion; the vocabulary itself derives from the schema and needed no other change."
+  }
+}

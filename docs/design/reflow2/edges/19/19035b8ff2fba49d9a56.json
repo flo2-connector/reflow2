@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:d5989cf5a7258a15ebcc7ce10c41990cdab984ec234a96413b7796f7fec085d7",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:a-code-folder-names-the-design-it-implements-and-its-server",
+  "properties": {
+    "approved_at": "2026-09-27",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

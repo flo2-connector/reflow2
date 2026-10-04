@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:e94d183d8291920fa31cf33371eaecfec698b6089060ebc61ec5db9476da533d",
+  "node_id": "frag:art:allocate",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered allocate.rs"
+  }
+}

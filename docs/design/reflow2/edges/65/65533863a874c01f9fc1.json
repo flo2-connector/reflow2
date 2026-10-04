@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:bc994d92736e2ae0437380a844e3f999fe133f00d4fd338becf1fc33f9107966",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:a-repair-says-which-kind-it-was",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:report"
+}

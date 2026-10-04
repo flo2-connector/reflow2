@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:285b8b93e91e4fadde49646543419a889fe982d2be1c9a024eee8f364159632d",
+  "edge_type": "HAS_SNAPSHOT",
+  "from_id": "cap:search-first-at-the-tool",
+  "properties": {},
+  "to_id": "snap:epoch:preserved-on-write:cap:search-first-at-the-tool"
+}

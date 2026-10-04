@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:9234031b6e89d7700f24dc90563e55e0864246658d3444c0ebcdfdf7391fcad3",
+  "edge_type": "CONTRADICTS",
+  "from_id": "dec:idea-how-does-the-graph-learn-what-a-session-invalidated",
+  "properties": {
+    "alignment": "opposing",
+    "evidence": "THE INSTANCE, not merely an example. That fact asserts \"NOTHING WAS OPTIMISED\" and \"that ratio is the next measurement and it has not been taken\", and PR #290 made both false — 56 SPOF candidates at 878ms each became 5.08ms for all 56, detect_structural_defects 44.5s -> 4.43s, open_questions 11.7s -> 2.95s. An agent read it as current in this very session and Anthony corrected it. Recorded as a CONTRADICTS edge rather than by closing the fact, because closing it is the very act this decision is about, and doing it unasked would settle the question by doing."
+  },
+  "to_id": "fact:the-orientation-reads-cost-ten-seconds-and-the-store-is-not-why"
+}

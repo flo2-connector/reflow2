@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:00bdb41beb787db47d29fc10eb81d7a3314fbd32fe28f6be77321c63750aa980",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:idea-the-thing-you-need-to-point-at-is-usually-not-a-node-yet",
+  "properties": {
+    "authored_at": "2026-09-10",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:claude-code"
+}

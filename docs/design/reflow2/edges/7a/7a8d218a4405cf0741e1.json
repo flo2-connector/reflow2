@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:c4a7a972414a1da84f35b188e5bae0c8984066adf72cea54d49b41a0745e40ad",
+  "edge_type": "CLAIMS",
+  "from_id": "who:claude-code",
+  "properties": {
+    "claimed_at": "2026-08-30T00:00:00Z",
+    "depth": 2,
+    "note": "Fixing seam_coverage's containment lift: it selects a parent by id prefix (cmp:/sys:) instead of by Component level, so the 10 sub:* subsystems never lift and 58 of 86 modules are silently dropped from the rolled-up seam answer.",
+    "seat": "asligar-bitecool:4176513:96c83b5f"
+  },
+  "to_id": "cmp:seam"
+}

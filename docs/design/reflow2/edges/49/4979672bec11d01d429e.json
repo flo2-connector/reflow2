@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:82d7aa4bbb5a94cd9e24a77edfe4b751cd499789a4cd6fdaea0f7259c602acb8",
+  "edge_type": "CAUSES",
+  "from_id": "art:tools-skills",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "usage_report states a first window only in words (\"since the ledger began\"). It carries the first call as raw unix seconds, unlabelled, and nothing that relates the ledger's start to the design it describes. Measured on a 0.74.0 scratch store and read in skills_tools.rs and usage.rs.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:root-cause-a-first-feedback-window-never-says-the-design-is-older-than-its-ledger-2026-09-28"
+}

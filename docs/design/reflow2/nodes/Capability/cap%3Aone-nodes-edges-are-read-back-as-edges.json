@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:98bcd7c6999a622bce0b99d2ddfe13d50ab007e9db5c016f94140fb523614037",
+  "node_id": "cap:one-nodes-edges-are-read-back-as-edges",
+  "node_type": "Capability",
+  "properties": {
+    "description": "get_node takes include_edges (dec:idea-an-edge-reader-returns-one-nodes-edges-and-find-tools-finds-it): true, or a filter of direction (in, out, both), edge_types, exclude_edge_types, limit (default 50), offset and budget_chars. Each edge comes back with its type, direction (out leaves the node read, in arrives), the stored from_id and to_id, the other end's id, type and name, the edge's own properties (evidence and note included), and twin_of when it is the stored copy of a node property. Nothing is excluded by default, AUTHORED_BY and the stored twins included. total and by_type count every edge and are never filtered; capped_by and next_offset say why a list stopped and where to resume; an edge is listed whole or not at all; a type holding most of what matched is listed last and named in dominant with the filter that drops it; an empty list says which empty it is; an unknown edge type is refused with the nearest name. Off by default, so get_node's reply is byte-identical unless asked. The reader is reflow2-core node_edges.rs; the parameter and its schema (type [boolean, object, null], inside the checked keyword subset) are reflow2-mcp include_edges.rs.",
+    "name": "One node's edges are read back as edges: get_node with include_edges returns every edge in and out, each with its type, direction, other end and own evidence, bounded, with every count a filter or a bound could hide",
+    "provenance": "authored",
+    "status": "realized"
+  }
+}

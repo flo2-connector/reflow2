@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:3be29f988bb1f70be85e221c9b9cbe7d5f9dd6d71f4cc714c67c46db196623ab",
+  "node_id": "chg:accept-f7492269b204a4d2",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "refactor",
+    "detected_at": "2026-08-01",
+    "name": "Two redundant closures collapsed to the associated function itself (NodeDto::from / EdgeDto::from), after CI's `cargo clippy -p reflow2-mcp --all-targets -- -D warnings` rejected them. No design meaning: the bulk forms behave identically, and every test that names their behaviour is unchanged and still passing. The reason this reached CI at all is BL-159 — AGENTS.md's documented gate list omitted that clippy invocation, so the local run was green against the list as written."
+  }
+}

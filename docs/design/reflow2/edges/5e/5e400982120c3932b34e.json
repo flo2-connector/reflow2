@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:3716f28f9e5d89e344a9acb7387e61a758eda205e97af09c1d4c31e0ab87ca81",
+  "edge_type": "CAUSES",
+  "from_id": "art:dev-storyflow-feedback-2026-09-27",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "The root-cause pass on this document's 09-27 evening report (approver refused on flo2 while the descriptions require it): the served text describes a local store the person owns, and flo2's door rebinds approver without amending it.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:root-cause-the-served-text-describes-one-deployment-and-a-host-changes-the-rules-under-it-2026-09-28"
+}

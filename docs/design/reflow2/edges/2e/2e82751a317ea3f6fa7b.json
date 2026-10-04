@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:0e6f8fa15901de282f48d3ffd89217845a6a87e735291362d0770b5cb2c87a9b",
+  "edge_type": "CAUSES",
+  "from_id": "fact:edge-prose-is-as-perishable-as-node-prose-and-nothing-reads-it",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "The measured defect with its five-edge instance is the evidence; this is the open question about which of the three repairs to take.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "dec:idea-should-edge-prose-be-governed-the-way-node-prose-is"
+}

@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:da138ef91b50f97b44d9ac14e9254d7f22fef8a78121c1ece32e77bc6ac480d3",
+  "edge_type": "VERIFIES",
+  "from_id": "ver:an-exposed-server-verifies-bearer-tokens-to-the-oauth-2-1-floor",
+  "properties": {},
+  "to_id": "cap:an-exposed-server-establishes-who-is-calling-before-intent-can-be-settled"
+}

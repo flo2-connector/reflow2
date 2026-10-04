@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:bd9bb83126a1b9f25be8362142f2d3fd76419d9788b46608c44f871b3e595eba",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:idea-embeddings-adoption",
+  "properties": {
+    "authored_at": "2026-08-01",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:claude-code"
+}

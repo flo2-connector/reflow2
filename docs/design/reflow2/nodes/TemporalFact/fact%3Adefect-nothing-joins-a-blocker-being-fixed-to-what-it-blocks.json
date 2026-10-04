@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:c07507a309bc697a681244a8f68d826d42f9498b423cb5a8d3077682131fe59d",
+  "node_id": "fact:defect-nothing-joins-a-blocker-being-fixed-to-what-it-blocks",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "confidence": 1.0,
+    "fact_type": "defect",
+    "statement": "NOTHING JOINS 'A IS FIXED' TO 'A BLOCKS B', AND IT COST 49 DAYS. Reported by dev_storyflow 2026-08-23 with three instances from one design.\n\nTHEIR THREE: ① a feature banked behind a data bug — the bug shipped in July, the lane restarted 49 DAYS LATE, and only because somebody read the requirement to its end. ② a capability whose description says 'shipped but starved until X stops dropping lines' — X was fixed by that same PR and six weeks later the node still said starved. ③ a failing check repaired hours after its run.\n\n⭐ INSTANCE ③ IS NOW CLOSED AND THE OTHER TWO ARE NOT, which is the useful split. `invalidates` says a REPAIR MAKES A CHECK'S VERDICT STALE, and it shipped from this reporter's own earlier entry. It reaches Verifications and TemporalFacts. It does not reach a BLOCKS edge.\n\nCONFIRMED OPEN 2026-09-04: grepped reflow2-core for any join between a resolution and a BLOCKS edge — nothing. `BLOCKS` is written once and read forever; there is no way to say A STOPPED BLOCKING B and nothing notifies the blocked party.\n\n⭐ THEIR FRAMING IS THE ONE TO KEEP AND IT NAMES THE AXIS: 'the graph already holds both halves — the BLOCKS edge, and the blocker's own resolution recorded on its node. Nothing puts them together.' They observe it is the same missing join as the check-staleness problem ONE LEVEL UP, and ask whether one mechanism could serve both. It half-could: `invalidates` is exactly 'this resolution makes that state stale', and the open question is whether an edge is the right target for it or whether releasing a block needs its own verb.\n\nNOT ESTABLISHED: whether extending `invalidates` to edge targets is coherent — every existing target is a NODE carrying a dated verdict, and a BLOCKS edge carries no date to compare against, so the `rerun_owed` three-valued answer has nothing to compute from. That is a design question, not an implementation one.",
+    "subject_id": "art:dev-storyflow-feedback-2026-09-04",
+    "valid_from": "2026-09-04",
+    "value": "{\"reported_by\":\"dev_storyflow, 2026-08-23, sixth entry\",\"worst_cost\":\"49 days on one lane\",\"instances\":3,\"closed_by_invalidates\":1,\"still_open\":2,\"confirmed\":\"no join from a resolution to a BLOCKS edge exists in reflow2-core\"}"
+  }
+}

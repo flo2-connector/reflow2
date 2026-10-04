@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:073fd3a193b5dbe610fcea3b8d85de2fc1adbe3027d3686a38545bbf29bb85dd",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-wall-check-is-served",
+  "properties": {
+    "accepted_baseline": false
+  },
+  "to_id": "cap:a-declared-wall-is-checked-against-the-coupling-it-contains"
+}

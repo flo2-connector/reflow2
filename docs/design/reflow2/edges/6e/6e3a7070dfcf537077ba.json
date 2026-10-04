@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:8049a74187547ade690cde5ce9c4dc1a7bd0981a6f29e2fc834399b8e988c2cb",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-check-and-its-findings-are-different-things",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "ver:seam-incompatibility"
+}

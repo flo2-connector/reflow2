@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:6a1506a70d0894643527fb298fc692234a556055dc70c98c24a5f75a353fc990",
+  "node_id": "cmp:main",
+  "node_type": "Component",
+  "properties": {
+    "kind": "module",
+    "level": "component",
+    "name": "main",
+    "provenance": "authored",
+    "purpose": "The main module.",
+    "status": "planned",
+    "tier": "operational"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:6d8527d9fd4c28f242718ee4e9eabe09dc4a359140d0393571128e109d860c82",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-who-authors-the-domain-artifact",
+  "properties": {
+    "evidence": "The authorship question only exists because that requirement is ACCEPTED. If reflow2 designed only software, the artifacts would be source files it already handles and there would be nothing to decide. Accepting 'software, hardware, a document, a process' is what creates the obligation to say who produces the hardware artifact.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "req:design-anything"
+}

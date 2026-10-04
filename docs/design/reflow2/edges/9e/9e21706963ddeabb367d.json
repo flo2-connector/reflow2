@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:9e57e4aa53895c6307b0c0f3d9b7519b5fa55a38554e5d860aca0a0fcb8eba51",
+  "edge_type": "ANTICIPATES",
+  "from_id": "fact:dynograph-v0130-measured-clean-and-the-pin-is-parked",
+  "properties": {
+    "evidence": "The earlier measurement saw this coming. On 2026-08-19 it established across four independent grounds that v0.13.0's diff over ALL SIX crates reflow2 touches was EMPTY — the release changed only `dynograph-client` and `dynograph-service`, neither of which reflow2 depends on — and the confirmation still cost a session and a full workspace build, with the pin bump parked to this day. That episode IS the cost of coupling release to repository rather than to crate, observed four days before anyone asked the question. Drawn from the fact TO the question: the observation came first."
+  },
+  "to_id": "dec:idea-dynograph-crates-independent-in-code-coupled-in-release"
+}

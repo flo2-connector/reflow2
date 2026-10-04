@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:9f8d6272de60a4f2dff280846f94f0f21d837b17cc301a8032238dcf64b44109",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "cap:graph-registry",
+  "properties": {
+    "authored_at": "2026-08-05T23:10:00Z",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

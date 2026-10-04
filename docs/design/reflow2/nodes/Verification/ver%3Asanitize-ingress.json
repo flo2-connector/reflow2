@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:c60d1914fdf9cf1d8b59b02a500f6b1549aca4259ac03f0e9843dd4caead4406",
+  "node_id": "ver:sanitize-ingress",
+  "node_type": "Verification",
+  "properties": {
+    "kind": "verification",
+    "last_run_at": "2026-07-25",
+    "level": "integration",
+    "method": "test",
+    "name": "Hidden payloads stripped and reported, honest text untouched, ZWJ survives, and the ingest wiring proved end to end (tests/sanitize.rs, 7 cases)",
+    "status": "passing"
+  }
+}

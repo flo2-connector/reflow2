@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:6bdc71d7a612189937fcce9ba4c4c3a766830ac02d63fc403ba83ab1783ea1f9",
+  "edge_type": "ANTICIPATES",
+  "from_id": "dec:idea-embeddings-adoption",
+  "properties": {
+    "evidence": "Recorded 2026-08-01 asking whether reflow2 should adopt embeddings and the HNSW index or stay lexical. It anticipated the same choice this capability made in the small: increment 1 dropped `hnsw.rs` and `distance.rs` (1,941 lines) on the ground that reflow2 calls neither, which is the 'stay lexical' answer taken by construction rather than by decision. ⚠️ The idea remains OPEN and this does not settle it — but a later reader should know the code it would need is no longer in the tree."
+  },
+  "to_id": "cap:graph-algorithms"
+}

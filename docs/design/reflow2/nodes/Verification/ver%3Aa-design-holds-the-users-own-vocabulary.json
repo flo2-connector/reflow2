@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:78cba38ced986473d7cd908cfa671595cb43d9095b097421037aba35bc746859",
+  "node_id": "ver:a-design-holds-the-users-own-vocabulary",
+  "node_type": "Verification",
+  "properties": {
+    "description": "crates/reflow2-core/tests/a_node_records_what_the_user_calls_it.rs: record_alias adds the user's own name for a part without replacing the recorded one, a second alias is added beside the first, and the aliases are read back with the node. Runs in the core job of CI on every push.",
+    "findings": "Green on every CI core run through #516 (2026-09-15).",
+    "kind": "verification",
+    "last_run_at": "2026-09-15",
+    "level": "unit",
+    "method": "test",
+    "name": "A node records what the user calls it, additively",
+    "status": "passing"
+  }
+}

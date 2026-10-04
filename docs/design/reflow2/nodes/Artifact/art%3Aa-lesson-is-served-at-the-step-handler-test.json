@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:96dc083f1901a82230c63cdc65b0d97ed7f1aab2b85aa2226f9d69cc29e337cb",
+  "node_id": "art:a-lesson-is-served-at-the-step-handler-test",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "test",
+    "description": "Five handler-level pins: get_skill carries the lessons naming that skill and no other; the tool list carries a lesson on its tool and nowhere else; a no-step lesson is kept and delivered nowhere; an unserved step is refused with the nearest names and nothing written; rules take steps and the newest lesson comes first. Shown to fail on the deliver-everything-everywhere mutation (2 pins).",
+    "location": "crates/reflow2-mcp/tests/a_lesson_is_served_at_the_step_it_concerns.rs",
+    "name": "a_lesson_is_served_at_the_step_it_concerns.rs",
+    "status": "realized"
+  }
+}

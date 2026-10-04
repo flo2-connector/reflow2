@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:737dcf74b7fdbd75d216fd42a2fb1b68d093de4af76a692a22b0861b72388046",
+  "edge_type": "REALIZES",
+  "from_id": "art:tools-temporal",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:satisfaction-schedule"
+}

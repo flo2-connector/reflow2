@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:051e76d045e02e76673b51eca2d5120ae36ddc8f81cd266bcd7c3250d3b7e6df",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:a-session-is-known-by-its-worktree-and-branch",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:shared"
+}

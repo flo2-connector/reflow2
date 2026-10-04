@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:8540cd0f047239f385eb974c4e20d539405e0b85818a3f6f0cb9a01122dcc830",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-question-is-put-to-a-person-and-records-who-answered",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:kit-instructions"
+}

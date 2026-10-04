@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:4e1d72c302c0c1ccfa8008d2aa92f31a266ef829b44a4a52bbe239cf79369796",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:idea-allocation-waits-for-the-last-responsible-moment",
+  "properties": {
+    "approved_at": "2026-08-08",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

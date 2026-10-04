@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:20081069ebd6caadb7c403526b26f75b33ca6b5bc7d0cc3cf7c1d400154c5a3a",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-client-replaces-a-mismatched-server-instead-of-reporting-it",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:main"
+}

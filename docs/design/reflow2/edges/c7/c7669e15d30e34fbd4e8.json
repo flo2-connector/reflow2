@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:4a26fd3cae36ab02bec45d292671c328af85ddb5ba20f05cf310757fb5410aa8",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:test-a-setup-command-chooses-local-or-remote-once",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:test-a-setup-command-chooses-local-or-remote-once"
+}

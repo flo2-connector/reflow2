@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:c2c059e8b26a978debf03accadf7256fc653b58ab2cf39f48711f346e057c4ad",
+  "node_id": "frag:art:tool-confusability",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered tool_confusability.py — the offline replica of find_tools' scorer: not-first tools and who beats them, mutual pairs, crowders, never-called tools; --baseline rewrites the ratchet fixture"
+  }
+}

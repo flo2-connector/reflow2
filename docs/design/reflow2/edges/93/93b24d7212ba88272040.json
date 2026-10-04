@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:7242c173ed96a66256df2f4191a49bce7fa8dd29baeb53229b023a3b1719d5ea",
+  "edge_type": "EVOLVES_INTO",
+  "from_id": "dec:idea-can-reflow2-say-whether-a-design-has-ever-closed-its-own-loop",
+  "properties": {},
+  "to_id": "req:a-design-says-whether-a-real-result-has-ever-come-back"
+}

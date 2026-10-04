@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:ef0057609f073a0d2819d92523619e2f76cb3157934311756a9b792bd283e9eb",
+  "edge_type": "REALIZES",
+  "from_id": "art:identity",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:design-identity"
+}

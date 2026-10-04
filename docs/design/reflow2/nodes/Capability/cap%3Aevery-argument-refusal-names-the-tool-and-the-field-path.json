@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:e71179496e05c806cdaf3a31355ba8300f017ebb461ab000c3742ff41e3f5e4c",
+  "node_id": "cap:every-argument-refusal-names-the-tool-and-the-field-path",
+  "node_type": "Capability",
+  "properties": {
+    "description": "As built 2026-10-02 (dec:idea-every-argument-refusal-names-the-tool-and-the-field-path). One validator, crates/reflow2-mcp/src/arguments.rs, runs at the dispatch choke point (ReflowService::call_tool, and the latent and degraded surfaces' call_tool) against the tool's PUBLISHED input schema, `echo` included on a write. A wrong type, a missing or unknown field at any depth, a value outside its enum or integer range, too few items, or one field given under two spellings is refused BEFORE the tool runs, as an isError result naming the tool, the path (`related_to[0].evidence`), what the schema expects there and the field's own description (or saying plainly it has none), every problem at once, with the required fields the call did pass set apart. Aliases (`id`/`node_id`, `properties`) are declared as x-reflow2-aliases beside each #[serde(alias)], read by the check and stripped from the listing; tests/the_argument_check_agrees_with_the_deserialiser.rs asks serde itself at every object of every tool and fails on a difference, and fails on any schema keyword, format or $ref outside the validator's subset. A tool with no parameters publishes additionalProperties:false (closed once at assembly). The reconnect advice is given over a session only, never through the --call door, which reads its schema from its own binary. A deserialiser refusal that still arrives (schema and type disagree) is reworded naming the tool and calling itself a defect. Chosen over a JSON Schema crate: none was a dependency, the subset is fifteen keywords, and the refusal needs reflow2-only facts (descriptions, aliases, nearest name). Gate: tools/refusal_speaks.py generates its probes from every served schema.",
+    "name": "Every argument refusal names the tool and the field path: arguments are checked against the published schema before anything deserialises them",
+    "provenance": "authored",
+    "status": "realized"
+  }
+}

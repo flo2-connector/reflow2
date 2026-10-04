@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:02e03085dfaf48b0ef9906a4081fb76ef0ec5221084d5bcb3aef7a20c01fee93",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:claim-a-region-by-query",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:claims"
+}

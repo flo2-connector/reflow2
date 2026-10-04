@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:89d39c93b16962afa198abd3c918b83d03e6eef915cdcd01e1fdcddc53588069",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-revise-keeps-what-it-was-not-passed",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:service"
+}

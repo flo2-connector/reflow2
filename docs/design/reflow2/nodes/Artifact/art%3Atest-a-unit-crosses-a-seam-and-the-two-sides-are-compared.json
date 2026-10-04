@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:30df5b6ca3557aca2352dd0a0c3d3f368a30c3dcfda136ec87442281e38b2082",
+  "node_id": "art:test-a-unit-crosses-a-seam-and-the-two-sides-are-compared",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "test",
+    "description": "Five cases. Uses set_interface_units on a consumer graph and an exported provider, then seam_report; asserts the incompatible finding names the quantity and the reason, that a quantity only one side names lands as unstated with that quantity in the detail, and that a side that said nothing is one unstated finding.",
+    "location": "crates/reflow2-core/tests/a_unit_crosses_a_seam_and_the_two_sides_are_compared.rs",
+    "name": "a_unit_crosses_a_seam_and_the_two_sides_are_compared.rs — the tenth seam axis pinned: the Mars Climate Orbiter seam is an incompatibility, silence is never agreement, `none` is an answer",
+    "status": "realized"
+  }
+}

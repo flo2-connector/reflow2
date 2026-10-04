@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:ca3bc707274f06c279f510b3e379acfd2eced8cac22b529f2aa58d3130139615",
+  "edge_type": "REALIZES",
+  "from_id": "art:service",
+  "properties": {
+    "completeness": "partial",
+    "conformance": "verified"
+  },
+  "to_id": "cap:a-capability-declares-what-kind-of-thing-delivers-it"
+}

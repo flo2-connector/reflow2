@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:4a5c74f6bc8f28ca444332cfe3962b1328bf73023d76d92318b399e82af2e85c",
+  "edge_type": "HAS_TEMPORAL_FACT",
+  "from_id": "dec:idea-loop-status-says-whether-an-export-is-owed-on-a-hosted-design",
+  "properties": {},
+  "to_id": "fact:a-never-exported-local-design-is-still-silent-in-loop-status-through-the-door-on-0-77-0-2026-10-02"
+}

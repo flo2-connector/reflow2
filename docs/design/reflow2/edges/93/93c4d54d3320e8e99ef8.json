@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:b6a246b50bb89103bd74c6c13fd616be13e5896ad34b3449ec5d35c8c98e23dc",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:handshake",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:handshake"
+}

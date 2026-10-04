@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:14a4737c05fe2b4cf6c98e7d1ae7a377661f6ab773d94dbd16ae9a0ebb419d59",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-where-does-tool-use-actually-fail-four-layers",
+  "properties": {
+    "evidence": "The frame's central claim — that layer ③ (worth it) is the bottleneck — is inference from two agent self-reports and cannot be tested until the missing half of that requirement exists: the comparison between the work a session performed and the skill that covers it. Loads are already counted; the performed-versus-appropriate gap is what would turn this diagnostic into a measurement rather than an argument.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "req:skill-adherence-is-measured"
+}

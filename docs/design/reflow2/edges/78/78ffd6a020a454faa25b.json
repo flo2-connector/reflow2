@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:0f7abd4892e7b6b9bd77166735dd9032edbd8a1746c07b94014edb19712b8621",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:reflow2-serves-source-reading-analyses-that-report-and-never-write",
+  "properties": {
+    "approved_at": "2026-09-14",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

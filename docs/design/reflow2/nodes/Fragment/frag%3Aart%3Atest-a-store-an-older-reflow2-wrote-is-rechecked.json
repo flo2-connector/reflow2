@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:208b29261c3bf7ba4004ee958e179854db621017e8d0d8e6a66cfd9da4b0b52c",
+  "node_id": "frag:art:test-a-store-an-older-reflow2-wrote-is-rechecked",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered a_store_an_older_reflow2_wrote_is_rechecked.rs — the binary's detect_defects, export and import on an older store"
+  }
+}

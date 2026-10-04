@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:2efe5ec9f02947ab611122262f9cf3e2a3d9d89b377797b6891b81a322f0d085",
+  "edge_type": "INVALIDATES",
+  "from_id": "chg:stored-data-is-rechecked-against-the-current-schema",
+  "properties": {
+    "at": "2026-10-03",
+    "note": "Verified false after this change on its two load-bearing claims: detect_defects now re-judges every stored node and edge by the write rule (refused_by_schema; a_stored_item_the_schema_now_refuses_is_reported.rs and the real-binary a_store_an_older_reflow2_wrote_is_rechecked.rs), and a narrowing no longer ships its migration by hand unchecked (a_schema_narrowing_ships_its_migration.rs fails on any narrowing since the last release that NARROWINGS does not name; the REALIZES rewrite is one table both doors read). Still true, by decision: export_graph and opening a store do not validate."
+  },
+  "to_id": "fact:root-cause-a-schema-narrowing-ships-its-migration-by-hand-per-pair-and-nothing-rechecks-a-store-2026-10-02"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:b78b3974b06d04688e164d4b354bfbfd8ca740179bac295803f8014aa6baf603",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:skill-lint-test",
+  "properties": {
+    "covers": "whole",
+    "note": "migrated 2026-09-22 from a REALIZES link_artifact drew in error"
+  },
+  "to_id": "ver:skill-lint"
+}

@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:a7ce80b71ef151c1019edf1d4b2a49043c5183c973c44fcb428b5fbb41dabc5d",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "rule:nothing-lands-on-main-directly",
+  "properties": {
+    "authored_at": "2026-08-09",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

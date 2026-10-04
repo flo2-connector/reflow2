@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:52c73de5a64d27714c6a0141de8e137aa43c9a10d40d549f7f17b551b5f09b7b",
+  "edge_type": "EVOLVES_INTO",
+  "from_id": "dec:idea-should-a-node-carry-its-git-coordinate",
+  "properties": {
+    "evidence": "Options ② and ⑤ of the brainstorm are what shipped: the coordinate on the export, kept while unchanged, and the gate reading it for the one case that is a defect. Option ①, the per-node field, was not built for the reasons the idea itself recorded."
+  },
+  "to_id": "chg:an-export-says-which-tree-it-was-taken-in"
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:5d3b11a48e714287af92967747fa00a53efe222d3079a9844bfc901e1f4a7da2",
+  "node_id": "chg:bl96-kpp-capture",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "name": "BL-96 captured: KPPs as first-class inviolable intent, with a computed violation"
+  }
+}

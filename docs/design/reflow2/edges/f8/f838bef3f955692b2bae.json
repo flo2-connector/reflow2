@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:5379d089fd07f50db3f3c06855952e2eb1f59b98ee9576cadb7a75fbd4d6b24b",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:the-stop-hook-asks-the-graph-asynchronously",
+  "properties": {
+    "approved_at": "2026-08-24",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

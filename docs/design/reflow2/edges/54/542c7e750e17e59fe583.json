@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:e5157260dde35003608d0e9a3b6ebfd2f267277e854634ed7a06edf36c9a2e19",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-doubt-trace-lands",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:tools-assure"
+}

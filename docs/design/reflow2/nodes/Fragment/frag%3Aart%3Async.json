@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:7f5a2583cccea388f46fc51ed8ca236983d0a21e249935f8b98bd19b5525e472",
+  "node_id": "frag:art:sync",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered sync.rs"
+  }
+}

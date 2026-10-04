@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:1ee42281c995083260cbc9ab55413892496461d5bc8994783fcb318f749791d1",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:compare",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:compare"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:f6e510976ac94163b1b4de3c1b0ba01b0f05c42e57b1cf80d07bfd3d3735120c",
+  "edge_type": "SCHEDULED_FOR",
+  "from_id": "req:a-scoped-answer-actually-narrows",
+  "properties": {
+    "modality": "expected",
+    "recorded_at": "2026-08-18T00:20:00Z"
+  },
+  "to_id": "epoch:a-scope-actually-narrows"
+}

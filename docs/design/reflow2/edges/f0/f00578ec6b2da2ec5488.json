@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:25de3b41f56ae88cda4b4edc97650cc6eed4f32becd69b9b832617ba8701ed3e",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-a-hub-starts-a-new-child-design",
+  "properties": {
+    "evidence": "Option (c), and the removal of the restart in (a) and (b), are only possible once one session can hold several graphs.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "dec:idea-a-session-holds-several-graphs"
+}

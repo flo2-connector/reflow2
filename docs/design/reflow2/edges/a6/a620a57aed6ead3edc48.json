@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:3b2260bc76abc947019783a07fa7804f6a5d2081a8405a5307ade23d8b98cb5b",
+  "edge_type": "AT_EPOCH",
+  "from_id": "snap:epoch:preserved-on-write:req:time-and-tokens-are-measured-per-task-against-budgets",
+  "properties": {},
+  "to_id": "epoch:preserved-on-write"
+}

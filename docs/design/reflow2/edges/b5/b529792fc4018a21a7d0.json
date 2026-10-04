@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:80311d1da82a61fed18150ba26234b2b6ed7d88a2bae129856b02e24531e2fe7",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0210",
+  "properties": {
+    "as_checksum": "sha256:c421c3496192d22d"
+  },
+  "to_id": "art:search"
+}

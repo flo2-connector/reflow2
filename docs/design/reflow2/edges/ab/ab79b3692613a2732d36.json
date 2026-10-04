@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:f152a47dcea78a83e62756e8f4e9aabec0ce7b48c57cc6983a8d2522afc5a3f0",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-should-an-idea-be-linked-to-the-intent-that-scopes-it",
+  "properties": {
+    "evidence": "Option D here fails for exactly the reason that node documents: prose is not queryable, so nothing notices the scoping step being skipped, and a detector that WOULD notice is the kind whose one acknowledgement then silences it forever. Whichever option wins, its enforcement inherits that unsettled keying question.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "dec:idea-an-aggregate-acknowledgement-never-expires"
+}

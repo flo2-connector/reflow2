@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:329cc1599df65ff7ea86fe599d3447d103265cc731dff6216ef07597b251f57b",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:content-store-implementation",
+  "properties": {
+    "evidence": "It refines that accepted decision on the measurement that decision named as still-to-check, and cannot be read without it.",
+    "optional": false,
+    "weight_basis": "evidence"
+  },
+  "to_id": "dec:where-content-lives"
+}

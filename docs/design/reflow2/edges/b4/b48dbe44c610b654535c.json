@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:ca178029107bfc3ce6f1130785af7c429748295b9fe954094f46a85395b864a6",
+  "edge_type": "SCHEDULED_FOR",
+  "from_id": "req:a-session-names-the-person-it-writes-for-and-the-server-remembers-it",
+  "properties": {
+    "modality": "expected",
+    "recorded_at": "2026-09-23"
+  },
+  "to_id": "epoch:planned-a-write-says-who-it-was-for"
+}

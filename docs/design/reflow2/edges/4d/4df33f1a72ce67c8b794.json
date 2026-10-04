@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:2b28af0d4a9267eb278de4ccbd4c25a29b55353a46b34a86d1e0017806b61611",
+  "edge_type": "EVOLVES_INTO",
+  "from_id": "dec:idea-replace-one-sentence-in-a-field-without-resending-the-field",
+  "properties": {
+    "evidence": "Promoted 2026-09-18: option (a), the unique-string replace with an append mode; (d) a `chosen` property on Decision rejected as one-type; (c) the layers idea stays open."
+  },
+  "to_id": "req:one-sentence-of-a-nodes-text-can-change-without-resending-the-field"
+}

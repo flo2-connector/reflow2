@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:b417cf246153a1d2167ff3728a92e39b6e05d51fd917c531252ca5d33396337e",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0260",
+  "properties": {
+    "as_checksum": "sha256:814d67ab62c1014e402611dc1f73028332d2af8ca95a159dbf70022086065b34"
+  },
+  "to_id": "art:tools-temporal"
+}

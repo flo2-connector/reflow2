@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:2396496979d42410292e95f8d23e21812e21c93c8b32f83a7cd86fe488d57b8f",
+  "node_id": "chg:accept-09bee61653a4e59a",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "detected_at": "2026-08-19",
+    "name": "Two detectors added: multiple_parents (a Component contained by more than one parent — the spine is a tree) and level_spine_disagreement (a Component at the root of the spine declaring a level something else claims to be above). Both were invisible before, and both fire on this design: cmp:skills has two parents, cmp:packaging and cmp:registry are the spurious 'tier 1'. The second check is self-limiting — it compares against the highest level PRESENT, so a flat design reports nothing and no ladder depth is prescribed.",
+    "subject": "system"
+  }
+}

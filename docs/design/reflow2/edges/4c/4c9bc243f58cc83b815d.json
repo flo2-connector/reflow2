@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:947c869adff3ea83dacc987c5b58a337b03deae1815d23484c7deddb80ae803e",
+  "edge_type": "CHANGED",
+  "from_id": "chg:accept-36009ca068952b87",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:kpp-proposal-skill"
+}

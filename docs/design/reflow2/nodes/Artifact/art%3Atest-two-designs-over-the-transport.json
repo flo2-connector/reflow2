@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:bf9aedb0cb7127499a2dea611bfd4e38b2add9caf3167ec379b4a5aa7dc50755",
+  "node_id": "art:test-two-designs-over-the-transport",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "description": "Seven properties over the real transport, end to end against a spawned server: a request naming no design is refused AND says what would have worked; each design answers on its own prefix; a write into A is readable in A; it is ABSENT from B (the one that corrupts rather than errors); A's session id is not valid under B; an unknown id is refused by name; a path is refused exactly as an unknown id is. Written after the crate-level tests could not reach the transport, because until 2026-09-13 there was none.",
+    "location": "crates/reflow2-mcp/tests/two_designs_stay_apart_over_the_transport.rs",
+    "name": "two_designs_stay_apart_over_the_transport.rs",
+    "status": "realized"
+  }
+}

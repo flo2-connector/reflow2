@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:bb7090d37a44e0b33f644d2b46f9c69b944eaaeadb11beddbbb52de9218caba1",
+  "edge_type": "HAS_TEMPORAL_FACT",
+  "from_id": "cap:the-design-holds-about-one-subject-is-read-back-in-one-call",
+  "properties": {},
+  "to_id": "fact:topic-report-is-keyword-only-and-finds-the-project-node-without-offering-to-expand-it"
+}

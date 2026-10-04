@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:debd4a7bf61059c4ed36cf535ca48bbcee22b5e0f28b2af2d1e127a210096e51",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:content-store",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:artifact"
+}

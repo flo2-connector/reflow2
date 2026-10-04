@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:285d31699ed45304a6f611b200b6b5a7d583d68d009575ca43cea5aacc1c25f1",
+  "node_id": "decision:ack:c59d400d9fba621f",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Accepted the gap gap:c59d400d9fba621f.",
+    "name": "Reviewed: gap:c59d400d9fba621f",
+    "rationale": "RULED 2026-09-15 (Anthony): THE MEASUREMENT STANDS; NO REPAIR HAS REACHED IT. The record is that two careful readers reached the same wrong conclusion from serialized defaults, one release apart, in opposite directions — and the actionable half, that the comparison must become default-aware or version-aware rather than merely stop serializing defaults, is still open: compare.rs has no normalisation, and the class was reconfirmed from the field on 2026-09-14 (flo2: 853 edges gained a field on import, the CI gate fires falsely once per rehydrate). The three listed repairs — a restore judging references against the document, a checksum acceptance, authorship surviving approval — touched the export component and not this. It rides on the schema-defaults question (fact:defaults-are-injected-by-dynograph-at-write), acknowledged the same day for the same reason.",
+    "status": "accepted"
+  }
+}

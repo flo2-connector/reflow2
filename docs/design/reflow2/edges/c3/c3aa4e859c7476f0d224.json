@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:adc5522271b7fd5fc9b9116f54f600e975afe76116f89b744dc7d3f8e7305b0f",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0780",
+  "properties": {
+    "as_checksum": "sha256:263e6128473b52a324a83436e13c4de086d3cb597e33562e7fd7206ef0d0eb13"
+  },
+  "to_id": "art:address-watch-test"
+}

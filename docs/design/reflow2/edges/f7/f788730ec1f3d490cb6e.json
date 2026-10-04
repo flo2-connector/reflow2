@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:d4603547c07bc99ec977dda34027c13132531b2eb48873181fe6ffbd3f0de6bd",
+  "edge_type": "CAUSES",
+  "from_id": "fact:defect-recording-a-refutation-correctly-adds-a-structural-defect",
+  "properties": {
+    "basis": "observed",
+    "confidence": 1.0,
+    "evidence": "dragon Boss found it by doing what a peer had just recommended; the mechanism was then confirmed at heal.rs:916-935 before this requirement was stated.",
+    "validation_status": "validated"
+  },
+  "to_id": "req:a-detector-reads-the-properties-that-qualify-its-own-finding"
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:edafb7a63819c89ab24cd1d6d05672593761fc802e9f3974cb96fb6749f06bd2",
+  "node_id": "art:test-a-local-client-works-against-a-remote-server",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "test",
+    "location": "crates/reflow2-mcp/tests/a_local_client_works_against_a_remote_server.rs",
+    "name": "a_local_client_works_against_a_remote_server.rs — the key goes out as a Bearer header from a named variable or file and is shown nowhere; replies arrive one per line; a 401 is a readable error; only a forgotten session is re-joined",
+    "status": "realized"
+  }
+}

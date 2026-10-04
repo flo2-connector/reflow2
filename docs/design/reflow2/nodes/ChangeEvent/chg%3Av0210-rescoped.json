@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:a4f151f30b84e4533e61cf78d37a5f10353e415afdb135fd27f57981ef39c895",
+  "node_id": "chg:v0210-rescoped",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "scope_change",
+    "name": "v0.21.0 re-scoped: it ships the evidence-quality family and BL-141(a), not the four agent-facing capabilities it was planned for. Those four (cap:gap-carries-a-reading, cap:session-artifacts, cap:skill-triggers, cap:tool-carries-convention) are all `expected` rather than `required`, so nothing blocks the cut under dec:release-trigger — and their SCHEDULED_FOR edges are DELIBERATELY LEFT POINTED AT THIS RELEASE rather than moved. That makes arrival_delta report them as `outstanding`: still pointed at an arrived moment, not delivered, nobody having said whether they slip or drop. Re-pointing them would assert a decision Anthony has not made, and dropping them would assert a withdrawal he has not made — the exact failure the fifth outcome was added to prevent."
+  }
+}

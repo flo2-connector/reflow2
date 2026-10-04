@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:ade951b21acbe2ddb65dfd39746229743a5da21020e075d2edd73df245d8465f",
+  "edge_type": "REALIZES",
+  "from_id": "art:schema",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "verified"
+  },
+  "to_id": "cap:a-design-says-which-vocabulary-it-has-never-used"
+}

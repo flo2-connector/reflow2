@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:05d1bd331f38145af73aa7613e53e3d26c27b75a9889ffa9a851e2956413ba44",
+  "node_id": "chg:reflow2-declares-its-derived-relations-and-serves-a-read-that-runs-them",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "detected_at": "2026-09-29",
+    "name": "reflow2 declares its 23 derived relations, a test holds each declaration to the edges its code reads, and derived_report counts them by that code",
+    "rationale": "MEASURED 2026-09-29 on reflow2's committed design (5,911 nodes, 108,520 asserted facts) with the branch's debug binary: 22 of 23 relations counted, 3,427 derived facts, 3.16% of asserted; the blast-radius closure is declared and not counted. Wall 74 s, 202 MB peak on a DEBUG build. The designer's hand script on the same export gave 4,436 (4.09%); 13 relations agree exactly, and the differences are the script's approximations: claimed_region 1,488 vs 2,160 (the script walked every impact edge undirected, the code walks propagate's labelled rules), shaping_decisions 157 vs 349 (the code ranks live governed nodes), unresolved_setup 32 vs 136 (the code reports open ones), budget_rollup 7 vs 12 (one judged rollup per budget, not two facts), realized/checked 306/276 vs 309/279 (the code reads live nodes only), requirement_certainty 292 vs 307, rerun_owed 147 vs 153, allocation_scores 79 vs 88.",
+    "repair": "corrected_cause",
+    "subject": "system",
+    "summary": "Answers req:reflow2-declares-its-derived-relations-and-serves-a-read-that-runs-them (accepted by Anthony 2026-09-29) and its cap:derived-relations-are-declared-checked-against-the-code-and-evaluated-by-a-served-read; both live only in the shared design until it is exported, so they are named here in text. Corrects the cause recorded as fact:root-cause-no-tool-can-evaluate-reflow2s-derived-relations-because-reflow2-declares-none-of-them-2026-09-29 (item I20 of art:dev-reflow2-two-agent-exercise-feedback-2026-09-29): reflow2 declared none of what it derives. schema/derived/relations.yaml now declares all 23, 3 stated fully over edge readings, 19 partly (what is missing named), 1 not at all. The class the counter-argument names — a declaration beside code is a second copy — is pinned by a source scan: a declared edge read by none of the relation's functions, an undeclared edge in a dedicated function, or an undeclared edge-reading helper fails the build. derived_report computes on read and stores nothing; the keep policy (dec:idea-which-derived-results-are-kept-and-by-what-rule) is untouched."
+  }
+}

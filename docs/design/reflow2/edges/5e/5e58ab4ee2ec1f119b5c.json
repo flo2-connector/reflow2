@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:9d8ba2a4b46b288fa6d2cc3b58b64c6b07c90b7e57b9a7c7fcce0c107b345c30",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "req:a-project-records-how-it-ships",
+  "properties": {
+    "note": "THE BLOCKER, DRAWN AS AN EDGE RATHER THAN LEFT IN PROSE. This requirement wants the release procedure held as an ordered process, and cap:model-process is the Flow machinery that would hold it. It CANNOT yet: PART_OF_FLOW is declared Capability -> Flow and accepts nothing else, so a Flow's steps must be Capabilities, and a release chore is not a capability. Until that widens (a schema change, which moves the stamp), this requirement is unsatisfiable by the vocabulary it needs. Recorded as an edge deliberately — this session's own finding was that a prerequisite written into a description is a trigger nothing fires (cap:what-next sat parked after its condition cleared, because nothing watched the prose).",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "cap:model-process"
+}

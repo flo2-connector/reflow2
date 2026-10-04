@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:a5cc9d6438c4a2b62b3552d330d52080ad6dcd91ed5640c082fbc0d4cc34f537",
+  "edge_type": "CHANGED",
+  "from_id": "chg:absorb-core-storage-text",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:export"
+}

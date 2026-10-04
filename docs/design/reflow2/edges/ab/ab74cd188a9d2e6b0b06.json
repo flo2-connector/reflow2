@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:a976f9192e748d3583ad23ba3fe5e7a809a412a27af6aef824415029fe795956",
+  "edge_type": "EVOLVES_INTO",
+  "from_id": "cap:a-status-advance-says-whether-its-prose-predates-it",
+  "properties": {
+    "evidence": "The shipped check asks whether the prose predates the status; this idea asks the neighbouring question in the same reply — whether any change predates it — and would be that capability grown one sentence."
+  },
+  "to_id": "dec:idea-a-status-move-with-no-change-since-planned-says-so"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:a48e8443f2609276a2d2652c89015ccc3310ea29110bdc646a2affda00f9ba96",
+  "edge_type": "REALIZES",
+  "from_id": "art:test-impact-of-diff",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:a-diff-is-read-as-a-design-change"
+}

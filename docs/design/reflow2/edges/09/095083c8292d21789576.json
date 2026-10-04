@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:6fa0acbab6588cb967965daea3777bfc947ecafeff71ddb26b8b31373e00e8d1",
+  "edge_type": "CHANGED",
+  "from_id": "chg:bl90",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cap:loop-status"
+}

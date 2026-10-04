@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:80d78a7d31b006f6fe27c836ed5f3c92a57cb4a6f9e9baf08ecc7dfe139f842d",
+  "edge_type": "CHANGED",
+  "from_id": "chg:seam-lift-finds-a-container-by-level-not-by-id-prefix",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cap:undeclared-seam-is-named"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:a4a94b0d7d6a45c31fcae0254f13cf5c6370cec21a28b15a44c96d38926ed16e",
+  "edge_type": "REALIZES",
+  "from_id": "art:tools-temporal",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:planned-epochs"
+}

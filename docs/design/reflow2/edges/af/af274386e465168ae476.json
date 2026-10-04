@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:ab8600d9806fd505482530468748ac3eac9b9c201d260aa77ac11c2e11beb34f",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:store",
+  "properties": {
+    "coverage": "partial"
+  },
+  "to_id": "req:a-design-lives-in-its-server-not-in-the-code-repo"
+}

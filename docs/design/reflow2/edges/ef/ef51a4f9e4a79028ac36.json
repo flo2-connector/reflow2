@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:a84bc64d9f813dc20a60323219961bc8de2b7234c1103acbd765c2b158e9ebae",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:a-write-is-credited-to-who-it-was-for-test",
+  "properties": {
+    "covers": "whole"
+  },
+  "to_id": "ver:a-write-is-credited-to-who-it-was-for"
+}

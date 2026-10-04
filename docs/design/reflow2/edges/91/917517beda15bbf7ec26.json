@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:2eb2f595d0b6506ecbe2765da900173790b73119af00fedaa7913265cd42abdc",
+  "edge_type": "CHANGED",
+  "from_id": "chg:baseline-3ed7b0364f3ac3e6",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:test-no-per-design-globals"
+}

@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:92940e0004e60af3b394c51d4087a1bf15acfc3982c379e9e85215c5f31ead07",
+  "node_id": "dec:idea-a-writing-call-exports-afterwards",
+  "node_type": "Decision",
+  "properties": {
+    "chose": "Taken as step 2 of the door plan Anthony agreed on 2026-10-01 (\"I agree\"): req:a-writing-call-keeps-the-committed-export-current. The path comes from the project's configuration, never from the agent.",
+    "decision": "RECORDED AS BRAINSTORMING, NOT AS A PROPOSAL. Anthony's idea 3 in using_call.md (2026-10-01), for limitation 4: `start_auto_export` runs only in a long-lived server, so after a write through the door the agent must remember export_graph with overwrite and the right path. \"Forgetting is the exact loss class the write-through was built to end\" (req:the-server-keeps-the-working-tree-export-current).\n\nTHE IDEAS, in his words: \"`--call … --export-to FILE`. After a successful *writing* call, export once to the committed path with the same chaining and tamper guard as the write-through. Better still, read the path from `REFLOW2.md` / project config so the agent does not have to know it.\"\n\nWHAT IS CHEAP: the call already knows whether the tool writes (read_only_hint, main.rs ~757), and the export code and its chaining exist. The open part is where the path comes from without the agent knowing it.\n\nINTERACTION: if dec:idea-a-one-shot-call-reaches-the-design-where-it-is-served takes its daemon option, a call routed through a daemon gets the daemon's write-through for free. This idea is then needed only when nothing else holds the graph. A batch door (dec:idea-a-shell-driven-agent-approves-reads-once-and-confirms-each-write) would export once per batch rather than once per write.\n\nCOUNTER-ARGUMENT: exporting a large design (reflow2's own is ~26 MB) after every one-shot write is slow next to a 0.2 s call. Per-write export may need the same debounce the write-through has.",
+    "kind": "exploratory",
+    "name": "SETTLED 2026-10-01 — a `--call` that writes keeps the committed export current (step 2 of the door plan)",
+    "no_relation_note": "Searched \"write-through export after every write\". The nearest is req:the-server-keeps-the-working-tree-export-current, which this would extend to the one-shot door; it is a requirement, not an idea, so it is cited in the text rather than linked. The sibling ideas recorded in the same pass are named in the text.",
+    "status": "accepted"
+  }
+}

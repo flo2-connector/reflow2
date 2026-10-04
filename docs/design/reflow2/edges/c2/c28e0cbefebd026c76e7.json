@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:cf7539f6c60c626d3736c88e1273d02f123c6fc7ce596f86384444cccdba253a",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:a-tool-description-predicts-what-the-tool-does",
+  "properties": {},
+  "to_id": "req:every-tool-description-is-accurate-about-what-the-tool-does"
+}

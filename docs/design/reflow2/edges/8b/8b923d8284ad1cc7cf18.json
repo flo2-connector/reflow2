@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:db977c32bbeaa8c4eb1c9f105188c3c861e725f809743ec1c6b1cc5c06ad65ec",
+  "edge_type": "CHANGED",
+  "from_id": "chg:reflow2-check-defaults-to-the-export-the-graph-is-in-step-with",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "art:check"
+}

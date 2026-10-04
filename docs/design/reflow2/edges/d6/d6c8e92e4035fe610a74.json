@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:a24d3da78f75a0c91ee0981512a5319cc77cdc806e5ec3eb09accf7e395baf51",
+  "edge_type": "CHANGED",
+  "from_id": "chg:bl70-fork-layer",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "dec:reopen-supersedes"
+}

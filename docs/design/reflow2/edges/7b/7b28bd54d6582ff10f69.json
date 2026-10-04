@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:ac5d05015c66501af99be5875262cb2ece4424250578734bbce295d01d81bce8",
+  "edge_type": "HAS_SNAPSHOT",
+  "from_id": "dec:arrival-delta",
+  "properties": {},
+  "to_id": "snap:epoch:arrival-delta:dec:arrival-delta"
+}

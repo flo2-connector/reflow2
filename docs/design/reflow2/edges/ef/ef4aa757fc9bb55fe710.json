@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:801054abd753d7409d16ea2bf291cb7042200513ed2d54cccbbb0f5d9d310d58",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:coherence-gate-test",
+  "properties": {
+    "covers": "whole"
+  },
+  "to_id": "ver:the-gate-reads-the-export-the-graph-is-in-step-with"
+}

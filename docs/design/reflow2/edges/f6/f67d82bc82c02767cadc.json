@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:af742d6056a371792fb7ed49a753179011daaa0a9c6013c9b236275bb04db515",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0340",
+  "properties": {
+    "as_checksum": "sha256:f11dca3fb6aa4ea3ded7f0dc0ba4bf5137ddcf54893645e851b439840194ed14"
+  },
+  "to_id": "art:planning-at-scale"
+}

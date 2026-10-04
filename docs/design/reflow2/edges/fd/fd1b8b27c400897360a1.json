@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:97193c66004c7b41cda2507e4c79b306004b755db6e011fc0de1b576268327a3",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "cap:atomic-requirement",
+  "properties": {
+    "authored_at": "2026-07-25",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:579f2a792215b97e5c624a79f8de2d910030197da025302e786f67c717b09acb",
+  "node_id": "question:6675d6c59b2e2db3",
+  "node_type": "Question",
+  "properties": {
+    "answer": "Accept it as history and require the axis going forward. The vocabulary did not exist when those changes were recorded.",
+    "asked_at": "2026-08-23",
+    "context_setter": "468 of 613 recorded change(s) do not say what kind of change they were",
+    "gap_id": "gap:6675d6c59b2e2db3",
+    "question": "468 of 613 recorded changes do not say whether the SYSTEM changed or only the design's record of it did. Backfill the axis across that history, require it only going forward, or accept the older history as unrecoverable?",
+    "rephrase_degraded": false,
+    "status": "answered"
+  }
+}

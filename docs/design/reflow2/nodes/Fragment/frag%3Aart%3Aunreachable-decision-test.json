@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:c2bfd038a2a363e7344f63b1007c5cbe9e183c2a0d57396a01fbc14f9d911dd3",
+  "node_id": "frag:art:unreachable-decision-test",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered unreachable_decision.rs"
+  }
+}

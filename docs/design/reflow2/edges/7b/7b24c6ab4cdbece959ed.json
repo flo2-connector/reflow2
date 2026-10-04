@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:a6a69676c0fd55c3a7b4f46480974cb63be924a8c8e2af15aa20eda31be46608",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:key-interfaces",
+  "properties": {
+    "authored_at": "2026-07-25",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:73930fb7264b9c3d3271972d1495d9020dbdb324a8053ce55d3e5a510937c3bf",
+  "node_id": "frag:art:edge-prose",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered crates/reflow2-core/src/edge_prose.rs"
+  }
+}

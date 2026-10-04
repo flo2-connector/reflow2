@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:5acb3e1a4c2550d6a316955497ba7c70da01f32fe6c9c432bea4b0b70a573cda",
+  "edge_type": "REALIZES",
+  "from_id": "art:tools-query",
+  "properties": {
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:the-cli-describes-a-tool-with-its-schema-and-lessons"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:e4f8f844ec25fab9128e1b0376fbbad3e72e506ae44f99c9535244cb9f843dd0",
+  "edge_type": "CHANGED",
+  "from_id": "chg:init-asks-which-harness",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:init"
+}

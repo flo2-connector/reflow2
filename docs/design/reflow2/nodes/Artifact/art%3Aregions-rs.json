@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:06294967134ec800b7b6c76bb2405082ada6fefc722613ff5b59b9a485d8a66f",
+  "node_id": "art:regions-rs",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "location": "crates/reflow2-core/src/regions.rs",
+    "name": "crates/reflow2-core/src/regions.rs",
+    "status": "realized"
+  }
+}

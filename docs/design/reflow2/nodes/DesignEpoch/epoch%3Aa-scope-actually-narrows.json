@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:48d9d6cd17bde7d18c9da5955351ea255adac90ecd397743b6148b3fa289f728",
+  "node_id": "epoch:a-scope-actually-narrows",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "epoch_type": "revision",
+    "name": "A scope actually narrows — the region computation stops returning two thirds of the design and calling it your part",
+    "sequence": 356,
+    "status": "arrived"
+  }
+}

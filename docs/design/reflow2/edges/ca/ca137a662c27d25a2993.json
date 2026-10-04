@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:91dc5ca75ddaf457cb5ba892e82bd0ce03240bb4c8ef91537ceab747ae95f084",
+  "edge_type": "REALIZES",
+  "from_id": "art:test-a-recalled-reason-is-not-read-as-one-written-at-the-time",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:a-change-says-how-its-reason-is-known"
+}

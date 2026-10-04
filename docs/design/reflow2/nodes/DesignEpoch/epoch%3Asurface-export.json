@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:61a950f76af57adb09a991211876f39620d3efbcce4f7489206cd9b7df0c1c8e",
+  "node_id": "epoch:surface-export",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "epoch_type": "revision",
+    "name": "Published-surface export (2026-07-25, post-v0.11.0)",
+    "sequence": 140,
+    "status": "arrived"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:2f86500fc7a7ab5017f350bb0af07b90277d687428fd976e62543d1a81b7a006",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "cap:recover-from-tests",
+  "properties": {
+    "authored_at": "2026-07-24",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:alex"
+}

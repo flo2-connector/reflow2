@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:360e467d35ab0eecd975520b6fa32350f2ec5101b9596f0084029435cca5f5d7",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:the-foundation-is-one-subsystem-not-two-halves",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "sys:foundation"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:2ff1d66f469ce6a7d65ca6e885eb7d6bc0799b73a040719d4639e824e31ea549",
+  "node_id": "chg:accept-0c440cc2eb44f74c",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "test_failure_fix",
+    "detected_at": "2026-08-01",
+    "name": "set_evidence_scope and calibrated_against reach the MCP surface. A capability unreachable from the tools is BL-129's defect, so the surface is part of the delivery, not a follow-up."
+  }
+}

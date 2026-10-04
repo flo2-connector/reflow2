@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:f76831df38f5c49274ca395c7f3c1cb1debc00457364c95b72ca1e98ba148c7b",
+  "node_id": "decision:ack:c10616e59f5b2278",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Accepted the gap gap:c10616e59f5b2278.",
+    "name": "Reviewed: gap:c10616e59f5b2278",
+    "rationale": "Anthony, 2026-08-23: imported intent, reviewed as such. These are rows that came in when docs/backlog.md was retired (dec:backlog-is-retired) plus planned ideas — wishes, not capabilities anyone asked for. Writing a requirement from a capability's own description would make it satisfied BY CONSTRUCTION and destroy the trace's meaning to close a gap, so the need stays unstated until somebody states it. The five that are already BUILT were deliberately EXCLUDED from this review and put to him individually.",
+    "status": "accepted"
+  }
+}

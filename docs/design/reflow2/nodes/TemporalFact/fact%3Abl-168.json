@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:b676f7320230214e4c2ddf9d760e18ef6362aa611ef5748f6f338920d6f273e2",
+  "node_id": "fact:bl-168",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "defect",
+    "statement": "[BL-168] The two paths that author reflow2's own design disagree, and whichever ran last wins",
+    "subject_id": "cmp:export",
+    "value": "{\"evidence\": \"*Found 2026-08-02 doing [BL-165], by running tools/build_design_graph.py against a scratch export and diffing its output against the committed record.* The design is written two ways: from a live session through the MCP tools, and by build_design_graph.py, which derives structure from source. They do not produce the same graph. The script derives 10 DEPENDS_ON edges the committed export does not hold (cmp:temporal\\u2192cmp:detect, cmp:graph\\u2192cmp:temporal, cmp:drift\\u2192cmp:artifact, \\u2026) \\u2014 real call-graph facts, absent because the last several exports came from live sessions and nothing refreshes the derived layer. It also prints NOT MODELLED (no Component; DEPENDS_ON edges dropped) for 14 modules \\u2014 alternatives, bulk, claims, compose, content, coverage, depends, identity, merge, readiness, sanitize, scope, seam, sync \\u2014 every one of which HAS an Artifact realizing a Capability but no Component, so its dependencies are silently dropped from the structure the topology detectors read. The stake: circular_dependencies, single_point_of_failure and evaluate_allocation all run over DEPENDS_ON, so a design missing 10 real edges and blind to 14 modules is reporting structural health on a partial graph \\u2014 and reporting it as 0 defects. The question first: is the derived layer authoritative (the script refreshes it and a live export must not drop it), or advisory? Until that is answered the two paths keep overwriting each other. Size M\", \"origin\": \"Migrated from docs/backlog.md BL-168 on 2026-08-07 (epoch:backlog-retired). Size estimate carried from the row: M.\"}"
+  }
+}

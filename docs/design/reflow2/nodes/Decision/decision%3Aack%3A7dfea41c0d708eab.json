@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:3a84309faf65a509b6afc3018e483e4eebd2efe7323a4f79a39d8a9f9359bb9a",
+  "node_id": "decision:ack:7dfea41c0d708eab",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Accepted the gap gap:7dfea41c0d708eab.",
+    "name": "Reviewed: gap:7dfea41c0d708eab",
+    "rationale": "Standing acknowledgement, unchanged in substance and re-stated because the rollup's id moves whenever the capability set does: validation for this project is the trials programme — reflow2 being used on real designs (this repo, storyflow, the fleet) — not a validation-kind Verification per capability. Recording 60 near-identical validation nodes would be ceremony that makes the number go green without anyone having checked anything, which is exactly the dishonesty `dec:passing-is-verified` exists to prevent.",
+    "status": "accepted"
+  }
+}

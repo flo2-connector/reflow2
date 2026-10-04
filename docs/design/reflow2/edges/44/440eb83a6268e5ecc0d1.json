@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:6d722db50a8d6b3d0d670d6172d063d53bd385d77a861bfaf7046ca1ce0c2b8f",
+  "edge_type": "AT_EPOCH",
+  "from_id": "chg:a-degraded-server-recovers-when-its-cause-clears-and-readiness-tells-the-truth",
+  "properties": {},
+  "to_id": "epoch:v0760-cut"
+}

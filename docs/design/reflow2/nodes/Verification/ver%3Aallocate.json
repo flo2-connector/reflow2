@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:3828083bf9a758a85dacda5382e6fecf63e295b3219e3c7f2263b94b125a409a",
+  "node_id": "ver:allocate",
+  "node_type": "Verification",
+  "properties": {
+    "kind": "verification",
+    "level": "integration",
+    "method": "test",
+    "name": "allocate.rs",
+    "status": "passing"
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:172a23138f3de03a788d99467f01e9ca1771f88e3291cb1173d3eaa5556b58df",
+  "node_id": "cmp:discover",
+  "node_type": "Component",
+  "properties": {
+    "kind": "module",
+    "level": "component",
+    "name": "discover",
+    "provenance": "authored",
+    "purpose": "DISCOVER — say what design lives at a path without binding to it, so a session can look before it opens.",
+    "status": "planned",
+    "tier": "operational"
+  }
+}

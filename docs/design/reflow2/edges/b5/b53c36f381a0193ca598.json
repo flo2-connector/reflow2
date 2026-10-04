@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:65f28a9eee798fbb09b391fe2522e9046bcc8ca052f11215d5741ad1076eaa33",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:conventions-ride-the-tool-not-only-the-skill",
+  "properties": {
+    "authored_at": "2026-07-31",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "ctr:claude-fable"
+}

@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:7087edbeb539af3dcb5189a57b9154c11ec52f1b1872855d25428936fc5c5b9d",
+  "node_id": "art:every-edge-type-declares-what-it-means-test",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "test",
+    "description": "Five tests: every edge type declares a well-formed reading (splits included); describe_schema serves it one-line on listings and whole on a pair query; edges are selected by reading as always or per edge; one edge is read from its own values; the one-line form. Observed failing before the readings, and again before the splits.",
+    "location": "crates/reflow2-core/tests/every_edge_type_declares_what_it_means.rs",
+    "name": "crates/reflow2-core/tests/every_edge_type_declares_what_it_means.rs",
+    "status": "realized"
+  }
+}

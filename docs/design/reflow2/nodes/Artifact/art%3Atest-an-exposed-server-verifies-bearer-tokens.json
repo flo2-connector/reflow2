@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:1e4fbac13bf059470ad15ef6313a11dc1230c7a17e01bb578c1cb4458c564ce5",
+  "node_id": "art:test-an-exposed-server-verifies-bearer-tokens",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "test",
+    "location": "crates/reflow2-mcp/tests/an_exposed_server_verifies_bearer_tokens.rs",
+    "name": "an_exposed_server_verifies_bearer_tokens.rs — the floor, item by item, against the real binary and a test issuer, failing first",
+    "status": "realized"
+  }
+}

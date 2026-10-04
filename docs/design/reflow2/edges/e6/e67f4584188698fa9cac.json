@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:aabd589de9a4dd28992cdec9fe8e5db44651b8b36ec0f763e7a1da1f378b3f78",
+  "edge_type": "INVALIDATES",
+  "from_id": "chg:re-linking-an-artifact-no-longer-renames-it",
+  "properties": {
+    "evidence": "The repair against the finding that measured it. The finding's own text names the fix it wanted — make name optional, use set_opt, refuse a first link with no name — and all three landed. It says the finding can no longer be read as current; the cause fact beside it stays live, because the class it names is still guarded by a hand-maintained list."
+  },
+  "to_id": "fact:link-artifact-demands-a-name-and-location-for-an-artifact-that-already-exists"
+}

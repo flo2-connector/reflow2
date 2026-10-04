@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:532f2023e6565e379e744bcfcfd7e8b4e9e47fac43870c3ba8963c2ceb952fae",
+  "node_id": "fact:bl-94",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "defect",
+    "statement": "[BL-94] A graph stamped by reflow2 ≤ v0.9.0 cannot be opened by v0.10.x at all — and the recovery paths the refusal names can both be unavailable",
+    "subject_id": "cmp:identity",
+    "value": "{\"evidence\": \"*Anthony, 2026-07-24, from a real project on the current release.* v0.9.0 declared 54 edge types; v0.10.0 retired some to 53 (the edge-orthogonality cut), and every stamp written before BL-86 is count-only, so check_and_stamp sees an excess it cannot attribute and returns Err \\u2014 from DesignGraph::open (graph.rs:105). Because *every* entry point opens the graph first, --export goes down with everything else, which is what makes this more than a message problem: the graph is sealed, not merely refused. BL-86 (shipped in v0.10.1) fixed the *wording* \\u2014 it now names both recovery paths instead of wrongly saying \\\"rebuild\\\" \\u2014 but it did not make the graph openable, and both paths it names have holes: \\\"export it with the reflow2 that wrote it\\\" needs the old binary that curl \\\\ | sh already replaced (req:frictionless-update defeating the migration path), and \\\"import a committed export\\\" needs the project to have committed one. The undocumented escape is deleting the sidecar .reflow2/graph.meta.json, which opens the graph as unstamped \\u2014 but that silently drops any genuinely-retired-type edges, i.e. it performs exactly the loss the refusal existed to prevent, without naming it. Fix shape: a --migrate path that opens past the stamp check, drops retired types, names what it dropped, and re-stamps \\u2014 one step, no old binary, nothing silent. BL-86's entry explicitly declared this option \\\"moot\\\" once the message became unambiguous; the field disproves that \\u2014 an unambiguous message you cannot act on is still a wall. Bears directly on req:survives-upgrade (\\\"an existing graph opens, or is refused loudly with what to do\\\") \\u2014 today the second clause holds and the first does not. Update BL-86 and the requirement when it lands\", \"origin\": \"Migrated from docs/backlog.md BL-94 on 2026-08-07 (epoch:backlog-retired). Size estimate carried from the row: S\\u2013M.\"}"
+  }
+}

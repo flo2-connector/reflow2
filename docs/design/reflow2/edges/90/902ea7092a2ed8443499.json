@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:e7048594b3eff927b34720859134a22525400c0971b7a114cd0996d75339b8db",
+  "edge_type": "ANTICIPATES",
+  "from_id": "dec:documentation-has-no-operational-coupling",
+  "properties": {
+    "confidence": 0.9
+  },
+  "to_id": "dec:legitimate-islands-need-the-detector-fix"
+}

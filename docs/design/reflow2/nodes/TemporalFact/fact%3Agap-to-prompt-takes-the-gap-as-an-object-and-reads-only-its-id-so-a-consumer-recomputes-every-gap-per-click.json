@@ -1,0 +1,19 @@
+{
+  "content_hash": "sha256:8b184ab34dab75ae753206415b5bc7f5f745c139c1a3b0460568d1d29519afee",
+  "node_id": "fact:gap-to-prompt-takes-the-gap-as-an-object-and-reads-only-its-id-so-a-consumer-recomputes-every-gap-per-click",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "confidence": 0.9,
+    "fact_type": "defect",
+    "name": "gap_to_prompt requires the whole gap OBJECT and reads only its id, so its consumer re-runs detect_gaps on every click to rebuild something the server discards",
+    "source": "flo2 reflow2_feedback.md, session of 2026-09-19 (evening)",
+    "statement": "FLO2 F22. The tool's own description is honest — 'THE REPLAYED GAP IS AN ECHO: only its `id` is read, and the server resolves the gap afresh' — and the shape contradicts it.\n\nMEASURED 2026-09-19 on the committed toolsnap: `required: ['gap']`, `gap` is of type `object`, and the PARAMETER's own description reads in full 'A `GapCandidate` previously returned by `detect_gaps`.' The echo caveat lives on the TOOL's description, not on the parameter, so a caller reading the parameter meets an object and no hint that a key would do.\n\nflo2 believed the shape, which is the right instinct: A PARAMETER'S TYPE IS LOUDER THAN ITS PROSE. Its `gapPrompt()` therefore re-runs detect_gaps on EVERY send to rebuild an object the server immediately throws away and re-resolves — a whole graph computation per click, for nothing.\n\n⭐ AND THE REPORTER FOUND THE BETTER FIX WHILE COMPLAINING: their redundant call is also how a stale chip gets refused with 'that is no longer open'. If gap_to_prompt answered a vanished gap with a DISTINGUISHABLE refusal, flo2 could drop the extra call entirely and still be correct — which closes the cost and the correctness question together, where taking an id alone closes only the first.",
+    "steps": [
+      "gap_to_prompt",
+      "detect_gaps"
+    ],
+    "subject_id": "cap:gap-carries-a-reading",
+    "valid_from": "2026-09-19"
+  }
+}

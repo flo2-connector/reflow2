@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:6363fc32764bae4c5a13bd2201c7bc63e2b5defab78b1e808c98ec93059acbc5",
+  "edge_type": "REALIZES",
+  "from_id": "art:test-a-server-drains-before-it-stops",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "verified"
+  },
+  "to_id": "cap:a-server-drains-before-it-stops"
+}

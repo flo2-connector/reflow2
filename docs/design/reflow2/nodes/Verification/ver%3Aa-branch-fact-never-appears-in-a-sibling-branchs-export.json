@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:d472de9eda3db52ccd673378a3fb3b025686f9f93182b9ed8a6a917c87aa0697",
+  "node_id": "ver:a-branch-fact-never-appears-in-a-sibling-branchs-export",
+  "node_type": "Verification",
+  "properties": {
+    "description": "One shared server, two worktrees on branches A and B, a session in each. Session A changes a registered file and accepts its new checksum, records a ChangeEvent for its code, and also adds a requirement. Export B. PASS: B's export carries the requirement (intent is live) and does NOT carry A's checksum, ChangeEvent or artifact status. B's export passes the coherence gate against B's tree. Reproduces fact:the-live-graph-does-not-branch-so-two-open-prs-collide, where a sibling's checksums failed the gate seven-plus times. Must fail on today's build before it is trusted.",
+    "kind": "verification",
+    "level": "system",
+    "method": "test",
+    "name": "A checksum accepted on one branch never appears in another branch's export, while intent written on it does",
+    "status": "planned"
+  }
+}

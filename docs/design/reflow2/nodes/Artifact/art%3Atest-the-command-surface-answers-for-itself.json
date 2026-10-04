@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:af948efb50d9d20a86e941a1278262a33394a4baab9cf209d78178c2ac1951a4",
+  "node_id": "art:test-the-command-surface-answers-for-itself",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "location": "crates/reflow2-mcp/tests/the_command_surface_answers_for_itself.rs",
+    "name": "the_command_surface_answers_for_itself.rs",
+    "status": "realized"
+  }
+}

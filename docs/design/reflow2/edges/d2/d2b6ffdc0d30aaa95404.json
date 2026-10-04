@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:f731bbec74e1a986b6c38f39476f9f6e1ff849f053a880a263a163fb4a14f3b2",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "cap:a-declared-upstream-is-read-where-it-lies",
+  "properties": {
+    "authored_at": "2026-08-28",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:claude-code"
+}

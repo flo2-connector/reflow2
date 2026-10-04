@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:4033eee5b7a384c910ee7339717a215708d3924d46563e0b165aa9372dc72804",
+  "edge_type": "REALIZES",
+  "from_id": "art:bulk",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cmp:bulk"
+}

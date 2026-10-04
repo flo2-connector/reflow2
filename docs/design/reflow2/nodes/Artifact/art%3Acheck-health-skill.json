@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:8c137f3ccb9ca961b1ea79efc7ca8ec4339f3d655da97e287d432f5433629e63",
+  "node_id": "art:check-health-skill",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "document",
+    "granularity": "atomic",
+    "location": "getting-started/skills/check-health/SKILL.md",
+    "name": "check-health/SKILL.md",
+    "status": "realized",
+    "volatility": "stable"
+  }
+}

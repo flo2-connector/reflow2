@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:ce5e66f7c66bd20fe30707bb8632c26b2890de3c9d7a1f26302e619167cce09a",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-is-the-restructure-target-the-shared-struct-rather-than-the-subsystem-contracts",
+  "properties": {
+    "evidence": "Whether either restructure is worth doing turns on whether substitutability is actually wanted here, and that swap is the only proposed test of it. If nothing is ever swapped, option ② pays for a problem nobody had.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "dec:idea-swap-dynograph-foundation-as-the-substitutability-demo"
+}

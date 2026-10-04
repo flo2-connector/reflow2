@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:f88e4df28b5f469e582174ef33850252d87d67892ea7f85d8de5cd6f15f1cd4b",
+  "edge_type": "CHANGED",
+  "from_id": "chg:evidence-fidelity",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "cap:evidence-fidelity"
+}

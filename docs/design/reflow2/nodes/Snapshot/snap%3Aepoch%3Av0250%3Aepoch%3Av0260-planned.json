@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:34753a94047fcfa5d968ec9027fd294d2beb597be229218ed53860940a859da7",
+  "node_id": "snap:epoch:v0250:epoch:v0260-planned",
+  "node_type": "Snapshot",
+  "properties": {
+    "edges": "[]",
+    "state": "{\"epoch_type\":\"release_cut\",\"name\":\"PLANNED v0.26.0 — status accounting: when was this true? The biggest conceptual gap either source found, and EIA-649 names it. BL-187 external anchor and BL-185 test-first both add Verification properties (ONE schema touch), BL-189 the retirement half. Half of one evidence corpus pins to commits no longer ancestors of main; 11 of this project's own verifications sat green on one two-day-old run.\",\"sequence\":265,\"status\":\"planned\"}",
+    "target_id": "epoch:v0260-planned",
+    "target_type": "DesignEpoch"
+  }
+}

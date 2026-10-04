@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:c1fe3f7e0aa087a3b67e2e0769e922f16d69047d90652c059e9422828d68c6a3",
+  "edge_type": "CAUSES",
+  "from_id": "art:dev-storyflow-feedback-2026-09-27",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "The root-cause pass on this document's 'undated' report (09-23 and 09-25): reproduced on 0.72.0; the note tests the call's detected_at, never the stored node's, since #472.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:root-cause-the-undated-note-reads-the-call-not-the-stored-node-2026-09-28"
+}

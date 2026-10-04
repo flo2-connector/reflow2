@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:c0373255d679ca7f75e178909b01f48f24b8dab18dad0eca9425085b7a69dbe3",
+  "edge_type": "CHANGED",
+  "from_id": "chg:storyflow-feedback-review-20260808",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cap:claim-liveness"
+}

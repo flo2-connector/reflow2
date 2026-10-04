@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:8de0f6b44ad566d0c6f74b139de4b969abe320804a0364ced99b7039605e6ddd",
+  "edge_type": "VERIFIES",
+  "from_id": "ver:a-proposal-describes-its-own-sweep",
+  "properties": {},
+  "to_id": "req:a-report-says-what-it-swept-and-whether-its-checks-ran"
+}

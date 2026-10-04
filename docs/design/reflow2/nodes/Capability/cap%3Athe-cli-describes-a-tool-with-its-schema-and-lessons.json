@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:fcc4435f2730eaf1d18f3a1e691f53b90ab10079cfbf4673a048ba19c4921c1e",
+  "node_id": "cap:the-cli-describes-a-tool-with-its-schema-and-lessons",
+  "node_type": "Capability",
+  "properties": {
+    "description": "reflow2-mcp --describe <tool> and --list-tools, and the served describe_schema with `tool` (crates/reflow2-mcp/src/describe_tool.rs), render ONE listing: ReflowService::tool_listing, built from the OPENED design by served_list, the function tools/list uses, so what is described cannot disagree with what a session on that design is given. Brief by default and held to the reply budget: every property, type, required list, enum value, $defs shape and $ref kept, each field description cut to its first sentence, the lessons as records (id, name, statement, hung_on, valid_from). `--full` / `full: true` is the tools/list entry unaltered. --list-tools is an index (tool, read_only, required, lesson count) by default and the tools/list array unaltered with --full. Both CLI modes are rows of the one-shot table (Access::Describes): read-only; a held design is read from the snapshot copy --call uses (one opener, open_the_design); a folder whose .reflow2.toml names a design on a server is refused with that design named; --only-if-present with no design is refused; where there is no design nothing is opened or created and every lesson block says so. find_tools replies carry `describe`, the route to the rest. Measured on reflow2's own design (6,511 nodes, a scratch import of main's export): --list-tools --full equals stdio tools/list entry by entry (195 tools); --describe delivered 269 lessons on 91 tools; the largest brief (loop_status, 21 lessons) is 28,459 characters and the brief index 16,638.",
+    "name": "The CLI describes a served tool in full — its input schema and the lessons the opened design holds for it — and describe_schema serves the same answer to every door",
+    "provenance": "authored",
+    "status": "realized"
+  }
+}

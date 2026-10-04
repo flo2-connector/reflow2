@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:1b4f1e58088ab832e7efe23fcb40914c5a01f37c95683e0718f3a7ad333ca7d8",
+  "edge_type": "DOCUMENTS",
+  "from_id": "art:claude-instructions",
+  "properties": {
+    "doc_kind": "agent_instructions"
+  },
+  "to_id": "proj:reflow2"
+}

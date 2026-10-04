@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:973fe5d9fea9df31ee16216f6e7b7c68228432d804ab67f96e9d4b5353f0b8c7",
+  "edge_type": "REALIZES",
+  "from_id": "art:consumption",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cmp:consumption"
+}

@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:901906250524442bdbb45528b8e4910a7670bd0c498f9df363103f6ada91a165",
+  "node_id": "ver:every-open-store-shares-one-memory-budget",
+  "node_type": "Verification",
+  "properties": {
+    "description": "Opens two RocksDB stores in one process and writes to each. The shared write-buffer manager's usage rises after the first store's writes and rises AGAIN after the second's, so both are charged to one budget. The budget in force is the one set before the first open, and a later setter is told so. It runs in the workspace job, where reflow2-core is built with rocksdb.",
+    "findings": "Passes. Observed failing with the write-buffer manager unset on the stores. The workspace suite passed too: 298 suites, with the one failure the process-global guard catching STORE_BUDGET before it was accounted for, fixed by stating its reason.",
+    "kind": "verification",
+    "last_run_at": "2026-09-27",
+    "level": "integration",
+    "location": "crates/reflow2-core/tests/every_open_store_shares_one_memory_budget.rs",
+    "method": "test",
+    "name": "Every store a process opens is charged to one memory budget, fixed once set",
+    "status": "passing"
+  }
+}

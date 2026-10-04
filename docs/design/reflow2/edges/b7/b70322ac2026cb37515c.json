@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:76fc1226af62fc60331ea6f6abb80b4831a99d3a616dc5757d6ab01800ba9132",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:an-empty-manifest-on-a-shipped-release-stops-the-build",
+  "properties": {
+    "approved_at": "2026-08-21",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

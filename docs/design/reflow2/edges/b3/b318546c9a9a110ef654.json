@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:ea0436797bf91d0836d9811061bd1d1ddfb9775a3268056f826921f3c147ea0c",
+  "edge_type": "ANTICIPATES",
+  "from_id": "dec:idea-outward-docs-are-rendered-from-the-graph",
+  "properties": {
+    "evidence": "Docs rendered from the graph need a way for a build to read the graph; this is that way, for one tool at a time."
+  },
+  "to_id": "cap:a-build-can-call-one-tool-from-the-shell-and-read-the-reply-as-json"
+}

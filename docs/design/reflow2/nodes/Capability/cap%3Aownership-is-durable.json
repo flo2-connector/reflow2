@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:44dffc9a3c0d9cf7c20dde560844157ae05e7cbb700fecb2448b6c5192bde67e",
+  "node_id": "cap:ownership-is-durable",
+  "node_type": "Capability",
+  "properties": {
+    "description": "The third \"who\" axis. AUTHORED_BY says who WROTE something (past tense, never changes); CLAIMS says who is IN it right now (transient, released at checkout); OWNED_BY says whose ground it is, and it survives every session.\n\nBUILT: the edge (`* → Contributor`, with `note` and `since`), a served `owned_by` tool, and the read that makes it earn its keep — loop_status(contributor_id) reports `gaps_on_owned_ground`, each entry naming WHICH owned nodes the gap stands on, and `not_attributable` shrinks by exactly that many.\n\nDELIBERATELY NOT A TRACEABILITY EDGE, the third of a kind after AUTHORED_BY and CLAIMS: owning something says who ANSWERS for it, not that a change to it changes them. A Contributor must never appear in a blast radius, and a test asserts it.\n\n⚠️ AND AN UNOWNED NODE RAISES NOTHING. Most of a mature design legitimately has no owner, so absence is ordinary rather than a finding. Whether unowned ground should be detected at all is open in dec:idea-detect-ownership-orphans and turns on a per-project answer to which types are even ownable — a question this capability deliberately does not answer.\n\nTHE ASYMMETRY IS THE DESIGN: \"is this gap on ground you own?\" is a FACT the graph can answer; \"should this have an owner?\" is a JUDGEMENT it cannot.",
+    "name": "Whose AREA a node is, recorded durably and read where debt is reported",
+    "provenance": "authored",
+    "status": "realized",
+    "tier": "operational"
+  }
+}

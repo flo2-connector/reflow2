@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:4474824f26d55344ee18011f7ed0111b5f8f441a21d737ffd6e820dd20947e3c",
+  "node_id": "fact:field-report-dev-storyflow-2026-09-27-worked-search-across-all-types-stopped-duplicates",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "observation",
+    "name": "WHAT WORKED (dev_storyflow, 2026-09-27): `search_design` over every type found a user ruling filed as a Decision, Requirement or Constraint where a DesignRule was expected, and that stopped duplicates",
+    "source": "art:dev-storyflow-feedback-2026-09-27",
+    "statement": "Recorded so a regression is checkable. Reporter (session 62995724, migrating 71 memory files into the design): \"`search_design` found existing coverage across types (a user ruling I expected as a DesignRule was a Decision, a Requirement or a Constraint) — searching all types, not just rules, is what stopped duplicates.\" What must not regress: an unscoped search ranks every node type together. The same entry names the gap next to it (no bulk form for 71 items), triaged separately.",
+    "subject_id": "cap:search",
+    "valid_from": "2026-09-27"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:59ca00d2e3b1d51f610099fac6bc819c4b557cb3fdb52fb50daa3a4f0661d30f",
+  "node_id": "art:reflow2-rebuild",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "description": "The deliberate half of the profile split: the one command that rebuilds the binary sessions are served, stamping the source hash only on success so a failed build leaves the launcher still warning. Computes the same content hash the launcher compares — kept identical on purpose, because a divergence would either warn about staleness this cannot clear or clear staleness the launcher still sees.",
+    "location": "tools/reflow2-rebuild.sh",
+    "name": "reflow2-rebuild.sh",
+    "status": "realized"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:580590e98bb242f62417d7c026a3efef50b571b0759ae088c027da53b22ed980",
+  "node_id": "art:provenance",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "granularity": "atomic",
+    "location": "crates/reflow2-core/src/provenance.rs",
+    "name": "provenance.rs",
+    "status": "realized",
+    "volatility": "stable"
+  }
+}

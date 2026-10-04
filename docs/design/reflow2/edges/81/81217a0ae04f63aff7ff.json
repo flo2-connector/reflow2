@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:12e4e23855909a96fc02294620392b8e59c40fd382d9411da30c3e06e07a0955",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-do-ideas-form-a-graph-or-only-a-list",
+  "properties": {
+    "confidence": 0.8,
+    "evidence": "The linking step is nearly free only because the search has already run — it judges the near-matches already in hand rather than sweeping for candidates. If search-before-capture ever stopped being universal, linking at capture would become an expensive extra pass and the argument for putting it in the brainstorm skill would collapse. Drawn 2026-08-21.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "dec:idea-search-first-fires-without-being-remembered"
+}

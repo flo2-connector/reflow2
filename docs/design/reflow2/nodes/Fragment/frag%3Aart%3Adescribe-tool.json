@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:f119733a55648ef9fec6dde7e78bfbd6838cde5fa41453316b9e8a7e14d6742c",
+  "node_id": "frag:art:describe-tool",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered describe_tool.rs"
+  }
+}

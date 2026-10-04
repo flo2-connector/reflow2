@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:6550461bf422366d9c49d2777f1aa421daeb4d479ca0756d8d5ba36ba29ca229",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-unexported-claim-is-answered-once-for-the-seat",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cap:the-record-moved-is-surfaced"
+}

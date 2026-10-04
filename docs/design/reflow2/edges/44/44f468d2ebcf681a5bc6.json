@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:1e47480a5cc4bbd13571f16dd9be60854076db0e5ee12a8f67ede620b0c8b1ff",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-field-report-is-triaged-by-a-served-step-and-a-finding-is-written-before-the-answer",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "art:triage-command"
+}

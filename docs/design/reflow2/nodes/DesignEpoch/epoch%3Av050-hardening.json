@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:b6c2564ea3b263b3c451855719fe78f8f3d05b457e0de0e86868117b4dc4dbd8",
+  "node_id": "epoch:v050-hardening",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "epoch_type": "revision",
+    "name": "Post-v0.5.0 hardening: self-adopt reconciliation, BL-46..50, the as-released model (2026-07-20)",
+    "sequence": 25,
+    "status": "arrived"
+  }
+}

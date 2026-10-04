@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:e011728f4668be31a6542a14f4b7e6906ed3b1c82022f1b1fc07f6aeab129acd",
+  "node_id": "fact:defect-graph-report-outgrows-its-own-reply-linearly",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "confidence": 1.0,
+    "fact_type": "defect",
+    "statement": "`graph_report` REFUSES ON A LARGE DESIGN, AND THE GROWTH IS LINEAR WITH A MEASURABLE COEFFICIENT RATHER THAN AN EDGE CASE. Two refusals in one session, ninety minutes apart, same harness: 88,932 chars at 1,469 nodes, then 91,330 chars at 1,513 nodes — +2,398 chars for +44 nodes, about 54 characters of report per node added. EVERY NODE ANYONE ADDS MAKES THE ORIENTATION CALL HARDER TO READ. Both refusals landed at the two moments the tool is most valuable: orienting at session start, and verifying a peer's reported numbers — and the second is routine rather than rare on a shared graph, which the reporter had not anticipated. `loop_status` was separately measured at 72,886 chars and unreadable in-session (BL-205). ⇒ the rollups that exist to answer 'what should I look at?' become unusable exactly as a design gets big enough to need them. || SOURCE: Observed by the dev_storyflow fleet on 2026-08-15, on reflow2 0.31.0 with served == installed verified through /proc/<pid>/exe. Three agent seats, one shared graph, one day.",
+    "subject_id": "cmp:report",
+    "value": "{\"call_1\":{\"chars\":88932,\"nodes\":1469},\"call_2\":{\"chars\":91330,\"nodes\":1513},\"chars_per_node\":54.5,\"loop_status_chars\":72886,\"sibling\":\"BL-205\"}"
+  }
+}

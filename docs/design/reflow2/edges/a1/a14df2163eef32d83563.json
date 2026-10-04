@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:06bf9dc65695973400d4c375bcce421c5df60f5f240693fed8dadcdb2c1f8251",
+  "edge_type": "CHANGED",
+  "from_id": "chg:aggregate-gap-ack",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "req:set-scoped-acknowledgement-keys-on-its-rule"
+}

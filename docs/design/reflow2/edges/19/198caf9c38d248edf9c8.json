@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:54c1c512724a292f2624d6ab4db851e4238dcca0df8b17d8b197faa8494f25e0",
+  "edge_type": "ABOUT_ENTITY",
+  "from_id": "fact:capture-session-routes-what-a-session-produced-not-what-it-resolved",
+  "properties": {
+    "evidence": "The finding is a measurement of this capability's own routing table: nine rows, eight of which create a node and one of which closes a retired finding, with no row for an open Decision the session answered out loud."
+  },
+  "to_id": "cap:capture-session-skill"
+}

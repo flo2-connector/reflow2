@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:42bc133b19b01fe4d8d2a7dc20ab3d82010f30460894fa05f4e0fe7466d3edd4",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-saved-design-moves-to-the-item-layout-2026-10-03",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:c8dad15587cd0503c0e336fdb45e054b6b53a7725f42736c13a4f930b09bb087",
+    "checksum_basis": "measured"
+  },
+  "to_id": "art:a-lesson-is-served-at-the-step-handler-test"
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:ee750d0fd8da5cbd3f11420b96a4039f67cc624aac8f70b249691cf649112075",
+  "node_id": "art:test-the-design-is-saved-one-file-per-item",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "test",
+    "location": "crates/reflow2-core/tests/the_design_is_saved_one_file_per_item.rs",
+    "name": "the_design_is_saved_one_file_per_item.rs (core)",
+    "status": "realized"
+  }
+}

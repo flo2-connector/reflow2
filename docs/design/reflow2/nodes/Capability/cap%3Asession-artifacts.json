@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:897325922c14cdba0fa45d749024bcd896a56dcfc15c944fa35bab9475c84186",
+  "node_id": "cap:session-artifacts",
+  "node_type": "Capability",
+  "properties": {
+    "description": "Diagrams, mockups and rendered explanations produced during a session are captured into the content store and linked from the design node they explain — the visual half of a Decision's rationale, which is otherwise thrown away at session end. THE FILTER IS THE LINK, on Anthony's word 2026-07-31: a rendering is kept when a Decision or Capability actually points at it, so the store holds what someone will look at again rather than every intermediate. Capture must be TRIGGERED rather than remembered — a rule depending on the agent choosing to store its own diagram decays exactly as `req:skill-use-survives-a-long-session` measures — so this belongs with the trigger work rather than beside it. PLANNED.",
+    "name": "Keep what a session drew, when the design points at it",
+    "provenance": "authored",
+    "status": "verified",
+    "tier": "operational"
+  }
+}

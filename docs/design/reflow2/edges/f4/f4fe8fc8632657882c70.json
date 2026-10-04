@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:a203312aadf815f7a0c5dbba667ed6bc83454cfd00c73fedb81cad3b94fa1ed7",
+  "edge_type": "REALIZES",
+  "from_id": "art:client-setup",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:one-setup-command-chooses-local-or-remote"
+}

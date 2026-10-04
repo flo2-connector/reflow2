@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:144a851dba39abfc4581cddfedb9b7698c492f7a7ab2527b548decba88173bb1",
+  "node_id": "snap:epoch:preserved-on-write:rel:v0610",
+  "node_type": "Snapshot",
+  "properties": {
+    "edges": "[{\"direction\":\"out\",\"edge_type\":\"DEPLOYED_TO\",\"other_type\":\"Environment\",\"other_id\":\"env:ci\",\"properties\":{\"status\":\"active\"}},{\"direction\":\"out\",\"edge_type\":\"DEPLOYED_TO\",\"other_type\":\"Environment\",\"other_id\":\"env:container\",\"properties\":{\"status\":\"active\"}},{\"direction\":\"out\",\"edge_type\":\"DEPLOYED_TO\",\"other_type\":\"Environment\",\"other_id\":\"env:dev\",\"properties\":{\"status\":\"active\"}}]",
+    "state": "{\"description\":\"Cut 2026-09-15 on Anthony's word, ahead of #511, because Alex on Grok Build is blocked at opt-in: the latent server now promotes itself in place, opens the store and announces the changed tool list, so genesis finishes in the session that starts it on any MCP client (#510). Also ships the three field-report walks of epoch:planned-the-mechanism-reaches-the-moment (#506 the lens rides loop_status and the Stop nudge carries the register line; #507 the status claim is the trigger and the catalogue answers a status question in the asker's words; #510 a design_holds acceptance requires change_type and the no-cause gap states the discipline), the reader-identity two legs (#508), the prohibition detector (#504) and authorship as a set of roles (#505). Minor: change_type is required on a design_holds acceptance of a baselined artifact. The schema stamp did not move; no upgrade note.\",\"name\":\"v0.61.0 — the opt-in finishes inside MCP on any client, and a design_holds acceptance says why the code moved\",\"status\":\"planned\",\"unit_type\":\"container\",\"version\":\"0.61.0\"}",
+    "target_id": "rel:v0610",
+    "target_type": "Release"
+  }
+}

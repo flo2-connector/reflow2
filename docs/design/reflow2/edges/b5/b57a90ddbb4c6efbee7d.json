@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:6913479a77d93331318be97953f856faaa4a23d012ed70b534773dee991c9379",
+  "edge_type": "HAS_SNAPSHOT",
+  "from_id": "fact:defect-a-verification-cannot-record-a-partly-blocked-run",
+  "properties": {},
+  "to_id": "snap:epoch:preserved-on-write:fact:defect-a-verification-cannot-record-a-partly-blocked-run"
+}

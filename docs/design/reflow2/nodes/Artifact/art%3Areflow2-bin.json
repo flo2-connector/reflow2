@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:8932bcb7338260b5fd8ac81a49d9d710bad6a977c536ac0df266df68386ab73b",
+  "node_id": "art:reflow2-bin",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "location": "tools/reflow2_bin.py",
+    "name": "reflow2_bin.py — the one binary resolver every gate uses ($REFLOW2_BIN, debug, release said)",
+    "status": "realized"
+  }
+}

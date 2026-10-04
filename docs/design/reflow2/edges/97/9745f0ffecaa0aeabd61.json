@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:cea256ba61eff4490039f7ad7f8299cfd53ed1f3b90700005677b30097e28321",
+  "edge_type": "CHANGED",
+  "from_id": "chg:bl160-checksum-length-dialect",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:checksum-dialect-test"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:c88bb99c5654ac2bd01747f5154850c284bf0a6db14cd0751a7966e9fea26fed",
+  "edge_type": "CHANGED",
+  "from_id": "chg:root-cause-is-tiered-search-every-failure-run-the-skill-before-a-cause-is-written",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "rule:every-failure-is-searched-and-every-cause-is-root-caused-before-it-is-written"
+}

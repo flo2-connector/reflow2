@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:dfa413b2e3448c783c537aa8acf5d2dc41ad98fe56bcba266910253a489ada85",
+  "node_id": "ver:the-served-text-asks-for-a-tracked-search-and-where-an-absence-was-checked",
+  "node_type": "Verification",
+  "properties": {
+    "description": "Reads get_instructions and get_skill(\"hub\") through the MCP surface and asserts the standing section on saying where an absence was checked is served, and that the hub skill's search-before-you-create step names search_design with tracked_designs and tells the agent to open and cite a sibling design's precedent. Pins the text a consumer is served, not the file in the repo.",
+    "kind": "verification",
+    "level": "integration",
+    "location": "crates/reflow2-mcp/tests/one_search_reaches_every_design_a_hub_tracks.rs",
+    "method": "test",
+    "name": "The served instructions carry the absence-claim rule and the hub skill's search step names the tracked-designs search",
+    "status": "planned"
+  }
+}

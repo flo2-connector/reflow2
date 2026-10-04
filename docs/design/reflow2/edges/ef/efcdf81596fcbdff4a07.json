@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:0c5f46b4ec0c36d68440676eebb8c399da1137c0fc3207a08f94408def132e3e",
+  "edge_type": "REALIZES",
+  "from_id": "art:schema-accepted-at-last-release",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:a-schema-narrowing-ships-its-migration"
+}

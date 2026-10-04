@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:1b1e2affb1b576bd36206a6c31a67dd8dc012f938e43744eee3cb17cf1f054a0",
+  "node_id": "cap:snapshot-read",
+  "node_type": "Capability",
+  "properties": {
+    "description": "--export-snapshot copies the store's flat files to a scratch directory (skipping LOCK), opens the copy, exports it, and removes both the copy and its provenance sidecar. Best-effort and loudly labelled as such: it is a live-database read, not a backup. A graph that is NOT locked gets an ordinary export and is told so.",
+    "name": "Export a design another session is holding",
+    "provenance": "authored",
+    "status": "verified",
+    "tier": "operational"
+  }
+}

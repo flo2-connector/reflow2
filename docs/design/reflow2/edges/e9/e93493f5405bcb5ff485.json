@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:cc0f60379de706815c63ea7dedc671412dc46829ff3cf2e1d4110054a842b1d1",
+  "edge_type": "GOVERNED_BY",
+  "from_id": "cap:unallocated-component-detector",
+  "properties": {
+    "note": "This detector IS option E — the choice was \"make the absence visible first, decide about a skill later\", and the absence it makes visible is structure no function has been allocated to. If that decision is ever revisited (A, B or C — a skill of its own, or the method folded into genesis or detect-and-ask), this is the node that was built instead, and the counts it produces are the evidence that should settle it."
+  },
+  "to_id": "dec:idea-does-the-deferred-structuring-step-need-a-skill-of-its-own"
+}

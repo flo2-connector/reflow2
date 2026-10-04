@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:b32209480704ec66aa67ec644d392e9a088f894dfa0d5018cd65281f7e87e9cb",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "req:content-store-for-what-the-graph-points-at",
+  "properties": {
+    "evidence": "It completes that requirement rather than competing with it: session memory already models a transcript pointer and already names the machine-local-path flaw a content store fixes.",
+    "optional": false,
+    "weight_basis": "evidence"
+  },
+  "to_id": "req:session-memory-in-graph"
+}

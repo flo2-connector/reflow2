@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:d53124c4a225a3c3fa0b9634222c2819842d9c1e90944ee722ef28be5ab00e96",
+  "edge_type": "GOVERNED_BY",
+  "from_id": "cap:sanitize-ingress",
+  "properties": {},
+  "to_id": "rule:no-foreclosure"
+}

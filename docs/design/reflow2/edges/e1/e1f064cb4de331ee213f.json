@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:f262d5cc4d18d7b52a3abce34a78a31125a5c91a807554e59b5d677021b791f7",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:mcp-surface",
+  "properties": {},
+  "to_id": "req:agent-native"
+}

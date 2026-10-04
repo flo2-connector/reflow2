@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:d9fd6888476c351f3506032eaebc467291c56a0dc168a651fe205521d360b506",
+  "edge_type": "CHANGED",
+  "from_id": "chg:absorb-core-storage-text",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:contradiction-alignment-test"
+}

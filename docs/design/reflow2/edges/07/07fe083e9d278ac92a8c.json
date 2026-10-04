@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:75409eafce129e544ebc538a2ff4bba12138b6427f04b0f2cae092ab4481ead1",
+  "edge_type": "VERIFIES",
+  "from_id": "ver:a-reply-is-sent-once",
+  "properties": {},
+  "to_id": "cap:bounded-reads"
+}

@@ -1,0 +1,17 @@
+{
+  "content_hash": "sha256:8e5eeb734365e628fac0dbf1abb7f9245e973a703be488b4aad82bebe0eb44d2",
+  "node_id": "ver:a-registered-file-is-measured-a-pasted-hash-is-compared-an-escape-is-refused-and-no-tree-says-so",
+  "node_type": "Verification",
+  "properties": {
+    "description": "crates/reflow2-mcp/tests/reflow2_measures_a_registered_file_and_never_reads_it.rs (six tests) plus the unit tests in crates/reflow2-mcp/src/measure.rs (escape, symlink out of root, absent vs directory, fragment, memo invalidation).",
+    "findings": "pr run 2026-09-18: all six integration tests and the six unit tests pass.",
+    "kind": "verification",
+    "last_reconciled_at": "2026-09-23",
+    "last_reconciled_outcome": "passed",
+    "last_run_at": "2026-09-18",
+    "level": "integration",
+    "method": "test",
+    "name": "A file under the root is measured and the basis says so; a pasted hash is recorded as asserted and compared; a location outside the root is refused unread; reconcile with nothing finds the edit and loop_status reports it; a server with no tree says so; an accept without a checksum measures and an unreachable one is refused by name",
+    "status": "passing"
+  }
+}

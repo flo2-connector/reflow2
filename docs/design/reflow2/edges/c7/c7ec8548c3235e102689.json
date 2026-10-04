@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:d77989e64d705feb032270ddc899741c65dc038b645f9666be68c05c4b107794",
+  "edge_type": "CHANGED",
+  "from_id": "chg:hosted-collaboration-raised",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "dec:central-host"
+}

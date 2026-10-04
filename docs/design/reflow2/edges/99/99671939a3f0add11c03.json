@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:d68019a59604a635b78d4e8b4c80eb344339b23895420fdbee656cd1481da1d2",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-every-design-starts-as-a-pseudo-design-and-whether-reflow2-already-holds-that-layer",
+  "properties": {
+    "evidence": "A pseudo-design is that requirement's black box with its inside left empty: function and interfaces stated, mechanism and structure not. Every option here presumes that shape; without it there is no layer to name.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "req:recursive-black-box-decomposition"
+}

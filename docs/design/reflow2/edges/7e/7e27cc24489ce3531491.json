@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:bcd2fb0bbad916e4e474115649fff2379567a03cf98da0b557fc0d4f64d7d40a",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:plan-time-axis",
+  "properties": {
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:50d665e58c427a1e8e729215f437c87a5c48e6f676f96356f6aee684383f0b2e",
+  "node_id": "chg:the-release-publishes-one-amd64-and-arm64-index-and-names-its-digest",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "commits": "7b2fada94bc9a830be6551593400fd290988ba2a,955b35eb243ae3cdd963ecc23f2d385f126fd7a1,57d74b98ff89fe6e2725ca065c0b5f327a854fa9,64b145ad3ea7699c7f63deb9c979028263045f26",
+    "detected_at": "2026-10-01",
+    "name": "The release builds and smoke-tests each architecture's image on its own runner, joins them into one verified linux/amd64 + linux/arm64 index, and publishes its digest in the release notes",
+    "rationale": "WHY ONE JOB PER ARCHITECTURE ON ITS OWN RUNNER: the smoke test proves an image STARTS, and an arm64 image can only be started natively without emulation. Building each platform on its own runner keeps the Dockerfile's single COPY reflow2-mcp and needs no QEMU, and the binary it wraps is the one the release ships, built natively (RocksDB is not cross-compiled).\n\nWHY PUSH BY DIGEST AND MERGE: nothing is tagged until both architectures exist in one index, so :latest and :<version> can never name a one-architecture image. publish-index.sh composes the index with --dry-run and refuses BEFORE tagging, so a missing platform leaves :latest where it was; it then reads the pushed tag back and checks again.\n\nWHY PUBLISH NOW WAITS FOR THE IMAGE: fact:the-cut-verified-the-assets-and-never-the-image-2026-09-14 measured two releases (v0.60.0, v0.60.1) that went live with every asset and no image. With publish needing container image, a release whose image failed stays a draft, and the notes it goes live with carry the digest (appended between markers to whatever notes the cut wrote, replaced on a re-run).\n\nWHY A DRY RUN: the workflow runs on a tag, so a tag was the first test of any change to it. dry_run=true on a dispatch builds and smoke-tests everything and writes nothing; every writing step and job is gated by `github.event_name == 'push' || inputs.dry_run == false`, which names the tag push outright because it has no inputs.\n\nFAILING FIRST: tools/test_release_workflow.py failed 0 of 8 on a5be4dc (v0.76.0) before the change and passes 8 of 8 after; it is wired into the core CI job.",
+    "rationale_basis": "contemporaneous",
+    "subject": "system",
+    "summary": "release.yml: binaries adds linux-arm64 (native, ubuntu-22.04-arm); a per-architecture image job builds --load, runs docker/smoke.sh, then pushes by digest; container image joins the digests with docker/publish-index.sh (checked before tagging and after); publish needs it, requires the arm64 asset and writes the index digest into the notes with docker/image-release-notes.sh; a workflow_dispatch dry_run writes nothing. install.sh maps Linux aarch64. The Dockerfile, docker/build.sh and the OCI description label say what v0.76.0 made true about authentication."
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:ed3bcc952977b96e14076c6d9862f6d2f0ea48c5552ce3ff9e7553777944a5b8",
+  "node_id": "frag:art:test-constructors-preserve",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "note_kind": "author",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered constructors_preserve.rs — the class guard: a write path that builds a node from a partial property set must not erase what the design already knew"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:973ce7d7aadc5e95fd55c27648af047c1022a3e80a7fb7e5bf0dc2982014f0b1",
+  "edge_type": "ANTICIPATES",
+  "from_id": "dec:idea-a-detector-can-read-the-phase-the-design-already-declares",
+  "properties": {
+    "evidence": "That 2026-09-02 idea asks whether a detector should read the phase the design already declares; if flo2's artifact count shows a real early-building complaint, this is its second instance and belongs there rather than in a per-body sentence."
+  },
+  "to_id": "fact:the-per-capability-build-question-is-already-silent-while-nothing-is-built-so-the-promoted-sentence-was-unreachable"
+}

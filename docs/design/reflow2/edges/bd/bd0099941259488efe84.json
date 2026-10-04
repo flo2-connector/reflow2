@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:2637d249f0d1cf4e507ffa7a14289ca187bef06608777dce89a2a37414719b44",
+  "edge_type": "MITIGATES",
+  "from_id": "dec:idea-the-read-seam-exists-and-the-question-is-migration-not-architecture",
+  "properties": {
+    "evidence": "CountingRead is what makes a per-module store-read budget measurable from outside the module, and it is the mechanism behind the one granularity budget that exists. Migrating a module behind GraphRead is therefore the act that makes that module optimisable under the optimize skill's own rules, which demand a measurement before any budget."
+  },
+  "to_id": "dec:idea-is-there-performance-left-after-the-four-wins-and-what-is-the-budget"
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:05b0ba0917d9428697d7d11501fe40fe6e49439202585cd81ca2814ca44c56ea",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:derived-relations-and-reports-are-maintained-incrementally",
+  "properties": {
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

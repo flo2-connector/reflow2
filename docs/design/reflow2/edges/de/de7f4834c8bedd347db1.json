@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:24f6ab3a8f2c24e7183163c963efc9bfad19ee81747bd86ffdcd768a40027ba1",
+  "edge_type": "CHANGED",
+  "from_id": "chg:bl104-built",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:report"
+}

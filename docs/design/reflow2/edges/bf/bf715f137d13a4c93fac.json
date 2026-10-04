@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:e116cf9c3b0b89699b906753698cb87420f701a2888763083298b39ed724ab5e",
+  "edge_type": "YIELDED",
+  "from_id": "frag:alex-2026-08-14-remainder",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "fact:defect-realized-was-claimed-at-unit-and-nothing-in-the-loop-asked"
+}

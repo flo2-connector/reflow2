@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:ba471180130631806236c48aa365b480430d0c5a3ab91ccc7b3797a635790ca8",
+  "edge_type": "YIELDED",
+  "from_id": "frag:alex-2026-08-14-remainder",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "fact:defect-the-checksum-disposition-has-no-answer-for-aligning-code-to-existing-intent"
+}

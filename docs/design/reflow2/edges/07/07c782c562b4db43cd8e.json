@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:2653f03b5fe64e9ad1220094a97591b38d650d41f43a237238d93f75ce752fc7",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:an-unavailable-loop-trigger-is-named-as-unavailable",
+  "properties": {
+    "authored_at": "2026-08-14",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:alex"
+}

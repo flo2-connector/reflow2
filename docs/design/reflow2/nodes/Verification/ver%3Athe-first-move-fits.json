@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:642d8164664da285e957c8316c48d61ee690122ee25d2f37bc5fe97b6f4f959b",
+  "node_id": "ver:the-first-move-fits",
+  "node_type": "Verification",
+  "properties": {
+    "description": "crates/reflow2-core/tests/reply_budget.rs (10 cases) plus three checks in tools/smoke_mcp.py driving the built binary over real stdio, and one regression case in tools/test_reflow2_check.py. What it pins: an answer that fits comes back whole with no note; an answer that does not drops the cheapest information first (affected_ids capped, then the prose from EVERY row, never from some); `count` and `by_source` cover every open gap in every tier; the last resort — where a gap is genuinely absent from the list — says how many and keeps the highest-severity ones; a budget smaller than the empty reply does not underflow; a compacted row deserializes as a GapCandidate and asks the SAME question as the full one, because gap_to_prompt fills it back in from the graph; and a scoped answer is budgeted too, with different advice, because telling a reader who scoped to scope is advice they cannot follow. THE GATE CASE IS THE ONE THAT NEARLY GOT AWAY: reflow2_check.py judged a gap anchored by affected_ids, so a budgeted reply would have turned the build GREEN on 100 open critical gaps. Verified live by reverting the fix and watching the test fail.",
+    "findings": "10 core cases, 3 smoke checks over real stdio, 1 gate regression case — all passing. MEASURED EFFECT on this design (77 open gaps, 2,920 nodes): the unscoped reply fell from 157,785 bytes on the wire to 53,181, a 66% cut, and `count` stayed 77. TWO DEFECTS CAUGHT BY THE TESTS RATHER THAN BY REVIEW. (1) reflow2_check.py judged a gap ANCHORED by `affected_ids` being non-empty; against a budgeted reply it printed 'OK — design and build agree (103 notes)' on 100 open critical gaps. Proven live by reverting the fix. (2) A budget of 0 reached the last-resort truncation with an empty list and underflowed `len() - lo`; `[]` still costs 2 characters, so the guard cannot be inferred from 'nothing to drop'. Also proven live by removing the guard and watching it panic. Both tests were checked for being INERT before being believed.",
+    "kind": "verification",
+    "last_run_at": "2026-08-23",
+    "level": "integration",
+    "method": "test",
+    "name": "detect_gaps answers within a budget, and a shorter answer is never a quieter one",
+    "status": "passing"
+  }
+}

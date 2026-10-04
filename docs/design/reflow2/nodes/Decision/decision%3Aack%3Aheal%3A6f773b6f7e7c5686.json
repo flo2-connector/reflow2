@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:e2f0dd5de4baf30671f73248ec6900ffaa75cc0521582e3c95596cf75101ce99",
+  "node_id": "decision:ack:heal:6f773b6f7e7c5686",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Accepted the structural defect heal:6f773b6f7e7c5686.",
+    "name": "Reviewed: heal:6f773b6f7e7c5686",
+    "rationale": "ACCEPTED AS ARCHITECTURE, NOT REPAIRED. Every path between subsystems routes through the MCP protocol because that is what reflow2 IS: an agent-native design brain whose entire surface is served over MCP. The detector is correct that the topology has one articulation point; it is wrong only in the implied remedy, `add_redundancy`, which would mean a second protocol nobody wants and no consumer asked for.\n\n⚠️ THE COST OF LEAVING IT OPEN IS THE REASON THIS IS ACKNOWLEDGED RATHER THAN IGNORED. Three permanent warnings in one category teach a reader to skim it, and the next single point of failure — a real one, in a place nobody chose — would arrive into a list already being skipped. This project has found that wallpaper failure three times (unreviewed_ideas at 111 of 186, the undeclared-seam list, the unallocated-parts list). Moving it into `reviewed_defects` keeps it visible and counted while restoring the open list's ability to mean something.\n\n📌 THE REVIEW EXPIRES IF THE SHAPE CHANGES, which is the property that makes this safe: the defect id hashes the category with the affected set, so if this interface stops being the sole bridge — or a different one becomes one — the new shape has a new id nobody has accepted, and it surfaces again.\n\n⚠️ NOT ACCEPTED: that a single point of failure here is harmless. `rule:mcp-and-the-graph-are-the-only-common-ground` makes this seam load-bearing on purpose, and its availability is a real operational property. What is accepted is that the DESIGN is right and the detector's suggested repair is not.",
+    "status": "accepted"
+  }
+}

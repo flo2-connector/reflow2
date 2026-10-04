@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:f4495b5919d5807db7700dd2626c77a103e07be989bae288cf48d4e3afe126ef",
+  "node_id": "chg:the-first-move-must-fit",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "defect_fix",
+    "name": "The unscoped detect_gaps answers within a budget and says what it withheld — the first move of a session stops being refused",
+    "subject": "system"
+  }
+}

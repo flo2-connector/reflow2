@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:0bdb2cfad71f557fd2fa1b3c3ddf47611e53d9137aedf2d8eeaa1bcfce650adb",
+  "node_id": "art:run-ci-gates",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "description": "The local gate runner. Executes exactly what ci.yml runs, in its order, reading the list through skill_lint's ci_gates() rather than restating it. Standard library only, deliberately: pyyaml is not in the base image, which is why skill_lint's parser is a text scan and why reusing it is the right call rather than writing a second one. Refuses to report a pass on zero gates, refuses a near-empty parse as broken, and returns the failure in the exit code. Nothing is piped through head.",
+    "location": "tools/run_ci_gates.py",
+    "name": "run_ci_gates.py",
+    "status": "realized"
+  }
+}

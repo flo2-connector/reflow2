@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:723719578a7e002614ea5031815563c4434f2a2df96a9cc2322ff189d5853aa1",
+  "node_id": "frag:art:test-a-read-only-server-with-no-store-serves-the-latent-surface",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered a_read_only_server_with_no_store_serves_the_latent_surface.rs — every serving mode, --read-only, no store: latent surface, nothing created"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:2aca7212f9172599ba84df52c3db27cf111a4330322b87378cb7d0606a0fd77d",
+  "node_id": "art:test-flow",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "test",
+    "description": "The flow suite, including entry and exit computed from step order.",
+    "location": "crates/reflow2-core/tests/flow.rs",
+    "name": "crates/reflow2-core/tests/flow.rs",
+    "status": "realized"
+  }
+}

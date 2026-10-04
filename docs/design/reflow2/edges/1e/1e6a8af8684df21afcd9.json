@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:74b81c878cd721a438ae3bc2d3f720b3a96d2fa532e8b6ef5741bc903d7d1f36",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:core-api-withdrawn-from-the-published-surface",
+  "properties": {
+    "approved_at": "2026-08-21",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

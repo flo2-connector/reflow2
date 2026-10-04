@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:8bebbb5257c54cb7c5d980ac6ca1ff75c11cb0792514e1ecfff9101de74b3823",
+  "node_id": "req:composed-analysis",
+  "node_type": "Requirement",
+  "properties": {
+    "concern": "core",
+    "designation": "internal",
+    "kind": "functional",
+    "lineage": "original",
+    "name": "Import one design into another and analyse the whole",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "reflow2 must be able to bring a dependency's design into a consuming design and run its ordinary analysis over the combined whole, so that composition problems appear as ordinary gaps rather than requiring a bespoke comparator. WHAT BLOCKS IT TODAY IS CONCRETE, not vague: import_graph writes every node under its ORIGINAL id with upsert semantics, so importing design Z into design A means Z's `cap:store` silently overwrites A's `cap:store`. It was built for layering a design onto itself — its own doc says an export can be layered onto a design it references — and using it to compose two DIFFERENT designs would corrupt the consumer without saying so. The other two composition mechanisms do not do this either, and it is worth being exact about why: mirror_surface deliberately imports only the published SURFACE and keeps it foreign, and merge_designs is a three-way merge of two versions of the SAME design. So a fourth thing is needed — a NAMESPACED import where both designs coexist and are separately identifiable. TWO THINGS THAT MUST NOT BE LOST. First, the combined graph must never be mistaken for the consumer's own design: every imported node stays attributable to where it came from, and an export of A must not start shipping Z's internals. Second, project-level detectors would now reason over both designs, so a consumer would see gaps belonging to its dependency — noise that would get the whole feature switched off. cap:scoped-analysis already narrows detection to a region and reports what it left out, so scoping the combined analysis to the seam is the likely answer rather than a new filter. NOTE THE TENSION WITH dec:nested-graphs, which chose a graph per ownership boundary precisely because edges cannot cross stores: this does not overturn that decision — the designs stay separately owned and separately released — but it does mean a THIRD, analysis-only composition alongside the two that exist.",
+    "status": "accepted"
+  }
+}

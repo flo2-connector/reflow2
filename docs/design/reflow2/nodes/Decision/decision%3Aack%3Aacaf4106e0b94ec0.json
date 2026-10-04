@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:7b50cd67f39bcdbe3bdf528eab750c77e898d8b850154cefa968e211d4300d04",
+  "node_id": "decision:ack:acaf4106e0b94ec0",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Accepted the gap gap:acaf4106e0b94ec0.",
+    "name": "Reviewed: gap:acaf4106e0b94ec0",
+    "rationale": "APPROVED WORK, NOT YET BUILT. Anthony accepted the requirement and the fleet-lessons recommendation on 2026-07-25 (\"go with your recommendations. they are approved\"), so the gap is true and correct: nothing satisfies it yet. Acknowledged so the open list keeps meaning \"needs a decision\" rather than \"needs typing\" — this needs typing. The acknowledgement expires the moment the requirement gains a capability, which is exactly when it should.",
+    "status": "accepted"
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:20ff89b99f14efa289f1fbadb50f87cfbbb611fe72a45d2a7cac68f83350a618",
+  "node_id": "req:every-agent-working-a-design-is-its-own-claimant-subagents-included",
+  "node_type": "Requirement",
+  "properties": {
+    "concern": "core",
+    "kind": "functional",
+    "lineage": "original",
+    "name": "Every agent working a design is its own identity, a subagent inside a session included, so claims, warnings and \"who is working where\" can tell any two agents apart, even two of one person's",
+    "priority": "high",
+    "provenance": "authored",
+    "source": "Anthony, 2026-09-29, dev_reflow2 hub session: \"Let's do 2, 3, and 4 as intent.\" Item 3 of the recommendation that closed the islands brainstorm (dec:idea-a-claimed-blast-radius-is-an-island-no-other-session-writes-in).",
+    "statement": "Every agent working a design can present its own identity on every call. That includes each session, each subagent inside a session, and each caller behind a hosting gateway. Claims, write warnings and any \"who is working where\" view use that identity, so any two agents are distinct, even when they act for the same person.\n\n- A claim is held by the agent that made it. A second agent's claim on the same ground stands beside the first and never silently replaces it.\n- Overlap between two agents' claims is reported even when both act for the same person.\n\nWHY (measured 2026-09-29, fact:a-claim-cannot-tell-two-agents-of-one-person-apart-and-on-flo2-io-not-even-two-people-2026-09-29):\n- Claims are keyed by (contributor, seed), so a second claim on the same seed replaces the first.\n- claim_report skips same-contributor overlaps: today's three parallel fix agents overlap by up to 77 nodes and nothing reports it.\n- Subagents share their parent's seat.\n- On flo2.io every caller to a design shares one engine seat.\n- The concurrency that actually happens is one person's parallel subagents (up to 10 writers in 10 minutes), which is exactly the case this cannot see today.\n\nThis extends req:seat-per-client (accepted: \"who is working is a property of the session\") down to subagents and across the hosting gateway. flo2's half, carrying each caller's identity through the gateway, is flo2's req:the-gateway-gives-each-calling-agent-its-own-seat. The seat still going `gone` while its agent works is a separate defect with its own record (req:a-claim-reads-gone-only-when-the-server-holding-its-session-saw-it-end and its root cause); this needs that fixed too. Identity serves coordination and attribution, never authority (req:a-write-and-an-approval-record-the-agent-and-the-person-it-acts-for).",
+    "status": "accepted"
+  }
+}

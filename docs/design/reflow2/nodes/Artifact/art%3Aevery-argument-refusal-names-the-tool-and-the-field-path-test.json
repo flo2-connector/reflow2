@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:b2433cf78ac491cbf6c4ef5722bfa09efd43d38c6c7ef276d3aec0a48150be4b",
+  "node_id": "art:every-argument-refusal-names-the-tool-and-the-field-path-test",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "description": "Wire-level tests over an in-process MCP session: one per class (wrong type top-level and nested, missing nested, unknown nested, outside the enum, $defs items, no-argument tools, the set-apart listing, the reconnect advice by transport, the latent surface, aliases kept) and the generated walk over every served tool.",
+    "location": "crates/reflow2-mcp/tests/every_argument_refusal_names_the_tool_and_the_field_path.rs",
+    "name": "every_argument_refusal_names_the_tool_and_the_field_path.rs",
+    "status": "realized"
+  }
+}

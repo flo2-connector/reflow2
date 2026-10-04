@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:7e7dbfa4a8a48b25d2e9caa32e74d080571ae5300358f570c802347d05a54d45",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-setup-command-chooses-local-or-remote-2026-09-26",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:mcp-http"
+}

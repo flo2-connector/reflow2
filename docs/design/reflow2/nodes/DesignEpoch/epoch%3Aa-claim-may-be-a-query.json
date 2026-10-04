@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:4412719892c6558b96572b46e1c3b6be834f5c088a3f989d626c1cbe66f76c8d",
+  "node_id": "epoch:a-claim-may-be-a-query",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "epoch_type": "revision",
+    "name": "Anthony rules on the claimed region: a claim may be defined by a QUERY as well as a seed and depth, and an explicit node list is refused (2026-08-08)",
+    "sequence": 288,
+    "status": "arrived"
+  }
+}

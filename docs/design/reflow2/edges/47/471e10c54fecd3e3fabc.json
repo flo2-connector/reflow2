@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:3841d2ab1ec24889262baf7c43d353ca05a4386f786431117b41b4b12bfd3f18",
+  "edge_type": "CHANGED",
+  "from_id": "chg:bl73-component-verified",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cmp:report"
+}

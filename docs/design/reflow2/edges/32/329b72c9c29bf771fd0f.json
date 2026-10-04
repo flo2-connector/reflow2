@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:8df304d44f1f5ec104e56f2e7e43fd8b9ea673af13cd7b8a1f1fbea28cdd7369",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:idea-a-skill-is-found-by-describing-it-the-way-a-tool-is",
+  "properties": {
+    "approved_at": "2026-09-20",
+    "roles": [
+      "author",
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

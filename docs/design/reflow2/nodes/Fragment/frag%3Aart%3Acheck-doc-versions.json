@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:46e7c6fc5e5a5ef083fcc220e86707c2febc0e715e3c872ea65e480a41ece290",
+  "node_id": "frag:art:check-doc-versions",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "note_kind": "author",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered check_doc_versions.py — the gate that asserts a doc's factual claims against what the build actually says, where a pattern matching nothing is a FAILURE"
+  }
+}

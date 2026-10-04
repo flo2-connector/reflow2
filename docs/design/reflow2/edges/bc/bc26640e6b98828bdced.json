@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:e11b9fd0aea7ad2888ab35882e225df69d7eaba0232de5b5309642929d9cd09a",
+  "edge_type": "REALIZES",
+  "from_id": "art:skill-ingest-corpus",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:corpus-ingest"
+}

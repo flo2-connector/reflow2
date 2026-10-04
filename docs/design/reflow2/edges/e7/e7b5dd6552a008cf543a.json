@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:a15e60988f7c9a91a8f2fe79f26df7dbbbe77e5b6046c15308dfb3ca32ff8e40",
+  "edge_type": "AT_EPOCH",
+  "from_id": "snap:epoch:preserved-on-write:dec:idea-should-the-server-journal-every-write-itself",
+  "properties": {},
+  "to_id": "epoch:preserved-on-write"
+}

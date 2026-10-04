@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:5a79af36cd4b7d437d4d2de8c6c4059c89f8ed9c6680e74d61a12c45ae4a86f0",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:comparison-discloses-build-skew",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:compare"
+}

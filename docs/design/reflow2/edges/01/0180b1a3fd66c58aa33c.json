@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:2dcac97feb622693400e8a172e9bc268c4371c0e0d209e545c77d36e5cb6238d",
+  "edge_type": "CONTAINS",
+  "from_id": "proj:reflow2",
+  "properties": {},
+  "to_id": "cap:sanitize-ingress"
+}

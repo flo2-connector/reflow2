@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:6c5010c60198ac4bef9b3e75a295835d141a906238568172b34e6d8710b68cf8",
+  "edge_type": "REALIZES",
+  "from_id": "art:dates",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cmp:dates"
+}

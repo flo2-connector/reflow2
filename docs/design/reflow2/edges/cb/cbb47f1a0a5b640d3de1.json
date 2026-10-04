@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:955458e90a158d2329023813344efba519bbcb2eb33bde9a032917fcf79682c4",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "req:set-scoped-acknowledgement-keys-on-its-rule",
+  "properties": {
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "req:reviewed-defects"
+}

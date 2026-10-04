@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:9c3ba81fd7091b7abe5bfce1257a31ffcf8193a3f43f4ce6936ca4f6e3232fc7",
+  "node_id": "art:evidence-test",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "granularity": "atomic",
+    "location": "crates/reflow2-core/tests/evidence.rs",
+    "name": "tests/evidence.rs",
+    "status": "realized",
+    "volatility": "stable"
+  }
+}

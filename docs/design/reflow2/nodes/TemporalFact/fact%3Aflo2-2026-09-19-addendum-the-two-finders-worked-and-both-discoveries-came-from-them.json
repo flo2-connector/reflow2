@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:87c25cef1305584c2855439682a82dbf1ff70a1b71f8e1e2e8ce7a188f7cf4e7",
+  "node_id": "fact:flo2-2026-09-19-addendum-the-two-finders-worked-and-both-discoveries-came-from-them",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "confidence": 0.9,
+    "fact_type": "status",
+    "name": "What worked in flo2's addendum: both discoveries came from the two finders, phrased as jobs",
+    "source": "flo2 reflow2_feedback.md, 2026-09-19 addendum (F24, F25 and the meta-point)",
+    "statement": "Recorded as evidence a regression check can read later, and as the counterweight to the meta-point's complaint. flo2: 'find_tools and the new find_skills are the right fix and they WORKED here: both discoveries in this addendum came from two find_tools calls, phrased as jobs … That is the tool working exactly as designed.'\n\nThe two queries, verbatim, both of which found what they needed: 'compose a prompt for a model that turns what a person said into design entries' and 'the slice of the design relevant to this sentence'. Neither names a tool; both are the job in the caller's own words, which is what the held-out corpus exists to keep true.\n\n⭐ WORTH KEEPING BECAUSE IT BOUNDS THE FIX: the catalogue does not need improving. What needs to change is whether anybody is told to ask it.",
+    "subject_id": "cap:every-tool-carries-the-users-phrasing-and-the-corpus-is-the-test",
+    "valid_from": "2026-09-20"
+  }
+}

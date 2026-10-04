@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:aaee54e002a05348ec17df5beb500225448eb7d0a8a3e7606374bb073973c504",
+  "edge_type": "CHANGED",
+  "from_id": "chg:absorb-resolution-fuzzy",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:seam"
+}

@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:bc0594cb8e116577fdaf667e3bda0ada5910d2fcacb5d21bb1927f9c658d677e",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "rule:never-a-bare-cargo-clean-on-the-dev-box",
+  "properties": {
+    "approved_at": "2026-09-12",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

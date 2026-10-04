@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:55cfe256d726d0edf44c060415112373560c699d0e04da45537ca68a85855732",
+  "node_id": "art:replies-are-bounded-gate",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "description": "The CI gate, and the leg that was missing. Seeds a real design from the committed export, calls every no-argument read tool, and fails on any reply over budget that declares no bound. Toolsnaps cannot catch this class — a golden pins the tools that EXIST, so a new tool returning 126 KB unbounded is a clean diff and a green build. 🛑 IT ALSO FAILS WHEN NOTHING OVERFLOWED: on an empty graph every reply is small and it would otherwise pass having checked nothing, and \"no tool overflowed\" must not share an exit code with \"I could not make any tool overflow\". Verified to FAIL rather than merely to pass — at --budget 5000 it exits 1 and names eight tools, which are the standing watchlist for a larger design.",
+    "location": "tools/replies_are_bounded.py",
+    "name": "replies_are_bounded.py",
+    "status": "realized"
+  }
+}

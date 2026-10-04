@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:a2de8647f2d8e5aa5236896d1542b13a7be1d44fefce74bc56b8595a1c106fc7",
+  "node_id": "chg:search-first-fires-at-the-tool",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "name": "The five intent-carrying constructors now search the design with the new node's own words and REFUSE a near-duplicate, naming both routes: sharpen the existing node with its id, or pass `distinct_from` to create anyway. Anthony asked for it implemented rather than captured, and sharpened it from a report into a forced choice — \"there needs to be a deliberate decision of either update already existing node or if it is unique enough, create a new node.\" Five toolsnaps move (add_requirement/capability/component/decision/constraint gain one optional parameter); add_interface stays report-only because IdName is shared. Threshold normalises against the new node's OWN in-query score, so BM25's across-query incomparability never enters."
+  }
+}

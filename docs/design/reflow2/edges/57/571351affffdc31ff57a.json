@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:8e68d429a3bd37d413e67dc22e264c7aa8c21ffe50481963fa49d18b9d226997",
+  "edge_type": "CHANGED",
+  "from_id": "chg:session-memory-capture",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "req:session-memory-in-graph"
+}

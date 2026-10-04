@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:71dfd1278e85d4e0a5168ccc44b1120406b17791573e795cab092c0c677c3355",
+  "node_id": "ver:maturity",
+  "node_type": "Verification",
+  "properties": {
+    "description": "A position never becomes a verdict (crates/reflow2-core/tests/maturity.rs) — 10 cases, most of them restraint. THE LOAD-BEARING CASE IS `a_function_first_design_is_located_not_condemned`: function done, structure undeclared, and the profile must locate the design without calling it broken — it asserts the serialized profile contains none of severity / defect / violation / \"should be\" / \"too low\" / failing, and that `not_observed_about` says outright that where the design SHOULD be is not reflow2's to state. THE FRONTIER IS RELATIVE — the lowest-scoring band — so there is NO THRESHOLD anywhere in this reading to default, argue with or quietly tune, which is stronger than the stated cutoffs `granularity` needed. An empty population reads as UNMEASURED with its reason, never as zero, because scoring an absence invents a deficiency; an empty design reports as empty rather than immature. Bands scoring ABOVE the frontier are reported as NORMAL, since real designs run ahead of themselves — reflow2 itself has shipped 22 releases and 84.5% passing assurance with 0% of its 73 component couplings declared through a contract. A one-sided contract does not count as a declared seam. Assurance counts a PASSING check, not an existing one (dec:passing-is-verified). Requirements the user settled OUT leave the intent population, because dropping something is their word too.",
+    "findings": "MUTATION-CHECKED against five seeded regressions — frontier as the highest band, empty populations scored zero, one-sided contracts counting, assurance ignoring status, and dropped requirements still counted — all five caught. The first attempt at the one-sided mutation was a no-op and was rewritten the way the bug would actually be written before it counted as evidence.",
+    "kind": "verification",
+    "last_run_at": "2026-08-03",
+    "level": "unit",
+    "method": "test",
+    "name": "A position never becomes a verdict",
+    "status": "passing"
+  }
+}

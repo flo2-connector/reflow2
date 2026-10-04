@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:2abf196cbb838f81eda697de66ad74010eb7c76455ced01719048faa4601b728",
+  "edge_type": "INVALIDATES",
+  "from_id": "chg:a-check-that-could-not-run-lands-as-blocked-and-never-reads-as-failed-2026-10-03",
+  "properties": {
+    "at": "2026-10-03",
+    "note": "reconcile_verification takes `blocked`, run_to_files writes it for a collection or setup error, and a blocked check raises blocked_verification, which never says the part failed (a_check_that_could_not_run_is_blocked.rs, test_run_to_files.py)."
+  },
+  "to_id": "fact:root-cause-a-check-that-did-not-run-reads-did-not-work-as-designed-because-only-failing-is-loud-2026-10-02"
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:bbdb2757773f0d50091ec98360f3f9c8e30f85079d2948a4f71b1927c3de004d",
+  "node_id": "frag:art:a-stored-twin-has-one-authority-test",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered crates/reflow2-core/tests/a_stored_twin_has_one_authority.rs"
+  }
+}

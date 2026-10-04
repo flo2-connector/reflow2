@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:5f16ee3a936aa526187f45973031a7afd1dd8a126c554481118efe9d12222c13",
+  "edge_type": "VERIFIES",
+  "from_id": "ver:container-image",
+  "properties": {},
+  "to_id": "cap:release-publishes-a-container"
+}

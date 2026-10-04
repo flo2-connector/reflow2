@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:c60b9847e204f999d39ce0346ff7c88061eedb89f5933fb94c92de43fc996585",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:reflow2-keeps-its-dependencies-at-or-near-their-latest-releases",
+  "properties": {
+    "approved_at": "2026-10-02",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

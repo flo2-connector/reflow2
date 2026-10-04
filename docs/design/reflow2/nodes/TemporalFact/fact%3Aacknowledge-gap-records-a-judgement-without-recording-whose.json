@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:27686e097cf4a868cab330a9d2182535e081d4113f41b2776c34c023968ca6df",
+  "node_id": "fact:acknowledge-gap-records-a-judgement-without-recording-whose",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "confidence": 1.0,
+    "fact_type": "defect",
+    "statement": "`acknowledge_gap` RECORDS THE USER'S JUDGEMENT AS AN ACCEPTED DECISION AND NEVER RECORDS WHOSE JUDGEMENT IT WAS. It takes `gap_id`, `affected_ids` and `reason`, and mints `decision:ack:<hash>` — settled intent with no `AUTHORED_BY role=approver` edge and no parameter to supply one. MEASURED 2026-08-23: acknowledging 50 gaps in one detect-and-ask pass produced 49 nodes that FAILED this project's own `check_intent_authority` gate, in one stroke. ⇒ THE ONE TOOL WHOSE ENTIRE PURPOSE IS TO RECORD THAT SOMEBODY DECIDED SOMETHING CANNOT SAY WHO. || IT IS THE SHARPEST FORM OF ITS OWN RULE. `rule:design-intent-moves-only-on-the-owners-word` and `req:intent-authority-is-checked` exist because settled intent must carry a name; the gate that enforces them says so in its own failure text — 'ask him, and record his answer with authored_by(role=approver)... adding the id to the grandfathered set is NOT [honest]'. An acknowledgement IS the owner's word by definition, and it is the one write that drops it. || THE FIX IS SMALL AND THE SHAPE IS ALREADY DECIDED ELSEWHERE: `acknowledge_gap` and `acknowledge_gaps` should take an optional `contributor_id` and draw the approver edge themselves, exactly as `claim_region` takes one. Backfilling by hand — which is what was done here, 49 `authored_by` calls after the fact — works and is the wrong shape: it depends on somebody noticing the gate went red, and a session that acknowledges three gaps rather than fifty may never look. || WHY IT WAS INVISIBLE UNTIL NOW: acknowledgements were rare enough that the grandfathered set (356 nodes, a dated boundary) absorbed the historical ones, and no previous session had acknowledged enough gaps at once to push the failure past the noise. A defect that only shows at scale is one the tool's own dogfooding was too small to find. || SOURCE: measured 2026-08-23 on reflow2 0.38.0 while working a 77-gap list to 4.",
+    "subject_id": "cmp:detect",
+    "valid_from": "2026-08-23"
+  }
+}

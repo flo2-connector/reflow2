@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:e964d5f1e2813dc73462bf90732a184c0ecf27de39a1d82c9da0ff35ab00a8e2",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-reachability-gate-reads-tools-not-names",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:tools-assure"
+}

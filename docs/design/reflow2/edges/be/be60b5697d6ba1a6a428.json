@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:f373de1b0a9f13e53c44c23469012290f0ca45d182faf72c24b39c8cfef25973",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:genesis-in-an-empty-folder-creates-the-design-where-the-client-points",
+  "properties": {
+    "approved_at": "2026-09-26",
+    "roles": [
+      "author",
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

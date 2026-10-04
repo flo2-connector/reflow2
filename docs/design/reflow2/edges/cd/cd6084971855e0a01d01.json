@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:76470d2aa5bb2f2a1608509a1c68e8a0363e1aa00ebc13b9ca16851de7dc8f65",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:a-missing-field-refusal-names-the-fields-this-call-lacked",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:service"
+}

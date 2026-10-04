@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:cf090d11ce81fd5683639a7d53261d0c11ff120b80967b12d64d5922b58e7fe6",
+  "node_id": "fact:manual-work-46b68cd85cf97510",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "manual_work",
+    "statement": "Wrote a throwaway Python script over the committed export to answer \"which registered Artifact covers this file path?\" — given the handful of files a change touched, return the artifact ids whose `location` matches, so I know which baselines to re-take. Needed it in three separate changes across two days: every time a set of files is edited, the next step is re-checksumming exactly the artifacts that cover them, and there is no way to ask which those are.",
+    "subject_id": "proj:reflow2",
+    "valid_from": "2026-08-28",
+    "value": "{\"diagnosis\":\"tool_missing\",\"reflow2_tool\":null}"
+  }
+}

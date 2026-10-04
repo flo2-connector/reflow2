@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:74f8430da3c26c0214f5e63112483ec89118ac697978479555761415b8881d85",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:kit",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:skills"
+}

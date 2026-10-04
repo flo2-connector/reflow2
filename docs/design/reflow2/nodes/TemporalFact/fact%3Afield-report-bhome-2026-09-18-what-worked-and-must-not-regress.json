@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:34c1e6b52b62c7561725115c275fef9f23d530f4174c411b8756dbc95a557a6f",
+  "node_id": "fact:field-report-bhome-2026-09-18-what-worked-and-must-not-regress",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "observation",
+    "name": "FIELD REPORT (bhome S3, 2026-09-18) — what worked: add_decision refused an unapproved `accepted` ('moving intent past its landing status is the owner's act') at the moment the agent was about to blur it; the near-duplicate refusal named the distinction itself ('recording what shipped and recording what must stay true are different acts'); fix_without_recorded_cause caught a checksum acceptance wearing a defect_fix label; snapshot_before_change named every missing argument at once; the first check with an executable form exists on a physical design",
+    "source": "bhome feedback.md, Session 3 (2026-09-18), triaged 2026-09-19 through the triage-feedback skill",
+    "statement": "In the reporter's words: 'Two guards refused me, and both were correct.' And the finding of the day for the loop: regenerating the sheet from the model found rev A 8.1 sq ft over where it had read 'tight, and it works', and six zone lengths that existed only as hand-typed SVG coordinates are now IfcSpace zones — 4 11/16 in belongs to no zone, and nobody had noticed because nothing had ever made the two numbers meet.",
+    "subject_id": "proj:reflow2",
+    "valid_from": "2026-09-18"
+  }
+}

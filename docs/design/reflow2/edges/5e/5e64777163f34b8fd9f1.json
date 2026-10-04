@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:cf69b8b58622522dcda2e7741399aaa75e0845905872d57a8fdb77b462c9c78a",
+  "edge_type": "CHANGED",
+  "from_id": "chg:constraint-not-numeric-add-constraint-desc",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:tools-capture"
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:5e1f4d33a05b5aa629f6f17663461c56de4ebb2f078b0215258906bf524f8026",
+  "node_id": "art:grok-shell-feedback-2026-08-30",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "document",
+    "location": "docs/feedback/2026-08-30-grok-shell-agent-feedback.md",
+    "name": "Alex's agent-session feedback, 2026-08-30 (grok-shell-reflow2 1.0.13, reflow2 0.43.0) — items 1 and 2 still reproduced, plus four new: a parallel-write race that fails invisibly, two documentation misses, and the operational cost of unreadable success",
+    "status": "realized"
+  }
+}

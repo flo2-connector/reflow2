@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:eba34242e773f79bea4c4b39d766e8b73a572b67890faf6987558553d65e19ac",
+  "edge_type": "HAS_SNAPSHOT",
+  "from_id": "cap:corpus-ingest",
+  "properties": {},
+  "to_id": "snap:epoch:bl186-corpus-ingest-lexical:cap:corpus-ingest"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:dd5b1f91671f7fdc896dba22d636316e5610c89d2d07f1250f5b9eb58df5da5d",
+  "edge_type": "CHANGED",
+  "from_id": "chg:promote-brainstorms",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "dec:nested-graphs"
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:fd1531fe8d0f7cff8187e4381e58ba3751b728a0a27e00f2f2ff446bea2590f1",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-slash-feedback-emits-a-computed-tally-not-an-agents-recollection",
+  "properties": {
+    "evidence": "The tally /feedback renders is the refusal ledger that idea proposes, widened to every call; without the server keeping it there is nothing objective to render.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "dec:idea-the-server-counts-its-own-refusals-so-no-session-has-to-remember-to"
+}

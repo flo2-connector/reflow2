@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:692d08debd6b6ef2db14988f0b65f23d5b85866005e24ebf953ae097499dd290",
+  "edge_type": "CAUSES",
+  "from_id": "cap:a-build-can-call-one-tool-from-the-shell-and-read-the-reply-as-json",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "The door was built and documented as a build-script convenience. Nothing in the installer (MCP_CONFIGS, HARNESSES, HOOK_HARNESS in reflow2_init.py) treats it as a way an agent reaches reflow2, so init/update have no row for it and its agent setup exists only as the reporter's hand-written user file.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:root-cause-init-knows-vs-code-only-as-an-mcp-config-so-the-door-setup-is-one-persons-file-2026-10-02"
+}

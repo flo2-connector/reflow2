@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:8ff14ef32c2a3f8a9bccd1fbc637f3caa9dd926529fa234b13b68bc5701f2b6a",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:sync",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:sync"
+}

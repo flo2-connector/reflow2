@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:cf03deb46fd88855645b1b8d3e884c406c171c732d785be7f45dd28bc48ab2e5",
+  "edge_type": "CHANGED",
+  "from_id": "chg:skills-are-composed-of-attribute-classes",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:capture-intent-skill"
+}

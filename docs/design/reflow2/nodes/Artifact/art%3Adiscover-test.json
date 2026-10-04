@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:e969da96c915c0dedffa24b01f8a5f1f5340f92627711a55974e6ca0c5b42f96",
+  "node_id": "art:discover-test",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "granularity": "atomic",
+    "location": "crates/reflow2-core/tests/discover.rs",
+    "name": "discover.rs tests — describing changes nothing",
+    "status": "realized",
+    "volatility": "stable"
+  }
+}

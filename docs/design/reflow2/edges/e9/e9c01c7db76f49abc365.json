@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:7ea505ecc9cc16a57190c5c23cfff74ea69b8fcdf9dab0a96fe846d7131c4877",
+  "edge_type": "CHANGED",
+  "from_id": "chg:skills-are-composed-of-attribute-classes",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:check-health-skill"
+}

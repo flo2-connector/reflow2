@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:74caf21e045f2c2112ab077b73a3b74dbb629c30ea22476d85723784778a9ebf",
+  "node_id": "art:dev-storyflow-feedback-2026-09-27",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "document",
+    "description": "Copied 2026-09-28 from ajs@ajs77:~/projects/dev_storyflow/reflow2_feedback.md at commit 0ad8f98d, lines 7581–7718: everything appended after the 2026-09-08 triage (art:dev-storyflow-feedback-2026-09-08 ended at peer line 7580). Sessions 0c19a800 (09-23), 3bd108ab (09-24, 09-25), 62995724 (09-27, the move to the hosted graph, marked the file's last entry) and f56683f3 (09-27 evening, the first full session on flo2.io, appended on the owner's instruction). Triaged under rule:field-feedback-issues-are-root-caused-and-ideas-are-brainstormed on Anthony's word, 2026-09-28: \"As is the rule for feedback, please /root-cause all issues and /brainstorm all ideas\". dev_storyflow is archived from 2026-09-27; its future feedback goes through the served report-friction skill.",
+    "location": "docs/feedback/2026-09-27-dev-storyflow-agent-feedback.md",
+    "name": "dev_storyflow agent feedback — entries of 2026-09-23 to 2026-09-27 (peer-file lines 7581–7718): the session-mode build, the sibling-repo measurement gap reported three times, the revise-path reports, the move to the hosted graph (wishes #47–#49) and the first full session on flo2.io (wishes #50–#52)",
+    "status": "realized"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:bd7f2348a42ccbb0d1bf81f3ba96b088fccbdae2889ca71e21d086bef5b1eb53",
+  "edge_type": "REALIZES",
+  "from_id": "art:read-only-client",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:shared-sessions"
+}

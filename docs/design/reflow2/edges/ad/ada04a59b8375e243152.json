@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:edcb882789a4a2eb5825518c739e8a0fa594bc0dd692b37445fc1061b48c1983",
+  "edge_type": "CHANGED",
+  "from_id": "chg:planning-axis-intent",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "dec:where-plans-live"
+}

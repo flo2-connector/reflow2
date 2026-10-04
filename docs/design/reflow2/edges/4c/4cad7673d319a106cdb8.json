@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:1a860099062afc3b778624de046bcbfb899cdabcca2a3ed649750aa572ce053a",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-key-is-renamed-and-the-sweep-says-what-it-swept",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:check-health-skill"
+}

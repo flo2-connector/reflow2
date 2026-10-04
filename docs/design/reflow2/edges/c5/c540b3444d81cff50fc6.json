@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:7b8e2c5d4d12115edbb922d230f714a0faac5f683098dab98065a4368e5164d0",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:skill-use-survives-a-long-session",
+  "properties": {
+    "approved_at": "2026-08-06T11:10:00Z",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

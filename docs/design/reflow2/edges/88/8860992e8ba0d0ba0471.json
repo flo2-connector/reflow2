@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:f895c8b9ce40491c0f14ce0b256a012606d2fb75a8b7ca5a5ba131e198d44d4b",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:test-a-question-is-put-to-a-person",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:test-a-question-is-put-to-a-person"
+}

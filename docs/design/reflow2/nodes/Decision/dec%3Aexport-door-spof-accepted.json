@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:fcbe5f446db6c4447858fee050119f958c67e9fbb55b3509a7818f904d79b78e",
+  "node_id": "dec:export-door-spof-accepted",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "cmp:export and ifc:graph-export are the only route from a design to the kit converter (cmp:init) and to any other machine or reflow2 version, and they stay that way. Both single_point_of_failure warnings are accepted as intentional, not resolved by adding a second export path.",
+    "name": "The export document is an accepted single door, so its chain is an accepted SPOF",
+    "rationale": "dec:repo-file-embedded made the deterministic export the durable, diffable record, and req:survives-upgrade makes export-with-the-old-build / import-with-the-new THE migration mechanism — a single door is the feature, because a second export path would be a second source of truth for what the design is, and byte-identical determinism (req:persistence: a backup under git shows what actually changed) is only a meaningful promise about one format. The detector is right that severing this chain cuts cmp:init off from the design; that fragility is the price of one canonical portability format, knowingly paid. Accepted 2026-07-21 while dispositioning BL-69's corrected findings; sibling of dec:service-spof-accepted and dec:graph-spof-accepted.",
+    "status": "accepted"
+  }
+}

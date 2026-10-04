@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:c14aefc98fa3f8a40d77443894c1f71f2e4f7ecb49985bff79cf99e31888e8c1",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-memory-boundary-is-settled-into-three-places-and-the-rule-is-delivered-at-the-step",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "rule:a-rule-the-project-follows-lives-in-the-graph-not-in-an-agents-memory"
+}

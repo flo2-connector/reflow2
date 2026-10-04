@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:b02c34ae29e6c220d27c65b38e1e3fb160c23fbdadf72d86c9fbba3545e2d97b",
+  "edge_type": "MITIGATES",
+  "from_id": "rule:a-new-refusal-claim-is-asserted-before-it-ships",
+  "properties": {
+    "confidence": 1.0,
+    "evidence": "The rule intervenes at the one moment the cause operates — authoring — and nowhere else. It MITIGATES rather than closes: it cannot reach a sentence written before it existed, which is deliberate, and it depends on an author noticing they have written a claim, which is the same faculty that failed four times. What it adds is that noticing now has a required next step instead of being its own reward."
+  },
+  "to_id": "fact:the-prose-does-not-rot-it-is-born-false"
+}

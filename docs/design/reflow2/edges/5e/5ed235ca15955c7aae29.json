@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:087cac05373ea00966b36a5154c416dc34c16483ca68d191bfadb03fe3b62b37",
+  "edge_type": "CHANGED",
+  "from_id": "chg:accept-5214ae007e7411cf",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:test-a-replaced-value-is-kept"
+}

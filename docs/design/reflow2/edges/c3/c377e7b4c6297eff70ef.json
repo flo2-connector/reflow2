@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:99a1f483795623382474a680e64b428f0bf7962bcaf26209752b608aefcd0304",
+  "edge_type": "AT_EPOCH",
+  "from_id": "snap:epoch:aggregate-gap-ack:art:detect",
+  "properties": {},
+  "to_id": "epoch:aggregate-gap-ack"
+}

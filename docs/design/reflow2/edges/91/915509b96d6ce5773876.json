@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:cbbb4bffea37f473c44509b043828669bded37149a732cd8839030f40fad5ab7",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:a-claim-says-what-its-session-is-doing",
+  "properties": {
+    "approved_at": "2026-09-29",
+    "roles": [
+      "author",
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

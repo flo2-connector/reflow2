@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:2a75a1c85c0562a05eb6a2b46af52e69c614eb72334cc39eac988b86e4c6984f",
+  "node_id": "chg:bl186-folder-driver",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "name": "BL-186 built: the corpus run lands — one epoch for a folder, one Fragment per document, cross-document convergence, the near-match band asked once, and a batched handshake that costs a corpus the rounds a single document costs"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:20558eb9ef3419deaabd7eb33482a9aab2baead0c8d001224f56cc7779ac0c17",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:a-bulk-edge-write-keeps-each-typed-helpers-checks",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:bulk"
+}

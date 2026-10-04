@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:7ae8bb7129bf2c07a8183424b8836ac3b685584e255a4abaf3c7d178cf0007b6",
+  "edge_type": "MITIGATES",
+  "from_id": "chg:the-two-reported-fields-get-their-parameters",
+  "properties": {
+    "evidence": "Answers the report that started it: the two properties named there are now writable by the tools that make the nodes."
+  },
+  "to_id": "fact:defect-a-declared-property-can-be-unreachable-and-invisible-to-the-reach-instrument-when-a-default-populates-it"
+}

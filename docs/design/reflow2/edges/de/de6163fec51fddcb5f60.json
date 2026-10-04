@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:c9a3692040facf3a56af81d94e9f228b740fd515a2643018c588b2991a6e868a",
+  "edge_type": "ANTICIPATES",
+  "from_id": "rule:a-reflow2-tool-failure-met-while-working-is-captured-as-a-to-do",
+  "properties": {
+    "evidence": "The 2026-09-06 rule already instructs the agent to write down every reflow2 tool failure it meets; Anthony's 2026-09-12 observation is that the instruction alone does not survive the task at hand — which is the gap this idea is about, and the ledger idea is that rule's own stated detector leg."
+  },
+  "to_id": "dec:idea-a-failure-met-mid-task-is-parked-where-a-boundary-revisits-it"
+}

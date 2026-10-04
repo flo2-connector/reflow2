@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:7383024a4d825898726bb8acd190f5652569f81ea69bb25091d35966e52434d6",
+  "node_id": "chg:accept-80d1f87f330f26e8",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "test_failure_fix",
+    "detected_at": "2026-08-01",
+    "name": "Edge-type count 57 to 58 for CALIBRATED_AGAINST. Moves the GraphStamp, so v0.21.0 owes an upgrade note."
+  }
+}

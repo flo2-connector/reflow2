@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:74eeb28baa8167ba2a038395c66926f6e3764383a45769465af158f01d46788e",
+  "node_id": "decision:ack:2081c4b64282a08b",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Accepted the gap gap:2081c4b64282a08b.",
+    "name": "Reviewed: gap:2081c4b64282a08b",
+    "rationale": "Not a defect: cmp:scope was built after the last release cut on 2026-07-25, so \"ships in nothing\" is true and expected of anything newly built. Third instance of this shape today (cmp:docs, cmp:claims, cmp:sanitize before it), all resolving the same way — the next cut lists everything it actually ships, which the AGENTS.md release checklist already requires. Worth noting the pattern rather than acknowledging it a fourth time silently: a component built between releases will always raise this, so the finding is really a reminder that a release is owed, and it will clear itself the moment one is cut.",
+    "status": "accepted"
+  }
+}

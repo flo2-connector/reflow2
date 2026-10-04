@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:8a8b689d1e7daec8a531b392217891f63010027238826a652ef165e7149d5bfc",
+  "edge_type": "ANTICIPATES",
+  "from_id": "fact:the-eight-subsystems-are-groupings-not-black-boxes",
+  "properties": {
+    "evidence": "That measurement found ZERO of eight subsystems providing an interface, with every interface provided by a leaf component one level down - subsystems as groupings rather than black boxes. Four subsystems have since gained a PROVIDES edge, so the count aged; the finding did not, because none of the four carries a contract. It predicted the shape of today's answer before the edges existed."
+  },
+  "to_id": "dec:idea-what-would-a-provided-contract-buy-substitution-derived-tests-or-a-mock"
+}

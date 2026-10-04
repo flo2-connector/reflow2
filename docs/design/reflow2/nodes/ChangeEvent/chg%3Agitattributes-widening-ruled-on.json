@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:d4e83f613c71a91a774cc252ee8ba76c6bed8e0a7d20b890e19732ac0ab822a1",
+  "node_id": "chg:gitattributes-widening-ruled-on",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "scope_change",
+    "name": "The installer writing .gitattributes into a project that has none is RULED IN on Anthony's word, and the requirement it belongs to is accepted"
+  }
+}

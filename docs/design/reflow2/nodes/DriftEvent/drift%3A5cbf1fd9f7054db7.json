@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:356fe1024bca1af9bb56a7a30c6b815062bc37e3ed03431ff5276220862dce0a",
+  "node_id": "drift:5cbf1fd9f7054db7",
+  "node_type": "DriftEvent",
+  "properties": {
+    "detected_at": "2026-07-21",
+    "drift_type": "checksum_change",
+    "name": "art:budget drift",
+    "resolved": true,
+    "severity": "medium",
+    "summary": "'art:budget' has changed since it was registered against the design"
+  }
+}

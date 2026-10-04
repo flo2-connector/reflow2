@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:5062a73d5ca31abe8608996c3273886fb54f1d5ff48ea271d65e42195f4661ec",
+  "edge_type": "CHANGED",
+  "from_id": "chg:sync-debt-surfaced",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:tools-coherence"
+}

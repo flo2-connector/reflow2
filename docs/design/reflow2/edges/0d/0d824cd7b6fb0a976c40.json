@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:fd0dffed92d47fa396c8fa0d3aa9a2887c268e31b8fc30f5b8d6532e20a45f6f",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:satisfaction-schedule",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:temporal"
+}

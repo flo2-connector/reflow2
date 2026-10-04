@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:04a0194ad9961a3b60d8f5e9d08f19779dd3eef50d736ecf4693392ec4219543",
+  "node_id": "cmp:sync",
+  "node_type": "Component",
+  "properties": {
+    "kind": "module",
+    "level": "component",
+    "name": "sync",
+    "provenance": "authored",
+    "purpose": "The judgement about writing over a shared design record: what would be lost, said in the language of what to do about it.",
+    "status": "planned",
+    "tier": "operational"
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:a68ea685e8ed8b5b6c6cbbb27cd029b050dcd1de05e76bbc3bb1fcdb0d97656c",
+  "edge_type": "VERIFIES",
+  "from_id": "ver:the-server-keeps-the-export-current",
+  "properties": {},
+  "to_id": "cap:the-server-writes-the-export-through-and-chains-it-from-main"
+}

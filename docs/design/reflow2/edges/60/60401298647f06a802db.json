@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:47548728b4a3376ccbe20856a171c07d14a40e56a0b50fc938511a6971cc4495",
+  "edge_type": "SCHEDULED_FOR",
+  "from_id": "req:the-server-keeps-the-working-tree-export-current",
+  "properties": {
+    "modality": "expected",
+    "recorded_at": "2026-09-11"
+  },
+  "to_id": "epoch:planned-the-server-guarantees-the-export"
+}

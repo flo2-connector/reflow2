@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:fb6cb453e08002d0907ee2b9d92546917961af2c635f8a0eba60cf1ae68f0955",
+  "edge_type": "GOVERNED_BY",
+  "from_id": "req:build-loop-is-bounded",
+  "properties": {},
+  "to_id": "decision:ack:c0ad59f11915ba50"
+}

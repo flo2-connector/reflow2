@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:b3d7a811a79f9909d6379fbb813eaed4cb3e87dae7c11b31d8fc628fc71ade2f",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:cluster-claims",
+  "properties": {},
+  "to_id": "req:concurrent-planning"
+}

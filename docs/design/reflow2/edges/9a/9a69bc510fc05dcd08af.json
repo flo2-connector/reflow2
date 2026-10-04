@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:c5084caf496974e381017d7a9b9b7549ccab33b97122da421faa29fa87a91814",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-a-change-upstream-reaches-the-sibling-that-never-asked",
+  "properties": {
+    "dependency_type": "control_flow",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "dec:idea-gap-flows-to-the-dependency"
+}

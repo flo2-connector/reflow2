@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:4069086cc375854ea5db18a0db60510ee2081d58df5670d935b8281207660418",
+  "edge_type": "CONSUMES",
+  "from_id": "cmp:sync-debt",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "ifc:provenance-sidecar"
+}

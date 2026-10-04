@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:ccba57e663e1c453cc66c4be8b41ffa4dd1fff4a6fc1afe810ff402400793aed",
+  "edge_type": "HAS_TEMPORAL_FACT",
+  "from_id": "cap:loop-status",
+  "properties": {},
+  "to_id": "fact:defect-loop-status-next-routes-to-the-destructive-skill"
+}

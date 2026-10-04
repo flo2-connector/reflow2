@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:ccaea4f85e0220a6b1a861deeb212940bdce9c6bccd38a3432dc8d04ddad3b91",
+  "node_id": "ver:consumed-by-nothing",
+  "node_type": "Verification",
+  "properties": {
+    "description": "A built capability with no recorded consumer is surfaced, and the report never says \"unused\". COVERS THE CAPABILITY SIGNAL ONLY — the three consumption edges read (incoming DEPENDS_ON, outgoing PART_OF_FLOW, incoming INTERACTS_WITH), the realized/verified population, discontinued capabilities and discontinued CONSUMERS excluded, the MIN_MODELLED_RATIO withholding rule with its ratio note, MIN_POPULATION, the stated signal boundary, and the wording discipline (the finding may not contain \"unused\"/\"dead\"/\"delete\"/\"surplus\"/severity, scanned over the OBSERVATIONS so the caveats may still name the failure mode they prevent). DELIBERATELY NOT COVERED: the generalisations the capability's description mentions in passing — a Component whose Interfaces nothing CONSUMES, and an Artifact realizing only unconsumed capabilities. Neither is built, and this check must not be read as standing for them (the ver:sessions-cannot-cross-designs precedent, 2026-08-07: a green check covering a clause it never tested is worse than an absent one).",
+    "findings": "15 cases, each mutation-checked — all eight mutations tried (dropping each of the three signals, admitting `planned` to the population, disabling either threshold, and removing either discontinued check) were killed.",
+    "kind": "verification",
+    "last_run_at": "2026-08-11",
+    "level": "unit",
+    "method": "test",
+    "name": "A built capability with no recorded consumer is surfaced, and never called unused",
+    "status": "passing"
+  }
+}

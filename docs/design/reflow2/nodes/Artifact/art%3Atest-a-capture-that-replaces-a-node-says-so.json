@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:d14cb97b7dcd9990de334ff0a5b195d3959e3627974b829008e8b9ff6543caa4",
+  "node_id": "art:test-a-capture-that-replaces-a-node-says-so",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "test",
+    "location": "crates/reflow2-mcp/tests/a_capture_that_replaces_a_node_says_so.rs",
+    "name": "a_capture_that_replaces_a_node_says_so.rs — the served handlers, failing first",
+    "status": "realized"
+  }
+}

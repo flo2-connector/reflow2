@@ -1,0 +1,17 @@
+{
+  "content_hash": "sha256:5f300d5ca712a6c40a28771223fb50be270deafd27da19550f6331ba6e1d9727",
+  "node_id": "ver:the-server-says-when-it-is-stale",
+  "node_type": "Verification",
+  "properties": {
+    "description": "`served_by` STATES staleness rather than leaving a literal to be compared: the block carries `stale` and `stale_note`; an intact binary reads a definite `false`; `stale` is three-valued and a null SAYS unknown rather than borrowing the wording of a definite answer; the stale note names `--stop-shared`, says why a bare session restart changes nothing (`--shared` re-attaches to the same daemon), and warns that the respawn itself fails when the client's binary was replaced too. Five cases in crates/reflow2-mcp/tests/the_server_says_when_it_is_stale.rs.",
+    "findings": "VERIFIED LIVE ON A RUNNING DAEMON, not only in fixtures, because the `true` branch cannot occur in a test process: a fresh daemon reported `stale: false, binary_mtime_unix: 1786248674`; `cargo build` was then run to relink the binary under it, and the SAME server reported `stale: true, binary_mtime_unix: null` on the next call. That second observation also settled an old puzzle — the `null` mtime dev_storyflow reported as 'best-effort, unavailable' is THIS SAME SIGNAL, since current_exe() returns a path carrying the `(deleted)` marker and metadata() fails on it. The note's wording is asserted against public constants rather than inside `if stale == true`, because a first draft guarded those assertions with that condition and they silently never ran — the vacuous-branch problem this work exists to catch, reproduced in its own test.",
+    "kind": "verification",
+    "last_reconciled_at": "2026-09-23",
+    "last_reconciled_outcome": "passed",
+    "last_run_at": "2026-08-09",
+    "level": "integration",
+    "method": "test",
+    "name": "served_by states staleness rather than leaving a literal to be compared",
+    "status": "passing"
+  }
+}

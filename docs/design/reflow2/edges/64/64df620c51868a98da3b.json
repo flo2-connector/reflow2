@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:28567000db487671b3cdcfe9d7e8060c0ed410f579e766fb372c156a2baca29b",
+  "edge_type": "EVOLVES_INTO",
+  "from_id": "dec:idea-a-claim-says-what-its-session-is-doing-and-never-reads-gone-when-it-cannot-be-verified",
+  "properties": {
+    "evidence": "Option (a), a claim carrying its session's state and a checkpoint note, promoted by Anthony on 2026-09-29: \"Let's go with your 3 likeliest candidates.\""
+  },
+  "to_id": "req:a-claim-says-what-its-session-is-doing"
+}

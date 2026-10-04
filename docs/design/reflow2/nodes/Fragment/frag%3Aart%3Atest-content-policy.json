@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:ad707cb8e59c480d77f21016bbeb75267391039a95431853da32a334d54a968e",
+  "node_id": "frag:art:test-content-policy",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered test_content_policy.py"
+  }
+}

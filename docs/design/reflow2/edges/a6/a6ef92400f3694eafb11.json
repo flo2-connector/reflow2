@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:77c8e5c15303b6d2e3330de8649ef857ba6e1e424ab4f42b8aca27cca3ce0583",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-retirement-covers-what-it-removed",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cap:session-artifacts"
+}

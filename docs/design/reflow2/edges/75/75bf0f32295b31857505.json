@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:3e364b0ad1f9ddfdb71e696c9a649d1d1bb06d1c38826c20d879d790ccf36ea1",
+  "edge_type": "CHANGED",
+  "from_id": "chg:accept-f1ab3162a033488c",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:handshake"
+}

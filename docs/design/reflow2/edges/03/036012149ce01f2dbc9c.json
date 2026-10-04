@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:b5ec7d30f11d520bdc1356008ec185b141065da64de1f5fb525101f1589ef1e0",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:scope-read-while-held",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:scope-read-while-held"
+}

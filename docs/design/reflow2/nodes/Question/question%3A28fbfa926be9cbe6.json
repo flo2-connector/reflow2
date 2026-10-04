@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:0356d7c6f0737c5b63249c1b8ab97949ed03cc9dd3ec12a91904ae1f3e4ae981",
+  "node_id": "question:28fbfa926be9cbe6",
+  "node_type": "Question",
+  "properties": {
+    "answer": "BUILD IT THIRD, AND BEFORE THE DEFERRED-DECISION STATUS. Anthony, 2026-09-11: \"go with your suggested order\". The failure mode is a silent wrong answer — an older binary showing less of a design than it holds — which outranks the inconvenience of being told to migrate, and this project has already shown migration is lossless. It goes before the deferred status because adding an enum value is exactly the change the guard cannot currently see. The mechanism (wider stamp vs per-change identities vs severity per change) stays open and is settled inside the increment.",
+    "asked_at": "2026-09-11",
+    "context_setter": "Nothing satisfies requirement “A vocabulary change a consumer's binary cannot read is never silent”",
+    "gap_id": "gap:28fbfa926be9cbe6",
+    "question": "You have written down that an older reflow2 must never open a newer design and quietly show less of it than it holds — but nothing is yet being built to deliver that. Do you want it built in an increment now, held until the vocabulary question behind it is settled, or dropped?",
+    "rephrase_degraded": false,
+    "status": "answered"
+  }
+}

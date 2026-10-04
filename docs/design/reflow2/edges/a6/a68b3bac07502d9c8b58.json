@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:02d6e26a6c29c36243b2b9ccf17f2ceea933b72dcfdf839beb5174abf562d393",
+  "edge_type": "ABOUT_ENTITY",
+  "from_id": "fact:defect-set-verification-status-erased-last-run-at",
+  "properties": {},
+  "to_id": "cmp:verify"
+}

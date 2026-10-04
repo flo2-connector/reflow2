@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:451dd3dba3857fa837043405798cacfc0878c17d75bccab2056992c6c8360cf7",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:mirror-surface",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:export"
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:b5bab387c0f65e6bdd1d77d37381805f9e33e031ef81e21711e781aa1b1e050c",
+  "node_id": "epoch:planned-status-accounting",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "epoch_type": "release_cut",
+    "name": "PLANNED — status accounting: WHEN was this true? The biggest conceptual gap either source found, and EIA-649 names it. BL-187 external anchor and BL-185 test-first both add Verification properties (ONE schema touch), BL-189 the retirement half. Evidence: half of one corpus pins to commits no longer ancestors of main; 11 of this project's own verifications sat green on one two-day-old run. NO VERSION NUMBER BY DESIGN (dec:idea-a-planned-increment-is-named-by-content-not-by-number). Supersedes epoch:v0260-planned.",
+    "sequence": 265,
+    "status": "planned"
+  }
+}

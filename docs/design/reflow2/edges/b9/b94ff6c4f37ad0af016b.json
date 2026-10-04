@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:4167403f3129a77b97bfef423338522c31fa718624cb865177d34d65b2b7c8a0",
+  "edge_type": "CHANGED",
+  "from_id": "chg:every-one-shot-mode-resolves-its-design-first-and-every-flag-is-honoured-or-refused-2026-10-02",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "req:a-one-shot-call-never-creates-a-design-where-a-folder-names-one-on-a-server"
+}

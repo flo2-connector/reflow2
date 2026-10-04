@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:9fb574bfdce966e6f0be12b49d17e59dfcf42b5d061c0f449bb2d5a4b59140fe",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:a-design-says-whether-a-real-result-has-ever-come-back",
+  "properties": {
+    "approved_at": "2026-09-22",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:594b067c8979bcf44f98d0d3114db35550dd9c73c4c9df0f17a6d3edcae91856",
+  "edge_type": "CHANGED",
+  "from_id": "chg:spawn-daemon-survives-a-replaced-binary",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cap:shared-sessions"
+}

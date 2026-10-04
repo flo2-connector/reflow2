@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:fb641ebd7e1abda9f9490417502e56233573498ceec259e36fd69e2f9c1e10c0",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:supporting-is-not-conflict",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:heal"
+}

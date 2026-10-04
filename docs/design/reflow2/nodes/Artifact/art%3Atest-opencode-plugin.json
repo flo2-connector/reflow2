@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:81d99f56a2138fbf38dc459b3472b55dd15015941c5886273c3a2d6b36f432e7",
+  "node_id": "art:test-opencode-plugin",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "test",
+    "description": "Drives the plugin's four hooks under node exactly as OpenCode would and asserts the nudge ARRIVES (session start, after a write, at stop, quiet after a loop check, silent in a directory with no design). Exists because the first translation turned reflow2_add_decision into \"decision\" and the stop nudge never fired — a failure in the direction of silence. Skips where node is absent. Run by CI.",
+    "location": "tools/test_opencode_plugin.py",
+    "name": "test_opencode_plugin.py",
+    "status": "realized"
+  }
+}

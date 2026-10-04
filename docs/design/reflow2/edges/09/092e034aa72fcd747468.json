@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:32504e1d05f400479b9ea3164929b502dfc6d1246618f7aebbfbefd9d25575dd",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-skill-is-found-by-describing-the-job-the-way-a-tool-is",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:tools-skills"
+}

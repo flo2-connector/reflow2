@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:5a37674c4982807465c0166446e25a7ddc0b4f7577352aa9ce014abfdf8ec7b3",
+  "node_id": "sub:tool-surface",
+  "node_type": "Component",
+  "properties": {
+    "level": "subsystem",
+    "name": "Tool surface",
+    "provenance": "authored",
+    "purpose": "The served tool surface, cut into twelve slices by lifecycle phase: capture, ingest, ask, coherence, assure, as-built, claims, exchange, query, operate, temporal and skills.\n\n⚠️ TWELVE CHILDREN, DELIBERATELY OVER THE 3-7 BAND, and the excess is the finding rather than a defect to fix. These slices are already a partition of ONE thing — a single surface, divided once by the phase of the loop each tool serves. Splitting them further to reach seven would be using span of control as a GENERATOR, which `dec:idea-the-decomposition-ladder-is-open` and the whole depth-is-a-consequence argument forbid: the band said 25 was wrong, it does not say 12 is.\n\nAnthony's call, 2026-08-25, put to him with the alternative: *\"leave it at 12 — don't invent a rung.\"*",
+    "status": "planned"
+  }
+}

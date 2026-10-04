@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:2e19188c68cbb495afc6b459eba1f851acd24375d202930f2c262a7ee994b1a3",
+  "node_id": "art:tools-ingest",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "location": "crates/reflow2-mcp/src/tools/ingest_tools.rs",
+    "name": "ingest_tools.rs",
+    "status": "realized"
+  }
+}

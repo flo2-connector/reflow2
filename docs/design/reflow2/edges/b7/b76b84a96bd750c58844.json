@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:a65c8c160b8188d6e68ca9130038f56ee81d63542c780ac162115f2567f62b93",
+  "edge_type": "CONSUMES",
+  "from_id": "cmp:vocabulary",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "ifc:graph-read"
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:71e2bc54e4f4bda8c5bd7ff0e47d71ea8d828c4b8fd89e478d62385d64d99ea9",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0630",
+  "properties": {
+    "as_checksum": "sha256:165aa3a49543a23668fcb50fdf421fa58c9e02c7ed413e23b67c60e8a864594d"
+  },
+  "to_id": "art:test-every-constructor-says-what-the-thing-is"
+}

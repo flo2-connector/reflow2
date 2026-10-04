@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:7b68b8b0443d724cfbeeaefac8ada38af86bf82c30344df1cff28e8751c45dff",
+  "node_id": "req:the-ledger-can-say-the-record-was-wrong",
+  "node_type": "Requirement",
+  "properties": {
+    "concern": "core",
+    "designation": "internal",
+    "kind": "functional",
+    "lineage": "original",
+    "name": "The change ledger can say a record was WRONG from the start, distinct from reality having moved",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "A ChangeEvent can record that THE DESIGN RECORD WAS INCORRECT, as distinct from reality having moved and the design catching up. Proposed value: `record_was_incorrect`.\n\nWHY THE NAME IS `record_was_incorrect` AND NOT `correction`: every existing `change_type` names WHY THE RECORD MOVED — `requirement_creep`, `new_feature`, `test_failure_fix`, `refactor`, `scope_change`, `deprecation`. \\\"Correction\\\" names the ACT rather than the cause and would read oddly beside its siblings. The eleventh value, `baseline_established`, already sets the precedent for a value that says the thing did not change and only the design's knowledge of it did.\n\nTHE GAP. None of the eleven legal values means this. `resync` is the least-wrong and CONNOTES SOMETHING FALSE: it reads as a re-sync back to coherence after reality moved. Where the record was simply wrong when written, `resync` puts a fiction into the ledger that exists to prevent fiction.\n\nWHY IT MATTERS BEYOND TIDINESS: `changelog_view` MAPS BUCKETS FROM `change_type`. A correction recorded as `resync` therefore lands in a bucket that misdescribes it, in the document consumers read. That is the test `dec:edge-orthogonality` sets — a vocabulary distinction earns its keep only if a computation reads it — and this one is read.\n\nEVIDENCE, three independent hits. Filed by dragon Boss (`cca98fbf`, dev_storyflow, 2026-08-09) while correcting an edge that asserted a runtime dependency the code never had: \\\"resync connotes reality moved and the design caught up — here the design was simply wrong from the start.\\\" Reproduced twice in this repo the same day: recording the detector-spec correction, and recording this merge, both of which used `resync` and had to say so in the event name to avoid implying something false.\n\n⚠️ COST, STATED BECAUSE IT DECIDES THE TIMING: adding an enum value MOVES THE SCHEMA STAMP, which pulls a version bump, an upgrade note, and locks older reflow2 out of designs written by the newer one. That cost is why this is scheduled into a SCHEMA-CLUSTERED increment rather than shipped alone (Anthony, 2026-08-09: \\\"go with your recommendation on bundle it with the governance primitives\\\").\n\n⚠️ AND THE SHARPER ALTERNATIVE IS NOT FORECLOSED: `dec:should-propagate-seed-from-a-drift-event` records dragon Boss's other suggestion, which may make this requirement unnecessary. Read that before building this.",
+    "status": "proposed"
+  }
+}

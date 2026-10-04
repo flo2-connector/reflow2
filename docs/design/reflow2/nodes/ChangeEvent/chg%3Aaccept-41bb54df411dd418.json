@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:5d66d40f0d4486176d50099e796a20854c0f634c28bb6891639f75f2fbd06c1f",
+  "node_id": "chg:accept-41bb54df411dd418",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "refactor",
+    "commits": "b2a524d7d9745ea65079833fdd27b0710a57b205",
+    "name": "the door's client name is now the shared CALL_DOOR_CLIENT constant; no behaviour change",
+    "subject": "system"
+  }
+}

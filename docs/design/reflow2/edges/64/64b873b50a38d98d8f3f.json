@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:d94fe56be4c7b4d63f333984ac3936bcdf681c263d7bcb1b57fdedd0a2387e22",
+  "edge_type": "CONSUMES",
+  "from_id": "cmp:ility",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "ifc:graph-read"
+}

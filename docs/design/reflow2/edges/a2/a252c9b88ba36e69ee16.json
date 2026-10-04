@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:c9e248eca93018397135aac88f9c7dac52b4497f63e142f15630fbb8867fc213",
+  "edge_type": "SPECIFIES",
+  "from_id": "art:schema-functional",
+  "properties": {
+    "format": "json_schema"
+  },
+  "to_id": "ifc:graph-export"
+}

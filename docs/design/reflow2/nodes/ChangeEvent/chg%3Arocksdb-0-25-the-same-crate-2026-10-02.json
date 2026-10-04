@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:62594d9b5a0da01b69bc8b5cd47d800025e46cd1b38a7a93345af103f8b53a43",
+  "node_id": "chg:rocksdb-0-25-the-same-crate-2026-10-02",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "refactor",
+    "commits": "24f1824d455671ba395fe96be9515818244ce160,7a813c5a8004be239391a7711a45f7cd3add1390,9ecb405bc244e4ed63d727477886e88ec9cd99a3",
+    "detected_at": "2026-10-02",
+    "name": "rocksdb 0.24 → 0.25: the same crate, RocksDB 10.4.2 → 11.8.1, with stores proved forward and back; the hold #651 recorded for it is removed",
+    "rationale": "The evidence is fact:rocksdb-0-25-opens-twenty-real-stores-identically-and-0-77-0-reads-what-it-wrote-2026-10-02, carried into the committed design with this change. Over 20 real stores, forward and rollback both hold, and the rollback is real: 11.8.1 writes table format_version 7, which 10.4.2 reads. The route was confirmed by Anthony's acceptance of the dependency requirement and the merge order he gave on 2026-10-02 (#651 first).",
+    "subject": "system",
+    "summary": "The first bump under req:reflow2-keeps-its-dependencies-at-or-near-their-latest-releases. Cargo.toml `rocksdb = \"0.25\"` and the lock (librocksdb-sys 0.17.3+10.4.2 → 0.19.0+11.8.1). No reflow2 source changed. The comments in Cargo.toml and crates/reflow2-core/src/foundation/mod.rs (art:foundation) now name 0.25 and the measurement. dependency-holds.toml loses the rocksdb hold #651 recorded while this was in flight, and the currency checker reads rocksdb as current. The CHANGELOG entry sits under Changed."
+  }
+}

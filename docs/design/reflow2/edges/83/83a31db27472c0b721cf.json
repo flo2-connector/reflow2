@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:632f86054bc85f357b32df2bf6ed248a63d86ff71521ff7d9a9152321fd13710",
+  "edge_type": "AT_EPOCH",
+  "from_id": "snap:epoch:preserved-on-write:cap:the-server-writes-the-export-through-and-chains-it-from-main",
+  "properties": {},
+  "to_id": "epoch:preserved-on-write"
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:c77ff2a0a163f1a4724c0157f1b3d7a39688848232d7bc8b4630805864dd98e5",
+  "node_id": "frag:art:registry-http",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered registry_http.rs"
+  }
+}

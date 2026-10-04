@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:f06fd8b25675a42b27a9f4cfbfd53f6136740a944476b3549c484f03a755c203",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-should-help-expand-a-single-command-with-examples",
+  "properties": {
+    "evidence": "Option ③ — drawing examples from real recorded use rather than writing them — is only available if session tool and skill use is logged, which that decision is open on.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "dec:how-should-reflow2-log-its-own-usage"
+}

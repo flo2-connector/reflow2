@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:3a55519564e7e487e4099c2e7f322f3c91f1e39c0d7b2dce070f67c563f49689",
+  "edge_type": "TRIGGERS",
+  "from_id": "dec:idea-the-routing-table-routes-grammar-not-domain-nouns",
+  "properties": {
+    "evidence": "Drawn FROM that node INTO this one: reading the finding that the routing table keys on grammar rather than domain nouns is what produced this question in the same conversation. Taking the first question forces the second — if reflow2 is not going to own the mapping, the agent must be able to derive it, which means asking what the agent is actually told at call time."
+  },
+  "to_id": "dec:idea-does-the-black-box-frame-reach-the-agent-at-call-time"
+}

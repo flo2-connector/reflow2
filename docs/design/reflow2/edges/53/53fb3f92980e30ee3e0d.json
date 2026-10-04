@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:3650380536b80963637927234e61b75217296a6ef15c58c1eff65a830c106852",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-how-do-we-know-the-tests-catch-anything",
+  "properties": {
+    "evidence": "The POWER half needs somewhere to record that a check was seen red, which is exactly what that idea proposes; without it a mutation or negative-control run produces a result with nowhere to live.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "dec:idea-a-check-records-that-it-was-once-observed-failing"
+}

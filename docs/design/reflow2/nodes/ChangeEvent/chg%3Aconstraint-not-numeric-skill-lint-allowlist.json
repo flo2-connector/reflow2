@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:bf92e2ed63b47e797c0bed9f2ae4dd88abfc70d928f503d5c9c8d2d963e6ef6c",
+  "node_id": "chg:constraint-not-numeric-skill-lint-allowlist",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "refactor",
+    "name": "skill_lint allowlists the SPECIFIES format terms the new routing row names"
+  }
+}

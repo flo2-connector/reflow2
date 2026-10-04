@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:d62c7ce5935bb1fb31c16cd9ef62093575073e407d5dbf726f4c0aa6389e70a0",
+  "node_id": "drift:b66625a527eb60fb",
+  "node_type": "DriftEvent",
+  "properties": {
+    "detected_at": "2026-07-21",
+    "drift_type": "checksum_change",
+    "name": "art:temporal drift",
+    "resolved": true,
+    "severity": "medium",
+    "summary": "'art:temporal' has changed since it was registered against the design"
+  }
+}

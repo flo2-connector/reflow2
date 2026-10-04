@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:75e98319861e075727b6493ac72988068a2c81ae80518ea027b73c0bab828181",
+  "node_id": "req:a-write-in-another-agents-claim-lands-and-names-who-holds-it",
+  "node_type": "Requirement",
+  "properties": {
+    "concern": "core",
+    "kind": "functional",
+    "lineage": "original",
+    "name": "A write inside another agent's claim goes through, and its reply names the claim and who holds it; the holder is told on their next call. The claim is measured one hop from what it holds, and a write is never refused for it",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "Anthony, 2026-09-29, dev_reflow2 hub session: \"Let's do 2, 3, and 4 as intent.\" Item 4 of the recommendation that closed the islands brainstorm (dec:idea-a-claimed-blast-radius-is-an-island-no-other-session-writes-in): \"Only then, maybe, warnings instead of blocks, limited to 1 hop.\"",
+    "statement": "When an agent writes a node inside a region another agent has claimed, the write goes through. The reply names the claim, who holds it and what they said they are doing, and the holder learns of the write on their next call. For this purpose the region is the claim's seed and the nodes one hop from it. A write is never refused because of a claim: claims stay announcements (dec:advisory-concurrency).\n\nIt fires only when a different agent holds the claim, which needs req:every-agent-working-a-design-is-its-own-claimant-subagents-included first.\n\nWHY THESE BOUNDS (measured 2026-09-29, fact:measured-concurrency-across-all-designs-shows-no-lost-work-and-islands-would-mostly-block-a-sessions-own-subagents-2026-09-29):\n- ONE HOP. At the default depth of 2, another agent's edit lands inside your region 23% of the time on reflow2's own design. For file records it is 98%, because release packaging joins every file to every other. At one hop it is about 1%. A warning that fires on most writes is ignored.\n- NEVER REFUSE. Replayed on a month of real sessions, 137 of 150 warnings fell on a session's own subagents, and none coincided with a real overwrite. A refusal would have stalled the parallel work Anthony actually runs, and it would have prevented no recorded incident.\n- A WRITE NEVER CONSULTS A CLAIM TODAY. So this is the one moment an agent is certain to see a claim.",
+    "status": "accepted"
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:6cc8e34b9576942facc0797432432f19a7597fc75978da7120071cf4810a0ae0",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:triage-feedback-is-a-served-step-and-the-feedback-rules-are-delivered-on-it",
+  "properties": {},
+  "to_id": "req:a-field-report-is-triaged-by-a-served-step-and-the-standing-rules-ride-it"
+}

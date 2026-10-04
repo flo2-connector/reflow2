@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:e5722dc0982b0a4ca8c51bd9ba3a9c88aba1d595a61967b7e41ea45cb0000956",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-quantity-says-how-it-was-obtained-and-a-check-on-it-has-a-form-a-tool-can-rerun",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:skill-lint"
+}

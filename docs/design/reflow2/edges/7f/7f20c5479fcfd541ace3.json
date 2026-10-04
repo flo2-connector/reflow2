@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:0a6f36720a48a496888c4db812fedb27c74adac03466ba9f4c08093e110d1756",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0760",
+  "properties": {
+    "as_checksum": "sha256:39287537e7e0cdc82b477fc183c5ed6f09cfa4e76ae389cec7e6e49039b18e18"
+  },
+  "to_id": "art:test-a-code-folder-attaches-to-the-design-it-names"
+}

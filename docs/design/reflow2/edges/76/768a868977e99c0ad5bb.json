@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:27310adbd430d2e7839a4aab84e9f55975b1298ea63e3246f874643ea0de76b7",
+  "edge_type": "ANTICIPATES",
+  "from_id": "dec:idea-should-the-server-journal-every-write-itself",
+  "properties": {
+    "evidence": "That idea recorded that the what and the who of a change are cheap to capture automatically and the why is what no journal can supply; this skill takes the what from git and asks a person for the why."
+  },
+  "to_id": "dec:idea-a-change-justification-skill-walks-the-commit-history-and-asks-why"
+}

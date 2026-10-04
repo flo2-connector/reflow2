@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:43a91def504f639dee6e92f9f923c61a176d8994e978464ae88514134329b621",
+  "node_id": "chg:every-tool-ranks-first-for-its-own-job-and-the-surface-does-not-grow-more-confusable",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "detected_at": "2026-09-18",
+    "name": "Every tool ranks first for its own job, or is listed; the surface does not grow more confusable; two renames with stubs; contain_component detaches",
+    "rationale": "On Anthony's word 2026-09-18 after the measurement: words before deletion. The 25 that stay not-first lose to a tool whose NAME carries the query's word at five times a description hit; words cannot overturn that, so they are the honest baseline rather than exemptions to argue.",
+    "summary": "61 served tools gain one sentence carrying the job in a user's words (appended to the description; no corpus sentence copied). Two ratchet tests beside the corpus test read fixtures/find_tools_rank_baseline.json: not_first (25 tools, each beaten on a name match) and mutual (72 pairs), both lists may only shrink. tools/tool_confusability.py is the offline replica of the scorer (185/185 top-1 agreement) with a --baseline mode. record_change → snapshot_before_change and manual_work_report → manual_work_ledger, old names as refusing stubs (DEPRECATED in the corpus tests); skills, lint contracts, loop_nudge, the erosion trial and the MCP tests renamed; corpus keys renamed. contain_component now calls move_component (detach and name). CHANGELOG entry."
+  }
+}

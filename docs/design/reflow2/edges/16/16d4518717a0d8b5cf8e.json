@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:814b8924ad311e7981df4c0e421e1be2f8d11ab3a113a7671e1fd56d96f3f80e",
+  "edge_type": "EVOLVES_INTO",
+  "from_id": "dec:idea-does-the-black-box-frame-reach-the-agent-at-call-time",
+  "properties": {
+    "evidence": "Drawn FROM that node INTO this one: it held 'maybe the graph should keep a table of terms' as a standalone idea; this is the same thought grown up, with a procedure that would FILL the table and, more importantly, a different answer about where the table lives. Same conversation, minutes apart, and the second form is materially better than the first — which is the reason to keep both rather than overwrite."
+  },
+  "to_id": "dec:idea-the-term-table-is-the-residue-of-a-capture-procedure-not-a-maintained-artifact"
+}

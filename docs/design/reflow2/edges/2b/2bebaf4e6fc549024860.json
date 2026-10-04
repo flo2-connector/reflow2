@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:7239165f99b8f3540d8755dbbdd729e593f9b8b194d5a83399ffa002d905a36e",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "req:drift-rolls-up-to-a-score",
+  "properties": {
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "req:drift-has-direction"
+}

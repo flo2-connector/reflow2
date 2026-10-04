@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:c0addc8e37c9320217fe11993dccd608d456f9eb2e032769894db74675a28f5c",
+  "node_id": "fact:manual-work-c94ff005efcd95fa",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "manual_work",
+    "statement": "Wrote a throwaway Python script to answer \"which registered Artifacts cover the source files I just edited?\" — loading the committed export, building a location-to-node_id map, and filtering it by the four paths I had changed. Needed before re-baselining checksums, because accepting a baseline against the wrong artifact records a change to a file that never moved.",
+    "subject_id": "proj:reflow2",
+    "valid_from": "2026-08-28",
+    "value": "{\"diagnosis\":\"tool_missing\",\"reflow2_tool\":null}"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:6ab06c3a9e22736c93b1b8b31367993fe2503108abc288e7a8c3957a790c6698",
+  "node_id": "chg:the-version-guard-sees-enum-values",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "name": "The version stamp records the declared enum values, and the guard refuses by name on a stored value this binary lacks",
+    "subject": "system"
+  }
+}

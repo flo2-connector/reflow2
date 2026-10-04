@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:1733a2f0d1f2832347a7a6494546d591a10ea3731d8caf5d5aa18df9cda3e2b5",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-server-writes-the-export-through-on-every-change",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:tools-coherence"
+}

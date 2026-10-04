@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:580aebc7c96f301483fec520498be39d014b2707e43c7e37a66846343a59dc10",
+  "node_id": "chg:nudge-path",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "name": "The loop's safety net is run as registered, and its absence is announced to every session"
+  }
+}

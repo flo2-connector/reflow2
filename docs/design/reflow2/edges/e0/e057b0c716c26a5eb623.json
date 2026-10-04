@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:05d2b51038f306e0c7ad095f85ea55483dd0767df6a562f04a807d51fe61b83b",
+  "edge_type": "CHANGED",
+  "from_id": "chg:accept-3969951005bbd8a6",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:lens-handler-test"
+}

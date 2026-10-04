@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:147f58165fb51fafc88d30a0275751faf398816f797c87c28e20551dfa558cb8",
+  "node_id": "ver:a-client-refuses-a-server-of-a-different-build",
+  "node_type": "Verification",
+  "properties": {
+    "description": "Five cases in `crates/reflow2-mcp/src/shared.rs`, module `tests::reelect`, pinning the DECISION rather than the plumbing.\n\n🛑 OBSERVED FAILING FIRST, against a stub of today's behaviour: **3 failed, 2 passed**. The two that passed are the counterweights — same build attaches, unknown attaches — which is the correct reading, because today's behaviour is right for those and wrong for the three real cases. That split is stronger evidence than an all-red run: it shows the tests discriminate rather than merely rejecting the stub.\n\nWHAT IS PINNED:\n① a DIFFERENT BUILD OF THE SAME VERSION is replaced — the case that cost this session six cycles and that a version check cannot see;\n② an IN-PLACE UPGRADE is replaced — Alex's case; `install -m 755` keeps the inode, so this is also the case that refuted the inode proposal;\n③ a daemon with NO FINGERPRINT is replaced — it predates the field, which is every daemon alive when this ships;\n④ the SAME BUILD is attached to — without this the fix would kill a healthy daemon on every attach;\n⑤ an UNKNOWABLE local build attaches rather than guessing.\n\n⚠️ WHAT IT DOES NOT COVER: the SIGTERM and re-election themselves. Those spawn processes and are exercised only by the live path, so the failure mode they carry — stopping a daemon another session is mid-write against — is argued in the capability and not tested here.",
+    "findings": "5 passed after the fix; **3 failed and 2 passed before it**, against a stub of today's behaviour. Full workspace suite green — 167 suites, 0 failures. `cargo clippy --all-targets` and `cargo fmt` clean.\n\nTHE RED RUN IS THE EVIDENCE AND ITS SHAPE MATTERS: the two that passed against the stub were the counterweights (same build attaches, unknown attaches), so the tests discriminated rather than merely rejecting a stub that did nothing.",
+    "kind": "verification",
+    "last_run_at": "2026-08-29",
+    "level": "unit",
+    "method": "test",
+    "name": "A client re-elects on a build mismatch, attaches on a match, and never guesses",
+    "status": "passing"
+  }
+}

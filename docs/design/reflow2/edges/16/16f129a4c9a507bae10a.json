@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:68d370cd895691254d1c414d2d09d0cb03256a24d4ec103a68755cf03de26c24",
+  "edge_type": "CHANGED",
+  "from_id": "chg:an-export-says-which-tree-it-was-taken-in",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:git-anchor"
+}

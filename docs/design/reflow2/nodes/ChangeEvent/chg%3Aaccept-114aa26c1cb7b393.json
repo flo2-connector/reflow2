@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:ed6afe25c67b4f1f30b6d2d24adb654066bd616bc0ceeff944cbfe21d2bcbad1",
+  "node_id": "chg:accept-114aa26c1cb7b393",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "resync",
+    "detected_at": "2026-09-24",
+    "name": "v0.70.0 cut: the two shipping-version claims in AGENTS.md moved to v0.70.0; check_doc_versions agrees on all 11 targeted claims. Accepted before the manifest.",
+    "subject": "system"
+  }
+}

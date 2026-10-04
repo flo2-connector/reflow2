@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:238e8a6577e99b8f17f0dd873a17c4c92de19733122ed451b889e48d01af9e4a",
+  "node_id": "frag:art:a-check-that-could-not-run-is-blocked-test",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered a_check_that_could_not_run_is_blocked.rs — blocked is an outcome, outranks a pass, never hides a failure, and raises a gap that never says failed"
+  }
+}

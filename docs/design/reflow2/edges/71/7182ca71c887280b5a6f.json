@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:7aa00e7f7b0fb4f76e4827aa16c4596249a286d1b3948625957154b1b53fbb86",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:test-the-two-reported-fields",
+  "properties": {
+    "covers": "whole"
+  },
+  "to_id": "ver:the-two-reported-fields-can-be-set"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:f4574ba9bac368d832fb140e0b80adb04b1ed7e540ed1bcfef892d094a2aac73",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-design-served-after-a-held-lock-frees-is-prepared-the-way-a-healthy-start-prepares-it",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cap:degraded-surface"
+}

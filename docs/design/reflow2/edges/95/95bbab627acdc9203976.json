@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:360ebb07aa6e7a99550069520643cc5ac79f55b720024774e9a583d5aadd4ccf",
+  "edge_type": "CHANGED",
+  "from_id": "chg:accept-the-v0450-version-bump",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:dependency-manifest"
+}

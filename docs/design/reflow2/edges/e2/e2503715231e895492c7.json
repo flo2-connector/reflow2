@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:15a505a2d90ca44f97c26b26e7329b718fbe05339a3c899b4169eb2efb752199",
+  "edge_type": "VERIFIES",
+  "from_id": "ver:a-degraded-server-recovers-when-its-cause-clears",
+  "properties": {},
+  "to_id": "cap:degraded-surface"
+}

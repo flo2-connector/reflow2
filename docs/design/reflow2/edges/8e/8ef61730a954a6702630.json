@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:23a477b980f47d68bde8a731c18c5be3d5e61fcf1fc80e5ca80571db64e1ef00",
+  "edge_type": "REALIZES",
+  "from_id": "art:merge",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:merge-designs"
+}

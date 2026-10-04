@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:63a7ebbbeda0882a127415c1b1415f1adbc3ff5558dd9741466ea65f0957b820",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:test-a-code-folder-attaches-to-the-design-it-names",
+  "properties": {
+    "covers": "partial"
+  },
+  "to_id": "ver:a-code-folder-attaches-to-the-design-it-names"
+}

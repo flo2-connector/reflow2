@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:da24f4dedf3b1e2da97c1f23cf0410f203f7407450c54052de240571dd361ba9",
+  "edge_type": "CHANGED",
+  "from_id": "chg:eight-field-feedback-fixes-land-for-v0510",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "ver:the-v0510-field-feedback-fixes-are-pinned"
+}

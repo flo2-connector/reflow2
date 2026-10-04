@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:f7d91b5febc9b22cb25e4ce2a726b6005dcd030aa7cca7f7473ad830e5960cd4",
+  "edge_type": "CAUSES",
+  "from_id": "fact:defect-no-way-to-mark-a-capability-contested",
+  "properties": {
+    "basis": "observed",
+    "confidence": 1.0,
+    "evidence": "A capability demoted after a failing walk asserted something false during the window, visible to every attached session on a shared graph.",
+    "validation_status": "validated"
+  },
+  "to_id": "dec:idea-a-capability-can-be-marked-contested"
+}

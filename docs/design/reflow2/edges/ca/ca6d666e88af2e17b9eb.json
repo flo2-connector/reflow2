@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:0b6abfc5465370b47deed01afabbed00f00745e2e1d9669875ea810f8152d205",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:genesis",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:genesis"
+}

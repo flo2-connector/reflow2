@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:8682ded211a0d29665b9670dbb8d4bb7a5ae539a6d69a3b69779379d3b901c9f",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:merge-rerere",
+  "properties": {},
+  "to_id": "req:human-decides"
+}

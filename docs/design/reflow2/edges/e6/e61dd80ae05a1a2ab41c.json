@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:1ae7b9fec0ff79fb33c9bb0547accc52dcbfbd5ed78c7c64a23c6d7363a686c3",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:record-to-record-relations-are-modelled",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:schema"
+}

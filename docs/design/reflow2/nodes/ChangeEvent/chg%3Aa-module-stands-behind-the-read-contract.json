@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:b49f8db6897af626bbdc0364687c81f1f2a689e6f400819c3d60569dda22ef8c",
+  "node_id": "chg:a-module-stands-behind-the-read-contract",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "refactor",
+    "name": "`GraphRead` exists — the second trait in this crate after `LlmBackend` — and `granularity` is the first module to stand behind it rather than inside `DesignGraph`. Its body became a free `granularity_report(&dyn GraphRead)` with a one-line inherent method left behind, so no caller changed. Three tests prove the boundary: the report runs over a design that is two Vec's with no store at all; the same module cannot tell a real DesignGraph from a fake sharing no code with it; and an unknown node type reaches the caller as an error rather than as an empty design, with a control case so the assertion is not vacuous.",
+    "subject": "system"
+  }
+}

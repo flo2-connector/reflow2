@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:b22cc949755f4364741eddbe20f62aa2600562f5344a3290b7bc967482acdf6c",
+  "edge_type": "CHANGED",
+  "from_id": "chg:unresolved-setup-skips-on-either-side-not-both",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:proposed-asserts-nothing-test"
+}

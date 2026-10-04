@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:8cc8e49cf4a679850ea9cee8895edf61a650b98e13e82684cb04d0f63fd336df",
+  "edge_type": "EVOLVES_INTO",
+  "from_id": "dec:idea-the-design-gets-a-branch-dimension-for-implementation-facts",
+  "properties": {
+    "evidence": "Part ① promoted to intent as written, on Anthony's word, 2026-09-23. Part ③ (claim liveness) stays separate and unpromoted; the GitHub Action stays rejected."
+  },
+  "to_id": "req:implementation-facts-travel-with-the-branch-that-produced-them"
+}

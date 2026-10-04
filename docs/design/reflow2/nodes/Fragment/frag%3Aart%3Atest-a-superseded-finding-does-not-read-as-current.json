@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:7e260b1f662a43a1740f414c51d60814cecfdd0ec039e182b65f26747f50a400",
+  "node_id": "frag:art:test-a-superseded-finding-does-not-read-as-current",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered a_superseded_finding_does_not_read_as_current.rs"
+  }
+}

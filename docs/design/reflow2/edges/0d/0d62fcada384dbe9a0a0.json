@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:09ef7154f8486d8da59361d9dcfde963119bb4272bf88da6c8d74f1b46be400e",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:enum-schema",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:enum-schema"
+}

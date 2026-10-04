@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:f7c3d67758e2ff0a4691571db97fa6e2246d39954d5dd7e1d789981388a4f33f",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:ility-signals",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:ility"
+}

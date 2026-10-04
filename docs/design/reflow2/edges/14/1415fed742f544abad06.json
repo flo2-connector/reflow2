@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:55dc91654a2207ba0b638660e7923a56bcc504bd8af9e845515808721fecc0c2",
+  "edge_type": "REALIZES",
+  "from_id": "art:dockerfile",
+  "properties": {
+    "completeness": "partial",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:hosted-state-on-a-volume"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:6e8dc052f41f89f8ed2891d59ba2833e48f282e838fb8917c55e70601e90416a",
+  "edge_type": "SCHEDULED_FOR",
+  "from_id": "req:a-vocabulary-change-a-consumers-binary-cannot-read-is-never-silent",
+  "properties": {
+    "modality": "expected",
+    "recorded_at": "2026-09-11"
+  },
+  "to_id": "epoch:planned-a-vocabulary-change-is-never-silent"
+}

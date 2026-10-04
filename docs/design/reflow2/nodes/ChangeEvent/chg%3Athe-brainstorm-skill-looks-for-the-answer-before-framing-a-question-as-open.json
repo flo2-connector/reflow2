@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:e29c4f97a4a024eb2c645ee5b8716333b9e5a179666bef1c585434ca65fe46c5",
+  "node_id": "chg:the-brainstorm-skill-looks-for-the-answer-before-framing-a-question-as-open",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "defect_fix",
+    "detected_at": "2026-09-28",
+    "name": "The brainstorm skill looks for the answer in accepted intent before framing a question as open",
+    "rationale": "Fixes cause (B) of fact:root-cause-the-lifecycle-scope-lives-in-the-vision-and-the-graph-holds-one-line-so-a-brainstorm-reopened-it-2026-09-28. On 2026-09-28 a triage framed \"should reflow2 serve a design in operations?\" as OPEN, with options that contradicted accepted intent. The vision, req:coherence, req:design-and-implementation-stay-coherent-both-ways and req:epochs-can-be-planned already answered it, and the skill's only searches were for near-duplicate and related IDEAS. The step is pinned by a contract rather than trusted, for the reason the linking contract gives: an instruction that can be quietly deleted is the same as one never written.\n\nNot fixed here, and named so it is not read as done: no detector notices an exploratory Decision whose options contradict accepted intent. The graph half of the class (one node stating the whole-lifecycle scope) waits on Anthony's word on the req:coherence rewording.",
+    "repair": "corrected_cause",
+    "subject": "system",
+    "summary": "The brainstorm skill gains a step in \"Recognise it\": before writing OPEN, search accepted Requirements and Decisions, and the project's own founding statement, for the question. If accepted intent answers it, it is not a brainstorm. Say what is settled, cite it, ask whether the person means to reopen it, and record only what is still open. An option that contradicts accepted intent is never offered as live. skill_lint pins the new wording as the ANSWER_FIRST contract, beside the linking contract."
+  }
+}

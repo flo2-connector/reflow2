@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:6243c51d360abeccfb7247d818e680e8633c47173a2ae3915d89f55307560e29",
+  "edge_type": "REALIZES",
+  "from_id": "art:verbs",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:a-build-can-call-one-tool-from-the-shell-and-read-the-reply-as-json"
+}

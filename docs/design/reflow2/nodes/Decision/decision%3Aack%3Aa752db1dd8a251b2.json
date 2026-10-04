@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:30f5f7b8c7a635871ce86cb7e8246cc7baefc9a4ff01972a37a3d58035e5f66d",
+  "node_id": "decision:ack:a752db1dd8a251b2",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Accepted the gap gap:a752db1dd8a251b2.",
+    "name": "Reviewed: gap:a752db1dd8a251b2",
+    "rationale": "User (who:ajs, 2026-07-25): start from the next release; the nine shipped releases are left as they are. Retro-editing them to claim a contents-line nobody wrote at the time would reconstruct history rather than record it, which dec:intent-preserved exists to prevent — those releases genuinely did ship a README and a setup guide, but the design did not model documentation as a deliverable until today, and when the understanding arrived is itself a true fact worth keeping. The obligation is forward and concrete: the next release cut must list cmp:docs in its contents, and the release checklist in AGENTS.md now says so, because an intention recorded only in an acknowledgement is one nobody reads at the moment it matters.",
+    "status": "accepted"
+  }
+}

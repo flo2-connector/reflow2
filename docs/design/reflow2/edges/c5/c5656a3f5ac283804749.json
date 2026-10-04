@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:79566f131f3357a7b224be947f357f751d34da1af9eb14f54bf276482dca3c4e",
+  "edge_type": "CAUSES",
+  "from_id": "fact:the-attach-path-checks-liveness-and-identity-but-never-version",
+  "properties": {
+    "basis": "causal",
+    "evidence": "The cause behind Alex's report. `ensure_server_async` attaches to any live rendezvous for the right graph without ever reading the version it publishes, so a client of version X attaches to a daemon of version Y by design rather than by accident. `basis: causal` because the mechanism is read out of the attach path rather than inferred from correlation; `validation_status: hypothesis` because the discriminating test — a client refusing or re-electing on a version mismatch — has not been built or run.",
+    "validation_status": "hypothesis"
+  },
+  "to_id": "fact:the-upgrade-path-leaves-the-shared-server-on-the-old-binary"
+}

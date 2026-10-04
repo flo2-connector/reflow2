@@ -1,0 +1,18 @@
+{
+  "content_hash": "sha256:2bf6552e717b24a5882976f1b28f07a514d10ed7481e1a18eaac47d792672844",
+  "node_id": "fact:the-per-capability-build-question-is-already-silent-while-nothing-is-built-so-the-promoted-sentence-was-unreachable",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "confidence": 0.95,
+    "fact_type": "finding",
+    "name": "The per-capability build question is ALREADY silent while nothing is built, so the promoted phase sentence was unreachable code and the premise needs one number from the reporter",
+    "source": "Measured while building req:a-finding-says-when-the-state-it-reports-is-normal-for-the-phase, 2026-09-20",
+    "statement": "PROMOTED 2026-09-20 on Anthony's word from flo2 F20: put one sentence in the unrealized-capability body saying that having built nothing is a normal stage, because it fires once per capability — 17 times on their three-day-old graph — and a person reads seventeen of those as seventeen defects.\n\n⭐ MEASURED WHILE BUILDING IT, AND IT CHANGES THE ANSWER. detect.rs guards the whole detector with `if pop.artifacts == 0 { return Ok(()); }`. A design with NOTHING BUILT raises none of these findings at all. A sentence conditional on that case is unreachable, and a test written against it failed by finding zero where it expected three — which is how this was caught rather than shipped.\n\n⚠️ SO FLO2'S SEVENTEEN WERE RAISED ON A DESIGN THAT HAD ALREADY STARTED BUILDING, where 'what actually gets built for this?' is the live forward-looking question the finding exists to ask. Their complaint may still be real — seventeen of anything reads as a wall — but it is not the complaint the requirement describes, and the phase is already stated once, by the aggregate `design_without_build` that owns that question.\n\n🛑 AND THE OTHER OBVIOUS FIX IS RULED OUT IN THE SOURCE ITSELF, nine lines above the guard and dated to an earlier lesson: 'No threshold and no proportion — BL-5's lesson was that a loud detector needs a different QUESTION, not a tuned number.' Reporting the phase when the realized fraction is low is exactly that tuned number.\n\nWHAT WOULD SETTLE IT, and it is one number: how many artifacts did flo2's design hold when the seventeen fired? If it was a handful against seventeen capabilities, there is a real early-building complaint and it belongs to dec:idea-a-detector-can-read-the-phase-the-design-already-declares, which asks whether a detector should read the phase the design already declares rather than each body carrying prose. If it was many, the seventeen are ordinary unrealized capabilities and the finding is working.\n\nWHAT WAS KEPT: a test pinning the silence, because the silence is precisely what a phase sentence would have been added to compensate for and nothing was protecting it.",
+    "steps": [
+      "detect_gaps"
+    ],
+    "subject_id": "req:a-finding-says-when-the-state-it-reports-is-normal-for-the-phase",
+    "valid_from": "2026-09-20"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:f75237810d2b64172eca907940c63eec36d27c1ba8da0f9f656b3be59d7c65de",
+  "edge_type": "CAUSES",
+  "from_id": "fact:eight-more-instances-and-one-is-misrouting-rather-than-a-missing-leg",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "The misrouting is what parked ophyd-service. The worktree fork path had every leg and was filed under a skill description naming two-or-more-people; their agent searched, concluded tool_missing, and shelved a real architecture question. The cost of the pattern is not abstract here — it is one idle code branch and one deferred decision.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:the-fork-ask-is-a-deferred-branch-whose-reopening-condition-is-now-met"
+}

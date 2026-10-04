@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:d87edc8b65a17ae6f81a9402bb63733abe333f7f26a07aa117d2026867f940cd",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-capture-that-replaces-a-node-says-so",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:test-the-commonest-edge-has-a-typed-helper"
+}

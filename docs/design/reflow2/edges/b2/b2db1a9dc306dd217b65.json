@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:d60ab7bd6a8155bd05fe4d4c2c547200e10ec54e272f7ab4c0de1d45a3089866",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:linked-repos-poc",
+  "properties": {
+    "authored_at": "2026-07-27T00:00:00Z",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

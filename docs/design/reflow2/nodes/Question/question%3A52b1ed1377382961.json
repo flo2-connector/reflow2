@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:54a5c4de29a6773082063ef01714e8d392c6d3db8abcd474a5b18afeb47cba00",
+  "node_id": "question:52b1ed1377382961",
+  "node_type": "Question",
+  "properties": {
+    "answer": "Anthony, 2026-07-30: BUILD IT NOW. This supersedes the 2026-07-28 answer on this same gap (\"park as deferred... not being built now\"), which went stale when the planning axis was promoted to intent on 2026-07-30 and this requirement was accepted. Its sibling req:epochs-can-be-planned has now been built and committed (56a8388), so the movement-on-the-record half is to be built next rather than parked.",
+    "context_setter": "Nothing satisfies requirement “A plan is a dated claim whose movement is on the record”",
+    "gap_id": "gap:52b1ed1377382961",
+    "question": "You wrote down that when a plan changes, the change itself should be dated and kept on the record — so you can always answer \"what did we believe back then?\" But nothing has been built to do that yet. Build it now, park it, or drop it?",
+    "rephrase_degraded": false,
+    "status": "answered"
+  }
+}

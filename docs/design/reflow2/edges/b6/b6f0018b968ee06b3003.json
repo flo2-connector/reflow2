@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:1e8a2bec49fba78f03ada0aac7d654b5c6b46b6ebcd7b9aba3b6e8b22c22daf6",
+  "edge_type": "REALIZES",
+  "from_id": "art:detect",
+  "properties": {
+    "completeness": "partial",
+    "conformance": "verified"
+  },
+  "to_id": "cap:the-spine-is-checked-for-two-parents-and-for-level-disagreement"
+}

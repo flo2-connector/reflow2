@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:f15bcff2a3055994cf6eb0c89629a6797d80a46baf0feead5fd7053b8f1f0d32",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:sanitize-ingress",
+  "properties": {},
+  "to_id": "req:trust-boundary-at-ingress"
+}

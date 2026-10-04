@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:2141fa1076d379fbd504b5d15d12e59945963d128d38390f60e8b6d05b94dade",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:a-surface-can-refuse-every-write",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:service"
+}

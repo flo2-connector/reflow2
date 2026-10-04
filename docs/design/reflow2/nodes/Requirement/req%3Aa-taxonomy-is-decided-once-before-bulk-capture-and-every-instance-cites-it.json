@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:9985960ccf24d41b76df0a37ec3f23e06732512629d6e24fc822f959a2a0c93b",
+  "node_id": "req:a-taxonomy-is-decided-once-before-bulk-capture-and-every-instance-cites-it",
+  "node_type": "Requirement",
+  "properties": {
+    "lineage": "original",
+    "name": "A project's recurring parts are encoded once, as accepted Decisions, before bulk capture; every later instance cites its encoding, and instances of one category that are encoded differently with no governing Decision are named",
+    "priority": "high",
+    "provenance": "authored",
+    "statement": "Between structure and bulk capture — after adopt's breadth pass, or after genesis has seeded a design — reflow2 drives the agent to list the categories the design will hold many of and, for each, to decide ONCE how one instance is encoded (node type, kind, which edges, name pattern) as an accepted Decision, so that every later capture of an instance is GOVERNED_BY that Decision instead of re-deciding ad hoc. Three legs: a served establish-taxonomy skill; an instruction in adopt and genesis that points at it at that moment; and a detector that notices several nodes of one type whose encoding differs (some with a kind, some without; some carrying an edge the others lack) with no Decision governing them, and asks whether an encoding decision is owed. Honest limit: reflow2 can notice inconsistency among instances and ask for the decision; it cannot know what a repository's categories are. Promoted from Alex's idea (relayed by Anthony 2026-09-17) on Anthony's word the same day: \"accept/promote all of Alex's ideas\".",
+    "status": "accepted"
+  }
+}

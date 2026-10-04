@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:db108082b4f87489862795f7f1be1ba8b8ceffd3e461f70e12c42b45dac9c6ef",
+  "node_id": "epoch:snapshot-per-revision",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "epoch_type": "revision",
+    "name": "A second revision in one epoch stops overwriting the first snapshot (2026-07-29)",
+    "sequence": 230,
+    "status": "arrived"
+  }
+}

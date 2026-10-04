@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:65323054232c134cce66dc5a20add9b849c7195f1a9bb154d89e82c44005d6e2",
+  "edge_type": "EVOLVES_INTO",
+  "from_id": "dec:idea-a-byte-backend-that-compiles-in-seconds",
+  "properties": {
+    "evidence": "That question asked which EMBEDDED byte store meets the six-function KvBackend seam and compiles fast (redb was its candidate). This is the same question grown up: it adds a NETWORK store to the option set, which changes what the store is for, not just how fast it compiles."
+  },
+  "to_id": "dec:idea-is-redis-a-third-backend-option-and-what-would-it-buy-over-rocksdb-or-in-memory"
+}

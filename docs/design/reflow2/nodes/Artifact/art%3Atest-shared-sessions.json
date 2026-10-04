@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:6b818a12b0292741bf8bf9f084a950c64b53802e7bc9338559db0ec3ebf74f6b",
+  "node_id": "art:test-shared-sessions",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "granularity": "atomic",
+    "location": "tools/test_shared_sessions.py",
+    "name": "test_shared_sessions.py",
+    "status": "realized",
+    "volatility": "stable"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:c950184ad998c31efc06fbd80166e1d38234522b015bb03bf0127cf3a7ea9255",
+  "node_id": "fact:manual-work-a9e01e8871c11ebf",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "manual_work",
+    "statement": "Wrote a throwaway Python script during the release cut to find the increment's unpinned change events: load the previous tag's committed export, load the current one, take the set difference of ChangeEvent ids, and subtract every id that already carries an AT_EPOCH edge. It returned 8, all of them accept-events, which were then pinned one by one. The cut procedure names this diff in prose — \"found by diffing ids against the previous tag's export rather than against memory\" — and nothing computes it: changelog_view renders a window but does not say which events fall outside one, and arrival_delta compares what was scheduled against what was delivered, which is a different question. Searched find_tools for the shape before concluding.",
+    "subject_id": "proj:reflow2",
+    "valid_from": "2026-09-12",
+    "value": "{\"diagnosis\":\"tool_missing\",\"reflow2_tool\":null}"
+  }
+}

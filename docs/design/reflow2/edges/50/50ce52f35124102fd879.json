@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:c6d718907c87fd63c7eb47f9ed3bafe089076152b9f4c7b8a6586181ab227712",
+  "edge_type": "BLOCKS",
+  "from_id": "dec:idea-does-reflow2-need-a-byte-store-at-all-or-only-durability",
+  "properties": {
+    "confidence": 0.9,
+    "evidence": "The open question stalls the accepted work, and the sequencing is the whole of it. That decision owes a switch from `rocksdb` 0.24 to `rust-rocksdb` in its own PR — an 86-file migration whose entire subject is the RocksDB backend. If the storage question resolves toward the export document as the enduring artifact, `cmp:rocksdb-backend` is retired and that migration is work done and then deleted. Blocked rather than rejected: the switch stays correct and stays owed if RocksDB stays."
+  },
+  "to_id": "dec:absorb-rocksdb-024-unchanged-then-switch-separately"
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:d35d9be3d889060a93481a5ad15e9c91d608de28d37b30a97ed03496dddffb29",
+  "edge_type": "MITIGATES",
+  "from_id": "dec:idea-what-guarantees-the-export-if-the-export-is-the-only-durable-copy",
+  "properties": {
+    "evidence": "One is a hazard, the other answers it. That 2026-08-15 observation records a real export that was skipped because the written instructions implied a stop that was not needed — a correct-looking reading of a correct-looking procedure, not negligence. It is the measured instance of the failure this question exists to close, and it is why 'write the procedure more carefully' is not one of the roads listed."
+  },
+  "to_id": "fact:defect-the-export-was-skipped-because-the-instructions-imply-a-stop-that-is-not-needed"
+}

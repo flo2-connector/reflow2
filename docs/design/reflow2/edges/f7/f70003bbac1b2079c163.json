@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:d25d98ee99eaa7e22b84853ce353c1445a5b18e9a2068af5eddcb7c56a343730",
+  "edge_type": "ANTICIPATES",
+  "from_id": "dec:idea-reflow2-serves-a-project-that-is-not-software",
+  "properties": {
+    "evidence": "That node (Alex, 2026-08-14) named the shape this one instantiates: the vocabulary is neutral and 'EVERYTHING WRAPPED AROUND IT' is software-shaped. Who authors a domain artifact is a concrete instance of that wrapping, and it is deliberately NOT among its five options — so the earlier node saw the territory without covering this question."
+  },
+  "to_id": "dec:idea-who-authors-the-domain-artifact"
+}

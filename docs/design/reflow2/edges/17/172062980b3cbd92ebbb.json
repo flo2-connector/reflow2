@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:31b444a9f5d8cb176c4d90074903ab668f7e8845fb3fd3df1993cefa17dc58d1",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-settled-choice-can-be-gone-back-to",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:git-anchor"
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:f1edfbdcee90c91b0af6977c58d43236b363e1713fdd84b0487318597a7c1896",
+  "node_id": "chg:accept-9689223190bead99",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "refactor",
+    "detected_at": "2026-08-20",
+    "name": "Adds `capability_has_evidence()` — a predicate, so callers stop naming `CapabilityVerification::Unchecked` to compare against a variant. That naming was the third hop of the module cycle artifact → temporal → verify → artifact. Which VARIANT a capability is in is this module's business; whether it has evidence is the question everyone else asks. No behaviour changed and no types moved.",
+    "subject": "system"
+  }
+}

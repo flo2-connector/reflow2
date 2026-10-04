@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:105d3daaac58e76bd76b64cc8245efd5b3c34575adf51cc6e3f13eb78840cb74",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:init-asks-which-harness",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:packaging"
+}

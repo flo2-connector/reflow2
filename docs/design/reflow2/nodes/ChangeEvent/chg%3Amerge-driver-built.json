@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:5dd4d9718ee3ef5e2e3fbcef73d4db080456cb66ec567215704cd1e7cabb44ce",
+  "node_id": "chg:merge-driver-built",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "name": "reflow2 becomes git's merge driver for the design export, and parallel work gets a procedure"
+  }
+}

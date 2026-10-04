@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:aa79903d0a90592427b9a25b3cd950d4a027a91c92b0581f34e875c439abf341",
+  "node_id": "art:identity",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "granularity": "atomic",
+    "location": "crates/reflow2-core/src/identity.rs",
+    "name": "identity.rs",
+    "status": "realized",
+    "volatility": "stable"
+  }
+}

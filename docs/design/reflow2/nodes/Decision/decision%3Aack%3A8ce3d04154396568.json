@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:ce1f10594f99dfea6ae936bb4f4c74bd655c86f0d231dd20a053f2a34cd312ad",
+  "node_id": "decision:ack:8ce3d04154396568",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Accepted the gap gap:8ce3d04154396568.",
+    "name": "Reviewed: gap:8ce3d04154396568",
+    "rationale": "APPROVED WORK, NOT YET BUILT (Anthony, 2026-07-25). Proving a hook fires in a live session needs a harness-level test rather than a unit test, which is why it is its own piece of work and not a line in an existing suite.",
+    "status": "accepted"
+  }
+}

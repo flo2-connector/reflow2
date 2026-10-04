@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:b80415d0547978b61231e58794a8e2c83b8ffd32f672fa8620fb6cb2b9367efa",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:a-write-in-another-agents-claim-lands-and-names-who-holds-it",
+  "properties": {
+    "approved_at": "2026-09-29",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

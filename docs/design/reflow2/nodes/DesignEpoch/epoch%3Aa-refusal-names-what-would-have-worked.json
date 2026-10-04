@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:dae0d2f969c2e5615b09506ff0177c3044984cf74a953fbb5ff65cd723f4f660",
+  "node_id": "epoch:a-refusal-names-what-would-have-worked",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "epoch_type": "revision",
+    "name": "Enum rejections stop withholding the answer they already built",
+    "sequence": 305,
+    "status": "arrived"
+  }
+}

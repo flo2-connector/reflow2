@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:83910e175f9c890a3b5902de016e90aff9f463c155684cd0b3380be64aeb9167",
+  "node_id": "epoch:an-export-says-whether-it-changed-anything",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "epoch_type": "revision",
+    "name": "export_graph says whether it wrote anything, because the hashes cannot",
+    "sequence": 339,
+    "status": "arrived"
+  }
+}

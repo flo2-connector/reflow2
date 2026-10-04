@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:e530e0b2d6229b5c4bad6c59e3a553f24a85f4d35815053222993bcdff707f6d",
+  "edge_type": "CHANGED",
+  "from_id": "chg:confirmation-vocabulary",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:confirm"
+}

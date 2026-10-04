@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:abb0c181057f8ab1fb127abc9b757ceb6e9e4f90b2e145c05f42287e2f77ebe3",
+  "edge_type": "CHANGED",
+  "from_id": "chg:resolution-bands",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:storyflow-resolution-study"
+}

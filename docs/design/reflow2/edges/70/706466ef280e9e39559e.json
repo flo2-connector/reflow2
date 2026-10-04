@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:28c76de5d87ef785a0df44a273aed2e08e85e85cb55f16c5564ba071c6a003bc",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:work-says-whether-it-reaches-a-consumer",
+  "properties": {
+    "approved_at": "2026-08-22T19:05:00Z",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

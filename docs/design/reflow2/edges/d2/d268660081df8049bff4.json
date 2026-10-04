@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:42dcc67deedd180714a4026a041b10d5a704f388cb267fd322086b52ec57c4a5",
+  "edge_type": "SCHEDULED_FOR",
+  "from_id": "req:a-hosted-server-closes-idle-designs-and-says-busy-when-full",
+  "properties": {
+    "modality": "expected",
+    "recorded_at": "2026-09-27"
+  },
+  "to_id": "epoch:planned-the-hosted-engine-closes-idle-designs-and-drains"
+}

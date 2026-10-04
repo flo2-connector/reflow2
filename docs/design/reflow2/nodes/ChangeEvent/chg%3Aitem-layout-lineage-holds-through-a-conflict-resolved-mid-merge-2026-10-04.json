@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:1276be456b2cbe062cf5034822e25e7d4df0ff437d7abb6980f24929c8a3c6cb",
+  "node_id": "chg:item-layout-lineage-holds-through-a-conflict-resolved-mid-merge-2026-10-04",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "defect_fix",
+    "commits": "7f804d32c923e5722478a6cafa8f3fd8c7196242",
+    "detected_at": "2026-10-04",
+    "name": "Per-item lineage holds through a conflict resolved mid-merge, a re-export repairs a stale prev, and compare reads a checksum on the node and on its change as one design",
+    "rationale": "The lineage is the anchor's to state, not the file's: an export is the act that writes it, so an export must be able to put it right. #571's fourth CI failure (an export mid-merge chaining from the older main) is the case ver:item-lineage-survives-squash-merge-and-a-mid-merge-export was written to reproduce; its test's mid-merge export only wrote a NEW item, which has no predecessor, so it passed without exercising the case. The new test resolves a both-sides conflict during the merge, exactly as AGENTS.md tells a contributor to, and was seen failing on the pre-fix binary. Same class for compare: a derived value the export elides must be derived back by every reader of a document, not only by the import.",
+    "rationale_basis": "contemporaneous",
+    "repair": "corrected_cause",
+    "subject": "system",
+    "summary": "Review of #672 (fix program item 13, step 2) found three defects in the item layout, each reproduced on the real binary before the fix. (1) A real conflict resolved DURING a merge of main mis-chained: with HEAD still the branch's own tip, the export anchored at merge-base(HEAD, main) from before the merge, so the resolved item named the version main had already replaced; the gate failed LINEAGE on the merge commit and no re-export could repair it, because the item's content no longer moved. Now the anchor is the merge-base of main with HEAD and MERGE_HEAD together while a merge is in progress (what the gate asks once it is committed), and every write re-checks the lineage of the items that already differ from the anchor and relinks a stale prev (item_layout::plan_write_rechecking; receipt items.relinked). (2) The gate read `git diff --name-only` without -z, so a path git quotes (any byte past ASCII, which an escaped id passes through) dropped out of LINEAGE and coverage; now -z in Rust and Python. (3) compare_designs read the checksum move as 541 changed artifacts across reflow2's own conversion, though no checksum moved; both sides are now read with the import's rule (export::fill_accepted_checksum). Also an interrupted item write now leaves a hidden temporary file every reader skips."
+  }
+}

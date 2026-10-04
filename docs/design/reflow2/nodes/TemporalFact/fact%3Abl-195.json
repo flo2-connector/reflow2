@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:30e55f8dea899359b0274d55b92ca2c59805aff07c71f149b75ca28124d545a1",
+  "node_id": "fact:bl-195",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "defect",
+    "statement": "[BL-195] disconnected_community suggests generate_bridge at a requirement a RULING forbids anyone to satisfy — the detector proposes exactly the forgery the Decision exists to prevent",
+    "subject_id": "cmp:heal",
+    "value": "{\"evidence\": \"*Same field report, 2026-08-04.* req:stateless_scaling is reported as a 4-node disconnected cluster. It is disconnected on purpose: a recorded user ruling states that no SATISFIES may be drawn to it, because a requirement backed out of its own implementation is satisfied by construction and can never contradict anything. The suggested fix is generate_bridge \\u2014 an agent working the defect list top-down would take it and forge the edge the ruling forbids. The reporter closed the reachability half honestly instead, recording VIOLATES at the named break-point so the hole sits in that component's blast radius; the cluster is still reported, presumably because risk edges are excluded from the structural view \\u2014 which is itself worth confirming. This is [BL-179]'s punish-correct-work trap and [BL-176]'s shape from a third direction: declaring the truth in the vocabulary provided does not stop the alarm. Candidate: let an acknowledgement or the governing Decision mark an intended-unsatisfied state, so the detector reports *\\\"unsatisfied BY RULING (see dec:\\u2026)\\\"* rather than a structural defect with a bridge suggestion. The Decision that governs the unsatisfied-ness is already in the graph; the detector simply cannot see it. Size S\", \"origin\": \"Migrated from docs/backlog.md BL-195 on 2026-08-07 (epoch:backlog-retired). Size estimate carried from the row: S.\"}"
+  }
+}

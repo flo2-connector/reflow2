@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:d1e99bcc925df63a07f59685df3a2e606c62028fffa161c3bb6d8e05059ca0d4",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:run-ci-gates-test",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:run-ci-gates-test"
+}

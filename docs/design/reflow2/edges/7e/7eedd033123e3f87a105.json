@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:96308fb858452bc586f5425c2bd630dc58a18cc4804b6bdf238a7ab7fef999e0",
+  "edge_type": "INVALIDATES",
+  "from_id": "chg:stored-data-is-rechecked-against-the-current-schema",
+  "properties": {
+    "at": "2026-10-03",
+    "note": "Verified false after this change: entry_problems reports no VERIFIES pair refused naming nothing (every_narrowing_entry_holds_today), and a refused VERIFIES onto a Project names the Requirement or Capability in the import's refusal and in the finding (a_refused_verifies_names_what_the_check_is_evidence_for_in_both_places)."
+  },
+  "to_id": "fact:the-verifies-narrowing-refused-eight-targets-naming-nothing-2026-10-03"
+}

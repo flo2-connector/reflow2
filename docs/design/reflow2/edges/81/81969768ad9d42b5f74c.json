@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:ae0a0f99b8555fe11d227c64c0e5168e425e5e2d04e2ed19b5698d8890563057",
+  "edge_type": "CHANGED",
+  "from_id": "chg:seedless-orientation-ships",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "req:a-session-with-no-seed-can-still-orient"
+}

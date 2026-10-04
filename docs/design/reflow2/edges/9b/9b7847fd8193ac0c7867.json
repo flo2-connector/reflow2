@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:7a8fd68383185d270ea599775eebe925cecb737d61014ef1d2838e12af955845",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "ver:toml-fallback-reader",
+  "properties": {
+    "authored_at": "2026-08-06T14:05:00Z",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:claude-code"
+}

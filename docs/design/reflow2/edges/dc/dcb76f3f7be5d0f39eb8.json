@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:0de96e84552042ae7ac6d6dece0c86a825462d647e4e27da2ab256d8e321ff72",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:test-a-stored-item-the-schema-now-refuses-is-reported",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:test-a-stored-item-the-schema-now-refuses-is-reported"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:4e95a379f68ef5f2018fe36d8fdf92a16703c1d88373fbf8c18089aaa880a723",
+  "edge_type": "CONTRADICTS",
+  "from_id": "dec:idea-one-blueprint-the-store-is-the-design-and-an-export-is-a-perishable-photocopy",
+  "properties": {
+    "alignment": "opposing",
+    "evidence": "The 2026-07-25 accepted decision says many writers keep the repo file and merge on pull with no hosted service; this idea makes a shared server the way many people work one design and the export a copy nobody tracks. Both cannot hold for a served design."
+  },
+  "to_id": "dec:multi-writer-architecture"
+}

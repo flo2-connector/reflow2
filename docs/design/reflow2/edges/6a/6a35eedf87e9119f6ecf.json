@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:63507f6b99312f3ac31fdfcfd91a03663473fe4dbc74cda9189df83bc8775333",
+  "edge_type": "HAS_TEMPORAL_FACT",
+  "from_id": "cap:gap-carries-a-reading",
+  "properties": {},
+  "to_id": "fact:gap-to-prompt-tells-the-agent-to-strip-the-vocabulary-its-own-description-says-to-keep"
+}

@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:3cf56f5ddea4d8713743ccb628e7e7504027faa83afc262b40feff402d47845c",
+  "node_id": "ver:a-spawned-daemon-inherits-nothing-it-should-not",
+  "node_type": "Verification",
+  "properties": {
+    "description": "crates/reflow2-mcp/tests/a_spawned_daemon_inherits_nothing_it_should_not.rs, Linux, over the built binary; every daemon a case starts is stopped by a drop guard, also on failure. (1) A client launched by `sh -c 'exec 7>>file; exec ...'` holds the file on fd 7 (the premise is asserted) and the daemon it spawns does not, read from /proc/<pid>/fd. (2) A client run under flock(1): once the client and flock have exited while the daemon still runs, `flock -n` on the same file succeeds. (3) The daemon leads its own session and process group and has no controlling terminal (/proc/<pid>/stat). (4) A daemon stopped with --stop-shared while the client that spawned it runs leaves the process table, rather than staying a zombie of that client. All four failed on main 293f957 (fd 7 held; the lock on fd 3; session = the launcher's; state Z) and pass on this change, 10 of 10 repeated runs with 4 test threads under load. A unit test in shared.rs (detach_tests) runs the fallback descriptor walk that a Linux 5.11+ kernel never takes.",
+    "kind": "verification",
+    "last_run_at": "2026-10-03",
+    "level": "system",
+    "location": "crates/reflow2-mcp/tests/a_spawned_daemon_inherits_nothing_it_should_not.rs",
+    "method": "test",
+    "name": "A daemon a --shared client spawns keeps none of its launcher's descriptors, leads its own session, and is collected when it exits",
+    "status": "passing"
+  }
+}

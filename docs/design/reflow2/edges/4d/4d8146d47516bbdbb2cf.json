@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:6938764bb705179773f54f908c251d2cef451f6e88967d445079be7bdf2b6ec8",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:describe-design-at-path",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:discover"
+}

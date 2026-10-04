@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:6e25f344ca2f479e939bc9996c3815fbe7d55c24e46aa3091fe5a47b50f30aac",
+  "edge_type": "CHANGED",
+  "from_id": "chg:ten-defaults-stop-injecting",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cap:defaults-are-not-serialized"
+}

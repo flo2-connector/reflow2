@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:b1d3f21ed35f532cb015141267bfde03b143d3388f5fca2203e4818a419a3873",
+  "edge_type": "ANTICIPATES",
+  "from_id": "dec:idea-the-environment-compliance-layer-was-designed-and-never-built",
+  "properties": {
+    "evidence": "EnvironmentRule's zero instance count IS that decision showing up as data. It recorded that the compliance layer was designed in full and never built; measuring the vocabulary two weeks later found the type declared and never instantiated. The earlier node predicted this reading without anyone having taken it."
+  },
+  "to_id": "dec:idea-the-governance-layer-is-declared-and-mostly-unused"
+}

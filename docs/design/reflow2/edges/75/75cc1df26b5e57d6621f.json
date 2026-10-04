@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:a039929db735414ab28597f45dd3924594f4944473c2fa99eee0b94cdb3f0e84",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:verification-freshness",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:confirm"
+}

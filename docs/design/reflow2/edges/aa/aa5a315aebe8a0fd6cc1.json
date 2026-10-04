@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:bd3ddd731fc75c7dfc4c657b71080678b21b1ae3cab382f491554dc7a6a57c56",
+  "edge_type": "CHANGED",
+  "from_id": "chg:accept-8afa777c0ec297bc",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:find-tools-rank-baseline"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:e1f8567664d6f6e1c922a513d991cb12ab13524f97a1f98c18ea0266f5e7406f",
+  "node_id": "chg:cmp-skills-gets-one-parent",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "defect_fix",
+    "name": "cmp:skills, snapshotted while it still holds both parents",
+    "subject": "record"
+  }
+}

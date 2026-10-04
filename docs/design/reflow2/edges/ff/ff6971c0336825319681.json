@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:06d8a8ca1a6b86fe036ed21d6c13d61b27bd1a6451d3a1b04efcaa14314770ab",
+  "edge_type": "REALIZES",
+  "from_id": "art:tools-exchange",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:complementary-pairing"
+}

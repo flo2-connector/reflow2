@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:8f6e9ec4cc254d04928499e438547f0ab5461c86d227d4162484351dbc65b135",
+  "edge_type": "DOCUMENTS",
+  "from_id": "art:dev-storyflow-feedback-2026-09-27",
+  "properties": {
+    "evidence": "The brainstorm pass this rule requires: this exploratory Decision is wish #48 (a repository qualifier on artifact/path citations, or a server-side relocation map for an archived repo), recorded in the reporter's words from this document."
+  },
+  "to_id": "dec:idea-a-location-names-its-repository-or-an-archived-repo-is-relocated"
+}

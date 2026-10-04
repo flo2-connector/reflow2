@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:87b5a1730e1520b0381ec58db6961f34dd09b543c1f58f972fb09e53bcd26fcc",
+  "node_id": "epoch:v0261",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "epoch_type": "release_cut",
+    "name": "v0.26.1 cut — rmcp 3.0.1 to 3.1.2, taken as its own tag so a protocol regression would have exactly one candidate cause",
+    "sequence": 293,
+    "status": "arrived"
+  }
+}

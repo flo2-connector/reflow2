@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:132e860137f40ae0e3ee2d470411c4da611adbd990726797d9206cf0004820a4",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-graph-algorithms-check-is-recorded-with-what-it-misses",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cap:graph-algorithms"
+}

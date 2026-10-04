@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:5e6efb8f020cfe1462ba9a049a90ecc131f34bbe4a2c927ad72fd3b2fbae1406",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0670",
+  "properties": {
+    "as_checksum": "sha256:14cb6d8e21e7323133b1bbb9958a9981a424b9b7ffcda2d7fd428c01e23d04fd"
+  },
+  "to_id": "art:change-event-text-test"
+}

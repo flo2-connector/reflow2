@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:e0de2079515b672bbf37cbc2018f4c2cbaba213da04d1538dcdb19279bbf180a",
+  "edge_type": "REALIZES",
+  "from_id": "art:adopt-skill",
+  "properties": {
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:the-domain-standard-is-asked-recorded-and-its-absence-noticed"
+}

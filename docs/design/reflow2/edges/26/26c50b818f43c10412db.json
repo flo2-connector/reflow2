@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:dd6b777bc19dac56cd82832bc396fefcb0455b1c09e2461805e9c5fab1425df9",
+  "edge_type": "REALIZES",
+  "from_id": "art:alternatives",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:decision-point"
+}

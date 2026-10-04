@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:a29f9d3b4c5422632d659a6e3747c6b33e9636444586aab126e0eaaa3499b898",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0500",
+  "properties": {
+    "as_checksum": "sha256:f35c611572dfe346718c41d43a37eed2369a57354f12bf9feac686764daebb06"
+  },
+  "to_id": "art:repair-notes-lifted-test"
+}

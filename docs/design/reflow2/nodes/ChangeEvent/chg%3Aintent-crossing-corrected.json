@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:67877fb5fb9b50de15136cfcc2816a2ce7d38ddc917dd984ae6f397963299012",
+  "node_id": "chg:intent-crossing-corrected",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "test_failure_fix",
+    "name": "Correction within the hour: a published surface ALREADY carries designated Requirements, not only Interfaces — only Decisions cannot cross"
+  }
+}

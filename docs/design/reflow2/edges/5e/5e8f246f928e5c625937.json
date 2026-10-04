@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:e39b65f5db5e59314b04dcefd0ad63dd3063f6deaa9aa3a424f6092adcad5baf",
+  "edge_type": "AT_EPOCH",
+  "from_id": "snap:epoch:preserved-on-write:fact:root-cause-one-shot-modes-return-before-the-pointer-check-and-opening-a-store-creates-it-2026-10-02",
+  "properties": {},
+  "to_id": "epoch:preserved-on-write"
+}

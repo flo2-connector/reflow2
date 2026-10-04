@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:0cc4a22ed2a2ced8dc665d405f5245c1f1b9bb8baab901d3a58ea5dba755c271",
+  "node_id": "dec:idea-missing-edge-prediction",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "RECORDED AS BRAINSTORMING, NOT AS A PROPOSAL — from the 2026-08-01 dynograph-foundation review. Nothing here is settled.\n\nTHE IDEA: dynograph_graph::link_prediction_all / link_prediction_from (unused) score non-adjacent node pairs by how much their neighbourhoods overlap — common neighbours, Jaccard, or Adamic-Adar (which down-weights hubs). Read on a design graph: \"these two look like they should be connected and are not — is there a missing SATISFIES, or DEPENDS_ON?\"\n\nWHERE IT LANDS: BL-114's unsolved half. That item records that disconnected_community SUGGESTS adding a bridge while its suggestion does not know the detector's own selectivity, so the advised bridge's only correct forms are edge types the measurement excludes. Link prediction would propose WHICH bridge, on evidence rather than on a template.\n\nIT MUST BE AN ASK, NEVER A REPAIR. dec:ask-not-repair (suspected duplicates are asked, never merged) and dec:report-dont-judge both apply directly, and apply_heal already proposes-and-stops in rigid mode. A predicted edge written into the graph would be reflow2 inventing design.\n\nTHE HONEST COUNTER-ARGUMENT, and it may be fatal: a golden thread is largely a TREE. Trees have very few common neighbours, so neighbourhood-overlap scores may be near-zero almost everywhere and the signal may simply not exist on this shape of graph. That is measurable BEFORE any build — run it over reflow2's own 1179-node export and see whether anything scores. docs/sharpening.md is exactly the discipline for that, and this should not be built until the instrument says there is a signal.",
+    "name": "OPEN — should reflow2 propose MISSING edges from neighbourhood overlap, as a question rather than a repair?",
+    "rationale": "Included because it is the only unused foundation function that addresses BL-114's open half; recorded with its likely-fatal objection attached rather than argued down, so a later session inherits both.",
+    "status": "proposed"
+  }
+}

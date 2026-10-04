@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:f2275540a25989550c27778a213b3b05fc6aa20d446c212fa6b336b4fdbca3af",
+  "edge_type": "REALIZES",
+  "from_id": "art:tool-listing",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:latent-surface"
+}

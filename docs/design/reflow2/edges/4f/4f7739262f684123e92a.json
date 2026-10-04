@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:d36ca57468695e77878b4a4dafd7b87bc6e574a0c5491eb996dc43cc77b386d7",
+  "edge_type": "INVALIDATES",
+  "from_id": "rel:v0700",
+  "properties": {
+    "at": "2026-09-25",
+    "note": "Every step the follow-up named is done and was verified in the session. /jot was built (#586) with /note and /log-issue as its tagging words, loop_status's follow_ups show tags, and settling routes by tag. It was released as v0.70.0 (#587): five assets and the container image published, release_report read. flo2 regenerated its skill catalog from 0.70.0 (flo2 #66), and the droplet was moved to 0.70.0 with ops/flo2-reflow2-upgrade, all seven designs answering. That also brought the droplet 0.69.0's get_skill change. NOT yet seen: /jot run from a chat app."
+  },
+  "to_id": "fact:follow-up-build-jot"
+}

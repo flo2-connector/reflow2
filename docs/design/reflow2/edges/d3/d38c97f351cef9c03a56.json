@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:1100c17a9cbc7982450cba0ed6cd272869c3363ad1aa7b6a11899bb1263f0c71",
+  "edge_type": "SCHEDULED_FOR",
+  "from_id": "req:a-release-cut-works-when-the-design-lives-on-a-server",
+  "properties": {
+    "modality": "expected",
+    "recorded_at": "2026-09-27"
+  },
+  "to_id": "epoch:planned-a-release-cut-works-against-a-remote-design"
+}

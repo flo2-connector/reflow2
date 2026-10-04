@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:6be5be34fc61afa7903f4c1412c6d329bf3ca755b20bf5525072e052061e4953",
+  "edge_type": "CONTRADICTS",
+  "from_id": "dec:idea-a-check-records-that-it-was-once-observed-failing",
+  "properties": {
+    "alignment": "opposing",
+    "evidence": "Applies to OPTION (c) ONLY, and is drawn so the conflict cannot be missed if (c) is ever picked up. The source document proposes reflow2 'refuse to accept a passing verification that has never recorded a failing run' — a refusal is reflow2 validating a check rather than recording a claim, which is exactly what this accepted non-goal forbids. Options (a) and (b) do NOT conflict: recording what the author says a check was observed to do is the same class of instrument as provenance and the drift dispositions. Picking (c) means overturning this non-goal deliberately, not working around it."
+  },
+  "to_id": "dec:non-goal-reflow2-does-not-judge-whether-a-check-is-meaningful"
+}

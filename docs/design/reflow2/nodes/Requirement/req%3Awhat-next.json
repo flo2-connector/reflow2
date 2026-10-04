@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:8229167fa5d68c6907282de3cac9e83e7e34af155f36a8c2721b5f424633f4f9",
+  "node_id": "req:what-next",
+  "node_type": "Requirement",
+  "properties": {
+    "concern": "core",
+    "designation": "internal",
+    "kind": "functional",
+    "lineage": "original",
+    "name": "The design can say what to work on next, and why that and not something else",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "A person returning to the design must be able to ask \"what is the most pressing thing to work on?\" and get an answer computed from the design itself, with its reasoning visible — not a hand-maintained ordering in a file. The answer must rank an unmade decision ABOVE the work that waits on it, because being told to build something blocked on a choice only the human can make is worse than being told nothing. It must distinguish what is undecided from what is unbuilt from what is misshapen, since those need different actions from different people. And it must be a projection over the graph, never a stored list: a second place where priority lives is a second place for it to go stale, which is the failure the whole backlog-in-the-graph move exists to end.",
+    "status": "accepted"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:266bba4fa4ecfc6c3326f873f52a95d071c472ff714363c0b2454e71adbf986e",
+  "node_id": "chg:session-memory-capture",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "name": "Session memory belongs in the graph, captured as it happens — and the current enforcement points at markdown"
+  }
+}

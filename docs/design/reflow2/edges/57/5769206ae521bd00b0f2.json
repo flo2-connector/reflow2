@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:d81bfe5feaffa36d1e2df28347ffffa53f0d2a57593e9b7b641f083d565c74df",
+  "edge_type": "VERIFIES",
+  "from_id": "ver:a-move-leaves-exactly-one-parent",
+  "properties": {},
+  "to_id": "cap:a-component-can-be-moved-not-just-given-another-parent"
+}

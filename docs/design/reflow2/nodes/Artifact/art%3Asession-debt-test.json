@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:69b7b87978e085f577dd26d30160ebebf43f387993e25c4f7c0bcb8b27294639",
+  "node_id": "art:session-debt-test",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "location": "crates/reflow2-core/tests/debt_since_the_record.rs",
+    "name": "debt_since_the_record.rs",
+    "status": "realized"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:7a725e796e88ae8e1256e4e2fd285f03c49f010568d12df2cbf593297766be6d",
+  "edge_type": "CHANGED",
+  "from_id": "chg:bl69-spof-cut-vertices",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:structure"
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:cbe9aa293556e5ab5ea013651b5a01cf65cca5147ec7bfa040c9434a9c9e2c15",
+  "edge_type": "GOVERNED_BY",
+  "from_id": "cap:a-remote-client-signs-in-to-its-server-with-oauth-2-1",
+  "properties": {
+    "note": "It decides how the refresh token is kept and whether a non-rotating server is accepted, warned about or refused."
+  },
+  "to_id": "dec:what-reflow2-does-when-a-server-does-not-rotate-refresh-tokens"
+}

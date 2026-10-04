@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:33017016912ba6c1e455f7f6afebfad322a441983bfb0566ff720844f0d6ebcf",
+  "edge_type": "REALIZES",
+  "from_id": "art:storyflow-resolution-study",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cmp:docs"
+}

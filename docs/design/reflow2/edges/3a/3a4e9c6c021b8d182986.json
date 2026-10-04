@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:19887839982ee4f1c306fe0297aa0f12219cb8ea04d0daf5532496ce2bf2bbb7",
+  "edge_type": "INVALIDATES",
+  "from_id": "chg:every-one-shot-mode-resolves-its-design-first-and-every-flag-is-honoured-or-refused-2026-10-02",
+  "properties": {
+    "at": "2026-10-02",
+    "note": "Re-measured 2026-10-02 on the branch binary: in a folder holding only .reflow2.toml, --only-if-present --call design_identity exits 1 naming the design id and address and the folder is unchanged; with the user-scope entry's --shared added, --shared is refused by name. No store is minted."
+  },
+  "to_id": "fact:a-cli-call-in-a-pointer-folder-mints-a-fresh-local-store-2026-10-01"
+}

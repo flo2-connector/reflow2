@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:bfcc61112e5f06ac179d1d1fa9eb165bb56b9ad42668cee32222dce8eee31419",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-module-stands-behind-the-read-contract",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cmp:granularity"
+}

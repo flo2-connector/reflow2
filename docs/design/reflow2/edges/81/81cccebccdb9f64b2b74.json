@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:1ff97866448de4373982bd3b672bdb5fe299e786ad1138def31a8cf020d1c8f2",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-writing-call-keeps-the-committed-export-current-2026-10-03",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "art:test-a-writing-call-keeps-the-committed-export-current"
+}

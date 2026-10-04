@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:72916af86ad8f24f14cb4496e2fb070209a0fc3ccb1f8911e71e37435e6a1d66",
+  "node_id": "decision:ack:67af7913831fa280",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Accepted the gap gap:67af7913831fa280.",
+    "name": "Reviewed: gap:67af7913831fa280",
+    "rationale": "Checked 2026-09-07: still open. loop_status takes only a contributor and a since-export flag, what_next takes only a limit, and no phase or mode of work exists anywhere in the loop surface.",
+    "status": "accepted"
+  }
+}

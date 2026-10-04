@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:b8f34a0e4d3c33dfb34b2e4ec0fb9230e3d74f0468b8a52b3a3b06b81761896e",
+  "node_id": "decision:ack:4589232c9150f8fe",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Accepted the gap gap:4589232c9150f8fe.",
+    "name": "Reviewed: gap:4589232c9150f8fe",
+    "rationale": "Standing disposition for planned-but-unbuilt capabilities: cap:onboarding is a skill over existing operations (BL-101) and no artifact exists yet. It arrives with the build.",
+    "status": "accepted"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:c2e1fee4cba52abc7a25771a569ae39b2991db344d0d0f47f18c6dab16970f74",
+  "node_id": "art:parallel-work-skill",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "document",
+    "granularity": "atomic",
+    "location": "getting-started/skills/parallel-work/SKILL.md",
+    "name": "parallel-work/SKILL.md",
+    "status": "realized",
+    "volatility": "stable"
+  }
+}

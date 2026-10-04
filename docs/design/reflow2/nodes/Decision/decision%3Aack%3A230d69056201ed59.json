@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:8aa1c9bfb940df1ff2e87043078dc0d38ab83d7758d7ee0fdf45894e337c1d58",
+  "node_id": "decision:ack:230d69056201ed59",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Accepted the gap gap:230d69056201ed59.",
+    "name": "Reviewed: gap:230d69056201ed59",
+    "rationale": "Anthony, 2026-07-31: park until the other fixes ship. Two reasons, and the first is a genuine blocker rather than a preference. It sits against `dec:loop-status-state-not-history` — loop debt is computed from graph state and NEVER from run history — and whether the KIT may report on its own adoption is a different question from what the LOOP may reason from when it computes debt. That distinction has to be settled before anything is built, or it gets discovered afterwards. Second, the three fixes accepted alongside it (situation-triggered nudging, imperative hint wording, conventions on the tool) are cheaper and more directly aimed at the problem; measurement is how you learn whether they worked, so it is worth more AFTER they ship than before. Revisit when they land. Recorded as deferred, not dropped: the need is real and this is a sequencing call.",
+    "status": "superseded"
+  }
+}

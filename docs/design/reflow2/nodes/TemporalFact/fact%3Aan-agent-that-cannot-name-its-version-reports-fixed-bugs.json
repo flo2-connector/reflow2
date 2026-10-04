@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:ad7ae23247cec9f4122e996fa838db949e9c50078aea586a443fde1ab1447419",
+  "node_id": "fact:an-agent-that-cannot-name-its-version-reports-fixed-bugs",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "status",
+    "statement": "MEASURED 2026-08-23, and worth more than the report that produced it. dev_storyflow filed `detect_gaps` as returning 328,654 characters with \"no `limit`, no `offset`, no `brief`\" and named it the loop's central call. IT WAS ALREADY FIXED: `budget_chars` (default 30,000) with a three-tier degrade landed in f0ce3e1 (#303) at 01:29 THE SAME DAY, roughly eighteen hours before the session that filed it. The reporter was running a pre-#303 binary.\n\nTHE REPORTER NAMED THE CAUSE IN ITS OWN ENVIRONMENT NOTE WITHOUT CONNECTING IT: \"`.reflow2/kit-version.json` absent — could not read a version.\" An agent that cannot name the version it is running cannot tell a live defect from a closed one, so it spends its credibility on bugs that are already fixed — and the maintainer spends time re-verifying them. No amount of reply budgeting fixes that.\n\nTHE SAME TRAP IS LIVE ON THIS SIDE, and this session hit it: `loop_status.served_by` reported `stale: true` — the shared server's executable had been replaced since it started, so every computed rollup it returned came from code no longer on disk. reflow2 CAN say this about itself and does, in one tool. What a CONSUMER gets is a file that may simply be absent.\n\nWHAT IS OWED, and it is small: a served surface that answers \"what version am I talking to?\" without depending on a file the installer may not have written. `loop_status.served_by.reflow2_version` already computes it; nothing puts it where a friction report would pick it up.",
+    "subject_id": "req:declared-vocabulary-is-reachable-from-the-surface",
+    "valid_from": "2026-08-23"
+  }
+}

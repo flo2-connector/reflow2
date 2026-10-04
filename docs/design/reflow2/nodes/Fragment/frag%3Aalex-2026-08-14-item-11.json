@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:23a95a14514a25044190a6bd8a45fada75fb17f3b1e30d7f92a83a95eb48e7b4",
+  "node_id": "frag:alex-2026-08-14-item-11",
+  "node_type": "Fragment",
+  "properties": {
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Item 11: 'link_artifact accepted a Requirement as target_type. Skill text says Capability or Component. The call succeeded. Either the tool is wider than the skill, or this is an accidental accept. Unclear whether REALIZES onto a Requirement is meaningful.'"
+  }
+}

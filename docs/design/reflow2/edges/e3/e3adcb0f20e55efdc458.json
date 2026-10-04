@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:6b4d37b612b601e529de0497c6310a506823bdd76ded2e1e54635abc314e84e7",
+  "edge_type": "EVOLVES_INTO",
+  "from_id": "dec:idea-should-a-revising-write-say-what-it-removed",
+  "properties": {
+    "evidence": "Promoted 2026-09-20 on Anthony's word ('Agree with all your recommendations'). Option chosen: The notice only. The shrink-refusal option was rejected because a deliberate deletion is legitimate and the flag would tax every honest edit."
+  },
+  "to_id": "req:a-revising-write-says-what-it-removed"
+}

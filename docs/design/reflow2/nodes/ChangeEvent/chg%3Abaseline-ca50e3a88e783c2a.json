@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:f5e32f9e9b42be36bd98fb74e041b9dbac0918087ac3201af1f59d5d1261847f",
+  "node_id": "chg:baseline-ca50e3a88e783c2a",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "baseline_established",
+    "detected_at": "2026-09-05",
+    "name": "First baseline. Gained write_generation() exposing the ReadCache counter to the memo.",
+    "subject": "record"
+  }
+}

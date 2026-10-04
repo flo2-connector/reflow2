@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:24e6c09904cea3c8dad001d0882fb08d21d19606c284e6eaae4172fc4300e62b",
+  "edge_type": "REALIZES",
+  "from_id": "art:test-a-procedural-boundary-has-a-word",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:interface-spec"
+}

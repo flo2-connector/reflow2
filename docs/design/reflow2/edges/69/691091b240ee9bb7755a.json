@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:c31db7bbc33a92756c726ce5258b1d5769bf5288d02251a04c4375d286715cc0",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0700",
+  "properties": {
+    "as_checksum": "sha256:de1a8a952b8f23bf3e960769e9877b9c329a8e585697fbf6c018563a221a24d5"
+  },
+  "to_id": "art:lessons"
+}

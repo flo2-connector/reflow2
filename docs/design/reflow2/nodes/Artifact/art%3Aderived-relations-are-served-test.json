@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:f8bf6fbd05fea78bbffabc373d504a88794927bd6d3192f6a97348477360f846",
+  "node_id": "art:derived-relations-are-served-test",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "test",
+    "location": "crates/reflow2-mcp/tests/derived_relations_are_served.rs",
+    "name": "derived_relations_are_served.rs",
+    "status": "realized"
+  }
+}

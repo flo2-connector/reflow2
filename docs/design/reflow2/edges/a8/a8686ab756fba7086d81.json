@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:5fc0fa994aabdb8c0bd806d105d848c53e1bfe7a9050eaf8f1b2a10af2a991b7",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-a-question-is-addressed-to-a-person-and-travels-as-a-batch-with-its-evidence",
+  "properties": {
+    "evidence": "Listing questions waiting on a named person only makes sense on top of the per-person loop read that requirement asks for, which today covers decisions and owned ground only.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "req:the-loop-says-what-is-owed-to-a-person"
+}

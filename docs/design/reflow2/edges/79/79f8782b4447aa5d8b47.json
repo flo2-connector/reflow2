@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:74eb8974e8080bf0328b1ad3f0f98e30550bc22e43063d6e1ffa3e82cf9c5120",
+  "edge_type": "ANTICIPATES",
+  "from_id": "dec:idea-where-does-the-10k-work-actually-land",
+  "properties": {
+    "evidence": "The earlier one saw this coming. It measured that the ceiling at 10k is not RocksDB's throughput but the number of OPEN INSTANCES, since reflow2 welds one design = one directory = one StorageEngine, and it named the unaddressed engineering question as 'make opening a design cheap'. A per-session derived store is an answer aimed at exactly that question."
+  },
+  "to_id": "dec:idea-the-store-becomes-a-session-cache-and-the-export-becomes-the-truth"
+}

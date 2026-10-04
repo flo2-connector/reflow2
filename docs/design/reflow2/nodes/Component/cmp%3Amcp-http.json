@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:541cd9a8a9d9fb373a292992940089987eb838c7916b3d7de5d86483301f5dc2",
+  "node_id": "cmp:mcp-http",
+  "node_type": "Component",
+  "properties": {
+    "kind": "module",
+    "level": "component",
+    "name": "mcp_http",
+    "provenance": "authored",
+    "purpose": "The MCP-over-HTTP client primitives — post a JSON-RPC line, read the reply. Split out in #262 along the honest line: this knows how to SPEAK to a server, `shared` knows how to MANAGE one, `proxy` knows how to FORWARD a session to one.",
+    "status": "planned",
+    "tier": "operational"
+  }
+}

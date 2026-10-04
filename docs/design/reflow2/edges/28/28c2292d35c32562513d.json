@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:552a890e351ce39e7d4da2b87561d245cab9af9448dd2f4d1741af2c695f96b6",
+  "edge_type": "YIELDED",
+  "from_id": "frag:alex-2026-08-14-remainder",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "dec:idea-should-record-change-refuse-a-snapshot-of-state-that-already-moved"
+}

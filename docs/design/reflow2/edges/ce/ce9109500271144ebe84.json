@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:ce6ec8a2a6aac3c31c3f5f83779c6c83d0f6e7b4ff07a0bba490fcfcbb366f95",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0321",
+  "properties": {
+    "as_checksum": "sha256:c5a5a59a2a71f549745745c4f1151b8a48d5bfbc44c121320da963dc6b35b083"
+  },
+  "to_id": "art:cycles-test"
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:f3ff91d85001b39d743595c4f8e328cf589ae46d8432077a4e01293eb5df356d",
+  "edge_type": "REALIZES",
+  "from_id": "art:adopt-skill",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked",
+    "note": "Region mode"
+  },
+  "to_id": "cap:incremental-adopt-with-a-frontier-and-a-deferred-derivation-marker"
+}

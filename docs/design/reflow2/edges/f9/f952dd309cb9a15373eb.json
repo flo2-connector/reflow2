@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:3379926c56aa6d16924522e43a4aafb79b93abb9c787932a90595f8d05869e41",
+  "edge_type": "ANTICIPATES",
+  "from_id": "req:a-prohibition-written-into-prose-is-noticed-as-unfiled",
+  "properties": {
+    "evidence": "The accepted requirement that a prohibition in prose is noticed saw this class coming; what it did not cover is a consumer classifying it wrongly at the point of capture."
+  },
+  "to_id": "fact:the-schema-serves-the-types-and-not-the-rules-that-tell-them-apart-so-a-numeric-prohibition-was-filed-as-a-requirement"
+}

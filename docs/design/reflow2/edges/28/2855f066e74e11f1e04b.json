@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:64e6ebd0838975448135a3196bdaf7568d2220a980fb2909f95edb57db808d68",
+  "edge_type": "INVALIDATES",
+  "from_id": "chg:the-loop-notices-a-fix-with-no-cause-and-a-defect-its-subject-outran",
+  "properties": {
+    "at": "2026-09-06",
+    "note": "The detector the fact named as owed ('a defect fact whose subject artifact has a later accepted change and no INVALIDATES from any ChangeEvent') is built as defect_overtaken_by_change. Its claim that the detector 'would have flagged this fact on the day the fix landed' is REFUTED, not confirmed: the misread fact's subject was the reporting document (art:dev-storyflow-feedback-2026-09-04), not the part that was wrong, and the fixer carried no detected_at — so as specified the mirror is silent on its own origin case. What reaches that case is the other leg, fix_without_recorded_cause, which asks every fix for the INVALIDATES the fixer never drew. Measurement and bound on fact:the-root-cause-detectors-measured-on-reflow2s-own-design-and-the-mirror-misses-its-own-origin."
+  },
+  "to_id": "fact:a-defect-fixed-but-never-closed-on-the-record-was-re-fixed-wrongly-a-day-later"
+}

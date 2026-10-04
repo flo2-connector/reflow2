@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:7d81e76611498814e922b3538f09f3b2bd48c5ba5439f594c772fb438cea68ee",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:what-next",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:report"
+}

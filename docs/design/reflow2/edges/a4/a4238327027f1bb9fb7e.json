@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:356f43fa3a0b42d9e01b91fb6c5ff976ef6f4a5cc355b7c2626105b55d773f0b",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-decomposition-ladder-is-open",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:schema-core"
+}

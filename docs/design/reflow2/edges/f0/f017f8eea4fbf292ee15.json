@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:0f8e3ebe669a87afb521018fce603b8504f659b6d199cb37257fc97e33f63a12",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-budget-is-what-makes-optimisation-stop",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:schema"
+}

@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:cd63f58695c3014409746904a88755b4e7f7c09019b6de6c33570c87296fc66d",
+  "edge_type": "GOVERNED_BY",
+  "from_id": "cap:select-graph-by-id",
+  "properties": {},
+  "to_id": "rule:a-design-is-named-by-an-id-not-a-path"
+}

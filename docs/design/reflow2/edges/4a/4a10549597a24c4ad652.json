@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:b520b4232f6f4c235e88ce0160febedc561ee8630f452badd26fbf21e647ceaf",
+  "edge_type": "CONSUMES",
+  "from_id": "cmp:corpus",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "ifc:graph-read"
+}

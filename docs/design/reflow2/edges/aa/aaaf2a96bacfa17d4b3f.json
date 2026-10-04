@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:3dac4c7255b87f3a7dcefe1952e9398262e74779ca77079f35da33178f987d9b",
+  "edge_type": "CHANGED",
+  "from_id": "chg:rocksdb-0-25-the-same-crate-2026-10-02",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cmp:rocksdb-backend"
+}

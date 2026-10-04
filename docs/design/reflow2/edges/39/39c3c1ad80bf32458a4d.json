@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:69f2da7fa6442106e7e3ca19e265072e3f1820739289af556494987696150d5a",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:test-a-server-drains-before-it-stops",
+  "properties": {
+    "covers": "partial"
+  },
+  "to_id": "ver:a-server-drains-before-it-stops"
+}

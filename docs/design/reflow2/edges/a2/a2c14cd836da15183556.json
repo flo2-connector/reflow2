@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:61eaa93ad586b4c80c928d9149e8f1b87902bc1a276f4dd5cf7b3590c176a673",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "ifc:authenticating-gateway",
+  "properties": {
+    "authored_at": "2026-08-09",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

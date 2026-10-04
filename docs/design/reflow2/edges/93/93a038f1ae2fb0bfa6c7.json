@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:d9918bb7e51f1a49c5a649d45d3bbc5a6aeb0e669c605ab89d6c6d2ff55370b9",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0471",
+  "properties": {
+    "as_checksum": "sha256:26b80f1d7eda6ddf9a12ce916eca8365e334ebbdc7f298fffec9506094667ab9"
+  },
+  "to_id": "art:root-cause-command"
+}

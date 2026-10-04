@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:593c09c255942f3c65b2a1663e6c1582e1d2fd4f1fefce16633f094a67f0faf3",
+  "node_id": "fact:manual-work-52bdc351ea71fab1",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "manual_work",
+    "statement": "Imported every other committed design export on the machine into throwaway --ephemeral servers, one by one, to prove a schema tightening breaks no consumer's import before shipping it.",
+    "subject_id": "proj:reflow2",
+    "valid_from": "2026-09-23",
+    "value": "{\"diagnosis\":\"tool_missing\",\"reflow2_tool\":null}"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:081b0d6d67ad0536249631e93d514dd91e66c983ba4585c24e9038d23193b58f",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0570",
+  "properties": {
+    "as_checksum": "sha256:07d63c0f4d0b5b79a213fe28a0132913e5d207d2068d590145342d28fa91e56b"
+  },
+  "to_id": "art:manual-work"
+}

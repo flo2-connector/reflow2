@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:2bd114e4f977516668f73543129e5011c2be2b874c17e2b15db428bae2956401",
+  "edge_type": "HAS_SNAPSHOT",
+  "from_id": "fact:root-cause-a-write-replies-with-the-whole-stored-node-and-replace-text-adds-each-prior-field-2026-09-29",
+  "properties": {},
+  "to_id": "snap:epoch:preserved-on-write:fact:root-cause-a-write-replies-with-the-whole-stored-node-and-replace-text-adds-each-prior-field-2026-09-29"
+}

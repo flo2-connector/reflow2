@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:8080c951def6f7bb43a08b71b7efd535560bcbec97b59c3fd462818f1401fc8e",
+  "node_id": "ver:a-loop-hint-says-where-the-node-landed",
+  "node_type": "Verification",
+  "properties": {
+    "description": "add_decision settled in the creating call, and a merge over an accepted decision, are not told they land proposed; add_design_rule with enforced stated is not asked for it; add_capability with satisfies is not told to wire it; regression cover that the true cases still carry their hint.",
+    "findings": "RED on a clean origin/main build, 2026-09-29: 4 of 5 failed (the reply said accepted and the hint said proposed; a merge over accepted likewise; a rule with enforced stated was asked for it; a capability that passed satisfies was told to wire it); the fifth is regression cover for a decision that did land proposed and passes on both. GREEN on the fix: 5 of 5.",
+    "kind": "verification",
+    "last_run_at": "2026-09-29",
+    "level": "integration",
+    "location": "crates/reflow2-mcp/tests/a_loop_hint_says_where_the_node_landed.rs",
+    "method": "test",
+    "name": "A constructor's loop hint says where the node landed",
+    "status": "passing"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:34f1e66f3d369bfccbd3eea7fad5ed40613650f5db124ff05597d7f6c9c01dd5",
+  "edge_type": "EVOLVES_INTO",
+  "from_id": "dec:idea-a-repo-that-holds-its-design-moves-it-to-a-remote-server-once",
+  "properties": {
+    "evidence": "The settled rule said a repo's design moves to a remote server once, reflow2's after flo2's; this idea re-asks whether reflow2's should move at all, given the tools a hosted design lacks."
+  },
+  "to_id": "dec:idea-reflow2s-own-design-moves-onto-flo2-io-or-stays-local"
+}

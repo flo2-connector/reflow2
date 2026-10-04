@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:2d63ca66940f08c4a5f6ca531ff4b17996b988adde2f62a29396162816081a3d",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0730",
+  "properties": {
+    "as_checksum": "sha256:3224d66c93433d77e53e6e638e6d396af32d059b9b6a51a107100fac33880a7d"
+  },
+  "to_id": "art:a-write-is-credited-to-who-it-was-for-test"
+}

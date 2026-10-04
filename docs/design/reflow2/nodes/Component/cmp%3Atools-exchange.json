@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:958ff8c34adb521148cc33bb7ba731341eddcef1de4d4dada3ad59f32e9c93cd",
+  "node_id": "cmp:tools-exchange",
+  "node_type": "Component",
+  "properties": {
+    "kind": "module",
+    "level": "component",
+    "name": "exchange",
+    "provenance": "authored",
+    "purpose": "The EXCHANGE slice of the served surface (18 tools): moving a design across a boundary — export_graph, export_surface, mirror_surface, pair_designs, seam_report, compare_designs.",
+    "status": "planned",
+    "tier": "operational"
+  }
+}

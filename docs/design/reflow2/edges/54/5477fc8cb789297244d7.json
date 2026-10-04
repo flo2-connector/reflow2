@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:95791dec5b6ce776eaa9eef9a2bc70d90ec990cd7f4650d909359ba9814adc47",
+  "edge_type": "CHANGED",
+  "from_id": "chg:decision-status-gains-deferred",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:alternatives"
+}

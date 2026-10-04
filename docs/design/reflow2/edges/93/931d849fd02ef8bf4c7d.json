@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:d70fc47f07ffb3192f159f4d3a6078a2d46257028f11be3e59809938778f6054",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:fork-alternatives",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:alternatives"
+}

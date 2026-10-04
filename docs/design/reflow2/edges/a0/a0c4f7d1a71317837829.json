@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:b72a9c730d2be63e9a1e2bb7247d96feba53dea2a320f2ebc829720a55aa1b16",
+  "edge_type": "INVALIDATES",
+  "from_id": "chg:capture-intents-routing-table-sends-operational-know-how-to-a-runbook-design-rule",
+  "properties": {
+    "at": "2026-09-19",
+    "note": "The fix this change records answers the finding; the finding stays as the measurement that led to it."
+  },
+  "to_id": "fact:field-report-flo2-2026-09-18-operational-know-how-has-a-home-and-the-routing-table-says-it-has-none"
+}

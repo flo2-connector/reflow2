@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:e2268b36d9a7c501699dd097a9f735e599a4a837a0cdb7b2438b1f5b63daa581",
+  "node_id": "chg:a-name-is-not-a-report",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "defect_fix",
+    "name": "87 Verification names that held whole reports are moved into `description`, verbatim",
+    "subject": "record"
+  }
+}

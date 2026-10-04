@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:161fabcd5fa8a4602c0fc81620e1d64321763a9a77ecb0bddc438ae4799f6ec3",
+  "node_id": "chg:confirmation-vocabulary",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "name": "BL-157 + BL-158: the ledger gains a word for \"nothing moved\" — a first baseline is recorded as a first baseline, and a clean reconcile records what it confirmed"
+  }
+}

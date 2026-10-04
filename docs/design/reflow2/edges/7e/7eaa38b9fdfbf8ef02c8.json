@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:efecb9a0665bf14a90a062727a57da282616f60370d1090c6b30358eacb9fc4c",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:a-lesson-is-served-at-the-step-handler-test",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:a-lesson-is-served-at-the-step-handler-test"
+}

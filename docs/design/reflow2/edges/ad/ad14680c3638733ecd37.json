@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:de5b2a68cd996a58357023f6e80ce2ac70e858041fe7b872ed8d8e12698ec7e3",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0400",
+  "properties": {
+    "as_checksum": "sha256:878315a480167a9296209d6b30a41f9f13318292db228829243a7acc24338c23"
+  },
+  "to_id": "art:updating-doc"
+}

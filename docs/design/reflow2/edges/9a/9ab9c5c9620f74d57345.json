@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:a24ed0715a27769a7602958e502a53e59b4a573229f8fc260d092953159b7252",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:shared-sessions",
+  "properties": {},
+  "to_id": "req:many-people-and-many-projects-compose"
+}

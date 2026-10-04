@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:e5d965a8a27274a4644c4cd10fcfc0844f365d9dfc4928720e3483b51acdb8ec",
+  "edge_type": "CAUSES",
+  "from_id": "cmp:shared",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "main.rs published `Rendezvous.graph_path: cfg.graph_path.clone()`, the path as typed, and shared.rs `is_for_this_graph` canonicalised that string against the READER's cwd. Measured: from an unrelated folder the client logged \"ignoring a rendezvous that belongs to a DIFFERENT design … recorded=.reflow2/graph opening=/home/ajs7/project/dev_reflow2/.reflow2/graph\"; from the project folder the same store attached in 0.0 s.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:root-cause-the-rendezvous-recorded-its-store-as-typed-and-readers-resolved-it-against-their-own-cwd"
+}

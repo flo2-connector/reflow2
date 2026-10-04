@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:febe2b6d6ba0359cb8f1eb10b54bdebe0902dee98298c83eaee2001f733cbaaa",
+  "edge_type": "REALIZES",
+  "from_id": "art:tools-coherence",
+  "properties": {
+    "completeness": "partial",
+    "conformance": "unchecked"
+  },
+  "to_id": "cmp:service"
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:44604befe0990d31eef992bf77bdccd1281c83bddac32dcb100396c0e6150f44",
+  "edge_type": "MITIGATES",
+  "from_id": "chg:the-two-reported-fields-get-their-parameters",
+  "properties": {
+    "evidence": "Gives the parameter to all six constructors at once rather than to the reported one, and pins the class with a schema sweep so the next type declaring a description cannot ship without one."
+  },
+  "to_id": "fact:six-constructors-cannot-write-any-prose-because-the-class-was-fixed-one-report-at-a-time-and-never-swept"
+}

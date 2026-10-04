@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:50ffcf90202f09cc550820788a5fb8682dba31edc4c65cd1355b20c17d6d80b2",
+  "edge_type": "CHANGED",
+  "from_id": "chg:accept-4ea9cc8c4b76cafc",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:confirmation-vocabulary-test"
+}

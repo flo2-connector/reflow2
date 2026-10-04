@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:a26b3bcb385f6ef550d5d35be27873a0f8de017141513ac2bcd4eb0eec22bdf2",
+  "edge_type": "REALIZES",
+  "from_id": "art:a-constructor-names-every-edge-it-drew-test",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:a-drawn-relation-is-read-back-as-a-sentence-and-the-skill-names-the-direction-flag"
+}

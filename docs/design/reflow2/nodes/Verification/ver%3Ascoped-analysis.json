@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:7d6753d7405ba41a466252a4b850405eb8c8c921d2c0f90dfd11eada25a3807c",
+  "node_id": "ver:scoped-analysis",
+  "node_type": "Verification",
+  "properties": {
+    "kind": "verification",
+    "last_run_at": "2026-07-25",
+    "level": "integration",
+    "method": "test",
+    "name": "The satellite fixture: a team sees its own gap and not the other segment's, every finding lands in exactly one bucket, a wider scope never sees less, and a mistyped scope is refused (tests/scope.rs, 7 cases)",
+    "status": "passing"
+  }
+}

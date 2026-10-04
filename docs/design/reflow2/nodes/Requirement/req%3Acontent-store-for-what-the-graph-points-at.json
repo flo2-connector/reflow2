@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:1b183964df609d713e1e6f8fb28014d0ce6a45818ef4940ae2fe9288179141f4",
+  "node_id": "req:content-store-for-what-the-graph-points-at",
+  "node_type": "Requirement",
+  "properties": {
+    "concern": "core",
+    "designation": "internal",
+    "kind": "functional",
+    "lineage": "original",
+    "name": "The graph holds pointers; a content store holds the bytes — narrative, transcripts, diagrams and drawings travel WITH the design",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "Anthony, 2026-07-31: reflow2 should capture session context — the conversation itself — as a narrative snapshot recorded in the graph, the way storyflow already does it. \"storyflow has a blob storage setup to actually store all narrative context and pictures, etc, and then the dynograph-foundation just records the pointer to that storage. The benefits is that any session context and generated artifacts or user provided diagrams/drawings can be stored as part of the reflow2 and are persistent.\"\n\nTHE SPLIT IS THE REQUIREMENT: the graph stores a POINTER and the bytes live in a content store beside it. The graph stays small, diffable and queryable — the properties `dec:repo-file-embedded` chose it for — while the things that are large, binary or verbatim stop being second-class.\n\nWHAT THIS UNLOCKS THAT NOTHING ELSE DOES: user-provided DIAGRAMS AND DRAWINGS. The design vocabulary is entirely textual today, and a hand-drawn architecture sketch or a whiteboard photo is exactly the kind of intent that never survives a project — it lives in someone's phone and is gone when they leave. `Artifact` can name a file on disk but nothing carries its content, so a diagram is a path that rots.\n\nIT ALSO FIXES A FLAW THE DESIGN ALREADY NAMED. `cap:session-memory` models the session transcript as a Fragment pointing at `~/.claude/projects/<slug>/<uuid>.jsonl`, and states the problem in its own words: \"a path stored as identity resolves for one person on one machine and silently misses for everyone on a shared graph.\" A content store IS the answer to that — content-addressed bytes travel with the design instead of referring to one person's filesystem. The requirement should be read as completing `cap:session-memory`, not competing with it.\n\nTHE CONSTRAINT THAT MUST SURVIVE, from that same capability: a pointer to a 3 MB transcript is a RECEIPT, not documentation. Storing the raw conversation must not become the excuse that stops takeaways being distilled into Decisions and findings — \"it is all in the transcript\" is the same failure as \"it is all in the backlog file\", one level down. The store makes the receipt durable; it does not discharge the obligation.\n\nPRIOR ART, and it is a sibling rather than a stranger: storyflow already runs this and shares the dynograph-foundation substrate underneath, so the question is what to import, not what to invent. AGENTS.md rule 6 permits exactly this direction — mine the sibling repos for ideas, land the work here.\n\nDELIBERATELY NOT SETTLED HERE: where the bytes actually live. That is a genuine architecture fork against `dec:repo-file-embedded`, and it is recorded separately as `dec:where-content-lives`.",
+    "status": "accepted"
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:a2c6ba55af9937956e7bfa01e6cad8a8adec472d3c11dd3b36557a95ffab8562",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:a-server-drains-before-it-stops",
+  "properties": {},
+  "to_id": "req:a-server-drains-before-it-stops"
+}

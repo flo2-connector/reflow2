@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:b96dc1d192ac44e30eb778ac8290fb3960e33a1c9b868ac90e52e7e34e6c227c",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:coherence-gate-test",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:coherence-gate-test"
+}

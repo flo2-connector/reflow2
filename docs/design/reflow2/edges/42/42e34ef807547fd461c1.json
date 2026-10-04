@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:601b471febea7324ad0b10ba5b094754a8dd695cb9c6b5f8f7983d45c4272595",
+  "edge_type": "CHANGED",
+  "from_id": "chg:accept-a8663d9d81bf09b2",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:contradiction-alignment-test"
+}

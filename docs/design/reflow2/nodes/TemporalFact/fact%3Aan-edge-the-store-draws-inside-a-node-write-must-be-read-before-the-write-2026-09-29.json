@@ -1,0 +1,17 @@
+{
+  "content_hash": "sha256:d6073e4ff076d3e0df616d0d34ecd4d6ade8dfe53b85ae7b991817552d3ef5f9",
+  "node_id": "fact:an-edge-the-store-draws-inside-a-node-write-must-be-read-before-the-write-2026-09-29",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "finding",
+    "name": "MEASURED 2026-09-29: after #622 made TemporalFact.subject_id the stored twin of HAS_TEMPORAL_FACT, record_finding's \"was this edge already present?\" read, taken after the upsert, reported the call's own new edge as already present; a constructor must read presence BEFORE the node write whenever the store draws twin edges inside it",
+    "source": "PR #623 CI run 36580493135 (workspace job), art:dev-reflow2-two-agent-exercise-feedback-2026-09-29 I16",
+    "statement": "OBSERVED on PR #623 (fix/decision-tools-draw-echo-and-name), after merging main at cc3dbd0 (#622, stored twins): the new class test a_constructor_names_every_edge_it_drew failed in CI for record_finding with edges_already_present [\"req:a-need HAS_TEMPORAL_FACT fact:a-finding\"] and edges_drawn missing it. Locally, before the merge, the same test passed. CAUSE, measured by reading crates/reflow2-core/src/twins.rs and schema/temporal.yaml: subject_id carries twin_of { edge: HAS_TEMPORAL_FACT }, so upsert_node draws the edge itself; the handler's presence check ran after the upsert and found the edge the call had just drawn. FIX in the same PR: drawn_edges gained `record(from, relation, to, was_present)` and record_finding reads presence BEFORE the upsert. THE LESSON FOR THE INVARIANT: \"name every edge the call drew\" needs the before-state of every edge the store may draw implicitly — any twin_of property a constructor writes is such an edge, so a new twin declaration can silently change what a constructor's reply says. The class test (diffing the export before and after) is what caught it, which is the argument for pinning the invariant over every constructor rather than per tool.",
+    "steps": [
+      "record_finding"
+    ],
+    "subject_id": "cap:a-drawn-relation-is-read-back-as-a-sentence-and-the-skill-names-the-direction-flag",
+    "valid_from": "2026-09-29"
+  }
+}

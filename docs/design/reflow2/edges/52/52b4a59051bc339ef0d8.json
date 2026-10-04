@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:5ccc5d0fd53ec8a47393e1a24176e2e48fb98d3db562f4b25270ab02da2b0133",
+  "edge_type": "MITIGATES",
+  "from_id": "dec:idea-a-location-names-its-repository-or-an-archived-repo-is-relocated",
+  "properties": {
+    "evidence": "A repository qualifier or a relocation map would record the anchor that root cause found missing, so a move or archive no longer re-anchors relative paths silently."
+  },
+  "to_id": "fact:root-cause-a-location-is-anchored-to-a-root-the-design-never-records-2026-09-28"
+}

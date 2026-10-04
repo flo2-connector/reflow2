@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:2d109dd27fc2b03f1265b99a294671736327887dc4367cba29f30d6d418284a3",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:test-a-number-names-its-source",
+  "properties": {
+    "covers": "whole"
+  },
+  "to_id": "ver:a-number-names-its-source"
+}

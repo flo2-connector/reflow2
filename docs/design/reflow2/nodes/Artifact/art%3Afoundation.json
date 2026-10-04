@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:73ea94c8e0e034c347b39d4b2b14e0efa13ce3f13ea32e5ec9b8876d1a3dc365",
+  "node_id": "art:foundation",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "location": "crates/reflow2-core/src/foundation/mod.rs",
+    "name": "foundation/mod.rs",
+    "status": "realized"
+  }
+}

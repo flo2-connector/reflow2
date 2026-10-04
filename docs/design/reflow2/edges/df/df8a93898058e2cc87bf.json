@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:c820e88e7268abe1c0d9ebb074e9b36165e5fb983683be1bd82a7fe2404912c5",
+  "edge_type": "CAUSES",
+  "from_id": "cap:the-record-moved-is-surfaced",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "Its report names only what the shared record has that the graph lacks (\"holds 9 node(s) and 587 edge(s) this graph does not\") and recommends import_graph; it never names nodes where the graph is NEWER than the record, so following it reverted three live edits whose post-main snapshots were in the same store.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:root-cause-the-record-moved-hint-recommended-an-import-that-reverted-three-newer-live-edits-2026-09-23"
+}

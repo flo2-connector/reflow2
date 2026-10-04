@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:29f21ba8a01c8e1b0007e149408eb5ada5958692a96739f5c2dc91b1e3e14d49",
+  "node_id": "art:test-a-terminal-agent-auto-approves-reads-and-confirms-each-write",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "test",
+    "description": "Nine real-binary tests with an isolated HOME and TMPDIR. They cover: every served tool through `read` (reads run, and each also runs through plain --call; nothing but bookkeeping moves; every other tool is refused before anything is opened, leaving the folder byte-identical); `read` creating nothing where there is no design; export_graph and export_surface with a path refused through `read` and written through `write`; `write` running a write and a read, with JSON positional, as --args and from stdin; `--read-only write` refused; the listing; quiet logs; every --help flag typed after `read`; and --graph-path after the verb.",
+    "location": "crates/reflow2-mcp/tests/a_terminal_agent_auto_approves_reads_and_confirms_each_write.rs",
+    "name": "a_terminal_agent_auto_approves_reads_and_confirms_each_write.rs",
+    "status": "realized"
+  }
+}

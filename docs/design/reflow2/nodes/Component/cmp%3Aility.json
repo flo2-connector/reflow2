@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:02301f6e32947c2aff5120ee39ecfa3d53f05a61f3c7bf005edb1dc3be900e8e",
+  "node_id": "cmp:ility",
+  "node_type": "Component",
+  "properties": {
+    "kind": "module",
+    "level": "component",
+    "name": "ility",
+    "provenance": "authored",
+    "purpose": "What the graph can actually say about the quality axes, and — as much to the point — what it cannot.",
+    "status": "planned",
+    "tier": "operational"
+  }
+}

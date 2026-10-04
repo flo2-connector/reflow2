@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:b5bd22560d25c13a5c0a5ee9fb5a817672184891cfd88bcf5757b5bef4eea4a2",
+  "edge_type": "CHANGED",
+  "from_id": "chg:documentation-subsystem",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "art:readme"
+}

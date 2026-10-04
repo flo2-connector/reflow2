@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:901cd1a3d62c572980ab5c3d25fe5ba2d8bbfd152fcaa3dc790dc0e2fd1b7043",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:a-reader-that-cannot-read-the-vocabulary-is-told-what-it-lacks",
+  "properties": {},
+  "to_id": "req:a-vocabulary-change-a-consumers-binary-cannot-read-is-never-silent"
+}

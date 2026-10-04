@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:8db6b52e85bfec7a1a827825864eb09653ae32f47d514760d0583984a4242d1e",
+  "edge_type": "CHANGED",
+  "from_id": "chg:capture-intents-routing-table-sends-operational-know-how-to-a-runbook-design-rule",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "art:skill-lint"
+}

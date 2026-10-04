@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:dc1c87f47719af162d6c9308844065f1db37d3194421f428633f6b342442ec30",
+  "edge_type": "HAS_SNAPSHOT",
+  "from_id": "req:friction-has-a-severity-bar",
+  "properties": {},
+  "to_id": "snap:epoch:prune-proposed:req:friction-has-a-severity-bar"
+}

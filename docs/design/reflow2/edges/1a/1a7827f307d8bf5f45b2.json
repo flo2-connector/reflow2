@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:f99c4bbec7a23f8776e189b9cc9fbf051c505ae7fd9638241c3996d10d8efc1e",
+  "edge_type": "CHANGED",
+  "from_id": "chg:toml-fallback-reader",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:check"
+}

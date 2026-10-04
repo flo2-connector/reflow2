@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:2ae8335f40f4c1df2eaaf7a026f5ac3afd71f1991ba339251339a19ac335b9fc",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:interface-spec-test",
+  "properties": {
+    "covers": "whole",
+    "note": "migrated 2026-09-22 from a REALIZES link_artifact drew in error"
+  },
+  "to_id": "ver:interface-spec"
+}

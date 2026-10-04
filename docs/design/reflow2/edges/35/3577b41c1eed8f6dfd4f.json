@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:abc7e98b4978471fdedc7a3bb8f8994f12e1a44f4537250dfafe33376aa95453",
+  "edge_type": "CHANGED",
+  "from_id": "chg:accept-d3de572b623e0a5a",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:find-skills-corpus"
+}

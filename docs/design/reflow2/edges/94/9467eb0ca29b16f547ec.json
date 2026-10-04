@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:d6ad69bc028462e8106c539d417c433f7c6c2a89672e192feec45eef154a8f0a",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-name-is-not-a-report",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "ver:skill-triggers"
+}

@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:d7b90ad4bd6b875415888860032fdc25a376152f4ed7aade70d94222cbc66161",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-saved-design-moves-to-the-item-layout-2026-10-03",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:2d59852c56176d6dead23db6f6b1bdc2972ab57aa29fb240da50fb0ab067af66",
+    "checksum_basis": "measured"
+  },
+  "to_id": "art:test-a-degraded-server-recovers-when-its-cause-clears"
+}

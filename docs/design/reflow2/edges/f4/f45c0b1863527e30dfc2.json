@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:2101ab89f3a3ea2db460593dfbd41466beb5c39b7abe106725e1b9ee3a365f86",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:a-session-is-known-by-its-worktree-and-branch",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:proxy"
+}

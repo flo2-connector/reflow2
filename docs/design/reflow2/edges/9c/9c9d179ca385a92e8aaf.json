@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:9977a8caee6bab4153dd1d02abcb2c5bc36d521d3dbae56e1ddd569983122737",
+  "edge_type": "CONTAINS",
+  "from_id": "sub:install",
+  "properties": {},
+  "to_id": "cmp:init"
+}

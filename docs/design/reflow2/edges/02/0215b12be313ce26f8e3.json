@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:52d7ed5e9e9ab05116cb876b2f9004f50cd0ff29eeb7fbadd419adc4200bd613",
+  "edge_type": "CAUSES",
+  "from_id": "art:dev-storyflow-feedback-2026-09-27",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "The root-cause pass on this document's 09-25 report (add_change_event has no repair): it has taken repair since v0.68.0, and every instruction still points at snapshot_before_change or the record_change stub.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:root-cause-repair-reached-add-change-event-in-0-68-and-no-instruction-followed-it-2026-09-28"
+}

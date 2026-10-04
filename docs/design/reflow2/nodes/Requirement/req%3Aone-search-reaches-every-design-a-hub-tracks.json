@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:62ffc27a57009092d5d9a2f9997b711e73edc0acd89fe1081ac9f1ad822a2c76",
+  "node_id": "req:one-search-reaches-every-design-a-hub-tracks",
+  "node_type": "Requirement",
+  "properties": {
+    "concern": "core",
+    "kind": "functional",
+    "lineage": "original",
+    "name": "One search reaches the hub and every design it tracks, gives each design's hits separately, and names every tracked design it could not search and why",
+    "priority": "high",
+    "provenance": "authored",
+    "source": "Anthony (who:ajs), dev_reflow2 hub session, 2026-09-28",
+    "statement": "A design that tracks other designs (a hub, through the design dependencies it declares with a committed export or a server address) shall be searchable together with all of them in one call. The same query runs in each tracked design this server can reach: a committed export read from disk, or a design at an address read with this machine's key. The reply gives each design's hits separately, and names every tracked design it did NOT search and why (no export or address declared, the file missing or unreadable, the server refused, this server does not reach out), so \"nothing found\" in one design is never readable as nothing found anywhere.\n\nAnthony, 2026-09-28, choosing \"Search at the hub\" (dec:until-designs-share-a-server-the-cross-design-check-runs-at-the-hub) after fact:root-cause-a-sibling-designs-precedent-was-surfaced-three-times-and-never-read-2026-09-28: in the dev_reflow2 hub a sibling design's prior discussion was the top hit of a search and still went unread, and a requirement was written without it.\n\nNOT THIS REQUIREMENT: warning on a write (req:a-write-is-warned-when-the-same-thing-already-lives-in-a-related-design, which waits for a shared server), and a hub on flo2.io, whose list of designs is flo2's own record rather than declared dependencies.",
+    "status": "accepted"
+  }
+}

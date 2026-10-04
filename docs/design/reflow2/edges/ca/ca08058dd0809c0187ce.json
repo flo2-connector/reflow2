@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:4e395775c0dc507223d082f69a0eb41ce1555d17ac518ffca0274ca468f24c16",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:a-finding-describes-the-walk-that-produced-it",
+  "properties": {},
+  "to_id": "req:a-report-says-what-it-swept-and-whether-its-checks-ran"
+}

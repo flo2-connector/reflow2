@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:19818ae2732202b84c9dc5218a3ca742b8343dea9b8d4d98bb99aed06adea2e0",
+  "edge_type": "INVALIDATES",
+  "from_id": "chg:two-repair-rules-compute-the-condition-their-message-names",
+  "properties": {
+    "at": "2026-09-15",
+    "note": "The exact shape walked into on 2026-09-02 — an anticipated idea settled and EVOLVES_INTO the ChangeEvent that implemented it — is now a passing test (a_target_that_evolved_into_recorded_work_is_followed_through). The rule asks whether anything followed through instead of only whether either side is still a musing."
+  },
+  "to_id": "fact:unresolved-setup-says-nothing-follows-through-and-never-checks-whether-anything-did"
+}

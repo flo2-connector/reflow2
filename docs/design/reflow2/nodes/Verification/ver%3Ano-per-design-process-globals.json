@@ -1,0 +1,17 @@
+{
+  "content_hash": "sha256:f8737489dd391a6bb687c4cbc5876cf0dbcf9d3c71b1547fb4bddc353edb62ee",
+  "node_id": "ver:no-per-design-process-globals",
+  "node_type": "Verification",
+  "properties": {
+    "description": "A process-global that is secretly per-design cannot be added without accounting for it. An allowlist over runtime `static` / `thread_local!` / `lazy_static!` declarations across every crate's `src` tree: an unlisted global FAILS the build, and adding one costs a written reason why it is not per-design. Owed by rule:per-design-state-is-never-a-process-global from the moment it was set enforced (Anthony, 2026-08-09). BOUND, stated rather than left to be discovered: it detects DECLARATIONS only. It says nothing about whether a struct field is correctly scoped — the per-design metadata riding on ReflowService today (graph_path, write_gen, read_hint) is not a global, and moving it per-graph is cap:graph-registry's planned work rather than a violation. A second test guards the guard — an allowlist entry naming a global that no longer exists fails, because a stale exemption pre-authorises the name for whoever adds it back.",
+    "findings": "NEGATIVE CONTROL RUN, not assumed: a static planted in crates/reflow2-core/src/temporal.rs (a different crate from every allowlist entry) failed the check by name and line, and the file was reverted.",
+    "kind": "verification",
+    "last_reconciled_at": "2026-09-23",
+    "last_reconciled_outcome": "passed",
+    "last_run_at": "2026-08-09",
+    "level": "unit",
+    "method": "test",
+    "name": "A process-global that is secretly per-design cannot be added without accounting for it",
+    "status": "passing"
+  }
+}

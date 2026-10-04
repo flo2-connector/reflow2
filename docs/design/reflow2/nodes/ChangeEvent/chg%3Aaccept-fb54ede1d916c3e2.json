@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:c9b7d1fa0c056c41b82b1dd40b6f12db8bab30793ea521f3adc888da314d4b35",
+  "node_id": "chg:accept-fb54ede1d916c3e2",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "defect_fix",
+    "detected_at": "2026-08-19",
+    "name": "loop_status now carries `served_by` with the explicit `stale` bit, and leads `next` with the remedy when the answer is not `false`. THE DESIGN WAS RIGHT AND THE CODE WAS WRONG: req:the-server-is-the-authority-on-its-own-currency was already satisfied, and the answer rode on graph_report alone — which is not the call anything points a session at. Cheap when current (the ~1 KB note is dropped), loud when not.",
+    "subject": "system"
+  }
+}

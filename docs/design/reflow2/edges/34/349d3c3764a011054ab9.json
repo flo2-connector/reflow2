@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:167155e82566ef4d82e4ffbecdcf0891cbd7a95bdbd8d338ab57791f00cd25f8",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "req:blocking-is-partial",
+  "properties": {
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "req:pr-is-a-delta"
+}

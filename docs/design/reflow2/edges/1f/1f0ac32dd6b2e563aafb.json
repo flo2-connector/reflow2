@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:5f6eed63f11841292d0fc95205a010aed06ff9ab8fd42223d67940a90b7bb01d",
+  "edge_type": "CHANGED",
+  "from_id": "chg:storyflow-second-field-report-20260808",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "fact:defect-merge-survivor-ignores-priority-and-status"
+}

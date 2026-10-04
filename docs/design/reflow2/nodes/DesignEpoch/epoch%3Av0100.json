@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:88c1abdf1200c53016bb86fc0dd136431d8c43292172e1aeb06be02695718ca6",
+  "node_id": "epoch:v0100",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "checksum": "sha256:0600430cfc61eb9afd4eee842eb418aefa5b548c150051f61fc83d3543225cd8",
+    "description": "Cut at git tag v0.10.0. The alternatives/merge/rerere release — 18 of the graph's decisions first appear in this export.",
+    "epoch_type": "release_cut",
+    "name": "v0.10.0 release cut (2026-07-24)",
+    "sequence": 80,
+    "status": "arrived"
+  }
+}

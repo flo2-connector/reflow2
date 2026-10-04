@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:c8ac761cd9c9ed9940475b4b456990115595ab45311823e42676ff90e02cc3e5",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:update-is-one-word",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:init"
+}

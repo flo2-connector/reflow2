@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:1a6b9e0e515bba5b9b41511caa135070a9d6dbaca87a8bd474fdab73b901f020",
+  "edge_type": "HAS_SNAPSHOT",
+  "from_id": "fact:dependency-audit-snapshot-2026-09-13",
+  "properties": {},
+  "to_id": "snap:epoch:preserved-on-write:fact:dependency-audit-snapshot-2026-09-13"
+}

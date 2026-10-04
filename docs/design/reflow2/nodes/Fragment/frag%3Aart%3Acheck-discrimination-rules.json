@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:54203f2ce45060fd1797e90f2da54a0817cc0312ae5c03dfa00af9831ace1f61",
+  "node_id": "frag:art:check-discrimination-rules",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered check_discrimination_rules.py — the schema's discrimination rules and capture-intent's routing table are one contract"
+  }
+}

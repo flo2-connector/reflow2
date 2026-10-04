@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:7da90706fd482dfab0053456c240b5af3338fcd9f4431bf6ce24d1f268c6697b",
+  "edge_type": "CHANGED",
+  "from_id": "chg:an-understated-status-is-reported",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:derived-edge-readers"
+}

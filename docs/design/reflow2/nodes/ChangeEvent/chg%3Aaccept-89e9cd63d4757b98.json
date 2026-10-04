@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:08fff88d4d81dd6a38a62e788fc8ce0278fb7ae83e02bdb67afcaff04314f909",
+  "node_id": "chg:accept-89e9cd63d4757b98",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "refactor",
+    "commits": "c4e1cbd05ca7833c7f32141650926f73f3b70704",
+    "name": "takes the store's weak handle through SharedGraph::downgrade; behaviour unchanged",
+    "subject": "system"
+  }
+}

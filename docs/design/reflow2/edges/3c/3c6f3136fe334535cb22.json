@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:62c2a73bca1507bc8f6de9128bf99f78639127c4a83d1c932c200019b2d2558c",
+  "edge_type": "REALIZES",
+  "from_id": "art:main",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:one-setup-command-chooses-local-or-remote"
+}
