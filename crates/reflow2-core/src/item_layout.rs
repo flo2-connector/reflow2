@@ -498,6 +498,11 @@ pub struct WritePlan {
     /// Items whose content changed (created or modified), not counting files
     /// only reformatted.
     pub changed_items: usize,
+    /// Items whose content did NOT change but whose `prev_item_hash` did not
+    /// name their hash at the anchor, rewritten so it does — what a merge of
+    /// the default branch leaves behind when it was resolved by an export
+    /// anchored before the merge (see [`plan_write_rechecking`]).
+    pub relinked: usize,
 }
 
 /// Plan writing `export` over a layout whose item files are `on_disk`.
@@ -515,10 +520,39 @@ pub fn plan_write(
     on_disk: &BTreeMap<String, OnDisk>,
     anchor: Anchor<'_>,
 ) -> WritePlan {
+    plan_write_rechecking(export, on_disk, anchor, &BTreeSet::new())
+}
+
+/// [`plan_write`], and also RE-CHECK the lineage of the items in `recheck` —
+/// the item files that already differ from the anchor in the working tree,
+/// which is what the gate judges — even when this write leaves their content
+/// alone. Only with [`Anchor::Committed`]; outside git there is no anchor to
+/// check against.
+///
+/// Why a write must do this, measured 2026-10-04 on #672: an item both sides
+/// changed is resolved DURING a merge of the default branch, and an export
+/// anchored before that merge chained it from the version main had already
+/// replaced. Once the merge was committed the gate failed LINEAGE on it, and
+/// every later export left the file alone because its content had not moved —
+/// so the remedy the gate names, "re-export from the graph", did nothing. The
+/// lineage is the anchor's to state, not the file's: a changed item whose
+/// `prev_item_hash` does not name its hash at the anchor is rewritten so it
+/// does, and an item whose content is back to the anchor's gets the anchor's
+/// lineage back, so it leaves no diff.
+pub fn plan_write_rechecking(
+    export: &GraphExport,
+    on_disk: &BTreeMap<String, OnDisk>,
+    anchor: Anchor<'_>,
+    recheck: &BTreeSet<String>,
+) -> WritePlan {
     let mut plan = WritePlan::default();
     let mut wanted: BTreeSet<String> = BTreeSet::new();
+    let from_disk = matches!(anchor, Anchor::Disk);
     // (rel, body, hash) for items whose content differs from disk.
     let mut changed: Vec<(String, JsonValue, String)> = Vec::new();
+    // (rel, body, hash, prev on disk, canonical) for items whose content is
+    // what disk holds but whose lineage the anchor is asked to confirm.
+    let mut rechecked: Vec<(String, JsonValue, String, Option<String>, bool)> = Vec::new();
     let items = export
         .nodes
         .iter()
@@ -530,6 +564,9 @@ pub fn plan_write(
         let hash = canonical_hash(&body);
         wanted.insert(rel.clone());
         match on_disk.get(&rel) {
+            Some(d) if d.computed_hash == hash && !from_disk && recheck.contains(&rel) => {
+                rechecked.push((rel, body, hash, d.prev_item_hash.clone(), d.canonical));
+            }
             Some(d) if d.computed_hash == hash && d.canonical => plan.unchanged += 1,
             Some(d) if d.computed_hash == hash => {
                 // Same content, non-canonical bytes (a hand reformat, or a
@@ -541,26 +578,47 @@ pub fn plan_write(
             _ => changed.push((rel, body, hash)),
         }
     }
-    let from_disk = matches!(anchor, Anchor::Disk);
     let anchored: BTreeMap<String, Anchored> = match anchor {
-        Anchor::Committed(lookup) if !changed.is_empty() => {
-            let rels: Vec<String> = changed.iter().map(|(r, _, _)| r.clone()).collect();
+        Anchor::Committed(lookup) if !changed.is_empty() || !rechecked.is_empty() => {
+            let rels: Vec<String> = changed
+                .iter()
+                .map(|(r, _, _)| r.clone())
+                .chain(rechecked.iter().map(|(r, ..)| r.clone()))
+                .collect();
             lookup(&rels)
         }
         _ => BTreeMap::new(),
+    };
+    // An item's lineage at the anchor: its hash there, or — when its content
+    // is back to exactly the anchor's — the anchor's own predecessor, so the
+    // file comes back byte for byte.
+    let at_anchor = |rel: &str, hash: &str| -> Option<String> {
+        match anchored.get(rel) {
+            Some(a) if a.content_hash == hash => a.prev_item_hash.clone(),
+            Some(a) => Some(a.content_hash.clone()),
+            None => None,
+        }
     };
     for (rel, body, hash) in changed {
         let prev: Option<String> = if from_disk {
             // Outside git: chain from the version this replaces on disk.
             on_disk.get(&rel).map(|d| d.computed_hash.clone())
         } else {
-            match anchored.get(&rel) {
-                Some(a) if a.content_hash == hash => a.prev_item_hash.clone(),
-                Some(a) => Some(a.content_hash.clone()),
-                None => None,
-            }
+            at_anchor(&rel, &hash)
         };
         plan.changed_items += 1;
+        let text = render_item(&body, &hash, prev.as_deref());
+        plan.writes.push((rel, text));
+    }
+    for (rel, body, hash, prev_on_disk, canonical) in rechecked {
+        let prev = at_anchor(&rel, &hash);
+        if prev == prev_on_disk && canonical {
+            plan.unchanged += 1;
+            continue;
+        }
+        if prev != prev_on_disk {
+            plan.relinked += 1;
+        }
         let text = render_item(&body, &hash, prev.as_deref());
         plan.writes.push((rel, text));
     }

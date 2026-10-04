@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:e950e0a59128687b3a1ee7b06eb15de11ec92feafc06f4d0bfe0a804832190d7",
+  "node_id": "ver:reflow2s-own-design-round-trips-through-the-item-layout-with-nothing-lost",
+  "node_type": "Verification",
+  "properties": {
+    "description": "On the real design (every node type, every property shape, every odd id this project has written; about 6,600 nodes and 43,000 edges), in either committed form: import then export gives the committed design's hash (no node, edge or property dropped or invented); written as item files and read back, the nodes and edges are identical and the computed hash equal; imported from the layout into a fresh store it exports identically, and re-exported over its own layout it writes no file; every Artifact checksum the record holds (on the node, or derived from the accepting change's checksum_after) comes back into both stores.",
+    "findings": "2026-10-04 (chg:item-layout-lineage-holds-through-a-conflict-resolved-mid-merge-2026-10-04): passes on this branch's single file (6,649 nodes, 43,130 edges, more than 100 artifact checksums restored); 70 s in a debug build on a 4-core box. Run by hand against the converted layout of #673 as well.",
+    "kind": "verification",
+    "last_run_at": "2026-10-04",
+    "level": "integration",
+    "location": "crates/reflow2-core/tests/the_committed_design_round_trips_through_the_item_layout.rs",
+    "method": "test",
+    "name": "reflow2's own committed design round-trips through the item layout with nothing lost",
+    "status": "passing"
+  }
+}

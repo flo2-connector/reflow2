@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:5520da08e96d3991d6100a251345b8a5bbb1b6a3db2f93b3d1c7c14bfbaa608d",
+  "edge_type": "CHANGED",
+  "from_id": "chg:item-layout-lineage-holds-through-a-conflict-resolved-mid-merge-2026-10-04",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 2,
+    "action": "modified",
+    "checksum_after": "sha256:b2f9777929341ba6ff727f65e08beaee9fd03e37a3c687be86ea0859212805d2",
+    "checksum_basis": "measured"
+  },
+  "to_id": "art:parallel-work-skill"
+}

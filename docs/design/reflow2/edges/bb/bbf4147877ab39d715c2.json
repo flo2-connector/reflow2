@@ -1,12 +1,12 @@
 {
-  "content_hash": "sha256:224dd9579a6fdfebef547072c0c723ca5536a17afc8768c9093c7d5e61c37825",
+  "content_hash": "sha256:a9421f211e3a41fa4c5b724b833e3818fe51fef5d49ff7b17d3c0c8e1160b4a8",
   "edge_type": "CHANGED",
   "from_id": "chg:the-saved-design-moves-to-the-item-layout-2026-10-03",
   "properties": {
     "accepted_baseline": true,
-    "accepted_seq": 1,
+    "accepted_seq": 2,
     "action": "modified",
-    "checksum_after": "sha256:8c6c8e4eb4e01233b4c54600bbdd1f56c119be84a14b04267ada32b6fbe8e321",
+    "checksum_after": "sha256:4b29f421fed18a1208efa1b8a58f9459b684bbc191788a24dbaaf4c91462440e",
     "checksum_basis": "measured"
   },
   "to_id": "art:design-io"

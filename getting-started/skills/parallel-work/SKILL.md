@@ -107,9 +107,10 @@ commits read as a severed chain from CI's position:
 **The item layout needs nothing set up.** `git merge` — and the merge GitHub runs — handles the
 design the way it handles code: two branches that changed different nodes or edges touched
 different files and merge with no conflict, in either order. A conflict is REAL: the same node or
-edge changed differently on both sides, shown as that one item's file. Decide what the item should
-say, import the merged design into your graph, write it, and export; the exporter rewrites the file
-with the right lineage.
+edge changed differently on both sides, shown as that one item's file. A file with conflict markers
+is not an item, so take one side of that one file first (`git checkout --theirs -- <file>`, after
+reading both), import the layout into your graph, write what the item should say, and export —
+during the merge or after it; the exporter rewrites the file with the right lineage.
 
 **A single `.json` file needs reflow2's merge driver**, installed once per clone (git will not let
 a repository configure an executable, so `.gitattributes` names the driver and your config defines

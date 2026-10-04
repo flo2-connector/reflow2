@@ -1,12 +1,12 @@
 {
-  "content_hash": "sha256:c1f75af5db33d373d4f316af6c0f002bc037731686f3db4d78bea80af4e3b3ca",
+  "content_hash": "sha256:d4ea95fd86dda0687e47ef2111e9ba672be31a5895ecc5c40c24268d3557b024",
   "edge_type": "CHANGED",
   "from_id": "chg:the-saved-design-moves-to-the-item-layout-2026-10-03",
   "properties": {
     "accepted_baseline": true,
-    "accepted_seq": 2,
+    "accepted_seq": 3,
     "action": "modified",
-    "checksum_after": "sha256:18cd073cd626974c71621586379d7e6b397d4d2f4fdb9a5b62b0e2310da73d56",
+    "checksum_after": "sha256:29baebc512c5ce13fa4a5bfede81cf0755ca6ea8dde30acbb217a604e7d44fbb",
     "checksum_basis": "measured"
   },
   "to_id": "art:agent-instructions"

@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:d6e8088eb084550088b5f66c10a8cfba82b4e21f539e932ec25374ec54037a1e",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-saved-design-moves-to-the-item-layout-2026-10-03",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:42edd4039c8d426439d6f6f724b79111a83e9a16c641dbaf09cbe9e87199029a",
+    "checksum_basis": "measured"
+  },
+  "to_id": "art:test-the-committed-design-round-trips-through-the-item-layout"
+}

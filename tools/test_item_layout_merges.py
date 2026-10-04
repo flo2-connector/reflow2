@@ -27,6 +27,8 @@ The checks, by the planned verifications they make real:
   the item chains link one hop per commit along main.
 - the fold of a live store's record after a squash-merge: a long-lived branch's
   record merges into main with plain git, exactly once.
+- a real conflict resolved DURING a merge of main chains from main's version,
+  and a re-export repairs an item whose lineage names the wrong predecessor.
 
 Skips cleanly when the binary is absent; CI's `full` job builds it first.
 """
@@ -359,6 +361,98 @@ class ItemLayoutMerges(unittest.TestCase):
         found = reflow2_check.check_item_lineage(str(self.repo / LAYOUT), rng)
         self.assertEqual(len(found), 1)
         self.assertIn(rel, found[0])
+        # The remedy the gate names is real: a re-export from the graph puts
+        # the item's lineage back, though its content did not move.
+        receipt = store.call("export_graph", {"path": self.layout, "overwrite": True})
+        self.assertEqual((receipt.get("items") or {}).get("relinked"), 1, receipt)
+        self.assertEqual(reflow2_check.check_item_lineage(str(self.repo / LAYOUT), rng), [])
+        git(self.repo, "checkout", "-q", "-f", "main")
+
+    def test_a_conflict_resolved_during_a_merge_of_main_chains_from_mains_version(self):
+        """Measured 2026-10-04 on #672, before the fix: the procedure AGENTS.md
+        gives for a real conflict — take one side so the layout reads, import
+        it, write what the item should say, export — anchored the export at the
+        merge-base from BEFORE the merge, so the item named the version main had
+        already replaced. The gate failed LINEAGE on the merge commit, and a
+        re-export left it alone because its content had not moved."""
+        rel = design_io.node_rel_path("Capability", "cap:x")
+        git(self.repo, "checkout", "-q", "-b", "mine", "main")
+        mine = Store(self.tmp / "mine-store")
+        mine.import_from(str(self.repo / LAYOUT))
+        node(mine, "Capability", "cap:x", {"name": "cap:x", "description": "as mine says"},
+             self.layout)
+        git(self.repo, "add", "-A")
+        git(self.repo, "commit", "-qm", "mine")
+        git(self.repo, "checkout", "-q", "main")
+        self.pr("theirs", [(node, ("Capability", "cap:x",
+                                   {"name": "cap:x", "description": "as main says"}))], None)
+        git(self.repo, "merge", "--squash", "-q", "theirs")
+        git(self.repo, "commit", "-qm", "squash theirs")
+        main_tip = git(self.repo, "rev-parse", "main").stdout.strip()
+
+        git(self.repo, "checkout", "-q", "mine")
+        r = git(self.repo, "merge", "--no-edit", "-q", "main", check=False)
+        self.assertNotEqual(r.returncode, 0, "both sides changed cap:x")
+        self.assertEqual(self.unmerged(), [f"{LAYOUT}/{rel}"])
+        git(self.repo, "checkout", "--theirs", "--", f"{LAYOUT}/{rel}")
+        resolver = Store(self.tmp / "resolver-store")
+        resolver.import_from(str(self.repo / LAYOUT))
+        node(resolver, "Capability", "cap:x",
+             {"name": "cap:x", "description": "both sides, merged"}, self.layout)
+        git(self.repo, "add", "-A")
+        git(self.repo, "commit", "-q", "--no-edit")
+
+        with open(self.repo / LAYOUT / rel, "rb") as fh:
+            now = design_io.parse_item(rel, fh.read())
+        at_main = design_io.items_at(str(self.repo), main_tip, LAYOUT, [rel])[rel]
+        self.assertEqual(now.prev, at_main.stated,
+                         "the resolved item chains from main's version, which it replaces")
+        rng = reflow2_check.change_range(str(self.repo / LAYOUT))
+        self.assertEqual(rng.base, main_tip)
+        self.assertEqual(reflow2_check.check_item_lineage(str(self.repo / LAYOUT), rng), [])
+        # Squash-merged, main's chain for the item is one hop.
+        git(self.repo, "checkout", "-q", "main")
+        git(self.repo, "merge", "--squash", "-q", "mine")
+        git(self.repo, "commit", "-qm", "squash mine")
+        rng = reflow2_check.change_range(str(self.repo / LAYOUT))
+        self.assertEqual(rng.mode, "trunk")
+        self.assertEqual(reflow2_check.check_item_lineage(str(self.repo / LAYOUT), rng), [])
+
+    # ---- the Python reader agrees with the server --------------------------
+
+    def test_the_python_reader_reads_every_odd_id_where_the_server_wrote_it(self):
+        """tools/design_io.py re-implements the layout's naming and hashing for
+        every gate. Pinned against the real writer on the ids that exercise its
+        rules: an upper-case letter, a slash, a percent sign, a space, a
+        character past ASCII, and one long enough to be shortened. Then the
+        gate's change set, read with -z, still holds the item whose path git
+        would otherwise quote."""
+        accent_id = "req:\u00e9-accent"
+        odd = ["req:Upper-Case", "req:with/slash", "req:per%cent", "req:space here",
+               accent_id, "req:" + "x" * 200]
+        git(self.repo, "checkout", "-q", "-b", "odd", "main")
+        store = Store(self.tmp / "odd-store")
+        store.import_from(str(self.repo / LAYOUT))
+        for i, node_id in enumerate(odd):
+            node(store, "Requirement", node_id, {"name": f"odd {i}", "statement": node_id})
+            edge(store, "SATISFIES", "Capability", "cap:x", "Requirement", node_id)
+        receipt = store.call("export_graph", {"path": self.layout, "overwrite": True})
+        doc = design_io.load_design(str(self.repo / LAYOUT), verify=True)
+        self.assertEqual(doc["tampered"], [])
+        self.assertEqual(doc["misplaced"], [])
+        self.assertEqual(doc["content_hash"], receipt["content_hash"],
+                         "Python's canonical hash is the server's")
+        for node_id in odd:
+            rel = design_io.node_rel_path("Requirement", node_id)
+            self.assertTrue((self.repo / LAYOUT / rel).is_file(), f"{node_id} -> {rel}")
+            self.assertLess(len(rel.rsplit("/", 1)[1].encode("utf-8")), 160, rel)
+        git(self.repo, "add", "-A")
+        git(self.repo, "commit", "-qm", "odd ids")
+        rng = reflow2_check.change_range(str(self.repo / LAYOUT))
+        changed = reflow2_check._changed_since(rng, LAYOUT)
+        accent = LAYOUT + "/" + design_io.node_rel_path("Requirement", accent_id)
+        self.assertIn(accent, changed, "a path past ASCII arrives unquoted")
+        self.assertEqual(reflow2_check.check_item_lineage(str(self.repo / LAYOUT), rng), [])
         git(self.repo, "checkout", "-q", "-f", "main")
 
     # ---- the fold of a live store's record after a squash-merge --------------

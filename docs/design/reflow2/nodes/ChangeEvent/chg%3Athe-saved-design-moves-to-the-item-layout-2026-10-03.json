@@ -1,13 +1,12 @@
 {
-  "content_hash": "sha256:c08349e430d0febbda3c77c6d6149ad759465a4da1c862b4ce0586535db31fd3",
+  "content_hash": "sha256:6cd22bc51d2d79b4d11b0080df20d162072598d60cabc5a3e466afe99fa451a0",
   "node_id": "chg:the-saved-design-moves-to-the-item-layout-2026-10-03",
   "node_type": "ChangeEvent",
   "properties": {
     "change_type": "refactor",
-    "commits": "75b89f0d038ac84ebf36948035d6f495692c564f",
     "detected_at": "2026-10-03",
     "name": "reflow2's committed design moves to the item layout, and its accepted checksums onto one baseline change",
     "subject": "record",
-    "summary": "The committed design moves from the single file docs/design/reflow2.json to the item layout docs/design/reflow2/ (one file per node and per edge), and this baseline puts the 578 registered artifacts' current checksums on its CHANGED edges (checksum_after), so from here every accepted checksum lives on the change that accepted it. Nothing about the system moved: the checksums are the ones the record already held. Settled by Anthony 2026-10-03: dec:how-the-saved-design-is-laid-out-so-git-merges-it, dec:the-designs-lineage-is-kept-per-item, dec:item-13-checksums-move-to-change-edges-and-main-converts-in-one-pr (decisions 3 and 6). Reassembled, the layout's whole-design hash equals the single file's (sha256:e94003bf3b0edb9545deb09445392a6bdfb6fcd7cc2e2f7e7d67c8eca466c2d7) before this baseline."
+    "summary": "The committed design moves from the single file docs/design/reflow2.json to the item layout docs/design/reflow2/ (one file per node and per edge), and this baseline puts the 579 registered artifacts' current checksums on its CHANGED edges (checksum_after), so from here every accepted checksum lives on the change that accepted it. Nothing about the system moved: the checksums are the ones the record already held. Settled by Anthony 2026-10-03: dec:how-the-saved-design-is-laid-out-so-git-merges-it, dec:the-designs-lineage-is-kept-per-item, dec:item-13-checksums-move-to-change-edges-and-main-converts-in-one-pr (decisions 3 and 6). Reassembled, the layout's whole-design hash equals the single file's (sha256:5f36907f18e67bd39050b9351fc0494a98e0fffa5c0f4f934143fb120ec7bb6d) before this baseline."
   }
 }

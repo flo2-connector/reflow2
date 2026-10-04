@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:79d7f94e79408073d6b233462356dab7c6688170b7c0ac79c7ca94348d23f57a",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:test-the-committed-design-round-trips-through-the-item-layout",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:test-the-committed-design-round-trips-through-the-item-layout"
+}

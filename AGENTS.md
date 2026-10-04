@@ -423,12 +423,17 @@ What that means for a pull request:
   changed. There is no "once, last" rule and no `chained_from` to read.
 - **Lineage is per item, and anchored for you.** A changed item records, in `prev_item_hash`, its
   hash at the merge-base with the default branch; an unchanged item keeps main's file byte for
-  byte. A squash-merge lands each changed item one hop, and an export taken mid-merge cannot
-  mis-chain (#571). The gate checks it (`LINEAGE`, per item).
+  byte. A squash-merge lands each changed item one hop, and an export taken mid-merge anchors
+  where the merge will land (the merge-base of main with `HEAD` and `MERGE_HEAD`), so it cannot
+  mis-chain the way #571's fourth CI failure did. Every export also re-checks the lineage of the
+  items the branch has already changed, so re-exporting repairs one a merge left stale. The gate
+  checks it (`LINEAGE`, per item).
 - **To bring main in: `git merge origin/main`.** No rebuild, no replay onto main's export. Two PRs
   that changed different items merge in either order with no conflict. A conflict is one small
-  file named after an item both sides changed — a real conflict: import the merged layout into
-  your store, write what that item should say, and export.
+  file named after an item both sides changed — a real conflict. A file with conflict markers in
+  it is not an item, so first take one side of THAT file (`git checkout --theirs -- <file>`, after
+  reading both), then import the layout into your store, write what the item should say, and
+  export — before or after committing the merge.
 - **An accepted checksum rides the change that accepted it** — `checksum_after` on the change's
   CHANGED edge, numbered by `accepted_seq` — so two PRs that edit one file each write their OWN
   edge (decision 3 of `dec:item-13-checksums-move-to-change-edges-and-main-converts-in-one-pr`).
