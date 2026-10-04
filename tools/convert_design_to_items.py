@@ -49,8 +49,9 @@ def die(msg: str) -> None:
 
 
 def call(binary: str, graph: str, tool: str, args: dict) -> dict:
-    r = subprocess.run([binary, "--graph-path", graph, "--call", tool, "--args", "-",
-                        "--no-export"], input=json.dumps(args), capture_output=True, text=True)
+    r = subprocess.run([binary, "--graph-path", graph, "--tree-root", design_io.REPO, "--call",
+                        tool, "--args", "-", "--no-export"], input=json.dumps(args),
+                       capture_output=True, text=True)
     if r.returncode != 0:
         die(f"{tool} exited {r.returncode}: {r.stderr.strip()[:2000]}")
     return json.loads(r.stdout) if r.stdout.strip() else {}
@@ -65,6 +66,9 @@ def main() -> int:
     ap.add_argument("--change-id", default=None)
     ap.add_argument("--keep-source", action="store_true",
                     help="leave the single file in place (default: remove it)")
+    ap.add_argument("--accept-changed-since", metavar="REV", default=None,
+                    help="also accept, against the baseline change, every registered file that "
+                         "differs between REV and the working tree (the conversion PR's own edits)")
     opts = ap.parse_args()
     if not opts.to.endswith("/"):
         opts.to += "/"
@@ -148,6 +152,24 @@ def main() -> int:
         for i in range(0, len(edges), 200):
             call(opts.bin, graph, "create_edges", {"edges": edges[i:i + 200]})
         print(f"baseline: {change_id} carries {len(edges)} artifact checksums")
+
+        # The conversion PR's own edits (AGENTS.md's gate lines, say) are
+        # accepted against the same change, measured from the tree.
+        if opts.accept_changed_since:
+            diff = subprocess.run(["git", "diff", "--name-only", opts.accept_changed_since],
+                                  cwd=design_io.REPO, capture_output=True, text=True, check=True)
+            touched = set(diff.stdout.split())
+            accepts = [{"artifact_id": art, "disposition": "design_updated",
+                        "design_change_event_id": change_id,
+                        "note": "edited by the conversion to the item layout"}
+                       for art, loc in (
+                           (n["node_id"], ((n.get("properties") or {}).get("location") or "").split("#")[0])
+                           for n in single["nodes"] if n["node_type"] == "Artifact")
+                       if loc in touched and os.path.isfile(os.path.join(design_io.REPO, loc))]
+            if accepts:
+                call(opts.bin, graph, "set_artifact_checksums", {"accepts": accepts})
+            print(f"accepted {len(accepts)} registered file(s) the conversion edited: "
+                  f"{', '.join(a['artifact_id'] for a in accepts) or 'none'}")
 
         # 3. The layout, beside the single file it replaces.
         receipt = call(opts.bin, graph, "export_graph", {"path": opts.to, "overwrite": True})
