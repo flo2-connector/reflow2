@@ -58,7 +58,7 @@ that needs the network and is the procedure below.
 Replace the binary. That is the whole procedure.
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/sligara7/reflow2/main/tools/install.sh | sh
+curl -fsSL https://raw.githubusercontent.com/flo2-connector/reflow2/main/tools/install.sh | sh
 ```
 
 Then **restart your agent session** — an MCP server is a running process, and a reconnect does not

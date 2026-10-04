@@ -1,7 +1,7 @@
 #!/bin/sh
 # reflow2 installer — BL-15's no-checkout path.
 #
-#   curl -fsSL https://raw.githubusercontent.com/sligara7/reflow2/main/tools/install.sh | sh
+#   curl -fsSL https://raw.githubusercontent.com/flo2-connector/reflow2/main/tools/install.sh | sh
 #
 # Downloads the prebuilt reflow2-mcp binary and the consumer kit from GitHub
 # Releases, installs the binary onto PATH and the kit beside it, and says
@@ -16,11 +16,11 @@
 #   REFLOW2_VERSION      tag to install (default: latest release)
 #   REFLOW2_BIN_DIR      where the binary goes   (default: ~/.local/bin)
 #   REFLOW2_KIT_DIR      where the kit goes      (default: ~/.local/share/reflow2)
-#   REFLOW2_REPO         owner/repo              (default: sligara7/reflow2)
+#   REFLOW2_REPO         owner/repo              (default: flo2-connector/reflow2)
 
 set -eu
 
-REPO="${REFLOW2_REPO:-sligara7/reflow2}"
+REPO="${REFLOW2_REPO:-flo2-connector/reflow2}"
 BIN_DIR="${REFLOW2_BIN_DIR:-$HOME/.local/bin}"
 KIT_DIR="${REFLOW2_KIT_DIR:-$HOME/.local/share/reflow2}"
 VERSION="${REFLOW2_VERSION:-latest}"

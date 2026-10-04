@@ -263,7 +263,7 @@ def kit_version() -> dict:
     }
 
 
-REMOTE = "https://github.com/sligara7/reflow2.git"
+REMOTE = "https://github.com/flo2-connector/reflow2.git"
 
 
 def upstream_head() -> str | None:

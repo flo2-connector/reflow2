@@ -2562,8 +2562,8 @@ impl DesignGraph {
     /// On a graph with nothing anchored yet it is still the first thing the user
     /// sees. It only yields once there is something specific to say.
     ///
-    /// [`gap-surfacing.md`]: https://github.com/sligara7/reflow2/blob/main/docs/gap-surfacing.md
-    /// [aidrone trial]: https://github.com/sligara7/reflow2/blob/main/docs/trials/2026-07-18-greenfield-aidrone.md
+    /// [`gap-surfacing.md`]: https://github.com/flo2-connector/reflow2/blob/main/docs/gap-surfacing.md
+    /// [aidrone trial]: https://github.com/flo2-connector/reflow2/blob/main/docs/trials/2026-07-18-greenfield-aidrone.md
     fn all_gaps(&self) -> Result<Vec<GapCandidate>, DynoError> {
         let pop = self.population()?;
         let mut gaps = Vec::new();
@@ -3180,8 +3180,8 @@ impl DesignGraph {
     /// fire on almost every correct design. Duplicate capabilities need the
     /// semantic path.
     ///
-    /// [gap-surfacing.md]: https://github.com/sligara7/reflow2/blob/main/docs/gap-surfacing.md
-    /// [heal-process.md]: https://github.com/sligara7/reflow2/blob/main/docs/heal-process.md
+    /// [gap-surfacing.md]: https://github.com/flo2-connector/reflow2/blob/main/docs/gap-surfacing.md
+    /// [heal-process.md]: https://github.com/flo2-connector/reflow2/blob/main/docs/heal-process.md
     /// [`HealOp::Merge`]: crate::heal::HealOp::Merge
     /// A `DUPLICATES` edge a MACHINE proposed — asked as a question, because
     /// nobody has confirmed it.

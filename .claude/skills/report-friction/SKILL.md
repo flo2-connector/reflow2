@@ -96,14 +96,14 @@ and worth reporting as one — label it that way rather than filing it as a defe
 **Never file without asking.** An issue is a public action taken under the user's identity, in a
 repository they do not control. Show them the text you would send, and let them read it.
 
-Search first — `gh issue list --repo sligara7/reflow2 --search "<keywords>"`. Several people
+Search first — `gh issue list --repo flo2-connector/reflow2 --search "<keywords>"`. Several people
 hitting one problem should thicken one report, not open five. If it exists, add what is new about
 your case and nothing else.
 
 Then, if they agree:
 
 ```bash
-gh issue create --repo sligara7/reflow2 --title "<one line>" --body-file <report>
+gh issue create --repo flo2-connector/reflow2 --title "<one line>" --body-file <report>
 ```
 
 **If that fails — no `gh`, not authenticated, or no access to the repository — that is expected,

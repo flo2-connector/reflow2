@@ -5,12 +5,12 @@ There is no per-project setup.**
 
 ## Install
 
-If a [GitHub release](https://github.com/sligara7/reflow2/releases) exists for your platform
+If a [GitHub release](https://github.com/flo2-connector/reflow2/releases) exists for your platform
 (Linux x86_64 and arm64, macOS arm64/x86_64; Linux arm64 from the first release after v0.76.0),
 you need **no toolchain at all** — no Rust, no C++, no ~10-minute RocksDB compile:
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/sligara7/reflow2/main/tools/install.sh | sh
+curl -fsSL https://raw.githubusercontent.com/flo2-connector/reflow2/main/tools/install.sh | sh
 ```
 
 That is the whole install. It puts the `reflow2-mcp` binary in `~/.local/bin` and the kit in
@@ -103,7 +103,7 @@ sudo apt install -y clang cmake libclang-dev pkg-config
 ## 2. Build the server
 
 ```bash
-git clone https://github.com/sligara7/reflow2.git
+git clone https://github.com/flo2-connector/reflow2.git
 cd reflow2
 cargo build -p reflow2-mcp --release        # first build compiles RocksDB (~10 min, then cached)
 ```

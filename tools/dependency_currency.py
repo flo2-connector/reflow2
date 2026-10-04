@@ -64,7 +64,7 @@ from typing import Callable
 
 REPO = Path(__file__).resolve().parent.parent
 HOLDS = "dependency-holds.toml"
-USER_AGENT = "reflow2-dependency-currency (github.com/sligara7/reflow2)"
+USER_AGENT = "reflow2-dependency-currency (github.com/flo2-connector/reflow2)"
 
 Version = tuple[int, int, int]
 
