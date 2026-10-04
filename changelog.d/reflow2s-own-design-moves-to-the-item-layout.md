@@ -3,7 +3,7 @@
 - **reflow2's own committed design moved from `docs/design/reflow2.json` to the item layout,
   `docs/design/reflow2/`.** For contributors to reflow2; nothing changes for users. Two pull
   requests that change different parts of the design no longer conflict on it, so they merge in
-  either order without rebuilding and replaying a record. The 566 registered artifacts' accepted
+  either order without rebuilding and replaying a record. The 579 registered artifacts' accepted
   checksums moved onto one baseline change, so from here every acceptance lives on the change that
   made it. Reassembled, the layout's whole-design hash equals the single file's last one, so a
   watch or pin taken on the old file reads the move as one change, not as a different design.
