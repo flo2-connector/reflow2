@@ -51,7 +51,7 @@ everything else is convenience.
 ### 1. Install reflow2
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/sligara7/reflow2/main/tools/install.sh | sh
+curl -fsSL https://raw.githubusercontent.com/flo2-connector/reflow2/main/tools/install.sh | sh
 ```
 
 Installs the `reflow2-mcp` binary to `~/.local/bin` and the kit to

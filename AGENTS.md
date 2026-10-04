@@ -773,7 +773,7 @@ found, surfaced to the user as plain questions, and healed back to coherence —
 through operations always stays in agreement. **The user never needs to know systems
 engineering; the graph does.**
 
-This is a clean-room rebuild ([github.com/sligara7/reflow2](https://github.com/sligara7/reflow2))
+This is a clean-room rebuild ([github.com/flo2-connector/reflow2](https://github.com/flo2-connector/reflow2))
 of ideas from the author's earlier projects (all under
 [github.com/sligara7](https://github.com/sligara7)): `reflow`, `storyflow`,
 `chain_reflow`, and the graph engine `dynograph-foundation`.

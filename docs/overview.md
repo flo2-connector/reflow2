@@ -1,7 +1,7 @@
 # Reflow 2.0 — Documentation Overview
 
 **Start here.** This is the map that ties the rest of `docs/` together. Reflow 2.0 is a
-clean-room rebuild ([github.com/sligara7/reflow2](https://github.com/sligara7/reflow2))
+clean-room rebuild ([github.com/flo2-connector/reflow2](https://github.com/flo2-connector/reflow2))
 that captures the **entire lifecycle of a design — concept → operations — in one graph**,
 so that when anything changes, the ripple effects are automatically found, surfaced to the
 user as plain questions, and healed back to coherence. The user never needs to know
