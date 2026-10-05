@@ -234,9 +234,11 @@ pub fn assess(seen: Seen<'_>) -> Option<ExportStanding> {
         (
             "never_exported",
             format!(
-                "THIS DESIGN HAS NEVER BEEN EXPORTED. Its {n} node(s) exist only in the store at \
-                 {store}: this machine has no record of any export of it, and {why}. Losing that \
-                 directory loses the design. Fix: {fix} — then commit the file; {keep}. {local_only}",
+                "THIS DESIGN HAS NEVER BEEN EXPORTED anywhere this machine has a record of. Its \
+                 {n} node(s) exist only in the store at {store}: no export of it is on record, and \
+                 {why}. Losing that directory loses the design. Fix: {fix} — then commit the file; \
+                 {keep}. (A copy written with `--export > FILE` leaves no record; export_graph \
+                 with that path makes one.) {local_only}",
                 n = seen.live_nodes,
             ),
         )
