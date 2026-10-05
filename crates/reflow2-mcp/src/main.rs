@@ -55,7 +55,9 @@ struct VerbArgs {
     #[arg(value_name = "TOOL", required_unless_present = "list")]
     tool: Option<String>,
     /// The tool's arguments, as one JSON object (default `{}`). `-` reads the
-    /// object from stdin, so it can come from a quoted heredoc (`<<'EOF'`).
+    /// object from stdin, so it can come from a quoted heredoc (`<<'EOF'`);
+    /// `@PATH` reads it from the file at PATH, so prose never passes through
+    /// the command text at all.
     #[arg(value_name = "JSON", conflicts_with = "args")]
     json: Option<String>,
     /// The same object as a flag, as `--call` takes it.
@@ -781,7 +783,10 @@ struct Cli {
     call: Option<String>,
 
     /// The arguments for `--call`, as one JSON object (default `{}`). `-`
-    /// reads the object from stdin, so a script can build it with a heredoc.
+    /// reads the object from stdin, so a script can build it with a heredoc;
+    /// `@PATH` reads it from the file at PATH, so design prose reaches the
+    /// call with no shell quoting and never enters the command text a guard
+    /// hook reads (dec:idea-the-door-reads-its-arguments-from-a-named-file).
     #[arg(long = "args", value_name = "JSON", default_value = "{}")]
     call_args: String,
 
@@ -920,20 +925,10 @@ struct PreparedCall {
 /// it is being asked for a read or a write.
 async fn prepare_call(cli: &Cli, tool: &str) -> anyhow::Result<PreparedCall> {
     // Arguments first: a bad object should not touch the graph.
-    let raw = if cli.call_args == "-" {
-        std::io::read_to_string(std::io::stdin()).context("failed to read --args from stdin")?
-    } else {
-        cli.call_args.clone()
-    };
-    let parsed: serde_json::Value = serde_json::from_str(raw.trim())
-        .with_context(|| format!("--args is not JSON: {}", raw.trim()))?;
-    let Some(arguments) = parsed.as_object().cloned() else {
-        anyhow::bail!(
-            "--args must be one JSON object ({{\"field\": value, …}}) — the tool's parameters by \
-             name — not {}",
-            raw.trim()
-        );
-    };
+    let arguments = reflow2_mcp::one_shot::call_arguments(&cli.call_args, || {
+        std::io::read_to_string(std::io::stdin())
+    })
+    .map_err(anyhow::Error::msg)?;
 
     // Is the tool served, and does it only read? Decided from the served
     // surface itself, so this verb can never disagree with what a session is
@@ -946,9 +941,10 @@ async fn prepare_call(cli: &Cli, tool: &str) -> anyhow::Result<PreparedCall> {
     let tools = ReflowService::served_tools();
     let Some(served) = tools.iter().find(|t| t.name == tool) else {
         anyhow::bail!(
-            "no tool named `{tool}` is served. --call takes a served tool name; `--call \
-             find_tools --args '{{\"query\":\"…\"}}'` finds one from a sentence in your own words, \
-             and `--call list_skills` names the skills."
+            "{} --call takes a served tool name; `--call find_tools --args \
+             '{{\"query\":\"…\"}}'` finds one from a sentence in your own words, and `--call \
+             list_skills` names the skills.",
+            reflow2_mcp::revise_route::unknown_tool(tool, &tools)
         );
     };
     let reads = served

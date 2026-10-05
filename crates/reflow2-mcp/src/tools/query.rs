@@ -954,11 +954,16 @@ impl ReflowService {
             .split(|c: char| !c.is_alphanumeric() && c != '_')
             .filter(|t| !t.is_empty())
             .collect();
+        // Each tool AS PUBLISHED: a name the schema keeps only to redirect a
+        // mistake (`x-reflow2-not-a-field`) is not offered here either, or the
+        // catalogue invites the very call it refuses
+        // (fact:the-changeevent-description-decoy-is-listed-by-find-tools-and-passes-the-argument-check-2026-10-05).
         let all: Vec<_> = self
             .tool_router
             .list_all()
             .into_iter()
             .filter(|t| !crate::service::DEPRECATED_TOOLS.contains(&t.name.as_ref()))
+            .map(crate::arguments::published)
             .collect();
         let searched = all.len();
         // Document frequency over the whole served surface, computed per call
@@ -1001,6 +1006,63 @@ impl ReflowService {
                 })
             })
             .collect();
+
+        // A QUERY THAT NAMES A NODE TYPE, spelled as the schema spells it
+        // (`TemporalFact`, `Decision`), is answered first with the constructor
+        // that creates that type: a writer of it (writers.json) that takes the
+        // new node's `id`. Measured on 0.79.0 (2026-10-05): an agent asking for
+        // "TemporalFact fact_type valid_from subject_id add fact" got
+        // record_finding in no top 8, because the tool's words are "finding"
+        // and "observed", not the type's name. The type a constructor creates
+        // is a fact the surface already holds, so nothing is added to any
+        // description; each such item says which type it creates.
+        let words: std::collections::BTreeSet<&str> = req
+            .query
+            .split(|c: char| !c.is_alphanumeric())
+            .filter(|w| !w.is_empty())
+            .collect();
+        let mut creates: std::collections::BTreeMap<String, String> = Default::default();
+        for ty in crate::writers::node_types_written() {
+            if !words.contains(ty.as_str()) {
+                continue;
+            }
+            for tool in crate::revise_route::constructors_of(&ty, &all) {
+                creates.entry(tool).or_insert_with(|| ty.clone());
+            }
+        }
+        if !creates.is_empty() {
+            let top = scored.iter().map(|(s, _)| *s).fold(0.0_f64, f64::max);
+            for (tool, ty) in &creates {
+                match scored.iter_mut().find(|(_, v)| v["tool"] == tool.as_str()) {
+                    Some((score, v)) => {
+                        *score += top + 1.0;
+                        v["score"] = json!(*score);
+                        v["creates"] = json!(ty);
+                    }
+                    None => {
+                        let Some(t) = all.iter().find(|t| t.name == tool.as_str()) else {
+                            continue;
+                        };
+                        let params = t
+                            .input_schema
+                            .get("properties")
+                            .and_then(JsonValue::as_object)
+                            .map(|p| p.keys().cloned().collect::<Vec<_>>())
+                            .unwrap_or_default();
+                        scored.push((
+                            top + 1.0,
+                            json!({
+                                "tool": tool,
+                                "score": top + 1.0,
+                                "summary": trim_summary(t.description.as_deref().unwrap_or("")),
+                                "parameters": params,
+                                "creates": ty,
+                            }),
+                        ));
+                    }
+                }
+            }
+        }
 
         // Ties broken by name so the same query answers the same way twice —
         // a ranking that reshuffles teaches an agent not to trust it.

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:28bbdf5045eaa395ddf1af108b43d4ecdd756df6297d28379c3dd042f75071b2",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-tool-surface-tells-the-truth-2026-10-05",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "dec:idea-an-agent-that-wants-to-update-a-node-finds-the-revise-path"
+}

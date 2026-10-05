@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:a70912743270a964e44b3d515a135fb900e78f58c35088c7855130d92c272c26",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-tool-surface-tells-the-truth-2026-10-05",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "fact:a-value-set-published-without-an-enum-escapes-the-argument-check-so-every-one-is-listed-is-false-2026-10-05"
+}

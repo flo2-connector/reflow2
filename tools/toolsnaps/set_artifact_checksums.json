@@ -63,6 +63,11 @@
           },
           "disposition": {
             "description": "`design_holds` (the change carries no design meaning), `design_updated`\n(behaviour moved and the design moved with it), or\n`baseline_established` (no checksum yet — a FIRST baseline, so nothing\nmoved). Per item, never per call: the round trip collapses, the\njudgement does not.",
+            "enum": [
+              "design_holds",
+              "design_updated",
+              "baseline_established"
+            ],
             "type": "string"
           },
           "note": {

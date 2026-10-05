@@ -617,8 +617,8 @@ impl ReflowService {
     // ---- Artifact linking (connect real files to the design) ----
 
     #[tool(
-        description = "Create an Artifact node — a real deliverable (file/spec/doc) that \
-                          lives outside the graph, pointed to by `location`. Lands with no \
+        description = "Create or revise an Artifact node — a real deliverable (file/spec/doc) that lives \
+                       outside the graph, pointed to by `location`. Lands with no \
                        status unless you pass one: absent means nobody said. \
                        CONTENT FIELDS ARE REQUIRED TO CREATE AND OPTIONAL TO REVISE: call it \
                        again with the same id and only what you are changing \u{2014} omitted \

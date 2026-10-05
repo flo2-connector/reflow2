@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:eb2421652fd12d1c94368a4e9eef40aced450faea76dd8b4e9e059cf36e83a67",
+  "node_id": "ver:the-tool-surface-tells-the-truth-and-only-grows",
+  "node_type": "Verification",
+  "properties": {
+    "description": "crates/reflow2-mcp/tests/the_tool_surface_tells_the_truth.rs drives a served session and the real binary: --args @file through --call, read and write, and its refusals; every revising constructor's find_tools line begins \"Create or revise\"; update_node/update/set_node are refused with the revise route (session and door); a query naming TemporalFact or Decision ranks record_finding or add_decision first, and add_temporal_fact/record_fact/add_fact are pointed at record_finding; the provenance and disposition enums are published and listed beside other problems; no prose value set escapes the guard; the ChangeEvent decoy is unadvertised and still redirected; an edge-only revise reports edges_changed beside changed:false. crates/reflow2-mcp/tests/the_mcp_surface_only_grows.rs compares the build with v0.79.0's tools, argument schemas and reply shapes and allows additions only. Each behaviour was measured failing on main 7f5984e's binary and passes on this branch.",
+    "kind": "verification",
+    "location": "crates/reflow2-mcp/tests/the_tool_surface_tells_the_truth.rs",
+    "method": "test",
+    "name": "The tool surface tells the truth, and the MCP surface only grows",
+    "status": "passing"
+  }
+}

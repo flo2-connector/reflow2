@@ -1068,6 +1068,35 @@ pub(crate) fn decision_landing_hint(status: Option<&str>) -> String {
     }
 }
 
+/// The revision block, told about the call's EDGES as well as its properties.
+///
+/// `changed` keeps the one meaning it has always had — the node's own
+/// properties moved — so no client reading it is misled. Beside it,
+/// `edges_changed` counts the edges this call drew (an edge it was asked for
+/// and found already present is not counted: it did not move). And the note
+/// that said "nothing moved" beside an `edges_drawn` list says what did.
+/// Measured on main 2026-10-05: an `add_decision` revise carrying only a new
+/// `related_to` item drew `dec:q BLOCKS dec:base` and replied "nothing moved"
+/// (fact:the-four-call-decision-was-a-leaked-node-and-an-edge-only-revise-still-says-nothing-moved-2026-10-05,
+/// the cause recorded 2026-09-28: the block was computed from properties
+/// alone).
+pub(crate) fn edge_aware(rev: &mut JsonValue, edges_drawn: usize) {
+    let Some(r) = rev.as_object_mut() else { return };
+    r.insert("edges_changed".into(), JsonValue::from(edges_drawn));
+    let unchanged = r.get("changed").and_then(JsonValue::as_bool) == Some(false);
+    if unchanged && edges_drawn > 0 {
+        r.insert(
+            "note".into(),
+            JsonValue::String(format!(
+                "This node's properties already held exactly what this call passed, so none \
+                 moved (`changed: false`); the call drew {edges_drawn} edge{} — see \
+                 `edges_drawn`.",
+                if edges_drawn == 1 { "" } else { "s" }
+            )),
+        );
+    }
+}
+
 pub(crate) fn with_capture_notes<T: serde::Serialize>(
     value: T,
     hint: &str,
@@ -1103,10 +1132,13 @@ pub(crate) fn with_capture_notes<T: serde::Serialize>(
             // "Your merge was a no-op" is exactly as worth knowing as "your
             // merge replaced a paragraph", and the two are indistinguishable
             // without it.
-            obj.insert(
-                "revision".into(),
-                serde_json::to_value(rev).map_err(ser_err)?,
-            );
+            let mut rev = serde_json::to_value(rev).map_err(ser_err)?;
+            let drawn = obj
+                .get("edges_drawn")
+                .and_then(JsonValue::as_array)
+                .map_or(0, Vec::len);
+            edge_aware(&mut rev, drawn);
+            obj.insert("revision".into(), rev);
         }
     }
     ok_json(v)
@@ -1608,7 +1640,7 @@ impl ReflowService {
     // ---- Golden-thread constructors (deterministic, mutating) ----
 
     #[tool(
-        description = "Create a Project node. Lands `status: active` unless you pass one \
+        description = "Create or revise a Project node. Lands `status: active` unless you pass one \
                        (`paused` / `archived`) — every constructor of a type that carries a \
                        status takes it, and names what omitting it lands. \
                        CONTENT FIELDS ARE REQUIRED TO CREATE AND OPTIONAL TO REVISE: call it \
@@ -1669,7 +1701,7 @@ impl ReflowService {
     }
 
     #[tool(
-        description = "Create an Actor — a person, role, external system, service or device that \
+        description = "Create or revise an Actor — a person, role, external system, service or device that \
                        INTERACTS WITH this design without being part of it. `actor_type` says \
                        which (user / operator / external_system / service / device / \
                        stakeholder), and `description` is the type's embedding field, so it is \
@@ -1712,7 +1744,7 @@ impl ReflowService {
     }
 
     #[tool(
-        description = "Create a Requirement node. A new one lands at `proposed`; only the \
+        description = "Create or revise a Requirement node. A new one lands at `proposed`; only the \
                        user's word moves it off, through set_requirement_status. CALLING THIS \
                        AGAIN WITH AN EXISTING ID REVISES that node: what you pass overwrites, \
                        and every field you do NOT pass keeps its current value instead of \
@@ -1847,9 +1879,9 @@ impl ReflowService {
     }
 
     #[tool(
-        description = "Create a DesignRule — a convention or standard the project ADOPTS (a                     \
-                       tech-stack choice, a house style, a review step), as distinct from a                     \
-                       Requirement (a goal to achieve) or a Constraint (a limit to respect). Two                \
+        description = "Create or revise a DesignRule — a convention or standard the project ADOPTS (a \
+                       tech-stack choice, a house style, a review step), as distinct from a Requirement (a \
+                       goal to achieve) or a Constraint (a limit to respect). Two                \
                        independent projects reached for this and found only generic create_node,                \
                        then guessed the field names wrong; this is the typed constructor they                   \
                        wanted. Prose goes in `statement`. `enforced` is THREE-STATE and the                     \
@@ -2027,7 +2059,7 @@ impl ReflowService {
     }
 
     #[tool(
-        description = "Create a Capability node. \u{2b50} DRAW THE GOLDEN THREAD IN THIS CALL: \
+        description = "Create or revise a Capability node. \u{2b50} DRAW THE GOLDEN THREAD IN THIS CALL: \
                        `satisfies` (the Requirement it serves) and `allocated_to` (the Component \
                        that will provide it) each draw their edge here, so the thread costs one \
                        call instead of three. An id naming nothing is REFUSED and NOTHING IS \
@@ -2370,7 +2402,7 @@ impl ReflowService {
     }
 
     #[tool(
-        description = "Create a Component node. Pass `level` when the part is an assembly \
+        description = "Create or revise a Component node. Pass `level` when the part is an assembly \
                        rather than a leaf (`subsystem`, `system`, `system_of_systems`, \
                        `enterprise`; default `component`), then use contain_component to nest \
                        it — that pair is what gives hierarchy_issues something to check. \
@@ -2611,9 +2643,9 @@ impl ReflowService {
     }
 
     #[tool(
-        description = "Create an Interface node — a contract between parts (an API, event, \
-                       data feed, CLI, library boundary, physical/human connection point, or a \
-                       procedural contract between institutions). \
+        description = "Create or revise an Interface node — a contract between parts (an API, event, data \
+                       feed, CLI, library boundary, physical/human connection point, or a procedural contract \
+                       between institutions). \
                        Model one whenever two Components talk to each other, then pair it with \
                        `provides` and `consumes`: that pairing is what makes a change on one \
                        side of a boundary surface the other side. \
@@ -2665,8 +2697,8 @@ impl ReflowService {
     }
 
     #[tool(
-        description = "Create a Flow — an ordered process linking Capabilities end to end (a \
-                       user journey, an assembly sequence, an operating loop). Attach each step \
+        description = "Create or revise a Flow — an ordered process linking Capabilities end to end (a user \
+                       journey, an assembly sequence, an operating loop). Attach each step \
                        with `part_of_flow` (+ step_order); join steps with TRIGGERS edges via \
                        `create_edge`, giving each a `role` property saying what the transition \
                        means ('feeds', 'forces resync') — in a process the backward edges are \
@@ -2785,7 +2817,7 @@ impl ReflowService {
     }
 
     #[tool(
-        description = "Create a Constraint — a limit or rule the design must respect, vs a \
+        description = "Create or revise a Constraint — a limit or rule the design must respect, vs a \
                        Requirement which is a goal to achieve. IT NEED NOT BE NUMERIC: only \
                        `name` and `statement` are required, so a prohibition (\"no PII leaves \
                        the device\") or a closed set of permitted values (\"status is one of \
@@ -3143,7 +3175,7 @@ impl ReflowService {
     }
 
     #[tool(
-        description = "Record a Decision and why it was made (an ADR). Use this whenever the user chooses \
+        description = "Create or revise a Decision and why it was made (an ADR). Use this whenever the user chooses \
                        between real alternatives — the rationale is what stops the choice being silently \
                        reversed later. Link it with `governed_by`. It lands `proposed`: recording a choice is \
                        not the same as settling it, so reaching `accepted` is a separate act \
@@ -3454,8 +3486,8 @@ impl ReflowService {
     }
 
     #[tool(
-        description = "Record a Contributor — who authors and decides the DESIGN itself: a person, an automated \
-                       coding agent, or an organization. Distinct from an Actor (add via create_node), which is \
+        description = "Create or revise a Contributor — who authors and decides the DESIGN itself: a person, \
+                       an automated coding agent, or an organization. Distinct from an Actor (add via create_node), which is \
                        who the designed system SERVES. Create one per session for whoever is driving, then \
                        attribute their design nodes with authored_by — the structured 'who' behind provenance's \
                        'how'. CONTENT FIELDS ARE REQUIRED TO CREATE AND OPTIONAL TO REVISE: call it again with \

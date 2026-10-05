@@ -52,7 +52,7 @@ impl ReflowService {
     // ---- P4 Verification / P5 Operation / Decisions (the write side) ----
 
     #[tool(
-        description = "Record a Verification — a check that something meets its intent. `method` \
+        description = "Create or revise a Verification — a check that something meets its intent. `method` \
                        says HOW you looked: test, analysis, inspection and demonstration are the \
                        four canonical ones, plus measurement, observation (watching it run in the \
                        field, unchanged), review and simulation. Answers the \

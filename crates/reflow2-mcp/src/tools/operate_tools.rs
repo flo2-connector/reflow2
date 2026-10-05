@@ -50,14 +50,14 @@ use crate::service::*;
 #[tool_router(router = operate_tools_router, vis = "pub")]
 impl ReflowService {
     #[tool(
-        description = "Record a Release — a packaged, operable version: a container image, a \
+        description = "Create or revise a Release record — a packaged, operable version: a container image, a \
                        published package, a manufactured build. Part of answering the \
                        `no_deploy_operate` gap. Lands `status: planned` unless you pass one (`built` \
                        or `deployed` once it ships). \
                        CONTENT FIELDS ARE REQUIRED TO CREATE AND OPTIONAL TO REVISE: call it \
                        again with the same id and only what you are changing \u{2014} omitted \
                        fields keep their stored value, so correcting one never means re-sending \
-                       a 2 KB field you did not touch.",
+                       a 2 KB field.",
         annotations(read_only_hint = false)
     )]
     pub async fn add_release(
@@ -102,7 +102,7 @@ impl ReflowService {
     }
 
     #[tool(
-        description = "Record a rule the design CANNOT NEGOTIATE — a building code, a zoning \
+        description = "Create or revise a rule the design CANNOT NEGOTIATE — a building code, a zoning \
                        ordinance, a safety standard, a physical law. THREE KINDS OF RULE ARE \
                        KEPT APART: a Constraint is self-imposed (stay under $500k), a DesignRule \
                        is a chosen convention (branch before pushing), and this one is imposed \
@@ -236,8 +236,8 @@ impl ReflowService {
     }
 
     #[tool(
-        description = "Record an Environment — where a Release runs: a cloud region, a lab bench, \
-                       a physical site. More than a deploy target; it is the context whose rules \
+        description = "Create or revise an Environment — where a Release runs: a cloud region, a lab bench, a \
+                       physical site. More than a deploy target; it is the context whose rules \
                        the design must satisfy. \
                        CONTENT FIELDS ARE REQUIRED TO CREATE AND OPTIONAL TO REVISE: call it \
                        again with the same id and only what you are changing \u{2014} omitted \
@@ -282,8 +282,8 @@ impl ReflowService {
     }
 
     #[tool(
-        description = "Record a Resource the built thing needs — a database, a queue, a secret, a \
-                       GPU, power, bandwidth. \
+        description = "Create or revise a Resource the built thing needs — a database, a queue, a secret, a \
+                       GPU, power. \
                        CONTENT FIELDS ARE REQUIRED TO CREATE AND OPTIONAL TO REVISE: call it \
                        again with the same id and only what you are changing \u{2014} omitted \
                        fields keep their stored value, so correcting one never means re-sending \
@@ -390,9 +390,8 @@ impl ReflowService {
     }
 
     #[tool(
-        description = "Record an OBSERVED technology-readiness level (TRL or MRL, 1-9) for an \
-                       enabling technology — the input fact a derived roadmap is computed from \
-                       (BL-68). CONVENTION: this is an observation, not a plan. A level you \
+        description = "Create or revise an OBSERVED technology-readiness level (TRL or MRL, 1-9) for an \
+                       enabling technology — the input fact a derived roadmap is computed from (BL-68). CONVENTION: this is an observation, not a plan. A level you \
                        EXPECT a technology to reach later is forecast_readiness, never this — \
                        recording a projection as an observation puts a fiction inside the \
                        machinery the roadmap is computed from, where it propagates. A rung \

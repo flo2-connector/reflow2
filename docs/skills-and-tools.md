@@ -110,15 +110,15 @@ description, which an agent sees in the tool schema; this table is for a person 
 
 | tool | | what it does |
 |---|---|---|
-| `add_capability` | **write** | Create a Capability node. |
-| `add_component` | **write** | Create a Component node. |
-| `add_constraint` | **write** | Create a Constraint — a limit or rule the design must respect, vs a Requirement which is a goal to achieve. |
-| `add_contributor` | **write** | Record a Contributor — who authors and decides the DESIGN itself: a person, an automated coding agent, or an organization. |
-| `add_decision` | **write** | Record a Decision and why it was made (an ADR). |
-| `add_flow` | **write** | Create a Flow — an ordered process linking Capabilities end to end (a user journey, an assembly sequence, an operating loop). |
-| `add_interface` | **write** | Create an Interface node — a contract between parts (an API, event, data feed, CLI, library boundary, physical/human connection point, or a procedural contract between institutions). |
-| `add_project` | **write** | Create a Project node. |
-| `add_requirement` | **write** | Create a Requirement node. |
+| `add_capability` | **write** | Create or revise a Capability node. |
+| `add_component` | **write** | Create or revise a Component node. |
+| `add_constraint` | **write** | Create or revise a Constraint — a limit or rule the design must respect, vs a Requirement which is a goal to achieve. |
+| `add_contributor` | **write** | Create or revise a Contributor — who authors and decides the DESIGN itself: a person, an automated coding agent, or an organization. |
+| `add_decision` | **write** | Create or revise a Decision and why it was made (an ADR). |
+| `add_flow` | **write** | Create or revise a Flow — an ordered process linking Capabilities end to end (a user journey, an assembly sequence, an operating loop). |
+| `add_interface` | **write** | Create or revise an Interface node — a contract between parts (an API, event, data feed, CLI, library boundary, physical/human connection point, or a procedural contract between institutions). |
+| `add_project` | **write** | Create or revise a Project node. |
+| `add_requirement` | **write** | Create or revise a Requirement node. |
 | `allocate` | **write** | Allocate a Capability to a Component (ALLOCATED_TO) — say WHICH PART of the design will provide the function. |
 | `authored_by` | **write** | Attribute a design node to a Contributor (AUTHORED_BY) — whose word this Decision/Requirement/… is. |
 | `budget_report` | read | Roll a budget Constraint up (BL-11): total of stated contributions vs the limit, the worst dependency path among contributors (the path-cumulative rollup — end-to-end latency, mass down a chain), basis coverage (estimated vs measured), and an honest verdict — `incomplete` when any contribution is unstated, because a partial sum passed off as a total is how budgets lie |
@@ -146,8 +146,8 @@ description, which an agent sees in the tool schema; this table is for a person 
 | `set_requirement_designation` | **write** | Designate a Requirement as a PROMISE THIS DESIGN PUBLISHES — a behavioural commitment a consumer may rely on — or back to INTERNAL intent nobody outside sees. |
 | `set_requirement_lineage` | **write** | Set where a Requirement came from — `original` (the stakeholder's own word), `decomposed` (a 1:1 split of a parent, normally set for you by `decomposes`), or `derived` (technical necessity nobody asked for, created by a design decision — pair it with governed_by to that Decision). |
 | `set_requirement_status` | **write** | Set a Requirement's lifecycle status: `proposed` (the default) / `accepted` / `deferred` / `dropped` / `met`. |
-| `add_actor` | **write** | Create an Actor — a person, role, external system, service or device that INTERACTS WITH this design without being part of it. |
-| `add_design_rule` | **write** | Create a DesignRule — a convention or standard the project ADOPTS (a tech-stack choice, a house style, a review step), as distinct from a Requirement (a goal to achieve) or a Constraint (a limit to respect). |
+| `add_actor` | **write** | Create or revise an Actor — a person, role, external system, service or device that INTERACTS WITH this design without being part of it. |
+| `add_design_rule` | **write** | Create or revise a DesignRule — a convention or standard the project ADOPTS (a tech-stack choice, a house style, a review step), as distinct from a Requirement (a goal to achieve) or a Constraint (a limit to respect). |
 | `answers` | **write** | Record that this design record ANSWERED a question (ANSWERS) — the Decision, Requirement or Capability the user's reply actually became. |
 | `budget_report` | **read** | Roll a budget Constraint up (BL-11): total of stated contributions vs the limit, the worst dependency path among contributors (the path-cumulative rollup — end-to-end latency, mass down a chain), basis coverage (estimated vs measured), and an honest verdict — `incomplete` when any contribution is unstated, because a partial sum passed off as a total is how budgets lie. |
 | `depends_on` | **write** | Record that one Component DEPENDS ON another (DEPENDS_ON) — the coupling every topology rule reads. |
@@ -249,7 +249,7 @@ description, which an agent sees in the tool schema; this table is for a person 
 
 | tool | | what it does |
 |---|---|---|
-| `add_verification` | **write** | Record a Verification — a check that something meets its intent. |
+| `add_verification` | **write** | Create or revise a Verification — a check that something meets its intent. |
 | `calibrated_against` | **write** | Record that a value was FITTED to a piece of evidence, so that same evidence can no longer count as its validation (CALIBRATED_AGAINST). |
 | `coverage_report` | read | What has the design never been told about? |
 | `evidence_report` | read | Where did each capability's evidence actually come from? |
@@ -274,7 +274,7 @@ description, which an agent sees in the tool schema; this table is for a person 
 
 | tool | | what it does |
 |---|---|---|
-| `add_artifact` | **write** | Create an Artifact node — a real deliverable (file/spec/doc) that lives outside the graph, pointed to by `location`. |
+| `add_artifact` | **write** | Create or revise an Artifact node — a real deliverable (file/spec/doc) that lives outside the graph, pointed to by `location`. |
 | `documents` | **write** | Link an Artifact to the node it DOCUMENTS (describes without implementing): a design doc, ADR, README, runbook, instruction file or diagram. |
 | `link_artifact` | **write** | Register a real file against the design WITH provenance, atomically: Artifact + a provenance Fragment (YIELDED) + a REALIZES edge to the Capability/Component it implements. |
 | `realizes` | **write** | Link an Artifact to the Capability or Component it REALIZES — the file, drawing or binary that implements it, as opposed to one that merely describes it (`documents`). |
@@ -292,12 +292,12 @@ description, which an agent sees in the tool schema; this table is for a person 
 
 | tool | | what it does |
 |---|---|---|
-| `add_change_event` | **write** | Create a ChangeEvent (seed for propagate_change). |
-| `add_epoch` | **write** | Create a `DesignEpoch` that HAS HAPPENED — a point on the time axis you are recording, which is what an epoch has always meant here. |
+| `add_change_event` | **write** | Create or revise a ChangeEvent (seed for propagate_change). |
+| `add_epoch` | **write** | Create or revise a `DesignEpoch` that HAS HAPPENED — a point on the time axis you are recording, which is what an epoch has always meant here. |
 | `arrival_delta` | read | What was PLANNED for an epoch or release against what was actually DELIVERED — the planned-versus-delivered delta (dec:arrival-delta) |
 | `changelog_view` | read | Derive a Keep a Changelog-shaped DRAFT between two moments of THIS design — compare_designs' sibling: that one compares two as-designed records, this one compares two moments of one design and renders the difference in the format the industry already reads |
 | `pin_at_epoch` | **write** | Pin any node to a DesignEpoch (AT_EPOCH) — e.g. |
-| `plan_epoch` | **write** | Create an Epoch that has NOT happened yet — a claim about the future rather than a record of the past, and the forward half of the time axis (req:epochs-can-be-planned). |
+| `plan_epoch` | **write** | Create or revise an Epoch that has NOT happened yet — a claim about the future rather than a record of the past, and the forward half of the time axis (req:epochs-can-be-planned). |
 | `precedes` | **write** | Order one DesignEpoch after another (earlier PRECEDES later) — the chain axis Z exists to record. |
 | `record_change` | **read** | RENAMED to `snapshot_before_change` on 2026-09-18 — same parameters, same behaviour: snapshot a node's prior state in an epoch before you change it. |
 | `schedule_for` | **write** | Schedule a Requirement, Capability, QUESTION, Verification or Decision against the moment it is DUE — the satisfaction schedule, which is what makes a roadmap answerable (req:epochs-can-be-planned). |
@@ -305,7 +305,7 @@ description, which an agent sees in the tool schema; this table is for a person 
 | `arrival_delta` | **read** | What was PLANNED for an epoch or release against what was actually DELIVERED — the planned-versus-delivered delta (dec:arrival-delta). |
 | `changelog_view` | **read** | Derive a Keep a Changelog-shaped DRAFT between two moments of THIS design — compare_designs' sibling: that one compares two as-designed records, this one compares two moments of one design and renders the difference in the format the industry already reads. |
 | `manual_work_report` | **read** | RENAMED to `manual_work_ledger` on 2026-09-18 — the READ of everything sessions reported doing by hand. |
-| `record_finding` | **write** | Record a dated finding or defect as a TemporalFact — what was observed, about which node, on what date. |
+| `record_finding` | **write** | Create or revise a dated finding or defect as a TemporalFact — what was observed, about which node, on what date. |
 | `report_manual_work` | **write** | Record work THIS SESSION did BY HAND that reflow2 already serves, or should — the negative space. |
 | `manual_work_ledger` | **read** | Every piece of hand-rolled work this design has recorded, with the diagnosis that separates a MISSING tool from an UNFINDABLE one. |
 | `snapshot_before_change` | **write** | Record a change to a node in an epoch (snapshots the prior state). |
@@ -314,10 +314,10 @@ description, which an agent sees in the tool schema; this table is for a person 
 
 | tool | | what it does |
 |---|---|---|
-| `add_environment` | **write** | Record an Environment — where a Release runs: a cloud region, a lab bench, a physical site. |
-| `add_readiness` | **write** | Record an OBSERVED technology-readiness level (TRL or MRL, 1-9) for an enabling technology — the input fact a derived roadmap is computed from (BL-68). |
-| `add_release` | **write** | Record a Release — a packaged, operable version: a container image, a published package, a manufactured build. |
-| `add_resource` | **write** | Record a Resource the built thing needs — a database, a queue, a secret, a GPU, power, bandwidth. |
+| `add_environment` | **write** | Create or revise an Environment — where a Release runs: a cloud region, a lab bench, a physical site. |
+| `add_readiness` | **write** | Create or revise an OBSERVED technology-readiness level (TRL or MRL, 1-9) for an enabling technology — the input fact a derived roadmap is computed from (BL-68). |
+| `add_release` | **write** | Create or revise a Release record — a packaged, operable version: a container image, a published package, a manufactured build. |
+| `add_resource` | **write** | Create or revise a Resource the built thing needs — a database, a queue, a secret, a GPU, power. |
 | `deploy_to` | **write** | Deploy a Release to an Environment (DEPLOYED_TO), with the deployment's state — `planned`, `active` or `rolled_back`. |
 | `forecast_readiness` | **write** | Record a PROJECTED readiness level valid from a future epoch — 'this converter reaches TRL 7 in 2035' — as a TemporalFact marked basis=forecast (BL-68). |
 | `gate_on` | **write** | State that an increment cannot deliver until an enabling technology reaches a given readiness level — the JUDGEMENT half of BL-68, and the one reflow2 will never make for you. |
@@ -327,7 +327,7 @@ description, which an agent sees in the tool schema; this table is for a person 
 | `release_includes_all` | **write** | Derive a Release's whole INCLUDES manifest from the design in one call: every Artifact and every Component, with each artifact's current checksum frozen as shipped. |
 | `release_report` | read | The as-released view (BL-34): what a Release actually shipped — artifacts with their frozen cut-time checksums, components, the capabilities that build covers, the built capabilities it leaves out, and where it is deployed |
 | `require_resource` | **write** | Record that a Component or Release needs a Resource (REQUIRES_RESOURCE), with how critical it is — `optional`, `recommended` or `required`. |
-| `add_environment_rule` | **write** | Record a rule the design CANNOT NEGOTIATE — a building code, a zoning ordinance, a safety standard, a physical law. |
+| `add_environment_rule` | **write** | Create or revise a rule the design CANNOT NEGOTIATE — a building code, a zoning ordinance, a safety standard, a physical law. |
 | `complies_with` | **write** | Record that a design element SATISFIES an EnvironmentRule (COMPLIES_WITH). |
 | `imposes` | **write** | Record that an Environment imposes an EnvironmentRule (IMPOSES) — the codes, standards and physical laws a place holds the design to, one edge per rule. |
 | `operates_in` | **write** | Record that a Project's result must function in an Environment (OPERATES_IN). |
