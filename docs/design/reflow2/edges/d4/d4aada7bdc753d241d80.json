@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:8a053bbeea0a2a22d2fc5934ec81455f3cbf3e40b79e79332dde75174ef46e24",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:test-served-skills",
+  "properties": {
+    "covers": "partial",
+    "evidence": "the served vscode-terminal-route section; CI's workspace tests run it"
+  },
+  "to_id": "ver:the-vscode-terminal-route-is-installed-and-driven-the-way-an-agent-drives-it"
+}

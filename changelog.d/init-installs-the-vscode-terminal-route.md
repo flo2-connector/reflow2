@@ -22,8 +22,11 @@
   - Each Markdown file carries a one-line reflow2 mark with a hash of the rest of it.
     `reflow2 update` refreshes a file whose mark is intact. It leaves alone any file somebody
     edited and any file of their own, even on a fresh clone with no install receipt.
-  - `all`, and an install nobody answered, still mean every MCP harness. The terminal route is
-    chosen by name.
+  - Nothing changes for a project on MCP. `all`, and an install nobody answered, still mean every
+    MCP harness, and the terminal route is chosen only by name. An init or update for an MCP
+    harness writes exactly what it wrote before, byte for byte; `tools/test_init.py` pins that
+    against a golden taken from the previous installer. No tool's arguments or reply shape
+    changed.
   - `tools/test_call_door.py` drives the door the way a VS Code agent does, and runs in CI.
   - **What to do, for a VS Code user whose organisation blocks MCP:**
     1. Upgrade reflow2 with `tools/install.sh`, which also refreshes the `reflow2` command.
@@ -42,7 +45,3 @@
   hooks, and reflow2 installs them with the terminal route. `loop_status` now reads a project's
   `.github/hooks/` file as an installed nudge. Init no longer tells an OpenCode project that its
   nudge is missing beside the plugin it just installed.
-- **The pointer file (`AGENTS.md`, or `REFLOW2.md`) names both routes.** It used to say reflow2
-  is reached through an MCP server "already configured in this repo", which is false where MCP is
-  blocked. It now also names the terminal route. The first `reflow2 update` after this release
-  rewrites that file once in every project that holds it.

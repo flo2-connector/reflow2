@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:c99e6b667055185a9f4323274f984945745d78844266f8051bcc2621f5ef253d",
+  "node_id": "cap:the-loop-nudge-reaches-a-call-door-agent-in-vs-code-through-hooks-init-installs",
+  "node_type": "Capability",
+  "properties": {
+    "description": "`reflow2 hook vscode` (loop_nudge.py --harness vscode): SessionStart runs loop_status through the door and returns its `next` list as additionalContext; Stop reads the session's calls from reflow2's usage ledger, counts each through the same count_call the Claude hook uses, exports the committed record when the turn wrote and no MCP config keeps it current (never over a non-export), and nudges once in VS Code's shape. No hook reads command text. loop_status reads a .github/hooks file running `reflow2 hook vscode` as an installed nudge, and no longer says none is possible for VS Code. Answers limitation 9.",
+    "distinct_from": [
+      "fact:root-cause-no-loop-nudge-reaches-a-call-door-agent-in-vs-code-2026-10-02",
+      "fact:vs-code-has-an-agent-hook-event-model-reflow2-can-register-against-2026-10-02"
+    ],
+    "name": "The loop nudge reaches a --call agent in VS Code through hooks the terminal route installs, counting door writes from the usage ledger",
+    "provenance": "authored",
+    "status": "verified"
+  }
+}

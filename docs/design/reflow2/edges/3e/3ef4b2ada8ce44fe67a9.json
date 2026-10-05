@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:908502261a2413bce0a7600d376e716198ffc794f96d8d4735c03ef718697d83",
+  "edge_type": "REALIZES",
+  "from_id": "art:loop-nudge",
+  "properties": {
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:the-loop-nudge-reaches-a-call-door-agent-in-vs-code-through-hooks-init-installs"
+}

@@ -289,18 +289,18 @@ them on 2026-10-05
 
 | # | Idea, in short | Record in reflow2's design | Where it is |
 |---|---|---|---|
-| 1 | A served CLI-door harness in `reflow2 init`, with VS Code hook files | `dec:idea-the-call-door-becomes-a-supported-harness-for-an-agent-that-cannot-use-mcp`; `req:init-installs-the-terminal-route-for-vs-code-and-update-keeps-it-current` | **Being built** (`dec:the-vs-code-setup-is-built-as-one-increment-2026-10-05`) |
+| 1 | A served CLI-door harness in `reflow2 init`, with VS Code hook files | `dec:idea-the-call-door-becomes-a-supported-harness-for-an-agent-that-cannot-use-mcp`; `req:init-installs-the-terminal-route-for-vs-code-and-update-keeps-it-current` | **Built** (#680; `dec:the-vs-code-setup-is-built-as-one-increment-2026-10-05`) |
 | 2 | `--call` joins a running shared server instead of refusing writes | `dec:idea-a-one-shot-call-reaches-the-design-where-it-is-served` | Open |
 | 3 | A writing call exports | `dec:idea-a-writing-call-exports-afterwards` | Shipped in v0.78.0 |
 | 4 | A read/write verb split | `dec:idea-a-shell-driven-agent-approves-reads-once-and-confirms-each-write` | Shipped in v0.78.0 |
 | 5 | `--describe <tool>` / `--list-tools` | `dec:idea-the-cli-describes-a-tool-with-its-schema-and-lessons` | Shipped in v0.78.0 |
 | 6 | `--call-batch`: calls in one process, one approval, stop at the first refusal | `dec:idea-a-shell-driven-agent-approves-reads-once-and-confirms-each-write`; `req:a-batch-of-calls-runs-under-one-approval-and-one-export` | Planned (step 6) |
-| 7 | Skill stubs in `.github/skills/` that route to `get_skill` | as idea 1 | **Being built** |
+| 7 | Skill stubs in `.github/skills/` that route to `get_skill` | as idea 1 | **Built** (#680) |
 | 8 | `REFLOW2_HARNESS=vscode` under `--call` | as idea 1 (the requirement's attribution clause) | Planned; not in the increment being built |
 | 9 | A VS Code extension registering Language Model Tools | `dec:idea-where-an-org-blocks-third-party-mcp-ask-for-an-allowlist-before-building-around-it` | Not pursued (2026-10-01) |
 | 10 | An MCP registry allowlist | as idea 9 | Asked for, and not available in the organisation this report comes from. It stays the clean route wherever an admin allows it. |
-| 11 | A CI probe for the door (`tools/test_call_door.py`) | as idea 1 | **Being built** |
-| 12 | Ship VS Code hooks (`SessionStart` → `loop_status`, `Stop` → export) | `dec:idea-how-reflow2-triggers-the-loop-for-a-call-door-agent-in-vs-code` | **Being built** |
+| 11 | A CI probe for the door (`tools/test_call_door.py`) | as idea 1 | **Built** (#680) |
+| 12 | Ship VS Code hooks (`SessionStart` → `loop_status`, `Stop` → export) | `dec:idea-how-reflow2-triggers-the-loop-for-a-call-door-agent-in-vs-code` | **Built** (#680) |
 | 13 | A hub address book | `dec:idea-a-hub-on-one-machine-can-say-where-each-tracked-design-is-reached-from-the-door` | Open |
 | 14 | Warn on a never-exported design | `dec:idea-loop-status-says-whether-an-export-is-owed-on-a-hosted-design` (linked as a duplicate) | Open |
 | 15 | Refusals name the tool and the field | `dec:idea-every-argument-refusal-names-the-tool-and-the-field-path` | Shipped in v0.78.0 |

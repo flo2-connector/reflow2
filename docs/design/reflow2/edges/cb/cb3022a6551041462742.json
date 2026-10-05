@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:955191dd04a608934a03d6fcc817f517e64d665b35d35ead28451e835b23f48b",
+  "edge_type": "CHANGED",
+  "from_id": "chg:init-installs-the-vscode-terminal-route-2026-10-05",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 2,
+    "action": "modified",
+    "checksum_after": "sha256:64d0f509cf6d1194a958d84e81d16d2b7dcc452377ddf96e48c9d43384a18e0d",
+    "checksum_basis": "measured"
+  },
+  "to_id": "art:skills-build"
+}

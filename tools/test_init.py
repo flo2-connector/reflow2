@@ -1390,6 +1390,107 @@ class UpdateIsItsOwnWord(unittest.TestCase):
 
 
 # ---------------------------------------------------------------------------
+# An MCP install writes exactly what it wrote before the terminal route
+# ---------------------------------------------------------------------------
+
+# Normalised content hashes of every file an install writes, per harness
+# choice, taken from the installer on main BEFORE the terminal route existed
+# (e7e304d). The owner's constraint, 2026-10-05: the VS Code route must not
+# change reflow2 for anyone using it as an MCP server.
+INSTALL_GOLDEN = HERE / "init_goldens" / "mcp-install.json"
+BLESS_ENV = "REFLOW2_BLESS_INIT_GOLDEN"
+GOLDEN_CHOICES = {
+    "claude": ["claude"],
+    "opencode": ["opencode"],
+    "grok": ["grok"],
+    "vscode": ["vscode"],
+    "all": ["claude", "opencode", "grok", "vscode"],
+}
+# The receipt's keys before the terminal route. Its VALUES carry this
+# checkout's version and path, so the keys are what is pinned.
+RECEIPT_KEYS = ["commit", "committed_at", "harnesses", "installed_files",
+                "reflow2_version", "source"]
+
+
+def install_fingerprint(installer, tmp: pathlib.Path, harnesses: list[str]) -> dict:
+    """Every file `installer.install` writes into a fresh project, by path,
+    with this machine's paths normalised out, hashed. The receipt is reduced
+    to its keys, its harness list and its file manifest."""
+    import hashlib
+    project = tmp / "proj"
+    project.mkdir()
+    installer.install(project, FAKE_BINARY, False, list(harnesses))
+    out = {}
+    for f in sorted(p for p in project.rglob("*") if p.is_file()):
+        rel = f.relative_to(project).as_posix()
+        text = f.read_text(encoding="utf-8")
+        if rel == ".reflow2/kit-version.json":
+            stamp = json.loads(text)
+            text = json.dumps({"keys": sorted(stamp), "harnesses": stamp.get("harnesses"),
+                               "installed_files": stamp.get("installed_files")}, sort_keys=True)
+        text = text.replace(str(installer.REPO), "<REPO>").replace(str(project), "<PROJECT>")
+        out[rel] = hashlib.sha256(text.encode("utf-8")).hexdigest()
+    return out
+
+
+class McpInstallIsUnchanged(unittest.TestCase):
+    """`reflow2 init` and `reflow2 update` for an MCP harness write exactly
+    what they wrote before the VS Code terminal route, byte for byte.
+
+    The pin is a golden taken from main's own installer (e7e304d), so a change
+    here is a change to what every MCP project receives. If one is MEANT,
+    regenerate with REFLOW2_BLESS_INIT_GOLDEN=1 and say so in the change.
+    """
+
+    def setUp(self):
+        self.tmp = pathlib.Path(tempfile.mkdtemp(prefix="reflow2-mcp-golden-"))
+        self.addCleanup(shutil.rmtree, self.tmp, ignore_errors=True)
+
+    def test_an_mcp_install_writes_what_it_wrote_before_byte_for_byte(self):
+        got = {}
+        for name, harnesses in GOLDEN_CHOICES.items():
+            d = self.tmp / name
+            d.mkdir()
+            got[name] = install_fingerprint(init, d, harnesses)
+        if os.environ.get(BLESS_ENV):
+            INSTALL_GOLDEN.parent.mkdir(exist_ok=True)
+            INSTALL_GOLDEN.write_text(json.dumps(got, indent=2, sort_keys=True) + "\n")
+            self.skipTest(f"blessed {INSTALL_GOLDEN.name}")
+        golden = json.loads(INSTALL_GOLDEN.read_text())
+        for name in GOLDEN_CHOICES:
+            self.assertEqual(sorted(got[name]), sorted(golden[name]),
+                             f"--harness {name}: a different SET of files is written")
+            changed = [rel for rel in golden[name] if got[name][rel] != golden[name][rel]]
+            self.assertEqual(changed, [], f"--harness {name}: these files' bytes changed")
+            self.assertFalse([rel for rel in got[name] if rel.startswith(".github/")],
+                             f"--harness {name}: nothing VS Code-specific is written")
+
+    def test_the_receipt_of_an_mcp_install_keeps_its_keys(self):
+        for name, harnesses in GOLDEN_CHOICES.items():
+            d = self.tmp / name
+            d.mkdir()
+            (d / "proj").mkdir()
+            init.install(d / "proj", FAKE_BINARY, False, harnesses)
+            stamp = json.loads((d / "proj" / init.STAMP).read_text())
+            self.assertEqual(sorted(stamp), RECEIPT_KEYS, f"--harness {name}")
+
+    def test_an_update_of_an_mcp_project_changes_nothing(self):
+        # `reflow2 update` is `install` on a project with a receipt. On a
+        # project set up for an MCP harness it must find nothing to do.
+        for name, harnesses in GOLDEN_CHOICES.items():
+            d = self.tmp / name / "proj"
+            d.mkdir(parents=True)
+            init.install(d, FAKE_BINARY, False, harnesses)
+            before = {f: f.read_bytes() for f in d.rglob("*") if f.is_file()}
+            init.install(d, FAKE_BINARY, False, harnesses)
+            after = {f: f.read_bytes() for f in d.rglob("*") if f.is_file()}
+            self.assertEqual(sorted(after), sorted(before), f"--harness {name}")
+            moved = [str(f.relative_to(d)) for f in before
+                     if f.name != "kit-version.json" and after[f] != before[f]]
+            self.assertEqual(moved, [], f"--harness {name}: an update rewrote these")
+
+
+# ---------------------------------------------------------------------------
 # VS Code with MCP blocked: the terminal route (`--harness vscode-cli`)
 # ---------------------------------------------------------------------------
 

@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:60b3678ef1eb3cc2db5ed7c229e4ffa1ca4f0749a987617ca3bdb7da139477b8",
+  "edge_type": "CHANGED",
+  "from_id": "chg:baseline-331f2f3a0a47a4f9",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:6184e743a0ee3bf18a964440b8adbe07222610be480fff68ea2618caae93d74e",
+    "checksum_basis": "measured"
+  },
+  "to_id": "art:vscode-terminal-route-instructions"
+}

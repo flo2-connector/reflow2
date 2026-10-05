@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:b7f1d0e7270549c996e14a79206c79762d6d33ef6a89e729227165826b042b3a",
+  "node_id": "art:vscode-terminal-route-instructions",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "document",
+    "description": "The instructions a VS Code agent works from where MCP is blocked: the two verbs (`reflow2 read` for every read, `reflow2 write` for writes), the exit codes, prose on stdin, what to do after a refusal, the person's word on intent. `reflow2 init --harness vscode-cli` writes it to .github/instructions/reflow2.instructions.md, and the binary serves the same text as get_instructions section `vscode-terminal-route`.",
+    "location": "getting-started/vscode/reflow2.instructions.md",
+    "name": "reflow2.instructions.md (VS Code terminal route)",
+    "status": "realized"
+  }
+}

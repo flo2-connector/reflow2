@@ -1962,8 +1962,11 @@ def install(
             continue
         if file_sha(stale) == recorded:
             stale.unlink()
-            # A skill stub is the only file in its directory; leave no husk.
-            if stale.name == "SKILL.md" and not any(stale.parent.iterdir()):
+            # A VS Code skill stub is the only file in its directory; leave no
+            # husk. Only there: what an update does to an MCP project's files is
+            # unchanged.
+            if (rel.startswith(".github/skills/") and stale.name == "SKILL.md"
+                    and not any(stale.parent.iterdir())):
                 stale.parent.rmdir()
             done.append(f"{rel}  removed ({why_gone(rel)})")
         else:
@@ -2043,8 +2046,12 @@ def install(
     stamp_data["harnesses"] = list(harnesses)
     # The shareable record, by the same convention `design_record_path` names.
     # The VS Code Stop hook reads it here: on the terminal route no MCP config
-    # names the file, so nothing else tells the hook where the record is.
-    stamp_data["design_record"] = design_record_path(project).relative_to(project).as_posix()
+    # names the file, so nothing else tells the hook where the record is. ONLY
+    # for that route: an install for an MCP harness writes the receipt it
+    # always wrote, byte for byte (the owner's constraint of 2026-10-05: the
+    # VS Code route must not change what an MCP project gets).
+    if any(h in harnesses for h in DOOR_HARNESSES):
+        stamp_data["design_record"] = design_record_path(project).relative_to(project).as_posix()
     stamp.write_text(json.dumps(stamp_data, indent=2) + "\n")
     return done
 

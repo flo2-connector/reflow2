@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:de4043cce1df45e4cccc96e6830b7d7b2ae907e6c3e12c23f2d538efd9120504",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:test-init",
+  "properties": {
+    "covers": "partial",
+    "evidence": "VsCodeTerminalRoute and McpInstallIsUnchanged; CI's core job runs it"
+  },
+  "to_id": "ver:the-vscode-terminal-route-is-installed-and-driven-the-way-an-agent-drives-it"
+}
