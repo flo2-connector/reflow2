@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:e817028ffeafd6c116b251bd8a924a0359d430d17416284e4ee42d27b1cf7cd1",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0800",
+  "properties": {
+    "as_checksum": "sha256:dedb8d033617bfb149fe5421ecb7083dc74507e5e1f3382e6671b15925691221"
+  },
+  "to_id": "art:registering-the-file-that-is-a-check-test"
+}

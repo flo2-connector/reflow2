@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:3fa48311d446686a4cede56bb7f1ff3d3e795065bfb7d41a7ae645c5c8f115c3",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0800",
+  "properties": {
+    "as_checksum": "sha256:6e3dd8bcb9e5f4f87139c7b49ecf099c0930bcfe1ecd8e02cc0a88c9eae990ae"
+  },
+  "to_id": "art:verbs"
+}

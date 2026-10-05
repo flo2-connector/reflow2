@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:946e8ef649296ba82fecf711341e8fb85681add7a54f37162b4cfdc61bd516cf",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0800",
+  "properties": {
+    "as_checksum": "sha256:0ffb64a161752bde9977987e2c64e4356b1a8d024c9f08bed1d9cf038781ab37"
+  },
+  "to_id": "art:test-why-history"
+}

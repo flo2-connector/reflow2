@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:2d0de5b2a8aaa58f53bc003424e2330f0e63c673bf4dc0c82709125b18e0e421",
+  "node_id": "chg:accept-c2bc53cbe1529b17",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "documentation",
+    "name": "The v0.80.0 cut names the release in the VS Code guide: the five places that said the VS Code setup comes in 'the release after v0.79.0' now say v0.80.0. Accepted before the manifest is frozen, as flow:release-cut step 1 orders.",
+    "subject": "system"
+  }
+}

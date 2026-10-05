@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:d15bb06d0b48ecb61493010a543a7f76c8c095e25762293cb189dda58ab89485",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0800",
+  "properties": {
+    "as_checksum": "sha256:db09b1f72da46dbab073672b58d9427ab2abe263051cb888131a80f3fb1ebdf2"
+  },
+  "to_id": "art:render-skills-and-tools"
+}

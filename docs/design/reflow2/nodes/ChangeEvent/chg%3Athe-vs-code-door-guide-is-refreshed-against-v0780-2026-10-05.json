@@ -1,9 +1,11 @@
 {
-  "content_hash": "sha256:cab12f59e3ff4eb94c53334d23b288bf421fc434c8225f697866af5237b6b133",
+  "content_hash": "sha256:d4d1ccde8dbd43802f8539d8814216de66290dd399307179054f7bb20f991d75",
   "node_id": "chg:the-vs-code-door-guide-is-refreshed-against-v0780-2026-10-05",
   "node_type": "ChangeEvent",
+  "prev_item_hash": "sha256:cab12f59e3ff4eb94c53334d23b288bf421fc434c8225f697866af5237b6b133",
   "properties": {
     "change_type": "documentation",
+    "commits": "aea6bd0e424c03a667dea53ed4dc2f5547650025",
     "detected_at": "2026-10-05",
     "name": "The VS Code door guide is refreshed against v0.78.0 and main, and registered as a document",
     "rationale": "The guide predated v0.78.0, which shipped most of what it asked for, so it told a VS Code user to work around problems that no longer exist (re-reading a node after a refused write, exporting by hand) and listed fixed limitations as current. Its owner asked for it refreshed and merged.",

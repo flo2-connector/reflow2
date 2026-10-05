@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:111ee95c9e95885b69717970f431ea3cb1cbcd65e9664eb0647c1107eef1003b",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0800",
+  "properties": {
+    "as_checksum": "sha256:4b29f421fed18a1208efa1b8a58f9459b684bbc191788a24dbaaf4c91462440e"
+  },
+  "to_id": "art:design-io"
+}

@@ -31,6 +31,252 @@ This file is the third view: *what changed, and when*.
 
 ## [Unreleased]
 
+## [0.80.0] — 2026-10-05
+
+**Minor. This is the release in which reflow2 works well from VS Code**, including where an
+organisation blocks third-party MCP servers and the agent reaches reflow2 through the terminal. It
+contains #647 and #680–#685. **The schema stamp does not move:** the node types (28), edge types
+(66) and all 69 enum vocabularies are the same as 0.79.0's, and no schema property changed, so no
+upgrade note is owed. No tool was taken away and no argument or reply field narrowed:
+`tests/the_mcp_surface_only_grows.rs` compares this build with 0.79.0's surface and passes. What a consumer or operator should know:
+
+- **VS Code, with MCP blocked:** upgrade with `tools/install.sh`, run
+  `reflow2 init . --harness vscode-cli` in the project (`vscode,vscode-cli` if some teammates have
+  MCP), commit what it writes under `.github/`, add
+  `"chat.tools.terminal.autoApprove": {"/^reflow2 read /": true}` to your own VS Code settings, and
+  delete the hand-written user instructions file. The guide is
+  [docs/using-reflow2-in-vscode-without-mcp.md](docs/using-reflow2-in-vscode-without-mcp.md).
+- **On MCP, nothing to do.** Every change to the tool surface is additive. An init or update for an
+  MCP harness writes exactly what it wrote before.
+- **Before you install, export and commit each design and back up `.reflow2/`.** `install.sh` now
+  keeps the binary it replaces as `reflow2-mcp.<old version>`; copy it back over `reflow2-mcp` to
+  roll back. Measured at this cut: the published 0.79.0 binary refuses a 0.80.0 export by default,
+  because it is stamped newer; with `--accept-newer` it imports all 6,761 nodes and 44,732 edges of
+  reflow2's own design.
+- **`loop_status` may now open with "THIS DESIGN HAS NEVER BEEN EXPORTED"** or an
+  `ahead_of_export` line. Run the command it names and commit the file.
+- **A store that refuses to open as having "lost its identity file"** recovers when its id file is
+  put beside it, at `<store>.id.json`; the refusal prints the file to write.
+
+### Added
+
+- **A guide to using reflow2 from VS Code's Copilot agent where an organisation blocks third-party MCP
+  servers: [docs/using-reflow2-in-vscode-without-mcp.md](docs/using-reflow2-in-vscode-without-mcp.md).**
+  It grew from a field log kept while working that way, and it is now checked against v0.78.0. It covers:
+  - the terminal door: `reflow2 read <tool>` and `reflow2 write <tool>`, `--call`, and what each exit code
+    means;
+  - one VS Code setting that approves every read and leaves each write asking;
+  - a user-scope instructions file that teaches the agent the door, until `reflow2 init` installs the route
+    for VS Code;
+  - a table of what was measured on main;
+  - the limitations that still hold, each with the finding behind it;
+  - where each of the field report's 19 ideas is recorded and how far it has got.
+
+  **What to do:** if you drive reflow2 from VS Code's terminal, follow the guide's instructions-file list. It
+  drops two steps that v0.78.0 made unnecessary: re-reading a node after a refused write, and exporting by
+  hand after each write.
+
+- **`reflow2 init --harness vscode-cli` sets a project up for VS Code where MCP is blocked.** The
+  agent reaches reflow2 through the terminal (`reflow2 read` / `reflow2 write`), and init now
+  writes everything it needs under `.github/`, for the team to commit. Until now the route rested
+  on one person's hand-written VS Code user file, which init and update could neither install nor
+  refresh (the VS Code `--call` field report of 2026-10-02, limitations 7, 9 and 11).
+  - `.github/instructions/reflow2.instructions.md`: how to use the two verbs, the exit codes,
+    prose on stdin, and what to do after a refusal. It is the text the binary serves as
+    `get_instructions` section `vscode-terminal-route`, so `reflow2 update` keeps it in step with
+    the binary.
+  - `.github/hooks/reflow2.json`: two VS Code hooks running `reflow2 hook vscode`. SessionStart
+    runs `loop_status` and puts its reading in the agent's context. Stop writes the committed
+    design record when the turn wrote to the design and no MCP configuration keeps it current. It
+    never writes over a record that is not a reflow2 export. It also nudges once when a write had
+    no loop check after it. Writes are counted from reflow2's own usage ledger. No reflow2 hook
+    reads the text of a command, so design prose that mentions `ssh` cannot trip one.
+  - `.github/skills/<skill>/SKILL.md`: one stub per served skill, carrying the skill's own
+    description so VS Code picks the one that fits, and routing to `reflow2 read get_skill`.
+  - `.github/prompts/<command>.prompt.md`: the slash commands, such as `/gaps`, `/req` and
+    `/where`.
+  - Each Markdown file carries a one-line reflow2 mark with a hash of the rest of it.
+    `reflow2 update` refreshes a file whose mark is intact. It leaves alone any file somebody
+    edited and any file of their own, even on a fresh clone with no install receipt.
+  - Nothing changes for a project on MCP. `all`, and an install nobody answered, still mean every
+    MCP harness, and the terminal route is chosen only by name. An init or update for an MCP
+    harness writes exactly what it wrote before, byte for byte; `tools/test_init.py` pins that
+    against a golden taken from the previous installer. No tool's arguments or reply shape
+    changed.
+  - `tools/test_call_door.py` drives the door the way a VS Code agent does, and runs in CI.
+  - **What to do, for a VS Code user whose organisation blocks MCP:**
+    1. Upgrade reflow2 with `tools/install.sh`, which also refreshes the `reflow2` command.
+    2. In the project, run `reflow2 init . --harness vscode-cli`. Use `vscode,vscode-cli` if some
+       teammates do have MCP.
+    3. Commit what it wrote under `.github/`.
+    4. Add `"chat.tools.terminal.autoApprove": {"/^reflow2 read /": true}` to your own VS Code
+       settings, so every read is approved once and each write still asks. reflow2 never writes
+       your settings.
+    5. Delete the hand-written user instructions file you used before. The project's files
+       replace it.
+
+- **`loop_status` says when a design has never been exported, first, and names the command that
+  fixes it.** A design whose store holds nodes and has no copy anywhere this machine knows of (no
+  record of any export, no `--export-to`, no export named in the project's MCP configuration that
+  exists on disk) now gets a high-severity line at the top of `next`, beginning "THIS DESIGN HAS
+  NEVER BEEN EXPORTED", and an `export_standing` block. The line names the one command that writes
+  a copy: `export_graph` with a path in an MCP session, or the full `reflow2-mcp … --call
+  export_graph` command through the `--call` door and `reflow2 read`. `graph_report` carries the
+  same block, and `graph_report_markdown` leads with the line. A design whose every earlier export
+  has gone gets the same item as `no_export_survives`.
+  - Why: a field log on 0.76.0 found a 195-node design held only in its machine-local store, "one
+    disk away from loss", while `loop_status` answered `clean: true` and an empty `next`. The only
+    export sentence `loop_status` had was computed from the exports a store had already made, so a
+    store with none said nothing — on every door. The `--call` door made it the common case.
+  - It is additive. `clean` and every existing field mean what they meant. A design that has a
+    copy gets exactly the reply it got before. A design served without its project tree (a host's)
+    is never told: there the host keeps the backup.
+  - **What to do:** if you see it, run the command it names, and commit the file. If a design is
+    meant to stay on its machine only, record that once: `acknowledge_gap` with `gap_id`
+    `gap:the-design-has-never-been-exported`, `affected_ids: []`, your reason and your
+    `approver`. The line then stops; `withdraw_gap_acknowledgement` brings it back.
+- **`loop_status` with `since_export: true` lists what the store holds that its export does not,
+  grouped by who wrote it.** A new `unexported` block compares the store with the export it is in
+  step with and groups the changes by the contributor the store credits (a session that declared
+  `writes_for`), the agent it went through (`authored_via`) and the epoch, with counts, up to five
+  ids per group and the dates the items carry. At most eight groups are shown, and the rest are
+  counted. Changes nobody was credited with, and every removal, are counted under `written_by: null`
+  rather than guessed. `compare_designs` with `base_path` still lists every change in full. The
+  plain `loop_status` line about unexported work now says where this list is.
+  - Why: the same field log found a store holding another session's uncommitted work, so an export
+    meant to commit one session's changes either swept the other's in or was skipped (twice in one
+    day).
+  - It is a list to read before exporting, not a partial export. An export still carries the whole
+    store, because exporting one group alone could leave edges pointing at nodes it left out.
+  - **What to do:** to see whose work is unexported, call `loop_status` with `since_export: true`.
+    For writes to be listed under a name, have each session declare `writes_for` (a write made
+    with none in force is listed with no writer).
+- **A store ahead of its export says so in the first line of `loop_status`.** A new
+  `ahead_of_export` field carries one line, such as "ahead of docs/design/p.json: 3 node(s) not in
+  the export". Through `--call` and `reflow2 read` it is the first line printed, ahead of the
+  artifact block. By default it counts nodes, because that reading is free. With `since_export:
+  true` it counts nodes and edges added, changed and removed, and names who wrote them. A design
+  never exported says that instead. `sync_status` carries the same line in its own new
+  `ahead_of_export` field, and each record's `state` keeps its meaning. The field is absent when the
+  store is not ahead.
+  - Why: upgrading 20 stores to 0.79.0, the recipe `--call loop_status | head -40` showed only the
+    artifact block (a member store's remote, unmeasurable files). `sync_status` reports being
+    ahead of the record by design as no state at all. The check was done by hand, by exporting to
+    a scratch file and comparing.
+  - **What to do:** read `ahead_of_export` at the top of the reply. Pass `since_export: true` for
+    the exact count and whose work it is.
+
+- **`--args @path` reads a call's arguments from a file.** Beside `--args -`
+  (stdin), `--call TOOL --args @args.json`, `reflow2 write TOOL --args @args.json`
+  and `reflow2 read TOOL @args.json` read the one JSON object from the named file,
+  so design prose reaches the call with no shell quoting and never enters the
+  command text a terminal's guard hook reads. A missing file, a file that is not
+  JSON, or one holding anything but one object is refused in plain words, naming
+  the file, before anything is opened. **What to do:** MCP users, nothing. Door
+  users, put long arguments in a file and pass `@file`.
+
+### Changed
+
+- **`install.sh` keeps the binary it replaces** as `reflow2-mcp.<old version>`, named from its
+  `--version`, and prints the path. Only the last one is kept. **To roll back**, copy it over
+  `reflow2-mcp`. UPDATING.md now starts with "Before you install: export and commit each design,
+  back up `.reflow2/`", documents an install with only the binary (check `head -2
+  ~/.local/bin/reflow2` first), and no longer says a downgrade goes unchecked.
+- **The hub and impact-check skills say how to carry a blast radius into a member design**,
+  through its mirrored surface.
+
+- **The loop nudge's report no longer says "none is possible" for VS Code.** VS Code runs agent
+  hooks, and reflow2 installs them with the terminal route. `loop_status` now reads a project's
+  `.github/hooks/` file as an installed nudge. Init no longer tells an OpenCode project that its
+  nudge is missing beside the plugin it just installed.
+
+- **Every constructor that revises on a repeated id says so in its first
+  sentence.** The 22 that do (the `add_*` constructors, `plan_epoch` and
+  `record_finding`) now begin "Create or revise …" — the line `find_tools`
+  shows. A refused tool name that guesses at an update
+  (`update_node`, `update`, `set_node`) is answered with that route and the
+  nearest served names, through a session (the same `invalid_params` code, still
+  starting "tool not found") and through `--call`. No setter tool was added.
+- **A node type's constructor is found by the type's name.** A `find_tools` query
+  that names a node type as the schema spells it (`TemporalFact`, `Decision`)
+  ranks the tool that creates it first, and that item says `creates`. A guessed
+  tool name that names a type (`add_temporal_fact`, `record_fact`) is answered
+  with the tool that creates it (`record_finding`).
+- **Value sets the argument check could not see are published as enums:**
+  `add_requirement.provenance`, and the `disposition` of `set_artifact_checksum`
+  and of each `set_artifact_checksums` item. A value outside the set was already
+  refused, one call later, by the handler; it is now listed beside the call's
+  other problems, so "every one is listed" is true. The toolsnap guard now
+  recognises a value set however it is written (commas, quotes, "or"), not only
+  `a` / `b` / `c`.
+- **`add_change_event`'s `description` is no longer advertised.** It was a decoy
+  that existed only to redirect the commonest mistake, and `find_tools` listed it
+  as a real field. It is still ACCEPTED and answered with the same redirect to
+  `summary` / `rationale` — now beside the call's other problems.
+- **A revision receipt counts the edges the call drew.** `revision.changed` keeps
+  its meaning (the node's own properties moved); the new `revision.edges_changed`
+  counts the edges this call drew, and an edge-only revise no longer says
+  "nothing moved" beside its `edges_drawn`.
+- **A standing pin that the MCP surface only grows**
+  (`tests/the_mcp_surface_only_grows.rs`): the build is compared with the last
+  release's tools, argument schemas and the reply shapes of a fixed scenario, and
+  anything taken away fails it. Re-bless at a cut from the release binary.
+
+**What to do:** MCP users, nothing — every change is additive: descriptions,
+new optional reply fields (`revision.edges_changed`, a `find_tools` item's
+`creates`), and earlier refusals of
+values that were already refused. Door users, nothing required; `@file` is
+available.
+
+### Fixed
+
+- **Every one-shot open now says what its version check found.** `reflow2 read`, `--call`,
+  `write`, `--export`, `--import` and `--diff` used to drop the verdict the serving modes print, so
+  an upgrade, a downgrade and a repair on open went unreported. Each now prints one line on stderr
+  when there is something to say. A store a newer reflow2 wrote gets
+  *"WARNING — THIS GRAPH WAS LAST WRITTEN BY reflow2 X; you are running Y, which is BEHIND it"*, and
+  its newer stamp is no longer rewritten down. MCP replies, and the stdio and served behaviour, are
+  unchanged.
+- **`graph.meta.json` keeps `previous_reflow2_version` and `last_repair_on_open`**, so an upgrade
+  can be confirmed after the process that made it has gone. They are optional keys; older
+  binaries ignore them.
+- **The installer repairs a `reflow2` command that is a symlink to the binary.** It used to fail
+  with a UnicodeDecodeError, even under `--check`. It now replaces the link (never writing through
+  it) with its wrapper, and says so.
+
+- **A store opened through a symlink, or as `--graph-path .`, now opens by its real path too.** Up to
+  v0.79.0, reflow2 placed a store's identity file (`graph.id.json`) beside the path as you typed it. So:
+  - a store first opened through a symlink kept the file beside the LINK;
+  - a store opened as `--graph-path .` from inside itself kept it INSIDE the store, as `..id.json`;
+  - in both cases the next open by the store's real path was refused, as having lost its identity file.
+
+  New identity files are now written beside the store's real directory, whatever the spelling. On open,
+  reflow2 looks there first, then where an older version may have put the file (beside the link; inside the
+  store). An identity found only in an old place is used, and a copy is written beside the store; reflow2
+  says so once, on stderr and in `loop_status`. The old file is never moved or deleted, so an older reflow2
+  opening the same way still finds it. Every store that opened before still opens. Opening by the plain
+  path, the way an MCP configuration does, is unchanged. Tests pin this with stores the released v0.76.0
+  binary made through a symlink and as `.`.
+
+  In one case the result changes, and reflow2 says so: when the file beside the store and an older file name
+  DIFFERENT designs, the one beside the store is used and the other is reported in `loop_status`'s `next`.
+
+- **A refused open no longer changes anything.** An open that ends in a refusal over the identity file now
+  leaves the store and every file beside it byte for byte as it found them. Up to v0.79.0 it still wrote
+  `graph.meta.json`, and it rotated the store's own `LOG`, write-ahead log, `MANIFEST` and `OPTIONS` files.
+  So a fresh `graph.meta.json` next to a missing `graph.id.json` said nothing about when the file was lost.
+
+- **The refusal says where it looked, which design the store holds, and how to recover.** It lists every
+  place it looked for the identity file. It reads the design id out of the store's own keys, without writing,
+  and prints the identity file that would open it. It also says to look beside any symlink an older reflow2
+  may have used.
+
+  **What to do:** if a store refuses to open because it "has lost its identity file", put the design's id
+  file beside the store, at `<store>.id.json` (for example `.reflow2/graph.id.json`). If the store was ever
+  opened through a symlink, the file is beside that link as `<link-name>.id.json`: copy it there. If you have
+  no copy, the refusal prints one with the id the store holds; write it there. The 2026-10-05 triage measured
+  that putting the right id file beside the store recovers it with its data.
+
 ## [0.79.0] — 2026-10-05
 
 **Minor. This release ships a decision that keeps its math, the design saved one file per item,

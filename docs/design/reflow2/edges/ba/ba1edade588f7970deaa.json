@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:d63a8018cd34cffe7b63259f1fcfae0a8fa189c5b3bbd318efc6ff9724f68faa",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0800",
+  "properties": {
+    "as_checksum": "sha256:d73824d0deda62cd093bf3a5f937da4fd4cc70419f49c43b577668ece25e3d70"
+  },
+  "to_id": "art:host-gate"
+}

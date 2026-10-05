@@ -1,9 +1,11 @@
 {
-  "content_hash": "sha256:05ea0c8e303bb5554f81908659f8dd0b15adee7520f894ad7a530b4dc5a9bc64",
+  "content_hash": "sha256:63c44a235f843248ee0f29871391f05d3735aea8b7723dea39c546d825b44b9f",
   "node_id": "chg:accept-2463aa0a0fbc35aa",
   "node_type": "ChangeEvent",
+  "prev_item_hash": "sha256:05ea0c8e303bb5554f81908659f8dd0b15adee7520f894ad7a530b4dc5a9bc64",
   "properties": {
     "change_type": "documentation",
+    "commits": "28ed14c831e19578c4bf533c938e45ec6f2ba7d7",
     "detected_at": "2026-10-05",
     "name": "The append-only field log grew from 334 to 398 lines. Lines 336-398 are three new dated sections of 2026-10-05: upgrading to 0.79.0 across 20 stores; a manual 0.79.0 install recipe against the installer's `reflow2` wrapper; impact analysis across hub member designs. Prefix re-verified before accepting: `head -n 334` of the file hashes to the previous baseline sha256:dde0b7f25665c7cbe0ed7965a9a81c29244a07e802c5aa018283c2921ee7f208, so nothing already triaged was rewritten. Nothing the log describes behaves differently because it grew; the new sections are triaged under rule:field-feedback-issues-are-root-caused-and-ideas-are-brainstormed, with every finding naming this artifact as its source.",
     "subject": "system"

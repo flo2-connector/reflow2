@@ -1,9 +1,11 @@
 {
-  "content_hash": "sha256:4bdf4cd72cb287c693b534e71a33d94de9c4d6400d42f7ff8a5eda22de0e657a",
+  "content_hash": "sha256:f725ae886f98caef8a17e0effe678ae5593ab268faea1e4bd41e0443847d8b18",
   "node_id": "chg:the-vs-code-setup-increment-is-approved-and-the-door-report-is-linked-to-its-carried-over-ideas-2026-10-05",
   "node_type": "ChangeEvent",
+  "prev_item_hash": "sha256:4bdf4cd72cb287c693b534e71a33d94de9c4d6400d42f7ff8a5eda22de0e657a",
   "properties": {
     "change_type": "decision_settled",
+    "commits": "a3043a149ef5eca521cd217f5b689319c4d14a68",
     "detected_at": "2026-10-05",
     "name": "The VS Code setup is approved as one increment (door report ideas 1, 7 and 11, with the hooks of 12), and the door report is linked to the records that hold its carried-over ideas",
     "rationale": "The owner approved building the VS Code setup as one increment. A brief that asked for nine new idea Decisions rested on a premise the design contradicts (the nine were recorded on 2026-10-01). Recording the approval and drawing the missing links is what the rule asks; minting the nine again would have duplicated settled records.",

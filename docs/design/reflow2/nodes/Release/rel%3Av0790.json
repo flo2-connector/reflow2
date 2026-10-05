@@ -1,11 +1,12 @@
 {
-  "content_hash": "sha256:bbb091ca615b0510daa69ebc6ee0924288e16b542b3837701773cd6b5b352508",
+  "content_hash": "sha256:316e9d4dbf4903ca4ffb346c5a1f4a7f9af6575bc0252321219c4dcaf101da75",
   "node_id": "rel:v0790",
   "node_type": "Release",
+  "prev_item_hash": "sha256:bbb091ca615b0510daa69ebc6ee0924288e16b542b3837701773cd6b5b352508",
   "properties": {
     "description": "Cut 2026-10-05 on Anthony's word (\"Go with your recommendations\": the recommendation was to cut a release so #674 reaches flo2.io). Ships #671-#674: the repository's move to github.com/flo2-connector/reflow2 (#671), the item layout with per-item lineage, accepted checksums on their change and CHANGELOG fragments (#672), reflow2's own design moved to that layout (#673), and a decision that rests on numbers keeps its math (#674).\n\nMINOR. THE SCHEMA STAMP DOES NOT MOVE: 28 node types, 66 edge types and 69 enum vocabularies are identical to 0.78.0's. The schema change is three optional properties on CHANGED (checksum_after, checksum_basis, accepted_seq), a widening. No upgrade note is owed.\n\nWHAT A CONSUMER OR OPERATOR SHOULD KNOW:\n- The container image moves: 0.79.0 is the first published as ghcr.io/flo2-connector/reflow2/reflow2-mcp. Images up to 0.78.0 stay at ghcr.io/sligara7/reflow2/reflow2-mcp and are not copied; a pin on the old name never sees a new release.\n- An accepted checksum now rides the accepting change's CHANGED edge, and an export leaves an Artifact's checksum off while it equals that acceptance. Measured at this cut: a v0.78.0 binary refuses a 0.79.0 export by default (it is stamped newer); forced with --accept-newer it imports all 6,660 nodes and 43,748 edges of reflow2's own design but reads none of the 582 artifacts' accepted checksums, because it does not derive them from the edges. So every seat that imports a design's exports should move to 0.79.0 together.\n- export_graph and --export-to take a directory ending in / and write the item layout; a .json path is written exactly as before, and every reader takes either form.\n- Five served skills say to record a numeric decision's inputs and arithmetic (#674); nothing to do.\n- The install line and the repository address name flo2-connector; GitHub redirects the old address.",
     "name": "v0.79.0 — a decision keeps its math, the design saved one file per item, and the image under flo2-connector",
-    "status": "deployed",
+    "status": "retired",
     "unit_type": "binary",
     "version": "0.79.0"
   }
