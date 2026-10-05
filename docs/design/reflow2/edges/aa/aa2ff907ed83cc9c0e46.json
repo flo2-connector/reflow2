@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:fc2f50ccd115ade199f217097e239439a1f6cb24c2908bc414f9f2e7c761547a",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0790",
+  "properties": {
+    "as_checksum": "sha256:3812f6f75a9c57145aba6c9c348fb664577c85a580cf569bdc9ea7ea639a441a"
+  },
+  "to_id": "art:one-shot"
+}

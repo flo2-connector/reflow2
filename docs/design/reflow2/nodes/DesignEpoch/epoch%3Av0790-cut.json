@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:21fb7b687190d5842c4a05e4b3167b3f017797e3302a45d976ca73f3e51c237d",
+  "node_id": "epoch:v0790-cut",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "description": "The cut that ships reflow2 #674, a decision that rests on numbers is recorded with its math, so flo2.io can move onto it, together with everything merged since v0.78.0. Cut on Anthony's word, 2026-10-05 (\"Go with your recommendations\": the recommendation was to cut a release so #674 reaches flo2.io). Contents, by PR: #671 (the repository's own address moves to github.com/flo2-connector/reflow2), #672 (the design is saved one file per node and per edge; accepted checksums ride their change; CHANGELOG entries are fragments; fix program item 13, step 2), #673 (reflow2's own design moves to the item layout, docs/design/reflow2/; item 13, decision 6), #674 (a decision that rests on numbers keeps its math: five served skills). It is the first release whose container image is published as ghcr.io/flo2-connector/reflow2/reflow2-mcp, because release.yml names the image after the repository it runs in; every image up to 0.78.0 stays at ghcr.io/sligara7/reflow2/reflow2-mcp. THE SCHEMA STAMP DOES NOT MOVE: 28 node types, 66 edge types and 69 enum vocabularies are identical to 0.78.0's, measured by comparing v0.78.0's committed export stamp with the one this cut's 0.79.0 binary writes. The schema change is three optional properties on the CHANGED edge (checksum_after, checksum_basis, accepted_seq), a widening, so no upgrade note is owed. Sequence 665 places it directly after epoch:v0780-cut (664), the last epoch that has arrived; 670-710 are planned milestones that have not arrived and pin nothing, as they were when v0.78.0 took 664.",
+    "epoch_type": "release_cut",
+    "name": "v0.79.0 release cut (2026-10-05)",
+    "sequence": 665,
+    "status": "arrived"
+  }
+}

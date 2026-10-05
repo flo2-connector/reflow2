@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:9896e43b65180be11aadaa74d911931d6f3b1c796ca843cb32f2f4ddcc291972",
+  "edge_type": "CHANGED",
+  "from_id": "chg:accept-8a6356f61ac6b1f8",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 2,
+    "action": "modified",
+    "checksum_after": "sha256:0aa2cb4808f280ae8216920f4926325c55bcc93bc281ef0148148969aa802680",
+    "checksum_basis": "measured"
+  },
+  "to_id": "art:updating-doc"
+}

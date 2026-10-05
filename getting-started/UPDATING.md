@@ -87,17 +87,23 @@ the exception, not the rule.
 old container, start the new one against the same volume:
 
 ```bash
-docker pull ghcr.io/sligara7/reflow2/reflow2-mcp:<version>
+docker pull ghcr.io/flo2-connector/reflow2/reflow2-mcp:<version>
 docker stop reflow2 && docker rm reflow2
 docker run -d --name reflow2 -p 8080:8080 -v /srv/reflow2-data:/data \
-  ghcr.io/sligara7/reflow2/reflow2-mcp:<version>
+  ghcr.io/flo2-connector/reflow2/reflow2-mcp:<version>
 ```
 
 The image is `ghcr.io/<owner>/<repo>/reflow2-mcp` — the shorter `ghcr.io/<owner>/reflow2-mcp`
 404s, which reads exactly like a missing image. From the first release after v0.76.0 it is one
 index for `linux/amd64` and `linux/arm64`, and **the release notes carry the index digest**: pin
-`ghcr.io/sligara7/reflow2/reflow2-mcp@sha256:<digest>` wherever a tag moving under you would
-matter. A tag can be re-pushed; a digest names one image forever.
+`ghcr.io/flo2-connector/reflow2/reflow2-mcp@sha256:<digest>` wherever a tag moving under you
+would matter. A tag can be re-pushed; a digest names one image forever.
+
+**The image moved with the repository, at v0.79.0.** From v0.79.0 on it is published as
+`ghcr.io/flo2-connector/reflow2/reflow2-mcp`. Every image up to and including v0.78.0 stays where
+it was published, at `ghcr.io/sligara7/reflow2/reflow2-mcp`, and is not copied to the new name. So
+a script, compose file or CI job that pins the old name keeps pulling the old releases and never
+sees a new one: change the name when you move to v0.79.0 or later.
 
 This is tested rather than asserted: stopping a container and starting a new one against the same
 volume leaves `graph_id` byte-identical, with no re-mint warning — the new container adopts the

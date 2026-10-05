@@ -1,10 +1,11 @@
 {
-  "content_hash": "sha256:1276be456b2cbe062cf5034822e25e7d4df0ff437d7abb6980f24929c8a3c6cb",
+  "content_hash": "sha256:61c48fc9ff18ff28c676de6c2028f2e5be3af33fd99cb5f91f9aa7f8a14dda09",
   "node_id": "chg:item-layout-lineage-holds-through-a-conflict-resolved-mid-merge-2026-10-04",
   "node_type": "ChangeEvent",
+  "prev_item_hash": "sha256:1276be456b2cbe062cf5034822e25e7d4df0ff437d7abb6980f24929c8a3c6cb",
   "properties": {
     "change_type": "defect_fix",
-    "commits": "7f804d32c923e5722478a6cafa8f3fd8c7196242",
+    "commits": "7f804d32c923e5722478a6cafa8f3fd8c7196242,5705b3553aaba2f5819d613f8cb127c9e1da9521",
     "detected_at": "2026-10-04",
     "name": "Per-item lineage holds through a conflict resolved mid-merge, a re-export repairs a stale prev, and compare reads a checksum on the node and on its change as one design",
     "rationale": "The lineage is the anchor's to state, not the file's: an export is the act that writes it, so an export must be able to put it right. #571's fourth CI failure (an export mid-merge chaining from the older main) is the case ver:item-lineage-survives-squash-merge-and-a-mid-merge-export was written to reproduce; its test's mid-merge export only wrote a NEW item, which has no predecessor, so it passed without exercising the case. The new test resolves a both-sides conflict during the merge, exactly as AGENTS.md tells a contributor to, and was seen failing on the pre-fix binary. Same class for compare: a derived value the export elides must be derived back by every reader of a document, not only by the import.",

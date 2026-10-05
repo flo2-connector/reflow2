@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:e40947db3744b555c9dad5c265b901400ece78cf6ac4c6c9cc5d732f51bfd7bb",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0790",
+  "properties": {
+    "as_checksum": "sha256:dc9e59525740f35547bae7d9e1bf63f6a6da3b85fd317f1cd455231ad564c789"
+  },
+  "to_id": "art:dev-storyflow-feedback-2026-09-27"
+}
