@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:ba8861913dda9b245b5062a66854aabade026f5cf29cc3b52072df377cf45fb2",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-decision-resting-on-numbers-keeps-its-math-2026-10-05",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 2,
+    "action": "modified",
+    "checksum_after": "sha256:1ae4d1303fb3606f93759c609336c0eacd6ae339461774ddf8aedde593c309ec",
+    "checksum_basis": "measured"
+  },
+  "to_id": "art:capture-intent-skill"
+}

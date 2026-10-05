@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:473f2196428f678199ec78b7c8f9afa4cb64b1752008929a1bffd4892e2c6931",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-decision-resting-on-numbers-keeps-its-math-2026-10-05",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 2,
+    "action": "modified",
+    "checksum_after": "sha256:9ee62ee836c5c77ef73c494de49ba0feda0e90bd157a23111ef74446c3f6175f",
+    "checksum_basis": "measured"
+  },
+  "to_id": "art:revise-design-skill"
+}

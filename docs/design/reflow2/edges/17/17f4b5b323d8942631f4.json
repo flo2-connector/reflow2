@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:1451c078e8036c402d225c65059334cdc22d9c17c1796d1ea311f9a8de61e1e8",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:skill-lint",
+  "properties": {
+    "covers": "whole",
+    "evidence": "skill_lint.py's DECISION_MATH_CONTRACT is this check. CI runs it on every push (python3 tools/skill_lint.py), and it failed on exactly these 28 clauses (six per skill, less the two `documents` mentions already there) before the skill text was written."
+  },
+  "to_id": "ver:a-decision-resting-on-numbers-keeps-its-math"
+}
