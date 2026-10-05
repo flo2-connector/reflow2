@@ -50,7 +50,3 @@
     a scratch file and comparing.
   - **What to do:** read `ahead_of_export` at the top of the reply. Pass `since_export: true` for
     the exact count and whose work it is.
-- **The `/debt` command reads `next`, not only `clean`.** It says "nothing owed" only when `next`
-  is empty too, so a design that has never been exported is not reported as owing nothing.
-  **What to do:** run `python3 tools/reflow2_init.py <your project>` to update the installed
-  command.
