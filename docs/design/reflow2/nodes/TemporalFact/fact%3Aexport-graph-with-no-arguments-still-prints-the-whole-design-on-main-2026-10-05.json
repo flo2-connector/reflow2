@@ -1,0 +1,17 @@
+{
+  "content_hash": "sha256:22705724610e3741086e3b68b476bfc2f74659a358f18e6b488643e14d3b5c5f",
+  "node_id": "fact:export-graph-with-no-arguments-still-prints-the-whole-design-on-main-2026-10-05",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "finding",
+    "name": "RECURRENCE (measured on main): `--call export_graph --args '{}'` still exits 0 and prints the whole design to stdout with nothing on stderr, on 0.76.0, 0.78.0 and main. The 2026-10-02 walk found it a documented default that the address watch depends on, and left the remedy unchosen. Nothing has been chosen since",
+    "source": "art:vscode-call-field-log-2026-10-05",
+    "statement": "RUN AS THE SKILL (root-cause, fetched fresh), 2026-10-05, triaging art:vscode-call-field-log-2026-10-05 (tool surface). Binaries: 0.76.0 and 0.78.0 release builds, and main at e7e304d (reports 0.78.0); scratch stores under the hub session's scratchpad, isolated HOME.\n\n① OBSERVED, the reporter's words (2026-10-01, 0.76.0): \"`export_graph --args '{}'` exits 0 and prints the whole design to stdout. Fine, but surprising when probing which tools exist with empty args (the others exit 2 naming the missing argument).\"\n\n② PRECEDENT, so this is a RECURRENCE: fact:root-cause-export-graph-with-no-path-is-a-documented-default-exempt-from-the-reply-bound-and-the-door-prints-27-mb-2026-10-02. It printed 27.6 MB for reflow2's own design on 0.77.0, ruled out a required `path` (the address watch asks for the no-path document), and named three remedies without choosing one.\n\n⑤ RE-MEASURED on a 6-node scratch store: exit 0, about 14 KB on stdout, stderr empty, on 0.76.0, 0.78.0 and main. The description on main still leads with the document and says \"Pass `path` to write the document to a file instead of returning it — a large design overflows a session.\" `reflow2 read export_graph` with no path is allowed by design (it changes nothing).\n\n⑥ CLASS (as recorded): a documented default with no bound, met by a terminal agent probing with empty arguments.\n\n⑨ NOT ESTABLISHED: which of the 2026-10-02 remedies is wanted (a size warning or refusal at the door, a description that leads with `path` for shell callers). That is a choice for Anthony, not a finding.",
+    "steps": [
+      "export_graph"
+    ],
+    "subject_id": "cap:a-build-can-call-one-tool-from-the-shell-and-read-the-reply-as-json",
+    "valid_from": "2026-10-05"
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "content_hash": "sha256:5f9a0906b9b600aa9576005646daf1bd777176adb2c35abb598d2daab2e6d8f1",
+  "node_id": "fact:an-unknown-node-type-is-answered-with-the-known-types-only-by-create-node-2026-10-05",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "defect",
+    "name": "ROOT CAUSE (walked, measured on main): an unknown node type is answered with the list of known types only on create_node. import_graph, create_nodes and describe_schema say only \"Unknown node type: Fact\", and scan_nodes answers an undeclared type with an empty list and exit 0. The hint is built in node_error, which has one caller. The same class for edges was closed centrally on 2026-09-29",
+    "source": "art:vscode-call-field-log-2026-10-05",
+    "statement": "RUN AS THE SKILL (root-cause, fetched fresh), 2026-10-05, triaging art:vscode-call-field-log-2026-10-05 (tool surface). Binaries: 0.76.0 and 0.78.0 release builds, and main at e7e304d (reports 0.78.0); scratch stores under the hub session's scratchpad, isolated HOME.\n\n① OBSERVED, the reporter's words (2026-10-01, 0.76.0, an atomic import): \"`Unknown node type: Fact`. The supported tool was then discovered as `record_finding`/TemporalFact.\" Expected: the refusal names the nearest type or the known ones, as a bad edge pair does.\n\n② PRECEDENT: searched on the raw text. No finding records it. service.rs's dyno_err arm for InvalidEdge says why the edge half was fixed: \"AN INVALID PAIR NAMES WHAT DOES ACCEPT IT, whichever tool raised it\" (2026-09-29, fact:root-cause-a-check-on-a-ruling-is-modelled-as-governed-by-and-the-verifies-refusal-never-says-so-2026-09-28). UnknownNodeType falls in the bare arm beside it.\n\n③ CANDIDATES: (a) the import's per-item renderer drops a hint the core supplies; (b) the hint is added by one MCP caller only; (c) \"Fact\" was once a type, and the document was old; (d) the observation is wrong.\n\n⑤ MEASURED on main, same type \"Fact\":\n- create_node: \"Unknown node type: Fact\" plus \"Known node types: Actor, Anchor, … TemporalFact, Verification\" (also on 0.76.0);\n- import_graph: \"nodes[2] fact:imp: Unknown node type: Fact\", no list (0.76.0, 0.78.0, main);\n- create_nodes: \"[0] fact:x: Unknown node type: Fact\", no list;\n- describe_schema {node_type: Fact}: \"Unknown node type: Fact\", no list;\n- scan_nodes {node_type: Fact}: count 0, items [], exit 0, no word that the type does not exist.\nCode: node_error (crates/reflow2-mcp/src/service.rs ~883) builds the known-types list; its only caller is create_node (tools/query.rs:258). (b) holds, (a) is refuted (the core error carries no list). (c) is refuted: no `Fact` node type was ever declared (every type name in `git log -p -- schema/` read; QualityGate is the only retired one). (d) is refuted.\n\n⑥ CLASS: a remedy attached at one caller rather than at the shared error, the same shape the edge refusal had until 2026-09-29. The scan_nodes zero is the \"an empty answer says which empty\" class (tools/empty_speaks.py), met on an undeclared type.\n\n⑨ NOT ESTABLISHED: whether the known-types list (28 names) should be a nearest-name suggestion instead; which other readers take a node_type and answer an undeclared one with zero.",
+    "steps": [
+      "import_graph",
+      "create_nodes",
+      "describe_schema",
+      "scan_nodes"
+    ],
+    "subject_id": "cap:vocabulary",
+    "valid_from": "2026-10-05"
+  }
+}

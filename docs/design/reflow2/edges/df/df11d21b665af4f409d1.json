@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:b810435f6510cb86da84fd01f3fd136b74c29295e351f0855a53ffc66fc35700",
+  "edge_type": "CAUSES",
+  "from_id": "art:service",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "find_tools' summary is trim_summary(description), the first sentence (service.rs:1129 on main e7e304d). Every create-or-revise constructor's first sentence reads \"Create a/an X node\", and the revise role is stated later in words (\"REVISES\", \"optional to revise\") that an update query does not match (measured: add_artifact absent from the top 40 for \"update properties of an existing node\").",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:a-constructors-revise-role-never-reaches-the-find-tools-summary-so-update-an-existing-node-misses-it-2026-10-05"
+}

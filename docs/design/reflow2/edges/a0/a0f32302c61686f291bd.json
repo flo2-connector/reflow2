@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:e2b777cd7d0d633d8f90432d18ba1456f0fd6b5e5018b0c9d3de8c7da6c63a77",
+  "edge_type": "CAUSES",
+  "from_id": "fact:root-cause-nothing-moved-is-computed-from-properties-while-the-call-drew-an-edge-2026-09-28",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "Re-measured on main e7e304d: an add_decision revise that changes no property and draws one related_to edge replies edges_drawn with that edge and revision.changed false, \"nothing moved\". revision_of still compares node properties only, as the 2026-09-28 walk found.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:the-four-call-decision-was-a-leaked-node-and-an-edge-only-revise-still-says-nothing-moved-2026-10-05"
+}

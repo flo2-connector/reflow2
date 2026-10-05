@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:cd32badb8748946380d14ce6bafd3cd0140624b57953b9f24b7d0a225dc940d4",
+  "edge_type": "CAUSES",
+  "from_id": "art:depends",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "depends.rs (~298-311 on main e7e304d) maps external_dependency's arguments onto the manifest's field names: source→provider, graph_id→dependency_graph_id, components and features joined with \",\". dependency_graph_id and design_export are written but not declared on Resource (describe_schema on main), so no schema reader can show where an argument went.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:external-dependency-stores-its-arguments-under-other-names-and-two-of-them-undeclared-2026-10-05"
+}

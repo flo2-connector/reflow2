@@ -1,0 +1,19 @@
+{
+  "content_hash": "sha256:2a5805825ae50d3043a8c8403f65926b08695077fc08bda6743af86356b13d0b",
+  "node_id": "fact:an-import-still-requires-component-purpose-where-add-component-takes-description-2026-10-05",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "defect",
+    "name": "RECURRENCE (measured on main): the import path requires `Component.purpose` and refuses `description`, while add_component takes `description` and refuses `purpose` (naming `description`). The 2026-08-15 helper-versus-schema name split, met again from the field on 0.76.0 and unchanged on main",
+    "source": "art:vscode-call-field-log-2026-10-05",
+    "statement": "RUN AS THE SKILL (root-cause, fetched fresh), 2026-10-05, triaging art:vscode-call-field-log-2026-10-05 (tool surface). Binaries: 0.76.0 and 0.78.0 release builds, and main at e7e304d (reports 0.78.0); scratch stores under the hub session's scratchpad, isolated HOME.\n\n① OBSERVED, the reporter's words (2026-10-01, 0.76.0, a public-only member adoption by import): \"`Validation error on Component.purpose: required property is missing`\", in an atomic import refused with nothing written.\n\n② PRECEDENT, so this is a RECURRENCE: fact:defect-typed-tool-parameter-names-are-inconsistent, whose tenth instance (2026-08-15, a third independent source that day) is exactly this: add_component passes its `description` into the `purpose` slot, and create_nodes refuses `description` demanding `purpose`. chg:param-name-mismatch-hits-a-third-independent-source.\n\n⑤ RE-MEASURED: import_graph of a Component with {name, description} → \"nodes[0] cmp:imp: Validation error on Component.purpose: required property is missing\" on 0.76.0, 0.78.0 and main. add_component with `purpose` → on 0.78.0 and main \"`purpose` is not a parameter of this tool; it takes `description`, …\". So each path names its own spelling and neither names the other's.\n\n⑥ CLASS (as recorded): the helper and the generic path disagree per type on a field's name, so reading one does not prepare an agent for the other. An agent that learned add_component and then wrote an import document is the measured route into it.\n\n⑨ NOT ESTABLISHED: how many other node types differ between helper and import spelling today; only Component was re-measured.",
+    "steps": [
+      "import_graph",
+      "add_component",
+      "create_nodes"
+    ],
+    "subject_id": "cmp:service",
+    "valid_from": "2026-10-05"
+  }
+}
