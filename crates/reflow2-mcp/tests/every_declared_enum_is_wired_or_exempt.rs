@@ -76,6 +76,10 @@ const WIRED: &[(&str, &str, &str, &str)] = &[
     ("add_decision", "kind", "Decision", "kind"),
     ("add_flow", "tier", "Flow", "tier"),
     ("add_readiness", "kind", "ReadinessAssessment", "kind"),
+    // 2026-10-05: the parameter arrived on 2026-09-22 after the annotation
+    // pass and was published as prose only
+    // (fact:a-value-set-published-without-an-enum-escapes-the-argument-check-so-every-one-is-listed-is-false-2026-10-05).
+    ("add_requirement", "provenance", "Requirement", "provenance"),
     (
         "dimension_drift",
         "dimension",
