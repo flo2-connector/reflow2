@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:7b4e55b127427f4154008cb342fd8114e5b3551612e17145c2735c63b8df679c",
+  "edge_type": "CHANGED",
+  "from_id": "chg:loop-status-says-a-design-was-never-exported-and-whose-work-is-unexported-2026-10-05",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 2,
+    "action": "modified",
+    "checksum_after": "sha256:a1c6d857dcc428d4fcc9768f8da16ee16f9cddf7c4a919c6b33b3b409fb58a3b",
+    "checksum_basis": "measured"
+  },
+  "to_id": "art:test-loop-status-says-what-is-not-exported"
+}

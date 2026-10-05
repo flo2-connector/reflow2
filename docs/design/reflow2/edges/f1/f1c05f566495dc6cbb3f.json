@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:92eca23d704a54aeec2a34bb2dae923f50c483f532545da47a80c73f9a2dc559",
+  "edge_type": "CHANGED",
+  "from_id": "chg:baseline-9629a8ff64c75f5c",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:1a67e65930206882cc68c80ee0843203bf1eb7295314019b5058986f3db6e7da",
+    "checksum_basis": "measured"
+  },
+  "to_id": "art:test-loop-status-says-what-is-not-exported"
+}

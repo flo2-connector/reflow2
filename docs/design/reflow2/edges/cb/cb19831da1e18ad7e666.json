@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:14767cbb7d19a985541c3942c64689fa94d5ac6a6cc9aa9e554a1fa4ae7fb7ee",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:an-existing-tools-schema-and-reply-shape-are-pinned-so-a-door-change-cannot-break-an-mcp-client",
+  "properties": {},
+  "to_id": "req:the-mcp-server-keeps-working-as-is-and-door-improvements-are-additive-or-opt-in"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:53792a9215d318e5631cd5103b66c2b1a9e7bd42ffd5b0d5dbe99f72ca77cac0",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:test-loop-status-says-what-is-not-exported",
+  "properties": {
+    "covers": "partial",
+    "evidence": "The MCP half: 10 tests through the real binary (MCP stdio, --call, read). CI runs them in cargo test --workspace. 9 of 10 failed on main 1609fb01b before the implementation; the tree-less guard passed there and is a counterweight."
+  },
+  "to_id": "ver:loop-status-says-a-design-was-never-exported-and-whose-work-is-unexported"
+}

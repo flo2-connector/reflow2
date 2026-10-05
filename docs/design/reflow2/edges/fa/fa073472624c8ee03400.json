@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:70c6393a118e884070e12e5f62b36424f8ee4547d33b86fd5088a787aaba15b7",
+  "edge_type": "GOVERNED_BY",
+  "from_id": "chg:loop-status-says-a-design-was-never-exported-and-whose-work-is-unexported-2026-10-05",
+  "properties": {
+    "note": "Built additive under this requirement: new fields and one new line in next only; clean and every existing field keep their meaning; a design with a copy gets exactly the reply it got before (an_up_to_date_store_says_nothing_new)."
+  },
+  "to_id": "req:the-mcp-server-keeps-working-as-is-and-door-improvements-are-additive-or-opt-in"
+}

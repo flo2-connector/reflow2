@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:e932f5f3c5efb313c9bbd240a4aa9fab3f2e98be6f993d2a7364164f3bfd66ef",
+  "edge_type": "CHANGED",
+  "from_id": "chg:loop-status-says-a-design-was-never-exported-and-whose-work-is-unexported-2026-10-05",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "art:unexported-changes"
+}

@@ -108,6 +108,7 @@ pub mod sync;
 pub mod temporal;
 pub mod topic;
 pub mod twins;
+pub mod unexported;
 pub mod verify;
 pub mod vocabulary;
 
@@ -144,7 +145,8 @@ pub use depends::{
 pub use detect::{
     AFFECTED_CAP, Answering, AskedQuestion, AskedRecord, DEFAULT_REPLY_BUDGET_CHARS, EvidenceLink,
     GapCandidate, GapPrompt, GapReport, GapRow, GapScope, GapSource, NARROW_THE_SCOPE,
-    NARROW_WITH_SCOPE, ReplyBudget, ReplyDetail, budget_gaps, name_leads_with_open,
+    NARROW_WITH_SCOPE, NEVER_EXPORTED_GAP_ID, ReplyBudget, ReplyDetail, budget_gaps,
+    name_leads_with_open,
 };
 pub use dimensions::{Dimension, DimensionDrift, DriftDirection};
 pub use discover::{DesignAtPath, DesignPathState, describe_at};
