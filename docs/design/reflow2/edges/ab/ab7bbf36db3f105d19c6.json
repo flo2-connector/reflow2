@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:09796124a9f2c6e5efe426f58362e63c0980183a95cf393f443db66ab88f57d1",
+  "edge_type": "MITIGATES",
+  "from_id": "dec:the-vs-code-setup-is-built-as-one-increment-2026-10-05",
+  "properties": {
+    "evidence": "Limitation 7: VS Code reads project skills and init writes none for it. The increment installs skill stubs that route to get_skill."
+  },
+  "to_id": "fact:root-cause-vs-code-reads-project-skills-and-slash-prompts-and-init-installs-neither-for-it-2026-10-02"
+}

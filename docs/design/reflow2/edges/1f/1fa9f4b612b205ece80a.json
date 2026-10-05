@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:b2b2b6051adc455dfca74a06d200094377d9903ad0465749faf7e81ba2af326e",
+  "edge_type": "MITIGATES",
+  "from_id": "dec:the-vs-code-setup-is-built-as-one-increment-2026-10-05",
+  "properties": {
+    "evidence": "Limitation 11: init knows VS Code only as an MCP config, so the door setup is one person's file. The increment gives init a door harness that update refreshes."
+  },
+  "to_id": "fact:root-cause-init-knows-vs-code-only-as-an-mcp-config-so-the-door-setup-is-one-persons-file-2026-10-02"
+}

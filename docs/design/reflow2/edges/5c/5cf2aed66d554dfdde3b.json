@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:3353114efeb9799f03d86826c0af1daffc93f6014ba77c290fdc98050bd8fe49",
+  "edge_type": "MITIGATES",
+  "from_id": "dec:the-vs-code-setup-is-built-as-one-increment-2026-10-05",
+  "properties": {
+    "evidence": "Limitation 9: no loop nudge reaches a door agent in VS Code. The increment ships the SessionStart and Stop hooks."
+  },
+  "to_id": "fact:root-cause-no-loop-nudge-reaches-a-call-door-agent-in-vs-code-2026-10-02"
+}
