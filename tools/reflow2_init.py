@@ -463,12 +463,31 @@ HARNESSES = {
     "opencode": "OpenCode",
     "grok": "Grok",
     "vscode": "VS Code",
+    "vscode-cli": "VS Code with MCP blocked (the terminal route)",
 }
+
+# ⭐ THE TERMINAL ROUTE, `vscode-cli` (2026-10-05, the owner's go on ideas 1, 7,
+# 11 and 12 of art:vscode-call-door-field-report-2026-10-02). Where an
+# organisation blocks MCP, VS Code's agent reaches reflow2 only by running
+# `reflow2 read` / `reflow2 write` in its terminal. Every other harness here is
+# "which MCP config file"; this one writes no MCP config at all, and instead the
+# files VS Code reads for instructions, skills, slash commands and hooks — see
+# `vscode_cli_files`. It was one person's hand-written user file before, which
+# init and update could neither install nor refresh (limitation 11).
+DOOR_HARNESSES = ("vscode-cli",)
+
+# What `all`, and an install nobody answered, mean: every harness EXCEPT the
+# terminal route. Its files are committed into `.github/` and number
+# seventy-odd, so a project gets them only by naming the route. Writing them
+# into every pipeline install that answered nothing would be the clutter
+# `dec:idea-init-asks-which-harness-and-installs-only-that` exists to stop.
+IMPLIED_BY_ALL = [h for h in HARNESSES if h not in DOOR_HARNESSES]
 
 # Shown beside a harness in the prompt only — a note about what else the same
 # files serve, which would read as noise in a one-line summary.
 HARNESS_NOTES = {
     "claude": "also GitHub Copilot CLI, which reads the same workspace file",
+    "vscode-cli": "reflow2 read / write in the terminal; chosen by name, never by 'all'",
 }
 
 # Names that are a REAL answer to "which harness?" but are not their own entry,
@@ -502,11 +521,19 @@ def canonical_harness(name: str) -> str | None:
         return name
     return HARNESS_ALIASES.get(name)
 
-# Which harness carries the loop-nudge hook. Only Claude Code has an event model
-# reflow2 can register against today, so a project on any other harness gets the
-# MCP server and no session-end backstop. That absence is announced rather than
-# left silent — see `ensure_hooks` and `dec:idea-the-loop-nudge-exists-for-one-harness-only`.
+# Which harness carries the loop-nudge hook in `.claude/settings.local.json`.
 HOOK_HARNESS = "claude"
+
+# Every harness reflow2 installs a loop trigger for, and what that trigger is:
+# Claude Code's hooks (`ensure_hooks`), OpenCode's plugin (TREES), and VS Code's
+# hook files on the terminal route (`vscode_cli_files`). A project on any other
+# harness gets no session-end backstop, and that absence is announced rather
+# than left silent (`dec:idea-the-loop-nudge-exists-for-one-harness-only`).
+TRIGGERS = {
+    "claude": "Claude Code (a hook)",
+    "opencode": "OpenCode (a plugin)",
+    "vscode-cli": "VS Code's terminal route (hook files, --harness vscode-cli)",
+}
 
 
 def parse_harness_arg(raw: str) -> tuple[list[str], list[str]]:
@@ -518,7 +545,8 @@ def parse_harness_arg(raw: str) -> tuple[list[str], list[str]]:
     """
     names = [p.strip().lower() for p in raw.split(",") if p.strip()]
     if "all" in names:
-        return list(HARNESSES), []
+        rest = [c for n in names if n != "all" and (c := canonical_harness(n))]
+        return list(dict.fromkeys(IMPLIED_BY_ALL + rest)), []
     known = [c for n in names if (c := canonical_harness(n))]
     unknown = [n for n in names if canonical_harness(n) is None]
     # dict.fromkeys rather than set(): the order the user typed is the order we
@@ -559,19 +587,19 @@ def prompt_for_harnesses() -> list[str]:
     for i, name in enumerate(order, 1):
         note = HARNESS_NOTES.get(name)
         print(f"  {i}  {HARNESSES[name]}" + (f"  ({note})" if note else ""))
-    print("  a  all of them")
+    print("  a  all of the MCP harnesses above (the terminal route is chosen by name)")
     print("\nNumbers or names, comma-separated. Enter accepts Claude Code.")
     try:
         raw = input("> ").strip()
     except (EOFError, KeyboardInterrupt):
         # Not a refusal to answer — the input went away. Say what that means
         # rather than proceeding as though a choice had been made.
-        print("\n  no answer read — installing for all harnesses")
-        return list(HARNESSES)
+        print("\n  no answer read — installing for all MCP harnesses")
+        return list(IMPLIED_BY_ALL)
     if not raw:
         return ["claude"]
     if raw.lower() in {"a", "all"}:
-        return list(HARNESSES)
+        return list(IMPLIED_BY_ALL)
     chosen: list[str] = []
     for part in raw.split(","):
         part = part.strip().lower()
@@ -583,8 +611,8 @@ def prompt_for_harnesses() -> list[str]:
             print(f"  ignoring {part!r} — not one of: "
                   f"{', '.join(list(order) + list(HARNESS_ALIASES))}, all")
     if not chosen:
-        print("  nothing recognised — installing for all harnesses")
-        return list(HARNESSES)
+        print("  nothing recognised — installing for all MCP harnesses")
+        return list(IMPLIED_BY_ALL)
     return list(dict.fromkeys(chosen))
 
 
@@ -631,9 +659,10 @@ def resolve_harnesses(
         )
     if interactive:
         return prompt_for_harnesses(), None
-    return list(HARNESSES), (
+    return list(IMPLIED_BY_ALL), (
         "harness: not asked (no tty and no --harness) — installed for ALL of "
-        f"{', '.join(HARNESSES)}. Pass --harness to narrow it."
+        f"{', '.join(IMPLIED_BY_ALL)}. Pass --harness to narrow it, or to add "
+        f"the terminal route ({', '.join(DOOR_HARNESSES)})."
     )
 
 

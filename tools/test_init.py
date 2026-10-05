@@ -1586,9 +1586,14 @@ class VsCodeTerminalRoute(unittest.TestCase):
             self.assertEqual(fm.get("name"), skill)
             self.assertTrue(_re.fullmatch(r"[a-z0-9]+(-[a-z0-9]+)*", skill) and len(skill) <= 64)
             source = frontmatter((init.KIT / "skills" / skill / "SKILL.md").read_text())
-            self.assertEqual(fm.get("description"), source["description"],
+            # Written as a double-quoted scalar, so a STRICT YAML parser reads
+            # it: five served skills' own frontmatter carries ": " inside a
+            # plain scalar, which strict YAML refuses ("mapping values are not
+            # allowed here"), and VS Code drops a skill it cannot read silently.
+            self.assertTrue(fm["description"].startswith('"'), fm["description"])
+            self.assertEqual(json.loads(fm["description"]), source["description"],
                              "VS Code picks a skill by its description: it must be the served one")
-            self.assertLessEqual(len(fm["description"]), 1024)
+            self.assertLessEqual(len(json.loads(fm["description"])), 1024)
             # The slash menu belongs to the prompt files, so the stub is
             # picked by the agent and does not duplicate a / entry.
             self.assertEqual(fm.get("user-invocable"), "false")
