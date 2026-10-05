@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:bb3c7e378f7a7a7d4829ee79ca296f0e01356833b138dd0f7945f1ab8625accc",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0790",
+  "properties": {
+    "as_checksum": "sha256:20b5cc250d0f5c51c503d464c21647d4058fed65f15a118a3ae59169d0c6cb0e"
+  },
+  "to_id": "art:a-stored-twin-is-kept-by-the-store-test"
+}

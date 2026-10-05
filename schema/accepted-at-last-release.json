@@ -1,5 +1,5 @@
 {
-  "reflow2_version": "0.78.0",
+  "reflow2_version": "0.79.0",
   "node_types": {
     "Actor": {
       "actor_type": {
@@ -1674,6 +1674,9 @@
         "accepted_baseline": {
           "type": "bool"
         },
+        "accepted_seq": {
+          "type": "int"
+        },
         "action": {
           "type": "enum",
           "values": [
@@ -1681,6 +1684,12 @@
             "modified",
             "removed"
           ]
+        },
+        "checksum_after": {
+          "type": "string"
+        },
+        "checksum_basis": {
+          "type": "string"
         },
         "field": {
           "type": "string"

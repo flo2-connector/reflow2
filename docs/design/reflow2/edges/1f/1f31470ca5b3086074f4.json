@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:2e3b8769a0555ff03d8bc53ca1850e047ffea54113f4367e073a2d32376c3c37",
+  "edge_type": "CHANGED",
+  "from_id": "chg:accept-f5073135e37f171b",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 2,
+    "action": "modified",
+    "checksum_after": "sha256:7ddc737e1bfe37f15c5e781947d2af78f9056f42a951bd1484aa74d26df863d5",
+    "checksum_basis": "measured"
+  },
+  "to_id": "art:dependency-manifest"
+}
