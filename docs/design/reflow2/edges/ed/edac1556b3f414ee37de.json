@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:bd8b6dbbcc9b62115d06c91851f0f547011891e3053fd09167d67ff0dd1790e3",
+  "edge_type": "CAUSES",
+  "from_id": "fact:the-live-graph-does-not-branch-so-two-open-prs-collide",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "The same mechanism recorded there for two branches: one RocksDB store per design directory, no per-branch or per-session isolation, and every export carries the whole store. Here it is two sessions on one hub store rather than two branches.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:recurrence-one-store-holds-every-sessions-writes-so-an-export-sweeps-in-anothers-work-2026-10-05"
+}

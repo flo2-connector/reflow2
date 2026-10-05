@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:ea46e1adb1098ddd038227291051cda407be6c6c4449289af71017f0fdf777ce",
+  "edge_type": "CAUSES",
+  "from_id": "art:detect",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "detect.rs (main f46bd3065, about line 3114) formats the unmotivated_capability evidence as `provenance={}` with `if inferred { \"inferred\" } else { \"authored\" }`, a boolean derived from the stored value. Measured on main: provenance imported, planned, healed and reconciled each read `provenance=authored`, and inferred reads `provenance=inferred`.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:root-cause-unmotivated-capability-evidence-names-a-boolean-as-the-stored-provenance-2026-10-05"
+}

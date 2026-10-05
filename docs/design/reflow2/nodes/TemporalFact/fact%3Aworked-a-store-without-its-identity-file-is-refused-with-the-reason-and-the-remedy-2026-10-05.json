@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:0c4b69c906506cfb00a1d8e581a50ec3cbf280e07416965ee3d764fe45a31108",
+  "node_id": "fact:worked-a-store-without-its-identity-file-is-refused-with-the-reason-and-the-remedy-2026-10-05",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "finding",
+    "name": "WHAT WORKED (field log 2026-10-01 on 0.76.0, re-measured 2026-10-05 on 0.76.0, 0.78.0 and main): a store that holds data and has no graph.id.json is refused, never opened empty. The refusal says why (\"has lost its identity file … reflow2 will not guess\") and what not to do. Restoring the file beside the store opens it with its data. Do not regress it",
+    "source": "art:vscode-call-field-log-2026-10-05",
+    "statement": "Field log [works], 2026-10-01 (art:vscode-call-field-log-2026-10-05): \"The identity-file refusal on a broken store (bluesky-queueserver/.reflow2/graph has no graph.id.json) is excellent: says exactly why it won't open and what not to do.\"\n\nRE-MEASURED on all three binaries: a working store had its graph.id.json removed, then a --call get_node. Refused, exit 1: \"the design at … has lost its identity file (…), and reflow2 will not guess. This store already holds data, but not under the shared id every pre-identity design used … Opening anyway would mint a NEW name … The identity file is a SIBLING of the store, not inside it …\". Nothing was minted. Copying the right id file back beside the store, the next open read the node.\n\nThis is dec:sidecar-loss-guarded-by-store-evidence working in the field. Two things measured beside it are recorded on their own: the refused open still rewrites graph.meta.json (fact:root-cause-a-stores-identity-file-is-placed-by-how-its-path-was-spelled-2026-10-05), and the refusal's \"usual cause\" sentence names a container volume. For a local store reached through another path spelling, that is not the likely cause.",
+    "subject_id": "cap:hosted-state-on-a-volume",
+    "valid_from": "2026-10-05"
+  }
+}

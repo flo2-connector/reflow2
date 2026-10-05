@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:d3136ab9fa4cce55818fd9175628c32f8351f927f160c8231a7ff6d114e8285d",
+  "edge_type": "CAUSES",
+  "from_id": "art:identity",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "identity.rs identity_path() (main f46bd3065, about line 88) builds `<parent>/<file_name>.id.json` from the --graph-path string with no canonicalisation. Measured on all three binaries: a write through the symlink stores/bq -> proj/.reflow2/graph left bq.id.json beside the link and nothing beside the store, and an open by proj/.reflow2/graph was refused as lost identity. Copying bq.id.json to proj/.reflow2/graph.id.json made the same open succeed and read the node.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:root-cause-a-stores-identity-file-is-placed-by-how-its-path-was-spelled-2026-10-05"
+}

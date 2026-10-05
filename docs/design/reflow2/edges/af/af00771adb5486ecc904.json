@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:7859dc8178b8639042b202883896168071bb0af54de0eae32365939e6ddfdad5",
+  "edge_type": "CAUSES",
+  "from_id": "fact:a-moved-design-cannot-be-watched-and-its-frozen-export-reads-as-live-2026-09-27",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "The recorded class: an export watch fingerprints a FILE, a copy taken at one moment. Re-measured on all three binaries: the watch reads `unchanged` until the export file moves, and moves only when a write re-exports it.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:recurrence-an-export-watch-reads-unchanged-over-a-members-unexported-work-2026-10-05"
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:3e49eab6b0d397ce69d5e1331e73181a0f8255f894d3261f319729240e1f1097",
+  "edge_type": "CAUSES",
+  "from_id": "art:service",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "service.rs (main f46bd3065) hand-writes the `status` parameter descriptions of add_verification (about line 2837: \"`planned` / `passing` / `failing` / `skipped` / `blocked` — for the common case …\") and set_verification_status (about line 2880: \"`planned` / `passing` / `failing` / `skipped` / `blocked`.\"). Neither carries schema/verify.yaml's description of `blocked` (\"the check COULD NOT RUN (a collection or import error …)\"), and `--describe add_verification` on main shows none.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:root-cause-the-typed-tools-that-set-a-checks-status-do-not-say-blocked-means-could-not-run-2026-10-05"
+}

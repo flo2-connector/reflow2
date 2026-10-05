@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:2700723e74d0a91691fdc77b0332c4ca2958658f2b9586b6124243b308a32259",
+  "node_id": "fact:worked-a-members-export-imports-into-a-fresh-store-with-its-identity-and-re-exports-identical-2026-10-05",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "finding",
+    "name": "WHAT WORKED (field log 2026-10-01/02 on 0.76.0, re-measured 2026-10-05 on main): a member's export imported into a fresh store adopts its identity, keeps every node and edge (field: 65/78, 12/18 and 110/143), and re-exports byte-identical by content hash. A refused import writes nothing. Do not regress it",
+    "source": "art:vscode-call-field-log-2026-10-05",
+    "statement": "Field log [works] (art:vscode-call-field-log-2026-10-05):\n- 2026-10-01: \"Fresh-store import_graph adopted the member identity, preserved all 65 nodes and 78 edges, and the fresh store's re-export compared identical to the original member.\"\n- 2026-10-01: \"The refused atomic import left an empty graph … fresh isolated import/re-export preserved identity and all 12 nodes/18 edges.\"\n- 2026-10-01: \"isolated import retained identity and exactly matched the export.\"\n- 2026-10-02: \"import_graph of a 110-node / 143-edge hand-built region document wrote everything with no skipped edges.\"\nThe hub's own check_repo.py now re-imports its committed exports as containment for the narrowed-edge case.\n\nRE-MEASURED on main: a 2-node, 1-edge export was --imported into an empty store (\"this store was empty, so it takes the imported design's name (a5fec0dfa50909f8)\"). Its re-export had the same graph_id and an equal content_hash, and compare_designs read identical: true. A refused import writes nothing: the narrowed-edge import was refused all-or-nothing on all three binaries, and re-confirmed in fact:triage-2026-10-05-store-and-hub-items-fixed-in-0-78-0-or-not-reflow2s.",
+    "subject_id": "cap:portability",
+    "valid_from": "2026-10-05"
+  }
+}

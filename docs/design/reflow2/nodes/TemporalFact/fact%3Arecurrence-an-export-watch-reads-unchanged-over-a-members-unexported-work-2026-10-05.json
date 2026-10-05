@@ -1,0 +1,17 @@
+{
+  "content_hash": "sha256:3ea4380009bf6985a513dd869404f839b7d2debfd1864768605ae41ea0998f6c",
+  "node_id": "fact:recurrence-an-export-watch-reads-unchanged-over-a-members-unexported-work-2026-10-05",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "finding",
+    "name": "RECURRENCE (re-measured 2026-10-05 on 0.76.0, 0.78.0 and main): a hub's export watch still says `unchanged` while the member's store holds work its export lacks (field: 13 nodes on a real member). Since 0.78.0 a door write that names the member's export (`--export-to`, or the member's own MCP configuration) keeps the export current, and the watch then says `moved`. A member store in a repository with no reflow2 configuration names no export, so it still lags silently",
+    "source": "art:vscode-call-field-log-2026-10-05",
+    "statement": "Field log entry [gap] of 2026-10-01 (art:vscode-call-field-log-2026-10-05): \"upstream_status compares the committed export, not the member's live store. hex-sim's store had 13 changed nodes not in its export and the hub reported 'unchanged'. Under --call (no write-through) this silent lag is the normal case.\" The same observation is limitation 14 of art:vscode-call-door-field-report-2026-10-02, root-caused in fact:an-export-watch-reads-unchanged-over-unexported-work-and-an-address-watch-sees-it-2026-10-02. So this is counted as a recurrence, not walked again.\n\nRE-MEASURED, `--call`, scratch stores: a child with one requirement, exported. A hub with dep:child declared by design_export. The child then gains a requirement with no export.\n- 0.76.0: `unchanged` after the unexported write. `--export-to <child export> --call add_requirement` exits 0 and never writes the file (0 hits for the new id in it), so the watch stays `unchanged`.\n- 0.78.0 and main: `unchanged` after the unexported write. `--export-to <child export> --call add_requirement` writes the export (\"export written … named by --export-to\"), and the watch then says `moved`.\n\nCLASSIFICATION: still present for the reporter's case. 0.78.0's #661 (req:a-writing-call-keeps-the-committed-export-current) closes it only when each member write names the member's export. A member that lives in a repository the person does not own has no reflow2 configuration, so nothing names it unless the agent passes `--export-to` on every write. The address watch (by a member's server) needs a fixed address, which a local `--call` setup has none of. Where a hub finds each member's STORE on one machine is the open question in fact:the-hub-address-book-idea-stays-open-and-the-hub-skill-wording-is-to-be-fixed-2026-10-02.",
+    "steps": [
+      "upstream_status"
+    ],
+    "subject_id": "cap:a-declared-dependency-is-watched-not-imported",
+    "valid_from": "2026-10-05"
+  }
+}

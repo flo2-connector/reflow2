@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:fb088ad581e5c48e525f7ddf27b375b87ac9afee29ddb2bbc7919bea9ae051c9",
+  "node_id": "fact:worked-a-held-design-refuses-a-door-write-and-stop-shared-releases-it-2026-10-05",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "finding",
+    "name": "WHAT WORKED (field log 2026-10-01 on 0.76.0, re-measured 2026-10-05 on 0.76.0 and main): while a --serve-shared server holds a design, a --call read answers from a snapshot with a loud stderr warning, a --call write is refused naming why and writes nothing, and --stop-shared releases the design. Do not regress it. On 0.76.0 the snapshot's search answered nothing, which 0.78.0 fixed",
+    "source": "art:vscode-call-field-log-2026-10-05",
+    "statement": "Field log [works], 2026-10-01 (art:vscode-call-field-log-2026-10-05): \"Held graph: a read on a store held by a Claude Code --serve-shared daemon answered from a best-effort snapshot with a loud stderr warning; a write was refused with a clear message, nothing written. --stop-shared then released it cleanly.\"\n\nRE-MEASURED, scratch store holding one requirement that says \"zebra pattern\", a --serve-shared server holding it:\n- 0.76.0: the read printed \"reflow2: WARNING — BEST-EFFORT SNAPSHOT …\" on stderr. search_design for \"zebra pattern\" returned 0 hits, the false empty root-caused in fact:root-cause-a-held-design-answers-search-through-the-door-with-a-false-nothing-matched-2026-10-02. The write was refused: \"`add_requirement` writes, so it needs the graph itself and not a snapshot copy … another process already has the design graph\", exit 1. --stop-shared: \"asked the shared server … to stop\". Afterwards the refused requirement was absent.\n- main: the same warning, and search_design returned 1 hit (#657 in 0.78.0). The write refusal and --stop-shared behave as on 0.76.0.\n\nSo the praise holds for the write refusal and the release. For reads, it holds from 0.78.0 on.",
+    "subject_id": "cap:snapshot-read",
+    "valid_from": "2026-10-05"
+  }
+}

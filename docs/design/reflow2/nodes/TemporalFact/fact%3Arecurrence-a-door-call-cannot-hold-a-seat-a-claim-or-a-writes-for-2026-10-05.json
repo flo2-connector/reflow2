@@ -1,0 +1,20 @@
+{
+  "content_hash": "sha256:336dc9798ae0f81860feda585c0540a71063e31a9d67f1e23ae9c44466b3445a",
+  "node_id": "fact:recurrence-a-door-call-cannot-hold-a-seat-a-claim-or-a-writes-for-2026-10-05",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "defect",
+    "name": "RECURRENCE (measured 2026-10-05 on 0.76.0, 0.78.0 and main), the field log's [unmeasured] \"each call is a fresh session\": unchanged since 0.77.0. A seat minted in one --call reads `gone` when carried into the next, two contributors claiming the same seed show `overlaps: []`, and a writes_for does not reach the next call's write (no AUTHORED_BY)",
+    "source": "art:vscode-call-field-log-2026-10-05",
+    "statement": "Field log, 2026-10-01, limitations of the --call door (art:vscode-call-field-log-2026-10-05): \"[unmeasured] Each call is a fresh session — seat/claim liveness under --call not yet tested.\" Measured on 0.77.0 for limitation 8 of art:vscode-call-door-field-report-2026-10-02. 0.78.0's CHANGELOG names no change to it, so it was re-measured rather than walked again.\n\nMEASURED, one `--call` per step, scratch store, isolated HOME, on each binary:\n1. mint_seat gives `host:<pid>:<rand>`, where the pid is that call's process.\n2. claim_region by who:me carrying that seat: the reply says `liveness: gone`.\n3. claim_region by who:colleague on the SAME seed with no seat: the reply says `live`.\n4. claim_report in the next call: both claims under `stale`, `overlaps: []`.\n5. writes_for who:me, then add_requirement in the next call: get_node with include_edges on main shows the new requirement with no edges at all, so no AUTHORED_BY.\nThe result is identical on 0.76.0, 0.78.0 and main.\n\nWHAT IT MEANS FOR THE REPORTER: through the door, a claim protects nothing and two agents on the same region get no warning. Door writes cannot be credited to a person by writes_for. The served replies still promise continuity (\"for the rest of this session\", \"until the session ends\").\n\nNOT ESTABLISHED: the fix. The two options named on 2026-10-02 (the door declares itself per-request so the existing refusals fire, or a durable seat handle that is not a pid) are still unchosen.",
+    "steps": [
+      "claim_region",
+      "mint_seat",
+      "writes_for",
+      "claim_report"
+    ],
+    "subject_id": "cap:a-build-can-call-one-tool-from-the-shell-and-read-the-reply-as-json",
+    "valid_from": "2026-10-05"
+  }
+}
