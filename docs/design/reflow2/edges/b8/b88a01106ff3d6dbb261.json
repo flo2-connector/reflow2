@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:00eb398dce705abd213fb1b37e8c696cf248954b7e1d605d267e59d552aa2f07",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0790",
+  "properties": {
+    "as_checksum": "sha256:69da29cc20f425d56a7398dcff46160841204bdf6f1d1afc7cd04d492c371155"
+  },
+  "to_id": "art:test-one-nodes-edges-are-read-back-as-edges"
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:9c8e09164371fb38adcae44b40ec8ecf9c9a06e8bdb5159ca71d638166d83bbd",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0790",
+  "properties": {
+    "as_checksum": "sha256:6869d93e97fc9393"
+  },
+  "to_id": "art:llm"
+}

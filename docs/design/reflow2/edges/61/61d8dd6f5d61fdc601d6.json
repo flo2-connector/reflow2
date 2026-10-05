@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:88fae7c1b0bb2d82d42fe005984d50e73414012d5281fed35254c7361b42f95c",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0790",
+  "properties": {
+    "as_checksum": "sha256:d1e29bf14ff4e4c76cc21671140eeb264ac3a65db9612ace43117145e522fa28"
+  },
+  "to_id": "art:lens-core-test"
+}

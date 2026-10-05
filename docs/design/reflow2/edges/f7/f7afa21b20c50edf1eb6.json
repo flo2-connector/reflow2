@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:4a4b287f6e8d64557d973afae3dc11e5f499bc0a0474c3381d6d12c3710e78c1",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0790",
+  "properties": {
+    "as_checksum": "sha256:80a4006b69165d761a8cf600ea22f81e9123ba54236a6f647adba4b6d54b9395"
+  },
+  "to_id": "art:coherence-gate-test"
+}

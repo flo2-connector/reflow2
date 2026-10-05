@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:a11b37fb618f49406fd11facd37841a06b9d8a9ca86e29f9902e26853a70809b",
+  "node_id": "chg:accept-2aa0780e11337ba2",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "documentation",
+    "detected_at": "2026-10-05",
+    "name": "The v0.79.0 cut re-blessed the last release's schema snapshot, as #660's gate (tests/a_schema_narrowing_ships_its_migration.rs) orders at every cut: reflow2_version 0.78.0 → 0.79.0, and the CHANGED edge now records checksum_after, checksum_basis and accepted_seq (#672's widening; no narrowing since 0.78.0, so the bless was not refused). Accepted before the manifest is frozen, as flow:release-cut step 1 orders.",
+    "subject": "system"
+  }
+}

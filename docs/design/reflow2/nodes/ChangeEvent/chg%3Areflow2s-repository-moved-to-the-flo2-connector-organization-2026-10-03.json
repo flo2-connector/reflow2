@@ -1,10 +1,11 @@
 {
-  "content_hash": "sha256:e5cccf138d81e9f63dbd7cadd7f6bdb53043cb668b2c74b1688473ed095fffde",
+  "content_hash": "sha256:3fcf4aa79475b973809c7f45357411f81d2c40a1fbe4788a5806b17e22231034",
   "node_id": "chg:reflow2s-repository-moved-to-the-flo2-connector-organization-2026-10-03",
   "node_type": "ChangeEvent",
+  "prev_item_hash": "sha256:e5cccf138d81e9f63dbd7cadd7f6bdb53043cb668b2c74b1688473ed095fffde",
   "properties": {
     "change_type": "environment_change",
-    "commits": "a0d82a2d",
+    "commits": "a0d82a2d64a2ca52bbf023336ffa8f59df5fd316,0c8ec0595f8684d77bf466001e860c0c47110e7e",
     "detected_at": "2026-10-03",
     "name": "reflow2's repository moved from github.com/sligara7 to github.com/flo2-connector, and every live reference to its address follows",
     "rationale": "WHY NOW, WITH A REDIRECT IN PLACE: a redirect is GitHub's courtesy, not a contract. It holds only while nobody creates a new repository at the old name, and every instruction that names the old address teaches the next reader to depend on it.\n\nLEFT ON PURPOSE:\n- The container image. release.yml names it ghcr.io/<lowercased $GITHUB_REPOSITORY>/reflow2-mcp, so every image up to and including 0.78.0 exists ONLY under ghcr.io/sligara7/reflow2/reflow2-mcp. Pointing the docs at ghcr.io/flo2-connector now would name an address with no images in it. The next release cut publishes under the new name and moves these lines then: getting-started/UPDATING.md (three lines, docker pull, docker run and the digest pin), docker/publish-index.sh's usage example, and tools/test_release_workflow.py's IMG fixture (an arbitrary value; moving it is cosmetic). req:reflow2-consumable-as-an-image's statement names the ghcr address too.\n- History: CHANGELOG entries for released versions, docs/upgrading-to-v0.13.0.md and v0.22.0.md, and what Decisions, Requirements, TemporalFacts and Releases in this design recorded at the time (issue links, run sources, quoted words). They were true when written; GitHub redirects their links.\n- Repositories that did not move stay under github.com/sligara7: dynograph-foundation, storyflow, dev_storyflow, reflow, chain_reflow, embeddings-rs, integrated_reflow, IfcOpenShell.\n\nOPEN: dec:where-the-reflow2-plugin-marketplace-lives (proposed) still quotes `claude plugin marketplace add sligara7/reflow2` as an option's command. It is an open choice in the owner's hands, so its text was not edited; whoever settles it should read the address as flo2-connector/reflow2.",

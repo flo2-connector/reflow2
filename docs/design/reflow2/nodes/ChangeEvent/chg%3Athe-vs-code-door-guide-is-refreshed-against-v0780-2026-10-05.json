@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:cab12f59e3ff4eb94c53334d23b288bf421fc434c8225f697866af5237b6b133",
+  "node_id": "chg:the-vs-code-door-guide-is-refreshed-against-v0780-2026-10-05",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "documentation",
+    "detected_at": "2026-10-05",
+    "name": "The VS Code door guide is refreshed against v0.78.0 and main, and registered as a document",
+    "rationale": "The guide predated v0.78.0, which shipped most of what it asked for, so it told a VS Code user to work around problems that no longer exist (re-reading a node after a refused write, exporting by hand) and listed fixed limitations as current. Its owner asked for it refreshed and merged.",
+    "rationale_basis": "contemporaneous",
+    "subject": "system",
+    "summary": "docs/using-reflow2-in-vscode-without-mcp.md (PR #647, branch feat/vscode-call-door, open since 2026-10-02) is rewritten to match what v0.78.0 and main do: reflow2 read/write, --describe and --list-tools, a writing --call keeping the export current, include_edges, the refusal shapes and exit codes, and --read-only. Each claim was run on a binary built from e7e304d. Limitations 1, 3 (write half), 7, 8, 9, 10, 11, 12, 13, 15 and 20 stay, each with its finding id; the fixed ones move to a table with their PRs. Every idea of the report is listed with the record that holds it, and the guide points at dec:the-vs-code-setup-is-built-as-one-increment-2026-10-05. The frozen report art:vscode-call-door-field-report-2026-10-02 is untouched. The guide joins docs/overview.md, and a CHANGELOG fragment says what it covers."
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:80821f1b07b715ff7bdcd22f14bb52b5dc1aad4e86dd863504a4871c5d3f844b",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0790",
+  "properties": {
+    "as_checksum": "sha256:3caa771c23353f9158501d475ea2f790570ece33d658eb1a2a393d4004848bab"
+  },
+  "to_id": "art:test-the-two-reported-fields"
+}

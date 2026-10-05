@@ -31,6 +31,134 @@ This file is the third view: *what changed, and when*.
 
 ## [Unreleased]
 
+## [0.79.0] — 2026-10-05
+
+**Minor. This release ships a decision that keeps its math, the design saved one file per item,
+and the move of the repository and its container image to `flo2-connector`.** It contains
+#671–#674. **The schema stamp does not move:** the node types (28), edge types (66) and enum
+values are the same as 0.78.0's. The only schema change is three optional properties on the
+`CHANGED` edge (`checksum_after`, `checksum_basis`, `accepted_seq`). No upgrade note is owed.
+What a consumer or operator should know:
+
+- 🛑 **The container image has a new name.** 0.79.0 is the first image published as
+  `ghcr.io/flo2-connector/reflow2/reflow2-mcp`. Every image up to and including 0.78.0 stays at
+  `ghcr.io/sligara7/reflow2/reflow2-mcp` and is not copied, so a script, compose file or CI job
+  that pins the old name never sees this release or any later one. Change the name when you
+  upgrade. The release notes carry the new index digest.
+- **Move every seat that imports a design's exports to 0.79.0 together.** An accepted checksum
+  now rides the change that accepted it, and an export leaves an Artifact's `checksum` off while
+  it equals that acceptance. Measured at this cut on reflow2's own design: a v0.78.0 binary
+  refuses a 0.79.0 export by default, because it is stamped newer. Forced with `--accept-newer`,
+  it imports every node and edge but reads none of the 582 artifacts' accepted checksums, so
+  every registered file looks unaccepted to it. Only the export leaves the checksum off; the
+  store still keeps it on the Artifact.
+- **Nothing changes for a design kept as one `.json` file.** The item layout is opt-in: give
+  `export_graph` or `--export-to` a directory ending in `/`. Every reader takes either form.
+- **Five served skills now record a numeric decision's inputs and arithmetic** (#674). Nothing to
+  do: the skills come with the binary.
+
+### Added
+
+- **The design can be saved one file per node and one per edge, so git's ordinary merge merges
+  it — on GitHub too, with no merge driver.** Give `export_graph` (or `--export-to`) a directory
+  path ending in `/`, such as `docs/design/<project>/`, and it writes `nodes/<Type>/<id>.json`,
+  `edges/<xx>/<hash>.json` and a small `design.json`, rewriting only the files whose item changed.
+  Two branches that changed different parts of the design touch different files and merge with
+  no conflict, in either order; a real conflict is one item both sides changed, shown as that
+  item's file (take one side of that file, import, write what the item should say, export). Each
+  changed item records the hash it had where the branch left the default branch
+  (`prev_item_hash`), so you can export as often as you like — before, during or after merging
+  main — and a squash-merge still lands each item one step on; an export during a merge anchors
+  where the merge will land, and every export re-checks the lineage of the items your branch
+  changed, so re-exporting repairs one a merge left stale. The whole-design hash is computed
+  when the design is read and equals what the single file stated for the same design, so watch
+  baselines and release pins keep working. `taken_at` moves to a git-ignored `taken_at.json`
+  beside the items. **What to do:** nothing yet if you keep a single `.json` file — every reader
+  (`--import`, `import_graph`, `--diff`, `compare_designs`, `--merge`, the upstream watch,
+  `fork_point`, `reflow2_check.py`) now takes either form, and a `.json` path is written exactly
+  as before. To move, export once to the directory beside your file, delete the file, and point
+  `--export-to` and your CI gate at the directory. reflow2's own design moves in its own pull
+  request; `reflow2_init` does not convert a project for you yet.
+- **An accepted checksum now rides the change that accepted it.** `set_artifact_checksum(s)`
+  writes the checksum onto the accepting change's `CHANGED` edge (`checksum_after`, its
+  `checksum_basis`, and an `accepted_seq` saying which acceptance is current). The Artifact keeps
+  its `checksum` in the store, but the saved design leaves it off while it equals the current
+  acceptance and the import puts it back — so two pull requests that edit one file each write
+  their own edge instead of both rewriting one value. You call the tools exactly as before.
+- **The coherence gate checks the item layout per item.** `reflow2_check.py` fails on an item file
+  that does not match its own `content_hash` or sits at the wrong path (`INTEGRITY`), and on a
+  changed item whose `prev_item_hash` is not its hash at the merge-base (`LINEAGE`). Its
+  design-vs-build check becomes git-aware for the layout: every registered file a pull request
+  changed must have its new checksum accepted in that pull request, matching the file at the PR
+  head; on the default branch, every registered file a commit changed must be covered by an
+  acceptance in that commit. A pull request need not be up to date with main to pass. The kit now
+  ships `tools/design_io.py` beside the gate, which reads the design in either form — keep the two
+  files together.
+- **CHANGELOG entries are fragments now: one file per pull request in `changelog.d/`.** Write your
+  entry as `changelog.d/<a-few-words>.md` under a Keep a Changelog heading (`### Fixed` and so on)
+  instead of editing `CHANGELOG.md`; `python3 tools/changelog_fragments.py --check` (in CI) fails a
+  malformed fragment or an entry written straight into `[Unreleased]`. At the cut,
+  `tools/changelog_fragments.py --cut <version>` assembles them into `CHANGELOG.md` and removes
+  them. For contributors to reflow2; nothing changes for users.
+
+### Changed
+
+- **A decision that rests on numbers is recorded with its math.** Five served skills say so in a
+  few lines each: `capture-intent`, `brainstorm`, `detect-and-ask`, `revise-design` and
+  `capture-session`. When the answer someone will act on is a cost, a fit, a size, or a yes or no
+  that turns on conditions, the decision's rationale names where each input came from. That is the
+  person, a cited document, or a measured or reported value, never the agent's memory. If a
+  calculator helper is connected, the agent computes there and links the helper's kept record to
+  the decision with `documents`. If none is, it shows the arithmetic in the rationale. No helper is
+  required.
+  - Measured on 2026-10-05 on a hosted design: three chats given such decisions did the arithmetic
+    in their heads and kept no computation, even with a calculator connected. The one sent to the
+    calculator showed a wrong hidden assumption: a seat taken as 7.5 mm that is really 7.6 mm.
+  - `tools/skill_lint.py` pins the new wording in all five skills (the decision-math contract).
+  - **What to do:** nothing. The skills are served, so a project gets the new wording with the
+    binary.
+
+- **reflow2's own committed design moved from `docs/design/reflow2.json` to the item layout,
+  `docs/design/reflow2/`.** For contributors to reflow2; nothing changes for users. Two pull
+  requests that change different parts of the design no longer conflict on it, so they merge in
+  either order without rebuilding and replaying a record. The 579 registered artifacts' accepted
+  checksums moved onto one baseline change, so from here every acceptance lives on the change that
+  made it. Reassembled, the layout's whole-design hash equals the single file's last one, so a
+  watch or pin taken on the old file reads the move as one change, not as a different design.
+  **What to do if you work on reflow2:** `git pull`; point a local server's `--export-to` at
+  `./docs/design/reflow2/` (a trailing `/` names the layout); export as often as you like; bring
+  main in with `git merge origin/main`; write your CHANGELOG entry as a `changelog.d/` fragment. A
+  branch opened before this landed re-records once: merge main, import `docs/design/reflow2/`
+  into its throwaway store, replay its writes, and export to the directory.
+
+- **reflow2's own `.gitattributes` no longer routes the design export through `--merge-driver`.**
+  The driver still exists, and stays useful (and optional) for a project whose design is a single
+  file. reflow2's contributor instructions (AGENTS.md, COORD.md) and the served `parallel-work` and
+  `ci-gate` skills now describe both forms: the item layout needs no driver and no "export once,
+  last" rule; a single file still does.
+
+- **reflow2's repository moved to `github.com/flo2-connector/reflow2`, and everything that tells
+  you where to fetch it, clone it or file an issue now says so.** Anthony moved the repository
+  from `github.com/sligara7` to the `flo2-connector` organization on 2026-10-03. GitHub redirects
+  the old address, so nothing that used it has broken.
+  - The install line is now
+    `curl -fsSL https://raw.githubusercontent.com/flo2-connector/reflow2/main/tools/install.sh | sh`.
+    It appears in the README, the consumer kit (`getting-started/README.md`, `SETUP.md`,
+    `UPDATING.md`), `docs/collaborating.md`, and the `ci-gate` skill's workflow example.
+  - `tools/install.sh` downloads from `flo2-connector/reflow2` by default. `REFLOW2_REPO` still
+    overrides it.
+  - `tools/reflow2_init.py` checks the new address for a newer upstream commit.
+    `tools/reflow2_install.py` names the new install line when it finds no binary.
+  - The `report-friction` skill searches and files issues in `flo2-connector/reflow2`.
+  - `Cargo.toml`'s `repository` and the dependency checker's user agent name the new address.
+  - **The container image moves with this release.** The release workflow names the image after
+    the repository it runs in, so 0.79.0 is the first image published as
+    `ghcr.io/flo2-connector/reflow2/reflow2-mcp`. Every image up to and including 0.78.0 stays
+    only at `ghcr.io/sligara7/reflow2/reflow2-mcp`, and is not copied. `getting-started/UPDATING.md`
+    now gives the new address and says so.
+  - **What to do:** nothing is required. If a script, Makefile or CI workflow of yours names
+    `sligara7/reflow2`, change it to `flo2-connector/reflow2` when convenient.
+
 ## [0.78.0] — 2026-10-03
 
 **Minor. This release ships the fix program after the VS Code `--call` field report, and keeps

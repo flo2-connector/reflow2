@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:b7185731107662470a6e85c037566cef159515c2df490bd719c675f29af0e1ec",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0790",
+  "properties": {
+    "as_checksum": "sha256:10ddf0fd63d308a29412c4ffad870eadce9419977b9aa99c9bf3298bef4dab66"
+  },
+  "to_id": "art:detect-and-ask-skill"
+}

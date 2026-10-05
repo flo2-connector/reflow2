@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:e4d35d2f01fa431b89a9b3dd62f1f8f53f6da4f4a3035efa43c0f1ff0e3b28ff",
+  "node_id": "chg:accept-8a6356f61ac6b1f8",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "documentation",
+    "detected_at": "2026-10-05",
+    "name": "The v0.79.0 cut moves the container image address in getting-started/UPDATING.md to ghcr.io/flo2-connector/reflow2/reflow2-mcp, as #671's CHANGELOG entry said the first release after the repository's move would, and says images up to 0.78.0 stay at ghcr.io/sligara7/reflow2/reflow2-mcp. Accepted before the manifest is frozen, as flow:release-cut step 1 orders.",
+    "subject": "system"
+  }
+}
