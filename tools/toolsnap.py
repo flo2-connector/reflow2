@@ -252,10 +252,43 @@ def _walk_properties(schema: object, path: str = ""):
 
 # String properties whose description hand-lists values that are NOT the
 # property's own legal set — each with the reason, so the exemption is a
-# judgement on the record rather than a silenced check.
+# judgement on the record rather than a silenced check. The same list is
+# crates/reflow2-mcp/tests/the_tool_surface_tells_the_truth.rs `EXEMPT`, which
+# runs the same rule on the live surface.
 ENUM_EXEMPT: dict[tuple[str, str], str] = {
     ("export_graph", "path"): "the list is the RESULT's `wrote` values, not the input path's",
+    ("add_component", "level"): "an open ladder: the five are the DEFAULT rungs and "
+                                "Project.decomposition_levels adds others",
+    ("seam_coverage", "altitude"): "Component.level, an open ladder "
+                                   "(dec:the-decomposition-ladder-is-open-not-a-fixed-enum)",
+    ("reconcile_dependencies", "$defs.ObservedDependencyDto.name"): "examples of dependency names",
+    ("record_finding", "fact_type"): "TemporalFact.fact_type is free text in the schema; the values are examples",
+    ("replace_text", "field"): "any text property of the node; examples",
+    ("set_interface_designation", "interface_id"): "names `designation`'s values, which publishes its enum",
+    ("set_requirement_lineage", "requirement_id"): "names `lineage`'s values, which publishes its enum",
+    ("recall_resolutions", "resolution_keys"): "names the parts of a key, not values",
 }
+
+# A value written in prose, however it is punctuated: `x`, "x", 'x', “x”, ‘x’.
+QUOTED_TOKEN = re.compile(r"(?:`([a-z][a-z0-9_]*)`|\"([a-z][a-z0-9_]*)\"|'([a-z][a-z0-9_]*)'|“([a-z][a-z0-9_]*)”|‘([a-z][a-z0-9_]*)’)")
+
+
+def _quoted(desc: str) -> list[str]:
+    return [next(g for g in m.groups() if g) for m in QUOTED_TOKEN.finditer(desc)]
+
+
+def _property_names(schema: object) -> set[str]:
+    out: set[str] = set()
+    if isinstance(schema, dict):
+        props = schema.get("properties")
+        if isinstance(props, dict):
+            out |= set(props)
+        for v in schema.values():
+            out |= _property_names(v)
+    elif isinstance(schema, list):
+        for v in schema:
+            out |= _property_names(v)
+    return out
 
 
 def enum_invariants(live: dict[str, dict]) -> int:
@@ -271,31 +304,45 @@ def enum_invariants(live: dict[str, dict]) -> int:
     fact:defect-the-schema-discovery-tax-enum-fields-are-strings-so-the-published-schema-cannot-name-their-values
     """
     problems = 0
+    tool_names = set(live)
     for tool in sorted(live):
+        params = _property_names(live[tool].get("inputSchema"))
         for path, prop in _walk_properties(live[tool].get("inputSchema")):
             if not isinstance(prop, dict):
                 continue
-            # Only a STRING-typed property can be an enum; a map or array whose
-            # description names its allowed keys or values is a different shape.
+            # Only a STRING-typed property (or a list of plain strings) can be
+            # an enum; a map whose description names its keys is another shape.
             ptype = prop.get("type")
             types = ptype if isinstance(ptype, list) else [ptype]
-            if "string" not in types:
+            items = prop.get("items") if isinstance(prop.get("items"), dict) else {}
+            plain_list = ("array" in types and items.get("type") == "string"
+                          and "enum" not in items and "$ref" not in items)
+            if "string" not in types and not plain_list:
                 continue
             if (tool, path) in ENUM_EXEMPT:
                 continue
             desc = prop.get("description") or ""
             tokens = BACKTICK_TOKEN.findall(desc)
             listed = [t for t in tokens if t not in ("true", "false", "null")]
-            if len(listed) < 3:
-                continue
             enum = prop.get("enum")
-            if not isinstance(enum, list):
-                # Only flag when the tokens look like a VALUE SET: separated by / or |
-                if not re.search(r"`\s*(/|\|)\s*`", desc):
-                    continue
-                problems += 1
-                print(f"\n=== ENUM DRIFT: {tool}.{path} hand-lists values but publishes no enum ===")
-                print(f"  listed: {listed[:12]}")
+            if not isinstance(enum, list) and "string" in types or plain_list:
+                # A VALUE SET however it is written — commas, slashes, pipes,
+                # "or"; backticks or quotes — and not a list of tool or
+                # parameter names. Until 2026-10-05 only `a` / `b` / `c` was
+                # recognised, and add_requirement.provenance and the checksum
+                # dispositions (written with commas) escaped it
+                # (fact:a-value-set-published-without-an-enum-escapes-the-argument-check-so-every-one-is-listed-is-false-2026-10-05).
+                values = sorted({t for t in _quoted(desc)
+                                 if t not in ("true", "false", "null")
+                                 and t not in tool_names and t not in params})
+                if len(values) >= 3:
+                    problems += 1
+                    print(f"\n=== ENUM DRIFT: {tool}.{path} lists values in prose but publishes no enum ===")
+                    print(f"  listed: {values[:12]}")
+                    print("  publish the set as an enum (crate::enum_schema), or add it to ENUM_EXEMPT "
+                          "with the reason the values named are not its set")
+                continue
+            if len(listed) < 3:
                 continue
             missing = [t for t in listed if t not in enum and re.search(r"`" + re.escape(t) + r"`\s*(/|\|)|(/|\|)\s*`" + re.escape(t) + r"`", desc)]
             if missing:

@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:605236cea21ff4393c0338b228c5773ce1eb214e2ec0bae9d416f3567e31a38d",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-tool-surface-tells-the-truth-2026-10-05",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 2,
+    "action": "modified",
+    "checksum_after": "sha256:d6ab960de79315b1a70d51004c4d601dfaaa672227507f24bd7e80ec71d01a5f",
+    "checksum_basis": "measured"
+  },
+  "to_id": "art:skills-and-tools"
+}

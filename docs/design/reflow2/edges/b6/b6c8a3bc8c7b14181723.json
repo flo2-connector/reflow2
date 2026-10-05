@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:49d02e77444d4cf87c31c49ab4f4a109de343a28a76e8c157c74df5161584a35",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-tool-surface-tells-the-truth-2026-10-05",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 2,
+    "action": "modified",
+    "checksum_after": "sha256:dd3dec056a0c4ca12f8c53099bbed16e50806ce5941c8e17527820efd10d1068",
+    "checksum_basis": "measured"
+  },
+  "to_id": "art:every-declared-enum-is-wired-or-exempt-test"
+}

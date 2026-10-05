@@ -68,6 +68,11 @@ static WRITERS: LazyLock<Writers> = LazyLock::new(|| {
     }
 });
 
+/// Every node type some typed tool writes, sorted.
+pub fn node_types_written() -> Vec<String> {
+    WRITERS.by_node_type.keys().cloned().collect()
+}
+
 /// The served tools that write `node_type`, sorted. Empty means only the
 /// generic `create_node` does.
 pub fn node_type_writers(node_type: &str) -> Vec<String> {

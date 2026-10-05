@@ -546,6 +546,51 @@ pub fn resolve_design(asked: &Asked<'_>) -> Result<(), String> {
     Ok(())
 }
 
+/// The arguments a one-shot call was given, as the JSON object the tool takes.
+///
+/// `--args` (and the `read` / `write` verbs' JSON) is one of three things: the
+/// object itself; `-`, the object on stdin; or `@PATH`, the object in the file
+/// at PATH (`dec:idea-the-door-reads-its-arguments-from-a-named-file`). The
+/// file form is the one that keeps design prose out of the command text
+/// altogether: no shell quoting to get wrong, and nothing for a terminal's
+/// guard hook to read as a command. A JSON object never starts with `@`, so
+/// the prefix cannot take a meaning away from an argument that had one.
+///
+/// Refused in plain words, naming the file, when the file is missing or
+/// unreadable, is not JSON, or holds something other than one object — before
+/// anything is opened.
+pub fn call_arguments(
+    raw: &str,
+    stdin: impl FnOnce() -> std::io::Result<String>,
+) -> Result<serde_json::Map<String, serde_json::Value>, String> {
+    let (text, from) = if raw == "-" {
+        (
+            stdin().map_err(|e| format!("failed to read --args from stdin: {e}"))?,
+            "--args from stdin".to_string(),
+        )
+    } else if let Some(path) = raw.strip_prefix('@') {
+        let text = std::fs::read_to_string(path).map_err(|e| {
+            format!(
+                "--args names the file `{path}`, and it could not be read ({e}). Nothing was \
+                 opened. `--args @PATH` reads the tool's arguments, one JSON object, from the \
+                 file at PATH."
+            )
+        })?;
+        (text, format!("--args file `{path}`"))
+    } else {
+        (raw.to_string(), "--args".to_string())
+    };
+    let parsed: serde_json::Value = serde_json::from_str(text.trim())
+        .map_err(|e| format!("{from} is not JSON ({e}): {}", text.trim()))?;
+    match parsed {
+        serde_json::Value::Object(arguments) => Ok(arguments),
+        other => Err(format!(
+            "{from} must hold one JSON object ({{\"field\": value, …}}) — the tool's parameters \
+             by name — not {other}"
+        )),
+    }
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -668,5 +713,43 @@ mod tests {
         );
         std::fs::create_dir_all(d.path().join(".reflow2")).unwrap();
         assert!(resolve_design(&a).is_ok());
+    }
+
+    #[test]
+    fn call_arguments_take_an_object_inline_from_stdin_or_from_a_named_file() {
+        let inline = super::call_arguments(r#"{"id":"x"}"#, || unreachable!()).unwrap();
+        assert_eq!(inline["id"], "x");
+        let piped = super::call_arguments("-", || Ok(r#"{"id":"y"}"#.into())).unwrap();
+        assert_eq!(piped["id"], "y");
+        let dir = tempfile::tempdir().unwrap();
+        let f = dir.path().join("a.json");
+        std::fs::write(&f, "{\"id\": \"z\"}\n").unwrap();
+        let named = super::call_arguments(&format!("@{}", f.display()), || unreachable!()).unwrap();
+        assert_eq!(named["id"], "z");
+    }
+
+    #[test]
+    fn a_named_file_that_is_missing_or_not_one_object_is_refused_naming_it() {
+        let dir = tempfile::tempdir().unwrap();
+        let missing = dir.path().join("gone.json");
+        let e = super::call_arguments(&format!("@{}", missing.display()), || unreachable!())
+            .unwrap_err();
+        assert!(
+            e.contains("gone.json") && e.contains("could not be read"),
+            "{e}"
+        );
+        let list = dir.path().join("list.json");
+        std::fs::write(&list, "[1]").unwrap();
+        let e =
+            super::call_arguments(&format!("@{}", list.display()), || unreachable!()).unwrap_err();
+        assert!(
+            e.contains("list.json") && e.contains("one JSON object"),
+            "{e}"
+        );
+        let bad = dir.path().join("bad.json");
+        std::fs::write(&bad, "{").unwrap();
+        let e =
+            super::call_arguments(&format!("@{}", bad.display()), || unreachable!()).unwrap_err();
+        assert!(e.contains("bad.json") && e.contains("not JSON"), "{e}");
     }
 }

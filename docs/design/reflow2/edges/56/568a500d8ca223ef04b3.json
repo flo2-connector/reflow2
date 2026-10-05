@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:bdfb3ad9f856a611481bebacd45c571b4be9f05b1b2d013201e176ff5ff5e8fc",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-tool-surface-tells-the-truth-2026-10-05",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 2,
+    "action": "modified",
+    "checksum_after": "sha256:ea5a845f1a727650f69404df4e94d0b4d30e2ae3f8655f8c69c229646541981b",
+    "checksum_basis": "measured"
+  },
+  "to_id": "art:writers"
+}

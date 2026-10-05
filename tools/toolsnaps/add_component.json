@@ -2,7 +2,7 @@
   "annotations": {
     "readOnlyHint": false
   },
-  "description": "Create a Component node. Pass `level` when the part is an assembly rather than a leaf (`subsystem`, `system`, `system_of_systems`, `enterprise`; default `component`), then use contain_component to nest it — that pair is what gives hierarchy_issues something to check. Lands `status: planned` unless you pass one: say `realized` when the part already exists (adopt), so the design does not call a shipped system unbuilt. CONTENT FIELDS ARE REQUIRED TO CREATE AND OPTIONAL TO REVISE: call it again with the same id and only what you are changing — omitted fields keep their stored value, so correcting one never means re-sending a 2 KB field you did not touch.",
+  "description": "Create or revise a Component node. Pass `level` when the part is an assembly rather than a leaf (`subsystem`, `system`, `system_of_systems`, `enterprise`; default `component`), then use contain_component to nest it — that pair is what gives hierarchy_issues something to check. Lands `status: planned` unless you pass one: say `realized` when the part already exists (adopt), so the design does not call a shipped system unbuilt. CONTENT FIELDS ARE REQUIRED TO CREATE AND OPTIONAL TO REVISE: call it again with the same id and only what you are changing — omitted fields keep their stored value, so correcting one never means re-sending a 2 KB field you did not touch.",
   "inputSchema": {
     "$schema": "https://json-schema.org/draft/2020-12/schema",
     "additionalProperties": false,

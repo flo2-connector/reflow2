@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:c77516210afbb0ba23d6a5c6e01ff6cc96493342eda75943b96c61e95837ade6",
+  "node_id": "chg:the-tool-surface-tells-the-truth-2026-10-05",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "name": "The tool surface tells the truth: --args @file, create-or-revise said where it is read, a node type's constructor found by its name, value sets published, the ChangeEvent decoy un-advertised, edge-aware revision receipts",
+    "rationale": "Approved by Anthony on 2026-10-05: \"Concur with 1 and 2\" (1 was this stage), then narrowed by him the same day to items 1, 2, 4, 6 and 8 of the triage; items 3, 5, 7, 9, 10, 11 and 12 stay open as their findings. His constraint, verbatim: \"I just want to make sure the changes we implement for vscode don't break it for how it was originally used/designed as an mcp server. My brother likes using as is.\" So every change is additive for an MCP client: descriptions, one new optional reply field (revision.edges_changed), and earlier refusals of values that were already refused (provenance, disposition, and the decoy, whose redirect is unchanged). The pin is tests/the_mcp_surface_only_grows.rs, against v0.79.0's surface and reply shapes.",
+    "rationale_basis": "contemporaneous",
+    "subject": "system",
+    "summary": "Stage 2 of the work-door increment, five items. (1) `--args @path` reads a call's arguments from a file, for --call and the read/write verbs, refusing a missing file or one that is not one JSON object. (2) The 22 constructors that revise on a repeated id begin \"Create or revise\", the line find_tools shows; a refused update_node / update / set_node names the revise route; a find_tools query naming a node type as the schema spells it (TemporalFact, Decision) ranks the constructor that creates it first (writers.json, a writer taking the new node's id), and a guessed name that names a type (add_temporal_fact, record_fact) is pointed at that constructor. (4) add_requirement.provenance and the checksum dispositions publish their enums, so a wrong value is listed with the call's other problems; the toolsnap guard recognises a value set however it is written. (6) add_change_event's `description` decoy is out of the advertised schema and find_tools, still accepted, and answered with the same redirect to summary/rationale, now beside other problems. (8) revision.edges_changed counts the edges a revise drew; `changed` keeps its meaning; an edge-only revise no longer says nothing moved. A standing test pins that the MCP surface only grows against the last release (tests/the_mcp_surface_only_grows.rs)."
+  }
+}
