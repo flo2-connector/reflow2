@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:4866e665f10ba30cf9319270d43b91eb9846e33b0b8bd81df00cac0bdeb5a6ee",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0800",
+  "properties": {
+    "as_checksum": "sha256:849b1a13e68dda4fc3a38bb19fc6df6363166ff014b7d2c042366a12fd4ee822"
+  },
+  "to_id": "art:test-add-artifact-takes-the-first-checksum"
+}

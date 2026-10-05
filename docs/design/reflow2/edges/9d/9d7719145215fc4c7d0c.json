@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:04a8c761ad916282ce8202a9ea7650efc4fd086665d789fd36c881da01cd85ad",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0800",
+  "properties": {
+    "as_checksum": "sha256:42edd4039c8d426439d6f6f724b79111a83e9a16c641dbaf09cbe9e87199029a"
+  },
+  "to_id": "art:test-the-committed-design-round-trips-through-the-item-layout"
+}

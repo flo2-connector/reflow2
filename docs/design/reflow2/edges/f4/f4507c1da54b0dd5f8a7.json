@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:8a0e8be8d04a1cbbe240b08a57fa05f8a6080b2d3fae418dd57d56c8f265a72d",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0800",
+  "properties": {
+    "as_checksum": "sha256:edc33e1a891f98bca5a0b9b4fcbbfc993e2121fcf6b644efa99d48291ef5fb3c"
+  },
+  "to_id": "art:test-a-read-only-server-with-no-store-serves-the-latent-surface"
+}

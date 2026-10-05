@@ -1,9 +1,11 @@
 {
-  "content_hash": "sha256:c77516210afbb0ba23d6a5c6e01ff6cc96493342eda75943b96c61e95837ade6",
+  "content_hash": "sha256:2ed0765ad8cbe7eb1c9cfb3cc068a5f49f1455cc5ba09baaa3914ca507da600d",
   "node_id": "chg:the-tool-surface-tells-the-truth-2026-10-05",
   "node_type": "ChangeEvent",
+  "prev_item_hash": "sha256:c77516210afbb0ba23d6a5c6e01ff6cc96493342eda75943b96c61e95837ade6",
   "properties": {
     "change_type": "new_feature",
+    "commits": "b2cde83ebc8674540ab5009cc5a4a6000f25e95c",
     "name": "The tool surface tells the truth: --args @file, create-or-revise said where it is read, a node type's constructor found by its name, value sets published, the ChangeEvent decoy un-advertised, edge-aware revision receipts",
     "rationale": "Approved by Anthony on 2026-10-05: \"Concur with 1 and 2\" (1 was this stage), then narrowed by him the same day to items 1, 2, 4, 6 and 8 of the triage; items 3, 5, 7, 9, 10, 11 and 12 stay open as their findings. His constraint, verbatim: \"I just want to make sure the changes we implement for vscode don't break it for how it was originally used/designed as an mcp server. My brother likes using as is.\" So every change is additive for an MCP client: descriptions, one new optional reply field (revision.edges_changed), and earlier refusals of values that were already refused (provenance, disposition, and the decoy, whose redirect is unchanged). The pin is tests/the_mcp_surface_only_grows.rs, against v0.79.0's surface and reply shapes.",
     "rationale_basis": "contemporaneous",

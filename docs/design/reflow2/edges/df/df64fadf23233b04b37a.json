@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:26527edd40b6363783979b7f389e89a53ed78871a627f5e8c72f20ce8d41523a",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0800",
+  "properties": {
+    "as_checksum": "sha256:fd4af8ff83e09833d10096ce37a50ac4d73bb02cf17fdd20b560ae6556847ddb"
+  },
+  "to_id": "art:latent-promotion-test"
+}

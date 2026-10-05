@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:4e8bc4b94f9e4292bfb65f14ace3e9b77ee4f577dee93cd9edeea47a5f9e6f17",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0800",
+  "properties": {
+    "as_checksum": "sha256:87ca1374933c9471a8a6ae48502cb2a3fa818c089fe8ead9d03def8122431b07"
+  },
+  "to_id": "art:test-a-refused-write-stores-nothing"
+}

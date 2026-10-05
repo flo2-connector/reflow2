@@ -1,9 +1,11 @@
 {
-  "content_hash": "sha256:54657d40ff777f0f7790a0e4ddabfe5037553b145caa38b5d37d0348c80e9465",
+  "content_hash": "sha256:de73c497874a3a9e834625b1c354d755403ee987635b9af7d51c5b851cd49915",
   "node_id": "chg:a-one-shot-open-reports-its-version-verdict",
   "node_type": "ChangeEvent",
+  "prev_item_hash": "sha256:54657d40ff777f0f7790a0e4ddabfe5037553b145caa38b5d37d0348c80e9465",
   "properties": {
     "change_type": "defect_fix",
+    "commits": "a4b557bb64f307eb527db3788f643d6bbcf723de",
     "detected_at": "2026-10-05",
     "name": "Every one-shot open says its version verdict, a downgrade keeps the newer stamp, the stamp keeps where it came from, the installer replaces a symlinked reflow2, and install.sh keeps the binary it replaces",
     "rationale": "Fixes fact:root-cause-every-one-shot-open-drops-the-version-verdict-and-the-repair-report-2026-10-05 (the one-shot doors dropped open_rocksdb_with_provenance's verdict), fact:root-cause-the-update-path-has-no-step-before-the-binary-is-replaced-2026-10-05, fact:root-cause-reflow2-documents-no-binary-only-install-and-no-way-to-tell-a-wrapper-machine-2026-10-05 and fact:defect-the-installer-cannot-repair-a-reflow2-command-that-is-a-symlink-to-the-binary-2026-10-05; skill text for fact:root-cause-a-blast-radius-stops-at-its-design-by-design-and-nothing-says-where-it-left-2026-10-05 (its X2 only: nothing pointed at mirroring; X3, a radius naming its exit, is not built). Approved by Anthony Sligar 2026-10-05 for v0.80.0. Owner's rule: MCP unchanged, so a serving open still rewrites a newer stamp to its own version (and now records the newer one as previous_reflow2_version); only the one-shot doors keep it.",

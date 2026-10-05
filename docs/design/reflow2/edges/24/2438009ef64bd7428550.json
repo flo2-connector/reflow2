@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:23a9cb130e545ca7e678ae2eaaf53015f54a3257619fb9224ec92749bcd2ee9e",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0800",
+  "properties": {
+    "as_checksum": "sha256:85ef74296512effda83f7755e132db63f39e3cdc72ca91e2be99266a9f6f08a4"
+  },
+  "to_id": "art:using-reflow2-in-vscode-without-mcp"
+}

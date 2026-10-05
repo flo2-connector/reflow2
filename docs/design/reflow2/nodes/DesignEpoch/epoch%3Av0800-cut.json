@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:9ede0b2b061923725239257be0ef6262b2e0765c874c95beb6303092a136faf6",
+  "node_id": "epoch:v0800-cut",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "description": "The cut that ships the VS Code setup, so reflow2 works well from VS Code, including where an organisation blocks third-party MCP servers and the agent reaches reflow2 through the terminal. Approved by Anthony Sligar, 2026-10-05, as the \"VS Code works well\" release. Contents, by PR: #647 (a guide to using reflow2 from VS Code's Copilot agent through the --call door), #680 (reflow2 init --harness vscode-cli installs the terminal route: instructions, hooks, skill stubs, slash commands, and a CI probe of the door), #682 (loop_status says when a design was never exported, leads with whether the store is ahead of its export, and lists unexported changes by who wrote them), #683 (a store's identity file follows its real path, older placements still open, and a refused open writes nothing), #684 (the tool surface tells the truth: --args @file, create-or-revise discoverable, value sets published, the ChangeEvent decoy un-advertised, edge-aware revision receipts, and the pin that the MCP surface only grows), #685 (every one-shot open reports its version verdict, a downgrade keeps the newer stamp, and install.sh keeps a rollback point); #676-#679 and #681 are design records. THE SCHEMA STAMP DOES NOT MOVE: 28 node types, 66 edge types and 69 enum vocabularies are identical to 0.79.0's, measured by comparing the 0.79.0 export stamp with the one this cut's 0.80.0 binary writes, and no schema property changed, so no upgrade note is owed. Sequence 666 places it directly after epoch:v0790-cut (665), the last epoch that has arrived; 670-710 are planned milestones that have not arrived and pin nothing.",
+    "epoch_type": "release_cut",
+    "name": "v0.80.0 release cut (2026-10-05)",
+    "sequence": 666,
+    "status": "arrived"
+  }
+}
