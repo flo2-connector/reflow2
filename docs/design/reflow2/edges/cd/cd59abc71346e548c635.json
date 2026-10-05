@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:b0f1f6d362d0192bfeed17fd958ec38da9a52821f5f9704c61cefd4e511afb28",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-stores-identity-follows-its-real-path",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 3,
+    "action": "modified",
+    "checksum_after": "sha256:06ddfc896f9d53749dc501ae0df0a91c4bf3cba8b864be141e01c544ce91758f",
+    "checksum_basis": "measured"
+  },
+  "to_id": "art:service"
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:0e3eb9d15f48de11a81dd7370fee6822e6500066b96c33720f151c6f7579565a",
+  "edge_type": "CAUSES",
+  "from_id": "art:vscode-call-field-log-2026-10-05",
+  "properties": {
+    "basis": "correlational",
+    "note": "The field log's [defect?] entry of 2026-10-01 (bluesky-queueserver/.reflow2/graph.id.json missing, graph.meta.json freshly touched) is the source; root-caused in fact:root-cause-a-stores-identity-file-is-placed-by-how-its-path-was-spelled-2026-10-05.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "chg:a-stores-identity-follows-its-real-path"
+}

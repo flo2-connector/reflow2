@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:33ba20519d55d945561eb2b93cd612b51ff9b7629a0647de59de1db58040e5f4",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-stores-identity-follows-its-real-path",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 3,
+    "action": "modified",
+    "checksum_after": "sha256:fd1a080e4e639e7d845dbcd21a3fbc24105755c0ee138d20d100c19f85de7104",
+    "checksum_basis": "measured"
+  },
+  "to_id": "art:tools-coherence"
+}
