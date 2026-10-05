@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:e66fb687e34bd2032e1924d3e637373d8930e7e4c5a82c728e91239db9c9bd63",
+  "edge_type": "MITIGATES",
+  "from_id": "dec:idea-one-call-adds-a-member-design-to-a-local-hub",
+  "properties": {
+    "evidence": "A served call that reads a member store's identity, exports it to a named path and writes the hub pin would carry three of the four steps this finding says no served text describes; the fourth (keeping the store out of an upstream repo's git) would still need words."
+  },
+  "to_id": "fact:root-cause-the-served-hub-skill-has-no-step-for-adding-a-member-design-2026-10-05"
+}
