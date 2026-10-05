@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:b968bd1583b027132b18d2574bc1731604e285a6367098ba530a116784093f3e",
+  "edge_type": "MITIGATES",
+  "from_id": "dec:idea-the-door-reads-its-arguments-from-a-named-file",
+  "properties": {
+    "evidence": "A file-borne argument keeps design prose out of the command text a word-matching guard reads. That finding's probe measured the file route passing both guards."
+  },
+  "to_id": "fact:root-cause-a-text-matching-guard-blocks-door-writes-that-mention-remote-shell-words-and-reflow2-ships-no-such-hook-2026-10-02"
+}

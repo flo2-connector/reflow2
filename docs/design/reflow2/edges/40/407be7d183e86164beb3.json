@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:16dc96689dbf6d43fe29361cadad48a2fb7eecc3cfb334af2598bdc3663ba93f",
+  "edge_type": "CAUSES",
+  "from_id": "fact:defect-typed-tool-parameter-names-are-inconsistent",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "Re-measured on main e7e304d: add_component's parameter is `description` (and refuses `purpose`), the Component schema requires `purpose`, and import_graph validates against the schema, so a document written in add_component's words is refused. The 2026-08-15 instance, unchanged.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:an-import-still-requires-component-purpose-where-add-component-takes-description-2026-10-05"
+}

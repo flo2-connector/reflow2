@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:eeacae91ed1a1e17aff724524bd385a3d546f971ad3b5cdf3b26eb0b9fbf54af",
+  "edge_type": "CAUSES",
+  "from_id": "fact:root-cause-coverage-report-reads-an-artifact-location-as-a-literal-path-a-meaning-the-shared-location-rule-never-reached-2026-10-02",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "Re-measured on main e7e304d with the same probe: a commit-pinned URL location claims nothing for its repo-relative path and is listed only in unobserved_locations, as the 2026-10-02 walk found in coverage.rs normalise()/claims().",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:coverage-report-still-claims-nothing-for-commit-pinned-url-locations-on-main-2026-10-05"
+}

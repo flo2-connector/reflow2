@@ -1,0 +1,19 @@
+{
+  "content_hash": "sha256:cd40d221d4a79f7c217b49c70482ec4e1ff61c180e873e93008142289d9eb908",
+  "node_id": "fact:the-four-call-decision-was-a-leaked-node-and-an-edge-only-revise-still-says-nothing-moved-2026-10-05",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "defect",
+    "name": "ROOT CAUSE (walked, measured): the field log's \"revision changed:false after refusals\" had two causes. (1) On 0.76.0 the third, refused add_decision call stored the node: reproduced exactly, and fixed in 0.78.0 (#655). (2) The reply said \"nothing moved\" although the call drew an edge: the 2026-09-28 cause. On main an edge-only revise still replies changed:false, \"nothing moved\", beside edges_drawn",
+    "source": "art:vscode-call-field-log-2026-10-05",
+    "statement": "RUN AS THE SKILL (root-cause, fetched fresh), 2026-10-05, triaging art:vscode-call-field-log-2026-10-05 (tool surface). Binaries: 0.76.0 and 0.78.0 release builds, and main at e7e304d (reports 0.78.0); scratch stores under the hub session's scratchpad, isolated HOME.\n\n① OBSERVED, the reporter's words (2026-10-02, 0.76.0): the fourth, successful add_decision call replied \"revision\": {\"changed\": false, \"note\": \"This node already held exactly what this call passed; nothing moved.\"} while also reporting edges_drawn. \"Inferred: one of the refused calls (2 or 3 …) had already written the node before its link validation failed … Not reproduced in isolation.\"\n\n② PRECEDENT: fact:root-cause-a-typed-constructor-writes-the-node-before-its-later-checks-and-a-refusal-leaves-it-2026-10-02 (fixed by chg:a-refused-write-stores-nothing, #655) and fact:root-cause-nothing-moved-is-computed-from-properties-while-the-call-drew-an-edge-2026-09-28 (revision_of reads properties only).\n\n④⑤ THE REPORTER'S SEQUENCE REPLAYED, on 0.76.0, 0.78.0 and main, over a store holding dec:base:\n1. related_to [{node_id, relation: RELATES_TO}]: 0.76.0 exit 2, unknown field `node_id` only. 0.78.0 and main list all four problems at once (node_id, its nearest name other_id, relation not in the set, evidence missing).\n2. related_to [{other_id, relation: RELATES_TO}]: 0.76.0 \"called without the required argument `evidence`. Its own schema publishes no description of it\".\n3. with evidence, relation RELATES_TO: 0.76.0 exit 1, \"'RELATES_TO' is not a relation a review can draw\". get_node then FINDS dec:q with its name, decision and kind on 0.76.0, and finds nothing on 0.78.0 or main. Call 2 left nothing; call 3 is the leak.\n4. relation DEPENDS_ON: 0.76.0 replies changed:false, \"nothing moved\", edges_drawn [dec:q DEPENDS_ON dec:base]. On 0.78.0 and main the node is created by this call.\nThe reporter's inference is CONFIRMED and narrowed to call 3.\n\nWHAT IS STILL THERE: on main, add_decision on the existing dec:q with only a new related_to item replies edges_drawn [dec:q BLOCKS dec:base] and revision {changed: false, note: \"This node already held exactly what this call passed; nothing moved.\"}. The 2026-09-28 cause, unchanged. 0.78.0's leak fix removed the route by which the field met it after refusals; any edge-only revise still meets it.\n\n⑥ CLASS (as recorded 2026-09-28): the reply describes a call from one of its two outputs.\n\n⑨ NOT ESTABLISHED: which other constructors still say \"nothing moved\" on an edge-only revise on main. Only add_decision was re-measured.",
+    "steps": [
+      "add_decision",
+      "add_capability",
+      "add_requirement"
+    ],
+    "subject_id": "cap:a-revising-write-says-whether-the-state-survived",
+    "valid_from": "2026-10-05"
+  }
+}

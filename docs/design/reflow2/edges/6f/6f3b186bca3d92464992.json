@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:11b39e4e32d279811f88fb5c3bf136649457e3564374a5effd976e9093814e9a",
+  "edge_type": "CAUSES",
+  "from_id": "art:service",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "service.rs:1860 (main e7e304d): RequirementReq.provenance carries no schema_with, though enum_schema.rs:89-90 already defines its enum. disposition has no enum anywhere. The 0.78.0 argument check reads only published enums, and tools/toolsnap.py's guard requires / or | between listed values, which neither description uses (both use commas).",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:a-value-set-published-without-an-enum-escapes-the-argument-check-so-every-one-is-listed-is-false-2026-10-05"
+}

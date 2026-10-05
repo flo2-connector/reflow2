@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:fbf5f807bb81bc96c0dd4d9715ac0b050393e0e374bedf54545f9e30756ab1d2",
+  "edge_type": "CAUSES",
+  "from_id": "art:service",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "service.rs on main e7e304d: node_error (~883) appends \"Known node types: …\" for UnknownNodeType, and is called only by create_node (tools/query.rs:258). dyno_err maps UnknownNodeType to a bare invalid_params (~826), which is what import_graph, create_nodes and describe_schema return (measured).",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:an-unknown-node-type-is-answered-with-the-known-types-only-by-create-node-2026-10-05"
+}
