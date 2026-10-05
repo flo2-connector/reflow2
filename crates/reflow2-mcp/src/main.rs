@@ -1955,7 +1955,7 @@ async fn main() -> anyhow::Result<()> {
                 reflow2_core::compare_designs(&base, &other, base_path, other_path)
             }
             None => {
-                let graph = reflow2_core::DesignGraph::open_rocksdb(&cli.graph_path)
+                let graph = reflow2_mcp::one_shot::open_store(&cli.graph_path)
                     .map_err(|e| explain_open_failure(&e.into(), &cli.graph_path))?;
                 graph
                     .compare_with_base(&base, base_path)
@@ -2089,7 +2089,7 @@ async fn main() -> anyhow::Result<()> {
         // opened the graph to test it and then opened it AGAIN to read it, which
         // deadlocked against its own first handle ("lock hold by current
         // process"). Found by this feature's own test.
-        match reflow2_core::DesignGraph::open_rocksdb(&cli.graph_path) {
+        match reflow2_mcp::one_shot::open_store(&cli.graph_path) {
             // Not locked after all — the honest answer is a real export, not a
             // copy of one.
             Ok(graph) => {
@@ -2112,7 +2112,7 @@ async fn main() -> anyhow::Result<()> {
                     cli.graph_path
                 );
                 let result = (|| -> anyhow::Result<()> {
-                    let graph = reflow2_core::DesignGraph::open_rocksdb(snapshot.path())
+                    let graph = reflow2_mcp::one_shot::open_store(snapshot.path())
                         .map_err(|e| anyhow::anyhow!("{e}"))
                         .with_context(|| {
                             format!(
@@ -2137,7 +2137,7 @@ async fn main() -> anyhow::Result<()> {
     // Export-and-exit runs before the server is built: a backup must be
     // possible even when the caller has no intention of serving.
     if cli.export {
-        let graph = reflow2_core::DesignGraph::open_rocksdb(&cli.graph_path)
+        let graph = reflow2_mcp::one_shot::open_store(&cli.graph_path)
             .map_err(|e| explain_open_failure(&e.into(), &cli.graph_path))?;
         let doc = graph
             .export_graph()
@@ -2189,7 +2189,7 @@ async fn main() -> anyhow::Result<()> {
             .map_err(anyhow::Error::msg)?;
         let doc = &read.export;
 
-        let mut graph = reflow2_core::DesignGraph::open_rocksdb(&cli.graph_path)
+        let mut graph = reflow2_mcp::one_shot::open_store(&cli.graph_path)
             .map_err(|e| explain_open_failure(&e.into(), &cli.graph_path))?;
         // Importing a whole design into an EMPTY store is a restore: same
         // design, new store. It takes the document's name, or the round trip

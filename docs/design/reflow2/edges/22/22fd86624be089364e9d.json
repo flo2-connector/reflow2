@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:fe70b200dcd55252b596102709aa9d42dff5504deaf3ac2eb810bfe3c3643102",
+  "edge_type": "INVALIDATES",
+  "from_id": "chg:a-one-shot-open-reports-its-version-verdict",
+  "properties": {
+    "at": "2026-10-05",
+    "note": "Corrected: UPDATING.md starts with a before-you-install step, and install.sh keeps the replaced binary as reflow2-mcp.<its version>."
+  },
+  "to_id": "fact:root-cause-the-update-path-has-no-step-before-the-binary-is-replaced-2026-10-05"
+}

@@ -55,11 +55,28 @@ that needs the network and is the procedure below.
 
 ## Updating a locally-installed reflow2
 
-Replace the binary. That is the whole procedure.
+### Before you install: export and commit each design, back up `.reflow2/`
+
+An upgrade is one-way, and its rollback point has to be taken **before** the new binary is on the
+machine: the first open by a new reflow2 can repair the store, so an export or a backup taken after
+the install is a post-upgrade one. For each design:
+
+```bash
+reflow2-mcp write export_graph '{"path":"docs/design/<name>/"}'
+git add docs/design && git commit -m "Design record before the reflow2 upgrade"
+cp -a .reflow2 ../<name>.reflow2.before-upgrade     # with no server holding it
+```
+
+### Install
 
 ```bash
 curl -fsSL https://raw.githubusercontent.com/flo2-connector/reflow2/main/tools/install.sh | sh
 ```
+
+The installer **keeps the binary it replaces** as `reflow2-mcp.<its version>` beside the new one,
+named from what that binary's own `--version` says, and prints the path. Only the last one is kept.
+To roll back: `cp ~/.local/bin/reflow2-mcp.<old version> ~/.local/bin/reflow2-mcp`, then restart
+your agent session.
 
 Then **restart your agent session** — an MCP server is a running process, and a reconnect does not
 replace one that is already running. Only a full restart picks up a new binary.
@@ -72,12 +89,40 @@ it and tells you what it found.
 - *"this graph carried no version stamp; recording reflow2 0.24.0 from now on"* — it predates the
   check. Nothing is wrong.
 
+Every door says it, the one-shot ones included (`reflow2 read`, `--call`, `--export`, `--import`,
+`--diff`): one line on stderr, only when there is an upgrade, a downgrade or a repair to report.
+The stamp, `.reflow2/graph.meta.json`, keeps `previous_reflow2_version` and the last repair an open
+made (`last_repair_on_open`), so an upgrade can be confirmed after the fact. `reflow2 read` changes
+nothing in the design; it does refresh this stamp, as it always has, because the stamp is the
+store's own bookkeeping.
+
 If a release needs a migration step, it ships an `upgrading-to-v0.X.0.md` alongside it. Those are
 the exception, not the rule.
 
-> ⚠️ **Downgrading is NOT currently checked.** Opening a store with an *older* reflow2 than the one
-> that wrote it has no verdict and no warning today. If you need to roll back, restore the store
-> from a backup taken before the upgrade, or re-`--import` a committed export from that era.
+> ⚠️ **Downgrading is warned, not refused.** Opening a store with an *older* reflow2 than the one
+> that last wrote it says *"THIS GRAPH WAS LAST WRITTEN BY reflow2 X; you are running Y, which is
+> BEHIND it"*, on every door, and the server also serves `served_by.behind_record`. Everything still
+> reads, but every write the older binary makes can put its own schema defaults onto the newer
+> record. A one-shot door leaves the newer stamp in place; a server rewrites it to its own version
+> and records the newer one as `previous_reflow2_version`. To roll back cleanly, restore the
+> `.reflow2/` backup taken before the upgrade, or re-`--import` the export you committed then.
+
+### With only the binary (no installer)
+
+reflow2 works with only `reflow2-mcp` on the machine: the verbs are `reflow2-mcp read …` and
+`reflow2-mcp write …`. **First check whether `reflow2` is the installer's wrapper:**
+
+```bash
+head -2 ~/.local/bin/reflow2
+```
+
+If the second line says `# reflow2 — installed by reflow2_install.py`, this machine has the
+installer's wrapper: **update by re-running the installer** above, never by hand. Otherwise, to
+update by hand: take the backup above, keep the old binary
+(`cp ~/.local/bin/reflow2-mcp ~/.local/bin/reflow2-mcp.$(~/.local/bin/reflow2-mcp --version | awk '{print $NF}')`),
+then unpack the release's `reflow2-mcp-<platform>.tar.gz` over `~/.local/bin/reflow2-mcp`. Do not
+`ln -s reflow2-mcp reflow2` over an existing wrapper. If `reflow2` is already a symlink to the
+binary, the installer replaces the link with its wrapper and says so.
 
 ---
 

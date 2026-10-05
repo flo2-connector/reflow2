@@ -482,14 +482,33 @@ exec "$BIN" "$@"
 def install_wrapper(binary: Path, check: bool) -> str:
     target = BIN_DIR / "reflow2"
     body = WRAPPER.format(kit=KIT, binary=binary)
-    if target.exists() and target.read_text() == body:
-        return f"ok      {target} already current"
-    verb = "update" if target.exists() else "create"
+    # A SYMLINK IS A HAND INSTALL'S `ln -s reflow2-mcp reflow2`, not this
+    # wrapper. Reading it read the binary (UnicodeDecodeError, even under
+    # --check), and writing through it would overwrite the binary it points at
+    # (fact:defect-the-installer-cannot-repair-a-reflow2-command-that-is-a-symlink-to-the-binary-2026-10-05).
+    # So the LINK is replaced, never written through, and the line says so.
+    if target.is_symlink():
+        points_at = os.readlink(target)
+        if not check:
+            target.unlink()
+            target.write_text(body)
+            target.chmod(0o755)
+        return (f"replace {target} — it was a symlink to {points_at}, not the installer's "
+                f"wrapper; the link is replaced by the wrapper, and {points_at} is untouched")
+    if target.exists():
+        current = target.read_bytes()
+        if current == body.encode():
+            return f"ok      {target} already current"
+        ours = "# reflow2 — installed by reflow2_install.py".encode() in current[:200]
+        verb = "update" if ours else "replace"
+        note = "" if ours else " — it was not the installer's wrapper"
+    else:
+        verb, note = "create", ""
     if not check:
         BIN_DIR.mkdir(parents=True, exist_ok=True)
         target.write_text(body)
         target.chmod(0o755)
-    return f"{verb}  {target}"
+    return f"{verb}  {target}{note}"
 
 
 def remove_wrapper(check: bool) -> str:

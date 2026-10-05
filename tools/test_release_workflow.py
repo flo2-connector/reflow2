@@ -39,6 +39,7 @@ from __future__ import annotations
 import json
 import os
 import re
+import shutil
 import stat
 import subprocess
 import sys
@@ -542,6 +543,60 @@ def test_install_sh_maps_linux_aarch64() -> None:
     assert "no prebuilt binary for Linux/riscv64" in r.stderr, r.stderr
 
 
+def test_install_sh_keeps_the_binary_it_replaces() -> None:
+    """fact:root-cause-the-update-path-has-no-step-before-the-binary-is-replaced-2026-10-05:
+    install.sh overwrote the old binary and kept nothing, so a rollback point
+    had to be taken by hand BEFORE the install, and a recipe run after it
+    saved the new binary under the old name. DRIVEN: stand-in releases of
+    0.79.0 then 0.80.0 then 0.81.0 over one BIN_DIR; only the last one replaced is
+    kept, named from its own --version."""
+    with tempfile.TemporaryDirectory() as tmp:
+        tmp = Path(tmp)
+        stand = tmp / "stand-ins"
+        stand.mkdir()
+        bin_dir = tmp / "home" / ".local" / "bin"
+        release = tmp / "release"
+
+        def publish(version: str) -> None:
+            shutil.rmtree(release, ignore_errors=True)
+            (release / "pkg").mkdir(parents=True)
+            make_exe(release / "pkg" / "reflow2-mcp", f'#!/bin/sh\necho "reflow2-mcp {version}"\n')
+            subprocess.run(["tar", "-C", str(release / "pkg"), "-czf",
+                            str(release / "reflow2-mcp-linux-x86_64.tar.gz"), "reflow2-mcp"], check=True)
+            (release / "kit" / "k").mkdir(parents=True)
+            subprocess.run(["tar", "-C", str(release / "kit"), "-czf",
+                            str(release / "reflow2-kit.tar.gz"), "k"], check=True)
+
+        make_exe(stand / "uname", '#!/bin/sh\ncase "$1" in -s) echo Linux;; -m) echo x86_64;; esac\n')
+        # gh release download --repo R --pattern NAME --dir DIR: copy NAME from the stand-in release.
+        make_exe(stand / "gh", f"""#!/bin/sh
+while [ $# -gt 0 ]; do case "$1" in --pattern) p="$2"; shift;; --dir) d="$2"; shift;; esac; shift; done
+[ -f "{release}/$p" ] || exit 1
+cp "{release}/$p" "$d/"
+""")
+        make_exe(stand / "python3", "#!/bin/sh\nexit 0\n")
+        env = dict(os.environ, PATH=f"{stand}:/usr/bin:/bin", HOME=str(tmp / "home"))
+
+        def install(version: str) -> str:
+            publish(version)
+            r = subprocess.run(["sh", str(INSTALL_SH)], capture_output=True, text=True, env=env, cwd=tmp)
+            assert r.returncode == 0, r.stdout + r.stderr
+            return r.stdout
+
+        out = install("0.79.0")
+        assert "kept" not in out, "a first install has nothing to keep:\n" + out
+        out = install("0.80.0")
+        kept = bin_dir / "reflow2-mcp.0.79.0"
+        assert kept.exists(), "the replaced 0.79.0 binary was not kept:\n" + out
+        assert "reflow2-mcp 0.79.0" in subprocess.run([str(kept), "--version"], capture_output=True, text=True).stdout
+        assert str(kept) in out, "the install must say what it kept:\n" + out
+        install("0.80.0")
+        assert kept.exists(), "reinstalling the same version must not displace the rollback point"
+        install("0.81.0")
+        assert sorted(p.name for p in bin_dir.glob("reflow2-mcp.*")) == ["reflow2-mcp.0.80.0"], (
+            "only the last replaced binary is kept")
+
+
 # ─────────────────────────────────────────────────────────────────────────────
 # 9. the kit carries every sibling the gate imports
 # ─────────────────────────────────────────────────────────────────────────────
@@ -571,6 +626,7 @@ def main() -> int:
         test_dry_run_gates_every_push_merge_and_publish_fail_safe,
         test_the_image_description_no_longer_says_no_authentication,
         test_install_sh_maps_linux_aarch64,
+        test_install_sh_keeps_the_binary_it_replaces,
     ]
     failed = 0
     for t in tests:

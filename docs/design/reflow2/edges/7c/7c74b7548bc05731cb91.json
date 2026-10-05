@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:416e134976c5cc63b66fa8f569581c9a0882e9e3a0e880a00042cb00e5385108",
+  "edge_type": "INVALIDATES",
+  "from_id": "chg:a-one-shot-open-reports-its-version-verdict",
+  "properties": {
+    "at": "2026-10-05",
+    "note": "Corrected in UPDATING.md: a binary-only section whose first step is `head -2 ~/.local/bin/reflow2`. The release notes are not changed here."
+  },
+  "to_id": "fact:root-cause-reflow2-documents-no-binary-only-install-and-no-way-to-tell-a-wrapper-machine-2026-10-05"
+}

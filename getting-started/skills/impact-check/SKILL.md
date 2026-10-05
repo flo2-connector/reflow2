@@ -62,3 +62,9 @@ visible in the answer. Before you act on it, say plainly what it
 nobody recorded, and a file no Artifact points at is invisible to it entirely.
 `coverage_report` is what distinguishes "nothing downstream" from "nothing
 modelled downstream" — and only one of those is safe to act on.
+
+**A radius stops at its design.** When it reaches a published Interface (`boundary_crossings`, or
+`crosses_published_boundary: true` on one this design mirrored), the impact goes on in the design
+on the other side: open that design and run `propagate_from` seeded at the same Interface id, which
+a design that ran `mirror_surface` holds as its own node. Say which designs you continued into; one
+that never mirrored the surface cannot be reached this way.

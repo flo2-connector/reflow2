@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:54657d40ff777f0f7790a0e4ddabfe5037553b145caa38b5d37d0348c80e9465",
+  "node_id": "chg:a-one-shot-open-reports-its-version-verdict",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "defect_fix",
+    "detected_at": "2026-10-05",
+    "name": "Every one-shot open says its version verdict, a downgrade keeps the newer stamp, the stamp keeps where it came from, the installer replaces a symlinked reflow2, and install.sh keeps the binary it replaces",
+    "rationale": "Fixes fact:root-cause-every-one-shot-open-drops-the-version-verdict-and-the-repair-report-2026-10-05 (the one-shot doors dropped open_rocksdb_with_provenance's verdict), fact:root-cause-the-update-path-has-no-step-before-the-binary-is-replaced-2026-10-05, fact:root-cause-reflow2-documents-no-binary-only-install-and-no-way-to-tell-a-wrapper-machine-2026-10-05 and fact:defect-the-installer-cannot-repair-a-reflow2-command-that-is-a-symlink-to-the-binary-2026-10-05; skill text for fact:root-cause-a-blast-radius-stops-at-its-design-by-design-and-nothing-says-where-it-left-2026-10-05 (its X2 only: nothing pointed at mirroring; X3, a radius naming its exit, is not built). Approved by Anthony Sligar 2026-10-05 for v0.80.0. Owner's rule: MCP unchanged, so a serving open still rewrites a newer stamp to its own version (and now records the newer one as previous_reflow2_version); only the one-shot doors keep it.",
+    "rationale_basis": "contemporaneous",
+    "repair": "corrected_cause",
+    "subject": "system",
+    "summary": "New DesignGraph::open_rocksdb_once (StampPolicy::KeepNewer) behind one_shot::open_store, used by --call/read/write (ReflowService::new), the held-read copy, --export, --export-snapshot, --import and --diff. It prints Provenance::one_shot_note on stderr: the serving note for an upgrade, 'WARNING — ... BEHIND it ... Its version stamp still says X' for a downgrade (stamp left untouched), and the open's repair summary; nothing otherwise. graph.meta.json gains optional previous_reflow2_version and last_repair_on_open (GraphStamp unchanged, so Match still matches and 0.79.0 ignores the keys). reflow2 read still changes nothing in the design and refreshes the stamp as before. tools/reflow2_install.py replaces a symlinked ~/.local/bin/reflow2 (unlink then write) and names it; a non-wrapper file is 'replace'. tools/install.sh keeps the replaced binary as reflow2-mcp.<its --version>, only the last, none on a same-version reinstall. UPDATING.md: before-you-install step, kept-binary rollback, binary-only section with the head -2 check, downgrade wording corrected. hub and impact-check skills: continue a radius in a member through its mirrored surface."
+  }
+}

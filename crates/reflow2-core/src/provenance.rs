@@ -543,6 +543,134 @@ impl Provenance {
             _ => None,
         }
     }
+
+    /// The ONE line a one-shot open (`--call`, `read`, `write`, `--export`,
+    /// `--import`, `--diff`) says on stderr, or `None` when there is nothing to
+    /// say: an upgrade, a downgrade, or a repair on open, and nothing else.
+    ///
+    /// Until 0.80.0 these doors dropped the verdict on the floor
+    /// (`fact:root-cause-every-one-shot-open-drops-the-version-verdict-and-the-repair-report-2026-10-05`):
+    /// the serving modes printed it, and the door a terminal agent uses for
+    /// everything printed nothing, the downgrade included. `repaired` is the
+    /// open's repair summary, which until now reached only a first
+    /// `loop_status`. A one-shot open leaves a newer stamp as it found it
+    /// ([`StampPolicy::KeepNewer`]), and the line says so.
+    pub fn one_shot_note(&self, repaired: Option<&str>) -> Option<String> {
+        let verdict = match self {
+            Provenance::Match { .. } | Provenance::Unstamped { .. } => None,
+            Provenance::OlderGraph { .. } => self.note(),
+            Provenance::NewerWriter { was, .. } => self.note().map(|n| {
+                format!(
+                    "WARNING — {n} Its version stamp still says {}: this open did not write it \
+                     down.",
+                    was.reflow2_version
+                )
+            }),
+        };
+        match (verdict, repaired) {
+            (None, None) => None,
+            (Some(v), None) => Some(v),
+            (None, Some(r)) => Some(format!("opening this graph {r}.")),
+            (Some(v), Some(r)) => Some(format!("{v} Opening it {r}.")),
+        }
+    }
+}
+
+/// What an open does to a stamp left by a NEWER reflow2.
+#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+pub enum StampPolicy {
+    /// Rewrite it to this binary. What every serving open has always done, and
+    /// still does: the owner's rule is that MCP behaviour is unchanged.
+    Refresh,
+    /// Leave it as it is. A one-shot open by an older binary used to rewrite a
+    /// 0.79.0 stamp down to 0.78.0 without a word, so the next open by anyone
+    /// read "Match" and the downgrade left no trace at all.
+    KeepNewer,
+}
+
+/// What the stamp file remembers across opens, beside the stamp itself.
+///
+/// OPTIONAL KEYS ONLY, which an older reflow2 ignores: [`GraphStamp`] does not
+/// deny unknown fields, so a 0.79.0 binary reads a file carrying these exactly
+/// as before (measured with the v0.79.0 release binary, 2026-10-05). It
+/// rewrites the file without them, which loses the record and nothing else.
+#[derive(Debug, Clone, Default, PartialEq, Eq, Serialize, Deserialize)]
+pub struct StampHistory {
+    /// The reflow2 that held this graph before the version in the stamp, kept
+    /// from the open that changed it — so "the upgrade from 0.76.0 happened"
+    /// can be confirmed after the process that did it has gone.
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub previous_reflow2_version: Option<String>,
+    /// The last repair an open made, and which reflow2 made it.
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub last_repair_on_open: Option<RepairOnOpen>,
+}
+
+/// A repair an open made, as [`StampHistory`] keeps it.
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
+pub struct RepairOnOpen {
+    /// The reflow2 that made it.
+    pub reflow2_version: String,
+    /// What it did, in the words the open said it.
+    pub summary: String,
+}
+
+/// The file's whole shape: the stamp's own keys, then the history's.
+#[derive(Serialize)]
+struct StampFile<'a> {
+    #[serde(flatten)]
+    stamp: &'a GraphStamp,
+    #[serde(flatten)]
+    history: &'a StampHistory,
+}
+
+fn write_stamp_file(
+    path: &Path,
+    stamp: &GraphStamp,
+    history: &StampHistory,
+) -> Result<(), DynoError> {
+    if let Some(parent) = path.parent() {
+        let _ = std::fs::create_dir_all(parent);
+    }
+    let json = serde_json::to_string_pretty(&StampFile { stamp, history }).map_err(|e| {
+        DynoError::Serialization(format!("cannot serialize the version stamp: {e}"))
+    })?;
+    std::fs::write(path, json + "\n").map_err(|e| {
+        DynoError::Storage(format!(
+            "cannot write the version stamp at {}: {e}",
+            path.display()
+        ))
+    })
+}
+
+/// The history kept in the stamp beside `graph_path`; empty when there is no
+/// stamp or it cannot be read.
+pub fn read_stamp_history(graph_path: &str) -> StampHistory {
+    std::fs::read_to_string(stamp_path(graph_path))
+        .ok()
+        .and_then(|t| serde_json::from_str(&t).ok())
+        .unwrap_or_default()
+}
+
+/// Keep `summary` in the stamp as the last repair an open made. Best effort,
+/// like the sync record: the open has already said it on stderr, and a stamp
+/// that cannot be read is left alone rather than overwritten.
+pub fn record_repair_on_open(graph_path: &str, summary: &str) {
+    let path = stamp_path(graph_path);
+    let Ok(text) = std::fs::read_to_string(&path) else {
+        return;
+    };
+    let (Ok(stamp), Ok(mut history)) = (
+        serde_json::from_str::<GraphStamp>(&text),
+        serde_json::from_str::<StampHistory>(&text),
+    ) else {
+        return;
+    };
+    history.last_repair_on_open = Some(RepairOnOpen {
+        reflow2_version: env!("CARGO_PKG_VERSION").to_string(),
+        summary: summary.to_string(),
+    });
+    let _ = write_stamp_file(&path, &stamp, &history);
 }
 
 /// Where the stamp lives: a sibling of the graph directory, never inside it.
@@ -692,17 +820,42 @@ pub fn check_and_stamp(
     retired_population: impl Fn(&[String]) -> Result<Vec<String>, DynoError>,
     enum_population: impl Fn(&[UnknownEnumValue]) -> Result<Vec<UnknownEnumValue>, DynoError>,
 ) -> Result<Provenance, DynoError> {
+    check_and_stamp_with(
+        graph_path,
+        schema,
+        StampPolicy::Refresh,
+        retired_population,
+        enum_population,
+    )
+}
+
+/// [`check_and_stamp`], with what to do about a stamp a NEWER reflow2 left
+/// ([`StampPolicy`]). Either way the file's [`StampHistory`] is carried
+/// forward, and a change of version records the one it came from.
+pub fn check_and_stamp_with(
+    graph_path: &str,
+    schema: &Schema,
+    policy: StampPolicy,
+    retired_population: impl Fn(&[String]) -> Result<Vec<String>, DynoError>,
+    enum_population: impl Fn(&[UnknownEnumValue]) -> Result<Vec<UnknownEnumValue>, DynoError>,
+) -> Result<Provenance, DynoError> {
     let now = GraphStamp::current(schema);
     let path = stamp_path(graph_path);
+    let mut history = StampHistory::default();
 
     let existing: Option<GraphStamp> = match std::fs::read_to_string(&path) {
-        Ok(text) => Some(serde_json::from_str(&text).map_err(|e| {
-            DynoError::Serialization(format!(
-                "the version stamp at {} is not readable ({e}). It records which reflow2 \
-                 wrote this graph; fix or remove it rather than leaving it unreadable.",
-                path.display()
-            ))
-        })?),
+        Ok(text) => {
+            // Read before the stamp, and never a reason to refuse: an
+            // unreadable history is only a lost record.
+            history = serde_json::from_str(&text).unwrap_or_default();
+            Some(serde_json::from_str(&text).map_err(|e| {
+                DynoError::Serialization(format!(
+                    "the version stamp at {} is not readable ({e}). It records which reflow2 \
+                     wrote this graph; fix or remove it rather than leaving it unreadable.",
+                    path.display()
+                ))
+            })?)
+        }
         Err(e) if e.kind() == std::io::ErrorKind::NotFound => None,
         Err(e) => {
             return Err(DynoError::Storage(format!(
@@ -771,21 +924,23 @@ pub fn check_and_stamp(
         }
     }
 
+    // A newer stamp is left as it is when the caller asks: the file then
+    // still names the newest reflow2 that has held this graph, and the next
+    // open by this binary warns again.
+    if policy == StampPolicy::KeepNewer && matches!(verdict, Provenance::NewerWriter { .. }) {
+        return Ok(verdict);
+    }
+    // A change of version keeps the one it came from.
+    if let Provenance::OlderGraph { was, now } | Provenance::NewerWriter { was, now } = &verdict
+        && was.reflow2_version != now.reflow2_version
+    {
+        history.previous_reflow2_version = Some(was.reflow2_version.clone());
+    }
+
     // Refresh on the way through, so the stamp tracks the newest reflow2 that
     // has held this graph. Never write over an unreadable one — that path
     // returned above.
-    if let Some(parent) = path.parent() {
-        let _ = std::fs::create_dir_all(parent);
-    }
-    let json = serde_json::to_string_pretty(&now).map_err(|e| {
-        DynoError::Serialization(format!("cannot serialize the version stamp: {e}"))
-    })?;
-    std::fs::write(&path, json + "\n").map_err(|e| {
-        DynoError::Storage(format!(
-            "cannot write the version stamp at {}: {e}",
-            path.display()
-        ))
-    })?;
+    write_stamp_file(&path, &now, &history)?;
 
     Ok(verdict)
 }

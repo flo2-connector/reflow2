@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:acc44b7becfa9ed8de3e6f50aa4ff195c313595ae2d41dd4be2c9d65596c7526",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-one-shot-open-reports-its-version-verdict",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 2,
+    "action": "modified",
+    "checksum_after": "sha256:9f25d5a116205fbefe678319f39d99176c5b6b40b0848d69739ae37d48756243",
+    "checksum_basis": "measured"
+  },
+  "to_id": "art:hub-skill"
+}

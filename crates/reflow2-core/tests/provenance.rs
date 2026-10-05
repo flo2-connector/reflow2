@@ -390,3 +390,132 @@ fn a_population_that_cannot_be_counted_still_refuses() {
     );
     std::fs::remove_dir_all(&d).ok();
 }
+
+/// A stamp standing in for another reflow2: this vocabulary, that version.
+fn stamp_as(g: &std::path::Path, version: &str) {
+    let mut s = GraphStamp::current(&load_schema().unwrap());
+    s.reflow2_version = version.to_string();
+    std::fs::write(
+        stamp_path(g.to_str().unwrap()),
+        serde_json::to_string_pretty(&s).unwrap(),
+    )
+    .unwrap();
+}
+
+fn stamp_text(g: &std::path::Path) -> String {
+    std::fs::read_to_string(stamp_path(g.to_str().unwrap())).unwrap()
+}
+
+/// fact:root-cause-every-one-shot-open-drops-the-version-verdict-and-the-repair-report-2026-10-05:
+/// a one-shot open by an older binary rewrote a newer stamp down, so the next
+/// open read Match and the downgrade left no trace. A serving open still
+/// rewrites it (the owner's rule: MCP behaviour unchanged), and now keeps the
+/// version it came from.
+#[test]
+fn a_one_shot_open_keeps_a_newer_stamp_and_a_serving_open_records_the_one_it_replaced() {
+    use reflow2_core::provenance::{StampPolicy, check_and_stamp_with, read_stamp_history};
+    let d = tmpdir("keep-newer");
+    let g = d.join("graph");
+    let schema = load_schema().unwrap();
+    let open = |policy| {
+        check_and_stamp_with(
+            g.to_str().unwrap(),
+            &schema,
+            policy,
+            holds_none,
+            stores_no_unknown_values,
+        )
+        .unwrap()
+    };
+
+    stamp_as(&g, "99.0.0");
+    let before = stamp_text(&g);
+    let v = open(StampPolicy::KeepNewer);
+    assert_eq!(v.newer_writer(), Some("99.0.0"));
+    let line = v.one_shot_note(None).unwrap();
+    assert!(
+        line.starts_with("WARNING") && line.contains("BEHIND"),
+        "{line}"
+    );
+    assert_eq!(
+        stamp_text(&g),
+        before,
+        "a one-shot open wrote the newer stamp down"
+    );
+
+    let v = open(StampPolicy::Refresh);
+    assert_eq!(
+        v.newer_writer(),
+        Some("99.0.0"),
+        "the serving verdict is unchanged"
+    );
+    assert_eq!(
+        read_stamp_history(g.to_str().unwrap())
+            .previous_reflow2_version
+            .as_deref(),
+        Some("99.0.0")
+    );
+    std::fs::remove_dir_all(&d).ok();
+}
+
+/// An upgrade keeps the version it came from, a later open carries it, and the
+/// file still reads as the stamp an older reflow2 knows: the history is
+/// optional keys it ignores.
+#[test]
+fn an_upgrade_records_where_it_came_from_in_keys_an_older_reader_ignores() {
+    use reflow2_core::provenance::{StampPolicy, check_and_stamp_with, read_stamp_history};
+    let d = tmpdir("history");
+    let g = d.join("graph");
+    let schema = load_schema().unwrap();
+    let open = || {
+        check_and_stamp_with(
+            g.to_str().unwrap(),
+            &schema,
+            StampPolicy::KeepNewer,
+            holds_none,
+            stores_no_unknown_values,
+        )
+        .unwrap()
+    };
+
+    stamp_as(&g, "0.1.0");
+    let v = open();
+    assert!(matches!(v, Provenance::OlderGraph { .. }));
+    assert!(
+        v.one_shot_note(None)
+            .unwrap()
+            .contains("written by reflow2 0.1.0")
+    );
+    let gp = g.to_str().unwrap();
+    assert_eq!(
+        read_stamp_history(gp).previous_reflow2_version.as_deref(),
+        Some("0.1.0")
+    );
+
+    reflow2_core::provenance::record_repair_on_open(gp, "repaired 2 relation(s)");
+    let v = open();
+    assert!(
+        matches!(v, Provenance::Match { .. }),
+        "the history does not break Match"
+    );
+    assert_eq!(v.one_shot_note(None), None, "nothing to say");
+    assert!(
+        v.one_shot_note(Some("repaired 1"))
+            .unwrap()
+            .contains("repaired 1")
+    );
+    let h = read_stamp_history(gp);
+    assert_eq!(
+        h.previous_reflow2_version.as_deref(),
+        Some("0.1.0"),
+        "carried forward"
+    );
+    assert_eq!(
+        h.last_repair_on_open.unwrap().summary,
+        "repaired 2 relation(s)"
+    );
+
+    let as_stamp: GraphStamp = serde_json::from_str(&stamp_text(&g)).unwrap();
+    assert_eq!(as_stamp, GraphStamp::current(&schema));
+    std::fs::remove_dir_all(&d).ok();
+}

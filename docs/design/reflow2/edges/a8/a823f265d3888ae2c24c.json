@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:477b5e5df4e9cf578f44ecc60c1eee5a18834845a2ae87e0cc1d3106e8574d99",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-one-shot-open-reports-its-version-verdict",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 2,
+    "action": "modified",
+    "checksum_after": "sha256:2597ba5321c56a09f4e6d5fb53afcb2dbfaa2b5c8607b357e7e962b2bfe73b6e",
+    "checksum_basis": "measured"
+  },
+  "to_id": "art:one-shot"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:5606aedceabf65b706bcdb9492648508c03bc8972b2cd89753dce0feddffc48e",
+  "edge_type": "INVALIDATES",
+  "from_id": "chg:a-one-shot-open-reports-its-version-verdict",
+  "properties": {
+    "at": "2026-10-05",
+    "note": "Corrected: install_wrapper replaces a symlink (unlink, then write) and says what it pointed at; --check no longer raises."
+  },
+  "to_id": "fact:defect-the-installer-cannot-repair-a-reflow2-command-that-is-a-symlink-to-the-binary-2026-10-05"
+}

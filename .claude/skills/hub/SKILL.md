@@ -48,6 +48,12 @@ If the session reaches only one design, this skill does not apply.
 3. **Read a child design only when a request needs it.** Every child you read costs the
    conversation context, and most requests touch one or two designs. A `search_design` in the child
    you suspect beats reading them all.
+4. **An impact question that crosses designs is a radius per design.** An edge cannot cross a
+   store, so a blast radius stops at the design it runs in: run it where the change starts, and for
+   each published Interface it reaches (`boundary_crossings`), continue in each member that mirrored
+   that surface (`mirror_surface`) with `propagate_from` seeded at the same Interface id. Name the
+   designs you continued into, and say so when a member never mirrored the surface, because its
+   impact cannot be reached that way.
 
 ## 3. Where a fact goes — the lowest design that owns all of it
 

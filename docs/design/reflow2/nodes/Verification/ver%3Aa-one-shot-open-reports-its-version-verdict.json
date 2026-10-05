@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:ad962b5c22bdb4909123dc038257a321573a41399ee222e06dcc4e38b48858a3",
+  "node_id": "ver:a-one-shot-open-reports-its-version-verdict",
+  "node_type": "Verification",
+  "properties": {
+    "description": "Through the shipped binary: `read graph_report`, `--call loop_status` and `--export` on a store stamped 0.1.0 each print 'this graph was written by reflow2 0.1.0', restamp to the current version and record previous_reflow2_version 0.1.0, carried by the next open, which says nothing; on a store stamped 99.0.0 each prints WARNING ... BEHIND ... 99.0.0 and leaves the stamp at 99.0.0; a reply's stdout is byte-identical with and without a verdict. crates/reflow2-core/tests/provenance.rs: KeepNewer leaves a newer stamp byte-identical, Refresh still rewrites it and records it as previous_reflow2_version, last_repair_on_open is kept and carried, and the file still parses as the unchanged GraphStamp (Match). tools/test_init.py test_a_reflow2_that_is_a_symlink_to_the_binary_is_replaced_not_written_through; tools/test_release_workflow.py test_install_sh_keeps_the_binary_it_replaces (stand-in releases 0.79.0, 0.80.0, 0.80.0, 0.81.0 over one BIN_DIR).",
+    "findings": "OBSERVED FAILING FIRST against main's code (f6f62cc): the binary test failed 2 of 3: `read graph_report` said nothing about the 0.1.0 store, and opened the 99.0.0 store without a warning (the reply test passed, as it must). The installer test errored (UnicodeDecodeError reading the link) and the install.sh test failed ('the replaced 0.79.0 binary was not kept'). WITH THE FIX all pass, as do a_store_an_older_reflow2_wrote_is_rechecked, a_build_can_call_one_tool_from_the_shell, every_one_shot_mode_resolves_its_design_first, a_stores_identity_follows_its_real_path, core provenance (11), test_init.py (128) and test_release_workflow.py (10). MEASURED with the v0.79.0 release binary: a store whose graph.meta.json carries previous_reflow2_version and last_repair_on_open opens (`read get_node`, exit 0, nothing on stderr); 0.79.0 rewrites the file without the keys, losing only the record. NOT BUILT: a serving open still rewrites a newer stamp down (owner's rule, MCP unchanged); a blast radius still does not name where it leaves its design.",
+    "kind": "verification",
+    "last_run_at": "2026-10-05",
+    "level": "integration",
+    "location": "crates/reflow2-mcp/tests/a_one_shot_open_reports_its_version_verdict.rs",
+    "method": "test",
+    "name": "A one-shot open reports its version verdict, a downgrade keeps the newer stamp, the installer replaces a symlinked reflow2, and install.sh keeps the binary it replaces",
+    "status": "passing"
+  }
+}

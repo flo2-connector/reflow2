@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:a9f38063dea8e4b2c13d89ee56dbba33eb067139b3813b432e7d1f7b561e17d4",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-one-shot-open-reports-its-version-verdict",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 3,
+    "action": "modified",
+    "checksum_after": "sha256:732398b045a05c0ca8b6a8096dc97d9c431c0684eea9af3e400997f2e27896dd",
+    "checksum_basis": "measured"
+  },
+  "to_id": "art:machine-install"
+}
