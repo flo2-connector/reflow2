@@ -26,6 +26,12 @@ an older kit left behind — untouched ones deleted, edited ones kept and
 reported, because your harness would go on loading them in preference to the
 served ones.
 
+For VS Code where an organisation blocks MCP, `--harness vscode-cli` writes the
+terminal route instead of an MCP config: an instructions file, hook files, one
+skill stub per served skill and the slash commands, all under `.github/`, all
+committed and marked as reflow2's so an update refreshes them and never a file
+somebody edited.
+
 Re-run it any time; it leaves your design graph and your own files alone and
 tells you exactly what changed. `--check` first if you want the list before
 anything moves.
@@ -463,12 +469,31 @@ HARNESSES = {
     "opencode": "OpenCode",
     "grok": "Grok",
     "vscode": "VS Code",
+    "vscode-cli": "VS Code with MCP blocked (the terminal route)",
 }
+
+# ⭐ THE TERMINAL ROUTE, `vscode-cli` (2026-10-05, the owner's go on ideas 1, 7,
+# 11 and 12 of art:vscode-call-door-field-report-2026-10-02). Where an
+# organisation blocks MCP, VS Code's agent reaches reflow2 only by running
+# `reflow2 read` / `reflow2 write` in its terminal. Every other harness here is
+# "which MCP config file"; this one writes no MCP config at all, and instead the
+# files VS Code reads for instructions, skills, slash commands and hooks — see
+# `vscode_cli_files`. It was one person's hand-written user file before, which
+# init and update could neither install nor refresh (limitation 11).
+DOOR_HARNESSES = ("vscode-cli",)
+
+# What `all`, and an install nobody answered, mean: every harness EXCEPT the
+# terminal route. Its files are committed into `.github/` and number
+# seventy-odd, so a project gets them only by naming the route. Writing them
+# into every pipeline install that answered nothing would be the clutter
+# `dec:idea-init-asks-which-harness-and-installs-only-that` exists to stop.
+IMPLIED_BY_ALL = [h for h in HARNESSES if h not in DOOR_HARNESSES]
 
 # Shown beside a harness in the prompt only — a note about what else the same
 # files serve, which would read as noise in a one-line summary.
 HARNESS_NOTES = {
     "claude": "also GitHub Copilot CLI, which reads the same workspace file",
+    "vscode-cli": "reflow2 read / write in the terminal; chosen by name, never by 'all'",
 }
 
 # Names that are a REAL answer to "which harness?" but are not their own entry,
@@ -502,11 +527,19 @@ def canonical_harness(name: str) -> str | None:
         return name
     return HARNESS_ALIASES.get(name)
 
-# Which harness carries the loop-nudge hook. Only Claude Code has an event model
-# reflow2 can register against today, so a project on any other harness gets the
-# MCP server and no session-end backstop. That absence is announced rather than
-# left silent — see `ensure_hooks` and `dec:idea-the-loop-nudge-exists-for-one-harness-only`.
+# Which harness carries the loop-nudge hook in `.claude/settings.local.json`.
 HOOK_HARNESS = "claude"
+
+# Every harness reflow2 installs a loop trigger for, and what that trigger is:
+# Claude Code's hooks (`ensure_hooks`), OpenCode's plugin (TREES), and VS Code's
+# hook files on the terminal route (`vscode_cli_files`). A project on any other
+# harness gets no session-end backstop, and that absence is announced rather
+# than left silent (`dec:idea-the-loop-nudge-exists-for-one-harness-only`).
+TRIGGERS = {
+    "claude": "Claude Code (a hook)",
+    "opencode": "OpenCode (a plugin)",
+    "vscode-cli": "VS Code's terminal route (hook files, --harness vscode-cli)",
+}
 
 
 def parse_harness_arg(raw: str) -> tuple[list[str], list[str]]:
@@ -518,7 +551,8 @@ def parse_harness_arg(raw: str) -> tuple[list[str], list[str]]:
     """
     names = [p.strip().lower() for p in raw.split(",") if p.strip()]
     if "all" in names:
-        return list(HARNESSES), []
+        rest = [c for n in names if n != "all" and (c := canonical_harness(n))]
+        return list(dict.fromkeys(IMPLIED_BY_ALL + rest)), []
     known = [c for n in names if (c := canonical_harness(n))]
     unknown = [n for n in names if canonical_harness(n) is None]
     # dict.fromkeys rather than set(): the order the user typed is the order we
@@ -559,19 +593,19 @@ def prompt_for_harnesses() -> list[str]:
     for i, name in enumerate(order, 1):
         note = HARNESS_NOTES.get(name)
         print(f"  {i}  {HARNESSES[name]}" + (f"  ({note})" if note else ""))
-    print("  a  all of them")
+    print("  a  all of the MCP harnesses above (the terminal route is chosen by name)")
     print("\nNumbers or names, comma-separated. Enter accepts Claude Code.")
     try:
         raw = input("> ").strip()
     except (EOFError, KeyboardInterrupt):
         # Not a refusal to answer — the input went away. Say what that means
         # rather than proceeding as though a choice had been made.
-        print("\n  no answer read — installing for all harnesses")
-        return list(HARNESSES)
+        print("\n  no answer read — installing for all MCP harnesses")
+        return list(IMPLIED_BY_ALL)
     if not raw:
         return ["claude"]
     if raw.lower() in {"a", "all"}:
-        return list(HARNESSES)
+        return list(IMPLIED_BY_ALL)
     chosen: list[str] = []
     for part in raw.split(","):
         part = part.strip().lower()
@@ -583,8 +617,8 @@ def prompt_for_harnesses() -> list[str]:
             print(f"  ignoring {part!r} — not one of: "
                   f"{', '.join(list(order) + list(HARNESS_ALIASES))}, all")
     if not chosen:
-        print("  nothing recognised — installing for all harnesses")
-        return list(HARNESSES)
+        print("  nothing recognised — installing for all MCP harnesses")
+        return list(IMPLIED_BY_ALL)
     return list(dict.fromkeys(chosen))
 
 
@@ -631,9 +665,10 @@ def resolve_harnesses(
         )
     if interactive:
         return prompt_for_harnesses(), None
-    return list(HARNESSES), (
+    return list(IMPLIED_BY_ALL), (
         "harness: not asked (no tty and no --harness) — installed for ALL of "
-        f"{', '.join(HARNESSES)}. Pass --harness to narrow it."
+        f"{', '.join(IMPLIED_BY_ALL)}. Pass --harness to narrow it, or to add "
+        f"the terminal route ({', '.join(DOOR_HARNESSES)})."
     )
 
 
@@ -1232,6 +1267,259 @@ def ensure_merge_driver(project: Path, binary: Path) -> str | None:
     )
 
 
+# ---------------------------------------------------------------------------
+# The terminal route for VS Code (`--harness vscode-cli`)
+# ---------------------------------------------------------------------------
+#
+# What VS Code's agent needs to reach reflow2 where MCP is blocked, as files VS
+# Code itself reads (verified against code.visualstudio.com/docs on 2026-10-05):
+#
+#   .github/instructions/reflow2.instructions.md   how to use the door; the text
+#                                                  the binary serves as the
+#                                                  `vscode-terminal-route` section
+#   .github/hooks/reflow2.json                     SessionStart → loop_status,
+#                                                  Stop → export and nudge
+#   .github/skills/<skill>/SKILL.md                one stub per served skill,
+#                                                  routing to get_skill
+#   .github/prompts/<command>.prompt.md            the slash commands
+#
+# ALL OF THEM ARE COMMITTED, because limitation 11 was exactly that the setup
+# lived in one person's user file. So none may carry a path into this machine:
+# the hooks run `reflow2 hook vscode`, the `reflow2` command `reflow2 install`
+# puts on PATH, which knows the kit and the binary.
+#
+# OWNERSHIP, because a committed file outlives the receipt. The install receipt
+# (`.reflow2/kit-version.json`) is git-ignored, so a teammate's clone holds the
+# committed files and no record of who wrote them, and `place_kit_file`'s
+# manifest rule would read every one as "ours, refresh it", including one
+# somebody edited. So each Markdown file carries a mark with a hash of the rest
+# of the file (`mark_owned`): intact means reflow2 wrote it and nobody has
+# touched it since, on any machine. The hook file is JSON, where a comment is
+# not allowed, so it is reflow2's by the receipt or by being byte-identical to
+# what this kit writes, and otherwise left alone.
+
+VSCODE_KIT = KIT / "vscode"
+
+_OWNED_LINE = re.compile(r"^<!-- reflow2: [^\n]*? sha256:([0-9a-f]{16}) -->\n", re.M)
+
+
+def _owned_digest(body: str) -> str:
+    return hashlib.sha256(body.encode("utf-8")).hexdigest()[:16]
+
+
+def mark_owned(body: str) -> str:
+    """`body` with reflow2's mark, placed after the YAML frontmatter (VS Code
+    reads the frontmatter only at the very top of the file)."""
+    line = (
+        "<!-- reflow2: written by `reflow2 init` and refreshed by `reflow2 update`. "
+        "Edit it and it is yours: reflow2 then leaves it alone (delete it to get "
+        f"reflow2's copy back). sha256:{_owned_digest(body)} -->\n"
+    )
+    m = re.match(r"^---\n.*?\n---\n", body, re.S)
+    at = m.end() if m else 0
+    return body[:at] + line + body[at:]
+
+
+def strip_owned_marker(text: str) -> str:
+    """`text` without reflow2's mark: what the mark's hash covers."""
+    return _OWNED_LINE.sub("", text, count=1)
+
+
+def owned_marker_state(text: str) -> str | None:
+    """`"intact"` when reflow2 wrote this and it is unedited, `"edited"` when it
+    carries reflow2's mark and has changed since, None when it carries none."""
+    m = _OWNED_LINE.search(text)
+    if not m:
+        return None
+    return "intact" if _owned_digest(strip_owned_marker(text)) == m.group(1) else "edited"
+
+
+def _frontmatter(text: str) -> tuple[dict, str]:
+    """The flat frontmatter of a kit Markdown file, and the body after it."""
+    m = re.match(r"^---\n(.*?)\n---\n", text, re.S)
+    if not m:
+        return {}, text
+    return dict(re.findall(r"^([\w-]+):\s*(.*)$", m.group(1), re.M)), text[m.end():]
+
+
+def _scalar(raw: str) -> str:
+    """A frontmatter value as the string it means, quoted or not."""
+    raw = raw.strip()
+    if len(raw) >= 2 and raw[0] == raw[-1] == '"':
+        try:
+            return json.loads(raw)
+        except json.JSONDecodeError:
+            return raw[1:-1]
+    if len(raw) >= 2 and raw[0] == raw[-1] == "'":
+        return raw[1:-1].replace("''", "'")
+    return raw
+
+
+def _quoted(value: str) -> str:
+    """A double-quoted YAML scalar. STRICT YAML refuses ": " inside a plain
+    scalar, which five served skills' own descriptions carry; a stub VS Code
+    cannot parse is a skill it drops without a word."""
+    return json.dumps(value, ensure_ascii=False)
+
+
+DOOR_LINE = (
+    "reflow2 is reached through the terminal here: run each reflow2 tool as "
+    "`reflow2 read <tool>` if it changes nothing and `reflow2 write <tool>` if it "
+    "does (`reflow2 read --list` says which). "
+    "[.github/instructions/reflow2.instructions.md](../instructions/reflow2.instructions.md) "
+    "has the rest."
+)
+
+
+def render_skill_stub(name: str, description: str) -> str:
+    """One served skill as VS Code reads a project skill: its name and the
+    served description, so the agent can pick it, and one line saying where
+    the skill itself is. The body stays served (`req:thin-install`)."""
+    return (
+        "---\n"
+        f"name: {name}\n"
+        f"description: {_quoted(description)}\n"
+        "user-invocable: false\n"
+        "---\n"
+        f"# {name}\n\n"
+        "This skill is served by reflow2, not stored here, so it always matches the "
+        "reflow2 you run. Read it in full before doing the work it covers:\n\n"
+        f"`reflow2 read get_skill '{{\"name\": \"{name}\"}}'`\n\n"
+        "Then follow what it returns. Wherever it says to call a tool `X`, run "
+        "`reflow2 read X` if `X` changes nothing and `reflow2 write X` if it does "
+        "(`reflow2 read --list` says which).\n"
+    )
+
+
+def render_prompt(command: Path) -> str:
+    """A kit slash command as a VS Code prompt file. The command's own words are
+    kept; what changes is how reflow2 is reached, and Claude Code's `$ARGUMENTS`,
+    which VS Code does not fill (text typed after a prompt's name is passed
+    along with it)."""
+    fm, body = _frontmatter(command.read_text(encoding="utf-8"))
+    head = ["---", f"description: {_quoted(_scalar(fm.get('description', '')))}"]
+    if fm.get("argument-hint"):
+        head.append(f"argument-hint: {_quoted(_scalar(fm['argument-hint']))}")
+    head += ["agent: agent", "---"]
+    skill = re.search(r"\*\*([a-z0-9-]+)\*\*\s+skill", body)
+    lead = DOOR_LINE
+    if skill:
+        lead += (f" Read the **{skill.group(1)}** skill in full first: "
+                 f"`reflow2 read get_skill '{{\"name\": \"{skill.group(1)}\"}}'`.")
+    body = body.replace("$ARGUMENTS", "(what I typed after the command)")
+    return "\n".join(head) + "\n" + lead + "\n\n" + body.lstrip("\n")
+
+
+def vscode_cli_files() -> dict[str, str]:
+    """Every file the terminal route writes, by path in the project. Marked as
+    reflow2's where the format allows a mark (see the block comment above)."""
+    files = {
+        ".github/instructions/reflow2.instructions.md":
+            mark_owned((VSCODE_KIT / "reflow2.instructions.md").read_text(encoding="utf-8")),
+        ".github/hooks/reflow2.json":
+            (VSCODE_KIT / "hooks" / "reflow2.json").read_text(encoding="utf-8"),
+    }
+    for d in sorted(p for p in (KIT / "skills").iterdir() if p.is_dir()):
+        fm, _ = _frontmatter((d / "SKILL.md").read_text(encoding="utf-8"))
+        files[f".github/skills/{d.name}/SKILL.md"] = mark_owned(
+            render_skill_stub(d.name, _scalar(fm.get("description", ""))))
+    for command in sorted((KIT / "commands").glob("*.md")):
+        files[f".github/prompts/{command.stem}.prompt.md"] = mark_owned(render_prompt(command))
+    return files
+
+
+# Where a stale reflow2 file of the route can be found without the receipt: a
+# skill stub or a prompt for something the kit no longer serves.
+VSCODE_OWNED_GLOBS = (".github/skills/*/SKILL.md", ".github/prompts/*.prompt.md")
+
+
+def owned_file_verdict(project: Path, rel: str, content: str, old_manifest: dict) -> str:
+    """What may be done with `rel`: `create`, `unchanged`, `refresh`, or `keep`
+    (somebody's: never written over)."""
+    dst = project / rel
+    if not dst.exists():
+        return "create"
+    try:
+        current = dst.read_text(encoding="utf-8")
+    except (OSError, UnicodeDecodeError):
+        return "keep"
+    if current == content:
+        return "unchanged"
+    if old_manifest.get(rel) == file_sha(dst):
+        return "refresh"  # this machine wrote it, and nobody has touched it
+    if rel.endswith(".md") and owned_marker_state(current) == "intact":
+        return "refresh"  # reflow2 wrote it, on some machine, and nobody has touched it
+    return "keep"
+
+
+def why_kept(project: Path, rel: str) -> str:
+    try:
+        state = owned_marker_state((project / rel).read_text(encoding="utf-8"))
+    except (OSError, UnicodeDecodeError):
+        state = None
+    if state == "edited":
+        return "it has edits since reflow2 wrote it, so it is yours now"
+    if not rel.endswith(".md"):
+        # JSON has no room for a mark, so the receipt is the only proof.
+        return ("it differs from what reflow2 writes, and this machine's install receipt "
+                "does not show reflow2 wrote it (your edit, or an older reflow2's copy)")
+    return "it is not a file reflow2 wrote"
+
+
+def install_vscode_cli(project: Path, old_manifest: dict, new_manifest: dict) -> list[str]:
+    """Write the terminal route's files, refresh reflow2's own, keep everyone
+    else's, and remove reflow2's untouched files the kit no longer ships."""
+    done: list[str] = []
+    files = vscode_cli_files()
+    for rel, content in files.items():
+        verdict = owned_file_verdict(project, rel, content, old_manifest)
+        dst = project / rel
+        if verdict == "keep":
+            # Still tracked if it was ours once, so the prune never deletes it.
+            if rel in old_manifest:
+                new_manifest[rel] = old_manifest[rel]
+            done.append(f"{rel}  LEFT ALONE — {why_kept(project, rel)}; delete it to "
+                        f"get reflow2's copy")
+            continue
+        if verdict != "unchanged":
+            dst.parent.mkdir(parents=True, exist_ok=True)
+            dst.write_text(content, encoding="utf-8")
+            done.append(rel if verdict == "create" else f"{rel}  (refreshed)")
+        new_manifest[rel] = file_sha(dst)
+    # A stub or prompt for something no longer served, found by its intact mark
+    # even on a clone with no receipt. The receipt's own prune (in `install`)
+    # covers the rest.
+    for pattern in VSCODE_OWNED_GLOBS:
+        for stale in sorted(project.glob(pattern)):
+            rel = stale.relative_to(project).as_posix()
+            if rel in files or rel in old_manifest:
+                continue
+            try:
+                state = owned_marker_state(stale.read_text(encoding="utf-8"))
+            except (OSError, UnicodeDecodeError):
+                continue
+            if state == "intact":
+                stale.unlink()
+                if stale.name == "SKILL.md" and not any(stale.parent.iterdir()):
+                    stale.parent.rmdir()
+                done.append(f"{rel}  removed (no longer served by reflow2)")
+    return done
+
+
+def plan_vscode_cli(project: Path, old_manifest: dict) -> list[str]:
+    """`--check`'s half of `install_vscode_cli`: the same verdicts, nothing written."""
+    out = []
+    for rel, content in vscode_cli_files().items():
+        verdict = owned_file_verdict(project, rel, content, old_manifest)
+        if verdict == "create":
+            out.append(f"create  {rel}")
+        elif verdict == "refresh":
+            out.append(f"update  {rel}")
+        elif verdict == "keep":
+            out.append(f"keep    {rel}  ({why_kept(project, rel)})")
+    return out
+
+
 def design_record_path(project: Path) -> Path:
     """Where the SHAREABLE design record goes — the export teammates read.
 
@@ -1393,6 +1681,9 @@ def planned_changes(project: Path, harnesses: list[str]) -> list[str]:
     for src, rel in TREES:
         shipped |= {str(Path(rel) / p.relative_to(src))
                     for p in src.rglob("*") if p.is_file()}
+    if any(h in harnesses for h in DOOR_HARNESSES):
+        changes.extend(plan_vscode_cli(project, installed_manifest(project)))
+        shipped |= set(vscode_cli_files())
     for rel, recorded in sorted(installed_manifest(project).items()):
         if rel in shipped or not (project / rel).exists():
             continue
@@ -1656,6 +1947,10 @@ def install(
             dst = project / rel / path.relative_to(src)
             dst.parent.mkdir(parents=True, exist_ok=True)
             place_kit_file(path, dst, file_rel, old_manifest, new_manifest, done)
+    # The terminal route's files, for a project that named it. Before the prune
+    # below, so what it writes is on the books and nothing it owns is pruned.
+    if any(h in harnesses for h in DOOR_HARNESSES):
+        done.extend(install_vscode_cli(project, old_manifest, new_manifest))
     # Files a previous kit shipped that this one no longer does are pruned —
     # but only when untouched since we wrote them (BL-54): an edited copy is
     # kept, loudly. Without this, a renamed skill lived on forever downstream.
@@ -1667,6 +1962,12 @@ def install(
             continue
         if file_sha(stale) == recorded:
             stale.unlink()
+            # A VS Code skill stub is the only file in its directory; leave no
+            # husk. Only there: what an update does to an MCP project's files is
+            # unchanged.
+            if (rel.startswith(".github/skills/") and stale.name == "SKILL.md"
+                    and not any(stale.parent.iterdir())):
+                stale.parent.rmdir()
             done.append(f"{rel}  removed ({why_gone(rel)})")
         else:
             new_manifest[rel] = recorded
@@ -1702,12 +2003,19 @@ def install(
     # was meant to avoid.
     if HOOK_HARNESS in harnesses:
         done.extend(ensure_hooks(project, force_mcp))
-    else:
+    # Every harness named with no trigger of its own is told so. OpenCode's is
+    # its plugin and the terminal route's is its hook file, both written above.
+    untriggered = [h for h in harnesses if h not in TRIGGERS]
+    if untriggered:
+        vscode_hint = (
+            " VS Code runs hooks: reflow2 installs them with the terminal route "
+            "(--harness vscode-cli)." if "vscode" in untriggered else ""
+        )
         done.append(
-            f"loop nudge  NOT INSTALLED — reflow2 has no hook for "
-            f"{', '.join(harnesses)}; only {HARNESSES[HOOK_HARNESS]} has an "
-            f"event model it can register against. The coherence loop is yours "
-            f"to run: call loop_status between tasks."
+            f"loop nudge  NOT INSTALLED for {', '.join(untriggered)} — reflow2 "
+            f"installs a trigger for {'; '.join(TRIGGERS.values())}.{vscode_hint} "
+            f"Without one, the coherence loop is yours to run: call loop_status "
+            f"between tasks."
         )
 
     # A file nobody points at is invisible: an agent reads the project's own
@@ -1736,8 +2044,28 @@ def install(
     # Recorded so a re-run does not ask again, and so `--harness` on a later run
     # is an EDIT to a known answer rather than a fresh guess.
     stamp_data["harnesses"] = list(harnesses)
+    # The shareable record, by the same convention `design_record_path` names.
+    # The VS Code Stop hook reads it here: on the terminal route no MCP config
+    # names the file, so nothing else tells the hook where the record is. ONLY
+    # for that route: an install for an MCP harness writes the receipt it
+    # always wrote, byte for byte (the owner's constraint of 2026-10-05: the
+    # VS Code route must not change what an MCP project gets).
+    if any(h in harnesses for h in DOOR_HARNESSES):
+        stamp_data["design_record"] = design_record_path(project).relative_to(project).as_posix()
     stamp.write_text(json.dumps(stamp_data, indent=2) + "\n")
     return done
+
+
+VSCODE_CLI_NEXT = """VS Code with MCP blocked (the terminal route):
+  - COMMIT what this wrote under .github/ (instructions, hooks, skills, prompts): it is the
+    setup your team shares. `reflow2 update` refreshes reflow2's own copies and leaves any
+    file you edit, or wrote yourself, alone.
+  - The hooks run `reflow2 hook vscode`, the `reflow2` command `reflow2 install` puts on
+    PATH. Everyone who opens this project in VS Code needs it (POSIX shell; not Windows).
+  - Approve every read once, in YOUR VS Code settings. reflow2 does not write them:
+        "chat.tools.terminal.autoApprove": { "/^reflow2 read /": true }
+    `reflow2 write` stays asking. (Only the binary on PATH? "/^reflow2-mcp read /".)
+"""
 
 
 def main() -> int:
@@ -1763,7 +2091,8 @@ def main() -> int:
                     help="which agent harness(es) open this project, "
                          f"comma-separated: "
                          f"{', '.join(list(HARNESSES) + list(HARNESS_ALIASES))}, "
-                         f"or 'all'. "
+                         f"or 'all' (every MCP harness: vscode-cli, VS Code's "
+                         f"terminal route where MCP is blocked, is named on its own). "
                          "Only these harnesses' files are written. Omit it and "
                          "you are asked on a tty, or the last answer is reused. "
                          "Pass it on a re-run to add a harness.")
@@ -1866,6 +2195,8 @@ def main() -> int:
     if harness_note:
         print(f"\n  {harness_note}")
     print()
+    if any(h in harnesses for h in DOOR_HARNESSES):
+        print(VSCODE_CLI_NEXT)
 
     if stale:
         print(f"WARNING: {stale}\n")

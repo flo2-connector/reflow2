@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:df0bd4edfe343f59383915474fb1e3034fb37b0a9437dd0ec5187e637013f4e8",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:the-loop-nudge-reaches-a-call-door-agent-in-vs-code-through-hooks-init-installs",
+  "properties": {},
+  "to_id": "req:init-installs-the-terminal-route-for-vs-code-and-update-keeps-it-current"
+}

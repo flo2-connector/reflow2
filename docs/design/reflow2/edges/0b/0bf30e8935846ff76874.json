@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:d551bfe31f507f9637551f452d657ea54169db204ea0856353d90cf63d5e0c22",
+  "edge_type": "GOVERNED_BY",
+  "from_id": "art:test-call-door",
+  "properties": {
+    "note": "Built as part of the one increment approved 2026-10-05."
+  },
+  "to_id": "dec:the-vs-code-setup-is-built-as-one-increment-2026-10-05"
+}

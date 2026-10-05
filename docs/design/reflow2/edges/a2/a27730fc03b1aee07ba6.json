@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:248abdce8914667c744272b300d1ed1df0f9195805f45a14961e1b963a65c4eb",
+  "edge_type": "CHANGED",
+  "from_id": "chg:init-installs-the-vscode-terminal-route-2026-10-05",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "cap:vs-code-picks-a-served-skill-by-its-description-from-a-stub-init-installs"
+}

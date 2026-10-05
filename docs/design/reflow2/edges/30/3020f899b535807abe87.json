@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:c7c41057c39a3e15ac51da08d3365a3a465cd40c10f58ce5e4dbc236bde816ff",
+  "edge_type": "INVALIDATES",
+  "from_id": "chg:init-installs-the-vscode-terminal-route-2026-10-05",
+  "properties": {
+    "at": "2026-10-05",
+    "note": "Re-measured 2026-10-05 on this branch: `reflow2 init --harness vscode-cli` writes the instructions file, hooks, stubs and prompts as committed files under .github/, and an update refreshes reflow2's own (test_init.py VsCodeTerminalRoute, with and without the receipt)."
+  },
+  "to_id": "fact:root-cause-init-knows-vs-code-only-as-an-mcp-config-so-the-door-setup-is-one-persons-file-2026-10-02"
+}

@@ -37,8 +37,10 @@ pub enum NudgeStatus {
     /// No Stop hook mentions the nudge — nothing will interrupt a session that
     /// finishes with the loop in debt.
     Absent,
-    /// No hook, and none is possible: this project named a harness reflow2 has
-    /// no event model for, so there is nothing to install and nothing to fix.
+    /// No hook, and reflow2 installs none for the harness this project named,
+    /// so there is nothing of reflow2's to install and nothing to fix. (It said
+    /// "none is possible" until 2026-10-05, which VS Code's hooks made false:
+    /// reflow2 now installs them with VS Code's terminal route.)
     ///
     /// **This exists because `Absent` was answering two different questions
     /// with one word.** "Nobody installed it" is actionable — install it.
@@ -97,13 +99,20 @@ impl NudgeStatus {
             // reader can actually do. Telling somebody to install a hook their
             // harness cannot hold is how an advisory teaches people to skip
             // advisories.
+            //
+            // ⚠️ IT SAID "AND NONE IS POSSIBLE" UNTIL 2026-10-05, and for VS Code
+            // that was false: VS Code runs agent hooks, and reflow2 installs them
+            // with its terminal route (`--harness vscode-cli`,
+            // dec:idea-how-reflow2-triggers-the-loop-for-a-call-door-agent-in-vs-code).
+            // So the sentence says what reflow2 installs, not what cannot exist.
             NudgeStatus::NoHookForThisHarness { harnesses } => Some(format!(
-                "THERE IS NO SESSION-END NUDGE FOR THIS HARNESS, and none is possible: this \
-                 project is set up for {harnesses}, and reflow2 has a trigger only for Claude \
-                 Code (a Stop hook) and OpenCode (a plugin). \
-                 Nothing is missing and there is nothing to install — the coherence loop is \
-                 yours to run. Call `loop_status` before you finish any session in which you \
-                 changed the design, and after a batch of captures."
+                "THERE IS NO SESSION-END NUDGE FOR THIS HARNESS: this project is set up for \
+                 {harnesses}, and reflow2 installs a trigger only for Claude Code (a Stop \
+                 hook), OpenCode (a plugin) and VS Code's terminal route (hook files that \
+                 `reflow2 init --harness vscode-cli` writes). Nothing reflow2 installs for \
+                 {harnesses} is missing, so the coherence loop is yours to run. Call \
+                 `loop_status` before you finish any session in which you changed the \
+                 design, and after a batch of captures."
             )),
         }
     }
@@ -162,6 +171,12 @@ pub fn status_with_home(graph_path: Option<&str>, home: Option<PathBuf>) -> Nudg
     if opencode_plugin_present(&project, home.as_deref()) {
         return NudgeStatus::Installed;
     }
+    // THE VS CODE HALF (2026-10-05): the terminal route's hooks are a COMMITTED
+    // file VS Code reads from `.github/hooks/`, running `reflow2 hook vscode`.
+    // Read from the file for the same reason as the two above.
+    if vscode_hook_present(&project) {
+        return NudgeStatus::Installed;
+    }
     // No hook and no plugin. Before calling that a shortfall, ask whether one
     // was ever possible here — the installer records which harness this
     // project named, and reflow2 has a trigger for two of them: a Stop hook on
@@ -187,11 +202,54 @@ pub fn status_with_home(graph_path: Option<&str>, home: Option<PathBuf>) -> Nudg
     }
 }
 
-/// The harnesses reflow2 has a loop trigger for: a Stop hook registered into
-/// Claude Code's settings, and a plugin file OpenCode loads from its plugin
-/// directory (PR #511, 2026-09-14). Anything else has no event model reflow2
-/// can reach, and is told so rather than told to install something.
-const TRIGGER_HARNESSES: &[&str] = &["claude", "opencode"];
+/// The harnesses reflow2 installs a loop trigger for: a Stop hook registered
+/// into Claude Code's settings, a plugin file OpenCode loads from its plugin
+/// directory (PR #511, 2026-09-14), and the hook file VS Code's terminal route
+/// commits to `.github/hooks/` (2026-10-05). For anything else reflow2 installs
+/// none, and says so rather than telling anyone to install something.
+const TRIGGER_HARNESSES: &[&str] = &["claude", "opencode", "vscode-cli"];
+
+/// What the terminal route's hook file runs, by the name `reflow2_init.py`
+/// writes it with.
+const VSCODE_HOOK_COMMAND: &str = "reflow2 hook vscode";
+
+/// Does any hook file VS Code reads from this project's `.github/hooks/` run
+/// reflow2's VS Code hook? Any file, not only `reflow2.json`: a person may have
+/// folded the command into a hook file of their own, and a project that HAS a
+/// working nudge must never be told otherwise. A file of their own that runs
+/// something else is not mistaken for it.
+fn vscode_hook_present(project: &Path) -> bool {
+    let Ok(entries) = std::fs::read_dir(project.join(".github/hooks")) else {
+        return false;
+    };
+    entries.flatten().any(|entry| {
+        let path = entry.path();
+        path.extension().is_some_and(|e| e == "json")
+            && std::fs::read_to_string(&path)
+                .ok()
+                .and_then(|text| serde_json::from_str::<serde_json::Value>(&text).ok())
+                .is_some_and(|doc| runs_the_vscode_hook(&doc))
+    })
+}
+
+/// Whether a VS Code hook document registers a command running reflow2's hook.
+fn runs_the_vscode_hook(doc: &serde_json::Value) -> bool {
+    let Some(events) = doc.get("hooks").and_then(|h| h.as_object()) else {
+        return false;
+    };
+    events
+        .values()
+        .filter_map(|entries| entries.as_array())
+        .flatten()
+        .any(|entry| {
+            ["command", "linux", "osx", "windows"].iter().any(|key| {
+                entry
+                    .get(key)
+                    .and_then(|c| c.as_str())
+                    .is_some_and(|c| c.contains(VSCODE_HOOK_COMMAND))
+            })
+        })
+}
 
 /// The kit's OpenCode plugin, by the name the installers write it under.
 const OPENCODE_PLUGIN: &str = "reflow2-loop-nudge.js";
@@ -577,7 +635,15 @@ mod tests {
         let said = status_with_home(Some(&p.graph()), None)
             .advisory()
             .expect("must say something");
-        assert!(said.contains("none is possible"), "{said}");
+        // VS Code HAS an event model (fact:vs-code-has-an-agent-hook-event-model-
+        // reflow2-can-register-against-2026-10-02), and reflow2 installs hooks
+        // for it with the terminal route, so "none is possible" is false for it
+        // (dec:idea-how-reflow2-triggers-the-loop-for-a-call-door-agent-in-vs-code).
+        assert!(!said.contains("none is possible"), "{said}");
+        assert!(
+            said.contains("vscode-cli"),
+            "it must name the route that has one: {said}"
+        );
         assert!(said.contains("vscode"), "it must name the harness: {said}");
         assert!(
             said.contains("loop_status"),
@@ -724,6 +790,44 @@ mod tests {
         assert_eq!(
             status_with_home(Some(&p.graph()), Some(home)),
             NudgeStatus::Installed
+        );
+    }
+
+    /// The VS Code terminal route (`reflow2 init --harness vscode-cli`) gets its
+    /// trigger as a COMMITTED hook file VS Code reads from `.github/hooks/`,
+    /// running `reflow2 hook vscode`. Its presence is that file.
+    #[test]
+    fn the_vscode_hook_file_reads_as_installed() {
+        let p = project_with(r#"{"hooks":{}}"#);
+        set_up_for(&p, &["vscode-cli"]);
+        std::fs::create_dir_all(p.dir.join(".github/hooks")).unwrap();
+        std::fs::write(
+            p.dir.join(".github/hooks/reflow2.json"),
+            r#"{"hooks":{"Stop":[{"type":"command","command":"reflow2 hook vscode || exit 1"}]}}"#,
+        )
+        .unwrap();
+        assert_eq!(
+            status_with_home(Some(&p.graph()), None),
+            NudgeStatus::Installed
+        );
+    }
+
+    /// A project set up for the terminal route whose hook file is gone is told
+    /// the nudge is ABSENT, which `reflow2 update` fixes, never that none is
+    /// possible. A hook file of the person's own is not mistaken for it.
+    #[test]
+    fn a_vscode_cli_project_without_the_hook_file_is_absent_not_impossible() {
+        let p = project_with(r#"{"hooks":{}}"#);
+        set_up_for(&p, &["vscode-cli"]);
+        std::fs::create_dir_all(p.dir.join(".github/hooks")).unwrap();
+        std::fs::write(
+            p.dir.join(".github/hooks/team.json"),
+            r#"{"hooks":{"Stop":[{"type":"command","command":"make lint"}]}}"#,
+        )
+        .unwrap();
+        assert_eq!(
+            status_with_home(Some(&p.graph()), None),
+            NudgeStatus::Absent
         );
     }
 

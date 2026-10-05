@@ -59,6 +59,47 @@ cd my-thing && reflow2 init .
 That writes a short pointer file, a project-scope MCP config and `.gitignore` lines — and
 nothing else. Commit the pointer file and your design export; the graph directory stays local.
 
+### VS Code where MCP is blocked: the terminal route
+
+Where an organisation's policy blocks MCP servers in VS Code, the agent can still reach reflow2
+by running it in the terminal (`reflow2 read <tool>`, `reflow2 write <tool>`; see the notes at
+the end of this file). Set the project up for that route by name:
+
+```bash
+cd my-thing && reflow2 init . --harness vscode-cli      # add ,vscode for teammates who have MCP
+```
+
+It writes no MCP config. It writes what VS Code reads, under `.github/`, for your team to commit:
+
+| File | What it does |
+|---|---|
+| `.github/instructions/reflow2.instructions.md` | How to reach reflow2 through the terminal: the two verbs, the exit codes, prose on stdin, what to do after a refusal. The same text the binary serves as `get_instructions` section `vscode-terminal-route` |
+| `.github/hooks/reflow2.json` | Two VS Code hooks, both `reflow2 hook vscode`. **SessionStart** runs `loop_status` and puts its reading in the agent's context. **Stop** writes the committed design record if this turn wrote to the design and nothing else did, and nudges the agent once if it wrote with no loop check after. It counts writes from reflow2's own usage ledger, and no reflow2 hook reads the text of a command |
+| `.github/skills/<skill>/SKILL.md` | One stub per served skill, with the skill's own description, so VS Code picks the skill that fits. Each says to read the skill in full with `reflow2 read get_skill` |
+| `.github/prompts/<command>.prompt.md` | The slash commands (`/gaps`, `/req`, `/where`, …), each saying how to reach reflow2 |
+
+Every Markdown file carries a one-line reflow2 mark with a hash of the rest of it. `reflow2
+update` refreshes a file whose mark is intact, and leaves alone any file you edited and any file
+of your own. The hook file is reflow2's while it matches what reflow2 wrote.
+
+Three things are yours to do, because reflow2 does not touch them:
+
+- **Install reflow2 on each machine** (`tools/install.sh`), so `reflow2` is on PATH. The hooks
+  run it; without it VS Code shows a warning and carries on. The `reflow2` command is a POSIX
+  shell script, so the hooks do not run on Windows.
+- **Approve reads once** in your own VS Code settings (user or workspace):
+
+  ```json
+  "chat.tools.terminal.autoApprove": {
+    "/^reflow2 read /": true
+  }
+  ```
+
+  `reflow2 write` keeps asking. reflow2 never writes your settings.
+- **Hooks must be on.** `chat.useHooks` is on by default, and an organisation can turn hooks
+  off. Without them the instructions still work; nothing nudges, so run `reflow2 read
+  loop_status` before you finish.
+
 ---
 
 Everything below is the **from-source path**: for contributors, unsupported platforms, or

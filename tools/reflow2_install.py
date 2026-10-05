@@ -416,6 +416,13 @@ def remove_hooks(check: bool) -> str:
 # ------------------------------------------------------------ the `reflow2` cmd
 
 
+# `reflow2 hook <harness>` IS dispatched here, and for the opposite reason: the
+# VS Code hook file (`.github/hooks/reflow2.json`, written by `reflow2 init
+# --harness vscode-cli`) is COMMITTED, so it cannot name this machine's kit or
+# binary the way `.claude/settings.local.json` does. It names this command, and
+# this command knows both: the kit's loop_nudge.py, told which binary answers
+# the door through REFLOW2_BIN.
+#
 # `reflow2 read` and `reflow2 write` are NOT dispatched here: they are the
 # binary's own verbs (crates/reflow2-mcp/src/verbs.rs), so they reach it through
 # the last line unchanged. The binary holds the read/write classification (its
@@ -433,6 +440,8 @@ case "${{1:-}}" in
   update)    shift; exec python3 "$KIT/../tools/reflow2_init.py" --binary "$BIN" --update "$@" ;;
   install)   shift; exec python3 "$KIT/../tools/reflow2_install.py" --binary "$BIN" "$@" ;;
   check)     shift; exec python3 "$KIT/../tools/reflow2_check.py" "$@" ;;
+  hook)      shift; REFLOW2_BIN="$BIN"; export REFLOW2_BIN
+             exec python3 "$KIT/../tools/loop_nudge.py" --harness "$@" ;;
   ""|help|-h|--help)
     cat <<'EOF'
 reflow2 — a persistent design brain for building things with an AI agent.
@@ -442,6 +451,8 @@ reflow2 — a persistent design brain for building things with an AI agent.
   reflow2 update        bring THIS project's reflow2 files up to the version
                         installed on this machine  (--check to preview)
   reflow2 check         run the design gate against the committed export
+  reflow2 hook vscode   the loop nudge, as VS Code's hooks run it (reads the
+                        event on stdin; .github/hooks/reflow2.json calls it)
 
   reflow2 read <tool> [JSON]    run ONE tool that changes nothing, print its reply
   reflow2 write <tool> [JSON]   run ONE tool, any tool

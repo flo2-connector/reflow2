@@ -320,6 +320,7 @@ impl ReflowService {
     ) -> Result<CallToolResult, McpError> {
         let sections = crate::skills::instruction_sections();
         let pointer = crate::skills::pointer_section();
+        let route = crate::skills::terminal_route_section();
         let mut manifest: Vec<serde_json::Value> = sections
             .iter()
             .map(|s| json!({"section": s.slug, "title": s.title, "bytes": s.body.len()}))
@@ -330,12 +331,17 @@ impl ReflowService {
             "section": pointer.slug, "title": pointer.title, "bytes": pointer.body.len(),
             "note": "not part of this document — the file to write into a project that has no instruction file (genesis / adopt step 0)"
         }));
+        manifest.push(json!({
+            "section": route.slug, "title": route.title, "bytes": route.body.len(),
+            "note": "not part of this document — the file `reflow2 init --harness vscode-cli` writes for a VS Code agent that reaches reflow2 through the terminal (`reflow2 read` / `reflow2 write`)"
+        }));
 
         let (body, returned_section) = match req.section.as_deref() {
             None => (INSTRUCTIONS.to_string(), None),
             Some(want) if want == pointer.slug => {
                 (pointer.body.clone(), Some(pointer.slug.clone()))
             }
+            Some(want) if want == route.slug => (route.body.clone(), Some(route.slug.clone())),
             Some(want) => {
                 let Some(hit) = sections.iter().find(|s| s.slug == want) else {
                     let legal: Vec<&str> = sections.iter().map(|s| s.slug.as_str()).collect();

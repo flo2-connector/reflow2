@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:20db276682b485b8467962ee2f0534218e512e61438e2788e6db25c962455889",
+  "edge_type": "CHANGED",
+  "from_id": "chg:init-installs-the-vscode-terminal-route-2026-10-05",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "ver:the-vscode-terminal-route-is-installed-and-driven-the-way-an-agent-drives-it"
+}

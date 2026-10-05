@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:60dd800980561bc101961ed0873cbb37e680c69698afc17b1bcfe4cf14aa6762",
+  "node_id": "ver:the-vscode-terminal-route-is-installed-and-driven-the-way-an-agent-drives-it",
+  "node_type": "Verification",
+  "properties": {
+    "description": "Four suites, all in CI. tools/test_init.py: VsCodeTerminalRoute (what init writes; the hook file against VS Code's documented hook schema, a check shown to refuse what VS Code would not read; no PreToolUse or PostToolUse hook; a stub per served skill routing to get_skill; update refreshing reflow2's files and keeping edits and foreign files, also with no receipt) and McpInstallIsUnchanged (an MCP harness's install equals a golden taken from main's installer, byte for byte, and an update changes nothing). tools/test_loop_nudge.py: VsCodeHook (SessionStart hands loop_status to the model; Stop counts door writes from the ledger, exports, nudges once). crates/reflow2-mcp: nudge.rs and served_skills.rs. tools/test_call_door.py: the real binary through the installed route.",
+    "findings": "OBSERVED FAILING FIRST on the tests-only commit 2d216e197 (code at main e7e304d): test_init.py 85 failures and errors; test_loop_nudge.py 6 of the 11 VsCodeHook tests (the other 5 assert an absence); the Rust tests did not compile; main's installer refused `--harness vscode-cli` as an unknown harness, so the probe could not set up. THEN PASSING on the branch, 2026-10-05: test_init.py 127 tests OK (the pin was mutation-checked: one byte appended to POINTER.md failed it on AGENTS.md); test_loop_nudge.py 113 OK; cargo test -p reflow2-mcp (nudge unit tests, served_skills, the persona scan) OK; test_call_door.py 11 checks OK in 16 s on a debug build. The probe caught two of this PR's own wrong beliefs before it passed: the exit-2 reply is on stdout, not stderr, and a refused write stores nothing. NOT MEASURED: VS Code itself (it is not on this machine), so the hook payloads and outputs follow VS Code's documented Local hook reference, read 2026-10-05.",
+    "kind": "verification",
+    "last_run_at": "2026-10-05",
+    "level": "system",
+    "location": "tools/test_call_door.py",
+    "method": "test",
+    "name": "The VS Code terminal route is installed, refreshed, and driven the way an agent drives it",
+    "status": "passing"
+  }
+}

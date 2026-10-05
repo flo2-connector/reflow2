@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:35040d0fe50eb566185baea5a931f0905e443773e16c7f19e9328fdc963c2d8d",
+  "node_id": "cap:init-installs-the-vscode-terminal-route-and-update-keeps-it-current",
+  "node_type": "Capability",
+  "properties": {
+    "description": "Where an organisation blocks MCP, init writes what a VS Code agent needs to reach reflow2 through the terminal, under .github/ for the team to commit: the instructions file (the text the binary serves as get_instructions section `vscode-terminal-route`), the hook file, a skill stub per served skill and a prompt per slash command. It writes no MCP config. Each Markdown file carries a mark with a hash of the rest of it, so update refreshes a file reflow2 wrote and nobody touched, and keeps an edited or foreign one, with or without the git-ignored install receipt. The hook file is reflow2's by the receipt or by matching byte for byte. The route is chosen by name: `all` and an unanswered install mean the MCP harnesses, and an MCP harness's install is unchanged byte for byte. Answers limitation 11 of the VS Code field report.",
+    "distinct_from": [
+      "fact:root-cause-init-knows-vs-code-only-as-an-mcp-config-so-the-door-setup-is-one-persons-file-2026-10-02"
+    ],
+    "name": "`reflow2 init --harness vscode-cli` installs VS Code's terminal route as committed files, and `reflow2 update` refreshes reflow2's own and nothing else",
+    "provenance": "authored",
+    "status": "verified"
+  }
+}

@@ -30,7 +30,7 @@ The door plan (`epoch:planned-the-call-door-works-for-an-agent-that-cannot-use-m
 | 2 | A writing call keeps the committed export current (limitation 4, idea 3) | **Shipped in v0.78.0** |
 | 3 | `reflow2 read` / `reflow2 write`, so reads can be approved once (limitation 2, idea 4) | **Shipped in v0.78.0** |
 | 4 | A full tool description on the command line: `--describe`, `--list-tools` (limitations 5 and 6, idea 5) | **Shipped in v0.78.0** |
-| 5 | `reflow2 init` installs this route for VS Code, `reflow2 update` refreshes it, and CI drives it the way an agent does (limitations 1, 7, 9, 10 and 11) | **Being built.** The VS Code setup was approved on 2026-10-05 as one increment: init installs the route and the skill stubs, CI gets a probe for the door, and the hooks ship with them (ideas 1, 7, 11 and 12; `dec:the-vs-code-setup-is-built-as-one-increment-2026-10-05`). A harness name for door calls (idea 8) is in this step's requirement but not in that increment. |
+| 5 | `reflow2 init` installs this route for VS Code, `reflow2 update` refreshes it, and CI drives it the way an agent does (limitations 1, 7, 9, 10 and 11) | **Built, in the release after v0.79.0** (ideas 1, 7, 11 and 12, approved on 2026-10-05 as one increment, `dec:the-vs-code-setup-is-built-as-one-increment-2026-10-05`): `reflow2 init --harness vscode-cli`, below. A harness name for door calls (idea 8) is in this step's requirement and was not in that increment, so it is still open. |
 | 6 | A batch of calls under one approval and one export (idea 6) | Planned (`req:a-batch-of-calls-runs-under-one-approval-and-one-export`) |
 
 v0.78.0 also shipped the fixes the report's triage asked for outside the plan. A refused write stores nothing
@@ -102,7 +102,14 @@ With only the binary on your PATH, the rule is `"/^reflow2-mcp read /": true`.
 redirection is the shell writing, which reflow2 never sees, and VS Code calls auto-approval a convenience, not a
 security boundary.
 
-**Teach the agent the door with a user-scope instructions file**, until step 5 installs one:
+**Set the project up for the door with `reflow2 init . --harness vscode-cli`** (from the release after
+v0.79.0; add `,vscode` for teammates who do have MCP). It writes no MCP config. Under `.github/`, for the team
+to commit, it writes the instructions file below, VS Code hooks, a skill stub per served skill and the slash
+commands. `reflow2 update` refreshes them and keeps any file somebody edited
+([getting-started/SETUP.md](../getting-started/SETUP.md), "VS Code where MCP is blocked"). The instructions
+file is the text the binary serves as `get_instructions` section `vscode-terminal-route`.
+
+On an older release, **teach the agent the door with a user-scope instructions file**:
 `~/.config/Code/User/prompts/<name>.instructions.md`, with `applyTo: '**'`. It should say:
 
 - act only when the workspace has `.reflow2/` or `REFLOW2.md`. In a folder whose `.reflow2.toml` names a design
@@ -173,7 +180,9 @@ features), reading `.github/hooks/*.json` (workspace) and `~/.copilot/hooks/*.js
 `hookSpecificOutput.permissionDecision: "deny"` blocks the call. This was verified live. It matters for reflow2
 because hooks can supply what the door lacks. The accepted design is a `SessionStart` hook that runs
 `loop_status` and a `Stop` hook that exports and nudges
-(`dec:idea-how-reflow2-triggers-the-loop-for-a-call-door-agent-in-vs-code`), and step 5 installs them.
+(`dec:idea-how-reflow2-triggers-the-loop-for-a-call-door-agent-in-vs-code`), and step 5 installs them as
+`.github/hooks/reflow2.json`. Both run `reflow2 hook vscode`. The Stop hook counts the session's writes from
+reflow2's own usage ledger, so no reflow2 hook reads a command's text.
 
 ## Limitations that still hold
 
@@ -190,18 +199,21 @@ Each was root-caused on 2026-10-02, and its finding is in reflow2's design under
 7. **Skills are not native in a thin-installed project.** VS Code does read project skills (`.github/skills`,
    `.claude/skills`) and lists them as `/` commands, chosen by their description, so the report's "slash
    commands don't exist in VS Code chat" is overturned by VS Code's documentation. What is missing is reflow2's
-   part: init writes nothing VS Code reads as a skill. Step 5 installs skill stubs.
+   part: init writes nothing VS Code reads as a skill. **Fixed by step 5** (the release after v0.79.0):
+   `--harness vscode-cli` writes a skill stub per served skill and a prompt file per slash command.
    (`fact:root-cause-vs-code-reads-project-skills-and-slash-prompts-and-init-installs-neither-for-it-2026-10-02`)
 8. **Each call is a fresh session.** A claim made through the door is `gone` by the next call, so two door
    agents claiming the same region see no collision, and an author named for a session lasts one call.
    (`fact:root-cause-a-door-call-is-a-session-that-ends-at-exit-and-the-sessionless-backstop-reads-only-the-protocol-revision-2026-10-02`)
 9. **No loop nudges.** Nothing prompts `loop_status` at a boundary in VS Code. init installs no hook for it, the
    nudge script counts writes by MCP tool name, and `loop_status` tells a VS Code project no nudge is possible.
-   Step 5's hooks answer it. (`fact:root-cause-no-loop-nudge-reaches-a-call-door-agent-in-vs-code-2026-10-02`)
+   **Fixed by step 5's hooks** (the release after v0.79.0), and `loop_status` no longer says no nudge is
+   possible for VS Code. (`fact:root-cause-no-loop-nudge-reaches-a-call-door-agent-in-vs-code-2026-10-02`)
 10. **Usage records can't name the harness.** Every door call is recorded as the client `reflow2-mcp --call`.
     (`fact:root-cause-door-calls-carry-a-fixed-client-name-and-no-attribution-route-reaches-the-door-2026-10-02`)
 11. **The setup is one person's local file.** `reflow2 init --harness vscode` knows VS Code only as an MCP
-    client, so `reflow2 update` has nothing of the door's to refresh. Step 5 is the fix.
+    client, so `reflow2 update` has nothing of the door's to refresh. **Fixed by step 5** (the release after
+    v0.79.0): the setup is committed files that `reflow2 update` refreshes.
     (`fact:root-cause-init-knows-vs-code-only-as-an-mcp-config-so-the-door-setup-is-one-persons-file-2026-10-02`)
 12. **Shell quoting.** Prose crosses two quoting layers, the shell's and JSON's. `--args -` with a quoted heredoc
     delimiter (`<<'EOF'`) stores it byte for byte. An unquoted one expands `$HOME` into the stored text, and a
@@ -277,18 +289,18 @@ them on 2026-10-05
 
 | # | Idea, in short | Record in reflow2's design | Where it is |
 |---|---|---|---|
-| 1 | A served CLI-door harness in `reflow2 init`, with VS Code hook files | `dec:idea-the-call-door-becomes-a-supported-harness-for-an-agent-that-cannot-use-mcp`; `req:init-installs-the-terminal-route-for-vs-code-and-update-keeps-it-current` | **Being built** (`dec:the-vs-code-setup-is-built-as-one-increment-2026-10-05`) |
+| 1 | A served CLI-door harness in `reflow2 init`, with VS Code hook files | `dec:idea-the-call-door-becomes-a-supported-harness-for-an-agent-that-cannot-use-mcp`; `req:init-installs-the-terminal-route-for-vs-code-and-update-keeps-it-current` | **Built** (#680; `dec:the-vs-code-setup-is-built-as-one-increment-2026-10-05`) |
 | 2 | `--call` joins a running shared server instead of refusing writes | `dec:idea-a-one-shot-call-reaches-the-design-where-it-is-served` | Open |
 | 3 | A writing call exports | `dec:idea-a-writing-call-exports-afterwards` | Shipped in v0.78.0 |
 | 4 | A read/write verb split | `dec:idea-a-shell-driven-agent-approves-reads-once-and-confirms-each-write` | Shipped in v0.78.0 |
 | 5 | `--describe <tool>` / `--list-tools` | `dec:idea-the-cli-describes-a-tool-with-its-schema-and-lessons` | Shipped in v0.78.0 |
 | 6 | `--call-batch`: calls in one process, one approval, stop at the first refusal | `dec:idea-a-shell-driven-agent-approves-reads-once-and-confirms-each-write`; `req:a-batch-of-calls-runs-under-one-approval-and-one-export` | Planned (step 6) |
-| 7 | Skill stubs in `.github/skills/` that route to `get_skill` | as idea 1 | **Being built** |
+| 7 | Skill stubs in `.github/skills/` that route to `get_skill` | as idea 1 | **Built** (#680) |
 | 8 | `REFLOW2_HARNESS=vscode` under `--call` | as idea 1 (the requirement's attribution clause) | Planned; not in the increment being built |
 | 9 | A VS Code extension registering Language Model Tools | `dec:idea-where-an-org-blocks-third-party-mcp-ask-for-an-allowlist-before-building-around-it` | Not pursued (2026-10-01) |
 | 10 | An MCP registry allowlist | as idea 9 | Asked for, and not available in the organisation this report comes from. It stays the clean route wherever an admin allows it. |
-| 11 | A CI probe for the door (`tools/test_call_door.py`) | as idea 1 | **Being built** |
-| 12 | Ship VS Code hooks (`SessionStart` → `loop_status`, `Stop` → export) | `dec:idea-how-reflow2-triggers-the-loop-for-a-call-door-agent-in-vs-code` | **Being built** |
+| 11 | A CI probe for the door (`tools/test_call_door.py`) | as idea 1 | **Built** (#680) |
+| 12 | Ship VS Code hooks (`SessionStart` → `loop_status`, `Stop` → export) | `dec:idea-how-reflow2-triggers-the-loop-for-a-call-door-agent-in-vs-code` | **Built** (#680) |
 | 13 | A hub address book | `dec:idea-a-hub-on-one-machine-can-say-where-each-tracked-design-is-reached-from-the-door` | Open |
 | 14 | Warn on a never-exported design | `dec:idea-loop-status-says-whether-an-export-is-owed-on-a-hosted-design` (linked as a duplicate) | Open |
 | 15 | Refusals name the tool and the field | `dec:idea-every-argument-refusal-names-the-tool-and-the-field-path` | Shipped in v0.78.0 |

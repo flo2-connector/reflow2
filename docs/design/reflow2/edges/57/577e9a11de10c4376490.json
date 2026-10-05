@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:8d59f2a4647a9d2049f3dad62ec1cd80876fbfd1d8542309d8cbe866bdf554d4",
+  "edge_type": "REALIZES",
+  "from_id": "art:vscode-hook-file",
+  "properties": {
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:the-loop-nudge-reaches-a-call-door-agent-in-vs-code-through-hooks-init-installs"
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:f898065cbe47bd6e42a4c22e814dc9da64e9d1fdd2a5bb8567d5e4cc717d8078",
+  "edge_type": "REALIZES",
+  "from_id": "art:init",
+  "properties": {
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:vs-code-picks-a-served-skill-by-its-description-from-a-stub-init-installs"
+}
