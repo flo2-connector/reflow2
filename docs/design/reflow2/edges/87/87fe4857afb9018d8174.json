@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:bdbbf0d17bbfae6e07db757393050801dde7353b9a6d1cfa2732f77aab98bc0c",
+  "edge_type": "AT_EPOCH",
+  "from_id": "snap:epoch:preserved-on-write:dec:idea-stored-data-is-rechecked-against-the-current-schema",
+  "properties": {},
+  "to_id": "epoch:preserved-on-write"
+}
