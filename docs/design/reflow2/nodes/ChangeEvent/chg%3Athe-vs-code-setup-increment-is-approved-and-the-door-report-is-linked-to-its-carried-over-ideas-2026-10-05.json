@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:4bdf4cd72cb287c693b534e71a33d94de9c4d6400d42f7ff8a5eda22de0e657a",
+  "node_id": "chg:the-vs-code-setup-increment-is-approved-and-the-door-report-is-linked-to-its-carried-over-ideas-2026-10-05",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "decision_settled",
+    "detected_at": "2026-10-05",
+    "name": "The VS Code setup is approved as one increment (door report ideas 1, 7 and 11, with the hooks of 12), and the door report is linked to the records that hold its carried-over ideas",
+    "rationale": "The owner approved building the VS Code setup as one increment. A brief that asked for nine new idea Decisions rested on a premise the design contradicts (the nine were recorded on 2026-10-01). Recording the approval and drawing the missing links is what the rule asks; minting the nine again would have duplicated settled records.",
+    "rationale_basis": "contemporaneous",
+    "subject": "record",
+    "summary": "dec:the-vs-code-setup-is-built-as-one-increment-2026-10-05 is accepted on the owner's word of 2026-10-05: step 5 of the door plan is built as one increment (init installs the door route and skill stubs, a CI probe drives the door, and the hooks of dec:idea-how-reflow2-triggers-the-loop-for-a-call-door-agent-in-vs-code ship with them). art:vscode-call-door-field-report-2026-10-02 now DOCUMENTS the five Decisions that hold its carried-over ideas 1, 2, 6, 7, 8, 9, 10, 11 and 14, and fact:the-door-reports-carried-over-ideas-were-recorded-from-its-first-version-and-linked-only-in-prose-2026-10-05 says why no new idea Decisions were minted for them. Nothing in the system changed. A tool defect met while recording this, a check_only door call under --no-export saying the export is behind a write that did not happen, is recorded on the door capability as fact:a-check-only-door-call-under-no-export-says-the-export-is-behind-a-write-that-did-not-happen-2026-10-05."
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "content_hash": "sha256:140eec03ec1c5cc10b0d59a6861bf02b09939c05f6be8cbfeff7c680c489fec1",
+  "node_id": "fact:the-door-reports-carried-over-ideas-were-recorded-from-its-first-version-and-linked-only-in-prose-2026-10-05",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "finding",
+    "name": "MEASURED 2026-10-05: nine ideas of the VS Code door report (1, 2, 6, 7, 8, 9, 10, 11 and 14) were said to be unrecorded by the 2026-10-02 triage. They were recorded. Each is an exploratory Decision from the report's 2026-10-01 version, or was linked as a duplicate. What was missing was a link from the report node to them, and idea 6 is named in none of the 2026-10-02 findings",
+    "source": "art:vscode-call-door-field-report-2026-10-02",
+    "statement": "Read against docs/design/reflow2/ at e7e304d, 2026-10-05. The brief for this work said the 2026-10-02 triage of art:vscode-call-door-field-report-2026-10-02 \"never recorded NINE of the report's 19 ideas as ideas\" and asked for nine new Decisions. The design says otherwise, and minting them would have duplicated settled records and offered settled questions as open:\n- ideas 1, 7, 8, 11 → dec:idea-the-call-door-becomes-a-supported-harness-for-an-agent-that-cannot-use-mcp (accepted 2026-10-01); their MUSTs are req:init-installs-the-terminal-route-for-vs-code-and-update-keeps-it-current;\n- idea 2 → dec:idea-a-one-shot-call-reaches-the-design-where-it-is-served (open);\n- idea 6 → dec:idea-a-shell-driven-agent-approves-reads-once-and-confirms-each-write (accepted 2026-10-01 as step 6), and req:a-batch-of-calls-runs-under-one-approval-and-one-export;\n- ideas 9, 10 → dec:idea-where-an-org-blocks-third-party-mcp-ask-for-an-allowlist-before-building-around-it (accepted 2026-10-01: the allowlist is not available, the extension is not pursued);\n- idea 14 → linked on 2026-10-02 as a duplicate of dec:idea-loop-status-says-whether-an-export-is-owed-on-a-hosted-design.\nEvery one but 14 came from using_call.md, the same report a day earlier. The 2026-10-02 findings cite ideas 1, 2, 7 and 8 by number, and 9, 10 and 11 in substance. Idea 6 appears in none of them.\n\nWHAT WAS MISSING: a link from the report node to those records. The report's own edges reached none of them, so a reader starting from the report saw nine ideas with nothing attached. This change draws art:vscode-call-door-field-report-2026-10-02 DOCUMENTS each of the five Decisions.\n\nCLASS: a field report that arrives as a new version of one already triaged carries ideas that the earlier version's records already answer. A triage that says so only in prose leaves the new report node unlinked to them. The step that closes it: for each carried-over idea, name the node that holds it and link the report to that node.",
+    "steps": [
+      "triage-feedback"
+    ],
+    "subject_id": "art:vscode-call-door-field-report-2026-10-02",
+    "valid_from": "2026-10-05"
+  }
+}
