@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:37cf1f60858827a3bc05c9946270612408a2fd3ae66c94827bc5bbdb5e6f97dc",
+  "node_id": "fact:worked-the-old-sligara7-addresses-redirect-to-flo2-connector-2026-10-05",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "finding",
+    "name": "WHAT WORKED (field log 2026-10-05, re-measured): the old sligara7/reflow2 addresses still reach the repository after its move to flo2-connector. The API, raw install.sh and release-asset URLs all resolve, so the two install URLs in circulation lead to one repository. Do not regress it. The container image's old name does not redirect, by design (UPDATING.md)",
+    "source": "art:vscode-call-field-log-2026-10-05",
+    "statement": "Field log entry [works] (art:vscode-call-field-log-2026-10-05, lines 371-374): \"`sligara7/reflow2` redirects to `flo2-connector/reflow2` (`gh api repos/sligara7/reflow2` returns the latter), so the two URLs in circulation (install.sh in hxm_program AGENTS.md vs. the release recipe) are the same repo.\"\n\nRE-MEASURED 2026-10-05:\n- `gh api repos/sligara7/reflow2` gives full_name flo2-connector/reflow2.\n- https://raw.githubusercontent.com/sligara7/reflow2/main/tools/install.sh answers 200.\n- https://github.com/sligara7/reflow2/releases/download/v0.79.0/checksums.txt resolves to the release asset.\n\nThe redirect is GitHub's. It holds only while nobody creates a repository at sligara7/reflow2 again. The GHCR image name does not redirect: UPDATING.md says images from v0.79.0 on are published only as ghcr.io/flo2-connector/reflow2/reflow2-mcp.",
+    "subject_id": "chg:reflow2s-repository-moved-to-the-flo2-connector-organization-2026-10-03",
+    "valid_from": "2026-10-05"
+  }
+}

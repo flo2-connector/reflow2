@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:c969b0c5413d3c69f296fe8497c517bebfd9b0ec2a3e4f18406d1da89a457dfd",
+  "node_id": "fact:defect-the-installer-cannot-repair-a-reflow2-command-that-is-a-symlink-to-the-binary-2026-10-05",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "defect",
+    "name": "DEFECT (measured on main's tools/reflow2_install.py): when `~/.local/bin/reflow2` is a symlink to the binary, the installer's wrapper step reads the binary through the link as text and crashes with UnicodeDecodeError, under --check too. So re-running install.sh cannot restore a wrapper that a hand `ln -sf` replaced. Until it is restored, `reflow2 init/update/install/check` fail with the binary's 'unrecognized subcommand'",
+    "source": "art:vscode-call-field-log-2026-10-05",
+    "statement": "Found while root-causing art:vscode-call-field-log-2026-10-05, entry [defect] (lines 358-367). The recipe was not run on the field machine. This measures what it would have left.\n\nMEASURED with a scratch HOME and REFLOW2_BIN_DIR, the v0.79.0 binary copied in, and `ln -sf <bin>/reflow2-mcp <bin>/reflow2`:\n- `reflow2 init`, `reflow2 update`, `reflow2 install` and `reflow2 check` each print \"error: unrecognized subcommand '<name>'\". Nothing says the wrapper is gone.\n- reflow2_install.py's `install_wrapper` (tools/reflow2_install.py, about line 482: `if target.exists() and target.read_text() == body`) was called with check true and with check false. Both raised UnicodeDecodeError (\"'utf-8' codec can't decode byte 0xc0 in position 24\"). `main()` does not catch it, so a run ends in a traceback. install.sh then prints \"The machine-wide registration did not complete\", and names the same command, which fails the same way.\n- The binary was not overwritten, because the exception comes before `write_text`. Had the read succeeded, `write_text` would have written through the link onto reflow2-mcp. That case was not measured. It becomes the live risk if the read is ever made tolerant without handling the link.\n\nCLASS: `install_wrapper` and `remove_wrapper` assume that whatever is at `~/.local/bin/reflow2` is either absent or the installer's own text. A symlink, which is what a hand install makes, is neither.\n\nFIX SHAPE, not built: treat a `reflow2` that is a symlink, or is not a text file, as foreign. Replace the link itself (unlink, then write), never write through it, and say what was there. This is additive, and changes no MCP behaviour.",
+    "subject_id": "cap:machine-wide-install",
+    "valid_from": "2026-10-05"
+  }
+}

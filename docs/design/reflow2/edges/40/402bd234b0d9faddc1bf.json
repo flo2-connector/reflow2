@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:110b6f86c93890f5134e21bf505d7e41d4d9b7b7a80e287d3fe58e5758215a77",
+  "edge_type": "MITIGATES",
+  "from_id": "dec:idea-installing-over-an-older-reflow2-leaves-a-rollback-point-first",
+  "properties": {
+    "evidence": "Each option puts a rollback point before the replacement that the finding measured the documented update path to lack."
+  },
+  "to_id": "fact:root-cause-the-update-path-has-no-step-before-the-binary-is-replaced-2026-10-05"
+}
