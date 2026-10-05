@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:3b796dfeb34a67f6433e047a86c35b838644e33b11e0b2addc89952934927787",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-one-shot-open-reports-its-version-verdict",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 2,
+    "action": "modified",
+    "checksum_after": "sha256:86a58909b025fa216d6407cfbc9db870a5620ec9fc0f5760c1216c915699538c",
+    "checksum_basis": "measured"
+  },
+  "to_id": "art:impact-check-skill"
+}

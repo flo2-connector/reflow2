@@ -118,6 +118,25 @@ fi
 # ---- install ----------------------------------------------------------------
 mkdir -p "$BIN_DIR"
 tar -C "$tmp" -xzf "$tmp/$bin_asset"
+# KEEP THE BINARY THIS REPLACES, as reflow2-mcp.<its version>, so a rollback
+# point exists before anything is replaced. Until 0.80.0 the old binary was
+# overwritten and nothing kept it
+# (fact:root-cause-the-update-path-has-no-step-before-the-binary-is-replaced-2026-10-05).
+# Named from what it says it is (`--version`), never from a guess; only the
+# last one is kept, and reinstalling the same version keeps nothing.
+kept=""
+if [ -x "$BIN_DIR/reflow2-mcp" ] && [ ! -L "$BIN_DIR/reflow2-mcp" ]; then
+  old_version="$("$BIN_DIR/reflow2-mcp" --version 2> /dev/null | awk '{print $NF}' || true)"
+  new_version="$("$tmp/reflow2-mcp" --version 2> /dev/null | awk '{print $NF}' || true)"
+  [ -n "$old_version" ] || old_version="unknown"
+  if [ "$old_version" != "$new_version" ]; then
+    for previous in "$BIN_DIR"/reflow2-mcp.[0-9]* "$BIN_DIR"/reflow2-mcp.unknown; do
+      if [ -f "$previous" ]; then rm -f "$previous"; fi
+    done
+    cp -p "$BIN_DIR/reflow2-mcp" "$BIN_DIR/reflow2-mcp.$old_version"
+    kept="$BIN_DIR/reflow2-mcp.$old_version"
+  fi
+fi
 install -m 755 "$tmp/reflow2-mcp" "$BIN_DIR/reflow2-mcp"
 
 mkdir -p "$KIT_DIR"
@@ -141,6 +160,9 @@ say ""
 say "installed:"
 say "  binary  $BIN_DIR/reflow2-mcp  ($installed_version)"
 say "  kit     $KIT_DIR/kit"
+if [ -n "$kept" ]; then
+  say "  kept    $kept  (the binary this replaced; to roll back, copy it over reflow2-mcp)"
+fi
 
 case ":$PATH:" in
   *":$BIN_DIR:"*) ;;

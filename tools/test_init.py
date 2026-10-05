@@ -1357,6 +1357,32 @@ class UpdateIsItsOwnWord(unittest.TestCase):
         for line in ("reflow2 read <tool>", "reflow2 write <tool>", "^reflow2 read "):
             self.assertIn(line, helptext, "the wrapper's help must name the verbs")
 
+    def test_a_reflow2_that_is_a_symlink_to_the_binary_is_replaced_not_written_through(self):
+        # fact:defect-the-installer-cannot-repair-a-reflow2-command-that-is-a-symlink-to-the-binary-2026-10-05:
+        # a hand install's `ln -s reflow2-mcp reflow2` made install_wrapper raise
+        # UnicodeDecodeError, --check included. Writing through the link instead
+        # would overwrite the binary. The link is replaced, and the line says so.
+        import importlib.util as _ilu
+        spec = _ilu.spec_from_file_location("reflow2_install", HERE / "reflow2_install.py")
+        inst = _ilu.module_from_spec(spec)
+        spec.loader.exec_module(inst)
+        d = pathlib.Path(tempfile.mkdtemp(prefix="reflow2-wrapper-link-"))
+        self.addCleanup(shutil.rmtree, d, True)
+        binary = d / "reflow2-mcp"
+        binary.write_bytes(b"\x7fELF\x02\x01\x01\x00" + bytes(range(256)))
+        link = d / "reflow2"
+        link.symlink_to(binary)
+        inst.BIN_DIR = d
+        line = inst.install_wrapper(binary, check=True)
+        self.assertIn("symlink", line)
+        self.assertTrue(link.is_symlink(), "--check must change nothing")
+        line = inst.install_wrapper(binary, check=False)
+        self.assertTrue(line.startswith("replace"), line)
+        self.assertFalse(link.is_symlink(), "the link itself is replaced")
+        self.assertIn("installed by reflow2_install.py", link.read_text())
+        self.assertTrue(binary.read_bytes().startswith(b"\x7fELF"), "the binary was written through")
+        self.assertIn("already current", inst.install_wrapper(binary, check=False))
+
     def test_the_wrapper_runs_the_vscode_hook_through_the_kits_nudge(self):
         # The VS Code hook file is COMMITTED, so it cannot carry this machine's
         # path to the kit the way `.claude/settings.local.json` does. It runs

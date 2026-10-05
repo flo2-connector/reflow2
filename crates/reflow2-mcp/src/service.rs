@@ -6481,8 +6481,10 @@ impl ReflowService {
         Ok((service, provenance.note()))
     }
 
+    /// Open on disk for ONE command — the `--call` door's opener. Says the
+    /// version verdict on stderr when there is one (`one_shot::open_store`).
     pub fn new(path: &str) -> Result<Self, DynoError> {
-        let graph = DesignGraph::open_rocksdb(path)?;
+        let graph = crate::one_shot::open_store(path)?;
         say_identity_on_open(&graph);
         Ok(Self::wrap_at(graph, Some(path.to_string())))
     }
@@ -6512,7 +6514,7 @@ impl ReflowService {
     /// of them, so `export_graph` with a `path` still writes it
     /// (`into_snapshot_copy`).
     pub fn reading_a_copy(copy_path: &str, design_path: &str) -> Result<Self, DynoError> {
-        let mut graph = DesignGraph::open_rocksdb(copy_path)?;
+        let mut graph = crate::one_shot::open_store(copy_path)?;
         // The copy is made without its search index, so its open always
         // rebuilds one. That is how a copy searches, not news about the
         // design, and `loop_status` must not report it as a repair.

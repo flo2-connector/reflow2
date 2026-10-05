@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:928f972be4bc0fc175e44f28c58bc075bc6550634907b19ffd71611bfef879b0",
+  "edge_type": "INVALIDATES",
+  "from_id": "chg:a-one-shot-open-reports-its-version-verdict",
+  "properties": {
+    "at": "2026-10-05",
+    "note": "Corrected: every one-shot door opens through one_shot::open_store and says the verdict and any repair on stderr; a downgrade keeps the newer stamp; the stamp keeps previous_reflow2_version and last_repair_on_open. Pinned by ver:a-one-shot-open-reports-its-version-verdict. Still true: a serving open rewrites a newer stamp down (MCP unchanged by the owner's rule), and --call replies carry no behind_record."
+  },
+  "to_id": "fact:root-cause-every-one-shot-open-drops-the-version-verdict-and-the-repair-report-2026-10-05"
+}

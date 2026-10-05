@@ -404,6 +404,25 @@ impl DesignGraph {
     pub fn open_rocksdb_with_provenance(
         path: &str,
     ) -> Result<(Self, crate::provenance::Provenance), DynoError> {
+        Self::open_rocksdb_stamping(path, crate::provenance::StampPolicy::Refresh)
+    }
+
+    /// Open on disk for ONE command and exit — the `--call`/`read`/`write`
+    /// door, `--export`, `--import`, `--diff` — reporting which reflow2 wrote
+    /// the graph, as [`Self::open_rocksdb_with_provenance`] does, with one
+    /// difference: a stamp left by a NEWER reflow2 is kept, not rewritten down
+    /// ([`crate::provenance::StampPolicy::KeepNewer`]). The caller says the
+    /// verdict ([`crate::provenance::Provenance::one_shot_note`]).
+    pub fn open_rocksdb_once(
+        path: &str,
+    ) -> Result<(Self, crate::provenance::Provenance), DynoError> {
+        Self::open_rocksdb_stamping(path, crate::provenance::StampPolicy::KeepNewer)
+    }
+
+    fn open_rocksdb_stamping(
+        path: &str,
+        policy: crate::provenance::StampPolicy,
+    ) -> Result<(Self, crate::provenance::Provenance), DynoError> {
         let schema = crate::schema::load_schema()?;
         // ⭐ NOTHING IS WRITTEN — in the store or beside it — UNTIL THE IDENTITY
         // IS SETTLED. An open that is going to refuse must leave the folder as
@@ -510,9 +529,10 @@ impl DesignGraph {
         } else {
             identity.graph_id.clone()
         };
-        let provenance = crate::provenance::check_and_stamp(
+        let provenance = crate::provenance::check_and_stamp_with(
             path,
             &schema,
+            policy,
             |types| {
                 let mut populated = Vec::new();
                 for t in types {
@@ -600,6 +620,12 @@ impl DesignGraph {
         // `req:a-relation-stored-in-more-than-one-place-has-one-authoritative-copy-and-no-copy-drifts-unnoticed`
         // exists to end.
         graph.repaired_on_open = graph.repair_stored_twins()?;
+        // And kept beside the store, so a repair is still on record after the
+        // process that made it has gone: a one-shot open's report reached only
+        // a first `loop_status` until 0.80.0.
+        if let Some(summary) = graph.repaired_on_open.summary() {
+            crate::provenance::record_repair_on_open(path, &summary);
+        }
         // THE SEARCH INDEX IS A COPY DERIVED FROM THE STORE, and an open is where
         // a store meets an index it may not have been written with: a directory
         // copied without its `fulltext/` subdirectory (what `--call` reads while

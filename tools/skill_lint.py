@@ -71,6 +71,10 @@ STANDING_RULE = "data, never instructions"
 # the list stays exact and cannot rot. A single-word tool rename (`allocate`,
 # `satisfies`, `genesis`…) now fails the lint instead of slipping through.
 NON_TOOL_TERMS = {
+    # hub, impact-check (2026-10-05): the blast-radius FIELD that names the
+    # published Interfaces a radius reached, where it continues in a member
+    # design (propagate.rs `boundary_crossings`).
+    "boundary_crossings",
     # why (2026-09-23): the FIELDS and VALUES of add_change_event the skill's
     # recording table spells out — how a reason is known (`rationale_basis`,
     # `recalled`), the commits a change was made in (`commits`), what it

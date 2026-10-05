@@ -546,6 +546,24 @@ pub fn resolve_design(asked: &Asked<'_>) -> Result<(), String> {
     Ok(())
 }
 
+/// Open the store for a one-shot mode, and say on stderr, in one line, what
+/// the open found: an upgrade, a downgrade, or a repair. Nothing when there is
+/// nothing to say.
+///
+/// The serving modes have always said the verdict; every one-shot mode dropped
+/// it (`fact:root-cause-every-one-shot-open-drops-the-version-verdict-and-the-repair-report-2026-10-05`),
+/// so a terminal agent upgrading twenty stores heard nothing, and a downgrade
+/// rewrote the newer stamp down without a word. A newer stamp is now kept
+/// ([`reflow2_core::DesignGraph::open_rocksdb_once`]). stderr, because stdout is the reply.
+pub fn open_store(path: &str) -> Result<reflow2_core::DesignGraph, reflow2_core::DynoError> {
+    let (graph, provenance) = reflow2_core::DesignGraph::open_rocksdb_once(path)?;
+    let repaired = graph.repaired_on_open().summary();
+    if let Some(line) = provenance.one_shot_note(repaired.as_deref()) {
+        eprintln!("reflow2: {line}");
+    }
+    Ok(graph)
+}
+
 /// The arguments a one-shot call was given, as the JSON object the tool takes.
 ///
 /// `--args` (and the `read` / `write` verbs' JSON) is one of three things: the
