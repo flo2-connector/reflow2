@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:83bed15d9cefb1e928ef09621145e35e87e8be29230393757af281a7624b41bf",
+  "node_id": "art:using-reflow2-in-vscode-without-mcp",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "document",
+    "description": "The guide for running reflow2 from VS Code's Copilot agent where an organisation blocks third-party MCP servers, kept current. Refreshed on 2026-10-05 against main after v0.78.0 (e7e304d), with each command run on a binary built from it. It covers:\n- where the door plan stands (steps 1-4 shipped in v0.78.0; step 5, the VS Code setup increment, being built; step 6 planned);\n- how to run the door: `reflow2 read` / `reflow2 write`, `--call`, the exit codes, `--describe` and `--list-tools`, the VS Code auto-approve rule for reads, and a user-scope instructions file;\n- a measured table and working patterns;\n- the limitations that still hold (1, 3's write half, 7, 8, 9, 10, 11, 12, 13, 15, 20), each with its 2026-10-02 finding;\n- what v0.78.0 fixed, the tool frictions and where each stands, and every one of the report's 19 ideas with the record that holds it.\nThe 2026-10-02 version the triage read is frozen as art:vscode-call-door-field-report-2026-10-02; this file is the living copy and has moved on from it.",
+    "location": "docs/using-reflow2-in-vscode-without-mcp.md",
+    "name": "docs/using-reflow2-in-vscode-without-mcp.md",
+    "status": "realized"
+  }
+}

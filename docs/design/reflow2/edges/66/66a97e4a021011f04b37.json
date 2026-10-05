@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:7b11657713309724ee46649c59cb2981b87ffad0c549de6ca3820f5a6d587294",
+  "edge_type": "CHANGED",
+  "from_id": "chg:baseline-e9a95b263c2936ba",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:4b3b3c2c030a3867b0d1760f5b2e7152b3642006f06455789121c0369a233c29",
+    "checksum_basis": "measured"
+  },
+  "to_id": "art:using-reflow2-in-vscode-without-mcp"
+}

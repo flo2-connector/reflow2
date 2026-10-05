@@ -106,6 +106,10 @@ Three records, three questions — kept separate on purpose:
   one-time merge-driver setup, the daily loop, what merges automatically and what needs a person,
   and what the stale-export refusal is telling you. Written to be sent
   to a collaborator as-is.
+- [using-reflow2-in-vscode-without-mcp.md](using-reflow2-in-vscode-without-mcp.md) — VS Code's
+  Copilot agent where an organisation blocks third-party MCP servers: the `--call` door,
+  `reflow2 read` / `reflow2 write` with one auto-approve rule for reads, what still does not work
+  there, and where each idea from the field report stands.
 
 ### 3½ · Upgrade notes — *read before updating a consumer project*
 - [upgrading-to-v0.78.0.md](upgrading-to-v0.78.0.md) — **upgrade everywhere, together**: the stamp

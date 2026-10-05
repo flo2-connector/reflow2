@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:7595096069d435c2906a6fd93bda569732bf44da42dc6438152143c494c3c95b",
+  "edge_type": "DOCUMENTS",
+  "from_id": "art:using-reflow2-in-vscode-without-mcp",
+  "properties": {
+    "doc_kind": "runbook"
+  },
+  "to_id": "cap:a-build-can-call-one-tool-from-the-shell-and-read-the-reply-as-json"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:44ba509ea9a500f8282346ce68858f85d0f8008cc67bcc79dd79349a505a6cfb",
+  "node_id": "chg:baseline-e9a95b263c2936ba",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "baseline_established",
+    "name": "First baseline: the guide as refreshed on 2026-10-05 against main after v0.78.0.",
+    "subject": "record"
+  }
+}
