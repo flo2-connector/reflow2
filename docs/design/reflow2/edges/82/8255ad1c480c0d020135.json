@@ -1,12 +1,12 @@
 {
-  "content_hash": "sha256:33ba20519d55d945561eb2b93cd612b51ff9b7629a0647de59de1db58040e5f4",
+  "content_hash": "sha256:dc846ef1dc24a827c79dd9fc2a357778ee23b1f564cce8e838a0ebc581d0d169",
   "edge_type": "CHANGED",
   "from_id": "chg:a-stores-identity-follows-its-real-path",
   "properties": {
     "accepted_baseline": true,
-    "accepted_seq": 3,
+    "accepted_seq": 4,
     "action": "modified",
-    "checksum_after": "sha256:fd1a080e4e639e7d845dbcd21a3fbc24105755c0ee138d20d100c19f85de7104",
+    "checksum_after": "sha256:38a6bf2c804359c29a69627ca73d0cfc6b708db2e041c057d5c0094f84558ddd",
     "checksum_basis": "measured"
   },
   "to_id": "art:tools-coherence"
