@@ -1692,5 +1692,224 @@ def _claim_worker(args):
     return 1 if _claim(pathlib.Path(project), now, "race") else 0
 
 
+
+# ---------------------------------------------------------------------------
+# VS Code, terminal route: `reflow2 hook vscode` -> loop_nudge.py --harness vscode
+# ---------------------------------------------------------------------------
+
+# A stand-in for the reflow2-mcp binary: it logs every argv to a file and
+# answers the two calls the VS Code hook makes, so these stay hermetic.
+FAKE_BINARY_SRC = r"""#!/usr/bin/env python3
+import json, os, sys
+log = os.environ["FAKE_REFLOW2_LOG"]
+with open(log, "a") as f:
+    f.write(json.dumps(sys.argv[1:]) + "\n")
+args = sys.argv[1:]
+if "read" in args and "loop_status" in args:
+    print(json.dumps({"next": ["2 open gap(s) never put to the person: run detect-and-ask"],
+                      "owed": {"gaps": 2}}))
+    sys.exit(0)
+if "write" in args and "export_graph" in args:
+    req = json.loads(args[-1])
+    with open(req["path"], "w") as f:
+        f.write(json.dumps({"graph_id": "fake", "nodes": []}))
+    print(json.dumps({"path": req["path"], "wrote": "changed"}))
+    sys.exit(0)
+print("unexpected call", file=sys.stderr)
+sys.exit(1)
+"""
+
+
+def vscode_event(kind: str, cwd: pathlib.Path, session: str = "vs1", **extra) -> dict:
+    ev = {"hook_event_name": kind, "session_id": session, "cwd": str(cwd),
+          "timestamp": "2026-10-05T12:00:00Z"}
+    ev.update(extra)
+    return ev
+
+
+class VsCodeHook(unittest.TestCase):
+    """The VS Code half of the loop's trigger, for an agent on the `--call`
+    door (`dec:idea-how-reflow2-triggers-the-loop-for-a-call-door-agent-in-vs-code`,
+    accepted 2026-10-02): SessionStart runs loop_status and hands it to the
+    model; Stop exports the committed record and nudges once.
+
+    THE COUNTING IS THE POINT. The Claude hook counts writes by MCP tool name,
+    and a door write has none, so a VS Code agent writing through the terminal
+    was never counted (fact:root-cause-no-loop-nudge-reaches-a-call-door-agent-
+    in-vs-code-2026-10-02). Here the count comes from reflow2's own usage
+    ledger, which the door writes for every call, so no hook reads the command
+    text a door write carries (limitation 20).
+    """
+
+    def setUp(self):
+        self._tmp = tempfile.TemporaryDirectory(prefix="loop-nudge-vscode-")
+        self.root = pathlib.Path(self._tmp.name)
+        self.project = self.root / "proj"
+        (self.project / ".reflow2").mkdir(parents=True)
+        (self.project / ".reflow2" / "kit-version.json").write_text(json.dumps(
+            {"harnesses": ["vscode-cli"], "design_record": "docs/design/proj.json"}))
+        (self.project / "docs" / "design").mkdir(parents=True)
+        self.log = self.root / "calls.log"
+        self.binary = self.root / "reflow2-mcp"
+        self.binary.write_text(FAKE_BINARY_SRC)
+        self.binary.chmod(0o755)
+        self.ledger = self.project / ".reflow2" / "graph.usage.jsonl"
+        # Run from somewhere else: the hook must work in the folder the EVENT
+        # names, as VS Code reports it, not wherever it was started.
+        self.elsewhere = self.root / "elsewhere"
+        self.elsewhere.mkdir()
+
+    def tearDown(self):
+        self._tmp.cleanup()
+
+    def hook(self, event: dict, binary: str | None = None):
+        env = dict(os.environ, REFLOW2_BIN=binary or str(self.binary),
+                   FAKE_REFLOW2_LOG=str(self.log))
+        return subprocess.run(
+            [sys.executable, str(SCRIPT), "--harness", "vscode"],
+            input=json.dumps(event), capture_output=True, text=True,
+            cwd=self.elsewhere, env=env, timeout=60,
+        )
+
+    def ledger_call(self, tool: str, outcome: str = "ok") -> None:
+        with self.ledger.open("a") as f:
+            f.write(json.dumps({"at": int(time.time()), "kind": "call", "tool": tool,
+                                "outcome": outcome, "client": "reflow2-mcp --call"}) + "\n")
+
+    def calls(self) -> list[list[str]]:
+        if not self.log.exists():
+            return []
+        return [json.loads(line) for line in self.log.read_text().splitlines()]
+
+    def start(self):
+        r = self.hook(vscode_event("SessionStart", self.project, source="new"))
+        self.assertEqual(r.returncode, 0, r.stderr)
+        return r
+
+    def stop(self, active: bool = False):
+        r = self.hook(vscode_event("Stop", self.project, stop_hook_active=active))
+        self.assertEqual(r.returncode, 0, r.stderr)
+        return r
+
+    # ---- SessionStart ------------------------------------------------------
+
+    def test_session_start_hands_loop_status_to_the_model(self):
+        r = self.start()
+        out = json.loads(r.stdout)
+        spec = out["hookSpecificOutput"]
+        self.assertEqual(spec["hookEventName"], "SessionStart")
+        context = spec["additionalContext"]
+        self.assertIn("reflow2 read", context, "the door's verbs, not MCP calls")
+        self.assertIn("2 open gap(s) never put to the person", context,
+                      "the loop_status reading itself reaches the model")
+        self.assertIn(["--graph-path", ".reflow2/graph", "read", "loop_status"], self.calls())
+
+    def test_session_start_says_so_when_loop_status_cannot_be_read(self):
+        r = self.hook(vscode_event("SessionStart", self.project),
+                      binary=str(self.root / "missing-binary"))
+        self.assertEqual(r.returncode, 0)
+        context = json.loads(r.stdout)["hookSpecificOutput"]["additionalContext"]
+        self.assertIn("could not", context)
+        self.assertIn("reflow2 read loop_status", context,
+                      "a reading that failed names the command to get it")
+
+    def test_nothing_happens_where_there_is_no_design(self):
+        bare = self.root / "bare"
+        bare.mkdir()
+        for kind in ("SessionStart", "Stop"):
+            r = self.hook(vscode_event(kind, bare))
+            self.assertEqual((r.returncode, r.stdout), (0, ""))
+        self.assertEqual(self.calls(), [])
+
+    # ---- Stop: the nudge, counted from the ledger --------------------------
+
+    def test_a_door_write_with_no_loop_check_is_nudged_once_in_vs_codes_shape(self):
+        self.start()
+        self.ledger_call("add_requirement")
+        out = json.loads(self.stop().stdout)
+        spec = out["hookSpecificOutput"]
+        self.assertEqual(spec["hookEventName"], "Stop")
+        self.assertEqual(spec["decision"], "block")
+        self.assertIn("1 graph write(s)", spec["reason"])
+        self.assertIn("reflow2 read loop_status", spec["reason"])
+        # Fires once: the stop VS Code makes after a block proceeds.
+        self.assertEqual(self.stop(active=True).stdout, "")
+
+    def test_a_loop_check_after_the_write_settles_it(self):
+        self.start()
+        self.ledger_call("add_requirement")
+        self.ledger_call("loop_status")
+        self.assertNotIn("block", self.stop().stdout)
+
+    def test_a_refused_write_wrote_nothing_and_is_not_counted(self):
+        self.start()
+        self.ledger_call("add_requirement", outcome="refused")
+        self.assertNotIn("block", self.stop().stdout)
+
+    def test_calls_from_before_the_session_are_not_this_sessions(self):
+        self.ledger_call("add_requirement")
+        self.ledger_call("add_capability")
+        self.start()
+        self.assertNotIn("block", self.stop().stdout)
+
+    def test_a_write_the_door_made_with_shell_words_in_its_prose_is_counted(self):
+        # Limitation 20, from the other side: what the door wrote is read from
+        # the ledger, which holds the verb and never the object, so the prose
+        # of a write cannot trip, hide or fake anything here.
+        self.start()
+        self.ledger_call("record_finding")
+        spec = json.loads(self.stop().stdout)["hookSpecificOutput"]
+        self.assertIn("1 graph write(s)", spec["reason"])
+
+    # ---- Stop: the export ---------------------------------------------------
+
+    def test_stop_exports_the_record_after_a_write(self):
+        self.start()
+        self.ledger_call("add_requirement")
+        self.ledger_call("loop_status")
+        self.stop()
+        exports = [c for c in self.calls() if "export_graph" in c]
+        self.assertEqual(len(exports), 1, self.calls())
+        self.assertEqual(exports[0][:4], ["--graph-path", ".reflow2/graph", "write", "export_graph"])
+        self.assertEqual(json.loads(exports[0][4]),
+                         {"path": "docs/design/proj.json", "overwrite": True})
+        self.assertTrue((self.project / "docs" / "design" / "proj.json").exists())
+        # Nothing new written since: the next stop exports nothing.
+        self.stop()
+        self.assertEqual(len([c for c in self.calls() if "export_graph" in c]), 1)
+
+    def test_a_read_only_session_exports_nothing(self):
+        self.start()
+        self.ledger_call("get_node")
+        self.stop()
+        self.assertFalse([c for c in self.calls() if "export_graph" in c])
+
+    def test_a_configured_write_through_is_left_to_keep_the_record(self):
+        # An MCP configuration that names --export-to means the door's own
+        # write-through (and any server) already keeps the record current.
+        (self.project / ".vscode").mkdir()
+        (self.project / ".vscode" / "mcp.json").write_text(json.dumps({"servers": {"reflow2": {
+            "command": "x", "args": ["--export-to", "./docs/design/proj.json"]}}}))
+        self.start()
+        self.ledger_call("add_requirement")
+        self.ledger_call("loop_status")
+        self.stop()
+        self.assertFalse([c for c in self.calls() if "export_graph" in c])
+
+    def test_a_record_that_is_not_an_export_is_never_overwritten(self):
+        record = self.project / "docs" / "design" / "proj.json"
+        record.write_text("<<<<<<< HEAD\n{}\n=======\n{}\n>>>>>>> theirs\n")
+        self.start()
+        self.ledger_call("add_requirement")
+        self.ledger_call("loop_status")
+        out = json.loads(self.stop().stdout)
+        self.assertFalse([c for c in self.calls() if "export_graph" in c])
+        self.assertTrue(record.read_text().startswith("<<<<<<<"), "left exactly as it was")
+        spec = out["hookSpecificOutput"]
+        self.assertEqual(spec["decision"], "block")
+        self.assertIn("docs/design/proj.json", spec["reason"])
+        self.assertIn("not a reflow2 export", spec["reason"])
+
+
 if __name__ == "__main__":
     unittest.main(verbosity=2)

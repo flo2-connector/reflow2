@@ -577,7 +577,12 @@ mod tests {
         let said = status_with_home(Some(&p.graph()), None)
             .advisory()
             .expect("must say something");
-        assert!(said.contains("none is possible"), "{said}");
+        // VS Code HAS an event model (fact:vs-code-has-an-agent-hook-event-model-
+        // reflow2-can-register-against-2026-10-02), and reflow2 installs hooks
+        // for it with the terminal route, so "none is possible" is false for it
+        // (dec:idea-how-reflow2-triggers-the-loop-for-a-call-door-agent-in-vs-code).
+        assert!(!said.contains("none is possible"), "{said}");
+        assert!(said.contains("vscode-cli"), "it must name the route that has one: {said}");
         assert!(said.contains("vscode"), "it must name the harness: {said}");
         assert!(
             said.contains("loop_status"),
@@ -724,6 +729,44 @@ mod tests {
         assert_eq!(
             status_with_home(Some(&p.graph()), Some(home)),
             NudgeStatus::Installed
+        );
+    }
+
+    /// The VS Code terminal route (`reflow2 init --harness vscode-cli`) gets its
+    /// trigger as a COMMITTED hook file VS Code reads from `.github/hooks/`,
+    /// running `reflow2 hook vscode`. Its presence is that file.
+    #[test]
+    fn the_vscode_hook_file_reads_as_installed() {
+        let p = project_with(r#"{"hooks":{}}"#);
+        set_up_for(&p, &["vscode-cli"]);
+        std::fs::create_dir_all(p.dir.join(".github/hooks")).unwrap();
+        std::fs::write(
+            p.dir.join(".github/hooks/reflow2.json"),
+            r#"{"hooks":{"Stop":[{"type":"command","command":"reflow2 hook vscode || exit 1"}]}}"#,
+        )
+        .unwrap();
+        assert_eq!(
+            status_with_home(Some(&p.graph()), None),
+            NudgeStatus::Installed
+        );
+    }
+
+    /// A project set up for the terminal route whose hook file is gone is told
+    /// the nudge is ABSENT, which `reflow2 update` fixes, never that none is
+    /// possible. A hook file of the person's own is not mistaken for it.
+    #[test]
+    fn a_vscode_cli_project_without_the_hook_file_is_absent_not_impossible() {
+        let p = project_with(r#"{"hooks":{}}"#);
+        set_up_for(&p, &["vscode-cli"]);
+        std::fs::create_dir_all(p.dir.join(".github/hooks")).unwrap();
+        std::fs::write(
+            p.dir.join(".github/hooks/team.json"),
+            r#"{"hooks":{"Stop":[{"type":"command","command":"make lint"}]}}"#,
+        )
+        .unwrap();
+        assert_eq!(
+            status_with_home(Some(&p.graph()), None),
+            NudgeStatus::Absent
         );
     }
 
